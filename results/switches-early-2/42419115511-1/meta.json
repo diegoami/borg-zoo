@@ -1,0 +1,173 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit.",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "chest-tolerance-3": {
+        "description": "borg_chest_fail_tolerance = 3 (default 7)",
+        "settings": {
+          "borg_chest_fail_tolerance": 3
+        },
+        "sha256": "47c3d07f6e75c88393c2b888e9293dddabe3ba1edda0dbcff857178f2c46728b"
+      },
+      "default": {
+        "description": "Built-in defaults (the better-borg-c cohort configuration)",
+        "settings": {},
+        "sha256": "44b3cfb53eb6a924a29312a7b8ca21ad80d747f11d1f2eef097242b2994bdbda"
+      },
+      "money-scum-20k": {
+        "description": "borg_money_scum_amount = 20000",
+        "settings": {
+          "borg_money_scum_amount": 20000
+        },
+        "sha256": "4b5e946a9351d908aa88ba251115a72d834b306ac7637b3b23911b50e9cd17e1"
+      },
+      "money-scum-5k": {
+        "description": "borg_money_scum_amount = 5000",
+        "settings": {
+          "borg_money_scum_amount": 5000
+        },
+        "sha256": "743ffdd497f1e977729533c54c9dbbe6f34da7ddf7658d458166394251f1933b"
+      },
+      "shipped": {
+        "base": "shipped",
+        "description": "The version's own borg.txt, unchanged (formula section included, dynamic calculations off). Expected to play exactly like default.",
+        "settings": {},
+        "sha256": "f82121ce974e4a7e40fa00de5e5a11fc7c9d5c2a2f31313d004c7a03e37847de"
+      },
+      "worships-gold": {
+        "description": "borg_worships_gold = TRUE",
+        "settings": {
+          "borg_worships_gold": true
+        },
+        "sha256": "df91087f3b8d1a961f1a9f4c8c88323e5b646236bfde87623700c8fb9725f1b9"
+      },
+      "worships-mana": {
+        "description": "borg_worships_mana = TRUE (a Warrior has no mana: expected to change little in fixed-birth suites)",
+        "settings": {
+          "borg_worships_mana": true
+        },
+        "sha256": "60677354db1eb5fb47647dcdb4d7f55be9dfcf7f3999fb9ce2efc6e48f8dd7a1"
+      }
+    },
+    "specimens": {
+      "bbc-m4": {
+        "carries": 42,
+        "label": "better-borg-c milestone 4",
+        "ref": "70993393a1c946ce8cd38ee558bf1ce6464350e7",
+        "repository": "diegoami/better-borg-c",
+        "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE4.md"
+      },
+      "pristine": {
+        "carries": 0,
+        "label": "Original C Borg (angband/angband e473720)",
+        "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
+        "repository": "diegoami/better-borg-c",
+        "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3"
+      }
+    },
+    "suites": {
+      "early-50": {
+        "birth": "fixed",
+        "cap": 100000,
+        "description": "Early-game pilot: 50 seeds, 100,000 engine turns, fixed birth",
+        "saves": false,
+        "seeds": [
+          1001,
+          1002,
+          1003,
+          1004,
+          1005,
+          1006,
+          1007,
+          1008,
+          1009,
+          1010,
+          1011,
+          1012,
+          1013,
+          1014,
+          1015,
+          1016,
+          1017,
+          1018,
+          1019,
+          1020,
+          1021,
+          1022,
+          1023,
+          1024,
+          1025,
+          1026,
+          1027,
+          1028,
+          1029,
+          1030,
+          1031,
+          1032,
+          1033,
+          1034,
+          1035,
+          1036,
+          1037,
+          1038,
+          1039,
+          1040,
+          1041,
+          1042,
+          1043,
+          1044,
+          1045,
+          1046,
+          1047,
+          1048,
+          1049,
+          1050
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-07 22:20 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "pristine",
+    "control_profile": "default",
+    "description": "More borg.txt switches on the original and the latest milestone: money scumming, chest risk, gold and mana worship. 'shipped' (the version's own borg.txt, unchanged) is an identity check: it should play exactly like default on every seed.",
+    "name": "switches-early-2",
+    "profiles": [
+      "default",
+      "shipped",
+      "money-scum-5k",
+      "money-scum-20k",
+      "chest-tolerance-3",
+      "worships-gold",
+      "worships-mana"
+    ],
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "pristine",
+      "bbc-m4"
+    ],
+    "suites": [
+      "early-50"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "42419115511-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/42419115511",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "fb9a603266226e91da09ea4045e06ebac700b876"
+}
