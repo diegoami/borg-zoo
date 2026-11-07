@@ -2,14 +2,90 @@
   "schema": "borg-zoo/profiles@1",
   "note": "A profile is the borg.txt the run uses. The runner always appends borg_cheat_death = FALSE and borg_respawn_winners = FALSE. Settings not named keep the Borg's built-in defaults. Each run checks the BORG_OPTIONS line the observer prints: a setting that did not take effect makes the run a config_error, never a silent default.",
   "profiles": {
-    "default": {"description": "Built-in defaults (the better-borg-c cohort configuration)", "settings": {}},
-    "plays-risky": {"description": "borg_plays_risky = TRUE", "settings": {"borg_plays_risky": true}},
-    "no-swaps": {"description": "borg_uses_swaps = FALSE", "settings": {"borg_uses_swaps": false}},
-    "no-self-scum": {"description": "borg_self_scum = FALSE", "settings": {"borg_self_scum": false}},
-    "kills-uniques": {"description": "borg_kills_uniques = TRUE", "settings": {"borg_kills_uniques": true}},
-    "worships-speed": {"description": "borg_worships_speed = TRUE", "settings": {"borg_worships_speed": true}},
-    "worships-hp": {"description": "borg_worships_hp = TRUE", "settings": {"borg_worships_hp": true}},
-    "worships-damage": {"description": "borg_worships_damage = TRUE", "settings": {"borg_worships_damage": true}},
-    "worships-ac": {"description": "borg_worships_ac = TRUE", "settings": {"borg_worships_ac": true}}
+    "default": {
+      "description": "Built-in defaults (the better-borg-c cohort configuration)",
+      "settings": {}
+    },
+    "plays-risky": {
+      "description": "borg_plays_risky = TRUE",
+      "settings": {
+        "borg_plays_risky": true
+      }
+    },
+    "no-swaps": {
+      "description": "borg_uses_swaps = FALSE",
+      "settings": {
+        "borg_uses_swaps": false
+      }
+    },
+    "no-self-scum": {
+      "description": "borg_self_scum = FALSE",
+      "settings": {
+        "borg_self_scum": false
+      }
+    },
+    "kills-uniques": {
+      "description": "borg_kills_uniques = TRUE",
+      "settings": {
+        "borg_kills_uniques": true
+      }
+    },
+    "worships-speed": {
+      "description": "borg_worships_speed = TRUE",
+      "settings": {
+        "borg_worships_speed": true
+      }
+    },
+    "worships-hp": {
+      "description": "borg_worships_hp = TRUE",
+      "settings": {
+        "borg_worships_hp": true
+      }
+    },
+    "worships-damage": {
+      "description": "borg_worships_damage = TRUE",
+      "settings": {
+        "borg_worships_damage": true
+      }
+    },
+    "worships-ac": {
+      "description": "borg_worships_ac = TRUE",
+      "settings": {
+        "borg_worships_ac": true
+      }
+    },
+    "munchkin": {
+      "description": "borg_munchkin_start = TRUE (defaults: depth 16; the entry gate is max clevel < 12, hard-coded)",
+      "settings": {
+        "borg_munchkin_start": true
+      }
+    },
+    "munchkin-d6": {
+      "description": "munchkin start, stair-scum target depth 6 (the depth borg.txt's comment describes)",
+      "settings": {
+        "borg_munchkin_start": true,
+        "borg_munchkin_depth": 6
+      }
+    },
+    "munchkin-d10": {
+      "description": "munchkin start, stair-scum target depth 10",
+      "settings": {
+        "borg_munchkin_start": true,
+        "borg_munchkin_depth": 10
+      }
+    },
+    "risky-munchkin": {
+      "description": "borg_plays_risky and munchkin start (default depth 16)",
+      "settings": {
+        "borg_plays_risky": true,
+        "borg_munchkin_start": true
+      }
+    },
+    "no-deeper-5": {
+      "description": "borg_no_deeper = 5: never prepared for depth 5 or deeper (a cautious anchor)",
+      "settings": {
+        "borg_no_deeper": 5
+      }
+    }
   }
 }
