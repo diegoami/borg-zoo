@@ -117,7 +117,7 @@ job.
    death and discordance rates.
 5. **New parameters:** restock depth (#370) and dive ratio (#371) enter as
    profiles once better-borg-c exposes them.
-7. **Dynamic calculations need runner support.** With
+6. **Dynamic calculations need runner support.** With
    `borg_uses_dynamic_calcs = TRUE`, the Borg prints an extra start-up
    warning. That warning consumes one of the runner's fixed start-up keys,
    and the Borg aborts before its first decision. The `dynamic-calcs`
@@ -125,9 +125,9 @@ job.
    handles that start-up. The `shipped` profile (the version's own
    `borg.txt`, unchanged) was checked locally to play identically to
    `default`.
-8. **Birth options** (connected stairs, force descend, no selling,
+7. **Birth options** (connected stairs, force descend, no selling,
    randarts) are a second configuration axis. The runner uses the game's
    defaults, which the observer records: for example `birth_connect_stairs=1`
    and `birth_no_selling=1`. Varying them needs runner support too.
-6. **Milestone tags:** if better-borg-c tags its milestones, specimens can
+8. **Milestone tags:** if better-borg-c tags its milestones, specimens can
    name them instead of SHAs.
