@@ -54,6 +54,16 @@ def parse_options(trace_text):
     return None
 
 
+CONFIG_LINES = ('BORG_OPTIONS ', 'ACTIVE_OPTIONS ')
+
+
+def play_sha256(trace_text):
+    """Hash of the trace without the configuration lines, so two profiles
+    that play the same game hash the same."""
+    kept = [line for line in trace_text.splitlines(keepends=True) if not line.startswith(CONFIG_LINES)]
+    return hashlib.sha256(''.join(kept).encode()).hexdigest() if kept else None
+
+
 def first_turns_at_depth(states):
     marks = {}
     for state in states:
@@ -100,6 +110,7 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
         'first_turn_at_depth': first_turns_at_depth(states),
         'wall_seconds': result.get('wall_seconds'),
         'trace_sha256': files.get('trace.txt'),
+        'play_sha256': play_sha256(trace_text),
         'effective_options': options,
         'error': result.get('error'),
         'harness_commit': result.get('harness_commit'),

@@ -66,6 +66,15 @@ def arm_summary(cells):
     }
 
 
+def same_play(a, b):
+    """Identical play: equal play hashes (configuration lines excluded) when
+    both runs have one, else equal full-trace hashes. Runs recorded before
+    the play hash existed only match under the same configuration."""
+    if a.get('play_sha256') and b.get('play_sha256'):
+        return a['play_sha256'] == b['play_sha256']
+    return bool(a.get('trace_sha256')) and a.get('trace_sha256') == b.get('trace_sha256')
+
+
 def paired(control_cells, arm_cells):
     control = {(c['suite'], c['seed']): c for c in control_cells if c['outcome'] in VALID}
     rescued = newly_killed = both_died = both_lived = identical = 0
@@ -88,7 +97,7 @@ def paired(control_cells, arm_cells):
         a_goal, k_goal = survived(c) and reached(c), survived(k) and reached(k)
         goal_gained += a_goal and not k_goal
         goal_lost += k_goal and not a_goal
-        if c.get('trace_sha256') and c.get('trace_sha256') == k.get('trace_sha256'):
+        if same_play(c, k):
             identical += 1
     pairs = rescued + newly_killed + both_died + both_lived
     return {'pairs': pairs, 'rescued': rescued, 'newly_killed': newly_killed,

@@ -50,7 +50,8 @@ The record holds:
 - the outcome, cause and final state;
 - the first turn at each depth mark;
 - the wall time;
-- the trace hash, so identical play is detectable;
+- the trace hash, and a play hash that leaves out the configuration lines, so
+  identical play is detectable across profiles;
 - the effective settings;
 - the build identity: binary hash, compiler and platform;
 - the calendar.

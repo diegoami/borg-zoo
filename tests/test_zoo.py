@@ -103,6 +103,17 @@ class HarnessParsingTest(unittest.TestCase):
         self.assertEqual(rec['first_turn_at_depth'], {'1': 500, '2': 900, '3': 900})
 
 
+class PlayHashTest(unittest.TestCase):
+    def test_config_lines_do_not_change_the_play_hash(self):
+        a = 'CHARACTER x\nBORG_OPTIONS borg_plays_risky=0\nACTIVE_OPTIONS a=1\nSTATE progress turn=5\n'
+        b = 'CHARACTER x\nBORG_OPTIONS borg_plays_risky=1\nACTIVE_OPTIONS a=1\nSTATE progress turn=5\n'
+        c = 'CHARACTER x\nBORG_OPTIONS borg_plays_risky=1\nACTIVE_OPTIONS a=1\nSTATE progress turn=6\n'
+        self.assertEqual(harness.play_sha256(a), harness.play_sha256(b))
+        self.assertNotEqual(harness.play_sha256(b), harness.play_sha256(c))
+        self.assertTrue(stats.same_play({'play_sha256': 'p', 'trace_sha256': 'x'},
+                                        {'play_sha256': 'p', 'trace_sha256': 'y'}))
+
+
 class StatsTest(unittest.TestCase):
     def test_wilson_and_mcnemar(self):
         lo, hi = stats.wilson(0, 10)
