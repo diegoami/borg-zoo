@@ -1,0 +1,20 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "munchkin-confirm",
+  "description": "Confirmation of the dive-styles-early munchkin result on 200 fresh seeds",
+  "specimens": [
+    "pristine",
+    "bbc-m4"
+  ],
+  "profiles": [
+    "default",
+    "munchkin-d6",
+    "munchkin-d10"
+  ],
+  "suites": [
+    "confirm-200"
+  ],
+  "control": "pristine",
+  "control_profile": "default",
+  "prespecified": "Fixed before any confirm-200 run. Primary: deaths before the 100,000-turn cap, munchkin-d6 against default on the same version, one test per version (pristine, bbc-m4): exact McNemar on the paired seeds, two-sided, alpha 0.05. Secondary: munchkin-d10 against default, median max depth, reaching DL10, operational outcomes. Stalls, timeouts and crashes are reported per arm and are not deaths."
+}

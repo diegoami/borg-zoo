@@ -1,0 +1,19 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "milestones-wide",
+  "description": "Original C Borg against every better-borg-c milestone on 500 fresh seeds: larger milestone comparisons, and a search for stalls and crashes",
+  "specimens": [
+    "pristine",
+    "bbc-m1",
+    "bbc-m2",
+    "bbc-m3",
+    "bbc-m4"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "wide-500"
+  ],
+  "control": "pristine"
+}
