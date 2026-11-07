@@ -34,6 +34,28 @@ records:
 
 The zoo calls `prepare()` and `run()` as a library (`zoo/harness.py`).
 
+**borg-rs specimens.** `rs-c` and `rs-rust` are a borg-rs commit built with
+its own `harness/build.sh`: the C Borg and the Rust Borg in the same tree,
+both behind borg-rs's headless `borgh` frontend (`zoo/borgrs.py`). Each run
+mirrors `harness/run.sh`. The run's `borg.txt` is the checkout's
+`harness/borg.txt` with the profile applied, and the outcome comes from
+`summary.json`. The play hash is the hash of the key log, which is borg-rs's
+own equivalence oracle, so identical play between `rs-c` and `rs-rust` is
+the port's identity check at zoo scale.
+
+Limits compared with the better-borg-c observer:
+- no effective-settings line, so only the written `borg.txt` is checked;
+- no per-turn states, so no depth marks or survival by turn;
+- fixed birth only;
+- the run stops after the first key at or past the cap.
+
+Runs from different harnesses are not paired. Whether the same seed gives
+the same game under the borgh frontend and under the better-borg-c observer
+is not verified. In `rs-smoke` all six seed/profile runs reached the same
+maximum depth and character level under both harnesses, which suggests it
+might. Pairing stays off until key-level equality is shown; the observer
+does not log keys.
+
 **Profile.** `borg.txt` lines, or with `"base": "shipped"`, the version's
 own `src/borg/borg.txt` (formula section included) with named settings
 overridden. The runner always adds

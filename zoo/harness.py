@@ -33,11 +33,14 @@ def check_harness(harness, expected_commit):
     return head
 
 
-def build(specimen_name, harness, out, cat=None):
+def build(specimen_name, harness, out, cat=None, source=None):
     cat = cat or cat_mod.catalogue()
     specimens = cat['specimens']
-    check_harness(harness, specimens['harness']['commit'])
     spec = specimens['specimens'][specimen_name]
+    if spec.get('kind') == 'borg-rs':
+        from . import borgrs
+        return borgrs.build(spec, source, out)
+    check_harness(harness, specimens['harness']['commit'])
     runner = load_runner(harness)
     runner.prepare(SimpleNamespace(ref=spec['ref'], output=Path(out), observe=True,
                                    recording=False, retry=False))
@@ -96,6 +99,7 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
     return {
         'schema': 'borg-zoo/cell@1',
         **cell,
+        'harness_kind': 'better-borg-c',
         'specimen_ref': spec['ref'],
         'profile_sha256': cat_mod.profile_sha256(profile),
         'config_sha256': result.get('configuration_sha256'),
@@ -124,6 +128,9 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
 
 def run_cell(cell, build_dir, harness, work, cat=None, keep=False):
     cat = cat or cat_mod.catalogue()
+    if cat['specimens']['specimens'][cell['specimen']].get('kind') == 'borg-rs':
+        from . import borgrs
+        return borgrs.run_cell(cell, build_dir, work, cat)
     profile = cat['profiles'][cell['profile']]
     suite = cat['suites'][cell['suite']]
     spec = cat['specimens']['specimens'][cell['specimen']]

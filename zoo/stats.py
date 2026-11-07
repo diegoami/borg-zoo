@@ -150,11 +150,16 @@ def analyse(exp, cells):
                     continue
                 version_key = (exp['control'], profile)
                 profile_key = (specimen, control_profile)
+                # Pair only runs from the same harness: that the same seed gives
+                # the same game under another frontend is not verified.
+                same_kind = (version_key in arms and
+                             arms[version_key][0].get('harness_kind', 'better-borg-c') ==
+                             arm[0].get('harness_kind', 'better-borg-c'))
                 rows.append({
                     'specimen': specimen, 'profile': profile,
                     'summary': arm_summary(arm),
                     'vs_version': (paired(arms[version_key], arm)
-                                   if specimen != exp['control'] and version_key in arms else None),
+                                   if specimen != exp['control'] and same_kind else None),
                     'vs_profile': (paired(arms[profile_key], arm)
                                    if profile != control_profile and profile_key in arms else None),
                     'survival': survival_table(arm, arm[0]['cap']),

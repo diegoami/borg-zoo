@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from zoo import catalogue as cat_mod  # noqa: E402
-from zoo import harness, site, stats  # noqa: E402
+from zoo import borgrs, harness, site, stats  # noqa: E402
 from zoo.__main__ import main  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -112,6 +112,48 @@ class PlayHashTest(unittest.TestCase):
         self.assertNotEqual(harness.play_sha256(b), harness.play_sha256(c))
         self.assertTrue(stats.same_play({'play_sha256': 'p', 'trace_sha256': 'x'},
                                         {'play_sha256': 'p', 'trace_sha256': 'y'}))
+
+
+class BorgRsTest(unittest.TestCase):
+    def test_config_text_sets_birth_and_profile(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / 'borg.txt').write_text('borg_respawn_race = -1\nborg_respawn_class = -1\n'
+                                                'borg_cheat_death = FALSE\nborg_munchkin_start = FALSE\n'
+                                                'borg_munchkin_depth = 16\n')
+            profile = {'settings': {'borg_munchkin_start': True, 'borg_munchkin_depth': 6}}
+            text = borgrs.config_text(tmp, profile)
+            self.assertIn('borg_respawn_race = 0\n', text)
+            self.assertIn('borg_munchkin_start = TRUE\n', text)
+            self.assertIn('borg_munchkin_depth = 6\n', text)
+            self.assertIsNone(borgrs.check_config(text, profile))
+            self.assertIsNotNone(borgrs.check_config('borg_munchkin_start = FALSE\n', profile))
+
+    def test_borg_rs_specimens_reject_random_birth(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            bad = Path(tmp) / 'bad.json'
+            bad.write_text(json.dumps({'name': 'x', 'specimens': ['rs-rust'], 'profiles': ['default'],
+                                       'suites': ['early-50-random'], 'control': 'rs-rust'}))
+            with self.assertRaises(ValueError):
+                cat_mod.experiment(bad)
+
+    def test_plan_carries_build_kind(self):
+        exp = cat_mod.experiment(ROOT / 'experiments/rs-smoke.json')
+        plan = cat_mod.plan(exp, 2)
+        kinds = {b['specimen']: b['kind'] for b in plan['builds']}
+        self.assertEqual(kinds, {'rs-c': 'borg-rs', 'rs-rust': 'borg-rs', 'pristine': 'better-borg-c'})
+        self.assertTrue(all('kind' in r and 'ref' in r for r in plan['runs']))
+
+    def test_no_pairing_across_harnesses(self):
+        exp = cat_mod.experiment(ROOT / 'experiments/rs-smoke.json')
+        cells = []
+        for s in exp['specimens']:
+            for seed in (11, 29):
+                c = cell(s, seed, 'turn_cap')
+                c['harness_kind'] = 'better-borg-c' if s == 'pristine' else 'borg-rs'
+                cells.append(c)
+        rows = {r['specimen']: r for r in stats.analyse(exp, cells)['smoke'] if r['profile'] == 'default'}
+        self.assertIsNotNone(rows['rs-rust']['vs_version'])
+        self.assertIsNone(rows['pristine']['vs_version'])
 
 
 class StatsTest(unittest.TestCase):
