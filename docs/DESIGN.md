@@ -34,7 +34,9 @@ records:
 
 The zoo calls `prepare()` and `run()` as a library (`zoo/harness.py`).
 
-**Profile.** `borg.txt` lines. The runner always adds
+**Profile.** `borg.txt` lines, or with `"base": "shipped"`, the version's
+own `src/borg/borg.txt` (formula section included) with named settings
+overridden. The runner always adds
 `borg_cheat_death = FALSE` and `borg_respawn_winners = FALSE`. After each run
 the zoo compares the observer's `BORG_OPTIONS` line with the profile; any
 difference turns the run into a `config_error`.
@@ -115,5 +117,17 @@ job.
    death and discordance rates.
 5. **New parameters:** restock depth (#370) and dive ratio (#371) enter as
    profiles once better-borg-c exposes them.
+7. **Dynamic calculations need runner support.** With
+   `borg_uses_dynamic_calcs = TRUE`, the Borg prints an extra start-up
+   warning. That warning consumes one of the runner's fixed start-up keys,
+   and the Borg aborts before its first decision. The `dynamic-calcs`
+   profile is in the catalogue but blocked until better-borg-c's runner
+   handles that start-up. The `shipped` profile (the version's own
+   `borg.txt`, unchanged) was checked locally to play identically to
+   `default`.
+8. **Birth options** (connected stairs, force descend, no selling,
+   randarts) are a second configuration axis. The runner uses the game's
+   defaults, which the observer records: for example `birth_connect_stairs=1`
+   and `birth_no_selling=1`. Varying them needs runner support too.
 6. **Milestone tags:** if better-borg-c tags its milestones, specimens can
    name them instead of SHAs.

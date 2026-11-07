@@ -88,6 +88,7 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
         **cell,
         'specimen_ref': spec['ref'],
         'profile_sha256': cat_mod.profile_sha256(profile),
+        'config_sha256': result.get('configuration_sha256'),
         'cap': suite['cap'],
         'birth': suite['birth'],
         'outcome': outcome,
@@ -124,10 +125,12 @@ def run_cell(cell, build_dir, harness, work, cat=None, keep=False):
         shutil.rmtree(out)
     out.parent.mkdir(parents=True, exist_ok=True)
     runner = load_runner(harness)
+    shipped_path = build_dir / 'source/src/borg/borg.txt'
+    shipped = shipped_path.read_text() if profile.get('base') == 'shipped' else None
     args = SimpleNamespace(build=build_dir, output=out, seed=cell['seed'], cap=suite['cap'],
                            timeout=suite['wall_seconds'], stall_timeout=suite['stall_seconds'],
                            no_saves=not suite.get('saves', False), load=None,
-                           configuration=cat_mod.profile_text(profile).rstrip('\n') or None,
+                           configuration=cat_mod.profile_text(profile, shipped).rstrip('\n') or None,
                            random_birth=suite['birth'] == 'random')
     try:
         runner.run(args)

@@ -1,6 +1,6 @@
 {
   "schema": "borg-zoo/profiles@1",
-  "note": "A profile is the borg.txt the run uses. The runner always appends borg_cheat_death = FALSE and borg_respawn_winners = FALSE. Settings not named keep the Borg's built-in defaults. Each run checks the BORG_OPTIONS line the observer prints: a setting that did not take effect makes the run a config_error, never a silent default.",
+  "note": "A profile is the borg.txt the run uses. The runner always appends borg_cheat_death = FALSE and borg_respawn_winners = FALSE. Settings not named keep the Borg's built-in defaults. Each run checks the BORG_OPTIONS line the observer prints: a setting that did not take effect makes the run a config_error, never a silent default. A profile with \"base\": \"shipped\" starts from the specimen's own src/borg/borg.txt, formula section included, and overrides only the settings it names.",
   "profiles": {
     "default": {
       "description": "Built-in defaults (the better-borg-c cohort configuration)",
@@ -85,6 +85,48 @@
       "description": "borg_no_deeper = 5: never prepared for depth 5 or deeper (a cautious anchor)",
       "settings": {
         "borg_no_deeper": 5
+      }
+    },
+    "shipped": {
+      "description": "The version's own borg.txt, unchanged (formula section included, dynamic calculations off). Expected to play exactly like default.",
+      "base": "shipped",
+      "settings": {}
+    },
+    "dynamic-calcs": {
+      "description": "The version's own borg.txt with borg_uses_dynamic_calcs = TRUE (neo-angband-tracker #369). BLOCKED with harness 8c23ec0d: the Borg's extra start-up warning consumes one of the runner's fixed start-up keys and the Borg aborts (terminal disconnect abort), so every run stalls before the first decision. Needs runner support in better-borg-c; not used by any experiment.",
+      "base": "shipped",
+      "settings": {
+        "borg_uses_dynamic_calcs": true
+      }
+    },
+    "money-scum-5k": {
+      "description": "borg_money_scum_amount = 5000",
+      "settings": {
+        "borg_money_scum_amount": 5000
+      }
+    },
+    "money-scum-20k": {
+      "description": "borg_money_scum_amount = 20000",
+      "settings": {
+        "borg_money_scum_amount": 20000
+      }
+    },
+    "chest-tolerance-3": {
+      "description": "borg_chest_fail_tolerance = 3 (default 7)",
+      "settings": {
+        "borg_chest_fail_tolerance": 3
+      }
+    },
+    "worships-gold": {
+      "description": "borg_worships_gold = TRUE",
+      "settings": {
+        "borg_worships_gold": true
+      }
+    },
+    "worships-mana": {
+      "description": "borg_worships_mana = TRUE (a Warrior has no mana: expected to change little in fixed-birth suites)",
+      "settings": {
+        "borg_worships_mana": true
       }
     }
   }

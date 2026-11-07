@@ -121,27 +121,34 @@ def depth_table(cells, marks=(2, 3, 5, 10)):
 
 
 def analyse(exp, cells):
-    control_profile = exp.get('control_profile')
+    """Per suite: one row per arm, with two paired comparisons.
+
+    vs_version pairs an arm with the control specimen under the same profile;
+    vs_profile pairs it with the control profile on the same specimen.
+    """
+    control_profile = exp.get('control_profile', exp['profiles'][0])
     by_suite = {}
     for suite in exp['suites']:
-        suite_cells = [c for c in cells if c['suite'] == suite]
         arms = {}
-        for c in suite_cells:
-            arms.setdefault(arm_key(c), []).append(c)
+        for c in cells:
+            if c['suite'] == suite:
+                arms.setdefault(arm_key(c), []).append(c)
         rows = []
         for specimen in exp['specimens']:
             for profile in exp['profiles']:
                 arm = arms.get((specimen, profile), [])
                 if not arm:
                     continue
-                ctrl_key = (exp['control'], control_profile or profile)
-                cap = arm[0]['cap']
+                version_key = (exp['control'], profile)
+                profile_key = (specimen, control_profile)
                 rows.append({
                     'specimen': specimen, 'profile': profile,
                     'summary': arm_summary(arm),
-                    'versus': None if (specimen, profile) == ctrl_key else paired(arms.get(ctrl_key, []), arm),
-                    'control': {'specimen': ctrl_key[0], 'profile': ctrl_key[1]},
-                    'survival': survival_table(arm, cap),
+                    'vs_version': (paired(arms[version_key], arm)
+                                   if specimen != exp['control'] and version_key in arms else None),
+                    'vs_profile': (paired(arms[profile_key], arm)
+                                   if profile != control_profile and profile_key in arms else None),
+                    'survival': survival_table(arm, arm[0]['cap']),
                     'depths': depth_table(arm),
                 })
         by_suite[suite] = rows
