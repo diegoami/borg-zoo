@@ -54,6 +54,16 @@ def parse_options(trace_text):
     return None
 
 
+CONFIG_LINES = ('BORG_OPTIONS ', 'ACTIVE_OPTIONS ')
+
+
+def play_sha256(trace_text):
+    """Hash of the trace without the configuration lines, so two profiles
+    that play the same game hash the same."""
+    kept = [line for line in trace_text.splitlines(keepends=True) if not line.startswith(CONFIG_LINES)]
+    return hashlib.sha256(''.join(kept).encode()).hexdigest() if kept else None
+
+
 def first_turns_at_depth(states):
     marks = {}
     for state in states:
@@ -88,6 +98,7 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
         **cell,
         'specimen_ref': spec['ref'],
         'profile_sha256': cat_mod.profile_sha256(profile),
+        'config_sha256': result.get('configuration_sha256'),
         'cap': suite['cap'],
         'birth': suite['birth'],
         'outcome': outcome,
@@ -99,6 +110,7 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
         'first_turn_at_depth': first_turns_at_depth(states),
         'wall_seconds': result.get('wall_seconds'),
         'trace_sha256': files.get('trace.txt'),
+        'play_sha256': play_sha256(trace_text),
         'effective_options': options,
         'error': result.get('error'),
         'harness_commit': result.get('harness_commit'),
@@ -124,10 +136,12 @@ def run_cell(cell, build_dir, harness, work, cat=None, keep=False):
         shutil.rmtree(out)
     out.parent.mkdir(parents=True, exist_ok=True)
     runner = load_runner(harness)
+    shipped_path = build_dir / 'source/src/borg/borg.txt'
+    shipped = shipped_path.read_text() if profile.get('base') == 'shipped' else None
     args = SimpleNamespace(build=build_dir, output=out, seed=cell['seed'], cap=suite['cap'],
                            timeout=suite['wall_seconds'], stall_timeout=suite['stall_seconds'],
                            no_saves=not suite.get('saves', False), load=None,
-                           configuration=cat_mod.profile_text(profile).rstrip('\n') or None,
+                           configuration=cat_mod.profile_text(profile, shipped).rstrip('\n') or None,
                            random_birth=suite['birth'] == 'random')
     try:
         runner.run(args)

@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "switches-early-2",
+  "description": "More borg.txt switches on the original and the latest milestone: money scumming, chest risk, gold and mana worship. 'shipped' (the version's own borg.txt, unchanged) is an identity check: it should play exactly like default on every seed.",
+  "specimens": [
+    "pristine",
+    "bbc-m4"
+  ],
+  "profiles": [
+    "default",
+    "shipped",
+    "money-scum-5k",
+    "money-scum-20k",
+    "chest-tolerance-3",
+    "worships-gold",
+    "worships-mana"
+  ],
+  "suites": [
+    "early-50"
+  ],
+  "control": "pristine",
+  "control_profile": "default"
+}

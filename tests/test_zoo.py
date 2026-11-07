@@ -58,6 +58,26 @@ class CatalogueTest(unittest.TestCase):
                 cat_mod.experiment(bad)
 
 
+class ShippedBaseTest(unittest.TestCase):
+    SHIPPED = ('# comment borg_uses_swaps = TRUE\nborg_uses_swaps = TRUE\nborg_plays_risky = FALSE\n\n'
+               '[BEGIN FORMULA SECTION]\nPower\n[\n]\n[END FORMULA SECTION]\n')
+
+    def test_shipped_overrides_and_inserts_before_formulas(self):
+        profile = {'base': 'shipped', 'settings': {'borg_uses_swaps': False, 'borg_uses_dynamic_calcs': True}}
+        text = cat_mod.profile_text(profile, self.SHIPPED)
+        self.assertIn('\nborg_uses_swaps = FALSE\n', text)
+        self.assertIn('# comment borg_uses_swaps = TRUE', text)
+        self.assertLess(text.index('borg_uses_dynamic_calcs = TRUE'), text.index('[BEGIN FORMULA SECTION]'))
+        self.assertIn('[END FORMULA SECTION]', text)
+
+    def test_shipped_requires_the_file(self):
+        with self.assertRaises(ValueError):
+            cat_mod.profile_text({'base': 'shipped', 'settings': {}})
+
+    def test_shipped_profile_without_settings_is_the_file(self):
+        self.assertEqual(cat_mod.profile_text({'base': 'shipped', 'settings': {}}, self.SHIPPED), self.SHIPPED)
+
+
 class HarnessParsingTest(unittest.TestCase):
     def test_options_mismatch_becomes_config_error(self):
         trace = 'CHARACTER x\nBORG_OPTIONS borg_plays_risky=0 borg_uses_swaps=1\n'
@@ -81,6 +101,17 @@ class HarnessParsingTest(unittest.TestCase):
                                 {'cap': 20000, 'birth': 'fixed'}, {})
         self.assertEqual(rec['outcome'], 'death')
         self.assertEqual(rec['first_turn_at_depth'], {'1': 500, '2': 900, '3': 900})
+
+
+class PlayHashTest(unittest.TestCase):
+    def test_config_lines_do_not_change_the_play_hash(self):
+        a = 'CHARACTER x\nBORG_OPTIONS borg_plays_risky=0\nACTIVE_OPTIONS a=1\nSTATE progress turn=5\n'
+        b = 'CHARACTER x\nBORG_OPTIONS borg_plays_risky=1\nACTIVE_OPTIONS a=1\nSTATE progress turn=5\n'
+        c = 'CHARACTER x\nBORG_OPTIONS borg_plays_risky=1\nACTIVE_OPTIONS a=1\nSTATE progress turn=6\n'
+        self.assertEqual(harness.play_sha256(a), harness.play_sha256(b))
+        self.assertNotEqual(harness.play_sha256(b), harness.play_sha256(c))
+        self.assertTrue(stats.same_play({'play_sha256': 'p', 'trace_sha256': 'x'},
+                                        {'play_sha256': 'p', 'trace_sha256': 'y'}))
 
 
 class StatsTest(unittest.TestCase):
@@ -124,8 +155,22 @@ class EndToEndTest(unittest.TestCase):
             self.assertEqual(json.loads((run / 'meta.json').read_text())['missing_cells'], 5)
             self.assertEqual(site.build_site(tmp / 'results', tmp / 'site'), 1)
             page = (tmp / 'site/runs/milestones-smoke/t-1/index.html').read_text()
-            self.assertIn('Paired against pristine', page)
+            self.assertIn('Paired against pristine, same profile', page)
             self.assertIn('Rescued', page)
+            self.assertNotIn('same version', page)
+
+    def test_two_paired_views(self):
+        exp = {"name": "two-views", "specimens": ["pristine", "bbc-m4"], "profiles": ["default", "shipped", "dynamic-calcs"], "suites": ["early-50"], "control": "pristine", "control_profile": "default"}
+        cells = [dict(cell(s, seed, 'turn_cap', profile=p), suite='early-50')
+                 for s in exp['specimens'] for p in exp['profiles'] for seed in (1, 2)]
+        rows = stats.analyse(exp, cells)['early-50']
+        by = {(r['specimen'], r['profile']): r for r in rows}
+        self.assertIsNone(by[('pristine', 'default')]['vs_version'])
+        self.assertIsNone(by[('pristine', 'default')]['vs_profile'])
+        self.assertIsNotNone(by[('pristine', 'dynamic-calcs')]['vs_profile'])
+        self.assertIsNone(by[('pristine', 'dynamic-calcs')]['vs_version'])
+        self.assertIsNotNone(by[('bbc-m4', 'dynamic-calcs')]['vs_version'])
+        self.assertIsNotNone(by[('bbc-m4', 'dynamic-calcs')]['vs_profile'])
 
 
 if __name__ == '__main__':

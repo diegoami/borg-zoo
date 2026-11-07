@@ -66,6 +66,15 @@ def arm_summary(cells):
     }
 
 
+def same_play(a, b):
+    """Identical play: equal play hashes (configuration lines excluded) when
+    both runs have one, else equal full-trace hashes. Runs recorded before
+    the play hash existed only match under the same configuration."""
+    if a.get('play_sha256') and b.get('play_sha256'):
+        return a['play_sha256'] == b['play_sha256']
+    return bool(a.get('trace_sha256')) and a.get('trace_sha256') == b.get('trace_sha256')
+
+
 def paired(control_cells, arm_cells):
     control = {(c['suite'], c['seed']): c for c in control_cells if c['outcome'] in VALID}
     rescued = newly_killed = both_died = both_lived = identical = 0
@@ -88,7 +97,7 @@ def paired(control_cells, arm_cells):
         a_goal, k_goal = survived(c) and reached(c), survived(k) and reached(k)
         goal_gained += a_goal and not k_goal
         goal_lost += k_goal and not a_goal
-        if c.get('trace_sha256') and c.get('trace_sha256') == k.get('trace_sha256'):
+        if same_play(c, k):
             identical += 1
     pairs = rescued + newly_killed + both_died + both_lived
     return {'pairs': pairs, 'rescued': rescued, 'newly_killed': newly_killed,
@@ -121,27 +130,34 @@ def depth_table(cells, marks=(2, 3, 5, 10)):
 
 
 def analyse(exp, cells):
-    control_profile = exp.get('control_profile')
+    """Per suite: one row per arm, with two paired comparisons.
+
+    vs_version pairs an arm with the control specimen under the same profile;
+    vs_profile pairs it with the control profile on the same specimen.
+    """
+    control_profile = exp.get('control_profile', exp['profiles'][0])
     by_suite = {}
     for suite in exp['suites']:
-        suite_cells = [c for c in cells if c['suite'] == suite]
         arms = {}
-        for c in suite_cells:
-            arms.setdefault(arm_key(c), []).append(c)
+        for c in cells:
+            if c['suite'] == suite:
+                arms.setdefault(arm_key(c), []).append(c)
         rows = []
         for specimen in exp['specimens']:
             for profile in exp['profiles']:
                 arm = arms.get((specimen, profile), [])
                 if not arm:
                     continue
-                ctrl_key = (exp['control'], control_profile or profile)
-                cap = arm[0]['cap']
+                version_key = (exp['control'], profile)
+                profile_key = (specimen, control_profile)
                 rows.append({
                     'specimen': specimen, 'profile': profile,
                     'summary': arm_summary(arm),
-                    'versus': None if (specimen, profile) == ctrl_key else paired(arms.get(ctrl_key, []), arm),
-                    'control': {'specimen': ctrl_key[0], 'profile': ctrl_key[1]},
-                    'survival': survival_table(arm, cap),
+                    'vs_version': (paired(arms[version_key], arm)
+                                   if specimen != exp['control'] and version_key in arms else None),
+                    'vs_profile': (paired(arms[profile_key], arm)
+                                   if profile != control_profile and profile_key in arms else None),
+                    'survival': survival_table(arm, arm[0]['cap']),
                     'depths': depth_table(arm),
                 })
         by_suite[suite] = rows

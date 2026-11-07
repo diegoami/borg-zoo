@@ -101,10 +101,13 @@ def run_page(meta, cells):
               esc(', '.join(f'{k} {v}' for k, v in r['summary']['counts'].items()
                             if v and k not in stats.VALID)) or '–']
              for r in rows]))
-        versus = [r for r in rows if r['versus']]
-        if versus:
-            ctrl = versus[0]['control']
-            parts.append(f'<h3>Paired against {esc(ctrl["specimen"])} · {esc(ctrl["profile"])}</h3>')
+        control_profile = exp.get('control_profile', exp['profiles'][0])
+        for key, title in (('vs_version', f'Paired against {esc(exp["control"])}, same profile'),
+                           ('vs_profile', f'Paired against profile {esc(control_profile)}, same version')):
+            versus = [r for r in rows if r[key]]
+            if not versus:
+                continue
+            parts.append(f'<h3>{title}</h3>')
             parts.append(table(
                 ['Arm', 'Pairs', 'Rescued', 'Newly killed', 'Both died', 'Both lived', 'Identical play', 'p (death)',
                  'Goal gained', 'Goal lost', 'p (goal)'],
@@ -112,7 +115,7 @@ def run_page(meta, cells):
                   f'<span class="good">{v["rescued"]}</span>', f'<span class="bad">{v["newly_killed"]}</span>',
                   v['both_died'], v['both_lived'], v['identical_traces'], pval(v['death_p']),
                   v['goal_gained'], v['goal_lost'], pval(v['goal_p'])]
-                 for r in versus for v in [r['versus']]]))
+                 for r in versus for v in [r[key]]]))
         parts.append('<h3>Share alive by engine turn</h3>')
         turns = [x['turn'] for x in rows[0]['survival']] if rows else []
         parts.append(table(['Arm'] + [f'{t:,}' for t in turns],

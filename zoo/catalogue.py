@@ -1,6 +1,7 @@
 """Specimens, profiles, suites and experiments: loading, validation, cells."""
 import hashlib
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -50,14 +51,40 @@ def setting_value(value):
     raise ValueError(f'unsupported setting value: {value!r}')
 
 
-def profile_text(profile):
-    """The configuration lines a profile adds before the runner's forced lines."""
-    return ''.join(f'{name} = {setting_value(value)}\n'
-                   for name, value in sorted(profile['settings'].items()))
+def _override(text, name, value):
+    line = f'{name} = {value}'
+    pattern = re.compile(rf'^[ \t]*{re.escape(name)}[ \t]*=.*$', re.M)
+    if pattern.search(text):
+        return pattern.sub(line, text)
+    marker = '[BEGIN FORMULA SECTION]'
+    if marker in text:
+        return text.replace(marker, line + '\n\n' + marker, 1)
+    return text.rstrip('\n') + '\n' + line + '\n'
+
+
+def profile_text(profile, shipped=None):
+    """The borg.txt content a profile supplies, before the runner's forced lines.
+
+    A profile with base "shipped" starts from the specimen's own
+    src/borg/borg.txt (settings plus formula section) and overrides its
+    settings; otherwise it supplies only its setting lines.
+    """
+    settings = sorted(profile['settings'].items())
+    if profile.get('base') == 'shipped':
+        if shipped is None:
+            raise ValueError('profile needs the specimen\'s shipped borg.txt')
+        text = shipped
+        for name, value in settings:
+            text = _override(text, name, setting_value(value))
+        return text
+    if profile.get('base') not in (None, 'none'):
+        raise ValueError(f"unknown profile base: {profile.get('base')!r}")
+    return ''.join(f'{name} = {setting_value(value)}\n' for name, value in settings)
 
 
 def profile_sha256(profile):
-    return hashlib.sha256((profile_text(profile) + FORCED).encode()).hexdigest()
+    """Hash of the profile definition (the exact file is hashed per run)."""
+    return hashlib.sha256(json.dumps(profile, sort_keys=True).encode()).hexdigest()
 
 
 def expected_options(profile):
