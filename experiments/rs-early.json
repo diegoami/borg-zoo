@@ -1,7 +1,7 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "rs-early",
-  "description": "borg-rs on the zoo: the Rust Borg against the C Borg built in the same borg-rs tree (a key-for-key identity check at zoo scale), with the better-borg-c observer's pristine run alongside for the distributions. Runs from different harnesses are not paired: the same seed does not give the same game under a different frontend and birth script.",
+  "description": "borg-rs on the zoo: the Rust Borg against the C Borg built in the same borg-rs tree (a key-for-key identity check at zoo scale), with the better-borg-c observer's pristine run alongside for the distributions. Runs from different harnesses are not paired: that the same seed gives the same game under both frontends is not verified.",
   "specimens": [
     "rs-c",
     "rs-rust",

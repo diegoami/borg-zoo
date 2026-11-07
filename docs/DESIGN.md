@@ -49,8 +49,12 @@ Limits compared with the better-borg-c observer:
 - fixed birth only;
 - the run stops after the first key at or past the cap.
 
-Runs from different harnesses are never paired: the same seed gives a
-different game under a different frontend and birth script.
+Runs from different harnesses are not paired. Whether the same seed gives
+the same game under the borgh frontend and under the better-borg-c observer
+is not verified. In `rs-smoke` all six seed/profile runs reached the same
+maximum depth and character level under both harnesses, which suggests it
+might. Pairing stays off until key-level equality is shown; the observer
+does not log keys.
 
 **Profile.** `borg.txt` lines, or with `"base": "shipped"`, the version's
 own `src/borg/borg.txt` (formula section included) with named settings

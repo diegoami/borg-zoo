@@ -150,8 +150,8 @@ def analyse(exp, cells):
                     continue
                 version_key = (exp['control'], profile)
                 profile_key = (specimen, control_profile)
-                # Pair only runs from the same harness: the same seed does not
-                # give the same game under a different frontend and birth script.
+                # Pair only runs from the same harness: that the same seed gives
+                # the same game under another frontend is not verified.
                 same_kind = (version_key in arms and
                              arms[version_key][0].get('harness_kind', 'better-borg-c') ==
                              arm[0].get('harness_kind', 'better-borg-c'))
