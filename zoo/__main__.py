@@ -17,6 +17,7 @@ def cmd_plan(args):
     if args.github_output:
         with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
             out.write(f"specimens={json.dumps(plan['specimens'])}\n")
+            out.write(f"builds={json.dumps(plan['builds'])}\n")
             out.write(f"runs={json.dumps(plan['runs'])}\n")
             out.write(f"name={exp['name']}\n")
     print(json.dumps({'experiment': exp['name'], 'cells': plan['cells'],
@@ -24,7 +25,7 @@ def cmd_plan(args):
 
 
 def cmd_build(args):
-    manifest = harness.build(args.specimen, args.harness, args.out)
+    manifest = harness.build(args.specimen, args.harness, args.out, source=args.source)
     print(json.dumps({'specimen': args.specimen, 'binary_sha256': manifest['binary_sha256'],
                       'compiler': manifest['compiler']}))
 
@@ -104,7 +105,8 @@ def main(argv=None):
     s.add_argument('--github-output', action='store_true')
     s = sub.add_parser('build')
     s.add_argument('--specimen', required=True)
-    s.add_argument('--harness', required=True)
+    s.add_argument('--harness', default=None, help='better-borg-c checkout at the pinned harness commit')
+    s.add_argument('--source', default=None, help='borg-rs checkout at the specimen ref (borg-rs specimens)')
     s.add_argument('--out', required=True)
     s = sub.add_parser('run')
     s.add_argument('--experiment', required=True)
@@ -112,7 +114,7 @@ def main(argv=None):
     s.add_argument('--shard', type=int, default=0)
     s.add_argument('--shards', type=int, default=1)
     s.add_argument('--build', required=True)
-    s.add_argument('--harness', required=True)
+    s.add_argument('--harness', default=None)
     s.add_argument('--work', required=True)
     s.add_argument('--out', required=True)
     s.add_argument('--jobs', type=int, default=os.cpu_count() or 1)

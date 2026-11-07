@@ -34,6 +34,15 @@ def experiment(path, cat=None):
     for name in exp['suites']:
         if name not in cat['suites']:
             raise ValueError(f'unknown suite: {name}')
+    for name in exp['specimens']:
+        if specimens[name].get('kind') == 'borg-rs':
+            for suite in exp['suites']:
+                if cat['suites'][suite]['birth'] != 'fixed':
+                    raise ValueError(f'{name}: the borg-rs adapter supports fixed birth only (suite {suite})')
+            for prof in exp['profiles']:
+                if cat['profiles'][prof].get('base') == 'shipped':
+                    raise ValueError(f'{name}: profile {prof} needs a shipped borg.txt base, '
+                                     'which the borg-rs adapter takes from harness/borg.txt only')
     if exp['control'] not in exp['specimens']:
         raise ValueError('control must be one of the experiment specimens')
     if exp.get('control_profile', exp['profiles'][0]) not in exp['profiles']:
@@ -119,9 +128,13 @@ def plan(exp, shards, cat=None):
     """Build and run matrices for a CI workflow."""
     cat = cat or catalogue()
     all_cells = cells(exp, cat)
+    specimens = cat['specimens']['specimens']
+    builds = [{'specimen': s, 'kind': specimens[s].get('kind', 'better-borg-c'),
+               'repository': specimens[s]['repository'], 'ref': specimens[s]['ref']}
+              for s in exp['specimens']]
     runs = []
-    for specimen in exp['specimens']:
-        total = len([c for c in all_cells if c['specimen'] == specimen])
+    for b in builds:
+        total = len([c for c in all_cells if c['specimen'] == b['specimen']])
         for index in range(min(shards, total)):
-            runs.append({'specimen': specimen, 'shard': index, 'shards': min(shards, total)})
-    return {'specimens': exp['specimens'], 'runs': runs, 'cells': len(all_cells)}
+            runs.append({**b, 'shard': index, 'shards': min(shards, total)})
+    return {'specimens': exp['specimens'], 'builds': builds, 'runs': runs, 'cells': len(all_cells)}

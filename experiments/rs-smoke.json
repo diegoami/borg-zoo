@@ -1,0 +1,19 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "rs-smoke",
+  "description": "borg-rs on the zoo: the Rust Borg against the C Borg built in the same borg-rs tree (a key-for-key identity check at zoo scale), with the better-borg-c observer's pristine run alongside for the distributions. Runs from different harnesses are not paired: the same seed does not give the same game under a different frontend and birth script.",
+  "specimens": [
+    "rs-c",
+    "rs-rust",
+    "pristine"
+  ],
+  "profiles": [
+    "default",
+    "munchkin-d6"
+  ],
+  "suites": [
+    "smoke"
+  ],
+  "control": "rs-c",
+  "control_profile": "default"
+}
