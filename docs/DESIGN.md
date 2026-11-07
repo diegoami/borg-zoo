@@ -88,7 +88,9 @@ runner compiles its private user path into the binary.
 - identical traces;
 - an exact McNemar p for deaths and for the goal.
 
-These are descriptive. They are not prespecified tests.
+These are descriptive. They are not prespecified tests, unless an experiment
+carries a `prespecified` field, written before its suite has any results and
+shown on its page. `munchkin-confirm` is the first.
 
 ## Costs
 

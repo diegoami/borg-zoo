@@ -78,6 +78,7 @@ def run_page(meta, cells):
     analysis = stats.analyse(exp, cells)
     parts = [f'<p><a href="../../index.html">All experiments</a></p>',
              f'<h1>{esc(exp["name"])}</h1><p>{esc(exp.get("description", ""))}</p>',
+             (f'<p><strong>Prespecified:</strong> {esc(exp["prespecified"])}</p>' if exp.get('prespecified') else ''),
              f'<p class="muted">Run {esc(meta["run_id"])} · completed {esc(meta.get("completed", "?"))} · '
              f'<a href="{esc(meta.get("run_url", "#"))}">workflow run</a> · <a href="cells.jsonl">raw cells (JSON lines)</a></p>',
              '<p class="note">Descriptive results from small suites. Intervals are Wilson 95%; '
