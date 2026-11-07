@@ -1,0 +1,19 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "milestones-early",
+  "description": "Original C Borg against every better-borg-c milestone, default profile, early-game pilot",
+  "specimens": [
+    "pristine",
+    "bbc-m1",
+    "bbc-m2",
+    "bbc-m3",
+    "bbc-m4"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "early-50"
+  ],
+  "control": "pristine"
+}

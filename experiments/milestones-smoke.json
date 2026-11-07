@@ -1,0 +1,19 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "milestones-smoke",
+  "description": "All milestones, default profile, smoke suite: a quick check that every specimen builds and runs",
+  "specimens": [
+    "pristine",
+    "bbc-m1",
+    "bbc-m2",
+    "bbc-m3",
+    "bbc-m4"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "smoke"
+  ],
+  "control": "pristine"
+}

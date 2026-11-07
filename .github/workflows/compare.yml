@@ -1,0 +1,144 @@
+name: compare
+
+# Runs one experiment headless on GitHub-hosted runners, appends its cells to
+# the `results` branch and rebuilds the statistics site.
+on:
+  workflow_dispatch:
+    inputs:
+      experiment:
+        description: Experiment file
+        required: true
+        default: experiments/milestones-smoke.json
+      shards:
+        description: Run jobs per specimen
+        required: true
+        default: '4'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: compare-${{ github.event.inputs.experiment }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      specimens: ${{ steps.plan.outputs.specimens }}
+      runs: ${{ steps.plan.outputs.runs }}
+      name: ${{ steps.plan.outputs.name }}
+      harness: ${{ steps.harness.outputs.commit }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plan
+        run: python3 -m zoo plan --experiment "${{ inputs.experiment }}" --shards "${{ inputs.shards }}" --github-output
+      - id: harness
+        run: echo "commit=$(python3 -c 'import json;print(json.load(open("catalogue/specimens.json"))["harness"]["commit"])')" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: plan
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        specimen: ${{ fromJSON(needs.plan.outputs.specimens) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: diegoami/better-borg-c
+          ref: ${{ needs.plan.outputs.harness }}
+          path: harness
+          fetch-depth: 0
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq libx11-dev > /dev/null
+      - name: Build specimen
+        run: python3 -m zoo build --specimen "${{ matrix.specimen }}" --harness harness --out "$GITHUB_WORKSPACE/specimens/${{ matrix.specimen }}"
+      - name: Pack build
+        # Artifacts drop file modes; a tarball keeps the binary executable.
+        run: tar -C specimens -czf "build-${{ matrix.specimen }}.tgz" --exclude='*/source.tar' --exclude='*/build/CMakeFiles' --exclude='*.o' "${{ matrix.specimen }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ matrix.specimen }}
+          path: build-${{ matrix.specimen }}.tgz
+          retention-days: 7
+
+  run:
+    needs: [plan, build]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include: ${{ fromJSON(needs.plan.outputs.runs) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: diegoami/better-borg-c
+          ref: ${{ needs.plan.outputs.harness }}
+          path: harness
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq libx11-6 > /dev/null
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-${{ matrix.specimen }}
+      - name: Unpack build at its build path
+        run: mkdir -p specimens && tar -C specimens -xzf "build-${{ matrix.specimen }}.tgz"
+      - name: Run cells
+        run: >
+          python3 -m zoo run --experiment "${{ inputs.experiment }}" --specimen "${{ matrix.specimen }}"
+          --shard ${{ matrix.shard }} --shards ${{ matrix.shards }}
+          --build "$GITHUB_WORKSPACE/specimens/${{ matrix.specimen }}" --harness harness
+          --work "$RUNNER_TEMP/work" --out "cells/${{ matrix.specimen }}-${{ matrix.shard }}.jsonl" --jobs "$(nproc)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cells-${{ matrix.specimen }}-${{ matrix.shard }}
+          path: cells/
+          retention-days: 30
+
+  collect:
+    needs: [plan, run]
+    if: ${{ !cancelled() && needs.plan.result == 'success' }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cells-*
+          path: downloaded
+          merge-multiple: true
+      - name: Check out the results branch
+        run: |
+          git fetch origin results || true
+          if git rev-parse --verify origin/results >/dev/null 2>&1; then
+            git worktree add results-branch origin/results
+            git -C results-branch checkout -B results
+          else
+            git worktree add --orphan -b results results-branch
+          fi
+      - name: Collect
+        run: >
+          python3 -m zoo collect --experiment "${{ inputs.experiment }}" --cells downloaded
+          --results results-branch/results --run-id "${{ github.run_id }}-${{ github.run_attempt }}"
+          --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          --zoo-commit "${{ github.sha }}"
+      - name: Append to the results branch
+        working-directory: results-branch
+        run: |
+          git config user.name "borg-zoo"
+          git config user.email "borg-zoo@users.noreply.github.com"
+          git add results
+          git commit -q -m "Results: ${{ needs.plan.outputs.name }} run ${{ github.run_id }}-${{ github.run_attempt }}"
+          git push origin results
+      - name: Rebuild the site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref "${{ github.event.repository.default_branch }}"

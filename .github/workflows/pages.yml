@@ -1,0 +1,44 @@
+name: pages
+
+# Builds the statistics site from the `results` branch and publishes it.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['zoo/**', '.github/workflows/pages.yml']
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch results
+        run: |
+          if git fetch origin results 2>/dev/null; then
+            git worktree add results-branch origin/results
+          else
+            mkdir -p results-branch/results
+          fi
+      - run: python3 -m zoo site --results results-branch/results --out _site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

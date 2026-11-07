@@ -1,0 +1,46 @@
+{
+  "schema": "borg-zoo/specimens@1",
+  "harness": {
+    "repository": "diegoami/better-borg-c",
+    "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+    "runner": "tools/measure-native.py",
+    "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit."
+  },
+  "specimens": {
+    "pristine": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
+      "carries": 0,
+      "label": "Original C Borg (angband/angband e473720)",
+      "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3"
+    },
+    "bbc-m1": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "d4bfdce9d4782cf83994ad52de707a52d1f31018",
+      "carries": 2,
+      "label": "better-borg-c milestone 1",
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/MILESTONE-1.md"
+    },
+    "bbc-m2": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "2675d198e4c3fcb1c69ee63ef25a2b6ac27ab96f",
+      "carries": 7,
+      "label": "better-borg-c milestone 2",
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE2.md"
+    },
+    "bbc-m3": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "702f091f6ac06cae1014df2f85ac218be0189813",
+      "carries": 34,
+      "label": "better-borg-c milestone 3",
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE3.md"
+    },
+    "bbc-m4": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "70993393a1c946ce8cd38ee558bf1ce6464350e7",
+      "carries": 42,
+      "label": "better-borg-c milestone 4",
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE4.md"
+    }
+  }
+}

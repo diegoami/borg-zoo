@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "switches-early",
+  "description": "Existing borg.txt switches on the original and the latest milestone, early-game pilot (neo-angband-tracker #368)",
+  "specimens": [
+    "pristine",
+    "bbc-m4"
+  ],
+  "profiles": [
+    "default",
+    "plays-risky",
+    "no-swaps",
+    "no-self-scum",
+    "kills-uniques",
+    "worships-speed",
+    "worships-hp",
+    "worships-damage",
+    "worships-ac"
+  ],
+  "suites": [
+    "early-50"
+  ],
+  "control": "pristine",
+  "control_profile": "default"
+}
