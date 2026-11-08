@@ -25,7 +25,13 @@ svg.forest text{fill:var(--fg);font:13px system-ui,-apple-system,Segoe UI,sans-s
 svg.forest .axis{stroke:var(--line)}svg.forest .tick{fill:var(--muted);font-size:11px}
 svg.forest .ci{stroke:var(--muted);stroke-width:2}svg.forest .dot{fill:var(--accent)}
 svg.forest .dot.hi{fill:var(--good)}svg.forest .val{fill:var(--muted)}svg.forest .head{font-weight:600;font-size:12px}
-.big{font-size:2rem;font-weight:650;line-height:1.1}
+.big{font-size:2rem;font-weight:650;line-height:1.1}.pair{display:flex;flex-wrap:wrap;gap:16px}.pair .wrap{flex:1 1 14rem}
+svg.port{width:100%;height:auto;display:block}svg.port text{fill:var(--fg);font:12px system-ui,-apple-system,Segoe UI,sans-serif}
+svg.port .small{font-size:10.5px;fill:var(--muted)}svg.port .head,svg.port .lane{font-weight:600}svg.port .lane.sub{font-weight:400;fill:var(--muted);font-size:10.5px}
+svg.port rect.c{fill:var(--head);stroke:var(--line)}svg.port .link{stroke:var(--line);stroke-width:2}
+svg.port rect.r{stroke:var(--line);fill:var(--card)}svg.port rect.identical{fill:var(--good);fill-opacity:.18;stroke:var(--good)}
+svg.port rect.differs{fill:var(--bad);fill-opacity:.15;stroke:var(--bad)}svg.port rect.unmeasured{stroke:var(--accent)}
+svg.port rect.skipped{stroke-dasharray:4 3;fill:none}svg.port rect.not_yet{fill:none;stroke:var(--line)}
 th{white-space:normal;vertical-align:bottom}th[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help}
 p.how{max-width:62rem;margin:4px 0}p.example{max-width:62rem;margin:4px 0;padding:6px 10px;border-left:3px solid var(--accent);background:var(--card)}
 details.cols{margin:4px 0 12px;max-width:62rem}details.cols summary{cursor:pointer;color:var(--accent)}
@@ -349,5 +355,7 @@ def build_site(results, out):
     from . import landing
     body = landing.landing_page(runs, rows)
     (out / 'index.html').write_text(page('Borg zoo', body))
+    (out / 'stalls.html').write_text(page('Stalls and crashes · borg-zoo', landing.stalls_page(runs)))
+    (out / 'versions.html').write_text(page('Versions · borg-zoo', landing.versions_page()))
     (out / '.nojekyll').write_text('')
     return len(runs)
