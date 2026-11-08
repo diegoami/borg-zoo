@@ -82,7 +82,7 @@ def suite_rows(meta, cells):
 
 
 def card_milestones(runs):
-    meta, cells = newest(runs, ['classes-m6', 'classes-m5', 'milestones-wide', 'milestones-early'])
+    meta, cells = newest(runs, ['classes-m7', 'classes-m6', 'classes-m5', 'milestones-wide', 'milestones-early'])
     if not meta:
         return None
     suite, s, rows = suite_rows(meta, cells)

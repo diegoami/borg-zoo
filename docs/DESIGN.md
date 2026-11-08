@@ -19,6 +19,7 @@ original C Borg and better-borg-c's milestones:
 | `4.2.6-bbc-m4` | `70993393a1c9` | 42 (`4.2.6-impact-v4`) |
 | `4.2.6-bbc-m5` | `5384f12ed51e` | 50 (`4.2.6-impact-v5`) |
 | `4.2.6-bbc-m6` | `b3c825c97c8a` | 63 (`4.2.6-impact-v6`) |
+| `4.2.6-bbc-m7` | `3573d741e6dc` | 76 (`4.2.6-impact-v7`) |
 
 Carry counts are the length of `patches/series.json` at each commit.
 
