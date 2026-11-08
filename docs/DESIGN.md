@@ -22,7 +22,8 @@ every specimen lives in better-borg-c's history:
 Carry counts are the length of `patches/series.json` at each commit.
 
 **Harness.** better-borg-c's `tools/measure-native.py` and observer at a
-pinned commit. For each specimen it exports the source with `git archive`,
+pinned commit (`fc9d97cb` since 2026-11-08; before that `8c23ec0d`, whose
+watchdog could abort a run on a split UTF-8 character, better-borg-c#220). For each specimen it exports the source with `git archive`,
 applies the observer instrumentation and builds a Debug binary with the test
 frontend. For each cell it runs the binary on the seed with the turn cap and
 records:
