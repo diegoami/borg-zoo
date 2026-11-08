@@ -265,8 +265,9 @@
       "ref": "cca1293cb5ab02681b1c200dca2d0cb014c90381",
       "engine": "Neo Angband 1.23.0-beta.3 (@rpgm-tools/neo-angband-core, -content and -mod-sdk from npm)",
       "wall_factor": 3,
-      "label": "Full Mandos at cca1293c: the Neo Angband Borg mod with Mandos's port repairs and its nine C corrections, measured through its zoo-run entry point (mandos#213).",
-      "source": "https://github.com/diegoami/mandos/blob/cca1293cb5ab02681b1c200dca2d0cb014c90381/docs/ZOO-HARNESS.md"
+      "label": "Full Mandos at cca1293c: the Neo Angband Borg mod with Mandos's port repairs and its nine C corrections, measured through its zoo-run entry point (mandos#213). Its records use the legacy play-session profile; its play hashes are not compared with the api2 lanes.",
+      "source": "https://github.com/diegoami/mandos/blob/cca1293cb5ab02681b1c200dca2d0cb014c90381/docs/ZOO-HARNESS.md",
+      "command_stream_profile": "play-session"
     },
     "neo-b3-borg-1.4.0-beta.4": {
       "kind": "mandos",
@@ -275,7 +276,7 @@
       "engine": "Neo Angband 1.23.0-beta.3 (@rpgm-tools/neo-angband-core, -content and -mod-sdk from npm)",
       "tag": "v1.4.0-beta.4",
       "label": "The original upstream Neo Borg release v1.4.0-beta.4, as tagged in Mandos.",
-      "pending": "this revision has no zoo-run entry point; it needs a compatible measurement build of exactly this implementation",
+      "pending": "this revision has no zoo-run entry point; it needs a compatible measurement build of exactly this implementation; the measured lanes are neo-b3-api2-upstream and neo-b3-api2-port.2 (mandos#215), not a substitute for this revision",
       "source": "https://github.com/diegoami/mandos/tree/v1.4.0-beta.4"
     },
     "neo-b3-borg-1.4.0-beta.4-port.1": {
@@ -285,7 +286,7 @@
       "engine": "Neo Angband 1.23.0-beta.3 (@rpgm-tools/neo-angband-core, -content and -mod-sdk from npm)",
       "tag": "v1.4.0-beta.4-port.1",
       "label": "Upstream v1.4.0-beta.4 plus Mandos's port repairs, without its C translations.",
-      "pending": "this revision has no zoo-run entry point; it needs a compatible measurement build of exactly this implementation",
+      "pending": "this revision has no zoo-run entry point; it needs a compatible measurement build of exactly this implementation; the measured lanes are neo-b3-api2-upstream and neo-b3-api2-port.2 (mandos#215), not a substitute for this revision",
       "source": "https://github.com/diegoami/mandos/tree/v1.4.0-beta.4-port.1"
     },
     "4.2.6-bbc-ca3cd62": {
@@ -303,6 +304,40 @@
       "label": "4.2.6-bbc-ca3cd62 with the munchkin start by class as the default (Warriors, Druids and Rangers, depth 6)",
       "source": "https://github.com/diegoami/better-borg-c/tree/task/munchkin-by-class",
       "role": "candidate"
+    },
+    "neo-b3-api2-upstream": {
+      "kind": "mandos",
+      "repository": "diegoami/mandos",
+      "ref": "45dee074117d8b4ef49b4b28cd26f118b167ac49",
+      "tag": "v1.4.0-beta.4-upstream.a10655c3-zoo.1",
+      "engine": "Neo Angband 1.23.0-beta.3 (@rpgm-tools/neo-angband-core, -content and -mod-sdk from npm)",
+      "wall_factor": 3,
+      "lane": "upstream",
+      "borg_source": {
+        "repository": "neostryder/neo-angband-mod-borg",
+        "commit": "a10655c3b8113848092a7d66405ca3ec5e2222f9"
+      },
+      "controller_profile": "api2-plugin",
+      "command_stream_profile": "api2-intents-v1",
+      "label": "The official Neo Borg at a10655c3, unchanged, in a Mandos measurement snapshot with the api2 headless adapter; no C corrections (mandos#215).",
+      "source": "https://github.com/diegoami/mandos/blob/45dee074117d8b4ef49b4b28cd26f118b167ac49/ZOO-BASELINE.md"
+    },
+    "neo-b3-api2-port.2": {
+      "kind": "mandos",
+      "repository": "diegoami/mandos",
+      "ref": "ca659c519de769b6eb42ef62cb0bf088d57f9772",
+      "tag": "v1.4.0-beta.4-port.2",
+      "engine": "Neo Angband 1.23.0-beta.3 (@rpgm-tools/neo-angband-core, -content and -mod-sdk from npm)",
+      "wall_factor": 3,
+      "lane": "port-only",
+      "borg_source": {
+        "repository": "diegoami/neo-angband-borg-mod-tracker",
+        "commit": "cc64c1ccc62f7197f5bef24a4a6d23cc96155e5f"
+      },
+      "controller_profile": "api2-plugin",
+      "command_stream_profile": "api2-intents-v1",
+      "label": "The official Neo Borg at a10655c3 plus Mandos's port repairs (clean producer cc64c1cc), same api2 adapter; no C corrections (mandos#215).",
+      "source": "https://github.com/diegoami/mandos/blob/ca659c519de769b6eb42ef62cb0bf088d57f9772/ZOO-BASELINE.md"
     }
   }
 }

@@ -66,10 +66,24 @@ def arm_summary(cells):
     }
 
 
+def pairing_class(cell):
+    """Runs pair only within one harness kind and, for Mandos, one
+    command-stream profile: the same seed is the same game only under the
+    same frontend, and play hashes are comparable only under the same stream
+    encoding. Mandos cells recorded before the profile field are legacy."""
+    kind = cell.get('harness_kind', 'better-borg-c')
+    if kind == 'mandos':
+        return kind, cell.get('command_stream_profile') or 'play-session'
+    return kind, None
+
+
 def same_play(a, b):
     """Identical play: equal play hashes (configuration lines excluded) when
     both runs have one, else equal full-trace hashes. Runs recorded before
-    the play hash existed only match under the same configuration."""
+    the play hash existed only match under the same configuration. Runs of
+    different pairing classes never match."""
+    if pairing_class(a) != pairing_class(b):
+        return False
     if a.get('play_sha256') and b.get('play_sha256'):
         return a['play_sha256'] == b['play_sha256']
     return bool(a.get('trace_sha256')) and a.get('trace_sha256') == b.get('trace_sha256')
@@ -150,11 +164,11 @@ def analyse(exp, cells):
                     continue
                 version_key = (exp['control'], profile)
                 profile_key = (specimen, control_profile)
-                # Pair only runs from the same harness: that the same seed gives
-                # the same game under another frontend is not verified.
+                # Pair only runs from the same harness and stream profile: that
+                # the same seed gives the same game under another frontend is
+                # not verified (pairing_class).
                 same_kind = (version_key in arms and
-                             arms[version_key][0].get('harness_kind', 'better-borg-c') ==
-                             arm[0].get('harness_kind', 'better-borg-c'))
+                             pairing_class(arms[version_key][0]) == pairing_class(arm[0]))
                 rows.append({
                     'specimen': specimen, 'profile': profile,
                     'summary': arm_summary(arm),

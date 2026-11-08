@@ -19,7 +19,15 @@ Counters and caps, as Mandos defines them:
   character was alive at the cap, so the zoo counts it as a turn-cap run and
   keeps the death in `died_after_cap`;
 - `decisions` counts issued commands, `loopCalls` Core loop calls (what the
-  safety cap bounds), `attempts` armed replies.
+  safety cap bounds), `attempts` armed replies; api2 records add
+  `acceptedCommands` and `commandStreamEvents`.
+
+Profiles: a snapshot with a measurement lane (mandos#215) declares its
+controller profile (`api2-plugin`) and command-stream profile
+(`api2-intents-v1`). Full Mandos at cca1293c declares none: its runner is the
+legacy play-session profile. Play hashes are comparable only within one
+command-stream profile, so the cell keeps it and the statistics pair only
+runs with the same one (`pairing_class`).
 """
 import hashlib
 import json
@@ -50,6 +58,26 @@ FLAGS = {
 OUTCOME = {'death': 'death', 'turn_cap': 'turn_cap', 'stalled': 'stalled',
            'borg_stopped': 'borg_stopped', 'decision_cap': 'decision_cap',
            'harness_failure': 'harness_failure'}
+
+
+LEGACY_STREAM = 'play-session'
+
+
+def stream_profile(record):
+    """The record's command-stream profile; records without one are legacy."""
+    return (record or {}).get('commandStreamProfile') or LEGACY_STREAM
+
+
+def profile_errors(spec, declared):
+    """How a build's or record's declared profiles differ from the specimen's.
+
+    declared: {'controllerProfile': ..., 'commandStreamProfile': ...}, values
+    None when the source declares none (the legacy profile)."""
+    want = {'controllerProfile': spec.get('controller_profile'),
+            'commandStreamProfile': spec.get('command_stream_profile', LEGACY_STREAM)}
+    got = {'controllerProfile': declared.get('controllerProfile'),
+           'commandStreamProfile': declared.get('commandStreamProfile') or LEGACY_STREAM}
+    return [f'{k} is {got[k]!r}, specimen declares {want[k]!r}' for k in want if got[k] != want[k]]
 
 
 def sha256(path):
@@ -93,11 +121,17 @@ def build(spec, source, out):
     printed = subprocess.check_output(['node', 'tools/zoo-build.mjs', '--out', str(out / 'bundle')],
                                       cwd=source, text=True)
     built = json.loads(printed.strip().splitlines()[-1])
+    facts = json.loads((out / 'bundle' / 'build.json').read_text())
+    bad = profile_errors(spec, facts)
+    if bad:
+        raise ValueError('Mandos build does not match its specimen: ' + '; '.join(bad))
     node = subprocess.check_output(['node', '--version'], text=True).strip()
     manifest = {'kind': 'mandos', 'source_commit': spec['ref'],
                 'binary_sha256': built['bundleSha256'], 'bundle_sha256': built['bundleSha256'],
                 'source_sha256': built['sourceSha256'], 'compiler': f'node {node}',
-                'platform': f'{platform.system()} {platform.machine()}', 'complete': True}
+                'platform': f'{platform.system()} {platform.machine()}', 'complete': True,
+                'lane': facts.get('lane'), 'controller_profile': facts.get('controllerProfile'),
+                'command_stream_profile': facts.get('commandStreamProfile') or LEGACY_STREAM}
     (out / 'build.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
     return manifest
 
@@ -160,6 +194,13 @@ def summarise(cell, spec, profile, suite, record, states, requested, error, wall
         if outcome == 'harness_failure' and not error:
             error = json.dumps(record.get('error') or record.get('outcome'))[:500]
     record = record or {}
+    if record and outcome != 'harness_failure':
+        identity = profile_errors(spec, record)
+        commit = (record.get('provenance') or {}).get('commit')
+        if commit and commit != spec['ref']:
+            identity.append(f'record commit {commit}, specimen wants {spec["ref"]}')
+        if identity:
+            outcome, error = 'harness_failure', '; '.join(identity)
     died_after_cap = None
     if outcome == 'death' and (record.get('turn') or 0) > cap:
         died_after_cap = {'turn': record.get('turn'), 'cause': record.get('causeOfDeath')}
@@ -180,6 +221,10 @@ def summarise(cell, spec, profile, suite, record, states, requested, error, wall
     return {
         'schema': 'borg-zoo/cell@1', **cell, 'harness_kind': 'mandos',
         'specimen_ref': spec['ref'], 'engine': spec.get('engine'),
+        'controller_profile': record.get('controllerProfile') if record else spec.get('controller_profile'),
+        'command_stream_profile': stream_profile(record) if record else spec.get('command_stream_profile',
+                                                                                 LEGACY_STREAM),
+        'lane': (record.get('provenance') or {}).get('lane'),
         'profile_sha256': cat_mod.profile_sha256(profile),
         'config_sha256': hashlib.sha256(json.dumps(flags(profile), sort_keys=True).encode()).hexdigest(),
         'cap': cap, 'birth': suite['birth'],
@@ -199,7 +244,11 @@ def summarise(cell, spec, profile, suite, record, states, requested, error, wall
                   'level': record.get('level'), 'max_level': record.get('maxLevel'),
                   'hp': record.get('hp'), 'max_hp': record.get('maxHp'), 'energy': record.get('energy'),
                   'decisions': record.get('decisions'), 'attempts': record.get('attempts'),
-                  'loop_calls': record.get('loopCalls'), 'no_command_replies': record.get('noCommandReplies')},
+                  'loop_calls': record.get('loopCalls'), 'no_command_replies': record.get('noCommandReplies'),
+                  'accepted_commands': record.get('acceptedCommands'),
+                  'command_stream_events': record.get('commandStreamEvents')},
+        'host_reads': record.get('hostReads'), 'cross_mod_flags': record.get('crossModFlags'),
+        'profile_limits': record.get('profileLimits'),
         'turn_cap': {'requested': turn_cap.get('requested', cap), 'actual': turn_cap.get('actual'),
                      'overshoot': turn_cap.get('overshoot'), 'exact': turn_cap.get('exact'),
                      'unit': turn_cap.get('unit', 'core_game_tick')},
