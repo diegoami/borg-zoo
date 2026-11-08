@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "mandos-api2-classes-1800",
+  "description": "The Neo Borg's port repairs (neo-b3-api2-port.2) against the official Neo Borg at a10655c3 (neo-b3-api2-upstream), both under the api2 adapter, on classes-1800: 1,800 seeds, every class 200 times, 100,000 game ticks",
+  "specimens": [
+    "neo-b3-api2-upstream",
+    "neo-b3-api2-port.2"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "neo-b3-api2-upstream",
+  "prespecified": "Written on 2026-11-08, before any api2-lane result on classes-1800 and before the results of mandos-api2-classes-18 (running). Primary: neo-b3-api2-port.2 against neo-b3-api2-upstream, death before 100,000 game ticks, exact two-sided McNemar test on the seeds where both finished, alpha 0.05. Also reported, descriptive: the share of seeds with identical play (equal playSha256 under api2-intents-v1), and deaths per class. Mandos seeds are Neo Angband games, so nothing is compared with C or borg-rs runs on the same seeds, and full Mandos (legacy play-session profile) is not an arm. Motivation: mandos#215 published the two lanes as a matched pair with an identical adapter, so the only differences are the port repairs and declared metadata; on mandos-api2-smoke all 3 games were identical. Runs that do not finish (stalled, borg_stopped, decision_cap, harness_failure, wall_timeout) are reported, never counted as deaths."
+}
