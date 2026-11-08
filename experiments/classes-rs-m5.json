@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-rs-m5",
+  "description": "borg-rs M5 against rs-m4 for every class and race (classes-1800): the effect of milestone 5's fixes in the Rust port, and the M5 tree's Rust/C identity",
+  "specimens": [
+    "4.2.6-rs-m4",
+    "4.2.6-rs-m5-c",
+    "4.2.6-rs-m5"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-rs-m4"
+}
