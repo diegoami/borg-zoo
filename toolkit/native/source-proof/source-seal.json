@@ -1,0 +1,138 @@
+{
+  "added": [
+    "src/native-observer.c",
+    "src/native-observer.h",
+    "version"
+  ],
+  "binary_sha256": "188a654d4faccd84d3ad1fc619b80160d16e5bc9179d79298b26ff0d84a2c778",
+  "data_sha256": {
+    "lib/customize/Makefile": "cfccd19ae86553761ac676f44f2d610aeed1b96e3f0565d0752945fda9bbc07f",
+    "lib/customize/font-gcu.prf": "88079f0e741c8ec876a8b4acea69ae7844cd10f2f74ec04c86628d77fd5da361",
+    "lib/customize/font-ibm.prf": "8d71ac396e67ad79db63b29146ae5a0f0305535423d86858e07ee37d212cbd80",
+    "lib/customize/font-sdl.prf": "4cdc78b6d918b72b2c1641d67f30073c42b4aa6cb55f634a78e228f392bc6712",
+    "lib/customize/font-sdl2.prf": "0ffb0f27ce1cd718e63b72ad0b1802d0a0cd8520ce7156131d55a4f417e17715",
+    "lib/customize/font-win.prf": "ac619371ce5298a2808d70da4a8ba506d6bd25e9e682f906a0a0236b9f04f694",
+    "lib/customize/font-x11.prf": "8ee6268e8db243a428e2d92280429326246b0c053bd53dba3ed1ae2a16be8f9c",
+    "lib/customize/font.prf": "6f499e7fcf678dae740cbc53a73a53682bfa48765520811e132b02ef6d47b94e",
+    "lib/customize/message.prf": "9be74b797123fc021d417cb50f8d056cdc7a5703fd034c3237f15e13f353c938",
+    "lib/customize/pref.prf": "7adb3642ad5194ef17d49dfe7a9fe4204a670945777f5077ab5f55c473955cd0",
+    "lib/customize/sound.prf": "461ba8b500b9a7d66b7c1864be34a474aa3e2935281562c3a27c85ed84b85491",
+    "lib/customize/user.prf": "aa66794fbdead75f4414834840ff43fdb3ef312cf133d4c002725a7f65ad30d4",
+    "lib/gamedata/Makefile": "fa2a1deb5633a0b717d80bacd6a9d64cf6da80af703e1d10b678e54a464eed8a",
+    "lib/gamedata/activation.txt": "0c555bab403901b24eef4a423ba89c851b6cd55c31af9b17cf4defffe6b78c0f",
+    "lib/gamedata/artifact.txt": "c5cf4e6009ee48ac673fef0ebcd1a1c5232a8769db42978816eaabc06bd25967",
+    "lib/gamedata/blow_effects.txt": "47b0655b88e0b945d6d27cb35230854e6ad53ec28a0af83b51e7209476b9354e",
+    "lib/gamedata/blow_methods.txt": "9db032c93d3bf5a8f8d0279f961ee1000914bc6827b6cef6bd940701e115ae96",
+    "lib/gamedata/body.txt": "484fd40235bc4f65068a4a854f7a9c85b8e0fed8a91b0bf843303dfa88b44f44",
+    "lib/gamedata/brand.txt": "0aee7d57187f3d64336fc38953a7185a90456af4ceebcba3fa9d897917036eb8",
+    "lib/gamedata/chest_trap.txt": "59a2713d58a48124f04e5708832eb2ca1f00582c73572b998d96f43b0f1fd6b3",
+    "lib/gamedata/class.txt": "0609a33563907258db391c2aa9f6504b92b493c67898044739d1fd609e88b89c",
+    "lib/gamedata/constants.txt": "b3a13464093185b74dfc32a8868dfd7517e23f128d3aca51ca205ee7c6f03393",
+    "lib/gamedata/curse.txt": "2ccae59cd875b67b874f48edfe22feb0ca393b1d0d130a127a2ec879b53743dc",
+    "lib/gamedata/dungeon_profile.txt": "49f82225fcd1cf4d429a57c5e87d6583e380386982ccbe1353b29546a6fa3613",
+    "lib/gamedata/ego_item.txt": "fd8b93374238b31be3f8880f6811742bbf3ca2132179149af72b6961d02e2d1f",
+    "lib/gamedata/flavor.txt": "93798efbe076aea08602023a799c5c5feafdb3928285700588e097bd27df397e",
+    "lib/gamedata/hints.txt": "9580af28f8196c359c2590f48a829371e190a40a8d6cec9872fb005cf7b349a4",
+    "lib/gamedata/history.txt": "fe0cbbbc2ebfd425660cb3f7de9e0e7955667cc4edd3d80b08261b722a598352",
+    "lib/gamedata/monster.txt": "b0cb99a08307d1d97446246ae2dfe2c5403a2464b7dae6ab028e43c98560a284",
+    "lib/gamedata/monster_base.txt": "9b6d10000a95660c9100978509d419ee1f5fb0973abaa40792fcd376901f0cc0",
+    "lib/gamedata/monster_spell.txt": "7a6c0ac0918176d2b2c6bb939db0a2acd68fc993b3dfbc4079392529ef8a3ba0",
+    "lib/gamedata/names.txt": "dcba1a736d054db91b72eec67c7e519b3b50ff361b90f0c00e8eaa32943b33d4",
+    "lib/gamedata/object.txt": "ccfff0d03c384b0a3692abe8e9514145c1d1a3017658fa28b5a098a618f39522",
+    "lib/gamedata/object_base.txt": "82474ff6dfd477197a6d99e4e4ef8bdf1eb4b5ba7a4d16f251cbe5f6552623cf",
+    "lib/gamedata/object_property.txt": "2f0fb6441b1243a3a7f3831e7bfbd29799f164485fc6b436c259b15e0ed44bba",
+    "lib/gamedata/old_class.txt": "5077df57177c9a084200046fec5660bacc7011f35316e59fd3efeb4f51c553eb",
+    "lib/gamedata/p_race.txt": "af4d6df98bb3839b1acff80d89909108ccd8acf4392baad113c335452a42f42a",
+    "lib/gamedata/pain.txt": "cf47e0a55564a188ca6d4b4904dc2629bc701d3370735aaa333c51e9c3d629da",
+    "lib/gamedata/pit.txt": "71749f7f67246a0f567a45e3f3c30f73da70cd62f005430a37acb8da67fe55fb",
+    "lib/gamedata/player_property.txt": "bb14d8c7ea8e9c95c4493ef8943f1674b656a65d8714dab52ac1cd1589cf00b7",
+    "lib/gamedata/player_timed.txt": "0f66bf4a0e1ec256eff89c0bd3db3f30c0c7f7de3e81111418128d2d25b3de8a",
+    "lib/gamedata/projection.txt": "8a1ab082ff189dd97bad0a443dd9c22daf4658d890124b9111168c3df91a17b3",
+    "lib/gamedata/quest.txt": "e6cb0dff24f6bbc91f88a51733fe6fab388f62be339fa44c609d15341e59f51a",
+    "lib/gamedata/realm.txt": "fcc4badf0fb1edc217fbac9b7ddc166e9cc75efcb81eff224bdc5ad30089de88",
+    "lib/gamedata/room_template.txt": "36f74ee7adce8b8e572749c6ca7d169b8de08c649840be1ddfe9d23149c4fca8",
+    "lib/gamedata/shape.txt": "23ca30c20a635659f283805fd33994b575510bae09532c379b185e5c91f3eced",
+    "lib/gamedata/slay.txt": "bbd1d467ea5a194bf258bd589bcff4465a55551bfd1734f11673ac707bed2057",
+    "lib/gamedata/store.txt": "86a4823c9b6ba929fb57c81711a8c70ab933eb6e6848b9aa3f834bc96fc591ed",
+    "lib/gamedata/summon.txt": "b2388f839886eb1b7128596c00c41188d61d306d9c6ce2a42bdb515f25681b25",
+    "lib/gamedata/terrain.txt": "95e61ea2d739afaf9ec5aaaa04eaf0a6ad940a989a3ebc09909873dcbdc342dd",
+    "lib/gamedata/trap.txt": "e0d3f123979c8b1dca256154eabb9f4e02ba6be6e0f676820b496f1a167ba5df",
+    "lib/gamedata/ui_entry.txt": "3ed9c8cd89a593947612bbfcfdcb019cbaa981c0c798af9d73709606cc17938a",
+    "lib/gamedata/ui_entry_base.txt": "3bd73b982855ffa1624641d99ae88cb63178f54346f12154cf88c69f23ba10cb",
+    "lib/gamedata/ui_entry_renderer.txt": "17103541e3d14a8c2cf85893300e2fc4046e71677bd1dc6e97dca44f5b3192c3",
+    "lib/gamedata/ui_knowledge.txt": "7c689c1b910f552c62533dbc766053e3753e77790e515130b2f14b8591fa3d26",
+    "lib/gamedata/vault.txt": "43ccee8b1ce57059debe02a64d81ecc0e5e6d7508f93d074b0fa227b8b8e16d8",
+    "lib/gamedata/visuals.txt": "5e21e7d666254ea843ae9c2b57bef8e45a909cd6b705ceb1ab5a9f75fd391f0a",
+    "lib/gamedata/world.txt": "c282032bba85b74babef0eb11438ea97e43d89c5dd4d73c3ce53275833c46224",
+    "lib/help/Makefile": "2438915030350c08b1033545f24e556602ecbba489d4fca71aaf4a703b3013f0",
+    "lib/help/commands.txt": "9103bb89494c6b10273bb45d966ba62023755385eec29b96f96ff443c6eb5452",
+    "lib/help/index.txt": "451f43a38b48a72fc4ba16fca70e110504a4cfc551c4cde508dececb79a646a4",
+    "lib/help/r_comm.txt": "d957912a00dfaec75d7758e73d728bc0593d12374292e68663a582c5a838415a",
+    "lib/help/r_index.txt": "0ee1e59539f3a22b3cc8f15c401c2ae9885705ffeb9f1f225906ea4da91510cb",
+    "lib/help/symbols.txt": "14468c10984d48059e06089089cc91588e3f474378bcb936c0858bca4c48e51c",
+    "lib/screens/Makefile": "48339a30b50994cf71ae41114b268855863858d319cd7d9d8bd77dbdb110fa2e",
+    "lib/screens/crown.txt": "ac40fac76865a2d47e23b3b74f05d9b074ec1053baeb348e303b490b7a96a1d8",
+    "lib/screens/dead.txt": "746cc2f4bde9d97358bbd041593d4c9c08f6901645c2c1d8bd6242797d5297e8",
+    "lib/screens/news.txt": "89e34b69475766e85813ac32d3c96a5ce8e241da1ed41057971c3e24ec8f9e0f",
+    "lib/screens/retire.txt": "69714c64d1df7acfeb7ccaa790db8a7cf1c80581a357390fd92cb9727657f54d"
+  },
+  "file_hashes": {
+    "CMakeLists.txt": {
+      "instrumented_sha256": "3e65369a21ed65f70e0f9dfaf3b00ced7cb0a086b5c0bbf235c2bc821c3432a5",
+      "original_sha256": "d6dd5fd2259471a0c9a6994d08a6d9f16958dbf94fc067b0c75a9f203a7e9d69"
+    },
+    "src/borg/borg-commands.c": {
+      "instrumented_sha256": "51a8eb830f66a95d71e312e1f07335618a329240e9c427973533f9128f318ab4",
+      "original_sha256": "6f27a92446d5bf4d6703fa524ecb7f4c4844628776e6ada6bdc72851e1769b54"
+    },
+    "src/borg/borg-io.c": {
+      "instrumented_sha256": "cc56aa9ae81d9688139aa9b32db5741c851271901b60a25b6c8eea807a031d6a",
+      "original_sha256": "07aadfca2c49bcebb021e64f9f5bdc3312f91874d9c448bf367552c6aa9ad3aa"
+    },
+    "src/borg/borg.c": {
+      "instrumented_sha256": "95ef5c568b30650eace4c214397114afef00374b8f27b67481d2b12adc52bfcd",
+      "original_sha256": "13422d9fcdaee751740dc505f87fcbe23c807885c19655954743d0a40298bb02"
+    },
+    "src/game-world.c": {
+      "instrumented_sha256": "45d5f7d279f9fb8770d437a979476b08dee2d2c5065d888e84b6426576d87bb6",
+      "original_sha256": "2825dccea6e0858e06a731d5c514aa87ec22bc6cb0a8816fa9b0f97c1ffa53b8"
+    },
+    "src/main-test.c": {
+      "instrumented_sha256": "b3baea04436a4d91d23b685a42250298fbde8cb3b3539d0e2f23592448a1c2fa",
+      "original_sha256": "d4969774b66d3a22969d11e0c92a134c818ff03210c026ee21617a5b4bb78f17"
+    },
+    "src/native-observer.c": {
+      "instrumented_sha256": "9c10fcedd8b2f44e211f63235b38bad7cec351ec45216366689e73cb3f0a9ad7",
+      "original_sha256": null
+    },
+    "src/native-observer.h": {
+      "instrumented_sha256": "faa6a800ce6fb6e73795b044663ff36d39cc7eae837f9a53aae1ef04f3241730",
+      "original_sha256": null
+    },
+    "src/ui-game.c": {
+      "instrumented_sha256": "ecbaef8d8631692aa2451eb78f4259eac6a45b4bf6ad3e697ea906872add56ea",
+      "original_sha256": "2463c01ef13ad3bac0482429481a56a4e5213dfb74d303b3fd86c2b3a2208167"
+    },
+    "version": {
+      "instrumented_sha256": "7e559dc4d4323cfae659fae497863f04600f29d9fa49e0e6d8ad1439e016eb19",
+      "original_sha256": null
+    }
+  },
+  "harness_commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+  "modified": [
+    "CMakeLists.txt",
+    "src/borg/borg-commands.c",
+    "src/borg/borg-io.c",
+    "src/borg/borg.c",
+    "src/game-world.c",
+    "src/main-test.c",
+    "src/ui-game.c"
+  ],
+  "patch_sha256": "1530f584426948f6179919b1d6bb20f6f0bbd7d8a48616e7bceb796ef78def72",
+  "qualification": "Exact source delta is disclosed for inspection. This source seal alone does not prove observation neutrality; consult repeated pilot traces and the hook review.",
+  "schema": "original-angband/source-seal@1",
+  "source_archive_sha256": "6bdd13921470ea541f240456c5c98fc972970aa70d22478c040901bdcc589a5d",
+  "source_commit": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
+  "source_repository": "https://github.com/angband/angband",
+  "unchanged_original_files": 1119
+}

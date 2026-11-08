@@ -4,11 +4,11 @@ import datetime
 import json
 import os
 import sys
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from . import catalogue as cat_mod
-from . import harness, site
+from . import harness, site, evidence
 
 
 def cmd_plan(args):
@@ -20,12 +20,15 @@ def cmd_plan(args):
             out.write(f"builds={json.dumps(plan['builds'])}\n")
             out.write(f"runs={json.dumps(plan['runs'])}\n")
             out.write(f"name={exp['name']}\n")
+            out.write(f"retain_evidence={str(bool(exp.get('retain_evidence'))).lower()}\n")
+            out.write(f"max_parallel={exp.get('resource_budget', {}).get('max_parallel_jobs', 20)}\n")
+            out.write(f"processes={exp.get('resource_budget', {}).get('processes_per_job', '')}\n")
     print(json.dumps({'experiment': exp['name'], 'cells': plan['cells'],
                       'builds': len(plan['specimens']), 'run_jobs': len(plan['runs'])}))
 
 
 def cmd_build(args):
-    manifest = harness.build(args.specimen, args.harness, args.out, source=args.source)
+    manifest = harness.build(args.specimen, args.harness, args.out, source=args.source, engine=args.engine, toolkit=args.toolkit)
     print(json.dumps({'specimen': args.specimen, 'binary_sha256': manifest['binary_sha256'],
                       'compiler': manifest['compiler']}))
 
@@ -38,16 +41,45 @@ def cmd_run(args):
     out.parent.mkdir(parents=True, exist_ok=True)
 
     def one(cell):
-        record = harness.run_cell(cell, args.build, args.harness, args.work, cat, keep=args.keep, source=args.source)
+        keep = args.keep or exp.get('retain_evidence', False)
+        record = harness.run_cell(cell, args.build, args.harness, args.work, cat, keep=keep, source=args.source, toolkit=args.toolkit)
+        if exp.get('retain_evidence'):
+            evidence.attach(record, Path(args.work) / cat_mod.cell_key(cell))
         print(json.dumps({k: record[k] for k in ('specimen', 'profile', 'seed', 'outcome', 'wall_seconds')}),
               flush=True)
         return record
 
-    with ThreadPoolExecutor(max_workers=args.jobs) as pool:
-        records = list(pool.map(one, mine))
-    with out.open('w') as f:
-        for r in records:
-            f.write(json.dumps(r, sort_keys=True) + '\n')
+    if exp.get('retain_evidence'):
+        # A job timeout must not erase all already completed lives in its shard.
+        if out.exists():
+            raise ValueError(f'retained output already exists: {out}')
+        collisions = [Path(args.work) / cat_mod.cell_key(cell) for cell in mine
+                      if (Path(args.work) / cat_mod.cell_key(cell)).exists()]
+        if collisions:
+            raise ValueError(f'retained attempt already exists: {collisions[0]}')
+        with out.open('x') as stream, ThreadPoolExecutor(max_workers=args.jobs) as pool:
+            pending = {pool.submit(one, cell): cell for cell in mine}
+            records = []
+            for future in as_completed(pending):
+                try:
+                    record = future.result()
+                except Exception as exc:
+                    cell = pending[future]
+                    record = {'schema': 'borg-zoo/cell@1', **cell,
+                              'harness_kind': cat['specimens']['specimens'][cell['specimen']].get('kind', 'better-borg-c'),
+                              'outcome': 'harness_failure', 'error': repr(exc),
+                              'cap': cat['suites'][cell['suite']]['cap'],
+                              'final': {}, 'first_turn_at_depth': {}, 'wall_seconds': None}
+                    evidence.attach(record, Path(args.work) / cat_mod.cell_key(cell))
+                records.append(record)
+                stream.write(json.dumps(record, sort_keys=True) + '\n')
+                stream.flush()
+    else:
+        with ThreadPoolExecutor(max_workers=args.jobs) as pool:
+            records = list(pool.map(one, mine))
+        with out.open('w') as f:
+            for record in records:
+                f.write(json.dumps(record, sort_keys=True) + '\n')
     print(f'{len(records)} cells -> {out}')
 
 
@@ -65,7 +97,10 @@ def cmd_collect(args):
     for key in missing:
         suite, specimen, profile, seed = key.split('/')
         records[key] = {'schema': 'borg-zoo/cell@1', 'suite': suite, 'specimen': specimen,
-                        'profile': profile, 'seed': int(seed), 'outcome': 'harness_failure',
+                        'profile': profile, 'seed': int(seed),
+                        'harness_kind': cat['specimens']['specimens'][specimen].get('kind', 'better-borg-c'),
+                        'command_stream_profile': cat['specimens']['specimens'][specimen].get('command_stream_profile'),
+                        'outcome': 'harness_failure',
                         'error': 'no record collected (job failed or was cancelled)',
                         'final': {}, 'first_turn_at_depth': {}, 'cap': cat['suites'][suite]['cap']}
     target = Path(args.results) / exp['name'] / args.run_id
@@ -88,6 +123,8 @@ def cmd_collect(args):
             'zoo_commit': args.zoo_commit, 'experiment': exp, 'catalogue': used,
             'environment': env, 'missing_cells': len(missing)}
     (target / 'meta.json').write_text(json.dumps(meta, indent=2, sort_keys=True) + '\n')
+    if exp.get('retain_evidence'):
+        evidence.write_indexes(target, list(records.values()))
     print(json.dumps({'run': str(target), 'cells': len(records), 'missing': len(missing)}))
 
 
@@ -108,6 +145,8 @@ def main(argv=None):
     s.add_argument('--harness', default=None, help='better-borg-c checkout at the pinned harness commit')
     s.add_argument('--source', default=None, help='borg-rs or Mandos checkout at the specimen ref')
     s.add_argument('--out', required=True)
+    s.add_argument('--engine', default=None, help='official Neo engine checkout for neo-original')
+    s.add_argument('--toolkit', default=None, help='pinned original-Neo measurement toolkit checkout')
     s = sub.add_parser('run')
     s.add_argument('--experiment', required=True)
     s.add_argument('--specimen', required=True)
@@ -120,6 +159,7 @@ def main(argv=None):
     s.add_argument('--jobs', type=int, default=os.cpu_count() or 1)
     s.add_argument('--keep', action='store_true', help='keep traces and terminal logs')
     s.add_argument('--source', default=None, help='installed Mandos checkout at the specimen ref (Mandos specimens)')
+    s.add_argument('--toolkit', default=None, help='pinned original-Neo measurement toolkit checkout')
     s = sub.add_parser('collect')
     s.add_argument('--experiment', required=True)
     s.add_argument('--cells', required=True)

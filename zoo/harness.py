@@ -34,10 +34,13 @@ def check_harness(harness, expected_commit):
     return head
 
 
-def build(specimen_name, harness, out, cat=None, source=None):
+def build(specimen_name, harness, out, cat=None, source=None, engine=None, toolkit=None):
     cat = cat or cat_mod.catalogue()
     specimens = cat['specimens']
     spec = specimens['specimens'][specimen_name]
+    if spec.get('kind') == 'neo-original':
+        from . import neo_original
+        return neo_original.build(spec, source, engine, toolkit, out)
     if spec.get('kind') == 'borg-rs':
         from . import borgrs
         return borgrs.build(spec, source, out)
@@ -169,8 +172,11 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
     }
 
 
-def run_cell(cell, build_dir, harness, work, cat=None, keep=False, source=None):
+def run_cell(cell, build_dir, harness, work, cat=None, keep=False, source=None, toolkit=None):
     cat = cat or cat_mod.catalogue()
+    if cat['specimens']['specimens'][cell['specimen']].get('kind') == 'neo-original':
+        from . import neo_original
+        return neo_original.run_cell(cell, build_dir, work, cat, toolkit)
     if cat['specimens']['specimens'][cell['specimen']].get('kind') == 'borg-rs':
         from . import borgrs
         return borgrs.run_cell(cell, build_dir, work, cat)
@@ -186,6 +192,8 @@ def run_cell(cell, build_dir, harness, work, cat=None, keep=False, source=None):
         raise ValueError(f"build {build_dir} is {manifest['source_commit']}, cell wants {spec['ref']}")
     out = Path(work).resolve() / cat_mod.cell_key(cell)
     if out.exists():
+        if keep:
+            raise ValueError(f'retained attempt already exists: {out}')
         shutil.rmtree(out)
     out.parent.mkdir(parents=True, exist_ok=True)
     runner = load_runner(harness)  # a fresh module per cell, so per-cell birth keys never leak

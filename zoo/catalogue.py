@@ -137,6 +137,11 @@ def experiment(path, cat=None):
     for name in exp['specimens']:
         if specimens[name].get('pending'):
             raise ValueError(f'{name} cannot be measured yet: {specimens[name]["pending"]}')
+        if specimens[name].get('kind') == 'neo-original':
+            if any(cat['profiles'][p].get('settings') or cat['profiles'][p].get('base') for p in exp['profiles']):
+                raise ValueError('neo-original benchmark accepts only original default settings')
+            if any(cat['suites'][n]['birth'] == 'random' for n in exp['suites']):
+                raise ValueError('neo-original benchmark requires explicitly assigned birth')
         if specimens[name].get('kind') == 'mandos':
             from . import mandos
             for suite in exp['suites']:
@@ -274,11 +279,20 @@ def plan(exp, shards, cat=None):
     all_cells = cells(exp, cat)
     specimens = cat['specimens']['specimens']
     builds = [{'specimen': s, 'kind': specimens[s].get('kind', 'better-borg-c'),
-               'repository': specimens[s]['repository'], 'ref': specimens[s]['ref']}
+               'repository': specimens[s]['repository'], 'ref': specimens[s]['ref'],
+               'engine_repository': specimens[s].get('engine_repository', ''),
+               'engine_ref': specimens[s].get('engine_ref', ''),
+               'toolkit_repository': specimens[s].get('toolkit_repository', ''),
+               'toolkit_ref': specimens[s].get('toolkit_ref', '')}
               for s in exp['specimens']]
     runs = []
     for b in builds:
+        arm_shards = exp.get('shards_by_specimen', {}).get(b['specimen'], shards)
+        if not isinstance(arm_shards, int) or not 1 <= arm_shards <= 256:
+            raise ValueError('shards must be an integer between 1 and 256')
         total = len([c for c in all_cells if c['specimen'] == b['specimen']])
-        for index in range(min(shards, total)):
-            runs.append({**b, 'shard': index, 'shards': min(shards, total)})
+        for index in range(min(arm_shards, total)):
+            runs.append({**b, 'shard': index, 'shards': min(arm_shards, total)})
+    if len(runs) > 256:
+        raise ValueError('run matrix exceeds GitHub Actions limit of 256 jobs')
     return {'specimens': exp['specimens'], 'builds': builds, 'runs': runs, 'cells': len(all_cells)}

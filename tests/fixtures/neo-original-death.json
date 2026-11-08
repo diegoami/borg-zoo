@@ -1,0 +1,486 @@
+{
+  "schema": "neo-original/run@1",
+  "outcome": "death",
+  "seed": 2,
+  "birth": {
+    "race": "Human",
+    "class": "Druid",
+    "method": "ordinary startGame roller; assigned race/class only",
+    "stats": [
+      13,
+      12,
+      9,
+      15,
+      16
+    ],
+    "options": {
+      "birth_randarts": false,
+      "birth_connect_stairs": true,
+      "birth_force_descend": false,
+      "birth_no_recall": false,
+      "birth_no_artifacts": false,
+      "birth_stacking": true,
+      "birth_lose_arts": false,
+      "birth_feelings": true,
+      "birth_no_selling": false,
+      "birth_start_kit": true,
+      "birth_ai_learn": true,
+      "birth_know_runes": false,
+      "birth_know_flavors": false,
+      "birth_levels_persist": false,
+      "birth_percent_damage": false
+    },
+    "inventory": [
+      {
+        "handle": 1,
+        "description": "a Ration of Food"
+      },
+      {
+        "handle": 4,
+        "description": "a Scroll of Word of Recall"
+      },
+      {
+        "handle": 5,
+        "description": "a Book of Nature Magics [Lesser Charms]"
+      },
+      {
+        "handle": 6,
+        "description": "2 Wooden Torches (5000 turns)"
+      }
+    ],
+    "gold": 379,
+    "hp": 12,
+    "maxHp": 12
+  },
+  "settings": {
+    "borg.playsRisky": false,
+    "borg.worshipsDamage": false,
+    "borg.worshipsSpeed": false,
+    "borg.worshipsHp": false,
+    "borg.worshipsMana": false,
+    "borg.worshipsAc": false,
+    "borg.worshipsGold": false,
+    "borg.selfScum": true,
+    "borg.munchkinStart": false
+  },
+  "turn": 5269,
+  "depth": 1,
+  "maxDepth": 1,
+  "level": 1,
+  "maxLevel": 1,
+  "hp": -1,
+  "maxHp": 12,
+  "energy": 80,
+  "causeOfDeath": "metallic green centipede",
+  "turnCap": {
+    "requested": 20000,
+    "actual": 5269,
+    "overshoot": 0,
+    "unit": "core_game_tick",
+    "normalActionTicks": 10,
+    "exact": false,
+    "guaranteedExact": false
+  },
+  "firstDepthTurns": {
+    "0": 0,
+    "1": 740
+  },
+  "playSha256": "e5af9fd69e8538922ea59713171879de9d7814cc5e8c6880ccda3270f24cba11",
+  "decisions": 447,
+  "messages": [
+    {
+      "turn": 0,
+      "text": "You have learned the verse of Detect Life."
+    },
+    {
+      "turn": 0,
+      "text": "The sun has risen."
+    },
+    {
+      "turn": 20,
+      "text": "You sense life!"
+    },
+    {
+      "turn": 740,
+      "text": "You enter a maze of down staircases."
+    },
+    {
+      "turn": 740,
+      "text": "This seems a quiet, peaceful place."
+    },
+    {
+      "turn": 1190,
+      "text": "You enter a maze of up staircases."
+    },
+    {
+      "turn": 1190,
+      "text": "You enter a maze of down staircases."
+    },
+    {
+      "turn": 1190,
+      "text": "This seems a tame, sheltered place."
+    },
+    {
+      "turn": 1190,
+      "text": "You have found a secret door."
+    },
+    {
+      "turn": 1240,
+      "text": "You have found a secret door."
+    },
+    {
+      "turn": 1590,
+      "text": "You have found a secret door."
+    },
+    {
+      "turn": 1600,
+      "text": "You have found a secret door."
+    },
+    {
+      "turn": 1880,
+      "text": "You have found a secret door."
+    },
+    {
+      "turn": 1890,
+      "text": "You have found a secret door."
+    },
+    {
+      "turn": 2130,
+      "text": "You failed to pick the lock."
+    },
+    {
+      "turn": 2140,
+      "text": "You failed to pick the lock."
+    },
+    {
+      "turn": 2150,
+      "text": "You failed to pick the lock."
+    },
+    {
+      "turn": 2160,
+      "text": "You failed to pick the lock."
+    },
+    {
+      "turn": 2170,
+      "text": "You failed to pick the lock."
+    },
+    {
+      "turn": 2180,
+      "text": "You failed to pick the lock."
+    },
+    {
+      "turn": 2190,
+      "text": "You failed to pick the lock."
+    },
+    {
+      "turn": 2200,
+      "text": "You failed to pick the lock."
+    },
+    {
+      "turn": 2210,
+      "text": "You failed to pick the lock."
+    },
+    {
+      "turn": 2220,
+      "text": "You failed to pick the lock."
+    },
+    {
+      "turn": 2230,
+      "text": "You have picked the lock."
+    },
+    {
+      "turn": 2300,
+      "text": "You enter a maze of up staircases."
+    },
+    {
+      "turn": 2300,
+      "text": "You enter a maze of down staircases."
+    },
+    {
+      "turn": 2300,
+      "text": "This seems a tame, sheltered place."
+    },
+    {
+      "turn": 2430,
+      "text": "Your Book of Nature Magics [Lesser Charms] hits the grey mold."
+    },
+    {
+      "turn": 2430,
+      "text": "The grey mold quivers in pain."
+    },
+    {
+      "turn": 2579,
+      "text": "The grey mold releases spores at you."
+    },
+    {
+      "turn": 2579,
+      "text": "The grey mold releases spores at you."
+    },
+    {
+      "turn": 2820,
+      "text": "You enter a maze of up staircases."
+    },
+    {
+      "turn": 2820,
+      "text": "You enter a maze of down staircases."
+    },
+    {
+      "turn": 2820,
+      "text": "This seems a tame, sheltered place."
+    },
+    {
+      "turn": 2820,
+      "text": "You enter a maze of up staircases."
+    },
+    {
+      "turn": 2820,
+      "text": "You enter a maze of down staircases."
+    },
+    {
+      "turn": 2820,
+      "text": "This seems a quiet, peaceful place."
+    },
+    {
+      "turn": 3180,
+      "text": "You enter a maze of up staircases."
+    },
+    {
+      "turn": 3180,
+      "text": "You enter a maze of down staircases."
+    },
+    {
+      "turn": 3180,
+      "text": "This seems a quiet, peaceful place."
+    },
+    {
+      "turn": 3650,
+      "text": "You enter a maze of up staircases."
+    },
+    {
+      "turn": 3650,
+      "text": "You enter a maze of down staircases."
+    },
+    {
+      "turn": 3650,
+      "text": "This seems a tame, sheltered place."
+    },
+    {
+      "turn": 4210,
+      "text": "You enter a maze of up staircases."
+    },
+    {
+      "turn": 4210,
+      "text": "You enter a maze of down staircases."
+    },
+    {
+      "turn": 4210,
+      "text": "This seems a quiet, peaceful place."
+    },
+    {
+      "turn": 4610,
+      "text": "You enter a maze of up staircases."
+    },
+    {
+      "turn": 4610,
+      "text": "You enter a maze of down staircases."
+    },
+    {
+      "turn": 4610,
+      "text": "This seems a quiet, peaceful place."
+    },
+    {
+      "turn": 5100,
+      "text": "You enter a maze of up staircases."
+    },
+    {
+      "turn": 5100,
+      "text": "You enter a maze of down staircases."
+    },
+    {
+      "turn": 5100,
+      "text": "This seems a tame, sheltered place."
+    },
+    {
+      "turn": 5100,
+      "text": "You have found a secret door."
+    },
+    {
+      "turn": 5139,
+      "text": "You hear a door burst open!"
+    },
+    {
+      "turn": 5140,
+      "text": "You have found a secret door."
+    },
+    {
+      "turn": 5144,
+      "text": "The metallic green centipede crawls on you."
+    },
+    {
+      "turn": 5144,
+      "text": "You are covered in acid!"
+    },
+    {
+      "turn": 5144,
+      "text": "The metallic green centipede stings you."
+    },
+    {
+      "turn": 5160,
+      "text": "You have found a secret door."
+    },
+    {
+      "turn": 5160,
+      "text": "You have found a secret door."
+    },
+    {
+      "turn": 5179,
+      "text": "You hear a door burst open!"
+    },
+    {
+      "turn": 5188,
+      "text": "You hear a door burst open!"
+    },
+    {
+      "turn": 5191,
+      "text": "The air about you becomes charged..."
+    },
+    {
+      "turn": 5191,
+      "text": "You have no more Scrolls of Word of Recall (c)."
+    },
+    {
+      "turn": 5197,
+      "text": "The apprentice wakes up."
+    },
+    {
+      "turn": 5206,
+      "text": "The cutpurse hits you."
+    },
+    {
+      "turn": 5206,
+      "text": "The cutpurse touches you."
+    },
+    {
+      "turn": 5206,
+      "text": "Your purse feels lighter."
+    },
+    {
+      "turn": 5206,
+      "text": "60 coins were stolen!"
+    },
+    {
+      "turn": 5206,
+      "text": "There is a puff of smoke!"
+    },
+    {
+      "turn": 5206,
+      "text": "The apprentice blinks."
+    },
+    {
+      "turn": 5207,
+      "text": "The apprentice wakes up."
+    },
+    {
+      "turn": 5234,
+      "text": "The apprentice conjures up weird things."
+    },
+    {
+      "turn": 5234,
+      "text": "You are confused!"
+    },
+    {
+      "turn": 5239,
+      "text": "The metallic green centipede crawls on you."
+    },
+    {
+      "turn": 5239,
+      "text": "You are covered in acid!"
+    },
+    {
+      "turn": 5239,
+      "text": "The metallic green centipede stings you."
+    },
+    {
+      "turn": 5241,
+      "text": "You are confused."
+    },
+    {
+      "turn": 5249,
+      "text": "The metallic green centipede crawls on you."
+    },
+    {
+      "turn": 5249,
+      "text": "You are covered in acid!"
+    },
+    {
+      "turn": 5249,
+      "text": "The metallic green centipede stings you."
+    },
+    {
+      "turn": 5251,
+      "text": "You are confused."
+    },
+    {
+      "turn": 5251,
+      "text": "There is a wall in the way!"
+    },
+    {
+      "turn": 5261,
+      "text": "The apprentice hits you."
+    },
+    {
+      "turn": 5261,
+      "text": "*** LOW HITPOINT WARNING! ***"
+    },
+    {
+      "turn": 5261,
+      "text": "You are confused."
+    },
+    {
+      "turn": 5264,
+      "text": "The metallic green centipede crawls on you."
+    },
+    {
+      "turn": 5264,
+      "text": "*** LOW HITPOINT WARNING! ***"
+    },
+    {
+      "turn": 5264,
+      "text": "You are covered in acid!"
+    },
+    {
+      "turn": 5264,
+      "text": "The metallic green centipede stings you."
+    },
+    {
+      "turn": 5264,
+      "text": "*** LOW HITPOINT WARNING! ***"
+    },
+    {
+      "turn": 5269,
+      "text": "The metallic green centipede crawls on you."
+    },
+    {
+      "turn": 5269,
+      "text": "You die."
+    }
+  ],
+  "provenance": {
+    "engine": {
+      "repository": "neostryder/neo-angband",
+      "commit": "5a9cab20621278b74f8376996eba1f6fda14c523",
+      "dirty": false,
+      "version": "1.23.0-beta.3"
+    },
+    "borg": {
+      "repository": "neostryder/neo-angband-mod-borg",
+      "commit": "014c810466ec7ac0b9b7a83416e075238c72edd0",
+      "dirty": false,
+      "version": null
+    }
+  },
+  "_fixtureOrigin": {
+    "recordSha256": "de2c8a1731ec41489123ac7cd2d599b565e3aab86b61760c15ab3d619014ca71",
+    "purpose": "Projection of a real tools-only Neo pilot death for Zoo outcome/identity regression; not a separate life."
+  }
+}
