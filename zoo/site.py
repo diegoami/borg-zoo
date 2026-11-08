@@ -7,14 +7,25 @@ from pathlib import Path
 from . import stats
 
 CSS = """
-:root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#6b6a64;--line:#dcd9cf;--head:#f0eee7;--good:#1f7a3a;--bad:#a8321e;--accent:#2f5d8a}
-@media (prefers-color-scheme:dark){:root{--bg:#171715;--fg:#ecebe6;--muted:#a3a198;--line:#3a3934;--head:#24231f;--good:#6fcf8a;--bad:#f08a76;--accent:#8db7e0}}
+:root{--card:#ffffff;--bg:#fbfaf7;--fg:#1d1d1b;--muted:#6b6a64;--line:#dcd9cf;--head:#f0eee7;--good:#1f7a3a;--bad:#a8321e;--accent:#2f5d8a}
+@media (prefers-color-scheme:dark){:root{--card:#1f1e1b;--bg:#171715;--fg:#ecebe6;--muted:#a3a198;--line:#3a3934;--head:#24231f;--good:#6fcf8a;--bad:#f08a76;--accent:#8db7e0}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
 main{max-width:1100px;margin:0 auto;padding:24px 16px 64px}h1{font-size:1.6rem;margin:0 0 4px}h2{font-size:1.2rem;margin:32px 0 8px}h3{font-size:1rem;margin:20px 0 6px}
 a{color:var(--accent)}p.note,.muted{color:var(--muted)}.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;margin:8px 0}
 table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}th,td{padding:6px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
 th{background:var(--head);font-weight:600}th:first-child,td:first-child,th.l,td.l{text-align:left}tr:last-child td{border-bottom:0}
-.good{color:var(--good)}.bad{color:var(--bad)}code{font-size:.9em}
+.good{color:var(--good)}.bad{color:var(--bad)}code{font-size:.9em;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"DejaVu Sans Mono","Liberation Mono",monospace}
+.lead{font-size:1.05rem;max-width:62rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,30rem),1fr));gap:16px;margin:16px 0}
+.card{border:1px solid var(--line);border-radius:8px;padding:16px;background:var(--card)}
+.card.wide{grid-column:1/-1}.chart{max-width:640px;overflow-x:auto}.chart svg{min-width:420px}.card td{white-space:normal}.card h2{margin:0 0 4px;font-size:1.1rem}.card .answer{margin:4px 0 10px}
+.card .foot{font-size:.85rem;color:var(--muted);margin-top:8px}
+svg.forest{width:100%;height:auto;display:block}
+svg.forest text{fill:var(--fg);font:13px system-ui,-apple-system,Segoe UI,sans-serif}
+svg.forest .axis{stroke:var(--line)}svg.forest .tick{fill:var(--muted);font-size:11px}
+svg.forest .ci{stroke:var(--muted);stroke-width:2}svg.forest .dot{fill:var(--accent)}
+svg.forest .dot.hi{fill:var(--good)}svg.forest .val{fill:var(--muted)}
+.big{font-size:2rem;font-weight:650;line-height:1.1}
 """
 
 
@@ -175,11 +186,8 @@ def build_site(results, out):
                      f'{esc(meta["experiment"]["name"])}</a>', esc(meta.get('completed', '?')),
                      len(meta['experiment']['specimens']), len(meta['experiment']['profiles']),
                      len(cells), finished])
-    body = ('<h1>Borg zoo</h1><p>Seed-suite comparisons of Angband Borg versions and configurations. '
-            'Source and method: <a href="https://github.com/diegoami/borg-zoo">diegoami/borg-zoo</a>.</p>'
-            '<h2>Experiment runs</h2>' +
-            (table(['Experiment', 'Completed', 'Specimens', 'Profiles', 'Runs', 'Finished'], rows)
-             if rows else '<p class="muted">No results yet.</p>'))
+    from . import landing
+    body = landing.landing_page(runs, rows)
     (out / 'index.html').write_text(page('Borg zoo', body))
     (out / '.nojekyll').write_text('')
     return len(runs)

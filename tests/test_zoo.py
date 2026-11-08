@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from zoo import catalogue as cat_mod  # noqa: E402
-from zoo import borgrs, harness, site, stall, stats  # noqa: E402
+from zoo import borgrs, harness, landing, site, stall, stats  # noqa: E402
 from zoo.__main__ import main  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -197,6 +197,27 @@ class StallTest(unittest.TestCase):
                                 'BORG_OPTIONS borg_plays_risky=0\n', {'settings': {}}, {'ref': 'a' * 40},
                                 {'cap': 20000, 'birth': 'fixed'}, {})
         self.assertIsNone(rec['stall'])
+
+
+class LandingTest(unittest.TestCase):
+    def test_forest_axis_adapts_and_draws_each_row(self):
+        svg = landing.forest([('a', 0.36, (0.30, 0.43), False), ('b', 0.10, (0.07, 0.15), True),
+                              ('c', None, (None, None), False)])
+        self.assertEqual(svg.count('<circle'), 2)
+        self.assertIn('>50%<', svg)
+        self.assertNotIn('>60%<', svg)
+
+    def test_landing_answers_from_a_milestones_run(self):
+        exp = cat_mod.experiment(ROOT / 'experiments/milestones-early.json')
+        cells = [dict(cell(s, seed, 'death' if seed % 3 == 0 else 'turn_cap', turn=500 if seed % 3 == 0 else 100000),
+                      suite='early-50', cap=100000) for s in exp['specimens'] for seed in range(1001, 1013)]
+        meta = {'experiment': exp, 'run_id': 'r1', 'completed': '2026-11-08 00:00 UTC',
+                'catalogue': {'specimens': cat_mod.catalogue()['specimens']['specimens'],
+                              'suites': cat_mod.catalogue()['suites']}}
+        page = landing.landing_page([(meta, cells, None)], [])
+        self.assertIn("Do better-borg-c's fixes change early survival?", page)
+        self.assertIn('Not measurably', page)
+        self.assertNotIn('Which settings change early survival?', page)
 
 
 class StatsTest(unittest.TestCase):
