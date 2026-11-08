@@ -975,6 +975,49 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "saves": false
+    },
+    "classes-1800-warriors": {
+      "description": "The 200 Warrior seeds of classes-1800, with the same race on each seed. Development only: these seeds produced the M5 and M6 warrior findings.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "class": "Warrior"
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "warriors-600": {
+      "description": "Confirmation: 600 fresh seeds, all Warriors, races cycled seed by seed (about 55 per race), 100,000 engine turns. Prespecified tests only.",
+      "role": "confirmation",
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 600
+      },
+      "birth": "assigned",
+      "characters": {
+        "classes": [
+          "Warrior"
+        ],
+        "races": [
+          "Human",
+          "Half-Elf",
+          "Elf",
+          "Hobbit",
+          "Gnome",
+          "Dwarf",
+          "Half-Orc",
+          "Half-Troll",
+          "Dunadan",
+          "High-Elf",
+          "Kobold"
+        ]
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
     }
   }
 }
