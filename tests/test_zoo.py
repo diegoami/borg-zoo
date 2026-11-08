@@ -78,6 +78,36 @@ class ShippedBaseTest(unittest.TestCase):
         self.assertEqual(cat_mod.profile_text({'base': 'shipped', 'settings': {}}, self.SHIPPED), self.SHIPPED)
 
 
+class SeedSetTest(unittest.TestCase):
+    def test_rule_suites_are_deterministic_disjoint_and_in_range(self):
+        a, b = cat_mod.catalogue()['suites'], cat_mod.catalogue()['suites']
+        self.assertEqual(a['dev-2000']['seeds'], b['dev-2000']['seeds'])
+        owner = {}
+        for name, suite in a.items():
+            self.assertEqual(len(suite['seeds']), len(set(suite['seeds'])), name)
+            for seed in suite['seeds']:
+                self.assertTrue(1 <= seed <= cat_mod.SEED_MAX, (name, seed))
+                if 'seed_rule' in suite:
+                    self.assertNotIn(seed, owner, (name, seed, owner.get(seed)))
+                owner.setdefault(seed, name)
+        self.assertEqual(len(a['dev-2000']['seeds']), 2000)
+
+    def test_every_suite_declares_a_role(self):
+        for name, suite in cat_mod.catalogue()['suites'].items():
+            self.assertIn(suite.get('role'), ('pilot', 'development', 'confirmation', 'sealed'), name)
+
+    def test_sealed_suite_needs_the_owner(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'x.json'
+            exp = {'name': 'x', 'specimens': ['pristine'], 'profiles': ['default'],
+                   'suites': ['sealed-2000'], 'control': 'pristine'}
+            path.write_text(json.dumps(exp))
+            with self.assertRaises(ValueError):
+                cat_mod.experiment(path)
+            path.write_text(json.dumps({**exp, 'unsealed_by_owner': '2026-12-01: final claim on X'}))
+            self.assertTrue(cat_mod.experiment(path))
+
+
 class HarnessParsingTest(unittest.TestCase):
     def test_options_mismatch_becomes_config_error(self):
         trace = 'CHARACTER x\nBORG_OPTIONS borg_plays_risky=0 borg_uses_swaps=1\n'

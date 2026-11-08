@@ -1,6 +1,6 @@
 {
   "schema": "borg-zoo/suites@1",
-  "note": "Seed lists are frozen once results exist; add a new suite instead of editing one. birth 'fixed' is the better-borg-c cohort input (Human Warrior, default point buy); 'random' lets the seeded game choose race and class.",
+  "note": "Seed lists are frozen once results exist; add a new suite instead of editing one. birth 'fixed' is the better-borg-c cohort input (Human Warrior, default point buy); 'random' lets the seeded game choose race and class. Rule suites (seed_rule sha256-v1) draw deterministic, well-spread 31-bit seeds and never reuse a seed of any other suite. role: 'pilot' (sizing and exploration), 'development' (screening and choosing what to confirm), 'confirmation' (prespecified tests only), 'sealed' (untouched until the owner opens it for a final claim).",
   "suites": {
     "smoke": {
       "description": "better-borg-c frozen cohort v1: 3 seeds, 20,000 engine turns",
@@ -13,7 +13,8 @@
       "wall_seconds": 180,
       "stall_seconds": 45,
       "birth": "fixed",
-      "saves": false
+      "saves": false,
+      "role": "pilot"
     },
     "early-50": {
       "description": "Early-game pilot: 50 seeds, 100,000 engine turns, fixed birth",
@@ -73,7 +74,8 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "birth": "fixed",
-      "saves": false
+      "saves": false,
+      "role": "pilot"
     },
     "early-50-random": {
       "description": "Early-game pilot: 50 seeds, 100,000 engine turns, random race and class",
@@ -133,7 +135,8 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "birth": "random",
-      "saves": false
+      "saves": false,
+      "role": "pilot"
     },
     "confirm-200": {
       "description": "Confirmation suite: 200 fresh seeds never used before, 100,000 engine turns, fixed birth",
@@ -343,7 +346,8 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "birth": "fixed",
-      "saves": false
+      "saves": false,
+      "role": "confirmation"
     },
     "wide-500": {
       "description": "Wide suite: 500 fresh seeds, 100,000 engine turns, fixed birth, for larger milestone comparisons and for finding stalls and crashes",
@@ -853,13 +857,80 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "birth": "fixed",
-      "saves": false
+      "saves": false,
+      "role": "development"
     },
     "seed-1045": {
       "description": "Seed 1045 alone, 100,000 engine turns, fixed birth: the munchkin stair-cycle stall (better-borg-c#204, neo-angband-tracker#403)",
       "seeds": [
         1045
       ],
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "birth": "fixed",
+      "saves": false,
+      "role": "pilot"
+    },
+    "dev-2000": {
+      "description": "Development: 2,000 seeds, 100,000 engine turns, fixed birth. Enough paired seeds to see a 4-point difference in early deaths.",
+      "role": "development",
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 2000
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "birth": "fixed",
+      "saves": false
+    },
+    "confirm-2000": {
+      "description": "Confirmation: 2,000 seeds, 100,000 engine turns, fixed birth. Prespecified tests only.",
+      "role": "confirmation",
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 2000
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "birth": "fixed",
+      "saves": false
+    },
+    "deep-1000": {
+      "description": "Deep development: 1,000 seeds, 400,000 engine turns, fixed birth, so the Borg reaches the depths most carried fixes target.",
+      "role": "development",
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 1000
+      },
+      "cap": 400000,
+      "wall_seconds": 3600,
+      "stall_seconds": 120,
+      "birth": "fixed",
+      "saves": false
+    },
+    "random-1000": {
+      "description": "Development: 1,000 seeds, 100,000 engine turns, race and class chosen by the seed (better-borg-c observer only).",
+      "role": "development",
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 1000
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "birth": "random",
+      "saves": false
+    },
+    "sealed-2000": {
+      "description": "Sealed test set: 2,000 seeds, 100,000 engine turns, fixed birth. Not to be run until the owner opens it for a final claim.",
+      "role": "sealed",
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 2000
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,

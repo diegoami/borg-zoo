@@ -67,6 +67,21 @@ difference turns the run into a `config_error`.
 Warrior with default point buy, as in better-borg-c's cohorts; `random` = race
 and class chosen by the seeded game), and whether checkpoint saves are kept.
 
+**Seed sets.** Early suites list consecutive seeds. Later suites use a
+`seed_rule` (`sha256-v1`): each seed is drawn deterministically from a hash of
+the suite name and an index, spread over 1 to 2³¹−1. A rule suite skips any
+seed that another suite already uses, so suites never overlap. Each suite
+declares a role:
+- `pilot`: sizing and exploration;
+- `development`: screening, and choosing what to confirm;
+- `confirmation`: prespecified tests only;
+- `sealed`: untouched until the owner opens it for a final claim. The
+  catalogue refuses an experiment on a sealed suite unless the experiment
+  names that decision in `unsealed_by_owner`.
+
+The current sets are `dev-2000`, `confirm-2000`, `deep-1000` (400,000 turns),
+`random-1000` (race and class chosen by the seed) and `sealed-2000`.
+
 **Cell.** (suite, specimen, profile, seed) → one JSON line (`borg-zoo/cell@1`).
 The record holds:
 - the outcome, cause and final state;

@@ -12,12 +12,48 @@ def _load(path):
     return json.loads(Path(path).read_text())
 
 
+SEED_MAX = 2 ** 31 - 1
+
+
+def _rule_seeds(name, count, used):
+    """Deterministic, well-spread seeds for a rule suite, skipping any seed
+    another suite already uses. The rule is part of the frozen suite."""
+    out, i = [], 0
+    while len(out) < count:
+        digest = hashlib.sha256(f'borg-zoo:{name}:{i}'.encode()).digest()
+        seed = int.from_bytes(digest[:8], 'big') % (SEED_MAX - 1) + 1
+        if seed not in used:
+            used.add(seed)
+            out.append(seed)
+        i += 1
+    return out
+
+
+def expand_suites(suites):
+    """Expand rule suites into seed lists, in catalogue order.
+
+    Listed seeds are reserved first, so a rule suite never reuses a seed of
+    any other suite.
+    """
+    used = {seed for s in suites.values() for seed in s.get('seeds', [])}
+    out = {}
+    for name, suite in suites.items():
+        suite = dict(suite)
+        if 'seed_rule' in suite:
+            rule = suite['seed_rule']
+            if rule.get('generator') != 'sha256-v1':
+                raise ValueError(f'{name}: unknown seed generator {rule.get("generator")!r}')
+            suite['seeds'] = _rule_seeds(name, rule['count'], used)
+        out[name] = suite
+    return out
+
+
 def catalogue(root=ROOT):
     root = Path(root)
     return {
         'specimens': _load(root / 'catalogue/specimens.json'),
         'profiles': _load(root / 'catalogue/profiles.json')['profiles'],
-        'suites': _load(root / 'catalogue/suites.json')['suites'],
+        'suites': expand_suites(_load(root / 'catalogue/suites.json')['suites']),
     }
 
 
@@ -43,6 +79,10 @@ def experiment(path, cat=None):
                 if cat['profiles'][prof].get('base') == 'shipped':
                     raise ValueError(f'{name}: profile {prof} needs a shipped borg.txt base, '
                                      'which the borg-rs adapter takes from harness/borg.txt only')
+    for suite in exp['suites']:
+        if cat['suites'][suite].get('role') == 'sealed' and not exp.get('unsealed_by_owner'):
+            raise ValueError(f'suite {suite} is sealed: only an experiment the owner has opened it for '
+                             '("unsealed_by_owner": "<date and reason>") may use it')
     if exp['control'] not in exp['specimens']:
         raise ValueError('control must be one of the experiment specimens')
     if exp.get('control_profile', exp['profiles'][0]) not in exp['profiles']:
