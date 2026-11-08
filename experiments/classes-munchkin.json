@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-munchkin",
+  "description": "Munchkin start for every class and race: default against munchkin-d6 on the original C Borg (classes-1800)",
+  "specimens": [
+    "pristine"
+  ],
+  "profiles": [
+    "default",
+    "munchkin-d6"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "pristine",
+  "control_profile": "default"
+}

@@ -1,6 +1,6 @@
 {
   "schema": "borg-zoo/suites@1",
-  "note": "Seed lists are frozen once results exist; add a new suite instead of editing one. birth 'fixed' is the better-borg-c cohort input (Human Warrior, default point buy); 'random' lets the seeded game choose race and class. Rule suites (seed_rule sha256-v1) draw deterministic, well-spread 31-bit seeds and never reuse a seed of any other suite. role: 'pilot' (sizing and exploration), 'development' (screening and choosing what to confirm), 'confirmation' (prespecified tests only), 'sealed' (untouched until the owner opens it for a final claim).",
+  "note": "Seed lists are frozen once results exist; add a new suite instead of editing one. birth 'fixed' is the better-borg-c cohort input (Human Warrior, default point buy); 'random' lets the seeded game choose race and class; 'assigned' gives each seed a race and class from the suite's characters (classes dealt in turn, races cycled per round). Rule suites (seed_rule sha256-v1) draw deterministic, well-spread 31-bit seeds and never reuse a seed of any other suite. role: 'pilot' (sizing and exploration), 'development' (screening and choosing what to confirm), 'confirmation' (prespecified tests only), 'sealed' (untouched until the owner opens it for a final claim).",
   "suites": {
     "smoke": {
       "description": "better-borg-c frozen cohort v1: 3 seeds, 20,000 engine turns",
@@ -935,6 +935,45 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "birth": "fixed",
+      "saves": false
+    },
+    "classes-1800": {
+      "description": "Every class and race: 1,800 seeds, 100,000 engine turns, 200 seeds per class, races cycled so each class meets every race",
+      "role": "development",
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 1800
+      },
+      "birth": "assigned",
+      "characters": {
+        "classes": [
+          "Warrior",
+          "Mage",
+          "Druid",
+          "Priest",
+          "Necromancer",
+          "Paladin",
+          "Rogue",
+          "Ranger",
+          "Blackguard"
+        ],
+        "races": [
+          "Human",
+          "Half-Elf",
+          "Elf",
+          "Hobbit",
+          "Gnome",
+          "Dwarf",
+          "Half-Orc",
+          "Half-Troll",
+          "Dunadan",
+          "High-Elf",
+          "Kobold"
+        ]
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
       "saves": false
     }
   }

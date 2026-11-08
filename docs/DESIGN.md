@@ -63,9 +63,20 @@ overridden. The runner always adds
 the zoo compares the observer's `BORG_OPTIONS` line with the profile; any
 difference turns the run into a `config_error`.
 
-**Suite.** Seeds, cap, wall and stall limits, birth rule (`fixed` = Human
-Warrior with default point buy, as in better-borg-c's cohorts; `random` = race
-and class chosen by the seeded game), and whether checkpoint saves are kept.
+**Suite.** Seeds, cap, wall and stall limits, birth rule, and whether
+checkpoint saves are kept. The birth rules:
+- `fixed`: Human Warrior with default point buy, as in better-borg-c's
+  cohorts;
+- `random`: race and class chosen by the seeded game; observer only;
+- `assigned`: each seed gets a race and class from the suite's
+  `characters`. Classes are dealt in turn, and races cycle once per round of
+  classes, so every class meets every race.
+
+On the observer, the zoo gives the runner birth keys for the chosen race and
+class. The birth menus select on a double tap: an item's letter moves the
+cursor there, and the same letter again selects it. On borgh, the zoo passes
+`-race` and `-class` indices with `-menu-letters`. Each run checks the
+character actually played; a mismatch is a `config_error`.
 
 **Seed sets.** Early suites list consecutive seeds. Later suites use a
 `seed_rule` (`sha256-v1`): each seed is drawn deterministically from a hash of

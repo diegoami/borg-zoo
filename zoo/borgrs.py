@@ -11,8 +11,9 @@ Limits compared with the better-borg-c observer, recorded per cell:
   the borg.txt the zoo writes, not in what the Borg parsed;
 - there is no per-turn state stream, so depth marks and survival by turn
   are not available;
-- borgh's own birth script picks race and class; only fixed birth (Human
-  Warrior) is supported.
+- borgh picks race and class from indices (with -menu-letters, in
+  p_race.txt and class.txt order); fixed and assigned birth are supported,
+  random birth is not.
 - borgh stops after the first key at or past the turn cap, so a run can
   end past the cap.
 """
@@ -68,10 +69,10 @@ def build(spec, source, out):
     return manifest
 
 
-def config_text(build_dir, profile):
+def config_text(build_dir, profile, race=0, cls=0):
     base = (Path(build_dir) / 'borg.txt').read_text()
-    text = cat_mod._override(base, 'borg_respawn_race', '0')
-    text = cat_mod._override(text, 'borg_respawn_class', '0')
+    text = cat_mod._override(base, 'borg_respawn_race', str(race))
+    text = cat_mod._override(text, 'borg_respawn_class', str(cls))
     text = cat_mod._override(text, 'borg_cheat_death', 'FALSE')
     text = cat_mod._override(text, 'borg_respawn_winners', 'FALSE')
     for name, value in sorted(profile['settings'].items()):
@@ -100,13 +101,15 @@ def run_cell(cell, build_dir, work, cat):
         shutil.rmtree(out)
     for d in ('user', 'save', 'archive', 'panic', 'scores'):
         (out / d).mkdir(parents=True)
-    text = config_text(build_dir, profile)
+    race, cls = cat_mod.character(suite, cell['seed']) or ('Human', 'Warrior')
+    race_i, cls_i = cat_mod.RACES.index(race), cat_mod.CLASSES.index(cls)
+    text = config_text(build_dir, profile, race_i, cls_i)
     (out / 'user/borg.txt').write_text(text)
     mismatch = check_config(text, profile)
     game = build_dir / 'game'
     command = [str(game / 'angband'), '-mborgh', '-n', '-uBorg'] + \
         [f'-d{d}={out / d}' for d in ('user', 'save', 'archive', 'panic', 'scores')] + \
-        ['--', '-seed', str(cell['seed']), '-race', '0', '-class', '0', '-turns', str(suite['cap']),
+        ['--', '-seed', str(cell['seed']), '-race', str(race_i), '-class', str(cls_i), '-turns', str(suite['cap']),
          '-keylog', str(out / 'keys.log'), '-summary', str(out / 'summary.json'), '-menu-letters']
     env = dict(os.environ, TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8')
     start = time.monotonic()
@@ -133,6 +136,9 @@ def run_cell(cell, build_dir, work, cat):
             outcome = 'death' if summary.get('dead') else STOP.get(summary.get('stop_reason'), 'harness_failure')
             if outcome == 'stalled':
                 error = f"borgh stop_reason {summary.get('stop_reason')}"
+    if summary and (summary.get('race'), summary.get('class')) != (race, cls):
+        mismatch = (mismatch + '; ' if mismatch else '') + \
+            f"character {summary.get('race')} {summary.get('class')}, expected {race} {cls}"
     if mismatch and outcome in ('death', 'turn_cap', 'completion'):
         outcome = 'config_error'
     keys = out / 'keys.log'
@@ -150,6 +156,7 @@ def run_cell(cell, build_dir, work, cat):
         'config_error': mismatch, 'config_checked': 'written file (borgh reports no effective settings)',
         'cause': summary.get('death_cause') or ('(alive and well)' if summary and not summary.get('dead') else None),
         'character': ' '.join(x for x in (summary.get('race'), summary.get('class')) if x) or None,
+        'played_race': summary.get('race'), 'played_class': summary.get('class'),
         'final': {'kind': summary.get('stop_reason'), 'turn': summary.get('game_turns'),
                   'depth': summary.get('depth'), 'max_depth': summary.get('max_depth'),
                   'level': summary.get('clevel'), 'max_level': summary.get('clevel'),

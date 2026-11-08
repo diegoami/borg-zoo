@@ -167,3 +167,30 @@ def analyse(exp, cells):
                 })
         by_suite[suite] = rows
     return by_suite
+
+
+def by_character(exp, cells, field):
+    """Deaths per class (field "class") or race (field "race") per arm.
+
+    Uses the character actually played; arms keep the experiment's order.
+    """
+    key = 'played_' + field
+    out = {}
+    for suite in exp['suites']:
+        suite_cells = [c for c in cells if c['suite'] == suite and c.get(key)]
+        if not suite_cells:
+            continue
+        values = sorted({c[key] for c in suite_cells})
+        arms = [(s, p) for s in exp['specimens'] for p in exp['profiles']]
+        table = []
+        for v in values:
+            row = {'value': v, 'arms': []}
+            for arm in arms:
+                mine = [c for c in suite_cells if (c['specimen'], c['profile']) == arm and c[key] == v
+                        and c['outcome'] in VALID]
+                deaths = sum(1 for c in mine if c['outcome'] == 'death')
+                row['arms'].append({'arm': arm, 'n': len(mine), 'deaths': deaths,
+                                    'rate': deaths / len(mine) if mine else None})
+            table.append(row)
+        out[suite] = table
+    return out

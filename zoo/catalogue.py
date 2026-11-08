@@ -14,6 +14,32 @@ def _load(path):
 
 SEED_MAX = 2 ** 31 - 1
 
+# Birth menu order at the pin (lib/gamedata/p_race.txt and class.txt).
+RACES = ['Human', 'Half-Elf', 'Elf', 'Hobbit', 'Gnome', 'Dwarf', 'Half-Orc', 'Half-Troll',
+         'Dunadan', 'High-Elf', 'Kobold']
+CLASSES = ['Warrior', 'Mage', 'Druid', 'Priest', 'Necromancer', 'Paladin', 'Rogue', 'Ranger',
+           'Blackguard']
+
+
+def character(suite, seed):
+    """The (race, class) a suite assigns to a seed, or None.
+
+    birth "fixed" is Human Warrior; "random" lets the seeded game choose (None);
+    "assigned" deals classes in turn over the seed list and cycles races once
+    per round of classes, so every class meets every race.
+    """
+    birth = suite['birth']
+    if birth == 'fixed':
+        return ('Human', 'Warrior')
+    if birth == 'random':
+        return None
+    if birth == 'assigned':
+        chars = suite['characters']
+        classes, races = chars['classes'], chars['races']
+        i = suite['seeds'].index(seed)
+        return (races[(i // len(classes)) % len(races)], classes[i % len(classes)])
+    raise ValueError(f'unknown birth rule {birth!r}')
+
 
 def _rule_seeds(name, count, used):
     """Deterministic, well-spread seeds for a rule suite, skipping any seed
@@ -39,6 +65,16 @@ def expand_suites(suites):
     out = {}
     for name, suite in suites.items():
         suite = dict(suite)
+        if suite.get('birth') == 'assigned':
+            chars = suite.get('characters') or {}
+            for race in chars.get('races', []):
+                if race not in RACES:
+                    raise ValueError(f'{name}: unknown race {race!r}')
+            for cls in chars.get('classes', []):
+                if cls not in CLASSES:
+                    raise ValueError(f'{name}: unknown class {cls!r}')
+            if not chars.get('races') or not chars.get('classes'):
+                raise ValueError(f'{name}: assigned birth needs races and classes')
         if 'seed_rule' in suite:
             rule = suite['seed_rule']
             if rule.get('generator') != 'sha256-v1':
@@ -73,8 +109,8 @@ def experiment(path, cat=None):
     for name in exp['specimens']:
         if specimens[name].get('kind') == 'borg-rs':
             for suite in exp['suites']:
-                if cat['suites'][suite]['birth'] != 'fixed':
-                    raise ValueError(f'{name}: the borg-rs adapter supports fixed birth only (suite {suite})')
+                if cat['suites'][suite]['birth'] == 'random':
+                    raise ValueError(f'{name}: the borg-rs adapter has no random birth (suite {suite})')
             for prof in exp['profiles']:
                 if cat['profiles'][prof].get('base') == 'shipped':
                     raise ValueError(f'{name}: profile {prof} needs a shipped borg.txt base, '
@@ -149,8 +185,10 @@ def cells(exp, cat=None):
         for specimen in exp['specimens']:
             for profile in exp['profiles']:
                 for seed in suite['seeds']:
-                    out.append({'specimen': specimen, 'profile': profile,
-                                'suite': suite_name, 'seed': seed})
+                    cell = {'specimen': specimen, 'profile': profile, 'suite': suite_name, 'seed': seed}
+                    if suite['birth'] == 'assigned':
+                        cell['race'], cell['class'] = character(suite, seed)
+                    out.append(cell)
     return out
 
 

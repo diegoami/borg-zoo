@@ -108,6 +108,46 @@ class SeedSetTest(unittest.TestCase):
             self.assertTrue(cat_mod.experiment(path))
 
 
+class CharacterTest(unittest.TestCase):
+    class FakeRunner:
+        @staticmethod
+        def birth_keys(random_birth=False):
+            return 'key space\nkey a\nkey a\nkey a\nkey enter\nkey enter\nkey C-z\n'
+
+    def test_assigned_suite_covers_every_class_and_race(self):
+        suite = cat_mod.catalogue()['suites']['classes-1800']
+        chars = [cat_mod.character(suite, seed) for seed in suite['seeds']]
+        classes = {c for _, c in chars}
+        self.assertEqual(classes, set(cat_mod.CLASSES))
+        for cls in cat_mod.CLASSES:
+            mine = [r for r, c in chars if c == cls]
+            self.assertEqual(len(mine), 200)
+            self.assertEqual({*mine}, set(cat_mod.RACES))
+
+    def test_birth_input_double_taps(self):
+        keys = harness.birth_input(self.FakeRunner, 'Dwarf', 'Priest')
+        self.assertTrue(keys.startswith('key space\nkey f\nkey f\nkey d\nkey d\nkey a\nkey enter\n'))
+        self.assertEqual(harness.birth_input(self.FakeRunner, 'Human', 'Warrior'), self.FakeRunner.birth_keys())
+        self.assertIn('key o\nkey o\nkey m\nkey m\n', harness.birth_input(self.FakeRunner, 'Kobold', 'Blackguard'))
+
+    def test_wrong_character_is_a_config_error(self):
+        rec = harness.summarise({'specimen': 's', 'profile': 'p', 'suite': 'x', 'seed': 1,
+                                 'race': 'Dwarf', 'class': 'Priest'},
+                                {'outcome': 'turn_cap', 'states': [{'kind': 'turn_cap', 'turn': 9}]},
+                                'CHARACTER Measure Human Warrior\nBORG_OPTIONS borg_x=0\n', {'settings': {}},
+                                {'ref': 'a' * 40}, {'cap': 9, 'birth': 'assigned'}, {})
+        self.assertEqual(rec['outcome'], 'config_error')
+        self.assertEqual((rec['played_race'], rec['played_class']), ('Human', 'Warrior'))
+
+    def test_by_class_table(self):
+        exp = {'suites': ['s'], 'specimens': ['a'], 'profiles': ['p']}
+        cells = [{'suite': 's', 'specimen': 'a', 'profile': 'p', 'played_class': k, 'outcome': o}
+                 for k, o in (('Mage', 'death'), ('Mage', 'turn_cap'), ('Warrior', 'turn_cap'))]
+        rows = stats.by_character(exp, cells, 'class')['s']
+        self.assertEqual([(r['value'], r['arms'][0]['deaths'], r['arms'][0]['n']) for r in rows],
+                         [('Mage', 1, 2), ('Warrior', 0, 1)])
+
+
 class HarnessParsingTest(unittest.TestCase):
     def test_options_mismatch_becomes_config_error(self):
         trace = 'CHARACTER x\nBORG_OPTIONS borg_plays_risky=0 borg_uses_swaps=1\n'
