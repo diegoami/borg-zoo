@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-rs-m3",
+  "description": "borg-rs M3 against rs-m2 for every class and race (classes-1800): the effect of milestone 3's fixes in the Rust port, and the M3 tree's Rust/C identity",
+  "specimens": [
+    "rs-m2",
+    "rs-m3-c",
+    "rs-m3"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "rs-m2"
+}
