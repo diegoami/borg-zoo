@@ -294,6 +294,26 @@ class LandingTest(unittest.TestCase):
         self.assertNotIn('Which settings change early survival?', page)
 
 
+    def test_port_status_reads_identity_and_skips(self):
+        specs = {'pristine': {'carries': 0, 'ref': 'a'}, 'bbc-m1': {'carries': 2, 'ref': 'b'},
+                 'bbc-m2': {'carries': 7, 'ref': 'c'}, 'bbc-m3': {'carries': 34, 'ref': 'd'},
+                 'rs-c': {'kind': 'borg-rs', 'impl': 'c', 'ref': 'r0'},
+                 'rs-m0': {'kind': 'borg-rs', 'impl': 'rust', 'ref': 'r0', 'formerly': ['rs-rust']},
+                 'rs-m2-c': {'kind': 'borg-rs', 'impl': 'c', 'ref': 'r2'},
+                 'rs-m2': {'kind': 'borg-rs', 'impl': 'rust', 'ref': 'r2'}}
+        old = [dict(cell(s, seed, 'turn_cap'), play_sha256=f'k{seed}') for s in ('rs-c', 'rs-rust') for seed in (1, 2)]
+        new = [dict(cell(s, seed, 'turn_cap'), play_sha256=f'k{seed}{s[-1] if seed == 2 else ""}')
+               for s in ('rs-m2-c', 'rs-m2') for seed in (1, 2)]
+        runs = [({'experiment': {'specimens': ['rs-c', 'rs-rust']}}, old, None),
+                ({'experiment': {'specimens': ['rs-m2-c', 'rs-m2']}}, new, None)]
+        cols = {c['n']: c for c in landing.port_status(runs, specs)}
+        self.assertEqual((cols[0]['state'], cols[0]['rust']['same'], cols[0]['rust']['pairs']), ('identical', 2, 2))
+        self.assertEqual(cols[1]['state'], 'skipped')
+        self.assertEqual((cols[2]['state'], cols[2]['rust']['same']), ('differs', 1))
+        self.assertEqual(cols[3]['state'], 'not_yet')
+        self.assertIn('games identical', landing.port_diagram(list(cols.values())))
+
+
 class StatsTest(unittest.TestCase):
     def test_wilson_and_mcnemar(self):
         lo, hi = stats.wilson(0, 10)
