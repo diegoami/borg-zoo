@@ -34,13 +34,13 @@ records:
 
 The zoo calls `prepare()` and `run()` as a library (`zoo/harness.py`).
 
-**borg-rs specimens.** `rs-c` and `rs-rust` are a borg-rs commit built with
+**borg-rs specimens.** `rs-c` and `rs-r1` (named `rs-rust` in runs recorded before 2026-11-08) are a borg-rs commit built with
 its own `harness/build.sh`: the C Borg and the Rust Borg in the same tree,
 both behind borg-rs's headless `borgh` frontend (`zoo/borgrs.py`). Each run
 mirrors `harness/run.sh`. The run's `borg.txt` is the checkout's
 `harness/borg.txt` with the profile applied, and the outcome comes from
 `summary.json`. The play hash is the hash of the key log, which is borg-rs's
-own equivalence oracle, so identical play between `rs-c` and `rs-rust` is
+own equivalence oracle, so identical play between `rs-c` and `rs-r1` is
 the port's identity check at zoo scale.
 
 Limits compared with the better-borg-c observer:
