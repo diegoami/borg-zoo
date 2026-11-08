@@ -314,6 +314,29 @@ class LandingTest(unittest.TestCase):
         self.assertIn('games identical', landing.port_diagram(list(cols.values())))
 
 
+class ClassProfileTest(unittest.TestCase):
+    def test_a_class_dependent_profile_resolves_per_seed(self):
+        cat = cat_mod.catalogue()
+        suite = cat['suites']['classes-1800']
+        by_class = {}
+        for seed in suite['seeds'][:18]:
+            cls = cat_mod.character(suite, seed)[1]
+            by_class[cls] = cat_mod.resolve_profile(cat, {'suite': 'classes-1800', 'profile': 'munchkin-wdr',
+                                                          'seed': seed})[0]
+        self.assertEqual(by_class['Warrior'], 'munchkin-d6')
+        self.assertEqual(by_class['Ranger'], 'munchkin-d6')
+        self.assertEqual(by_class['Mage'], 'default')
+        self.assertEqual(cat_mod.resolve_profile(cat, {'suite': 'smoke', 'profile': 'munchkin-wdr', 'seed': 11})[0],
+                         'munchkin-d6')  # fixed birth is a Warrior
+        self.assertEqual(cat_mod.profile_parts(cat, 'munchkin-wdr'), ['default', 'munchkin-d6'])
+
+    def test_a_class_dependent_profile_needs_a_known_class(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'x.json'
+            path.write_text(json.dumps({'name': 'x', 'specimens': ['4.2.6'], 'profiles': ['munchkin-wdr'],
+                                        'suites': ['early-50-random'], 'control': '4.2.6'}))
+            with self.assertRaisesRegex(ValueError, 'random birth'):
+                cat_mod.experiment(path)
 def mandos_record(outcome='turn_cap', turn=100004, race='Dwarf', cls='Warrior', settings=None, **extra):
     flags = {f: False for f in mandos.FLAGS.values()}
     flags['borg.selfScum'] = True

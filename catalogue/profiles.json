@@ -128,6 +128,15 @@
       "settings": {
         "borg_worships_mana": true
       }
+    },
+    "munchkin-wdr": {
+      "description": "Munchkin start by class: munchkin-d6 for Warriors, Druids and Rangers, default for every other class (the classes munchkin-d6 helped in classes-munchkin)",
+      "by_class": {
+        "Warrior": "munchkin-d6",
+        "Druid": "munchkin-d6",
+        "Ranger": "munchkin-d6"
+      },
+      "otherwise": "default"
     }
   }
 }

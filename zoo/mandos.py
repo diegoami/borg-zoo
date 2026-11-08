@@ -218,7 +218,7 @@ def summarise(cell, spec, profile, suite, record, states, requested, error, wall
 
 
 def run_cell(cell, build_dir, work, cat, source):
-    profile = cat['profiles'][cell['profile']]
+    applied, profile = cat_mod.resolve_profile(cat, cell)
     suite = cat['suites'][cell['suite']]
     spec = cat['specimens']['specimens'][cell['specimen']]
     if source is None:
@@ -262,6 +262,7 @@ def run_cell(cell, build_dir, work, cat, source):
         error = f'no run.json (exit code {rc}): {tail}'
     states = read_states(run_dir / 'states.jsonl')
     cell_record = summarise(cell, spec, profile, suite, record, states, (race, cls), error, wall)
+    cell_record['profile_applied'] = applied
     if error and error.startswith('no stop within'):
         cell_record['outcome'] = 'wall_timeout'
         cell_record['stall'] = stall_info(record, states, 'wall_timeout')
