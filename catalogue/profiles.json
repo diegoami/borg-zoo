@@ -137,6 +137,12 @@
         "Ranger": "munchkin-d6"
       },
       "otherwise": "default"
+    },
+    "munchkin-class-off": {
+      "description": "The munchkin start by class switched off (borg_munchkin_by_class FALSE): every class plays as borg_munchkin_start says. Only builds that have the setting.",
+      "settings": {
+        "borg_munchkin_by_class": false
+      }
     }
   }
 }

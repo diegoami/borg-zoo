@@ -287,6 +287,22 @@
       "label": "Upstream v1.4.0-beta.4 plus Mandos's port repairs, without its C translations.",
       "pending": "this revision has no zoo-run entry point; it needs a compatible measurement build of exactly this implementation",
       "source": "https://github.com/diegoami/mandos/tree/v1.4.0-beta.4-port.1"
+    },
+    "4.2.6-bbc-ca3cd62": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "ca3cd62e510b3a6b621c1818c80835b12ef272e7",
+      "carries": 76,
+      "label": "better-borg-c main at ca3cd62 (the milestone 7 review package, before any tag): 76 carries",
+      "source": "https://github.com/diegoami/better-borg-c/commit/ca3cd62e510b3a6b621c1818c80835b12ef272e7",
+      "role": "candidate"
+    },
+    "4.2.6-bbc-munchkin-by-class": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "fd683cedbc74e1cbfabed276526964d0b04ee93c",
+      "carries": 76,
+      "label": "4.2.6-bbc-ca3cd62 with the munchkin start by class as the default (Warriors, Druids and Rangers, depth 6)",
+      "source": "https://github.com/diegoami/better-borg-c/tree/task/munchkin-by-class",
+      "role": "candidate"
     }
   }
 }
