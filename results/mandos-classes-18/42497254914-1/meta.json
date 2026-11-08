@@ -1,0 +1,125 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+      "history": [
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "default": {
+        "description": "Built-in defaults (the better-borg-c cohort configuration)",
+        "settings": {},
+        "sha256": "44b3cfb53eb6a924a29312a7b8ca21ad80d747f11d1f2eef097242b2994bdbda"
+      }
+    },
+    "specimens": {
+      "neo-b3-mandos": {
+        "engine": "Neo Angband 1.23.0-beta.3 (@rpgm-tools/neo-angband-core, -content and -mod-sdk from npm)",
+        "kind": "mandos",
+        "label": "Full Mandos at cca1293c: the Neo Angband Borg mod with Mandos's port repairs and its nine C corrections, measured through its zoo-run entry point (mandos#213).",
+        "ref": "cca1293cb5ab02681b1c200dca2d0cb014c90381",
+        "repository": "diegoami/mandos",
+        "source": "https://github.com/diegoami/mandos/blob/cca1293cb5ab02681b1c200dca2d0cb014c90381/docs/ZOO-HARNESS.md",
+        "wall_factor": 3
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-08 16:16 UTC",
+  "environment": {
+    "compilers": [
+      "node v22.23.4"
+    ],
+    "platforms": [
+      "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39"
+    ]
+  },
+  "experiment": {
+    "control": "neo-b3-mandos",
+    "description": "Full Mandos on 18 fresh seeds, every class twice (classes-18): assigned births, 100,000 game ticks",
+    "name": "mandos-classes-18",
+    "profiles": [
+      "default"
+    ],
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "neo-b3-mandos"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "42497254914-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/42497254914",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "d272cfbe3a305276bc3e1c94690ca06d15beb441"
+}
