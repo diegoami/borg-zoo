@@ -103,6 +103,17 @@ def experiment(path, cat=None):
     for name in exp['profiles']:
         if name not in cat['profiles']:
             raise ValueError(f'unknown profile: {name}')
+        profile = cat['profiles'][name]
+        if 'by_class' in profile:
+            for cls in profile['by_class']:
+                if cls not in CLASSES:
+                    raise ValueError(f'{name}: unknown class {cls!r}')
+            for part in profile_parts(cat, name):
+                if part not in cat['profiles'] or 'by_class' in cat['profiles'][part]:
+                    raise ValueError(f'{name}: {part!r} must be an ordinary profile')
+            for suite in exp['suites']:
+                if cat['suites'][suite]['birth'] == 'random':
+                    raise ValueError(f'{name} depends on the class; suite {suite} has random birth')
     for name in exp['suites']:
         if name not in cat['suites']:
             raise ValueError(f'unknown suite: {name}')
@@ -111,7 +122,7 @@ def experiment(path, cat=None):
             for suite in exp['suites']:
                 if cat['suites'][suite]['birth'] == 'random':
                     raise ValueError(f'{name}: the borg-rs adapter has no random birth (suite {suite})')
-            for prof in exp['profiles']:
+            for prof in (p for name in exp['profiles'] for p in profile_parts(cat, name)):
                 if cat['profiles'][prof].get('base') == 'shipped':
                     raise ValueError(f'{name}: profile {prof} needs a shipped borg.txt base, '
                                      'which the borg-rs adapter takes from harness/borg.txt only')
@@ -165,6 +176,32 @@ def profile_text(profile, shipped=None):
     if profile.get('base') not in (None, 'none'):
         raise ValueError(f"unknown profile base: {profile.get('base')!r}")
     return ''.join(f'{name} = {setting_value(value)}\n' for name, value in settings)
+
+
+def resolve_profile(cat, cell):
+    """(name, profile) the cell actually plays.
+
+    A class-dependent profile ("by_class": {class: profile}, "otherwise":
+    profile) picks one ordinary profile from the class the suite assigns to
+    the seed (fixed birth is a Warrior). It needs a birth that fixes the class
+    before play.
+    """
+    profile = cat['profiles'][cell['profile']]
+    if 'by_class' not in profile:
+        return cell['profile'], profile
+    character_ = character(cat['suites'][cell['suite']], cell['seed'])
+    if character_ is None:
+        raise ValueError(f"profile {cell['profile']} depends on the class, which random birth does not fix")
+    name = profile['by_class'].get(character_[1], profile['otherwise'])
+    return name, cat['profiles'][name]
+
+
+def profile_parts(cat, name):
+    """The ordinary profiles a profile can play: itself, or a class-dependent profile's choices."""
+    profile = cat['profiles'][name]
+    if 'by_class' not in profile:
+        return [name]
+    return sorted({*profile['by_class'].values(), profile['otherwise']})
 
 
 def profile_sha256(profile):

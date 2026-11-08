@@ -171,7 +171,7 @@ def run_cell(cell, build_dir, harness, work, cat=None, keep=False):
     if cat['specimens']['specimens'][cell['specimen']].get('kind') == 'borg-rs':
         from . import borgrs
         return borgrs.run_cell(cell, build_dir, work, cat)
-    profile = cat['profiles'][cell['profile']]
+    applied, profile = cat_mod.resolve_profile(cat, cell)
     suite = cat['suites'][cell['suite']]
     spec = cat['specimens']['specimens'][cell['specimen']]
     build_dir = Path(build_dir).resolve()
@@ -202,6 +202,7 @@ def run_cell(cell, build_dir, harness, work, cat=None, keep=False):
     trace_path = out / 'trace.txt'
     trace = trace_path.read_text(errors='replace') if trace_path.exists() else ''
     record = summarise(cell, result, trace, profile, spec, suite, manifest)
+    record['profile_applied'] = applied
     if not keep:
         for name in ('trace.txt', 'terminal.log'):
             path = out / name
