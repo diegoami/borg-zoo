@@ -119,7 +119,8 @@ def card_port(runs):
     if not meta:
         return None
     suite, s, rows = suite_rows(meta, cells)
-    rust = [r for r in rows if r['specimen'] == 'rs-rust' and r['vs_version']]
+    specs = meta['catalogue']['specimens']
+    rust = [r for r in rows if specs.get(r['specimen'], {}).get('impl') == 'rust' and r['vs_version']]
     pairs = sum(r['vs_version']['pairs'] for r in rust)
     same = sum(r['vs_version']['identical_traces'] for r in rust)
     if not pairs:

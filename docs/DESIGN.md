@@ -17,11 +17,13 @@ every specimen lives in better-borg-c's history:
 | `bbc-m2` | `2675d198e4c3` | 7 |
 | `bbc-m3` | `702f091f6ac0` | 34 |
 | `bbc-m4` | `70993393a1c9` | 42 |
+| `bbc-m5` | `5384f12ed51e` | 50 (expected tag `4.2.5-impact-v5`) |
 
 Carry counts are the length of `patches/series.json` at each commit.
 
 **Harness.** better-borg-c's `tools/measure-native.py` and observer at a
-pinned commit. For each specimen it exports the source with `git archive`,
+pinned commit (`fc9d97cb` since 2026-11-08; before that `8c23ec0d`, whose
+watchdog could abort a run on a split UTF-8 character, better-borg-c#220). For each specimen it exports the source with `git archive`,
 applies the observer instrumentation and builds a Debug binary with the test
 frontend. For each cell it runs the binary on the seed with the turn cap and
 records:
@@ -34,13 +36,13 @@ records:
 
 The zoo calls `prepare()` and `run()` as a library (`zoo/harness.py`).
 
-**borg-rs specimens.** `rs-c` and `rs-rust` are a borg-rs commit built with
+**borg-rs specimens.** `rs-c` and `rs-m0` (named `rs-rust` in runs recorded before 2026-11-08) are a borg-rs commit built with
 its own `harness/build.sh`: the C Borg and the Rust Borg in the same tree,
 both behind borg-rs's headless `borgh` frontend (`zoo/borgrs.py`). Each run
 mirrors `harness/run.sh`. The run's `borg.txt` is the checkout's
 `harness/borg.txt` with the profile applied, and the outcome comes from
 `summary.json`. The play hash is the hash of the key log, which is borg-rs's
-own equivalence oracle, so identical play between `rs-c` and `rs-rust` is
+own equivalence oracle, so identical play between `rs-c` and `rs-m0` is
 the port's identity check at zoo scale.
 
 Limits compared with the better-borg-c observer:
@@ -55,6 +57,11 @@ is not verified. In `rs-smoke` all six seed/profile runs reached the same
 maximum depth and character level under both harnesses, which suggests it
 might. Pairing stays off until key-level equality is shown; the observer
 does not log keys.
+
+Rust specimens follow better-borg-c's milestone numbers: `rs-m0` is the
+port of the pristine C Borg, and `rs-m2` will carry milestone 2's fixes
+(there is no `rs-m1`). The matching C specimen for `rs-mN` is `bbc-mN`, or
+`pristine` for M0.
 
 **Profile.** `borg.txt` lines, or with `"base": "shipped"`, the version's
 own `src/borg/borg.txt` (formula section included) with named settings
