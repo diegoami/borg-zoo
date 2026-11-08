@@ -51,6 +51,37 @@ def build(specimen_name, harness, out, cat=None, source=None):
     return manifest
 
 
+LETTERS = 'abcdefgimnopqrstuvwxyz'  # all_letters_nohjkl, the birth menus' tags
+DEFAULT_BIRTH = 'key a\nkey a\nkey a\n'
+
+
+def birth_input(runner, race, cls):
+    """The runner's birth input with race and class chosen in the menus.
+
+    The birth menus select on a double tap: pressing an item's letter moves
+    the cursor to it and pressing it again selects it, while the letter of
+    the already highlighted first item selects at once. The runner's own
+    input is "a a a" (Human, Warrior, point-based) followed by its other keys.
+    """
+    base = runner.birth_keys(False)
+    if base.count(DEFAULT_BIRTH) != 1:
+        raise ValueError('unexpected runner birth input; cannot choose race and class')
+
+    def tap(index):
+        return 'key a\n' if index == 0 else f'key {LETTERS[index]}\nkey {LETTERS[index]}\n'
+    keys = tap(cat_mod.RACES.index(race)) + tap(cat_mod.CLASSES.index(cls)) + 'key a\n'
+    return base.replace(DEFAULT_BIRTH, keys)
+
+
+def parse_character(trace_text):
+    for line in trace_text.splitlines():
+        if line.startswith('CHARACTER '):
+            parts = line.split()
+            if len(parts) >= 4:
+                return parts[-2], parts[-1]
+    return None
+
+
 def parse_options(trace_text):
     for line in trace_text.splitlines():
         if line.startswith('BORG_OPTIONS '):
@@ -94,6 +125,10 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
             mismatch = 'settings not in effect: ' + ', '.join(
                 f'{k} expected {v} got {g}' for k, (v, g) in sorted(wrong.items()))
     outcome = result.get('outcome', 'harness_failure')
+    played = parse_character(trace_text)
+    if cell.get('race') and played and played != (cell['race'], cell['class']):
+        mismatch = (mismatch + '; ' if mismatch else '') + \
+            f"character {played[0]} {played[1]}, expected {cell['race']} {cell['class']}"
     if mismatch and outcome in VALID:
         outcome = 'config_error'
     files = result.get('files_sha256') or {}
@@ -111,7 +146,9 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
         'runner_outcome': result.get('outcome'),
         'config_error': mismatch,
         'cause': result.get('cause'),
-        'character': result.get('character'),
+        'character': ' '.join(played) if played else result.get('character'),
+        'played_race': played[0] if played else None,
+        'played_class': played[1] if played else None,
         'final': {k: final.get(k) for k in ('kind', 'turn', 'depth', 'max_depth', 'level', 'max_level', 'hp', 'decisions')},
         'first_turn_at_depth': first_turns_at_depth(states),
         'wall_seconds': result.get('wall_seconds'),
@@ -145,7 +182,10 @@ def run_cell(cell, build_dir, harness, work, cat=None, keep=False):
     if out.exists():
         shutil.rmtree(out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    runner = load_runner(harness)
+    runner = load_runner(harness)  # a fresh module per cell, so per-cell birth keys never leak
+    if cell.get('race'):
+        keys = birth_input(runner, cell['race'], cell['class'])
+        runner.birth_keys = lambda random_birth=False, _keys=keys: _keys
     shipped_path = build_dir / 'source/src/borg/borg.txt'
     shipped = shipped_path.read_text() if profile.get('base') == 'shipped' else None
     args = SimpleNamespace(build=build_dir, output=out, seed=cell['seed'], cap=suite['cap'],

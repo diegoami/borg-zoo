@@ -1,0 +1,18 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "munchkin-random",
+  "description": "Munchkin start across races and classes: default against munchkin-d6 on the original and milestone 4, 1,000 seeds with race and class chosen by the seed",
+  "specimens": [
+    "pristine",
+    "bbc-m4"
+  ],
+  "profiles": [
+    "default",
+    "munchkin-d6"
+  ],
+  "suites": [
+    "random-1000"
+  ],
+  "control": "pristine",
+  "control_profile": "default"
+}

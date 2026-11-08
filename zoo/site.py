@@ -145,6 +145,17 @@ def run_page(meta, cells):
                                esc('; '.join(f'{t} ×{n}' for t, n in top[:2])) or '–'])
             parts.append(table(['Arm', 'Seed', 'Outcome', 'Last turn', 'Stall kind', 'Decisions Δ', 'Energy Δ',
                                 'Level changes (sampled)', 'Most repeated at the last turn'], rows_u, left=1))
+        for field, title in (('class', 'Deaths by class'), ('race', 'Deaths by race')):
+            per = stats.by_character(exp, cells, field).get(suite)
+            if not per or len(per) < 2:
+                continue
+            arms = [a['arm'] for a in per[0]['arms']]
+            parts.append(f'<h3>{title}</h3><p class="muted">Deaths / finished runs (rate) for the character '
+                         'actually played. Small cells: read the pattern, not single values.</p>')
+            parts.append(table([field.capitalize()] + [s_ if len(exp['profiles']) == 1 else f'{s_} · {p_}'
+                                                       for s_, p_ in arms],
+                               [[esc(r['value'])] + [f'{a["deaths"]}/{a["n"]} ({pct(a["rate"])})' if a['n'] else '–'
+                                                      for a in r['arms']] for r in per]))
         parts.append('<h3>Share alive by engine turn</h3>')
         turns = [x['turn'] for x in rows[0]['survival']] if rows else []
         parts.append(table(['Arm'] + [f'{t:,}' for t in turns],

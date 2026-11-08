@@ -78,6 +78,76 @@ class ShippedBaseTest(unittest.TestCase):
         self.assertEqual(cat_mod.profile_text({'base': 'shipped', 'settings': {}}, self.SHIPPED), self.SHIPPED)
 
 
+class SeedSetTest(unittest.TestCase):
+    def test_rule_suites_are_deterministic_disjoint_and_in_range(self):
+        a, b = cat_mod.catalogue()['suites'], cat_mod.catalogue()['suites']
+        self.assertEqual(a['dev-2000']['seeds'], b['dev-2000']['seeds'])
+        owner = {}
+        for name, suite in a.items():
+            self.assertEqual(len(suite['seeds']), len(set(suite['seeds'])), name)
+            for seed in suite['seeds']:
+                self.assertTrue(1 <= seed <= cat_mod.SEED_MAX, (name, seed))
+                if 'seed_rule' in suite:
+                    self.assertNotIn(seed, owner, (name, seed, owner.get(seed)))
+                owner.setdefault(seed, name)
+        self.assertEqual(len(a['dev-2000']['seeds']), 2000)
+
+    def test_every_suite_declares_a_role(self):
+        for name, suite in cat_mod.catalogue()['suites'].items():
+            self.assertIn(suite.get('role'), ('pilot', 'development', 'confirmation', 'sealed'), name)
+
+    def test_sealed_suite_needs_the_owner(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'x.json'
+            exp = {'name': 'x', 'specimens': ['pristine'], 'profiles': ['default'],
+                   'suites': ['sealed-2000'], 'control': 'pristine'}
+            path.write_text(json.dumps(exp))
+            with self.assertRaises(ValueError):
+                cat_mod.experiment(path)
+            path.write_text(json.dumps({**exp, 'unsealed_by_owner': '2026-12-01: final claim on X'}))
+            self.assertTrue(cat_mod.experiment(path))
+
+
+class CharacterTest(unittest.TestCase):
+    class FakeRunner:
+        @staticmethod
+        def birth_keys(random_birth=False):
+            return 'key space\nkey a\nkey a\nkey a\nkey enter\nkey enter\nkey C-z\n'
+
+    def test_assigned_suite_covers_every_class_and_race(self):
+        suite = cat_mod.catalogue()['suites']['classes-1800']
+        chars = [cat_mod.character(suite, seed) for seed in suite['seeds']]
+        classes = {c for _, c in chars}
+        self.assertEqual(classes, set(cat_mod.CLASSES))
+        for cls in cat_mod.CLASSES:
+            mine = [r for r, c in chars if c == cls]
+            self.assertEqual(len(mine), 200)
+            self.assertEqual({*mine}, set(cat_mod.RACES))
+
+    def test_birth_input_double_taps(self):
+        keys = harness.birth_input(self.FakeRunner, 'Dwarf', 'Priest')
+        self.assertTrue(keys.startswith('key space\nkey f\nkey f\nkey d\nkey d\nkey a\nkey enter\n'))
+        self.assertEqual(harness.birth_input(self.FakeRunner, 'Human', 'Warrior'), self.FakeRunner.birth_keys())
+        self.assertIn('key o\nkey o\nkey m\nkey m\n', harness.birth_input(self.FakeRunner, 'Kobold', 'Blackguard'))
+
+    def test_wrong_character_is_a_config_error(self):
+        rec = harness.summarise({'specimen': 's', 'profile': 'p', 'suite': 'x', 'seed': 1,
+                                 'race': 'Dwarf', 'class': 'Priest'},
+                                {'outcome': 'turn_cap', 'states': [{'kind': 'turn_cap', 'turn': 9}]},
+                                'CHARACTER Measure Human Warrior\nBORG_OPTIONS borg_x=0\n', {'settings': {}},
+                                {'ref': 'a' * 40}, {'cap': 9, 'birth': 'assigned'}, {})
+        self.assertEqual(rec['outcome'], 'config_error')
+        self.assertEqual((rec['played_race'], rec['played_class']), ('Human', 'Warrior'))
+
+    def test_by_class_table(self):
+        exp = {'suites': ['s'], 'specimens': ['a'], 'profiles': ['p']}
+        cells = [{'suite': 's', 'specimen': 'a', 'profile': 'p', 'played_class': k, 'outcome': o}
+                 for k, o in (('Mage', 'death'), ('Mage', 'turn_cap'), ('Warrior', 'turn_cap'))]
+        rows = stats.by_character(exp, cells, 'class')['s']
+        self.assertEqual([(r['value'], r['arms'][0]['deaths'], r['arms'][0]['n']) for r in rows],
+                         [('Mage', 1, 2), ('Warrior', 0, 1)])
+
+
 class HarnessParsingTest(unittest.TestCase):
     def test_options_mismatch_becomes_config_error(self):
         trace = 'CHARACTER x\nBORG_OPTIONS borg_plays_risky=0 borg_uses_swaps=1\n'

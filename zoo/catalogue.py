@@ -12,12 +12,84 @@ def _load(path):
     return json.loads(Path(path).read_text())
 
 
+SEED_MAX = 2 ** 31 - 1
+
+# Birth menu order at the pin (lib/gamedata/p_race.txt and class.txt).
+RACES = ['Human', 'Half-Elf', 'Elf', 'Hobbit', 'Gnome', 'Dwarf', 'Half-Orc', 'Half-Troll',
+         'Dunadan', 'High-Elf', 'Kobold']
+CLASSES = ['Warrior', 'Mage', 'Druid', 'Priest', 'Necromancer', 'Paladin', 'Rogue', 'Ranger',
+           'Blackguard']
+
+
+def character(suite, seed):
+    """The (race, class) a suite assigns to a seed, or None.
+
+    birth "fixed" is Human Warrior; "random" lets the seeded game choose (None);
+    "assigned" deals classes in turn over the seed list and cycles races once
+    per round of classes, so every class meets every race.
+    """
+    birth = suite['birth']
+    if birth == 'fixed':
+        return ('Human', 'Warrior')
+    if birth == 'random':
+        return None
+    if birth == 'assigned':
+        chars = suite['characters']
+        classes, races = chars['classes'], chars['races']
+        i = suite['seeds'].index(seed)
+        return (races[(i // len(classes)) % len(races)], classes[i % len(classes)])
+    raise ValueError(f'unknown birth rule {birth!r}')
+
+
+def _rule_seeds(name, count, used):
+    """Deterministic, well-spread seeds for a rule suite, skipping any seed
+    another suite already uses. The rule is part of the frozen suite."""
+    out, i = [], 0
+    while len(out) < count:
+        digest = hashlib.sha256(f'borg-zoo:{name}:{i}'.encode()).digest()
+        seed = int.from_bytes(digest[:8], 'big') % (SEED_MAX - 1) + 1
+        if seed not in used:
+            used.add(seed)
+            out.append(seed)
+        i += 1
+    return out
+
+
+def expand_suites(suites):
+    """Expand rule suites into seed lists, in catalogue order.
+
+    Listed seeds are reserved first, so a rule suite never reuses a seed of
+    any other suite.
+    """
+    used = {seed for s in suites.values() for seed in s.get('seeds', [])}
+    out = {}
+    for name, suite in suites.items():
+        suite = dict(suite)
+        if suite.get('birth') == 'assigned':
+            chars = suite.get('characters') or {}
+            for race in chars.get('races', []):
+                if race not in RACES:
+                    raise ValueError(f'{name}: unknown race {race!r}')
+            for cls in chars.get('classes', []):
+                if cls not in CLASSES:
+                    raise ValueError(f'{name}: unknown class {cls!r}')
+            if not chars.get('races') or not chars.get('classes'):
+                raise ValueError(f'{name}: assigned birth needs races and classes')
+        if 'seed_rule' in suite:
+            rule = suite['seed_rule']
+            if rule.get('generator') != 'sha256-v1':
+                raise ValueError(f'{name}: unknown seed generator {rule.get("generator")!r}')
+            suite['seeds'] = _rule_seeds(name, rule['count'], used)
+        out[name] = suite
+    return out
+
+
 def catalogue(root=ROOT):
     root = Path(root)
     return {
         'specimens': _load(root / 'catalogue/specimens.json'),
         'profiles': _load(root / 'catalogue/profiles.json')['profiles'],
-        'suites': _load(root / 'catalogue/suites.json')['suites'],
+        'suites': expand_suites(_load(root / 'catalogue/suites.json')['suites']),
     }
 
 
@@ -37,12 +109,16 @@ def experiment(path, cat=None):
     for name in exp['specimens']:
         if specimens[name].get('kind') == 'borg-rs':
             for suite in exp['suites']:
-                if cat['suites'][suite]['birth'] != 'fixed':
-                    raise ValueError(f'{name}: the borg-rs adapter supports fixed birth only (suite {suite})')
+                if cat['suites'][suite]['birth'] == 'random':
+                    raise ValueError(f'{name}: the borg-rs adapter has no random birth (suite {suite})')
             for prof in exp['profiles']:
                 if cat['profiles'][prof].get('base') == 'shipped':
                     raise ValueError(f'{name}: profile {prof} needs a shipped borg.txt base, '
                                      'which the borg-rs adapter takes from harness/borg.txt only')
+    for suite in exp['suites']:
+        if cat['suites'][suite].get('role') == 'sealed' and not exp.get('unsealed_by_owner'):
+            raise ValueError(f'suite {suite} is sealed: only an experiment the owner has opened it for '
+                             '("unsealed_by_owner": "<date and reason>") may use it')
     if exp['control'] not in exp['specimens']:
         raise ValueError('control must be one of the experiment specimens')
     if exp.get('control_profile', exp['profiles'][0]) not in exp['profiles']:
@@ -109,8 +185,10 @@ def cells(exp, cat=None):
         for specimen in exp['specimens']:
             for profile in exp['profiles']:
                 for seed in suite['seeds']:
-                    out.append({'specimen': specimen, 'profile': profile,
-                                'suite': suite_name, 'seed': seed})
+                    cell = {'specimen': specimen, 'profile': profile, 'suite': suite_name, 'seed': seed}
+                    if suite['birth'] == 'assigned':
+                        cell['race'], cell['class'] = character(suite, seed)
+                    out.append(cell)
     return out
 
 
