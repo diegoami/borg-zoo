@@ -49,7 +49,9 @@ def observer(states, trace_text):
     span_decisions = (recent[-1].get('decisions') or 0) - (recent[0].get('decisions') or 0)
     return {
         'source': 'observer',
-        'kind': _kind(decisions_delta, energy_delta, depth_changes),
+        # Sampled states can alias a stair cycle; more than one depth at the
+        # frozen turn is a level change too.
+        'kind': _kind(decisions_delta, energy_delta, depth_changes or len({d for d in depths if d is not None}) > 1),
         'last_turn': frozen,
         'states_at_last_turn': len(at_frozen),
         'decisions_delta': decisions_delta,
