@@ -78,19 +78,21 @@
       "kind": "borg-rs",
       "impl": "c",
       "repository": "diegoami/borg-rs",
-      "ref": "0bc7a09fb41a01cfbc4f5bb86b89002b074f3712",
+      "ref": "383215189a20a3c47158c8e641d1b99723f84891",
       "carries": 7,
-      "label": "borg-rs M2 tree, C Borg: the C Borg in borg-rs's tree with better-borg-c milestone 2's seven fixes (borg-rs#6), under the borgh frontend. The reviewed head of borg-rs#6 (qualified pass, 2026-11-08); untagged when pinned.",
-      "source": "https://github.com/diegoami/borg-rs/blob/0bc7a09fb41a01cfbc4f5bb86b89002b074f3712/docs/validation/2026-11-08-c-m2/README.md"
+      "label": "borg-rs 4.2.6-impact-v2, C Borg: the C Borg in borg-rs's tree with better-borg-c milestone 2's seven fixes (borg-rs#6), under the borgh frontend.",
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v2",
+      "tag": "4.2.6-impact-v2"
     },
     "rs-m2": {
       "kind": "borg-rs",
       "impl": "rust",
       "repository": "diegoami/borg-rs",
-      "ref": "0bc7a09fb41a01cfbc4f5bb86b89002b074f3712",
+      "ref": "383215189a20a3c47158c8e641d1b99723f84891",
       "carries": 7,
-      "label": "borg-rs M2: the Rust Borg carrying better-borg-c milestone 2's seven fixes (borg-rs#6, implementation 9cfbbffd; later commits change docs only). The reviewed head of borg-rs#6 (qualified pass, 2026-11-08); untagged when pinned.",
-      "source": "https://github.com/diegoami/borg-rs/blob/0bc7a09fb41a01cfbc4f5bb86b89002b074f3712/docs/validation/2026-11-08-c-m2/README.md"
+      "label": "borg-rs M2 (tag 4.2.6-impact-v2): the Rust Borg carrying better-borg-c milestone 2's seven fixes (borg-rs#6, qualified pass at 0bc7a09f). The tag adds borgh's zoo measurement options, off by default.",
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v2",
+      "tag": "4.2.6-impact-v2"
     }
   }
 }
