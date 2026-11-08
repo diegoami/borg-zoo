@@ -41,6 +41,9 @@ def build(specimen_name, harness, out, cat=None, source=None):
     if spec.get('kind') == 'borg-rs':
         from . import borgrs
         return borgrs.build(spec, source, out)
+    if spec.get('kind') == 'mandos':
+        from . import mandos
+        return mandos.build(spec, source, out)
     check_harness(harness, specimens['harness']['commit'])
     runner = load_runner(harness)
     runner.prepare(SimpleNamespace(ref=spec['ref'], output=Path(out), observe=True,
@@ -166,12 +169,15 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
     }
 
 
-def run_cell(cell, build_dir, harness, work, cat=None, keep=False):
+def run_cell(cell, build_dir, harness, work, cat=None, keep=False, source=None):
     cat = cat or cat_mod.catalogue()
     if cat['specimens']['specimens'][cell['specimen']].get('kind') == 'borg-rs':
         from . import borgrs
         return borgrs.run_cell(cell, build_dir, work, cat)
-    profile = cat['profiles'][cell['profile']]
+    if cat['specimens']['specimens'][cell['specimen']].get('kind') == 'mandos':
+        from . import mandos
+        return mandos.run_cell(cell, build_dir, work, cat, source)
+    applied, profile = cat_mod.resolve_profile(cat, cell)
     suite = cat['suites'][cell['suite']]
     spec = cat['specimens']['specimens'][cell['specimen']]
     build_dir = Path(build_dir).resolve()
@@ -202,6 +208,7 @@ def run_cell(cell, build_dir, harness, work, cat=None, keep=False):
     trace_path = out / 'trace.txt'
     trace = trace_path.read_text(errors='replace') if trace_path.exists() else ''
     record = summarise(cell, result, trace, profile, spec, suite, manifest)
+    record['profile_applied'] = applied
     if not keep:
         for name in ('trace.txt', 'terminal.log'):
             path = out / name

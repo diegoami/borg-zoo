@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "bisect-m5-m6-warriors",
+  "description": "Which carry between milestones 5 and 6 changes Warrior play: M5, the nine intermediate carry steps and M6 on the 200 Warrior seeds of classes-1800",
+  "specimens": [
+    "4.2.6-bbc-m5",
+    "4.2.6-bbc-m5-s01",
+    "4.2.6-bbc-m5-s02",
+    "4.2.6-bbc-m5-s03",
+    "4.2.6-bbc-m5-s04",
+    "4.2.6-bbc-m5-s05",
+    "4.2.6-bbc-m5-s06",
+    "4.2.6-bbc-m5-s07",
+    "4.2.6-bbc-m5-s08",
+    "4.2.6-bbc-m5-s09",
+    "4.2.6-bbc-m6"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-1800-warriors"
+  ],
+  "control": "4.2.6-bbc-m5"
+}

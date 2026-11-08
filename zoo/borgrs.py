@@ -89,7 +89,7 @@ def check_config(text, profile):
 
 
 def run_cell(cell, build_dir, work, cat):
-    profile = cat['profiles'][cell['profile']]
+    applied, profile = cat_mod.resolve_profile(cat, cell)
     suite = cat['suites'][cell['suite']]
     spec = cat['specimens']['specimens'][cell['specimen']]
     build_dir = Path(build_dir).resolve()
@@ -147,7 +147,7 @@ def run_cell(cell, build_dir, work, cat):
     if outcome not in ('death', 'turn_cap', 'completion'):
         stall_info = stall.borgh(keys.read_text(errors='replace') if keys.exists() else '', summary)
     record = {
-        'schema': 'borg-zoo/cell@1', **cell, 'harness_kind': 'borg-rs',
+        'schema': 'borg-zoo/cell@1', **cell, 'harness_kind': 'borg-rs', 'profile_applied': applied,
         'specimen_ref': spec['ref'], 'impl': spec['impl'],
         'profile_sha256': cat_mod.profile_sha256(profile),
         'config_sha256': hashlib.sha256(text.encode()).hexdigest(),

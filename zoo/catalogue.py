@@ -26,8 +26,12 @@ def character(suite, seed):
 
     birth "fixed" is Human Warrior; "random" lets the seeded game choose (None);
     "assigned" deals classes in turn over the seed list and cycles races once
-    per round of classes, so every class meets every race.
+    per round of classes, so every class meets every race. A subset suite
+    carries its parent's assignment per seed.
     """
+    if 'assigned_characters' in suite:
+        race, cls = suite['assigned_characters'][str(seed)]
+        return (race, cls)
     birth = suite['birth']
     if birth == 'fixed':
         return ('Human', 'Warrior')
@@ -65,6 +69,19 @@ def expand_suites(suites):
     out = {}
     for name, suite in suites.items():
         suite = dict(suite)
+        if 'subset' in suite:
+            parent = out.get(suite['subset']['suite'])
+            if parent is None:
+                raise ValueError(f'{name}: subset of an unknown or later suite')
+            wanted = suite['subset']['class']
+            chars = {seed: character(parent, seed) for seed in parent['seeds']}
+            if any(c is None for c in chars.values()):
+                raise ValueError(f'{name}: the parent suite does not assign characters')
+            suite['seeds'] = [seed for seed in parent['seeds'] if chars[seed][1] == wanted]
+            suite['birth'] = 'assigned'
+            suite['assigned_characters'] = {str(seed): list(chars[seed]) for seed in suite['seeds']}
+            out[name] = suite
+            continue
         if suite.get('birth') == 'assigned':
             chars = suite.get('characters') or {}
             for race in chars.get('races', []):
@@ -103,15 +120,38 @@ def experiment(path, cat=None):
     for name in exp['profiles']:
         if name not in cat['profiles']:
             raise ValueError(f'unknown profile: {name}')
+        profile = cat['profiles'][name]
+        if 'by_class' in profile:
+            for cls in profile['by_class']:
+                if cls not in CLASSES:
+                    raise ValueError(f'{name}: unknown class {cls!r}')
+            for part in profile_parts(cat, name):
+                if part not in cat['profiles'] or 'by_class' in cat['profiles'][part]:
+                    raise ValueError(f'{name}: {part!r} must be an ordinary profile')
+            for suite in exp['suites']:
+                if cat['suites'][suite]['birth'] == 'random':
+                    raise ValueError(f'{name} depends on the class; suite {suite} has random birth')
     for name in exp['suites']:
         if name not in cat['suites']:
             raise ValueError(f'unknown suite: {name}')
     for name in exp['specimens']:
+        if specimens[name].get('pending'):
+            raise ValueError(f'{name} cannot be measured yet: {specimens[name]["pending"]}')
+        if specimens[name].get('kind') == 'mandos':
+            from . import mandos
+            for suite in exp['suites']:
+                if cat['suites'][suite]['birth'] == 'random':
+                    raise ValueError(f'{name}: Mandos plays its first birth as Human Warrior; it has no random '
+                                     f'birth (suite {suite})')
+            for prof in (p for name in exp['profiles'] for p in profile_parts(cat, name)):
+                bad = mandos.unsupported_settings(cat['profiles'][prof])
+                if bad:
+                    raise ValueError(f'{name}: profile {prof} has settings Mandos cannot apply: {", ".join(bad)}')
         if specimens[name].get('kind') == 'borg-rs':
             for suite in exp['suites']:
                 if cat['suites'][suite]['birth'] == 'random':
                     raise ValueError(f'{name}: the borg-rs adapter has no random birth (suite {suite})')
-            for prof in exp['profiles']:
+            for prof in (p for name in exp['profiles'] for p in profile_parts(cat, name)):
                 if cat['profiles'][prof].get('base') == 'shipped':
                     raise ValueError(f'{name}: profile {prof} needs a shipped borg.txt base, '
                                      'which the borg-rs adapter takes from harness/borg.txt only')
@@ -165,6 +205,32 @@ def profile_text(profile, shipped=None):
     if profile.get('base') not in (None, 'none'):
         raise ValueError(f"unknown profile base: {profile.get('base')!r}")
     return ''.join(f'{name} = {setting_value(value)}\n' for name, value in settings)
+
+
+def resolve_profile(cat, cell):
+    """(name, profile) the cell actually plays.
+
+    A class-dependent profile ("by_class": {class: profile}, "otherwise":
+    profile) picks one ordinary profile from the class the suite assigns to
+    the seed (fixed birth is a Warrior). It needs a birth that fixes the class
+    before play.
+    """
+    profile = cat['profiles'][cell['profile']]
+    if 'by_class' not in profile:
+        return cell['profile'], profile
+    character_ = character(cat['suites'][cell['suite']], cell['seed'])
+    if character_ is None:
+        raise ValueError(f"profile {cell['profile']} depends on the class, which random birth does not fix")
+    name = profile['by_class'].get(character_[1], profile['otherwise'])
+    return name, cat['profiles'][name]
+
+
+def profile_parts(cat, name):
+    """The ordinary profiles a profile can play: itself, or a class-dependent profile's choices."""
+    profile = cat['profiles'][name]
+    if 'by_class' not in profile:
+        return [name]
+    return sorted({*profile['by_class'].values(), profile['otherwise']})
 
 
 def profile_sha256(profile):

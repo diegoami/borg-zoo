@@ -56,12 +56,18 @@ jobs:
           ref: ${{ needs.plan.outputs.harness }}
           path: harness
           fetch-depth: 0
-      - if: matrix.kind == 'borg-rs'
+      - if: matrix.kind == 'borg-rs' || matrix.kind == 'mandos'
         uses: actions/checkout@v4
         with:
           repository: ${{ matrix.repository }}
           ref: ${{ matrix.ref }}
           path: source
+      - if: matrix.kind == 'mandos'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - if: matrix.kind == 'mandos'
+        run: corepack enable && node --version && (cd source && pnpm --version)
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq libx11-dev > /dev/null
       - if: matrix.kind == 'borg-rs'
         run: rustup toolchain install stable --profile minimal && cargo --version && rustc --version
@@ -93,6 +99,21 @@ jobs:
           repository: diegoami/better-borg-c
           ref: ${{ needs.plan.outputs.harness }}
           path: harness
+      - if: matrix.kind == 'mandos'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          ref: ${{ matrix.ref }}
+          path: source
+      - if: matrix.kind == 'mandos'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the Mandos checkout
+        if: matrix.kind == 'mandos'
+        # The run uses the bundle from the build job; zoo-run checks that this
+        # checkout's source and dependencies match it before play.
+        run: corepack enable && cd source && CI=1 pnpm install --frozen-lockfile
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq libx11-6 > /dev/null
       - uses: actions/download-artifact@v4
         with:
@@ -105,11 +126,23 @@ jobs:
           --shard ${{ matrix.shard }} --shards ${{ matrix.shards }}
           --build "$GITHUB_WORKSPACE/specimens/${{ matrix.specimen }}" --harness harness
           --work "$RUNNER_TEMP/work" --out "cells/${{ matrix.specimen }}-${{ matrix.shard }}.jsonl" --jobs "$(nproc)"
+          --source "$GITHUB_WORKSPACE/source"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cells-${{ matrix.specimen }}-${{ matrix.shard }}
           path: cells/
+          retention-days: 30
+      - name: Keep Mandos evidence for runs without an endpoint
+        if: always() && matrix.kind == 'mandos'
+        uses: actions/upload-artifact@v4
+        with:
+          name: mandos-evidence-${{ matrix.specimen }}-${{ matrix.shard }}
+          path: |
+            ${{ runner.temp }}/work/**/run/commands.jsonl
+            ${{ runner.temp }}/work/**/run/states.jsonl
+            ${{ runner.temp }}/work/**/stderr.log
+          if-no-files-found: ignore
           retention-days: 30
 
   collect:

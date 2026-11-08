@@ -1,0 +1,15 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "mandos-smoke",
+  "description": "Full Mandos builds and runs: the smoke suite (3 seeds, Human Warrior, 20,000 game ticks)",
+  "specimens": [
+    "neo-b3-mandos"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "smoke"
+  ],
+  "control": "neo-b3-mandos"
+}
