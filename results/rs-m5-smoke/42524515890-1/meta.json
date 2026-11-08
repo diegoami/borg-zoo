@@ -1,0 +1,103 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+      "history": [
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "default": {
+        "description": "Built-in defaults (the better-borg-c cohort configuration)",
+        "settings": {},
+        "sha256": "44b3cfb53eb6a924a29312a7b8ca21ad80d747f11d1f2eef097242b2994bdbda"
+      }
+    },
+    "specimens": {
+      "4.2.6-rs-m4": {
+        "carries": 42,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-rs M4 (tag 4.2.6-impact-v4): the Rust Borg carrying better-borg-c milestone 4's fixes (borg-rs#11; qualified pass, owner accepted). The tag also carries an engine correction (cure-all on known curses, neo-angband-tracker#474), so its game differs from better-borg-c M4 beyond the Borg.",
+        "ref": "d3e94d3eb939ea9bf22a1a1ab2e8e38d60c78cf4",
+        "repository": "diegoami/borg-rs",
+        "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v4",
+        "tag": "4.2.6-impact-v4"
+      },
+      "4.2.6-rs-m5": {
+        "carries": 50,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-rs M5 (tag 4.2.6-impact-v5): the Rust Borg carrying better-borg-c milestone 5's fixes (5384f12e; borg-rs#13, PR 14; qualified pass, owner accepted). The engine is unchanged since 4.2.6-impact-v4, so its game still differs from better-borg-c M5 by that tag's engine correction (neo-angband-tracker#474).",
+        "ref": "6b58a46444ab3f5d28cfd86c7ac820d54c762c47",
+        "repository": "diegoami/borg-rs",
+        "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v5",
+        "tag": "4.2.6-impact-v5"
+      },
+      "4.2.6-rs-m5-c": {
+        "carries": 50,
+        "impl": "c",
+        "kind": "borg-rs",
+        "label": "borg-rs 4.2.6-impact-v5, C Borg: the C Borg in borg-rs's tree with better-borg-c milestone 5's fixes, under the borgh frontend. The engine is unchanged since 4.2.6-impact-v4, so it keeps that tag's engine correction (neo-angband-tracker#474).",
+        "ref": "6b58a46444ab3f5d28cfd86c7ac820d54c762c47",
+        "repository": "diegoami/borg-rs",
+        "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v5",
+        "tag": "4.2.6-impact-v5"
+      }
+    },
+    "suites": {
+      "smoke": {
+        "birth": "fixed",
+        "cap": 20000,
+        "description": "better-borg-c frozen cohort v1: 3 seeds, 20,000 engine turns",
+        "role": "pilot",
+        "saves": false,
+        "seeds": [
+          11,
+          29,
+          47
+        ],
+        "stall_seconds": 45,
+        "wall_seconds": 180
+      }
+    }
+  },
+  "completed": "2026-11-08 21:20 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-rs-m4",
+    "description": "borg-rs M5 builds and runs: smoke suite, Rust and C Borg of the M5 tree against rs-m4",
+    "name": "rs-m5-smoke",
+    "profiles": [
+      "default"
+    ],
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-rs-m4",
+      "4.2.6-rs-m5-c",
+      "4.2.6-rs-m5"
+    ],
+    "suites": [
+      "smoke"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "42524515890-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/42524515890",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "2682bcbbc771af2a2990bbe694d93bcb24908bda"
+}
