@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "stair-dash-confirm",
+  "description": "Confirmation on 600 fresh Warrior seeds of the one bisect step that came close: step 5 (head for the nearest free staircase when desperate) against step 4",
+  "specimens": [
+    "4.2.6-bbc-m5-s04",
+    "4.2.6-bbc-m5-s05"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "warriors-600"
+  ],
+  "control": "4.2.6-bbc-m5-s04",
+  "prespecified": "Written on 2026-11-08, before any run of either specimen on warriors-600. Primary: 4.2.6-bbc-m5-s05 against 4.2.6-bbc-m5-s04, death before 100,000 engine turns, exact two-sided McNemar test on the seeds where both finished, alpha 0.05. No secondary test; per-race figures and the count of changed games are descriptive. Motivation: post hoc finding in bisect-m5-m6-warriors on the 200 Warrior seeds of classes-1800, where step 5 (carries up to source153) turned 14 deaths into survivals and 27 survivals into deaths against step 4 (p 0.06). warriors-600 shares no seed with classes-1800; M5 and M6 results on it are known (warriors-confirm), but the hypothesis was not formed from them."
+}
