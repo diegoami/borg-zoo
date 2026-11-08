@@ -1,0 +1,32 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "originals-20261108-classes-1800",
+  "description": "Owner-requested fresh descriptive benchmark of original latest official Angband C and Neo engine/Borg heads, frozen 2026-11-08, all death evidence retained. Different games and birth implementations; never seed-paired across engines. No causal port-defect or improvement claim.",
+  "specimens": [
+    "angband-e473-original",
+    "neo-5a9-original"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "angband-e473-original",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "angband-e473-original": 60,
+    "neo-5a9-original": 180
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 12,
+    "native_wall_seconds": 900,
+    "neo_wall_seconds": 2700,
+    "max_cells_per_native_shard": 30,
+    "max_cells_per_neo_shard": 10,
+    "worst_case_play_minutes_per_shard": 225,
+    "job_timeout_minutes": 300
+  },
+  "owner_authorization": "2026-11-08: Start 1800 headless games in both original repositories; record deaths and deliver toolkit to Neo maintainer. Latest official heads confirmed. Coordination angband-workspace#42; borg-zoo#25."
+}

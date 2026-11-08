@@ -1,0 +1,119 @@
+{
+  "attempts": [
+    {
+      "attempt": "pilot-884072154-1",
+      "birth": [
+        "Human",
+        "Warrior"
+      ],
+      "cause": "(alive and well)",
+      "decisions": 9142,
+      "hp": 110,
+      "level": 10,
+      "max_depth": 5,
+      "native_maps": [
+        "archive/Measure.map"
+      ],
+      "outcome": "turn_cap",
+      "record_wrapper_sha256": "a93251ee7d7e7b358f1b78055c4701f80fc5a348b0e992cfe972a3b7364fe932",
+      "seed": 884072154,
+      "trace_sha256": "4feddcb493148531b3c2acc09350dd383389631bf014fa887fe92286b2c00594",
+      "turn": 100000,
+      "wall_seconds": 35.46750130500004
+    },
+    {
+      "attempt": "pilot-884072154-2",
+      "birth": [
+        "Human",
+        "Warrior"
+      ],
+      "cause": "(alive and well)",
+      "decisions": 9142,
+      "hp": 110,
+      "level": 10,
+      "max_depth": 5,
+      "native_maps": [
+        "archive/Measure.map"
+      ],
+      "outcome": "turn_cap",
+      "record_wrapper_sha256": "6925f0825ee40eb6a7ef9543af56d0bee70ba199852feb6182cc0ae0da10d027",
+      "seed": 884072154,
+      "trace_sha256": "4feddcb493148531b3c2acc09350dd383389631bf014fa887fe92286b2c00594",
+      "turn": 100000,
+      "wall_seconds": 34.553405708000355
+    },
+    {
+      "attempt": "pilot-2097768768-1",
+      "birth": [
+        "Human",
+        "Mage"
+      ],
+      "cause": "(alive and well)",
+      "decisions": 2975,
+      "hp": 25,
+      "level": 3,
+      "max_depth": 1,
+      "native_maps": [
+        "archive/Measure.map"
+      ],
+      "outcome": "turn_cap",
+      "record_wrapper_sha256": "6925f0825ee40eb6a7ef9543af56d0bee70ba199852feb6182cc0ae0da10d027",
+      "seed": 2097768768,
+      "trace_sha256": "9eff416cf41def3e4c9ee5e5695054345eaf0b79f32155dcaed9ae36c21acc19",
+      "turn": 100000,
+      "wall_seconds": 8.546602691996668
+    },
+    {
+      "attempt": "pilot-2097768768-2",
+      "birth": [
+        "Human",
+        "Mage"
+      ],
+      "cause": "(alive and well)",
+      "decisions": 2975,
+      "hp": 25,
+      "level": 3,
+      "max_depth": 1,
+      "native_maps": [
+        "archive/Measure.map"
+      ],
+      "outcome": "turn_cap",
+      "record_wrapper_sha256": "6925f0825ee40eb6a7ef9543af56d0bee70ba199852feb6182cc0ae0da10d027",
+      "seed": 2097768768,
+      "trace_sha256": "9eff416cf41def3e4c9ee5e5695054345eaf0b79f32155dcaed9ae36c21acc19",
+      "turn": 100000,
+      "wall_seconds": 8.547166794000077
+    }
+  ],
+  "current_wrapper_sha256": "6925f0825ee40eb6a7ef9543af56d0bee70ba199852feb6182cc0ae0da10d027",
+  "harness_commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+  "independent_starts": 2,
+  "limitations": [
+    "Four original-C pilots are not 1800 completed lives.",
+    "Both prespecified starts survived; native death endpoint not exercised by these pilots.",
+    "Repeat equality is tested determinism, not general observer neutrality.",
+    "No raw key stream, initial birth stats/gear or replay qualification.",
+    "A preflight/metadata-only wrapper update happened while first attempt was already running. Preserve per-attempt wrapper digests; the runner/observer/play were unchanged."
+  ],
+  "python": "3.14.4",
+  "repeat_checks": [
+    {
+      "seed": 884072154,
+      "trace_byte_identical": true,
+      "trace_sha256": [
+        "4feddcb493148531b3c2acc09350dd383389631bf014fa887fe92286b2c00594",
+        "4feddcb493148531b3c2acc09350dd383389631bf014fa887fe92286b2c00594"
+      ]
+    },
+    {
+      "seed": 2097768768,
+      "trace_byte_identical": true,
+      "trace_sha256": [
+        "9eff416cf41def3e4c9ee5e5695054345eaf0b79f32155dcaed9ae36c21acc19",
+        "9eff416cf41def3e4c9ee5e5695054345eaf0b79f32155dcaed9ae36c21acc19"
+      ]
+    }
+  ],
+  "schema": "original-angband/pilot@1",
+  "source_commit": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3"
+}

@@ -1,0 +1,344 @@
+--- original/CMakeLists.txt
++++ observed/CMakeLists.txt
+@@ -1112,3 +1112,7 @@
+     add_custom_target(allunittests)
+ endif()
+ add_dependencies(alltests allunittests)
++
++target_sources(OurExecutable PRIVATE src/native-observer.c)
++
++add_compile_definitions(PRIVATE_USER_PATH="/tmp/native-original-1800-kit/artifacts/pristine-build/private-user")
+--- original/src/borg/borg-commands.c
++++ observed/src/borg/borg-commands.c
+@@ -1612,3 +1612,7 @@
+ }
+ 
+ #endif
++
++#ifdef ALLOW_BORG
++void measure_activate_borg(void) { borg_cmd_start(); }
++#endif
+--- original/src/borg/borg-io.c
++++ observed/src/borg/borg-io.c
+@@ -1,3 +1,4 @@
++#include "native-observer.h"
+ /**
+  * \file borg-io.c
+  * \brief Simple input (keypresses) and output (screen scraping)
+@@ -157,6 +158,8 @@
+         /* Send refresh event */
+         event_signal_message(EVENT_MESSAGE, MSG_GENERIC, NULL);
+     }
++
++    measure_note(what);
+ 
+     /* Log the message */
+     borg_info(what);
+--- original/src/borg/borg.c
++++ observed/src/borg/borg.c
+@@ -1,3 +1,4 @@
++#include "native-observer.h"
+ /**
+  * \file borg.c
+  * \brief Entry point for borg code.
+@@ -360,7 +361,7 @@
+     Rand_value = borg_rand_local;
+ 
+     /* Think */
+-    while (!borg_think()) /* loop */
++    while (!(measure_decision(), borg_think())) /* loop */
+         ;
+ 
+     /* Update the status screen */
+--- original/src/game-world.c
++++ observed/src/game-world.c
+@@ -1,3 +1,4 @@
++#include "native-observer.h"
+ /**
+  * \file game-world.c
+  * \brief Game core management of the game world
+@@ -1088,6 +1089,7 @@
+ 
+ 			/* Count game turns */
+ 			turn++;
++			measure_tick();
+ 		}
+ 
+ 		/* Make a new level if requested */
+--- original/src/main-test.c
++++ observed/src/main-test.c
+@@ -1,3 +1,4 @@
++#include "native-observer.h"
+ /**
+  * \file main-test.c
+  * \brief Pseudo-UI for end-to-end testing.
+@@ -316,6 +317,7 @@
+ 	 */
+ 	savefile[0] = '\0';
+ 
++	measure_init();
+ 	term_data_link(0);
+ 	return 0;
+ }
+--- original/src/native-observer.c
++++ observed/src/native-observer.c
+@@ -0,0 +1,218 @@
++/* Native measurement observer; same licensing as native-observer.h.
++ * Reads state and writes evidence. No gameplay actions or RNG draws. */
++#define ALLOW_BORG
++#include "angband.h"
++#include "game-world.h"
++#include "player.h"
++#include "savefile.h"
++#include "ui-game.h"
++#include "option.h"
++#include "borg/borg.h"
++#include "borg/borg-init.h"
++#include "borg/borg-log.h"
++#include "native-observer.h"
++#include <errno.h>
++#include <sys/wait.h>
++#include <unistd.h>
++#ifdef BORG_RECORDING
++#include "native-replay.h"
++#include "init.h"
++#endif
++
++static FILE *trace;
++static long decisions;
++static int32_t cap;
++static int32_t last_save = -10000;
++static bool started;
++static const char *directory;
++static bool checkpoints;
++/* Named play resumes a save and stops only at a command boundary.  Ordinary
++ * measurement keeps its exact world-tick cap and never publishes a save. */
++static int32_t play_turns;
++static const char *final_save;
++static bool snapshot(const char *path);
++extern void measure_activate_borg(void);
++
++static void state(const char *kind)
++{
++    int i;
++    fprintf(trace, "STATE %s turn=%ld energy=%lu decisions=%ld depth=%d max_depth=%d level=%d max_level=%d hp=%d dead=%d winner=%d borg_rng=%lu quick=%d quick_rng=%lu rng_index=%lu rng=",
++        kind, (long)turn, (unsigned long)player->total_energy, decisions,
++        player->depth, player->max_depth, player->lev, player->max_lev,
++        player->chp, player->is_dead, player->total_winner,
++        (unsigned long)borg_rand_local, Rand_quick, (unsigned long)Rand_value,
++        (unsigned long)state_i);
++    for (i = 0; i < RAND_DEG; ++i) fprintf(trace, "%08lx", (unsigned long)STATE[i]);
++    fprintf(trace, "\n");
++    fflush(trace);
++}
++
++void measure_init(void)
++{
++    const char *seed = getenv("BORG_MEASURE_SEED");
++    directory = getenv("BORG_MEASURE_DIR");
++    if (!seed || !directory) quit("measurement environment missing");
++#ifdef BORG_RECORDING
++    record_init();
++    if (getenv("BORG_REPLAY_SYS")) ANGBAND_SYS = getenv("BORG_REPLAY_SYS");
++    if (getenv("BORG_RECORD_VISIBLE")) final_save = getenv("BORG_MEASURE_FINAL_SAVE");
++#endif
++    trace = fopen(format("%s/trace.txt", directory), "w");
++    if (!trace) quit("measurement trace open failed");
++    cap = strtol(getenv("BORG_MEASURE_CAP"), NULL, 10);
++    if (getenv("BORG_MEASURE_PLAY_TURNS")) {
++        long requested = strtol(getenv("BORG_MEASURE_PLAY_TURNS"), NULL, 10);
++        if (requested < 1 || requested > INT32_MAX)
++            quit("invalid named-play turn count");
++        play_turns = requested;
++        final_save = getenv("BORG_MEASURE_FINAL_SAVE");
++        if (!final_save) quit("named-play final save missing");
++    }
++    checkpoints = !getenv("BORG_MEASURE_NO_SAVES");
++    Rand_state_init(strtoul(seed, NULL, 10));
++    Rand_quick = false;
++    if (getenv("BORG_MEASURE_LOAD"))
++        my_strcpy(savefile, getenv("BORG_MEASURE_LOAD"), sizeof(savefile));
++}
++
++static void finish(const char *outcome)
++{
++    int i;
++    if (final_save && !snapshot(final_save))
++        quit("final named-play save failed");
++    state(outcome);
++    fprintf(trace, "CAUSE %s\n", player->died_from);
++    for (i = messages_num() - 1; i >= 0; --i)
++        fprintf(trace, "MESSAGE %s\n", message_str(i));
++    if (borg_initialized) borg_write_map(false);
++    fflush(trace);
++#ifdef BORG_RECORDING
++    record_frame(outcome, decisions);
++    record_finish();
++#endif
++    quit(NULL);
++}
++
++void measure_tick(void)
++{
++#ifdef BORG_RECORDING
++    if (started) record_frame("tick", decisions);
++#endif
++    if (!play_turns && started && turn >= cap) finish("turn_cap");
++}
++
++/* Native saving compacts the monster list. Save in a copy-on-write child so
++ * neither that mutation nor any future saver side effect reaches live play. */
++static bool snapshot(const char *path)
++{
++    pid_t child;
++    int status;
++    fflush(trace);
++    child = fork();
++    if (child < 0) return false;
++    if (!child) {
++#ifdef BORG_RECORDING
++        record_snapshot_enter();
++#endif
++        _exit(savefile_save(path) ? 0 : 1);
++    }
++    while (waitpid(child, &status, 0) < 0) {
++        if (errno != EINTR) return false;
++    }
++    return WIFEXITED(status) && WEXITSTATUS(status) == 0;
++}
++
++void measure_boundary(void)
++{
++    int i;
++    char path[1024];
++    if (!started) {
++        started = true;
++#ifdef BORG_RECORDING
++        if (getenv("BORG_RECORD_VISIBLE") || getenv("BORG_MEASURE_LOAD"))
++            strnfmt(savefile, sizeof(savefile), "%s/autosave.save", directory);
++#endif
++        if (play_turns) {
++            if (turn > INT32_MAX - play_turns)
++                quit("named-play turn target overflow");
++            cap = turn + play_turns;
++            /* This is a bounded life, not the GUI's continuous/cheat mode. */
++            option_set("cheat_live", false);
++            player->opts.delay_factor = 0;
++            fprintf(trace, "PLAY target=%ld borg_marked=%d\n", (long)cap,
++                (player->noscore & NOSCORE_BORG) != 0);
++        }
++        /* Preserve the native birth save, without activating Borg first. */
++        strnfmt(path, sizeof(path), "%s/start.save", directory);
++        if (checkpoints && !snapshot(path))
++            quit("starting save failed");
++        fprintf(trace, "CHARACTER %s %s %s\n", player->full_name,
++            player->race->name, player->class->name);
++        fprintf(trace, "OPTIONS");
++        for (i = 0; i < OPT_MAX; ++i)
++            if (option_name(i)) fprintf(trace, " %s=%d", option_name(i), player->opts.opt[i]);
++        fprintf(trace, "\n");
++        state("start");
++        if (play_turns) {
++            /* Native level-change autosaves must not overwrite the frozen
++             * input used to reproduce this life. Publication is runner-owned. */
++            strnfmt(savefile, sizeof(savefile), "%s/autosave.save", directory);
++            player->noscore |= NOSCORE_BORG;
++            borg_init();
++            if (borg_init_failure) quit("named-play Borg startup failed");
++            measure_activate_borg();
++        }
++    }
++    if (checkpoints && turn - last_save >= 1000) {
++        strnfmt(path, sizeof(path), "%s/recent.save", directory);
++        if (!snapshot(path))
++            quit("checkpoint save failed");
++        last_save = turn;
++        state("checkpoint");
++    }
++    if (player->total_winner) finish("completion");
++    if (play_turns && turn >= cap) finish("turn_cap");
++    measure_tick();
++}
++
++void measure_decision(void)
++{
++    int i;
++    ++decisions;
++    if (decisions == 1) {
++        fprintf(trace, "BORG_OPTIONS");
++        for (i = 0; i < BORG_MAX_SETTINGS; ++i)
++            fprintf(trace, " %s=%d", borg_settings[i].setting_string, borg_cfg[i]);
++        fprintf(trace, "\nACTIVE_OPTIONS");
++        for (i = 0; i < OPT_MAX; ++i)
++            if (option_name(i)) fprintf(trace, " %s=%d", option_name(i), player->opts.opt[i]);
++        fprintf(trace, "\n");
++        if (!getenv("BORG_RECORD_VISIBLE") && (borg_cfg[BORG_CHEAT_DEATH] || borg.status.cheat_death || OPT(player, cheat_live)))
++            quit("invalid measurement cheat-death configuration");
++        state("borg_start");
++    }
++    if (!(decisions % 100)) state("progress");
++}
++
++void measure_end(void)
++{
++    finish(player->is_dead ? "death" :
++        (player->total_winner ? "completion" : getenv("BORG_RECORD_VISIBLE") ? "saved" : "unexpected_stop"));
++}
++
++void measure_frame(void)
++{
++#ifdef BORG_RECORDING
++    record_frame("command", decisions);
++#endif
++}
++
++#ifdef BORG_RECORDING
++long measure_decision_count(void) { return decisions; }
++bool measure_snapshot_for_replay(const char *path) { return snapshot(path); }
++#endif
++
++void measure_note(const char *text)
++{
++    if (trace) fprintf(trace, "BORG %ld %s\n", (long)turn, text);
++}
+--- original/src/native-observer.h
++++ observed/src/native-observer.h
+@@ -0,0 +1,12 @@
++/* Disposable measurement observer. GPL-2.0-or-later or Angband licence;
++ * see docs/copying.rst. Never compiled into the ordinary product. */
++#ifndef NATIVE_OBSERVER_H
++#define NATIVE_OBSERVER_H
++void measure_init(void);
++void measure_tick(void);
++void measure_boundary(void);
++void measure_decision(void);
++void measure_end(void);
++void measure_note(const char *text);
++void measure_frame(void);
++#endif
+--- original/src/ui-game.c
++++ observed/src/ui-game.c
+@@ -1,3 +1,4 @@
++#include "native-observer.h"
+ /**
+  * \file ui-game.c
+  * \brief Game management for the traditional text UI
+@@ -949,12 +950,14 @@
+ 		 * until the command queue is empty and a new player command
+ 		 * is needed */
+ 		while (!player->is_dead && player->upkeep->playing) {
++			measure_boundary();
+ 			pre_turn_refresh();
+ 			cmd_get_hook(CTX_GAME);
+ 			run_game_loop();
+ 		}
+ 
+ 		/* Close game on death or quitting */
++		measure_end();
+ 		close_game(true);
+ 
+ 		if (!play_again) break;
+--- original/version
++++ observed/version
+@@ -0,0 +1 @@
++e473720ed88a0f0c7ca66815cef3000eb4a38bc3-observer

@@ -366,6 +366,28 @@
       "command_stream_profile": "api2-intents-v1",
       "label": "The official Neo Borg at a10655c3 plus Mandos's port repairs (clean producer cc64c1cc), same api2 adapter; no C corrections (mandos#215).",
       "source": "https://github.com/diegoami/mandos/blob/ca659c519de769b6eb42ef62cb0bf088d57f9772/ZOO-BASELINE.md"
+    },
+    "angband-e473-original": {
+      "repository": "angband/angband",
+      "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
+      "carries": 0,
+      "label": "Original Angband master e473720, C Borg; retained evidence benchmark",
+      "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3"
+    },
+    "neo-5a9-original": {
+      "kind": "neo-original",
+      "repository": "neostryder/neo-angband-mod-borg",
+      "ref": "014c810466ec7ac0b9b7a83416e075238c72edd0",
+      "engine_repository": "neostryder/neo-angband",
+      "engine_ref": "5a9cab20621278b74f8376996eba1f6fda14c523",
+      "carries": 0,
+      "wall_factor": 3,
+      "label": "Original Neo engine 5a9cab20 and Borg 014c8104, official API2 host life adapter",
+      "source": "https://github.com/neostryder/neo-angband-mod-borg/commit/014c810466ec7ac0b9b7a83416e075238c72edd0",
+      "toolkit_repository": "diegoami/neo-angband-tracker",
+      "toolkit_ref": "2668adc5ab3e2b6e194c2f1561e248b88850ea98",
+      "toolkit_path": "tools/original-borg",
+      "toolkit_proposal": "https://github.com/diegoami/neo-angband-tracker/pull/542"
     }
   }
 }

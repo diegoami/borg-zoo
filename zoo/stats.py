@@ -97,7 +97,7 @@ def paired(control_cells, arm_cells):
         if c['outcome'] not in VALID:
             continue
         k = control.get((c['suite'], c['seed']))
-        if not k:
+        if not k or pairing_class(k) != pairing_class(c):
             continue
         a_dead, k_dead = c['outcome'] == 'death', k['outcome'] == 'death'
         if k_dead and not a_dead:
