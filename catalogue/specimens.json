@@ -239,6 +239,26 @@
         "rs-m3"
       ]
     },
+    "4.2.6-rs-m4-c": {
+      "kind": "borg-rs",
+      "impl": "c",
+      "repository": "diegoami/borg-rs",
+      "ref": "d3e94d3eb939ea9bf22a1a1ab2e8e38d60c78cf4",
+      "tag": "4.2.6-impact-v4",
+      "carries": 42,
+      "label": "borg-rs 4.2.6-impact-v4, C Borg: the C Borg in borg-rs's tree with better-borg-c milestone 4's fixes, under the borgh frontend. The tag also carries an engine correction (cure-all on known curses, neo-angband-tracker#474), so its game differs from better-borg-c M4 beyond the Borg.",
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v4"
+    },
+    "4.2.6-rs-m4": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "d3e94d3eb939ea9bf22a1a1ab2e8e38d60c78cf4",
+      "tag": "4.2.6-impact-v4",
+      "carries": 42,
+      "label": "borg-rs M4 (tag 4.2.6-impact-v4): the Rust Borg carrying better-borg-c milestone 4's fixes (borg-rs#11; qualified pass, owner accepted). The tag also carries an engine correction (cure-all on known curses, neo-angband-tracker#474), so its game differs from better-borg-c M4 beyond the Borg.",
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v4"
+    },
     "neo-b3-mandos": {
       "kind": "mandos",
       "repository": "diegoami/mandos",
