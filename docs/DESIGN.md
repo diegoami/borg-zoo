@@ -17,6 +17,7 @@ every specimen lives in better-borg-c's history:
 | `bbc-m2` | `2675d198e4c3` | 7 |
 | `bbc-m3` | `702f091f6ac0` | 34 |
 | `bbc-m4` | `70993393a1c9` | 42 |
+| `bbc-m5` | `5384f12ed51e` | 50 (expected tag `4.2.5-impact-v5`) |
 
 Carry counts are the length of `patches/series.json` at each commit.
 
