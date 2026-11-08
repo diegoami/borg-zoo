@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from zoo import catalogue as cat_mod  # noqa: E402
-from zoo import borgrs, harness, landing, site, stall, stats  # noqa: E402
+from zoo import borgrs, harness, landing, mandos, site, stall, stats  # noqa: E402
 from zoo.__main__ import main  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -312,6 +312,116 @@ class LandingTest(unittest.TestCase):
         self.assertEqual((cols[2]['state'], cols[2]['rust']['same']), ('differs', 1))
         self.assertEqual(cols[3]['state'], 'not_yet')
         self.assertIn('games identical', landing.port_diagram(list(cols.values())))
+
+
+def mandos_record(outcome='turn_cap', turn=100004, race='Dwarf', cls='Warrior', settings=None, **extra):
+    flags = {f: False for f in mandos.FLAGS.values()}
+    flags['borg.selfScum'] = True
+    flags.update(settings or {})
+    rec = {'schema': 'mandos/zoo-run@1', 'outcome': outcome, 'turn': turn, 'depth': 2, 'maxDepth': 3,
+           'level': 6, 'maxLevel': 7, 'hp': 40, 'maxHp': 60, 'energy': 50, 'decisions': 900, 'attempts': 905,
+           'loopCalls': 905, 'noCommandReplies': 5, 'causeOfDeath': 'a soldier' if outcome == 'death' else None,
+           'birth': {'race': race, 'class': cls, 'raceSelection': 'assigned', 'classSelection': 'assigned'},
+           'settings': flags, 'cfg': {}, 'firstDepthTurns': {'0': 0, '1': 30, '3': 5000},
+           'turnCap': {'requested': 100000, 'actual': turn, 'overshoot': turn - 100000, 'exact': turn == 100000,
+                       'unit': 'core_game_tick'},
+           'playSha256': 'ab' * 32, 'provenance': {'bundleSha256': 'cd' * 32, 'runtime': {'node': 'v22.23.4'}},
+           'metadata': {'wallTimeMs': 1000.0}, 'stall': None, 'stopped': None}
+    rec.update(extra)
+    return rec
+
+
+class MandosTest(unittest.TestCase):
+    def setUp(self):
+        self.cat = cat_mod.catalogue()
+        self.spec = self.cat['specimens']['specimens']['neo-b3-mandos']
+        self.suite = dict(self.cat['suites']['classes-18'])
+        self.cell = {'suite': 'classes-18', 'specimen': 'neo-b3-mandos', 'profile': 'default', 'seed': 42}
+
+    def summary(self, record, profile='default', states=(), error=None):
+        return mandos.summarise(dict(self.cell, profile=profile), self.spec, self.cat['profiles'][profile],
+                                self.suite, record, list(states), ('Dwarf', 'Warrior'), error, 1.0)
+
+    def test_command_names_birth_cap_settings_and_fresh_outputs(self):
+        cmd = mandos.command('/src', '/b/bundle', self.cell, 'Dwarf', 'Warrior', 100000, Path('/w/run'),
+                             Path('/w/settings.json'))
+        self.assertEqual(cmd[:2], ['node', '/src/tools/zoo-run.mjs'])
+        for flag, value in (('--bundle', '/b/bundle'), ('--seed', '42'), ('--turns', '100000'), ('--race', 'Dwarf'),
+                            ('--class', 'Warrior'), ('--out', '/w/run/run.json'), ('--settings', '/w/settings.json')):
+            self.assertEqual(cmd[cmd.index(flag) + 1], value)
+        self.assertEqual(mandos.flags(self.cat['profiles']['plays-risky']), {'borg.playsRisky': True})
+
+    def test_all_six_outcomes(self):
+        expected = {'death': 'death', 'turn_cap': 'turn_cap', 'stalled': 'stalled', 'borg_stopped': 'borg_stopped',
+                    'decision_cap': 'decision_cap', 'harness_failure': 'harness_failure'}
+        for raw, zoo in expected.items():
+            turn = 5000 if raw == 'death' else 100004
+            rec = mandos_record(raw, turn=turn, stall={'kind': 'repeat', 'command': {'code': 'walk'}}
+                                if raw == 'stalled' else None, error={'message': 'boom'} if raw == 'harness_failure'
+                                else None)
+            self.assertEqual(self.summary(rec)['outcome'], zoo, raw)
+        self.assertEqual(self.summary(mandos_record('death', turn=5000))['cause'], 'a soldier')
+
+    def test_missing_or_foreign_record_is_a_harness_failure(self):
+        self.assertEqual(self.summary(None, error='no run.json (exit code 1)')['outcome'], 'harness_failure')
+        self.assertEqual(self.summary({'schema': 'other@1', 'outcome': 'death'})['outcome'], 'harness_failure')
+
+    def test_overshoot_is_kept_and_a_death_after_the_cap_is_alive_at_the_cap(self):
+        c = self.summary(mandos_record('turn_cap', turn=101016))
+        self.assertEqual((c['turn_cap']['requested'], c['turn_cap']['actual'], c['turn_cap']['overshoot']),
+                         (100000, 101016, 1016))
+        late = self.summary(mandos_record('death', turn=100300))
+        self.assertEqual(late['outcome'], 'turn_cap')
+        self.assertEqual(late['died_after_cap'], {'turn': 100300, 'cause': 'a soldier'})
+
+    def test_effective_settings_and_character_are_checked(self):
+        ok = self.summary(mandos_record(settings={'borg.playsRisky': True}), profile='plays-risky')
+        self.assertIsNone(ok['config_error'])
+        self.assertEqual(ok['settings_effective']['borg.playsRisky'], True)
+        bad = self.summary(mandos_record(), profile='plays-risky')
+        self.assertEqual(bad['outcome'], 'config_error')
+        self.assertEqual(self.summary(mandos_record(race='Human'))['outcome'], 'config_error')
+
+    def test_provenance_states_and_play_hash(self):
+        c = self.summary(mandos_record())
+        self.assertEqual(c['play_sha256'], 'ab' * 32)
+        self.assertEqual(c['binary_sha256'], 'cd' * 32)
+        self.assertEqual(c['first_turn_at_depth'], {'0': 0, '1': 30, '3': 5000})
+        self.assertEqual(c['final']['loop_calls'], 905)
+        states = [{'kind': 'periodic', 'turn': 900, 'decisions': 100, 'depth': 1, 'energy': 0},
+                  {'kind': 'periodic', 'turn': 900, 'decisions': 200, 'depth': 2, 'energy': 300}]
+        st = self.summary(mandos_record('stalled', stall={'kind': 'repeat', 'command': {'code': 'walk'}}),
+                          states=states)['stall']
+        self.assertEqual((st['kind'], st['decisions_delta'], st['energy_delta'], st['depth_changes']),
+                         ('repeat', 100, 300, 1))
+
+    def test_unfinished_runs_are_never_deaths(self):
+        cells = [dict(self.summary(mandos_record(o, turn=5000 if o == 'death' else 100004)), seed=i)
+                 for i, o in enumerate(['death', 'stalled', 'borg_stopped', 'decision_cap', 'harness_failure'])]
+        s = stats.arm_summary(cells)
+        self.assertEqual((s['deaths'], s['valid']), (1, 1))
+
+    def test_experiments_reject_what_mandos_cannot_do(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            for exp, message in (({'specimens': ['neo-b3-mandos'], 'profiles': ['default'], 'suites': ['early-50-random']},
+                                  'no random birth'),
+                                 ({'specimens': ['neo-b3-mandos'], 'profiles': ['money-scum-5k'], 'suites': ['smoke']},
+                                  'cannot apply'),
+                                 ({'specimens': ['neo-b3-borg-1.4.0-beta.4'], 'profiles': ['default'],
+                                   'suites': ['smoke']}, 'cannot be measured yet')):
+                path = Path(tmp) / 'x.json'
+                path.write_text(json.dumps({'name': 'x', 'control': exp['specimens'][0], **exp}))
+                with self.assertRaisesRegex(ValueError, message):
+                    cat_mod.experiment(path, self.cat)
+
+    def test_neo_runs_are_never_paired_with_c_runs(self):
+        exp = {'name': 'mixed', 'specimens': ['4.2.6', 'neo-b3-mandos'], 'profiles': ['default'],
+               'suites': ['smoke'], 'control': '4.2.6'}
+        cells = [dict(cell('4.2.6', s, 'death'), harness_kind='better-borg-c') for s in (11, 29, 47)]
+        cells += [dict(self.summary(mandos_record('turn_cap')), suite='smoke', seed=s, specimen='neo-b3-mandos')
+                  for s in (11, 29, 47)]
+        rows = {r['specimen']: r for r in stats.analyse(exp, cells)['smoke']}
+        self.assertIsNone(rows['neo-b3-mandos']['vs_version'])
 
 
 class StatsTest(unittest.TestCase):
