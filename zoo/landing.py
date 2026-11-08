@@ -8,7 +8,7 @@ import math
 
 from . import catalogue as cat_mod
 from . import stats
-from .site import esc, pct, pval, table
+from .site import esc, explain, pct, pval, table
 
 
 
@@ -176,8 +176,18 @@ def card_stalls(runs):
                      esc(', '.join(sorted({c['profile'] for _, c in hits}))),
                      ', '.join(f'<a href="{link(m)}">{esc(m["experiment"]["name"])}</a>'
                                for m in {m['experiment']['name']: m for m, _ in hits}.values())])
-    body = (table(['Version', 'Seed', 'Outcome', 'Stall kind', 'Profiles', 'Experiments'], rows, left=6) if rows
-            else '<p class="muted">None.</p>')
+    cols = [('Version', 'The Borg version that stopped.'),
+            ('Seed', 'The seed; rerunning it reproduces the stop.'),
+            ('Outcome', 'stalled: game time stopped advancing; wall_timeout: out of real time; crash: the game '
+                        'process died.'),
+            ('Stall kind', 'A heuristic label: level_cycle (changes level without game time passing), '
+                           'energy_without_time (energy rises, the clock does not), zero_energy_retry (repeats '
+                           'without spending energy), keys_without_time (borgh: keys sent while the turn stays '
+                           'frozen).'),
+            ('Profiles', 'The settings profiles under which this version stopped on this seed.'),
+            ('Experiments', 'Where it happened; each link has the counters and notes.')]
+    body = (explain('One row per version and seed that stopped short, most frequent first (up to ten).', cols)
+            + table(cols, rows, left=6) if rows else '<p class="muted">None.</p>')
     return (f'<div class="card"><h2>Stalls and crashes</h2>'
             f'<p class="answer"><span class="big">{len(stalled)}</span> of {total:,} runs stopped without reaching '
             f'an endpoint (stall, wall timeout or crash), from {len(leads)} distinct version and seed pairs. Each is a '
@@ -196,7 +206,23 @@ def versions_table():
                      f'<a href="https://github.com/{esc(repo)}/commit/{esc(s["ref"])}"><code>{esc(s["ref"][:10])}</code></a>',
                      esc(s.get('kind', 'better-borg-c') + (' · ' + s['impl'] if s.get('impl') else '')),
                      esc(s.get('carries', '–')), esc(s.get('label', ''))])
-    return table(['Version', 'Commit', 'Harness', 'Fixes', 'What it is'], rows, left=5)
+    cols = [('Version', 'The name used in every table.'),
+            ('Commit', 'The commit that is built and run.'),
+            ('Harness', 'How it is run: better-borg-c (the game with better-borg-c\'s observer), or borg-rs '
+                        '(borg-rs\'s headless borgh frontend) with its C or Rust Borg.'),
+            ('Fixes', 'How many fixes from the tracker the version carries; 0 is the original Borg.'),
+            ('What it is', 'A short description.')]
+    return (explain('Every Borg version the zoo can run. Runs are paired only between versions with the same '
+                    'harness.', cols) + table(cols, rows, left=5))
+
+
+RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.'),
+            ('Completed', 'When the run finished (UTC).'),
+            ('Versions', 'How many Borg versions it compares.'),
+            ('Profiles', 'How many settings profiles it compares.'),
+            ('Runs', 'Games played: versions × profiles × seeds.'),
+            ('Finished', 'Games that reached an endpoint (death or the turn cap); the rest stalled, timed out '
+                         'or failed.')]
 
 
 def landing_page(runs, run_rows):
@@ -217,7 +243,8 @@ def landing_page(runs, run_rows):
         f'needs thousands of paired seeds.</p>'
         f'<h2>Versions</h2>{versions_table()}'
         f'<h2>All experiment runs</h2>'
-        + (table(['Experiment', 'Completed', 'Versions', 'Profiles', 'Runs', 'Finished'], run_rows)
+        + (explain('Every recorded experiment run, newest first. Open one for its full tables and their '
+                   'explanations.', RUN_COLS) + table(RUN_COLS, run_rows)
            if run_rows else '<p class="muted">No results yet.</p>') +
         f'<p class="muted">Raw cells: the <a href="https://github.com/diegoami/borg-zoo/tree/results">results branch</a>. '
         f'Method: <a href="https://github.com/diegoami/borg-zoo/blob/main/docs/DESIGN.md">design</a>. '
