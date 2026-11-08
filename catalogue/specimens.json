@@ -73,6 +73,24 @@
       "carries": 0,
       "label": "borg-rs M0: the Rust port of the pristine C Borg (faithful, C bugs kept). Later Rust specimens follow better-borg-c milestone numbers (rs-m2 carries milestone 2's fixes). Named rs-rust in runs before 2026-11-08.",
       "source": "https://github.com/diegoami/borg-rs"
+    },
+    "rs-m2-c": {
+      "kind": "borg-rs",
+      "impl": "c",
+      "repository": "diegoami/borg-rs",
+      "ref": "0bc7a09fb41a01cfbc4f5bb86b89002b074f3712",
+      "carries": 7,
+      "label": "borg-rs M2 tree, C Borg: the C Borg in borg-rs's tree with better-borg-c milestone 2's seven fixes (borg-rs#6), under the borgh frontend. The reviewed head of borg-rs#6 (qualified pass, 2026-11-08); untagged when pinned.",
+      "source": "https://github.com/diegoami/borg-rs/blob/0bc7a09fb41a01cfbc4f5bb86b89002b074f3712/docs/validation/2026-11-08-c-m2/README.md"
+    },
+    "rs-m2": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "0bc7a09fb41a01cfbc4f5bb86b89002b074f3712",
+      "carries": 7,
+      "label": "borg-rs M2: the Rust Borg carrying better-borg-c milestone 2's seven fixes (borg-rs#6, implementation 9cfbbffd; later commits change docs only). The reviewed head of borg-rs#6 (qualified pass, 2026-11-08); untagged when pinned.",
+      "source": "https://github.com/diegoami/borg-rs/blob/0bc7a09fb41a01cfbc4f5bb86b89002b074f3712/docs/validation/2026-11-08-c-m2/README.md"
     }
   }
 }

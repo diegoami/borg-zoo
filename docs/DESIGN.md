@@ -59,9 +59,11 @@ might. Pairing stays off until key-level equality is shown; the observer
 does not log keys.
 
 Rust specimens follow better-borg-c's milestone numbers: `rs-m0` is the
-port of the pristine C Borg, and `rs-m2` will carry milestone 2's fixes
-(there is no `rs-m1`). The matching C specimen for `rs-mN` is `bbc-mN`, or
-`pristine` for M0.
+port of the pristine C Borg, and `rs-m2` carries milestone 2's seven fixes
+(there is no `rs-m1`). `rs-m2-c` is the C Borg of the same borg-rs tree, so
+identical play between `rs-m2-c` and `rs-m2` is the M2 port's identity check.
+The matching better-borg-c specimen for `rs-mN` is `bbc-mN`, or `pristine`
+for M0.
 
 **Profile.** `borg.txt` lines, or with `"base": "shipped"`, the version's
 own `src/borg/borg.txt` (formula section included) with named settings
