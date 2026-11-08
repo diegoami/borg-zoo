@@ -24,8 +24,14 @@ svg.forest{width:100%;height:auto;display:block}
 svg.forest text{fill:var(--fg);font:13px system-ui,-apple-system,Segoe UI,sans-serif}
 svg.forest .axis{stroke:var(--line)}svg.forest .tick{fill:var(--muted);font-size:11px}
 svg.forest .ci{stroke:var(--muted);stroke-width:2}svg.forest .dot{fill:var(--accent)}
-svg.forest .dot.hi{fill:var(--good)}svg.forest .val{fill:var(--muted)}
+svg.forest .dot.hi{fill:var(--good)}svg.forest .val{fill:var(--muted)}svg.forest .head{font-weight:600;font-size:12px}
 .big{font-size:2rem;font-weight:650;line-height:1.1}
+th{white-space:normal;vertical-align:bottom}th[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help}
+p.how{max-width:62rem;margin:4px 0}p.example{max-width:62rem;margin:4px 0;padding:6px 10px;border-left:3px solid var(--accent);background:var(--card)}
+details.cols{margin:4px 0 12px;max-width:62rem}details.cols summary{cursor:pointer;color:var(--accent)}
+details.cols dl{margin:6px 0;display:grid;grid-template-columns:minmax(8rem,max-content) 1fr;gap:4px 12px}
+details.cols dt{font-weight:600}details.cols dd{margin:0}
+@media (max-width:600px){details.cols dl{grid-template-columns:1fr}details.cols dd{margin:0 0 6px}}
 """
 
 
@@ -57,10 +63,115 @@ def page(title, body):
 
 
 def table(headers, rows, left=1):
-    head = ''.join(f'<th class="{"l" if i < left else ""}">{esc(h)}</th>' for i, h in enumerate(headers))
+    """headers: names, or (name, meaning) pairs; a meaning becomes the header's tooltip."""
+    head = ''.join(f'<th class="{"l" if i < left else ""}"' + (f' title="{esc(h[1])}"' if isinstance(h, tuple) else '')
+                   + f'>{esc(h[0] if isinstance(h, tuple) else h)}</th>' for i, h in enumerate(headers))
     body = ''.join('<tr>' + ''.join(f'<td class="{"l" if i < left else ""}">{v}</td>' for i, v in enumerate(r)) + '</tr>'
                    for r in rows)
     return f'<div class="wrap"><table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
+
+
+def explain(how, columns=(), example=None, open_=False):
+    """How to read a table: a sentence or two, a worked example, and what each column means."""
+    out = f'<p class="how">{how}</p>'
+    if example:
+        out += f'<p class="example"><strong>Example:</strong> {example}</p>'
+    described = [c for c in columns if isinstance(c, tuple)]
+    if described:
+        out += (f'<details class="cols"{" open" if open_ else ""}><summary>What each column means</summary><dl>'
+                + ''.join(f'<dt>{esc(name)}</dt><dd>{esc(meaning)}</dd>' for name, meaning in described)
+                + '</dl></details>')
+    return out
+
+
+VERSION_COL = ('Version', 'The Borg version, and the settings profile when the experiment varies it. '
+                          'In brackets: how many fixes from the tracker it carries.')
+OUTCOME_COLS = [
+    VERSION_COL,
+    ('Runs', 'Seeds played: one game per seed.'),
+    ('Finished', 'Runs that reached an endpoint: the character died, or was alive at the turn cap. '
+                 'Only these count in the rates.'),
+    ('Deaths', 'Finished runs in which the character died before the cap.'),
+    ('Death rate', 'Deaths divided by finished runs.'),
+    ('Death rate range', 'The 95% range (Wilson interval) for the death rate: with this many seeds, the true '
+                         'rate most likely lies in it. Two versions whose ranges overlap widely may not differ.'),
+    (f'Alive at cap, reached DL{stats.DEPTH_GOAL}', 'Share of finished runs that were alive at the turn cap and '
+                                                    f'had reached dungeon level {stats.DEPTH_GOAL} on the way: '
+                                                    'survived and made progress. Staying shallow to survive '
+                                                    'does not count.'),
+    ('Its range', 'The 95% range for the previous column.'),
+    ('Median max depth', 'The middle value, over finished runs, of the deepest dungeon level reached (0 = town).'),
+    ('Median max level', 'The middle value of the highest character level reached.'),
+    ('Median death turn', 'The middle engine turn at which the dying runs died. Lower means earlier deaths.'),
+    ('Other outcomes', 'Runs with no endpoint, by kind: stalled (game time stopped advancing), wall_timeout '
+                       '(out of real time), crash, harness_failure, config_error (the settings did not take '
+                       'effect). Never counted as deaths.'),
+]
+PAIRED_COLS = [
+    VERSION_COL,
+    ('Pairs', 'Seeds on which both this arm and the control finished. Both start from the same seed and '
+              'character, so the two games are compared seed by seed.'),
+    ('Rescued', 'Seeds where the control died and this arm was alive at the cap.'),
+    ('Newly killed', 'Seeds where the control was alive at the cap and this arm died.'),
+    ('Both died', 'Seeds where both died. They say nothing about which is better.'),
+    ('Both lived', 'Seeds where both were alive at the cap. They say nothing about which is better.'),
+    ('Identical play', 'Seeds where both games were the same move for move. When it equals Pairs, the '
+                       'difference between the arms never changed play on this suite.'),
+    ('p (death)', 'Exact McNemar test of Rescued against Newly killed: the chance of a split at least this '
+                  'uneven if both arms were equally deadly. Below 0.05 suggests a real difference; with many '
+                  'rows, some low values turn up by chance.'),
+    (f'DL{stats.DEPTH_GOAL} alive: gained', f'Seeds where this arm was alive at the cap having reached '
+                                            f'DL{stats.DEPTH_GOAL}, and the control was not.'),
+    (f'DL{stats.DEPTH_GOAL} alive: lost', f'Seeds where the control was alive at the cap having reached '
+                                          f'DL{stats.DEPTH_GOAL}, and this arm was not.'),
+    (f'p (DL{stats.DEPTH_GOAL} alive)', 'The same test on gained against lost.'),
+]
+UNFINISHED_COLS = [
+    VERSION_COL,
+    ('Seed', 'The seed of the run; rerunning it reproduces the stop.'),
+    ('Outcome', 'Why the run has no endpoint: stalled, wall_timeout, crash, harness_failure or config_error.'),
+    ('Last turn', 'The engine turn at which the game stopped advancing.'),
+    ('Stall kind', 'A heuristic label over the counters: level_cycle (changes level without game time passing), '
+                   'zero_energy_retry (repeats without spending energy), energy_without_time (energy rises, the '
+                   'clock does not), no_decisions (the Borg stopped deciding), keys_without_time (borgh: keys '
+                   'sent while the turn stays frozen).'),
+    ('Decisions Δ', 'Borg decisions made while the game turn stayed at Last turn.'),
+    ('Energy Δ', 'Player energy gained over the same span.'),
+    ('Level changes (sampled)', 'Level changes seen at the frozen turn. States are sampled every 100 decisions, '
+                                'so this is a lower bound.'),
+    ('Most repeated at the last turn', 'The Borg notes, or keys, repeated most often at the frozen turn.'),
+]
+
+
+def paired_example(meta, r, v, control):
+    """A worked reading of one paired row; control names the arm it is paired with."""
+    if not v['pairs']:
+        return None
+    name = esc(r['specimen']) + (f' · {esc(r["profile"])}' if len(meta['experiment']['profiles']) > 1 else '')
+    same = (f' {v["identical_traces"]:,} of the {v["pairs"]:,} games were identical move for move.'
+            if v['identical_traces'] else '')
+    if v['identical_traces'] == v['pairs']:
+        verdict = 'every game was the same, so the two cannot differ on this suite'
+    elif v['death_p'] is not None and v['death_p'] < 0.05:
+        verdict = 'a split this uneven is unlikely by chance'
+    else:
+        verdict = 'a split like this happens easily by chance, so no difference is shown'
+    return (f'on the {v["pairs"]:,} seeds that both {name} and {control} finished, {name} survived '
+            f'{v["rescued"]} seeds on which {control} died, and died on {v["newly_killed"]} seeds that {control} '
+            f'survived. The other {v["both_died"] + v["both_lived"]:,} seeds ended the same way for both '
+            f'({v["both_died"]:,} both died, {v["both_lived"]:,} both lived).{same} p (death) = {pval(v["death_p"])}: '
+            f'{verdict}.')
+
+
+def example_for(meta, versus, key, control_specimen, control_profile):
+    """The paired row with the smallest p, read out in words."""
+    r = min(versus, key=lambda r: r[key]['death_p'] if r[key]['death_p'] is not None else 2)
+    many = len(meta['experiment']['profiles']) > 1
+    if key == 'vs_version':
+        control = esc(control_specimen) + (f' · {esc(r["profile"])}' if many else '')
+    else:
+        control = f'{esc(r["specimen"])} · {esc(control_profile)}'
+    return paired_example(meta, r, r[key], control)
 
 
 def load_runs(results):
@@ -92,19 +203,28 @@ def run_page(meta, cells):
              (f'<p><strong>Prespecified:</strong> {esc(exp["prespecified"])}</p>' if exp.get('prespecified') else ''),
              f'<p class="muted">Run {esc(meta["run_id"])} · completed {esc(meta.get("completed", "?"))} · '
              f'<a href="{esc(meta.get("run_url", "#"))}">workflow run</a> · <a href="cells.jsonl">raw cells (JSON lines)</a></p>',
-             '<p class="note">Descriptive results from small suites. Intervals are Wilson 95%; '
-             'paired p-values are exact McNemar tests on the seeds where both arms finished. '
-             'Neither is a prespecified test, and nothing here is a claim of improvement. '
-             f'"Goal" means alive at the turn cap having reached dungeon level {stats.DEPTH_GOAL}; '
-             'the owner has not yet fixed the primary endpoint.</p>']
+             '<p class="note">An <em>arm</em> is one Borg version run with one settings profile; every arm plays '
+             'the same seeds, one game per seed. Results are descriptive unless the experiment says it is '
+             'prespecified above. Ranges are Wilson 95% intervals; paired p-values are exact McNemar tests on the '
+             'seeds where both arms finished. Two outcomes are measured: <strong>death</strong> before the turn '
+             f'cap, and <strong>alive at the cap having reached dungeon level {stats.DEPTH_GOAL}</strong> '
+             '(survived and made progress). The owner has not yet chosen which one is primary.</p>']
     for suite, rows in analysis.items():
         s = meta['catalogue']['suites'][suite]
         parts.append(f'<h2>Suite {esc(suite)}</h2><p class="muted">{esc(s["description"])} · '
                      f'{len(s["seeds"])} seeds · cap {s["cap"]:,} engine turns · birth {esc(s["birth"])}</p>')
         parts.append('<h3>Outcomes per arm</h3>')
+        first = rows[0]['summary'] if rows else None
+        parts.append(explain(
+            'One row per arm: a Borg version, with a settings profile when the experiment varies it. Every arm '
+            'plays the same seeds. The main figure is the death rate before the turn cap, with its 95% range.',
+            OUTCOME_COLS,
+            (f'{esc(rows[0]["specimen"])}: {first["valid"]:,} of {first["cells"]:,} runs finished and '
+             f'{first["deaths"]:,} died ({pct(first["death_rate"])}); with this many seeds the true death rate '
+             f'is most likely {ci(first["death_ci"])}.') if first and first['valid'] else None,
+            open_=True))
         parts.append(table(
-            ['Arm', 'Runs', 'Finished', 'Deaths', 'Death rate', '95% CI', 'Goal', 'Goal 95% CI',
-             'Median max depth', 'Median max level', 'Median death turn', 'Other outcomes'],
+            OUTCOME_COLS,
             [[arm_label(meta, r['specimen'], r['profile']), r['summary']['cells'], r['summary']['valid'],
               r['summary']['deaths'], pct(r['summary']['death_rate']), ci(r['summary']['death_ci']),
               pct(r['summary']['goal_rate']), ci(r['summary']['goal_ci']),
@@ -119,10 +239,19 @@ def run_page(meta, cells):
             versus = [r for r in rows if r[key]]
             if not versus:
                 continue
+            control = esc(exp['control']) if key == 'vs_version' else f'profile {esc(control_profile)}'
             parts.append(f'<h3>{title}</h3>')
+            parts.append(explain(
+                f'Each row compares one arm with the control ({control}) seed by seed. Seeds where both died or '
+                'both lived cannot tell them apart; the comparison rests on the seeds that ended differently: '
+                '<span class="good">Rescued</span> (only the control died) against '
+                '<span class="bad">Newly killed</span> (only this arm died). If the change made no difference, '
+                'those two would be about equal.',
+                PAIRED_COLS,
+                example_for(meta, versus, key, exp['control'], control_profile),
+                open_=True))
             parts.append(table(
-                ['Arm', 'Pairs', 'Rescued', 'Newly killed', 'Both died', 'Both lived', 'Identical play', 'p (death)',
-                 'Goal gained', 'Goal lost', 'p (goal)'],
+                PAIRED_COLS,
                 [[arm_label(meta, r['specimen'], r['profile']), v['pairs'],
                   f'<span class="good">{v["rescued"]}</span>', f'<span class="bad">{v["newly_killed"]}</span>',
                   v['both_died'], v['both_lived'], v['identical_traces'], pval(v['death_p']),
@@ -131,9 +260,11 @@ def run_page(meta, cells):
         unfinished = [c for c in cells if c['suite'] == suite and c['outcome'] not in stats.VALID]
         if unfinished:
             parts.append('<h3>Runs that did not finish</h3>')
-            parts.append('<p class="muted">Stall kind is a heuristic over the counters: a level cycle spends '
-                         'energy across level changes without game time; a zero-energy retry repeats without '
-                         'spending energy. The counters and the notes are the evidence.</p>')
+            parts.append(explain(
+                'Runs that reached neither death nor the turn cap, one row each. They are left out of every '
+                'rate above. A stall usually means the Borg loops while game time stands still; each one is a '
+                'lead for a liveness bug. Stall kind is a heuristic label; the counters and the notes are the '
+                'evidence.', UNFINISHED_COLS))
             rows_u = []
             for c in unfinished:
                 st = c.get('stall') or {}
@@ -143,32 +274,50 @@ def run_page(meta, cells):
                                num(st.get('decisions_delta')), num(st.get('energy_delta')),
                                num(st.get('depth_changes')),
                                esc('; '.join(f'{t} ×{n}' for t, n in top[:2])) or '–'])
-            parts.append(table(['Arm', 'Seed', 'Outcome', 'Last turn', 'Stall kind', 'Decisions Δ', 'Energy Δ',
-                                'Level changes (sampled)', 'Most repeated at the last turn'], rows_u, left=1))
+            parts.append(table(UNFINISHED_COLS, rows_u, left=1))
         for field, title in (('class', 'Deaths by class'), ('race', 'Deaths by race')):
             per = stats.by_character(exp, cells, field).get(suite)
+            many = {'class': 'classes', 'race': 'races'}[field]
             if not per or len(per) < 2:
                 continue
             arms = [a['arm'] for a in per[0]['arms']]
-            parts.append(f'<h3>{title}</h3><p class="muted">Deaths / finished runs (rate) for the character '
-                         'actually played. Small cells: read the pattern, not single values.</p>')
+            parts.append(f'<h3>{title}</h3>')
+            parts.append(explain(
+                f'One row per {field}, one column per arm. Each cell is deaths / finished runs (death rate) for '
+                f'characters of that {field}. Read down a column to see which {many} die most; read across a row '
+                f'to see whether a version changed that {field}\'s risk. Cells hold a few hundred runs or fewer, '
+                'so read the pattern, not single values.'))
             parts.append(table([field.capitalize()] + [s_ if len(exp['profiles']) == 1 else f'{s_} · {p_}'
                                                        for s_, p_ in arms],
                                [[esc(r['value'])] + [f'{a["deaths"]}/{a["n"]} ({pct(a["rate"])})' if a['n'] else '–'
                                                       for a in r['arms']] for r in per]))
         parts.append('<h3>Share alive by engine turn</h3>')
+        parts.append(explain(
+            'For each arm, the share of finished runs whose character was still alive at each engine turn (the '
+            'last column is the turn cap). Read along a row to see when the deaths happen: an arm with fewer '
+            'early deaths keeps a higher share in the first columns.'))
         turns = [x['turn'] for x in rows[0]['survival']] if rows else []
-        parts.append(table(['Arm'] + [f'{t:,}' for t in turns],
+        parts.append(table(['Version'] + [f'{t:,}' for t in turns],
                            [[arm_label(meta, r['specimen'], r['profile'])] + [pct(x['alive']) for x in r['survival']]
                             for r in rows]))
         parts.append('<h3>Depth reached</h3>')
         marks = [x['depth'] for x in rows[0]['depths']] if rows else []
-        parts.append(table(['Arm'] + [f'DL{m}: share · median turn' for m in marks],
+        no_marks = {k for k, v in meta['catalogue']['specimens'].items() if v.get('kind') == 'borg-rs'}
+        parts.append(explain(
+            'For each arm and dungeon level (DL): the share of finished runs that ever reached that level, then '
+            'the median engine turn at which they first got there. A higher share reached sooner means faster '
+            'descent, which is not the same as safer play.'
+            + (' borg-rs runs record no depth by turn, so their cells are empty.' if no_marks & set(exp['specimens'])
+               else '')))
+        parts.append(table(['Version'] + [f'DL{m}: share · median turn' for m in marks],
                            [[arm_label(meta, r['specimen'], r['profile'])] +
-                            [f'{pct(x["reached"])} · {num(x["median_turn"])}' for x in r['depths']]
+                            (['not recorded'] * len(marks) if r['specimen'] in no_marks else
+                             [f'{pct(x["reached"])} · {num(x["median_turn"])}' for x in r['depths']])
                             for r in rows]))
     parts.append('<h2>Specimens and environment</h2>')
-    parts.append(table(['Specimen', 'Ref', 'Carries', 'Label'],
+    parts.append(explain('The Borg versions in this experiment, each built from the commit shown.'))
+    parts.append(table(['Specimen', ('Ref', 'The commit that was built.'),
+                        ('Carries', 'Fixes from the tracker carried by this version.'), 'Label'],
                        [[esc(k), f'<code>{esc(v["ref"][:12])}</code>', num(v.get('carries')), esc(v.get('label', ''))]
                         for k in exp['specimens'] for v in [meta['catalogue']['specimens'][k]]]))
     env = meta.get('environment', {})

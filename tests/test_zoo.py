@@ -272,8 +272,12 @@ class StallTest(unittest.TestCase):
 class LandingTest(unittest.TestCase):
     def test_forest_axis_adapts_and_draws_each_row(self):
         svg = landing.forest([('a', 0.36, (0.30, 0.43), False), ('b', 0.10, (0.07, 0.15), True),
-                              ('c', None, (None, None), False)])
-        self.assertEqual(svg.count('<circle'), 2)
+                              ('c', None, (None, None), False)],
+                             x_label='Share of runs that died', y_label='Borg version', highlight_label='other')
+        self.assertEqual(svg.count('<circle'), 2 + 2)  # two rows, two legend dots
+        self.assertIn('>Share of runs that died<', svg)
+        self.assertIn('>Borg version<', svg)
+        self.assertIn('>95% interval<', svg)
         self.assertIn('>50%<', svg)
         self.assertNotIn('>60%<', svg)
 
