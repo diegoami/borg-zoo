@@ -201,8 +201,8 @@ class BorgRsTest(unittest.TestCase):
     def test_borg_rs_specimens_reject_random_birth(self):
         with tempfile.TemporaryDirectory() as tmp:
             bad = Path(tmp) / 'bad.json'
-            bad.write_text(json.dumps({'name': 'x', 'specimens': ['rs-r1'], 'profiles': ['default'],
-                                       'suites': ['early-50-random'], 'control': 'rs-r1'}))
+            bad.write_text(json.dumps({'name': 'x', 'specimens': ['rs-m0'], 'profiles': ['default'],
+                                       'suites': ['early-50-random'], 'control': 'rs-m0'}))
             with self.assertRaises(ValueError):
                 cat_mod.experiment(bad)
 
@@ -210,7 +210,7 @@ class BorgRsTest(unittest.TestCase):
         exp = cat_mod.experiment(ROOT / 'experiments/rs-smoke.json')
         plan = cat_mod.plan(exp, 2)
         kinds = {b['specimen']: b['kind'] for b in plan['builds']}
-        self.assertEqual(kinds, {'rs-c': 'borg-rs', 'rs-r1': 'borg-rs', 'pristine': 'better-borg-c'})
+        self.assertEqual(kinds, {'rs-c': 'borg-rs', 'rs-m0': 'borg-rs', 'pristine': 'better-borg-c'})
         self.assertTrue(all('kind' in r and 'ref' in r for r in plan['runs']))
 
     def test_no_pairing_across_harnesses(self):
@@ -222,7 +222,7 @@ class BorgRsTest(unittest.TestCase):
                 c['harness_kind'] = 'better-borg-c' if s == 'pristine' else 'borg-rs'
                 cells.append(c)
         rows = {r['specimen']: r for r in stats.analyse(exp, cells)['smoke'] if r['profile'] == 'default'}
-        self.assertIsNotNone(rows['rs-r1']['vs_version'])
+        self.assertIsNotNone(rows['rs-m0']['vs_version'])
         self.assertIsNone(rows['pristine']['vs_version'])
 
 
