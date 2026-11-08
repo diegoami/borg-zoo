@@ -12,6 +12,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from . import catalogue as cat_mod
+from . import stall
 
 VALID = ('death', 'turn_cap', 'completion')
 DEPTH_MARKS = (1, 2, 3, 4, 5, 6, 8, 10, 15, 20)
@@ -96,6 +97,7 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
     if mismatch and outcome in VALID:
         outcome = 'config_error'
     files = result.get('files_sha256') or {}
+    stall_info = stall.observer(states, trace_text) if outcome not in VALID else None
     return {
         'schema': 'borg-zoo/cell@1',
         **cell,
@@ -117,6 +119,7 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
         'play_sha256': play_sha256(trace_text),
         'effective_options': options,
         'error': result.get('error'),
+        'stall': stall_info,
         'harness_commit': result.get('harness_commit'),
         'runner_sha256': result.get('runner_sha256'),
         'binary_sha256': build_manifest.get('binary_sha256'),

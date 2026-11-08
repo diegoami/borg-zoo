@@ -76,7 +76,15 @@ The record holds:
   identical play is detectable across profiles;
 - the effective settings;
 - the build identity: binary hash, compiler and platform;
-- the calendar.
+- the calendar;
+- for a run that did not finish, a `stall` block: the last engine turn, how
+  many state records share it, the decision and energy deltas across them,
+  level changes (a lower bound: state records are sampled every 100
+  decisions) and depths seen, the most repeated Borg notes at that turn
+  and the last 20 notes (borgh: keys). A heuristic `kind` labels it
+  (`level_cycle`, `zero_energy_retry`, `energy_without_time`,
+  `no_decisions`). The observer records no player position, so position
+  changes are not available.
 
 ## Workflow (`.github/workflows/compare.yml`)
 

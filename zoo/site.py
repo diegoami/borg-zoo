@@ -117,6 +117,23 @@ def run_page(meta, cells):
                   v['both_died'], v['both_lived'], v['identical_traces'], pval(v['death_p']),
                   v['goal_gained'], v['goal_lost'], pval(v['goal_p'])]
                  for r in versus for v in [r[key]]]))
+        unfinished = [c for c in cells if c['suite'] == suite and c['outcome'] not in stats.VALID]
+        if unfinished:
+            parts.append('<h3>Runs that did not finish</h3>')
+            parts.append('<p class="muted">Stall kind is a heuristic over the counters: a level cycle spends '
+                         'energy across level changes without game time; a zero-energy retry repeats without '
+                         'spending energy. The counters and the notes are the evidence.</p>')
+            rows_u = []
+            for c in unfinished:
+                st = c.get('stall') or {}
+                top = st.get('top_notes_at_last_turn') or st.get('top_keys_at_last_turn') or []
+                rows_u.append([arm_label(meta, c['specimen'], c['profile']), c['seed'], esc(c['outcome']),
+                               num(st.get('last_turn', c['final'].get('turn'))), esc(st.get('kind', '–')),
+                               num(st.get('decisions_delta')), num(st.get('energy_delta')),
+                               num(st.get('depth_changes')),
+                               esc('; '.join(f'{t} ×{n}' for t, n in top[:2])) or '–'])
+            parts.append(table(['Arm', 'Seed', 'Outcome', 'Last turn', 'Stall kind', 'Decisions Δ', 'Energy Δ',
+                                'Level changes (sampled)', 'Most repeated at the last turn'], rows_u, left=1))
         parts.append('<h3>Share alive by engine turn</h3>')
         turns = [x['turn'] for x in rows[0]['survival']] if rows else []
         parts.append(table(['Arm'] + [f'{t:,}' for t in turns],

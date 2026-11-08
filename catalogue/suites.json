@@ -854,6 +854,17 @@
       "stall_seconds": 90,
       "birth": "fixed",
       "saves": false
+    },
+    "seed-1045": {
+      "description": "Seed 1045 alone, 100,000 engine turns, fixed birth: the munchkin stair-cycle stall (better-borg-c#204, neo-angband-tracker#403)",
+      "seeds": [
+        1045
+      ],
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "birth": "fixed",
+      "saves": false
     }
   }
 }
