@@ -133,7 +133,7 @@ def run_page(meta, cells):
                                num(st.get('depth_changes')),
                                esc('; '.join(f'{t} ×{n}' for t, n in top[:2])) or '–'])
             parts.append(table(['Arm', 'Seed', 'Outcome', 'Last turn', 'Stall kind', 'Decisions Δ', 'Energy Δ',
-                                'Level changes', 'Most repeated at the last turn'], rows_u, left=1))
+                                'Level changes (sampled)', 'Most repeated at the last turn'], rows_u, left=1))
         parts.append('<h3>Share alive by engine turn</h3>')
         turns = [x['turn'] for x in rows[0]['survival']] if rows else []
         parts.append(table(['Arm'] + [f'{t:,}' for t in turns],

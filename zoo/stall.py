@@ -55,6 +55,7 @@ def observer(states, trace_text):
         'decisions_delta': decisions_delta,
         'energy_delta': energy_delta,
         'depth_changes': depth_changes,
+        'depth_changes_note': 'counted between state records, which are sampled every 100 decisions; a lower bound',
         'depths_seen': sorted({d for d in depths if d is not None}),
         'turns_per_1000_decisions': (round(1000 * span_turns / span_decisions, 1) if span_decisions else None),
         'top_notes_at_last_turn': Counter(frozen_notes).most_common(5),
