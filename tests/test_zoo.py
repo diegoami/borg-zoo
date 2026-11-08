@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from zoo import catalogue as cat_mod  # noqa: E402
-from zoo import borgrs, harness, site, stats  # noqa: E402
+from zoo import borgrs, harness, site, stall, stats  # noqa: E402
 from zoo.__main__ import main  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -154,6 +154,41 @@ class BorgRsTest(unittest.TestCase):
         rows = {r['specimen']: r for r in stats.analyse(exp, cells)['smoke'] if r['profile'] == 'default'}
         self.assertIsNotNone(rows['rs-rust']['vs_version'])
         self.assertIsNone(rows['pristine']['vs_version'])
+
+
+class StallTest(unittest.TestCase):
+    def test_level_cycle_without_time(self):
+        states = [{'kind': 'progress', 'turn': 59800, 'decisions': 16000, 'energy': 5000, 'depth': 2},
+                  {'kind': 'progress', 'turn': 59893, 'decisions': 16100, 'energy': 6000, 'depth': 2},
+                  {'kind': 'progress', 'turn': 59893, 'decisions': 16200, 'energy': 16000, 'depth': 1},
+                  {'kind': 'progress', 'turn': 59893, 'decisions': 16300, 'energy': 26000, 'depth': 2}]
+        trace = ('BORG 59893 # Munchkin Mode.  Power Climb. \n'
+                 'BORG 59893 # Munchkin Mode.  Power Diving. \n'
+                 'BORG 59893 # Munchkin Mode.  Power Climb. \n')
+        st = stall.observer(states, trace)
+        self.assertEqual(st['kind'], 'level_cycle')
+        self.assertEqual((st['states_at_last_turn'], st['decisions_delta'], st['energy_delta'], st['depth_changes']),
+                         (3, 200, 20000, 2))
+        self.assertEqual(st['top_notes_at_last_turn'][0], ('# Munchkin Mode.  Power Climb. ', 2))
+
+    def test_zero_energy_retry_and_no_decisions(self):
+        same = [{'turn': 10, 'decisions': 100, 'energy': 50, 'depth': 3},
+                {'turn': 10, 'decisions': 200, 'energy': 50, 'depth': 3}]
+        self.assertEqual(stall.observer(same, '')['kind'], 'zero_energy_retry')
+        stuck = [{'turn': 10, 'decisions': 100, 'energy': 50, 'depth': 3}]
+        self.assertEqual(stall.observer(stuck, '')['kind'], 'no_decisions')
+
+    def test_borgh_keys_without_time(self):
+        keys = '100 1 3c 0\n120 1 3e 0\n120 1 3c 0\n120 1 3e 0\n'
+        st = stall.borgh(keys, {'stop_reason': 'blocked', 'depth': 2})
+        self.assertEqual((st['kind'], st['last_turn'], st['keys_at_last_turn']), ('keys_without_time', 120, 3))
+
+    def test_finished_runs_carry_no_stall(self):
+        rec = harness.summarise({'specimen': 's', 'profile': 'p', 'suite': 'smoke', 'seed': 1},
+                                {'outcome': 'turn_cap', 'states': [{'kind': 'turn_cap', 'turn': 20000}]},
+                                'BORG_OPTIONS borg_plays_risky=0\n', {'settings': {}}, {'ref': 'a' * 40},
+                                {'cap': 20000, 'birth': 'fixed'}, {})
+        self.assertIsNone(rec['stall'])
 
 
 class StatsTest(unittest.TestCase):

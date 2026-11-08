@@ -26,6 +26,7 @@ import time
 from pathlib import Path
 
 from . import catalogue as cat_mod
+from . import stall
 
 STOP = {'turns': 'turn_cap', 'death': 'death', 'clev': 'turn_cap', 'depth': 'turn_cap',
         'borg_stopped': 'stalled', 'blocked': 'stalled'}
@@ -136,6 +137,9 @@ def run_cell(cell, build_dir, work, cat):
         outcome = 'config_error'
     keys = out / 'keys.log'
     keys_sha = sha256(keys) if keys.exists() else None
+    stall_info = None
+    if outcome not in ('death', 'turn_cap', 'completion'):
+        stall_info = stall.borgh(keys.read_text(errors='replace') if keys.exists() else '', summary)
     record = {
         'schema': 'borg-zoo/cell@1', **cell, 'harness_kind': 'borg-rs',
         'specimen_ref': spec['ref'], 'impl': spec['impl'],
@@ -154,6 +158,7 @@ def run_cell(cell, build_dir, work, cat):
         'wall_seconds': wall,
         'trace_sha256': keys_sha, 'play_sha256': keys_sha,
         'error': error,
+        'stall': stall_info,
         'binary_sha256': manifest.get('binary_sha256'), 'compiler': manifest.get('compiler'),
         'rustc': manifest.get('rustc'), 'platform': manifest.get('platform'),
     }
