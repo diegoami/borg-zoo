@@ -24,5 +24,7 @@ Related repositories, read only:
   run the same suites.
 
 Adding a specimen, profile, suite or experiment is a catalogue change with a
-pull request. Starting a large experiment uses GitHub Actions minutes and is
-the owner's call.
+pull request. Starting a large experiment is the owner's call. It costs no
+money (standard runners are free for this public repository), but it holds
+the account's 20 concurrent Actions jobs for hours, delays every other
+workflow of the owner's, and publishes its results.
