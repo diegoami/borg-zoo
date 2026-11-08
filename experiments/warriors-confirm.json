@@ -1,0 +1,18 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "warriors-confirm",
+  "description": "Confirmation of the warrior findings on 600 fresh Warrior seeds: the original against milestones 5 and 6",
+  "specimens": [
+    "4.2.6",
+    "4.2.6-bbc-m5",
+    "4.2.6-bbc-m6"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "warriors-600"
+  ],
+  "control": "4.2.6",
+  "prespecified": "Written on 2026-11-08, before any run on warriors-600. Primary: 4.2.6-bbc-m5 against 4.2.6, death before 100,000 engine turns, exact two-sided McNemar test on the seeds where both finished, alpha 0.05. Secondary, each at alpha 0.05 and reported separately: 4.2.6-bbc-m6 against 4.2.6-bbc-m5, and 4.2.6-bbc-m6 against 4.2.6, with the same test (this page pairs only against 4.2.6; the M6 against M5 test is computed from the same cells). Motivation: post hoc findings on classes-1800 (classes-m5, classes-m6), where Warrior deaths were 32% on 4.2.6, 17% on M5 (p 0.0006) and 28% on M6. No other endpoint, race split or subgroup is confirmatory."
+}

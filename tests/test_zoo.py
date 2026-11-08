@@ -422,6 +422,21 @@ class MandosTest(unittest.TestCase):
                   for s in (11, 29, 47)]
         rows = {r['specimen']: r for r in stats.analyse(exp, cells)['smoke']}
         self.assertIsNone(rows['neo-b3-mandos']['vs_version'])
+class SubsetSuiteTest(unittest.TestCase):
+    def test_subset_keeps_the_parent_assignment(self):
+        cat = cat_mod.catalogue()
+        sub, parent = cat['suites']['classes-1800-warriors'], cat['suites']['classes-1800']
+        self.assertEqual(len(sub['seeds']), 200)
+        for seed in sub['seeds']:
+            self.assertEqual(cat_mod.character(sub, seed), cat_mod.character(parent, seed))
+            self.assertEqual(cat_mod.character(sub, seed)[1], 'Warrior')
+
+    def test_warrior_confirmation_seeds_are_fresh(self):
+        cat = cat_mod.catalogue()
+        mine = set(cat['suites']['warriors-600']['seeds'])
+        others = {s for name, suite in cat['suites'].items() if name != 'warriors-600' for s in suite['seeds']}
+        self.assertEqual(len(mine), 600)
+        self.assertFalse(mine & others)
 
 
 class StatsTest(unittest.TestCase):
