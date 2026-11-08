@@ -19,7 +19,7 @@ Source heads were resolved and frozen before its outcomes:
 The native pin is official **master**, not the 4.2.6 release tag. The Neo
 pins are official source heads, not a claim that an npm release contains
 them. The external Neo tools-only proposal and its exact commit are recorded
-in `catalogue/specimens.json`. The canonical Neo proposal is [engine tracker PR #542](https://github.com/diegoami/neo-angband-tracker/pull/542), pinned at `bdecf90d0b64148909cee762a91e290084ef1088`. Its original engine and original Borg inputs
+in `catalogue/specimens.json`. The canonical Neo proposal is [engine tracker PR #542](https://github.com/diegoami/neo-angband-tracker/pull/542), pinned at `2668adc5ab3e2b6e194c2f1561e248b88850ea98`. Its original engine and original Borg inputs
 stay separate from that measurement code.
 
 ## What the experiment can establish
