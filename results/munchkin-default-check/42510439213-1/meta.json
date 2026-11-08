@@ -1,0 +1,144 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+      "history": [
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "default": {
+        "description": "Built-in defaults (the better-borg-c cohort configuration)",
+        "settings": {},
+        "sha256": "44b3cfb53eb6a924a29312a7b8ca21ad80d747f11d1f2eef097242b2994bdbda"
+      },
+      "munchkin-wdr": {
+        "by_class": {
+          "Druid": "munchkin-d6",
+          "Ranger": "munchkin-d6",
+          "Warrior": "munchkin-d6"
+        },
+        "description": "Munchkin start by class: munchkin-d6 for Warriors, Druids and Rangers, default for every other class (the classes munchkin-d6 helped in classes-munchkin)",
+        "otherwise": "default",
+        "sha256": "d4f88de1028374a92e856eaa602b52b861acb054f457069e32a9aa390cde8ecc"
+      }
+    },
+    "specimens": {
+      "4.2.6-bbc-ca3cd62": {
+        "carries": 76,
+        "label": "better-borg-c main at ca3cd62 (the milestone 7 review package, before any tag): 76 carries",
+        "ref": "ca3cd62e510b3a6b621c1818c80835b12ef272e7",
+        "repository": "diegoami/better-borg-c",
+        "role": "candidate",
+        "source": "https://github.com/diegoami/better-borg-c/commit/ca3cd62e510b3a6b621c1818c80835b12ef272e7"
+      },
+      "4.2.6-bbc-munchkin-by-class": {
+        "carries": 76,
+        "label": "4.2.6-bbc-ca3cd62 with the munchkin start by class as the default (Warriors, Druids and Rangers, depth 6)",
+        "ref": "fd683cedbc74e1cbfabed276526964d0b04ee93c",
+        "repository": "diegoami/better-borg-c",
+        "role": "candidate",
+        "source": "https://github.com/diegoami/better-borg-c/tree/task/munchkin-by-class"
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-08 18:38 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-bbc-ca3cd62",
+    "description": "Identity check: the munchkin start by class as the built-in default must play the same games as its base with the munchkin-wdr profile",
+    "name": "munchkin-default-check",
+    "profiles": [
+      "default",
+      "munchkin-wdr"
+    ],
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-bbc-ca3cd62",
+      "4.2.6-bbc-munchkin-by-class"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "42510439213-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/42510439213",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "f28beadf71d5b41f68dadf300049961b62284961"
+}
