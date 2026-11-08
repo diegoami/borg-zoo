@@ -1,0 +1,18 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-m5-munchkin",
+  "description": "Munchkin start on better-borg-c milestone 5 for every class and race: the original C Borg and M5, each on default and munchkin-d6 settings (classes-1800)",
+  "specimens": [
+    "pristine",
+    "bbc-m5"
+  ],
+  "profiles": [
+    "default",
+    "munchkin-d6"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "pristine",
+  "control_profile": "default"
+}
