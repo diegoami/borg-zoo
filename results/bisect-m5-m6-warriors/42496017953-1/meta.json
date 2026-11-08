@@ -1,0 +1,1178 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+      "history": [
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "default": {
+        "description": "Built-in defaults (the better-borg-c cohort configuration)",
+        "settings": {},
+        "sha256": "44b3cfb53eb6a924a29312a7b8ca21ad80d747f11d1f2eef097242b2994bdbda"
+      }
+    },
+    "specimens": {
+      "4.2.6-bbc-m5": {
+        "carries": 50,
+        "formerly": [
+          "bbc-m5"
+        ],
+        "label": "better-borg-c milestone 5 (tag 4.2.6-impact-v5)",
+        "ref": "5384f12ed51e8fef6f31353fd2daaf0e7fb43856",
+        "repository": "diegoami/better-borg-c",
+        "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE5.md",
+        "tag": "4.2.6-impact-v5"
+      },
+      "4.2.6-bbc-m5-s01": {
+        "carries": 51,
+        "label": "Between milestones 5 and 6, step 1 of 10: M5 plus the carries up to source245: raise the munchkin stair range only when it increases",
+        "ref": "ae64c39cb8cf90ebf5f55b7627414847c155b4d2",
+        "repository": "diegoami/better-borg-c",
+        "role": "bisect",
+        "source": "https://github.com/diegoami/better-borg-c/commit/ae64c39cb8cf90ebf5f55b7627414847c155b4d2"
+      },
+      "4.2.6-bbc-m5-s02": {
+        "carries": 52,
+        "label": "Between milestones 5 and 6, step 2 of 10: M5 plus the carries up to source246: reset the Borg clock gracefully instead of aborting",
+        "ref": "120ca9916d0b0813171112f9345375fd7745d76b",
+        "repository": "diegoami/better-borg-c",
+        "role": "bisect",
+        "source": "https://github.com/diegoami/better-borg-c/commit/120ca9916d0b0813171112f9345375fd7745d76b"
+      },
+      "4.2.6-bbc-m5-s03": {
+        "carries": 53,
+        "label": "Between milestones 5 and 6, step 3 of 10: M5 plus the carries up to source156: flee excessive danger unless going after Morgoth",
+        "ref": "9cb711cd2fc7bb5ee45530c61bd25a063253492b",
+        "repository": "diegoami/better-borg-c",
+        "role": "bisect",
+        "source": "https://github.com/diegoami/better-borg-c/commit/9cb711cd2fc7bb5ee45530c61bd25a063253492b"
+      },
+      "4.2.6-bbc-m5-s04": {
+        "carries": 54,
+        "label": "Between milestones 5 and 6, step 4 of 10: M5 plus the carries up to source157: compare current mana with the maximum while waiting for recall",
+        "ref": "b2c9db4798768703134bffe78014ca94a3432261",
+        "repository": "diegoami/better-borg-c",
+        "role": "bisect",
+        "source": "https://github.com/diegoami/better-borg-c/commit/b2c9db4798768703134bffe78014ca94a3432261"
+      },
+      "4.2.6-bbc-m5-s05": {
+        "carries": 55,
+        "label": "Between milestones 5 and 6, step 5 of 10: M5 plus the carries up to source153: head for the nearest free staircase when desperate",
+        "ref": "f0e10ee1236a800f9b538e609b24afca4b864ff5",
+        "repository": "diegoami/better-borg-c",
+        "role": "bisect",
+        "source": "https://github.com/diegoami/better-borg-c/commit/f0e10ee1236a800f9b538e609b24afca4b864ff5"
+      },
+      "4.2.6-bbc-m5-s06": {
+        "carries": 56,
+        "label": "Between milestones 5 and 6, step 6 of 10: M5 plus the carries up to source155: judge each back-away grid on its own",
+        "ref": "20d7d4e6203d976a6fd294818d6e74c73eb94ad7",
+        "repository": "diegoami/better-borg-c",
+        "role": "bisect",
+        "source": "https://github.com/diegoami/better-borg-c/commit/20d7d4e6203d976a6fd294818d6e74c73eb94ad7"
+      },
+      "4.2.6-bbc-m5-s07": {
+        "carries": 59,
+        "label": "Between milestones 5 and 6, step 7 of 10: M5 plus the carries up to sources 141, 142, 144: borg.txt parser hang, bare minus, unreadable file",
+        "ref": "d4f9bb5c92179fcc4107d357af3882738d482aff",
+        "repository": "diegoami/better-borg-c",
+        "role": "bisect",
+        "source": "https://github.com/diegoami/better-borg-c/commit/d4f9bb5c92179fcc4107d357af3882738d482aff"
+      },
+      "4.2.6-bbc-m5-s08": {
+        "carries": 60,
+        "label": "Between milestones 5 and 6, step 8 of 10: M5 plus the carries up to source134: skip an unidentified single item in the sell count",
+        "ref": "828d5eec26626f0c588b83497b189fbb606e62bb",
+        "repository": "diegoami/better-borg-c",
+        "role": "bisect",
+        "source": "https://github.com/diegoami/better-borg-c/commit/828d5eec26626f0c588b83497b189fbb606e62bb"
+      },
+      "4.2.6-bbc-m5-s09": {
+        "carries": 61,
+        "label": "Between milestones 5 and 6, step 9 of 10: M5 plus the carries up to source235: keep a drained Borg from diving regardless of prior direction",
+        "ref": "31e71f0873c3166b195499bf86b5457ec962b2b5",
+        "repository": "diegoami/better-borg-c",
+        "role": "bisect",
+        "source": "https://github.com/diegoami/better-borg-c/commit/31e71f0873c3166b195499bf86b5457ec962b2b5"
+      },
+      "4.2.6-bbc-m6": {
+        "carries": 63,
+        "formerly": [
+          "bbc-m6"
+        ],
+        "label": "better-borg-c milestone 6 (tag 4.2.6-impact-v6): 13 carries and one overlap since milestone 5",
+        "ref": "b3c825c97c8aef18b252a7fb7d9b7dceef83d586",
+        "repository": "diegoami/better-borg-c",
+        "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE6.md",
+        "tag": "4.2.6-impact-v6"
+      }
+    },
+    "suites": {
+      "classes-1800-warriors": {
+        "assigned_characters": {
+          "1019051652": [
+            "Elf",
+            "Warrior"
+          ],
+          "1025781865": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "1028557754": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1039810670": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "104287461": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "104385626": [
+            "Kobold",
+            "Warrior"
+          ],
+          "1047871405": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1058178192": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1071051290": [
+            "Elf",
+            "Warrior"
+          ],
+          "1088883001": [
+            "Human",
+            "Warrior"
+          ],
+          "1121783509": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1122041790": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1126568599": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "1129304604": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1155146108": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1157897194": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1174744961": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1177001389": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1190127246": [
+            "Kobold",
+            "Warrior"
+          ],
+          "1200508577": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1203844272": [
+            "Human",
+            "Warrior"
+          ],
+          "1235843421": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1255090136": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1259705404": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1269639523": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1289138472": [
+            "Human",
+            "Warrior"
+          ],
+          "129467852": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1296614300": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "1312323730": [
+            "Elf",
+            "Warrior"
+          ],
+          "131595256": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1316340857": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1326666591": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1327634997": [
+            "Kobold",
+            "Warrior"
+          ],
+          "1337777686": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "1352670668": [
+            "Human",
+            "Warrior"
+          ],
+          "1356248624": [
+            "Elf",
+            "Warrior"
+          ],
+          "1357979677": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "136747883": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "1367794405": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1374756587": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "1375586104": [
+            "Kobold",
+            "Warrior"
+          ],
+          "1380100386": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "138864403": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1401330871": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1427985687": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1462773604": [
+            "Kobold",
+            "Warrior"
+          ],
+          "1477973944": [
+            "Elf",
+            "Warrior"
+          ],
+          "1481908410": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1488202005": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1503262659": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "151355675": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1515505937": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1519862922": [
+            "Human",
+            "Warrior"
+          ],
+          "1532621812": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1552078737": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1569871017": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "159074581": [
+            "Human",
+            "Warrior"
+          ],
+          "1593777953": [
+            "Elf",
+            "Warrior"
+          ],
+          "1597870353": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "161870564": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1627190638": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1636064084": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1636934199": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1653223723": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1655093287": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1658729849": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1661778003": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "166604908": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1675322435": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1685742167": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1702448127": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "1715153687": [
+            "Elf",
+            "Warrior"
+          ],
+          "1718822315": [
+            "Human",
+            "Warrior"
+          ],
+          "1735292709": [
+            "Human",
+            "Warrior"
+          ],
+          "1736476654": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1741690893": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1746665433": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1751751763": [
+            "Kobold",
+            "Warrior"
+          ],
+          "1763129788": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1764583527": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1785428741": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1808419225": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "1816553362": [
+            "Human",
+            "Warrior"
+          ],
+          "1821728573": [
+            "Elf",
+            "Warrior"
+          ],
+          "1824713728": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "182815350": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1838955909": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1859521195": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1868115537": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1897124378": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1903480237": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1920507879": [
+            "Human",
+            "Warrior"
+          ],
+          "1924084353": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1948861314": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1955962546": [
+            "Human",
+            "Warrior"
+          ],
+          "196211983": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1969701537": [
+            "Kobold",
+            "Warrior"
+          ],
+          "1972332898": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1978307485": [
+            "Kobold",
+            "Warrior"
+          ],
+          "2005296798": [
+            "Kobold",
+            "Warrior"
+          ],
+          "2006226789": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "2018502278": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "2044933670": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "204602382": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "207054261": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "207155813": [
+            "Gnome",
+            "Warrior"
+          ],
+          "207284874": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "2074799137": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "2096228767": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "2102114119": [
+            "Kobold",
+            "Warrior"
+          ],
+          "2132671068": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "2133904684": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "2139375437": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "237520360": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "249310196": [
+            "Gnome",
+            "Warrior"
+          ],
+          "256575110": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "262337677": [
+            "Human",
+            "Warrior"
+          ],
+          "263484464": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "271355864": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "287528710": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "28999353": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "308903360": [
+            "Kobold",
+            "Warrior"
+          ],
+          "323295677": [
+            "Kobold",
+            "Warrior"
+          ],
+          "337978328": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "343592468": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "35001376": [
+            "Kobold",
+            "Warrior"
+          ],
+          "360777854": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "366588791": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "37404311": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "391810999": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "402880416": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "410104179": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "419740901": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "420346701": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "424626282": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "42956149": [
+            "Kobold",
+            "Warrior"
+          ],
+          "430086785": [
+            "Human",
+            "Warrior"
+          ],
+          "453749348": [
+            "Elf",
+            "Warrior"
+          ],
+          "455328672": [
+            "Kobold",
+            "Warrior"
+          ],
+          "466245129": [
+            "Gnome",
+            "Warrior"
+          ],
+          "466421524": [
+            "Human",
+            "Warrior"
+          ],
+          "480049625": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "494378654": [
+            "Gnome",
+            "Warrior"
+          ],
+          "495450758": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "508419596": [
+            "Elf",
+            "Warrior"
+          ],
+          "515586730": [
+            "Human",
+            "Warrior"
+          ],
+          "515631727": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "515786202": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "516583270": [
+            "Human",
+            "Warrior"
+          ],
+          "517496259": [
+            "Gnome",
+            "Warrior"
+          ],
+          "522091966": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "529564080": [
+            "Elf",
+            "Warrior"
+          ],
+          "559841940": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "562389415": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "576782268": [
+            "Elf",
+            "Warrior"
+          ],
+          "582703273": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "587974599": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "598799200": [
+            "Kobold",
+            "Warrior"
+          ],
+          "604063478": [
+            "Gnome",
+            "Warrior"
+          ],
+          "609828710": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "618948390": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "620347436": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "621551437": [
+            "Human",
+            "Warrior"
+          ],
+          "627922983": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "628574659": [
+            "Gnome",
+            "Warrior"
+          ],
+          "655965451": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "660738784": [
+            "Kobold",
+            "Warrior"
+          ],
+          "669196807": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "690310410": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "694670532": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "699901762": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "700480475": [
+            "Elf",
+            "Warrior"
+          ],
+          "70171734": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "72303372": [
+            "Kobold",
+            "Warrior"
+          ],
+          "727638840": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "736866367": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "740860644": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "741622146": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "747291634": [
+            "Human",
+            "Warrior"
+          ],
+          "76325764": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "763644204": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "767827692": [
+            "Elf",
+            "Warrior"
+          ],
+          "779228481": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "800836000": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "81272654": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "814566709": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "829722462": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "845431180": [
+            "Gnome",
+            "Warrior"
+          ],
+          "856090987": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "872618772": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "884072154": [
+            "Human",
+            "Warrior"
+          ],
+          "884321737": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "887955477": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "91007333": [
+            "Elf",
+            "Warrior"
+          ],
+          "926112317": [
+            "Elf",
+            "Warrior"
+          ],
+          "928325458": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "932799621": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "972741575": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "975039573": [
+            "Elf",
+            "Warrior"
+          ],
+          "986333564": [
+            "Elf",
+            "Warrior"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The 200 Warrior seeds of classes-1800, with the same race on each seed. Development only: these seeds produced the M5 and M6 warrior findings.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          884072154,
+          1859521195,
+          1356248624,
+          1515505937,
+          1326666591,
+          736866367,
+          1058178192,
+          1028557754,
+          740860644,
+          655965451,
+          1751751763,
+          1088883001,
+          81272654,
+          1715153687,
+          1736476654,
+          1897124378,
+          1296614300,
+          1824713728,
+          131595256,
+          480049625,
+          76325764,
+          1969701537,
+          159074581,
+          263484464,
+          1477973944,
+          1235843421,
+          1259705404,
+          1597870353,
+          2018502278,
+          515786202,
+          1569871017,
+          515631727,
+          1462773604,
+          430086785,
+          1503262659,
+          926112317,
+          1129304604,
+          151355675,
+          763644204,
+          1653223723,
+          1047871405,
+          196211983,
+          972741575,
+          1375586104,
+          1718822315,
+          204602382,
+          767827692,
+          104287461,
+          604063478,
+          287528710,
+          609828710,
+          1481908410,
+          1903480237,
+          495450758,
+          598799200,
+          1203844272,
+          1764583527,
+          1593777953,
+          2133904684,
+          1157897194,
+          1126568599,
+          856090987,
+          1552078737,
+          829722462,
+          360777854,
+          1978307485,
+          1816553362,
+          182815350,
+          1071051290,
+          699901762,
+          161870564,
+          1039810670,
+          1924084353,
+          618948390,
+          1655093287,
+          694670532,
+          2102114119,
+          1920507879,
+          690310410,
+          700480475,
+          1972332898,
+          1685742167,
+          1025781865,
+          1532621812,
+          2132671068,
+          1675322435,
+          872618772,
+          323295677,
+          1735292709,
+          1155146108,
+          576782268,
+          1488202005,
+          1741690893,
+          932799621,
+          1636934199,
+          2074799137,
+          1269639523,
+          741622146,
+          660738784,
+          747291634,
+          1658729849,
+          1019051652,
+          424626282,
+          207155813,
+          562389415,
+          391810999,
+          343592468,
+          1427985687,
+          620347436,
+          1190127246,
+          1519862922,
+          1868115537,
+          91007333,
+          1948861314,
+          249310196,
+          2006226789,
+          138864403,
+          1785428741,
+          420346701,
+          779228481,
+          2005296798,
+          1955962546,
+          1121783509,
+          975039573,
+          402880416,
+          1122041790,
+          1808419225,
+          28999353,
+          166604908,
+          37404311,
+          337978328,
+          72303372,
+          1352670668,
+          1636064084,
+          529564080,
+          814566709,
+          494378654,
+          70171734,
+          1401330871,
+          2139375437,
+          1380100386,
+          419740901,
+          42956149,
+          621551437,
+          522091966,
+          1821728573,
+          366588791,
+          845431180,
+          559841940,
+          207054261,
+          727638840,
+          2096228767,
+          136747883,
+          455328672,
+          1289138472,
+          1367794405,
+          453749348,
+          256575110,
+          466245129,
+          627922983,
+          587974599,
+          669196807,
+          1746665433,
+          1374756587,
+          104385626,
+          516583270,
+          1838955909,
+          508419596,
+          129467852,
+          517496259,
+          2044933670,
+          1174744961,
+          1763129788,
+          1200508577,
+          1357979677,
+          35001376,
+          515586730,
+          1177001389,
+          1312323730,
+          1661778003,
+          628574659,
+          1702448127,
+          271355864,
+          887955477,
+          928325458,
+          582703273,
+          308903360,
+          262337677,
+          1255090136,
+          986333564,
+          800836000,
+          1316340857,
+          1337777686,
+          410104179,
+          237520360,
+          207284874,
+          884321737,
+          1327634997,
+          466421524,
+          1627190638
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "class": "Warrior",
+          "suite": "classes-1800"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-08 16:50 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-bbc-m5",
+    "description": "Which carry between milestones 5 and 6 changes Warrior play: M5, the nine intermediate carry steps and M6 on the 200 Warrior seeds of classes-1800",
+    "name": "bisect-m5-m6-warriors",
+    "profiles": [
+      "default"
+    ],
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-bbc-m5",
+      "4.2.6-bbc-m5-s01",
+      "4.2.6-bbc-m5-s02",
+      "4.2.6-bbc-m5-s03",
+      "4.2.6-bbc-m5-s04",
+      "4.2.6-bbc-m5-s05",
+      "4.2.6-bbc-m5-s06",
+      "4.2.6-bbc-m5-s07",
+      "4.2.6-bbc-m5-s08",
+      "4.2.6-bbc-m5-s09",
+      "4.2.6-bbc-m6"
+    ],
+    "suites": [
+      "classes-1800-warriors"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "42496017953-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/42496017953",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "1ca303c1ad36b2b7043bfadfa4a647223c34b70d"
+}
