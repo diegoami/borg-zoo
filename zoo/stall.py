@@ -44,14 +44,15 @@ def observer(states, trace_text):
             if len(parts) == 3 and parts[1].lstrip('-').isdigit():
                 notes.append((int(parts[1]), parts[2][:NOTE_CHARS]))
     frozen_notes = [text for turn, text in notes if turn == frozen]
+    feeling_notes = sum(1 for text in frozen_notes if 'FEELING_DANGER:' in text)
     recent = states[-TAIL:]
     span_turns = recent[-1].get('turn', 0) - recent[0].get('turn', 0)
     span_decisions = (recent[-1].get('decisions') or 0) - (recent[0].get('decisions') or 0)
     return {
         'source': 'observer',
-        # Sampled states can alias a stair cycle; more than one depth at the
-        # frozen turn is a level change too.
-        'kind': _kind(decisions_delta, energy_delta, depth_changes or len({d for d in depths if d is not None}) > 1),
+        # Sampled states can alias a stair cycle; the Borg's level-feeling
+        # notes mark every new level, so they count as level changes too.
+        'kind': _kind(decisions_delta, energy_delta, depth_changes or feeling_notes),
         'last_turn': frozen,
         'states_at_last_turn': len(at_frozen),
         'decisions_delta': decisions_delta,
@@ -59,6 +60,7 @@ def observer(states, trace_text):
         'depth_changes': depth_changes,
         'depth_changes_note': 'counted between state records, which are sampled every 100 decisions; a lower bound',
         'depths_seen': sorted({d for d in depths if d is not None}),
+        'level_feeling_notes_at_last_turn': feeling_notes,
         'turns_per_1000_decisions': (round(1000 * span_turns / span_decisions, 1) if span_decisions else None),
         'top_notes_at_last_turn': Counter(frozen_notes).most_common(5),
         'note_tail': [f'{turn} {text}' for turn, text in notes[-TAIL:]],

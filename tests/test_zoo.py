@@ -171,14 +171,13 @@ class StallTest(unittest.TestCase):
                          (3, 200, 20000, 2))
         self.assertEqual(st['top_notes_at_last_turn'][0], ('# Munchkin Mode.  Power Climb. ', 2))
 
-    def test_aliased_cycle_is_still_a_level_cycle(self):
-        states = [{'turn': 9, 'decisions': 0, 'energy': 0, 'depth': 1},
-                  {'turn': 9, 'decisions': 100, 'energy': 10000, 'depth': 2},
-                  {'turn': 9, 'decisions': 200, 'energy': 20000, 'depth': 2}]
-        self.assertEqual(stall.observer(states, '')['kind'], 'level_cycle')
+    def test_aliased_cycle_is_found_from_level_feelings(self):
         states = [{'turn': 9, 'decisions': 0, 'energy': 0, 'depth': 2},
                   {'turn': 9, 'decisions': 100, 'energy': 10000, 'depth': 2}]
         self.assertEqual(stall.observer(states, '')['kind'], 'energy_without_time')
+        trace = 'BORG 9 # FEELING_DANGER:8 (+)\nBORG 9 # Fleeing level. Munchkin Mode\n'
+        st = stall.observer(states, trace)
+        self.assertEqual((st['kind'], st['level_feeling_notes_at_last_turn']), ('level_cycle', 1))
 
     def test_zero_energy_retry_and_no_decisions(self):
         same = [{'turn': 10, 'decisions': 100, 'energy': 50, 'depth': 3},
