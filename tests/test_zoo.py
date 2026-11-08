@@ -445,6 +445,84 @@ class MandosTest(unittest.TestCase):
                   for s in (11, 29, 47)]
         rows = {r['specimen']: r for r in stats.analyse(exp, cells)['smoke']}
         self.assertIsNone(rows['neo-b3-mandos']['vs_version'])
+
+
+def api2_record(specimen, outcome='turn_cap', **extra):
+    lane = {'upstream': 'upstream', 'port-only': 'port-only'}
+    rec = mandos_record(outcome, controllerProfile='api2-plugin', commandStreamProfile='api2-intents-v1',
+                        acceptedCommands=899, commandStreamEvents=901, hostReads={'worldReads': 900},
+                        crossModFlags={'bugfix.borgFixes': True}, profileLimits={'stores': 'Core'})
+    rec['provenance'] = dict(rec['provenance'], commit=specimen['ref'],
+                             lane={'name': lane[specimen['lane']], 'includesCTranslations': False})
+    rec.update(extra)
+    return rec
+
+
+class MandosApi2LaneTest(unittest.TestCase):
+    def setUp(self):
+        self.cat = cat_mod.catalogue()
+        self.specs = self.cat['specimens']['specimens']
+        self.suite = dict(self.cat['suites']['smoke'])
+
+    def summary(self, name, record, seed=11):
+        cell = {'suite': 'smoke', 'specimen': name, 'profile': 'default', 'seed': seed}
+        return mandos.summarise(cell, self.specs[name], self.cat['profiles']['default'], self.suite, record, [],
+                                ('Dwarf', 'Warrior'), None, 1.0)
+
+    def test_lanes_are_exact_tag_snapshots_with_the_same_profiles(self):
+        up, port = self.specs['neo-b3-api2-upstream'], self.specs['neo-b3-api2-port.2']
+        self.assertEqual((up['ref'], port['ref']), ('45dee074117d8b4ef49b4b28cd26f118b167ac49',
+                                                    'ca659c519de769b6eb42ef62cb0bf088d57f9772'))
+        for spec in (up, port):
+            self.assertEqual((spec['controller_profile'], spec['command_stream_profile']),
+                             ('api2-plugin', 'api2-intents-v1'))
+            self.assertNotIn('pending', spec)
+        self.assertEqual(self.specs['neo-b3-mandos']['command_stream_profile'], mandos.LEGACY_STREAM)
+
+    def test_profiles_lane_and_counters_are_kept(self):
+        spec = self.specs['neo-b3-api2-port.2']
+        c = self.summary('neo-b3-api2-port.2', api2_record(spec))
+        self.assertEqual(c['outcome'], 'turn_cap')
+        self.assertEqual((c['controller_profile'], c['command_stream_profile']), ('api2-plugin', 'api2-intents-v1'))
+        self.assertEqual(c['lane']['name'], 'port-only')
+        self.assertEqual((c['final']['accepted_commands'], c['final']['command_stream_events']), (899, 901))
+        self.assertEqual(c['cross_mod_flags'], {'bugfix.borgFixes': True})
+
+    def test_a_record_of_another_profile_or_commit_is_a_harness_failure(self):
+        spec = self.specs['neo-b3-api2-upstream']
+        legacy = mandos_record()  # no profile fields: the legacy play-session runner
+        c = self.summary('neo-b3-api2-upstream', legacy)
+        self.assertEqual(c['outcome'], 'harness_failure')
+        self.assertIn('commandStreamProfile', c['error'])
+        moved = api2_record(spec)
+        moved['provenance']['commit'] = '0' * 40
+        self.assertEqual(self.summary('neo-b3-api2-upstream', moved)['outcome'], 'harness_failure')
+        # The legacy specimen still accepts its own records.
+        self.assertEqual(mandos.profile_errors(self.specs['neo-b3-mandos'], legacy), [])
+        self.assertTrue(mandos.profile_errors(self.specs['neo-b3-mandos'], api2_record(spec)))
+
+    def test_the_lanes_pair_with_each_other_but_not_with_legacy_mandos(self):
+        up, port = self.specs['neo-b3-api2-upstream'], self.specs['neo-b3-api2-port.2']
+        cells = []
+        for s in (11, 29, 47):
+            cells.append(dict(self.summary('neo-b3-api2-upstream', api2_record(up, 'death', turn=5000), s)))
+            cells.append(dict(self.summary('neo-b3-api2-port.2', api2_record(port), s)))
+            legacy_spec = self.specs['neo-b3-mandos']
+            cells.append(dict(mandos.summarise({'suite': 'smoke', 'specimen': 'neo-b3-mandos', 'profile': 'default',
+                                                'seed': s}, legacy_spec, self.cat['profiles']['default'],
+                                               self.suite, mandos_record(), [], ('Dwarf', 'Warrior'), None, 1.0)))
+        exp = {'name': 'lanes', 'specimens': ['neo-b3-api2-upstream', 'neo-b3-api2-port.2', 'neo-b3-mandos'],
+               'profiles': ['default'], 'suites': ['smoke'], 'control': 'neo-b3-api2-upstream'}
+        rows = {r['specimen']: r for r in stats.analyse(exp, cells)['smoke']}
+        self.assertEqual(rows['neo-b3-api2-port.2']['vs_version']['rescued'], 3)
+        self.assertIsNone(rows['neo-b3-mandos']['vs_version'])
+        # Equal hashes under different stream profiles are not identical play.
+        a, b = cells[1], cells[2]
+        self.assertEqual(a['play_sha256'], b['play_sha256'])
+        self.assertFalse(stats.same_play(a, b))
+        self.assertTrue(stats.same_play(a, dict(a)))
+
+
 class SubsetSuiteTest(unittest.TestCase):
     def test_subset_keeps_the_parent_assignment(self):
         cat = cat_mod.catalogue()

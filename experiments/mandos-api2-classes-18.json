@@ -1,0 +1,16 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "mandos-api2-classes-18",
+  "description": "The two api2 Mandos lanes, upstream a10655c3 and port-only, on 18 fresh seeds, every class twice (classes-18): assigned births, 100,000 game ticks",
+  "specimens": [
+    "neo-b3-api2-upstream",
+    "neo-b3-api2-port.2"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "neo-b3-api2-upstream"
+}

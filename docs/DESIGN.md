@@ -33,8 +33,9 @@ new names and the old ones keep their results. Runs recorded before
 in `catalogue/specimens.json`.
 
 Neo Angband versions start with `neo-b3`, for Neo Angband 1.23.0-beta.3, the
-engine and content packages they run on: `neo-b3-mandos` is full Mandos, and
-`neo-b3-borg-<release>` an upstream Neo Borg release.
+engine and content packages they run on: `neo-b3-mandos` is full Mandos,
+`neo-b3-borg-<release>` an upstream Neo Borg release, and `neo-b3-api2-<lane>`
+a Mandos measurement snapshot of one Borg source under the api2 adapter.
 
 **Harness.** better-borg-c's `tools/measure-native.py` and observer at a
 pinned commit (`fc9d97cb` since 2026-11-08; before that `8c23ec0d`, whose
@@ -122,11 +123,36 @@ game.
 - **Speed:** about 6× slower than the C Borg (a 100,000-tick run that
   survives took 549 s on one CPU in Mandos's measurement), so Mandos
   specimens get `wall_factor: 3` on the suite's wall limit.
-- **Pending lanes:** the upstream release `v1.4.0-beta.4` and the
-  port-only `v1.4.0-beta.4-port.1` are in the catalogue as `pending`:
-  neither revision has the entry point, and the zoo does not substitute
-  another build for them. The current upstream Neo Borg head
-  (`a10655c3`, checked 2026-11-08) has no Mandos snapshot yet.
+- **Profiles and the api2 lanes** (mandos#215). Two tagged snapshots form
+  the matched pair for comparing upstream with the port repairs:
+
+  | Version | Tag | Snapshot | Borg source |
+  |---|---|---|---|
+  | `neo-b3-api2-upstream` | `v1.4.0-beta.4-upstream.a10655c3-zoo.1` | `45dee074` | official neostryder/neo-angband-mod-borg `a10655c3` |
+  | `neo-b3-api2-port.2` | `v1.4.0-beta.4-port.2` | `ca659c51` | `a10655c3` plus the port repairs, clean producer `cc64c1cc` |
+
+  Neither carries the C corrections. Both run the target's own `plugin.ts`
+  through the same tools-only adapter and declare
+  `controllerProfile=api2-plugin` and `commandStreamProfile=api2-intents-v1`.
+  Each tag is resolved once to its commit in the catalogue.
+  - The specimen declares both profiles. The build and every record must
+    declare the same ones, and the record's commit must be the specimen's,
+    or the run is a harness failure.
+  - Each cell keeps `controller_profile`, `command_stream_profile` and the
+    lane, plus the api2 counters: accepted commands, command-stream events
+    and host reads.
+  - Full Mandos at `cca1293c` declares no profile: it is the legacy
+    `play-session` profile. Statistics pair runs, and compare play hashes,
+    only within one harness kind and command-stream profile
+    (`stats.pairing_class`). So the api2 lanes pair with each other, but
+    not with full Mandos: a difference from full Mandos isn't attributed
+    to the C corrections alone.
+  - The headless profile uses Core's registered store transactions, not
+    the browser's store modal. A UI item-choice prompt it can't answer
+    ends the run as a harness failure, never as a death or a stall.
+- **Pending lanes:** the release `v1.4.0-beta.4` (`48ee6e1c`) and
+  `v1.4.0-beta.4-port.1` (`b076ffb5`) stay `pending`: neither has the
+  entry point, and the api2 lanes are not substituted for them.
 
 **Profile.** `borg.txt` lines, or with `"base": "shipped"`, the version's
 own `src/borg/borg.txt` (formula section included) with named settings
