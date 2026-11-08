@@ -79,6 +79,78 @@
         "bbc-m5"
       ]
     },
+    "4.2.6-bbc-m5-s01": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "ae64c39cb8cf90ebf5f55b7627414847c155b4d2",
+      "carries": 51,
+      "role": "bisect",
+      "label": "Between milestones 5 and 6, step 1 of 10: M5 plus the carries up to source245: raise the munchkin stair range only when it increases",
+      "source": "https://github.com/diegoami/better-borg-c/commit/ae64c39cb8cf90ebf5f55b7627414847c155b4d2"
+    },
+    "4.2.6-bbc-m5-s02": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "120ca9916d0b0813171112f9345375fd7745d76b",
+      "carries": 52,
+      "role": "bisect",
+      "label": "Between milestones 5 and 6, step 2 of 10: M5 plus the carries up to source246: reset the Borg clock gracefully instead of aborting",
+      "source": "https://github.com/diegoami/better-borg-c/commit/120ca9916d0b0813171112f9345375fd7745d76b"
+    },
+    "4.2.6-bbc-m5-s03": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "9cb711cd2fc7bb5ee45530c61bd25a063253492b",
+      "carries": 53,
+      "role": "bisect",
+      "label": "Between milestones 5 and 6, step 3 of 10: M5 plus the carries up to source156: flee excessive danger unless going after Morgoth",
+      "source": "https://github.com/diegoami/better-borg-c/commit/9cb711cd2fc7bb5ee45530c61bd25a063253492b"
+    },
+    "4.2.6-bbc-m5-s04": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "b2c9db4798768703134bffe78014ca94a3432261",
+      "carries": 54,
+      "role": "bisect",
+      "label": "Between milestones 5 and 6, step 4 of 10: M5 plus the carries up to source157: compare current mana with the maximum while waiting for recall",
+      "source": "https://github.com/diegoami/better-borg-c/commit/b2c9db4798768703134bffe78014ca94a3432261"
+    },
+    "4.2.6-bbc-m5-s05": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "f0e10ee1236a800f9b538e609b24afca4b864ff5",
+      "carries": 55,
+      "role": "bisect",
+      "label": "Between milestones 5 and 6, step 5 of 10: M5 plus the carries up to source153: head for the nearest free staircase when desperate",
+      "source": "https://github.com/diegoami/better-borg-c/commit/f0e10ee1236a800f9b538e609b24afca4b864ff5"
+    },
+    "4.2.6-bbc-m5-s06": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "20d7d4e6203d976a6fd294818d6e74c73eb94ad7",
+      "carries": 56,
+      "role": "bisect",
+      "label": "Between milestones 5 and 6, step 6 of 10: M5 plus the carries up to source155: judge each back-away grid on its own",
+      "source": "https://github.com/diegoami/better-borg-c/commit/20d7d4e6203d976a6fd294818d6e74c73eb94ad7"
+    },
+    "4.2.6-bbc-m5-s07": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "d4f9bb5c92179fcc4107d357af3882738d482aff",
+      "carries": 59,
+      "role": "bisect",
+      "label": "Between milestones 5 and 6, step 7 of 10: M5 plus the carries up to sources 141, 142, 144: borg.txt parser hang, bare minus, unreadable file",
+      "source": "https://github.com/diegoami/better-borg-c/commit/d4f9bb5c92179fcc4107d357af3882738d482aff"
+    },
+    "4.2.6-bbc-m5-s08": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "828d5eec26626f0c588b83497b189fbb606e62bb",
+      "carries": 60,
+      "role": "bisect",
+      "label": "Between milestones 5 and 6, step 8 of 10: M5 plus the carries up to source134: skip an unidentified single item in the sell count",
+      "source": "https://github.com/diegoami/better-borg-c/commit/828d5eec26626f0c588b83497b189fbb606e62bb"
+    },
+    "4.2.6-bbc-m5-s09": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "31e71f0873c3166b195499bf86b5457ec962b2b5",
+      "carries": 61,
+      "role": "bisect",
+      "label": "Between milestones 5 and 6, step 9 of 10: M5 plus the carries up to source235: keep a drained Borg from diving regardless of prior direction",
+      "source": "https://github.com/diegoami/better-borg-c/commit/31e71f0873c3166b195499bf86b5457ec962b2b5"
+    },
     "4.2.6-bbc-m6": {
       "repository": "diegoami/better-borg-c",
       "ref": "b3c825c97c8aef18b252a7fb7d9b7dceef83d586",
@@ -166,6 +238,35 @@
       "formerly": [
         "rs-m3"
       ]
+    },
+    "neo-b3-mandos": {
+      "kind": "mandos",
+      "repository": "diegoami/mandos",
+      "ref": "cca1293cb5ab02681b1c200dca2d0cb014c90381",
+      "engine": "Neo Angband 1.23.0-beta.3 (@rpgm-tools/neo-angband-core, -content and -mod-sdk from npm)",
+      "wall_factor": 3,
+      "label": "Full Mandos at cca1293c: the Neo Angband Borg mod with Mandos's port repairs and its nine C corrections, measured through its zoo-run entry point (mandos#213).",
+      "source": "https://github.com/diegoami/mandos/blob/cca1293cb5ab02681b1c200dca2d0cb014c90381/docs/ZOO-HARNESS.md"
+    },
+    "neo-b3-borg-1.4.0-beta.4": {
+      "kind": "mandos",
+      "repository": "diegoami/mandos",
+      "ref": "48ee6e1c4640ca66bdcb946952539690f558a5d9",
+      "engine": "Neo Angband 1.23.0-beta.3 (@rpgm-tools/neo-angband-core, -content and -mod-sdk from npm)",
+      "tag": "v1.4.0-beta.4",
+      "label": "The original upstream Neo Borg release v1.4.0-beta.4, as tagged in Mandos.",
+      "pending": "this revision has no zoo-run entry point; it needs a compatible measurement build of exactly this implementation",
+      "source": "https://github.com/diegoami/mandos/tree/v1.4.0-beta.4"
+    },
+    "neo-b3-borg-1.4.0-beta.4-port.1": {
+      "kind": "mandos",
+      "repository": "diegoami/mandos",
+      "ref": "b076ffb5e1c90983c910e588c99e1bbd1b84e84e",
+      "engine": "Neo Angband 1.23.0-beta.3 (@rpgm-tools/neo-angband-core, -content and -mod-sdk from npm)",
+      "tag": "v1.4.0-beta.4-port.1",
+      "label": "Upstream v1.4.0-beta.4 plus Mandos's port repairs, without its C translations.",
+      "pending": "this revision has no zoo-run entry point; it needs a compatible measurement build of exactly this implementation",
+      "source": "https://github.com/diegoami/mandos/tree/v1.4.0-beta.4-port.1"
     }
   }
 }

@@ -32,6 +32,10 @@ new names and the old ones keep their results. Runs recorded before
 `rs-mN-c`, `rs-rust`); each version lists its earlier names under `formerly`
 in `catalogue/specimens.json`.
 
+Neo Angband versions start with `neo-b3`, for Neo Angband 1.23.0-beta.3, the
+engine and content packages they run on: `neo-b3-mandos` is full Mandos, and
+`neo-b3-borg-<release>` an upstream Neo Borg release.
+
 **Harness.** better-borg-c's `tools/measure-native.py` and observer at a
 pinned commit (`fc9d97cb` since 2026-11-08; before that `8c23ec0d`, whose
 watchdog could abort a run on a split UTF-8 character, better-borg-c#220). For each specimen it exports the source with `git archive`,
@@ -75,6 +79,54 @@ port of the 4.2.6 C Borg, and `4.2.6-rs-m2` carries milestone 2's seven fixes
 identical play between `4.2.6-rs-m2-c` and `4.2.6-rs-m2` is the M2 port's identity check.
 The matching better-borg-c version for `4.2.6-rs-mN` is `4.2.6-bbc-mN`, or `4.2.6`
 for M0.
+
+**Mandos specimens** (`zoo/mandos.py`, kind `mandos`). A diegoami/mandos
+commit that has the headless entry point `tools/zoo-run.mjs`
+([interface](https://github.com/diegoami/mandos/blob/cca1293cb5ab02681b1c200dca2d0cb014c90381/docs/ZOO-HARNESS.md),
+record schema `mandos/zoo-run@1`, mandos#213). Mandos is the Neo Angband
+Borg mod, a TypeScript Borg on the Neo Angband engine from npm, not the C
+game.
+- **Never paired with C.** A Neo seed is a different game from a C seed,
+  so Mandos runs are compared only with other Neo versions; the statistics
+  pair only within one harness kind.
+- **Build:** `pnpm install --frozen-lockfile` and `node tools/zoo-build.mjs`
+  in an exact checkout, once per specimen. The build job keeps the bundle,
+  whose SHA-256 must equal the one Mandos reported for that commit.
+- **Run:** a fresh exact checkout, installed the same way, plays each cell
+  as its own `zoo-run` process with that bundle, which checks source,
+  bundle and content before play. Race and class are always passed
+  explicitly: fixed birth is Human Warrior, assigned birth as the suite
+  says. Mandos has no random first birth, so random-birth suites are
+  rejected.
+- **Settings:** only the nine controller flags apply (`borg_plays_risky`,
+  the six `borg_worships_*`, `borg_self_scum` and `borg_munchkin_start`;
+  `mandos.FLAGS`); a profile with any other setting, or the shipped base,
+  is rejected before the run. The record's effective settings are checked
+  against the profile.
+- **Counters:** `turn` is Core game ticks, ten per normal-speed action, the
+  same unit as the C game's turn counter (but not the same game). The cap
+  stops at the first Core loop boundary at or after it, so a run can
+  overshoot: one rest can run a thousand ticks past. The cell keeps
+  requested and actual ticks. A death after the requested cap was alive at
+  the cap, so it counts as a turn-cap run, with the death in
+  `died_after_cap`. Decisions (issued commands), armed attempts and Core
+  loop calls stay separate.
+- **Outcomes:** `death`, `turn_cap`, `stalled`, `borg_stopped`,
+  `decision_cap` and `harness_failure` are kept as they are; a wall
+  timeout is the zoo's own. A missing or invalid record is a harness
+  failure. None but `death` counts as a death.
+- **Evidence:** the play hash is Mandos's `playSha256` over the issued
+  command stream, checked against the file. Command streams, state streams
+  and logs of runs without an endpoint are kept as workflow artifacts for
+  30 days.
+- **Speed:** about 6× slower than the C Borg (a 100,000-tick run that
+  survives took 549 s on one CPU in Mandos's measurement), so Mandos
+  specimens get `wall_factor: 3` on the suite's wall limit.
+- **Pending lanes:** the upstream release `v1.4.0-beta.4` and the
+  port-only `v1.4.0-beta.4-port.1` are in the catalogue as `pending`:
+  neither revision has the entry point, and the zoo does not substitute
+  another build for them. The current upstream Neo Borg head
+  (`a10655c3`, checked 2026-11-08) has no Mandos snapshot yet.
 
 **Profile.** `borg.txt` lines, or with `"base": "shipped"`, the version's
 own `src/borg/borg.txt` (formula section included) with named settings
@@ -146,7 +198,9 @@ The record holds:
    from the results branch and deploys it.
 
 The build and run jobs place the build at the same absolute path, because the
-runner compiles its private user path into the binary.
+runner compiles its private user path into the binary. Mandos jobs also set
+up Node 22 and check out and install the Mandos commit (`source/`) in both
+jobs.
 
 ## Statistics (`zoo/stats.py`)
 
