@@ -1,11 +1,11 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "classes-rs-m2",
-  "description": "borg-rs M2 against rs-m0 for every class and race (classes-1800): the effect of milestone 2's fixes in the Rust port, and the M2 tree's Rust/C identity",
+  "description": "borg-rs M2 against 4.2.6-rs-m0 for every class and race (classes-1800): the effect of milestone 2's fixes in the Rust port, and the M2 tree's Rust/C identity",
   "specimens": [
-    "rs-m0",
-    "rs-m2-c",
-    "rs-m2"
+    "4.2.6-rs-m0",
+    "4.2.6-rs-m2-c",
+    "4.2.6-rs-m2"
   ],
   "profiles": [
     "default"
@@ -13,5 +13,5 @@
   "suites": [
     "classes-1800"
   ],
-  "control": "rs-m0"
+  "control": "4.2.6-rs-m0"
 }

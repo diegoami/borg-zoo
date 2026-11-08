@@ -5,6 +5,7 @@ built; nothing is written by hand. A question whose experiment has no run yet
 is left out.
 """
 import math
+import re
 
 from . import catalogue as cat_mod
 from . import stats
@@ -81,7 +82,7 @@ def suite_rows(meta, cells):
 
 
 def card_milestones(runs):
-    meta, cells = newest(runs, ['classes-m5', 'milestones-wide', 'milestones-early'])
+    meta, cells = newest(runs, ['classes-m6', 'classes-m5', 'milestones-wide', 'milestones-early'])
     if not meta:
         return None
     suite, s, rows = suite_rows(meta, cells)
@@ -105,28 +106,34 @@ def card_milestones(runs):
             f'<a href="{link(meta)}">Full tables</a></p></div>')
 
 
-def milestone_number(name, prefix):
-    if prefix == 'bbc' and name == 'pristine':
+NAME = re.compile(r'^(?P<engine>\d+\.\d+\.\d+)(?:-(?P<line>bbc|rs)-m(?P<n>\d+))?(?P<c>-c)?$')
+
+
+def milestone_number(name, line):
+    """Milestone of a version name such as 4.2.6 (0), 4.2.6-bbc-m5 or 4.2.6-rs-m3, on one line."""
+    m = NAME.match(name)
+    if not m or m['c']:
+        return None
+    if line == 'bbc' and not m['line']:
         return 0
-    head = f'{prefix}-m'
-    rest = name[len(head):] if name.startswith(head) else ''
-    return int(rest) if rest.isdigit() else None
+    return int(m['n']) if m['line'] == line else None
 
 
-def identity(runs, rust, twin, formerly=()):
+def identity(runs, rust, twin, specs):
     """Best evidence that a Rust specimen plays like its C twin: (identical, pairs, meta).
 
-    formerly: names the Rust specimen had in older runs.
+    Older runs may name either one by a name listed under `formerly`.
     """
     best = (0, 0, None)
-    names = {rust, *formerly}
+    alias = {old: new for new in (rust, twin) for old in (new, *specs[new].get('formerly', ()))}
     for meta, cells, _ in runs:
-        if twin not in meta['experiment']['specimens'] or not names & set(meta['experiment']['specimens']):
+        present = {alias[s] for s in meta['experiment']['specimens'] if s in alias}
+        if present != {rust, twin}:
             continue
         play = {}
         for c in cells:
             if c['outcome'] in stats.VALID and c.get('play_sha256'):
-                who = rust if c['specimen'] in names else c['specimen']
+                who = alias.get(c['specimen'], c['specimen'])
                 play.setdefault((c['suite'], c['profile'], c['seed']), {})[who] = c['play_sha256']
         pairs = [v for v in play.values() if rust in v and twin in v]
         same = sum(1 for v in pairs if v[rust] == v[twin])
@@ -149,7 +156,7 @@ def port_status(runs, specs):
             continue
         twin = next((k for k, v in specs.items() if v.get('kind') == 'borg-rs' and v.get('impl') == 'c'
                      and v['ref'] == s['ref']), None)
-        same, pairs, meta = identity(runs, name, twin, s.get('formerly', ())) if twin else (0, 0, None)
+        same, pairs, meta = identity(runs, name, twin, specs) if twin else (0, 0, None)
         columns[n]['rust'] = {'name': name, 'twin': twin, 'same': same, 'pairs': pairs, 'meta': meta,
                               'tag': s.get('tag')}
     ported = [n for n, c in columns.items() if c['rust']]
@@ -167,7 +174,7 @@ STATE_TEXT = {'identical': 'ported', 'differs': 'ported', 'unmeasured': 'ported'
 
 def port_diagram(cols):
     """better-borg-c milestones on top, the borg-rs Rust port below, as inline SVG."""
-    lane_w, col_w, box_w, top, box_h, gap = 92, 96, 84, 22, 46, 30
+    lane_w, col_w, box_w, top, box_h, gap = 92, 108, 100, 22, 46, 30
     width = lane_w + col_w * len(cols)
     height = top + box_h * 2 + gap + 56
     parts = [f'<svg class="port" viewBox="0 0 {width} {height}" role="img" '

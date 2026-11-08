@@ -3,8 +3,8 @@
   "name": "switches-early-2",
   "description": "More borg.txt switches on the original and the latest milestone: money scumming, chest risk, gold and mana worship. 'shipped' (the version's own borg.txt, unchanged) is an identity check: it should play exactly like default on every seed.",
   "specimens": [
-    "pristine",
-    "bbc-m4"
+    "4.2.6",
+    "4.2.6-bbc-m4"
   ],
   "profiles": [
     "default",
@@ -18,6 +18,6 @@
   "suites": [
     "early-50"
   ],
-  "control": "pristine",
+  "control": "4.2.6",
   "control_profile": "default"
 }

@@ -99,8 +99,8 @@ class SeedSetTest(unittest.TestCase):
     def test_sealed_suite_needs_the_owner(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / 'x.json'
-            exp = {'name': 'x', 'specimens': ['pristine'], 'profiles': ['default'],
-                   'suites': ['sealed-2000'], 'control': 'pristine'}
+            exp = {'name': 'x', 'specimens': ['4.2.6'], 'profiles': ['default'],
+                   'suites': ['sealed-2000'], 'control': '4.2.6'}
             path.write_text(json.dumps(exp))
             with self.assertRaises(ValueError):
                 cat_mod.experiment(path)
@@ -201,8 +201,8 @@ class BorgRsTest(unittest.TestCase):
     def test_borg_rs_specimens_reject_random_birth(self):
         with tempfile.TemporaryDirectory() as tmp:
             bad = Path(tmp) / 'bad.json'
-            bad.write_text(json.dumps({'name': 'x', 'specimens': ['rs-m0'], 'profiles': ['default'],
-                                       'suites': ['early-50-random'], 'control': 'rs-m0'}))
+            bad.write_text(json.dumps({'name': 'x', 'specimens': ['4.2.6-rs-m0'], 'profiles': ['default'],
+                                       'suites': ['early-50-random'], 'control': '4.2.6-rs-m0'}))
             with self.assertRaises(ValueError):
                 cat_mod.experiment(bad)
 
@@ -210,7 +210,7 @@ class BorgRsTest(unittest.TestCase):
         exp = cat_mod.experiment(ROOT / 'experiments/rs-smoke.json')
         plan = cat_mod.plan(exp, 2)
         kinds = {b['specimen']: b['kind'] for b in plan['builds']}
-        self.assertEqual(kinds, {'rs-c': 'borg-rs', 'rs-m0': 'borg-rs', 'pristine': 'better-borg-c'})
+        self.assertEqual(kinds, {'4.2.6-rs-m0-c': 'borg-rs', '4.2.6-rs-m0': 'borg-rs', '4.2.6': 'better-borg-c'})
         self.assertTrue(all('kind' in r and 'ref' in r for r in plan['runs']))
 
     def test_no_pairing_across_harnesses(self):
@@ -219,11 +219,11 @@ class BorgRsTest(unittest.TestCase):
         for s in exp['specimens']:
             for seed in (11, 29):
                 c = cell(s, seed, 'turn_cap')
-                c['harness_kind'] = 'better-borg-c' if s == 'pristine' else 'borg-rs'
+                c['harness_kind'] = 'better-borg-c' if s == '4.2.6' else 'borg-rs'
                 cells.append(c)
         rows = {r['specimen']: r for r in stats.analyse(exp, cells)['smoke'] if r['profile'] == 'default'}
-        self.assertIsNotNone(rows['rs-m0']['vs_version'])
-        self.assertIsNone(rows['pristine']['vs_version'])
+        self.assertIsNotNone(rows['4.2.6-rs-m0']['vs_version'])
+        self.assertIsNone(rows['4.2.6']['vs_version'])
 
 
 class StallTest(unittest.TestCase):
@@ -295,17 +295,17 @@ class LandingTest(unittest.TestCase):
 
 
     def test_port_status_reads_identity_and_skips(self):
-        specs = {'pristine': {'carries': 0, 'ref': 'a'}, 'bbc-m1': {'carries': 2, 'ref': 'b'},
-                 'bbc-m2': {'carries': 7, 'ref': 'c'}, 'bbc-m3': {'carries': 34, 'ref': 'd'},
-                 'rs-c': {'kind': 'borg-rs', 'impl': 'c', 'ref': 'r0'},
-                 'rs-m0': {'kind': 'borg-rs', 'impl': 'rust', 'ref': 'r0', 'formerly': ['rs-rust']},
-                 'rs-m2-c': {'kind': 'borg-rs', 'impl': 'c', 'ref': 'r2'},
-                 'rs-m2': {'kind': 'borg-rs', 'impl': 'rust', 'ref': 'r2'}}
-        old = [dict(cell(s, seed, 'turn_cap'), play_sha256=f'k{seed}') for s in ('rs-c', 'rs-rust') for seed in (1, 2)]
+        specs = {'4.2.6': {'carries': 0, 'ref': 'a'}, '4.2.6-bbc-m1': {'carries': 2, 'ref': 'b'},
+                 '4.2.6-bbc-m2': {'carries': 7, 'ref': 'c'}, '4.2.6-bbc-m3': {'carries': 34, 'ref': 'd'},
+                 '4.2.6-rs-m0-c': {'kind': 'borg-rs', 'impl': 'c', 'ref': 'r0'},
+                 '4.2.6-rs-m0': {'kind': 'borg-rs', 'impl': 'rust', 'ref': 'r0', 'formerly': ['rs-rust']},
+                 '4.2.6-rs-m2-c': {'kind': 'borg-rs', 'impl': 'c', 'ref': 'r2'},
+                 '4.2.6-rs-m2': {'kind': 'borg-rs', 'impl': 'rust', 'ref': 'r2'}}
+        old = [dict(cell(s, seed, 'turn_cap'), play_sha256=f'k{seed}') for s in ('4.2.6-rs-m0-c', 'rs-rust') for seed in (1, 2)]
         new = [dict(cell(s, seed, 'turn_cap'), play_sha256=f'k{seed}{s[-1] if seed == 2 else ""}')
-               for s in ('rs-m2-c', 'rs-m2') for seed in (1, 2)]
-        runs = [({'experiment': {'specimens': ['rs-c', 'rs-rust']}}, old, None),
-                ({'experiment': {'specimens': ['rs-m2-c', 'rs-m2']}}, new, None)]
+               for s in ('4.2.6-rs-m2-c', '4.2.6-rs-m2') for seed in (1, 2)]
+        runs = [({'experiment': {'specimens': ['4.2.6-rs-m0-c', 'rs-rust']}}, old, None),
+                ({'experiment': {'specimens': ['4.2.6-rs-m2-c', '4.2.6-rs-m2']}}, new, None)]
         cols = {c['n']: c for c in landing.port_status(runs, specs)}
         self.assertEqual((cols[0]['state'], cols[0]['rust']['same'], cols[0]['rust']['pairs']), ('identical', 2, 2))
         self.assertEqual(cols[1]['state'], 'skipped')
@@ -343,7 +343,7 @@ class EndToEndTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             tmp = Path(tmp)
             (tmp / 'cells').mkdir()
-            records = [cell(s, seed, 'death' if (s == 'pristine' and seed == 11) else 'turn_cap')
+            records = [cell(s, seed, 'death' if (s == '4.2.6' and seed == 11) else 'turn_cap')
                        for s in exp['specimens'] for seed in (11, 29)]
             (tmp / 'cells/a.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in records))
             main(['collect', '--experiment', str(ROOT / 'experiments/milestones-smoke.json'),
@@ -355,22 +355,22 @@ class EndToEndTest(unittest.TestCase):
             self.assertEqual(json.loads((run / 'meta.json').read_text())['missing_cells'], 5)
             self.assertEqual(site.build_site(tmp / 'results', tmp / 'site'), 1)
             page = (tmp / 'site/runs/milestones-smoke/t-1/index.html').read_text()
-            self.assertIn('Paired against pristine, same profile', page)
+            self.assertIn('Paired against 4.2.6, same profile', page)
             self.assertIn('Rescued', page)
             self.assertNotIn('same version', page)
 
     def test_two_paired_views(self):
-        exp = {"name": "two-views", "specimens": ["pristine", "bbc-m4"], "profiles": ["default", "shipped", "dynamic-calcs"], "suites": ["early-50"], "control": "pristine", "control_profile": "default"}
+        exp = {"name": "two-views", "specimens": ["4.2.6", "4.2.6-bbc-m4"], "profiles": ["default", "shipped", "dynamic-calcs"], "suites": ["early-50"], "control": "4.2.6", "control_profile": "default"}
         cells = [dict(cell(s, seed, 'turn_cap', profile=p), suite='early-50')
                  for s in exp['specimens'] for p in exp['profiles'] for seed in (1, 2)]
         rows = stats.analyse(exp, cells)['early-50']
         by = {(r['specimen'], r['profile']): r for r in rows}
-        self.assertIsNone(by[('pristine', 'default')]['vs_version'])
-        self.assertIsNone(by[('pristine', 'default')]['vs_profile'])
-        self.assertIsNotNone(by[('pristine', 'dynamic-calcs')]['vs_profile'])
-        self.assertIsNone(by[('pristine', 'dynamic-calcs')]['vs_version'])
-        self.assertIsNotNone(by[('bbc-m4', 'dynamic-calcs')]['vs_version'])
-        self.assertIsNotNone(by[('bbc-m4', 'dynamic-calcs')]['vs_profile'])
+        self.assertIsNone(by[('4.2.6', 'default')]['vs_version'])
+        self.assertIsNone(by[('4.2.6', 'default')]['vs_profile'])
+        self.assertIsNotNone(by[('4.2.6', 'dynamic-calcs')]['vs_profile'])
+        self.assertIsNone(by[('4.2.6', 'dynamic-calcs')]['vs_version'])
+        self.assertIsNotNone(by[('4.2.6-bbc-m4', 'dynamic-calcs')]['vs_version'])
+        self.assertIsNotNone(by[('4.2.6-bbc-m4', 'dynamic-calcs')]['vs_profile'])
 
 
 if __name__ == '__main__':

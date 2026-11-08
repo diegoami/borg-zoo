@@ -3,8 +3,8 @@
   "name": "milestones-deep",
   "description": "The original C Borg against better-borg-c milestone 4 on 1,000 development seeds at 400,000 engine turns, deep enough for most carried fixes to matter",
   "specimens": [
-    "pristine",
-    "bbc-m4"
+    "4.2.6",
+    "4.2.6-bbc-m4"
   ],
   "profiles": [
     "default"
@@ -12,5 +12,5 @@
   "suites": [
     "deep-1000"
   ],
-  "control": "pristine"
+  "control": "4.2.6"
 }

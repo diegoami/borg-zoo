@@ -14,70 +14,108 @@
     ]
   },
   "specimens": {
-    "pristine": {
+    "4.2.6": {
       "repository": "diegoami/better-borg-c",
       "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "carries": 0,
       "label": "Original C Borg (angband/angband e473720)",
-      "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3"
+      "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
+      "formerly": [
+        "pristine"
+      ]
     },
-    "bbc-m1": {
+    "4.2.6-bbc-m1": {
       "repository": "diegoami/better-borg-c",
       "ref": "d4bfdce9d4782cf83994ad52de707a52d1f31018",
       "carries": 2,
       "label": "better-borg-c milestone 1",
-      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/MILESTONE-1.md"
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/MILESTONE-1.md",
+      "tag": "4.2.6-impact-v1",
+      "formerly": [
+        "bbc-m1"
+      ]
     },
-    "bbc-m2": {
+    "4.2.6-bbc-m2": {
       "repository": "diegoami/better-borg-c",
       "ref": "2675d198e4c3fcb1c69ee63ef25a2b6ac27ab96f",
       "carries": 7,
       "label": "better-borg-c milestone 2",
-      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE2.md"
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE2.md",
+      "tag": "4.2.6-impact-v2",
+      "formerly": [
+        "bbc-m2"
+      ]
     },
-    "bbc-m3": {
+    "4.2.6-bbc-m3": {
       "repository": "diegoami/better-borg-c",
       "ref": "702f091f6ac06cae1014df2f85ac218be0189813",
       "carries": 34,
       "label": "better-borg-c milestone 3",
-      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE3.md"
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE3.md",
+      "tag": "4.2.6-impact-v3",
+      "formerly": [
+        "bbc-m3"
+      ]
     },
-    "bbc-m4": {
+    "4.2.6-bbc-m4": {
       "repository": "diegoami/better-borg-c",
       "ref": "70993393a1c946ce8cd38ee558bf1ce6464350e7",
       "carries": 42,
       "label": "better-borg-c milestone 4",
-      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE4.md"
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE4.md",
+      "tag": "4.2.6-impact-v4",
+      "formerly": [
+        "bbc-m4"
+      ]
     },
-    "bbc-m5": {
+    "4.2.6-bbc-m5": {
       "repository": "diegoami/better-borg-c",
       "ref": "5384f12ed51e8fef6f31353fd2daaf0e7fb43856",
       "carries": 50,
-      "label": "better-borg-c milestone 5 (runtime snapshot; expected tag 4.2.5-impact-v5)",
-      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE5.md"
+      "label": "better-borg-c milestone 5 (tag 4.2.6-impact-v5)",
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE5.md",
+      "tag": "4.2.6-impact-v5",
+      "formerly": [
+        "bbc-m5"
+      ]
     },
-    "rs-c": {
+    "4.2.6-bbc-m6": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "b3c825c97c8aef18b252a7fb7d9b7dceef83d586",
+      "tag": "4.2.6-impact-v6",
+      "carries": 63,
+      "label": "better-borg-c milestone 6 (tag 4.2.6-impact-v6): 13 carries and one overlap since milestone 5",
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE6.md",
+      "formerly": [
+        "bbc-m6"
+      ]
+    },
+    "4.2.6-rs-m0-c": {
       "kind": "borg-rs",
       "impl": "c",
       "repository": "diegoami/borg-rs",
       "ref": "aa4ad6cfeea2cf19870e224219dfe66688175c6e",
       "carries": 0,
       "label": "borg-rs harness, C Borg (pristine C Borg under the borgh frontend)",
-      "source": "https://github.com/diegoami/borg-rs/blob/main/docs/harness.md"
+      "source": "https://github.com/diegoami/borg-rs/blob/main/docs/harness.md",
+      "formerly": [
+        "rs-c"
+      ]
     },
-    "rs-m0": {
+    "4.2.6-rs-m0": {
       "kind": "borg-rs",
       "impl": "rust",
       "repository": "diegoami/borg-rs",
       "ref": "aa4ad6cfeea2cf19870e224219dfe66688175c6e",
       "carries": 0,
-      "label": "borg-rs M0: the Rust port of the pristine C Borg (faithful, C bugs kept). Later Rust specimens follow better-borg-c milestone numbers (rs-m2 carries milestone 2's fixes). Named rs-rust in runs before 2026-11-08.",
+      "label": "borg-rs M0: the Rust port of the original C Borg (faithful, C bugs kept). Later Rust versions follow better-borg-c milestone numbers (4.2.6-rs-m2 carries milestone 2's fixes).",
       "source": "https://github.com/diegoami/borg-rs",
       "formerly": [
+        "rs-m0",
         "rs-rust"
       ]
     },
-    "rs-m2-c": {
+    "4.2.6-rs-m2-c": {
       "kind": "borg-rs",
       "impl": "c",
       "repository": "diegoami/borg-rs",
@@ -85,9 +123,12 @@
       "carries": 7,
       "label": "borg-rs 4.2.6-impact-v2, C Borg: the C Borg in borg-rs's tree with better-borg-c milestone 2's seven fixes (borg-rs#6), under the borgh frontend.",
       "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v2",
-      "tag": "4.2.6-impact-v2"
+      "tag": "4.2.6-impact-v2",
+      "formerly": [
+        "rs-m2-c"
+      ]
     },
-    "rs-m2": {
+    "4.2.6-rs-m2": {
       "kind": "borg-rs",
       "impl": "rust",
       "repository": "diegoami/borg-rs",
@@ -95,7 +136,36 @@
       "carries": 7,
       "label": "borg-rs M2 (tag 4.2.6-impact-v2): the Rust Borg carrying better-borg-c milestone 2's seven fixes (borg-rs#6, qualified pass at 0bc7a09f). The tag adds borgh's zoo measurement options, off by default.",
       "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v2",
-      "tag": "4.2.6-impact-v2"
+      "tag": "4.2.6-impact-v2",
+      "formerly": [
+        "rs-m2"
+      ]
+    },
+    "4.2.6-rs-m3-c": {
+      "kind": "borg-rs",
+      "impl": "c",
+      "repository": "diegoami/borg-rs",
+      "ref": "3211e91c39ddf8480357193a9ea0a426e93a7c61",
+      "carries": 34,
+      "label": "borg-rs 4.2.6-impact-v3, C Borg: the C Borg in borg-rs's tree with better-borg-c milestone 3's fixes, under the borgh frontend.",
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v3",
+      "tag": "4.2.6-impact-v3",
+      "formerly": [
+        "rs-m3-c"
+      ]
+    },
+    "4.2.6-rs-m3": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "3211e91c39ddf8480357193a9ea0a426e93a7c61",
+      "carries": 34,
+      "label": "borg-rs M3 (tag 4.2.6-impact-v3): the Rust Borg carrying better-borg-c milestone 3's fixes (borg-rs#8; qualified pass, owner accepted).",
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v3",
+      "tag": "4.2.6-impact-v3",
+      "formerly": [
+        "rs-m3"
+      ]
     }
   }
 }

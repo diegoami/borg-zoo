@@ -31,9 +31,9 @@ Locally (under the shared validation lock if other sessions use this machine):
 ```sh
 git clone https://github.com/diegoami/better-borg-c.git harness
 git -C harness checkout "$(python3 -c 'import json;print(json.load(open("catalogue/specimens.json"))["harness"]["commit"])')"
-python3 -m zoo build --specimen pristine --harness harness --out specimens/pristine
-python3 -m zoo run --experiment experiments/milestones-smoke.json --specimen pristine \
-  --build specimens/pristine --harness harness --work work --out cells/pristine.jsonl
+python3 -m zoo build --specimen 4.2.6 --harness harness --out specimens/4.2.6
+python3 -m zoo run --experiment experiments/milestones-smoke.json --specimen 4.2.6 \
+  --build specimens/4.2.6 --harness harness --work work --out cells/4.2.6.jsonl
 python3 -m zoo collect --experiment experiments/milestones-smoke.json --cells cells \
   --results results --run-id local-1
 python3 -m zoo site --results results --out _site

@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "rs-m3-smoke",
+  "description": "borg-rs M3 builds and runs: smoke suite, Rust and C Borg of the M3 tree against 4.2.6-rs-m2",
+  "specimens": [
+    "4.2.6-rs-m2",
+    "4.2.6-rs-m3-c",
+    "4.2.6-rs-m3"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "smoke"
+  ],
+  "control": "4.2.6-rs-m2"
+}

@@ -3,11 +3,11 @@
   "name": "milestones-smoke",
   "description": "All milestones, default profile, smoke suite: a quick check that every specimen builds and runs",
   "specimens": [
-    "pristine",
-    "bbc-m1",
-    "bbc-m2",
-    "bbc-m3",
-    "bbc-m4"
+    "4.2.6",
+    "4.2.6-bbc-m1",
+    "4.2.6-bbc-m2",
+    "4.2.6-bbc-m3",
+    "4.2.6-bbc-m4"
   ],
   "profiles": [
     "default"
@@ -15,5 +15,5 @@
   "suites": [
     "smoke"
   ],
-  "control": "pristine"
+  "control": "4.2.6"
 }

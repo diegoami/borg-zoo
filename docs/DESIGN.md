@@ -7,19 +7,30 @@ owns no Borg code.
 
 ## Pieces
 
-**Specimen.** Repository, full commit SHA, carried-fix count and label. Today
-every specimen lives in better-borg-c's history:
+**Specimen.** Repository, full commit SHA, carried-fix count and label. The
+original C Borg and better-borg-c's milestones:
 
 | Specimen | Commit | Carries |
 | --- | --- | --- |
-| `pristine` | `e473720ed88a` | 0 (original C Borg, angband/angband) |
-| `bbc-m1` | `d4bfdce9d478` | 2 |
-| `bbc-m2` | `2675d198e4c3` | 7 |
-| `bbc-m3` | `702f091f6ac0` | 34 |
-| `bbc-m4` | `70993393a1c9` | 42 |
-| `bbc-m5` | `5384f12ed51e` | 50 (expected tag `4.2.5-impact-v5`) |
+| `4.2.6` | `e473720ed88a` | 0 (original C Borg, angband/angband) |
+| `4.2.6-bbc-m1` | `d4bfdce9d478` | 2 (tag `4.2.6-impact-v1`) |
+| `4.2.6-bbc-m2` | `2675d198e4c3` | 7 (`4.2.6-impact-v2`) |
+| `4.2.6-bbc-m3` | `702f091f6ac0` | 34 (`4.2.6-impact-v3`) |
+| `4.2.6-bbc-m4` | `70993393a1c9` | 42 (`4.2.6-impact-v4`) |
+| `4.2.6-bbc-m5` | `5384f12ed51e` | 50 (`4.2.6-impact-v5`) |
+| `4.2.6-bbc-m6` | `b3c825c97c8a` | 63 (`4.2.6-impact-v6`) |
 
 Carry counts are the length of `patches/series.json` at each commit.
+
+**Names.** A version's name starts with the engine version it is built on:
+`4.2.6` is the original C Borg at the upstream pin, `4.2.6-bbc-mN` is
+better-borg-c milestone N on it, `4.2.6-rs-mN` is the borg-rs Rust Borg
+carrying the same fixes, and `4.2.6-rs-mN-c` is the C Borg of that borg-rs
+tree. When the upstream pin moves to a new engine version, its versions get
+new names and the old ones keep their results. Runs recorded before
+2026-11-08 use the earlier names (`pristine`, `bbc-mN`, `rs-c`, `rs-mN`,
+`rs-mN-c`, `rs-rust`); each version lists its earlier names under `formerly`
+in `catalogue/specimens.json`.
 
 **Harness.** better-borg-c's `tools/measure-native.py` and observer at a
 pinned commit (`fc9d97cb` since 2026-11-08; before that `8c23ec0d`, whose
@@ -36,13 +47,13 @@ records:
 
 The zoo calls `prepare()` and `run()` as a library (`zoo/harness.py`).
 
-**borg-rs specimens.** `rs-c` and `rs-m0` (named `rs-rust` in runs recorded before 2026-11-08) are a borg-rs commit built with
+**borg-rs specimens.** `4.2.6-rs-m0-c` and `4.2.6-rs-m0` are a borg-rs commit built with
 its own `harness/build.sh`: the C Borg and the Rust Borg in the same tree,
 both behind borg-rs's headless `borgh` frontend (`zoo/borgrs.py`). Each run
 mirrors `harness/run.sh`. The run's `borg.txt` is the checkout's
 `harness/borg.txt` with the profile applied, and the outcome comes from
 `summary.json`. The play hash is the hash of the key log, which is borg-rs's
-own equivalence oracle, so identical play between `rs-c` and `rs-m0` is
+own equivalence oracle, so identical play between `4.2.6-rs-m0-c` and `4.2.6-rs-m0` is
 the port's identity check at zoo scale.
 
 Limits compared with the better-borg-c observer:
@@ -58,11 +69,11 @@ maximum depth and character level under both harnesses, which suggests it
 might. Pairing stays off until key-level equality is shown; the observer
 does not log keys.
 
-Rust specimens follow better-borg-c's milestone numbers: `rs-m0` is the
-port of the pristine C Borg, and `rs-m2` carries milestone 2's seven fixes
-(there is no `rs-m1`). `rs-m2-c` is the C Borg of the same borg-rs tree, so
-identical play between `rs-m2-c` and `rs-m2` is the M2 port's identity check.
-The matching better-borg-c specimen for `rs-mN` is `bbc-mN`, or `pristine`
+Rust specimens follow better-borg-c's milestone numbers: `4.2.6-rs-m0` is the
+port of the 4.2.6 C Borg, and `4.2.6-rs-m2` carries milestone 2's seven fixes
+(there is no `4.2.6-rs-m1`). `4.2.6-rs-m2-c` is the C Borg of the same borg-rs tree, so
+identical play between `4.2.6-rs-m2-c` and `4.2.6-rs-m2` is the M2 port's identity check.
+The matching better-borg-c version for `4.2.6-rs-mN` is `4.2.6-bbc-mN`, or `4.2.6`
 for M0.
 
 **Profile.** `borg.txt` lines, or with `"base": "shipped"`, the version's
