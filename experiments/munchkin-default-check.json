@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "munchkin-default-check",
+  "description": "Identity check: the munchkin start by class as the built-in default must play the same games as its base with the munchkin-wdr profile",
+  "specimens": [
+    "4.2.6-bbc-ca3cd62",
+    "4.2.6-bbc-munchkin-by-class"
+  ],
+  "profiles": [
+    "default",
+    "munchkin-wdr"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-bbc-ca3cd62"
+}
