@@ -1,0 +1,102 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+      "history": [
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "default": {
+        "description": "Built-in defaults (the better-borg-c cohort configuration)",
+        "settings": {},
+        "sha256": "44b3cfb53eb6a924a29312a7b8ca21ad80d747f11d1f2eef097242b2994bdbda"
+      }
+    },
+    "specimens": {
+      "rs-m0": {
+        "carries": 0,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-rs M0: the Rust port of the pristine C Borg (faithful, C bugs kept). Later Rust specimens follow better-borg-c milestone numbers (rs-m2 carries milestone 2's fixes). Named rs-rust in runs before 2026-11-08.",
+        "ref": "aa4ad6cfeea2cf19870e224219dfe66688175c6e",
+        "repository": "diegoami/borg-rs",
+        "source": "https://github.com/diegoami/borg-rs"
+      },
+      "rs-m2": {
+        "carries": 7,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-rs M2 (tag 4.2.6-impact-v2): the Rust Borg carrying better-borg-c milestone 2's seven fixes (borg-rs#6, qualified pass at 0bc7a09f). The tag adds borgh's zoo measurement options, off by default.",
+        "ref": "383215189a20a3c47158c8e641d1b99723f84891",
+        "repository": "diegoami/borg-rs",
+        "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v2",
+        "tag": "4.2.6-impact-v2"
+      },
+      "rs-m2-c": {
+        "carries": 7,
+        "impl": "c",
+        "kind": "borg-rs",
+        "label": "borg-rs 4.2.6-impact-v2, C Borg: the C Borg in borg-rs's tree with better-borg-c milestone 2's seven fixes (borg-rs#6), under the borgh frontend.",
+        "ref": "383215189a20a3c47158c8e641d1b99723f84891",
+        "repository": "diegoami/borg-rs",
+        "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v2",
+        "tag": "4.2.6-impact-v2"
+      }
+    },
+    "suites": {
+      "smoke": {
+        "birth": "fixed",
+        "cap": 20000,
+        "description": "better-borg-c frozen cohort v1: 3 seeds, 20,000 engine turns",
+        "role": "pilot",
+        "saves": false,
+        "seeds": [
+          11,
+          29,
+          47
+        ],
+        "stall_seconds": 45,
+        "wall_seconds": 180
+      }
+    }
+  },
+  "completed": "2026-11-08 04:34 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "rs-m0",
+    "description": "borg-rs M2 builds and runs: smoke suite, Rust and C Borg of the M2 tree against rs-m0",
+    "name": "rs-m2-smoke",
+    "profiles": [
+      "default"
+    ],
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "rs-m0",
+      "rs-m2-c",
+      "rs-m2"
+    ],
+    "suites": [
+      "smoke"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "42446546245-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/42446546245",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "b2cd4d564124bf87e7801390c56a6fd1aef99b4e"
+}
