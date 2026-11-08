@@ -238,6 +238,35 @@
       "formerly": [
         "rs-m3"
       ]
+    },
+    "neo-b3-mandos": {
+      "kind": "mandos",
+      "repository": "diegoami/mandos",
+      "ref": "cca1293cb5ab02681b1c200dca2d0cb014c90381",
+      "engine": "Neo Angband 1.23.0-beta.3 (@rpgm-tools/neo-angband-core, -content and -mod-sdk from npm)",
+      "wall_factor": 3,
+      "label": "Full Mandos at cca1293c: the Neo Angband Borg mod with Mandos's port repairs and its nine C corrections, measured through its zoo-run entry point (mandos#213).",
+      "source": "https://github.com/diegoami/mandos/blob/cca1293cb5ab02681b1c200dca2d0cb014c90381/docs/ZOO-HARNESS.md"
+    },
+    "neo-b3-borg-1.4.0-beta.4": {
+      "kind": "mandos",
+      "repository": "diegoami/mandos",
+      "ref": "48ee6e1c4640ca66bdcb946952539690f558a5d9",
+      "engine": "Neo Angband 1.23.0-beta.3 (@rpgm-tools/neo-angband-core, -content and -mod-sdk from npm)",
+      "tag": "v1.4.0-beta.4",
+      "label": "The original upstream Neo Borg release v1.4.0-beta.4, as tagged in Mandos.",
+      "pending": "this revision has no zoo-run entry point; it needs a compatible measurement build of exactly this implementation",
+      "source": "https://github.com/diegoami/mandos/tree/v1.4.0-beta.4"
+    },
+    "neo-b3-borg-1.4.0-beta.4-port.1": {
+      "kind": "mandos",
+      "repository": "diegoami/mandos",
+      "ref": "b076ffb5e1c90983c910e588c99e1bbd1b84e84e",
+      "engine": "Neo Angband 1.23.0-beta.3 (@rpgm-tools/neo-angband-core, -content and -mod-sdk from npm)",
+      "tag": "v1.4.0-beta.4-port.1",
+      "label": "Upstream v1.4.0-beta.4 plus Mandos's port repairs, without its C translations.",
+      "pending": "this revision has no zoo-run entry point; it needs a compatible measurement build of exactly this implementation",
+      "source": "https://github.com/diegoami/mandos/tree/v1.4.0-beta.4-port.1"
     }
   }
 }

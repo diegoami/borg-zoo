@@ -124,6 +124,18 @@ def experiment(path, cat=None):
         if name not in cat['suites']:
             raise ValueError(f'unknown suite: {name}')
     for name in exp['specimens']:
+        if specimens[name].get('pending'):
+            raise ValueError(f'{name} cannot be measured yet: {specimens[name]["pending"]}')
+        if specimens[name].get('kind') == 'mandos':
+            from . import mandos
+            for suite in exp['suites']:
+                if cat['suites'][suite]['birth'] == 'random':
+                    raise ValueError(f'{name}: Mandos plays its first birth as Human Warrior; it has no random '
+                                     f'birth (suite {suite})')
+            for prof in exp['profiles']:
+                bad = mandos.unsupported_settings(cat['profiles'][prof])
+                if bad:
+                    raise ValueError(f'{name}: profile {prof} has settings Mandos cannot apply: {", ".join(bad)}')
         if specimens[name].get('kind') == 'borg-rs':
             for suite in exp['suites']:
                 if cat['suites'][suite]['birth'] == 'random':

@@ -8,7 +8,7 @@ from statistics import median
 
 VALID = ('death', 'turn_cap', 'completion')
 OUTCOMES = ('death', 'turn_cap', 'completion', 'stalled', 'wall_timeout', 'crash',
-            'harness_failure', 'config_error')
+            'harness_failure', 'config_error', 'borg_stopped', 'decision_cap')
 DEPTH_GOAL = 5
 
 

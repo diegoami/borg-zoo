@@ -38,7 +38,7 @@ def cmd_run(args):
     out.parent.mkdir(parents=True, exist_ok=True)
 
     def one(cell):
-        record = harness.run_cell(cell, args.build, args.harness, args.work, cat, keep=args.keep)
+        record = harness.run_cell(cell, args.build, args.harness, args.work, cat, keep=args.keep, source=args.source)
         print(json.dumps({k: record[k] for k in ('specimen', 'profile', 'seed', 'outcome', 'wall_seconds')}),
               flush=True)
         return record
@@ -106,7 +106,7 @@ def main(argv=None):
     s = sub.add_parser('build')
     s.add_argument('--specimen', required=True)
     s.add_argument('--harness', default=None, help='better-borg-c checkout at the pinned harness commit')
-    s.add_argument('--source', default=None, help='borg-rs checkout at the specimen ref (borg-rs specimens)')
+    s.add_argument('--source', default=None, help='borg-rs or Mandos checkout at the specimen ref')
     s.add_argument('--out', required=True)
     s = sub.add_parser('run')
     s.add_argument('--experiment', required=True)
@@ -119,6 +119,7 @@ def main(argv=None):
     s.add_argument('--out', required=True)
     s.add_argument('--jobs', type=int, default=os.cpu_count() or 1)
     s.add_argument('--keep', action='store_true', help='keep traces and terminal logs')
+    s.add_argument('--source', default=None, help='installed Mandos checkout at the specimen ref (Mandos specimens)')
     s = sub.add_parser('collect')
     s.add_argument('--experiment', required=True)
     s.add_argument('--cells', required=True)
