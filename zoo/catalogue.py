@@ -26,8 +26,12 @@ def character(suite, seed):
 
     birth "fixed" is Human Warrior; "random" lets the seeded game choose (None);
     "assigned" deals classes in turn over the seed list and cycles races once
-    per round of classes, so every class meets every race.
+    per round of classes, so every class meets every race. A subset suite
+    carries its parent's assignment per seed.
     """
+    if 'assigned_characters' in suite:
+        race, cls = suite['assigned_characters'][str(seed)]
+        return (race, cls)
     birth = suite['birth']
     if birth == 'fixed':
         return ('Human', 'Warrior')
@@ -65,6 +69,19 @@ def expand_suites(suites):
     out = {}
     for name, suite in suites.items():
         suite = dict(suite)
+        if 'subset' in suite:
+            parent = out.get(suite['subset']['suite'])
+            if parent is None:
+                raise ValueError(f'{name}: subset of an unknown or later suite')
+            wanted = suite['subset']['class']
+            chars = {seed: character(parent, seed) for seed in parent['seeds']}
+            if any(c is None for c in chars.values()):
+                raise ValueError(f'{name}: the parent suite does not assign characters')
+            suite['seeds'] = [seed for seed in parent['seeds'] if chars[seed][1] == wanted]
+            suite['birth'] = 'assigned'
+            suite['assigned_characters'] = {str(seed): list(chars[seed]) for seed in suite['seeds']}
+            out[name] = suite
+            continue
         if suite.get('birth') == 'assigned':
             chars = suite.get('characters') or {}
             for race in chars.get('races', []):
