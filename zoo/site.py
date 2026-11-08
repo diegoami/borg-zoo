@@ -24,7 +24,7 @@ svg.forest{width:100%;height:auto;display:block}
 svg.forest text{fill:var(--fg);font:13px system-ui,-apple-system,Segoe UI,sans-serif}
 svg.forest .axis{stroke:var(--line)}svg.forest .tick{fill:var(--muted);font-size:11px}
 svg.forest .ci{stroke:var(--muted);stroke-width:2}svg.forest .dot{fill:var(--accent)}
-svg.forest .dot.hi{fill:var(--good)}svg.forest .val{fill:var(--muted)}
+svg.forest .dot.hi{fill:var(--good)}svg.forest .val{fill:var(--muted)}svg.forest .head{font-weight:600;font-size:12px}
 .big{font-size:2rem;font-weight:650;line-height:1.1}
 """
 

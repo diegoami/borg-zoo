@@ -13,33 +13,51 @@ from .site import esc, pct, pval, table
 
 
 
-def forest(rows, x_max=None):
+def forest(rows, x_label, y_label, highlight_label=None, x_max=None):
     """Dot (rate) and whisker (95% interval) per row, as inline SVG.
 
-    rows: (label, rate, (lo, hi), highlight). The axis ends at the next 10%
-    above the highest interval, so the chart stays readable on a phone.
+    rows: (label, rate, (lo, hi), highlight). Each row is one arm, named on
+    the left under y_label; the horizontal axis is the death rate, titled
+    x_label. The axis ends at the next 10% above the highest interval, so the
+    chart stays readable on a phone. A legend under the axis says what the
+    dot, the line and a highlighted dot mean.
     """
     if x_max is None:
         top_hi = max([hi for _, rate, (lo, hi), _ in rows if hi is not None] or [0.5])
         x_max = max(0.3, math.ceil((top_hi + 0.02) * 10) / 10)
-    label_w, val_w, plot_w, row_h, top = 184, 44, 252, 28, 8
+    label_w, val_w, plot_w, row_h, head = 184, 52, 244, 28, 24
     width = label_w + plot_w + val_w
-    height = top + row_h * len(rows) + 28
+    plot_bottom = head + row_h * len(rows)
+    height = plot_bottom + 70
     x = lambda v: label_w + plot_w * min(max(v, 0.0), x_max) / x_max  # noqa: E731
     parts = [f'<svg class="forest" viewBox="0 0 {width} {height}" role="img" '
-             f'aria-label="Death rate with 95% interval per arm">']
+             f'aria-label="{esc(x_label)}, with 95% interval, for each {esc(y_label)}">',
+             f'<text class="head" x="{label_w - 10}" y="16" text-anchor="end">{esc(y_label)}</text>',
+             f'<text class="head" x="{width - 4}" y="16" text-anchor="end">Deaths</text>']
     for i in range(0, int(x_max * 100) + 1, 10):
         xv = x(i / 100)
-        parts.append(f'<line class="axis" x1="{xv:.1f}" y1="{top}" x2="{xv:.1f}" y2="{height - 22}"/>')
-        parts.append(f'<text class="tick" x="{xv:.1f}" y="{height - 6}" text-anchor="middle">{i}%</text>')
+        parts.append(f'<line class="axis" x1="{xv:.1f}" y1="{head}" x2="{xv:.1f}" y2="{plot_bottom}"/>')
+        parts.append(f'<text class="tick" x="{xv:.1f}" y="{plot_bottom + 14}" text-anchor="middle">{i}%</text>')
+    parts.append(f'<text class="head" x="{label_w + plot_w / 2:.1f}" y="{plot_bottom + 32}" '
+                 f'text-anchor="middle">{esc(x_label)}</text>')
     for n, (label, rate, (lo, hi), highlight) in enumerate(rows):
-        y = top + row_h * n + row_h / 2
+        y = head + row_h * n + row_h / 2
         parts.append(f'<text x="{label_w - 10}" y="{y + 4:.1f}" text-anchor="end">{esc(label)}</text>')
         if rate is None:
             continue
         parts.append(f'<line class="ci" x1="{x(lo):.1f}" y1="{y:.1f}" x2="{x(hi):.1f}" y2="{y:.1f}"/>')
         parts.append(f'<circle class="dot{" hi" if highlight else ""}" cx="{x(rate):.1f}" cy="{y:.1f}" r="5"/>')
         parts.append(f'<text class="val" x="{width - 4}" y="{y + 4:.1f}" text-anchor="end">{pct(rate)}</text>')
+    ly = plot_bottom + 56
+    legend = [('<circle class="dot" cx="{0}" cy="{1}" r="5"/>', 'death rate'),
+              ('<line class="ci" x1="{2}" y1="{1}" x2="{3}" y2="{1}"/>', '95% interval')]
+    if highlight_label:
+        legend.append(('<circle class="dot hi" cx="{0}" cy="{1}" r="5"/>', highlight_label))
+    lx = 8
+    for mark, text in legend:
+        parts.append(mark.format(lx + 6, ly - 4, lx, lx + 14))
+        parts.append(f'<text class="tick" x="{lx + 20}" y="{ly}">{esc(text)}</text>')
+        lx += 34 + 6.5 * len(text)
     parts.append('</svg>')
     return '<div class="chart">' + ''.join(parts) + '</div>'
 
@@ -69,7 +87,9 @@ def card_milestones(runs):
     suite, s, rows = suite_rows(meta, cells)
     specs = meta['catalogue']['specimens']
     chart = forest([(f'{r["specimen"]} ({specs[r["specimen"]].get("carries", "?")} fixes)',
-                     r['summary']['death_rate'], r['summary']['death_ci'], False) for r in rows])
+                     r['summary']['death_rate'], r['summary']['death_ci'], False) for r in rows],
+                   x_label=f'Share of runs that died before {s["cap"]:,} engine turns',
+                   y_label='Borg version (fixes carried)')
     ps = [r['vs_version']['death_p'] for r in rows if r['vs_version'] and r['vs_version']['death_p'] is not None]
     rates = [r['summary']['death_rate'] for r in rows if r['summary']['death_rate'] is not None]
     differs = [r['specimen'] for r in rows if r['vs_version'] and (r['vs_version']['death_p'] or 1) < 0.05]
@@ -80,7 +100,7 @@ def card_milestones(runs):
     return (f'<div class="card wide"><h2>Do better-borg-c\'s fixes change early survival?</h2>'
             f'<p class="answer">{answer}</p>{chart}'
             f'<p class="foot">Deaths before {s["cap"]:,} engine turns, {len(s["seeds"])} seeds, '
-            f'{esc(s["birth"])} birth. Dot = death rate, line = 95% interval. Most fixes target situations the '
+            f'{esc(s["birth"])} birth. Most fixes target situations the '
             f'early game rarely reaches. <a href="{link(meta)}">Full tables</a></p></div>')
 
 
@@ -92,7 +112,10 @@ def card_settings(runs):
     suite, s, rows = suite_rows(meta, cells)
     control_profile = exp.get('control_profile', exp['profiles'][0])
     chart = forest([(f'{r["specimen"]} · {r["profile"]}', r['summary']['death_rate'], r['summary']['death_ci'],
-                     r['profile'] != control_profile) for r in rows])
+                     r['profile'] != control_profile) for r in rows],
+                   x_label=f'Share of runs that died before {s["cap"]:,} engine turns',
+                   y_label='Borg version · settings profile',
+                   highlight_label=f'not the {control_profile} profile')
     lines = []
     for specimen in exp['specimens']:
         arms = [r for r in rows if r['specimen'] == specimen and r['vs_profile']]
@@ -110,7 +133,7 @@ def card_settings(runs):
             f'<p class="answer"><strong>Munchkin start, by far.</strong> Stair-scumming to a shallow target depth '
             f'at low character level cuts early deaths on both versions:</p><ul>{"".join(lines)}</ul>{chart}{pre}'
             f'<p class="foot">Deaths before {s["cap"]:,} engine turns, {len(s["seeds"])} fresh seeds, '
-            f'{esc(s["birth"])} birth. Green = a non-default profile. It covers the first {s["cap"]:,} turns only; '
+            f'{esc(s["birth"])} birth. It covers the first {s["cap"]:,} turns only; '
             f'munchkin mode ends at character level 12. <a href="{link(meta)}">Full tables</a></p></div>')
 
 
