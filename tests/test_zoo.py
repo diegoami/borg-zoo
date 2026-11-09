@@ -283,7 +283,8 @@ class BorgRsTest(unittest.TestCase):
         exp = cat_mod.experiment(ROOT / 'experiments/m8-smoke.json')
         self.assertTrue(cat_mod.cells(exp))
         exp = cat_mod.experiment(ROOT / 'experiments/classes-m8-munchkin.json')
-        self.assertEqual(len(cat_mod.cells(exp)), 7200)
+        self.assertEqual(exp['profiles'], ['default'])  # munchkin-wdr is a no-op on M8 (review #39)
+        self.assertEqual(len(cat_mod.cells(exp)), 3600)
 
     def test_no_pairing_across_harnesses(self):
         exp = cat_mod.experiment(ROOT / 'experiments/rs-smoke.json')
@@ -421,6 +422,8 @@ class LandingTest(unittest.TestCase):
         self.assertIn('Depth + level', card)  # the combined figure, not the DL5 threshold rate
         self.assertNotIn('DL5', card)
         self.assertNotIn('reached DL', card)
+        self.assertIn('class="dot rust"', card)  # the Rust port's own color, not just its triangle shape
+        self.assertNotIn('M8 + munchkin', card)  # dropped: a no-op on both lines (review #39)
         self.assertIsNone(landing.card_exemplars([]))
 
     def test_turn_snapshots_section_labels_turns_and_skips_arms_without_milestones(self):
@@ -454,6 +457,32 @@ class LandingTest(unittest.TestCase):
         self.assertEqual(section.count('<polygon class="dot hi"'), 4)
         self.assertNotIn('<polygon class="dot "', section)
         self.assertEqual(landing.turn_snapshots_section([]), '')
+
+    def test_class_grid_shares_one_axis_scale_across_classes(self):
+        # One class near the top of both axes, the other near the bottom:
+        # under a per-cell auto-scaled axis these would draw gridlines at
+        # different percentages; review #39 found the footer's claimed
+        # "0-50-100%" was true for at most one class at a time. The y-axis is
+        # now a plain depth+level number (not a 0-100% rate), so the exact
+        # tick count depends on the data; what must hold is that every cell
+        # gets the SAME count, proving one shared scale, not one each.
+        def arm(classes_and_outcomes):
+            cells = []
+            for cls, (deaths, n) in classes_and_outcomes.items():
+                cells += [dict(cell('4.2.6', s + hash(cls) % 1000, 'death' if s < deaths else 'turn_cap',
+                                     max_depth=5 if s % 2 else 1), profile='default', played_class=cls)
+                          for s in range(n)]
+            return ({'experiment': {'name': 'classes', 'suites': ['classes-1800']},
+                     'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'}, cells, None)
+
+        runs = [arm({'Warrior': (5, 100), 'Mage': (95, 100)})]
+        specs = cat_mod.catalogue()['specimens']['specimens']
+        grid = landing.class_grid(runs, specs)
+        cells = grid.split('<div class="class-cell">')[1:]
+        self.assertEqual(len(cells), 2)
+        tick_counts = [c.count('class="axis"') for c in cells]
+        self.assertEqual(tick_counts[0], tick_counts[1])
+        self.assertGreater(tick_counts[0], 2)
 
     def test_overview_page_has_no_milestone_cards(self):
         page = landing.overview_page([])

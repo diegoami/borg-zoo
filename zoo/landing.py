@@ -69,8 +69,10 @@ SHAPES = ('circle', 'diamond', 'triangle', 'square', 'cross')
 def mark(shape, cx, cy, cls):
     """One scatter mark. `cls` is a space-joined set of CSS modifiers:
     "hi" (the recommended setup, good color), "other" (a different game,
-    never paired with the rest - muted color), "outline" (a +munchkin
-    variant of its filled sibling: same shape, hollow instead of solid)."""
+    never paired with the rest - muted color), "rust" (the borg-rs Rust
+    port's own color, next to shape so the two lines are told apart twice
+    over), "outline" (a +munchkin variant of its filled sibling: same
+    shape, hollow instead of solid)."""
     if shape == 'diamond':
         return f'<polygon class="dot {cls}" points="{cx:.1f},{cy - 8:.1f} {cx + 8:.1f},{cy:.1f} ' \
                f'{cx:.1f},{cy + 8:.1f} {cx - 8:.1f},{cy:.1f}"/>'
@@ -95,7 +97,27 @@ def _nice_step(vmax):
     return 1000
 
 
-def scatter(points, x_label, y_label, compact=False, y_fmt='pct'):
+def axis_limits(points, y_fmt='pct'):
+    """The (x_max, y_max) scatter() would pick for these points on its own.
+
+    Exposed so a small-multiples caller (class_grid, turn_snapshots_section)
+    can compute one shared scale over every tile's points combined, then
+    pass it to each tile's own scatter() call as x_max/y_max - otherwise
+    each tile auto-scales to its own data and the same value draws at a
+    different height in every one (review #39).
+    """
+    xs = [p[1] for p in points if p[1] is not None]
+    ys = [p[2] for p in points if p[2] is not None]
+    x_max = max(0.3, math.ceil((max(xs, default=0.3) + 0.03) * 10) / 10)
+    if y_fmt == 'num':
+        y_step = _nice_step(max(ys, default=10) or 1)
+        y_max = max(y_step, math.ceil((max(ys, default=10) * 1.1) / y_step) * y_step)
+    else:
+        y_max = max(0.2, math.ceil((max(ys, default=0.2) + 0.03) * 10) / 10)
+    return x_max, y_max
+
+
+def scatter(points, x_label, y_label, compact=False, y_fmt='pct', x_max=None, y_max=None):
     """Survivability (x) against progress (y), a handful of named setups.
 
     points: (shape, x, y, cls). Marks carry no inline text: real points can
@@ -107,20 +129,23 @@ def scatter(points, x_label, y_label, compact=False, y_fmt='pct'):
 
     compact: a small-multiple (one per class): smaller, coarser gridlines,
     no axis label text (the caller titles it externally).
+
     y_fmt: 'pct' (0-100%, the default: x always is) or 'num' - y is a plain
     combined number (not a rate), with its own round-number step and no %.
+
+    x_max/y_max: fix the axis scale instead of fitting it to these points'
+    own range (see axis_limits). Small multiples that are meant to be
+    compared side by side (the per-class grid, turn snapshots) must share
+    one scale, or the same value draws at a different height in every tile.
     """
     pad_l, pad_b, pad_t, size = (22, 16, 4, 110) if compact else (42, 34, 16, 300)
     x_step = 50 if compact else 10
-    xs = [p[1] for p in points if p[1] is not None]
-    ys = [p[2] for p in points if p[2] is not None]
-    x_max = max(0.3, math.ceil((max(xs, default=0.3) + 0.03) * 10) / 10)
-    if y_fmt == 'num':
-        y_step = _nice_step(max(ys, default=10) or 1)
-        y_max = max(y_step, math.ceil((max(ys, default=10) * 1.1) / y_step) * y_step)
-    else:
-        y_step = 50 if compact else 10
-        y_max = max(0.2, math.ceil((max(ys, default=0.2) + 0.03) * 10) / 10)
+    auto_x, auto_y = axis_limits(points, y_fmt)
+    if x_max is None:
+        x_max = auto_x
+    if y_max is None:
+        y_max = auto_y
+    y_step = _nice_step(y_max) if y_fmt == 'num' else (50 if compact else 10)
     width = pad_l + size + (4 if compact else 16)
     height = pad_t + size + pad_b
     x = lambda v: pad_l + size * min(max(v, 0.0), x_max) / x_max  # noqa: E731
@@ -212,17 +237,22 @@ def _bbc(n, carries):
 
 
 def _rs(n, carries):
-    return {'shape': 'triangle', 'cls': '', 'specimen': f'4.2.6-rs-m{n}', 'profile': 'default',
+    return {'shape': 'triangle', 'cls': 'rust', 'specimen': f'4.2.6-rs-m{n}', 'profile': 'default',
             'name': f'borg-rs M{n} (Rust)', 'note': f'the Rust port carrying the same {carries} fixes, '
             'default settings.'}
 
 
 # Identity is by shape *group*, not one glyph per point, so adding another milestone never
 # needs a new glyph: circle = the C line (better-borg-c), triangle = the Rust port, diamond =
-# the one recommendation, cross = a different game entirely (Neo). "outline" (hollow instead
-# of solid) marks a specimen's +munchkin sibling; exact identification is always the legend
-# table below, by name and number, same mechanism regardless of how many points there are.
-# "Vanilla" is specimen 4.2.6, formerly named "pristine".
+# the one recommendation, cross = a different game entirely (Neo). Color backs shape up rather
+# than repeating it: the Rust port's triangles also carry their own hue (--rust), so the two
+# lines are told apart twice over, not by shape alone. "outline" (hollow instead of solid)
+# marks a specimen's +munchkin sibling - dropped for any specimen whose own default already is
+# the munchkin start by class (M8 on both lines: confirmed identical play/trace hashes, review
+# #39), since pairing it with the munchkin-wdr profile there would just re-measure the same
+# game. Exact identification is always the legend table below, by name and number, same
+# mechanism regardless of how many points there are. "Vanilla" is specimen 4.2.6, formerly
+# named "pristine".
 EXEMPLARS = [
     {'shape': 'circle', 'cls': '', 'specimen': '4.2.6', 'profile': 'default',
      'name': 'Vanilla', 'note': 'the reference version: angband/angband e473720, no fixes, default settings.'},
@@ -233,16 +263,8 @@ EXEMPLARS = [
     {'shape': 'diamond', 'cls': 'hi', 'specimen': '4.2.6-bbc-munchkin-by-class', 'profile': 'default',
      'name': 'Recommended mix', 'note': 'better-borg-c M7’s 76 carried fixes, with the munchkin start by '
      'class as the version’s own default (no profile override needed).'},
-    _bbc(8, 88),
-    {'shape': 'circle', 'cls': 'outline', 'specimen': '4.2.6-bbc-m8', 'profile': 'munchkin-wdr',
-     'name': 'better-borg-c M8 + munchkin', 'note': 'M8 with the same munchkin-start-by-class win tried on it '
-     f'(<a href="{PROFILES_URL}">settings</a>).'},
-    _bbc(9, 98),
-    _rs(4, 42), _rs(5, 50), _rs(6, 63),
-    _rs(8, 88),
-    {'shape': 'triangle', 'cls': 'outline', 'specimen': '4.2.6-rs-m8', 'profile': 'munchkin-wdr',
-     'name': 'borg-rs M8 (Rust) + munchkin', 'note': 'the Rust port’s M8 with the same munchkin win tried '
-     f'on it (<a href="{PROFILES_URL}">settings</a>).'},
+    _bbc(8, 88), _bbc(9, 98),
+    _rs(4, 42), _rs(5, 50), _rs(6, 63), _rs(8, 88),
     {'shape': 'cross', 'cls': 'other', 'specimen': 'neo-b3-api2-upstream', 'profile': 'default',
      'name': 'Neo Angband (Mandos, upstream)', 'note': 'a different engine on different seeds — '
      '<strong>never paired</strong> with the C/Rust points above; shown for scale only.'},
@@ -304,7 +326,7 @@ def card_exemplars(runs):
     cross_run = len(run_keys) > 1
     answer = (f'The <strong>recommended mix</strong> is ahead of vanilla on both axes and of vanilla + '
               f'munchkin on survival too, in the runs recorded so far — but those points are not one '
-              f'controlled comparison: {"each comes from its own experiment and suite" if cross_run else ""} '
+              f'controlled comparison: {"at least one of them comes from a different experiment or suite" if cross_run else ""} '
               f'(see the Run column), the gaps are a few percentage points, and no interval is shown here. '
               f'Build better-borg-c’s <code>munchkin-by-class</code> commit as-is (no profile needed) to try '
               f'it; treat it as the current lead, not a confirmed result, until a same-run comparison exists.'
@@ -355,20 +377,24 @@ def turn_snapshots_section(found):
     if not any(any(p[1] is not None and p[2] is not None for p in pts) for pts in by_fraction):
         return ''
     one_cap = caps.pop() if len(caps) == 1 else None
+    shown = [i for i in range(len(fractions)) if any(p[1] is not None and p[2] is not None for p in by_fraction[i])]
+    # One scale across every tile, not each fitting its own data: the whole point of this
+    # section is watching progress rise from tile to tile, which a self-scaling axis per tile
+    # would flatten out (the same review #39 finding the by-class grid had).
+    x_max, y_max = axis_limits([p for i in shown for p in by_fraction[i]], y_fmt='num')
     cells = []
-    for i, f in enumerate(fractions):
-        if not any(p[1] is not None and p[2] is not None for p in by_fraction[i]):
-            continue
+    for i in shown:
+        f = fractions[i]
         label = f'{int(one_cap * f):,} turns' if one_cap else f'{int(f * 100)}% of cap'
-        chart = scatter(by_fraction[i], x_label='', y_label='', compact=True, y_fmt='num')
+        chart = scatter(by_fraction[i], x_label='', y_label='', compact=True, y_fmt='num', x_max=x_max, y_max=y_max)
         cells.append(f'<div class="class-cell"><h3>{esc(label)}</h3>{chart}</div>')
     caption = (f'the same setups, at {", ".join(f"{int(one_cap * f):,}" for f in fractions)} turns.'
               if one_cap else
               'the same setups, at 25/50/75/100% of each one’s own cap (more than one cap is in play, '
               'so turns are not directly comparable across tiles).')
     return (f'<h3>Progress over turns</h3><p class="foot">Not just the end state: {caption} Survivability '
-            f'runs left to right, 0–100%; depth + level runs bottom to top, each tile scaled to its own '
-            f'highest point. A tile with only some marks means the rest had no per-turn data recorded '
+            f'runs left to right, 0–100%; depth + level runs bottom to top, one fixed scale across every '
+            f'tile. A tile with only some marks means the rest had no per-turn data recorded '
             f'(no <code>depth_stream</code>, for a borg-rs specimen) or had already died by then.</p>'
             f'<div class="class-grid">{"".join(cells)}</div>')
 
@@ -378,19 +404,26 @@ def class_grid(runs, specs):
                if any(find_arm(runs, e['specimen'], e['profile'], specs, c)[0] for e in EXEMPLARS)]
     if not classes:
         return ''
-    cells = []
+    by_class = {}
     for cls in classes:
-        points, _ = exemplar_points(runs, specs, cls)
-        if not any(p[1] is not None for p in points):
-            continue
-        chart = scatter(points, x_label='', y_label='', compact=True, y_fmt='num')
-        cells.append(f'<div class="class-cell"><h3>{esc(cls)}</h3>{chart}</div>')
-    if not cells:
+        pts, _ = exemplar_points(runs, specs, cls)
+        if any(p[1] is not None for p in pts):
+            by_class[cls] = pts
+    if not by_class:
         return ''
+    # One scale for every cell: the grid's point is comparing classes against
+    # each other, which an auto-scaled axis per cell breaks (the same value
+    # would draw at a different height in every tile). Survivability is
+    # always a rate (0-100% fits every tile); depth + level is a plain
+    # number, so its shared max has to be computed from this grid's own data.
+    x_max, y_max = axis_limits([p for pts in by_class.values() for p in pts], y_fmt='num')
+    cells = [f'<div class="class-cell"><h3>{esc(cls)}</h3>'
+             f'{scatter(pts, x_label="", y_label="", compact=True, y_fmt="num", x_max=x_max, y_max=y_max)}</div>'
+             for cls, pts in by_class.items()]
     return (f'<h3>By class</h3><p class="foot">The same setups and marks as above, split by the class each '
-            f'seed played (<code>classes-1800</code>-style suites assign 200 seeds per class). Survivability '
-            f'runs left to right, 0–100%; depth + level runs bottom to top, each tile scaled to its own '
-            f'highest point.</p><div class="class-grid">{"".join(cells)}</div>')
+            f'seed played (<code>classes-1800</code>-style suites assign 200 seeds per class). One fixed '
+            f'scale for every tile — survivability left to right (0–100%), depth + level bottom to top — so '
+            f'classes can be compared against each other.</p><div class="class-grid">{"".join(cells)}</div>')
 
 
 def card_milestones(runs):
