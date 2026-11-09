@@ -478,6 +478,40 @@ FOOTER = (f'<p class="muted"><a href="versions.html">Versions</a> · <a href="st
           f'<a href="https://github.com/diegoami/borg-zoo">Source</a></p>')
 
 
+def add_your_borg_section():
+    """Static, not derived from results: what a Borg needs to enter the catalogue.
+
+    Sourced from this repo's own rules (AGENTS.md, RULES.md, docs/DESIGN.md), not
+    aspirational: every requirement named here is already enforced somewhere in
+    zoo/catalogue.py or an adapter, or is a standing project rule.
+    """
+    return (
+        '<h2>Add your Borg to the zoo</h2>'
+        '<p class="lead">Adding a specimen, profile, suite or experiment is a catalogue change with a pull '
+        'request to <a href="https://github.com/diegoami/borg-zoo">this repository</a> — the zoo never edits '
+        'another repository\'s code or issues.</p>'
+        '<ol>'
+        '<li>Your Borg lives in its own repository and is pinned by a full commit SHA; the zoo reads it there '
+        'and never changes it. A Borg source change or a new Borg parameter belongs in your repository, not '
+        'here — a parameter enters the zoo as a profile once your repository exposes it with a default that '
+        'reproduces the original behaviour.</li>'
+        '<li>It needs a way to run headless, deterministically, on a seed and a turn cap, that one of the '
+        'zoo\'s adapters already speaks: the better-borg-c observer harness, borg-rs\'s own '
+        '<code>harness/build.sh</code> and <code>borgh</code> frontend, or Mandos\'s headless entry point '
+        '(<code>tools/zoo-run.mjs</code>, record schema <code>mandos/zoo-run@1</code>). A genuinely new shape '
+        'needs a new adapter in <code>zoo/</code> — more work, but the same catalogue-PR process.</li>'
+        '<li>The catalogue entry itself: repository, the pinned commit, how many fixes it carries from the '
+        'tracker (0 for an original), and a short label.</li>'
+        '<li>Starting a large experiment on it is the owner\'s call, same as for every existing specimen.</li>'
+        '</ol>'
+        '<p>The clearest real example: borg-reborn-rs wrote up its own '
+        '<a href="https://github.com/diegoami/borg-reborn-rs/blob/main/docs/ZOO-CHANGE-REQUEST.md">change '
+        'request</a> — what already worked unchanged against the zoo\'s own adapter, the specific catalogue '
+        'and adapter changes it needed, and a ready prompt for the session that would do the work. The owner '
+        'routed it in as <a href="https://github.com/diegoami/borg-zoo/issues/30">issue #30</a>, and it landed '
+        'in <a href="https://github.com/diegoami/borg-zoo/pull/32">PR #32</a>.</p>')
+
+
 def overview_page(runs):
     total = sum(len(c) for _, c, _ in runs)
     latest = runs[0][0].get('completed', '?') if runs else '–'
@@ -489,7 +523,8 @@ def overview_page(runs):
         f'better-borg-c\'s milestones of carried fixes, and the borg-rs Rust port.</p>'
         + (f'<div class="cards">{exemplars}</div>' if exemplars else '<p class="muted">No results yet.</p>')
         + f'<p class="muted">Every milestone, the Rust port and the open stalls are on the '
-        f'<a href="detailed.html">Detailed</a> tab.</p>{FOOTER}')
+        f'<a href="detailed.html">Detailed</a> tab.</p>'
+        + add_your_borg_section() + FOOTER)
 
 
 def landing_page(runs, run_rows):

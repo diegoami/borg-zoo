@@ -388,6 +388,9 @@ class LandingTest(unittest.TestCase):
         self.assertIn('class="tab active" href="index.html"', page)
         self.assertNotIn("Do better-borg-c's fixes change early survival?", page)
         self.assertNotIn('How far has the Rust port got?', page)
+        self.assertIn('Add your Borg to the zoo', page)
+        self.assertIn('issues/30', page)
+        self.assertIn('pull/32', page)
 
 
     def test_port_status_reads_identity_and_skips(self):
