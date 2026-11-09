@@ -320,6 +320,31 @@ def run_page(meta, cells):
                             (['not recorded'] * len(marks) if r['specimen'] in no_marks else
                              [f'{pct(x["reached"])} · {num(x["median_turn"])}' for x in r['depths']])
                             for r in rows]))
+        has_milestones = any(x['n'] for r in rows for x in r['milestones'])
+        if has_milestones:
+            parts.append('<h3>Level, max depth and gold by engine turn</h3>')
+            has_gold = any(x.get('median_gold') is not None for r in rows for x in r['milestones'])
+            parts.append(explain(
+                'For each arm, at 25/50/75% of the cap and at the cap itself: the median character level and '
+                'the median max depth over finished runs that recorded it, among those still going at that '
+                'turn (a death before it is simply excluded, not substituted). Gold on hand is shown only '
+                'where the harness logs it; it is not a net worth — inventory and equipment are hashed, not '
+                'valued (docs/DESIGN.md, "Open questions").' if has_gold else
+                'For each arm, at 25/50/75% of the cap and at the cap itself: the median character level and '
+                'the median max depth over finished runs that recorded it, among those still going at that '
+                'turn (a death before it is simply excluded, not substituted). This harness logs no gold or '
+                'item value, so there is no net-worth column (docs/DESIGN.md, "Open questions").'))
+            m_turns = [x['turn'] for x in rows[0]['milestones']] if rows else []
+
+            def fmt_milestone(x):
+                if not x['n']:
+                    return '–'
+                cell_ = f'lv {num(x["median_level"])} · DL{num(x["median_max_depth"])}'
+                return cell_ + (f' · {num(x["median_gold"])}g' if has_gold and x.get('median_gold') is not None
+                               else '')
+            parts.append(table(['Version'] + [f'{t:,}' if t is not None else '–' for t in m_turns],
+                               [[arm_label(meta, r['specimen'], r['profile'])] +
+                                [fmt_milestone(x) for x in r['milestones']] for r in rows]))
     parts.append('<h2>Specimens and environment</h2>')
     parts.append(explain('The Borg versions in this experiment, each built from the commit shown.'))
     parts.append(table(['Specimen', ('Ref', 'The commit that was built.'),

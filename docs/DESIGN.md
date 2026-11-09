@@ -204,7 +204,13 @@ The current sets are `dev-2000`, `confirm-2000`, `deep-1000` (400,000 turns),
 **Cell.** (suite, specimen, profile, seed) → one JSON line (`borg-zoo/cell@1`).
 The record holds:
 - the outcome, cause and final state;
-- the first turn at each depth mark;
+- the first turn at each depth mark, and, from the same sampled states, a
+  `milestones` list: character level and max depth at 25/50/75/100% of the
+  cap (the last sampled state at or before that turn), so progress can be
+  read at fixed points rather than only at the end. The observer logs no
+  gold or item value, so there is no net-worth figure here (an open
+  question; some borg-rs specimens' own state stream can add gold on hand,
+  not a full net worth, since gear is hashed, not valued);
 - the wall time;
 - the trace hash, and a play hash that leaves out the configuration lines, so
   identical play is detectable across profiles;
@@ -247,7 +253,12 @@ jobs.
 - median maximum depth and level;
 - median death turn;
 - share alive at 25/50/75/100% of the cap;
-- share reaching DL2/3/5/10, with the median turn.
+- share reaching DL2/3/5/10, with the median turn;
+- `milestone_table`: median level, max depth and (where logged) gold on hand
+  at 25/50/75/100% of the cap, over finished runs that recorded it at that
+  point (a death before it is excluded, not substituted with a worse
+  value). Shown on the site as "Level, max depth and gold by engine turn"
+  whenever at least one cell in the suite carries it.
 
 **Paired against the control arm, on seeds where both finished:**
 - rescued, newly killed, both died, both lived;

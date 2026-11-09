@@ -132,6 +132,30 @@ def survival_table(cells, cap, fractions=(0.25, 0.5, 0.75, 1.0)):
     return rows
 
 
+def milestone_table(cells, fractions=(0.25, 0.5, 0.75, 1.0)):
+    """Median level, max depth and (where logged) gold on hand at turn
+    fractions of the cap, over finished runs that recorded milestones
+    (the better-borg-c observer, and borg-rs specimens with depth_stream).
+
+    Not a survival or depth-reached rate: a cell missing from the median
+    (no milestones, or dead before that fraction's turn) is simply excluded,
+    so n can differ per row; it never substitutes a death for a value.
+    """
+    valid = [c for c in cells if c['outcome'] in VALID and c.get('milestones')]
+    rows = []
+    for i, f in enumerate(fractions):
+        at_f = [c['milestones'][i] for c in valid if len(c['milestones']) > i]
+        turn = next((m['turn'] for m in at_f), None)
+        levels = [m['level'] for m in at_f if m.get('level') is not None]
+        depths = [m['max_depth'] for m in at_f if m.get('max_depth') is not None]
+        golds = [m['gold'] for m in at_f if m.get('gold') is not None]
+        rows.append({'fraction': f, 'turn': turn, 'n': len(at_f),
+                     'median_level': median(levels) if levels else None,
+                     'median_max_depth': median(depths) if depths else None,
+                     'median_gold': median(golds) if golds else None})
+    return rows
+
+
 def depth_table(cells, marks=(2, 3, 5, 10)):
     valid = [c for c in cells if c['outcome'] in VALID]
     rows = []
@@ -178,6 +202,7 @@ def analyse(exp, cells):
                                    if profile != control_profile and profile_key in arms else None),
                     'survival': survival_table(arm, arm[0]['cap']),
                     'depths': depth_table(arm),
+                    'milestones': milestone_table(arm),
                 })
         by_suite[suite] = rows
     return by_suite
