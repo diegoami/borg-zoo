@@ -287,6 +287,26 @@
       "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v5",
       "label": "borg-rs M5 (tag 4.2.6-impact-v5): the Rust Borg carrying better-borg-c milestone 5's fixes (5384f12e; borg-rs#13, PR 14; qualified pass, owner accepted). The engine is unchanged since 4.2.6-impact-v4, so its game still differs from better-borg-c M5 by that tag's engine correction (neo-angband-tracker#474)."
     },
+    "4.2.6-rs-m6-c": {
+      "kind": "borg-rs",
+      "impl": "c",
+      "repository": "diegoami/borg-rs",
+      "ref": "e5cb263eed8eee93860b5cfcdc18af99e6d134f1",
+      "tag": "4.2.6-impact-v6",
+      "carries": 63,
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v6",
+      "label": "borg-rs 4.2.6-impact-v6, C Borg: the C Borg in borg-rs's tree with better-borg-c milestone 6's fixes, under the borgh frontend. The engine is unchanged since 4.2.6-impact-v4, so it keeps that tag's engine correction (neo-angband-tracker#474)."
+    },
+    "4.2.6-rs-m6": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "e5cb263eed8eee93860b5cfcdc18af99e6d134f1",
+      "tag": "4.2.6-impact-v6",
+      "carries": 63,
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v6",
+      "label": "borg-rs M6 (tag 4.2.6-impact-v6): the Rust Borg carrying better-borg-c milestone 6's fixes (b3c825c9; borg-rs#15, PR 16; qualified pass, owner accepted). The engine is unchanged since 4.2.6-impact-v4, so its game still differs from better-borg-c M6 by that tag's engine correction (neo-angband-tracker#474)."
+    },
     "neo-b3-mandos": {
       "kind": "mandos",
       "repository": "diegoami/mandos",
