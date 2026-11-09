@@ -63,56 +63,74 @@ def forest(rows, x_label, y_label, highlight_label=None, x_max=None):
     return '<div class="chart">' + ''.join(parts) + '</div>'
 
 
-SHAPES = ('circle', 'diamond', 'triangle')
+SHAPES = ('circle', 'diamond', 'triangle', 'square', 'cross')
 
 
 def mark(shape, cx, cy, cls):
+    """One scatter mark. `cls` is a space-joined set of CSS modifiers:
+    "hi" (the recommended setup, good color), "other" (a different game,
+    never paired with the rest - muted color), "outline" (a +munchkin
+    variant of its filled sibling: same shape, hollow instead of solid)."""
     if shape == 'diamond':
         return f'<polygon class="dot {cls}" points="{cx:.1f},{cy - 8:.1f} {cx + 8:.1f},{cy:.1f} ' \
                f'{cx:.1f},{cy + 8:.1f} {cx - 8:.1f},{cy:.1f}"/>'
     if shape == 'triangle':
         return f'<polygon class="dot {cls}" points="{cx:.1f},{cy - 8:.1f} {cx - 7:.1f},{cy + 6:.1f} ' \
                f'{cx + 7:.1f},{cy + 6:.1f}"/>'
+    if shape == 'square':
+        return f'<rect class="dot {cls}" x="{cx - 6:.1f}" y="{cy - 6:.1f}" width="12" height="12"/>'
+    if shape == 'cross':
+        return (f'<g class="dot cross {cls}">'
+                f'<line x1="{cx - 7:.1f}" y1="{cy:.1f}" x2="{cx + 7:.1f}" y2="{cy:.1f}"/>'
+                f'<line x1="{cx:.1f}" y1="{cy - 7:.1f}" x2="{cx:.1f}" y2="{cy + 7:.1f}"/></g>')
     return f'<circle class="dot {cls}" cx="{cx:.1f}" cy="{cy:.1f}" r="7"/>'
 
 
-def scatter(points, x_label, y_label):
+def scatter(points, x_label, y_label, compact=False):
     """Survivability (x) against progress (y), a handful of named setups.
 
-    points: (shape, x, y, highlighted). Marks carry no inline text: with two
-    real points only a few percent apart, any label placed beside a dot would
+    points: (shape, x, y, cls). Marks carry no inline text: real points can
+    land only a few percent apart, and any label placed beside a dot would
     collide with its neighbour. Shape (and, redundantly, color) is the only
     way to tell points apart on the chart itself; the caller renders the
-    names, exact numbers and links as a legend table below it, in the same
-    order as `points`.
+    names, exact numbers and links as a legend table once, in the same order
+    as `points`, shared across every compact chart that reuses the same set.
+
+    compact: a small-multiple (one per class): smaller, coarser gridlines,
+    no axis label text (the caller titles it externally).
     """
-    pad_l, pad_b, pad_t, size = 42, 34, 16, 300
+    pad_l, pad_b, pad_t, size = (22, 16, 4, 110) if compact else (42, 34, 16, 300)
+    step = 50 if compact else 10
     xs = [p[1] for p in points if p[1] is not None]
     ys = [p[2] for p in points if p[2] is not None]
     x_max = max(0.3, math.ceil((max(xs, default=0.3) + 0.03) * 10) / 10)
     y_max = max(0.2, math.ceil((max(ys, default=0.2) + 0.03) * 10) / 10)
-    width = pad_l + size + 16
+    width = pad_l + size + (4 if compact else 16)
     height = pad_t + size + pad_b
     x = lambda v: pad_l + size * min(max(v, 0.0), x_max) / x_max  # noqa: E731
     y = lambda v: pad_t + size * (1 - min(max(v, 0.0), y_max) / y_max)  # noqa: E731
-    parts = [f'<svg class="scatter" viewBox="0 0 {width} {height}" role="img" '
+    cls = 'scatter compact' if compact else 'scatter'
+    parts = [f'<svg class="{cls}" viewBox="0 0 {width} {height}" role="img" '
              f'aria-label="{esc(x_label)} against {esc(y_label)}, {len(points)} Borg setups, named below the chart">']
-    for i in range(0, int(x_max * 100) + 1, 10):
+    for i in range(0, int(x_max * 100) + 1, step):
         xv = x(i / 100)
         parts.append(f'<line class="axis" x1="{xv:.1f}" y1="{pad_t}" x2="{xv:.1f}" y2="{pad_t + size}"/>')
-        parts.append(f'<text class="tick" x="{xv:.1f}" y="{pad_t + size + 14}" text-anchor="middle">{i}%</text>')
-    for i in range(0, int(y_max * 100) + 1, 10):
+        if not compact:
+            parts.append(f'<text class="tick" x="{xv:.1f}" y="{pad_t + size + 14}" text-anchor="middle">{i}%</text>')
+    for i in range(0, int(y_max * 100) + 1, step):
         yv = y(i / 100)
         parts.append(f'<line class="axis" x1="{pad_l}" y1="{yv:.1f}" x2="{pad_l + size}" y2="{yv:.1f}"/>')
-        parts.append(f'<text class="tick" x="{pad_l - 6}" y="{yv + 4:.1f}" text-anchor="end">{i}%</text>')
-    parts.append(f'<text class="head" x="{pad_l + size / 2:.1f}" y="{height - 4}" '
-                 f'text-anchor="middle">{esc(x_label)}</text>')
-    parts.append(f'<g transform="translate(12,{pad_t + size / 2:.1f}) rotate(-90)">'
-                 f'<text class="head" text-anchor="middle">{esc(y_label)}</text></g>')
-    for shape, xv, yv, hi in points:
+        if not compact:
+            parts.append(f'<text class="tick" x="{pad_l - 6}" y="{yv + 4:.1f}" text-anchor="end">{i}%</text>')
+    if not compact:
+        parts.append(f'<text class="head" x="{pad_l + size / 2:.1f}" y="{height - 4}" '
+                     f'text-anchor="middle">{esc(x_label)}</text>')
+        parts.append(f'<g transform="translate(12,{pad_t + size / 2:.1f}) rotate(-90)">'
+                     f'<text class="head" text-anchor="middle">{esc(y_label)}</text></g>')
+    for shape, xv, yv, mcls in points:
         if xv is None or yv is None:
             continue
-        parts.append(mark(shape, x(xv), y(yv), 'hi' if hi else ''))
+        parts.append(mark(shape, x(xv), y(yv), mcls))
     parts.append('</svg>')
     return '<div class="chart">' + ''.join(parts) + '</div>'
 
@@ -135,13 +153,15 @@ def suite_rows(meta, cells):
     return suite, meta['catalogue']['suites'][suite], stats.analyse(exp, cells)[suite]
 
 
-def find_arm(runs, specimen, profile):
-    """The most informative run with cells for (specimen, profile): the most finished
-    runs (a smoke-suite run of a handful of seeds must never outrank a development-suite
-    run of thousands just for being newer), ties broken by newest. (None, None) if none."""
+def find_arm(runs, specimen, profile, cls=None):
+    """The most informative run with cells for (specimen, profile[, played class]):
+    the most finished runs (a smoke-suite run of a handful of seeds must never
+    outrank a development-suite run of thousands just for being newer), ties
+    broken by newest. (None, None) if none."""
     best_summary, best_meta, best_key = None, None, (-1, '')
     for meta, cells, _ in runs:
-        arm = [c for c in cells if c['specimen'] == specimen and c['profile'] == profile]
+        arm = [c for c in cells if c['specimen'] == specimen and c['profile'] == profile
+               and (cls is None or c.get('played_class') == cls)]
         if not arm:
             continue
         s = stats.arm_summary(arm)
@@ -151,54 +171,121 @@ def find_arm(runs, specimen, profile):
     return best_summary, best_meta
 
 
-# Three fixed setups, not every milestone (that is the detailed tab): where you start, the
-# one single-setting win that is already confirmed, and the version/profile pair the owner
-# actually recommends for play. "Vanilla" is specimen 4.2.6, formerly named "pristine".
+PROFILES_URL = 'https://github.com/diegoami/borg-zoo/blob/main/catalogue/profiles.json'
+
+# Not every milestone (that is the detailed tab): where you start, the one single-setting
+# win already confirmed, the owner's actual recommendation, both lines' newest milestone
+# (M8) plain and with the same win tried on them, and - a different game, never paired with
+# the rest - the Neo Borg. "Vanilla" is specimen 4.2.6, formerly named "pristine".
 EXEMPLARS = [
-    {'shape': 'circle', 'specimen': '4.2.6', 'profile': 'default', 'highlight': False,
-     'name': 'Vanilla', 'note': 'the reference version: angband/angband e473720, no fixes, default settings.',
-     'setup': None},
-    {'shape': 'diamond', 'specimen': '4.2.6', 'profile': 'munchkin-wdr', 'highlight': False,
+    {'shape': 'circle', 'cls': '', 'specimen': '4.2.6', 'profile': 'default',
+     'name': 'Vanilla', 'note': 'the reference version: angband/angband e473720, no fixes, default settings.'},
+    {'shape': 'circle', 'cls': 'outline', 'specimen': '4.2.6', 'profile': 'munchkin-wdr',
      'name': 'Vanilla + munchkin', 'note': 'vanilla with the munchkin start by class profile '
-     '(<code>munchkin-wdr</code>): no other fixes.',
-     'setup': ('https://github.com/diegoami/borg-zoo/blob/main/catalogue/profiles.json',
-               'munchkin-wdr settings')},
-    {'shape': 'triangle', 'specimen': '4.2.6-bbc-munchkin-by-class', 'profile': 'default', 'highlight': True,
+     f'(<code>munchkin-wdr</code>, <a href="{PROFILES_URL}">settings</a>): no other fixes.'},
+    {'shape': 'diamond', 'cls': 'hi', 'specimen': '4.2.6-bbc-munchkin-by-class', 'profile': 'default',
      'name': 'Recommended mix', 'note': 'better-borg-c M7’s 76 carried fixes, with the munchkin start by '
-     'class as the version’s own default (no profile override needed).',
-     'setup': ('https://github.com/diegoami/better-borg-c/tree/task/munchkin-by-class', 'build this branch')},
+     'class as the version’s own default (no profile override needed).'},
+    {'shape': 'square', 'cls': '', 'specimen': '4.2.6-bbc-m8', 'profile': 'default',
+     'name': 'better-borg-c M8', 'note': 'the C line’s newest milestone: 88 carried fixes, default settings.'},
+    {'shape': 'square', 'cls': 'outline', 'specimen': '4.2.6-bbc-m8', 'profile': 'munchkin-wdr',
+     'name': 'better-borg-c M8 + munchkin', 'note': 'M8 with the same munchkin-start-by-class win tried on it '
+     f'(<a href="{PROFILES_URL}">settings</a>).'},
+    {'shape': 'triangle', 'cls': '', 'specimen': '4.2.6-rs-m8', 'profile': 'default',
+     'name': 'borg-rs M8 (Rust)', 'note': 'the Rust port’s newest milestone, carrying the same 88 fixes, '
+     'default settings.'},
+    {'shape': 'triangle', 'cls': 'outline', 'specimen': '4.2.6-rs-m8', 'profile': 'munchkin-wdr',
+     'name': 'borg-rs M8 (Rust) + munchkin', 'note': 'the Rust port’s M8 with the same munchkin win tried '
+     f'on it (<a href="{PROFILES_URL}">settings</a>).'},
+    {'shape': 'cross', 'cls': 'other', 'specimen': 'neo-b3-api2-upstream', 'profile': 'default',
+     'name': 'Neo Angband (Mandos, upstream)', 'note': 'a different engine on different seeds — '
+     '<strong>never paired</strong> with the C/Rust points above; shown for scale only.'},
 ]
 
 
-def card_exemplars(runs):
-    points, rows = [], []
+def exemplar_points(runs, cls=None):
+    """(shape, x, y, css-class) per exemplar, x = survivability, y = progress;
+    cls restricts to one played class (for the per-class grid) or None for all."""
+    points, found = [], []
     for e in EXEMPLARS:
-        s, meta = find_arm(runs, e['specimen'], e['profile'])
+        s, meta = find_arm(runs, e['specimen'], e['profile'], cls)
         x = (1 - s['death_rate']) if s and s['death_rate'] is not None else None
         yv = s['goal_rate'] if s else None
-        points.append((e['shape'], x, yv, e['highlight']))
-        setup = (f' · <a href="{esc(e["setup"][0])}">{esc(e["setup"][1])}</a>' if e['setup'] else '')
-        badge = (f'<svg class="scatter legend-mark" width="16" height="16" viewBox="0 0 16 16">'
-                 f'{mark(e["shape"], 8, 8, "hi" if e["highlight"] else "")}</svg>')
-        rows.append(f'<tr><td class="l">{badge} <strong>{esc(e["name"])}</strong></td>'
-                    f'<td class="l">{e["note"]}{setup}</td>'
-                    f'<td>{pct(x) if x is not None else "–"}</td><td>{pct(yv) if yv is not None else "–"}</td>'
-                    f'<td>{num(s["valid"]) if s else "–"}</td>'
-                    f'<td class="l">{(f"<a href=\"{link(meta)}\">tables</a>") if meta else "–"}</td></tr>')
+        points.append((e['shape'], x, yv, e['cls']))
+        found.append((s, meta))
+    return points, found
+
+
+def card_exemplars(runs):
+    specs = cat_mod.catalogue()['specimens']['specimens']
+    points, found = exemplar_points(runs)
     if not any(p[1] is not None for p in points):
         return None
+    rows = []
+    run_keys = set()
+    for e, (s, meta) in zip(EXEMPLARS, found):
+        source = specs.get(e['specimen'], {}).get('source')
+        src = f' · <a href="{esc(source)}">source</a>' if source else ''
+        x, yv = (1 - s['death_rate']) if s and s['death_rate'] is not None else None, s['goal_rate'] if s else None
+        badge = (f'<svg class="scatter legend-mark" width="16" height="16" viewBox="0 0 16 16">'
+                 f'{mark(e["shape"], 8, 8, e["cls"])}</svg>')
+        if meta:
+            run_keys.add((meta['experiment']['name'], meta['experiment']['suites'][0]))
+            run_cell = (f'<a href="{link(meta)}">{esc(meta["experiment"]["name"])}</a><br>'
+                       f'<span class="muted">{esc(meta["experiment"]["suites"][0])} · '
+                       f'{esc(meta.get("completed", "?"))}</span>')
+        else:
+            run_cell = '–'
+        rows.append(f'<tr><td class="l">{badge} <strong>{esc(e["name"])}</strong></td>'
+                    f'<td class="l">{e["note"]}{src}</td>'
+                    f'<td>{pct(x) if x is not None else "–"}</td><td>{pct(yv) if yv is not None else "–"}</td>'
+                    f'<td>{num(s["valid"]) if s else "–"}</td>'
+                    f'<td class="l">{run_cell}</td></tr>')
     chart = scatter(points, x_label='Survivability — alive at the turn cap',
                     y_label=f'Progress — alive at cap, reached DL{stats.DEPTH_GOAL}')
     legend = ('<div class="wrap"><table><thead><tr><th class="l">Setup</th><th class="l">What it is</th>'
-              f'<th>Alive at cap</th><th>+ DL{stats.DEPTH_GOAL}</th><th>Seeds</th><th class="l">Evidence</th>'
+              f'<th>Alive at cap</th><th>+ DL{stats.DEPTH_GOAL}</th>'
+              '<th title="Cells that reached death or the turn cap; the denominator of the two rates">'
+              'Finished</th><th class="l">Run · suite · completed</th>'
               '</tr></thead><tbody>' + ''.join(rows) + '</tbody></table></div>')
+    grid = class_grid(runs)
+    cross_run = len(run_keys) > 1
+    answer = (f'The <strong>recommended mix</strong> is ahead of vanilla on both axes and of vanilla + '
+              f'munchkin on survival too, in the runs recorded so far — but those points are not one '
+              f'controlled comparison: {"each comes from its own experiment and suite" if cross_run else ""} '
+              f'(see the Run column), the gaps are a few percentage points, and no interval is shown here. '
+              f'Build better-borg-c’s <code>munchkin-by-class</code> commit as-is (no profile needed) to try '
+              f'it; treat it as the current lead, not a confirmed result, until a same-run comparison exists.'
+              if cross_run else
+              f'The <strong>recommended mix</strong> is ahead of vanilla on both axes, in the one recorded run. '
+              f'Build better-borg-c’s <code>munchkin-by-class</code> commit as-is (no profile needed) to try it.')
     return (f'<div class="card wide"><h2>Which setup should I actually run?</h2>'
-            f'<p class="answer">The <strong>recommended mix</strong> beats vanilla on both axes and edges out '
-            f'vanilla + munchkin on survival too: build better-borg-c’s <code>munchkin-by-class</code> '
-            f'branch as-is, no profile needed.</p>{chart}{legend}'
-            f'<p class="foot">Each point is the newest recorded run of that exact version and profile; marker '
-            f'shape, not just color, tells them apart. "Progress" excludes any run that died, so it can never '
-            f'exceed survivability.</p></div>')
+            f'<p class="answer">{answer}</p>{chart}{legend}'
+            f'<p class="foot">Each point is the run with the most finished cells recorded for that exact '
+            f'version, profile (and class, in the grid below) — not necessarily the newest, which is only '
+            f'the tiebreaker; marker shape, not just color, tells them apart. "Progress" excludes any run '
+            f'that died, so it can never exceed survivability. The Neo Angband point is never comparable '
+            f'with the rest: Mandos plays a different engine on different seeds.</p>'
+            f'{grid}</div>')
+
+
+def class_grid(runs):
+    classes = [c for c in cat_mod.CLASSES
+               if any(find_arm(runs, e['specimen'], e['profile'], c)[0] for e in EXEMPLARS)]
+    if not classes:
+        return ''
+    cells = []
+    for cls in classes:
+        points, _ = exemplar_points(runs, cls)
+        if not any(p[1] is not None for p in points):
+            continue
+        chart = scatter(points, x_label='', y_label='', compact=True)
+        cells.append(f'<div class="class-cell"><h3>{esc(cls)}</h3>{chart}</div>')
+    if not cells:
+        return ''
+    return (f'<h3>By class</h3><p class="foot">The same setups and marks as above, split by the class each '
+            f'seed played (<code>classes-1800</code>-style suites assign 200 seeds per class). Axes: '
+            f'0–50–100%, survivability across, progress up.</p><div class="class-grid">{"".join(cells)}</div>')
 
 
 def card_milestones(runs):
