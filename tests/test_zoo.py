@@ -285,6 +285,15 @@ class BorgRsTest(unittest.TestCase):
         exp = cat_mod.experiment(ROOT / 'experiments/classes-m8-munchkin.json')
         self.assertEqual(len(cat_mod.cells(exp)), 7200)
 
+    def test_bbc_m9_carries_ten_more_than_m8_no_rs_counterpart_yet(self):
+        specs = cat_mod.catalogue()['specimens']['specimens']
+        m8, m9 = specs['4.2.6-bbc-m8'], specs['4.2.6-bbc-m9']
+        self.assertEqual((m9['tag'], m9['carries']), ('4.2.6-impact-v9', 98))
+        self.assertEqual(m9['carries'] - m8['carries'], 10)
+        self.assertNotIn('4.2.6-rs-m9', specs)  # borg-rs has not tagged v9 yet
+        exp = cat_mod.experiment(ROOT / 'experiments/m9-smoke.json')
+        self.assertTrue(cat_mod.cells(exp))
+
     def test_no_pairing_across_harnesses(self):
         exp = cat_mod.experiment(ROOT / 'experiments/rs-smoke.json')
         cells = []
