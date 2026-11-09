@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "m8-smoke",
+  "description": "Milestone 8 builds and runs: smoke suite against the original and milestone 7",
+  "specimens": [
+    "4.2.6",
+    "4.2.6-bbc-m7",
+    "4.2.6-bbc-m8"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "smoke"
+  ],
+  "control": "4.2.6"
+}

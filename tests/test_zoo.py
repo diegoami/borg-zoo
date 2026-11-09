@@ -274,6 +274,15 @@ class BorgRsTest(unittest.TestCase):
             exp = cat_mod.experiment(ROOT / f'experiments/{name}.json')
             self.assertTrue(cat_mod.cells(exp))
 
+    def test_bbc_m8_matches_rs_m8s_tag_and_carries(self):
+        specs = cat_mod.catalogue()['specimens']['specimens']
+        bbc, rs = specs['4.2.6-bbc-m8'], specs['4.2.6-rs-m8']
+        self.assertEqual((bbc['tag'], bbc['carries']), ('4.2.6-impact-v8', 88))
+        self.assertEqual((bbc['tag'], bbc['carries']), (rs['tag'], rs['carries']))
+        self.assertNotEqual(bbc['ref'], rs['ref'])  # same milestone, different repositories
+        exp = cat_mod.experiment(ROOT / 'experiments/m8-smoke.json')
+        self.assertTrue(cat_mod.cells(exp))
+
     def test_no_pairing_across_harnesses(self):
         exp = cat_mod.experiment(ROOT / 'experiments/rs-smoke.json')
         cells = []
