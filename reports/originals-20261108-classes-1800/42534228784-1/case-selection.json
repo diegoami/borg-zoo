@@ -1,0 +1,151 @@
+{
+  "additional_c_failure_rule": "lower median death tick among all C deaths to declared NEVER_MOVE races; seed breaks ties",
+  "all_records_audited_before_selection": 3600,
+  "qualification": "Reference examples are not paired worlds or causal controls. C has no separately recorded birth-stat vector. Fallback matching and reused controls remain explicit.",
+  "rules": [
+    {
+      "controls": [
+        {
+          "candidate_caps": 1,
+          "cell": "classes-1800/neo-5a9-original/default/100579143",
+          "matching": "same class only; no same-race cap exists",
+          "rank": [
+            5,
+            12,
+            100579143
+          ],
+          "ranking": "absolute initial-HP difference, then L1 distance of Neo birth-stat vectors when both exist, then numeric seed"
+        },
+        {
+          "candidate_caps": 5,
+          "cell": "classes-1800/angband-e473-original/default/164026340",
+          "matching": "same class and race",
+          "rank": [
+            1,
+            0,
+            164026340
+          ],
+          "ranking": "absolute initial-HP difference, then L1 distance of Neo birth-stat vectors when both exist, then numeric seed"
+        }
+      ],
+      "death": "classes-1800/neo-5a9-original/default/483514869",
+      "death_rule": "lower median death tick, numeric seed breaks ties",
+      "eligible_neo_deaths": 321,
+      "group": "declared_immobile_killer"
+    },
+    {
+      "controls": [
+        {
+          "candidate_caps": 7,
+          "cell": "classes-1800/neo-5a9-original/default/522091966",
+          "matching": "same class and race",
+          "rank": [
+            0,
+            4,
+            522091966
+          ],
+          "ranking": "absolute initial-HP difference, then L1 distance of Neo birth-stat vectors when both exist, then numeric seed"
+        },
+        {
+          "candidate_caps": 12,
+          "cell": "classes-1800/angband-e473-original/default/182815350",
+          "matching": "same class and race",
+          "rank": [
+            0,
+            0,
+            182815350
+          ],
+          "ranking": "absolute initial-HP difference, then L1 distance of Neo birth-stat vectors when both exist, then numeric seed"
+        }
+      ],
+      "death": "classes-1800/neo-5a9-original/default/1255090136",
+      "death_rule": "lower median death tick, numeric seed breaks ties",
+      "eligible_neo_deaths": 238,
+      "group": "maggot_dogs"
+    },
+    {
+      "controls": [
+        {
+          "candidate_caps": 1,
+          "cell": "classes-1800/neo-5a9-original/default/767827692",
+          "matching": "same class and race",
+          "rank": [
+            0,
+            5,
+            767827692
+          ],
+          "ranking": "absolute initial-HP difference, then L1 distance of Neo birth-stat vectors when both exist, then numeric seed"
+        },
+        {
+          "candidate_caps": 11,
+          "cell": "classes-1800/angband-e473-original/default/91007333",
+          "matching": "same class and race",
+          "rank": [
+            0,
+            0,
+            91007333
+          ],
+          "ranking": "absolute initial-HP difference, then L1 distance of Neo birth-stat vectors when both exist, then numeric seed"
+        }
+      ],
+      "death": "classes-1800/neo-5a9-original/default/1593777953",
+      "death_rule": "lower median death tick, numeric seed breaks ties",
+      "eligible_neo_deaths": 131,
+      "group": "poison"
+    }
+  ],
+  "schema": "borg-zoo/systematic-cases@1",
+  "selections": [
+    {
+      "cell": "classes-1800/neo-5a9-original/default/483514869",
+      "group": "declared_immobile_killer",
+      "role": "Neo representative death"
+    },
+    {
+      "cell": "classes-1800/neo-5a9-original/default/100579143",
+      "group": "declared_immobile_killer",
+      "role": "Neo surviving comparison"
+    },
+    {
+      "cell": "classes-1800/angband-e473-original/default/164026340",
+      "group": "declared_immobile_killer",
+      "role": "C surviving reference"
+    },
+    {
+      "cell": "classes-1800/neo-5a9-original/default/1255090136",
+      "group": "maggot_dogs",
+      "role": "Neo representative death"
+    },
+    {
+      "cell": "classes-1800/neo-5a9-original/default/522091966",
+      "group": "maggot_dogs",
+      "role": "Neo surviving comparison"
+    },
+    {
+      "cell": "classes-1800/angband-e473-original/default/182815350",
+      "group": "maggot_dogs",
+      "role": "C surviving reference"
+    },
+    {
+      "cell": "classes-1800/neo-5a9-original/default/1593777953",
+      "group": "poison",
+      "role": "Neo representative death"
+    },
+    {
+      "cell": "classes-1800/neo-5a9-original/default/767827692",
+      "group": "poison",
+      "role": "Neo surviving comparison"
+    },
+    {
+      "cell": "classes-1800/angband-e473-original/default/91007333",
+      "group": "poison",
+      "role": "C surviving reference"
+    },
+    {
+      "cell": "classes-1800/angband-e473-original/default/1872536818",
+      "group": "declared_immobile_killer",
+      "role": "C failure reference"
+    }
+  ],
+  "unique_cases": 10
+}
