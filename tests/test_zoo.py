@@ -282,6 +282,8 @@ class BorgRsTest(unittest.TestCase):
         self.assertNotEqual(bbc['ref'], rs['ref'])  # same milestone, different repositories
         exp = cat_mod.experiment(ROOT / 'experiments/m8-smoke.json')
         self.assertTrue(cat_mod.cells(exp))
+        exp = cat_mod.experiment(ROOT / 'experiments/classes-m8-munchkin.json')
+        self.assertEqual(len(cat_mod.cells(exp)), 7200)
 
     def test_no_pairing_across_harnesses(self):
         exp = cat_mod.experiment(ROOT / 'experiments/rs-smoke.json')
