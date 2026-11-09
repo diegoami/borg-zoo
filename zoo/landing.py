@@ -222,31 +222,50 @@ def card_exemplars(runs):
     if not any(p[1] is not None for p in points):
         return None
     rows = []
+    run_keys = set()
     for e, (s, meta) in zip(EXEMPLARS, found):
         source = specs.get(e['specimen'], {}).get('source')
         src = f' · <a href="{esc(source)}">source</a>' if source else ''
         x, yv = (1 - s['death_rate']) if s and s['death_rate'] is not None else None, s['goal_rate'] if s else None
         badge = (f'<svg class="scatter legend-mark" width="16" height="16" viewBox="0 0 16 16">'
                  f'{mark(e["shape"], 8, 8, e["cls"])}</svg>')
+        if meta:
+            run_keys.add((meta['experiment']['name'], meta['experiment']['suites'][0]))
+            run_cell = (f'<a href="{link(meta)}">{esc(meta["experiment"]["name"])}</a><br>'
+                       f'<span class="muted">{esc(meta["experiment"]["suites"][0])} · '
+                       f'{esc(meta.get("completed", "?"))}</span>')
+        else:
+            run_cell = '–'
         rows.append(f'<tr><td class="l">{badge} <strong>{esc(e["name"])}</strong></td>'
                     f'<td class="l">{e["note"]}{src}</td>'
                     f'<td>{pct(x) if x is not None else "–"}</td><td>{pct(yv) if yv is not None else "–"}</td>'
                     f'<td>{num(s["valid"]) if s else "–"}</td>'
-                    f'<td class="l">{(f"<a href=\"{link(meta)}\">tables</a>") if meta else "–"}</td></tr>')
+                    f'<td class="l">{run_cell}</td></tr>')
     chart = scatter(points, x_label='Survivability — alive at the turn cap',
                     y_label=f'Progress — alive at cap, reached DL{stats.DEPTH_GOAL}')
     legend = ('<div class="wrap"><table><thead><tr><th class="l">Setup</th><th class="l">What it is</th>'
-              f'<th>Alive at cap</th><th>+ DL{stats.DEPTH_GOAL}</th><th>Seeds</th><th class="l">Evidence</th>'
+              f'<th>Alive at cap</th><th>+ DL{stats.DEPTH_GOAL}</th>'
+              '<th title="Cells that reached death or the turn cap; the denominator of the two rates">'
+              'Finished</th><th class="l">Run · suite · completed</th>'
               '</tr></thead><tbody>' + ''.join(rows) + '</tbody></table></div>')
     grid = class_grid(runs)
+    cross_run = len(run_keys) > 1
+    answer = (f'The <strong>recommended mix</strong> is ahead of vanilla on both axes and of vanilla + '
+              f'munchkin on survival too, in the runs recorded so far — but those points are not one '
+              f'controlled comparison: {"each comes from its own experiment and suite" if cross_run else ""} '
+              f'(see the Run column), the gaps are a few percentage points, and no interval is shown here. '
+              f'Build better-borg-c’s <code>munchkin-by-class</code> commit as-is (no profile needed) to try '
+              f'it; treat it as the current lead, not a confirmed result, until a same-run comparison exists.'
+              if cross_run else
+              f'The <strong>recommended mix</strong> is ahead of vanilla on both axes, in the one recorded run. '
+              f'Build better-borg-c’s <code>munchkin-by-class</code> commit as-is (no profile needed) to try it.')
     return (f'<div class="card wide"><h2>Which setup should I actually run?</h2>'
-            f'<p class="answer">The <strong>recommended mix</strong> beats vanilla on both axes and edges out '
-            f'vanilla + munchkin on survival too: build better-borg-c’s <code>munchkin-by-class</code> '
-            f'branch as-is, no profile needed.</p>{chart}{legend}'
-            f'<p class="foot">Each point is the newest, most-sampled recorded run of that exact version, '
-            f'profile (and class, in the grid below); marker shape, not just color, tells them apart. '
-            f'"Progress" excludes any run that died, so it can never exceed survivability. The Neo Angband '
-            f'point is never comparable with the rest: Mandos plays a different engine on different seeds.</p>'
+            f'<p class="answer">{answer}</p>{chart}{legend}'
+            f'<p class="foot">Each point is the run with the most finished cells recorded for that exact '
+            f'version, profile (and class, in the grid below) — not necessarily the newest, which is only '
+            f'the tiebreaker; marker shape, not just color, tells them apart. "Progress" excludes any run '
+            f'that died, so it can never exceed survivability. The Neo Angband point is never comparable '
+            f'with the rest: Mandos plays a different engine on different seeds.</p>'
             f'{grid}</div>')
 
 

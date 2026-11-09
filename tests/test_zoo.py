@@ -381,8 +381,8 @@ class LandingTest(unittest.TestCase):
             cells = [dict(cell(specimen, s, 'death' if s < deaths else 'turn_cap', max_depth=5 if s % 2 else 1),
                           profile=profile, played_class=classes[s % len(classes)] if classes else None)
                      for s in range(n)]
-            return ({'experiment': {'name': specimen + profile}, 'run_id': 'r1', 'completed': completed},
-                    cells, None)
+            return ({'experiment': {'name': specimen + profile, 'suites': ['classes-1800']},
+                     'run_id': 'r1', 'completed': completed}, cells, None)
 
         classes = ('Warrior', 'Mage')
         runs = [arm('4.2.6', 'default', 40, 100, '2026-11-09 00:00 UTC', classes),
@@ -399,6 +399,10 @@ class LandingTest(unittest.TestCase):
         self.assertIn('>Warrior<', card)
         self.assertIn('>Mage<', card)
         self.assertNotIn('>Druid<', card)  # no data for it: excluded, not shown empty
+        self.assertIn('not one controlled comparison', card)  # cross-run caveat (review finding #38 S1)
+        self.assertIn('classes-1800 · 2026-11-09 00:00 UTC', card)  # run/suite/date per row (S2)
+        self.assertIn('most finished cells', card)  # not "newest": that is only the tiebreaker (S3)
+        self.assertNotIn('newest, most-sampled', card)
         self.assertIsNone(landing.card_exemplars([]))
 
     def test_overview_page_has_no_milestone_cards(self):
