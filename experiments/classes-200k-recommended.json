@@ -1,0 +1,16 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-200k-recommended",
+  "description": "The recommended mix (better-borg-c M7's 76 carried fixes, with the munchkin start by class as the version's own default) at 200,000 engine turns instead of 100,000, on classes-1800-200k. Measured alone, not against classes-200k-best's vanilla, since the two experiments can share no control: pair them through the landing page's cross-run exemplar card instead.",
+  "specimens": [
+    "4.2.6-bbc-munchkin-by-class"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-1800-200k"
+  ],
+  "control": "4.2.6-bbc-munchkin-by-class",
+  "control_profile": "default"
+}

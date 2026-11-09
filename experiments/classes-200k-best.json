@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-200k-best",
+  "description": "Vanilla against vanilla with the munchkin start by class, at 200,000 engine turns instead of 100,000, on classes-1800-200k. The recommended mix is measured separately (classes-200k-recommended.json): its own default already is the munchkin start by class, so pairing it with the munchkin-wdr profile here would just re-measure the same game (confirmed on 4.2.6-bbc-m8, review #39; the same thing happened to this experiment's own first run, 1,800 wasted cells with 0/1350 differing play hashes between the two profiles).",
+  "specimens": [
+    "4.2.6"
+  ],
+  "profiles": [
+    "default",
+    "munchkin-wdr"
+  ],
+  "suites": [
+    "classes-1800-200k"
+  ],
+  "control": "4.2.6",
+  "control_profile": "default"
+}
