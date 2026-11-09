@@ -144,8 +144,17 @@ def milestone_table(cells, fractions=(0.25, 0.5, 0.75, 1.0)):
     valid = [c for c in cells if c['outcome'] in VALID and c.get('milestones')]
     rows = []
     for i, f in enumerate(fractions):
-        at_f = [c['milestones'][i] for c in valid if len(c['milestones']) > i]
-        turn = next((m['turn'] for m in at_f), None)
+        at_f, turn = [], None
+        for c in valid:
+            if len(c['milestones']) <= i:
+                continue
+            m = c['milestones'][i]
+            turn = turn if turn is not None else m['turn']
+            # A death's last state is its death state: it cannot stand in for
+            # the character's progress at a milestone turn it never reached.
+            if c['outcome'] == 'death' and (c['final'].get('turn') or 0) <= m['turn']:
+                continue
+            at_f.append(m)
         levels = [m['level'] for m in at_f if m.get('level') is not None]
         depths = [m['max_depth'] for m in at_f if m.get('max_depth') is not None]
         golds = [m['gold'] for m in at_f if m.get('gold') is not None]

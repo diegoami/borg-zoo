@@ -687,15 +687,22 @@ class StatsTest(unittest.TestCase):
         s = stats.arm_summary([cell('a', 1, 'stalled'), cell('a', 2, 'death', turn=10), cell('a', 3, 'turn_cap')])
         self.assertEqual((s['valid'], s['deaths'], s['counts']['stalled']), (2, 1, 1))
 
-    def test_milestone_table_medians_level_depth_and_gold(self):
+    def test_milestone_table_excludes_deaths_before_the_milestone_turn(self):
+        """A death's last state is its death state. A cell that died at turn 666 on a
+        20,000-turn cap must not contribute that death to the 20,000-turn row just
+        because milestones() always fills all four fractions (review finding on #33:
+        milestone_table counted every death at every later milestone)."""
         def with_milestones(c, rows):
             return dict(c, milestones=rows)
 
         cells = [
             with_milestones(cell('a', 1, 'turn_cap'), [{'turn': 50, 'level': 4, 'max_depth': 1, 'gold': 100}]),
             with_milestones(cell('a', 2, 'turn_cap'), [{'turn': 50, 'level': 6, 'max_depth': 2, 'gold': 300}]),
-            with_milestones(cell('a', 3, 'death'), [{'turn': 50, 'level': 2, 'max_depth': 1}]),  # no gold logged
-            dict(cell('a', 4, 'stalled'), milestones=None),  # operational: excluded
+            with_milestones(cell('a', 3, 'death', turn=70),
+                            [{'turn': 50, 'level': 2, 'max_depth': 1}]),  # died after turn 50: still counts
+            with_milestones(cell('a', 4, 'death', turn=10),
+                            [{'turn': 50, 'level': 1, 'max_depth': 0, 'gold': 999}]),  # died before: excluded
+            dict(cell('a', 5, 'stalled'), milestones=None),  # operational: excluded
         ]
         rows = stats.milestone_table(cells, fractions=(1.0,))
         self.assertEqual(rows, [{'fraction': 1.0, 'turn': 50, 'n': 3,
