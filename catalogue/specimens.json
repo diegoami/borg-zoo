@@ -175,7 +175,7 @@
       "ref": "017e038e8726a7a423887a366b5d40e89c0550a1",
       "tag": "4.2.6-impact-v8",
       "carries": 88,
-      "label": "better-borg-c milestone 8 (tag 4.2.6-impact-v8): 12 patch units since milestone 7 (patches 0078-0089), plus the owner's munchkin-by-class change (PR302). 4.2.6-bbc-munchkin-by-class is this same change set, built earlier from the pre-tag candidate commit.",
+      "label": "better-borg-c milestone 8 (tag 4.2.6-impact-v8): 12 patch units since milestone 7 (patches 0078-0089), plus the owner's munchkin-by-class change (PR302). 4.2.6-bbc-munchkin-by-class shares that munchkin default (same 4 classes, depth 6) but not milestone 8's 12 fixes: it carries 76, this carries 88. Because the munchkin-by-class default is already in M8's game, the munchkin-wdr profile is a no-op on this specimen (confirmed identical play/trace hashes, 2026-11-09).",
       "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE8.md"
     },
     "4.2.6-rs-m0-c": {
@@ -353,7 +353,7 @@
       "tag": "4.2.6-impact-v8",
       "carries": 88,
       "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v8",
-      "label": "borg-rs M8 (tag 4.2.6-impact-v8): the Rust Borg carrying better-borg-c milestone 8's fixes (borg-rs#19, PR 20; qualified pass, findings addressed, owner accepted). The engine is unchanged since 4.2.6-impact-v4, so its game still differs from better-borg-c M8 by that tag's engine correction (neo-angband-tracker#474)."
+      "label": "borg-rs M8 (tag 4.2.6-impact-v8): the Rust Borg carrying better-borg-c milestone 8's fixes (borg-rs#19, PR 20; qualified pass, findings addressed, owner accepted). The engine is unchanged since 4.2.6-impact-v4, so its game still differs from better-borg-c M8 by that tag's engine correction (neo-angband-tracker#474). Like the C line's M8, its default already includes the munchkin-by-class start, so the munchkin-wdr profile is a no-op here too (confirmed identical play/trace hashes, 2026-11-09)."
     },
     "4.2.6-reborn-rust": {
       "kind": "borg-rs",

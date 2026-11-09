@@ -86,7 +86,7 @@ def mark(shape, cx, cy, cls):
     return f'<circle class="dot {cls}" cx="{cx:.1f}" cy="{cy:.1f}" r="7"/>'
 
 
-def scatter(points, x_label, y_label, compact=False):
+def scatter(points, x_label, y_label, compact=False, x_max=None, y_max=None):
     """Survivability (x) against progress (y), a handful of named setups.
 
     points: (shape, x, y, cls). Marks carry no inline text: real points can
@@ -98,13 +98,20 @@ def scatter(points, x_label, y_label, compact=False):
 
     compact: a small-multiple (one per class): smaller, coarser gridlines,
     no axis label text (the caller titles it externally).
+
+    x_max/y_max: fix the axis scale instead of fitting it to these points'
+    own range. Small multiples that are meant to be compared side by side
+    (the per-class grid) must share one scale, or the same percentage draws
+    at a different height in every cell.
     """
     pad_l, pad_b, pad_t, size = (22, 16, 4, 110) if compact else (42, 34, 16, 300)
     step = 50 if compact else 10
     xs = [p[1] for p in points if p[1] is not None]
     ys = [p[2] for p in points if p[2] is not None]
-    x_max = max(0.3, math.ceil((max(xs, default=0.3) + 0.03) * 10) / 10)
-    y_max = max(0.2, math.ceil((max(ys, default=0.2) + 0.03) * 10) / 10)
+    if x_max is None:
+        x_max = max(0.3, math.ceil((max(xs, default=0.3) + 0.03) * 10) / 10)
+    if y_max is None:
+        y_max = max(0.2, math.ceil((max(ys, default=0.2) + 0.03) * 10) / 10)
     width = pad_l + size + (4 if compact else 16)
     height = pad_t + size + pad_b
     x = lambda v: pad_l + size * min(max(v, 0.0), x_max) / x_max  # noqa: E731
@@ -187,16 +194,11 @@ EXEMPLARS = [
      'name': 'Recommended mix', 'note': 'better-borg-c M7’s 76 carried fixes, with the munchkin start by '
      'class as the version’s own default (no profile override needed).'},
     {'shape': 'square', 'cls': '', 'specimen': '4.2.6-bbc-m8', 'profile': 'default',
-     'name': 'better-borg-c M8', 'note': 'the C line’s newest milestone: 88 carried fixes, default settings.'},
-    {'shape': 'square', 'cls': 'outline', 'specimen': '4.2.6-bbc-m8', 'profile': 'munchkin-wdr',
-     'name': 'better-borg-c M8 + munchkin', 'note': 'M8 with the same munchkin-start-by-class win tried on it '
-     f'(<a href="{PROFILES_URL}">settings</a>).'},
+     'name': 'better-borg-c M8', 'note': 'the C line’s newest milestone: 88 carried fixes, default settings '
+     '— already including the munchkin-by-class start, so a munchkin-wdr variant would be a no-op.'},
     {'shape': 'triangle', 'cls': '', 'specimen': '4.2.6-rs-m8', 'profile': 'default',
      'name': 'borg-rs M8 (Rust)', 'note': 'the Rust port’s newest milestone, carrying the same 88 fixes, '
-     'default settings.'},
-    {'shape': 'triangle', 'cls': 'outline', 'specimen': '4.2.6-rs-m8', 'profile': 'munchkin-wdr',
-     'name': 'borg-rs M8 (Rust) + munchkin', 'note': 'the Rust port’s M8 with the same munchkin win tried '
-     f'on it (<a href="{PROFILES_URL}">settings</a>).'},
+     'default settings — same munchkin-by-class default, same reason there is no +munchkin variant.'},
     {'shape': 'cross', 'cls': 'other', 'specimen': 'neo-b3-api2-upstream', 'profile': 'default',
      'name': 'Neo Angband (Mandos, upstream)', 'note': 'a different engine on different seeds — '
      '<strong>never paired</strong> with the C/Rust points above; shown for scale only.'},
@@ -252,7 +254,7 @@ def card_exemplars(runs):
     cross_run = len(run_keys) > 1
     answer = (f'The <strong>recommended mix</strong> is ahead of vanilla on both axes and of vanilla + '
               f'munchkin on survival too, in the runs recorded so far — but those points are not one '
-              f'controlled comparison: {"each comes from its own experiment and suite" if cross_run else ""} '
+              f'controlled comparison: {"at least one of them comes from a different experiment or suite" if cross_run else ""} '
               f'(see the Run column), the gaps are a few percentage points, and no interval is shown here. '
               f'Build better-borg-c’s <code>munchkin-by-class</code> commit as-is (no profile needed) to try '
               f'it; treat it as the current lead, not a confirmed result, until a same-run comparison exists.'
@@ -274,18 +276,23 @@ def class_grid(runs):
                if any(find_arm(runs, e['specimen'], e['profile'], c)[0] for e in EXEMPLARS)]
     if not classes:
         return ''
-    cells = []
+    by_class = {}
     for cls in classes:
-        points, _ = exemplar_points(runs, cls)
-        if not any(p[1] is not None for p in points):
-            continue
-        chart = scatter(points, x_label='', y_label='', compact=True)
-        cells.append(f'<div class="class-cell"><h3>{esc(cls)}</h3>{chart}</div>')
-    if not cells:
+        pts, _ = exemplar_points(runs, cls)
+        if any(p[1] is not None for p in pts):
+            by_class[cls] = pts
+    if not by_class:
         return ''
+    # One scale for every cell, fixed at 0-100%: the grid's point is comparing
+    # classes against each other, which an auto-scaled axis per cell breaks
+    # (the same percentage would draw at a different height in each one).
+    cells = [f'<div class="class-cell"><h3>{esc(cls)}</h3>'
+             f'{scatter(pts, x_label="", y_label="", compact=True, x_max=1.0, y_max=1.0)}</div>'
+             for cls, pts in by_class.items()]
     return (f'<h3>By class</h3><p class="foot">The same setups and marks as above, split by the class each '
-            f'seed played (<code>classes-1800</code>-style suites assign 200 seeds per class). Axes: '
-            f'0–50–100%, survivability across, progress up.</p><div class="class-grid">{"".join(cells)}</div>')
+            f'seed played (<code>classes-1800</code>-style suites assign 200 seeds per class). One fixed '
+            f'scale for every cell — 0–50–100%, survivability across, progress up — so classes can be '
+            f'compared against each other.</p><div class="class-grid">{"".join(cells)}</div>')
 
 
 def card_milestones(runs):
