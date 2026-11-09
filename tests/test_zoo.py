@@ -372,9 +372,24 @@ class LandingTest(unittest.TestCase):
         newer = {'experiment': {'name': 'smoke'}, 'completed': '2026-11-09 00:00 UTC'}
         older_bigger = {'experiment': {'name': 'classes-1800'}, 'completed': '2026-11-01 00:00 UTC'}
         runs = [(newer, small, None), (older_bigger, big, None)]
-        s, meta = landing.find_arm(runs, '4.2.6', 'default')
+        s, meta = landing.find_arm(runs, '4.2.6', 'default', {})
         self.assertEqual(meta['experiment']['name'], 'classes-1800')
         self.assertEqual(s['valid'], 100)
+
+    def test_find_arm_matches_a_specimens_earlier_name(self):
+        """Results recorded before the 2026-11-08 rename use the old name (catalogue
+        "formerly") - e.g. the real classes-m5 run has 1,800 "bbc-m4" cells, not
+        "4.2.6-bbc-m4"; missing that silently drops the only development-scale run."""
+        old_named_big = [dict(cell('bbc-m4', s, 'turn_cap'), profile='default') for s in range(1800)]
+        new_named_tiny = [dict(cell('4.2.6-bbc-m4', s, 'turn_cap'), profile='default') for s in range(3)]
+        runs = [({'experiment': {'name': 'm4-smoke'}, 'completed': '2026-11-09 00:00 UTC'}, new_named_tiny, None),
+                ({'experiment': {'name': 'classes-m5'}, 'completed': '2026-11-08 05:05 UTC'}, old_named_big, None)]
+        specs = {'4.2.6-bbc-m4': {'formerly': ['bbc-m4']}}
+        s, meta = landing.find_arm(runs, '4.2.6-bbc-m4', 'default', specs)
+        self.assertEqual(meta['experiment']['name'], 'classes-m5')
+        self.assertEqual(s['valid'], 1800)
+        # no alias configured: falls back to exact match only, same as before
+        self.assertEqual(landing.find_arm(runs, '4.2.6-bbc-m4', 'default', {})[0]['valid'], 3)
 
     def test_card_exemplars_scatters_every_setup_with_a_class_grid(self):
         def arm(specimen, profile, deaths, n, completed, classes=()):
@@ -403,6 +418,9 @@ class LandingTest(unittest.TestCase):
         self.assertIn('classes-1800 · 2026-11-09 00:00 UTC', card)  # run/suite/date per row (S2)
         self.assertIn('most finished cells', card)  # not "newest": that is only the tiebreaker (S3)
         self.assertNotIn('newest, most-sampled', card)
+        self.assertIn('Depth + level', card)  # the combined figure, not the DL5 threshold rate
+        self.assertNotIn('DL5', card)
+        self.assertNotIn('reached DL', card)
         self.assertIsNone(landing.card_exemplars([]))
 
     def test_overview_page_has_no_milestone_cards(self):
@@ -677,6 +695,20 @@ class SubsetSuiteTest(unittest.TestCase):
 
 
 class StatsTest(unittest.TestCase):
+    def test_progress_score_is_the_median_of_the_combined_figure_not_two_medians(self):
+        cells = [cell('a', 1, 'turn_cap', max_depth=1), cell('a', 2, 'turn_cap', max_depth=5),
+                 cell('a', 3, 'turn_cap', max_depth=9)]
+        cells[0]['final']['max_level'] = 20  # score 21: high level, low depth
+        cells[1]['final']['max_level'] = 1   # score 6
+        cells[2]['final']['max_level'] = 1   # score 10
+        # sum of separate medians would be median(depth)=5 + median(level)=1 = 6; the real,
+        # per-cell-then-medianed figure is different: scores sorted are 6, 10, 21 -> median 10.
+        self.assertEqual(stats.progress_score(cells), 10)
+        # A death still counts (how far it got, not whether it survived) - DESIGN.md "Open questions" #1.
+        dead = dict(cell('a', 4, 'death'), final={'turn': 10, 'max_depth': 50, 'max_level': 50})  # score 100
+        self.assertEqual(stats.progress_score(cells + [dead]), 15.5)  # scores 6,10,21,100 -> (10+21)/2
+        self.assertIsNone(stats.progress_score([cell('a', 1, 'stalled')]))  # operational: excluded
+
     def test_wilson_and_mcnemar(self):
         lo, hi = stats.wilson(0, 10)
         self.assertEqual(lo, 0.0)

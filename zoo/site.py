@@ -44,9 +44,15 @@ svg.scatter .dot.cross{fill:none;stroke:none}
 svg.scatter .dot.cross line{stroke:var(--muted);stroke-width:3;stroke-linecap:round}
 svg.scatter.compact{max-width:140px}
 .legend-mark{vertical-align:-3px;margin-right:2px}
-.class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(7.5rem,1fr));gap:12px;margin:8px 0}
+.class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(9rem,1fr));gap:12px;margin:8px 0}
 .class-cell{border:1px solid var(--line);border-radius:6px;padding:8px;text-align:center}
 .class-cell h3{margin:0 0 4px;font-size:.85rem}
+/* The generic .chart rule below is sized for the big charts (a 420px floor
+   so they don't get squished on mobile) and wraps every chart, this small
+   one included; without this override each class tile fought its own box
+   for width and scrolled individually instead of just... fitting. */
+.class-cell .chart{max-width:none;overflow-x:visible}
+.class-cell .chart svg{min-width:0;max-width:100%}
 p.tabs{display:flex;gap:4px;margin:8px 0 18px;border-bottom:1px solid var(--line)}
 p.tabs .tab{padding:6px 14px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent}
 p.tabs .tab.active{color:var(--fg);font-weight:600;border-bottom-color:var(--accent)}
