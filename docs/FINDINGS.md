@@ -105,9 +105,4 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
 
 ## Open
 
-- **PR #28:** the owner's bounded analysis of `originals-20261108-classes-1800`. It's open, and merging it is the owner's call.
-  - Its branch also carries the `.gitignore` exception `!reports/**/*.tgz`.
-  - Until #28 is merged, main still ignores `*.tgz`, so any report attachment needs `git add -f` or that exception.
-  - Its `selected-raw-traces.tgz` was rebuilt from the run's artifacts. See that report's `selected-raw-traces.json`.
-- **Issue #30:** measuring borg-reborn-rs, opened by another session.
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
