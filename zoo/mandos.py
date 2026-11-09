@@ -22,6 +22,10 @@ Counters and caps, as Mandos defines them:
   safety cap bounds), `attempts` armed replies; api2 records add
   `acceptedCommands` and `commandStreamEvents`.
 
+Boundary: the record stops at the first Core loop boundary at or after the
+cap, never at the cap itself, so every cell's "boundary" is "after-key"
+(borg-reborn-rs's requested field, borg-zoo#30).
+
 Profiles: a snapshot with a measurement lane (mandos#215) declares its
 controller profile (`api2-plugin`) and command-stream profile
 (`api2-intents-v1`). Full Mandos at cca1293c declares none: its runner is the
@@ -228,6 +232,7 @@ def summarise(cell, spec, profile, suite, record, states, requested, error, wall
         'profile_sha256': cat_mod.profile_sha256(profile),
         'config_sha256': hashlib.sha256(json.dumps(flags(profile), sort_keys=True).encode()).hexdigest(),
         'cap': cap, 'birth': suite['birth'],
+        'boundary': 'after-key',
         'outcome': outcome, 'runner_outcome': record.get('outcome'),
         'config_error': config_error,
         'config_checked': 'effective controller settings in the Mandos record' if record else None,
