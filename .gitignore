@@ -9,3 +9,6 @@ __pycache__/
 /results-branch/
 /_site/
 *.tgz
+
+# Report attachments under reports/ are part of the evidence; keep them.
+!reports/**/*.tgz

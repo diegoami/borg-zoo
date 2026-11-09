@@ -38,3 +38,7 @@ Methods read the cache and write the designated analysis directory; they never l
 ## Fresh-path reproduction receipt
 
 All six published method scripts were rerun successfully with a fresh output directory, the same read-only verified artifact cache, frozen Zoo code 9cd7423 and viewer projection e1ad87d. The aggregate, deterministic case selection and complete book-throw audit were byte-identical to the reviewed analysis. No engine or replay was run. See [method-reproduction.json](method-reproduction.json).
+
+## Selected raw traces archive
+
+`selected-raw-traces.tgz` was missing from the first commits, because `.gitignore` ignored `*.tgz`; the hash first listed for it (`61e7ba52…`) belongs to an archive that was never published. The committed archive was rebuilt from the run's own raw artifacts, without running any game. Each source artifact matched its published SHA-256, and all 76 case files match their cells' recorded inventories. Its archive hash differs only because the original packing settings were not recorded. See [selected-raw-traces.json](selected-raw-traces.json) for the source artifacts, the per-file hashes and the packing command.
