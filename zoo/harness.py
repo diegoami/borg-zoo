@@ -2,6 +2,10 @@
 
 The zoo does not re-implement building or running. It loads the runner from a
 checkout of the pinned harness commit and calls its prepare() and run().
+
+The observer stops a run at engine turn T itself (the suite's cap), so every
+cell's "boundary" is "exact" (docs/DESIGN.md; borg-reborn-rs's requested
+field, borg-zoo#30).
 """
 import hashlib
 import importlib.util
@@ -148,6 +152,7 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
         'config_sha256': result.get('configuration_sha256'),
         'cap': suite['cap'],
         'birth': suite['birth'],
+        'boundary': 'exact',
         'outcome': outcome,
         'runner_outcome': result.get('outcome'),
         'config_error': mismatch,

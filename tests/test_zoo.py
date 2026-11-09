@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from zoo import catalogue as cat_mod  # noqa: E402
-from zoo import borgrs, harness, landing, mandos, site, stall, stats  # noqa: E402
+from zoo import borgrs, harness, landing, mandos, neo_original, site, stall, stats  # noqa: E402
 from zoo.__main__ import main  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -171,6 +171,7 @@ class HarnessParsingTest(unittest.TestCase):
                                 {'cap': 20000, 'birth': 'fixed'}, {})
         self.assertEqual(rec['outcome'], 'death')
         self.assertEqual(rec['first_turn_at_depth'], {'1': 500, '2': 900, '3': 900})
+        self.assertEqual(rec['boundary'], 'exact')
 
 
 class PlayHashTest(unittest.TestCase):
@@ -197,6 +198,42 @@ class BorgRsTest(unittest.TestCase):
             self.assertIn('borg_munchkin_depth = 6\n', text)
             self.assertIsNone(borgrs.check_config(text, profile))
             self.assertIsNotNone(borgrs.check_config('borg_munchkin_start = FALSE\n', profile))
+
+    def test_exact_turns_and_statelog_are_opt_in_per_specimen(self):
+        suite = {'cap': 20000}
+        cmd = borgrs.command('/g/angband', Path('/w'), {'seed': 1}, 0, 0, suite, {})
+        self.assertNotIn('-exact-turns', cmd)
+        self.assertNotIn('-statelog', cmd)
+        cmd = borgrs.command('/g/angband', Path('/w'), {'seed': 1}, 0, 0, suite,
+                             {'exact_turns': True, 'depth_stream': True})
+        self.assertIn('-exact-turns', cmd)
+        self.assertEqual(cmd[cmd.index('-statelog') + 1], '/w/state.log')
+
+    def test_reborn_specimens_declare_exact_turns_and_depth_stream(self):
+        specs = cat_mod.catalogue()['specimens']['specimens']
+        for name in ('4.2.6-reborn-rust', '4.2.6-reborn-c-pristine', '4.2.6-reborn-c-bbc-m7'):
+            self.assertEqual(specs[name]['kind'], 'borg-rs')
+            self.assertTrue(specs[name]['exact_turns'])
+            self.assertTrue(specs[name]['depth_stream'])
+        # Existing borg-rs specimens keep their meaning: no opt-in flags.
+        self.assertNotIn('exact_turns', specs['4.2.6-rs-m0'])
+        self.assertNotIn('depth_stream', specs['4.2.6-rs-m0'])
+
+    def test_state_log_parsing_and_milestones(self):
+        text = ('100 5,5 d- -\n'  # no player state yet: skipped
+                '100 5,5 d0/0 hp10/10 sp0/0 f5000 au50 xp0 lv1 t- o- p0 e0 r0\n'
+                '2000 6,6 d1/1 hp15/15 sp0/0 f4500 au150 xp40 lv2 t- o- p0 e0 r0\n'
+                '5000 6,6 d2/2 hp20/20 sp0/0 f4000 au300 xp120 lv3 t- o- p0 e0 r0\n'
+                '10000 7,7 d3/3 hp30/30 sp0/0 f3000 au900 xp500 lv5 t1:3 o- p0 e0 r0\n')
+        states = borgrs.parse_state_log(text)
+        self.assertEqual(len(states), 4)
+        self.assertEqual(states[-1], {'turn': 10000, 'depth': 3, 'max_depth': 3, 'gold': 900, 'xp': 500, 'level': 5})
+        self.assertEqual(borgrs.first_turns_at_depth(states, marks=(1, 2, 3)), {'1': 2000, '2': 5000, '3': 10000})
+        rows = borgrs.milestones(states, cap=10000, fractions=(0.5, 1.0))
+        self.assertEqual(rows, [{'turn': 5000, 'level': 3, 'max_depth': 2, 'gold': 300},
+                                {'turn': 10000, 'level': 5, 'max_depth': 3, 'gold': 900}])
+        self.assertEqual(borgrs.milestones([], cap=10000, fractions=(0.5,)),
+                         [{'turn': 5000, 'level': None, 'max_depth': None, 'gold': None}])
 
     def test_borg_rs_specimens_reject_random_birth(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -424,6 +461,7 @@ class MandosTest(unittest.TestCase):
         self.assertEqual(c['play_sha256'], 'ab' * 32)
         self.assertEqual(c['binary_sha256'], 'cd' * 32)
         self.assertEqual(c['first_turn_at_depth'], {'0': 0, '1': 30, '3': 5000})
+        self.assertEqual(c['boundary'], 'after-key')
         self.assertEqual(c['final']['loop_calls'], 905)
         states = [{'kind': 'periodic', 'turn': 900, 'decisions': 100, 'depth': 1, 'energy': 0},
                   {'kind': 'periodic', 'turn': 900, 'decisions': 200, 'depth': 2, 'energy': 300}]
@@ -470,6 +508,20 @@ def api2_record(specimen, outcome='turn_cap', **extra):
                              lane={'name': lane[specimen['lane']], 'includesCTranslations': False})
     rec.update(extra)
     return rec
+
+
+class NeoOriginalTest(unittest.TestCase):
+    def test_boundary_and_died_after_cap(self):
+        spec = {'ref': 'b' * 40, 'engine_ref': 'e' * 40, 'toolkit_ref': 't' * 40}
+        suite = {'cap': 1000, 'birth': 'assigned'}
+        cell = {'suite': 's', 'specimen': 'x', 'profile': 'default', 'seed': 1, 'race': 'Human', 'class': 'Warrior'}
+        record = {'schema': 'neo-original/run@1', 'outcome': 'death', 'turn': 1200, 'causeOfDeath': 'a rat',
+                  'provenance': {'engine': {'commit': 'e' * 40}, 'borg': {'commit': 'b' * 40}},
+                  'birth': {'race': 'Human', 'class': 'Warrior'}}
+        rec = neo_original.summarise(cell, spec, suite, record, None, 1.0)
+        self.assertEqual(rec['boundary'], 'after-key')
+        self.assertEqual(rec['outcome'], 'turn_cap')
+        self.assertEqual(rec['died_after_cap'], {'turn': 1200, 'cause': 'a rat'})
 
 
 class MandosApi2LaneTest(unittest.TestCase):
