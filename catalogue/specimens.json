@@ -307,6 +307,79 @@
       "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v6",
       "label": "borg-rs M6 (tag 4.2.6-impact-v6): the Rust Borg carrying better-borg-c milestone 6's fixes (b3c825c9; borg-rs#15, PR 16; qualified pass, owner accepted). The engine is unchanged since 4.2.6-impact-v4, so its game still differs from better-borg-c M6 by that tag's engine correction (neo-angband-tracker#474)."
     },
+    "4.2.6-rs-m7-c": {
+      "kind": "borg-rs",
+      "impl": "c",
+      "repository": "diegoami/borg-rs",
+      "ref": "ce27f5edc5adbb8365d7567f2e05ca11352b92c7",
+      "tag": "4.2.6-impact-v7",
+      "carries": 76,
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v7",
+      "label": "borg-rs 4.2.6-impact-v7, C Borg: the C Borg in borg-rs's tree with better-borg-c milestone 7's fixes (patches 0064-0071 and 0073-0077), under the borgh frontend. The engine is unchanged since 4.2.6-impact-v4, so it keeps that tag's engine correction (neo-angband-tracker#474)."
+    },
+    "4.2.6-rs-m7": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "ce27f5edc5adbb8365d7567f2e05ca11352b92c7",
+      "tag": "4.2.6-impact-v7",
+      "carries": 76,
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v7",
+      "label": "borg-rs M7 (tag 4.2.6-impact-v7): the Rust Borg carrying better-borg-c milestone 7's fixes (borg-rs#17, PR 18; qualified pass, findings addressed, owner accepted). The engine is unchanged since 4.2.6-impact-v4, so its game still differs from better-borg-c M7 by that tag's engine correction (neo-angband-tracker#474)."
+    },
+    "4.2.6-rs-m8-c": {
+      "kind": "borg-rs",
+      "impl": "c",
+      "repository": "diegoami/borg-rs",
+      "ref": "286215c5cbb0c37002447c530a66ad3b92014a36",
+      "tag": "4.2.6-impact-v8",
+      "carries": 88,
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v8",
+      "label": "borg-rs 4.2.6-impact-v8, C Borg: the C Borg in borg-rs's tree with better-borg-c milestone 8's fixes (patches 0078-0089, plus the owner's munchkin-by-class change, better-borg-c PR302), under the borgh frontend. The engine is unchanged since 4.2.6-impact-v4, so it keeps that tag's engine correction (neo-angband-tracker#474)."
+    },
+    "4.2.6-rs-m8": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "286215c5cbb0c37002447c530a66ad3b92014a36",
+      "tag": "4.2.6-impact-v8",
+      "carries": 88,
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v8",
+      "label": "borg-rs M8 (tag 4.2.6-impact-v8): the Rust Borg carrying better-borg-c milestone 8's fixes (borg-rs#19, PR 20; qualified pass, findings addressed, owner accepted). The engine is unchanged since 4.2.6-impact-v4, so its game still differs from better-borg-c M8 by that tag's engine correction (neo-angband-tracker#474)."
+    },
+    "4.2.6-reborn-rust": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "2dd11fd53995a76240a202765a56cc1831c9aa6b",
+      "carries": 0,
+      "exact_turns": true,
+      "depth_stream": true,
+      "source": "https://github.com/diegoami/borg-reborn-rs",
+      "label": "borg-reborn-rs M1: the reborn Borg (a placeholder strategy until its M3; its results mean nothing yet). Measured at the exact turn boundary, with the gold/level/depth state stream, as borg-reborn-rs#30 requests. ref is the M1 review merge (no m1 tag exists yet; move to the tag once it does)."
+    },
+    "4.2.6-reborn-c-pristine": {
+      "kind": "borg-rs",
+      "impl": "c-pristine",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "2dd11fd53995a76240a202765a56cc1831c9aa6b",
+      "carries": 0,
+      "exact_turns": true,
+      "depth_stream": true,
+      "source": "https://github.com/diegoami/borg-reborn-rs",
+      "label": "Original C Borg (e473720) built by borg-reborn-rs under borgh; byte-identical to 4.2.6-rs-m0-c on borg-rs's smoke and full suites, so the two can be paired. ref is the M1 review merge (no m1 tag exists yet; move to the tag once it does)."
+    },
+    "4.2.6-reborn-c-bbc-m7": {
+      "kind": "borg-rs",
+      "impl": "c-bbc-m7",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "2dd11fd53995a76240a202765a56cc1831c9aa6b",
+      "carries": 76,
+      "exact_turns": true,
+      "depth_stream": true,
+      "source": "https://github.com/diegoami/borg-reborn-rs",
+      "label": "better-borg-c milestone 7's C Borg (4.2.6-impact-v7 src/borg) built by borg-reborn-rs under borgh. ref is the M1 review merge (no m1 tag exists yet; move to the tag once it does)."
+    },
     "neo-b3-mandos": {
       "kind": "mandos",
       "repository": "diegoami/mandos",

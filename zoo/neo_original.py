@@ -2,6 +2,10 @@
 
 No Neo engine, host or Borg decision implementation lives in the zoo. The
 runtime bundle is produced by the tracker proposal's tools-only driver.
+
+A death after the requested cap is turned into a turn_cap run (died_after_cap
+keeps it), so every cell's "boundary" is "after-key" (borg-reborn-rs's
+requested field, borg-zoo#30).
 """
 import hashlib
 import json
@@ -77,7 +81,7 @@ def summarise(cell, spec, suite, record, error, wall):
     return {'schema': 'borg-zoo/cell@1', **cell, 'harness_kind': 'neo-original',
             'specimen_ref': spec['ref'], 'engine_ref': spec['engine_ref'],
             'toolkit_ref': spec['toolkit_ref'], 'profile_sha256': cat_mod.profile_sha256({'settings': {}}),
-            'cap': suite['cap'], 'birth': suite['birth'], 'outcome': outcome,
+            'cap': suite['cap'], 'birth': suite['birth'], 'boundary': 'after-key', 'outcome': outcome,
             'runner_outcome': record.get('outcome'), 'cause': record.get('causeOfDeath'),
             'died_after_cap': died_after_cap, 'played_race': birth.get('race'),
             'played_class': birth.get('class'), 'birth_record': birth,

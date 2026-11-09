@@ -64,9 +64,18 @@ the port's identity check at zoo scale.
 
 Limits compared with the better-borg-c observer:
 - no effective-settings line, so only the written `borg.txt` is checked;
-- no per-turn states, so no depth marks or survival by turn;
 - fixed birth only;
-- the run stops after the first key at or past the cap.
+- the run stops after the first key at or past the cap (cell `"boundary":
+  "after-key"`), unless the specimen declares `"exact_turns": true`, which
+  passes `-exact-turns` and stops the run at the cap itself (`"boundary":
+  "exact"`); existing specimens keep `after-key`, the flag is opt-in per
+  specimen;
+- no per-turn states, so no depth marks or survival by turn, unless the
+  specimen declares `"depth_stream": true`, which passes `-statelog` and
+  fills `first_turn_at_depth` and a `milestones` list (level, max depth and
+  gold on hand at 25/50/75/100% of the cap) from it. The state log hashes
+  gear rather than valuing it, so this is gold on hand, not a full net
+  worth (inventory and equipment value) — see "Open questions" below.
 
 Runs from different harnesses are not paired. Whether the same seed gives
 the same game under the borgh frontend and under the better-borg-c observer
@@ -81,6 +90,26 @@ port of the 4.2.6 C Borg, and `4.2.6-rs-m2` carries milestone 2's seven fixes
 identical play between `4.2.6-rs-m2-c` and `4.2.6-rs-m2` is the M2 port's identity check.
 The matching better-borg-c version for `4.2.6-rs-mN` is `4.2.6-bbc-mN`, or `4.2.6`
 for M0.
+
+**borg-reborn-rs specimens** (borg-zoo#30; also kind `borg-rs`, `zoo/borgrs.py`).
+`4.2.6-reborn-rust`, `4.2.6-reborn-c-pristine` and `4.2.6-reborn-c-bbc-m7` are
+borg-reborn-rs commits of the three arms its own GOALS plan compares: the
+reborn Borg (a placeholder strategy until its M3; its results mean nothing
+yet) and two C controls (the original Borg and better-borg-c M7's Borg)
+built on borg-reborn-rs's own engine tree. `impl` selects `BORG_IMPL` as
+usual; the two controls use borg-reborn-rs's own control overlay (`c-pristine`,
+`c-bbc-m7`), opaque to the zoo. All three declare `exact_turns` and
+`depth_stream`: borg-reborn-rs's `borgh` build supports both from this pin.
+`4.2.6-reborn-c-pristine` plays the same keys as `4.2.6-rs-m0-c` on borg-rs's
+suites, so the two can be paired (unverified by the zoo; borg-reborn-rs's own
+`harness/zoo-check.py` checked it). `ref` is the M1 review merge commit: no
+`m1` tag exists yet, so move the three specimens to it once it does.
+
+Death evidence: the adapter keeps `keys.log` (and `summary.json`, never
+deleted) for a `death` cell instead of discarding it, so a natural death
+found by a zoo run can be recorded and verified against `play_sha256` in the
+measured repository, per its own rules. Every other outcome's keys are
+discarded as before.
 
 **Mandos specimens** (`zoo/mandos.py`, kind `mandos`). A diegoami/mandos
 commit that has the headless entry point `tools/zoo-run.mjs`
@@ -204,13 +233,21 @@ The current sets are `dev-2000`, `confirm-2000`, `deep-1000` (400,000 turns),
 **Cell.** (suite, specimen, profile, seed) → one JSON line (`borg-zoo/cell@1`).
 The record holds:
 - the outcome, cause and final state;
+- `boundary`: `"exact"` if the run stopped at the cap itself (the
+  better-borg-c observer; a borg-rs specimen with `exact_turns`), else
+  `"after-key"` (borg-rs without the flag; Neo-original, which turns an
+  after-cap death into `turn_cap`; Mandos, which stops at the first loop
+  boundary at or after the cap). A survivor's final turn and depth are only
+  comparable at an exact boundary (borg-reborn-rs#30's `tools/endpoint.py`
+  refuses after-key survivors unless told otherwise);
 - the first turn at each depth mark, and, from the same sampled states, a
   `milestones` list: character level and max depth at 25/50/75/100% of the
   cap (the last sampled state at or before that turn), so progress can be
-  read at fixed points rather than only at the end. The observer logs no
-  gold or item value, so there is no net-worth figure here (an open
-  question; some borg-rs specimens' own state stream can add gold on hand,
-  not a full net worth, since gear is hashed, not valued);
+  read at fixed points rather than only at the end. The better-borg-c
+  observer logs no gold or item value, so there is no net-worth figure from
+  it; a borg-rs specimen with `depth_stream` adds gold on hand at those same
+  points (still not a full net worth — gear is hashed there, not valued;
+  see "Open questions");
 - the wall time;
 - the trace hash, and a play hash that leaves out the configuration lines, so
   identical play is detectable across profiles;
@@ -319,3 +356,15 @@ job.
    and `birth_no_selling=1`. Varying them needs runner support too.
 8. **Milestone tags:** if better-borg-c tags its milestones, specimens can
    name them instead of SHAs.
+9. **Net worth (inventory and equipment value), not just gold.** Level and
+   max depth at turn milestones (`milestones`, `zoo/stats.py`'s
+   `milestone_table`) are in, over every finished run, needing no upstream
+   change. Gold on hand at those same points is in too, but only for a
+   borg-rs specimen with `depth_stream` (today, the three `4.2.6-reborn-*`
+   specimens): a partial proxy, not a net worth, since that log only hashes
+   equipment and inventory, never values them. The better-borg-c observer
+   logs no gold at all. A full net-worth figure needs an upstream change
+   (value the gear at each sampled state) in whichever harness the owner
+   wants it from; that is a change request to route to that harness's own
+   repository, the same way borg-reborn-rs's was routed here (#30), not
+   something the zoo can add on its own.
