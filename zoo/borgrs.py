@@ -9,18 +9,26 @@ borgh frontend writes summary.json and keys.log.
 Limits compared with the better-borg-c observer, recorded per cell:
 - borgh prints no effective-settings line, so the settings are checked in
   the borg.txt the zoo writes, not in what the Borg parsed;
-- there is no per-turn state stream, so depth marks and survival by turn
-  are not available;
 - borgh picks race and class from indices (with -menu-letters, in
   p_race.txt and class.txt order); fixed and assigned birth are supported,
   random birth is not.
-- borgh stops after the first key at or past the turn cap, so a run can
-  end past the cap.
+- borgh stops after the first key at or past the turn cap ("boundary":
+  "after-key" on the cell), unless the specimen declares "exact_turns":
+  true, which passes -exact-turns and stops the run at the cap itself
+  ("boundary": "exact"). Existing specimens keep "after-key": the flag is
+  opt-in per specimen, not a change to how they already run.
+- a specimen with "depth_stream": true additionally passes -statelog, and
+  the cell's first_turn_at_depth and milestones (level, max depth, gold on
+  hand at turn fractions of the cap) come from it; without the flag there
+  is no per-turn state stream, so neither is available. The log carries no
+  item values, only gear hashes, so it gives gold on hand, not a full net
+  worth (inventory and equipment value).
 """
 import hashlib
 import json
 import os
 import platform
+import re
 import shutil
 import subprocess
 import time
@@ -31,6 +39,51 @@ from . import stall
 
 STOP = {'turns': 'turn_cap', 'death': 'death', 'clev': 'turn_cap', 'depth': 'turn_cap',
         'borg_stopped': 'stalled', 'blocked': 'stalled'}
+
+# Depth marks to report first_turn_at_depth for, matching harness.py's (the
+# better-borg-c observer adapter) so the two are comparable.
+DEPTH_MARKS = (1, 2, 3, 4, 5, 6, 8, 10, 15, 20)
+
+# borgh -statelog line: "<turn> <x>,<y> d<depth>/<max depth> hp../.. sp../..
+# f.. au<gold> xp<xp> lv<level> t...| o...| p... e... r...". A line with no
+# player state yet (before birth) is "<turn> -" and is skipped.
+STATE_LINE = re.compile(
+    r'^(?P<turn>\d+) \S+ d(?P<depth>\d+)/(?P<max_depth>\d+) hp\S+ sp\S+ f\S+ '
+    r'au(?P<gold>-?\d+) xp(?P<xp>\d+) lv(?P<level>\d+)\b')
+
+
+def parse_state_log(text):
+    """The per-key states a -statelog file records, as a list of dicts."""
+    out = []
+    for line in text.splitlines():
+        m = STATE_LINE.match(line)
+        if m:
+            out.append({k: int(v) for k, v in m.groupdict().items()})
+    return out
+
+
+def first_turns_at_depth(states, marks=DEPTH_MARKS):
+    out = {}
+    for s in states:
+        for m in marks:
+            if s['max_depth'] >= m and str(m) not in out:
+                out[str(m)] = s['turn']
+    return out
+
+
+def milestones(states, cap, fractions=(0.25, 0.5, 0.75, 1.0)):
+    """Level, max depth and gold on hand at turn fractions of the cap: the
+    last state -statelog logged at or before that turn. Not a net worth:
+    the state log hashes gear, it does not value it."""
+    rows = []
+    for f in fractions:
+        t = int(cap * f)
+        at_or_before = [s for s in states if s['turn'] <= t]
+        last = at_or_before[-1] if at_or_before else None
+        rows.append({'turn': t, 'level': last['level'] if last else None,
+                     'max_depth': last['max_depth'] if last else None,
+                     'gold': last['gold'] if last else None})
+    return rows
 
 
 def sha256(path):
@@ -88,6 +141,18 @@ def check_config(text, profile):
     return ('settings not written: ' + ', '.join(sorted(wrong))) if wrong else None
 
 
+def command(game_bin, out, cell, race_i, cls_i, suite, spec):
+    argv = [str(game_bin), '-mborgh', '-n', '-uBorg'] + \
+        [f'-d{d}={out / d}' for d in ('user', 'save', 'archive', 'panic', 'scores')] + \
+        ['--', '-seed', str(cell['seed']), '-race', str(race_i), '-class', str(cls_i), '-turns', str(suite['cap']),
+         '-keylog', str(out / 'keys.log'), '-summary', str(out / 'summary.json'), '-menu-letters']
+    if spec.get('exact_turns'):
+        argv.append('-exact-turns')
+    if spec.get('depth_stream'):
+        argv += ['-statelog', str(out / 'state.log')]
+    return argv
+
+
 def run_cell(cell, build_dir, work, cat):
     applied, profile = cat_mod.resolve_profile(cat, cell)
     suite = cat['suites'][cell['suite']]
@@ -107,16 +172,13 @@ def run_cell(cell, build_dir, work, cat):
     (out / 'user/borg.txt').write_text(text)
     mismatch = check_config(text, profile)
     game = build_dir / 'game'
-    command = [str(game / 'angband'), '-mborgh', '-n', '-uBorg'] + \
-        [f'-d{d}={out / d}' for d in ('user', 'save', 'archive', 'panic', 'scores')] + \
-        ['--', '-seed', str(cell['seed']), '-race', str(race_i), '-class', str(cls_i), '-turns', str(suite['cap']),
-         '-keylog', str(out / 'keys.log'), '-summary', str(out / 'summary.json'), '-menu-letters']
+    argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec)
     env = dict(os.environ, TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8')
     start = time.monotonic()
     outcome, error, rc = None, None, None
     try:
         with (out / 'stderr.log').open('w') as err:
-            rc = subprocess.run(command, cwd=game, env=env, stdout=subprocess.DEVNULL, stderr=err,
+            rc = subprocess.run(argv, cwd=game, env=env, stdout=subprocess.DEVNULL, stderr=err,
                                 timeout=suite['wall_seconds']).returncode
     except subprocess.TimeoutExpired:
         outcome, error = 'wall_timeout', f"no stop within {suite['wall_seconds']} s"
@@ -146,12 +208,15 @@ def run_cell(cell, build_dir, work, cat):
     stall_info = None
     if outcome not in ('death', 'turn_cap', 'completion'):
         stall_info = stall.borgh(keys.read_text(errors='replace') if keys.exists() else '', summary)
+    state_log = out / 'state.log'
+    states = parse_state_log(state_log.read_text(errors='replace')) if state_log.exists() else []
     record = {
         'schema': 'borg-zoo/cell@1', **cell, 'harness_kind': 'borg-rs', 'profile_applied': applied,
         'specimen_ref': spec['ref'], 'impl': spec['impl'],
         'profile_sha256': cat_mod.profile_sha256(profile),
         'config_sha256': hashlib.sha256(text.encode()).hexdigest(),
         'cap': suite['cap'], 'birth': suite['birth'],
+        'boundary': 'exact' if spec.get('exact_turns') else 'after-key',
         'outcome': outcome, 'runner_outcome': summary.get('stop_reason'),
         'config_error': mismatch, 'config_checked': 'written file (borgh reports no effective settings)',
         'cause': summary.get('death_cause') or ('(alive and well)' if summary and not summary.get('dead') else None),
@@ -161,7 +226,8 @@ def run_cell(cell, build_dir, work, cat):
                   'depth': summary.get('depth'), 'max_depth': summary.get('max_depth'),
                   'level': summary.get('clevel'), 'max_level': summary.get('clevel'),
                   'hp': None, 'decisions': None, 'keys': summary.get('keys')},
-        'first_turn_at_depth': {},
+        'first_turn_at_depth': first_turns_at_depth(states) if states else {},
+        'milestones': milestones(states, suite['cap']) if states else None,
         'wall_seconds': wall,
         'trace_sha256': keys_sha, 'play_sha256': keys_sha,
         'error': error,
@@ -169,5 +235,11 @@ def run_cell(cell, build_dir, work, cat):
         'binary_sha256': manifest.get('binary_sha256'), 'compiler': manifest.get('compiler'),
         'rustc': manifest.get('rustc'), 'platform': manifest.get('platform'),
     }
-    keys.unlink(missing_ok=True)
+    # Death evidence: a natural death's keys are kept (not the stop-reason
+    # stall path above, which already read them) so the measured repository
+    # can verify them against play_sha256; every other outcome's keys are
+    # discarded as before.
+    if outcome != 'death':
+        keys.unlink(missing_ok=True)
+    state_log.unlink(missing_ok=True)
     return record
