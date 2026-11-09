@@ -100,7 +100,11 @@ class SeedSetTest(unittest.TestCase):
         self.assertEqual(deep['characters'], base['characters'])
         self.assertFalse(set(deep['seeds']) & set(base['seeds']))  # rule suites never overlap
         exp = cat_mod.experiment(ROOT / 'experiments/classes-200k-best.json')
-        self.assertEqual(len(cat_mod.cells(exp)), 7200)
+        self.assertEqual(exp['specimens'], ['4.2.6'])  # the recommended mix is measured separately: see below
+        self.assertEqual(len(cat_mod.cells(exp)), 3600)
+        exp = cat_mod.experiment(ROOT / 'experiments/classes-200k-recommended.json')
+        self.assertEqual(exp['profiles'], ['default'])  # munchkin-wdr is a no-op on this specimen's own default
+        self.assertEqual(len(cat_mod.cells(exp)), 1800)
 
     def test_every_suite_declares_a_role(self):
         for name, suite in cat_mod.catalogue()['suites'].items():
