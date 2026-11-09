@@ -1,9 +1,9 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "rs-m8-smoke",
-  "description": "borg-rs M8 builds and runs: smoke suite, Rust and C Borg of the M8 tree against rs-m6 (M7 is not yet in this catalogue)",
+  "description": "borg-rs M8 builds and runs: smoke suite, Rust and C Borg of the M8 tree against rs-m7",
   "specimens": [
-    "4.2.6-rs-m6",
+    "4.2.6-rs-m7",
     "4.2.6-rs-m8-c",
     "4.2.6-rs-m8"
   ],
@@ -13,5 +13,5 @@
   "suites": [
     "smoke"
   ],
-  "control": "4.2.6-rs-m6"
+  "control": "4.2.6-rs-m7"
 }
