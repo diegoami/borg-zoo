@@ -240,10 +240,14 @@ The record holds:
   boundary at or after the cap). A survivor's final turn and depth are only
   comparable at an exact boundary (borg-reborn-rs#30's `tools/endpoint.py`
   refuses after-key survivors unless told otherwise);
-- the first turn at each depth mark, and, for a borg-rs specimen with
-  `depth_stream`, `milestones`: level, max depth and gold on hand at
-  25/50/75/100% of the cap (gold on hand, not a full net worth — see "Open
-  questions");
+- the first turn at each depth mark, and, from the same sampled states, a
+  `milestones` list: character level and max depth at 25/50/75/100% of the
+  cap (the last sampled state at or before that turn), so progress can be
+  read at fixed points rather than only at the end. The better-borg-c
+  observer logs no gold or item value, so there is no net-worth figure from
+  it; a borg-rs specimen with `depth_stream` adds gold on hand at those same
+  points (still not a full net worth — gear is hashed there, not valued;
+  see "Open questions");
 - the wall time;
 - the trace hash, and a play hash that leaves out the configuration lines, so
   identical play is detectable across profiles;
@@ -286,7 +290,12 @@ jobs.
 - median maximum depth and level;
 - median death turn;
 - share alive at 25/50/75/100% of the cap;
-- share reaching DL2/3/5/10, with the median turn.
+- share reaching DL2/3/5/10, with the median turn;
+- `milestone_table`: median level, max depth and (where logged) gold on hand
+  at 25/50/75/100% of the cap, over finished runs that recorded it at that
+  point (a death before it is excluded, not substituted with a worse
+  value). Shown on the site as "Level, max depth and gold by engine turn"
+  whenever at least one cell in the suite carries it.
 
 **Paired against the control arm, on seeds where both finished:**
 - rescued, newly killed, both died, both lived;
@@ -347,22 +356,15 @@ job.
    and `birth_no_selling=1`. Varying them needs runner support too.
 8. **Milestone tags:** if better-borg-c tags its milestones, specimens can
    name them instead of SHAs.
-9. **A level/max-depth/net-worth framework, not just survival.** Two parts:
-   - **Level and max depth at turn milestones** need no upstream change: the
-     better-borg-c observer already samples level and max depth every 100
-     decisions (its `states`), the same stream `first_turn_at_depth` is
-     already derived from. A `first_turn_at_level` mark and a 25/50/75/100%
-     milestone table (mirroring `survival_table`/`depth_table` in
-     `zoo/stats.py`) are a zoo-only addition, usable on every future
-     better-borg-c run.
-   - **Net worth (inventory and equipment value), not just gold.** No
-     harness values items today. borg-reborn-rs's `borgh` build (the three
-     `4.2.6-reborn-*` specimens, `depth_stream`) does log gold on hand
-     (`au`) per key, which `milestones` already reports — a partial proxy,
-     not a net worth: equipment and inventory are only hashed, never
-     valued, in that log. The better-borg-c observer logs no gold at all.
-     A full net-worth figure needs an upstream change (value the gear at
-     each sampled state) in whichever harness the owner wants it from; that
-     is a change request to route to that harness's own repository, the
-     same way borg-reborn-rs's was routed here (#30), not something the
-     zoo can add on its own.
+9. **Net worth (inventory and equipment value), not just gold.** Level and
+   max depth at turn milestones (`milestones`, `zoo/stats.py`'s
+   `milestone_table`) are in, over every finished run, needing no upstream
+   change. Gold on hand at those same points is in too, but only for a
+   borg-rs specimen with `depth_stream` (today, the three `4.2.6-reborn-*`
+   specimens): a partial proxy, not a net worth, since that log only hashes
+   equipment and inventory, never values them. The better-borg-c observer
+   logs no gold at all. A full net-worth figure needs an upstream change
+   (value the gear at each sampled state) in whichever harness the owner
+   wants it from; that is a change request to route to that harness's own
+   repository, the same way borg-reborn-rs's was routed here (#30), not
+   something the zoo can add on its own.

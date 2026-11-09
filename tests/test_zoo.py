@@ -173,6 +173,16 @@ class HarnessParsingTest(unittest.TestCase):
         self.assertEqual(rec['first_turn_at_depth'], {'1': 500, '2': 900, '3': 900})
         self.assertEqual(rec['boundary'], 'exact')
 
+    def test_milestones_uses_the_last_sampled_state(self):
+        states = [{'turn': 2000, 'max_depth': 1, 'level': 2, 'max_level': 2},
+                  {'turn': 4000, 'max_depth': 2, 'level': 4, 'max_level': 4},
+                  {'turn': 8000, 'max_depth': 2, 'level': 6, 'max_level': 7}]
+        rows = harness.milestones(states, cap=8000, fractions=(0.5, 1.0))
+        self.assertEqual(rows, [{'turn': 4000, 'level': 4, 'max_depth': 2},
+                                {'turn': 8000, 'level': 7, 'max_depth': 2}])
+        self.assertEqual(harness.milestones([], cap=8000, fractions=(0.5,)),
+                         [{'turn': 4000, 'level': None, 'max_depth': None}])
+
 
 class PlayHashTest(unittest.TestCase):
     def test_config_lines_do_not_change_the_play_hash(self):
@@ -628,6 +638,23 @@ class StatsTest(unittest.TestCase):
         s = stats.arm_summary([cell('a', 1, 'stalled'), cell('a', 2, 'death', turn=10), cell('a', 3, 'turn_cap')])
         self.assertEqual((s['valid'], s['deaths'], s['counts']['stalled']), (2, 1, 1))
 
+    def test_milestone_table_medians_level_depth_and_gold(self):
+        def with_milestones(c, rows):
+            return dict(c, milestones=rows)
+
+        cells = [
+            with_milestones(cell('a', 1, 'turn_cap'), [{'turn': 50, 'level': 4, 'max_depth': 1, 'gold': 100}]),
+            with_milestones(cell('a', 2, 'turn_cap'), [{'turn': 50, 'level': 6, 'max_depth': 2, 'gold': 300}]),
+            with_milestones(cell('a', 3, 'death'), [{'turn': 50, 'level': 2, 'max_depth': 1}]),  # no gold logged
+            dict(cell('a', 4, 'stalled'), milestones=None),  # operational: excluded
+        ]
+        rows = stats.milestone_table(cells, fractions=(1.0,))
+        self.assertEqual(rows, [{'fraction': 1.0, 'turn': 50, 'n': 3,
+                                 'median_level': 4, 'median_max_depth': 1, 'median_gold': 200}])
+        self.assertEqual(stats.milestone_table([cell('a', 1, 'turn_cap')], fractions=(1.0,)),
+                         [{'fraction': 1.0, 'turn': None, 'n': 0,
+                           'median_level': None, 'median_max_depth': None, 'median_gold': None}])
+
 
 class EndToEndTest(unittest.TestCase):
     def test_collect_and_site(self):
@@ -650,6 +677,21 @@ class EndToEndTest(unittest.TestCase):
             self.assertIn('Paired against 4.2.6, same profile', page)
             self.assertIn('Rescued', page)
             self.assertNotIn('same version', page)
+
+    def test_site_renders_milestones_when_present(self):
+        exp = cat_mod.experiment(ROOT / 'experiments/milestones-smoke.json')
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            (tmp / 'cells').mkdir()
+            records = [dict(cell(s, seed, 'turn_cap'), milestones=[{'turn': 5000, 'level': 10, 'max_depth': 4}])
+                       for s in exp['specimens'] for seed in (11, 29)]
+            (tmp / 'cells/a.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in records))
+            main(['collect', '--experiment', str(ROOT / 'experiments/milestones-smoke.json'),
+                  '--cells', str(tmp / 'cells'), '--results', str(tmp / 'results'), '--run-id', 't-1'])
+            self.assertEqual(site.build_site(tmp / 'results', tmp / 'site'), 1)
+            page = (tmp / 'site/runs/milestones-smoke/t-1/index.html').read_text()
+            self.assertIn('Level, max depth and gold by engine turn', page)
+            self.assertIn('lv 10', page)
 
     def test_two_paired_views(self):
         exp = {"name": "two-views", "specimens": ["4.2.6", "4.2.6-bbc-m4"], "profiles": ["default", "shipped", "dynamic-calcs"], "suites": ["early-50"], "control": "4.2.6", "control_profile": "default"}

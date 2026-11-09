@@ -121,6 +121,22 @@ def first_turns_at_depth(states):
     return marks
 
 
+def milestones(states, cap, fractions=(0.25, 0.5, 0.75, 1.0)):
+    """Level and max depth at turn fractions of the cap: the last sampled
+    state (every 100 decisions) at or before that turn. The observer logs no
+    gold or item value, so there is no net-worth figure here (docs/DESIGN.md,
+    "Open questions", #9); zoo/borgrs.py's own milestones() adds gold on hand
+    for the borg-rs specimens whose state stream carries it."""
+    rows = []
+    for f in fractions:
+        t = int(cap * f)
+        at_or_before = [s for s in states if s.get('turn') is not None and s['turn'] <= t]
+        last = at_or_before[-1] if at_or_before else None
+        rows.append({'turn': t, 'level': (last or {}).get('max_level', (last or {}).get('level')),
+                     'max_depth': (last or {}).get('max_depth')})
+    return rows
+
+
 def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
     states = result.get('states') or []
     final = states[-1] if states else {}
@@ -162,6 +178,7 @@ def summarise(cell, result, trace_text, profile, spec, suite, build_manifest):
         'played_class': played[1] if played else None,
         'final': {k: final.get(k) for k in ('kind', 'turn', 'depth', 'max_depth', 'level', 'max_level', 'hp', 'decisions')},
         'first_turn_at_depth': first_turns_at_depth(states),
+        'milestones': milestones(states, suite['cap']) if states else None,
         'wall_seconds': result.get('wall_seconds'),
         'trace_sha256': files.get('trace.txt'),
         'play_sha256': play_sha256(trace_text),
