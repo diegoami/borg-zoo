@@ -100,10 +100,13 @@ built on borg-reborn-rs's own engine tree. `impl` selects `BORG_IMPL` as
 usual; the two controls use borg-reborn-rs's own control overlay (`c-pristine`,
 `c-bbc-m7`), opaque to the zoo. All three declare `exact_turns` and
 `depth_stream`: borg-reborn-rs's `borgh` build supports both from this pin.
-`4.2.6-reborn-c-pristine` plays the same keys as `4.2.6-rs-m0-c` on borg-rs's
-suites, so the two can be paired (unverified by the zoo; borg-reborn-rs's own
-`harness/zoo-check.py` checked it). `ref` is the M1 review merge commit: no
-`m1` tag exists yet, so move the three specimens to it once it does.
+`4.2.6-reborn-c-pristine`'s keys are a prefix of `4.2.6-rs-m0-c`'s on borg-rs's
+smoke suite, one key shorter: this specimen's `exact_turns` stops it exactly
+at the cap, while `4.2.6-rs-m0-c`'s tree has no `-exact-turns` and stops one
+key after it. Outcomes pair with `4.2.6-rs-m0-c`; play/trace hashes do not
+match (checked directly, #39's milestone review on #32). `ref` is tag `m1`
+(`fab7155`), 24 commits past the review merge this was first pinned to,
+including Borg behaviour changes (e.g. never holding on a shop entrance).
 
 Death evidence: the adapter keeps `keys.log` (and `summary.json`, never
 deleted) for a `death` cell instead of discarding it, so a natural death

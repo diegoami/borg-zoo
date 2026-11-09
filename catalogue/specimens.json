@@ -359,34 +359,37 @@
       "kind": "borg-rs",
       "impl": "rust",
       "repository": "diegoami/borg-reborn-rs",
-      "ref": "2dd11fd53995a76240a202765a56cc1831c9aa6b",
+      "ref": "fab71554fd32e3dbcbcf3b12daac29a02806fb13",
       "carries": 0,
       "exact_turns": true,
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-reborn-rs",
-      "label": "borg-reborn-rs M1: the reborn Borg (a placeholder strategy until its M3; its results mean nothing yet). Measured at the exact turn boundary, with the gold/level/depth state stream, as borg-reborn-rs#30 requests. ref is the M1 review merge (no m1 tag exists yet; move to the tag once it does)."
+      "tag": "m1",
+      "label": "borg-reborn-rs M1 (tag m1, the full review including its re-review rounds - 24 commits past the review merge, including Borg behaviour changes such as never holding on a shop entrance): the reborn Borg, a placeholder strategy until its M3; its results mean nothing yet. Measured at the exact turn boundary, with the gold/level/depth state stream, as borg-reborn-rs#30 requests."
     },
     "4.2.6-reborn-c-pristine": {
       "kind": "borg-rs",
       "impl": "c-pristine",
       "repository": "diegoami/borg-reborn-rs",
-      "ref": "2dd11fd53995a76240a202765a56cc1831c9aa6b",
+      "ref": "fab71554fd32e3dbcbcf3b12daac29a02806fb13",
       "carries": 0,
       "exact_turns": true,
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-reborn-rs",
-      "label": "Original C Borg (e473720) built by borg-reborn-rs under borgh; byte-identical to 4.2.6-rs-m0-c on borg-rs's smoke and full suites, so the two can be paired. ref is the M1 review merge (no m1 tag exists yet; move to the tag once it does)."
+      "tag": "m1",
+      "label": "Original C Borg (e473720) built by borg-reborn-rs under borgh. Its keys are a prefix of 4.2.6-rs-m0-c's on borg-rs's smoke suite, one key shorter (this specimen stops exactly at the cap; rs-m0-c's tree has no -exact-turns, so it stops one key after it) - outcomes pair with 4.2.6-rs-m0-c, but play/trace hashes do not match."
     },
     "4.2.6-reborn-c-bbc-m7": {
       "kind": "borg-rs",
       "impl": "c-bbc-m7",
       "repository": "diegoami/borg-reborn-rs",
-      "ref": "2dd11fd53995a76240a202765a56cc1831c9aa6b",
+      "ref": "fab71554fd32e3dbcbcf3b12daac29a02806fb13",
       "carries": 76,
       "exact_turns": true,
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-reborn-rs",
-      "label": "better-borg-c milestone 7's C Borg (4.2.6-impact-v7 src/borg) built by borg-reborn-rs under borgh. ref is the M1 review merge (no m1 tag exists yet; move to the tag once it does)."
+      "tag": "m1",
+      "label": "better-borg-c milestone 7's C Borg (4.2.6-impact-v7 src/borg) built by borg-reborn-rs under borgh."
     },
     "neo-b3-mandos": {
       "kind": "mandos",
