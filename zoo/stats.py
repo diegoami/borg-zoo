@@ -66,6 +66,50 @@ def arm_summary(cells):
     }
 
 
+def progress_score(cells):
+    """Median of (max dungeon level reached + character level reached), over
+    finished runs: a single combined figure instead of a win/lose threshold
+    (DEPTH_GOAL's "alive at cap, reached DLN" is a placeholder - DESIGN.md's
+    "Open questions" #1 - and was never meant to be the only way to read
+    progress). Computed per run, then medianed, not the sum of two separate
+    medians, which would not be the same number.
+
+    Depth and level are added unweighted: this is a plain combined figure,
+    not a calibrated score, and claims nothing about their relative value.
+    Gold on hand and a real net worth (inventory and equipment value) belong
+    here too once they exist for more than the borg-rs depth_stream
+    specimens (DESIGN.md #9); until then this is depth + level only.
+    """
+    valid = [c for c in cells if c['outcome'] in VALID]
+    scores = [(c['final'].get('max_depth') or 0) + (c['final'].get('max_level') or 0) for c in valid]
+    return median(scores) if scores else None
+
+
+def milestone_progress_score(cells, fractions=(0.25, 0.5, 0.75, 1.0)):
+    """progress_score(), but at each turn fraction of the cap instead of only at
+    the end - so the same combined figure can be read as a trajectory, not just
+    a final value. Reuses milestone_table's exclusion rule (a cell that had
+    already died by that turn does not contribute there), combining depth and
+    level per cell before taking the median, same as progress_score.
+    """
+    valid = [c for c in cells if c['outcome'] in VALID and c.get('milestones')]
+    rows = []
+    for i, f in enumerate(fractions):
+        scores, turn = [], None
+        for c in valid:
+            if len(c['milestones']) <= i:
+                continue
+            m = c['milestones'][i]
+            turn = turn if turn is not None else m['turn']
+            if c['outcome'] == 'death' and (c['final'].get('turn') or 0) <= m['turn']:
+                continue
+            if m.get('level') is None or m.get('max_depth') is None:
+                continue
+            scores.append(m['level'] + m['max_depth'])
+        rows.append({'fraction': f, 'turn': turn, 'n': len(scores), 'score': median(scores) if scores else None})
+    return rows
+
+
 def pairing_class(cell):
     """Runs pair only within one harness kind and, for Mandos, one
     command-stream profile: the same seed is the same game only under the

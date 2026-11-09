@@ -7,8 +7,8 @@ from pathlib import Path
 from . import stats
 
 CSS = """
-:root{--card:#ffffff;--bg:#fbfaf7;--fg:#1d1d1b;--muted:#6b6a64;--line:#dcd9cf;--head:#f0eee7;--good:#1f7a3a;--bad:#a8321e;--accent:#2f5d8a}
-@media (prefers-color-scheme:dark){:root{--card:#1f1e1b;--bg:#171715;--fg:#ecebe6;--muted:#a3a198;--line:#3a3934;--head:#24231f;--good:#6fcf8a;--bad:#f08a76;--accent:#8db7e0}}
+:root{--card:#ffffff;--bg:#fbfaf7;--fg:#1d1d1b;--muted:#6b6a64;--line:#dcd9cf;--head:#f0eee7;--good:#1f7a3a;--bad:#a8321e;--accent:#2f5d8a;--rust:#b58700}
+@media (prefers-color-scheme:dark){:root{--card:#1f1e1b;--bg:#171715;--fg:#ecebe6;--muted:#a3a198;--line:#3a3934;--head:#24231f;--good:#6fcf8a;--bad:#f08a76;--accent:#8db7e0;--rust:#b08a1e}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
 main{max-width:1100px;margin:0 auto;padding:24px 16px 64px}h1{font-size:1.6rem;margin:0 0 4px}h2{font-size:1.2rem;margin:32px 0 8px}h3{font-size:1rem;margin:20px 0 6px}
 a{color:var(--accent)}p.note,.muted{color:var(--muted)}.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;margin:8px 0}
@@ -39,14 +39,22 @@ svg.scatter .head{font-weight:600;font-size:12px}
 svg.scatter .dot{fill:var(--accent);stroke:var(--card);stroke-width:1.5}
 svg.scatter .dot.hi{fill:var(--good)}
 svg.scatter .dot.other{fill:var(--muted);stroke:var(--card)}
+svg.scatter .dot.rust{fill:var(--rust)}
 svg.scatter .dot.outline{fill:none;stroke:var(--accent);stroke-width:2.5}
+svg.scatter .dot.rust.outline{stroke:var(--rust)}
 svg.scatter .dot.cross{fill:none;stroke:none}
 svg.scatter .dot.cross line{stroke:var(--muted);stroke-width:3;stroke-linecap:round}
 svg.scatter.compact{max-width:140px}
 .legend-mark{vertical-align:-3px;margin-right:2px}
-.class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(7.5rem,1fr));gap:12px;margin:8px 0}
+.class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(9rem,1fr));gap:12px;margin:8px 0}
 .class-cell{border:1px solid var(--line);border-radius:6px;padding:8px;text-align:center}
 .class-cell h3{margin:0 0 4px;font-size:.85rem}
+/* The generic .chart rule below is sized for the big charts (a 420px floor
+   so they don't get squished on mobile) and wraps every chart, this small
+   one included; without this override each class tile fought its own box
+   for width and scrolled individually instead of just... fitting. */
+.class-cell .chart{max-width:none;overflow-x:visible}
+.class-cell .chart svg{min-width:0;max-width:100%}
 p.tabs{display:flex;gap:4px;margin:8px 0 18px;border-bottom:1px solid var(--line)}
 p.tabs .tab{padding:6px 14px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent}
 p.tabs .tab.active{color:var(--fg);font-weight:600;border-bottom-color:var(--accent)}
