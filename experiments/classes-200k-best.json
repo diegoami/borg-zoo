@@ -1,0 +1,18 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-200k-best",
+  "description": "Our current best setups, at 200,000 engine turns instead of 100,000: vanilla, vanilla with the munchkin start by class, and the recommended mix (better-borg-c M7 plus that same win as the version's own default), on classes-1800-200k",
+  "specimens": [
+    "4.2.6",
+    "4.2.6-bbc-munchkin-by-class"
+  ],
+  "profiles": [
+    "default",
+    "munchkin-wdr"
+  ],
+  "suites": [
+    "classes-1800-200k"
+  ],
+  "control": "4.2.6",
+  "control_profile": "default"
+}

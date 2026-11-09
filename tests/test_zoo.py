@@ -92,6 +92,16 @@ class SeedSetTest(unittest.TestCase):
                 owner.setdefault(seed, name)
         self.assertEqual(len(a['dev-2000']['seeds']), 2000)
 
+    def test_classes_1800_200k_doubles_the_cap_on_fresh_disjoint_seeds(self):
+        suites = cat_mod.catalogue()['suites']
+        base, deep = suites['classes-1800'], suites['classes-1800-200k']
+        self.assertEqual(deep['cap'], base['cap'] * 2)
+        self.assertEqual(len(deep['seeds']), len(base['seeds']))
+        self.assertEqual(deep['characters'], base['characters'])
+        self.assertFalse(set(deep['seeds']) & set(base['seeds']))  # rule suites never overlap
+        exp = cat_mod.experiment(ROOT / 'experiments/classes-200k-best.json')
+        self.assertEqual(len(cat_mod.cells(exp)), 7200)
+
     def test_every_suite_declares_a_role(self):
         for name, suite in cat_mod.catalogue()['suites'].items():
             self.assertIn(suite.get('role'), ('pilot', 'development', 'confirmation', 'sealed'), name)
