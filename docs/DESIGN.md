@@ -121,6 +121,15 @@ game.
   command stream, checked against the file. Command streams, state streams
   and logs of runs without an endpoint are kept as workflow artifacts for
   30 days.
+- **Local runs need Node 22 and a recent Corepack.** The Mandos tags pin
+  `pnpm@12.16.1`. The Corepack bundled with Ubuntu's Node 22.22 can't start
+  pnpm 12: it fails with `Cannot find module …/pnpm/12.16.1/bin/pnpm.cjs`.
+  Actions' `setup-node` doesn't have this problem.
+  - Locally, run a newer Corepack's `pnpm.js` under Node 22 (for example, a
+    `pnpm` wrapper on `PATH` that execs `node <newer corepack>/dist/pnpm.js`),
+    and keep Node 22 first on `PATH`.
+  - Don't install two checkouts in parallel: two Corepack downloads into the
+    same cache leave a broken pnpm directory.
 - **Speed:** about 6× slower than the C Borg (a 100,000-tick run that
   survives took 549 s on one CPU in Mandos's measurement), so Mandos
   specimens get `wall_factor: 3` on the suite's wall limit.
@@ -260,6 +269,14 @@ Taken from better-borg-c's recorded run times. A 20,000-turn run takes
 | `milestones-smoke` | 15 | minutes |
 | `milestones-early` | 250 | 2–3 hours, spread over 20 jobs |
 | `switches-early` | 900 | 8–11 hours, spread over 8 jobs (raise `shards`) |
+
+Measured in Actions on 2026-11-08 and 9: Mandos api2 lanes at 100,000 ticks
+take a median of 21–29 s per game, with a mean of 49 s and a maximum of
+182 s (the Neo Borg dies early). `mandos-api2-classes-1800`, 3,600 games
+with `shards=10` per lane, took 1 h 38 min from dispatch to collection. On
+classes-1800 with `shards=4`, `classes-m7` (7,200 C games) took 2 h 44 min
+and `classes-rs-m6` (9,000 games, borg-rs) took 38 min. The figures depend
+on what else holds the queue.
 
 Public repositories have no Actions minute charge on standard runners. The
 limits that matter are 20 concurrent jobs, 256 matrix jobs and 6 hours per

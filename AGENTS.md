@@ -3,7 +3,8 @@
 This session owns **diegoami/borg-zoo**: running seed suites across Borg
 specimens and profiles, storing every run, and publishing comparisons. Read
 [README](README.md), [RULES](RULES.md) and [docs/DESIGN.md](docs/DESIGN.md)
-first.
+first. What the finished experiments showed, and what is still open, is in
+[docs/FINDINGS.md](docs/FINDINGS.md). Update it when an experiment finishes.
 
 ```sh
 git status --short
