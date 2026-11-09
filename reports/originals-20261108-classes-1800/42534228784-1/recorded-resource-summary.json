@@ -1,0 +1,61 @@
+{
+  "definitions": {
+    "healing_regex": "(?:potions? of (?:cure (?:light|serious|critical) wounds|healing|\\*healing\\*|life|neutralize poison)|staff of curing)",
+    "escape_regex": "(?:scrolls? of (?:phase door|teleportation|teleport level)|potions? of speed)"
+  },
+  "qualification": "Only identified names printed in recorded final inventory; unidentified items may have these effects. Native dump inventory may reflect Borg observation rather than a fresh save. Four Neo wall timeouts lack terminal inventory. These are not causal availability estimates.",
+  "arms": {
+    "angband-e473-original": {
+      "death": {
+        "records": 619,
+        "with_named_heal_or_antidote_in_recorded_inventory": 332,
+        "with_named_phase_teleport_or_speed_in_recorded_inventory": 103,
+        "with_inventory_record": 619
+      },
+      "turn_cap": {
+        "records": 1181,
+        "with_named_heal_or_antidote_in_recorded_inventory": 1124,
+        "with_named_phase_teleport_or_speed_in_recorded_inventory": 970,
+        "with_inventory_record": 1181
+      },
+      "stalled": {
+        "records": 0,
+        "with_named_heal_or_antidote_in_recorded_inventory": 0,
+        "with_named_phase_teleport_or_speed_in_recorded_inventory": 0,
+        "with_inventory_record": 0
+      },
+      "wall_timeout": {
+        "records": 0,
+        "with_named_heal_or_antidote_in_recorded_inventory": 0,
+        "with_named_phase_teleport_or_speed_in_recorded_inventory": 0,
+        "with_inventory_record": 0
+      }
+    },
+    "neo-5a9-original": {
+      "death": {
+        "records": 1450,
+        "with_named_heal_or_antidote_in_recorded_inventory": 151,
+        "with_named_phase_teleport_or_speed_in_recorded_inventory": 0,
+        "with_inventory_record": 1450
+      },
+      "turn_cap": {
+        "records": 311,
+        "with_named_heal_or_antidote_in_recorded_inventory": 79,
+        "with_named_phase_teleport_or_speed_in_recorded_inventory": 0,
+        "with_inventory_record": 311
+      },
+      "stalled": {
+        "records": 35,
+        "with_named_heal_or_antidote_in_recorded_inventory": 3,
+        "with_named_phase_teleport_or_speed_in_recorded_inventory": 0,
+        "with_inventory_record": 35
+      },
+      "wall_timeout": {
+        "records": 4,
+        "with_named_heal_or_antidote_in_recorded_inventory": 0,
+        "with_named_phase_teleport_or_speed_in_recorded_inventory": 0,
+        "with_inventory_record": 0
+      }
+    }
+  }
+}

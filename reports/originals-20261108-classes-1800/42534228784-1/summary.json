@@ -1,0 +1,624 @@
+{
+  "arms": {
+    "angband-e473-original": {
+      "birth_hp_by_outcome": {
+        "death": 13,
+        "turn_cap": 14
+      },
+      "birth_hp_median": 14.0,
+      "cause_metadata_unmatched": {
+        "a fatal wound": 16,
+        "burning to a cinder in lava": 6,
+        "poison": 29
+      },
+      "class": {
+        "Blackguard": {
+          "birth_hp_max": 21,
+          "birth_hp_median": 18.0,
+          "birth_hp_min": 15,
+          "outcomes": {
+            "death": 39,
+            "turn_cap": 161
+          },
+          "starts": 200
+        },
+        "Druid": {
+          "birth_hp_max": 15,
+          "birth_hp_median": 12.0,
+          "birth_hp_min": 10,
+          "outcomes": {
+            "death": 141,
+            "turn_cap": 59
+          },
+          "starts": 200
+        },
+        "Mage": {
+          "birth_hp_max": 13,
+          "birth_hp_median": 10.0,
+          "birth_hp_min": 7,
+          "outcomes": {
+            "death": 62,
+            "turn_cap": 138
+          },
+          "starts": 200
+        },
+        "Necromancer": {
+          "birth_hp_max": 15,
+          "birth_hp_median": 12.0,
+          "birth_hp_min": 9,
+          "outcomes": {
+            "death": 66,
+            "turn_cap": 134
+          },
+          "starts": 200
+        },
+        "Paladin": {
+          "birth_hp_max": 19,
+          "birth_hp_median": 16.0,
+          "birth_hp_min": 14,
+          "outcomes": {
+            "death": 37,
+            "turn_cap": 163
+          },
+          "starts": 200
+        },
+        "Priest": {
+          "birth_hp_max": 16,
+          "birth_hp_median": 13.0,
+          "birth_hp_min": 10,
+          "outcomes": {
+            "death": 48,
+            "turn_cap": 152
+          },
+          "starts": 200
+        },
+        "Ranger": {
+          "birth_hp_max": 17,
+          "birth_hp_median": 15.0,
+          "birth_hp_min": 12,
+          "outcomes": {
+            "death": 86,
+            "turn_cap": 114
+          },
+          "starts": 200
+        },
+        "Rogue": {
+          "birth_hp_max": 17,
+          "birth_hp_median": 14.0,
+          "birth_hp_min": 11,
+          "outcomes": {
+            "death": 76,
+            "turn_cap": 124
+          },
+          "starts": 200
+        },
+        "Warrior": {
+          "birth_hp_max": 23,
+          "birth_hp_median": 20.0,
+          "birth_hp_min": 17,
+          "outcomes": {
+            "death": 64,
+            "turn_cap": 136
+          },
+          "starts": 200
+        }
+      },
+      "coverage": {
+        "birth_gold": 0,
+        "birth_no_selling": {
+          "1": 1800
+        },
+        "birth_stats": 0,
+        "final_map_parsed": 1799
+      },
+      "death_depth": {
+        "0": 12,
+        "1": 472,
+        "10": 1,
+        "12": 12,
+        "13": 8,
+        "14": 1,
+        "15": 3,
+        "17": 2,
+        "18": 2,
+        "2": 55,
+        "3": 9,
+        "4": 5,
+        "6": 6,
+        "7": 21,
+        "8": 5,
+        "9": 5
+      },
+      "death_level": {
+        "1": 227,
+        "10": 5,
+        "11": 4,
+        "12": 1,
+        "2": 155,
+        "3": 85,
+        "4": 59,
+        "5": 32,
+        "6": 19,
+        "7": 15,
+        "8": 13,
+        "9": 4
+      },
+      "death_ticks": {
+        "0-999": 7,
+        "1000-2499": 23,
+        "10000-24999": 171,
+        "2500-4999": 74,
+        "25000-49999": 111,
+        "5000-9999": 112,
+        "50000-100000": 121
+      },
+      "first_positive_depth_observation_coverage": 1796,
+      "first_positive_depth_observation_le_30": 17,
+      "first_positive_depth_observation_median_not_native_entry_time": 2050.0,
+      "neo_stall_reasons": {},
+      "never_move_causes": {
+        "a brown mold": 1,
+        "a floating eye": 1,
+        "a green jelly": 1,
+        "a grey mold": 28,
+        "a grey mushroom patch": 10,
+        "a silver jelly": 2,
+        "a yellow jelly": 2,
+        "an old forest tree": 3
+      },
+      "never_move_deaths": 48,
+      "outcomes": {
+        "death": 619,
+        "turn_cap": 1181
+      },
+      "poison_deaths": 29,
+      "race": {
+        "Dunadan": {
+          "outcomes": {
+            "death": 57,
+            "turn_cap": 105
+          },
+          "starts": 162
+        },
+        "Dwarf": {
+          "outcomes": {
+            "death": 39,
+            "turn_cap": 123
+          },
+          "starts": 162
+        },
+        "Elf": {
+          "outcomes": {
+            "death": 78,
+            "turn_cap": 84
+          },
+          "starts": 162
+        },
+        "Gnome": {
+          "outcomes": {
+            "death": 58,
+            "turn_cap": 104
+          },
+          "starts": 162
+        },
+        "Half-Elf": {
+          "outcomes": {
+            "death": 64,
+            "turn_cap": 107
+          },
+          "starts": 171
+        },
+        "Half-Orc": {
+          "outcomes": {
+            "death": 49,
+            "turn_cap": 113
+          },
+          "starts": 162
+        },
+        "Half-Troll": {
+          "outcomes": {
+            "death": 38,
+            "turn_cap": 124
+          },
+          "starts": 162
+        },
+        "High-Elf": {
+          "outcomes": {
+            "death": 41,
+            "turn_cap": 121
+          },
+          "starts": 162
+        },
+        "Hobbit": {
+          "outcomes": {
+            "death": 61,
+            "turn_cap": 101
+          },
+          "starts": 162
+        },
+        "Human": {
+          "outcomes": {
+            "death": 82,
+            "turn_cap": 89
+          },
+          "starts": 171
+        },
+        "Kobold": {
+          "outcomes": {
+            "death": 52,
+            "turn_cap": 110
+          },
+          "starts": 162
+        }
+      },
+      "shopping": {
+        "c_buy_plan_notes": 76971,
+        "c_lives_with_buy_note": 1798,
+        "c_lives_with_purchase_plan": 1798,
+        "c_lives_with_retail_buy_note": 1798,
+        "c_lives_with_store_entry": 1798,
+        "c_retail_buy_notes": 64990,
+        "first_retail_buy_note_median": 481.0,
+        "lives_with_buy_note_before_positive_depth_note_not_first_entry": 1659,
+        "lives_with_buy_plan_before_positive_depth_note_not_first_entry": 1701,
+        "lives_with_retail_buy_note_by_tick": {
+          "1000": 1389,
+          "10000": 1798,
+          "2500": 1727,
+          "5000": 1784
+        },
+        "lives_with_retained_confirmed_buy_message": 1137,
+        "lives_with_retained_confirmed_sell_message": 0,
+        "retained_confirmed_buy_messages": 12212,
+        "retained_confirmed_sell_messages": 0
+      },
+      "starts": 1800,
+      "town_dog_deaths": 114
+    },
+    "neo-5a9-original": {
+      "birth_hp_by_outcome": {
+        "death": 13.0,
+        "stalled": 11,
+        "turn_cap": 17,
+        "wall_timeout": 18.0
+      },
+      "birth_hp_median": 14.0,
+      "cause_metadata_unmatched": {
+        "a fatal wound": 34,
+        "poison": 131,
+        "starvation": 4
+      },
+      "class": {
+        "Blackguard": {
+          "birth_hp_max": 22,
+          "birth_hp_median": 18.0,
+          "birth_hp_min": 15,
+          "outcomes": {
+            "death": 114,
+            "stalled": 4,
+            "turn_cap": 80,
+            "wall_timeout": 2
+          },
+          "starts": 200
+        },
+        "Druid": {
+          "birth_hp_max": 15,
+          "birth_hp_median": 12.0,
+          "birth_hp_min": 9,
+          "outcomes": {
+            "death": 199,
+            "turn_cap": 1
+          },
+          "starts": 200
+        },
+        "Mage": {
+          "birth_hp_max": 13,
+          "birth_hp_median": 10.0,
+          "birth_hp_min": 7,
+          "outcomes": {
+            "death": 170,
+            "stalled": 12,
+            "turn_cap": 18
+          },
+          "starts": 200
+        },
+        "Necromancer": {
+          "birth_hp_max": 15,
+          "birth_hp_median": 12.0,
+          "birth_hp_min": 9,
+          "outcomes": {
+            "death": 181,
+            "stalled": 16,
+            "turn_cap": 2,
+            "wall_timeout": 1
+          },
+          "starts": 200
+        },
+        "Paladin": {
+          "birth_hp_max": 20,
+          "birth_hp_median": 16.0,
+          "birth_hp_min": 13,
+          "outcomes": {
+            "death": 167,
+            "stalled": 2,
+            "turn_cap": 31
+          },
+          "starts": 200
+        },
+        "Priest": {
+          "birth_hp_max": 15,
+          "birth_hp_median": 12.0,
+          "birth_hp_min": 9,
+          "outcomes": {
+            "death": 133,
+            "stalled": 1,
+            "turn_cap": 66
+          },
+          "starts": 200
+        },
+        "Ranger": {
+          "birth_hp_max": 18,
+          "birth_hp_median": 15.0,
+          "birth_hp_min": 12,
+          "outcomes": {
+            "death": 185,
+            "turn_cap": 15
+          },
+          "starts": 200
+        },
+        "Rogue": {
+          "birth_hp_max": 17,
+          "birth_hp_median": 14.0,
+          "birth_hp_min": 11,
+          "outcomes": {
+            "death": 182,
+            "turn_cap": 18
+          },
+          "starts": 200
+        },
+        "Warrior": {
+          "birth_hp_max": 23,
+          "birth_hp_median": 19.0,
+          "birth_hp_min": 16,
+          "outcomes": {
+            "death": 119,
+            "turn_cap": 80,
+            "wall_timeout": 1
+          },
+          "starts": 200
+        }
+      },
+      "coverage": {
+        "birth_gold": 1796,
+        "birth_no_selling": {
+          "False": 1796,
+          "None": 4
+        },
+        "birth_stats": 1796,
+        "final_map_parsed": 1796
+      },
+      "death_depth": {
+        "0": 2,
+        "1": 1368,
+        "2": 72,
+        "3": 7,
+        "4": 1
+      },
+      "death_level": {
+        "1": 717,
+        "2": 383,
+        "3": 174,
+        "4": 109,
+        "5": 45,
+        "6": 18,
+        "7": 4
+      },
+      "death_ticks": {
+        "0-999": 144,
+        "1000-2499": 232,
+        "10000-24999": 270,
+        "2500-4999": 277,
+        "25000-49999": 150,
+        "5000-9999": 281,
+        "50000-100000": 96
+      },
+      "first_positive_depth_observation_coverage": 1800,
+      "first_positive_depth_observation_le_30": 1500,
+      "first_positive_depth_observation_median_not_native_entry_time": 20.0,
+      "neo_stall_reasons": {
+        "The Borg's cast changed nothing 40 times running.": 15,
+        "The Borg's rest changed nothing 40 times running.": 4,
+        "The Borg's study changed nothing 40 times running.": 1,
+        "The Borg's tunnel changed nothing 40 times running.": 4,
+        "The game kept refusing the Borg's commands.": 11
+      },
+      "never_move_causes": {
+        "blue jelly": 3,
+        "floating eye": 102,
+        "green jelly": 1,
+        "grey mold": 61,
+        "grey mushroom patch": 78,
+        "purple mushroom patch": 1,
+        "radiation eye": 1,
+        "rot jelly": 1,
+        "silver jelly": 7,
+        "spotted mushroom patch": 1,
+        "white jelly": 39,
+        "yellow jelly": 13,
+        "yellow mold": 12,
+        "yellow mushroom patch": 1
+      },
+      "never_move_deaths": 321,
+      "outcomes": {
+        "death": 1450,
+        "stalled": 35,
+        "turn_cap": 311,
+        "wall_timeout": 4
+      },
+      "poison_deaths": 131,
+      "race": {
+        "Dunadan": {
+          "outcomes": {
+            "death": 139,
+            "stalled": 1,
+            "turn_cap": 22
+          },
+          "starts": 162
+        },
+        "Dwarf": {
+          "outcomes": {
+            "death": 136,
+            "stalled": 1,
+            "turn_cap": 25
+          },
+          "starts": 162
+        },
+        "Elf": {
+          "outcomes": {
+            "death": 139,
+            "stalled": 5,
+            "turn_cap": 17,
+            "wall_timeout": 1
+          },
+          "starts": 162
+        },
+        "Gnome": {
+          "outcomes": {
+            "death": 132,
+            "stalled": 5,
+            "turn_cap": 25
+          },
+          "starts": 162
+        },
+        "Half-Elf": {
+          "outcomes": {
+            "death": 140,
+            "stalled": 4,
+            "turn_cap": 26,
+            "wall_timeout": 1
+          },
+          "starts": 171
+        },
+        "Half-Orc": {
+          "outcomes": {
+            "death": 125,
+            "stalled": 1,
+            "turn_cap": 34,
+            "wall_timeout": 2
+          },
+          "starts": 162
+        },
+        "Half-Troll": {
+          "outcomes": {
+            "death": 108,
+            "stalled": 1,
+            "turn_cap": 53
+          },
+          "starts": 162
+        },
+        "High-Elf": {
+          "outcomes": {
+            "death": 118,
+            "stalled": 5,
+            "turn_cap": 39
+          },
+          "starts": 162
+        },
+        "Hobbit": {
+          "outcomes": {
+            "death": 133,
+            "stalled": 3,
+            "turn_cap": 26
+          },
+          "starts": 162
+        },
+        "Human": {
+          "outcomes": {
+            "death": 157,
+            "stalled": 3,
+            "turn_cap": 11
+          },
+          "starts": 171
+        },
+        "Kobold": {
+          "outcomes": {
+            "death": 123,
+            "stalled": 6,
+            "turn_cap": 33
+          },
+          "starts": 162
+        }
+      },
+      "shopping": {
+        "c_buy_plan_notes": 0,
+        "c_lives_with_buy_note": 0,
+        "c_lives_with_purchase_plan": 0,
+        "c_lives_with_retail_buy_note": 0,
+        "c_lives_with_store_entry": 0,
+        "c_retail_buy_notes": 0,
+        "first_intent_codes": {
+          "descend": 877,
+          "study": 923
+        },
+        "first_shop_buy_intent_median": 17119,
+        "lives_buying_before_first_descend_intent": 0,
+        "lives_issuing_shop_buy": 1,
+        "lives_with_retained_confirmed_buy_message": 1,
+        "lives_with_retained_confirmed_sell_message": 1,
+        "lives_with_shop_buy_intent_by_tick": {
+          "1000": 0,
+          "10000": 0,
+          "2500": 0,
+          "5000": 0
+        },
+        "retained_confirmed_buy_messages": 1,
+        "retained_confirmed_sell_messages": 1,
+        "shop_buy_intents": 1,
+        "shop_exit_intents": 286,
+        "shop_sell_intents": 3,
+        "terminal_records_with_any_nonempty_known_store": 11,
+        "terminal_records_with_empty_known_stores": 1785
+      },
+      "starts": 1800,
+      "town_dog_deaths": 238
+    }
+  },
+  "coverage": {},
+  "hp_match_outcomes": {
+    "equal": {
+      "death": 979,
+      "stalled": 30,
+      "turn_cap": 180,
+      "wall_timeout": 3
+    },
+    "higher": {
+      "death": 70,
+      "stalled": 1,
+      "turn_cap": 28,
+      "wall_timeout": 1
+    },
+    "lower": {
+      "death": 401,
+      "stalled": 4,
+      "turn_cap": 103
+    }
+  },
+  "neo_initial_hp_vs_native_same_class_race_median": {
+    "equal": 1192,
+    "higher": 100,
+    "lower": 508
+  },
+  "qualifications": [
+    "All records audited before representative case selection.",
+    "C and Neo seeds generate different games; no paired causal inference.",
+    "C default point buy and Neo ordinary Core roller differ. Native birth stats/gold/gear were not separately captured.",
+    "Native messages are bounded retained history; Neo messages.jsonl is complete to stop or timeout.",
+    "C buying notes are plans or issued actions, not transaction confirmations. Neo gate acceptance is not Core effect success.",
+    "Native energy is cumulative spent energy; Neo energy is the current balance.",
+    "Native first positive-depth location notes can miss brief earlier visits; neither they nor the sampled maxDepth bounds provide exact first-entry times. Do not compare their medians as time spent preparing in town.",
+    "Never-move categories use inherited flags declared in the respective pinned content, not assumed avoidability.",
+    "Empty known store stock does not prove no store visit."
+  ],
+  "records": 3600,
+  "schema": "borg-zoo/recorded-facts-analysis@1"
+}
