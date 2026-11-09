@@ -178,6 +178,14 @@
       "label": "better-borg-c milestone 8 (tag 4.2.6-impact-v8): 12 patch units since milestone 7 (patches 0078-0089), plus the owner's munchkin-by-class change (PR302). 4.2.6-bbc-munchkin-by-class shares that munchkin default (same 4 classes, depth 6) but not milestone 8's 12 fixes: it carries 76, this carries 88. Because the munchkin-by-class default is already in M8's game, the munchkin-wdr profile is a no-op on this specimen (confirmed identical play/trace hashes, 2026-11-09).",
       "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE8.md"
     },
+    "4.2.6-bbc-m9": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "33207fbeeb582e67d6b18e9f40613617667905ae",
+      "tag": "4.2.6-impact-v9",
+      "carries": 98,
+      "label": "better-borg-c milestone 9 (tag 4.2.6-impact-v9): 10 patch units since milestone 8 (patches 0090-0099: the 0090-0096 board batch and 0097-0099, including a memory-safety carry). C line only so far; borg-rs has not tagged a v9 yet.",
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE9.md"
+    },
     "4.2.6-rs-m0-c": {
       "kind": "borg-rs",
       "impl": "c",
