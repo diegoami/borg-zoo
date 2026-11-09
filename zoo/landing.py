@@ -187,7 +187,7 @@ def find_arm(runs, specimen, profile, specs, cls=None):
     current name.
     """
     aliases = {specimen, *specs.get(specimen, {}).get('formerly', ())}
-    best_summary, best_meta, best_key = None, None, (-1, '')
+    best_summary, best_meta, best_arm, best_key = None, None, None, (-1, '')
     for meta, cells, _ in runs:
         arm = [c for c in cells if c['specimen'] in aliases and c['profile'] == profile
                and (cls is None or c.get('played_class') == cls)]
@@ -196,8 +196,8 @@ def find_arm(runs, specimen, profile, specs, cls=None):
         s = dict(stats.arm_summary(arm), progress_score=stats.progress_score(arm))
         key = (s['valid'], meta.get('completed', ''))
         if key > best_key:
-            best_summary, best_meta, best_key = s, meta, key
-    return best_summary, best_meta
+            best_summary, best_meta, best_arm, best_key = s, meta, arm, key
+    return best_summary, best_meta, best_arm
 
 
 PROFILES_URL = 'https://github.com/diegoami/borg-zoo/blob/main/catalogue/profiles.json'
@@ -255,11 +255,11 @@ def exemplar_points(runs, specs, cls=None):
     played class (for the per-class grid) or None for all."""
     points, found = [], []
     for e in EXEMPLARS:
-        s, meta = find_arm(runs, e['specimen'], e['profile'], specs, cls)
+        s, meta, arm = find_arm(runs, e['specimen'], e['profile'], specs, cls)
         x = (1 - s['death_rate']) if s and s['death_rate'] is not None else None
         yv = s['progress_score'] if s else None
         points.append((e['shape'], x, yv, e['cls']))
-        found.append((s, meta))
+        found.append((s, meta, arm))
     return points, found
 
 
@@ -270,7 +270,7 @@ def card_exemplars(runs):
         return None
     rows = []
     run_keys = set()
-    for e, (s, meta) in zip(EXEMPLARS, found):
+    for e, (s, meta, arm) in zip(EXEMPLARS, found):
         source = specs.get(e['specimen'], {}).get('source')
         src = f' · <a href="{esc(source)}">source</a>' if source else ''
         x = (1 - s['death_rate']) if s and s['death_rate'] is not None else None
@@ -300,6 +300,7 @@ def card_exemplars(runs):
               'Finished</th><th class="l">Run · suite · completed</th>'
               '</tr></thead><tbody>' + ''.join(rows) + '</tbody></table></div>')
     grid = class_grid(runs, specs)
+    snapshots = turn_snapshots_section(found)
     cross_run = len(run_keys) > 1
     answer = (f'The <strong>recommended mix</strong> is ahead of vanilla on both axes and of vanilla + '
               f'munchkin on survival too, in the runs recorded so far — but those points are not one '
@@ -319,7 +320,57 @@ def card_exemplars(runs):
             f'just whether it survived) — gold on hand and a real net worth will join it once they exist '
             f'for more than one specimen. The Neo Angband point is never comparable with the rest: Mandos '
             f'plays a different engine on different seeds.</p>'
-            f'{grid}</div>')
+            f'{grid}{snapshots}</div>')
+
+
+def turn_snapshots_section(found):
+    """A scatter chart per turn fraction of the cap (25/50/75/100%): every
+    exemplar's survivability and progress AT that turn, not just at the end
+    - the same per-cell `milestones` data the Detailed tab's own turn table
+    reads. A mark needs both an x (survivability) and a y (progress): an
+    exemplar whose arm has no milestones (a borg-rs specimen without
+    depth_stream) has its alive rate computed but no progress figure, so it
+    draws no mark at all here rather than a half-drawn one at a guessed y.
+
+    Labelled with the actual turn each fraction lands on, which needs every
+    contributing arm to share one cap; with more than one cap in play, the
+    label falls back to the fraction itself and says so.
+    """
+    fractions = (0.25, 0.5, 0.75, 1.0)
+    by_fraction = [[] for _ in fractions]
+    caps = set()
+    for e, (s, meta, arm) in zip(EXEMPLARS, found):
+        if not arm:
+            for i in range(len(fractions)):
+                by_fraction[i].append((e['shape'], None, None, e['cls']))
+            continue
+        cap = arm[0]['cap']
+        caps.add(cap)
+        surv = stats.survival_table(arm, cap, fractions)
+        prog = stats.milestone_progress_score(arm, fractions)
+        for i in range(len(fractions)):
+            by_fraction[i].append((e['shape'], surv[i]['alive'], prog[i]['score'], e['cls']))
+    # A mark needs both coordinates (see the docstring); a fraction - or the whole section -
+    # with survivability but no progress anywhere draws nothing, so do not show it as if it did.
+    if not any(any(p[1] is not None and p[2] is not None for p in pts) for pts in by_fraction):
+        return ''
+    one_cap = caps.pop() if len(caps) == 1 else None
+    cells = []
+    for i, f in enumerate(fractions):
+        if not any(p[1] is not None and p[2] is not None for p in by_fraction[i]):
+            continue
+        label = f'{int(one_cap * f):,} turns' if one_cap else f'{int(f * 100)}% of cap'
+        chart = scatter(by_fraction[i], x_label='', y_label='', compact=True, y_fmt='num')
+        cells.append(f'<div class="class-cell"><h3>{esc(label)}</h3>{chart}</div>')
+    caption = (f'the same setups, at {", ".join(f"{int(one_cap * f):,}" for f in fractions)} turns.'
+              if one_cap else
+              'the same setups, at 25/50/75/100% of each one’s own cap (more than one cap is in play, '
+              'so turns are not directly comparable across tiles).')
+    return (f'<h3>Progress over turns</h3><p class="foot">Not just the end state: {caption} Survivability '
+            f'runs left to right, 0–100%; depth + level runs bottom to top, each tile scaled to its own '
+            f'highest point. A tile with only some marks means the rest had no per-turn data recorded '
+            f'(no <code>depth_stream</code>, for a borg-rs specimen) or had already died by then.</p>'
+            f'<div class="class-grid">{"".join(cells)}</div>')
 
 
 def class_grid(runs, specs):

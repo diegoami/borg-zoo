@@ -85,6 +85,31 @@ def progress_score(cells):
     return median(scores) if scores else None
 
 
+def milestone_progress_score(cells, fractions=(0.25, 0.5, 0.75, 1.0)):
+    """progress_score(), but at each turn fraction of the cap instead of only at
+    the end - so the same combined figure can be read as a trajectory, not just
+    a final value. Reuses milestone_table's exclusion rule (a cell that had
+    already died by that turn does not contribute there), combining depth and
+    level per cell before taking the median, same as progress_score.
+    """
+    valid = [c for c in cells if c['outcome'] in VALID and c.get('milestones')]
+    rows = []
+    for i, f in enumerate(fractions):
+        scores, turn = [], None
+        for c in valid:
+            if len(c['milestones']) <= i:
+                continue
+            m = c['milestones'][i]
+            turn = turn if turn is not None else m['turn']
+            if c['outcome'] == 'death' and (c['final'].get('turn') or 0) <= m['turn']:
+                continue
+            if m.get('level') is None or m.get('max_depth') is None:
+                continue
+            scores.append(m['level'] + m['max_depth'])
+        rows.append({'fraction': f, 'turn': turn, 'n': len(scores), 'score': median(scores) if scores else None})
+    return rows
+
+
 def pairing_class(cell):
     """Runs pair only within one harness kind and, for Mandos, one
     command-stream profile: the same seed is the same game only under the
