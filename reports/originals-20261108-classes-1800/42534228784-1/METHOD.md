@@ -34,3 +34,7 @@ python3 methods/audit_cases.py
 ```
 
 Methods read the cache and write the designated analysis directory; they never launch an engine or mutate source records. Outcome tables, facts and case IDs are reproducible; wall metadata and local output paths are not game data.
+
+## Fresh-path reproduction receipt
+
+All six published method scripts were rerun successfully with a fresh output directory, the same read-only verified artifact cache, frozen Zoo code 9cd7423 and viewer projection e1ad87d. The aggregate, deterministic case selection and complete book-throw audit were byte-identical to the reviewed analysis. No engine or replay was run. See [method-reproduction.json](method-reproduction.json).
