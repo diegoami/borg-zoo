@@ -12,3 +12,7 @@ __pycache__/
 
 # Report attachments under reports/ are part of the evidence; keep them.
 !reports/**/*.tgz
+
+# Personal agent-tool overrides (permissions, etc.), not shared config.
+.claude/settings.local.json
+/.opencode/
