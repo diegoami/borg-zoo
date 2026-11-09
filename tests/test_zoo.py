@@ -213,6 +213,16 @@ class BorgRsTest(unittest.TestCase):
         self.assertEqual(kinds, {'4.2.6-rs-m0-c': 'borg-rs', '4.2.6-rs-m0': 'borg-rs', '4.2.6': 'better-borg-c'})
         self.assertTrue(all('kind' in r and 'ref' in r for r in plan['runs']))
 
+    def test_rs_m8_specimens_share_the_tagged_commit_and_carries(self):
+        specs = cat_mod.catalogue()['specimens']['specimens']
+        rust, c = specs['4.2.6-rs-m8'], specs['4.2.6-rs-m8-c']
+        self.assertEqual(rust['ref'], c['ref'])
+        self.assertEqual((rust['tag'], c['tag']), ('4.2.6-impact-v8', '4.2.6-impact-v8'))
+        self.assertEqual((rust['carries'], c['carries']), (88, 88))
+        self.assertEqual((rust['impl'], c['impl']), ('rust', 'c'))
+        exp = cat_mod.experiment(ROOT / 'experiments/rs-m8-smoke.json')
+        self.assertTrue(cat_mod.cells(exp))
+
     def test_no_pairing_across_harnesses(self):
         exp = cat_mod.experiment(ROOT / 'experiments/rs-smoke.json')
         cells = []
