@@ -264,7 +264,7 @@ EXEMPLARS = [
      'name': 'Recommended mix', 'note': 'better-borg-c M7’s 76 carried fixes, with the munchkin start by '
      'class as the version’s own default (no profile override needed).'},
     _bbc(8, 88), _bbc(9, 98),
-    _rs(4, 42), _rs(5, 50), _rs(6, 63), _rs(8, 88),
+    _rs(4, 42), _rs(5, 50), _rs(6, 63), _rs(8, 88), _rs(9, 98),
     {'shape': 'cross', 'cls': 'other', 'specimen': 'neo-b3-api2-upstream', 'profile': 'default',
      'name': 'Neo Angband (Mandos, upstream)', 'note': 'a different engine on different seeds — '
      '<strong>never paired</strong> with the C/Rust points above; shown for scale only.'},
