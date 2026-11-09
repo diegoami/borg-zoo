@@ -363,6 +363,26 @@
       "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v8",
       "label": "borg-rs M8 (tag 4.2.6-impact-v8): the Rust Borg carrying better-borg-c milestone 8's fixes (borg-rs#19, PR 20; qualified pass, findings addressed, owner accepted). The engine is unchanged since 4.2.6-impact-v4, so its game still differs from better-borg-c M8 by that tag's engine correction (neo-angband-tracker#474). Like the C line's M8, its default already includes the munchkin-by-class start, so the munchkin-wdr profile is a no-op here too (confirmed identical play/trace hashes, 2026-11-09)."
     },
+    "4.2.6-rs-m9-c": {
+      "kind": "borg-rs",
+      "impl": "c",
+      "repository": "diegoami/borg-rs",
+      "ref": "8a7579d11998c76b28c6e4f0f749b15d32fb7ba1",
+      "tag": "4.2.6-impact-v9",
+      "carries": 98,
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v9",
+      "label": "borg-rs 4.2.6-impact-v9, C Borg: the C Borg in borg-rs's tree with better-borg-c milestone 9's fixes (patches 0090-0099), under the borgh frontend. The engine is unchanged since 4.2.6-impact-v4, so it keeps that tag's engine correction (neo-angband-tracker#474)."
+    },
+    "4.2.6-rs-m9": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "8a7579d11998c76b28c6e4f0f749b15d32fb7ba1",
+      "tag": "4.2.6-impact-v9",
+      "carries": 98,
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v9",
+      "label": "borg-rs M9 (tag 4.2.6-impact-v9): the Rust Borg carrying better-borg-c milestone 9's fixes (borg-rs#21, PR 22; qualified pass, all findings addressed, re-review pass, owner accepted; two upstream crash patches carried with a narrow local guard, reported on better-borg-c#375 and #377). The engine is unchanged since 4.2.6-impact-v4, so its game still differs from better-borg-c M9 by that tag's engine correction (neo-angband-tracker#474). Like M8, its default already includes the munchkin-by-class start, inherited unchanged from M8, so the munchkin-wdr profile is expected to be a no-op here too, though not independently re-confirmed."
+    },
     "4.2.6-reborn-rust": {
       "kind": "borg-rs",
       "impl": "rust",
