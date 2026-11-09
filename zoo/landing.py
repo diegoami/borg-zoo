@@ -63,6 +63,60 @@ def forest(rows, x_label, y_label, highlight_label=None, x_max=None):
     return '<div class="chart">' + ''.join(parts) + '</div>'
 
 
+SHAPES = ('circle', 'diamond', 'triangle')
+
+
+def mark(shape, cx, cy, cls):
+    if shape == 'diamond':
+        return f'<polygon class="dot {cls}" points="{cx:.1f},{cy - 8:.1f} {cx + 8:.1f},{cy:.1f} ' \
+               f'{cx:.1f},{cy + 8:.1f} {cx - 8:.1f},{cy:.1f}"/>'
+    if shape == 'triangle':
+        return f'<polygon class="dot {cls}" points="{cx:.1f},{cy - 8:.1f} {cx - 7:.1f},{cy + 6:.1f} ' \
+               f'{cx + 7:.1f},{cy + 6:.1f}"/>'
+    return f'<circle class="dot {cls}" cx="{cx:.1f}" cy="{cy:.1f}" r="7"/>'
+
+
+def scatter(points, x_label, y_label):
+    """Survivability (x) against progress (y), a handful of named setups.
+
+    points: (shape, x, y, highlighted). Marks carry no inline text: with two
+    real points only a few percent apart, any label placed beside a dot would
+    collide with its neighbour. Shape (and, redundantly, color) is the only
+    way to tell points apart on the chart itself; the caller renders the
+    names, exact numbers and links as a legend table below it, in the same
+    order as `points`.
+    """
+    pad_l, pad_b, pad_t, size = 42, 34, 16, 300
+    xs = [p[1] for p in points if p[1] is not None]
+    ys = [p[2] for p in points if p[2] is not None]
+    x_max = max(0.3, math.ceil((max(xs, default=0.3) + 0.03) * 10) / 10)
+    y_max = max(0.2, math.ceil((max(ys, default=0.2) + 0.03) * 10) / 10)
+    width = pad_l + size + 16
+    height = pad_t + size + pad_b
+    x = lambda v: pad_l + size * min(max(v, 0.0), x_max) / x_max  # noqa: E731
+    y = lambda v: pad_t + size * (1 - min(max(v, 0.0), y_max) / y_max)  # noqa: E731
+    parts = [f'<svg class="scatter" viewBox="0 0 {width} {height}" role="img" '
+             f'aria-label="{esc(x_label)} against {esc(y_label)}, {len(points)} Borg setups, named below the chart">']
+    for i in range(0, int(x_max * 100) + 1, 10):
+        xv = x(i / 100)
+        parts.append(f'<line class="axis" x1="{xv:.1f}" y1="{pad_t}" x2="{xv:.1f}" y2="{pad_t + size}"/>')
+        parts.append(f'<text class="tick" x="{xv:.1f}" y="{pad_t + size + 14}" text-anchor="middle">{i}%</text>')
+    for i in range(0, int(y_max * 100) + 1, 10):
+        yv = y(i / 100)
+        parts.append(f'<line class="axis" x1="{pad_l}" y1="{yv:.1f}" x2="{pad_l + size}" y2="{yv:.1f}"/>')
+        parts.append(f'<text class="tick" x="{pad_l - 6}" y="{yv + 4:.1f}" text-anchor="end">{i}%</text>')
+    parts.append(f'<text class="head" x="{pad_l + size / 2:.1f}" y="{height - 4}" '
+                 f'text-anchor="middle">{esc(x_label)}</text>')
+    parts.append(f'<g transform="translate(12,{pad_t + size / 2:.1f}) rotate(-90)">'
+                 f'<text class="head" text-anchor="middle">{esc(y_label)}</text></g>')
+    for shape, xv, yv, hi in points:
+        if xv is None or yv is None:
+            continue
+        parts.append(mark(shape, x(xv), y(yv), 'hi' if hi else ''))
+    parts.append('</svg>')
+    return '<div class="chart">' + ''.join(parts) + '</div>'
+
+
 def newest(runs, names):
     for name in names:
         for meta, cells, _ in runs:
@@ -79,6 +133,72 @@ def suite_rows(meta, cells):
     exp = meta['experiment']
     suite = exp['suites'][0]
     return suite, meta['catalogue']['suites'][suite], stats.analyse(exp, cells)[suite]
+
+
+def find_arm(runs, specimen, profile):
+    """The most informative run with cells for (specimen, profile): the most finished
+    runs (a smoke-suite run of a handful of seeds must never outrank a development-suite
+    run of thousands just for being newer), ties broken by newest. (None, None) if none."""
+    best_summary, best_meta, best_key = None, None, (-1, '')
+    for meta, cells, _ in runs:
+        arm = [c for c in cells if c['specimen'] == specimen and c['profile'] == profile]
+        if not arm:
+            continue
+        s = stats.arm_summary(arm)
+        key = (s['valid'], meta.get('completed', ''))
+        if key > best_key:
+            best_summary, best_meta, best_key = s, meta, key
+    return best_summary, best_meta
+
+
+# Three fixed setups, not every milestone (that is the detailed tab): where you start, the
+# one single-setting win that is already confirmed, and the version/profile pair the owner
+# actually recommends for play. "Vanilla" is specimen 4.2.6, formerly named "pristine".
+EXEMPLARS = [
+    {'shape': 'circle', 'specimen': '4.2.6', 'profile': 'default', 'highlight': False,
+     'name': 'Vanilla', 'note': 'the reference version: angband/angband e473720, no fixes, default settings.',
+     'setup': None},
+    {'shape': 'diamond', 'specimen': '4.2.6', 'profile': 'munchkin-wdr', 'highlight': False,
+     'name': 'Vanilla + munchkin', 'note': 'vanilla with the munchkin start by class profile '
+     '(<code>munchkin-wdr</code>): no other fixes.',
+     'setup': ('https://github.com/diegoami/borg-zoo/blob/main/catalogue/profiles.json',
+               'munchkin-wdr settings')},
+    {'shape': 'triangle', 'specimen': '4.2.6-bbc-munchkin-by-class', 'profile': 'default', 'highlight': True,
+     'name': 'Recommended mix', 'note': 'better-borg-c M7’s 76 carried fixes, with the munchkin start by '
+     'class as the version’s own default (no profile override needed).',
+     'setup': ('https://github.com/diegoami/better-borg-c/tree/task/munchkin-by-class', 'build this branch')},
+]
+
+
+def card_exemplars(runs):
+    points, rows = [], []
+    for e in EXEMPLARS:
+        s, meta = find_arm(runs, e['specimen'], e['profile'])
+        x = (1 - s['death_rate']) if s and s['death_rate'] is not None else None
+        yv = s['goal_rate'] if s else None
+        points.append((e['shape'], x, yv, e['highlight']))
+        setup = (f' · <a href="{esc(e["setup"][0])}">{esc(e["setup"][1])}</a>' if e['setup'] else '')
+        badge = (f'<svg class="scatter legend-mark" width="16" height="16" viewBox="0 0 16 16">'
+                 f'{mark(e["shape"], 8, 8, "hi" if e["highlight"] else "")}</svg>')
+        rows.append(f'<tr><td class="l">{badge} <strong>{esc(e["name"])}</strong></td>'
+                    f'<td class="l">{e["note"]}{setup}</td>'
+                    f'<td>{pct(x) if x is not None else "–"}</td><td>{pct(yv) if yv is not None else "–"}</td>'
+                    f'<td>{num(s["valid"]) if s else "–"}</td>'
+                    f'<td class="l">{(f"<a href=\"{link(meta)}\">tables</a>") if meta else "–"}</td></tr>')
+    if not any(p[1] is not None for p in points):
+        return None
+    chart = scatter(points, x_label='Survivability — alive at the turn cap',
+                    y_label=f'Progress — alive at cap, reached DL{stats.DEPTH_GOAL}')
+    legend = ('<div class="wrap"><table><thead><tr><th class="l">Setup</th><th class="l">What it is</th>'
+              f'<th>Alive at cap</th><th>+ DL{stats.DEPTH_GOAL}</th><th>Seeds</th><th class="l">Evidence</th>'
+              '</tr></thead><tbody>' + ''.join(rows) + '</tbody></table></div>')
+    return (f'<div class="card wide"><h2>Which setup should I actually run?</h2>'
+            f'<p class="answer">The <strong>recommended mix</strong> beats vanilla on both axes and edges out '
+            f'vanilla + munchkin on survival too: build better-borg-c’s <code>munchkin-by-class</code> '
+            f'branch as-is, no profile needed.</p>{chart}{legend}'
+            f'<p class="foot">Each point is the newest recorded run of that exact version and profile; marker '
+            f'shape, not just color, tells them apart. "Progress" excludes any run that died, so it can never '
+            f'exceed survivability.</p></div>')
 
 
 def card_milestones(runs):
@@ -345,20 +465,74 @@ RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.
                          'or failed.')]
 
 
-def landing_page(runs, run_rows):
+def nav(active):
+    tabs = [('index.html', 'Overview'), ('detailed.html', 'Detailed')]
+    return ('<p class="tabs">' +
+            ''.join(f'<a class="tab{" active" if href == active else ""}" href="{href}">{esc(label)}</a>'
+                    for href, label in tabs) + '</p>')
+
+
+FOOTER = (f'<p class="muted"><a href="versions.html">Versions</a> · <a href="stalls.html">Stalls and crashes</a> · '
+          f'<a href="https://github.com/diegoami/borg-zoo/blob/main/docs/DESIGN.md">Method</a> · '
+          f'<a href="https://github.com/diegoami/borg-zoo/tree/results">Raw results</a> · '
+          f'<a href="https://github.com/diegoami/borg-zoo">Source</a></p>')
+
+
+def add_your_borg_section():
+    """Static, not derived from results: what a Borg needs to enter the catalogue.
+
+    Sourced from this repo's own rules (AGENTS.md, RULES.md, docs/DESIGN.md), not
+    aspirational: every requirement named here is already enforced somewhere in
+    zoo/catalogue.py or an adapter, or is a standing project rule.
+    """
+    return (
+        '<h2>Add your Borg to the zoo</h2>'
+        '<p class="lead">Adding a specimen, profile, suite or experiment is a catalogue change with a pull '
+        'request to <a href="https://github.com/diegoami/borg-zoo">this repository</a> — the zoo never edits '
+        'another repository\'s code or issues.</p>'
+        '<ol>'
+        '<li>Your Borg lives in its own repository and is pinned by a full commit SHA; the zoo reads it there '
+        'and never changes it. A Borg source change or a new Borg parameter belongs in your repository, not '
+        'here — a parameter enters the zoo as a profile once your repository exposes it with a default that '
+        'reproduces the original behaviour.</li>'
+        '<li>It needs a way to run headless, deterministically, on a seed and a turn cap, that one of the '
+        'zoo\'s adapters already speaks: the better-borg-c observer harness, borg-rs\'s own '
+        '<code>harness/build.sh</code> and <code>borgh</code> frontend, or Mandos\'s headless entry point '
+        '(<code>tools/zoo-run.mjs</code>, record schema <code>mandos/zoo-run@1</code>). A genuinely new shape '
+        'needs a new adapter in <code>zoo/</code> — more work, but the same catalogue-PR process.</li>'
+        '<li>The catalogue entry itself: repository, the pinned commit, how many fixes it carries from the '
+        'tracker (0 for an original), and a short label.</li>'
+        '<li>Starting a large experiment on it is the owner\'s call, same as for every existing specimen.</li>'
+        '</ol>'
+        '<p>The clearest real example: borg-reborn-rs wrote up its own '
+        '<a href="https://github.com/diegoami/borg-reborn-rs/blob/main/docs/ZOO-CHANGE-REQUEST.md">change '
+        'request</a> — what already worked unchanged against the zoo\'s own adapter, the specific catalogue '
+        'and adapter changes it needed, and a ready prompt for the session that would do the work. The owner '
+        'routed it in as <a href="https://github.com/diegoami/borg-zoo/issues/30">issue #30</a>, and it landed '
+        'in <a href="https://github.com/diegoami/borg-zoo/pull/32">PR #32</a>.</p>')
+
+
+def overview_page(runs):
     total = sum(len(c) for _, c, _ in runs)
     latest = runs[0][0].get('completed', '?') if runs else '–'
-    cards = [c for c in (card_milestones(runs), card_port(runs), card_stalls(runs)) if c]
+    exemplars = card_exemplars(runs)
     return (
-        f'<h1>Borg zoo</h1>'
+        f'<h1>Borg zoo</h1>{nav("index.html")}'
         f'<p class="muted">{total:,} runs · {len(runs)} experiment runs · latest {esc(latest)}</p>'
         f'<p class="lead">Angband Borg versions played headless on the same seeds: the original C Borg, '
         f'better-borg-c\'s milestones of carried fixes, and the borg-rs Rust port.</p>'
+        + (f'<div class="cards">{exemplars}</div>' if exemplars else '<p class="muted">No results yet.</p>')
+        + f'<p class="muted">Every milestone, the Rust port and the open stalls are on the '
+        f'<a href="detailed.html">Detailed</a> tab.</p>'
+        + add_your_borg_section() + FOOTER)
+
+
+def landing_page(runs, run_rows):
+    cards = [c for c in (card_milestones(runs), card_port(runs), card_stalls(runs)) if c]
+    return (
+        f'<h1>Borg zoo</h1>{nav("detailed.html")}'
         f'<div class="cards">{"".join(cards)}</div>'
         f'<h2>Experiment runs</h2>'
         + (explain('Every recorded run, newest first. Each page explains its tables.', RUN_COLS)
-           + table(RUN_COLS, run_rows) if run_rows else '<p class="muted">No results yet.</p>') +
-        f'<p class="muted"><a href="versions.html">Versions</a> · <a href="stalls.html">Stalls and crashes</a> · '
-        f'<a href="https://github.com/diegoami/borg-zoo/blob/main/docs/DESIGN.md">Method</a> · '
-        f'<a href="https://github.com/diegoami/borg-zoo/tree/results">Raw results</a> · '
-        f'<a href="https://github.com/diegoami/borg-zoo">Source</a></p>')
+           + table(RUN_COLS, run_rows) if run_rows else '<p class="muted">No results yet.</p>')
+        + FOOTER)

@@ -32,6 +32,16 @@ svg.port rect.c{fill:var(--head);stroke:var(--line)}svg.port .link{stroke:var(--
 svg.port rect.r{stroke:var(--line);fill:var(--card)}svg.port rect.identical{fill:var(--good);fill-opacity:.18;stroke:var(--good)}
 svg.port rect.differs{fill:var(--bad);fill-opacity:.15;stroke:var(--bad)}svg.port rect.unmeasured{stroke:var(--accent)}
 svg.port rect.skipped{stroke-dasharray:4 3;fill:none}svg.port rect.not_yet{fill:none;stroke:var(--line)}
+svg.scatter{width:100%;height:auto;display:block}
+svg.scatter text{fill:var(--fg);font:13px system-ui,-apple-system,Segoe UI,sans-serif}
+svg.scatter .axis{stroke:var(--line)}svg.scatter .tick{fill:var(--muted);font-size:11px}
+svg.scatter .head{font-weight:600;font-size:12px}
+svg.scatter .dot{fill:var(--accent);stroke:var(--card);stroke-width:1.5}
+svg.scatter .dot.hi{fill:var(--good)}
+.legend-mark{vertical-align:-3px;margin-right:2px}
+p.tabs{display:flex;gap:4px;margin:8px 0 18px;border-bottom:1px solid var(--line)}
+p.tabs .tab{padding:6px 14px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent}
+p.tabs .tab.active{color:var(--fg);font-weight:600;border-bottom-color:var(--accent)}
 th{white-space:normal;vertical-align:bottom}th[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help}
 p.how{max-width:62rem;margin:4px 0}p.example{max-width:62rem;margin:4px 0;padding:6px 10px;border-left:3px solid var(--accent);background:var(--card)}
 details.cols{margin:4px 0 12px;max-width:62rem}details.cols summary{cursor:pointer;color:var(--accent)}
@@ -378,8 +388,8 @@ def build_site(results, out):
                      len(meta['experiment']['specimens']), len(meta['experiment']['profiles']),
                      len(cells), finished])
     from . import landing
-    body = landing.landing_page(runs, rows)
-    (out / 'index.html').write_text(page('Borg zoo', body))
+    (out / 'index.html').write_text(page('Borg zoo', landing.overview_page(runs)))
+    (out / 'detailed.html').write_text(page('Detailed · borg-zoo', landing.landing_page(runs, rows)))
     (out / 'stalls.html').write_text(page('Stalls and crashes · borg-zoo', landing.stalls_page(runs)))
     (out / 'versions.html').write_text(page('Versions · borg-zoo', landing.versions_page()))
     (out / '.nojekyll').write_text('')

@@ -353,6 +353,44 @@ class LandingTest(unittest.TestCase):
         self.assertIn("Do better-borg-c's fixes change early survival?", page)
         self.assertIn('Not measurably', page)
         self.assertNotIn('Which settings change early survival?', page)
+        self.assertIn('class="tab active" href="detailed.html"', page)
+
+    def test_find_arm_prefers_more_seeds_over_newer(self):
+        small = [dict(cell('4.2.6', s, 'turn_cap'), profile='default') for s in (1, 2)]
+        big = [dict(cell('4.2.6', s, 'death' if s < 30 else 'turn_cap'), profile='default') for s in range(100)]
+        newer = {'experiment': {'name': 'smoke'}, 'completed': '2026-11-09 00:00 UTC'}
+        older_bigger = {'experiment': {'name': 'classes-1800'}, 'completed': '2026-11-01 00:00 UTC'}
+        runs = [(newer, small, None), (older_bigger, big, None)]
+        s, meta = landing.find_arm(runs, '4.2.6', 'default')
+        self.assertEqual(meta['experiment']['name'], 'classes-1800')
+        self.assertEqual(s['valid'], 100)
+
+    def test_card_exemplars_scatters_the_three_setups(self):
+        def arm(specimen, profile, deaths, n, completed):
+            cells = [dict(cell(specimen, s, 'death' if s < deaths else 'turn_cap', max_depth=5 if s % 2 else 1),
+                          profile=profile) for s in range(n)]
+            return ({'experiment': {'name': specimen + profile}, 'run_id': 'r1', 'completed': completed},
+                    cells, None)
+
+        runs = [arm('4.2.6', 'default', 40, 100, '2026-11-09 00:00 UTC'),
+                arm('4.2.6', 'munchkin-wdr', 25, 100, '2026-11-08 00:00 UTC'),
+                arm('4.2.6-bbc-munchkin-by-class', 'default', 20, 100, '2026-11-09 01:00 UTC')]
+        card = landing.card_exemplars(runs)
+        self.assertIn('Vanilla', card)
+        self.assertIn('Vanilla + munchkin', card)
+        self.assertIn('Recommended mix', card)
+        self.assertIn('svg class="scatter"', card)
+        self.assertEqual(card.count('class="dot'), 3 + 3)  # one mark on the chart, one in each legend row
+        self.assertIsNone(landing.card_exemplars([]))
+
+    def test_overview_page_has_no_milestone_cards(self):
+        page = landing.overview_page([])
+        self.assertIn('class="tab active" href="index.html"', page)
+        self.assertNotIn("Do better-borg-c's fixes change early survival?", page)
+        self.assertNotIn('How far has the Rust port got?', page)
+        self.assertIn('Add your Borg to the zoo', page)
+        self.assertIn('issues/30', page)
+        self.assertIn('pull/32', page)
 
 
     def test_port_status_reads_identity_and_skips(self):
