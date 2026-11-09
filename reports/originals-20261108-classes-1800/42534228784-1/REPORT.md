@@ -1,5 +1,7 @@
 # Recorded-life analysis: original C and Neo Borgs
 
+Start with the [plain-language maintainer handoff](MAINTAINER-HANDOFF.md) for the consequence, one-life reproduction and browser recipe.
+
 The full run is complete: **C: 619 deaths / 1,181 caps; Neo: 1,450 deaths / 311 caps / 35 controller-watchdog stalls / 4 wall timeouts**. All 3,600 planned records and all 28,798 recorded raw files are verified. The [immutable collected data and death index](https://github.com/diegoami/borg-zoo/tree/dc0a348aab6f8b3169fa52118fd32e247e7a781f/results/originals-20261108-classes-1800/42534228784-1) remain the source evidence. This report separates a directly established port omission from broader mechanisms whose causal effects have not been measured.
 
 **The strongest concrete finding is lost spellbook protection.** Original C [checks whether the current character can browse the book before selecting a thrown object](https://github.com/angband/angband/blob/e473720ed88a0f0c7ca66815cef3000eb4a38bc3/src/borg/borg-fight-attack.c#L2294-L2300). Official Neo Borg [only excludes MAGIC_BOOK and PRAYER_BOOK](https://github.com/neostryder/neo-angband-mod-borg/blob/014c810466ec7ac0b9b7a83416e075238c72edd0/src/fight/attack.ts#L1206-L1214). Nature and Shadow books remain eligible, even for their own caster. This differs from the measured original C source; it is not a C gameplay improvement being requested of the faithful port.
