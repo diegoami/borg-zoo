@@ -38,7 +38,15 @@ svg.scatter .axis{stroke:var(--line)}svg.scatter .tick{fill:var(--muted);font-si
 svg.scatter .head{font-weight:600;font-size:12px}
 svg.scatter .dot{fill:var(--accent);stroke:var(--card);stroke-width:1.5}
 svg.scatter .dot.hi{fill:var(--good)}
+svg.scatter .dot.other{fill:var(--muted);stroke:var(--card)}
+svg.scatter .dot.outline{fill:none;stroke:var(--accent);stroke-width:2.5}
+svg.scatter .dot.cross{fill:none;stroke:none}
+svg.scatter .dot.cross line{stroke:var(--muted);stroke-width:3;stroke-linecap:round}
+svg.scatter.compact{max-width:140px}
 .legend-mark{vertical-align:-3px;margin-right:2px}
+.class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(7.5rem,1fr));gap:12px;margin:8px 0}
+.class-cell{border:1px solid var(--line);border-radius:6px;padding:8px;text-align:center}
+.class-cell h3{margin:0 0 4px;font-size:.85rem}
 p.tabs{display:flex;gap:4px;margin:8px 0 18px;border-bottom:1px solid var(--line)}
 p.tabs .tab{padding:6px 14px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent}
 p.tabs .tab.active{color:var(--fg);font-weight:600;border-bottom-color:var(--accent)}
