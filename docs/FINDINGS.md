@@ -52,6 +52,29 @@ remove any line it overturns.
 - deaths were 26.3% against 27.8%;
 - 66 rescued against 57 newly killed, p = 0.47.
 
+**The munchkin start by class still helps at 200,000 turns, double the usual cap.**
+[`classes-200k-best`](../experiments/classes-200k-best.json), run 42647082970, and
+[`classes-200k-recommended`](../experiments/classes-200k-recommended.json), run 42711519129,
+both on `classes-1800-200k`:
+
+| Version | Deaths (n) |
+|---|---|
+| `4.2.6` default | 43.4% (1,800) |
+| `4.2.6` + `munchkin-wdr` | 35.6% (1,800) |
+| `4.2.6-bbc-munchkin-by-class` (recommended mix) | 33.2% (1,800) |
+
+- Munchkin against vanilla default: 204 rescued, 63 newly killed, p = 1.6e-18 - the same
+  direction as the 100,000-turn finding above, not a new effect.
+- The recommended mix's own `munchkin-wdr` arm was not run at this scale: it is a confirmed
+  no-op there (see DESIGN.md's Costs section), so it would only have spent cells re-measuring
+  `4.2.6-bbc-munchkin-by-class`'s own default.
+- Deaths are higher across the board than at 100,000 turns (more turns, more chances to die
+  before the cap) - the comparison's *direction* is what carries over, not the absolute rates.
+
+**M10 adds no new tracker carry.** `4.2.6-bbc-m10` (tag `4.2.6-impact-v10`) carries stays 98,
+unchanged from M9: its units are two local-only improvements never proposed upstream and a
+crash correction to the already-carried patch 0099. No death-rate comparison yet - see "Open".
+
 ## Rust Borg: borg-rs
 
 **The port is exact at M4, M5 and M6.** The Rust Borg and the C Borg of the same borg-rs tree play identically on 1,800 of 1,800 seeds at each milestone:
@@ -106,3 +129,10 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
+- **M9 vs M10 on the standard 100,000-turn suite: dispatched, not yet collected.**
+  [`classes-m9-m10`](../experiments/classes-m9-m10.json), run 42816432188 (dispatched
+  2026-11-10). At smoke scale (3 seeds, `m9-m10-munchkin-smoke`), M9 and M10 already diverge:
+  seed 11 ends at a different depth/level/HP (M10's local improvements shift an extra
+  Borg-RNG draw there, as better-borg-c's own M10 review doc already reported), and seeds 29/47
+  keep the same final state but a different play hash. Not meaningful at n=3; update this
+  section once the 1,800-seed run lands.

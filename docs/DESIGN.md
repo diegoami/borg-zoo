@@ -289,7 +289,8 @@ jobs.
 **Per arm:**
 - runs, finished runs and outcome counts;
 - deaths and death rate, with a Wilson 95% interval;
-- "goal" rate (alive at the cap having reached DL5, a placeholder);
+- "goal" rate (alive at the cap having reached DL5, a placeholder) - still used
+  by the Detailed tab's milestone cards, left unchanged;
 - median maximum depth and level;
 - median death turn;
 - share alive at 25/50/75/100% of the cap;
@@ -299,6 +300,16 @@ jobs.
   point (a death before it is excluded, not substituted with a worse
   value). Shown on the site as "Level, max depth and gold by engine turn"
   whenever at least one cell in the suite carries it.
+- `progress_score`: median of max_depth + max_level per cell (including
+  deaths - a death's reach still counts, unlike the DL5 goal rate), one
+  number instead of two. Used on the Overview tab's exemplars card and its
+  by-class/turn-snapshot grids in place of the DL5 goal rate, after the
+  owner's call that "alive at cap, reached DL5" was a bad metric and should
+  be a combined depth+level (and eventually net worth) figure (2026-11-09).
+  `milestone_progress_score` is its sibling at each turn fraction, reusing
+  `milestone_table`'s death-exclusion rule. Neither touches `arm_summary`'s
+  own `goal_rate`/`DEPTH_GOAL`, which the Detailed tab still shows - a
+  deliberately narrow change, not a redefinition of the site-wide metric.
 
 **Paired against the control arm, on seeds where both finished:**
 - rescued, newly killed, both died, both lived;
@@ -331,12 +342,36 @@ on what else holds the queue.
 
 Public repositories have no Actions minute charge on standard runners. The
 limits that matter are 20 concurrent jobs, 256 matrix jobs and 6 hours per
-job.
+job - but `compare.yml`'s own `run` job sets `timeout-minutes: 300` (5
+hours), tighter than that ceiling. At a 200,000-turn cap (`classes-1800-200k`),
+8 shards was not enough: 2 of 8 shards for one specimen ran out the clock and
+came back as `harness_failure` for every cell they hadn't finished (run
+42647082970, 2026-11-09). 16 shards on a same-sized rerun finished clean. **A
+cap much above the usual 100,000 needs more shards than `shards=8`,
+proportioned down from 300 minutes** - the vanilla specimen's own 8 shards
+finished fine in the same window, so it's specific to how slowly a given
+specimen's games end, not a fixed rule.
+
+**A specimen whose own default already is the munchkin start by class makes
+the `munchkin-wdr` profile a no-op on it.** First found on `4.2.6-bbc-m8`
+(and its Rust twin `4.2.6-rs-m8`) during the #39 review - identical
+play/trace hashes on 3/3 seeds - then independently rediscovered on
+`4.2.6-bbc-munchkin-by-class` inside the `classes-200k-best` run (1,800
+cells wasted at the 200k cap before the fix) and confirmed again, cheaply
+this time via a 3-seed smoke check first, on M9 and M10. Every milestone
+from M8 onward inherits that default unchanged, so **before adding a
+`munchkin-wdr` arm for any of them, check with a cheap smoke run first** (as
+`m9-m10-munchkin-smoke.json` does) rather than finding out at full scale.
 
 ## Open questions for the owner
 
 1. **Primary endpoint:** turn T, depth D and level L for "early-game
-   survival". The site's DL5 goal is a placeholder.
+   survival". The site's DL5 goal (`arm_summary`'s `goal_rate`) is still a
+   placeholder on the Detailed tab. Resolved for the Overview tab's
+   exemplars card: the owner called it a bad metric (2026-11-09) and it now
+   uses `progress_score` (median depth + level, see Statistics above)
+   there instead - money and equipment value are still open, tracked under
+   question 9.
 2. **Birth rule:** fixed Human Warrior (comparable with better-borg-c's
    cohorts) or seed-chosen race and class (broader).
 3. **Calendar:** today each run uses the runner's clock. Freezing the date
@@ -357,8 +392,9 @@ job.
    randarts) are a second configuration axis. The runner uses the game's
    defaults, which the observer records: for example `birth_connect_stairs=1`
    and `birth_no_selling=1`. Varying them needs runner support too.
-8. **Milestone tags:** if better-borg-c tags its milestones, specimens can
-   name them instead of SHAs.
+8. **Milestone tags: resolved, in use since M7.** better-borg-c tags every
+   milestone now (`4.2.6-impact-vN`); M7 through M10 all carry a `tag`
+   field in the catalogue alongside their pinned SHA.
 9. **Net worth (inventory and equipment value), not just gold.** Level and
    max depth at turn milestones (`milestones`, `zoo/stats.py`'s
    `milestone_table`) are in, over every finished run, needing no upstream
