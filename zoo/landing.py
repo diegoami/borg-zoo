@@ -353,6 +353,11 @@ EXEMPLARS = [
      'name': 'better-borg-c M10', 'short': 'M10', 'color': C_COLOR,
      'note': 'carries stays 98 — no new tracker carry this cycle. Two '
      'local-only improvements never proposed upstream, plus a crash correction to carry 0099.'},
+    {'specimen': '4.2.6-bbc-m11', 'profile': 'munchkin-class',
+     'name': 'better-borg-c M11', 'short': 'M11', 'color': C_COLOR,
+     'note': 'the v11 tag, 116 carried fixes: 17 new units (0100-0117) since '
+     'M10, plus the 0101a mode gate. munchkin-class is the product default, the '
+     'same game as the older milestones\' default runs.'},
     _rs(4, 42), _rs(5, 50), _rs(6, 63), _rs(8, 88), _rs(9, 98), _rs(10, 98),
     {'specimen': 'neo-b3-api2-upstream', 'profile': 'default',
      'name': 'Neo Angband (Mandos, upstream)', 'short': 'Neo', 'color': '#6d4c41',
@@ -416,7 +421,8 @@ def exemplar_table(found, specs):
         x = (1 - s['death_rate']) if s and s['death_rate'] is not None else None
         yv = s['progress_score'] if s else None
         badge = f'<span class="legend-mark" style="background:{e["color"]}"></span>'
-        thin = ('<br><span class="muted">smoke-scale only — not plotted</span>'
+        thin = ('<br><span class="muted">no run yet · not plotted</span>' if s is None
+                else '<br><span class="muted">smoke-scale only — not plotted</span>'
                 if not dashboard_plotted(s) else '')
         if meta:
             run_keys.add((meta['experiment']['name'], meta['experiment']['suites'][0]))

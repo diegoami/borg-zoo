@@ -220,6 +220,15 @@
       "label": "better-borg-c milestone 10 (tag 4.2.6-impact-v10): carries stays 98, unchanged from milestone 9 - this cycle adds no new tracker carry. Its units are two owner-directed local improvements never proposed upstream (I-001: attack a lone adjacent monster one blow would kill; I-002: borg_caution() heals while fleeing at survivable danger) and a crash correction to the already-carried 0090-0099 patch 0099 (a stale borg.c position read out of bounds after a level change into a smaller level, matching borg-rs's reported SIGSEGV on first town return, borg-rs#21). Full matrix 234/234 cases, no failed group.",
       "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE10.md"
     },
+    "4.2.6-bbc-m11": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "39268ca8a470d1cbd44de27bf1fd1b3ee403bada",
+      "mode_side": "post",
+      "tag": "4.2.6-impact-v11",
+      "carries": 116,
+      "label": "better-borg-c milestone 11 (tag 4.2.6-impact-v11): carries 116, up from 98. The v11 cycle adopts 17 new units (0100-0117, each a reviewed C-only source fix) plus the 0101a correction that gates the Lunal take skip on the runtime munchkin mode: stair escape ordering, per-monster flow-kill state, melee danger (armour divided by to-hit), pickup measured from the nearest up staircase, the no-rest-after-prep timer width, the preparedness reason copy, constitution-drain fear, Crush clearing ranged danger, the granite ranged test, Shoot'N'Scoot's adjacent monster, and the home/shop flows (empty pack slot, cure potions only when hurt, left ring search, swap and home-grab flags, staff charges, sold-item ego). Full matrix 95 groups / 290 cases, no failed group; 237/250 compared cases byte-identical, the 13 differences in six pre-existing fixture groups plus preparation (0105's timer width, identical decisions). No per-mode arm was measured in this cycle: each unit's per-mode effect is recorded as not measured, not neutral - the explicit-arms batch is the zoo's job (borg-zoo#54).",
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE11.md"
+    },
     "4.2.6-bbc-9ca98661": {
       "repository": "diegoami/better-borg-c",
       "ref": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
