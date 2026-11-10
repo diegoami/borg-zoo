@@ -595,6 +595,17 @@
       "toolkit_ref": "2668adc5ab3e2b6e194c2f1561e248b88850ea98",
       "toolkit_path": "tools/original-borg",
       "toolkit_proposal": "https://github.com/diegoami/neo-angband-tracker/pull/542"
+    },
+    "4.2.6-rs-family-buying": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "5aeb6e58e03ce98e24884cf28fa9f27e28367faa",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "label": "borg-rs post-M10 buying family (borg-rs#25/#27, PR 26 and 28): the reviewed family head with configuration-selected current/reserve410 buying strategies and the independent borg_buy_identify policy. Rust-only; C accepts the settings for parser compatibility and ignores them, so no C parity cell. No derived family tag yet - the ref is a reviewed head (borg-zoo#61, #67).",
+      "source": "https://github.com/diegoami/borg-rs/pull/28"
     }
   }
 }

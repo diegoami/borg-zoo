@@ -1,0 +1,20 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "rs-family-buying-munchkin",
+  "description": "borg-rs buying family with the munchkin start unconditionally on (every class): the current and reserve410 strategies, each with buy-to-identify off and on, on the same three Warrior and three Mage seeds. Paired within class, strategy and seed; control is the v10 buying behaviour (current, identify off). 24 cells (borg-zoo#61, #67).",
+  "specimens": [
+    "4.2.6-rs-family-buying"
+  ],
+  "profiles": [
+    "rs-buy-current-munchkin",
+    "rs-buy-reserve410-munchkin",
+    "rs-buy-current-munchkin-id",
+    "rs-buy-reserve410-munchkin-id"
+  ],
+  "suites": [
+    "rs-family-warrior-3",
+    "rs-family-mage-3"
+  ],
+  "control": "4.2.6-rs-family-buying",
+  "control_profile": "rs-buy-current-munchkin"
+}
