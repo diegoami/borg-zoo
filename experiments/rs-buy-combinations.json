@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "rs-buy-combinations",
+  "description": "Issue 75: the shop-setting precedence paths the global strategy/identify profiles never exercised - class masks, the munchkin override and class+munchkin masks, plus identify under a class mask. Six profiles x two single-class suites x three seeds = 36 cells. A catalogue/configuration check, not an improvement claim; compare only within class, mode, seed and effective strategy.",
+  "specimens": [
+    "4.2.6-rs-family-buying"
+  ],
+  "profiles": [
+    "rs-buy-class-reserve-warrior",
+    "rs-buy-class-current-mage",
+    "rs-buy-munchkin-override-current",
+    "rs-buy-classmunchkin-reserve-warrior",
+    "rs-buy-classmunchkin-current-warrior",
+    "rs-buy-class-reserve-warrior-id"
+  ],
+  "suites": [
+    "rs-family-warrior-3",
+    "rs-family-mage-3"
+  ],
+  "control": "4.2.6-rs-family-buying",
+  "control_profile": "rs-buy-class-reserve-warrior"
+}

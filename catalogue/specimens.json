@@ -618,6 +618,18 @@
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-reborn-rs/blob/main/docs/ZOO-INTERFACE.md",
       "label": "borg-reborn-rs milestone E (tag e): the reborn Borg building on its own integration - upstream Angband e473720 byte for byte, a small hook series and its own frontend, bindings and build, nothing taken from borg-rs's tree. Smoke play hashes identical to the m1 specimen (borg-zoo#48)."
+    },
+    "4.2.6-rs-m11": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "0f98f85b008f904e055967747c935b482addf2f2",
+      "carries": 116,
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "source": "https://github.com/diegoami/borg-rs/pull/30",
+      "label": "borg-rs milestone v11R (PR 30): the Rust port carrying better-borg-c's v11 - all 18 runtime units (19 patches, 0101a included) and the consumer's 11 C Borg files, so the C oracle and the Rust Borg carry the same fixes. No tag yet: this is the reviewed candidate head, and a tagged build gets its own specimen (RULES 4)."
     }
   }
 }

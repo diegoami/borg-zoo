@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "rs-m11-smoke",
+  "description": "borg-rs v11R (PR 30 head) on the smoke suite under both dashboard policies: normal (all modes off) and munchkin-class (the class rule). A build and play check before the full grid - borg-rs's own default already applies the class rule from m8, so both arms are named explicitly.",
+  "specimens": [
+    "4.2.6-rs-m11"
+  ],
+  "profiles": [
+    "normal",
+    "munchkin-class"
+  ],
+  "suites": [
+    "smoke"
+  ],
+  "control": "4.2.6-rs-m11",
+  "control_profile": "normal"
+}
