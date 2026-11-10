@@ -280,11 +280,16 @@ def suite_rows(meta, cells):
     return suite, meta['catalogue']['suites'][suite], stats.analyse(exp, cells, meta['catalogue']['specimens'])[suite]
 
 
-def find_arm(runs, specimen, profile, specs, cls=None):
-    """The most informative run with cells for (specimen, profile[, played class]):
-    the most finished runs (a smoke-suite run of a handful of seeds must never
-    outrank a development-suite run of thousands just for being newer), ties
-    broken by newest. (None, None) if none.
+def find_arm(runs, specimen, profile, specs, cls=None, cap=None):
+    """The most informative run with cells for (specimen, profile[, played class
+   ][, turn cap]): the most finished runs (a smoke-suite run of a handful of
+    seeds must never outrank a development-suite run of thousands just for
+    being newer), ties broken by newest. (None, None) if none.
+
+    cap pins the comparison to one turn cap. Two runs of the same suite name
+    can differ there (classes-1800 is 100,000 turns, classes-1800-200k is
+    200,000), and a 200k arm survives longer by construction - mixing them in
+    one chart compares the cap, not the Borg.
 
     Also matches any of the specimen's earlier names (catalogue "formerly"):
     results recorded before the 2026-11-08 rename use them (e.g. "pristine"
@@ -297,7 +302,8 @@ def find_arm(runs, specimen, profile, specs, cls=None):
     best_summary, best_meta, best_arm, best_key = None, None, None, (-1, '')
     for meta, cells, _ in runs:
         arm = [c for c in cells if c['specimen'] in aliases and c['profile'] == profile
-               and (cls is None or c.get('played_class') == cls)]
+               and (cls is None or c.get('played_class') == cls)
+               and (cap is None or c.get('cap') == cap)]
         if not arm:
             continue
         s = dict(stats.arm_summary(arm), progress_score=stats.progress_score(arm))
@@ -315,33 +321,48 @@ PROFILES_URL = 'https://github.com/diegoami/borg-zoo/blob/main/catalogue/profile
 # engine, never paired with the rest - the Neo Borg. Better-borg-c and borg-rs
 # have eleven and ten milestones; plotting each one made the chart a cloud of
 # near-identical points (owner direction, 2026-11-10: "just have the best
-# there proved by the fully full run"). The best is taken from the full class
-# runs (classes-1800, 1,800 seeds), and every other milestone keeps its
-# catalogue entry, its run pages and the Detailed tab.
+# there proved by the fully full run").
+#
+# Every C/Rust point is read under ONE policy - the munchkin start for Warrior,
+# Druid and Ranger, everything else ordinary - because that is the only policy
+# with full class runs on both sides of the mode cutoff. Comparing a shipped
+# "default" across the cutoff compared the mode defaults, not the Borg: M10's
+# default already gives those three classes the munchkin start (by_class TRUE
+# since fd683ced) while Angband 4.2.6's default does not, and its apparent
+# survival lead was that policy, not better play (owner's challenge: "are we
+# cheating with the munchkin mix?", 2026-11-10).
+#
 # "Angband 4.2.6" is specimen 4.2.6, formerly named "pristine" and "Vanilla".
 C_COLOR = '#2f5d8a'    # the better-borg-c line (the site's --accent blue)
 RUST_COLOR = '#b58700'  # the borg-rs line (the site's --rust amber)
 
+MUNCHKIN_MODES = ('munchkin start for Warrior, Druid and Ranger; every other class '
+                  'plays the ordinary game')
+
 EXEMPLARS = [
     {'specimen': '4.2.6', 'profile': 'default', 'name': 'Angband 4.2.6', 'short': 'Angband 4.2.6',
-     'color': '#757575',
+     'color': '#757575', 'modes': 'no munchkin start, no Lunal',
      'note': 'the C Borg as Angband 4.2.6 ships it (angband/angband e473720), no fixes '
      'and default settings: the baseline everything else is read against.'},
     {'specimen': '4.2.6', 'profile': 'munchkin-wdr', 'name': 'Angband 4.2.6 + munchkin',
-     'short': '4.2.6+munch', 'color': '#0097a7',
+     'short': '4.2.6+munch', 'color': '#0097a7', 'modes': MUNCHKIN_MODES,
      'note': 'Angband 4.2.6 with the munchkin start by class profile '
      f'(<code>munchkin-wdr</code>, <a href="{PROFILES_URL}">settings</a>): no other fixes.'},
-    {'specimen': '4.2.6-bbc-m10', 'profile': 'default',
-     'name': 'better-borg-c M10 (best C)', 'short': 'BBC M10', 'color': C_COLOR,
-     'note': 'the best-measured better-borg-c milestone: 98 carried fixes (M10 added two '
-     'local-only improvements and a crash correction, no new tracker carry), default settings. '
-     'M11 (116 carries, tag 4.2.6-impact-v11) is the newest release but has only a smoke run.'},
-    {'specimen': '4.2.6-rs-m8', 'profile': 'default',
+    {'specimen': '4.2.6-bbc-m8', 'profile': 'munchkin-wdr',
+     'name': 'better-borg-c M8 (best C)', 'short': 'BBC M8', 'color': C_COLOR,
+     'modes': MUNCHKIN_MODES,
+     'note': 'the best-measured better-borg-c milestone under that policy: 88 carried fixes. '
+     'M9 and M10 have no full run under it (their "default" arms already include the class '
+     'rule, so they are not comparable with the pre-cutoff baseline), and M11 (116 carries, '
+     'tag 4.2.6-impact-v11) has only a smoke run.'},
+    {'specimen': '4.2.6-rs-m8', 'profile': 'munchkin-wdr',
      'name': 'borg-rs M8 (best Rust)', 'short': 'RS M8', 'color': RUST_COLOR,
-     'note': 'the best-measured Rust milestone: the port carrying better-borg-c M8\'s 88 '
-     'fixes, default settings. M9 and M10 exist but have no full run yet.'},
+     'modes': MUNCHKIN_MODES,
+     'note': 'the best-measured Rust milestone under the same policy: the port carrying '
+     'better-borg-c M8\'s 88 fixes. M9 and M10 exist but have no full run under it.'},
     {'specimen': 'neo-b3-api2-upstream', 'profile': 'default',
      'name': 'Neo Angband (Mandos, upstream)', 'short': 'Neo', 'color': '#6d4c41',
+     'modes': 'its own engine defaults',
      'note': 'a different engine on different seeds — '
      '<strong>never paired</strong> with the C/Rust points above; shown for scale only.'},
 ]
@@ -351,6 +372,10 @@ EXEMPLARS = [
 # Setups whose best recorded run is below this stay off the charts (the
 # legend row says so); they come back automatically once a real suite runs.
 DASHBOARD_MIN_CELLS = 50
+
+# ... and every point is read at one turn cap. classes-1800 is 100,000 turns;
+# classes-1800-200k is 200,000, and a 200k arm survives longer by construction.
+DASHBOARD_CAP = 100000
 
 
 def chart_configs(html):
@@ -377,7 +402,8 @@ def exemplar_points(runs, specs, cls=None):
     chart reads as evidence, and a 3-seed sanity check is not that."""
     points, found = [], []
     for e in EXEMPLARS:
-        s, meta, arm = find_arm(runs, e['specimen'], e['profile'], specs, cls)
+        s, meta, arm = find_arm(runs, e['specimen'], e['profile'], specs, cls,
+                                cap=DASHBOARD_CAP)
         plotted = s is not None and s['valid'] >= DASHBOARD_MIN_CELLS
         x = (1 - s['death_rate']) if plotted and s['death_rate'] is not None else None
         yv = s['progress_score'] if plotted else None
@@ -414,12 +440,13 @@ def exemplar_table(found, specs):
             run_cell = '–'
         rows.append(f'<tr><td class="l">{badge} <strong>{esc(e["name"])}</strong></td>'
                     f'<td class="l">{e["note"]}{src}{thin}</td>'
+                    f'<td class="l"><span class="muted">{esc(e.get("modes", ""))}</span></td>'
                     f'<td>{pct(x) if x is not None else "–"}</td>'
                     f'<td>{num(yv) if yv is not None else "–"}</td>'
                     f'<td>{num(s["valid"]) if s else "–"}</td>'
                     f'<td class="l">{run_cell}</td></tr>')
     legend = ('<div class="wrap"><table><thead><tr><th class="l">Setup</th><th class="l">What it is</th>'
-              '<th>Alive at cap</th>'
+              '<th class="l">Modes</th><th>Alive at cap</th>'
               '<th title="Median, over finished runs including deaths, of max dungeon level reached + '
               'character level reached. A plain combined figure, not a calibrated score.">Depth + level</th>'
               '<th title="Cells that reached death or the turn cap; the denominator of both columns">'
@@ -448,26 +475,30 @@ def card_exemplars(runs):
 
     base = next((s for e, s in measured
                  if e['specimen'] == '4.2.6' and e['profile'] == 'default'), None)
+    mk = next((s for e, s in measured
+               if e['specimen'] == '4.2.6' and e['profile'] == 'munchkin-wdr'), None)
     bc, bs = best('4.2.6-bbc')
     rc, rs = best('4.2.6-rs')
-    lead = []
+    parts = []
+    if base:
+        parts.append(f'plain <strong>Angband 4.2.6</strong> loses {pct(base["death_rate"])} of its runs by the cap')
+    if mk:
+        parts.append(f'the same game with the munchkin start (Warrior, Druid and Ranger only; the other six '
+                     f'classes play exactly the baseline game, identical on every paired seed) loses '
+                     f'{pct(mk["death_rate"])}')
     if bc:
-        lead.append(f'<strong>{esc(bc["name"])}</strong> for the C line '
-                    f'({pct(1 - bs["death_rate"])} alive at the cap, {num(bs["valid"])} finished)')
+        parts.append(f'the best better-borg-c milestone under that same policy loses {pct(bs["death_rate"])}')
     if rc:
-        lead.append(f'<strong>{esc(rc["name"])}</strong> for the Rust port '
-                    f'({pct(1 - rs["death_rate"])} alive, {num(rs["valid"])} finished)')
-    answer = ('The best measured setups are ' + ' and '.join(lead) +
-              (f'; the plain <strong>Angband 4.2.6</strong> borg leaves '
-               f'{pct(1 - base["death_rate"])} alive.' if base else '.') +
-              (' These points are not one controlled comparison — they come from '
-               'different experiments or suites (see the Run column)' if cross_run
-               else ' They come from one run') +
-              ', none carries an interval, and the gaps are a few percentage points: a lead, '
-              'not a confirmed result. The chart shows only the best measured setup of each line; '
-              'the other milestones keep their catalogue entries, run pages and Detailed-tab rows, '
-              'and the newest releases (better-borg-c M11, borg-rs M9 and M10) have no full class '
-              'run yet.')
+        parts.append(f'the best Rust one {pct(rs["death_rate"])}')
+    answer = (f'Read at one turn cap and one mode policy, {"; ".join(parts)}. '
+              f'The three munchkin arms sit within a point or two of each other, so on the full runs recorded '
+              f'so far the code milestones add no measurable survival over vanilla with the same policy. '
+              f'M9 and M10 are not plotted because their shipped default already includes the same class rule '
+              f'for those three classes, and no full run of them plays with the modes pinned: comparing their '
+              f'default with the pre-cutoff baseline compared the munchkin policy, not the Borg. '
+              + ('These points are not one controlled comparison — the arms come from different '
+                 'experiments and none carries an interval, so treat the order as a lead, not a '
+                 'confirmed result.' if cross_run else 'The arms come from one experiment.'))
     return (f'<div class="card wide"><h2>Which setup should I actually run?</h2>'
             f'<p class="answer">{answer}</p>{chart}{legend}'
             f'<p class="foot">Each point is the run with the most finished cells recorded for that exact '
@@ -539,7 +570,8 @@ def dashboard_classes(runs, specs):
     """The classes that have at least one dashboard-worthy setup on record:
     the per-class pages exist only for these (the others would be empty)."""
     return [c for c in cat_mod.CLASSES
-            if any(dashboard_plotted(find_arm(runs, e['specimen'], e['profile'], specs, c)[0])
+            if any(dashboard_plotted(find_arm(runs, e['specimen'], e['profile'], specs, c,
+                                              cap=DASHBOARD_CAP)[0])
                    for e in EXEMPLARS)]
 
 

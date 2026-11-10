@@ -329,6 +329,16 @@ finished cells) — so the answer text follows the data instead of naming a fixe
 milestone; every other milestone keeps its catalogue entry, run page and
 Detailed-tab row.
 
+Two pins keep the comparison honest, and both came from owner review. **One
+turn cap** (`DASHBOARD_CAP`): a 200,000-turn arm survives longer by
+construction, so mixing `classes-1800` and `classes-1800-200k` compares the cap.
+**One mode policy**: every C/Rust point is read under the same explicit
+munchkin policy (Warrior, Druid and Ranger only), because the shipped `default`
+changed sides at better-borg-c `fd683ced` — M10's default *is* the class rule,
+while Angband 4.2.6's default has no munchkin start, so pairing them measured
+the policy. The legend table's Modes column states each row's policy, and the
+card says when the arms come from different experiments.
+
 **Look at the dashboard before shipping chart changes.** A chart can pass
 every test and still be unreadable — the shape-coded exemplars chart shipped
 that way (labels were the fix, and rendering it caught three labels that

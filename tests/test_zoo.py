@@ -16,9 +16,10 @@ from zoo.__main__ import main  # noqa: E402
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def cell(specimen, seed, outcome, max_depth=3, turn=20000, profile='default', trace=None):
+def cell(specimen, seed, outcome, max_depth=3, turn=20000, profile='default', trace=None,
+         cap=20000):
     return {'schema': 'borg-zoo/cell@1', 'suite': 'smoke', 'specimen': specimen, 'profile': profile,
-            'seed': seed, 'outcome': outcome, 'cap': 20000,
+            'seed': seed, 'outcome': outcome, 'cap': cap,
             'final': {'turn': turn, 'max_depth': max_depth, 'max_level': 5},
             'first_turn_at_depth': {'2': 1000} if max_depth >= 2 else {},
             'trace_sha256': trace}
@@ -610,7 +611,8 @@ class LandingTest(unittest.TestCase):
 
     def test_card_exemplars_scatters_labeled_dots_and_links_class_pages(self):
         def arm(specimen, profile, deaths, n, completed, classes=()):
-            cells = [dict(cell(specimen, s, 'death' if s < deaths else 'turn_cap', max_depth=5 if s % 2 else 1),
+            cells = [dict(cell(specimen, s, 'death' if s < deaths else 'turn_cap', max_depth=5 if s % 2 else 1,
+                              cap=100000),
                           profile=profile, played_class=classes[s % len(classes)] if classes else None)
                      for s in range(n)]
             return ({'experiment': {'name': specimen + profile, 'suites': ['classes-1800']},
@@ -619,13 +621,13 @@ class LandingTest(unittest.TestCase):
         classes = ('Warrior', 'Mage')
         runs = [arm('4.2.6', 'default', 40, 100, '2026-11-09 00:00 UTC', classes),
                 arm('4.2.6', 'munchkin-wdr', 25, 100, '2026-11-08 00:00 UTC', classes),
-                arm('4.2.6-bbc-m10', 'default', 30, 100, '2026-11-09 01:00 UTC', classes),
-                arm('4.2.6-rs-m8', 'default', 33, 100, '2026-11-08 22:00 UTC', classes),
+                arm('4.2.6-bbc-m8', 'munchkin-wdr', 30, 100, '2026-11-09 01:00 UTC', classes),
+                arm('4.2.6-rs-m8', 'munchkin-wdr', 33, 100, '2026-11-08 22:00 UTC', classes),
                 arm('neo-b3-api2-upstream', 'default', 60, 100, '2026-11-08 20:00 UTC', classes)]
         card = landing.card_exemplars(runs)
         # one point per line, the best measured: the milestone roster (M4-M11,
         # R-M4-R-M10) is not on the dashboard any more (owner direction)
-        for name in ('Angband 4.2.6', 'Angband 4.2.6 + munchkin', 'better-borg-c M10 (best C)',
+        for name in ('Angband 4.2.6', 'Angband 4.2.6 + munchkin', 'better-borg-c M8 (best C)',
                      'borg-rs M8 (best Rust)', 'Neo Angband (Mandos, upstream)'):
             self.assertIn(name, card)
         for gone in ('better-borg-c M4', 'better-borg-c M9', 'borg-rs M4 (Rust)',
@@ -638,7 +640,7 @@ class LandingTest(unittest.TestCase):
         # moveOverlap (the hand-rolled dodger this replaces dropped labels)
         cfg = next(iter(landing.chart_configs(card).values()))
         plotted = [d['name'] for d in cfg['series'][0]['data']]
-        self.assertEqual(plotted, ['Angband 4.2.6', '4.2.6+munch', 'BBC M10', 'RS M8', 'Neo'])
+        self.assertEqual(plotted, ['Angband 4.2.6', '4.2.6+munch', 'BBC M8', 'RS M8', 'Neo'])
         self.assertEqual(cfg['series'][1]['label']['show'], True)  # the label series
         # label placement is computed here and shipped as explicit offsets
         # (ECharts' moveOverlap does nothing server-side): every plotted
@@ -651,16 +653,18 @@ class LandingTest(unittest.TestCase):
         self.assertIn('By class', card)
         self.assertIn('classes/Warrior.html', card)
         self.assertIn('classes/Mage.html', card)
-        self.assertNotIn('Druid', card)  # no data for it: excluded, not shown empty
+        self.assertNotIn('classes/Druid.html', card)  # no data for it: no empty page
         self.assertIn('not one controlled comparison', card)  # cross-run caveat (review finding #38 S1)
-        self.assertIn('best measured setups are', card)
-        self.assertIn('<strong>better-borg-c M10 (best C)</strong>', card)  # best C by alive-at-cap
+        self.assertIn('munchkin start by class', card)  # the policy every arm is read under
+        self.assertIn('Warrior, Druid and Ranger', card)
+        self.assertIn('<strong>better-borg-c M8 (best C)</strong>', card)
         self.assertIn('<strong>borg-rs M8 (best Rust)</strong>', card)
-        self.assertIn('only the best', card)
         self.assertIn('classes-1800 · 2026-11-09 00:00 UTC', card)  # run/suite/date per row (S2)
         self.assertIn('most finished cells', card)  # not "newest": that is only the tiebreaker (S3)
         self.assertNotIn('newest, most-sampled', card)
         self.assertIn('Depth + level', card)  # the combined figure, not the DL5 threshold rate
+        self.assertIn('Modes', card)  # every row says which mode policy it was read under
+        self.assertIn('no munchkin start, no Lunal', card)
         self.assertNotIn('DL5', card)
         self.assertNotIn('reached DL', card)
         self.assertNotIn('M8 + munchkin', card)  # dropped: a no-op on both lines (review #39)
@@ -672,7 +676,7 @@ class LandingTest(unittest.TestCase):
         # other script tags and give the option dict back intact
         runs = [({'experiment': {'name': 'x', 'suites': ['classes-1800']},
                   'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'},
-                 [dict(cell('4.2.6', s, 'turn_cap'), profile='default') for s in range(60)], None)]
+                 [dict(cell('4.2.6', s, 'turn_cap', cap=100000), profile='default') for s in range(60)], None)]
         card = landing.card_exemplars(runs)
         cfgs = landing.chart_configs(card)
         self.assertEqual(len(cfgs), 1)
@@ -688,11 +692,11 @@ class LandingTest(unittest.TestCase):
         # Syntax-check the scripts the emitter actually writes.
         runs = [({'experiment': {'name': 'x', 'suites': ['classes-1800']},
                   'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'},
-                 [dict(cell('4.2.6', s, 'turn_cap' if s % 3 else 'death'), profile='default')
+                 [dict(cell('4.2.6', s, 'turn_cap' if s % 3 else 'death', cap=100000), profile='default')
                   for s in range(60)], None),
                 ({'experiment': {'name': 'y', 'suites': ['classes-1800']},
                   'run_id': 'r2', 'completed': '2026-11-09 01:00 UTC'},
-                 [dict(cell('4.2.6', s, 'turn_cap'), profile='munchkin-wdr')
+                 [dict(cell('4.2.6', s, 'turn_cap', cap=100000), profile='munchkin-wdr')
                   for s in range(60)], None)]
         html = landing.card_exemplars(runs)
         scripts = re.findall(r'<script>(window\.addEventListener.*?)</script>', html, re.S)
@@ -714,13 +718,14 @@ class LandingTest(unittest.TestCase):
         # a 3-seed smoke run is a build sanity check, not evidence: it gets no
         # dot on the chart, and its legend row says why (a plotted setup sits
         # alongside, so there is a chart at all)
-        def arm(specimen, n, completed, suite='classes-1800'):
-            cells = [dict(cell(specimen, s, 'turn_cap'), profile='default') for s in range(n)]
+        def arm(specimen, n, completed, suite='classes-1800', profile='default'):
+            cells = [dict(cell(specimen, s, 'turn_cap', cap=100000, profile=profile),
+                          profile=profile) for s in range(n)]
             return ({'experiment': {'name': specimen + suite, 'suites': [suite]},
                      'run_id': 'r1', 'completed': completed}, cells, None)
 
         runs = [arm('4.2.6', 100, '2026-11-09 00:00 UTC'),
-                arm('4.2.6-bbc-m10', 3, '2026-11-10 15:00 UTC', suite='smoke')]
+                arm('4.2.6-bbc-m8', 3, '2026-11-10 15:00 UTC', suite='smoke', profile='munchkin-wdr')]
         card = landing.card_exemplars(runs)
         self.assertIn('smoke-scale only — not plotted', card)
         cfgs = landing.chart_configs(card)
@@ -734,14 +739,14 @@ class LandingTest(unittest.TestCase):
         # failure that made the old shape-coded chart unreadable.
         def arm(specimen, profile, deaths, n):
             cells = [dict(cell(specimen, s, 'death' if s < deaths else 'turn_cap',
-                              max_depth=5 if s % 2 else 1), profile=profile) for s in range(n)]
+                              max_depth=5 if s % 2 else 1, cap=100000), profile=profile) for s in range(n)]
             return ({'experiment': {'name': specimen + profile, 'suites': ['classes-1800']},
                      'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'}, cells, None)
 
         runs = [arm('4.2.6', 'default', 40, 100),
                 arm('4.2.6', 'munchkin-wdr', 25, 100),
-                arm('4.2.6-bbc-m10', 'default', 30, 100),
-                arm('4.2.6-rs-m8', 'default', 33, 100),
+                arm('4.2.6-bbc-m8', 'munchkin-wdr', 30, 100),
+                arm('4.2.6-rs-m8', 'munchkin-wdr', 33, 100),
                 arm('neo-b3-api2-upstream', 'default', 60, 100)]
         card = landing.card_exemplars(runs)
         cfgs = landing.chart_configs(card)
@@ -752,7 +757,7 @@ class LandingTest(unittest.TestCase):
         # a computed label offset - the hand-rolled SVG this replaced
         # dropped 3 of 15 labels on the real chart, silently
         self.assertEqual(sorted(plotted),
-                         ['4.2.6+munch', 'Angband 4.2.6', 'BBC M10', 'Neo', 'RS M8'])
+                         ['4.2.6+munch', 'Angband 4.2.6', 'BBC M8', 'Neo', 'RS M8'])
         self.assertTrue(all(d['label']['offset'] for d in data))
         self.assertTrue(all(d['label']['offset'] != [0, 0] for d in data))
         # one color per plotted setup, and one printed label each
@@ -806,7 +811,8 @@ class LandingTest(unittest.TestCase):
             cells = []
             for cls, (deaths, n) in classes_and_outcomes.items():
                 cells += [dict(cell('4.2.6', s + hash(cls) % 1000, 'death' if s < deaths else 'turn_cap',
-                                     max_depth=5 if s % 2 else 1), profile='default', played_class=cls)
+                                     max_depth=5 if s % 2 else 1, cap=100000), profile='default',
+                                played_class=cls)
                           for s in range(n)]
             return ({'experiment': {'name': 'classes', 'suites': ['classes-1800']},
                      'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'}, cells, None)

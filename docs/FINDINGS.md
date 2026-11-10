@@ -161,6 +161,22 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
   profile now names only `borg_munchkin_by_class`, a plan-time guard rejects the contradictory
   shape, and the play hashes of both runs match move for move: the games were the product default
   all along, only the settings check objected.
+- **The milestones' apparent survival gain is the munchkin policy, not the code (2026-11-10).**
+  Read under one policy and one cap — the munchkin start for Warrior, Druid and Ranger
+  (`munchkin-wdr`), 100,000 turns — plain Angband 4.2.6 loses 34.4% of its runs, Angband 4.2.6 +
+  munchkin 28.4% (`munchkin-by-class-confirm`, 1,799 cells), better-borg-c M8 27.5% and borg-rs M8
+  27.5% (`classes-m8-munchkin`). The three munchkin arms are within one point of each other, so the
+  full runs recorded so far give no measurable code gain over vanilla with the same policy.
+  The milestones' shipped *defaults* look better than the pre-cutoff baseline (M10 25.5%, M9 26.3%
+  against 34.4%) because from better-borg-c `fd683ced` the default **is** the class rule: the
+  observer records `borg_munchkin_start = 1, borg_munchkin_depth = 6` for Warrior/Druid/Ranger and
+  `0, 16` for the other six on M10 (`classes-m9-m10`), while 4.2.6 records `0, 16` everywhere.
+  Only those three classes differ: in `munchkin-by-class-confirm` the six other classes play
+  byte-identically (200 of 200 seeds each), Warrior differs on 197 of 200, Ranger 194, Druid 170
+  (1,239 of 1,800 paired cells identical overall). So a "default" arm on M8 and later is a
+  mixed-class configuration, and pairing it with a pre-cutoff default compares the munchkin policy,
+  not the Borg. What is still owed is a `normal`-policy class grid on 4.2.6, M10 and rs-M8 — the
+  cleaner version of the arm borg-zoo#54 asked for.
 - **v11 is catalogued, and its smoke is clean.** `4.2.6-bbc-m11` is tag `4.2.6-impact-v11`
   (`39268ca8a`) with **116** carried fixes, up from 98: 17 new units (0100–0117) plus the 0101a
   correction that gates the Lunal take skip on the runtime munchkin mode, covering stair-escape
