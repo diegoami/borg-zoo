@@ -318,26 +318,30 @@ runner compiles its private user path into the binary. Mandos jobs also set
 up Node 22 and check out and install the Mandos commit (`source/`) in both
 jobs.
 
-**One point per line on the exemplars chart.** Better-borg-c and borg-rs carry
-eleven and ten milestones; plotting every one produced a cloud of overlapping
-near-identical points (owner's call, 2026-11-10: "just have the best there
-proved by the fully full run"). The chart shows Angband 4.2.6, Angband 4.2.6 +
-munchkin, the best measured better-borg-c milestone, the best measured borg-rs
-one, and Neo Angband. "Best" is read from the runs themselves — the highest
-alive-at-cap among that line's full class runs (`DASHBOARD_MIN_CELLS` or more
-finished cells) — so the answer text follows the data instead of naming a fixed
-milestone; every other milestone keeps its catalogue entry, run page and
-Detailed-tab row.
+**Two comparison tabs, one mode policy each.** With the munchkin start and
+without it are separate pages ("No munchkin" / "Munchkin start"), each with its
+own chart, legend, class pages and answer. They cannot share a chart: the start
+changes three of the nine classes, and the shipped `default` changed sides at
+better-borg-c `fd683ced` (PR 302), so a post-cutoff default *is* the class rule
+while the pre-cutoff baseline has no start at all. Pairing the two measured the
+policy, not the Borg (owner's challenge, 2026-11-10: "are we cheating with the
+munchkin mix?").
 
-Two pins keep the comparison honest, and both came from owner review. **One
-turn cap** (`DASHBOARD_CAP`): a 200,000-turn arm survives longer by
-construction, so mixing `classes-1800` and `classes-1800-200k` compares the cap.
-**One mode policy**: every C/Rust point is read under the same explicit
-munchkin policy (Warrior, Druid and Ranger only), because the shipped `default`
-changed sides at better-borg-c `fd683ced` — M10's default *is* the class rule,
-while Angband 4.2.6's default has no munchkin start, so pairing them measured
-the policy. The legend table's Modes column states each row's policy, and the
-card says when the arms come from different experiments.
+- The **plain** tab reads `normal` (every mode pinned off) on post-cutoff
+  builds and the build's own `default` before the cutoff, where no rule exists
+  to force the start. A default arm after the cutoff is never used here.
+- The **munchkin** tab reads `munchkin-class`, then `munchkin-wdr`, then
+  `default` on post-cutoff builds (all three are the same policy there), and
+  `munchkin-wdr` before the cutoff.
+- Both tabs read one turn cap (`DASHBOARD_CAP`) and require one **full class
+  run** per point (`DASHBOARD_MIN_CELLS = 1500`): a 3-seed smoke, an 18-seed
+  pilot or a 200-cell milestone subset is not evidence — a subset once won this
+  chart at 83% by noise.
+- Each tab shows **one point per line**, the best measured under its policy,
+  chosen from the runs (not by hand); every other milestone keeps its catalogue
+  entry and run page.
+- The per-class pages show both policies with the same setups as their tabs,
+  narrowing the chosen arm to that class's seeds rather than choosing again.
 
 **Look at the dashboard before shipping chart changes.** A chart can pass
 every test and still be unreadable — the shape-coded exemplars chart shipped

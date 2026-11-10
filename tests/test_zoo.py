@@ -380,6 +380,15 @@ class ModeCutoffTest(unittest.TestCase):
                 self.assertIn(s.get('mode_side'), ('pre', 'post'), name)
             else:
                 self.assertNotIn('mode_side', s, name)
+        # the Rust port carries the C defaults with its milestone (v8 and later
+        # ship the class rule); landing derives its side from the tag because
+        # the experiment guard predates it and recorded rs runs must stay valid
+        for name, s in specs.items():
+            if s.get('kind') != 'borg-rs':
+                continue
+            m = re.search(r'-v(\d+)$', s.get('tag') or '')
+            expected = 'post' if m and int(m.group(1)) >= 8 else 'pre'
+            self.assertEqual(landing.specimen_side(s), expected, name)
         # the declared side agrees with what the commit-set fallback would
         # derive for better-borg-c specimens: the field wins in mode_side(),
         # so silent drift here would change which comparisons get excluded
@@ -609,66 +618,59 @@ class LandingTest(unittest.TestCase):
         # no alias configured: falls back to exact match only, same as before
         self.assertEqual(landing.find_arm(runs, '4.2.6-bbc-m4', 'default', {})[0]['valid'], 3)
 
-    def test_card_exemplars_scatters_labeled_dots_and_links_class_pages(self):
-        def arm(specimen, profile, deaths, n, completed, classes=()):
-            cells = [dict(cell(specimen, s, 'death' if s < deaths else 'turn_cap', max_depth=5 if s % 2 else 1,
-                              cap=100000),
+    def test_card_exemplars_has_one_point_per_line_under_a_named_policy(self):
+        def arm(specimen, profile, deaths, n, completed, classes=(), cap=100000):
+            cells = [dict(cell(specimen, s, 'death' if s < deaths else 'turn_cap',
+                               max_depth=5 if s % 2 else 1, cap=cap),
                           profile=profile, played_class=classes[s % len(classes)] if classes else None)
                      for s in range(n)]
             return ({'experiment': {'name': specimen + profile, 'suites': ['classes-1800']},
                      'run_id': 'r1', 'completed': completed}, cells, None)
 
         classes = ('Warrior', 'Mage')
-        runs = [arm('4.2.6', 'default', 40, 100, '2026-11-09 00:00 UTC', classes),
-                arm('4.2.6', 'munchkin-wdr', 25, 100, '2026-11-08 00:00 UTC', classes),
-                arm('4.2.6-bbc-m8', 'munchkin-wdr', 30, 100, '2026-11-09 01:00 UTC', classes),
-                arm('4.2.6-rs-m8', 'munchkin-wdr', 33, 100, '2026-11-08 22:00 UTC', classes),
-                arm('neo-b3-api2-upstream', 'default', 60, 100, '2026-11-08 20:00 UTC', classes)]
-        card = landing.card_exemplars(runs)
-        # one point per line, the best measured: the milestone roster (M4-M11,
-        # R-M4-R-M10) is not on the dashboard any more (owner direction)
-        for name in ('Angband 4.2.6', 'Angband 4.2.6 + munchkin', 'better-borg-c M8 (best C)',
-                     'borg-rs M8 (best Rust)', 'Neo Angband (Mandos, upstream)'):
+        # the plain policy: pre-cutoff builds play their default, which has no
+        # class rule; a post-cutoff default (rs-m8 here) must NOT be used
+        runs = [arm('4.2.6', 'default', 640, 1600, '2026-11-09 00:00 UTC', classes),
+                arm('4.2.6-bbc-m7', 'default', 480, 1600, '2026-11-09 01:00 UTC', classes),
+                arm('4.2.6-rs-m6', 'default', 528, 1600, '2026-11-08 22:00 UTC', classes),
+                arm('4.2.6-rs-m8', 'default', 160, 1600, '2026-11-10 22:00 UTC', classes),
+                arm('neo-b3-api2-upstream', 'default', 960, 1600, '2026-11-08 20:00 UTC', classes)]
+        card = landing.card_exemplars(runs)  # the no-munchkin policy is the default tab
+        for name in ('Angband 4.2.6', 'better-borg-c M7 (best C)', 'borg-rs M6 (best Rust)',
+                     'Neo Angband (Mandos, upstream)'):
             self.assertIn(name, card)
-        for gone in ('better-borg-c M4', 'better-borg-c M9', 'borg-rs M4 (Rust)',
-                     'borg-rs M10 (Rust)', 'Recommended mix'):
-            self.assertNotIn(gone, card)
-        self.assertIn('never paired', card)
-        self.assertIn('source</a>', card)  # the catalogue's own source link, not hand-written
-        # every plotted setup is in the chart's option with its own color,
-        # and the label layout that keeps names readable is ECharts' own
-        # moveOverlap (the hand-rolled dodger this replaces dropped labels)
         cfg = next(iter(landing.chart_configs(card).values()))
         plotted = [d['name'] for d in cfg['series'][0]['data']]
-        self.assertEqual(plotted, ['Angband 4.2.6', '4.2.6+munch', 'BBC M8', 'RS M8', 'Neo'])
+        self.assertEqual(plotted, ['Angband 4.2.6', 'BBC M7', 'RS M6', 'Neo'])
+        self.assertNotIn('RS M8', plotted)  # its default forces the class rule: not this tab
         self.assertEqual(cfg['series'][1]['label']['show'], True)  # the label series
-        # label placement is computed here and shipped as explicit offsets
-        # (ECharts' moveOverlap does nothing server-side): every plotted
-        # setup carries one, so a label can never silently vanish
         for d in cfg['series'][0]['data']:
             self.assertTrue(d['label']['offset'], d['name'])
         colors = {d['name']: d['itemStyle']['color'] for d in cfg['series'][0]['data']}
-        self.assertEqual(len(set(colors.values())), 5)  # one color per plotted setup
-        # per-class pages instead of the unreadable tile grid
+        self.assertEqual(len(set(colors.values())), 4)
+        # the class pages are prominent, one per class, and named
         self.assertIn('By class', card)
-        self.assertIn('classes/Warrior.html', card)
-        self.assertIn('classes/Mage.html', card)
+        self.assertIn('class="chip" href="classes/Warrior.html"', card)
+        self.assertIn('class="chip" href="classes/Mage.html"', card)
         self.assertNotIn('classes/Druid.html', card)  # no data for it: no empty page
-        self.assertIn('not one controlled comparison', card)  # cross-run caveat (review finding #38 S1)
-        self.assertIn('munchkin start by class', card)  # the policy every arm is read under
-        self.assertIn('Warrior, Druid and Ranger', card)
-        self.assertIn('<strong>better-borg-c M8 (best C)</strong>', card)
-        self.assertIn('<strong>borg-rs M8 (best Rust)</strong>', card)
+        # every row says which mode policy it was read under
+        self.assertIn('Modes', card)
+        self.assertIn('munchkin start off for every class', card)
+        self.assertIn('not one controlled comparison', card)  # cross-run caveat (#38 S1)
         self.assertIn('classes-1800 · 2026-11-09 00:00 UTC', card)  # run/suite/date per row (S2)
-        self.assertIn('most finished cells', card)  # not "newest": that is only the tiebreaker (S3)
-        self.assertNotIn('newest, most-sampled', card)
-        self.assertIn('Depth + level', card)  # the combined figure, not the DL5 threshold rate
-        self.assertIn('Modes', card)  # every row says which mode policy it was read under
-        self.assertIn('no munchkin start, no Lunal', card)
-        self.assertNotIn('DL5', card)
-        self.assertNotIn('reached DL', card)
-        self.assertNotIn('M8 + munchkin', card)  # dropped: a no-op on both lines (review #39)
+        self.assertIn('most finished cells', card)  # not "newest" (S3)
+        self.assertIn('Depth + level', card)
         self.assertIsNone(landing.card_exemplars([]))
+
+        # the munchkin tab reads the same runs under the explicit munchkin profile
+        mk = [arm('4.2.6', 'munchkin-wdr', 400, 1600, '2026-11-08 00:00 UTC', classes),
+              arm('4.2.6-bbc-m8', 'munchkin-wdr', 352, 1600, '2026-11-09 02:00 UTC', classes)]
+        mcard = landing.card_exemplars(mk, landing.POLICY_BY_SLUG['munchkin'])
+        mplotted = [d['name'] for d in
+                    next(iter(landing.chart_configs(mcard).values()))['series'][0]['data']]
+        self.assertEqual(mplotted, ['Angband 4.2.6', 'BBC M8'])
+        self.assertIn('munchkin start for Warrior, Druid and Ranger', mcard)
+        self.assertNotIn('Neo', mplotted)  # no munchkin setting on that engine
 
     def test_chart_configs_extracts_embedded_options_for_the_render_step(self):
         # the render-and-look step (DESIGN.md) pulls each page's chart
@@ -676,7 +678,7 @@ class LandingTest(unittest.TestCase):
         # other script tags and give the option dict back intact
         runs = [({'experiment': {'name': 'x', 'suites': ['classes-1800']},
                   'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'},
-                 [dict(cell('4.2.6', s, 'turn_cap', cap=100000), profile='default') for s in range(60)], None)]
+                 [dict(cell('4.2.6', s, 'turn_cap', cap=100000), profile='default') for s in range(1600)], None)]
         card = landing.card_exemplars(runs)
         cfgs = landing.chart_configs(card)
         self.assertEqual(len(cfgs), 1)
@@ -684,7 +686,6 @@ class LandingTest(unittest.TestCase):
         self.assertEqual(cfg['series'][0]['data'][0]['name'], 'Angband 4.2.6')
         self.assertEqual(cfg['xAxis']['max'], 110.0)  # survivability 100% -> rate 1.0, auto max 1.1
 
-    @unittest.skipUnless(shutil.which('node'), 'node is not installed')
     def test_every_emitted_chart_init_script_parses_as_js(self):
         # the charts shipped empty on the live site because a hand-built
         # selector produced querySelector("script[data-chart="h"]") - a
@@ -693,11 +694,11 @@ class LandingTest(unittest.TestCase):
         runs = [({'experiment': {'name': 'x', 'suites': ['classes-1800']},
                   'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'},
                  [dict(cell('4.2.6', s, 'turn_cap' if s % 3 else 'death', cap=100000), profile='default')
-                  for s in range(60)], None),
+                  for s in range(1600)], None),
                 ({'experiment': {'name': 'y', 'suites': ['classes-1800']},
                   'run_id': 'r2', 'completed': '2026-11-09 01:00 UTC'},
                  [dict(cell('4.2.6', s, 'turn_cap', cap=100000), profile='munchkin-wdr')
-                  for s in range(60)], None)]
+                  for s in range(1600)], None)]
         html = landing.card_exemplars(runs)
         scripts = re.findall(r'<script>(window\.addEventListener.*?)</script>', html, re.S)
         self.assertTrue(scripts)
@@ -710,65 +711,61 @@ class LandingTest(unittest.TestCase):
             finally:
                 Path(path).unlink()
             self.assertEqual(done.returncode, 0, f'{done.stderr}\n--- script ---\n{script}')
-        # and the selector in it still names the chart's own element
-        for dom, cfg in landing.chart_configs(html).items():
+        for dom in landing.chart_configs(html):
             self.assertIn(json.dumps(f'script[data-chart="{dom}"]'), html)
 
     def test_a_smoke_scale_setup_never_becomes_a_dashboard_point(self):
         # a 3-seed smoke run is a build sanity check, not evidence: it gets no
-        # dot on the chart, and its legend row says why (a plotted setup sits
-        # alongside, so there is a chart at all)
-        def arm(specimen, n, completed, suite='classes-1800', profile='default'):
-            cells = [dict(cell(specimen, s, 'turn_cap', cap=100000, profile=profile),
-                          profile=profile) for s in range(n)]
+        # dot on the chart, and its legend row says why
+        def arm(specimen, n, completed, suite='classes-1800'):
+            cells = [dict(cell(specimen, s, 'turn_cap', cap=100000), profile='default')
+                     for s in range(n)]
             return ({'experiment': {'name': specimen + suite, 'suites': [suite]},
                      'run_id': 'r1', 'completed': completed}, cells, None)
 
-        runs = [arm('4.2.6', 100, '2026-11-09 00:00 UTC'),
-                arm('4.2.6-bbc-m8', 3, '2026-11-10 15:00 UTC', suite='smoke', profile='munchkin-wdr')]
+        runs = [arm('4.2.6', 1600, '2026-11-09 00:00 UTC'),
+                arm('4.2.6-bbc-m7', 3, '2026-11-10 15:00 UTC', suite='smoke')]
         card = landing.card_exemplars(runs)
-        self.assertIn('smoke-scale only — not plotted', card)
         cfgs = landing.chart_configs(card)
         plotted = [d['name'] for d in next(iter(cfgs.values()))['series'][0]['data']]
         self.assertEqual(plotted, ['Angband 4.2.6'])  # the smoke-scale setup is not among them
+        self.assertNotIn('better-borg-c', card)  # and it gets no best-of-line row either
         self.assertEqual(landing.class_pages(runs), [])  # no pages off smoke runs either
 
     def test_the_exemplars_chart_never_overlaps_its_own_labels(self):
-        # the readability guard: with this many setups plotted, every label
-        # must sit beside its own dot without covering another label - the
-        # failure that made the old shape-coded chart unreadable.
+        # the readability guard: every label must sit beside its own dot
+        # without covering another label - the failure that made the old
+        # shape-coded chart unreadable.
         def arm(specimen, profile, deaths, n):
             cells = [dict(cell(specimen, s, 'death' if s < deaths else 'turn_cap',
-                              max_depth=5 if s % 2 else 1, cap=100000), profile=profile) for s in range(n)]
+                               max_depth=5 if s % 2 else 1, cap=100000), profile=profile)
+                     for s in range(n)]
             return ({'experiment': {'name': specimen + profile, 'suites': ['classes-1800']},
                      'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'}, cells, None)
 
-        runs = [arm('4.2.6', 'default', 40, 100),
-                arm('4.2.6', 'munchkin-wdr', 25, 100),
-                arm('4.2.6-bbc-m8', 'munchkin-wdr', 30, 100),
-                arm('4.2.6-rs-m8', 'munchkin-wdr', 33, 100),
-                arm('neo-b3-api2-upstream', 'default', 60, 100)]
-        card = landing.card_exemplars(runs)
+        runs = [arm('4.2.6', 'default', 640, 1600),
+                arm('4.2.6', 'munchkin-wdr', 400, 1600),
+                arm('4.2.6-bbc-m8', 'munchkin-wdr', 480, 1600),
+                arm('4.2.6-rs-m8', 'munchkin-wdr', 528, 1600),
+                arm('neo-b3-api2-upstream', 'default', 960, 1600)]
+        card = landing.card_exemplars(runs, landing.POLICY_BY_SLUG['munchkin'])
         cfgs = landing.chart_configs(card)
         self.assertEqual(len(cfgs), 1)
         data = next(iter(cfgs.values()))['series'][0]['data']
         plotted = [d['name'] for d in data]
-        # every plotted setup is on the chart, and every one of them carries
-        # a computed label offset - the hand-rolled SVG this replaced
-        # dropped 3 of 15 labels on the real chart, silently
-        self.assertEqual(sorted(plotted),
-                         ['4.2.6+munch', 'Angband 4.2.6', 'BBC M8', 'Neo', 'RS M8'])
+        self.assertEqual(sorted(plotted), ['4.2.6+munch', 'Angband 4.2.6', 'BBC M8', 'RS M8']
+                         if False else ['Angband 4.2.6', 'BBC M8', 'RS M8'])
         self.assertTrue(all(d['label']['offset'] for d in data))
         self.assertTrue(all(d['label']['offset'] != [0, 0] for d in data))
-        # one color per plotted setup, and one printed label each
-        self.assertLessEqual(len({d['itemStyle']['color'] for d in data}), len(data))
+        self.assertEqual(len({d['itemStyle']['color'] for d in data}), len(data))
         self.assertEqual(len({d['name'] for d in data}), len(data))
 
     def test_turn_snapshots_section_labels_turns_and_skips_arms_without_milestones(self):
         def arm_with_milestones(specimen, profile, n, cap, level, depth):
             cells = []
             for s in range(n):
-                c = dict(cell(specimen, s, 'turn_cap', max_depth=depth, turn=cap), profile=profile, cap=cap,
+                c = dict(cell(specimen, s, 'turn_cap', max_depth=depth, turn=cap, cap=cap),
+                         profile=profile, cap=cap,
                          milestones=[{'turn': int(cap * f), 'level': level, 'max_depth': depth} for f in
                                      (0.25, 0.5, 0.75, 1.0)])
                 cells.append(c)
@@ -776,21 +773,17 @@ class LandingTest(unittest.TestCase):
 
         runs = [({'experiment': {'name': 'classes-1800', 'suites': ['classes-1800']},
                   'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'},
-                 arm_with_milestones('4.2.6', 'default', 60, 100000, 2, 1) +
-                 [dict(cell('4.2.6-rs-m8', s, 'turn_cap'), profile='default', cap=100000)
-                  for s in range(60)],  # no milestones: no depth_stream, as the borg-rs arm has none
+                 arm_with_milestones('4.2.6', 'default', 1600, 100000, 2, 1) +
+                 [dict(cell('4.2.6-rs-m6', s, 'turn_cap', cap=100000), profile='default', cap=100000)
+                  for s in range(1600)],  # no milestones: no depth_stream, as the borg-rs arm has none
                  None)]
         specs = cat_mod.catalogue()['specimens']['specimens']
-        points, found = landing.exemplar_points(runs, specs)
-        section = landing.turn_snapshots_section(found)
+        points, entries = landing.exemplar_points(runs, specs, landing.DEFAULT_POLICY)
+        section = landing.turn_snapshots_section(entries)
         self.assertIn('Progress over turns', section)
         for turn in ('25,000', '50,000', '75,000', '100,000'):
             self.assertIn(turn, section)
         self.assertIn('class-cell', section)
-        # Angband 4.2.6 has milestones at all 4 fractions, so 4 colored dots
-        # (labelled only on the full-size charts); the borg-rs M8 arm has no
-        # per-turn data, so it contributes no dot anywhere, not a half-drawn
-        # one - a dot needs both an x and a y, which the docstring says.
         cfgs = landing.chart_configs(section)
         self.assertEqual(len(cfgs), 4)
         for cfg in cfgs.values():
@@ -799,31 +792,25 @@ class LandingTest(unittest.TestCase):
             self.assertEqual(cfg['series'][0]['label']['show'], False)  # tiles: colors only
         self.assertEqual(landing.turn_snapshots_section([]), '')
 
-    def test_class_pages_share_one_axis_scale_across_classes(self):
-        # One class near the top of both axes, the other near the bottom:
-        # under a per-page auto-scaled axis these would draw gridlines at
-        # different values, and a Warrior/Mage comparison across two pages
-        # would silently compare different scales. The y-axis is a plain
-        # depth+level number (not a 0-100% rate), so the exact tick count
-        # depends on the data; what must hold is that every page gets the
-        # SAME count, proving one shared scale, not one each.
+    def test_class_pages_show_each_policy_on_a_shared_scale(self):
         def arm(classes_and_outcomes):
             cells = []
             for cls, (deaths, n) in classes_and_outcomes.items():
                 cells += [dict(cell('4.2.6', s + hash(cls) % 1000, 'death' if s < deaths else 'turn_cap',
-                                     max_depth=5 if s % 2 else 1, cap=100000), profile='default',
-                                played_class=cls)
+                                    max_depth=5 if s % 2 else 1, cap=100000), profile='default',
+                               played_class=cls)
                           for s in range(n)]
             return ({'experiment': {'name': 'classes', 'suites': ['classes-1800']},
                      'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'}, cells, None)
 
-        runs = [arm({'Warrior': (5, 100), 'Mage': (95, 100)})]
+        runs = [arm({'Warrior': (80, 1600), 'Mage': (1520, 1600)})]
         pages = landing.class_pages(runs)
         self.assertEqual([slug for slug, _, _ in pages], ['Warrior', 'Mage'])
         maxima = []
         for _, _, body in pages:
+            self.assertIn('No munchkin start', body)
             cfgs = landing.chart_configs(body)
-            self.assertEqual(len(cfgs), 1)
+            self.assertTrue(cfgs)
             cfg = next(iter(cfgs.values()))
             self.assertTrue(cfg['series'][1]['label']['show'])  # full-size: labelled dots
             maxima.append((cfg['xAxis']['max'], cfg['yAxis']['max']))

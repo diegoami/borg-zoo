@@ -42,6 +42,13 @@ svg.scatter .lbl{fill:var(--fg);font:600 11px system-ui,-apple-system,Segoe UI,s
  paint-order:stroke;stroke:var(--card);stroke-width:3px;stroke-linejoin:round}
 svg.scatter.compact{max-width:140px}
 .legend-mark{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:3px;vertical-align:-1px}
+.chip{display:inline-block;padding:3px 10px;margin:2px 4px 2px 0;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--fg)}
+.chip:hover{border-color:var(--accent)}
+.class-links .chip{font-size:1rem;padding:7px 16px;border-color:var(--accent);font-weight:600}
+.big-chip{display:inline-block;padding:11px 20px;margin:4px 10px 4px 0;border:1px solid var(--accent);border-radius:8px;font-weight:600;text-decoration:none}
+.big-chip:hover{background:var(--accent);color:#fff}
+.policy-switch{margin:6px 0 14px}
+.links-head{margin-top:18px}
 .chart-echarts{width:100%;max-width:680px}
 .class-cell .chart-echarts{max-width:none}
 .class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(9rem,1fr));gap:12px;margin:8px 0}
@@ -449,6 +456,9 @@ def build_site(results, out):
     from . import landing
     shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
     (out / 'index.html').write_text(page('Borg zoo', landing.overview_page(runs), charts=True))
+    for policy in landing.POLICIES:
+        (out / f'{policy["slug"]}.html').write_text(
+            page(f'{policy["title"]} · borg-zoo', landing.comparison_page(runs, policy), charts=True))
     (out / 'detailed.html').write_text(page('Detailed · borg-zoo', landing.landing_page(runs, rows)))
     (out / 'stalls.html').write_text(page('Stalls and crashes · borg-zoo', landing.stalls_page(runs)))
     (out / 'versions.html').write_text(page('Versions · borg-zoo', landing.versions_page()))
