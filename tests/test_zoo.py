@@ -321,6 +321,14 @@ class BorgRsTest(unittest.TestCase):
         exp = cat_mod.experiment(ROOT / 'experiments/m10-smoke.json')
         self.assertTrue(cat_mod.cells(exp))
 
+    def test_m9_m10_munchkin_is_a_confirmed_no_op_so_classes_comparison_skips_it(self):
+        exp = cat_mod.experiment(ROOT / 'experiments/m9-m10-munchkin-smoke.json')
+        self.assertEqual(exp['profiles'], ['default', 'munchkin-wdr'])
+        exp = cat_mod.experiment(ROOT / 'experiments/classes-m9-m10.json')
+        self.assertEqual(exp['profiles'], ['default'])
+        self.assertEqual(exp['specimens'], ['4.2.6', '4.2.6-bbc-m9', '4.2.6-bbc-m10'])
+        self.assertEqual(len(cat_mod.cells(exp)), 5400)
+
     def test_bbc_m9_matches_rs_m9s_tag_and_carries(self):
         specs = cat_mod.catalogue()['specimens']['specimens']
         bbc, rs = specs['4.2.6-bbc-m9'], specs['4.2.6-rs-m9']
