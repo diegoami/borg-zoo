@@ -161,6 +161,20 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
   profile now names only `borg_munchkin_by_class`, a plan-time guard rejects the contradictory
   shape, and the play hashes of both runs match move for move: the games were the product default
   all along, only the settings check objected.
+- **v11 is catalogued, and its smoke is clean.** `4.2.6-bbc-m11` is tag `4.2.6-impact-v11`
+  (`39268ca8a`) with **116** carried fixes, up from 98: 17 new units (0100–0117) plus the 0101a
+  correction that gates the Lunal take skip on the runtime munchkin mode, covering stair-escape
+  ordering, flow-kill per-monster state, the danger model (armour/to-hit, constitution drain,
+  Crush, granite), pickup from the nearest staircase, the rest-after-prep timer and preparedness
+  reason, and the home/shop flows. Its own matrix is green: 95 groups / 290 cases, no failed
+  group, 237/250 compared cases byte-identical (the 13 differences are six fixture groups that
+  predate the cycle plus `preparation`, where 0105's wider timer prints a different value with
+  identical decisions). [`m11-smoke`](../experiments/m11-smoke.json), run 42879898811, compared
+  M10 and M11 under `munchkin-class` and `normal`: 12/12 cells finished at the cap, no
+  config_error, no stall, both builds compiled from the tag. v11 measured **no per-mode arm** — it
+  records each unit's per-mode effect as *not measured*, not neutral — so this is a build sanity
+  check, not a result; the per-mode batch stays with
+  [`classes-explicit`](../experiments/classes-explicit.json).
 - **The first Lunal arm is deferred.** `borg_self_lunal` enters Lunal only when the Borg is prepared
   for 15 levels deeper and `maxdepth >= depth + 15` (`borg-think-dungeon.c`); no zoo suite reaches
   that reliably (the deepest cap is 400k turns, and the zoo has no deep-start mechanism — the
