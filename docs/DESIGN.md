@@ -318,6 +318,17 @@ runner compiles its private user path into the binary. Mandos jobs also set
 up Node 22 and check out and install the Mandos commit (`source/`) in both
 jobs.
 
+**One point per line on the exemplars chart.** Better-borg-c and borg-rs carry
+eleven and ten milestones; plotting every one produced a cloud of overlapping
+near-identical points (owner's call, 2026-11-10: "just have the best there
+proved by the fully full run"). The chart shows Angband 4.2.6, Angband 4.2.6 +
+munchkin, the best measured better-borg-c milestone, the best measured borg-rs
+one, and Neo Angband. "Best" is read from the runs themselves — the highest
+alive-at-cap among that line's full class runs (`DASHBOARD_MIN_CELLS` or more
+finished cells) — so the answer text follows the data instead of naming a fixed
+milestone; every other milestone keeps its catalogue entry, run page and
+Detailed-tab row.
+
 **Look at the dashboard before shipping chart changes.** A chart can pass
 every test and still be unreadable — the shape-coded exemplars chart shipped
 that way (labels were the fix, and rendering it caught three labels that

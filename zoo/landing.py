@@ -310,55 +310,36 @@ def find_arm(runs, specimen, profile, specs, cls=None):
 
 PROFILES_URL = 'https://github.com/diegoami/borg-zoo/blob/main/catalogue/profiles.json'
 
-# Not every milestone (that is the detailed tab): where you start, the one single-setting
-# win already confirmed, the owner's actual recommendation, both lines' milestones
-# through M10, and - a different game, never paired with the rest - the Neo Borg.
-# "Vanilla" is specimen 4.2.6, formerly named "pristine".
+# Five points, not a roster: the plain Angband 4.2.6 borg, the same game with
+# the munchkin start, the best measured setup of each line, and - a different
+# engine, never paired with the rest - the Neo Borg. Better-borg-c and borg-rs
+# have eleven and ten milestones; plotting each one made the chart a cloud of
+# near-identical points (owner direction, 2026-11-10: "just have the best
+# there proved by the fully full run"). The best is taken from the full class
+# runs (classes-1800, 1,800 seeds), and every other milestone keeps its
+# catalogue entry, its run pages and the Detailed tab.
+# "Angband 4.2.6" is specimen 4.2.6, formerly named "pristine" and "Vanilla".
 C_COLOR = '#2f5d8a'    # the better-borg-c line (the site's --accent blue)
 RUST_COLOR = '#b58700'  # the borg-rs line (the site's --rust amber)
 
-
-def _bbc(n, carries):
-    return {'specimen': f'4.2.6-bbc-m{n}', 'profile': 'default',
-            'name': f'better-borg-c M{n}', 'short': f'M{n}', 'color': C_COLOR,
-            'note': f'{carries} carried fixes, default settings.'}
-
-
-def _rs(n, carries):
-    return {'specimen': f'4.2.6-rs-m{n}', 'profile': 'default',
-            'name': f'borg-rs M{n} (Rust)', 'short': f'R-M{n}', 'color': RUST_COLOR,
-            'note': f'the Rust port carrying the same {carries} fixes, '
-            'default settings.'}
-
-
-# Identity is by the label printed beside each dot plus a per-line color:
-# the C line's milestones share the zoo blue, the Rust port's share the rust
-# amber, one-off setups get their own color, and the legend table below the
-# chart carries the full names, numbers and notes.
 EXEMPLARS = [
-    {'specimen': '4.2.6', 'profile': 'default', 'name': 'Vanilla', 'short': 'Vanilla',
+    {'specimen': '4.2.6', 'profile': 'default', 'name': 'Angband 4.2.6', 'short': 'Angband 4.2.6',
      'color': '#757575',
-     'note': 'the reference version: angband/angband e473720, no fixes, default settings.'},
-    {'specimen': '4.2.6', 'profile': 'munchkin-wdr', 'name': 'Vanilla + munchkin', 'short': 'Vanilla+munch',
-     'color': '#0097a7',
-     'note': 'vanilla with the munchkin start by class profile '
+     'note': 'the C Borg as Angband 4.2.6 ships it (angband/angband e473720), no fixes '
+     'and default settings: the baseline everything else is read against.'},
+    {'specimen': '4.2.6', 'profile': 'munchkin-wdr', 'name': 'Angband 4.2.6 + munchkin',
+     'short': '4.2.6+munch', 'color': '#0097a7',
+     'note': 'Angband 4.2.6 with the munchkin start by class profile '
      f'(<code>munchkin-wdr</code>, <a href="{PROFILES_URL}">settings</a>): no other fixes.'},
-    _bbc(4, 42), _bbc(5, 50), _bbc(6, 63), _bbc(7, 76),
-    {'specimen': '4.2.6-bbc-munchkin-by-class', 'profile': 'default',
-     'name': 'Recommended mix', 'short': 'Rec. mix', 'color': '#1f7a3a',
-     'note': 'better-borg-c M7’s 76 carried fixes, with the munchkin start by '
-     'class as the version’s own default (no profile override needed).'},
-    _bbc(8, 88), _bbc(9, 98),
     {'specimen': '4.2.6-bbc-m10', 'profile': 'default',
-     'name': 'better-borg-c M10', 'short': 'M10', 'color': C_COLOR,
-     'note': 'carries stays 98 — no new tracker carry this cycle. Two '
-     'local-only improvements never proposed upstream, plus a crash correction to carry 0099.'},
-    {'specimen': '4.2.6-bbc-m11', 'profile': 'munchkin-class',
-     'name': 'better-borg-c M11', 'short': 'M11', 'color': C_COLOR,
-     'note': 'the v11 tag, 116 carried fixes: 17 new units (0100-0117) since '
-     'M10, plus the 0101a mode gate. munchkin-class is the product default, the '
-     'same game as the older milestones\' default runs.'},
-    _rs(4, 42), _rs(5, 50), _rs(6, 63), _rs(8, 88), _rs(9, 98), _rs(10, 98),
+     'name': 'better-borg-c M10 (best C)', 'short': 'BBC M10', 'color': C_COLOR,
+     'note': 'the best-measured better-borg-c milestone: 98 carried fixes (M10 added two '
+     'local-only improvements and a crash correction, no new tracker carry), default settings. '
+     'M11 (116 carries, tag 4.2.6-impact-v11) is the newest release but has only a smoke run.'},
+    {'specimen': '4.2.6-rs-m8', 'profile': 'default',
+     'name': 'borg-rs M8 (best Rust)', 'short': 'RS M8', 'color': RUST_COLOR,
+     'note': 'the best-measured Rust milestone: the port carrying better-borg-c M8\'s 88 '
+     'fixes, default settings. M9 and M10 exist but have no full run yet.'},
     {'specimen': 'neo-b3-api2-upstream', 'profile': 'default',
      'name': 'Neo Angband (Mandos, upstream)', 'short': 'Neo', 'color': '#6d4c41',
      'note': 'a different engine on different seeds — '
@@ -458,21 +439,42 @@ def card_exemplars(runs):
     links = class_links(runs, specs)
     snapshots = turn_snapshots_section(found)
     cross_run = len(run_keys) > 1
-    answer = (f'The <strong>recommended mix</strong> is ahead of vanilla on both axes and of vanilla + '
-              f'munchkin on survival too, in the runs recorded so far — but those points are not one '
-              f'controlled comparison: {"at least one of them comes from a different experiment or suite" if cross_run else ""} '
-              f'(see the Run column), the gaps are a few percentage points, and no interval is shown here. '
-              f'Build better-borg-c\'s <code>munchkin-by-class</code> commit as-is (no profile needed) to try '
-              f'it; treat it as the current lead, not a confirmed result, until a same-run comparison exists.'
-              if cross_run else
-              f'The <strong>recommended mix</strong> is ahead of vanilla on both axes, in the one recorded run. '
-              f'Build better-borg-c\'s <code>munchkin-by-class</code> commit as-is (no profile needed) to try it.')
+    measured = [(e, s) for e, (s, _meta, _arm) in zip(EXEMPLARS, found)
+                if s is not None and dashboard_plotted(s) and s.get('death_rate') is not None]
+
+    def best(prefix):
+        cand = [(e, s) for e, s in measured if e['specimen'].startswith(prefix)]
+        return max(cand, key=lambda es: 1 - es[1]['death_rate']) if cand else (None, None)
+
+    base = next((s for e, s in measured
+                 if e['specimen'] == '4.2.6' and e['profile'] == 'default'), None)
+    bc, bs = best('4.2.6-bbc')
+    rc, rs = best('4.2.6-rs')
+    lead = []
+    if bc:
+        lead.append(f'<strong>{esc(bc["name"])}</strong> for the C line '
+                    f'({pct(1 - bs["death_rate"])} alive at the cap, {num(bs["valid"])} finished)')
+    if rc:
+        lead.append(f'<strong>{esc(rc["name"])}</strong> for the Rust port '
+                    f'({pct(1 - rs["death_rate"])} alive, {num(rs["valid"])} finished)')
+    answer = ('The best measured setups are ' + ' and '.join(lead) +
+              (f'; the plain <strong>Angband 4.2.6</strong> borg leaves '
+               f'{pct(1 - base["death_rate"])} alive.' if base else '.') +
+              (' These points are not one controlled comparison — they come from '
+               'different experiments or suites (see the Run column)' if cross_run
+               else ' They come from one run') +
+              ', none carries an interval, and the gaps are a few percentage points: a lead, '
+              'not a confirmed result. The chart shows only the best measured setup of each line; '
+              'the other milestones keep their catalogue entries, run pages and Detailed-tab rows, '
+              'and the newest releases (better-borg-c M11, borg-rs M9 and M10) have no full class '
+              'run yet.')
     return (f'<div class="card wide"><h2>Which setup should I actually run?</h2>'
             f'<p class="answer">{answer}</p>{chart}{legend}'
             f'<p class="foot">Each point is the run with the most finished cells recorded for that exact '
             f'version and profile — not necessarily the newest, which is only the tiebreaker — and carries '
-            f'its name on the chart; setups whose best run is smoke-scale are left off the chart '
-            f'entirely (marked in the table). "Progress" is depth + level '
+            f'its name on the chart. One point per line, the best with a full class run: every other '
+            f'milestone keeps its catalogue entry, its run page and the Detailed tab, and a setup with '
+            f'only smoke-scale runs is left off the chart entirely. "Progress" is depth + level '
             f'added unweighted, median over every finished run including deaths (how far a run got, not '
             f'just whether it survived) — gold on hand and a real net worth will join it once they exist '
             f'for more than one specimen. The Neo Angband point is never comparable with the rest: Mandos '
