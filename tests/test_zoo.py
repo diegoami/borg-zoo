@@ -619,12 +619,18 @@ class LandingTest(unittest.TestCase):
         classes = ('Warrior', 'Mage')
         runs = [arm('4.2.6', 'default', 40, 100, '2026-11-09 00:00 UTC', classes),
                 arm('4.2.6', 'munchkin-wdr', 25, 100, '2026-11-08 00:00 UTC', classes),
-                arm('4.2.6-bbc-munchkin-by-class', 'default', 20, 100, '2026-11-09 01:00 UTC', classes),
+                arm('4.2.6-bbc-m10', 'default', 30, 100, '2026-11-09 01:00 UTC', classes),
+                arm('4.2.6-rs-m8', 'default', 33, 100, '2026-11-08 22:00 UTC', classes),
                 arm('neo-b3-api2-upstream', 'default', 60, 100, '2026-11-08 20:00 UTC', classes)]
         card = landing.card_exemplars(runs)
-        for name in ('Vanilla', 'Vanilla + munchkin', 'Recommended mix', 'better-borg-c M8', 'borg-rs M8 (Rust)',
-                     'better-borg-c M10', 'borg-rs M9 (Rust)', 'Neo Angband (Mandos, upstream)'):
+        # one point per line, the best measured: the milestone roster (M4-M11,
+        # R-M4-R-M10) is not on the dashboard any more (owner direction)
+        for name in ('Angband 4.2.6', 'Angband 4.2.6 + munchkin', 'better-borg-c M10 (best C)',
+                     'borg-rs M8 (best Rust)', 'Neo Angband (Mandos, upstream)'):
             self.assertIn(name, card)
+        for gone in ('better-borg-c M4', 'better-borg-c M9', 'borg-rs M4 (Rust)',
+                     'borg-rs M10 (Rust)', 'Recommended mix'):
+            self.assertNotIn(gone, card)
         self.assertIn('never paired', card)
         self.assertIn('source</a>', card)  # the catalogue's own source link, not hand-written
         # every plotted setup is in the chart's option with its own color,
@@ -632,7 +638,7 @@ class LandingTest(unittest.TestCase):
         # moveOverlap (the hand-rolled dodger this replaces dropped labels)
         cfg = next(iter(landing.chart_configs(card).values()))
         plotted = [d['name'] for d in cfg['series'][0]['data']]
-        self.assertEqual(plotted, ['Vanilla', 'Vanilla+munch', 'Rec. mix', 'Neo'])
+        self.assertEqual(plotted, ['Angband 4.2.6', '4.2.6+munch', 'BBC M10', 'RS M8', 'Neo'])
         self.assertEqual(cfg['series'][1]['label']['show'], True)  # the label series
         # label placement is computed here and shipped as explicit offsets
         # (ECharts' moveOverlap does nothing server-side): every plotted
@@ -640,13 +646,17 @@ class LandingTest(unittest.TestCase):
         for d in cfg['series'][0]['data']:
             self.assertTrue(d['label']['offset'], d['name'])
         colors = {d['name']: d['itemStyle']['color'] for d in cfg['series'][0]['data']}
-        self.assertEqual(len(set(colors.values())), 4)  # one color per plotted setup
+        self.assertEqual(len(set(colors.values())), 5)  # one color per plotted setup
         # per-class pages instead of the unreadable tile grid
         self.assertIn('By class', card)
         self.assertIn('classes/Warrior.html', card)
         self.assertIn('classes/Mage.html', card)
         self.assertNotIn('Druid', card)  # no data for it: excluded, not shown empty
         self.assertIn('not one controlled comparison', card)  # cross-run caveat (review finding #38 S1)
+        self.assertIn('best measured setups are', card)
+        self.assertIn('<strong>better-borg-c M10 (best C)</strong>', card)  # best C by alive-at-cap
+        self.assertIn('<strong>borg-rs M8 (best Rust)</strong>', card)
+        self.assertIn('only the best', card)
         self.assertIn('classes-1800 · 2026-11-09 00:00 UTC', card)  # run/suite/date per row (S2)
         self.assertIn('most finished cells', card)  # not "newest": that is only the tiebreaker (S3)
         self.assertNotIn('newest, most-sampled', card)
@@ -667,7 +677,7 @@ class LandingTest(unittest.TestCase):
         cfgs = landing.chart_configs(card)
         self.assertEqual(len(cfgs), 1)
         cfg = next(iter(cfgs.values()))
-        self.assertEqual(cfg['series'][0]['data'][0]['name'], 'Vanilla')
+        self.assertEqual(cfg['series'][0]['data'][0]['name'], 'Angband 4.2.6')
         self.assertEqual(cfg['xAxis']['max'], 110.0)  # survivability 100% -> rate 1.0, auto max 1.1
 
     @unittest.skipUnless(shutil.which('node'), 'node is not installed')
@@ -715,7 +725,7 @@ class LandingTest(unittest.TestCase):
         self.assertIn('smoke-scale only — not plotted', card)
         cfgs = landing.chart_configs(card)
         plotted = [d['name'] for d in next(iter(cfgs.values()))['series'][0]['data']]
-        self.assertEqual(plotted, ['Vanilla'])  # the smoke-scale setup is not among them
+        self.assertEqual(plotted, ['Angband 4.2.6'])  # the smoke-scale setup is not among them
         self.assertEqual(landing.class_pages(runs), [])  # no pages off smoke runs either
 
     def test_the_exemplars_chart_never_overlaps_its_own_labels(self):
@@ -730,10 +740,8 @@ class LandingTest(unittest.TestCase):
 
         runs = [arm('4.2.6', 'default', 40, 100),
                 arm('4.2.6', 'munchkin-wdr', 25, 100),
-                arm('4.2.6-bbc-munchkin-by-class', 'default', 20, 100),
-                arm('4.2.6-bbc-m4', 'default', 42, 100),
                 arm('4.2.6-bbc-m10', 'default', 30, 100),
-                arm('4.2.6-rs-m10', 'default', 33, 100),
+                arm('4.2.6-rs-m8', 'default', 33, 100),
                 arm('neo-b3-api2-upstream', 'default', 60, 100)]
         card = landing.card_exemplars(runs)
         cfgs = landing.chart_configs(card)
@@ -744,11 +752,10 @@ class LandingTest(unittest.TestCase):
         # a computed label offset - the hand-rolled SVG this replaced
         # dropped 3 of 15 labels on the real chart, silently
         self.assertEqual(sorted(plotted),
-                         ['M10', 'M4', 'Neo', 'R-M10', 'Rec. mix', 'Vanilla', 'Vanilla+munch'])
+                         ['4.2.6+munch', 'Angband 4.2.6', 'BBC M10', 'Neo', 'RS M8'])
         self.assertTrue(all(d['label']['offset'] for d in data))
         self.assertTrue(all(d['label']['offset'] != [0, 0] for d in data))
-        # per-line colors by design (M4 and M10 share the C blue); each
-        # setup is still identified by its own printed label
+        # one color per plotted setup, and one printed label each
         self.assertLessEqual(len({d['itemStyle']['color'] for d in data}), len(data))
         self.assertEqual(len({d['name'] for d in data}), len(data))
 
@@ -765,9 +772,8 @@ class LandingTest(unittest.TestCase):
         runs = [({'experiment': {'name': 'classes-1800', 'suites': ['classes-1800']},
                   'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'},
                  arm_with_milestones('4.2.6', 'default', 60, 100000, 2, 1) +
-                 arm_with_milestones('4.2.6-bbc-munchkin-by-class', 'default', 60, 100000, 4, 3) +
-                 [dict(cell('4.2.6-rs-m4', s, 'turn_cap'), profile='default', cap=100000)
-                  for s in range(60)],  # no milestones: no depth_stream, as real rs-m4 has none
+                 [dict(cell('4.2.6-rs-m8', s, 'turn_cap'), profile='default', cap=100000)
+                  for s in range(60)],  # no milestones: no depth_stream, as the borg-rs arm has none
                  None)]
         specs = cat_mod.catalogue()['specimens']['specimens']
         points, found = landing.exemplar_points(runs, specs)
@@ -776,16 +782,15 @@ class LandingTest(unittest.TestCase):
         for turn in ('25,000', '50,000', '75,000', '100,000'):
             self.assertIn(turn, section)
         self.assertIn('class-cell', section)
-        # Vanilla and the recommended mix have milestones at all 4 fractions,
-        # so 4 colored dots each (labelled only on the full-size charts); the
-        # rs-m4 arm has no per-turn data, so it contributes no dot anywhere,
-        # not a half-drawn one - a dot needs both an x and a y, which the
-        # docstring should (and does) say.
+        # Angband 4.2.6 has milestones at all 4 fractions, so 4 colored dots
+        # (labelled only on the full-size charts); the borg-rs M8 arm has no
+        # per-turn data, so it contributes no dot anywhere, not a half-drawn
+        # one - a dot needs both an x and a y, which the docstring says.
         cfgs = landing.chart_configs(section)
         self.assertEqual(len(cfgs), 4)
         for cfg in cfgs.values():
             plotted = [d['name'] for d in cfg['series'][0]['data']]
-            self.assertEqual(sorted(plotted), ['Rec. mix', 'Vanilla'])
+            self.assertEqual(sorted(plotted), ['Angband 4.2.6'])
             self.assertEqual(cfg['series'][0]['label']['show'], False)  # tiles: colors only
         self.assertEqual(landing.turn_snapshots_section([]), '')
 
