@@ -3,8 +3,39 @@
   "note": "A profile is the borg.txt the run uses. The runner always appends borg_cheat_death = FALSE and borg_respawn_winners = FALSE. Settings not named keep the Borg's built-in defaults. Each run checks the BORG_OPTIONS line the observer prints: a setting that did not take effect makes the run a config_error, never a silent default. A profile with \"base\": \"shipped\" starts from the specimen's own src/borg/borg.txt, formula section included, and overrides only the settings it names.",
   "profiles": {
     "default": {
-      "description": "Built-in defaults (the better-borg-c cohort configuration)",
+      "description": "Compatibility alias for experiments recorded before the mode cutoff (2026-11-10, borg-zoo#54): settings {}, so every mode stays on the build's own default - and borg_munchkin_by_class defaults TRUE only from better-borg-c fd683ced (PR 302). The same profile name is a different game on either side of that commit, so default is NOT comparable across it: an experiment that touches a post-cutoff better-borg-c specimen must name a mode profile (normal, munchkin-class, munchkin-on, lunal) instead; plan rejects default there. Experiments recorded before the cutoff keep default under their \"pre_cutoff\" note.",
       "settings": {}
+    },
+    "normal": {
+      "description": "Ordinary play with every mode flag pinned off: no munchkin start, no munchkin by class, no Lunal. The arm every change can be checked against. Only builds that know borg_munchkin_by_class (better-borg-c fd683ced and later) can run it; older builds ignore the unknown setting, the observer cannot verify it, and the run is a config_error.",
+      "settings": {
+        "borg_munchkin_start": false,
+        "borg_munchkin_by_class": false,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false
+      }
+    },
+    "munchkin-class": {
+      "description": "Munchkin start by class: today's product default for Warrior, Druid and Ranger (stair-scumming at depth 6), every other class ordinary. The arm that replaces implicit default in class grids. Runs only on builds that know borg_munchkin_by_class (better-borg-c fd683ced and later); munchkin start itself stays off.",
+      "settings": {
+        "borg_munchkin_start": false,
+        "borg_munchkin_by_class": true
+      }
+    },
+    "munchkin-on": {
+      "description": "Munchkin start unconditionally, every class (defaults: depth 16; the entry gate is max clevel < 12, hard-coded). Depth variants munchkin-d6 and munchkin-d10 already exist.",
+      "settings": {
+        "borg_munchkin_start": true
+      }
+    },
+    "lunal": {
+      "description": "Lunal, the deep stair-scum path (borg_think_dungeon_lunal, borg_flow_take_lunal), munchkin off: borg_self_lunal enters the mode when the Borg is prepared for 15 levels deeper and maxdepth >= depth + 15 (borg-think-dungeon.c), so an arm needs a long suite - or a deep-start suite the zoo does not have yet - or it measures nothing. The 0101/0101a fixes live on this path and only exist from 4.2.6-bbc-9ca98661 on. borg_plays_risky must stay off (a risky Borg is in a hurry and never enters).",
+      "settings": {
+        "borg_munchkin_start": false,
+        "borg_munchkin_by_class": false,
+        "borg_self_lunal": true,
+        "borg_lunal_mode": true
+      }
     },
     "plays-risky": {
       "description": "borg_plays_risky = TRUE",

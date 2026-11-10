@@ -1,16 +1,17 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "munchkin-default-off",
-  "description": "Identity check: with the class rule switched off, the candidate must play the same games as its base with default settings",
+  "description": "Identity check: with the class rule switched off, the candidate must play the same games as its base with default settings. Profile default renamed munchkin-class at the mode cutoff (2026-11-10, borg-zoo#54): on this specimen the two play the same game.",
   "specimens": [
     "4.2.6-bbc-munchkin-by-class"
   ],
   "profiles": [
-    "default",
+    "munchkin-class",
     "munchkin-class-off"
   ],
   "suites": [
     "classes-18"
   ],
-  "control": "4.2.6-bbc-munchkin-by-class"
+  "control": "4.2.6-bbc-munchkin-by-class",
+  "control_profile": "munchkin-class"
 }

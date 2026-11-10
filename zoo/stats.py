@@ -1,10 +1,14 @@
 """Per-arm summaries and paired comparisons over one experiment run.
 
 Everything here is descriptive. Small suites give wide intervals; the site
-says so next to every table.
+says so next to every table. Comparisons that straddle the mode cutoff
+(better-borg-c fd683ced, borg-zoo#54) are not computed: the same profile
+name is a different game on either side of it.
 """
 import math
 from statistics import median
+
+from . import catalogue as cat_mod
 
 VALID = ('death', 'turn_cap', 'completion')
 OUTCOMES = ('death', 'turn_cap', 'completion', 'stalled', 'wall_timeout', 'crash',
@@ -220,19 +224,24 @@ def depth_table(cells, marks=(2, 3, 5, 10)):
     return rows
 
 
-def analyse(exp, cells):
+def analyse(exp, cells, specimens=None):
     """Per suite: one row per arm, with two paired comparisons.
 
     vs_version pairs an arm with the control specimen under the same profile;
     vs_profile pairs it with the control profile on the same specimen.
+    specimens is the run's catalogue snapshot; arms whose specimens sit on
+    opposite sides of the mode cutoff are never paired (the same profile is
+    a different game across better-borg-c fd683ced, issue #54).
     """
+    specimens = specimens or {}
+    sides = {name: cat_mod.mode_side(spec) for name, spec in specimens.items()}
     control_profile = exp.get('control_profile', exp['profiles'][0])
     by_suite = {}
     for suite in exp['suites']:
+        suite_cells = [c for c in cells if c['suite'] == suite]
         arms = {}
-        for c in cells:
-            if c['suite'] == suite:
-                arms.setdefault(arm_key(c), []).append(c)
+        for c in suite_cells:
+            arms.setdefault(arm_key(c), []).append(c)
         rows = []
         for specimen in exp['specimens']:
             for profile in exp['profiles']:
@@ -243,14 +252,17 @@ def analyse(exp, cells):
                 profile_key = (specimen, control_profile)
                 # Pair only runs from the same harness and stream profile: that
                 # the same seed gives the same game under another frontend is
-                # not verified (pairing_class).
+                # not verified (pairing_class). A version pairing also needs
+                # both specimens on the same side of the mode cutoff.
                 same_kind = (version_key in arms and
                              pairing_class(arms[version_key][0]) == pairing_class(arm[0]))
+                same_cutoff_side = (sides.get(specimen) is None or
+                                    sides.get(specimen) == sides.get(exp['control']))
                 rows.append({
                     'specimen': specimen, 'profile': profile,
                     'summary': arm_summary(arm),
                     'vs_version': (paired(arms[version_key], arm)
-                                   if specimen != exp['control'] and same_kind else None),
+                                   if specimen != exp['control'] and same_kind and same_cutoff_side else None),
                     'vs_profile': (paired(arms[profile_key], arm)
                                    if profile != control_profile and profile_key in arms else None),
                     'survival': survival_table(arm, arm[0]['cap']),

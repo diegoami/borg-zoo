@@ -1,17 +1,17 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "m8-smoke",
-  "description": "Milestone 8 builds and runs: smoke suite against the original and milestone 7",
+  "description": "Milestone 8 smoke, restarted on the explicit mode profiles (2026-11-10, borg-zoo#54): does the product default (munchkin-class) change when the class rule is pinned off (normal)? The original run compared 4.2.6 against M8 on default, which straddled the mode cutoff - better-borg-c fd683ced (PR 302) makes borg_munchkin_by_class default TRUE on M8 but does not exist on 4.2.6 - so those comparisons are excluded and the smoke now reads the modes on M8 itself.",
   "specimens": [
-    "4.2.6",
-    "4.2.6-bbc-m7",
     "4.2.6-bbc-m8"
   ],
   "profiles": [
-    "default"
+    "munchkin-class",
+    "normal"
   ],
   "suites": [
     "smoke"
   ],
-  "control": "4.2.6"
+  "control": "4.2.6-bbc-m8",
+  "control_profile": "munchkin-class"
 }

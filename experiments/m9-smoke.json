@@ -13,5 +13,6 @@
   "suites": [
     "smoke"
   ],
-  "control": "4.2.6"
+  "control": "4.2.6",
+  "pre_cutoff": "2026-11-10 (borg-zoo#54): recorded before the mode cutoff. Its default arms straddle better-borg-c fd683ced (PR 302): the original has no borg_munchkin_by_class, M8/M9 default it TRUE. The file stays as run; the site labels these runs pre-cutoff and excludes their straddling comparisons. Milestone smokes now read the explicit modes (m10-smoke, m8-smoke)."
 }

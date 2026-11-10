@@ -7,6 +7,30 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 FORCED = 'borg_cheat_death = FALSE\nborg_respawn_winners = FALSE\n'
 
+# The mode cutoff (borg-zoo#54): better-borg-c fd683ced (PR 302) made
+# borg_munchkin_by_class default TRUE, so specimens before it do not carry
+# the class rule and play a different game under the same profile name.
+# Catalogue entries carry their side as "mode_side"; these constants resolve
+# entries recorded before the field existed (old run snapshots).
+MODE_CUTOFF = 'fd683cedbc74e1cbfabed276526964d0b04ee93c'
+MODE_CUTOFF_DATE = '2026-11-10'
+MODE_CUTOFF_HARNESS = '9ca986616cca66fe0f09de2b4cdc48591f94d33d'
+MODE_CUTOFF_REPOSITORY = 'diegoami/better-borg-c'
+MODE_CUTOFF_POST = {
+    'fd683cedbc74e1cbfabed276526964d0b04ee93c',  # 4.2.6-bbc-munchkin-by-class
+    '017e038e8726a7a423887a366b5d40e89c0550a1',  # 4.2.6-bbc-m8
+    '33207fbeeb582e67d6b18e9f40613617667905ae',  # 4.2.6-bbc-m9
+    '6944d88e87d02e9d24e85438d25f0c6ef864c170',  # 4.2.6-bbc-m10
+    '9ca986616cca66fe0f09de2b4cdc48591f94d33d',  # 4.2.6-bbc-9ca98661
+}
+
+# The settings whose built-in default drifts across the cutoff, plus the
+# modes introduced with it: a profile that names none of them leaves the
+# modes on the build's own default, which is exactly what the observer
+# cannot verify (issue #54).
+MODE_SETTINGS = ('borg_munchkin_start', 'borg_munchkin_by_class',
+                 'borg_self_lunal', 'borg_lunal_mode')
+
 
 def _load(path):
     return json.loads(Path(path).read_text())
@@ -110,6 +134,32 @@ def catalogue(root=ROOT):
     }
 
 
+def mode_side(spec):
+    """Which side of the mode cutoff (MODE_CUTOFF) a specimen plays on:
+    "pre" (no munchkin-by-class rule), "post" (the rule is the default), or
+    None for engines the cutoff does not apply to (borg-rs, Mandos, Neo).
+
+    The catalogue entry's own "mode_side" wins; better-borg-c entries
+    recorded before the field fall back to the commit set above.
+    """
+    side = spec.get('mode_side')
+    if side in ('pre', 'post'):
+        return side
+    if spec.get('repository') == MODE_CUTOFF_REPOSITORY:
+        return 'post' if spec.get('ref') in MODE_CUTOFF_POST else 'pre'
+    return None
+
+
+def mode_explicit(profile):
+    """True when a profile names the mode settings itself: directly, per
+    class ("by_class"), or through the shipped borg.txt, which spells the
+    build's defaults out as text. Only "default" ({}), and profiles of
+    single unnamed settings that leave every mode alone, stay implicit."""
+    if 'by_class' in profile or profile.get('base') == 'shipped':
+        return True
+    return bool(set(profile.get('settings', {})) & set(MODE_SETTINGS))
+
+
 def experiment(path, cat=None):
     cat = cat or catalogue()
     exp = _load(path)
@@ -168,6 +218,30 @@ def experiment(path, cat=None):
         raise ValueError('control must be one of the experiment specimens')
     if exp.get('control_profile', exp['profiles'][0]) not in exp['profiles']:
         raise ValueError('control_profile must be one of the experiment profiles')
+    # Mode cutoff (borg-zoo#54): "default" names a different game on either
+    # side of better-borg-c fd683ced, and the observer can only verify named
+    # settings, so a mode that was never named can silently change play. An
+    # experiment recorded before the cutoff says so ("pre_cutoff": "<date and
+    # reason>") and keeps its arms as run; anything measured now must name a
+    # mode profile on every post-cutoff better-borg-c specimen, and no
+    # profile may name borg_munchkin_by_class for a build that predates it
+    # (the build ignores the unknown line, and every cell would config_error).
+    sides = {name: mode_side(specimens[name]) for name in exp['specimens']}
+    if not exp.get('pre_cutoff'):
+        if any(side == 'post' for side in sides.values()):
+            for name in exp['profiles']:
+                if not mode_explicit(cat['profiles'][name]):
+                    raise ValueError(f'profile {name} leaves the modes unnamed: every experiment whose '
+                                     f'better-borg-c specimens play after the mode cutoff ({MODE_CUTOFF[:9]}, '
+                                     'PR 302) must name a mode profile (issue #54)')
+        for name, side in sides.items():
+            if side != 'pre':
+                continue
+            for prof in (p for p_ in exp['profiles'] for p in profile_parts(cat, p_)):
+                if 'borg_munchkin_by_class' in cat['profiles'][prof].get('settings', {}):
+                    raise ValueError(f'specimen {name} predates the mode cutoff and has no '
+                                     f'borg_munchkin_by_class; profile {prof} names it, so every '
+                                     'cell would be a config_error (issue #54)')
     return exp
 
 
