@@ -63,31 +63,6 @@ def forest(rows, x_label, y_label, highlight_label=None, x_max=None):
     return '<div class="chart">' + ''.join(parts) + '</div>'
 
 
-SHAPES = ('circle', 'diamond', 'triangle', 'square', 'cross')
-
-
-def mark(shape, cx, cy, cls):
-    """One scatter mark. `cls` is a space-joined set of CSS modifiers:
-    "hi" (the recommended setup, good color), "other" (a different game,
-    never paired with the rest - muted color), "rust" (the borg-rs Rust
-    port's own color, next to shape so the two lines are told apart twice
-    over), "outline" (a +munchkin variant of its filled sibling: same
-    shape, hollow instead of solid)."""
-    if shape == 'diamond':
-        return f'<polygon class="dot {cls}" points="{cx:.1f},{cy - 8:.1f} {cx + 8:.1f},{cy:.1f} ' \
-               f'{cx:.1f},{cy + 8:.1f} {cx - 8:.1f},{cy:.1f}"/>'
-    if shape == 'triangle':
-        return f'<polygon class="dot {cls}" points="{cx:.1f},{cy - 8:.1f} {cx - 7:.1f},{cy + 6:.1f} ' \
-               f'{cx + 7:.1f},{cy + 6:.1f}"/>'
-    if shape == 'square':
-        return f'<rect class="dot {cls}" x="{cx - 6:.1f}" y="{cy - 6:.1f}" width="12" height="12"/>'
-    if shape == 'cross':
-        return (f'<g class="dot cross {cls}">'
-                f'<line x1="{cx - 7:.1f}" y1="{cy:.1f}" x2="{cx + 7:.1f}" y2="{cy:.1f}"/>'
-                f'<line x1="{cx:.1f}" y1="{cy - 7:.1f}" x2="{cx:.1f}" y2="{cy + 7:.1f}"/></g>')
-    return f'<circle class="dot {cls}" cx="{cx:.1f}" cy="{cy:.1f}" r="7"/>'
-
-
 def _nice_step(vmax):
     """A round step for a plain-number axis (not a rate): the smallest of
     1/2/5/10/20/25/50/... that keeps the axis to at most 6 gridlines."""
@@ -100,14 +75,14 @@ def _nice_step(vmax):
 def axis_limits(points, y_fmt='pct'):
     """The (x_max, y_max) scatter() would pick for these points on its own.
 
-    Exposed so a small-multiples caller (class_grid, turn_snapshots_section)
-    can compute one shared scale over every tile's points combined, then
-    pass it to each tile's own scatter() call as x_max/y_max - otherwise
-    each tile auto-scales to its own data and the same value draws at a
-    different height in every one (review #39).
+    Exposed so a small-multiples caller (turn_snapshots_section, class
+    pages) can compute one shared scale over every tile's points combined,
+    then pass it to each chart's own scatter() call as x_max/y_max -
+    otherwise each tile auto-scales to its own data and the same value
+    draws at a different height in every one (review #39).
     """
-    xs = [p[1] for p in points if p[1] is not None]
-    ys = [p[2] for p in points if p[2] is not None]
+    xs = [p[0] for p in points if p[0] is not None]
+    ys = [p[1] for p in points if p[1] is not None]
     x_max = max(0.3, math.ceil((max(xs, default=0.3) + 0.03) * 10) / 10)
     if y_fmt == 'num':
         y_step = _nice_step(max(ys, default=10) or 1)
@@ -138,6 +113,28 @@ def scatter(points, x_label, y_label, compact=False, y_fmt='pct', x_max=None, y_
     compared side by side (the per-class grid, turn snapshots) must share
     one scale, or the same value draws at a different height in every tile.
     """
+def scatter(points, x_label, y_label, compact=False, y_fmt='pct', x_max=None, y_max=None):
+    """Survivability (x) against progress (y), a handful of named setups.
+
+    points: (x, y, label, color, title). Every mark is a dot in the setup's
+    own color; on the full-size charts each dot carries its short name right
+    beside it, nudged up or down so neighbouring labels never overlap (the
+    plotted setups really do land a few percent apart). The compact tiles
+    (turn snapshots) draw the same colored dots without labels: their color
+    is the identity, keyed by the labeled chart and the table next to them.
+    Every dot also carries a <title> so hovering names it.
+
+    compact: a small-multiple (one per turn fraction): smaller, coarser
+    gridlines, no axis label text (the caller titles it externally).
+
+    y_fmt: 'pct' (0-100%, the default: x always is) or 'num' - y is a plain
+    combined number (not a rate), with its own round-number step and no %.
+
+    x_max/y_max: fix the axis scale instead of fitting it to these points'
+    own range (see axis_limits). Charts that are meant to be compared across
+    tiles or pages (turn snapshots, the per-class pages) must share one
+    scale, or the same value draws at a different height in each.
+    """
     pad_l, pad_b, pad_t, size = (22, 16, 4, 110) if compact else (42, 34, 16, 300)
     x_step = 50 if compact else 10
     auto_x, auto_y = axis_limits(points, y_fmt)
@@ -152,7 +149,8 @@ def scatter(points, x_label, y_label, compact=False, y_fmt='pct', x_max=None, y_
     y = lambda v: pad_t + size * (1 - min(max(v, 0.0), y_max) / y_max)  # noqa: E731
     cls = 'scatter compact' if compact else 'scatter'
     parts = [f'<svg class="{cls}" viewBox="0 0 {width} {height}" role="img" '
-             f'aria-label="{esc(x_label)} against {esc(y_label)}, {len(points)} Borg setups, named below the chart">']
+             f'aria-label="{esc(x_label)} against {esc(y_label)}, {len(points)} Borg setups, '
+             f'each dot labelled with its setup\'s name">']
     for i in range(0, int(x_max * 100) + 1, x_step):
         xv = x(i / 100)
         parts.append(f'<line class="axis" x1="{xv:.1f}" y1="{pad_t}" x2="{xv:.1f}" y2="{pad_t + size}"/>')
@@ -172,10 +170,62 @@ def scatter(points, x_label, y_label, compact=False, y_fmt='pct', x_max=None, y_
                      f'text-anchor="middle">{esc(x_label)}</text>')
         parts.append(f'<g transform="translate(12,{pad_t + size / 2:.1f}) rotate(-90)">'
                      f'<text class="head" text-anchor="middle">{esc(y_label)}</text></g>')
-    for shape, xv, yv, mcls in points:
-        if xv is None or yv is None:
+
+    plotted = [(x(p[0]), y(p[1])) + tuple(p[2:]) for p in points if p[0] is not None and p[1] is not None]
+    # Setups whose runs played identically land on the exact same pixel: fan
+    # such groups out along a short diagonal so every color stays visible.
+    seen = {}
+    for i, pt in enumerate(plotted):
+        n = seen.setdefault(pt[:2], 0)
+        seen[pt[:2]] += 1
+        if n:
+            plotted[i] = (pt[0] + 9 * n, pt[1] - 9 * n) + pt[2:]
+    placed = []  # y-bands of already-placed labels, so neighbours never overlap
+    for px, py, label, color, title in plotted:
+        r = 4 if compact else 5
+        parts.append(f'<circle class="dot" cx="{px:.1f}" cy="{py:.1f}" r="{r}" fill="{color}" '
+                     f'fill-opacity="0.9"><title>{esc(title)}</title></circle>')
+        if compact or not label:
             continue
-        parts.append(mark(shape, x(xv), y(yv), mcls))
+        text_w = 6.4 * len(label)
+        side = 'end' if px + 10 + text_w > width - 2 else 'start'
+        lx = px + 10 if side == 'start' else px - 10
+        # Try the chosen side first, then the other, then take whichever
+        # offset overlaps least: a dot without its label is the unreadable
+        # chart this layout exists to fix, so the label always renders.
+        best = None
+        for tried_side in (side, 'end' if side == 'start' else 'start'):
+            lx2 = px + 10 if tried_side == 'start' else px - 10
+            for off in range(-36, 37, 12):  # stay near the dot: a label two
+                # gridlines away reads as someone else's
+                ly = py + off
+                band = (ly - 7, ly + 5)
+                if band[0] < pad_t + 1 or band[1] > pad_t + size - 1:
+                    continue
+                overlaps = sum(1 for lo, hi in placed if not (band[1] < lo or band[0] > hi))
+                if not overlaps:
+                    best = (tried_side, lx2, ly)
+                    placed.append(band)
+                    break
+            if best:
+                break
+        if not best:  # congested: take the offset with the fewest overlaps
+            scored = []
+            for off in range(-int(size / 2), int(size / 2) + 1, 5):
+                ly = py + off
+                band = (ly - 7, ly + 5)
+                if band[0] < pad_t + 1 or band[1] > pad_t + size - 1:
+                    continue
+                overlaps = sum(1 for lo, hi in placed if not (band[1] < lo or band[0] > hi))
+                scored.append((overlaps, abs(off), ly))
+            if scored:
+                overlaps, _, ly = min(scored)
+                best = (side, lx, ly)
+                placed.append((ly - 7, ly + 5))
+        if best:
+            tried_side, lx, ly = best
+            parts.append(f'<text class="lbl" x="{lx:.1f}" y="{ly:.1f}" text-anchor="{tried_side}" '
+                         f'style="fill:{color}">{esc(label)}</text>')
     parts.append('</svg>')
     return '<div class="chart">' + ''.join(parts) + '</div>'
 
@@ -228,71 +278,95 @@ def find_arm(runs, specimen, profile, specs, cls=None):
 PROFILES_URL = 'https://github.com/diegoami/borg-zoo/blob/main/catalogue/profiles.json'
 
 # Not every milestone (that is the detailed tab): where you start, the one single-setting
-# win already confirmed, the owner's actual recommendation, both lines' newest milestone
-# (M8) plain and with the same win tried on them, and - a different game, never paired with
-# the rest - the Neo Borg. "Vanilla" is specimen 4.2.6, formerly named "pristine".
+# win already confirmed, the owner's actual recommendation, both lines' milestones
+# through M10, and - a different game, never paired with the rest - the Neo Borg.
+# "Vanilla" is specimen 4.2.6, formerly named "pristine".
+C_COLOR = '#2f5d8a'    # the better-borg-c line (the site's --accent blue)
+RUST_COLOR = '#b58700'  # the borg-rs line (the site's --rust amber)
+
+
 def _bbc(n, carries):
-    return {'shape': 'circle', 'cls': '', 'specimen': f'4.2.6-bbc-m{n}', 'profile': 'default',
-            'name': f'better-borg-c M{n}', 'note': f'{carries} carried fixes, default settings.'}
+    return {'specimen': f'4.2.6-bbc-m{n}', 'profile': 'default',
+            'name': f'better-borg-c M{n}', 'short': f'M{n}', 'color': C_COLOR,
+            'note': f'{carries} carried fixes, default settings.'}
 
 
 def _rs(n, carries):
-    return {'shape': 'triangle', 'cls': 'rust', 'specimen': f'4.2.6-rs-m{n}', 'profile': 'default',
-            'name': f'borg-rs M{n} (Rust)', 'note': f'the Rust port carrying the same {carries} fixes, '
+    return {'specimen': f'4.2.6-rs-m{n}', 'profile': 'default',
+            'name': f'borg-rs M{n} (Rust)', 'short': f'R-M{n}', 'color': RUST_COLOR,
+            'note': f'the Rust port carrying the same {carries} fixes, '
             'default settings.'}
 
 
-# Identity is by shape *group*, not one glyph per point, so adding another milestone never
-# needs a new glyph: circle = the C line (better-borg-c), triangle = the Rust port, diamond =
-# the one recommendation, cross = a different game entirely (Neo). Color backs shape up rather
-# than repeating it: the Rust port's triangles also carry their own hue (--rust), so the two
-# lines are told apart twice over, not by shape alone. "outline" (hollow instead of solid)
-# marks a specimen's +munchkin sibling - dropped for any specimen whose own default already is
-# the munchkin start by class (M8 on both lines: confirmed identical play/trace hashes, review
-# #39), since pairing it with the munchkin-wdr profile there would just re-measure the same
-# game. Exact identification is always the legend table below, by name and number, same
-# mechanism regardless of how many points there are. "Vanilla" is specimen 4.2.6, formerly
-# named "pristine".
+# Identity is by the label printed beside each dot plus a per-line color:
+# the C line's milestones share the zoo blue, the Rust port's share the rust
+# amber, one-off setups get their own color, and the legend table below the
+# chart carries the full names, numbers and notes. "Vanilla" is specimen
+# 4.2.6, formerly named "pristine".
 EXEMPLARS = [
-    {'shape': 'circle', 'cls': '', 'specimen': '4.2.6', 'profile': 'default',
-     'name': 'Vanilla', 'note': 'the reference version: angband/angband e473720, no fixes, default settings.'},
-    {'shape': 'circle', 'cls': 'outline', 'specimen': '4.2.6', 'profile': 'munchkin-wdr',
-     'name': 'Vanilla + munchkin', 'note': 'vanilla with the munchkin start by class profile '
+    {'specimen': '4.2.6', 'profile': 'default', 'name': 'Vanilla', 'short': 'Vanilla',
+     'color': '#757575',
+     'note': 'the reference version: angband/angband e473720, no fixes, default settings.'},
+    {'specimen': '4.2.6', 'profile': 'munchkin-wdr', 'name': 'Vanilla + munchkin', 'short': 'Vanilla+munch',
+     'color': '#0097a7',
+     'note': 'vanilla with the munchkin start by class profile '
      f'(<code>munchkin-wdr</code>, <a href="{PROFILES_URL}">settings</a>): no other fixes.'},
     _bbc(4, 42), _bbc(5, 50), _bbc(6, 63), _bbc(7, 76),
-    {'shape': 'diamond', 'cls': 'hi', 'specimen': '4.2.6-bbc-munchkin-by-class', 'profile': 'default',
-     'name': 'Recommended mix', 'note': 'better-borg-c M7’s 76 carried fixes, with the munchkin start by '
+    {'specimen': '4.2.6-bbc-munchkin-by-class', 'profile': 'default',
+     'name': 'Recommended mix', 'short': 'Rec. mix', 'color': '#1f7a3a',
+     'note': 'better-borg-c M7’s 76 carried fixes, with the munchkin start by '
      'class as the version’s own default (no profile override needed).'},
     _bbc(8, 88), _bbc(9, 98),
-    {'shape': 'circle', 'cls': '', 'specimen': '4.2.6-bbc-m10', 'profile': 'default',
-     'name': 'better-borg-c M10', 'note': 'carries stays 98 — no new tracker carry this cycle. Two '
+    {'specimen': '4.2.6-bbc-m10', 'profile': 'default',
+     'name': 'better-borg-c M10', 'short': 'M10', 'color': C_COLOR,
+     'note': 'carries stays 98 — no new tracker carry this cycle. Two '
      'local-only improvements never proposed upstream, plus a crash correction to carry 0099.'},
     _rs(4, 42), _rs(5, 50), _rs(6, 63), _rs(8, 88), _rs(9, 98), _rs(10, 98),
-    {'shape': 'cross', 'cls': 'other', 'specimen': 'neo-b3-api2-upstream', 'profile': 'default',
-     'name': 'Neo Angband (Mandos, upstream)', 'note': 'a different engine on different seeds — '
+    {'specimen': 'neo-b3-api2-upstream', 'profile': 'default',
+     'name': 'Neo Angband (Mandos, upstream)', 'short': 'Neo', 'color': '#6d4c41',
+     'note': 'a different engine on different seeds — '
      '<strong>never paired</strong> with the C/Rust points above; shown for scale only.'},
 ]
 
 
+# A dashboard point needs a real sample behind it: a smoke run (3 seeds) is
+# a build sanity check, not evidence, and an 18-seed pilot is not much more.
+# Setups whose best recorded run is below this stay off the charts (the
+# legend row says so); they come back automatically once a real suite runs.
+DASHBOARD_MIN_CELLS = 50
+
+
 def exemplar_points(runs, specs, cls=None):
-    """(shape, x, y, css-class) per exemplar, x = survivability, y = progress_score
+    """(x, y, label, color, title) per exemplar, x = survivability, y = progress_score
     (median max depth + character level, not a rate); cls restricts to one
-    played class (for the per-class grid) or None for all."""
+    played class (for the per-class pages) or None for all. Setups whose
+    best run is smoke-scale (DASHBOARD_MIN_CELLS) get no point at all - the
+    chart reads as evidence, and a 3-seed sanity check is not that."""
     points, found = [], []
     for e in EXEMPLARS:
         s, meta, arm = find_arm(runs, e['specimen'], e['profile'], specs, cls)
-        x = (1 - s['death_rate']) if s and s['death_rate'] is not None else None
-        yv = s['progress_score'] if s else None
-        points.append((e['shape'], x, yv, e['cls']))
+        plotted = s is not None and s['valid'] >= DASHBOARD_MIN_CELLS
+        x = (1 - s['death_rate']) if plotted and s['death_rate'] is not None else None
+        yv = s['progress_score'] if plotted else None
+        title = (f"{e['name']} — alive at cap {100 * (1 - s['death_rate']):.0f}%, "
+                 f"depth+level {s['progress_score']:.0f}, {s['valid']} finished"
+                 if plotted and s['death_rate'] is not None and s['progress_score'] is not None
+                 else e['name'])
+        points.append((x, yv, e['short'], e['color'], title))
         found.append((s, meta, arm))
     return points, found
 
 
-def card_exemplars(runs):
-    specs = cat_mod.catalogue()['specimens']['specimens']
-    points, found = exemplar_points(runs, specs)
-    if not any(p[1] is not None for p in points):
-        return None
+def dashboard_plotted(s):
+    """True when a setup's best run carries enough cells to be a dashboard
+    point (DASHBOARD_MIN_CELLS): smoke-scale checks stay off the charts."""
+    return s is not None and s['valid'] >= DASHBOARD_MIN_CELLS
+
+
+def exemplar_table(found, specs):
+    """The legend table under the scatter: color swatch, full name, note,
+    numbers, and the run each point came from. Also returns the set of
+    (experiment, suite) keys behind the rows, for the cross-run caveat."""
     rows = []
     run_keys = set()
     for e, (s, meta, arm) in zip(EXEMPLARS, found):
@@ -300,23 +374,22 @@ def card_exemplars(runs):
         src = f' · <a href="{esc(source)}">source</a>' if source else ''
         x = (1 - s['death_rate']) if s and s['death_rate'] is not None else None
         yv = s['progress_score'] if s else None
-        badge = (f'<svg class="scatter legend-mark" width="16" height="16" viewBox="0 0 16 16">'
-                 f'{mark(e["shape"], 8, 8, e["cls"])}</svg>')
+        badge = f'<span class="legend-mark" style="background:{e["color"]}"></span>'
+        thin = ('<br><span class="muted">smoke-scale only — not plotted</span>'
+                if not dashboard_plotted(s) else '')
         if meta:
             run_keys.add((meta['experiment']['name'], meta['experiment']['suites'][0]))
             run_cell = (f'<a href="{link(meta)}">{esc(meta["experiment"]["name"])}</a><br>'
-                       f'<span class="muted">{esc(meta["experiment"]["suites"][0])} · '
-                       f'{esc(meta.get("completed", "?"))}</span>')
+                        f'<span class="muted">{esc(meta["experiment"]["suites"][0])} · '
+                        f'{esc(meta.get("completed", "?"))}</span>')
         else:
             run_cell = '–'
         rows.append(f'<tr><td class="l">{badge} <strong>{esc(e["name"])}</strong></td>'
-                    f'<td class="l">{e["note"]}{src}</td>'
+                    f'<td class="l">{e["note"]}{src}{thin}</td>'
                     f'<td>{pct(x) if x is not None else "–"}</td>'
                     f'<td>{num(yv) if yv is not None else "–"}</td>'
                     f'<td>{num(s["valid"]) if s else "–"}</td>'
                     f'<td class="l">{run_cell}</td></tr>')
-    chart = scatter(points, x_label='Survivability — alive at the turn cap',
-                    y_label='Progress — median max dungeon level + character level', y_fmt='num')
     legend = ('<div class="wrap"><table><thead><tr><th class="l">Setup</th><th class="l">What it is</th>'
               '<th>Alive at cap</th>'
               '<th title="Median, over finished runs including deaths, of max dungeon level reached + '
@@ -324,7 +397,18 @@ def card_exemplars(runs):
               '<th title="Cells that reached death or the turn cap; the denominator of both columns">'
               'Finished</th><th class="l">Run · suite · completed</th>'
               '</tr></thead><tbody>' + ''.join(rows) + '</tbody></table></div>')
-    grid = class_grid(runs, specs)
+    return legend, run_keys
+
+
+def card_exemplars(runs):
+    specs = cat_mod.catalogue()['specimens']['specimens']
+    points, found = exemplar_points(runs, specs)
+    if not any(p[0] is not None for p in points):
+        return None
+    chart = scatter(points, x_label='Survivability — alive at the turn cap',
+                    y_label='Progress — median max dungeon level + character level', y_fmt='num')
+    legend, run_keys = exemplar_table(found, specs)
+    links = class_links(runs, specs)
     snapshots = turn_snapshots_section(found)
     cross_run = len(run_keys) > 1
     answer = (f'The <strong>recommended mix</strong> is ahead of vanilla on both axes and of vanilla + '
@@ -339,13 +423,14 @@ def card_exemplars(runs):
     return (f'<div class="card wide"><h2>Which setup should I actually run?</h2>'
             f'<p class="answer">{answer}</p>{chart}{legend}'
             f'<p class="foot">Each point is the run with the most finished cells recorded for that exact '
-            f'version, profile (and class, in the grid below) — not necessarily the newest, which is only '
-            f'the tiebreaker; marker shape, not just color, tells them apart. "Progress" is depth + level '
+            f'version and profile — not necessarily the newest, which is only the tiebreaker — and carries '
+            f'its name right on the chart; setups whose best run is smoke-scale are left off the chart '
+            f'entirely (marked in the table). "Progress" is depth + level '
             f'added unweighted, median over every finished run including deaths (how far a run got, not '
             f'just whether it survived) — gold on hand and a real net worth will join it once they exist '
             f'for more than one specimen. The Neo Angband point is never comparable with the rest: Mandos '
             f'plays a different engine on different seeds.</p>'
-            f'{grid}{snapshots}</div>')
+            f'{links}{snapshots}</div>')
 
 
 def turn_snapshots_section(found):
@@ -365,22 +450,22 @@ def turn_snapshots_section(found):
     by_fraction = [[] for _ in fractions]
     caps = set()
     for e, (s, meta, arm) in zip(EXEMPLARS, found):
-        if not arm:
+        if not arm or not dashboard_plotted(s):
             for i in range(len(fractions)):
-                by_fraction[i].append((e['shape'], None, None, e['cls']))
+                by_fraction[i].append((None, None, e['short'], e['color'], e['name']))
             continue
         cap = arm[0]['cap']
         caps.add(cap)
         surv = stats.survival_table(arm, cap, fractions)
         prog = stats.milestone_progress_score(arm, fractions)
         for i in range(len(fractions)):
-            by_fraction[i].append((e['shape'], surv[i]['alive'], prog[i]['score'], e['cls']))
+            by_fraction[i].append((surv[i]['alive'], prog[i]['score'], e['short'], e['color'], e['name']))
     # A mark needs both coordinates (see the docstring); a fraction - or the whole section -
     # with survivability but no progress anywhere draws nothing, so do not show it as if it did.
-    if not any(any(p[1] is not None and p[2] is not None for p in pts) for pts in by_fraction):
+    if not any(any(p[0] is not None and p[1] is not None for p in pts) for pts in by_fraction):
         return ''
     one_cap = caps.pop() if len(caps) == 1 else None
-    shown = [i for i in range(len(fractions)) if any(p[1] is not None and p[2] is not None for p in by_fraction[i])]
+    shown = [i for i in range(len(fractions)) if any(p[0] is not None and p[1] is not None for p in by_fraction[i])]
     # One scale across every tile, not each fitting its own data: the whole point of this
     # section is watching progress rise from tile to tile, which a self-scaling axis per tile
     # would flatten out (the same review #39 finding the by-class grid had).
@@ -402,31 +487,58 @@ def turn_snapshots_section(found):
             f'<div class="class-grid">{"".join(cells)}</div>')
 
 
-def class_grid(runs, specs):
-    classes = [c for c in cat_mod.CLASSES
-               if any(find_arm(runs, e['specimen'], e['profile'], specs, c)[0] for e in EXEMPLARS)]
+def dashboard_classes(runs, specs):
+    """The classes that have at least one dashboard-worthy setup on record:
+    the per-class pages exist only for these (the others would be empty)."""
+    return [c for c in cat_mod.CLASSES
+            if any(dashboard_plotted(find_arm(runs, e['specimen'], e['profile'], specs, c)[0])
+                   for e in EXEMPLARS)]
+
+
+def class_links(runs, specs):
+    """The overview card's row of per-class page links (full charts, one
+    page per class - the old nine-remotes-wide tile grid was too small to
+    read anything out of)."""
+    classes = dashboard_classes(runs, specs)
     if not classes:
         return ''
-    by_class = {}
+    chips = ' · '.join(f'<a href="classes/{esc(cls)}.html">{esc(cls)}</a>' for cls in classes)
+    return (f'<h3>By class</h3><p class="foot">The same setups, split by the class each seed played '
+            f'(<code>classes-1800</code>-style suites assign 200 seeds per class), one full chart per '
+            f'class page: {chips}.</p>')
+
+
+def class_pages(runs):
+    """One page per class: a full-size labeled chart (the same setups as the
+    overview card, restricted to the seeds that played this class) and the
+    same numbers table. Returns (slug, title, body) per class with data;
+    every page shares one scale, so a Warrior/Mage difference reads the same
+    on both pages."""
+    specs = cat_mod.catalogue()['specimens']['specimens']
+    classes = dashboard_classes(runs, specs)
+    per_class = {}
     for cls in classes:
-        pts, _ = exemplar_points(runs, specs, cls)
-        if any(p[1] is not None for p in pts):
-            by_class[cls] = pts
-    if not by_class:
-        return ''
-    # One scale for every cell: the grid's point is comparing classes against
-    # each other, which an auto-scaled axis per cell breaks (the same value
-    # would draw at a different height in every tile). Survivability is
-    # always a rate (0-100% fits every tile); depth + level is a plain
-    # number, so its shared max has to be computed from this grid's own data.
-    x_max, y_max = axis_limits([p for pts in by_class.values() for p in pts], y_fmt='num')
-    cells = [f'<div class="class-cell"><h3>{esc(cls)}</h3>'
-             f'{scatter(pts, x_label="", y_label="", compact=True, y_fmt="num", x_max=x_max, y_max=y_max)}</div>'
-             for cls, pts in by_class.items()]
-    return (f'<h3>By class</h3><p class="foot">The same setups and marks as above, split by the class each '
-            f'seed played (<code>classes-1800</code>-style suites assign 200 seeds per class). One fixed '
-            f'scale for every tile — survivability left to right (0–100%), depth + level bottom to top — so '
-            f'classes can be compared against each other.</p><div class="class-grid">{"".join(cells)}</div>')
+        points, _ = exemplar_points(runs, specs, cls)
+        if any(p[0] is not None for p in points):
+            per_class[cls] = points
+    if not per_class:
+        return []
+    x_max, y_max = axis_limits([p for pts in per_class.values() for p in pts], y_fmt='num')
+    pages = []
+    for cls, points in per_class.items():
+        points, found = exemplar_points(runs, specs, cls)
+        chart = scatter(points, x_label='Survivability — alive at the turn cap',
+                        y_label='Progress — median max dungeon level + character level',
+                        y_fmt='num', x_max=x_max, y_max=y_max)
+        legend, _ = exemplar_table(found, specs)
+        body = (f'<p><a href="../index.html">Borg zoo</a></p>'
+                f'<h1>{esc(cls)}</h1>'
+                f'<p class="lead">The dashboard setups, on the seeds that played {esc(cls)}. '
+                f'Same scale on every class page, so classes can be compared against each other; '
+                f'each dot is labelled, and the table has the numbers and the run behind each point.</p>'
+                f'{chart}{legend}')
+        pages.append((cls, f'{cls} · borg-zoo', body))
+    return pages
 
 
 def card_milestones(runs):

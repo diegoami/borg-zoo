@@ -1,4 +1,5 @@
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -605,7 +606,7 @@ class LandingTest(unittest.TestCase):
         # no alias configured: falls back to exact match only, same as before
         self.assertEqual(landing.find_arm(runs, '4.2.6-bbc-m4', 'default', {})[0]['valid'], 3)
 
-    def test_card_exemplars_scatters_every_setup_with_a_class_grid(self):
+    def test_card_exemplars_scatters_labeled_dots_and_links_class_pages(self):
         def arm(specimen, profile, deaths, n, completed, classes=()):
             cells = [dict(cell(specimen, s, 'death' if s < deaths else 'turn_cap', max_depth=5 if s % 2 else 1),
                           profile=profile, played_class=classes[s % len(classes)] if classes else None)
@@ -624,10 +625,21 @@ class LandingTest(unittest.TestCase):
             self.assertIn(name, card)
         self.assertIn('never paired', card)
         self.assertIn('source</a>', card)  # the catalogue's own source link, not hand-written
+        # every plotted dot is labelled on the chart itself, in its own color
+        chart = card[card.index('<svg class="scatter"'):card.index('</svg>')]
+        dots = chart.count('<circle class="dot"')
+        labels = chart.count('class="lbl"')
+        self.assertEqual(dots, 4)
+        self.assertEqual(labels, 4)
+        self.assertIn('>Vanilla</text>', chart)
+        self.assertIn('>Rec. mix</text>', chart)
+        self.assertIn('>Neo</text>', chart)
+        self.assertIn('>Vanilla+munch</text>', chart)
+        # per-class pages instead of the unreadable tile grid
         self.assertIn('By class', card)
-        self.assertIn('>Warrior<', card)
-        self.assertIn('>Mage<', card)
-        self.assertNotIn('>Druid<', card)  # no data for it: excluded, not shown empty
+        self.assertIn('classes/Warrior.html', card)
+        self.assertIn('classes/Mage.html', card)
+        self.assertNotIn('Druid', card)  # no data for it: excluded, not shown empty
         self.assertIn('not one controlled comparison', card)  # cross-run caveat (review finding #38 S1)
         self.assertIn('classes-1800 · 2026-11-09 00:00 UTC', card)  # run/suite/date per row (S2)
         self.assertIn('most finished cells', card)  # not "newest": that is only the tiebreaker (S3)
@@ -635,9 +647,61 @@ class LandingTest(unittest.TestCase):
         self.assertIn('Depth + level', card)  # the combined figure, not the DL5 threshold rate
         self.assertNotIn('DL5', card)
         self.assertNotIn('reached DL', card)
-        self.assertIn('class="dot rust"', card)  # the Rust port's own color, not just its triangle shape
         self.assertNotIn('M8 + munchkin', card)  # dropped: a no-op on both lines (review #39)
         self.assertIsNone(landing.card_exemplars([]))
+
+    def test_a_smoke_scale_setup_never_becomes_a_dashboard_point(self):
+        # a 3-seed smoke run is a build sanity check, not evidence: it gets no
+        # dot on the chart, and its legend row says why (a plotted setup sits
+        # alongside, so there is a chart at all)
+        def arm(specimen, n, completed, suite='classes-1800'):
+            cells = [dict(cell(specimen, s, 'turn_cap'), profile='default') for s in range(n)]
+            return ({'experiment': {'name': specimen + suite, 'suites': [suite]},
+                     'run_id': 'r1', 'completed': completed}, cells, None)
+
+        runs = [arm('4.2.6', 100, '2026-11-09 00:00 UTC'),
+                arm('4.2.6-bbc-m10', 3, '2026-11-10 15:00 UTC', suite='smoke')]
+        card = landing.card_exemplars(runs)
+        self.assertIn('smoke-scale only — not plotted', card)
+        chart = card[card.index('<svg class="scatter"'):card.index('</svg>')]
+        self.assertEqual(chart.count('<circle class="dot"'), 1)  # vanilla only
+        self.assertEqual(chart.count('class="lbl"'), 1)
+        self.assertEqual(landing.class_pages(runs), [])  # no pages off smoke runs either
+
+    def test_the_exemplars_chart_never_overlaps_its_own_labels(self):
+        # the readability guard: with this many setups plotted, every label
+        # must sit beside its own dot without covering another label - the
+        # failure that made the old shape-coded chart unreadable.
+        def arm(specimen, profile, deaths, n):
+            cells = [dict(cell(specimen, s, 'death' if s < deaths else 'turn_cap',
+                              max_depth=5 if s % 2 else 1), profile=profile) for s in range(n)]
+            return ({'experiment': {'name': specimen + profile, 'suites': ['classes-1800']},
+                     'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'}, cells, None)
+
+        runs = [arm('4.2.6', 'default', 40, 100),
+                arm('4.2.6', 'munchkin-wdr', 25, 100),
+                arm('4.2.6-bbc-munchkin-by-class', 'default', 20, 100),
+                arm('4.2.6-bbc-m4', 'default', 42, 100),
+                arm('4.2.6-bbc-m10', 'default', 30, 100),
+                arm('4.2.6-rs-m10', 'default', 33, 100),
+                arm('neo-b3-api2-upstream', 'default', 60, 100)]
+        card = landing.card_exemplars(runs)
+        chart = card[card.index('<svg class="scatter"'):card.index('</svg>')]
+        boxes = []
+        for m in re.finditer(r'<circle class="dot" cx="([\d.]+)" cy="([\d.]+)"', chart):
+            boxes.append(('dot', float(m.group(1)), float(m.group(2)), float(m.group(1)), float(m.group(2))))
+        for m in re.finditer(r'<text class="lbl" x="([\d.-]+)" y="([\d.-]+)" text-anchor="(\w+)"'
+                             r'[^>]*>([^<]+)</text>', chart):
+            lx, ly, anchor, text = float(m.group(1)), float(m.group(2)), m.group(3), m.group(4)
+            w = 6.4 * len(text)
+            x0, x1 = (lx, lx + w) if anchor == 'start' else (lx - w, lx)
+            boxes.append(('lbl', x0, ly - 7, x1, ly + 5))
+        labels = [b for b in boxes if b[0] == 'lbl']
+        self.assertGreater(len(labels), 5)
+        import itertools
+        for a, b in itertools.combinations(labels, 2):
+            separated = a[3] <= b[1] or b[3] <= a[1] or a[4] <= b[2] or b[4] <= a[2]
+            self.assertTrue(separated, f'labels overlap: {a} vs {b}')
 
     def test_turn_snapshots_section_labels_turns_and_skips_arms_without_milestones(self):
         def arm_with_milestones(specimen, profile, n, cap, level, depth):
@@ -651,10 +715,10 @@ class LandingTest(unittest.TestCase):
 
         runs = [({'experiment': {'name': 'classes-1800', 'suites': ['classes-1800']},
                   'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'},
-                 arm_with_milestones('4.2.6', 'default', 10, 100000, 2, 1) +
-                 arm_with_milestones('4.2.6-bbc-munchkin-by-class', 'default', 10, 100000, 4, 3) +
+                 arm_with_milestones('4.2.6', 'default', 60, 100000, 2, 1) +
+                 arm_with_milestones('4.2.6-bbc-munchkin-by-class', 'default', 60, 100000, 4, 3) +
                  [dict(cell('4.2.6-rs-m4', s, 'turn_cap'), profile='default', cap=100000)
-                  for s in range(10)],  # no milestones: no depth_stream, as real rs-m4 has none
+                  for s in range(60)],  # no milestones: no depth_stream, as real rs-m4 has none
                  None)]
         specs = cat_mod.catalogue()['specimens']['specimens']
         points, found = landing.exemplar_points(runs, specs)
@@ -663,22 +727,23 @@ class LandingTest(unittest.TestCase):
         for turn in ('25,000', '50,000', '75,000', '100,000'):
             self.assertIn(turn, section)
         self.assertIn('class-cell', section)
-        # Vanilla (circle) and the recommended mix (diamond) have milestones at all 4 fractions,
-        # so 4 marks each; rs-m4 (triangle) has none, so it contributes no mark anywhere, not a
-        # half-drawn one - a dot needs both an x and a y, which the docstring should (and does) say.
-        self.assertEqual(section.count('<circle class="dot "'), 4)
-        self.assertEqual(section.count('<polygon class="dot hi"'), 4)
-        self.assertNotIn('<polygon class="dot "', section)
+        # Vanilla and the recommended mix have milestones at all 4 fractions,
+        # so 4 colored dots each (labelled only on the full-size charts); the
+        # rs-m4 arm has no per-turn data, so it contributes no dot anywhere,
+        # not a half-drawn one - a dot needs both an x and a y, which the
+        # docstring should (and does) say.
+        self.assertEqual(section.count('<circle class="dot"'), 8)
+        self.assertEqual(section.count('<polygon'), 0)
         self.assertEqual(landing.turn_snapshots_section([]), '')
 
-    def test_class_grid_shares_one_axis_scale_across_classes(self):
+    def test_class_pages_share_one_axis_scale_across_classes(self):
         # One class near the top of both axes, the other near the bottom:
-        # under a per-cell auto-scaled axis these would draw gridlines at
-        # different percentages; review #39 found the footer's claimed
-        # "0-50-100%" was true for at most one class at a time. The y-axis is
-        # now a plain depth+level number (not a 0-100% rate), so the exact
-        # tick count depends on the data; what must hold is that every cell
-        # gets the SAME count, proving one shared scale, not one each.
+        # under a per-page auto-scaled axis these would draw gridlines at
+        # different values, and a Warrior/Mage comparison across two pages
+        # would silently compare different scales. The y-axis is a plain
+        # depth+level number (not a 0-100% rate), so the exact tick count
+        # depends on the data; what must hold is that every page gets the
+        # SAME count, proving one shared scale, not one each.
         def arm(classes_and_outcomes):
             cells = []
             for cls, (deaths, n) in classes_and_outcomes.items():
@@ -689,11 +754,13 @@ class LandingTest(unittest.TestCase):
                      'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'}, cells, None)
 
         runs = [arm({'Warrior': (5, 100), 'Mage': (95, 100)})]
-        specs = cat_mod.catalogue()['specimens']['specimens']
-        grid = landing.class_grid(runs, specs)
-        cells = grid.split('<div class="class-cell">')[1:]
-        self.assertEqual(len(cells), 2)
-        tick_counts = [c.count('class="axis"') for c in cells]
+        pages = landing.class_pages(runs)
+        self.assertEqual([slug for slug, _, _ in pages], ['Warrior', 'Mage'])
+        tick_counts = []
+        for _, _, body in pages:
+            chart = body[body.index('<svg class="scatter"'):body.index('</svg>')]
+            self.assertIn('class="lbl"', chart)  # full-size: labelled dots
+            tick_counts.append(chart.count('class="axis"'))
         self.assertEqual(tick_counts[0], tick_counts[1])
         self.assertGreater(tick_counts[0], 2)
 

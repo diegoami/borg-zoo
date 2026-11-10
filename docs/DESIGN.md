@@ -318,6 +318,28 @@ runner compiles its private user path into the binary. Mandos jobs also set
 up Node 22 and check out and install the Mandos commit (`source/`) in both
 jobs.
 
+**Look at the dashboard before shipping chart changes.** A chart can pass
+every test and still be unreadable — the shape-coded exemplars chart shipped
+that way (labels were the fix, and rendering it caught three labels that
+silently failed to place). After any `zoo/landing.py` or `zoo/site.py`
+change, build the site from the results branch, render the charts to images,
+and actually read them:
+
+```sh
+git worktree add --detach /tmp/results origin/results
+python3 -m zoo site --results /tmp/results/results --out /tmp/site
+# extract a chart <svg> from /tmp/site/index.html (or classes/<Class>.html),
+# inline the svg.scatter CSS rules with concrete colors, then:
+uv run --with cairosvg python -c \
+  "import cairosvg; cairosvg.svg2png(url='/tmp/chart.svg', write_to='/tmp/chart.png')"
+```
+
+The automated half of that look is
+`test_the_exemplars_chart_never_overlaps_its_own_labels` (every plotted dot
+gets a label, and no two labels overlap) plus
+`test_a_smoke_scale_setup_never_becomes_a_dashboard_point`; they catch the
+regressions, the render catches everything else.
+
 ## Statistics (`zoo/stats.py`)
 
 **Per arm:**

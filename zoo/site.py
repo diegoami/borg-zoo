@@ -37,16 +37,11 @@ svg.scatter{width:100%;height:auto;display:block}
 svg.scatter text{fill:var(--fg);font:13px system-ui,-apple-system,Segoe UI,sans-serif}
 svg.scatter .axis{stroke:var(--line)}svg.scatter .tick{fill:var(--muted);font-size:11px}
 svg.scatter .head{font-weight:600;font-size:12px}
-svg.scatter .dot{fill:var(--accent);stroke:var(--card);stroke-width:1.5}
-svg.scatter .dot.hi{fill:var(--good)}
-svg.scatter .dot.other{fill:var(--muted);stroke:var(--card)}
-svg.scatter .dot.rust{fill:var(--rust)}
-svg.scatter .dot.outline{fill:none;stroke:var(--accent);stroke-width:2.5}
-svg.scatter .dot.rust.outline{stroke:var(--rust)}
-svg.scatter .dot.cross{fill:none;stroke:none}
-svg.scatter .dot.cross line{stroke:var(--muted);stroke-width:3;stroke-linecap:round}
+svg.scatter .dot{stroke:var(--card);stroke-width:1.5}
+svg.scatter .lbl{fill:var(--fg);font:600 11px system-ui,-apple-system,Segoe UI,sans-serif;
+ paint-order:stroke;stroke:var(--card);stroke-width:3px;stroke-linejoin:round}
 svg.scatter.compact{max-width:140px}
-.legend-mark{vertical-align:-3px;margin-right:2px}
+.legend-mark{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:3px;vertical-align:-1px}
 .class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(9rem,1fr));gap:12px;margin:8px 0}
 .class-cell{border:1px solid var(--line);border-radius:6px;padding:8px;text-align:center}
 .class-cell h3{margin:0 0 4px;font-size:.85rem}
@@ -93,6 +88,10 @@ def page(title, body):
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8">'
             f'<meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<title>{esc(title)}</title><style>{CSS}</style></head><body><main>{body}</main></body></html>\n')
+
+
+# alias used by the per-class pages, so build_site reads like the page() calls around it
+site_page_title = page
 
 
 def table(headers, rows, left=1):
@@ -451,4 +450,7 @@ def build_site(results, out):
     (out / 'stalls.html').write_text(page('Stalls and crashes · borg-zoo', landing.stalls_page(runs)))
     (out / 'versions.html').write_text(page('Versions · borg-zoo', landing.versions_page()))
     (out / '.nojekyll').write_text('')
+    for slug, title, body in landing.class_pages(runs):
+        (out / 'classes').mkdir(exist_ok=True)
+        (out / 'classes' / f'{slug}.html').write_text(site_page_title(title, body))
     return len(runs)
