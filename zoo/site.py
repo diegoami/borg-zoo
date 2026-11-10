@@ -42,6 +42,8 @@ svg.scatter .lbl{fill:var(--fg);font:600 11px system-ui,-apple-system,Segoe UI,s
  paint-order:stroke;stroke:var(--card);stroke-width:3px;stroke-linejoin:round}
 svg.scatter.compact{max-width:140px}
 .legend-mark{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:3px;vertical-align:-1px}
+.chart-echarts{width:100%;max-width:680px}
+.class-cell .chart-echarts{max-width:none}
 .class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(9rem,1fr));gap:12px;margin:8px 0}
 .class-cell{border:1px solid var(--line);border-radius:6px;padding:8px;text-align:center}
 .class-cell h3{margin:0 0 4px;font-size:.85rem}
@@ -84,14 +86,14 @@ def pval(p):
     return '–' if p is None else (f'{p:.3f}' if p >= 0.001 else '<0.001')
 
 
-def page(title, body):
+def page(title, body, base='', charts=False):
+    """Wrap a page body. `base` is the relative prefix for assets (classes/
+    pages live one level down); `charts` includes the vendored ECharts
+    library (deferred: chart init code waits for DOMContentLoaded)."""
+    lib = '<script src="{}echarts.min.js" defer></script>'.format(base) if charts else ''
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8">'
             f'<meta name="viewport" content="width=device-width,initial-scale=1">'
-            f'<title>{esc(title)}</title><style>{CSS}</style></head><body><main>{body}</main></body></html>\n')
-
-
-# alias used by the per-class pages, so build_site reads like the page() calls around it
-site_page_title = page
+            f'<title>{esc(title)}</title>{lib}<style>{CSS}</style></head><body><main>{body}</main></body></html>\n')
 
 
 def table(headers, rows, left=1):
@@ -445,12 +447,13 @@ def build_site(results, out):
                      len(meta['experiment']['specimens']), len(meta['experiment']['profiles']),
                      len(cells), finished])
     from . import landing
-    (out / 'index.html').write_text(page('Borg zoo', landing.overview_page(runs)))
+    shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
+    (out / 'index.html').write_text(page('Borg zoo', landing.overview_page(runs), charts=True))
     (out / 'detailed.html').write_text(page('Detailed · borg-zoo', landing.landing_page(runs, rows)))
     (out / 'stalls.html').write_text(page('Stalls and crashes · borg-zoo', landing.stalls_page(runs)))
     (out / 'versions.html').write_text(page('Versions · borg-zoo', landing.versions_page()))
     (out / '.nojekyll').write_text('')
     for slug, title, body in landing.class_pages(runs):
         (out / 'classes').mkdir(exist_ok=True)
-        (out / 'classes' / f'{slug}.html').write_text(site_page_title(title, body))
+        (out / 'classes' / f'{slug}.html').write_text(page(title, body, base='../', charts=True))
     return len(runs)

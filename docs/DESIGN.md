@@ -321,24 +321,27 @@ jobs.
 **Look at the dashboard before shipping chart changes.** A chart can pass
 every test and still be unreadable — the shape-coded exemplars chart shipped
 that way (labels were the fix, and rendering it caught three labels that
-silently failed to place). After any `zoo/landing.py` or `zoo/site.py`
-change, build the site from the results branch, render the charts to images,
-and actually read them:
+silently failed to place). The charts are ECharts (vendored at
+`zoo/assets/echarts.min.js`, no CDN); each page embeds its chart options as
+pure JSON in `<script type="application/json" data-chart="…">` blocks, so
+the real charts can be rendered server-side and actually read:
 
 ```sh
 git worktree add --detach /tmp/results origin/results
 python3 -m zoo site --results /tmp/results/results --out /tmp/site
-# extract a chart <svg> from /tmp/site/index.html (or classes/<Class>.html),
-# inline the svg.scatter CSS rules with concrete colors, then:
-uv run --with cairosvg python -c \
-  "import cairosvg; cairosvg.svg2png(url='/tmp/chart.svg', write_to='/tmp/chart.png')"
+cd /tmp && npm i echarts   # once
+# extract each data-chart JSON block into cfg.json as
+# {"option": <the block>, "width": 680, "height": 430}, then:
+node <repo>/tools/render-chart.js < cfg.json > chart.svg
+# svg2png with cairosvg (or any svg renderer), open the PNG, read it
 ```
 
 The automated half of that look is
-`test_the_exemplars_chart_never_overlaps_its_own_labels` (every plotted dot
-gets a label, and no two labels overlap) plus
-`test_a_smoke_scale_setup_never_becomes_a_dashboard_point`; they catch the
-regressions, the render catches everything else.
+`test_the_exemplars_chart_never_overlaps_its_own_labels` (every plotted
+setup appears in the chart's option, and the label layout that stops
+labels covering each other is ECharts' own `moveOverlap`, asserted on)
+plus `test_a_smoke_scale_setup_never_becomes_a_dashboard_point`; they
+catch the regressions, the render catches everything else.
 
 ## Statistics (`zoo/stats.py`)
 

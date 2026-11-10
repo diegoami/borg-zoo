@@ -4,8 +4,13 @@ Every number on the page is computed from the results store when the site is
 built; nothing is written by hand. A question whose experiment has no run yet
 is left out.
 """
+import hashlib
+import json
 import math
 import re
+
+_CHART_SEEN = {}  # emitted option hashes -> how many times, so identical
+                  # tiles still get distinct element ids on one page
 
 from . import catalogue as cat_mod
 from . import stats
@@ -92,142 +97,155 @@ def axis_limits(points, y_fmt='pct'):
     return x_max, y_max
 
 
-def scatter(points, x_label, y_label, compact=False, y_fmt='pct', x_max=None, y_max=None):
-    """Survivability (x) against progress (y), a handful of named setups.
-
-    points: (shape, x, y, cls). Marks carry no inline text: real points can
-    land only a few percent apart, and any label placed beside a dot would
-    collide with its neighbour. Shape (and, redundantly, color) is the only
-    way to tell points apart on the chart itself; the caller renders the
-    names, exact numbers and links as a legend table once, in the same order
-    as `points`, shared across every compact chart that reuses the same set.
-
-    compact: a small-multiple (one per class): smaller, coarser gridlines,
-    no axis label text (the caller titles it externally).
-
-    y_fmt: 'pct' (0-100%, the default: x always is) or 'num' - y is a plain
-    combined number (not a rate), with its own round-number step and no %.
-
-    x_max/y_max: fix the axis scale instead of fitting it to these points'
-    own range (see axis_limits). Small multiples that are meant to be
-    compared side by side (the per-class grid, turn snapshots) must share
-    one scale, or the same value draws at a different height in every tile.
-    """
-def scatter(points, x_label, y_label, compact=False, y_fmt='pct', x_max=None, y_max=None):
-    """Survivability (x) against progress (y), a handful of named setups.
+def echarts_scatter(points, x_label, y_label, compact=False, y_fmt='pct', x_max=None, y_max=None):
+    """Survivability (x) against progress (y), rendered by ECharts.
 
     points: (x, y, label, color, title). Every mark is a dot in the setup's
     own color; on the full-size charts each dot carries its short name right
-    beside it, nudged up or down so neighbouring labels never overlap (the
-    plotted setups really do land a few percent apart). The compact tiles
-    (turn snapshots) draw the same colored dots without labels: their color
-    is the identity, keyed by the labeled chart and the table next to them.
-    Every dot also carries a <title> so hovering names it.
+    beside it. Label placement is computed here and shipped as explicit
+    offsets, because ECharts' own moveOverlap does nothing in server-side
+    rendering (verified) and the hand-rolled SVG this replaced dropped
+    labels outright (review, 2026-11-10): the library draws, the packer
+    places, and both the browser and the render-and-look step show the
+    same chart. The compact
+    tiles (turn snapshots) draw colored dots without labels: their color is
+    the identity, keyed by the labeled chart and the table next to them.
+    Every dot carries its full title in the hover tooltip.
 
-    compact: a small-multiple (one per turn fraction): smaller, coarser
-    gridlines, no axis label text (the caller titles it externally).
+    compact: a small-multiple (one per turn fraction): smaller, no axis
+    label text (the caller titles it externally).
 
     y_fmt: 'pct' (0-100%, the default: x always is) or 'num' - y is a plain
-    combined number (not a rate), with its own round-number step and no %.
+    combined number (not a rate).
 
     x_max/y_max: fix the axis scale instead of fitting it to these points'
     own range (see axis_limits). Charts that are meant to be compared across
     tiles or pages (turn snapshots, the per-class pages) must share one
     scale, or the same value draws at a different height in each.
-    """
-    pad_l, pad_b, pad_t, size = (22, 16, 4, 110) if compact else (42, 34, 16, 300)
-    x_step = 50 if compact else 10
-    auto_x, auto_y = axis_limits(points, y_fmt)
-    if x_max is None:
-        x_max = auto_x
-    if y_max is None:
-        y_max = auto_y
-    y_step = _nice_step(y_max) if y_fmt == 'num' else (50 if compact else 10)
-    width = pad_l + size + (4 if compact else 16)
-    height = pad_t + size + pad_b
-    x = lambda v: pad_l + size * min(max(v, 0.0), x_max) / x_max  # noqa: E731
-    y = lambda v: pad_t + size * (1 - min(max(v, 0.0), y_max) / y_max)  # noqa: E731
-    cls = 'scatter compact' if compact else 'scatter'
-    parts = [f'<svg class="{cls}" viewBox="0 0 {width} {height}" role="img" '
-             f'aria-label="{esc(x_label)} against {esc(y_label)}, {len(points)} Borg setups, '
-             f'each dot labelled with its setup\'s name">']
-    for i in range(0, int(x_max * 100) + 1, x_step):
-        xv = x(i / 100)
-        parts.append(f'<line class="axis" x1="{xv:.1f}" y1="{pad_t}" x2="{xv:.1f}" y2="{pad_t + size}"/>')
-        if not compact:
-            parts.append(f'<text class="tick" x="{xv:.1f}" y="{pad_t + size + 14}" text-anchor="middle">{i}%</text>')
-    if y_fmt == 'num':
-        y_ticks = [(i, str(i)) for i in range(0, int(y_max) + 1, y_step)]
-    else:
-        y_ticks = [(i / 100, f'{i}%') for i in range(0, int(y_max * 100) + 1, y_step)]
-    for raw, label in y_ticks:
-        yv = y(raw)
-        parts.append(f'<line class="axis" x1="{pad_l}" y1="{yv:.1f}" x2="{pad_l + size}" y2="{yv:.1f}"/>')
-        if not compact:
-            parts.append(f'<text class="tick" x="{pad_l - 6}" y="{yv + 4:.1f}" text-anchor="end">{label}</text>')
-    if not compact:
-        parts.append(f'<text class="head" x="{pad_l + size / 2:.1f}" y="{height - 4}" '
-                     f'text-anchor="middle">{esc(x_label)}</text>')
-        parts.append(f'<g transform="translate(12,{pad_t + size / 2:.1f}) rotate(-90)">'
-                     f'<text class="head" text-anchor="middle">{esc(y_label)}</text></g>')
 
-    plotted = [(x(p[0]), y(p[1])) + tuple(p[2:]) for p in points if p[0] is not None and p[1] is not None]
-    # Setups whose runs played identically land on the exact same pixel: fan
-    # such groups out along a short diagonal so every color stays visible.
-    seen = {}
-    for i, pt in enumerate(plotted):
-        n = seen.setdefault(pt[:2], 0)
-        seen[pt[:2]] += 1
-        if n:
-            plotted[i] = (pt[0] + 9 * n, pt[1] - 9 * n) + pt[2:]
-    placed = []  # y-bands of already-placed labels, so neighbours never overlap
-    for px, py, label, color, title in plotted:
-        r = 4 if compact else 5
-        parts.append(f'<circle class="dot" cx="{px:.1f}" cy="{py:.1f}" r="{r}" fill="{color}" '
-                     f'fill-opacity="0.9"><title>{esc(title)}</title></circle>')
-        if compact or not label:
+    The element id is content-addressed (a hash of the option), so charts
+    render identically no matter what else was built before them in the
+    same process - tests included.
+    """
+    auto_x, auto_y = axis_limits(points, y_fmt)
+    x_top = round(x_max if x_max is not None else auto_x, 4)
+    y_top = round(y_max if y_max is not None else auto_y, 4)
+    labeled = not compact
+    # ECharts' own labelLayout.moveOverlap does nothing in server-side
+    # rendering (verified: identical SVG with it on or off), so label
+    # placement is computed here, once, and shipped as explicit per-label
+    # offsets - identical in the browser and in the render-and-look step.
+    # The plot-area approximation matches the grid below within a few px.
+    width, height = (210, 130) if compact else (680, 430)
+    plot_l, plot_t = 46, 14
+    plot_w = width - plot_l - (110 if labeled else 16)
+    plot_h = height - plot_t - (46 if labeled else 26)
+    px = lambda v: plot_l + (100 * v) / max(x_top, 1e-9) * plot_w / 100  # noqa: E731
+    py = lambda v: plot_t + (1 - min(max(v, 0.0), y_top) / y_top) * plot_h  # noqa: E731
+    placed, out, data = [], [], []
+    for xv, yv, label, color, title in points:
+        if xv is None or yv is None:
             continue
-        text_w = 6.4 * len(label)
-        side = 'end' if px + 10 + text_w > width - 2 else 'start'
-        lx = px + 10 if side == 'start' else px - 10
-        # Try the chosen side first, then the other, then take whichever
-        # offset overlaps least: a dot without its label is the unreadable
-        # chart this layout exists to fix, so the label always renders.
-        best = None
-        for tried_side in (side, 'end' if side == 'start' else 'start'):
-            lx2 = px + 10 if tried_side == 'start' else px - 10
-            for off in range(-36, 37, 12):  # stay near the dot: a label two
-                # gridlines away reads as someone else's
-                ly = py + off
-                band = (ly - 7, ly + 5)
-                if band[0] < pad_t + 1 or band[1] > pad_t + size - 1:
-                    continue
-                overlaps = sum(1 for lo, hi in placed if not (band[1] < lo or band[0] > hi))
-                if not overlaps:
-                    best = (tried_side, lx2, ly)
-                    placed.append(band)
+        out.append([(px(xv), py(yv)), label, color, title, None, (xv, yv)])
+    # Setups whose runs played identically land on the exact same pixel: fan
+    # such groups out along a short diagonal so every dot stays visible.
+    groups = {}
+    for i, entry in enumerate(out):
+        groups.setdefault(entry[0], []).append(i)
+    for indices in groups.values():
+        for k, i in enumerate(indices[1:]):
+            dot = out[i][0]
+            out[i][0] = (dot[0] + 9 * k, dot[1] - 9 * k)
+    for i, (dot, label, color, title, _side, (xv, yv)) in enumerate(out):
+        px0, py0 = dot
+        offset = None
+        if labeled and label:
+            text_w = 6.4 * len(label)
+            side = 'end' if px0 + 10 + text_w > width - 2 else 'start'
+            lx = px0 + 10 if side == 'start' else px0 - 10
+            best = None
+            for tried_side in (side, 'end' if side == 'start' else 'start'):
+                lx2 = px0 + 10 if tried_side == 'start' else px0 - 10
+                for off in (0, -12, 12, -24, 24, -36, 36):  # nearest first: a
+                    # label two gridlines away reads as someone else's
+                    ly = py0 + off
+                    band = (ly - 7, ly + 5)
+                    if band[0] < plot_t or band[1] > plot_t + plot_h:
+                        continue
+                    overlaps = sum(1 for lo, hi in placed if not (band[1] < lo or band[0] > hi))
+                    if not overlaps:
+                        best = (tried_side, lx2, ly)
+                        placed.append(band)
+                        break
+                if best:
                     break
+            if not best:  # congested: take the offset with the fewest overlaps
+                scored = []
+                for off in range(-int(plot_h / 2), int(plot_h / 2) + 1, 5):
+                    ly = py0 + off
+                    band = (ly - 7, ly + 5)
+                    if band[0] < plot_t or band[1] > plot_t + plot_h:
+                        continue
+                    overlaps = sum(1 for lo, hi in placed if not (band[1] < lo or band[0] > hi))
+                    scored.append((overlaps, abs(off), ly))
+                if scored:
+                    _, _, ly = min(scored)
+                    best = (side, lx, ly)
+                    placed.append((ly - 7, ly + 5))
             if best:
-                break
-        if not best:  # congested: take the offset with the fewest overlaps
-            scored = []
-            for off in range(-int(size / 2), int(size / 2) + 1, 5):
-                ly = py + off
-                band = (ly - 7, ly + 5)
-                if band[0] < pad_t + 1 or band[1] > pad_t + size - 1:
-                    continue
-                overlaps = sum(1 for lo, hi in placed if not (band[1] < lo or band[0] > hi))
-                scored.append((overlaps, abs(off), ly))
-            if scored:
-                overlaps, _, ly = min(scored)
-                best = (side, lx, ly)
-                placed.append((ly - 7, ly + 5))
-        if best:
-            tried_side, lx, ly = best
-            parts.append(f'<text class="lbl" x="{lx:.1f}" y="{ly:.1f}" text-anchor="{tried_side}" '
-                         f'style="fill:{color}">{esc(label)}</text>')
-    parts.append('</svg>')
-    return '<div class="chart">' + ''.join(parts) + '</div>'
+                tried_side, lx, ly = best
+                offset = [round(lx - px0, 1), round(ly - py0, 1)]
+                out[i][4] = tried_side
+        data.append({'value': [round(100 * xv, 2), round(yv, 3)], 'name': label,
+                     'itemStyle': {'color': color}, 't': title,
+                     'label': {'offset': offset or [8, 0]}})
+    option = {
+        'animation': False,
+        'backgroundColor': 'transparent',
+        'grid': {'left': plot_l, 'right': width - plot_l - plot_w, 'top': plot_t,
+                 'bottom': height - plot_t - plot_h},
+        'xAxis': {'type': 'value', 'min': 0, 'max': round(100 * x_top, 4),
+                  'axisLabel': {'color': '#808080', 'formatter': '{value}%'},
+                  'splitLine': {'lineStyle': {'color': 'rgba(128,128,128,0.25)'}},
+                  'name': x_label, 'nameGap': 18,
+                  'nameTextStyle': {'color': '#808080', 'fontSize': 11},
+                  'nameLocation': 'middle'},
+        'yAxis': {'type': 'value', 'min': 0, 'max': y_top,
+                  'axisLabel': {'color': '#808080'},
+                  'splitLine': {'lineStyle': {'color': 'rgba(128,128,128,0.25)'}},
+                  'name': y_label, 'nameGap': 14,
+                  'nameTextStyle': {'color': '#808080', 'fontSize': 11, 'align': 'left'},
+                  'nameLocation': 'middle', 'nameRotate': -90},
+        'tooltip': {'trigger': 'item'},
+        'series': [
+            # dots first, labels second: ECharts draws series in order, so
+            # every label sits above every dot - in a cluster the dots of
+            # later items would otherwise cover earlier setups' names
+            {'type': 'scatter', 'data': data, 'symbolSize': 10 if labeled else 7,
+             'label': {'show': False}, 'z': 2, 'emphasis': {'scale': 1.3}},
+            {'type': 'scatter', 'data': data, 'symbolSize': 0, 'silent': True,
+             'label': {'show': labeled, 'position': 'right', 'formatter': '{b}',
+                       'fontSize': 11, 'fontWeight': 600, 'color': '#808080'},
+             'z': 3},
+        ],
+    }
+    # the tooltip wants a formatter function, which JSON cannot carry: the
+    # wrapper reads the pure-JSON option (also what tools/render-chart.js
+    # feeds to ECharts' SSR for the render-and-look step) and adds it
+    cfg = json.dumps(option).replace('</', '<\\/')
+    h = hashlib.sha1(cfg.encode()).hexdigest()[:10]
+    # two tiles can hold identical data (same values at every fraction):
+    # same content, same hash, but they still need their own element
+    n = _CHART_SEEN.get(h, 0)
+    _CHART_SEEN[h] = n + 1
+    dom = h if n == 0 else f'{h}-{n}'
+    return (f'<div id="{dom}" class="chart-echarts" style="width:{width}px;height:{height}px"></div>'
+            f'<script type="application/json" data-chart="{dom}">{cfg}</script>'
+            f'<script>window.addEventListener("DOMContentLoaded", () => {{'
+            f'const cfg = JSON.parse(document.querySelector("script[data-chart=\"{dom}\"]").textContent;'
+            f'cfg.tooltip.formatter = p => (p.data && p.data.t) || p.name;'
+            f'echarts.init(document.getElementById("{dom}"), null, {{"renderer": "svg"}}).setOption(cfg);'
+            f'}});</script>')
 
 
 def newest(runs, names):
@@ -275,6 +293,7 @@ def find_arm(runs, specimen, profile, specs, cls=None):
     return best_summary, best_meta, best_arm
 
 
+
 PROFILES_URL = 'https://github.com/diegoami/borg-zoo/blob/main/catalogue/profiles.json'
 
 # Not every milestone (that is the detailed tab): where you start, the one single-setting
@@ -301,8 +320,7 @@ def _rs(n, carries):
 # Identity is by the label printed beside each dot plus a per-line color:
 # the C line's milestones share the zoo blue, the Rust port's share the rust
 # amber, one-off setups get their own color, and the legend table below the
-# chart carries the full names, numbers and notes. "Vanilla" is specimen
-# 4.2.6, formerly named "pristine".
+# chart carries the full names, numbers and notes.
 EXEMPLARS = [
     {'specimen': '4.2.6', 'profile': 'default', 'name': 'Vanilla', 'short': 'Vanilla',
      'color': '#757575',
@@ -328,12 +346,27 @@ EXEMPLARS = [
      '<strong>never paired</strong> with the C/Rust points above; shown for scale only.'},
 ]
 
-
 # A dashboard point needs a real sample behind it: a smoke run (3 seeds) is
 # a build sanity check, not evidence, and an 18-seed pilot is not much more.
 # Setups whose best recorded run is below this stay off the charts (the
 # legend row says so); they come back automatically once a real suite runs.
 DASHBOARD_MIN_CELLS = 50
+
+
+def chart_configs(html):
+    """The ECharts option dicts embedded in a page or card fragment, keyed
+    by their chart id - the same JSON tools/render-chart.js feeds to
+    ECharts' server-side renderer for the render-and-look step (DESIGN.md)."""
+    out = {}
+    for m in re.finditer(r'<script type="application/json" data-chart="([^"]+)">(.*?)</script>', html, re.S):
+        out[m.group(1)] = json.loads(m.group(2).replace('<\\/', '</'))
+    return out
+
+
+def dashboard_plotted(s):
+    """True when a setup's best run carries enough cells to be a dashboard
+    point (DASHBOARD_MIN_CELLS): smoke-scale checks stay off the charts."""
+    return s is not None and s['valid'] >= DASHBOARD_MIN_CELLS
 
 
 def exemplar_points(runs, specs, cls=None):
@@ -357,14 +390,8 @@ def exemplar_points(runs, specs, cls=None):
     return points, found
 
 
-def dashboard_plotted(s):
-    """True when a setup's best run carries enough cells to be a dashboard
-    point (DASHBOARD_MIN_CELLS): smoke-scale checks stay off the charts."""
-    return s is not None and s['valid'] >= DASHBOARD_MIN_CELLS
-
-
 def exemplar_table(found, specs):
-    """The legend table under the scatter: color swatch, full name, note,
+    """The legend table under the chart: color swatch, full name, note,
     numbers, and the run each point came from. Also returns the set of
     (experiment, suite) keys behind the rows, for the cross-run caveat."""
     rows = []
@@ -405,8 +432,8 @@ def card_exemplars(runs):
     points, found = exemplar_points(runs, specs)
     if not any(p[0] is not None for p in points):
         return None
-    chart = scatter(points, x_label='Survivability — alive at the turn cap',
-                    y_label='Progress — median max dungeon level + character level', y_fmt='num')
+    chart = echarts_scatter(points, x_label='Survivability — alive at the turn cap',
+                            y_label='Progress — median max dungeon level + character level', y_fmt='num')
     legend, run_keys = exemplar_table(found, specs)
     links = class_links(runs, specs)
     snapshots = turn_snapshots_section(found)
@@ -415,23 +442,22 @@ def card_exemplars(runs):
               f'munchkin on survival too, in the runs recorded so far — but those points are not one '
               f'controlled comparison: {"at least one of them comes from a different experiment or suite" if cross_run else ""} '
               f'(see the Run column), the gaps are a few percentage points, and no interval is shown here. '
-              f'Build better-borg-c’s <code>munchkin-by-class</code> commit as-is (no profile needed) to try '
+              f'Build better-borg-c\'s <code>munchkin-by-class</code> commit as-is (no profile needed) to try '
               f'it; treat it as the current lead, not a confirmed result, until a same-run comparison exists.'
               if cross_run else
               f'The <strong>recommended mix</strong> is ahead of vanilla on both axes, in the one recorded run. '
-              f'Build better-borg-c’s <code>munchkin-by-class</code> commit as-is (no profile needed) to try it.')
+              f'Build better-borg-c\'s <code>munchkin-by-class</code> commit as-is (no profile needed) to try it.')
     return (f'<div class="card wide"><h2>Which setup should I actually run?</h2>'
             f'<p class="answer">{answer}</p>{chart}{legend}'
             f'<p class="foot">Each point is the run with the most finished cells recorded for that exact '
             f'version and profile — not necessarily the newest, which is only the tiebreaker — and carries '
-            f'its name right on the chart; setups whose best run is smoke-scale are left off the chart '
+            f'its name on the chart; setups whose best run is smoke-scale are left off the chart '
             f'entirely (marked in the table). "Progress" is depth + level '
             f'added unweighted, median over every finished run including deaths (how far a run got, not '
             f'just whether it survived) — gold on hand and a real net worth will join it once they exist '
             f'for more than one specimen. The Neo Angband point is never comparable with the rest: Mandos '
             f'plays a different engine on different seeds.</p>'
             f'{links}{snapshots}</div>')
-
 
 def turn_snapshots_section(found):
     """A scatter chart per turn fraction of the cap (25/50/75/100%): every
@@ -474,7 +500,7 @@ def turn_snapshots_section(found):
     for i in shown:
         f = fractions[i]
         label = f'{int(one_cap * f):,} turns' if one_cap else f'{int(f * 100)}% of cap'
-        chart = scatter(by_fraction[i], x_label='', y_label='', compact=True, y_fmt='num', x_max=x_max, y_max=y_max)
+        chart = echarts_scatter(by_fraction[i], x_label='', y_label='', compact=True, y_fmt='num', x_max=x_max, y_max=y_max)
         cells.append(f'<div class="class-cell"><h3>{esc(label)}</h3>{chart}</div>')
     caption = (f'the same setups, at {", ".join(f"{int(one_cap * f):,}" for f in fractions)} turns.'
               if one_cap else
@@ -527,7 +553,7 @@ def class_pages(runs):
     pages = []
     for cls, points in per_class.items():
         points, found = exemplar_points(runs, specs, cls)
-        chart = scatter(points, x_label='Survivability — alive at the turn cap',
+        chart = echarts_scatter(points, x_label='Survivability — alive at the turn cap',
                         y_label='Progress — median max dungeon level + character level',
                         y_fmt='num', x_max=x_max, y_max=y_max)
         legend, _ = exemplar_table(found, specs)
