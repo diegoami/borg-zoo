@@ -264,6 +264,9 @@ EXEMPLARS = [
      'name': 'Recommended mix', 'note': 'better-borg-c M7’s 76 carried fixes, with the munchkin start by '
      'class as the version’s own default (no profile override needed).'},
     _bbc(8, 88), _bbc(9, 98),
+    {'shape': 'circle', 'cls': '', 'specimen': '4.2.6-bbc-m10', 'profile': 'default',
+     'name': 'better-borg-c M10', 'note': 'carries stays 98 — no new tracker carry this cycle. Two '
+     'local-only improvements never proposed upstream, plus a crash correction to carry 0099.'},
     _rs(4, 42), _rs(5, 50), _rs(6, 63), _rs(8, 88), _rs(9, 98),
     {'shape': 'cross', 'cls': 'other', 'specimen': 'neo-b3-api2-upstream', 'profile': 'default',
      'name': 'Neo Angband (Mandos, upstream)', 'note': 'a different engine on different seeds — '
