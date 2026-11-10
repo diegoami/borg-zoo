@@ -376,6 +376,15 @@ class ModeCutoffTest(unittest.TestCase):
                 self.assertIn(s.get('mode_side'), ('pre', 'post'), name)
             else:
                 self.assertNotIn('mode_side', s, name)
+        # the declared side agrees with what the commit-set fallback would
+        # derive for better-borg-c specimens: the field wins in mode_side(),
+        # so silent drift here would change which comparisons get excluded
+        for name, s in specs.items():
+            derived = cat_mod.mode_side({k: v for k, v in s.items() if k != 'mode_side'})
+            if s.get('repository') == 'diegoami/better-borg-c':
+                self.assertEqual(s['mode_side'], derived, name)
+            elif name == 'angband-e473-original':
+                self.assertEqual(derived, None)  # the field is its only source
         # the harness pin is the new specimen's ref, and both are post-cutoff
         self.assertEqual(cat_mod.catalogue()['specimens']['harness']['commit'],
                          specs['4.2.6-bbc-9ca98661']['ref'])
