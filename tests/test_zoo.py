@@ -310,6 +310,17 @@ class BorgRsTest(unittest.TestCase):
         exp = cat_mod.experiment(ROOT / 'experiments/m9-smoke.json')
         self.assertTrue(cat_mod.cells(exp))
 
+    def test_bbc_m10_carries_no_new_tracker_fix(self):
+        # M10 is the first milestone with zero new carries: local-only improvement units
+        # and a correction to an already-carried patch, never a tracker fix of their own.
+        specs = cat_mod.catalogue()['specimens']['specimens']
+        m9, m10 = specs['4.2.6-bbc-m9'], specs['4.2.6-bbc-m10']
+        self.assertEqual((m10['tag'], m10['carries']), ('4.2.6-impact-v10', 98))
+        self.assertEqual(m10['carries'], m9['carries'])
+        self.assertNotEqual(m10['ref'], m9['ref'])
+        exp = cat_mod.experiment(ROOT / 'experiments/m10-smoke.json')
+        self.assertTrue(cat_mod.cells(exp))
+
     def test_bbc_m9_matches_rs_m9s_tag_and_carries(self):
         specs = cat_mod.catalogue()['specimens']['specimens']
         bbc, rs = specs['4.2.6-bbc-m9'], specs['4.2.6-rs-m9']
@@ -440,7 +451,7 @@ class LandingTest(unittest.TestCase):
                 arm('neo-b3-api2-upstream', 'default', 60, 100, '2026-11-08 20:00 UTC', classes)]
         card = landing.card_exemplars(runs)
         for name in ('Vanilla', 'Vanilla + munchkin', 'Recommended mix', 'better-borg-c M8', 'borg-rs M8 (Rust)',
-                     'borg-rs M9 (Rust)', 'Neo Angband (Mandos, upstream)'):
+                     'better-borg-c M10', 'borg-rs M9 (Rust)', 'Neo Angband (Mandos, upstream)'):
             self.assertIn(name, card)
         self.assertIn('never paired', card)
         self.assertIn('source</a>', card)  # the catalogue's own source link, not hand-written
