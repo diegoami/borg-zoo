@@ -1,0 +1,20 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "rs-family-buying-normal",
+  "description": "borg-rs buying family (borg-rs#25/#27, PR 26 and 28) with every mode off: the current and reserve410 strategies, each with buy-to-identify off and on, on the same three Warrior and three Mage seeds. Paired within class, mode, strategy and seed; control is the v10 buying behaviour (current, identify off). 24 cells (borg-zoo#61, #67).",
+  "specimens": [
+    "4.2.6-rs-family-buying"
+  ],
+  "profiles": [
+    "rs-buy-current-normal",
+    "rs-buy-reserve410-normal",
+    "rs-buy-current-normal-id",
+    "rs-buy-reserve410-normal-id"
+  ],
+  "suites": [
+    "rs-family-warrior-3",
+    "rs-family-mage-3"
+  ],
+  "control": "4.2.6-rs-family-buying",
+  "control_profile": "rs-buy-current-normal"
+}

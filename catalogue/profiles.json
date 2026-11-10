@@ -173,6 +173,86 @@
       "settings": {
         "borg_munchkin_by_class": false
       }
+    },
+    "rs-buy-current-normal": {
+      "description": "borg-rs v10 buying control, explicit non-munchkin mode (borg-zoo#61)",
+      "settings": {
+        "borg_buy_strategy_default": 0,
+        "borg_munchkin_start": false,
+        "borg_munchkin_by_class": false,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false
+      }
+    },
+    "rs-buy-reserve410-normal": {
+      "description": "Experimental early Phase Door/cure reserve (strategy 1), explicit non-munchkin mode (borg-zoo#61)",
+      "settings": {
+        "borg_buy_strategy_default": 1,
+        "borg_munchkin_start": false,
+        "borg_munchkin_by_class": false,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false
+      }
+    },
+    "rs-buy-current-munchkin": {
+      "description": "borg-rs v10 buying control, munchkin unconditionally on (borg-zoo#61)",
+      "settings": {
+        "borg_buy_strategy_default": 0,
+        "borg_munchkin_start": true,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false
+      }
+    },
+    "rs-buy-reserve410-munchkin": {
+      "description": "Experimental early Phase Door/cure reserve (strategy 1), munchkin unconditionally on (borg-zoo#61)",
+      "settings": {
+        "borg_buy_strategy_default": 1,
+        "borg_munchkin_start": true,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false
+      }
+    },
+    "rs-buy-current-normal-id": {
+      "description": "borg-rs v10 buying control + buy-to-identify, explicit non-munchkin mode (borg-zoo#67)",
+      "settings": {
+        "borg_buy_strategy_default": 0,
+        "borg_buy_identify": 1,
+        "borg_munchkin_start": false,
+        "borg_munchkin_by_class": false,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false
+      }
+    },
+    "rs-buy-reserve410-normal-id": {
+      "description": "Experimental reserve (strategy 1) + buy-to-identify, explicit non-munchkin mode (borg-zoo#67)",
+      "settings": {
+        "borg_buy_strategy_default": 1,
+        "borg_buy_identify": 1,
+        "borg_munchkin_start": false,
+        "borg_munchkin_by_class": false,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false
+      }
+    },
+    "rs-buy-current-munchkin-id": {
+      "description": "borg-rs v10 buying control + buy-to-identify, munchkin unconditionally on (borg-zoo#67)",
+      "settings": {
+        "borg_buy_strategy_default": 0,
+        "borg_buy_identify": 1,
+        "borg_munchkin_start": true,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false
+      }
+    },
+    "rs-buy-reserve410-munchkin-id": {
+      "description": "Experimental reserve (strategy 1) + buy-to-identify, munchkin unconditionally on (borg-zoo#67)",
+      "settings": {
+        "borg_buy_strategy_default": 1,
+        "borg_buy_identify": 1,
+        "borg_munchkin_start": true,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false
+      }
     }
   }
 }

@@ -1135,6 +1135,50 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "saves": false
+    },
+    "rs-family-warrior-3": {
+      "description": "Borg-family buying pilot: Human Warrior, three seeds, 20,000 engine turns",
+      "role": "pilot",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "birth": "assigned",
+      "characters": {
+        "classes": [
+          "Warrior"
+        ],
+        "races": [
+          "Human"
+        ]
+      },
+      "cap": 20000,
+      "wall_seconds": 180,
+      "stall_seconds": 45,
+      "saves": false
+    },
+    "rs-family-mage-3": {
+      "description": "Borg-family buying pilot: Elf Mage, three seeds, 20,000 engine turns",
+      "role": "pilot",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "birth": "assigned",
+      "characters": {
+        "classes": [
+          "Mage"
+        ],
+        "races": [
+          "Elf"
+        ]
+      },
+      "cap": 20000,
+      "wall_seconds": 180,
+      "stall_seconds": 45,
+      "saves": false
     }
   }
 }
