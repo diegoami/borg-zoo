@@ -213,7 +213,7 @@ different game on either side of that commit, and the observer cannot
 catch it, because it only verifies named settings. Four profiles name the
 modes explicitly: `normal` (all four mode flags off), `munchkin-class`
 (the product default for Warrior/Druid/Ranger), `munchkin-on`, and
-`lunal`. Every better-borgc-kind specimen (and `angband-e473-original`)
+`lunal`. Every better-borg-c-kind specimen (and `angband-e473-original`)
 declares which side of the cutoff it is on (`mode_side` in
 `catalogue/specimens.json`; pre-catalogue run snapshots are resolved from
 the commit set in `zoo/catalogue.py`). Three rules follow:
