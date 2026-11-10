@@ -16,9 +16,8 @@
       }
     },
     "munchkin-class": {
-      "description": "Munchkin start by class: today's product default for Warrior, Druid and Ranger (stair-scumming at depth 6), every other class ordinary. The arm that replaces implicit default in class grids. Runs only on builds that know borg_munchkin_by_class (better-borg-c fd683ced and later); munchkin start itself stays off.",
+      "description": "Munchkin start by class: today's product default for Warrior, Druid and Ranger (stair-scumming at depth 6), every other class ordinary. The arm that replaces implicit default in class grids. Names only borg_munchkin_by_class: for WDR classes the rule then forces the munchkin start itself, so borg_munchkin_start must stay unnamed (naming it FALSE contradicts the rule and reads as a config_error). Runs only on builds that know borg_munchkin_by_class (better-borg-c fd683ced and later).",
       "settings": {
-        "borg_munchkin_start": false,
         "borg_munchkin_by_class": true
       }
     },
