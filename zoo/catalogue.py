@@ -242,6 +242,13 @@ def experiment(path, cat=None):
                     raise ValueError(f'specimen {name} predates the mode cutoff and has no '
                                      f'borg_munchkin_by_class; profile {prof} names it, so every '
                                      'cell would be a config_error (issue #54)')
+        for prof in (p for p_ in exp['profiles'] for p in profile_parts(cat, p_)):
+            settings = cat['profiles'][prof].get('settings', {})
+            if settings.get('borg_munchkin_by_class') is True and settings.get('borg_munchkin_start') is False:
+                raise ValueError(f'profile {prof} names borg_munchkin_start FALSE while the class rule '
+                                 '(borg_munchkin_by_class TRUE) forces it for Warrior, Druid and Ranger - '
+                                 'leave borg_munchkin_start unnamed (issue #54, bbc-explicit-smoke run '
+                                 '42841000338)')
     return exp
 
 

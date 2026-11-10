@@ -377,6 +377,32 @@ class ModeCutoffTest(unittest.TestCase):
         self.assertEqual(cat_mod.mode_side(stripped['4.2.6-bbc-m8']), 'post')
         self.assertEqual(cat_mod.mode_side(stripped['4.2.6-bbc-9ca98661']), 'post')
 
+    def test_munchkin_class_names_only_the_class_rule(self):
+        # the class rule forces the munchkin start for WDR classes: naming
+        # borg_munchkin_start FALSE next to it read as a config_error on every
+        # Warrior cell of bbc-explicit-smoke run 42841000338
+        profile = cat_mod.catalogue()['profiles']['munchkin-class']
+        self.assertEqual(profile['settings'], {'borg_munchkin_by_class': True})
+        # the fixed profile plans clean, and the contradictory shape is
+        # rejected at plan time
+        with tempfile.TemporaryDirectory() as tmp:
+            ok = Path(tmp) / 'ok.json'
+            ok.write_text(json.dumps({'name': 'x', 'specimens': ['4.2.6-bbc-9ca98661'],
+                                      'profiles': ['munchkin-class'], 'suites': ['smoke'],
+                                      'control': '4.2.6-bbc-9ca98661'}))
+            self.assertTrue(cat_mod.cells(cat_mod.experiment(ok)))
+            cat = cat_mod.catalogue()
+            cat['profiles']['contradictory'] = {'description': 'x',
+                                                'settings': {'borg_munchkin_start': False,
+                                                             'borg_munchkin_by_class': True}}
+            bad = Path(tmp) / 'bad.json'
+            bad.write_text(json.dumps({'name': 'x', 'specimens': ['4.2.6-bbc-9ca98661'],
+                                       'profiles': ['contradictory'], 'suites': ['smoke'],
+                                       'control': '4.2.6-bbc-9ca98661'}))
+            with self.assertRaises(ValueError) as cm:
+                cat_mod.experiment(bad, cat)
+            self.assertIn('forces it for Warrior', str(cm.exception))
+
     def test_a_post_cutoff_experiment_must_name_a_mode_profile(self):
         with tempfile.TemporaryDirectory() as tmp:
             bad = Path(tmp) / 'bad.json'
