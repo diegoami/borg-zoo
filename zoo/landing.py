@@ -335,43 +335,49 @@ PROFILES_URL = 'https://github.com/diegoami/borg-zoo/blob/main/catalogue/profile
 # "Angband 4.2.6" is specimen 4.2.6, formerly named "pristine" and "Vanilla".
 C_COLOR = '#2f5d8a'    # the better-borg-c line (the site's --accent blue)
 RUST_COLOR = '#b58700'  # the borg-rs line (the site's --rust amber)
+BASELINE_COLOR = '#757575'
+NEO_COLOR = '#6d4c41'
 
+PLAIN_MODES = 'munchkin start off for every class'
 MUNCHKIN_MODES = ('munchkin start for Warrior, Druid and Ranger; every other class '
                   'plays the ordinary game')
 
-EXEMPLARS = [
-    {'specimen': '4.2.6', 'profile': 'default', 'name': 'Angband 4.2.6', 'short': 'Angband 4.2.6',
-     'color': '#757575', 'modes': 'no munchkin start, no Lunal',
-     'note': 'the C Borg as Angband 4.2.6 ships it (angband/angband e473720), no fixes '
-     'and default settings: the baseline everything else is read against.'},
-    {'specimen': '4.2.6', 'profile': 'munchkin-wdr', 'name': 'Angband 4.2.6 + munchkin',
-     'short': '4.2.6+munch', 'color': '#0097a7', 'modes': MUNCHKIN_MODES,
-     'note': 'Angband 4.2.6 with the munchkin start by class profile '
-     f'(<code>munchkin-wdr</code>, <a href="{PROFILES_URL}">settings</a>): no other fixes.'},
-    {'specimen': '4.2.6-bbc-m8', 'profile': 'munchkin-wdr',
-     'name': 'better-borg-c M8 (best C)', 'short': 'BBC M8', 'color': C_COLOR,
+# Two comparisons, not one: with the munchkin start and without it. They do not
+# belong on one chart - the start changes three of the nine classes - and they
+# must not share a table either (owner, 2026-11-10). Each tab names its mode
+# profile explicitly, because a shipped "default" is on different sides of
+# better-borg-c fd683ced (PR 302): from there the product default *is* the class
+# rule, so a default arm after it already plays the munchkin start while the
+# pre-cutoff baseline does not. Pairing the two compared the policy, not the
+# Borg - which is exactly what the owner caught ("are we cheating with the
+# munchkin mix?").
+POLICIES = [
+    {'slug': 'no-munchkin', 'nav': 'No munchkin', 'title': 'No munchkin start',
+     'profiles_pre': ('default',), 'profiles_post': ('normal',), 'modes': PLAIN_MODES,
+     'blurb': ('Runs that never turn the munchkin start on. Builds from before the class-rule '
+               'default play their own default (there is no rule to leave unnamed); builds after it '
+               'play <code>normal</code>, every mode pinned off. No arm whose shipped default '
+               'forces the start class-wide is used here, so a milestone after M7 appears only '
+               'once a <code>normal</code> run of it exists.')},
+    {'slug': 'munchkin', 'nav': 'Munchkin start', 'title': 'Munchkin start',
+     'profiles_pre': ('munchkin-wdr',),
+     'profiles_post': ('munchkin-class', 'munchkin-wdr', 'default'),
      'modes': MUNCHKIN_MODES,
-     'note': 'the best-measured better-borg-c milestone under that policy: 88 carried fixes. '
-     'M9 and M10 have no full run under it (their "default" arms already include the class '
-     'rule, so they are not comparable with the pre-cutoff baseline), and M11 (116 carries, '
-     'tag 4.2.6-impact-v11) has only a smoke run.'},
-    {'specimen': '4.2.6-rs-m8', 'profile': 'munchkin-wdr',
-     'name': 'borg-rs M8 (best Rust)', 'short': 'RS M8', 'color': RUST_COLOR,
-     'modes': MUNCHKIN_MODES,
-     'note': 'the best-measured Rust milestone under the same policy: the port carrying '
-     'better-borg-c M8\'s 88 fixes. M9 and M10 exist but have no full run under it.'},
-    {'specimen': 'neo-b3-api2-upstream', 'profile': 'default',
-     'name': 'Neo Angband (Mandos, upstream)', 'short': 'Neo', 'color': '#6d4c41',
-     'modes': 'its own engine defaults',
-     'note': 'a different engine on different seeds — '
-     '<strong>never paired</strong> with the C/Rust points above; shown for scale only.'},
+     'blurb': ('The munchkin start, named explicitly and identically on both sides of the '
+               'class-rule default: Warrior, Druid and Ranger stair-scum to depth 6 and the other '
+               'six classes play the ordinary game. That policy moved survival far more than any '
+               'code milestone, so this tab measures the code with it held fixed.')},
 ]
+POLICY_BY_SLUG = {p['slug']: p for p in POLICIES}
+DEFAULT_POLICY = POLICIES[0]
 
-# A dashboard point needs a real sample behind it: a smoke run (3 seeds) is
-# a build sanity check, not evidence, and an 18-seed pilot is not much more.
-# Setups whose best recorded run is below this stay off the charts (the
-# legend row says so); they come back automatically once a real suite runs.
-DASHBOARD_MIN_CELLS = 50
+
+# A dashboard point needs a full class run behind it - the "fully full run":
+# 1,800 seeds, less a few cells a suite could not finish. A 3-seed smoke is a
+# build sanity check, an 18-seed pilot and a 200-cell milestone subset are not
+# evidence either, and a small subset can look best by noise alone (the first
+# cut of this chart picked a 200-cell M5 subset at 83% alive).
+DASHBOARD_MIN_CELLS = 1500
 
 # ... and every point is read at one turn cap. classes-1800 is 100,000 turns;
 # classes-1800-200k is 200,000, and a 200k arm survives longer by construction.
@@ -394,17 +400,154 @@ def dashboard_plotted(s):
     return s is not None and s['valid'] >= DASHBOARD_MIN_CELLS
 
 
-def exemplar_points(runs, specs, cls=None):
-    """(x, y, label, color, title) per exemplar, x = survivability, y = progress_score
-    (median max depth + character level, not a rate); cls restricts to one
-    played class (for the per-class pages) or None for all. Setups whose
-    best run is smoke-scale (DASHBOARD_MIN_CELLS) get no point at all - the
-    chart reads as evidence, and a 3-seed sanity check is not that."""
-    points, found = [], []
-    for e in EXEMPLARS:
-        s, meta, arm = find_arm(runs, e['specimen'], e['profile'], specs, cls,
-                                cap=DASHBOARD_CAP)
-        plotted = s is not None and s['valid'] >= DASHBOARD_MIN_CELLS
+def specimen_side(spec):
+    """pre/post the class-rule default (better-borg-c fd683ced).
+
+    better-borg-c entries declare `mode_side`; the Rust port carries the C
+    defaults with its milestone, so its tag tells the same story (v8 and later
+    ship `borg_munchkin_by_class` TRUE). Catalogue entries are left as they
+    are: the experiment guard predates the Rust side and recorded runs that
+    used `default` there are evidence, not something to rewrite.
+    """
+    side = cat_mod.mode_side(spec)
+    if side:
+        return side
+    if spec.get('kind') == 'borg-rs':
+        m = re.search(r'-v(\d+)$', spec.get('tag') or '')
+        return 'post' if m and int(m.group(1)) >= 8 else 'pre'
+    return None
+
+
+def policy_profiles(spec, policy):
+    """The profiles a specimen may be read under for a policy, best first.
+
+    A build from before the class-rule default (fd683ced) has no rule to leave
+    unnamed: its plain game is its own default, and the munchkin start is only
+    there when a profile names it. A later build's shipped default *is* the
+    class rule, so the munchkin tab reads `munchkin-class` (which names it),
+    then `munchkin-wdr` (the same start, named per class) and finally
+    `default`, the same game again; the plain tab must have `normal`, every
+    mode pinned off, and shows nothing without one.
+    """
+    return policy['profiles_post'] if specimen_side(spec) == 'post' else policy['profiles_pre']
+
+
+def find_arm_for(runs, name, spec, policy, specs):
+    """(profile, summary, meta, arm) for the first policy profile this
+    specimen has a qualifying run under; (None, None, None, None) if none.
+
+    The full class run decides whether a setup qualifies (DASHBOARD_MIN_CELLS);
+    the per-class pages narrow the *chosen* setup to one class's seeds instead
+    of choosing again, so every page shows the same setup per line and only its
+    numbers move.
+    """
+    for profile in policy_profiles(spec, policy):
+        s, meta, arm = find_arm(runs, name, profile, specs, cap=DASHBOARD_CAP)
+        if dashboard_plotted(s):
+            return profile, s, meta, arm
+    return None, None, None, None
+
+
+def narrow_to_class(entries, cls):
+    """The same setups, with each arm's numbers recomputed on one class's
+    seeds; a setup whose run played no such class shows as unplotted (None)."""
+    out = []
+    for e, s, meta, arm in entries:
+        part = [c for c in (arm or []) if c.get('played_class') == cls]
+        if not part:
+            out.append((e, None, meta, None))
+        else:
+            out.append((e, dict(stats.arm_summary(part), progress_score=stats.progress_score(part)),
+                        meta, part))
+    return out
+
+
+def milestone_short(name, spec):
+    """'4.2.6-bbc-m8' + tag '4.2.6-impact-v8' -> 'M8'; falls back to the name."""
+    m = re.search(r'-v(\d+)$', spec.get('tag') or '')
+    if m:
+        return 'M' + m.group(1)
+    if name.endswith('munchkin-by-class'):
+        return 'class rule'
+    if name.startswith('4.2.6-bbc-'):
+        return name[len('4.2.6-bbc-'):]
+    return name
+
+
+def _line(spec):
+    if spec.get('kind') == 'borg-rs':
+        return 'rust'
+    if spec.get('repository') == cat_mod.MODE_CUTOFF_REPOSITORY:
+        return 'c'
+    return None
+
+
+def exemplar_entries(runs, specs, policy, cls=None):
+    """[(entry, summary, meta, arm)] for one policy tab, in chart order.
+
+    Always the Angband 4.2.6 baseline (a chart without it is a wall of
+    numbers), then the best measured milestone of each line under this policy
+    - "best" read from the runs, not chosen by hand, so a new full run takes
+    the place by itself - and, on the plain tab only, Neo Angband, which has no
+    munchkin setting to compare. A line with no qualifying run contributes no
+    milestone row: the tab says so instead of borrowing another policy's arm.
+    """
+    entries = []
+    base = specs['4.2.6']
+    bprofile, bs, bmeta, barm = find_arm_for(runs, '4.2.6', base, policy, specs)
+    entries.append(({'specimen': '4.2.6', 'profile': bprofile or policy_profiles(base, policy)[0],
+                     'name': 'Angband 4.2.6', 'short': 'Angband 4.2.6',
+                     'color': BASELINE_COLOR, 'modes': policy['modes'],
+                     'note': 'the C Borg as Angband 4.2.6 ships it (angband/angband e473720), '
+                             'no fixes: the baseline everything else is read against.'},
+                    bs, bmeta, barm))
+    for line, colour, title in (('c', C_COLOR, 'better-borg-c'), ('rust', RUST_COLOR, 'borg-rs')):
+        best = None
+        for name, spec in specs.items():
+            if name == '4.2.6' or _line(spec) != line:
+                continue
+            profile, s, meta, arm = find_arm_for(runs, name, spec, policy, specs)
+            if s is None or s['death_rate'] is None:
+                continue
+            key = (1 - s['death_rate'], s['valid'], name)
+            if best is None or key > best[0]:
+                best = (key, name, spec, profile, s, meta, arm)
+        if best is None:
+            continue
+        _, name, spec, profile, s, meta, arm = best
+        short = milestone_short(name, spec)
+        entries.append(({'specimen': name, 'profile': profile,
+                         'name': f'{title} {short} (best {"C" if line == "c" else "Rust"})',
+                         'short': ('BBC ' if line == 'c' else 'RS ') + short, 'color': colour,
+                         'modes': policy['modes'],
+                         'note': f'{spec.get("carries", "?")} carried fixes; the best-measured '
+                                 f'{title} milestone under this policy.'},
+                        s, meta, arm))
+    if policy['slug'] == 'no-munchkin':
+        ns, nmeta, narm = find_arm(runs, 'neo-b3-api2-upstream', 'default', specs,
+                                   cap=DASHBOARD_CAP)
+        entries.append(({'specimen': 'neo-b3-api2-upstream', 'profile': 'default',
+                         'name': 'Neo Angband (Mandos, upstream)', 'short': 'Neo',
+                         'color': NEO_COLOR, 'modes': 'its own engine defaults',
+                         'note': 'a different engine on different seeds — '
+                                 '<strong>never paired</strong> with the C/Rust points; '
+                                 'shown for scale only.'},
+                        ns, nmeta, narm))
+    return entries if cls is None else narrow_to_class(entries, cls)
+
+
+def exemplar_points(runs, specs, policy, cls=None):
+    """(x, y, label, color, title) per exemplar, x = survivability, y =
+    progress_score (median max depth + character level, not a rate); cls
+    restricts to one played class (the per-class pages) or None for all. A
+    setup whose best run is smoke-scale (DASHBOARD_MIN_CELLS) gets no point:
+    the chart reads as evidence, and a 3-seed sanity check is not that."""
+    entries = exemplar_entries(runs, specs, policy, cls)
+    points = []
+    for e, s, meta, arm in entries:
+        # the full arm decided whether the setup qualifies (find_arm_for);
+        # a class slice is one ninth of it and must not be re-tested here
+        plotted = s is not None and s['valid'] > 0
         x = (1 - s['death_rate']) if plotted and s['death_rate'] is not None else None
         yv = s['progress_score'] if plotted else None
         title = (f"{e['name']} — alive at cap {100 * (1 - s['death_rate']):.0f}%, "
@@ -412,17 +555,16 @@ def exemplar_points(runs, specs, cls=None):
                  if plotted and s['death_rate'] is not None and s['progress_score'] is not None
                  else e['name'])
         points.append((x, yv, e['short'], e['color'], title))
-        found.append((s, meta, arm))
-    return points, found
+    return points, entries
 
 
-def exemplar_table(found, specs):
-    """The legend table under the chart: color swatch, full name, note,
-    numbers, and the run each point came from. Also returns the set of
+def exemplar_table(entries, specs):
+    """The legend table under the chart: color swatch, full name, note, mode
+    policy, numbers, and the run each point came from. Also returns the set of
     (experiment, suite) keys behind the rows, for the cross-run caveat."""
     rows = []
     run_keys = set()
-    for e, (s, meta, arm) in zip(EXEMPLARS, found):
+    for e, s, meta, arm in entries:
         source = specs.get(e['specimen'], {}).get('source')
         src = f' · <a href="{esc(source)}">source</a>' if source else ''
         x = (1 - s['death_rate']) if s and s['death_rate'] is not None else None
@@ -435,7 +577,7 @@ def exemplar_table(found, specs):
             run_keys.add((meta['experiment']['name'], meta['experiment']['suites'][0]))
             run_cell = (f'<a href="{link(meta)}">{esc(meta["experiment"]["name"])}</a><br>'
                         f'<span class="muted">{esc(meta["experiment"]["suites"][0])} · '
-                        f'{esc(meta.get("completed", "?"))}</span>')
+                        f'{esc(meta.get("completed", "?"))} · {esc(e["profile"])}</span>')
         else:
             run_cell = '–'
         rows.append(f'<tr><td class="l">{badge} <strong>{esc(e["name"])}</strong></td>'
@@ -450,69 +592,56 @@ def exemplar_table(found, specs):
               '<th title="Median, over finished runs including deaths, of max dungeon level reached + '
               'character level reached. A plain combined figure, not a calibrated score.">Depth + level</th>'
               '<th title="Cells that reached death or the turn cap; the denominator of both columns">'
-              'Finished</th><th class="l">Run · suite · completed</th>'
+              'Finished</th><th class="l">Run · suite · completed · profile</th>'
               '</tr></thead><tbody>' + ''.join(rows) + '</tbody></table></div>')
     return legend, run_keys
 
 
-def card_exemplars(runs):
+def card_exemplars(runs, policy=DEFAULT_POLICY):
+    """The comparison card for one policy: chart, legend, answer, class links
+    and turn snapshots."""
     specs = cat_mod.catalogue()['specimens']['specimens']
-    points, found = exemplar_points(runs, specs)
+    points, entries = exemplar_points(runs, specs, policy)
     if not any(p[0] is not None for p in points):
         return None
     chart = echarts_scatter(points, x_label='Survivability — alive at the turn cap',
                             y_label='Progress — median max dungeon level + character level', y_fmt='num')
-    legend, run_keys = exemplar_table(found, specs)
+    legend, run_keys = exemplar_table(entries, specs)
     links = class_links(runs, specs)
-    snapshots = turn_snapshots_section(found)
+    snapshots = turn_snapshots_section(entries)
     cross_run = len(run_keys) > 1
-    measured = [(e, s) for e, (s, _meta, _arm) in zip(EXEMPLARS, found)
+    measured = [(e, s) for e, s, _m, _a in entries
                 if s is not None and dashboard_plotted(s) and s.get('death_rate') is not None]
-
-    def best(prefix):
-        cand = [(e, s) for e, s in measured if e['specimen'].startswith(prefix)]
-        return max(cand, key=lambda es: 1 - es[1]['death_rate']) if cand else (None, None)
-
-    base = next((s for e, s in measured
-                 if e['specimen'] == '4.2.6' and e['profile'] == 'default'), None)
-    mk = next((s for e, s in measured
-               if e['specimen'] == '4.2.6' and e['profile'] == 'munchkin-wdr'), None)
-    bc, bs = best('4.2.6-bbc')
-    rc, rs = best('4.2.6-rs')
-    parts = []
-    if base:
-        parts.append(f'plain <strong>Angband 4.2.6</strong> loses {pct(base["death_rate"])} of its runs by the cap')
-    if mk:
-        parts.append(f'the same game with the munchkin start (Warrior, Druid and Ranger only; the other six '
-                     f'classes play exactly the baseline game, identical on every paired seed) loses '
-                     f'{pct(mk["death_rate"])}')
-    if bc:
-        parts.append(f'the best better-borg-c milestone under that same policy loses {pct(bs["death_rate"])}')
-    if rc:
-        parts.append(f'the best Rust one {pct(rs["death_rate"])}')
-    answer = (f'Read at one turn cap and one mode policy, {"; ".join(parts)}. '
-              f'The three munchkin arms sit within a point or two of each other, so on the full runs recorded '
-              f'so far the code milestones add no measurable survival over vanilla with the same policy. '
-              f'M9 and M10 are not plotted because their shipped default already includes the same class rule '
-              f'for those three classes, and no full run of them plays with the modes pinned: comparing their '
-              f'default with the pre-cutoff baseline compared the munchkin policy, not the Borg. '
-              + ('These points are not one controlled comparison — the arms come from different '
-                 'experiments and none carries an interval, so treat the order as a lead, not a '
-                 'confirmed result.' if cross_run else 'The arms come from one experiment.'))
-    return (f'<div class="card wide"><h2>Which setup should I actually run?</h2>'
+    best = max(measured, key=lambda es: 1 - es[1]['death_rate']) if measured else (None, None)
+    if policy['slug'] == 'munchkin':
+        answer = (f'With the munchkin start held fixed, <strong>{esc(best[0]["name"])}</strong> survives '
+                  f'best of the measured setups ({pct(1 - best[1]["death_rate"])} alive at the cap, '
+                  f'{num(best[1]["valid"])} finished). The policy itself is the big mover: plain Angband '
+                  f'4.2.6 loses {pct(next((s["death_rate"] for e, s in measured if e["specimen"] == "4.2.6"), 0))} '
+                  f'of its runs without it, so compare points inside this tab, never against the '
+                  f'no-munchkin tab.' if best[0] else 'No run at dashboard scale yet.')
+    else:
+        answer = (f'Without the munchkin start, <strong>{esc(best[0]["name"])}</strong> measures best '
+                  f'({pct(1 - best[1]["death_rate"])} alive at the cap, {num(best[1]["valid"])} finished). '
+                  f'Only milestones with a plain run appear: beyond M7 the shipped default forces the '
+                  f'start class-wide, so those versions need a <code>normal</code> run before they can '
+                  f'be placed here.' if best[0] else 'No run at dashboard scale yet.')
+    answer += (' These points are not one controlled comparison — they come from different experiments '
+               'and none carries an interval, so treat the order as a lead, not a confirmed result.'
+               if cross_run else '')
+    return (f'<div class="card wide"><h2>{esc(policy["title"])}</h2>'
             f'<p class="answer">{answer}</p>{chart}{legend}'
-            f'<p class="foot">Each point is the run with the most finished cells recorded for that exact '
-            f'version and profile — not necessarily the newest, which is only the tiebreaker — and carries '
-            f'its name on the chart. One point per line, the best with a full class run: every other '
-            f'milestone keeps its catalogue entry, its run page and the Detailed tab, and a setup with '
-            f'only smoke-scale runs is left off the chart entirely. "Progress" is depth + level '
-            f'added unweighted, median over every finished run including deaths (how far a run got, not '
-            f'just whether it survived) — gold on hand and a real net worth will join it once they exist '
-            f'for more than one specimen. The Neo Angband point is never comparable with the rest: Mandos '
-            f'plays a different engine on different seeds.</p>'
+            f'<p class="foot">Each point is the run with the most finished cells for that exact version '
+            f'and profile at {DASHBOARD_CAP:,} turns — not necessarily the newest, which is only the '
+            f'tiebreaker — and carries its name on the chart. One point per line, the best with a full '
+            f'class run; every other milestone keeps its catalogue entry and run page. "Progress" is '
+            f'depth + level added unweighted, median over every finished run including deaths. The Neo '
+            f'Angband point is never comparable with the rest: Mandos plays a different engine on '
+            f'different seeds.</p>'
             f'{links}{snapshots}</div>')
 
-def turn_snapshots_section(found):
+
+def turn_snapshots_section(entries):
     """A scatter chart per turn fraction of the cap (25/50/75/100%): every
     exemplar's survivability and progress AT that turn, not just at the end
     - the same per-cell `milestones` data the Detailed tab's own turn table
@@ -528,7 +657,7 @@ def turn_snapshots_section(found):
     fractions = (0.25, 0.5, 0.75, 1.0)
     by_fraction = [[] for _ in fractions]
     caps = set()
-    for e, (s, meta, arm) in zip(EXEMPLARS, found):
+    for e, s, meta, arm in entries:
         if not arm or not dashboard_plotted(s):
             for i in range(len(fractions)):
                 by_fraction[i].append((None, None, e['short'], e['color'], e['name']))
@@ -539,21 +668,17 @@ def turn_snapshots_section(found):
         prog = stats.milestone_progress_score(arm, fractions)
         for i in range(len(fractions)):
             by_fraction[i].append((surv[i]['alive'], prog[i]['score'], e['short'], e['color'], e['name']))
-    # A mark needs both coordinates (see the docstring); a fraction - or the whole section -
-    # with survivability but no progress anywhere draws nothing, so do not show it as if it did.
     if not any(any(p[0] is not None and p[1] is not None for p in pts) for pts in by_fraction):
         return ''
     one_cap = caps.pop() if len(caps) == 1 else None
     shown = [i for i in range(len(fractions)) if any(p[0] is not None and p[1] is not None for p in by_fraction[i])]
-    # One scale across every tile, not each fitting its own data: the whole point of this
-    # section is watching progress rise from tile to tile, which a self-scaling axis per tile
-    # would flatten out (the same review #39 finding the by-class grid had).
     x_max, y_max = axis_limits([p for i in shown for p in by_fraction[i]], y_fmt='num')
     cells = []
     for i in shown:
         f = fractions[i]
         label = f'{int(one_cap * f):,} turns' if one_cap else f'{int(f * 100)}% of cap'
-        chart = echarts_scatter(by_fraction[i], x_label='', y_label='', compact=True, y_fmt='num', x_max=x_max, y_max=y_max)
+        chart = echarts_scatter(by_fraction[i], x_label='', y_label='', compact=True, y_fmt='num',
+                                x_max=x_max, y_max=y_max)
         cells.append(f'<div class="class-cell"><h3>{esc(label)}</h3>{chart}</div>')
     caption = (f'the same setups, at {", ".join(f"{int(one_cap * f):,}" for f in fractions)} turns.'
               if one_cap else
@@ -567,58 +692,87 @@ def turn_snapshots_section(found):
 
 
 def dashboard_classes(runs, specs):
-    """The classes that have at least one dashboard-worthy setup on record:
-    the per-class pages exist only for these (the others would be empty)."""
-    return [c for c in cat_mod.CLASSES
-            if any(dashboard_plotted(find_arm(runs, e['specimen'], e['profile'], specs, c,
-                                              cap=DASHBOARD_CAP)[0])
-                   for e in EXEMPLARS)]
+    """The classes that have at least one dashboard-worthy setup on record
+    under either policy: the per-class pages exist only for these."""
+    classes = set()
+    for policy in POLICIES:
+        for e, s, _meta, _arm in exemplar_entries(runs, specs, policy):
+            if not dashboard_plotted(s):
+                continue
+            arm = _arm
+            if arm:
+                classes.update(c.get('played_class') for c in arm if c.get('played_class'))
+    return [c for c in cat_mod.CLASSES if c in classes]
 
 
 def class_links(runs, specs):
-    """The overview card's row of per-class page links (full charts, one
-    page per class - the old nine-remotes-wide tile grid was too small to
-    read anything out of)."""
+    """The prominent row of per-class page links (full charts, one page per
+    class - the old nine-remotes-wide tile grid was too small to read
+    anything out of), placed at the top of the comparison card."""
     classes = dashboard_classes(runs, specs)
     if not classes:
         return ''
-    chips = ' · '.join(f'<a href="classes/{esc(cls)}.html">{esc(cls)}</a>' for cls in classes)
-    return (f'<h3>By class</h3><p class="foot">The same setups, split by the class each seed played '
-            f'(<code>classes-1800</code>-style suites assign 200 seeds per class), one full chart per '
-            f'class page: {chips}.</p>')
+    chips = ''.join(f'<a class="chip" href="classes/{esc(cls)}.html">{esc(cls)}</a>' for cls in classes)
+    return (f'<h3 class="links-head">By class</h3><p class="foot">One full page per class, both '
+            f'policies: <span class="class-links">{chips}</span></p>')
 
 
 def class_pages(runs):
-    """One page per class: a full-size labeled chart (the same setups as the
-    overview card, restricted to the seeds that played this class) and the
-    same numbers table. Returns (slug, title, body) per class with data;
-    every page shares one scale, so a Warrior/Mage difference reads the same
-    on both pages."""
+    """One page per class: for each policy, a full-size labeled chart of the
+    setups that policy shows, restricted to the seeds that played this class,
+    plus the numbers table. Returns (slug, title, body) per class with data;
+    every page of a policy shares that policy's scale, so a Warrior/Mage
+    difference reads the same on both."""
     specs = cat_mod.catalogue()['specimens']['specimens']
     classes = dashboard_classes(runs, specs)
-    per_class = {}
-    for cls in classes:
-        points, _ = exemplar_points(runs, specs, cls)
-        if any(p[0] is not None for p in points):
-            per_class[cls] = points
-    if not per_class:
+    if not classes:
         return []
-    x_max, y_max = axis_limits([p for pts in per_class.values() for p in pts], y_fmt='num')
+    scales = {}
+    for policy in POLICIES:
+        pts = [p for cls in classes for p in exemplar_points(runs, specs, policy, cls)[0]]
+        if any(p[0] is not None for p in pts):
+            scales[policy['slug']] = axis_limits(pts, y_fmt='num')
     pages = []
-    for cls, points in per_class.items():
-        points, found = exemplar_points(runs, specs, cls)
-        chart = echarts_scatter(points, x_label='Survivability — alive at the turn cap',
-                        y_label='Progress — median max dungeon level + character level',
-                        y_fmt='num', x_max=x_max, y_max=y_max)
-        legend, _ = exemplar_table(found, specs)
+    for cls in classes:
+        sections = []
+        for policy in POLICIES:
+            points, entries = exemplar_points(runs, specs, policy, cls)
+            if not any(p[0] is not None for p in points):
+                continue
+            x_max, y_max = scales[policy['slug']]
+            chart = echarts_scatter(points, x_label='Survivability — alive at the turn cap',
+                                    y_label='Progress — median max dungeon level + character level',
+                                    y_fmt='num', x_max=x_max, y_max=y_max)
+            legend, _ = exemplar_table(entries, specs)
+            sections.append(f'<h2>{esc(policy["title"])}</h2>'
+                            f'<p class="foot">{policy["blurb"]}</p>{chart}{legend}')
+        if not sections:
+            continue
         body = (f'<p><a href="../index.html">Borg zoo</a></p>'
                 f'<h1>{esc(cls)}</h1>'
-                f'<p class="lead">The dashboard setups, on the seeds that played {esc(cls)}. '
-                f'Same scale on every class page, so classes can be compared against each other; '
-                f'each dot is labelled, and the table has the numbers and the run behind each point.</p>'
-                f'{chart}{legend}')
+                f'<p class="lead">The dashboard setups on the seeds that played {esc(cls)}, '
+                f'separately for each mode policy. Scale is shared across every class page of a '
+                f'policy, so classes can be compared against each other; each dot is labelled, and '
+                f'each table has the numbers and the run behind the point.</p>'
+                + ''.join(sections))
         pages.append((cls, f'{cls} · borg-zoo', body))
     return pages
+
+
+def comparison_page(runs, policy):
+    """A whole tab: one policy, its chart, its table and its class links. The
+    two policies are separate tabs on purpose - a single chart mixed them and
+    read as a code difference that was really the munchkin policy."""
+    card = card_exemplars(runs, policy)
+    other = next(p for p in POLICIES if p['slug'] != policy['slug'])
+    switch = (f'<p class="policy-switch">Other policy: '
+              f'<a class="chip" href="{other["slug"]}.html">{esc(other["nav"])}</a></p>')
+    body = (f'<h1>{esc(policy["title"])}</h1>{nav(policy["slug"] + ".html")}'
+            f'<p class="lead">{policy["blurb"]}</p>{switch}'
+            + (f'<div class="cards">{card}</div>' if card else
+               '<p class="muted">No run at dashboard scale under this policy yet.</p>')
+            + FOOTER)
+    return body
 
 
 def card_milestones(runs):
@@ -903,7 +1057,8 @@ RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.
 
 
 def nav(active):
-    tabs = [('index.html', 'Overview'), ('detailed.html', 'Detailed')]
+    tabs = [('index.html', 'Overview')] + [(f'{p["slug"]}.html', p['nav']) for p in POLICIES] + \
+           [('detailed.html', 'Detailed')]
     return ('<p class="tabs">' +
             ''.join(f'<a class="tab{" active" if href == active else ""}" href="{href}">{esc(label)}</a>'
                     for href, label in tabs) + '</p>')
@@ -952,14 +1107,20 @@ def add_your_borg_section():
 def overview_page(runs):
     total = sum(len(c) for _, c, _ in runs)
     latest = runs[0][0].get('completed', '?') if runs else '–'
-    exemplars = card_exemplars(runs)
+    specs = cat_mod.catalogue()['specimens']['specimens']
+    links = class_links(runs, specs)
+    buttons = ''.join(f'<a class="big-chip" href="{p["slug"]}.html">{esc(p["nav"])}</a>' for p in POLICIES)
     return (
         f'<h1>Borg zoo</h1>{nav("index.html")}'
         f'<p class="muted">{total:,} runs · {len(runs)} experiment runs · latest {esc(latest)}</p>'
         f'<p class="lead">Angband Borg versions played headless on the same seeds: the original C Borg, '
         f'better-borg-c\'s milestones of carried fixes, and the borg-rs Rust port.</p>'
-        + (f'<div class="cards">{exemplars}</div>' if exemplars else '<p class="muted">No results yet.</p>')
-        + f'<p class="muted">Every milestone, the Rust port and the open stalls are on the '
+        f'<div class="cards"><div class="card wide"><h2>Compare the Borgs</h2>'
+        f'<p class="answer">Two separate comparisons, because the munchkin start changes three of the '
+        f'nine classes: with it, and without it. Each tab has its own chart, its own runs and its own '
+        f'class pages — read a point inside its tab, never across the two.</p>'
+        f'<p>{buttons}</p>{links}</div></div>'
+        f'<p class="muted">Every milestone, the Rust port and the open stalls are on the '
         f'<a href="detailed.html">Detailed</a> tab.</p>'
         + add_your_borg_section() + FOOTER)
 
