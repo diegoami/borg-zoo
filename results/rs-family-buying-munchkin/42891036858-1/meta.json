@@ -1,0 +1,159 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "rs-buy-current-munchkin": {
+        "description": "borg-rs v10 buying control, munchkin unconditionally on (borg-zoo#61)",
+        "settings": {
+          "borg_buy_strategy_default": 0,
+          "borg_lunal_mode": false,
+          "borg_munchkin_start": true,
+          "borg_self_lunal": false
+        },
+        "sha256": "7eec687c33bd4d5603830207c03fe319d7ecfdc41e5f570d905eb315e20124e5"
+      },
+      "rs-buy-current-munchkin-id": {
+        "description": "borg-rs v10 buying control + buy-to-identify, munchkin unconditionally on (borg-zoo#67)",
+        "settings": {
+          "borg_buy_identify": 1,
+          "borg_buy_strategy_default": 0,
+          "borg_lunal_mode": false,
+          "borg_munchkin_start": true,
+          "borg_self_lunal": false
+        },
+        "sha256": "382438981db118af2753dcbd7be1a7398c968f71405e4096b2afa405d22b57d3"
+      },
+      "rs-buy-reserve410-munchkin": {
+        "description": "Experimental early Phase Door/cure reserve (strategy 1), munchkin unconditionally on (borg-zoo#61)",
+        "settings": {
+          "borg_buy_strategy_default": 1,
+          "borg_lunal_mode": false,
+          "borg_munchkin_start": true,
+          "borg_self_lunal": false
+        },
+        "sha256": "d892667254826bd41e7c4b1de1ae8acbb1b2e0aba2a10774143b9f904d97de1e"
+      },
+      "rs-buy-reserve410-munchkin-id": {
+        "description": "Experimental reserve (strategy 1) + buy-to-identify, munchkin unconditionally on (borg-zoo#67)",
+        "settings": {
+          "borg_buy_identify": 1,
+          "borg_buy_strategy_default": 1,
+          "borg_lunal_mode": false,
+          "borg_munchkin_start": true,
+          "borg_self_lunal": false
+        },
+        "sha256": "a4cf12d8661bc312ba5ce89df62cb22f0867bbe5d91a927cadf6c28fa6e1bbb3"
+      }
+    },
+    "specimens": {
+      "4.2.6-rs-family-buying": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-rs post-M10 buying family (borg-rs#25/#27, PR 26 and 28): the reviewed family head with configuration-selected current/reserve410 buying strategies and the independent borg_buy_identify policy. Rust-only; C accepts the settings for parser compatibility and ignores them, so no C parity cell. No derived family tag yet - the ref is a reviewed head (borg-zoo#61, #67).",
+        "ref": "5aeb6e58e03ce98e24884cf28fa9f27e28367faa",
+        "repository": "diegoami/borg-rs",
+        "role": "candidate",
+        "source": "https://github.com/diegoami/borg-rs/pull/28"
+      }
+    },
+    "suites": {
+      "rs-family-mage-3": {
+        "birth": "assigned",
+        "cap": 20000,
+        "characters": {
+          "classes": [
+            "Mage"
+          ],
+          "races": [
+            "Elf"
+          ]
+        },
+        "description": "Borg-family buying pilot: Elf Mage, three seeds, 20,000 engine turns",
+        "role": "pilot",
+        "saves": false,
+        "seeds": [
+          11,
+          29,
+          47
+        ],
+        "stall_seconds": 45,
+        "wall_seconds": 180
+      },
+      "rs-family-warrior-3": {
+        "birth": "assigned",
+        "cap": 20000,
+        "characters": {
+          "classes": [
+            "Warrior"
+          ],
+          "races": [
+            "Human"
+          ]
+        },
+        "description": "Borg-family buying pilot: Human Warrior, three seeds, 20,000 engine turns",
+        "role": "pilot",
+        "saves": false,
+        "seeds": [
+          11,
+          29,
+          47
+        ],
+        "stall_seconds": 45,
+        "wall_seconds": 180
+      }
+    }
+  },
+  "completed": "2026-11-10 20:03 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-rs-family-buying",
+    "control_profile": "rs-buy-current-munchkin",
+    "description": "borg-rs buying family with the munchkin start unconditionally on (every class): the current and reserve410 strategies, each with buy-to-identify off and on, on the same three Warrior and three Mage seeds. Paired within class, strategy and seed; control is the v10 buying behaviour (current, identify off). 24 cells (borg-zoo#61, #67).",
+    "name": "rs-family-buying-munchkin",
+    "profiles": [
+      "rs-buy-current-munchkin",
+      "rs-buy-reserve410-munchkin",
+      "rs-buy-current-munchkin-id",
+      "rs-buy-reserve410-munchkin-id"
+    ],
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-rs-family-buying"
+    ],
+    "suites": [
+      "rs-family-warrior-3",
+      "rs-family-mage-3"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "42891036858-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/42891036858",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "b27346ef23771548e58ccd2d44ddb5856a151bde"
+}
