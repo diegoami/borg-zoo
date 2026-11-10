@@ -274,11 +274,12 @@ class BorgRsTest(unittest.TestCase):
         self.assertEqual(kinds, {'4.2.6-rs-m0-c': 'borg-rs', '4.2.6-rs-m0': 'borg-rs', '4.2.6': 'better-borg-c'})
         self.assertTrue(all('kind' in r and 'ref' in r for r in plan['runs']))
 
-    def test_rs_m7_m8_and_m9_specimens_share_their_tagged_commit_and_carries(self):
+    def test_rs_m7_m8_m9_and_m10_specimens_share_their_tagged_commit_and_carries(self):
         specs = cat_mod.catalogue()['specimens']['specimens']
         for name_rust, name_c, tag, carries in (('4.2.6-rs-m7', '4.2.6-rs-m7-c', '4.2.6-impact-v7', 76),
                                                  ('4.2.6-rs-m8', '4.2.6-rs-m8-c', '4.2.6-impact-v8', 88),
-                                                 ('4.2.6-rs-m9', '4.2.6-rs-m9-c', '4.2.6-impact-v9', 98)):
+                                                 ('4.2.6-rs-m9', '4.2.6-rs-m9-c', '4.2.6-impact-v9', 98),
+                                                 ('4.2.6-rs-m10', '4.2.6-rs-m10-c', '4.2.6-impact-v10', 98)):
             rust, c = specs[name_rust], specs[name_c]
             self.assertEqual(rust['ref'], c['ref'])
             self.assertEqual((rust['tag'], c['tag']), (tag, tag))
@@ -286,7 +287,8 @@ class BorgRsTest(unittest.TestCase):
             self.assertEqual((rust['impl'], c['impl']), ('rust', 'c'))
         self.assertNotEqual(specs['4.2.6-rs-m7']['ref'], specs['4.2.6-rs-m8']['ref'])
         self.assertNotEqual(specs['4.2.6-rs-m8']['ref'], specs['4.2.6-rs-m9']['ref'])
-        for name in ('rs-m7-smoke', 'rs-m8-smoke', 'rs-m9-smoke'):
+        self.assertNotEqual(specs['4.2.6-rs-m9']['ref'], specs['4.2.6-rs-m10']['ref'])
+        for name in ('rs-m7-smoke', 'rs-m8-smoke', 'rs-m9-smoke', 'rs-m10-smoke'):
             exp = cat_mod.experiment(ROOT / f'experiments/{name}.json')
             self.assertTrue(cat_mod.cells(exp))
 
@@ -337,6 +339,15 @@ class BorgRsTest(unittest.TestCase):
         self.assertEqual((bbc['tag'], bbc['carries']), (rs['tag'], rs['carries']))
         self.assertNotEqual(bbc['ref'], rs['ref'])  # same milestone, different repositories
         exp = cat_mod.experiment(ROOT / 'experiments/rs-m9-smoke.json')
+        self.assertTrue(cat_mod.cells(exp))
+
+    def test_bbc_m10_matches_rs_m10s_tag_and_carries(self):
+        specs = cat_mod.catalogue()['specimens']['specimens']
+        bbc, rs = specs['4.2.6-bbc-m10'], specs['4.2.6-rs-m10']
+        self.assertEqual((bbc['tag'], bbc['carries']), ('4.2.6-impact-v10', 98))
+        self.assertEqual((bbc['tag'], bbc['carries']), (rs['tag'], rs['carries']))
+        self.assertNotEqual(bbc['ref'], rs['ref'])  # same milestone, different repositories
+        exp = cat_mod.experiment(ROOT / 'experiments/rs-m10-smoke.json')
         self.assertTrue(cat_mod.cells(exp))
 
     def test_no_pairing_across_harnesses(self):
