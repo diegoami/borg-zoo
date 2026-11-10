@@ -37,8 +37,9 @@ from pathlib import Path
 from . import catalogue as cat_mod
 from . import stall
 
-STOP = {'turns': 'turn_cap', 'death': 'death', 'clev': 'turn_cap', 'depth': 'turn_cap',
-        'borg_stopped': 'stalled', 'blocked': 'stalled'}
+# borgh writes `clevel` for a level stop; older builds wrote `clev` (borg-zoo#48).
+STOP = {'turns': 'turn_cap', 'death': 'death', 'clevel': 'turn_cap', 'clev': 'turn_cap',
+        'depth': 'turn_cap', 'borg_stopped': 'stalled', 'blocked': 'stalled'}
 
 # Depth marks to report first_turn_at_depth for, matching harness.py's (the
 # better-borg-c observer adapter) so the two are comparable.

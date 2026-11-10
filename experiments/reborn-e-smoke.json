@@ -1,0 +1,18 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-e-smoke",
+  "description": "borg-reborn-rs milestone E (tag e) against its two C controls on the smoke suite: builds the new integration and checks it plays, before the full measurement. The C controls stay at m1, the last borg-reborn-rs tree that builds a C Borg; their harness/borg.txt has borg_self_scum TRUE (upstream's default), noted in #48.",
+  "specimens": [
+    "4.2.6-reborn-rust-e",
+    "4.2.6-reborn-c-pristine",
+    "4.2.6-reborn-c-bbc-m7"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "smoke"
+  ],
+  "control": "4.2.6-reborn-rust-e",
+  "control_profile": "default"
+}
