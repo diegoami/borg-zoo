@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-v11",
+  "description": "better-borg-c v11 (tag 4.2.6-impact-v11, 116 carries) on the full class grid, once under each policy the dashboard compares: normal (every mode pinned off - the plain tab) and munchkin-class (the class rule - the munchkin tab). v11 had only a 12-cell smoke before this; the per-mode batch its own milestone doc records as not measured is this experiment. Control is v11 under normal, the plain arm.",
+  "specimens": [
+    "4.2.6-bbc-m11"
+  ],
+  "profiles": [
+    "normal",
+    "munchkin-class"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-bbc-m11",
+  "control_profile": "normal"
+}
