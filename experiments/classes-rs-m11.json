@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-rs-m11",
+  "description": "The Rust counterpart of the v11 C grid: borg-rs v11R (PR 30 head) on classes-1800 under normal (modes off, the plain tab) and munchkin-class (the class rule, the munchkin tab). 3,600 cells; the dashboard picks it up once it lands.",
+  "specimens": [
+    "4.2.6-rs-m11"
+  ],
+  "profiles": [
+    "normal",
+    "munchkin-class"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-rs-m11",
+  "control_profile": "normal"
+}
