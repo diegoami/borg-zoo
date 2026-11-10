@@ -267,7 +267,7 @@ EXEMPLARS = [
     {'shape': 'circle', 'cls': '', 'specimen': '4.2.6-bbc-m10', 'profile': 'default',
      'name': 'better-borg-c M10', 'note': 'carries stays 98 — no new tracker carry this cycle. Two '
      'local-only improvements never proposed upstream, plus a crash correction to carry 0099.'},
-    _rs(4, 42), _rs(5, 50), _rs(6, 63), _rs(8, 88), _rs(9, 98),
+    _rs(4, 42), _rs(5, 50), _rs(6, 63), _rs(8, 88), _rs(9, 98), _rs(10, 98),
     {'shape': 'cross', 'cls': 'other', 'specimen': 'neo-b3-api2-upstream', 'profile': 'default',
      'name': 'Neo Angband (Mandos, upstream)', 'note': 'a different engine on different seeds — '
      '<strong>never paired</strong> with the C/Rust points above; shown for scale only.'},
