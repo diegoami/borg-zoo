@@ -606,6 +606,18 @@
       "role": "candidate",
       "label": "borg-rs post-M10 buying family (borg-rs#25/#27, PR 26 and 28): the reviewed family head with configuration-selected current/reserve410 buying strategies and the independent borg_buy_identify policy. Rust-only; C accepts the settings for parser compatibility and ignores them, so no C parity cell. No derived family tag yet - the ref is a reviewed head (borg-zoo#61, #67).",
       "source": "https://github.com/diegoami/borg-rs/pull/28"
+    },
+    "4.2.6-reborn-rust-e": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "0a92da0d06c2c18412d649221497a8998ad15692",
+      "tag": "e",
+      "carries": 0,
+      "exact_turns": true,
+      "depth_stream": true,
+      "source": "https://github.com/diegoami/borg-reborn-rs/blob/main/docs/ZOO-INTERFACE.md",
+      "label": "borg-reborn-rs milestone E (tag e): the reborn Borg building on its own integration - upstream Angband e473720 byte for byte, a small hook series and its own frontend, bindings and build, nothing taken from borg-rs's tree. Smoke play hashes identical to the m1 specimen (borg-zoo#48)."
     }
   }
 }
