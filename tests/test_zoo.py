@@ -625,16 +625,20 @@ class LandingTest(unittest.TestCase):
             self.assertIn(name, card)
         self.assertIn('never paired', card)
         self.assertIn('source</a>', card)  # the catalogue's own source link, not hand-written
-        # every plotted dot is labelled on the chart itself, in its own color
-        chart = card[card.index('<svg class="scatter"'):card.index('</svg>')]
-        dots = chart.count('<circle class="dot"')
-        labels = chart.count('class="lbl"')
-        self.assertEqual(dots, 4)
-        self.assertEqual(labels, 4)
-        self.assertIn('>Vanilla</text>', chart)
-        self.assertIn('>Rec. mix</text>', chart)
-        self.assertIn('>Neo</text>', chart)
-        self.assertIn('>Vanilla+munch</text>', chart)
+        # every plotted setup is in the chart's option with its own color,
+        # and the label layout that keeps names readable is ECharts' own
+        # moveOverlap (the hand-rolled dodger this replaces dropped labels)
+        cfg = next(iter(landing.chart_configs(card).values()))
+        plotted = [d['name'] for d in cfg['series'][0]['data']]
+        self.assertEqual(plotted, ['Vanilla', 'Vanilla+munch', 'Rec. mix', 'Neo'])
+        self.assertEqual(cfg['series'][1]['label']['show'], True)  # the label series
+        # label placement is computed here and shipped as explicit offsets
+        # (ECharts' moveOverlap does nothing server-side): every plotted
+        # setup carries one, so a label can never silently vanish
+        for d in cfg['series'][0]['data']:
+            self.assertTrue(d['label']['offset'], d['name'])
+        colors = {d['name']: d['itemStyle']['color'] for d in cfg['series'][0]['data']}
+        self.assertEqual(len(set(colors.values())), 4)  # one color per plotted setup
         # per-class pages instead of the unreadable tile grid
         self.assertIn('By class', card)
         self.assertIn('classes/Warrior.html', card)
@@ -650,6 +654,20 @@ class LandingTest(unittest.TestCase):
         self.assertNotIn('M8 + munchkin', card)  # dropped: a no-op on both lines (review #39)
         self.assertIsNone(landing.card_exemplars([]))
 
+    def test_chart_configs_extracts_embedded_options_for_the_render_step(self):
+        # the render-and-look step (DESIGN.md) pulls each page's chart
+        # options out as pure JSON; the extraction must survive the page's
+        # other script tags and give the option dict back intact
+        runs = [({'experiment': {'name': 'x', 'suites': ['classes-1800']},
+                  'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'},
+                 [dict(cell('4.2.6', s, 'turn_cap'), profile='default') for s in range(60)], None)]
+        card = landing.card_exemplars(runs)
+        cfgs = landing.chart_configs(card)
+        self.assertEqual(len(cfgs), 1)
+        cfg = next(iter(cfgs.values()))
+        self.assertEqual(cfg['series'][0]['data'][0]['name'], 'Vanilla')
+        self.assertEqual(cfg['xAxis']['max'], 110.0)  # survivability 100% -> rate 1.0, auto max 1.1
+
     def test_a_smoke_scale_setup_never_becomes_a_dashboard_point(self):
         # a 3-seed smoke run is a build sanity check, not evidence: it gets no
         # dot on the chart, and its legend row says why (a plotted setup sits
@@ -663,9 +681,9 @@ class LandingTest(unittest.TestCase):
                 arm('4.2.6-bbc-m10', 3, '2026-11-10 15:00 UTC', suite='smoke')]
         card = landing.card_exemplars(runs)
         self.assertIn('smoke-scale only — not plotted', card)
-        chart = card[card.index('<svg class="scatter"'):card.index('</svg>')]
-        self.assertEqual(chart.count('<circle class="dot"'), 1)  # vanilla only
-        self.assertEqual(chart.count('class="lbl"'), 1)
+        cfgs = landing.chart_configs(card)
+        plotted = [d['name'] for d in next(iter(cfgs.values()))['series'][0]['data']]
+        self.assertEqual(plotted, ['Vanilla'])  # the smoke-scale setup is not among them
         self.assertEqual(landing.class_pages(runs), [])  # no pages off smoke runs either
 
     def test_the_exemplars_chart_never_overlaps_its_own_labels(self):
@@ -686,22 +704,21 @@ class LandingTest(unittest.TestCase):
                 arm('4.2.6-rs-m10', 'default', 33, 100),
                 arm('neo-b3-api2-upstream', 'default', 60, 100)]
         card = landing.card_exemplars(runs)
-        chart = card[card.index('<svg class="scatter"'):card.index('</svg>')]
-        boxes = []
-        for m in re.finditer(r'<circle class="dot" cx="([\d.]+)" cy="([\d.]+)"', chart):
-            boxes.append(('dot', float(m.group(1)), float(m.group(2)), float(m.group(1)), float(m.group(2))))
-        for m in re.finditer(r'<text class="lbl" x="([\d.-]+)" y="([\d.-]+)" text-anchor="(\w+)"'
-                             r'[^>]*>([^<]+)</text>', chart):
-            lx, ly, anchor, text = float(m.group(1)), float(m.group(2)), m.group(3), m.group(4)
-            w = 6.4 * len(text)
-            x0, x1 = (lx, lx + w) if anchor == 'start' else (lx - w, lx)
-            boxes.append(('lbl', x0, ly - 7, x1, ly + 5))
-        labels = [b for b in boxes if b[0] == 'lbl']
-        self.assertGreater(len(labels), 5)
-        import itertools
-        for a, b in itertools.combinations(labels, 2):
-            separated = a[3] <= b[1] or b[3] <= a[1] or a[4] <= b[2] or b[4] <= a[2]
-            self.assertTrue(separated, f'labels overlap: {a} vs {b}')
+        cfgs = landing.chart_configs(card)
+        self.assertEqual(len(cfgs), 1)
+        data = next(iter(cfgs.values()))['series'][0]['data']
+        plotted = [d['name'] for d in data]
+        # every plotted setup is on the chart, and every one of them carries
+        # a computed label offset - the hand-rolled SVG this replaced
+        # dropped 3 of 15 labels on the real chart, silently
+        self.assertEqual(sorted(plotted),
+                         ['M10', 'M4', 'Neo', 'R-M10', 'Rec. mix', 'Vanilla', 'Vanilla+munch'])
+        self.assertTrue(all(d['label']['offset'] for d in data))
+        self.assertTrue(all(d['label']['offset'] != [0, 0] for d in data))
+        # per-line colors by design (M4 and M10 share the C blue); each
+        # setup is still identified by its own printed label
+        self.assertLessEqual(len({d['itemStyle']['color'] for d in data}), len(data))
+        self.assertEqual(len({d['name'] for d in data}), len(data))
 
     def test_turn_snapshots_section_labels_turns_and_skips_arms_without_milestones(self):
         def arm_with_milestones(specimen, profile, n, cap, level, depth):
@@ -732,8 +749,12 @@ class LandingTest(unittest.TestCase):
         # rs-m4 arm has no per-turn data, so it contributes no dot anywhere,
         # not a half-drawn one - a dot needs both an x and a y, which the
         # docstring should (and does) say.
-        self.assertEqual(section.count('<circle class="dot"'), 8)
-        self.assertEqual(section.count('<polygon'), 0)
+        cfgs = landing.chart_configs(section)
+        self.assertEqual(len(cfgs), 4)
+        for cfg in cfgs.values():
+            plotted = [d['name'] for d in cfg['series'][0]['data']]
+            self.assertEqual(sorted(plotted), ['Rec. mix', 'Vanilla'])
+            self.assertEqual(cfg['series'][0]['label']['show'], False)  # tiles: colors only
         self.assertEqual(landing.turn_snapshots_section([]), '')
 
     def test_class_pages_share_one_axis_scale_across_classes(self):
@@ -756,13 +777,15 @@ class LandingTest(unittest.TestCase):
         runs = [arm({'Warrior': (5, 100), 'Mage': (95, 100)})]
         pages = landing.class_pages(runs)
         self.assertEqual([slug for slug, _, _ in pages], ['Warrior', 'Mage'])
-        tick_counts = []
+        maxima = []
         for _, _, body in pages:
-            chart = body[body.index('<svg class="scatter"'):body.index('</svg>')]
-            self.assertIn('class="lbl"', chart)  # full-size: labelled dots
-            tick_counts.append(chart.count('class="axis"'))
-        self.assertEqual(tick_counts[0], tick_counts[1])
-        self.assertGreater(tick_counts[0], 2)
+            cfgs = landing.chart_configs(body)
+            self.assertEqual(len(cfgs), 1)
+            cfg = next(iter(cfgs.values()))
+            self.assertTrue(cfg['series'][1]['label']['show'])  # full-size: labelled dots
+            maxima.append((cfg['xAxis']['max'], cfg['yAxis']['max']))
+        self.assertEqual(maxima[0], maxima[1])  # one shared scale, not one each
+        self.assertGreater(maxima[0][1], 0)
 
     def test_overview_page_has_no_milestone_cards(self):
         page = landing.overview_page([])
