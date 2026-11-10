@@ -152,6 +152,15 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
   [`classes-explicit`](../experiments/classes-explicit.json) (munchkin-class against normal on the new
   specimen); the acceptance smoke is
   [`bbc-explicit-smoke`](../experiments/bbc-explicit-smoke.json).
+- **The acceptance smoke reproduced cleanly.** Run 42842197246, `bbc-explicit-smoke`,
+  4.2.6-bbc-9ca98661, 3 fixed Warrior seeds × {`munchkin-class`, `normal`}: 6/6 finished at the
+  cap, no config_error, no stall. `munchkin-class` reached DL6 on every seed (the class rule's
+  munchkin start at depth 6, working as the product default); `normal` stayed at DL1-2 (modes off).
+  Its first dispatch (run 42841000338) config_errored every munchkin-class cell because the profile
+  also named `borg_munchkin_start = FALSE`, which the class rule overrides for WDR classes - the
+  profile now names only `borg_munchkin_by_class`, a plan-time guard rejects the contradictory
+  shape, and the play hashes of both runs match move for move: the games were the product default
+  all along, only the settings check objected.
 - **The first Lunal arm is deferred.** `borg_self_lunal` enters Lunal only when the Borg is prepared
   for 15 levels deeper and `maxdepth >= depth + 15` (`borg-think-dungeon.c`); no zoo suite reaches
   that reliably (the deepest cap is 400k turns, and the zoo has no deep-start mechanism — the
