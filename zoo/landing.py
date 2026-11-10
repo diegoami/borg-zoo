@@ -195,7 +195,7 @@ def link(meta):
 def suite_rows(meta, cells):
     exp = meta['experiment']
     suite = exp['suites'][0]
-    return suite, meta['catalogue']['suites'][suite], stats.analyse(exp, cells)[suite]
+    return suite, meta['catalogue']['suites'][suite], stats.analyse(exp, cells, meta['catalogue']['specimens'])[suite]
 
 
 def find_arm(runs, specimen, profile, specs, cls=None):
@@ -680,8 +680,25 @@ def versions_table():
                     'harness.', cols) + table(cols, rows, left=5))
 
 
+def mode_cutoff_note():
+    """The standing statement of the mode cutoff (borg-zoo#54): what changed
+    at better-borg-c fd683ced, and what the zoo does about it. Shown on the
+    Detailed and Versions tabs; each run page says how it applies to that
+    run's own results."""
+    cut = cat_mod.MODE_CUTOFF[:9]
+    return (f'<p class="note"><strong>Mode cutoff {cut} (better-borg-c PR 302, {cat_mod.MODE_CUTOFF_DATE}, '
+            f'borg-zoo#54):</strong> from that commit <code>borg_munchkin_by_class</code> defaults to TRUE, so '
+            'better-borg-c specimens before it do not carry the class rule and the profile named '
+            '<code>default</code> plays a different game on either side. Runs recorded before '
+            f'{cat_mod.MODE_CUTOFF_DATE} are labelled pre-cutoff on their pages, and version pairings that '
+            'straddle the cutoff are not computed. Every experiment measured now names a mode profile '
+            '(<code>normal</code>, <code>munchkin-class</code>, <code>munchkin-on</code>, <code>lunal</code>); '
+            '<code>default</code> stays only as a compatibility alias for pre-cutoff experiments, and the '
+            'catalogue refuses it anywhere the cutoff applies.</p>')
+
+
 def versions_page():
-    return f'<p><a href="index.html">Borg zoo</a></p><h1>Versions</h1>{versions_table()}'
+    return (f'<p><a href="index.html">Borg zoo</a></p><h1>Versions</h1>{mode_cutoff_note()}{versions_table()}')
 
 
 RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.'),
@@ -759,6 +776,7 @@ def landing_page(runs, run_rows):
     cards = [c for c in (card_milestones(runs), card_port(runs), card_stalls(runs)) if c]
     return (
         f'<h1>Borg zoo</h1>{nav("detailed.html")}'
+        f'{mode_cutoff_note()}'
         f'<div class="cards">{"".join(cards)}</div>'
         f'<h2>Experiment runs</h2>'
         + (explain('Every recorded run, newest first. Each page explains its tables.', RUN_COLS)

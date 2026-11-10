@@ -103,7 +103,7 @@ class SeedSetTest(unittest.TestCase):
         self.assertEqual(exp['specimens'], ['4.2.6'])  # the recommended mix is measured separately: see below
         self.assertEqual(len(cat_mod.cells(exp)), 3600)
         exp = cat_mod.experiment(ROOT / 'experiments/classes-200k-recommended.json')
-        self.assertEqual(exp['profiles'], ['default'])  # munchkin-wdr is a no-op on this specimen's own default
+        self.assertEqual(exp['profiles'], ['munchkin-class'])  # renamed from default at the mode cutoff (#54): same game here
         self.assertEqual(len(cat_mod.cells(exp)), 1800)
 
     def test_every_suite_declares_a_role(self):
@@ -299,7 +299,7 @@ class BorgRsTest(unittest.TestCase):
         exp = cat_mod.experiment(ROOT / 'experiments/m8-smoke.json')
         self.assertTrue(cat_mod.cells(exp))
         exp = cat_mod.experiment(ROOT / 'experiments/classes-m8-munchkin.json')
-        self.assertEqual(exp['profiles'], ['default'])  # munchkin-wdr is a no-op on M8 (review #39)
+        self.assertEqual(exp['profiles'], ['munchkin-class'])  # renamed from default at the mode cutoff (#54): same game on M8
         self.assertEqual(len(cat_mod.cells(exp)), 3600)
 
     def test_bbc_m9_carries_ten_more_than_m8(self):
@@ -323,9 +323,10 @@ class BorgRsTest(unittest.TestCase):
 
     def test_m9_m10_munchkin_is_a_confirmed_no_op_so_classes_comparison_skips_it(self):
         exp = cat_mod.experiment(ROOT / 'experiments/m9-m10-munchkin-smoke.json')
-        self.assertEqual(exp['profiles'], ['default', 'munchkin-wdr'])
+        self.assertEqual(exp['profiles'], ['munchkin-class', 'munchkin-wdr'])
         exp = cat_mod.experiment(ROOT / 'experiments/classes-m9-m10.json')
         self.assertEqual(exp['profiles'], ['default'])
+        self.assertTrue(exp['pre_cutoff'].startswith('2026-11-10'))
         self.assertEqual(exp['specimens'], ['4.2.6', '4.2.6-bbc-m9', '4.2.6-bbc-m10'])
         self.assertEqual(len(cat_mod.cells(exp)), 5400)
 
@@ -349,6 +350,120 @@ class BorgRsTest(unittest.TestCase):
         rows = {r['specimen']: r for r in stats.analyse(exp, cells)['smoke'] if r['profile'] == 'default'}
         self.assertIsNotNone(rows['4.2.6-rs-m0']['vs_version'])
         self.assertIsNone(rows['4.2.6']['vs_version'])
+
+
+class ModeCutoffTest(unittest.TestCase):
+    """The mode cutoff (borg-zoo#54): better-borg-c fd683ced (PR 302) made
+    borg_munchkin_by_class default TRUE, so the same profile name is a
+    different game across it. Sides, the plan guard, and what the statistics
+    and the site do about it."""
+
+    def test_every_bbc_specimen_declares_its_cutoff_side(self):
+        specs = cat_mod.catalogue()['specimens']['specimens']
+        for name, s in specs.items():
+            if s.get('repository') == 'diegoami/better-borg-c' or name == 'angband-e473-original':
+                self.assertIn(s.get('mode_side'), ('pre', 'post'), name)
+            else:
+                self.assertNotIn('mode_side', s, name)
+        # the harness pin is the new specimen's ref, and both are post-cutoff
+        self.assertEqual(cat_mod.catalogue()['specimens']['harness']['commit'],
+                         specs['4.2.6-bbc-9ca98661']['ref'])
+        self.assertEqual(cat_mod.mode_side(specs['4.2.6-bbc-9ca98661']), 'post')
+
+    def test_mode_side_falls_back_to_the_commit_set_for_old_snapshots(self):
+        specs = cat_mod.catalogue()['specimens']['specimens']
+        stripped = {name: {k: v for k, v in s.items() if k != 'mode_side'} for name, s in specs.items()}
+        self.assertEqual(cat_mod.mode_side(stripped['4.2.6-bbc-m7']), 'pre')
+        self.assertEqual(cat_mod.mode_side(stripped['4.2.6-bbc-m8']), 'post')
+        self.assertEqual(cat_mod.mode_side(stripped['4.2.6-bbc-9ca98661']), 'post')
+
+    def test_a_post_cutoff_experiment_must_name_a_mode_profile(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            bad = Path(tmp) / 'bad.json'
+            bad.write_text(json.dumps({'name': 'x', 'specimens': ['4.2.6-bbc-m10'], 'profiles': ['default'],
+                                       'suites': ['smoke'], 'control': '4.2.6-bbc-m10'}))
+            with self.assertRaises(ValueError):
+                cat_mod.experiment(bad)
+            good = Path(tmp) / 'good.json'
+            good.write_text(json.dumps({'name': 'x', 'specimens': ['4.2.6-bbc-m10'],
+                                        'profiles': ['munchkin-class', 'normal'], 'suites': ['smoke'],
+                                        'control': '4.2.6-bbc-m10', 'control_profile': 'munchkin-class'}))
+            self.assertTrue(cat_mod.cells(cat_mod.experiment(good)))
+
+    def test_a_pre_cutoff_build_rejects_profiles_naming_the_class_rule(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            bad = Path(tmp) / 'bad.json'
+            bad.write_text(json.dumps({'name': 'x', 'specimens': ['4.2.6'], 'profiles': ['normal'],
+                                       'suites': ['smoke'], 'control': '4.2.6', 'control_profile': 'normal'}))
+            with self.assertRaises(ValueError) as cm:
+                cat_mod.experiment(bad)
+            self.assertIn('predates the mode cutoff', str(cm.exception))
+
+    def test_the_pre_cutoff_marker_keeps_recorded_arms(self):
+        exp = cat_mod.experiment(ROOT / 'experiments/classes-m9-m10.json')
+        self.assertTrue(exp['pre_cutoff'])
+        with tempfile.TemporaryDirectory() as tmp:
+            marked = Path(tmp) / 'marked.json'
+            marked.write_text(json.dumps({'name': 'x', 'specimens': ['4.2.6-bbc-m10'], 'profiles': ['default'],
+                                          'suites': ['smoke'], 'control': '4.2.6-bbc-m10',
+                                          'pre_cutoff': '2026-11-10 (borg-zoo#54): recorded before the cutoff'}))
+            self.assertTrue(cat_mod.cells(cat_mod.experiment(marked)))
+
+    def test_the_restarted_experiments_read_explicit_modes(self):
+        for name in ('m8-smoke', 'm10-smoke', 'bbc-explicit-smoke', 'classes-explicit'):
+            exp = cat_mod.experiment(ROOT / f'experiments/{name}.json')
+            self.assertEqual(set(exp['profiles']), {'munchkin-class', 'normal'}, name)
+            for p in exp['profiles']:
+                self.assertTrue(cat_mod.mode_explicit(cat_mod.catalogue()['profiles'][p]), name)
+            self.assertEqual(exp['specimens'], ['4.2.6-bbc-9ca98661'] if name.startswith(('bbc', 'classes')) else exp['specimens'])
+
+    def test_straddling_version_pairings_are_excluded(self):
+        exp = cat_mod.experiment(ROOT / 'experiments/classes-m9-m10.json')
+        specs = cat_mod.catalogue()['specimens']['specimens']
+        cells = [dict(cell(s, seed, 'turn_cap'), suite='classes-1800')
+                 for s in exp['specimens'] for seed in (11, 29)]
+        rows = {r['specimen']: r for r in stats.analyse(exp, cells, specs)['classes-1800']}
+        # 4.2.6 (pre) is the control; the M9/M10 arms (post) pair nothing across the cutoff
+        self.assertIsNone(rows['4.2.6-bbc-m9']['vs_version'])
+        self.assertIsNone(rows['4.2.6-bbc-m10']['vs_version'])
+        # an old snapshot without the mode_side field still excludes, via the commit set
+        stripped = {name: {k: v for k, v in s.items() if k != 'mode_side'} for name, s in specs.items()}
+        rows = {r['specimen']: r for r in stats.analyse(exp, cells, stripped)['classes-1800']}
+        self.assertIsNone(rows['4.2.6-bbc-m9']['vs_version'])
+        # same-side arms still pair: M9 against M10 under munchkin-class,
+        # and the profiles against each other on each specimen
+        exp2 = cat_mod.experiment(ROOT / 'experiments/m10-smoke.json')
+        cells2 = [dict(cell(s, seed, 'turn_cap'), profile=p)
+                  for s in exp2['specimens'] for p in exp2['profiles'] for seed in (11, 29)]
+        rows2 = {(r['specimen'], r['profile']): r for r in stats.analyse(exp2, cells2, specs)['smoke']}
+        self.assertIsNotNone(rows2[('4.2.6-bbc-m10', 'munchkin-class')]['vs_version'])
+        self.assertIsNotNone(rows2[('4.2.6-bbc-m10', 'normal')]['vs_profile'])
+        self.assertIsNone(rows2[('4.2.6-bbc-m9', 'munchkin-class')]['vs_version'])  # the control arm
+
+    def test_the_site_labels_and_explains_the_cutoff(self):
+        exp = cat_mod.experiment(ROOT / 'experiments/classes-m9-m10.json')
+        specs = cat_mod.catalogue()['specimens']['specimens']
+        pre = site.cutoff_note(exp, specs, '2026-11-08 00:00 UTC')
+        self.assertIn('pre-cutoff', pre)
+        self.assertIn(cat_mod.MODE_CUTOFF[:9], pre)
+        # the run recorded on the cutoff date itself, on the old harness pin, is pre-cutoff too
+        pre, straddles = site.run_cutoff(exp, specs, cat_mod.MODE_CUTOFF_DATE + ' 14:32 UTC', 'fc9d97cb' + '0' * 31)
+        self.assertTrue(pre)
+        self.assertTrue(straddles)  # the original (pre) against M9/M10 (post)
+        pre, _ = site.run_cutoff(exp, specs, cat_mod.MODE_CUTOFF_DATE + ' 14:32 UTC', cat_mod.MODE_CUTOFF_HARNESS)
+        self.assertTrue(pre)  # the experiment's own pre_cutoff marker forces the label
+        grid = cat_mod.experiment(ROOT / 'experiments/classes-explicit.json')
+        pre, straddles = site.run_cutoff(grid, specs, cat_mod.MODE_CUTOFF_DATE + ' 15:00 UTC',
+                                         cat_mod.MODE_CUTOFF_HARNESS)
+        self.assertFalse(pre)  # same day, new harness pin, no marker: post-cutoff
+        self.assertFalse(straddles)  # one specimen, one side
+        # a post-cutoff run of a same-side experiment says nothing
+        exp2 = cat_mod.experiment(ROOT / 'experiments/bbc-explicit-smoke.json')
+        self.assertEqual(site.cutoff_note(exp2, specs, '2026-11-11 00:00 UTC', cat_mod.MODE_CUTOFF_HARNESS), '')
+        # a pre-cutoff marker forces the label regardless of the date
+        exp3 = dict(exp2, pre_cutoff='2026-11-10 (borg-zoo#54): recorded before the cutoff')
+        self.assertIn('pre-cutoff', site.cutoff_note(exp3, specs, '2026-11-11 00:00 UTC',
+                                                     cat_mod.MODE_CUTOFF_HARNESS))
 
 
 class StallTest(unittest.TestCase):

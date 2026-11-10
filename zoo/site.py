@@ -4,6 +4,7 @@ import json
 import shutil
 from pathlib import Path
 
+from . import catalogue as cat_mod
 from . import stats
 
 CSS = """
@@ -227,9 +228,48 @@ def arm_label(meta, specimen, profile):
     return label
 
 
+def run_cutoff(exp, specimens, completed, harness_commit=''):
+    """(pre_cutoff, straddles) for one recorded run: pre_cutoff is true when
+    the run was recorded before the mode cutoff (borg-zoo#54) - before
+    2026-11-10, or that same day on the pre-restart harness pin (runs
+    collected on the cutoff date itself, e.g. classes-m9-m10 run
+    42816432188). straddles, when the experiment's better-borg-c arms sit on
+    both sides of the cutoff, so the same profile name is a different game
+    across arms and the cross-version pairings are suppressed."""
+    sides = {name: cat_mod.mode_side(specimens.get(name, {})) for name in exp['specimens']}
+    present = {side for side in sides.values() if side}
+    pre = (bool(exp.get('pre_cutoff')) or completed[:10] < cat_mod.MODE_CUTOFF_DATE
+           or (completed[:10] == cat_mod.MODE_CUTOFF_DATE
+               and harness_commit and harness_commit != cat_mod.MODE_CUTOFF_HARNESS))
+    return pre, len(present) > 1
+
+
+def cutoff_note(exp, specimens, completed, harness_commit=''):
+    """The one-paragraph mode-cutoff statement a run page shows: the cutoff
+    itself, a pre-cutoff label when the run predates it, and what that does
+    to its comparisons."""
+    pre, straddles = run_cutoff(exp, specimens, completed, harness_commit)
+    if not pre and not straddles:
+        return ''
+    cut = cat_mod.MODE_CUTOFF[:9]
+    lines = [f'<p class="note"><strong>Mode cutoff {cut} (better-borg-c PR 302, '
+             f'{cat_mod.MODE_CUTOFF_DATE}, borg-zoo#54):</strong> from that commit '
+             '<code>borg_munchkin_by_class</code> defaults to TRUE, so specimens before it do not carry the '
+             'class rule and the same profile name plays a different game on either side. Version pairings '
+             'across the cutoff are not computed.']
+    if pre:
+        lines.append(' <strong>These results are pre-cutoff:</strong> recorded before the explicit mode profiles '
+                     '(<code>normal</code>, <code>munchkin-class</code>, <code>munchkin-on</code>, '
+                     '<code>lunal</code>) existed; their <code>default</code> arms mean whatever each build\'s '
+                     'own defaults said. Kept as recorded, excluded from comparisons that straddle the cutoff.')
+    lines.append('</p>')
+    return ''.join(lines)
+
+
 def run_page(meta, cells):
     exp = meta['experiment']
-    analysis = stats.analyse(exp, cells)
+    specimens = meta['catalogue']['specimens']
+    analysis = stats.analyse(exp, cells, specimens)
     parts = [f'<p><a href="../../index.html">All experiments</a></p>',
              f'<h1>{esc(exp["name"])}</h1><p>{esc(exp.get("description", ""))}</p>',
              (f'<p><strong>Prespecified:</strong> {esc(exp["prespecified"])}</p>' if exp.get('prespecified') else ''),
@@ -241,6 +281,8 @@ def run_page(meta, cells):
              'seeds where both arms finished. Two outcomes are measured: <strong>death</strong> before the turn '
              f'cap, and <strong>alive at the cap having reached dungeon level {stats.DEPTH_GOAL}</strong> '
              '(survived and made progress). The owner has not yet chosen which one is primary.</p>']
+    parts.append(cutoff_note(exp, specimens, meta.get('completed', ''),
+                             (meta.get('catalogue') or {}).get('harness', {}).get('commit', '')))
     for suite, rows in analysis.items():
         s = meta['catalogue']['suites'][suite]
         parts.append(f'<h2>Suite {esc(suite)}</h2><p class="muted">{esc(s["description"])} · '
