@@ -1,17 +1,17 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "classes-m8-munchkin",
-  "description": "better-borg-c M8 and the borg-rs Rust port at M8 on classes-1800, default settings only. Both specimens' default already bakes in the munchkin start by class (M8 carries that as part of its change set), so adding the munchkin-wdr profile here would re-measure the same games: a smoke test on 2026-11-09 found identical play/trace hashes on 3/3 seeds for both.",
+  "description": "better-borg-c M8 and the borg-rs Rust port at M8 on classes-1800, product default only. Both specimens' default already bakes in the munchkin start by class (M8 carries that as part of its change set), so adding the munchkin-wdr profile here would re-measure the same games: a smoke test on 2026-11-09 found identical play/trace hashes on 3/3 seeds for both. Profile default renamed munchkin-class at the mode cutoff (2026-11-10, borg-zoo#54): on these specimens the two play the same game.",
   "specimens": [
     "4.2.6-bbc-m8",
     "4.2.6-rs-m8"
   ],
   "profiles": [
-    "default"
+    "munchkin-class"
   ],
   "suites": [
     "classes-1800"
   ],
   "control": "4.2.6-bbc-m8",
-  "control_profile": "default"
+  "control_profile": "munchkin-class"
 }

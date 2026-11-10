@@ -13,6 +13,16 @@ experiment on fresh seeds (`classes-1800-b`, `warriors-600`).
 Update this file when an experiment finishes: add its finding, and edit or
 remove any line it overturns.
 
+**Mode cutoff (2026-11-10, borg-zoo#54).** Everything below was measured
+before the explicit mode profiles existed. Each recorded run is labelled
+pre-cutoff on its page; version pairings that straddle better-borg-c
+`fd683ced` (PR 302, where `borg_munchkin_by_class` became the default) are
+excluded. Findings backed only by within-version profile comparisons
+survive the cutoff as they are; findings that read across it are noted.
+The restarted experiments are `bbc-explicit-smoke` and `classes-explicit`
+on `4.2.6-bbc-9ca98661`; `default` is no longer a profile any new
+experiment may use.
+
 ## C Borg: better-borg-c milestones
 
 **No single milestone from M5 to M7 lowers deaths measurably on its own.**
@@ -30,6 +40,11 @@ remove any line it overturns.
 - **The milestones change play a great deal** (only 47 of 1,800 games are identical between M6 and M7), but the deaths each one prevents and causes roughly cancel.
 - **M7's source equals `4.2.6-bbc-ca3cd62`'s;** only docs and a tool differ. `m7-smoke` (run 42518589151) confirmed identical play on 3 of 3 seeds.
 - **Determinism:** the original and M6 arms reproduced their `classes-m6` games on 3,599 of 3,600 seeds. The exception is one wall timeout.
+- **Straddling rows:** the original/M6/M7 arms sit before the mode cutoff and the `munchkin-by-class` arm after it
+  (better-borg-c `fd683ced`, PR 302), so under the new rules those cross rows are no longer computed; the table's
+  last row stands only as a descriptive single arm. The confirmed statement that the munchkin start by class helps
+  rests on [`munchkin-by-class-confirm`](../experiments/munchkin-by-class-confirm.json) below, which compares
+  profiles within one version and does not straddle.
 
 **The munchkin start by class is the one change with a confirmed effect.**
 [`munchkin-by-class-confirm`](../experiments/munchkin-by-class-confirm.json), run 42498695402, on the fresh `classes-1800-b`, prespecified:
@@ -129,10 +144,28 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
-- **M9 vs M10 on the standard 100,000-turn suite: dispatched, not yet collected.**
+- **Mode cutoff restart (borg-zoo#54, 2026-11-10):** existing results were polluted by the
+  `borg_munchkin_by_class` default drift, so the zoo moved to explicit mode profiles (`normal`,
+  `munchkin-class`, `munchkin-on`, `lunal`), a new specimen and harness pin (`4.2.6-bbc-9ca98661`:
+  patch units 0100 stair escape, 0101 + correction 0101a Lunal take gated on the runtime mode),
+  pre-cutoff labelling and straddling-comparison exclusion. The restarted class grid is
+  [`classes-explicit`](../experiments/classes-explicit.json) (munchkin-class against normal on the new
+  specimen); the acceptance smoke is
+  [`bbc-explicit-smoke`](../experiments/bbc-explicit-smoke.json).
+- **The first Lunal arm is deferred.** `borg_self_lunal` enters Lunal only when the Borg is prepared
+  for 15 levels deeper and `maxdepth >= depth + 15` (`borg-think-dungeon.c`); no zoo suite reaches
+  that reliably (the deepest cap is 400k turns, and the zoo has no deep-start mechanism — the
+  runner's `load` hook has no suite field). An arm that never enters the mode would read as neutral,
+  the exact failure borg-zoo#54 fixes. Define it when better-borg-c exposes a deep start the harness
+  can drive (DESIGN.md, open question 10).
+- **M9 vs M10 on the standard 100,000-turn suite: superseded by the mode cutoff.**
   [`classes-m9-m10`](../experiments/classes-m9-m10.json), run 42816432188 (dispatched
-  2026-11-10). At smoke scale (3 seeds, `m9-m10-munchkin-smoke`), M9 and M10 already diverge:
-  seed 11 ends at a different depth/level/HP (M10's local improvements shift an extra
-  Borg-RNG draw there, as better-borg-c's own M10 review doc already reported), and seeds 29/47
-  keep the same final state but a different play hash. Not meaningful at n=3; update this
-  section once the 1,800-seed run lands.
+  2026-11-10), compared the pre-rule original against post-rule M9/M10 under one profile name, so
+  its cross-version pairings straddle better-borg-c `fd683ced` and are no longer computed; the run
+  stays on the results branch, labelled pre-cutoff. At smoke scale (3 seeds,
+  `m9-m10-munchkin-smoke`), M9 and M10 diverge within one specimen: seed 11 ends at a different
+  depth/level/HP (M10's local improvements shift an extra Borg-RNG draw there, as better-borg-c's
+  own M10 review doc already reported), and seeds 29/47 keep the same final state but a different
+  play hash — that comparison is same-version and still valid. The M9-vs-M10 question at
+  classes scale returns as [`m10-smoke`](../experiments/m10-smoke.json), restarted on the explicit
+  profiles (munchkin-class, normal).

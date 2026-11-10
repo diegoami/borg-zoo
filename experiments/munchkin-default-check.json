@@ -13,5 +13,6 @@
   "suites": [
     "classes-18"
   ],
-  "control": "4.2.6-bbc-ca3cd62"
+  "control": "4.2.6-bbc-ca3cd62",
+  "pre_cutoff": "2026-11-10 (borg-zoo#54): recorded before the mode cutoff. Its arms straddle better-borg-c fd683ced: ca3cd62 predates the borg_munchkin_by_class setting, munchkin-by-class (fd683ced) defaults it TRUE, so its default-vs-munchkin-wdr identity check read across the boundary. The file stays as run; the site labels these runs pre-cutoff and excludes their straddling comparisons. The identity question on explicit profiles is munchkin-default-off (munchkin-class against munchkin-class-off)."
 }

@@ -39,7 +39,9 @@ engine and content packages they run on: `neo-b3-mandos` is full Mandos,
 a Mandos measurement snapshot of one Borg source under the api2 adapter.
 
 **Harness.** better-borg-c's `tools/measure-native.py` and observer at a
-pinned commit (`fc9d97cb` since 2026-11-08; before that `8c23ec0d`, whose
+pinned commit (`9ca98661` since 2026-11-10, the mode-cutoff restart of
+borg-zoo#54, which is also specimen `4.2.6-bbc-9ca98661`'s ref; before that
+`fc9d97cb` since 2026-11-08, and before that `8c23ec0d`, whose
 watchdog could abort a run on a split UTF-8 character, better-borg-c#220). For each specimen it exports the source with `git archive`,
 applies the observer instrumentation and builds a Debug binary with the test
 frontend. For each cell it runs the binary on the seed with the turn cap and
@@ -202,6 +204,35 @@ overridden. The runner always adds
 `borg_cheat_death = FALSE` and `borg_respawn_winners = FALSE`. After each run
 the zoo compares the observer's `BORG_OPTIONS` line with the profile; any
 difference turns the run into a `config_error`.
+
+**Mode profiles and the cutoff (borg-zoo#54).** A profile that names no
+mode setting leaves every mode on the build's own default, and
+`borg_munchkin_by_class` defaults to TRUE only from better-borg-c
+`fd683ced` (PR 302, 2026-11-10) — so the same profile name plays a
+different game on either side of that commit, and the observer cannot
+catch it, because it only verifies named settings. Four profiles name the
+modes explicitly: `normal` (all four mode flags off), `munchkin-class`
+(the product default for Warrior/Druid/Ranger), `munchkin-on`, and
+`lunal`. Every better-borgc-kind specimen (and `angband-e473-original`)
+declares which side of the cutoff it is on (`mode_side` in
+`catalogue/specimens.json`; pre-catalogue run snapshots are resolved from
+the commit set in `zoo/catalogue.py`). Three rules follow:
+
+- `python -m zoo plan` rejects `default` (any profile that leaves the
+  modes unnamed) in an experiment that touches a post-cutoff
+  better-borg-c specimen, and rejects a profile naming
+  `borg_munchkin_by_class` for a specimen that predates the setting
+  (older builds ignore the unknown line; every cell would be a
+  `config_error`). An experiment recorded before the cutoff keeps its
+  arms under an explicit `"pre_cutoff": "<date and reason>"` note.
+- Version pairings (`vs_version`) between specimens on opposite sides of
+  the cutoff are not computed (`zoo/stats.py`).
+- Run pages label pre-cutoff results (recorded before 2026-11-10, or
+  marked `pre_cutoff`) and state the cutoff; the Detailed and Versions
+  tabs carry a standing note. Existing results stay on the `results`
+  branch untouched (append-only); the restarted experiments are
+  `bbc-explicit-smoke` and `classes-explicit`, on
+  `4.2.6-bbc-9ca98661`.
 
 **Suite.** Seeds, cap, wall and stall limits, birth rule, and whether
 checkpoint saves are kept. The birth rules:
@@ -407,3 +438,14 @@ from M8 onward inherits that default unchanged, so **before adding a
    wants it from; that is a change request to route to that harness's own
    repository, the same way borg-reborn-rs's was routed here (#30), not
    something the zoo can add on its own.
+10. **A deep start for the Lunal arm.** The `lunal` profile is in the
+    catalogue, but `borg_self_lunal` only enters the mode when the Borg is
+    prepared for 15 levels deeper and has reached `maxdepth >= depth + 15`
+    (`borg-think-dungeon.c`), which the zoo's suites (20k-400k turns) only
+    rarely offer. Measuring it now would repeat the exact failure this
+    issue fixes: an arm that never enters the mode, reading as neutral.
+    Deferred until better-borg-c exposes a deep start the harness can
+    drive (the runner has a `load` hook for a save file; the zoo's suites
+    have no field for one yet), or a 400k+ run is shown to enter the mode
+    reliably (check the trace for Lunal notes first, cheaply, before
+    scheduling any classes-scale Lunal run).

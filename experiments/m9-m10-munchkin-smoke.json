@@ -1,17 +1,18 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "m9-m10-munchkin-smoke",
-  "description": "Smoke check: is munchkin-wdr a no-op on M9 and M10, same as confirmed on M8? Both inherit the munchkin-by-class default from M8 without changing it, so the prior is strong - this is cheap confirmation before spending a full classes-1800 run on it.",
+  "description": "Smoke check: is munchkin-wdr a no-op on M9 and M10, same as confirmed on M8? Both inherit the munchkin-by-class default from M8 without changing it, so the prior is strong - this is cheap confirmation before spending a full classes-1800 run on it. Profile default renamed munchkin-class at the mode cutoff (2026-11-10, borg-zoo#54): on these specimens the two play the same game.",
   "specimens": [
     "4.2.6-bbc-m9",
     "4.2.6-bbc-m10"
   ],
   "profiles": [
-    "default",
+    "munchkin-class",
     "munchkin-wdr"
   ],
   "suites": [
     "smoke"
   ],
-  "control": "4.2.6-bbc-m9"
+  "control": "4.2.6-bbc-m9",
+  "control_profile": "munchkin-class"
 }

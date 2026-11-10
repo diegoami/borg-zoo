@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-explicit",
+  "description": "The restarted class grid (borg-zoo#54): the mode cutoff's two faces on one specimen - better-borg-c at 9ca98661 under munchkin-class (Warriors, Druids and Rangers stair-scum at depth 6, the product default) against normal (every mode pinned off) - for every class and race (classes-1800). Replaces classes-m9-m10's cross-boundary comparison, which paired a pre-rule original against post-rule milestones under one profile name and measured the mode drift instead of the milestones.",
+  "specimens": [
+    "4.2.6-bbc-9ca98661"
+  ],
+  "profiles": [
+    "munchkin-class",
+    "normal"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-bbc-9ca98661",
+  "control_profile": "munchkin-class"
+}
