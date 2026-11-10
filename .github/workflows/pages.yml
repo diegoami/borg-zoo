@@ -14,7 +14,11 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  # Queue instead of cancelling: compare's collect job dispatches a build for
+  # every finished run, so a burst of merges plus dispatches kept cancelling
+  # the deploy in flight (2026-11-10: three merges in 20 minutes left the site
+  # a merge behind, with the last deploy ending "Deployment cancelled").
+  cancel-in-progress: false
 
 jobs:
   build:

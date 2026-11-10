@@ -308,7 +308,10 @@ The record holds:
    failure, never dropped. The job writes `results/<experiment>/<run>/` to
    the `results` branch and dispatches the site build.
 5. **pages** (`.github/workflows/pages.yml`): generates the static site
-   from the results branch and deploys it.
+   from the results branch and deploys it. Deploys queue rather than cancel
+   (`cancel-in-progress: false`): every collect dispatches one, so a
+   cancel-on-progress rule races merges against dispatches and can end with
+   the site older than `main` and no successful deploy to fall back on.
 
 The build and run jobs place the build at the same absolute path, because the
 runner compiles its private user path into the binary. Mandos jobs also set
