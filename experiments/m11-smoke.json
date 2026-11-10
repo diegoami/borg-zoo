@@ -1,0 +1,18 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "m11-smoke",
+  "description": "Milestone 11 smoke: the v11 tag (116 carries, units 0100-0117 with the 0101a mode gate) against milestone 10, on the two explicit mode profiles. The v11 cycle made 17 unconditional shared-code changes and measured no per-mode arm, so this is a build sanity check, not a per-mode result: M10 and M11 under munchkin-class (the product default) and normal. The per-mode batch is the class grid (classes-explicit).",
+  "specimens": [
+    "4.2.6-bbc-m10",
+    "4.2.6-bbc-m11"
+  ],
+  "profiles": [
+    "munchkin-class",
+    "normal"
+  ],
+  "suites": [
+    "smoke"
+  ],
+  "control": "4.2.6-bbc-m10",
+  "control_profile": "munchkin-class"
+}
