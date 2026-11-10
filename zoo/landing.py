@@ -156,46 +156,52 @@ def echarts_scatter(points, x_label, y_label, compact=False, y_fmt='pct', x_max=
         for k, i in enumerate(indices[1:]):
             dot = out[i][0]
             out[i][0] = (dot[0] + 9 * k, dot[1] - 9 * k)
+    # Dots are obstacles, not just labels: a label may not be drawn across
+    # another setup's dot (in the dense 60-70% cluster the neighbours' dots
+    # sat on top of "Vanilla", which reads as a rendering glitch, not a
+    # label). Occupancy is 2D; labels always run to the right of their dot
+    # into the chart's right margin, and when the spot is taken they step
+    # away vertically - nearest first, because a label two gridlines from
+    # its dot reads as someone else's.
+    text_px = lambda label: 3 + 7.6 * len(label)  # noqa: E731  (11px semibold sans)
+
+    def rect(lx, ly, text_w):
+        return (lx, lx + text_w, ly - 8, ly + 6)
+
+    def collisions(r):
+        return sum(1 for o in placed
+                   if not (r[1] <= o[0] or o[1] <= r[0] or r[3] <= o[2] or o[3] <= r[2]))
+
+    dot_pad = 8  # symbolSize 10 (r=5) plus a little air
+    placed = [(d[0] - dot_pad, d[0] + dot_pad, d[1] - dot_pad, d[1] + dot_pad)
+              for d, *_rest in out]
     for i, (dot, label, color, title, _side, (xv, yv)) in enumerate(out):
         px0, py0 = dot
         offset = None
         if labeled and label:
-            text_w = 6.4 * len(label)
-            side = 'end' if px0 + 10 + text_w > width - 2 else 'start'
-            lx = px0 + 10 if side == 'start' else px0 - 10
-            best = None
-            for tried_side in (side, 'end' if side == 'start' else 'start'):
-                lx2 = px0 + 10 if tried_side == 'start' else px0 - 10
-                for off in (0, -12, 12, -24, 24, -36, 36):  # nearest first: a
-                    # label two gridlines away reads as someone else's
-                    ly = py0 + off
-                    band = (ly - 7, ly + 5)
-                    if band[0] < plot_t or band[1] > plot_t + plot_h:
-                        continue
-                    overlaps = sum(1 for lo, hi in placed if not (band[1] < lo or band[0] > hi))
-                    if not overlaps:
-                        best = (tried_side, lx2, ly)
-                        placed.append(band)
-                        break
-                if best:
+            text_w = text_px(label)
+            # the right margin is sized for labels: keep the whole word inside
+            lx = min(px0 + 10, width - 2 - text_w)
+            ladder = [0]
+            step = 0
+            while step + 15 < plot_h / 2:
+                step += 15
+                ladder += [step, -step]
+            scored = []
+            for off in ladder:
+                ly = py0 + off
+                if ly - 8 < plot_t or ly + 6 > plot_t + plot_h:
+                    continue
+                r = rect(lx, ly, text_w)
+                n = collisions(r)
+                if not n:
+                    scored = [(0, abs(off), ly, r)]
                     break
-            if not best:  # congested: take the offset with the fewest overlaps
-                scored = []
-                for off in range(-int(plot_h / 2), int(plot_h / 2) + 1, 5):
-                    ly = py0 + off
-                    band = (ly - 7, ly + 5)
-                    if band[0] < plot_t or band[1] > plot_t + plot_h:
-                        continue
-                    overlaps = sum(1 for lo, hi in placed if not (band[1] < lo or band[0] > hi))
-                    scored.append((overlaps, abs(off), ly))
-                if scored:
-                    _, _, ly = min(scored)
-                    best = (side, lx, ly)
-                    placed.append((ly - 7, ly + 5))
-            if best:
-                tried_side, lx, ly = best
+                scored.append((n, abs(off), ly, r))
+            if scored:
+                _, _, ly, r = min(scored)
+                placed.append(r)
                 offset = [round(lx - px0, 1), round(ly - py0, 1)]
-                out[i][4] = tried_side
         data.append({'value': [round(100 * xv, 2), round(yv, 3)], 'name': label,
                      'itemStyle': {'color': color}, 't': title,
                      'label': {'offset': offset or [8, 0]}})
@@ -239,12 +245,20 @@ def echarts_scatter(points, x_label, y_label, compact=False, y_fmt='pct', x_max=
     n = _CHART_SEEN.get(h, 0)
     _CHART_SEEN[h] = n + 1
     dom = h if n == 0 else f'{h}-{n}'
+    # the JS literals go through json.dumps, not hand-written quotes: the
+    # selector carries its own quotes, and building it by hand shipped
+    # querySelector("script[data-chart="h"]") - a syntax error that killed
+    # every init script on the page and left all charts empty (live bug,
+    # 2026-11-10). json.dumps escapes for JS, so this cannot recur.
+    sel = json.dumps(f'script[data-chart="{dom}"]')
+    dom_lit = json.dumps(dom)
+    renderer = json.dumps({'renderer': 'svg'})
     return (f'<div id="{dom}" class="chart-echarts" style="width:{width}px;height:{height}px"></div>'
             f'<script type="application/json" data-chart="{dom}">{cfg}</script>'
             f'<script>window.addEventListener("DOMContentLoaded", () => {{'
-            f'const cfg = JSON.parse(document.querySelector("script[data-chart=\"{dom}\"]").textContent;'
+            f'const cfg = JSON.parse(document.querySelector({sel}).textContent);'
             f'cfg.tooltip.formatter = p => (p.data && p.data.t) || p.name;'
-            f'echarts.init(document.getElementById("{dom}"), null, {{"renderer": "svg"}}).setOption(cfg);'
+            f'echarts.init(document.getElementById({dom_lit}), null, {renderer}).setOption(cfg);'
             f'}});</script>')
 
 

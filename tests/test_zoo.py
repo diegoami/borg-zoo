@@ -1,5 +1,7 @@
 import json
 import re
+import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -667,6 +669,36 @@ class LandingTest(unittest.TestCase):
         cfg = next(iter(cfgs.values()))
         self.assertEqual(cfg['series'][0]['data'][0]['name'], 'Vanilla')
         self.assertEqual(cfg['xAxis']['max'], 110.0)  # survivability 100% -> rate 1.0, auto max 1.1
+
+    @unittest.skipUnless(shutil.which('node'), 'node is not installed')
+    def test_every_emitted_chart_init_script_parses_as_js(self):
+        # the charts shipped empty on the live site because a hand-built
+        # selector produced querySelector("script[data-chart="h"]") - a
+        # syntax error, so every init script on the page died silently.
+        # Syntax-check the scripts the emitter actually writes.
+        runs = [({'experiment': {'name': 'x', 'suites': ['classes-1800']},
+                  'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'},
+                 [dict(cell('4.2.6', s, 'turn_cap' if s % 3 else 'death'), profile='default')
+                  for s in range(60)], None),
+                ({'experiment': {'name': 'y', 'suites': ['classes-1800']},
+                  'run_id': 'r2', 'completed': '2026-11-09 01:00 UTC'},
+                 [dict(cell('4.2.6', s, 'turn_cap'), profile='munchkin-wdr')
+                  for s in range(60)], None)]
+        html = landing.card_exemplars(runs)
+        scripts = re.findall(r'<script>(window\.addEventListener.*?)</script>', html, re.S)
+        self.assertTrue(scripts)
+        for script in scripts:
+            with tempfile.NamedTemporaryFile('w', suffix='.js', delete=False) as fh:
+                fh.write(script)
+                path = fh.name
+            try:
+                done = subprocess.run(['node', '--check', path], capture_output=True, text=True)
+            finally:
+                Path(path).unlink()
+            self.assertEqual(done.returncode, 0, f'{done.stderr}\n--- script ---\n{script}')
+        # and the selector in it still names the chart's own element
+        for dom, cfg in landing.chart_configs(html).items():
+            self.assertIn(json.dumps(f'script[data-chart="{dom}"]'), html)
 
     def test_a_smoke_scale_setup_never_becomes_a_dashboard_point(self):
         # a 3-seed smoke run is a build sanity check, not evidence: it gets no
