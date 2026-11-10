@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "switches-screen-v11",
+  "description": "Screening pass over the borg.txt switches that can change play, on v11 under the product class rule: dynamic calculations, enchant limit (5 and 20), town scumming, inventory swaps, risky play, chest risk and unique-waiting, against the plain munchkin-class arm. confirm-200 (200 fixed-birth seeds, 100,000 turns) - a rank ordering, not a result; the arms that move go to a full class grid.",
+  "specimens": [
+    "4.2.6-bbc-m11"
+  ],
+  "profiles": [
+    "munchkin-class",
+    "sw-dynamic-calcs",
+    "sw-enchant-20",
+    "sw-enchant-5",
+    "sw-no-self-scum",
+    "sw-no-swaps",
+    "sw-risky",
+    "sw-chest-2",
+    "sw-kills-uniques"
+  ],
+  "suites": [
+    "confirm-200"
+  ],
+  "control": "4.2.6-bbc-m11",
+  "control_profile": "munchkin-class"
+}

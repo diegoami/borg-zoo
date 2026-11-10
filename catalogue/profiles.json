@@ -253,6 +253,62 @@
         "borg_self_lunal": false,
         "borg_lunal_mode": false
       }
+    },
+    "sw-no-self-scum": {
+      "description": "Town scumming off (borg_self_scum FALSE) with the product class rule (switch screen, borg-zoo switch screen)",
+      "settings": {
+        "borg_munchkin_by_class": true,
+        "borg_self_scum": false
+      }
+    },
+    "sw-no-swaps": {
+      "description": "Inventory swaps off (borg_uses_swaps FALSE) with the product class rule (switch screen, borg-zoo switch screen)",
+      "settings": {
+        "borg_munchkin_by_class": true,
+        "borg_uses_swaps": false
+      }
+    },
+    "sw-risky": {
+      "description": "Risky play on (borg_plays_risky TRUE): dive faster, stand and fight (switch screen, borg-zoo switch screen)",
+      "settings": {
+        "borg_munchkin_by_class": true,
+        "borg_plays_risky": true
+      }
+    },
+    "sw-dynamic-calcs": {
+      "description": "The dynamic-calculation decision model on (borg_uses_dynamic_calcs TRUE) (switch screen, borg-zoo switch screen)",
+      "settings": {
+        "borg_munchkin_by_class": true,
+        "borg_uses_dynamic_calcs": true
+      }
+    },
+    "sw-enchant-20": {
+      "description": "Enchant limit 20 instead of 12 (switch screen, borg-zoo switch screen)",
+      "settings": {
+        "borg_munchkin_by_class": true,
+        "borg_enchant_limit": 20
+      }
+    },
+    "sw-enchant-5": {
+      "description": "Enchant limit 5 instead of 12 (switch screen, borg-zoo switch screen)",
+      "settings": {
+        "borg_munchkin_by_class": true,
+        "borg_enchant_limit": 5
+      }
+    },
+    "sw-chest-2": {
+      "description": "Chest risk tolerance 2 instead of 7 (only very safe chests) (switch screen, borg-zoo switch screen)",
+      "settings": {
+        "borg_munchkin_by_class": true,
+        "borg_chest_fail_tolerance": 2
+      }
+    },
+    "sw-kills-uniques": {
+      "description": "Wait for uniques before diving (borg_kills_uniques TRUE) (switch screen, borg-zoo switch screen)",
+      "settings": {
+        "borg_munchkin_by_class": true,
+        "borg_kills_uniques": true
+      }
     }
   }
 }
