@@ -555,4 +555,4 @@ def build_site(results, out):
     for slug, title, body in landing.class_pages(runs):
         (out / 'classes').mkdir(exist_ok=True)
         (out / 'classes' / f'{slug}.html').write_text(page(title, body, base='../', charts=True))
-    return len(runs)
+    return len(every)

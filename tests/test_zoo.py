@@ -302,7 +302,7 @@ class BorgRsTest(unittest.TestCase):
         self.assertEqual((bbc['tag'], bbc['carries']), ('4.2.6-impact-v8', 88))
         self.assertEqual((bbc['tag'], bbc['carries']), (rs['tag'], rs['carries']))
         self.assertNotEqual(bbc['ref'], rs['ref'])  # same milestone, different repositories
-        exp = cat_mod.experiment(ROOT / 'experiments/m8-smoke.json')
+        exp = cat_mod.experiment(ROOT / 'smoke/m8-smoke.json')
         self.assertTrue(cat_mod.cells(exp))
         exp = cat_mod.experiment(ROOT / 'experiments/classes-m8-munchkin.json')
         self.assertEqual(exp['profiles'], ['munchkin-class'])  # renamed from default at the mode cutoff (#54): same game on M8
@@ -313,7 +313,7 @@ class BorgRsTest(unittest.TestCase):
         m8, m9 = specs['4.2.6-bbc-m8'], specs['4.2.6-bbc-m9']
         self.assertEqual((m9['tag'], m9['carries']), ('4.2.6-impact-v9', 98))
         self.assertEqual(m9['carries'] - m8['carries'], 10)
-        exp = cat_mod.experiment(ROOT / 'experiments/m9-smoke.json')
+        exp = cat_mod.experiment(ROOT / 'smoke/m9-smoke.json')
         self.assertTrue(cat_mod.cells(exp))
 
     def test_bbc_m10_carries_no_new_tracker_fix(self):
@@ -324,11 +324,11 @@ class BorgRsTest(unittest.TestCase):
         self.assertEqual((m10['tag'], m10['carries']), ('4.2.6-impact-v10', 98))
         self.assertEqual(m10['carries'], m9['carries'])
         self.assertNotEqual(m10['ref'], m9['ref'])
-        exp = cat_mod.experiment(ROOT / 'experiments/m10-smoke.json')
+        exp = cat_mod.experiment(ROOT / 'smoke/m10-smoke.json')
         self.assertTrue(cat_mod.cells(exp))
 
     def test_m9_m10_munchkin_is_a_confirmed_no_op_so_classes_comparison_skips_it(self):
-        exp = cat_mod.experiment(ROOT / 'experiments/m9-m10-munchkin-smoke.json')
+        exp = cat_mod.experiment(ROOT / 'smoke/m9-m10-munchkin-smoke.json')
         self.assertEqual(exp['profiles'], ['munchkin-class', 'munchkin-wdr'])
         exp = cat_mod.experiment(ROOT / 'experiments/classes-m9-m10.json')
         self.assertEqual(exp['profiles'], ['default'])
@@ -469,8 +469,8 @@ class ModeCutoffTest(unittest.TestCase):
             self.assertTrue(cat_mod.cells(cat_mod.experiment(marked)))
 
     def test_the_restarted_experiments_read_explicit_modes(self):
-        for name in ('m8-smoke', 'm10-smoke', 'bbc-explicit-smoke', 'classes-explicit'):
-            exp = cat_mod.experiment(ROOT / f'experiments/{name}.json')
+        for name in ('smoke/m8-smoke', 'smoke/m10-smoke', 'smoke/bbc-explicit-smoke', 'experiments/classes-explicit'):
+            exp = cat_mod.experiment(ROOT / f'{name}.json')
             self.assertEqual(set(exp['profiles']), {'munchkin-class', 'normal'}, name)
             for p in exp['profiles']:
                 self.assertTrue(cat_mod.mode_explicit(cat_mod.catalogue()['profiles'][p]), name)
@@ -491,7 +491,7 @@ class ModeCutoffTest(unittest.TestCase):
         self.assertIsNone(rows['4.2.6-bbc-m9']['vs_version'])
         # same-side arms still pair: M9 against M10 under munchkin-class,
         # and the profiles against each other on each specimen
-        exp2 = cat_mod.experiment(ROOT / 'experiments/m10-smoke.json')
+        exp2 = cat_mod.experiment(ROOT / 'smoke/m10-smoke.json')
         cells2 = [dict(cell(s, seed, 'turn_cap'), profile=p)
                   for s in exp2['specimens'] for p in exp2['profiles'] for seed in (11, 29)]
         rows2 = {(r['specimen'], r['profile']): r for r in stats.analyse(exp2, cells2, specs)['smoke']}
@@ -517,7 +517,7 @@ class ModeCutoffTest(unittest.TestCase):
         self.assertFalse(pre)  # same day, new harness pin, no marker: post-cutoff
         self.assertFalse(straddles)  # one specimen, one side
         # a post-cutoff run of a same-side experiment says nothing
-        exp2 = cat_mod.experiment(ROOT / 'experiments/bbc-explicit-smoke.json')
+        exp2 = cat_mod.experiment(ROOT / 'smoke/bbc-explicit-smoke.json')
         self.assertEqual(site.cutoff_note(exp2, specs, '2026-11-11 00:00 UTC', cat_mod.MODE_CUTOFF_HARNESS), '')
         # a pre-cutoff marker forces the label regardless of the date
         exp3 = dict(exp2, pre_cutoff='2026-11-10 (borg-zoo#54): recorded before the cutoff')
@@ -1168,14 +1168,14 @@ class StatsTest(unittest.TestCase):
 
 class EndToEndTest(unittest.TestCase):
     def test_collect_and_site(self):
-        exp = cat_mod.experiment(ROOT / 'experiments/milestones-smoke.json')
+        exp = cat_mod.experiment(ROOT / 'smoke/milestones-smoke.json')
         with tempfile.TemporaryDirectory() as tmp:
             tmp = Path(tmp)
             (tmp / 'cells').mkdir()
             records = [cell(s, seed, 'death' if (s == '4.2.6' and seed == 11) else 'turn_cap')
                        for s in exp['specimens'] for seed in (11, 29)]
             (tmp / 'cells/a.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in records))
-            main(['collect', '--experiment', str(ROOT / 'experiments/milestones-smoke.json'),
+            main(['collect', '--experiment', str(ROOT / 'smoke/milestones-smoke.json'),
                   '--cells', str(tmp / 'cells'), '--results', str(tmp / 'results'), '--run-id', 't-1'])
             run = tmp / 'results/milestones-smoke/t-1'
             cells = [json.loads(x) for x in (run / 'cells.jsonl').read_text().splitlines()]
@@ -1189,14 +1189,14 @@ class EndToEndTest(unittest.TestCase):
             self.assertNotIn('same version', page)
 
     def test_site_renders_milestones_when_present(self):
-        exp = cat_mod.experiment(ROOT / 'experiments/milestones-smoke.json')
+        exp = cat_mod.experiment(ROOT / 'smoke/milestones-smoke.json')
         with tempfile.TemporaryDirectory() as tmp:
             tmp = Path(tmp)
             (tmp / 'cells').mkdir()
             records = [dict(cell(s, seed, 'turn_cap'), milestones=[{'turn': 5000, 'level': 10, 'max_depth': 4}])
                        for s in exp['specimens'] for seed in (11, 29)]
             (tmp / 'cells/a.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in records))
-            main(['collect', '--experiment', str(ROOT / 'experiments/milestones-smoke.json'),
+            main(['collect', '--experiment', str(ROOT / 'smoke/milestones-smoke.json'),
                   '--cells', str(tmp / 'cells'), '--results', str(tmp / 'results'), '--run-id', 't-1'])
             self.assertEqual(site.build_site(tmp / 'results', tmp / 'site'), 1)
             page = (tmp / 'site/runs/milestones-smoke/t-1/index.html').read_text()

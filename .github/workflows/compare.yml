@@ -12,7 +12,7 @@ on:
       experiment:
         description: Experiment file
         required: true
-        default: experiments/milestones-smoke.json
+        default: smoke/milestones-smoke.json
       arm:
         description: 'One arm only, SPECIMEN:PROFILE (empty = every arm)'
         required: false
