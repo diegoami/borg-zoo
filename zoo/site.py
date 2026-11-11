@@ -524,7 +524,10 @@ def build_site(results, out):
     out.mkdir(parents=True)
     every = load_runs(results) if Path(results).exists() else []
     smoke = cat_mod.smoke_names()
-    runs = [r for r in every if r[0]['experiment']['name'] not in smoke]
+    # The analysis pages see every run: a setup with nothing bigger than a
+    # smoke run is still listed, marked "smoke-scale only - not plotted", and a
+    # full run always outranks a smoke one. Only the run lists are split.
+    runs = every
     rows, smoke_rows = [], []
     for meta, cells, src in every:
         target = out / 'runs' / meta['experiment']['name'] / meta['run_id']
