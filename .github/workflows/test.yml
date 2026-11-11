@@ -14,4 +14,11 @@ jobs:
       - uses: actions/checkout@v4
       - run: python3 -m unittest discover -s tests -v
       - name: Every experiment plans against the catalogue
-        run: for e in experiments/*.json; do python3 -m zoo plan --experiment "$e"; done
+        run: for e in experiments/*.json smoke/*.json; do python3 -m zoo plan --experiment "$e"; done
+      - name: Every arm of an experiment plans on its own
+        run: |
+          for e in experiments/*.json; do
+            python3 -m zoo arms --experiment "$e" | while read -r arm; do
+              python3 -m zoo plan --experiment "$e" --arm "$arm" > /dev/null
+            done
+          done

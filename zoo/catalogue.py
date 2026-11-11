@@ -330,6 +330,37 @@ def expected_options(profile):
     return {name: int(value) for name, value in profile['settings'].items()}
 
 
+def parse_arm(text):
+    """'specimen:profile' -> (specimen, profile)."""
+    specimen, sep, profile = (text or '').partition(':')
+    if not sep or not specimen or not profile:
+        raise ValueError(f'arm must be SPECIMEN:PROFILE, got {text!r}')
+    return specimen, profile
+
+
+def arms(exp):
+    """Every arm (specimen, profile) of an experiment, in order."""
+    return [(s, p) for s in exp['specimens'] for p in exp['profiles']]
+
+
+def load_experiment(path, arm=None, cat=None):
+    """The experiment file, validated whole; with `arm` ("specimen:profile"),
+    narrowed to that one arm. A narrowed experiment keeps the experiment's
+    name as its tag, so its results sit beside the other arms' of the same
+    experiment and the dashboard consolidates them; 'full' keeps the whole
+    definition for that step."""
+    cat = cat or catalogue()
+    exp = experiment(path, cat)
+    if not arm:
+        return exp
+    specimen, profile = parse_arm(arm)
+    if (specimen, profile) not in arms(exp):
+        raise ValueError(f'{arm} is not an arm of {exp["name"]}')
+    full = {k: v for k, v in exp.items() if k != 'full'}
+    return {**exp, 'specimens': [specimen], 'profiles': [profile], 'control': specimen,
+            'control_profile': profile, 'arm': f'{specimen}:{profile}', 'full': full}
+
+
 def cells(exp, cat=None):
     cat = cat or catalogue()
     out = []

@@ -26,6 +26,19 @@ On GitHub: **Actions → compare → Run workflow**, then choose the experiment
 file. The workflow builds each specimen once, runs the cells in parallel
 jobs, appends the results to the `results` branch and rebuilds the site.
 
+A big experiment is better run one arm at a time: `python3 -m zoo arms
+--experiment experiments/F.json` lists the arms (`SPECIMEN:PROFILE`), and
+each is dispatched with the `arm` input. Every arm run keeps the experiment's
+name as its tag and appends its own run to the `results` branch; the site
+merges the arm runs of a tag into one experiment page and says where they
+differ (date, harness commit, compiler). A timeout then costs one arm, not the
+experiment.
+
+**Smoke checks** (a milestone or head builds and plays) live in
+[`smoke/`](smoke/), not in `experiments/`. **Actions → smoke → Run workflow**
+runs one; its cells go to the separate `smoke-results` branch and never reach
+the dashboard.
+
 Locally (under the shared validation lock if other sessions use this machine):
 
 ```sh

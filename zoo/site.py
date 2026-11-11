@@ -222,8 +222,66 @@ def load_runs(results):
         cells_path = meta_path.parent / 'cells.jsonl'
         cells = [json.loads(line) for line in cells_path.read_text().splitlines() if line.strip()]
         runs.append((meta, cells, meta_path.parent))
+    runs = consolidate(runs)
     runs.sort(key=lambda r: r[0].get('completed', ''), reverse=True)
     return runs
+
+
+def consolidate(runs):
+    """Merge the single-arm runs of one experiment tag into one run.
+
+    A run started with `--arm` holds one specimen x profile of an experiment
+    and keeps the experiment name as its tag. Here every such run of a tag
+    becomes one run of the experiment, so the tables, pairing and landing
+    page work as for a whole-experiment run. Whole-experiment runs pass
+    through unchanged. When a cell appears in more than one arm run of the
+    tag (an arm re-run), the newest wins. The merged meta lists its parts,
+    because arms from different workflow runs may differ in compiler,
+    machine, date or harness commit (RULES.md 7)."""
+    groups, out = {}, []
+    for run in runs:
+        exp = run[0]['experiment']
+        if exp.get('arm') and exp.get('full'):
+            groups.setdefault(exp['name'], []).append(run)
+        else:
+            out.append(run)
+    for name, parts in groups.items():
+        parts.sort(key=lambda r: r[0].get('completed', ''))
+        full = parts[-1][0]['experiment']['full']
+        present = {tuple(p[0]['experiment']['arm'].split(':', 1)) for p in parts}
+        specimens = [x for x in full['specimens'] if any(x == a[0] for a in present)]
+        profiles = [x for x in full['profiles'] if any(x == a[1] for a in present)]
+        control = full['control'] if full['control'] in specimens else specimens[0]
+        cprofile = full.get('control_profile', full['profiles'][0])
+        if cprofile not in profiles:
+            cprofile = profiles[0]
+        cells, catalogue = {}, {'specimens': {}, 'profiles': {}, 'suites': {}}
+        for meta, part_cells, _ in parts:
+            for c in part_cells:
+                cells[cat_mod.cell_key(c)] = c
+            for k in catalogue:
+                catalogue[k].update(meta['catalogue'].get(k, {}))
+            catalogue['harness'] = meta['catalogue'].get('harness')
+        newest = parts[-1][0]
+        meta = {**newest,
+                'experiment': {**full, 'specimens': specimens, 'profiles': profiles, 'control': control,
+                               'control_profile': cprofile},
+                'catalogue': catalogue,
+                'run_id': '+'.join(p[0]['run_id'] for p in parts),
+                'environment': {k: sorted({v for p in parts for v in p[0].get('environment', {}).get(k, [])})
+                                for k in ('compilers', 'platforms')},
+                'missing_cells': sum(p[0].get('missing_cells', 0) for p in parts),
+                'consolidated_runs': [{'run_id': p[0]['run_id'], 'run_url': p[0].get('run_url', ''),
+                                       'arm': p[0]['experiment']['arm'], 'completed': p[0].get('completed', ''),
+                                       'zoo_commit': p[0].get('zoo_commit', ''),
+                                       'harness': (p[0]['catalogue'].get('harness') or {}).get('commit', '')}
+                                      for p in parts]}
+        order = {(sp, pr): i for i, (sp, pr) in enumerate(
+            (a, b) for a in specimens for b in profiles)}
+        merged = sorted(cells.values(), key=lambda c: (c['suite'], order.get((c['specimen'], c['profile']), 0),
+                                                       c['seed']))
+        out.append((meta, merged, parts[-1][2]))
+    return out
 
 
 def arm_label(meta, specimen, profile):
@@ -274,6 +332,29 @@ def cutoff_note(exp, specimens, completed, harness_commit=''):
     return ''.join(lines)
 
 
+def consolidated_note(meta):
+    parts = meta.get('consolidated_runs')
+    if not parts:
+        return ''
+    rows = ''.join(f'<li><a href="{esc(p["run_url"] or "#")}">{esc(p["arm"])}</a> · {esc(p["completed"])} · '
+                   f'harness {esc(p["harness"][:8])} · zoo {esc(p["zoo_commit"][:8])}</li>' for p in parts)
+    env = meta.get('environment', {})
+    differ = []
+    if len({p['completed'][:10] for p in parts}) > 1:
+        differ.append('calendar date')
+    if len({p['harness'] for p in parts}) > 1:
+        differ.append('harness commit')
+    if len(env.get('compilers', [])) > 1:
+        differ.append('compiler')
+    if len(env.get('platforms', [])) > 1:
+        differ.append('platform')
+    what = ('They differ in: ' + ', '.join(differ) + '.') if differ else 'They share date, harness commit, compiler and platform.'
+    return ('<p class="note">This experiment was run one arm per workflow run and consolidated here. '
+            f'{what} Each arm plays the same seeds. Where the arms differ in any of these, a paired comparison '
+            f'between them is not a controlled one.</p><details><summary>The {len(parts)} runs</summary>'
+            f'<ul>{rows}</ul></details>')
+
+
 def run_page(meta, cells):
     exp = meta['experiment']
     specimens = meta['catalogue']['specimens']
@@ -283,6 +364,7 @@ def run_page(meta, cells):
              (f'<p><strong>Prespecified:</strong> {esc(exp["prespecified"])}</p>' if exp.get('prespecified') else ''),
              f'<p class="muted">Run {esc(meta["run_id"])} · completed {esc(meta.get("completed", "?"))} · '
              f'<a href="{esc(meta.get("run_url", "#"))}">workflow run</a> · <a href="cells.jsonl">raw cells (JSON lines)</a></p>',
+             consolidated_note(meta),
              '<p class="note">An <em>arm</em> is one Borg version run with one settings profile; every arm plays '
              'the same seeds, one game per seed. Results are descriptive unless the experiment says it is '
              'prespecified above. Ranges are Wilson 95% intervals; paired p-values are exact McNemar tests on the '
@@ -446,8 +528,12 @@ def build_site(results, out):
         target = out / 'runs' / meta['experiment']['name'] / meta['run_id']
         target.mkdir(parents=True, exist_ok=True)
         (target / 'index.html').write_text(run_page(meta, cells))
-        shutil.copy(src / 'cells.jsonl', target / 'cells.jsonl')
-        shutil.copy(src / 'meta.json', target / 'meta.json')
+        if meta.get('consolidated_runs'):
+            (target / 'cells.jsonl').write_text(''.join(json.dumps(c, sort_keys=True) + '\n' for c in cells))
+            (target / 'meta.json').write_text(json.dumps(meta, indent=2, sort_keys=True) + '\n')
+        else:
+            shutil.copy(src / 'cells.jsonl', target / 'cells.jsonl')
+            shutil.copy(src / 'meta.json', target / 'meta.json')
         finished = sum(1 for c in cells if c['outcome'] in stats.VALID)
         rows.append([f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
                      f'{esc(meta["experiment"]["name"])}</a>', esc(meta.get('completed', '?')),

@@ -27,7 +27,7 @@ def cell(specimen, seed, outcome, max_depth=3, turn=20000, profile='default', tr
 
 class CatalogueTest(unittest.TestCase):
     def test_every_experiment_validates(self):
-        for path in (ROOT / 'experiments').glob('*.json'):
+        for path in [*(ROOT / 'experiments').glob('*.json'), *(ROOT / 'smoke').glob('*.json')]:
             exp = cat_mod.experiment(path)
             self.assertTrue(cat_mod.cells(exp))
 
@@ -272,7 +272,7 @@ class BorgRsTest(unittest.TestCase):
                 cat_mod.experiment(bad)
 
     def test_plan_carries_build_kind(self):
-        exp = cat_mod.experiment(ROOT / 'experiments/rs-smoke.json')
+        exp = cat_mod.experiment(ROOT / 'smoke/rs-smoke.json')
         plan = cat_mod.plan(exp, 2)
         kinds = {b['specimen']: b['kind'] for b in plan['builds']}
         self.assertEqual(kinds, {'4.2.6-rs-m0-c': 'borg-rs', '4.2.6-rs-m0': 'borg-rs', '4.2.6': 'better-borg-c'})
@@ -293,7 +293,7 @@ class BorgRsTest(unittest.TestCase):
         self.assertNotEqual(specs['4.2.6-rs-m8']['ref'], specs['4.2.6-rs-m9']['ref'])
         self.assertNotEqual(specs['4.2.6-rs-m9']['ref'], specs['4.2.6-rs-m10']['ref'])
         for name in ('rs-m7-smoke', 'rs-m8-smoke', 'rs-m9-smoke', 'rs-m10-smoke'):
-            exp = cat_mod.experiment(ROOT / f'experiments/{name}.json')
+            exp = cat_mod.experiment(ROOT / f'smoke/{name}.json')
             self.assertTrue(cat_mod.cells(exp))
 
     def test_bbc_m8_matches_rs_m8s_tag_and_carries(self):
@@ -342,7 +342,7 @@ class BorgRsTest(unittest.TestCase):
         self.assertEqual((bbc['tag'], bbc['carries']), ('4.2.6-impact-v9', 98))
         self.assertEqual((bbc['tag'], bbc['carries']), (rs['tag'], rs['carries']))
         self.assertNotEqual(bbc['ref'], rs['ref'])  # same milestone, different repositories
-        exp = cat_mod.experiment(ROOT / 'experiments/rs-m9-smoke.json')
+        exp = cat_mod.experiment(ROOT / 'smoke/rs-m9-smoke.json')
         self.assertTrue(cat_mod.cells(exp))
 
     def test_bbc_m10_matches_rs_m10s_tag_and_carries(self):
@@ -351,11 +351,11 @@ class BorgRsTest(unittest.TestCase):
         self.assertEqual((bbc['tag'], bbc['carries']), ('4.2.6-impact-v10', 98))
         self.assertEqual((bbc['tag'], bbc['carries']), (rs['tag'], rs['carries']))
         self.assertNotEqual(bbc['ref'], rs['ref'])  # same milestone, different repositories
-        exp = cat_mod.experiment(ROOT / 'experiments/rs-m10-smoke.json')
+        exp = cat_mod.experiment(ROOT / 'smoke/rs-m10-smoke.json')
         self.assertTrue(cat_mod.cells(exp))
 
     def test_no_pairing_across_harnesses(self):
-        exp = cat_mod.experiment(ROOT / 'experiments/rs-smoke.json')
+        exp = cat_mod.experiment(ROOT / 'smoke/rs-smoke.json')
         cells = []
         for s in exp['specimens']:
             for seed in (11, 29):
@@ -1219,3 +1219,48 @@ class EndToEndTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class ArmSplitTest(unittest.TestCase):
+    """One arm per workflow run, tagged by the experiment, consolidated by the site."""
+
+    def setUp(self):
+        self.path = ROOT / 'experiments/classes-rs-m11.json'
+
+    def test_arms_lists_every_specimen_profile(self):
+        exp = cat_mod.experiment(self.path)
+        self.assertEqual(cat_mod.arms(exp), [('4.2.6-rs-m11', 'normal'), ('4.2.6-rs-m11', 'munchkin-class')])
+
+    def test_one_arm_keeps_the_tag_and_its_cells(self):
+        full = cat_mod.experiment(self.path)
+        one = cat_mod.load_experiment(self.path, '4.2.6-rs-m11:munchkin-class')
+        self.assertEqual(one['name'], full['name'])
+        self.assertEqual(one['profiles'], ['munchkin-class'])
+        self.assertEqual(len(cat_mod.cells(one)) * 2, len(cat_mod.cells(full)))
+        with self.assertRaises(ValueError):
+            cat_mod.load_experiment(self.path, '4.2.6-rs-m11:nope')
+        with self.assertRaises(ValueError):
+            cat_mod.load_experiment(self.path, 'no-colon')
+
+    def test_site_consolidates_arm_runs_into_one_experiment(self):
+        from zoo import site
+        runs = []
+        for i, profile in enumerate(('normal', 'munchkin-class')):
+            exp = cat_mod.load_experiment(self.path, f'4.2.6-rs-m11:{profile}')
+            cells = [{'specimen': '4.2.6-rs-m11', 'profile': profile, 'suite': 'classes-1800', 'seed': s,
+                      'outcome': 'death'} for s in (1, 2)]
+            meta = {'run_id': f'r{i}', 'run_url': '', 'completed': f'2026-11-1{i} 00:00 UTC', 'zoo_commit': 'abc',
+                    'experiment': exp, 'environment': {'compilers': ['gcc'], 'platforms': ['x']},
+                    'catalogue': {'harness': {'commit': 'h' * 40}, 'specimens': {}, 'profiles': {}, 'suites': {}},
+                    'missing_cells': 0}
+            runs.append((meta, cells, Path('.')))
+        runs.append(({'run_id': 'whole', 'experiment': {'name': 'other'}}, [], Path('.')))
+        merged = site.consolidate(runs)
+        self.assertEqual(len(merged), 2)
+        meta, cells, _ = [m for m in merged if m[0]['experiment']['name'] == 'classes-rs-m11'][0]
+        self.assertEqual(meta['run_id'], 'r0+r1')
+        self.assertEqual(meta['experiment']['profiles'], ['normal', 'munchkin-class'])
+        self.assertEqual(meta['experiment']['control_profile'], 'normal')
+        self.assertEqual(len(cells), 4)
+        self.assertEqual(len(meta['consolidated_runs']), 2)
+        self.assertIn('differ in: calendar date', site.consolidated_note(meta))

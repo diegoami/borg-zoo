@@ -1,7 +1,11 @@
 name: compare
 
-# Runs one experiment headless on GitHub-hosted runners, appends its cells to
-# the `results` branch and rebuilds the statistics site.
+# Runs one experiment, or one arm of it, headless on GitHub-hosted runners,
+# appends its cells to the `results` branch and rebuilds the statistics site.
+# With `arm` (SPECIMEN:PROFILE; `python3 -m zoo arms --experiment F` lists
+# them) only that arm runs, tagged with the experiment's name; the site
+# consolidates the arm runs of one tag. smoke.yml calls this workflow with a
+# separate results branch.
 on:
   workflow_dispatch:
     inputs:
@@ -9,16 +13,37 @@ on:
         description: Experiment file
         required: true
         default: experiments/milestones-smoke.json
+      arm:
+        description: 'One arm only, SPECIMEN:PROFILE (empty = every arm)'
+        required: false
+        default: ''
       shards:
         description: Run jobs per specimen
         required: true
         default: '4'
+  workflow_call:
+    inputs:
+      experiment:
+        type: string
+        required: true
+      arm:
+        type: string
+        default: ''
+      shards:
+        type: string
+        default: '4'
+      results_branch:
+        type: string
+        default: results
+      rebuild_site:
+        type: boolean
+        default: true
 
 permissions:
   contents: read
 
 concurrency:
-  group: compare-${{ github.event.inputs.experiment }}
+  group: compare-${{ inputs.experiment }}-${{ inputs.arm }}
   cancel-in-progress: false
 
 env:
@@ -39,7 +64,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: plan
-        run: python3 -m zoo plan --experiment "${{ inputs.experiment }}" --shards "${{ inputs.shards }}" --github-output
+        run: python3 -m zoo plan --experiment "${{ inputs.experiment }}" --shards "${{ inputs.shards }}" --arm "${{ inputs.arm }}" --github-output
       - id: harness
         run: echo "commit=$(python3 -c 'import json;print(json.load(open("catalogue/specimens.json"))["harness"]["commit"])')" >> "$GITHUB_OUTPUT"
 
@@ -149,7 +174,7 @@ jobs:
           ZOO_JOBS: ${{ needs.plan.outputs.processes }}
         run: >
           python3 -m zoo run --experiment "${{ inputs.experiment }}" --specimen "${{ matrix.specimen }}"
-          --shard ${{ matrix.shard }} --shards ${{ matrix.shards }}
+          --shard ${{ matrix.shard }} --shards ${{ matrix.shards }} --arm "${{ inputs.arm }}"
           --build "$GITHUB_WORKSPACE/specimens/${{ matrix.specimen }}" --harness harness
           --work "$RUNNER_TEMP/work" --out "cells/${{ matrix.specimen }}-${{ matrix.shard }}.jsonl" --jobs "${ZOO_JOBS:-$(nproc)}"
           --source "$GITHUB_WORKSPACE/source" --toolkit "$GITHUB_WORKSPACE/neo-toolkit"
@@ -204,16 +229,16 @@ jobs:
           merge-multiple: true
       - name: Check out the results branch
         run: |
-          git fetch origin results || true
-          if git rev-parse --verify origin/results >/dev/null 2>&1; then
-            git worktree add results-branch origin/results
-            git -C results-branch checkout -B results
+          git fetch origin "${{ inputs.results_branch || 'results' }}" || true
+          if git rev-parse --verify "origin/${{ inputs.results_branch || 'results' }}" >/dev/null 2>&1; then
+            git worktree add results-branch "origin/${{ inputs.results_branch || 'results' }}"
+            git -C results-branch checkout -B "${{ inputs.results_branch || 'results' }}"
           else
-            git worktree add --orphan -b results results-branch
+            git worktree add --orphan -b "${{ inputs.results_branch || 'results' }}" results-branch
           fi
       - name: Collect
         run: >
-          python3 -m zoo collect --experiment "${{ inputs.experiment }}" --cells downloaded
+          python3 -m zoo collect --experiment "${{ inputs.experiment }}" --cells downloaded --arm "${{ inputs.arm }}"
           --results results-branch/results --run-id "${{ github.run_id }}-${{ github.run_attempt }}"
           --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           --zoo-commit "${{ github.sha }}"
@@ -223,9 +248,10 @@ jobs:
           git config user.name "borg-zoo"
           git config user.email "borg-zoo@users.noreply.github.com"
           git add results
-          git commit -q -m "Results: ${{ needs.plan.outputs.name }} run ${{ github.run_id }}-${{ github.run_attempt }}"
-          git push origin results
+          git commit -q -m "Results: ${{ needs.plan.outputs.name }}${{ inputs.arm && format(' [{0}]', inputs.arm) || '' }} run ${{ github.run_id }}-${{ github.run_attempt }}"
+          git push origin "${{ inputs.results_branch || 'results' }}"
       - name: Rebuild the site
+        if: ${{ format('{0}', inputs.rebuild_site) != 'false' }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run pages.yml --ref "${{ github.event.repository.default_branch }}"

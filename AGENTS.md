@@ -9,7 +9,7 @@ first. What the finished experiments showed, and what is still open, is in
 ```sh
 git status --short
 python3 -m unittest discover -s tests
-for e in experiments/*.json; do python3 -m zoo plan --experiment "$e"; done
+for e in experiments/*.json smoke/*.json; do python3 -m zoo plan --experiment "$e"; done
 gh run list -R diegoami/borg-zoo --limit 10
 ```
 
