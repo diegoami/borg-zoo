@@ -321,6 +321,17 @@
         "borg_lunal_mode": false
       }
     },
+    "rs-buy-class-reserve-rogue": {
+      "description": "Global current, Rogue class mask (bit 64) selects reserve410; the other eight classes stay current (borg-zoo#79)",
+      "settings": {
+        "borg_buy_strategy_default": 0,
+        "borg_buy_strategy_reserve410_classes": 64,
+        "borg_munchkin_start": false,
+        "borg_munchkin_by_class": false,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false
+      }
+    },
     "rs-buy-class-current-mage": {
       "description": "Global reserve410, Mage class mask selects current; Warrior stays reserve (borg-zoo#75)",
       "settings": {
