@@ -1,0 +1,28 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "original-c-20261111-classes-1800",
+  "description": "Rerun of the original C Borg (angband e473720) on classes-1800, on the same harness pin and calendar day as classes-rs-m11, so the two can be compared without a date or harness difference. Descriptive only; the Neo arm of originals-20261108-classes-1800 is not repeated.",
+  "specimens": [
+    "angband-e473-original"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "angband-e473-original",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "angband-e473-original": 60
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 12,
+    "native_wall_seconds": 900,
+    "max_cells_per_native_shard": 30,
+    "worst_case_play_minutes_per_shard": 225,
+    "job_timeout_minutes": 300
+  },
+  "owner_authorization": "2026-11-11: the owner asked for the original C Borg to be rerun against borg-rs m11 (session request)."
+}
