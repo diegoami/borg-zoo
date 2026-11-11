@@ -1,0 +1,353 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "munchkin-class": {
+        "description": "Munchkin start by class: today's product default for Warrior, Druid and Ranger (stair-scumming at depth 6), every other class ordinary. The arm that replaces implicit default in class grids. Names only borg_munchkin_by_class: for WDR classes the rule then forces the munchkin start itself, so borg_munchkin_start must stay unnamed (naming it FALSE contradicts the rule and reads as a config_error). Runs only on builds that know borg_munchkin_by_class (better-borg-c fd683ced and later).",
+        "settings": {
+          "borg_munchkin_by_class": true
+        },
+        "sha256": "a4cc28b87ff4f8e0cd3ec59e94cb002fbc8776467289a454440d014fe031569f"
+      },
+      "sw-chest-2": {
+        "description": "Chest risk tolerance 2 instead of 7 (only very safe chests) (switch screen, borg-zoo switch screen)",
+        "settings": {
+          "borg_chest_fail_tolerance": 2,
+          "borg_munchkin_by_class": true
+        },
+        "sha256": "72ddc70c8939a3b6504afd654a26b89d488ecf68dcfe99a0b20003a8d6e0a245"
+      },
+      "sw-dynamic-calcs": {
+        "description": "The dynamic-calculation decision model on (borg_uses_dynamic_calcs TRUE) (switch screen, borg-zoo switch screen)",
+        "settings": {
+          "borg_munchkin_by_class": true,
+          "borg_uses_dynamic_calcs": true
+        },
+        "sha256": "61e2e0e212aa382212d91fb29a941375f612baf6435897155e823a4d08c6604f"
+      },
+      "sw-enchant-20": {
+        "description": "Enchant limit 20 instead of 12 (switch screen, borg-zoo switch screen)",
+        "settings": {
+          "borg_enchant_limit": 20,
+          "borg_munchkin_by_class": true
+        },
+        "sha256": "7695df25c05a9489e3ba1f647f8b3eae593624c089e22d4e5767e66159ce030b"
+      },
+      "sw-enchant-5": {
+        "description": "Enchant limit 5 instead of 12 (switch screen, borg-zoo switch screen)",
+        "settings": {
+          "borg_enchant_limit": 5,
+          "borg_munchkin_by_class": true
+        },
+        "sha256": "a03e02ed56a0c8aa5fe21ad2f5b2958d81dced408d78064a65f8d51829b4752b"
+      },
+      "sw-kills-uniques": {
+        "description": "Wait for uniques before diving (borg_kills_uniques TRUE) (switch screen, borg-zoo switch screen)",
+        "settings": {
+          "borg_kills_uniques": true,
+          "borg_munchkin_by_class": true
+        },
+        "sha256": "0715c27b3a28dd64801f878ca59f30fd7479064cb10b3c292ee93079947c83f3"
+      },
+      "sw-no-self-scum": {
+        "description": "Town scumming off (borg_self_scum FALSE) with the product class rule (switch screen, borg-zoo switch screen)",
+        "settings": {
+          "borg_munchkin_by_class": true,
+          "borg_self_scum": false
+        },
+        "sha256": "c07bad94a8f8dba11a2d6b6d768dc6912172826dd1719b20d4491711424045ee"
+      },
+      "sw-no-swaps": {
+        "description": "Inventory swaps off (borg_uses_swaps FALSE) with the product class rule (switch screen, borg-zoo switch screen)",
+        "settings": {
+          "borg_munchkin_by_class": true,
+          "borg_uses_swaps": false
+        },
+        "sha256": "35b7f1f599e33685baa8efcda05dfcfccf5d7e71234bb0ecd65aa6f5d3bdb414"
+      },
+      "sw-risky": {
+        "description": "Risky play on (borg_plays_risky TRUE): dive faster, stand and fight (switch screen, borg-zoo switch screen)",
+        "settings": {
+          "borg_munchkin_by_class": true,
+          "borg_plays_risky": true
+        },
+        "sha256": "cc1fe80717254e295ba33e0042f4bdb891a72a5d2c55d3b0e8530e8a46c19dc9"
+      }
+    },
+    "specimens": {
+      "4.2.6-bbc-m11": {
+        "carries": 116,
+        "label": "better-borg-c milestone 11 (tag 4.2.6-impact-v11): carries 116, up from 98. The v11 cycle adopts 17 new units (0100-0117, each a reviewed C-only source fix) plus the 0101a correction that gates the Lunal take skip on the runtime munchkin mode: stair escape ordering, per-monster flow-kill state, melee danger (armour divided by to-hit), pickup measured from the nearest up staircase, the no-rest-after-prep timer width, the preparedness reason copy, constitution-drain fear, Crush clearing ranged danger, the granite ranged test, Shoot'N'Scoot's adjacent monster, and the home/shop flows (empty pack slot, cure potions only when hurt, left ring search, swap and home-grab flags, staff charges, sold-item ego). Full matrix 95 groups / 290 cases, no failed group; 237/250 compared cases byte-identical, the 13 differences in six pre-existing fixture groups plus preparation (0105's timer width, identical decisions). No per-mode arm was measured in this cycle: each unit's per-mode effect is recorded as not measured, not neutral - the explicit-arms batch is the zoo's job (borg-zoo#54).",
+        "mode_side": "post",
+        "ref": "39268ca8a470d1cbd44de27bf1fd1b3ee403bada",
+        "repository": "diegoami/better-borg-c",
+        "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE11.md",
+        "tag": "4.2.6-impact-v11"
+      }
+    },
+    "suites": {
+      "confirm-200": {
+        "birth": "fixed",
+        "cap": 100000,
+        "description": "Confirmation suite: 200 fresh seeds never used before, 100,000 engine turns, fixed birth",
+        "role": "confirmation",
+        "saves": false,
+        "seeds": [
+          3001,
+          3002,
+          3003,
+          3004,
+          3005,
+          3006,
+          3007,
+          3008,
+          3009,
+          3010,
+          3011,
+          3012,
+          3013,
+          3014,
+          3015,
+          3016,
+          3017,
+          3018,
+          3019,
+          3020,
+          3021,
+          3022,
+          3023,
+          3024,
+          3025,
+          3026,
+          3027,
+          3028,
+          3029,
+          3030,
+          3031,
+          3032,
+          3033,
+          3034,
+          3035,
+          3036,
+          3037,
+          3038,
+          3039,
+          3040,
+          3041,
+          3042,
+          3043,
+          3044,
+          3045,
+          3046,
+          3047,
+          3048,
+          3049,
+          3050,
+          3051,
+          3052,
+          3053,
+          3054,
+          3055,
+          3056,
+          3057,
+          3058,
+          3059,
+          3060,
+          3061,
+          3062,
+          3063,
+          3064,
+          3065,
+          3066,
+          3067,
+          3068,
+          3069,
+          3070,
+          3071,
+          3072,
+          3073,
+          3074,
+          3075,
+          3076,
+          3077,
+          3078,
+          3079,
+          3080,
+          3081,
+          3082,
+          3083,
+          3084,
+          3085,
+          3086,
+          3087,
+          3088,
+          3089,
+          3090,
+          3091,
+          3092,
+          3093,
+          3094,
+          3095,
+          3096,
+          3097,
+          3098,
+          3099,
+          3100,
+          3101,
+          3102,
+          3103,
+          3104,
+          3105,
+          3106,
+          3107,
+          3108,
+          3109,
+          3110,
+          3111,
+          3112,
+          3113,
+          3114,
+          3115,
+          3116,
+          3117,
+          3118,
+          3119,
+          3120,
+          3121,
+          3122,
+          3123,
+          3124,
+          3125,
+          3126,
+          3127,
+          3128,
+          3129,
+          3130,
+          3131,
+          3132,
+          3133,
+          3134,
+          3135,
+          3136,
+          3137,
+          3138,
+          3139,
+          3140,
+          3141,
+          3142,
+          3143,
+          3144,
+          3145,
+          3146,
+          3147,
+          3148,
+          3149,
+          3150,
+          3151,
+          3152,
+          3153,
+          3154,
+          3155,
+          3156,
+          3157,
+          3158,
+          3159,
+          3160,
+          3161,
+          3162,
+          3163,
+          3164,
+          3165,
+          3166,
+          3167,
+          3168,
+          3169,
+          3170,
+          3171,
+          3172,
+          3173,
+          3174,
+          3175,
+          3176,
+          3177,
+          3178,
+          3179,
+          3180,
+          3181,
+          3182,
+          3183,
+          3184,
+          3185,
+          3186,
+          3187,
+          3188,
+          3189,
+          3190,
+          3191,
+          3192,
+          3193,
+          3194,
+          3195,
+          3196,
+          3197,
+          3198,
+          3199,
+          3200
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-11 01:22 UTC",
+  "environment": {
+    "compilers": [],
+    "platforms": []
+  },
+  "experiment": {
+    "control": "4.2.6-bbc-m11",
+    "control_profile": "munchkin-class",
+    "description": "Screening pass over the borg.txt switches that can change play, on v11 under the product class rule: dynamic calculations, enchant limit (5 and 20), town scumming, inventory swaps, risky play, chest risk and unique-waiting, against the plain munchkin-class arm. confirm-200 (200 fixed-birth seeds, 100,000 turns) - a rank ordering, not a result; the arms that move go to a full class grid.",
+    "name": "switches-screen-v11",
+    "profiles": [
+      "munchkin-class",
+      "sw-dynamic-calcs",
+      "sw-enchant-20",
+      "sw-enchant-5",
+      "sw-no-self-scum",
+      "sw-no-swaps",
+      "sw-risky",
+      "sw-chest-2",
+      "sw-kills-uniques"
+    ],
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-bbc-m11"
+    ],
+    "suites": [
+      "confirm-200"
+    ]
+  },
+  "missing_cells": 1800,
+  "run_id": "42894460223-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/42894460223",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "f364995d062b570f9bbbc28a6f85af1c62269f63"
+}
