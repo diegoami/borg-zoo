@@ -624,12 +624,12 @@
       "impl": "rust",
       "repository": "diegoami/borg-rs",
       "ref": "0f98f85b008f904e055967747c935b482addf2f2",
+      "tag": "4.2.6-impact-v11",
       "carries": 116,
       "exact_turns": true,
       "depth_stream": true,
-      "role": "candidate",
-      "source": "https://github.com/diegoami/borg-rs/pull/30",
-      "label": "borg-rs milestone v11R (PR 30): the Rust port carrying better-borg-c's v11 - all 18 runtime units (19 patches, 0101a included) and the consumer's 11 C Borg files, so the C oracle and the Rust Borg carry the same fixes. No tag yet: this is the reviewed candidate head, and a tagged build gets its own specimen (RULES 4)."
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v11",
+      "label": "borg-rs M11 (tag 4.2.6-impact-v11): the Rust Borg carrying better-borg-c milestone 11's units - all 18 runtime units (19 patches, 0101a included) and the consumer's 11 C Borg files, so the C oracle and the Rust Borg carry the same fixes (borg-rs#29, PR 30; independent review approve, the one minor doc finding F1 fixed in e8f939a, owner accepted 2026-11-11). 105 Rust tests (one existing ignored), clippy clean, C/Rust smoke 3/3 and full 45/45 identical on keys, messages and state; the Rust binary links no C Borg. The tag points at the reviewed head 0f98f85b, the same commit as the v11R merge on main, so the pin is unchanged from the candidate entry and no recorded run is re-read. Like M8, M9 and M10, its default includes the munchkin-by-class start."
     }
   }
 }
