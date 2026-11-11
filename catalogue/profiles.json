@@ -384,6 +384,16 @@
         "borg_self_lunal": false,
         "borg_lunal_mode": false
       }
+    },
+    "town-negative": {
+      "description": "The negative baseline for the town inventory redesign (borg-rs#36, borg-zoo#81): the Borg performs no store interaction at all - it never buys, never sells, never uses the home as a stash or a swap source, and never walks into a shop. Everything else is unchanged: it still recalls to town, still equips itself, still dives. A floor, not a candidate strategy: the arm is expected to be worse, and no improvement is claimed in either direction. The four mode flags are pinned off, as in the normal profile, so the only difference from the normal arm is borg_town_no_stores (the issue's profile named the setting alone; borg-rs's default applies the class rule from M8, which would have made Warriors, Druids and Rangers differ from the control in two ways). Needs a build that knows borg_town_no_stores; older builds ignore the unknown setting, the observer cannot verify it, and the run is a config_error.",
+      "settings": {
+        "borg_munchkin_start": false,
+        "borg_munchkin_by_class": false,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false,
+        "borg_town_no_stores": true
+      }
     }
   }
 }
