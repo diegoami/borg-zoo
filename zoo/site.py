@@ -522,9 +522,11 @@ def build_site(results, out):
     if out.exists():
         shutil.rmtree(out)
     out.mkdir(parents=True)
-    runs = load_runs(results) if Path(results).exists() else []
-    rows = []
-    for meta, cells, src in runs:
+    every = load_runs(results) if Path(results).exists() else []
+    smoke = cat_mod.smoke_names()
+    runs = [r for r in every if r[0]['experiment']['name'] not in smoke]
+    rows, smoke_rows = [], []
+    for meta, cells, src in every:
         target = out / 'runs' / meta['experiment']['name'] / meta['run_id']
         target.mkdir(parents=True, exist_ok=True)
         (target / 'index.html').write_text(run_page(meta, cells))
@@ -535,7 +537,7 @@ def build_site(results, out):
             shutil.copy(src / 'cells.jsonl', target / 'cells.jsonl')
             shutil.copy(src / 'meta.json', target / 'meta.json')
         finished = sum(1 for c in cells if c['outcome'] in stats.VALID)
-        rows.append([f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
+        (smoke_rows if meta['experiment']['name'] in smoke else rows).append([f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
                      f'{esc(meta["experiment"]["name"])}</a>', esc(meta.get('completed', '?')),
                      len(meta['experiment']['specimens']), len(meta['experiment']['profiles']),
                      len(cells), finished])
@@ -546,6 +548,7 @@ def build_site(results, out):
         (out / f'{policy["slug"]}.html').write_text(
             page(f'{policy["title"]} · borg-zoo', landing.comparison_page(runs, policy), charts=True))
     (out / 'detailed.html').write_text(page('Detailed · borg-zoo', landing.landing_page(runs, rows)))
+    (out / 'smoke.html').write_text(page('Smoke · borg-zoo', landing.smoke_page(smoke_rows)))
     (out / 'stalls.html').write_text(page('Stalls and crashes · borg-zoo', landing.stalls_page(runs)))
     (out / 'versions.html').write_text(page('Versions · borg-zoo', landing.versions_page()))
     (out / '.nojekyll').write_text('')

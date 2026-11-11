@@ -330,6 +330,12 @@ def expected_options(profile):
     return {name: int(value) for name, value in profile['settings'].items()}
 
 
+def smoke_names(root=ROOT):
+    """Names of the smoke checks: the files in smoke/. Their runs are listed
+    under the dashboard's Smoke tab, not among the experiments."""
+    return {_load(path)['name'] for path in sorted((Path(root) / 'smoke').glob('*.json'))}
+
+
 def parse_arm(text):
     """'specimen:profile' -> (specimen, profile)."""
     specimen, sep, profile = (text or '').partition(':')

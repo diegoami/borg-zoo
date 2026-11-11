@@ -36,8 +36,8 @@ experiment.
 
 **Smoke checks** (a milestone or head builds and plays) live in
 [`smoke/`](smoke/), not in `experiments/`. **Actions → smoke → Run workflow**
-runs one; its cells go to the separate `smoke-results` branch and never reach
-the dashboard.
+runs one. The dashboard lists smoke runs, old and new, under its **Smoke** tab
+and keeps them out of the comparisons.
 
 Locally (under the shared validation lock if other sessions use this machine):
 

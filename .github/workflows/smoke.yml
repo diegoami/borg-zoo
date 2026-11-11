@@ -1,9 +1,8 @@
 name: smoke
 
 # Build-and-play checks of a specimen (a milestone or a head), not experiments.
-# Runs a file from smoke/ through the compare workflow, but appends its cells
-# to the separate `smoke-results` branch, so nothing reaches the dashboard or
-# the experiment tables.
+# Runs a file from smoke/ through the compare workflow. The site lists these
+# runs under its Smoke tab, apart from the experiments.
 on:
   workflow_dispatch:
     inputs:
@@ -26,5 +25,3 @@ jobs:
     with:
       experiment: ${{ inputs.smoke }}
       shards: ${{ inputs.shards }}
-      results_branch: smoke-results
-      rebuild_site: false

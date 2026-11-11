@@ -4,8 +4,8 @@ name: compare
 # appends its cells to the `results` branch and rebuilds the statistics site.
 # With `arm` (SPECIMEN:PROFILE; `python3 -m zoo arms --experiment F` lists
 # them) only that arm runs, tagged with the experiment's name; the site
-# consolidates the arm runs of one tag. smoke.yml calls this workflow with a
-# separate results branch.
+# consolidates the arm runs of one tag. smoke.yml calls this workflow for the
+# files in smoke/, whose runs the site shows under its Smoke tab.
 on:
   workflow_dispatch:
     inputs:
@@ -32,12 +32,6 @@ on:
       shards:
         type: string
         default: '4'
-      results_branch:
-        type: string
-        default: results
-      rebuild_site:
-        type: boolean
-        default: true
 
 permissions:
   contents: read
@@ -229,12 +223,12 @@ jobs:
           merge-multiple: true
       - name: Check out the results branch
         run: |
-          git fetch origin "${{ inputs.results_branch || 'results' }}" || true
-          if git rev-parse --verify "origin/${{ inputs.results_branch || 'results' }}" >/dev/null 2>&1; then
-            git worktree add results-branch "origin/${{ inputs.results_branch || 'results' }}"
-            git -C results-branch checkout -B "${{ inputs.results_branch || 'results' }}"
+          git fetch origin results || true
+          if git rev-parse --verify origin/results >/dev/null 2>&1; then
+            git worktree add results-branch origin/results
+            git -C results-branch checkout -B results
           else
-            git worktree add --orphan -b "${{ inputs.results_branch || 'results' }}" results-branch
+            git worktree add --orphan -b results results-branch
           fi
       - name: Collect
         run: >
@@ -249,9 +243,8 @@ jobs:
           git config user.email "borg-zoo@users.noreply.github.com"
           git add results
           git commit -q -m "Results: ${{ needs.plan.outputs.name }}${{ inputs.arm && format(' [{0}]', inputs.arm) || '' }} run ${{ github.run_id }}-${{ github.run_attempt }}"
-          git push origin "${{ inputs.results_branch || 'results' }}"
+          git push origin results
       - name: Rebuild the site
-        if: ${{ format('{0}', inputs.rebuild_site) != 'false' }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run pages.yml --ref "${{ github.event.repository.default_branch }}"

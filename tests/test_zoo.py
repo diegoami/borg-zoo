@@ -1264,3 +1264,37 @@ class ArmSplitTest(unittest.TestCase):
         self.assertEqual(len(cells), 4)
         self.assertEqual(len(meta['consolidated_runs']), 2)
         self.assertIn('differ in: calendar date', site.consolidated_note(meta))
+
+
+class SmokeTabTest(unittest.TestCase):
+    def test_smoke_runs_get_their_own_tab_and_stay_out_of_the_experiments(self):
+        names = cat_mod.smoke_names()
+        cat = cat_mod.catalogue()
+        self.assertIn('rs-smoke', names)
+        self.assertNotIn('classes-rs-m11', names)
+        with tempfile.TemporaryDirectory() as tmp:
+            for name, path in (('rs-smoke', 'smoke/rs-smoke.json'), ('classes-rs-m11', 'experiments/classes-rs-m11.json')):
+                exp = cat_mod.experiment(ROOT / path)
+                cells = [{**c, 'schema': 'borg-zoo/cell@1', 'outcome': 'turn_cap', 'final': {},
+                          'first_turn_at_depth': {}, 'cap': 1, 'harness_kind': 'borg-rs'}
+                         for c in cat_mod.cells(exp)[:3]]
+                d = Path(tmp) / 'res' / name / 'r1'
+                d.mkdir(parents=True)
+                (d / 'cells.jsonl').write_text(''.join(json.dumps(c) + '\n' for c in cells))
+                (d / 'meta.json').write_text(json.dumps({
+                    'run_id': 'r1', 'completed': '2026-11-11 00:00 UTC', 'experiment': exp,
+                    'environment': {}, 'missing_cells': 0,
+                    'catalogue': {'harness': cat['specimens']['harness'],
+                                  'specimens': {k: cat['specimens']['specimens'][k] for k in exp['specimens']},
+                                  'profiles': {k: cat['profiles'][k] for k in exp['profiles']},
+                                  'suites': {k: cat['suites'][k] for k in exp['suites']}}}))
+            from zoo import site
+            site.build_site(Path(tmp) / 'res', Path(tmp) / 'site')
+            smoke = (Path(tmp) / 'site/smoke.html').read_text()
+            detailed = (Path(tmp) / 'site/detailed.html').read_text()
+            self.assertIn('runs/rs-smoke/r1/index.html', smoke)
+            self.assertNotIn('classes-rs-m11', smoke)
+            self.assertNotIn('runs/rs-smoke/', detailed)
+            self.assertIn('runs/classes-rs-m11/r1/index.html', detailed)
+            self.assertIn('smoke.html', detailed)
+            self.assertTrue((Path(tmp) / 'site/runs/rs-smoke/r1/index.html').exists())
