@@ -1298,3 +1298,31 @@ class SmokeTabTest(unittest.TestCase):
             self.assertIn('runs/classes-rs-m11/r1/index.html', detailed)
             self.assertIn('smoke.html', detailed)
             self.assertTrue((Path(tmp) / 'site/runs/rs-smoke/r1/index.html').exists())
+
+
+class DeathCauseTest(unittest.TestCase):
+    def cell(self, profile, seed, outcome, cause=None):
+        return {'suite': 'smoke', 'specimen': 's', 'profile': profile, 'seed': seed, 'outcome': outcome,
+                'cause': cause}
+
+    def test_groups_and_names(self):
+        self.assertEqual([stats.cause_group(c) for c in ('poison', 'starvation', 'burning to a cinder in lava',
+                                                         'a crow', 'Fang, Farmer Maggot\'s Dog', None)],
+                         ['Poison', 'Hunger', 'Lava', 'Monster', 'Monster', 'Monster'])
+        self.assertEqual(stats.cause_name('a crow'), 'crow')
+        self.assertEqual(stats.cause_name('crow'), 'crow')
+
+    def test_by_cause_pairs_against_the_control(self):
+        exp = {'name': 'x', 'suites': ['smoke'], 'specimens': ['s'], 'profiles': ['a', 'b'],
+               'control': 's', 'control_profile': 'a'}
+        cells = [self.cell('a', 1, 'death', 'a crow'), self.cell('b', 1, 'death', 'poison'),
+                 self.cell('a', 2, 'turn_cap'), self.cell('b', 2, 'death', 'poison'),
+                 self.cell('a', 3, 'death', 'poison'), self.cell('b', 3, 'turn_cap'),
+                 self.cell('a', 4, 'stalled'), self.cell('b', 4, 'death', 'poison')]
+        out = stats.by_cause(exp, cells)['smoke']
+        arm_b = [r for r in out['per_arm'] if r['arm'][1] == 'b'][0]
+        self.assertEqual((arm_b['deaths'], arm_b['groups']['Poison']), (3, 3))
+        poison = [r for r in out['paired'] if r['group'] == 'Poison'][0]
+        # seeds 1, 2 and 3 were finished by both; seed 4 stalled in the control
+        self.assertEqual((poison['pairs'], poison['new'], poison['fewer']), (3, 2, 1))
+        self.assertEqual(out['common'][0], 'poison')

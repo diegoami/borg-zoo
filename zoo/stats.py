@@ -298,3 +298,75 @@ def by_character(exp, cells, field):
             table.append(row)
         out[suite] = table
     return out
+
+
+CAUSE_GROUPS = ('Poison', 'Hunger', 'Lava', 'Monster')
+
+
+def cause_group(cause):
+    """A death cause as the harness records it (free text) in one of four
+    groups: the three non-monster causes seen so far - poison, starvation and
+    lava - and a monster for everything else."""
+    text = (cause or '').lower()
+    if text == 'poison':
+        return 'Poison'
+    if text == 'starvation':
+        return 'Hunger'
+    if 'lava' in text:
+        return 'Lava'
+    return 'Monster'
+
+
+def cause_name(cause):
+    """The cause without its article, so 'a crow' and 'crow' count together."""
+    text = (cause or 'unknown').strip()
+    for article in ('a ', 'an ', 'the '):
+        if text.lower().startswith(article):
+            return text[len(article):]
+    return text
+
+
+def by_cause(exp, cells, top=8):
+    """Death causes per suite. For each suite: the arms, per arm the deaths
+    and their split over CAUSE_GROUPS, the `top` most frequent named causes
+    over all arms with a count per arm, and per non-control arm a paired
+    split per group against the control: seeds where only the arm died of the
+    group ("new") against seeds where only the control did ("fewer"), with the
+    exact McNemar p. A seed counts only when both arms finished."""
+    out = {}
+    control = (exp['control'], exp.get('control_profile', exp['profiles'][0]))
+    arms = [(s, p) for s in exp['specimens'] for p in exp['profiles']]
+    for suite in exp['suites']:
+        mine = {a: {c['seed']: c for c in cells if c['suite'] == suite and (c['specimen'], c['profile']) == a
+                    and c['outcome'] in VALID} for a in arms}
+        deaths = {a: [c for c in mine[a].values() if c['outcome'] == 'death'] for a in arms}
+        if not any(deaths.values()):
+            continue
+        names = {}
+        for a in arms:
+            for c in deaths[a]:
+                names[cause_name(c.get('cause'))] = names.get(cause_name(c.get('cause')), 0) + 1
+        common = [n for n, _ in sorted(names.items(), key=lambda kv: (-kv[1], kv[0]))[:top]]
+        per_arm = []
+        for a in arms:
+            groups = {g: 0 for g in CAUSE_GROUPS}
+            named = {n: 0 for n in common}
+            for c in deaths[a]:
+                groups[cause_group(c.get('cause'))] += 1
+                if cause_name(c.get('cause')) in named:
+                    named[cause_name(c.get('cause'))] += 1
+            per_arm.append({'arm': a, 'finished': len(mine[a]), 'deaths': len(deaths[a]),
+                            'groups': groups, 'named': named})
+        paired_rows = []
+        for a in arms:
+            if a == control:
+                continue
+            both = [seed for seed in mine[a] if seed in mine[control]]
+            for g in CAUSE_GROUPS:
+                died = lambda cell, g=g: cell['outcome'] == 'death' and cause_group(cell.get('cause')) == g
+                new = sum(1 for seed in both if died(mine[a][seed]) and not died(mine[control][seed]))
+                fewer = sum(1 for seed in both if died(mine[control][seed]) and not died(mine[a][seed]))
+                paired_rows.append({'arm': a, 'group': g, 'pairs': len(both), 'new': new, 'fewer': fewer,
+                                    'p': mcnemar_exact(new, fewer) if new + fewer else None})
+        out[suite] = {'arms': arms, 'common': common, 'per_arm': per_arm, 'paired': paired_rows}
+    return out

@@ -455,6 +455,36 @@ def run_page(meta, cells):
                                                        for s_, p_ in arms],
                                [[esc(r['value'])] + [f'{a["deaths"]}/{a["n"]} ({pct(a["rate"])})' if a['n'] else '–'
                                                       for a in r['arms']] for r in per]))
+        cz = stats.by_cause(exp, cells).get(suite)
+        if cz:
+            label = lambda a: a[0] if len(exp['profiles']) == 1 else f'{a[0]} · {a[1]}'
+            parts.append('<h3>Deaths by cause</h3>')
+            parts.append(explain(
+                'What killed the characters that died, per arm. The harness records the cause as free text, so '
+                'it is grouped: <strong>Poison</strong>, <strong>Hunger</strong> (starvation), '
+                '<strong>Lava</strong>, and <strong>Monster</strong> for every other named killer. Counts are '
+                'deaths among finished runs; the share is of that arm\'s deaths.'))
+            parts.append(table(['Arm', 'Deaths'] + list(stats.CAUSE_GROUPS),
+                               [[esc(label(r['arm'])), num(r['deaths'])] +
+                                [f'{r["groups"][g]} ({pct(r["groups"][g] / r["deaths"]) if r["deaths"] else "–"})'
+                                 for g in stats.CAUSE_GROUPS] for r in cz['per_arm']]))
+            if cz['common']:
+                parts.append('<h4>Most frequent named causes</h4>')
+                parts.append(explain('The eight most frequent causes over all arms (a leading "a" or "an" is '
+                                     'dropped), with the count per arm.'))
+                parts.append(table(['Cause'] + [esc(label(r['arm'])) for r in cz['per_arm']],
+                                   [[esc(n)] + [num(r['named'][n]) for r in cz['per_arm']] for n in cz['common']]))
+            if cz['paired']:
+                parts.append('<h4>Cause groups against the control, seed by seed</h4>')
+                parts.append(explain(
+                    'For each arm and cause group: <strong>New</strong> is the seeds where only this arm died of '
+                    'that cause, <strong>Fewer</strong> where only the control did. A seed counts when both arms '
+                    'finished it. p is the exact McNemar test on those two numbers. Four groups are tested per '
+                    'arm, so a single p near 0.05 is weak evidence.'))
+                parts.append(table(['Arm', 'Cause', 'Pairs', 'New', 'Fewer', 'p'],
+                                   [[esc(label(r['arm'])), esc(r['group']), num(r['pairs']), num(r['new']),
+                                     num(r['fewer']), pval(r['p']) if r['p'] is not None else '–']
+                                    for r in cz['paired']], left=2))
         parts.append('<h3>Share alive by engine turn</h3>')
         parts.append(explain(
             'For each arm, the share of finished runs whose character was still alive at each engine turn (the '
