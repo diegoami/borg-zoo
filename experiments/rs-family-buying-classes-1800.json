@@ -1,0 +1,29 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "rs-family-buying-classes-1800",
+  "description": "The borg-rs post-M10 buying family (4.2.6-rs-family-buying, 5aeb6e5, v10 base) on the full classes-1800 suite: every profile the pilots of #61, #67 and #75 exercised - the two strategies, buy-to-identify, the munchkin override and the class and class+munchkin masks - against the current/normal control. Run one arm per workflow run; the dashboard consolidates them. Owner-approved full suite, 2026-11-11 (session request).",
+  "specimens": [
+    "4.2.6-rs-family-buying"
+  ],
+  "profiles": [
+    "rs-buy-current-normal",
+    "rs-buy-current-normal-id",
+    "rs-buy-reserve410-normal",
+    "rs-buy-reserve410-normal-id",
+    "rs-buy-current-munchkin",
+    "rs-buy-current-munchkin-id",
+    "rs-buy-reserve410-munchkin",
+    "rs-buy-reserve410-munchkin-id",
+    "rs-buy-class-reserve-warrior",
+    "rs-buy-class-reserve-warrior-id",
+    "rs-buy-class-current-mage",
+    "rs-buy-classmunchkin-current-warrior",
+    "rs-buy-classmunchkin-reserve-warrior",
+    "rs-buy-munchkin-override-current"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-rs-family-buying",
+  "control_profile": "rs-buy-current-normal"
+}

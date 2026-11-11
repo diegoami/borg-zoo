@@ -1058,7 +1058,7 @@ RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.
 
 def nav(active):
     tabs = [('index.html', 'Overview')] + [(f'{p["slug"]}.html', p['nav']) for p in POLICIES] + \
-           [('detailed.html', 'Detailed')]
+           [('detailed.html', 'Detailed'), ('smoke.html', 'Smoke')]
     return ('<p class="tabs">' +
             ''.join(f'<a class="tab{" active" if href == active else ""}" href="{href}">{esc(label)}</a>'
                     for href, label in tabs) + '</p>')
@@ -1123,6 +1123,18 @@ def overview_page(runs):
         f'<p class="muted">Every milestone, the Rust port and the open stalls are on the '
         f'<a href="detailed.html">Detailed</a> tab.</p>'
         + add_your_borg_section() + FOOTER)
+
+
+def smoke_page(rows):
+    """Smoke checks: a specimen (a milestone or a head) builds and plays a few
+    seeds. Not experiments; kept apart so they do not crowd the comparisons."""
+    return (f'<h1>Borg zoo</h1>{nav("smoke.html")}'
+            '<h2>Smoke checks</h2>'
+            + explain('A smoke check builds a Borg version and plays a handful of seeds to see that it runs. '
+                      'It says nothing about how well the version plays, and none of it enters the comparisons. '
+                      'Newest first.', RUN_COLS)
+            + (table(RUN_COLS, rows) if rows else '<p class="muted">No smoke runs yet.</p>')
+            + FOOTER)
 
 
 def landing_page(runs, run_rows):

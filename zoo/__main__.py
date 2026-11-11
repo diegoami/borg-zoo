@@ -1,4 +1,4 @@
-"""borg-zoo command line: plan, build, run, collect, site."""
+"""borg-zoo command line: plan, arms, build, run, collect, site."""
 import argparse
 import datetime
 import json
@@ -11,8 +11,14 @@ from . import catalogue as cat_mod
 from . import harness, site, evidence
 
 
-def cmd_plan(args):
+def cmd_arms(args):
     exp = cat_mod.experiment(args.experiment)
+    for specimen, profile in cat_mod.arms(exp):
+        print(f'{specimen}:{profile}')
+
+
+def cmd_plan(args):
+    exp = cat_mod.load_experiment(args.experiment, args.arm)
     plan = cat_mod.plan(exp, args.shards)
     if args.github_output:
         with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
@@ -35,7 +41,7 @@ def cmd_build(args):
 
 def cmd_run(args):
     cat = cat_mod.catalogue()
-    exp = cat_mod.experiment(args.experiment, cat)
+    exp = cat_mod.load_experiment(args.experiment, args.arm, cat)
     mine = cat_mod.shard(cat_mod.cells(exp, cat), args.specimen, args.shard, args.shards)
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -85,7 +91,7 @@ def cmd_run(args):
 
 def cmd_collect(args):
     cat = cat_mod.catalogue()
-    exp = cat_mod.experiment(args.experiment, cat)
+    exp = cat_mod.load_experiment(args.experiment, args.arm, cat)
     expected = {cat_mod.cell_key(c) for c in cat_mod.cells(exp, cat)}
     records = {}
     for path in sorted(Path(args.cells).rglob('*.jsonl')):
@@ -136,9 +142,12 @@ def cmd_site(args):
 def main(argv=None):
     p = argparse.ArgumentParser(prog='python -m zoo', description=__doc__)
     sub = p.add_subparsers(dest='cmd', required=True)
+    s = sub.add_parser('arms', help='list the arms of an experiment, one SPECIMEN:PROFILE per line')
+    s.add_argument('--experiment', required=True)
     s = sub.add_parser('plan')
     s.add_argument('--experiment', required=True)
     s.add_argument('--shards', type=int, default=4)
+    s.add_argument('--arm', default='', help='run one arm only, SPECIMEN:PROFILE; the experiment name stays its tag')
     s.add_argument('--github-output', action='store_true')
     s = sub.add_parser('build')
     s.add_argument('--specimen', required=True)
@@ -157,6 +166,7 @@ def main(argv=None):
     s.add_argument('--work', required=True)
     s.add_argument('--out', required=True)
     s.add_argument('--jobs', type=int, default=os.cpu_count() or 1)
+    s.add_argument('--arm', default='', help='SPECIMEN:PROFILE, as for plan')
     s.add_argument('--keep', action='store_true', help='keep traces and terminal logs')
     s.add_argument('--source', default=None, help='installed Mandos checkout at the specimen ref (Mandos specimens)')
     s.add_argument('--toolkit', default=None, help='pinned original-Neo measurement toolkit checkout')
@@ -165,13 +175,14 @@ def main(argv=None):
     s.add_argument('--cells', required=True)
     s.add_argument('--results', required=True)
     s.add_argument('--run-id', required=True)
+    s.add_argument('--arm', default='', help='SPECIMEN:PROFILE, as for plan')
     s.add_argument('--run-url', default='')
     s.add_argument('--zoo-commit', default='')
     s = sub.add_parser('site')
     s.add_argument('--results', required=True)
     s.add_argument('--out', required=True)
     args = p.parse_args(argv)
-    {'plan': cmd_plan, 'build': cmd_build, 'run': cmd_run, 'collect': cmd_collect, 'site': cmd_site}[args.cmd](args)
+    {'arms': cmd_arms, 'plan': cmd_plan, 'build': cmd_build, 'run': cmd_run, 'collect': cmd_collect, 'site': cmd_site}[args.cmd](args)
 
 
 if __name__ == '__main__':

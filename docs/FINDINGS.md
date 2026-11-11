@@ -151,7 +151,7 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
   pre-cutoff labelling and straddling-comparison exclusion. The restarted class grid is
   [`classes-explicit`](../experiments/classes-explicit.json) (munchkin-class against normal on the new
   specimen); the acceptance smoke is
-  [`bbc-explicit-smoke`](../experiments/bbc-explicit-smoke.json).
+  [`bbc-explicit-smoke`](../smoke/bbc-explicit-smoke.json).
 - **The acceptance smoke reproduced cleanly.** Run 42842197246, `bbc-explicit-smoke`,
   4.2.6-bbc-9ca98661, 3 fixed Warrior seeds × {`munchkin-class`, `normal`}: 6/6 finished at the
   cap, no config_error, no stall. `munchkin-class` reached DL6 on every seed (the class rule's
@@ -185,7 +185,7 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
   reason, and the home/shop flows. Its own matrix is green: 95 groups / 290 cases, no failed
   group, 237/250 compared cases byte-identical (the 13 differences are six fixture groups that
   predate the cycle plus `preparation`, where 0105's wider timer prints a different value with
-  identical decisions). [`m11-smoke`](../experiments/m11-smoke.json), run 42879898811, compared
+  identical decisions). [`m11-smoke`](../smoke/m11-smoke.json), run 42879898811, compared
   M10 and M11 under `munchkin-class` and `normal`: 12/12 cells finished at the cap, no
   config_error, no stall, both builds compiled from the tag. v11 measured **no per-mode arm** — it
   records each unit's per-mode effect as *not measured*, not neutral — so this is a build sanity
@@ -206,5 +206,5 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
   depth/level/HP (M10's local improvements shift an extra Borg-RNG draw there, as better-borg-c's
   own M10 review doc already reported), and seeds 29/47 keep the same final state but a different
   play hash — that comparison is same-version and still valid. The M9-vs-M10 question at
-  classes scale returns as [`m10-smoke`](../experiments/m10-smoke.json), restarted on the explicit
+  classes scale returns as [`m10-smoke`](../smoke/m10-smoke.json), restarted on the explicit
   profiles (munchkin-class, normal).

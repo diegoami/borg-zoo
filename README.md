@@ -26,15 +26,28 @@ On GitHub: **Actions → compare → Run workflow**, then choose the experiment
 file. The workflow builds each specimen once, runs the cells in parallel
 jobs, appends the results to the `results` branch and rebuilds the site.
 
+A big experiment is better run one arm at a time: `python3 -m zoo arms
+--experiment experiments/F.json` lists the arms (`SPECIMEN:PROFILE`), and
+each is dispatched with the `arm` input. Every arm run keeps the experiment's
+name as its tag and appends its own run to the `results` branch; the site
+merges the arm runs of a tag into one experiment page and says where they
+differ (date, harness commit, compiler). A timeout then costs one arm, not the
+experiment.
+
+**Smoke checks** (a milestone or head builds and plays) live in
+[`smoke/`](smoke/), not in `experiments/`. **Actions → smoke → Run workflow**
+runs one. The dashboard lists smoke runs, old and new, under its **Smoke** tab
+and keeps them out of the comparisons.
+
 Locally (under the shared validation lock if other sessions use this machine):
 
 ```sh
 git clone https://github.com/diegoami/better-borg-c.git harness
 git -C harness checkout "$(python3 -c 'import json;print(json.load(open("catalogue/specimens.json"))["harness"]["commit"])')"
 python3 -m zoo build --specimen 4.2.6 --harness harness --out specimens/4.2.6
-python3 -m zoo run --experiment experiments/milestones-smoke.json --specimen 4.2.6 \
+python3 -m zoo run --experiment smoke/milestones-smoke.json --specimen 4.2.6 \
   --build specimens/4.2.6 --harness harness --work work --out cells/4.2.6.jsonl
-python3 -m zoo collect --experiment experiments/milestones-smoke.json --cells cells \
+python3 -m zoo collect --experiment smoke/milestones-smoke.json --cells cells \
   --results results --run-id local-1
 python3 -m zoo site --results results --out _site
 ```

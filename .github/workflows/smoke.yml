@@ -1,0 +1,27 @@
+name: smoke
+
+# Build-and-play checks of a specimen (a milestone or a head), not experiments.
+# Runs a file from smoke/ through the compare workflow. The site lists these
+# runs under its Smoke tab, apart from the experiments.
+on:
+  workflow_dispatch:
+    inputs:
+      smoke:
+        description: Smoke file
+        required: true
+        default: smoke/rs-smoke.json
+      shards:
+        description: Run jobs per specimen
+        required: true
+        default: '2'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  smoke:
+    uses: ./.github/workflows/compare.yml
+    with:
+      experiment: ${{ inputs.smoke }}
+      shards: ${{ inputs.shards }}
