@@ -373,6 +373,16 @@
         "borg_self_lunal": false,
         "borg_lunal_mode": false
       }
+    },
+    "town-negative": {
+      "description": "The negative baseline for the town inventory redesign (borg-rs#36): the Borg performs no store interaction at all - it never buys, never sells, never uses the home as a stash or a swap source, and never walks into a shop. Everything else is unchanged: it still recalls to town, still equips itself, still dives. It measures trade and the stash combined (the home is off with the shops), not the town economy; a trading-only variant is deferred (borg-zoo#81). A floor, not a candidate strategy: the arm is expected to be worse, and no improvement is claimed in either direction. Incompatible with money-scum: the gate precedes the scum step, so the setting silently disables it (borg-rs#38). The modes are pinned off as in normal, so that against a normal control the only difference is the setting. Needs a build that knows borg_town_no_stores; older builds ignore the unknown setting, the observer cannot verify it, and the run is a config_error.",
+      "settings": {
+        "borg_town_no_stores": true,
+        "borg_munchkin_start": false,
+        "borg_munchkin_by_class": false,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false
+      }
     }
   }
 }

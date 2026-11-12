@@ -630,6 +630,17 @@
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v11",
       "label": "borg-rs M11 (tag 4.2.6-impact-v11): the Rust Borg carrying better-borg-c milestone 11's units - all 18 runtime units (19 patches, 0101a included) and the consumer's 11 C Borg files, so the C oracle and the Rust Borg carry the same fixes (borg-rs#29, PR 30; independent review approve, the one minor doc finding F1 fixed in e8f939a, owner accepted 2026-11-11). 105 Rust tests (one existing ignored), clippy clean, C/Rust smoke 3/3 and full 45/45 identical on keys, messages and state; the Rust binary links no C Borg. The tag points at the reviewed head 0f98f85b, the same commit as the v11R merge on main, so the pin is unchanged from the candidate entry and no recorded run is re-read. Like M8, M9 and M10, its default includes the munchkin-by-class start."
+    },
+    "4.2.6-rs-town": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "0e0439aa3f1cef85d2d18725ce61fe8fa85be629",
+      "tag": "4.2.6-rs-town-v11",
+      "exact_turns": true,
+      "depth_stream": true,
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-rs-town-v11",
+      "label": "borg-rs, the town-inventory redesign branch (feature/town-inventory-strategy) at the negative-baseline commit 0e0439aa (tag 4.2.6-rs-town-v11, owner-approved and pushed 2026-11-12): the Rust Borg as it stands on the branch, with the new setting borg_town_no_stores exposed (default FALSE, today's behaviour). Rust-only; the C parser accepts the setting and ignores it, so no C parity cell. Its harness/borg.txt carries borg_munchkin_by_class TRUE, so the side is post (v8 and later); profiles pin the modes explicitly (borg-rs#36, PR 42; borg-zoo#81)."
     }
   }
 }
