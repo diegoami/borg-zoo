@@ -376,7 +376,7 @@ class ModeCutoffTest(unittest.TestCase):
     def test_every_bbc_specimen_declares_its_cutoff_side(self):
         specs = cat_mod.catalogue()['specimens']['specimens']
         for name, s in specs.items():
-            if s.get('repository') == 'diegoami/better-borg-c' or name == 'angband-e473-original':
+            if s.get('repository') == 'diegoami/better-borg-c' or name in ('angband-e473-original', 'angband-42cd156-original'):
                 self.assertIn(s.get('mode_side'), ('pre', 'post'), name)
             else:
                 self.assertNotIn('mode_side', s, name)
