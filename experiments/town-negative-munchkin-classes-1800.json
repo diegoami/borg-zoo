@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "town-negative-munchkin-classes-1800",
+  "description": "The town negative baseline (borg-zoo#81) with the munchkin start unconditionally on for every class, on classes-1800: borg-rs with no store interaction at all against the same build trading normally. The munchkin counterpart of town-negative-classes-1800 (munchkin off for every class). A calibration floor, not a candidate strategy: no improvement is claimed. Same prespecified endpoint as that experiment. Run one arm per workflow run.",
+  "specimens": [
+    "4.2.6-rs-town"
+  ],
+  "profiles": [
+    "normal-munchkin",
+    "town-negative-munchkin"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-rs-town",
+  "control_profile": "normal-munchkin"
+}
