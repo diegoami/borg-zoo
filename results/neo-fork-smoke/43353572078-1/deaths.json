@@ -1,0 +1,772 @@
+[
+  {
+    "cause": "giant black ant",
+    "cell": "classes-18/neo-fork-e731c81/default/102023799",
+    "class": "Druid",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/102023799",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 101624,
+          "sha256": "723bc6c1c43570326e40ed5f05d6c985b674409b543e7d7d34b1c6717855a10a"
+        },
+        "run/messages.jsonl": {
+          "bytes": 11179,
+          "sha256": "a1e292eef904e0496e8561a552cc4c8f0cff9713d9597ab5f743d32fd742cd05"
+        },
+        "run/run.json": {
+          "bytes": 94645,
+          "sha256": "78a45b8184514795305fb5d41457909aaad34c4a767a0c2ab3fcc942fa96fe4e"
+        },
+        "run/states.jsonl": {
+          "bytes": 8956,
+          "sha256": "559076ef5a1b7548d4f40a7c6a2bb0c35df714de206f790d916b6cbdafe4431e"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 189,
+          "sha256": "9f482021ddc055de79d532f7ae73f119b2db3ce0a8e9f1bbf82fe825f4d94f9a"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 938,
+      "depth": 1,
+      "energy": 80,
+      "hp": -1,
+      "level": 2,
+      "max_depth": 1,
+      "max_hp": 22,
+      "max_level": 2,
+      "turn": 12151
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 102023799,
+    "specimen": "neo-fork-e731c81"
+  },
+  {
+    "cause": "wild cat",
+    "cell": "classes-18/neo-fork-e731c81/default/1085222502",
+    "class": "Warrior",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/1085222502",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 187961,
+          "sha256": "9046e2bf211df582896b3abbc75416d12349c29b6885765a077ed2cbee5e7bc2"
+        },
+        "run/messages.jsonl": {
+          "bytes": 18128,
+          "sha256": "01c6f13c59292e53a68426171a49b8cc7f8694971e7670bcd2c17f888d38265e"
+        },
+        "run/run.json": {
+          "bytes": 87428,
+          "sha256": "575171fc4eb069259a7a989ede6206e00625ec071402f548e6a91c89fb425424"
+        },
+        "run/states.jsonl": {
+          "bytes": 12959,
+          "sha256": "c15f45303d578ed68c8264a4895118e900212a193635ea678295905aaa8b3f88"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 182,
+          "sha256": "1d0131ecbdf113df2d49b43c986ad98454db39ba0ff49d5bb1301f7603739a51"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 1736,
+      "depth": 2,
+      "energy": 25,
+      "hp": -2,
+      "level": 3,
+      "max_depth": 2,
+      "max_hp": 34,
+      "max_level": 3,
+      "turn": 18175
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 1085222502,
+    "specimen": "neo-fork-e731c81"
+  },
+  {
+    "cause": "poison",
+    "cell": "classes-18/neo-fork-e731c81/default/1472012981",
+    "class": "Blackguard",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/1472012981",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 199020,
+          "sha256": "dc8578597b10f6112f92bb607eccf7b0d1768ea7ffd663c1b247488e79e87bb9"
+        },
+        "run/messages.jsonl": {
+          "bytes": 30617,
+          "sha256": "c04d74756dedd96927b11409cf50bf1d833f90e771d19c02bd4b314e0c68d85c"
+        },
+        "run/run.json": {
+          "bytes": 148281,
+          "sha256": "f50aed7f213b887692fd1476de72bda9f5f1dcaffe5d7073ae4c64b424fac194"
+        },
+        "run/states.jsonl": {
+          "bytes": 13477,
+          "sha256": "6443b99459ec917ba9e437edfc0cfab2384dbed748c70307389a3dc176a8b7ee"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 181,
+          "sha256": "069e493dad4be6fecd1ad26e4873923e8f530124c06b66ec8c9d3cc9421075b7"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 1836,
+      "depth": 2,
+      "energy": 62,
+      "hp": -1,
+      "level": 3,
+      "max_depth": 3,
+      "max_hp": 37,
+      "max_level": 3,
+      "turn": 23980
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 1472012981,
+    "specimen": "neo-fork-e731c81"
+  },
+  {
+    "cause": "grey mold",
+    "cell": "classes-18/neo-fork-e731c81/default/1502695781",
+    "class": "Rogue",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/1502695781",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 548327,
+          "sha256": "321e59cca21324bed7f0df50038bd7a2abc3ebe2971db832b022248e409b1c5f"
+        },
+        "run/messages.jsonl": {
+          "bytes": 48441,
+          "sha256": "c4c346f2431ce5f67bc5f4811cef33ea8cabbb517578fa5e1c02186511d882ef"
+        },
+        "run/run.json": {
+          "bytes": 344755,
+          "sha256": "d62afd3b247bb99a350d3bc0a71bf9bde6b0ead978b455c432c7b4c858ba634d"
+        },
+        "run/states.jsonl": {
+          "bytes": 25462,
+          "sha256": "145bdf1d5deec44fb63ed065c2ad426cf2007076777b602c0196fe60e7c8db96"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 185,
+          "sha256": "58b3b7ed81fb3122bcd128e8ebbfadccf58db01f80502f3e4218e336875c4cbb"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 5036,
+      "depth": 1,
+      "energy": 80,
+      "hp": -2,
+      "level": 4,
+      "max_depth": 2,
+      "max_hp": 30,
+      "max_level": 4,
+      "turn": 59226
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 1502695781,
+    "specimen": "neo-fork-e731c81"
+  },
+  {
+    "cause": "a fatal wound",
+    "cell": "classes-18/neo-fork-e731c81/default/1548306106",
+    "class": "Mage",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/1548306106",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 49962,
+          "sha256": "d2968e8111febd0b368d9f1f20cd9bb1c5eb07ea6d16eb10276e114bb9b67cea"
+        },
+        "run/messages.jsonl": {
+          "bytes": 5010,
+          "sha256": "76d8aa5e1c89e9b3b388fdbfc0ab29fd45144cdb6458923033e9e0257066d926"
+        },
+        "run/run.json": {
+          "bytes": 96754,
+          "sha256": "ef1b323f3208ded8a6e216e4c6ee1c09668330adc5ab086bbbe357144d8b12e5"
+        },
+        "run/states.jsonl": {
+          "bytes": 5975,
+          "sha256": "3765ffc06098a59ae92bfb42159acc36ac62489e990ec8732e1e70ae7cfa606b"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 187,
+          "sha256": "dfb62bb20d86a6ce9352cd3a566ce7d88452d9138337bfac1ae3b44ac95cc83a"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 458,
+      "depth": 1,
+      "energy": 20,
+      "hp": -1,
+      "level": 2,
+      "max_depth": 1,
+      "max_hp": 14,
+      "max_level": 2,
+      "turn": 7890
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 1548306106,
+    "specimen": "neo-fork-e731c81"
+  },
+  {
+    "cause": "floating eye",
+    "cell": "classes-18/neo-fork-e731c81/default/1569794094",
+    "class": "Priest",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/1569794094",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 83511,
+          "sha256": "9a2f2f9a19a7f459665b715d308f1e270ace29447ac80755fbff7d1493e30463"
+        },
+        "run/messages.jsonl": {
+          "bytes": 9992,
+          "sha256": "f56e5f344b9c6a1cffe690787f7400693ac0b4dabba29a1bf8db4fb7f11feaa2"
+        },
+        "run/run.json": {
+          "bytes": 123327,
+          "sha256": "582c0a4964b9ba87ff64bceafc1aea76f50ecc914e773637718a3b260f1ba4de"
+        },
+        "run/states.jsonl": {
+          "bytes": 5839,
+          "sha256": "d5624b03ae2e761bef67dcd4d7d254465d97632a45a778f669e18d40236f57e3"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 187,
+          "sha256": "64dc291f1b5333e13a6a8c511b7c4915588273d55159d4f3dc8e921b65affafd"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 767,
+      "depth": 1,
+      "energy": 90,
+      "hp": -1,
+      "level": 2,
+      "max_depth": 2,
+      "max_hp": 19,
+      "max_level": 2,
+      "turn": 15921
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 1569794094,
+    "specimen": "neo-fork-e731c81"
+  },
+  {
+    "cause": "blubbering icky thing",
+    "cell": "classes-18/neo-fork-e731c81/default/1574344917",
+    "class": "Necromancer",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/1574344917",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 91816,
+          "sha256": "a1cb8c3d44cb7e7e3e024c6a6326dc9ec28b09be25e49072251f15017119524c"
+        },
+        "run/messages.jsonl": {
+          "bytes": 9030,
+          "sha256": "fc8b4e924ae09b0acddafbbe72e8ceb863bc4131ab96479228d8e394811aaf5e"
+        },
+        "run/run.json": {
+          "bytes": 88503,
+          "sha256": "96ad80037136a5bf9dd6cfea322903f17eb62c5d6f08ae044ee7614d4c442ada"
+        },
+        "run/states.jsonl": {
+          "bytes": 8188,
+          "sha256": "31a116e54c811d611ae98dbfe01cf706db081708d77dbcb7683eabaed7bee324"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 196,
+          "sha256": "ea2213bc1181f9fd10a78ce1c62e9ac5d1fa1017aceef665bab2be3b0c397f93"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 849,
+      "depth": 1,
+      "energy": 70,
+      "hp": -2,
+      "level": 1,
+      "max_depth": 1,
+      "max_hp": 12,
+      "max_level": 1,
+      "turn": 10230
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Half-Elf",
+    "seed": 1574344917,
+    "specimen": "neo-fork-e731c81"
+  },
+  {
+    "cause": "cave spider",
+    "cell": "classes-18/neo-fork-e731c81/default/1739161339",
+    "class": "Ranger",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/1739161339",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 203799,
+          "sha256": "b6086c43422c8c6a7d57756ac10fcce3e2496af38b34a326ebf701ae5f3a4183"
+        },
+        "run/messages.jsonl": {
+          "bytes": 20982,
+          "sha256": "8d72ff2bb4fdd09e362acc04d5652fadc02ad5d16c99343cf4a3325cc39bfc4c"
+        },
+        "run/run.json": {
+          "bytes": 96973,
+          "sha256": "1bc0262e4ff08d10a4fdec98ec82b74a2caf6831775149a453b401da01bf5ca3"
+        },
+        "run/states.jsonl": {
+          "bytes": 18021,
+          "sha256": "8840a48ad12fe07cfa53250fb6f400c6aa7a168ee517c7203be5d4d0b4ac01d1"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 186,
+          "sha256": "5b6865883952fed85a9cac0fd22dae064ab12fa66ad90579684133ed29593a27"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 1880,
+      "depth": 2,
+      "energy": 45,
+      "hp": -2,
+      "level": 2,
+      "max_depth": 2,
+      "max_hp": 30,
+      "max_level": 2,
+      "turn": 21346
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Half-Elf",
+    "seed": 1739161339,
+    "specimen": "neo-fork-e731c81"
+  },
+  {
+    "cause": "floating eye",
+    "cell": "classes-18/neo-fork-e731c81/default/226104090",
+    "class": "Ranger",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/226104090",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 34809,
+          "sha256": "95f24d9dbeed124f0d01a0197cc266b1d549c92dccd37a90ebbdb33ccf4a38f8"
+        },
+        "run/messages.jsonl": {
+          "bytes": 4760,
+          "sha256": "1b0fb97f5523c6f22ecfee4df69417283813955f4b08a7f44438b42f83f29077"
+        },
+        "run/run.json": {
+          "bytes": 120419,
+          "sha256": "1a9547033dc5c4bbc18c68d18335837fe0c6be3c5956d1e755960e2855b4368e"
+        },
+        "run/states.jsonl": {
+          "bytes": 3348,
+          "sha256": "53e8ee7d3ba5e80692e3368ed59fb1cc8c7618ebc00eb5e66adf8f69c1419b7d"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 184,
+          "sha256": "bf765d0db0075e39e5fff3e194076055f987b118a072ed55821d4ea4533f1cc3"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 322,
+      "depth": 1,
+      "energy": 90,
+      "hp": -1,
+      "level": 1,
+      "max_depth": 1,
+      "max_hp": 15,
+      "max_level": 1,
+      "turn": 3357
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 226104090,
+    "specimen": "neo-fork-e731c81"
+  },
+  {
+    "cause": "crow",
+    "cell": "classes-18/neo-fork-e731c81/default/300036923",
+    "class": "Necromancer",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/300036923",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 88577,
+          "sha256": "9ba31bc9fda7b9d768a1c5fb7f38a58245e95d200aa1e6a9710c09c3312bbba3"
+        },
+        "run/messages.jsonl": {
+          "bytes": 11087,
+          "sha256": "4b853cf5a4ab7c76a15e6e1f62669d01f164d1af9704238a716301a30b9f86e1"
+        },
+        "run/run.json": {
+          "bytes": 104875,
+          "sha256": "cc4706c4d3a752bd60ab9ea7abbfee0cf3a69ba4fbf9bae0bbc76d04db48a1a9"
+        },
+        "run/states.jsonl": {
+          "bytes": 9695,
+          "sha256": "18be178fa5535b322a0ad9b8275583fec0f8e4f5b322749e355714252a66f7b3"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 178,
+          "sha256": "1d16ce599a49924a6fd8305485af75673ca1cd178ffc03597dc0b96073551899"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 810,
+      "depth": 1,
+      "energy": 25,
+      "hp": -3,
+      "level": 2,
+      "max_depth": 1,
+      "max_hp": 22,
+      "max_level": 2,
+      "turn": 12972
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 300036923,
+    "specimen": "neo-fork-e731c81"
+  },
+  {
+    "cause": "floating eye",
+    "cell": "classes-18/neo-fork-e731c81/default/661409606",
+    "class": "Paladin",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/661409606",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 74651,
+          "sha256": "210de16e5478ff254f5cb4371806d7b1429d51c812bc6201ed33209c7a1162aa"
+        },
+        "run/messages.jsonl": {
+          "bytes": 9063,
+          "sha256": "c00bdc488abc032db06a65c49ceb8faab1306726d2a317528a134fb02aaa4127"
+        },
+        "run/run.json": {
+          "bytes": 117999,
+          "sha256": "338b54de0f6b77a36d37dd889a4a23fd2311eaa894907ce4b04cf3f3f275ddcb"
+        },
+        "run/states.jsonl": {
+          "bytes": 6002,
+          "sha256": "296c85a7834b5e21b77aac45f43ab058a110669e8e853f62f9b3ecdc8d4da0ed"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 192,
+          "sha256": "a2d8469c86f2a5e5a4efa7433230ffa152731177b108e71b0788f9edd8519914"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 690,
+      "depth": 1,
+      "energy": 90,
+      "hp": -1,
+      "level": 1,
+      "max_depth": 1,
+      "max_hp": 16,
+      "max_level": 1,
+      "turn": 11432
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Half-Elf",
+    "seed": 661409606,
+    "specimen": "neo-fork-e731c81"
+  },
+  {
+    "cause": "rock lizard",
+    "cell": "classes-18/neo-fork-e731c81/default/766958386",
+    "class": "Paladin",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/766958386",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 18736,
+          "sha256": "8b7ca1f097489704505ec10b9c46d8485ba0e369a90b44d2e6a8c0973da68472"
+        },
+        "run/messages.jsonl": {
+          "bytes": 4754,
+          "sha256": "7e33b491635e7ec2e9024c51ae1fbc5fa96df601654440eccf3cf05a86d4d4ad"
+        },
+        "run/run.json": {
+          "bytes": 145385,
+          "sha256": "95baf31997a428b7fe0cf12fc8e3c6de7ae7a428c4d929a54961f46c34da4e99"
+        },
+        "run/states.jsonl": {
+          "bytes": 1518,
+          "sha256": "e97423abf49f7e96bba7e4cfada7329cf0e1b7b783e48be5acc5542652d1a94a"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 190,
+          "sha256": "8818ce6682ab9c08e34179a87d703ef452e98fae85cf8129d1704096f6856eed"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 170,
+      "depth": 1,
+      "energy": 60,
+      "hp": -1,
+      "level": 1,
+      "max_depth": 1,
+      "max_hp": 16,
+      "max_level": 1,
+      "turn": 4380
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 766958386,
+    "specimen": "neo-fork-e731c81"
+  },
+  {
+    "cause": "wild cat",
+    "cell": "classes-18/neo-fork-e731c81/default/801785300",
+    "class": "Mage",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/801785300",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 17097,
+          "sha256": "c209fdcf12faafc3f50d68da1dd9a193c722877d447dc28016bd8d98018804f1"
+        },
+        "run/messages.jsonl": {
+          "bytes": 1562,
+          "sha256": "cea7b48c58bce574d73bd5de0124fe5b1b6a097f98a3f916b03c6f44d3e3d57a"
+        },
+        "run/run.json": {
+          "bytes": 76796,
+          "sha256": "c2bee1ed8cb2a5169be48906794feaaef3d7b74691e464377bc22a8274bdcfe5"
+        },
+        "run/states.jsonl": {
+          "bytes": 1834,
+          "sha256": "efcc60e839abbb4e8e3882760acf154a37098116a13b51147263248ffffe5d05"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 180,
+          "sha256": "dc71f7f8db67672a490b0de93fe47943d842b73c5ede06b8cb60611b003ca09d"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 156,
+      "depth": 1,
+      "energy": 100,
+      "hp": -1,
+      "level": 1,
+      "max_depth": 1,
+      "max_hp": 10,
+      "max_level": 1,
+      "turn": 2370
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Half-Elf",
+    "seed": 801785300,
+    "specimen": "neo-fork-e731c81"
+  },
+  {
+    "cause": "grey mold",
+    "cell": "classes-18/neo-fork-e731c81/default/934061548",
+    "class": "Druid",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/neo-fork-e731c81/default/934061548",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 48328,
+          "sha256": "226888b14d6dbf483fb328d6826d977e66afd8c6f22a0e0ca2d5e4c29cf202f8"
+        },
+        "run/messages.jsonl": {
+          "bytes": 6856,
+          "sha256": "618b1fc98f20d5a56506dc5a80d7fc8ee6d9bf7023afa493072da73d16d3ed19"
+        },
+        "run/run.json": {
+          "bytes": 99718,
+          "sha256": "7ecfc013040334a221cb5786d358fdae40530ed6fc582e7fa0b485197eeb8ea6"
+        },
+        "run/states.jsonl": {
+          "bytes": 6586,
+          "sha256": "4e0a379d8cb0fc6f8eda6f4bf98242c2b961870ef4da5ad9962d4cae6c70e4d4"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 187,
+          "sha256": "ed645ca0fea6d3494a8708e961679c3961db47cebeeff50ed09c5c011de42afa"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 449,
+      "depth": 1,
+      "energy": 0,
+      "hp": -3,
+      "level": 1,
+      "max_depth": 1,
+      "max_hp": 12,
+      "max_level": 1,
+      "turn": 4583
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Half-Elf",
+    "seed": 934061548,
+    "specimen": "neo-fork-e731c81"
+  }
+]
