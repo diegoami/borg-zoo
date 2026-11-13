@@ -1,0 +1,562 @@
+[
+  {
+    "cause": "a small kobold",
+    "cell": "classes-18/angband-42cd156-original/default/102023799",
+    "class": "Druid",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/angband-42cd156-original/default/102023799",
+      "complete": true,
+      "files": {
+        "archive/Measure.map": {
+          "bytes": 34005,
+          "sha256": "c42aaac3169a4b46faecbeb39c722a5c5bcfff5e11d3dc45dea712cd77a1505c"
+        },
+        "input.txt": {
+          "bytes": 124,
+          "sha256": "d518976fc996113d382462527eb86e9c27084829a3def43c0191654a0f3372c2"
+        },
+        "result.json": {
+          "bytes": 46743,
+          "sha256": "4d69b6a75b6785ecc7d9ca7cc292ce3689dec158be27df3e76b3f0f86d4e0e3d"
+        },
+        "save/Measure": {
+          "bytes": 59720,
+          "sha256": "cbb79c987746022adb39b1f9a5eff70a88235e59e8e6ce61343e77a364a657b4"
+        },
+        "terminal.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "trace.txt": {
+          "bytes": 353270,
+          "sha256": "6c837267d8457fef422582f99cd0e756b8b437e6dace2711fe32ad1c8d812c8c"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 109,
+          "sha256": "75f858c0765341073667dcdde1c25b7f95a908500edcca3d121edbf73e71fe61"
+        },
+        "user/borg.txt": {
+          "bytes": 54,
+          "sha256": "02dcae7a69bb52253ec2a3241f2223e88c3cc6c520c34df753ddc8655c10c5a9"
+        },
+        "user/lore.txt": {
+          "bytes": 10635,
+          "sha256": "157e7e679be0f81fc0b372a6c1333603ce8fa0f0db6f498c3f7edbbfc251df5f"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 3114,
+      "depth": 1,
+      "hp": -1,
+      "kind": "death",
+      "level": 2,
+      "max_depth": 2,
+      "max_level": 2,
+      "turn": 32809
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 102023799,
+    "specimen": "angband-42cd156-original"
+  },
+  {
+    "cause": "Bullroarer the Hobbit",
+    "cell": "classes-18/angband-42cd156-original/default/1085222502",
+    "class": "Warrior",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/angband-42cd156-original/default/1085222502",
+      "complete": true,
+      "files": {
+        "archive/Measure.map": {
+          "bytes": 32824,
+          "sha256": "d594f48d77298a34898fb34005006dd16c4d74a7418aa530b9459553d4e27657"
+        },
+        "input.txt": {
+          "bytes": 118,
+          "sha256": "092a1075b723b9b4e1bf867049efc18acf74591971f46658340ba615cd0d7c74"
+        },
+        "result.json": {
+          "bytes": 71931,
+          "sha256": "c307f2b3f16c6dd1d49ca87af7f2948a25e1532936ee9b27e42e0a574ebdc8c4"
+        },
+        "save/Measure": {
+          "bytes": 67876,
+          "sha256": "b33dc86604f148d08e33f43ec18806ce25037b33fa5308ce66bdbeb012a2b1c1"
+        },
+        "terminal.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "trace.txt": {
+          "bytes": 643046,
+          "sha256": "98110935aa8bfdbb57e285432057d104bf263f3f207b894ff4ad99cc79f650ef"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 111,
+          "sha256": "d0a8badaedb377c58536fa284861fbb00fe2dd335e6fee755d7829d360fbf691"
+        },
+        "user/borg.txt": {
+          "bytes": 54,
+          "sha256": "02dcae7a69bb52253ec2a3241f2223e88c3cc6c520c34df753ddc8655c10c5a9"
+        },
+        "user/lore.txt": {
+          "bytes": 20358,
+          "sha256": "c0808500903cf212649f2b8b0e62a8f29bd10d6f3bb3ad1c3c06452cfd4be95d"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 7262,
+      "depth": 4,
+      "hp": -1,
+      "kind": "death",
+      "level": 7,
+      "max_depth": 4,
+      "max_level": 7,
+      "turn": 73439
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 1085222502,
+    "specimen": "angband-42cd156-original"
+  },
+  {
+    "cause": "a yellow jelly",
+    "cell": "classes-18/angband-42cd156-original/default/1569794094",
+    "class": "Priest",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/angband-42cd156-original/default/1569794094",
+      "complete": true,
+      "files": {
+        "archive/Measure.map": {
+          "bytes": 36304,
+          "sha256": "2379df819734e41644a0bd4babba80276af6d6fb2fa315e98963f9fcecac7d16"
+        },
+        "input.txt": {
+          "bytes": 124,
+          "sha256": "7debb7b9cf9077554f71eafce7b98a6733965082bba804b1976e854cfb9a8a18"
+        },
+        "result.json": {
+          "bytes": 35700,
+          "sha256": "0b5d3a1f248c4aae3e77da8b5c9f99df3bd381ca024dded3a728590a474ad7d3"
+        },
+        "save/Measure": {
+          "bytes": 56268,
+          "sha256": "9f60b41b631965948eba8e23a87f960867f98092182651e488d4e2835fdd3108"
+        },
+        "terminal.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "trace.txt": {
+          "bytes": 232929,
+          "sha256": "8a84c692588190fa78cb80875aea1c541f76c3caf582800d246e456f0e7ae3ba"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 110,
+          "sha256": "cff8fee1bd07513db906923718fa198fdebb477c5f468781ebb3782e5ddc19a8"
+        },
+        "user/borg.txt": {
+          "bytes": 54,
+          "sha256": "02dcae7a69bb52253ec2a3241f2223e88c3cc6c520c34df753ddc8655c10c5a9"
+        },
+        "user/lore.txt": {
+          "bytes": 5200,
+          "sha256": "13b27dfe7d2ad211082a7328c9d0b18f5e067ee9626f955dc6d7d16cca1ac0d3"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 1345,
+      "depth": 1,
+      "hp": -3,
+      "kind": "death",
+      "level": 2,
+      "max_depth": 1,
+      "max_level": 2,
+      "turn": 24865
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 1569794094,
+    "specimen": "angband-42cd156-original"
+  },
+  {
+    "cause": "a soldier",
+    "cell": "classes-18/angband-42cd156-original/default/1739161339",
+    "class": "Ranger",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/angband-42cd156-original/default/1739161339",
+      "complete": true,
+      "files": {
+        "archive/Measure.map": {
+          "bytes": 34440,
+          "sha256": "e3ae9d6e80cfa80ea9991c238e5c9104cb13798c3cb0ae112ed6f62879fb0021"
+        },
+        "input.txt": {
+          "bytes": 130,
+          "sha256": "65dbae7bbfec98108d5c79d8dd7fb5b52e58fb39484bcac27b4503a8ba2e0574"
+        },
+        "result.json": {
+          "bytes": 55953,
+          "sha256": "76b9c733452aaf990c289f2232b9f76ca168c1d8b1d4bbc8c8ce69d1b3cc6687"
+        },
+        "save/Measure": {
+          "bytes": 61528,
+          "sha256": "3ef8b30633c2a26c4d3e4ab03c4cf158eceed224f45d22804ddf02c6ed69151f"
+        },
+        "terminal.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "trace.txt": {
+          "bytes": 528055,
+          "sha256": "839424376371782d350e7b6af88c7228adb51596d713cf0a9520c941836d036b"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 113,
+          "sha256": "051c36d621c7c0a6874c4214786b232745c042c248642f440f98e90b2ee7d2b6"
+        },
+        "user/borg.txt": {
+          "bytes": 54,
+          "sha256": "02dcae7a69bb52253ec2a3241f2223e88c3cc6c520c34df753ddc8655c10c5a9"
+        },
+        "user/lore.txt": {
+          "bytes": 15926,
+          "sha256": "55cad8d7d2e498aa98e5cf8c1610dc9514f0666a54f2e6dfe523d0d397f902c9"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 4697,
+      "depth": 2,
+      "hp": -1,
+      "kind": "death",
+      "level": 4,
+      "max_depth": 3,
+      "max_level": 4,
+      "turn": 50252
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Half-Elf",
+    "seed": 1739161339,
+    "specimen": "angband-42cd156-original"
+  },
+  {
+    "cause": "a small kobold",
+    "cell": "classes-18/angband-42cd156-original/default/226104090",
+    "class": "Ranger",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/angband-42cd156-original/default/226104090",
+      "complete": true,
+      "files": {
+        "archive/Measure.map": {
+          "bytes": 33199,
+          "sha256": "e3ef600e18ddb8f20d56f19995eacf494403d3639eb469c4563611b780f117b1"
+        },
+        "input.txt": {
+          "bytes": 124,
+          "sha256": "33625f69b9b74bc3fdf38477767e44f646747359ae899e0aa6266e7110079192"
+        },
+        "result.json": {
+          "bytes": 28948,
+          "sha256": "a259b05d8c47eb475c00f65d5acce6cad02580d87b4a9daf34860eb59b9cacc5"
+        },
+        "save/Measure": {
+          "bytes": 60044,
+          "sha256": "2b07030af90a9f8a2f378325c326ef5391b11ea412a8b6e693f1c8211dd80430"
+        },
+        "terminal.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "trace.txt": {
+          "bytes": 63266,
+          "sha256": "088e856a3d80d3c5930142b2a6636dd1f3e932eedb4644ecdc0a6660d50393de"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 110,
+          "sha256": "e101518b0df64eb17208f6f3b9730280ff27c8feafa38d669144a3c72b2ec9c1"
+        },
+        "user/borg.txt": {
+          "bytes": 54,
+          "sha256": "02dcae7a69bb52253ec2a3241f2223e88c3cc6c520c34df753ddc8655c10c5a9"
+        },
+        "user/lore.txt": {
+          "bytes": 1460,
+          "sha256": "6cc374802ec9607462bb1197ef43532261e6d0ce2d4c983208b614fa526d5e5b"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 250,
+      "depth": 1,
+      "hp": -4,
+      "kind": "death",
+      "level": 2,
+      "max_depth": 1,
+      "max_level": 2,
+      "turn": 2376
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 226104090,
+    "specimen": "angband-42cd156-original"
+  },
+  {
+    "cause": "a giant yellow centipede",
+    "cell": "classes-18/angband-42cd156-original/default/300036923",
+    "class": "Necromancer",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/angband-42cd156-original/default/300036923",
+      "complete": true,
+      "files": {
+        "archive/Measure.map": {
+          "bytes": 34253,
+          "sha256": "016e1d73a6683f2a52ec2ce77e6602c099dc66eacfc2e2c3820d32aa66156aea"
+        },
+        "input.txt": {
+          "bytes": 124,
+          "sha256": "cbfd31e476ebc514f38ba98ea7994371f3c758069f6428709bf9e2067e2ce29f"
+        },
+        "result.json": {
+          "bytes": 35088,
+          "sha256": "f71f8049756394cc41f7496a5974f762e21c8b535358027d9673fb4fe5a2a580"
+        },
+        "save/Measure": {
+          "bytes": 56604,
+          "sha256": "276e1b3fde9d4d539b5beaba9e0f6105eeae2d877bf78716518c0867f869f8d5"
+        },
+        "terminal.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "trace.txt": {
+          "bytes": 242152,
+          "sha256": "749c076871a10728a49d7d9c77b70992865c595acd49b2c33ffc6133063a1691"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 115,
+          "sha256": "a170aa532b07e77199512a51cbef2806093c2ff32b393da1cfecf0ab31254663"
+        },
+        "user/borg.txt": {
+          "bytes": 54,
+          "sha256": "02dcae7a69bb52253ec2a3241f2223e88c3cc6c520c34df753ddc8655c10c5a9"
+        },
+        "user/lore.txt": {
+          "bytes": 9510,
+          "sha256": "0fa475b063fc3df324ce5a94f35d7505823d41fe30c8d911d6a657202c326632"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 1275,
+      "depth": 1,
+      "hp": -1,
+      "kind": "death",
+      "level": 2,
+      "max_depth": 1,
+      "max_level": 2,
+      "turn": 33239
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 300036923,
+    "specimen": "angband-42cd156-original"
+  },
+  {
+    "cause": "a large white snake",
+    "cell": "classes-18/angband-42cd156-original/default/801785300",
+    "class": "Mage",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/angband-42cd156-original/default/801785300",
+      "complete": true,
+      "files": {
+        "archive/Measure.map": {
+          "bytes": 35284,
+          "sha256": "077d3132e184ca01f26d5e0887ff0becf1f3e4720aa77249f6d586444febd152"
+        },
+        "input.txt": {
+          "bytes": 130,
+          "sha256": "14e9c30d3c3699411167f3310856641b897b1403aeb925385e42b42100db58cb"
+        },
+        "result.json": {
+          "bytes": 31397,
+          "sha256": "0ca5057eb7017f14ec73e25f94712f974d507e7d9e0a872f179c4e80a65af746"
+        },
+        "save/Measure": {
+          "bytes": 56376,
+          "sha256": "2912c41b81a2d0aa34ad5f587775d8dcc3f13d979544ca7fa15ff2a8582ab8ff"
+        },
+        "terminal.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "trace.txt": {
+          "bytes": 162804,
+          "sha256": "b29fcda8e3a8694bc1e9227bc4aefad394cbe04768c75fa298b5f456c820e3a9"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 111,
+          "sha256": "c5b5c939e961895cc57dbaf74a1d6f641e9ed25b14ac9721c246b1909a8377ae"
+        },
+        "user/borg.txt": {
+          "bytes": 54,
+          "sha256": "02dcae7a69bb52253ec2a3241f2223e88c3cc6c520c34df753ddc8655c10c5a9"
+        },
+        "user/lore.txt": {
+          "bytes": 4319,
+          "sha256": "cca7c8517aa9a8de94c2d1208d0ec4e4671b728642b88c673ea084760bd33620"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 600,
+      "depth": 1,
+      "hp": -1,
+      "kind": "death",
+      "level": 1,
+      "max_depth": 1,
+      "max_level": 1,
+      "turn": 6253
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Half-Elf",
+    "seed": 801785300,
+    "specimen": "angband-42cd156-original"
+  },
+  {
+    "cause": "a cutpurse",
+    "cell": "classes-18/angband-42cd156-original/default/934061548",
+    "class": "Druid",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/angband-42cd156-original/default/934061548",
+      "complete": true,
+      "files": {
+        "archive/Measure.map": {
+          "bytes": 34302,
+          "sha256": "a116035365ebdef3bb0d9178dfe27512be98d784e052b3eb17dc30851292488b"
+        },
+        "input.txt": {
+          "bytes": 130,
+          "sha256": "0073be45bb482ae2248b4ab964e08f1ed7aeb0ec2ba0e03d2806c3b4f8e147bb"
+        },
+        "result.json": {
+          "bytes": 30164,
+          "sha256": "2aa676cba380e050f80fcbe8a600d21dc7475cab4ba8d72e4ee022e5c319a44b"
+        },
+        "save/Measure": {
+          "bytes": 56792,
+          "sha256": "e46831a76f9975a83d64b0bb491ca6bb8d781a3f51b705983497f20ee18b1077"
+        },
+        "terminal.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "trace.txt": {
+          "bytes": 75897,
+          "sha256": "49e4c2a52072ff3bdcd16115c13bc97c37c097b2f25dd4dbd6cb8253e85f2e2b"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 112,
+          "sha256": "ec76916bd5a207c23660a86274ef7c9161e6c8b801328391bbeea9178fa91414"
+        },
+        "user/borg.txt": {
+          "bytes": 54,
+          "sha256": "02dcae7a69bb52253ec2a3241f2223e88c3cc6c520c34df753ddc8655c10c5a9"
+        },
+        "user/lore.txt": {
+          "bytes": 3794,
+          "sha256": "1798b9b5c2609aa2ccf73a356991bab9fddbbeddf21ca94de9027404d176a545"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 445,
+      "depth": 1,
+      "hp": -3,
+      "kind": "death",
+      "level": 1,
+      "max_depth": 1,
+      "max_level": 1,
+      "turn": 4079
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Half-Elf",
+    "seed": 934061548,
+    "specimen": "angband-42cd156-original"
+  }
+]
