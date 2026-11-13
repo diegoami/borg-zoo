@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "town-negative-classes-1800",
+  "description": "The full grid of the town negative baseline (borg-zoo#81): borg-rs with no store interaction at all against the same build trading normally, both with every mode pinned off, on classes-1800. Follows the classes-18 pilot (town-negative), which showed the setting takes effect in every cell. A calibration floor, not a candidate strategy: no improvement is claimed in either direction. Prespecified, per class and paired on the seed: character level at 50% and 100% of the cap (milestones[].level) and final.max_depth; secondary: milestones[].gold (it may rise from floor pickups but must never fall), first_turn_at_depth, final.keys, the death split and the death causes. Run one arm per workflow run.",
+  "specimens": [
+    "4.2.6-rs-town"
+  ],
+  "profiles": [
+    "normal",
+    "town-negative"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-rs-town",
+  "control_profile": "normal"
+}

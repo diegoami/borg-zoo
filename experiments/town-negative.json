@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "town-negative",
+  "description": "The negative baseline for the town inventory redesign (borg-zoo#81): borg-rs with no store interaction at all, against the same build trading normally, both arms with every mode pinned off. A calibration floor, not a candidate strategy: the arm is expected to be worse and no improvement is claimed in either direction. Prespecified, per class and paired on the seed: character level at 50% and 100% of the cap (milestones[].level) and final.max_depth; secondary: milestones[].gold (must not move), first_turn_at_depth, final.keys, the death split. classes-18 is the pilot (36 cells); the full grid (classes-1800) follows only if the pilot reads well.",
+  "specimens": [
+    "4.2.6-rs-town"
+  ],
+  "profiles": [
+    "normal",
+    "town-negative"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-rs-town",
+  "control_profile": "normal"
+}

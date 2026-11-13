@@ -630,6 +630,41 @@
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v11",
       "label": "borg-rs M11 (tag 4.2.6-impact-v11): the Rust Borg carrying better-borg-c milestone 11's units - all 18 runtime units (19 patches, 0101a included) and the consumer's 11 C Borg files, so the C oracle and the Rust Borg carry the same fixes (borg-rs#29, PR 30; independent review approve, the one minor doc finding F1 fixed in e8f939a, owner accepted 2026-11-11). 105 Rust tests (one existing ignored), clippy clean, C/Rust smoke 3/3 and full 45/45 identical on keys, messages and state; the Rust binary links no C Borg. The tag points at the reviewed head 0f98f85b, the same commit as the v11R merge on main, so the pin is unchanged from the candidate entry and no recorded run is re-read. Like M8, M9 and M10, its default includes the munchkin-by-class start."
+    },
+    "4.2.6-rs-town": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "0e0439aa3f1cef85d2d18725ce61fe8fa85be629",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "label": "borg-rs, the town-inventory redesign branch (feature/town-inventory-strategy) at the negative-baseline commit: the Rust Borg as it stands on the branch, with the new setting borg_town_no_stores exposed (default FALSE, today's behaviour). Rust-only; the C parser accepts the setting and ignores it, so no C parity cell. No derived tag yet - the ref is a branch head (borg-rs#36, PR 42; borg-zoo#81).",
+      "source": "https://github.com/diegoami/borg-rs/pull/42"
+    },
+    "angband-42cd156-original": {
+      "repository": "angband/angband",
+      "ref": "42cd156ac9f95ddf4311e88dd7ad462292d6d1d6",
+      "mode_side": "pre",
+      "carries": 0,
+      "label": "Angband master 42cd156a, C Borg: upstream's head on 2026-11-12, 12 commits past e473720 (the last two change the Borg: the reaction gate and the knockout gate use dont_react). The vanilla C Borg to set beside angband-e473-original; its results are not paired with e473720's, because the game and the Borg both changed.",
+      "source": "https://github.com/angband/angband/commit/42cd156ac9f95ddf4311e88dd7ad462292d6d1d6"
+    },
+    "neo-765-original": {
+      "kind": "neo-original",
+      "repository": "neostryder/neo-angband-mod-borg",
+      "ref": "7501a78c2502854c94cb79c90aca8387ecc8d724",
+      "engine_repository": "neostryder/neo-angband",
+      "engine_ref": "765f39976462c2d6e414ba88d44feb15ca28ceb8",
+      "carries": 0,
+      "wall_factor": 3,
+      "label": "Original Neo engine 765f3997 and Borg 7501a78c (upstream heads on 2026-11-12), official API2 host life adapter. The measurement toolkit stays at tracker 2668adc5: tools/original-borg no longer exists at the tracker head c2ddf2ca (the upstream merge of 765f3997 dropped it), so the pin is immutable and the head cannot replace it.",
+      "source": "https://github.com/neostryder/neo-angband-mod-borg/commit/7501a78c2502854c94cb79c90aca8387ecc8d724",
+      "toolkit_repository": "diegoami/neo-angband-tracker",
+      "toolkit_ref": "2668adc5ab3e2b6e194c2f1561e248b88850ea98",
+      "toolkit_path": "tools/original-borg",
+      "toolkit_proposal": "https://github.com/diegoami/neo-angband-tracker/pull/542",
+      "pending": "the build fails: the toolkit pinned at tracker 2668adc5 (tools/original-borg/build.mjs) refuses engine 765f3997 with 'Unexpected upstream source pin', and the tracker head c2ddf2ca no longer has tools/original-borg. Needs a toolkit that knows the new engine pin (smoke run 43284812692)"
     }
   }
 }

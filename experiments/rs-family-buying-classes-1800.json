@@ -1,7 +1,7 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "rs-family-buying-classes-1800",
-  "description": "The borg-rs post-M10 buying family (4.2.6-rs-family-buying, 5aeb6e5, v10 base) on the full classes-1800 suite: every profile the pilots of #61, #67 and #75 exercised - the two strategies, buy-to-identify, the munchkin override and the class and class+munchkin masks - against the current/normal control. Run one arm per workflow run; the dashboard consolidates them. Owner-approved full suite, 2026-11-11 (session request).",
+  "description": "The borg-rs post-M10 buying family (4.2.6-rs-family-buying, 5aeb6e5, v10 base) on the full classes-1800 suite: every profile the pilots of #61, #67 and #75 exercised - the two strategies, buy-to-identify, the munchkin override and the class and class+munchkin masks - against the current/normal control. Run one arm per workflow run; the dashboard consolidates them. Owner-approved full suite, 2026-11-11 (session request). The Rogue class-mask arm was added for borg-zoo#79: the first full-suite arms showed the Rogue moving the other way under reserve410.",
   "specimens": [
     "4.2.6-rs-family-buying"
   ],
@@ -17,6 +17,7 @@
     "rs-buy-class-reserve-warrior",
     "rs-buy-class-reserve-warrior-id",
     "rs-buy-class-current-mage",
+    "rs-buy-class-reserve-rogue",
     "rs-buy-classmunchkin-current-warrior",
     "rs-buy-classmunchkin-reserve-warrior",
     "rs-buy-munchkin-override-current"

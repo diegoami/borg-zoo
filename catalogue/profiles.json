@@ -321,6 +321,17 @@
         "borg_lunal_mode": false
       }
     },
+    "rs-buy-class-reserve-rogue": {
+      "description": "Global current, Rogue class mask (bit 64) selects reserve410; the other eight classes stay current (borg-zoo#79)",
+      "settings": {
+        "borg_buy_strategy_default": 0,
+        "borg_buy_strategy_reserve410_classes": 64,
+        "borg_munchkin_start": false,
+        "borg_munchkin_by_class": false,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false
+      }
+    },
     "rs-buy-class-current-mage": {
       "description": "Global reserve410, Mage class mask selects current; Warrior stays reserve (borg-zoo#75)",
       "settings": {
@@ -372,6 +383,33 @@
         "borg_munchkin_by_class": false,
         "borg_self_lunal": false,
         "borg_lunal_mode": false
+      }
+    },
+    "town-negative": {
+      "description": "The negative baseline for the town inventory redesign (borg-rs#36, borg-zoo#81): the Borg performs no store interaction at all - it never buys, never sells, never uses the home as a stash or a swap source, and never walks into a shop. Everything else is unchanged: it still recalls to town, still equips itself, still dives. A floor, not a candidate strategy: the arm is expected to be worse, and no improvement is claimed in either direction. The four mode flags are pinned off, as in the normal profile, so the only difference from the normal arm is borg_town_no_stores (the issue's profile named the setting alone; borg-rs's default applies the class rule from M8, which would have made Warriors, Druids and Rangers differ from the control in two ways). Needs a build that knows borg_town_no_stores; older builds ignore the unknown setting, the observer cannot verify it, and the run is a config_error.",
+      "settings": {
+        "borg_munchkin_start": false,
+        "borg_munchkin_by_class": false,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false,
+        "borg_town_no_stores": true
+      }
+    },
+    "normal-munchkin": {
+      "description": "Munchkin start unconditionally on for every class, Lunal off: the munchkin counterpart of the normal profile (borg-zoo#81). Same pins as the borg-rs buying family's munchkin profiles; borg_munchkin_by_class is left unnamed because the unconditional start already covers every class.",
+      "settings": {
+        "borg_munchkin_start": true,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false
+      }
+    },
+    "town-negative-munchkin": {
+      "description": "The negative baseline for the town inventory redesign (borg-zoo#81) with the munchkin start unconditionally on for every class: no store interaction at all (see town-negative), otherwise exactly normal-munchkin.",
+      "settings": {
+        "borg_munchkin_start": true,
+        "borg_self_lunal": false,
+        "borg_lunal_mode": false,
+        "borg_town_no_stores": true
       }
     }
   }

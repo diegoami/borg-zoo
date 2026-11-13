@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "originals-20261112-smoke",
+  "description": "Build and play check of angband master 42cd156a (the C Borg at upstream's head of 2026-11-12) before any full run: classes-18 (18 seeds), default profile. Says only that it builds and plays; not a comparison. The Neo engine 765f3997 / Borg 7501a78c arm was dropped from this check: its build fails (see the pending note on neo-765-original).",
+  "specimens": [
+    "angband-42cd156-original"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "angband-42cd156-original",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "angband-42cd156-original": 3
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 3,
+    "native_wall_seconds": 900,
+    "job_timeout_minutes": 300
+  }
+}

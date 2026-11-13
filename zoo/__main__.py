@@ -8,13 +8,23 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from . import catalogue as cat_mod
-from . import harness, site, evidence
+from . import harness, site, evidence, preflight
 
 
 def cmd_arms(args):
     exp = cat_mod.experiment(args.experiment)
     for specimen, profile in cat_mod.arms(exp):
         print(f'{specimen}:{profile}')
+
+
+def cmd_preflight(args):
+    cat = cat_mod.catalogue()
+    exp = cat_mod.load_experiment(args.experiment, args.arm, cat)
+    problems = preflight.check(exp, cat)
+    for problem in problems:
+        print(f'preflight: {problem}', file=sys.stderr)
+    print(json.dumps({'experiment': exp['name'], 'arm': args.arm or None, 'problems': len(problems)}))
+    return 1 if problems else 0
 
 
 def cmd_plan(args):
@@ -144,6 +154,9 @@ def main(argv=None):
     sub = p.add_subparsers(dest='cmd', required=True)
     s = sub.add_parser('arms', help='list the arms of an experiment, one SPECIMEN:PROFILE per line')
     s.add_argument('--experiment', required=True)
+    s = sub.add_parser('preflight', help='check that the experiment can start; exit 1 if not')
+    s.add_argument('--experiment', required=True)
+    s.add_argument('--arm', default='', help='SPECIMEN:PROFILE, as for plan')
     s = sub.add_parser('plan')
     s.add_argument('--experiment', required=True)
     s.add_argument('--shards', type=int, default=4)
@@ -182,7 +195,7 @@ def main(argv=None):
     s.add_argument('--results', required=True)
     s.add_argument('--out', required=True)
     args = p.parse_args(argv)
-    {'arms': cmd_arms, 'plan': cmd_plan, 'build': cmd_build, 'run': cmd_run, 'collect': cmd_collect, 'site': cmd_site}[args.cmd](args)
+    return {'arms': cmd_arms, 'preflight': cmd_preflight, 'plan': cmd_plan, 'build': cmd_build, 'run': cmd_run, 'collect': cmd_collect, 'site': cmd_site}[args.cmd](args)
 
 
 if __name__ == '__main__':
