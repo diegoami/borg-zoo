@@ -11,7 +11,6 @@ import hashlib
 import json
 import platform
 import os
-import re
 import subprocess
 import time
 from pathlib import Path
@@ -39,40 +38,10 @@ def toolkit_script(toolkit, spec, name):
     return path
 
 
-PIN_LINE = re.compile(r'(\[\s*(engine|borg)\s*,\s*")([0-9a-f]{40})(")')
-
-
-def pinned_script(spec, script):
-    """The toolkit's build script, with its two hard-coded source pins
-    replaced by the specimen's own, when the specimen asks for it
-    ("toolkit_pins": "follow-specimen"). Only the identity guard changes: the
-    zoo has already checked both checkouts are exactly at the specimen's refs.
-    The toolkit's patches were reviewed against its own pins, so such a
-    specimen says so in its label, and the manifest records both hashes.
-    Returns (script to run, patch record or None)."""
-    if spec.get('toolkit_pins') != 'follow-specimen':
-        return script, None
-    text = script.read_text()
-    new = {'engine': spec['engine_ref'], 'borg': spec['ref']}
-    seen = []
-
-    def swap(m):
-        seen.append(m.group(2))
-        return m.group(1) + new[m.group(2)] + m.group(4)
-    patched = PIN_LINE.sub(swap, text)
-    if sorted(seen) != ['borg', 'engine']:
-        raise ValueError(f'{script.name}: expected one engine pin and one borg pin to replace, found {seen}')
-    target = script.with_name('build.pinned.mjs')
-    target.write_text(patched)
-    return target, {'kind': 'pins-follow-specimen',
-                    'original_sha256': hashlib.sha256(text.encode()).hexdigest(),
-                    'patched_sha256': hashlib.sha256(patched.encode()).hexdigest()}
-
-
 def build(spec, source, engine, toolkit, out):
     source = check_checkout(source, spec['ref'])
     engine = check_checkout(engine, spec['engine_ref'])
-    script, patch = pinned_script(spec, toolkit_script(toolkit, spec, 'build.mjs'))
+    script = toolkit_script(toolkit, spec, 'build.mjs')
     out = Path(out).resolve()
     if out.exists():
         raise ValueError(f'build output exists: {out}')
@@ -87,7 +56,6 @@ def build(spec, source, engine, toolkit, out):
     bundle = out / 'bundle.mjs'
     manifest.update({'kind': 'neo-original', 'source_commit': spec['ref'],
                      'engine_commit': spec['engine_ref'], 'toolkit_commit': spec['toolkit_ref'],
-                     'toolkit_patch': patch,
                      'binary_sha256': hashlib.sha256(bundle.read_bytes()).hexdigest(),
                      'compiler': 'node ' + subprocess.check_output(['node', '--version'], text=True).strip(),
                      'platform': platform.platform()})

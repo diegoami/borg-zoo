@@ -673,14 +673,14 @@
       "engine_repository": "neostryder/neo-angband",
       "engine_ref": "06a2321ce30a414df20d1b20d486446e7688171c",
       "wall_factor": 3,
-      "label": "The Neo Borg from diegoami/neo-angband-borg-mod-tracker master e731c81 (upstream port a10655c3 plus the fork's accepted repairs), on the Neo engine at the fork's recorded baseline 06a2321c, built and run by the tracker toolkit at 2668adc5 through its official API2 host adapter. The toolkit's hard-coded source pins are replaced by this specimen's own (toolkit_pins: follow-specimen); the toolkit's patches were reviewed against the 5a9cab20 / 014c8104 pair, so the build and play are checked by a smoke run before any claim. Not Mandos.",
+      "label": "Retired. The Neo Borg from diegoami/neo-angband-borg-mod-tracker master e731c81 (upstream port a10655c3 plus the fork's accepted repairs), on the Neo engine at the fork's recorded baseline 06a2321c, built and run by the tracker toolkit at 2668adc5 through its official API2 host adapter. It was built through the tracker toolkit with its source pins rewritten by the zoo; that mechanism is gone. Not Mandos.",
       "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/commit/e731c81a0480624af1c7c0358875cb8d3b5422dc",
       "toolkit_repository": "diegoami/neo-angband-tracker",
       "toolkit_ref": "2668adc5ab3e2b6e194c2f1561e248b88850ea98",
       "toolkit_path": "tools/original-borg",
       "toolkit_proposal": "https://github.com/diegoami/neo-angband-tracker/pull/542",
-      "toolkit_pins": "follow-specimen",
-      "role": "candidate"
+      "role": "candidate",
+      "pending": "retired: superseded by neo-fork-ba513ff, which the fork's own zoo entry point (tools/zoo) builds without any pin patch. Its one recorded check (neo-fork-smoke, 18 cells) stays on the results branch."
     },
     "4.2.6-bbc-m12": {
       "repository": "diegoami/better-borg-c",
