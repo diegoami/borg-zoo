@@ -1,0 +1,19 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-g1-classes-1800",
+  "description": "The borg-reborn-rs Rust Borg on classes-1800 (9 classes x 200 seeds, assigned birth, 100,000-turn cap), two arms that are full commits of diegoami/borg-reborn-rs, built by harness/build.sh with BORG_IMPL=rust and the defaults profile (docs/ZOO-INTERFACE.md): A, 3113c2e222a9 (main, the half-hit-point travel guard off) and B, 5f626d1777ed (A plus the guard of #183). For G1 (borg-reborn-rs #128) and the release decision (#183). The pristine C control is not run here: it is angband-e473-original in originals-20261108-classes-1800 (rerun identically in original-c-20261111-classes-1800), same suite and seeds (owner, 2026-11-11). Run one arm per workflow run.",
+  "prespecified": "Fixed 2026-11-13, before any full-suite result was read (GOALS D7/D8). Depth threshold D = 5. Primary endpoint, per class and overall: the share of cells that reach max depth D = 5 by T = 100,000 engine turns. Non-inferiority margin: 10 percentage points against the pristine C control (angband-e473-original), for A and for B. Descriptive only, not endpoints: deaths and their causes, max depth, max character level, first turn at each depth. For #183: B against A on survival (dead at T), max depth and max level, per class, and the causes of the deaths B adds.",
+  "specimens": [
+    "4.2.6-reborn-rust-g1-off",
+    "4.2.6-reborn-rust-g1-on"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-reborn-rust-g1-off",
+  "control_profile": "default",
+  "owner_authorization": "2026-11-13: the owner asked for the full classes-1800 run of both arms for borg-reborn-rs #128 and #183 (session request)."
+}
