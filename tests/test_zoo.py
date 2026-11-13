@@ -1326,3 +1326,40 @@ class DeathCauseTest(unittest.TestCase):
         # seeds 1, 2 and 3 were finished by both; seed 4 stalled in the control
         self.assertEqual((poison['pairs'], poison['new'], poison['fewer']), (3, 2, 1))
         self.assertEqual(out['common'][0], 'poison')
+
+
+class PreflightTest(unittest.TestCase):
+    """Problems that would waste a job are found before it starts."""
+
+    def neo(self, **over):
+        cat = cat_mod.catalogue()
+        spec = dict(cat['specimens']['specimens']['neo-5a9-original'])
+        spec.update(over)
+        cat['specimens']['specimens']['neo-x'] = spec
+        return cat
+
+    def test_a_toolkit_that_hard_codes_other_pins_is_flagged(self):
+        from zoo import preflight
+        cat = self.neo(engine_ref='1' * 40)
+        old = cat['specimens']['specimens']['neo-5a9-original']
+        script = f'const pins = ["{old["engine_ref"]}", "{old["ref"]}"];'
+        problems = preflight.check({'specimens': ['neo-x']}, cat, fetch=lambda *a: script)
+        self.assertEqual(len(problems), 1)
+        self.assertIn('hard-codes', problems[0])
+
+    def test_matching_pins_and_unpinned_toolkits_pass(self):
+        from zoo import preflight
+        cat = self.neo()
+        spec = cat['specimens']['specimens']['neo-x']
+        script = f'["{spec["engine_ref"]}", "{spec["ref"]}"]'
+        self.assertEqual(preflight.check({'specimens': ['neo-x']}, cat, fetch=lambda *a: script), [])
+        self.assertEqual(preflight.check({'specimens': ['neo-x']}, cat, fetch=lambda *a: 'no pins here'), [])
+
+    def test_unreadable_toolkit_pending_and_short_refs_are_flagged(self):
+        from zoo import preflight
+        self.assertIn('cannot read', preflight.check({'specimens': ['neo-x']}, self.neo(),
+                                                     fetch=lambda *a: None)[0])
+        self.assertIn('pending', preflight.check({'specimens': ['neo-x']}, self.neo(pending='no'),
+                                                 fetch=lambda *a: '')[0])
+        self.assertIn('not a full commit id', preflight.check({'specimens': ['neo-x']}, self.neo(ref='abc'),
+                                                              fetch=lambda *a: '')[0])

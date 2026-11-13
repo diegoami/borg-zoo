@@ -15,6 +15,8 @@ jobs:
       - run: python3 -m unittest discover -s tests -v
       - name: Every experiment plans against the catalogue
         run: for e in experiments/*.json smoke/*.json; do python3 -m zoo plan --experiment "$e"; done
+      - name: Every experiment passes the preflight
+        run: for e in experiments/*.json smoke/*.json; do python3 -m zoo preflight --experiment "$e" || exit 1; done
       - name: Every arm of an experiment plans on its own
         run: |
           for e in experiments/*.json; do

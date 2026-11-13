@@ -57,6 +57,8 @@ jobs:
       harness: ${{ steps.harness.outputs.commit }}
     steps:
       - uses: actions/checkout@v4
+      - name: Preflight
+        run: python3 -m zoo preflight --experiment "${{ inputs.experiment }}" --arm "${{ inputs.arm }}"
       - id: plan
         run: python3 -m zoo plan --experiment "${{ inputs.experiment }}" --shards "${{ inputs.shards }}" --arm "${{ inputs.arm }}" --github-output
       - id: harness
@@ -208,8 +210,10 @@ jobs:
           retention-days: 30
 
   collect:
-    needs: [plan, run]
-    if: ${{ !cancelled() && needs.plan.result == 'success' }}
+    # A failed build means nothing ran: publishing it would record every cell
+    # as a harness_failure that never was a game (smoke run 43284812692).
+    needs: [plan, build, run]
+    if: ${{ !cancelled() && needs.plan.result == 'success' && needs.build.result == 'success' }}
     runs-on: ubuntu-24.04
     permissions:
       contents: write
