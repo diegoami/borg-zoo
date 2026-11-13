@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "neo-fork-smoke",
+  "description": "Build and play check of the Neo Borg from diegoami/neo-angband-borg-mod-tracker (e731c81) through the tracker toolkit with its source pins following the specimen. classes-18, default profile. Says only whether it builds and plays; not a comparison.",
+  "specimens": [
+    "neo-fork-e731c81"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "neo-fork-e731c81",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "neo-fork-e731c81": 6
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 6,
+    "native_wall_seconds": 900,
+    "neo_wall_seconds": 2700,
+    "job_timeout_minutes": 300
+  }
+}
