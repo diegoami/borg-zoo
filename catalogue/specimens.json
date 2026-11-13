@@ -704,6 +704,28 @@
       "toolkit_ref": "ba513ffbd1952b42908395dbe2fcca4b80210705",
       "toolkit_path": "tools/zoo",
       "role": "candidate"
+    },
+    "4.2.6-reborn-rust-g1-off": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "source": "https://github.com/diegoami/borg-reborn-rs/blob/main/docs/ZOO-INTERFACE.md",
+      "ref": "3113c2e222a97665aa4ae122f4a2fed5c58c6feb",
+      "label": "borg-reborn-rs main at 3113c2e (PR 188: status blows deal their dice, no exploring under pursuit, #184), the half-hit-point travel guard of #183 off: arm A of borg-reborn-rs #128 (G1) and #183. Built by harness/build.sh with BORG_IMPL=rust, the defaults profile, no BORG_PROFILE (docs/ZOO-INTERFACE.md)."
+    },
+    "4.2.6-reborn-rust-g1-on": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "source": "https://github.com/diegoami/borg-reborn-rs/blob/main/docs/ZOO-INTERFACE.md",
+      "ref": "5f626d1777ede2042f894e904d662d2a82a606f3",
+      "label": "borg-reborn-rs 5f626d1: arm A (3113c2e) plus the half-hit-point travel guard of #183, one commit (strategy.rs, +8/-1) that the repository reverts on main until the owner releases it: arm B of borg-reborn-rs #128 (G1) and #183. Built as arm A is."
     }
   }
 }
