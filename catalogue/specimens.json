@@ -663,7 +663,8 @@
       "toolkit_repository": "diegoami/neo-angband-tracker",
       "toolkit_ref": "2668adc5ab3e2b6e194c2f1561e248b88850ea98",
       "toolkit_path": "tools/original-borg",
-      "toolkit_proposal": "https://github.com/diegoami/neo-angband-tracker/pull/542"
+      "toolkit_proposal": "https://github.com/diegoami/neo-angband-tracker/pull/542",
+      "pending": "the build fails: the toolkit pinned at tracker 2668adc5 (tools/original-borg/build.mjs) refuses engine 765f3997 with 'Unexpected upstream source pin', and the tracker head c2ddf2ca no longer has tools/original-borg. Needs a toolkit that knows the new engine pin (smoke run 43284812692)"
     }
   }
 }
