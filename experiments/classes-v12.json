@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-v12",
+  "description": "better-borg-c v12 (tag 4.2.6-impact-v12, 115 carries: v11 plus 0118 NEWKILL-95 and the official import to angband 42cd156a, retiring carries 0001 and 0002) on the full class grid, once under each policy the dashboard compares: normal (every mode pinned off) and munchkin-class (the class rule). The measurement the v12 milestone package records as not done. Run one arm per workflow run, so a timeout costs an arm (classes-v11 lost half its cells that way). Control is v12 under normal.",
+  "specimens": [
+    "4.2.6-bbc-m12"
+  ],
+  "profiles": [
+    "normal",
+    "munchkin-class"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-bbc-m12",
+  "control_profile": "normal"
+}

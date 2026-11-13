@@ -681,6 +681,15 @@
       "toolkit_proposal": "https://github.com/diegoami/neo-angband-tracker/pull/542",
       "toolkit_pins": "follow-specimen",
       "role": "candidate"
+    },
+    "4.2.6-bbc-m12": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "4e1b912cbf6d2b8a0243b19ebddfb2d26e7509f2",
+      "mode_side": "post",
+      "tag": "4.2.6-impact-v12",
+      "carries": 115,
+      "label": "better-borg-c milestone 12 (tag 4.2.6-impact-v12): v11 plus one carry (0118 NEWKILL-95: borg_new_kill() no longer forces a newly seen wall-walker's grid to floor) and the official angband import to master 42cd156a (12 commits past e473720, 5 of them in the Borg), which retires carries 0001 and 0002. Carries 115 = 116 + 1 - 2, counted here from the milestone package, not stated there. The milestone package says the retired carries' effect and the import's per-mode effect are not measured; this is the zoo's measurement of them. The tag message is a placeholder.",
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE12.md"
     }
   }
 }
