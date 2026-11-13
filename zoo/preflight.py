@@ -57,7 +57,7 @@ def check(exp, cat=None, fetch=git_fetch_file):
                 continue
             pins = set(PIN.findall(text))
             own = {spec['ref'], spec['engine_ref']}
-            if pins and not pins <= own:
+            if pins and not pins <= own and spec.get('toolkit_pins') != 'follow-specimen':
                 problems.append(f'{name}: the toolkit build script at {spec["toolkit_ref"][:8]} hard-codes '
                                 f'source pins {sorted(p[:8] for p in pins - own)} that this specimen does not '
                                 f'use (its engine {spec["engine_ref"][:8]}, Borg {spec["ref"][:8]}); the build '

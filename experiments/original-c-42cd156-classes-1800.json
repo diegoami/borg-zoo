@@ -1,0 +1,28 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "original-c-42cd156-classes-1800",
+  "description": "The original C Borg at angband master 42cd156a (upstream's head of 2026-11-12, 12 commits past e473720, the last two in the Borg) on classes-1800, the same suite as original-c-20261111-classes-1800 and classes-rs-m11. Descriptive only; its results are not paired with e473720's by the dashboard, because the game and the Borg both changed.",
+  "specimens": [
+    "angband-42cd156-original"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "angband-42cd156-original",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "angband-42cd156-original": 60
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 12,
+    "native_wall_seconds": 900,
+    "max_cells_per_native_shard": 30,
+    "worst_case_play_minutes_per_shard": 225,
+    "job_timeout_minutes": 300
+  },
+  "owner_authorization": "2026-11-13: the owner asked for the full classes-1800 run of the original C Borg at the new upstream head (session request)."
+}
