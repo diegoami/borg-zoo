@@ -25,7 +25,7 @@
       "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "mode_side": "pre",
       "carries": 0,
-      "label": "Angband 4.2.6 \u2014 the original C Borg as the release ships it (angband/angband e473720)",
+      "label": "Angband 4.2.6 — the original C Borg as the release ships it (angband/angband e473720)",
       "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "formerly": [
         "pristine"
@@ -738,6 +738,18 @@
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v12",
       "label": "borg-rs M12 (tag 4.2.6-impact-v12, v12R): the Rust Borg carrying better-borg-c milestone 12 (4e1b912cb): one consumer carry (0118 NEWKILL-95) and the official angband import to 42cd156ac, which retires the consumer's carries 0001 and 0002 because upstream now carries that logic (borg-rs PR 58, merge commit e6d13fc; independent review pass on re-review, 122 Rust tests, 70/70 C/Rust parity on the validation suites plus 25/25 and 9/9 after the options and deep oracle refresh; accepted 2026-11-14). Carries 115 = 116 + 1 - 2, as for better-borg-c M12. Like M8 to M11, its default includes the munchkin-by-class start."
+    },
+    "4.2.6-rs-m13": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "5dcc1db907aa947ce3d2a61ca0c1f01aa9108f3d",
+      "tag": "4.2.6-impact-v13",
+      "carries": 134,
+      "exact_turns": true,
+      "depth_stream": true,
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v13",
+      "label": "borg-rs M13 (tag 4.2.6-impact-v13, v13R): the Rust Borg carrying better-borg-c milestone 13 (9ccb2aaee): nineteen carries 0119-0137 - twelve from the issue-426 queue (glyph-flow fixes, the Lunal teleport disconnect, the dead-unique bookkeeping fixes, the respawn birth-menu letters, the rest-danger comment and three dead-code removals) and seven from the 2026-11-13/14 source-board pairs (wand svals by name, swap fear protection, fixed 20/40/60 heal amounts, narrowed cure lists, BI_PSTUN, and the elemental-vulnerability modelling in borg_danger) (borg-rs PR 72, merge commit 5dcc1db; independent review approve with corrections, one low finding F1 - the receipt's changed-run count - corrected; consumer-side milestone-13 review approve with corrections, docs/fixture tooling only, no src/borg change; 123 Rust tests, 111/111 three-column C/Rust parity after a full two-pass oracle re-record; accepted 2026-11-14). Carries 134, as for better-borg-c M13. Unlike M8 to M12, the by-class munchkin start is OFF in this specimen's borg.txt (owner decision 2026-11-14): an unconfigured run does not stair-scum with Warriors, Druids and Rangers, so arms that want the product class rule must name the munchkin-class profile explicitly (borg-zoo#54 already requires named mode profiles), and an m12-to-m13 default comparison moves the nineteen units and this config change together."
     },
     "4.2.6-bbc-m13": {
       "repository": "diegoami/better-borg-c",
