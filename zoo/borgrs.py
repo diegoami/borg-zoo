@@ -142,6 +142,16 @@ def check_config(text, profile):
     return ('settings not written: ' + ', '.join(sorted(wrong))) if wrong else None
 
 
+def check_effective(summary, profile):
+    """For opted-in modern specimens, verify what the Borg actually used."""
+    actual = summary.get('effective_settings')
+    if not isinstance(actual, dict):
+        return 'native summary has no effective_settings'
+    wrong = [name for name, value in profile['settings'].items()
+             if name not in actual or actual[name] != value]
+    return ('settings not effective: ' + ', '.join(sorted(wrong))) if wrong else None
+
+
 def command(game_bin, out, cell, race_i, cls_i, suite, spec):
     argv = [str(game_bin), '-mborgh', '-n', '-uBorg'] + \
         [f'-d{d}={out / d}' for d in ('user', 'save', 'archive', 'panic', 'scores')] + \
@@ -202,6 +212,10 @@ def run_cell(cell, build_dir, work, cat):
     if summary and (summary.get('race'), summary.get('class')) != (race, cls):
         mismatch = (mismatch + '; ' if mismatch else '') + \
             f"character {summary.get('race')} {summary.get('class')}, expected {race} {cls}"
+    if summary and spec.get('verify_effective_settings'):
+        effective_error = check_effective(summary, profile)
+        if effective_error:
+            mismatch = (mismatch + '; ' if mismatch else '') + effective_error
     if mismatch and outcome in ('death', 'turn_cap', 'completion'):
         outcome = 'config_error'
     keys = out / 'keys.log'
@@ -219,7 +233,10 @@ def run_cell(cell, build_dir, work, cat):
         'cap': suite['cap'], 'birth': suite['birth'],
         'boundary': 'exact' if spec.get('exact_turns') else 'after-key',
         'outcome': outcome, 'runner_outcome': summary.get('stop_reason'),
-        'config_error': mismatch, 'config_checked': 'written file (borgh reports no effective settings)',
+        'config_error': mismatch,
+        'config_checked': 'native effective_settings and written file' if spec.get('verify_effective_settings') else 'written file (effective settings not required for this specimen)',
+        'effective_settings': {name: summary.get('effective_settings', {}).get(name)
+                               for name in profile['settings']} if spec.get('verify_effective_settings') else None,
         'cause': summary.get('death_cause') or ('(alive and well)' if summary and not summary.get('dead') else None),
         'character': ' '.join(x for x in (summary.get('race'), summary.get('class')) if x) or None,
         'played_race': summary.get('race'), 'played_class': summary.get('class'),

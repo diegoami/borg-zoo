@@ -25,7 +25,7 @@
       "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "mode_side": "pre",
       "carries": 0,
-      "label": "Angband 4.2.6 — the original C Borg as the release ships it (angband/angband e473720)",
+      "label": "Angband 4.2.6 \u2014 the original C Borg as the release ships it (angband/angband e473720)",
       "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "formerly": [
         "pristine"
@@ -747,6 +747,17 @@
       "label": "better-borg-c milestone 13 runtime head 9ccb2aae (PR 519): nineteen carries since impact v12 - twelve from the issue-426 queue (0119-0130) and seven from the 2026-11-13/14 source-board pairs (0131-0137). Carries 134 = 115 + 19, counted here from the milestone package, not stated there. The 4.2.6-impact-v13 tag was placed on this commit on 2026-11-14 (owner authorization, borg-zoo#87 comment), so the tag now names the pin and the ref is unchanged; src/ at the later head cfcb6f13 is identical. The package records the per-mode effect of these units as not measured; this is the zoo's measurement of normal and the class rule (borg-zoo#87).",
       "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE13.md",
       "tag": "4.2.6-impact-v13"
+    },
+    "4.2.6-rs-joint-m12-d9a56f4": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "d9a56f48bac8675c91f551619492af36b698b4cf",
+      "depth_stream": true,
+      "verify_effective_settings": true,
+      "play_mode": "single",
+      "label": "borg-rs milestone-12 joint trip and live inventory candidate, pinned d9a56f4; one play mode, retired modes unavailable",
+      "source": "https://github.com/diegoami/borg-rs/blob/d9a56f48bac8675c91f551619492af36b698b4cf/docs/JOINT-POLICY-OPTIMISATION.md"
     }
   }
 }
