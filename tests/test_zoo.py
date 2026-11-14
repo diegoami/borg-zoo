@@ -1183,6 +1183,8 @@ class EndToEndTest(unittest.TestCase):
             (tmp / 'cells').mkdir()
             records = [cell(s, seed, 'death' if (s == '4.2.6' and seed == 11) else 'turn_cap')
                        for s in exp['specimens'] for seed in (11, 29)]
+            records[0]['town_activity'] = {'items': [{'shop_index': 4, 'item': 'a Potion <unknown>',
+                                                     'transactions': 2, 'units': 3, 'gold': 60}]}
             (tmp / 'cells/a.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in records))
             main(['collect', '--experiment', str(ROOT / 'smoke/milestones-smoke.json'),
                   '--cells', str(tmp / 'cells'), '--results', str(tmp / 'results'), '--run-id', 't-1'])
@@ -1196,6 +1198,9 @@ class EndToEndTest(unittest.TestCase):
             self.assertIn('Paired against 4.2.6, same profile', page)
             self.assertIn('Rescued', page)
             self.assertNotIn('same version', page)
+            self.assertIn('Observed town purchases', page)
+            self.assertIn('a Potion &lt;unknown&gt;', page)
+            self.assertIn('90-day retention', page)
 
     def test_site_renders_milestones_when_present(self):
         exp = cat_mod.experiment(ROOT / 'smoke/milestones-smoke.json')

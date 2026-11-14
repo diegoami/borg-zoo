@@ -616,6 +616,21 @@ def run_page(meta, cells):
             parts.append(table(['Version'] + [f'{t:,}' if t is not None else '–' for t in m_turns],
                                [[arm_label(meta, r['specimen'], r['profile'])] +
                                 [fmt_milestone(x) for x in r['milestones']] for r in rows]))
+    shopping = {}
+    for cell in cells:
+        for item in (cell.get('town_activity') or {}).get('items', []):
+            key = (cell['profile'], cell.get('played_class') or '?', item['item'])
+            total = shopping.setdefault(key, [0, 0, 0])
+            total[0] += item['transactions']
+            total[1] += item['units']
+            total[2] += item['gold']
+    if any('town_activity' in cell for cell in cells):
+        parts.append('<h2>Observed town purchases</h2><p>Native retail receipts, grouped by profile, class and item. '
+                     'Counts include all recorded attempts. Planned buys and Home transfers are excluded. '
+                     'Full messages and policy records are in the workflow raw evidence artifacts (90-day retention).</p>')
+        parts.append(table(['Profile', 'Class', 'Item', 'Transactions', 'Units', 'Gold spent'],
+                           [[esc(profile), esc(cls), esc(item), *totals]
+                            for (profile, cls, item), totals in sorted(shopping.items())]))
     parts.append('<h2>Specimens and environment</h2>')
     parts.append(explain('The Borg versions in this experiment, each built from the commit shown.'))
     parts.append(table(['Specimen', ('Ref', 'The commit that was built.'),

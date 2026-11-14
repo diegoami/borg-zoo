@@ -201,7 +201,7 @@ def run_cell(cell, build_dir, harness, work, cat=None, keep=False, source=None, 
         return neo_original.run_cell(cell, build_dir, work, cat, toolkit)
     if cat['specimens']['specimens'][cell['specimen']].get('kind') == 'borg-rs':
         from . import borgrs
-        return borgrs.run_cell(cell, build_dir, work, cat)
+        return borgrs.run_cell(cell, build_dir, work, cat, keep=keep)
     if cat['specimens']['specimens'][cell['specimen']].get('kind') == 'mandos':
         from . import mandos
         return mandos.run_cell(cell, build_dir, work, cat, source)

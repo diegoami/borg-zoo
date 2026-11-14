@@ -62,3 +62,37 @@ ordinary new policies 586, and the fixed 2x-risk candidate 559. The candidate
 had 29 more deaths than control (paired McNemar p=0.2732); this does not
 support adopting it for fewer deaths. These frozen runs precede the
 object-coverage fixes. See FINDINGS.md for the paired counts.
+
+## Town evidence correction (2026-11-14)
+
+The first dispatches, development 43643719860 and confirmation 43643769983,
+were frozen at abe128d without town message/policy capture. Both were still
+queued when this correction was validated. Changing this checkout does not
+change those runs. Owner approval is required before replacing the dispatches;
+retain their run IDs and terminal status in the replacement provenance. Do not
+mix their cells with corrected runs or select a different confirmation candidate.
+
+Both experiment definitions now request raw evidence retention. The borg-rs
+adapter passes this request through, rejects overwriting retained attempts,
+records native messages and per-key state, and retains keys for every outcome.
+Enabled policy profiles get separate per-cell town-plan and trip JSONL streams;
+the control's policies remain off. An empty stream means no consultation was
+recorded, not that a return or purchase happened. `town-recording.json` records
+the command, stream paths, source and config identity. Partial failed attempts
+remain available; game outcomes are not changed by receipt/wallet discrepancies.
+
+`town-transactions.jsonl` contains native retail receipts, purchased quantities,
+costs and per-key wallet checks. Compact per-item totals survive on the results
+branch and in `town-purchases.csv`; the site shows purchases by profile and class.
+Home transfers and return decisions can be inspected in the archived native
+messages and policy records; the retail table does not claim to count them.
+Raw archives use the existing workflow artifact path with SHA-256 inventories
+and 90-day retention. Download them before expiry for durable recovery.
+
+Validation uses the exact d9a56f4 combined runtime, not the separate town branch.
+Eight native canary games paired logging off/on at a 3000-turn cap: Warrior and
+Mage under control and live-reference profiles. All four pairs had identical
+key hashes and final states. All 30 native retail purchases passed wallet
+checks. The live Warrior produced both town and trip records; the live Mage
+produced town records but no trip consultation. This is a logging check, not a
+survival comparison. Receipt: [native-canary.json](validation/town-evidence-20261114/native-canary.json).

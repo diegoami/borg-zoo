@@ -26,6 +26,13 @@ def attach(record, directory):
             missing.extend(name for name in ('trace.txt', 'result.json') if name not in files)
             if record['outcome'] == 'death' and not any(name.endswith('.map') for name in files):
                 missing.append('native final .map')
+        elif record.get('harness_kind') == 'borg-rs':
+            required = ['summary.json', 'user/borg.txt', 'keys.log', 'state.log',
+                        'messages.log', 'town-recording.json', 'town-transactions.jsonl']
+            recording = directory / 'town-recording.json'
+            if recording.exists():
+                required += list(json.loads(recording.read_text()).get('streams', {}).values())
+            missing.extend(name for name in required if name not in files)
         else:
             for required in ('run.json', 'states.jsonl', 'commands.jsonl', 'messages.jsonl'):
                 if not any(name.endswith('/' + required) or name == required for name in files):
@@ -67,3 +74,12 @@ def write_indexes(target, records):
         for row in rows:
             writer.writerow({**{k: row.get(k) for k in fields if k not in ('turn', 'depth', 'level')},
                              **{k: (row.get('final') or {}).get(k) for k in ('turn', 'depth', 'level')}})
+
+    with (target / 'town-purchases.csv').open('w', newline='') as stream:
+        fields = ['cell', 'profile', 'race', 'class', 'shop_index', 'item', 'transactions', 'units', 'gold']
+        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer.writeheader()
+        for record in sorted(records, key=cell_key):
+            for item in (record.get('town_activity') or {}).get('items', []):
+                writer.writerow({'cell': cell_key(record), 'profile': record['profile'],
+                                 'race': record.get('played_race'), 'class': record.get('played_class'), **item})
