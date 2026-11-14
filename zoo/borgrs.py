@@ -152,19 +152,21 @@ def check_effective(summary, profile):
     return ('settings not effective: ' + ', '.join(sorted(wrong))) if wrong else None
 
 
-def command(game_bin, out, cell, race_i, cls_i, suite, spec):
+def command(game_bin, out, cell, race_i, cls_i, suite, spec, keep=False):
     argv = [str(game_bin), '-mborgh', '-n', '-uBorg'] + \
         [f'-d{d}={out / d}' for d in ('user', 'save', 'archive', 'panic', 'scores')] + \
         ['--', '-seed', str(cell['seed']), '-race', str(race_i), '-class', str(cls_i), '-turns', str(suite['cap']),
          '-keylog', str(out / 'keys.log'), '-summary', str(out / 'summary.json'), '-menu-letters']
     if spec.get('exact_turns'):
         argv.append('-exact-turns')
-    if spec.get('depth_stream'):
+    if spec.get('depth_stream') or keep:
         argv += ['-statelog', str(out / 'state.log')]
+    if keep:
+        argv += ['-msglog', str(out / 'messages.log')]
     return argv
 
 
-def run_cell(cell, build_dir, work, cat):
+def run_cell(cell, build_dir, work, cat, keep=False):
     applied, profile = cat_mod.resolve_profile(cat, cell)
     suite = cat['suites'][cell['suite']]
     spec = cat['specimens']['specimens'][cell['specimen']]
@@ -174,6 +176,8 @@ def run_cell(cell, build_dir, work, cat):
         raise ValueError(f'build {build_dir} does not match specimen {cell["specimen"]}')
     out = Path(work).resolve() / cat_mod.cell_key(cell)
     if out.exists():
+        if keep:
+            raise ValueError(f'refusing to overwrite retained attempt: {out}')
         shutil.rmtree(out)
     for d in ('user', 'save', 'archive', 'panic', 'scores'):
         (out / d).mkdir(parents=True)
@@ -183,8 +187,26 @@ def run_cell(cell, build_dir, work, cat):
     (out / 'user/borg.txt').write_text(text)
     mismatch = check_config(text, profile)
     game = build_dir / 'game'
-    argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec)
+    argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=keep)
     env = dict(os.environ, TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8')
+    if keep:
+        # Never let parallel cells write to an inherited process-global path.
+        for name in ('BORG_TOWN_PLAN_RECORD', 'BORG_TRIP_RECORD'):
+            env.pop(name, None)
+        streams = {}
+        for setting, name, filename in (
+                ('borg_town_plan', 'BORG_TOWN_PLAN_RECORD', 'town-plan.jsonl'),
+                ('borg_trip_policy', 'BORG_TRIP_RECORD', 'trip.jsonl')):
+            if profile['settings'].get(setting) == 1:
+                env[name] = str(out / filename)
+                (out / filename).touch()  # Empty means no recorded consultation.
+                streams[name] = filename
+        (out / 'town-recording.json').write_text(json.dumps({
+            'schema': 'borg-zoo/town-recording@1', 'argv': argv,
+            'source_commit': spec['ref'], 'profile_applied': applied,
+            'config_sha256': hashlib.sha256(text.encode()).hexdigest(),
+            'streams': streams,
+        }, indent=2) + '\n')
     start = time.monotonic()
     outcome, error, rc = None, None, None
     try:
@@ -257,7 +279,11 @@ def run_cell(cell, build_dir, work, cat):
     # stall path above, which already read them) so the measured repository
     # can verify them against play_sha256; every other outcome's keys are
     # discarded as before.
-    if outcome != 'death':
+    if keep:
+        from . import town
+        record['town_activity'] = town.collect(out)
+    if not keep and outcome != 'death':
         keys.unlink(missing_ok=True)
-    state_log.unlink(missing_ok=True)
+    if not keep:
+        state_log.unlink(missing_ok=True)
     return record
