@@ -214,3 +214,15 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
   play hash — that comparison is same-version and still valid. The M9-vs-M10 question at
   classes scale returns as [`m10-smoke`](../smoke/m10-smoke.json), restarted on the explicit
   profiles (munchkin-class, normal).
+
+
+- **Neo measurement host correction (2026-11-14):** smoke43615649575
+  measured candidate9c17cb0 with a message-deaf headless host: it recorded
+  attack text but supplied no GameEvents bus or API2 message subscription.
+  The retained Human Mage1548306106 rests through invisible touches and dies
+  at7248; exact command-hash replay and host-event controls confirm the cause
+  of the missing fear input. See port-tracker#92/#93 and borg-zoo#89. The
+  historical run remains unchanged; its deaths do not establish faithful
+  browser behavior. Corrected acceptance/full runs use specimen
+  neo-fork-9c17cb0-events, Borg9c17cb0, toolkit02c33cf and engine06a2321c.
+  No survival improvement is inferred from these cross-host comparisons.

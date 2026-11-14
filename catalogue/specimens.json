@@ -754,10 +754,24 @@
       "engine_repository": "neostryder/neo-angband",
       "engine_ref": "06a2321ce30a414df20d1b20d486446e7688171c",
       "wall_factor": 3,
-      "label": "Neo Borg candidate PR91 at 9c17cb0, not merged master: danger-cache/goal invalidation, HP-change invalidation and C pre-escape desperate-stair/strategic-retreat repairs, on declared engine 06a2321c. Built/run by the same commit's tools/zoo. Explicit FORK visibility/vault/anti-bounce limits remain; no population survival improvement is assumed.",
+      "label": "Neo Borg candidate PR91 at 9c17cb0, not merged master: danger-cache/goal invalidation, HP-change invalidation and C pre-escape desperate-stair/strategic-retreat repairs, on declared engine 06a2321c. Built/run by the same commit's tools/zoo. Explicit FORK visibility/vault/anti-bounce limits remain; no population survival improvement is assumed. Historical message-deaf host (port-tracker#92); preserved for smoke43615649575, superseded by neo-fork-9c17cb0-events.",
       "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/91",
       "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
       "toolkit_ref": "9c17cb0c582fe129008899491372787e91abdade",
+      "toolkit_path": "tools/zoo",
+      "role": "candidate"
+    },
+    "neo-fork-9c17cb0-events": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "9c17cb0c582fe129008899491372787e91abdade",
+      "engine_repository": "neostryder/neo-angband",
+      "engine_ref": "06a2321ce30a414df20d1b20d486446e7688171c",
+      "wall_factor": 3,
+      "label": "Neo Borg repair candidate PR91 at9c17cb0 with corrected event/message host from port-tracker PR93 at02c33cf. Borg and engine pins unchanged; toolkit now delivers messages through the official GameEvents/API2 subscription seam. Corrects message-deaf smoke43615649575; not a survival claim.",
+      "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/91",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "02c33cf1871b86ea8e8d7bf8cbc870cf177b736b",
       "toolkit_path": "tools/zoo",
       "role": "candidate"
     }
