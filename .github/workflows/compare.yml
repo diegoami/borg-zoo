@@ -101,7 +101,7 @@ jobs:
       - if: matrix.kind == 'mandos' || matrix.kind == 'neo-original'
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '26'
       - if: matrix.kind == 'mandos' || matrix.kind == 'neo-original'
         run: corepack enable && node --version && (cd source && pnpm --version)
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq libx11-dev > /dev/null
@@ -153,7 +153,7 @@ jobs:
       - if: matrix.kind == 'mandos' || matrix.kind == 'neo-original'
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '26'
       - name: Install the Mandos checkout
         if: matrix.kind == 'mandos'
         # The run uses the bundle from the build job; zoo-run checks that this
