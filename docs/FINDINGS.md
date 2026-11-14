@@ -226,3 +226,18 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
   browser behavior. Corrected acceptance/full runs use specimen
   neo-fork-9c17cb0-events, Borg9c17cb0, toolkit02c33cf and engine06a2321c.
   No survival improvement is inferred from these cross-host comparisons.
+
+- **Corrected Neo cohort completed (2026-11-14):**
+  [run43617859717](https://github.com/diegoami/borg-zoo/actions/runs/43617859717),
+  Borg9c17cb0/toolkit02c33cf/engine06a2321c, has all1,800 cells:
+  **1,352 deaths,415 caps,32 stalls,one wall timeout**. Deaths are75.11%
+  of assigned cells,76.51% of the1,767 death/cap endpoints; the33 abnormal
+  outcomes remain counted separately. Of deaths,1,099 occur at levels1–2;
+  Grip/Fang account for273. This is a descriptive single arm, not a
+  confirmed improvement over the older message-deaf run or native C.
+  [Death triage, class/cause tables, pins and reproducer](../reports/neo-9c17cb0-events-43617859717/README.md)
+  distinguish the existing C danger-cache defect from a confirmed engine
+  blindness-refresh ordering defect, cancelled Remove Curse prompts and an
+  alternating-direction tunnel timeout. Eye/mushroom/mold deaths replay
+  exactly; several approach/perception causes remain unresolved. No source
+  behavior was changed by this analysis.
