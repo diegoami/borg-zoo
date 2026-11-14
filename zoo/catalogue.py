@@ -391,6 +391,16 @@ def cell_key(cell):
     return f"{cell['suite']}/{cell['specimen']}/{cell['profile']}/{cell['seed']}"
 
 
+def boundary(spec):
+    """Intended boundary for a cell, including attempts that never produced a record."""
+    kind = spec.get('kind', 'better-borg-c')
+    if kind == 'better-borg-c':
+        return 'exact'
+    if kind == 'borg-rs' and spec.get('exact_turns'):
+        return 'exact'
+    return 'after-key'
+
+
 def shard(cell_list, specimen, index, count):
     """Cells of one specimen, dealt round-robin into `count` shards."""
     mine = [c for c in cell_list if c['specimen'] == specimen]

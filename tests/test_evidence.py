@@ -62,9 +62,27 @@ class EvidenceTest(unittest.TestCase):
                 rows = [json.loads(line) for line in (root / 'cells.jsonl').read_text().splitlines()]
                 self.assertEqual(len(rows), 1)
                 self.assertEqual(rows[0]['outcome'], 'harness_failure')
+                self.assertEqual(rows[0]['boundary'], 'exact')
                 self.assertIn('pilot fixture failure', rows[0]['error'])
                 with self.assertRaises(ValueError):
                     main(argv)
+
+    def test_missing_rust_attempts_keep_the_specimens_boundary(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            exp = {'name': 'boundary-failures', 'specimens': ['4.2.6-rs-m0', '4.2.6-reborn-rust'],
+                   'control': '4.2.6-rs-m0', 'profiles': ['default'], 'suites': ['smoke']}
+            path = root / 'experiment.json'
+            path.write_text(json.dumps(exp))
+            (root / 'empty-cells').mkdir()
+            main(['collect', '--experiment', str(path), '--cells', str(root / 'empty-cells'),
+                  '--results', str(root / 'results'), '--run-id', 'missing'])
+            rows = [json.loads(line) for line in
+                    (root / 'results/boundary-failures/missing/cells.jsonl').read_text().splitlines()]
+            self.assertEqual(len(rows), 6)
+            for row in rows:
+                self.assertEqual(row['outcome'], 'harness_failure')
+                self.assertEqual(row['boundary'], 'exact' if row['specimen'] == '4.2.6-reborn-rust' else 'after-key')
 
 
 class OriginalNeoTest(unittest.TestCase):
