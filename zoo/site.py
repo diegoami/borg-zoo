@@ -2,6 +2,8 @@
 import html
 import json
 import shutil
+from functools import lru_cache
+from statistics import mean
 from pathlib import Path
 
 from . import catalogue as cat_mod
@@ -188,7 +190,7 @@ def paired_example(meta, r, v, control):
     """A worked reading of one paired row; control names the arm it is paired with."""
     if not v['pairs']:
         return None
-    name = esc(r['specimen']) + (f' · {esc(r["profile"])}' if len(meta['experiment']['profiles']) > 1 else '')
+    name = arm_label(meta, r['specimen'], r['profile'])
     same = (f' {v["identical_traces"]:,} of the {v["pairs"]:,} games were identical move for move.'
             if v['identical_traces'] else '')
     if v['identical_traces'] == v['pairs']:
@@ -284,8 +286,84 @@ def consolidate(runs):
     return out
 
 
+@lru_cache(maxsize=1)
+def study_presentation():
+    # Display metadata only. Never replace the frozen settings or results.
+    path = Path(__file__).resolve().parents[1] / 'catalogue/study-presentation.json'
+    return json.loads(path.read_text()) if path.exists() else {'profiles': {}, 'experiments': {}}
+
+
+def study_info(meta):
+    return study_presentation()['experiments'].get(meta['experiment']['name'])
+
+
+def tested_settings(meta):
+    if not study_info(meta):
+        return ''
+    rows = []
+    profiles = meta['catalogue'].get('profiles', {})
+    for name in meta['experiment']['profiles']:
+        cfg = profiles.get(name, {}).get('settings', {})
+        live = cfg.get('borg_town_plan') == 1
+        trip = cfg.get('borg_trip_policy') == 1
+        rows.append([esc(study_presentation()['profiles'].get(name, name)),
+                     'New shopper — ON' if live else 'Existing shopper',
+                     'New trip policy — ON' if trip else 'Existing return rules',
+                     f"{cfg.get('borg_town_risk', 1000) / 1000:g}x forecast risk" if live else 'Existing supply rules',
+                     f"{cfg.get('borg_trip_pack_slack', 2)} free spaces / {cfg.get('borg_trip_unknown_stacks', 4)} unknown gear stacks" if trip else 'Existing triggers'])
+    ids = ''.join(f'<li><code>{esc(name)}</code>: {esc(study_presentation()["profiles"].get(name, name))}</li>' for name in meta['experiment']['profiles'])
+    return ('<h2>What is being tested?</h2><p>The new shopper makes actual purchases, sales and Home transfers. '
+            'The trip policy decides when to go home. The risk multiplier changes supply planning; '
+            'it does not make the character fight more recklessly. Other declared settings stay the same.</p>'
+            '<p>These are the frozen runs of the original, limited shopping model. The object-coverage fixes now being developed are not included.</p>'
+            + table(['Choice', 'Shopping', 'Dungeon returns', 'Supply planning', 'Return triggers'], rows)
+            + '<p><strong>Primary question: how many characters die?</strong> Character level and depth are secondary. '
+              'Putting an unknown object in the Home frees space but does not identify it.</p>'
+            + '<details><summary>Exact identifiers and statistical plan</summary><ul>' + ids + '</ul><p>'
+            + esc(meta['experiment'].get('prespecified', '')) + '</p></details>')
+
+
+def study_summary(meta, cells, suite):
+    if not study_info(meta):
+        return ''
+    rows = []
+    for specimen in meta['experiment']['specimens']:
+        for profile in meta['experiment']['profiles']:
+            selected = [c for c in cells if c['suite'] == suite and c['specimen'] == specimen and c['profile'] == profile]
+            finished = [c for c in selected if c['outcome'] in stats.VALID]
+            levels = [c['final']['level'] for c in finished if c.get('final', {}).get('level') is not None]
+            depths = [c['final']['max_depth'] for c in finished if c.get('final', {}).get('max_depth') is not None]
+            rows.append([arm_label(meta, specimen, profile), len(selected), len(finished),
+                         sum(c['outcome'] == 'death' for c in finished),
+                         f'{mean(levels):.2f}' if levels else '—', f'{mean(depths):.2f}' if depths else '—',
+                         sum(d >= 3 for d in depths), len(selected) - len(finished)])
+    verdict = ''
+    compare = {}
+    for profile in ('rs-joint-old-control', 'rs-joint-risk2000'):
+        group = [c for c in cells if c['suite'] == suite and c['profile'] == profile]
+        if group and all(c['outcome'] in stats.VALID for c in group):
+            compare[profile] = group
+    if len(compare) == 2 and len(compare['rs-joint-old-control']) == len(compare['rs-joint-risk2000']):
+        delta = sum(c['outcome'] == 'death' for c in compare['rs-joint-risk2000']) - sum(c['outcome'] == 'death' for c in compare['rs-joint-old-control'])
+        if delta > 0:
+            verdict = f'<p><strong>On these cases, the 2x-forecast candidate had {delta} more deaths than the existing rules. It did not reduce deaths in this comparison.</strong></p>'
+        elif delta < 0:
+            verdict = f'<p><strong>On these cases, the 2x-forecast candidate had {-delta} fewer deaths than the existing rules.</strong> The paired analysis below shows the uncertainty.</p>'
+        else:
+            verdict = '<p>The candidate and existing rules had the same death count.</p>'
+    return ('<h3>Plain summary</h3>' + verdict + '<p>Means include every finished character, including those that died. '
+            '“Reached DL3+” counts characters that reached dungeon level 3 or deeper. '
+            'Incomplete games are shown separately and are not counted as deaths or survivors.</p>'
+            + table(['Choice', 'Games', 'Finished', 'Deaths', 'Mean character level', 'Mean deepest level', 'Reached DL3+', 'Incomplete'], rows)
+            + '<h3>Detailed statistics</h3><p>The tables below add uncertainty ranges, paired comparisons and medians. '
+              'Their goal measure uses dungeon level 5; it is not this study’s primary endpoint.</p>')
+
+
 def arm_label(meta, specimen, profile):
     spec = meta['catalogue']['specimens'].get(specimen, {})
+    friendly = study_presentation()['profiles'].get(profile) if study_info(meta) else None
+    if friendly:
+        return f'<span title="{esc(specimen)} · {esc(profile)}">{esc(friendly)}</span>'
     label = esc(specimen)
     if spec.get('carries') is not None:
         label += f' <span class="muted">({spec["carries"]} carries)</span>'
@@ -359,9 +437,13 @@ def run_page(meta, cells):
     exp = meta['experiment']
     specimens = meta['catalogue']['specimens']
     analysis = stats.analyse(exp, cells, specimens)
+    display = study_info(meta)
+    page_title = display['title'] if display else exp['name']
+    intro = display['intro'] if display else exp.get('description', '')
     parts = [f'<p><a href="../../index.html">All experiments</a></p>',
-             f'<h1>{esc(exp["name"])}</h1><p>{esc(exp.get("description", ""))}</p>',
-             (f'<p><strong>Prespecified:</strong> {esc(exp["prespecified"])}</p>' if exp.get('prespecified') else ''),
+             f'<h1>{esc(page_title)}</h1><p class="lead">{esc(intro)}</p>',
+             tested_settings(meta),
+             (f'<p><strong>Prespecified:</strong> {esc(exp["prespecified"])}</p>' if exp.get('prespecified') and not display else ''),
              f'<p class="muted">Run {esc(meta["run_id"])} · completed {esc(meta.get("completed", "?"))} · '
              f'<a href="{esc(meta.get("run_url", "#"))}">workflow run</a> · <a href="cells.jsonl">raw cells (JSON lines)</a></p>',
              consolidated_note(meta),
@@ -370,13 +452,14 @@ def run_page(meta, cells):
              'prespecified above. Ranges are Wilson 95% intervals; paired p-values are exact McNemar tests on the '
              'seeds where both arms finished. Two outcomes are measured: <strong>death</strong> before the turn '
              f'cap, and <strong>alive at the cap having reached dungeon level {stats.DEPTH_GOAL}</strong> '
-             '(survived and made progress). The owner has not yet chosen which one is primary.</p>']
+             + ('(survived and made progress). Deaths are primary for this study; the goal column is descriptive.</p>' if display else '(survived and made progress). The owner has not yet chosen which one is primary.</p>')]
     parts.append(cutoff_note(exp, specimens, meta.get('completed', ''),
                              (meta.get('catalogue') or {}).get('harness', {}).get('commit', '')))
     for suite, rows in analysis.items():
         s = meta['catalogue']['suites'][suite]
         parts.append(f'<h2>Suite {esc(suite)}</h2><p class="muted">{esc(s["description"])} · '
                      f'{len(s["seeds"])} seeds · cap {s["cap"]:,} engine turns · birth {esc(s["birth"])}</p>')
+        parts.append(study_summary(meta, cells, suite))
         parts.append('<h3>Outcomes per arm</h3>')
         first = rows[0]['summary'] if rows else None
         parts.append(explain(
@@ -399,7 +482,7 @@ def run_page(meta, cells):
              for r in rows]))
         control_profile = exp.get('control_profile', exp['profiles'][0])
         for key, title in (('vs_version', f'Paired against {esc(exp["control"])}, same profile'),
-                           ('vs_profile', f'Paired against profile {esc(control_profile)}, same version')):
+                           ('vs_profile', f'Paired against {esc(study_presentation()["profiles"].get(control_profile, control_profile))}, same version')):
             versus = [r for r in rows if r[key]]
             if not versus:
                 continue
@@ -544,7 +627,7 @@ def run_page(meta, cells):
                  f'<code>{esc(meta["catalogue"]["harness"]["commit"][:12])}</code> · '
                  f'compilers {esc(", ".join(env.get("compilers", [])))} · platforms {esc(", ".join(env.get("platforms", [])))} · '
                  f'calendar: native clock, all arms in one workflow run</p>')
-    return page(f'{exp["name"]} · borg-zoo', ''.join(parts))
+    return page(f'{page_title} · borg-zoo', ''.join(parts))
 
 
 def build_site(results, out):
@@ -571,7 +654,7 @@ def build_site(results, out):
             shutil.copy(src / 'meta.json', target / 'meta.json')
         finished = sum(1 for c in cells if c['outcome'] in stats.VALID)
         (smoke_rows if meta['experiment']['name'] in smoke else rows).append([f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
-                     f'{esc(meta["experiment"]["name"])}</a>', esc(meta.get('completed', '?')),
+                     f'{esc((study_info(meta) or {}).get("title", meta["experiment"]["name"]))}</a>', esc(meta.get('completed', '?')),
                      len(meta['experiment']['specimens']), len(meta['experiment']['profiles']),
                      len(cells), finished])
     from . import landing

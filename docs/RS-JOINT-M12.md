@@ -52,5 +52,13 @@ both new preflights report zero problems, and six local adapter canaries
 reach their cap with every native setting verified. Canaries check
 orchestration, not performance, and are excluded from the studies.
 
-Raw runs are produced by Actions; links to the dispatched runs will be
-recorded after launch. No completed result or improvement is claimed here.
+Published studies:
+
+- [Development report](https://diegoami.github.io/borg-zoo/runs/rs-joint-m12-development/43643719860-1/index.html)
+- [Fresh-seed confirmation report](https://diegoami.github.io/borg-zoo/runs/rs-joint-m12-confirm/43643769983-1/index.html)
+
+The confirmation finished all 5,400 games: existing rules 530 deaths,
+ordinary new policies 586, and the fixed 2x-risk candidate 559. The candidate
+had 29 more deaths than control (paired McNemar p=0.2732); this does not
+support adopting it for fewer deaths. These frozen runs precede the
+object-coverage fixes. See FINDINGS.md for the paired counts.
