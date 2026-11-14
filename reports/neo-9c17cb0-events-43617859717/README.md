@@ -70,6 +70,10 @@ A recorded killer is an endpoint, not proof of the decision that caused it. Pois
 
 32 stalls:18 read,9 tunnel,2 walk,2 rest,1 hold. Of the read stalls,10 end `You have no light to read by.` and8 repeat Remove Curse. A representative dark-reading stall has the confirmed engine ordering cause above; the other nine require individual attribution. Nine tunnel stalls spend turns chipping futilely; these are separate from the zero-turn alternating-direction timeout. Seventeen stalls are Blackguards. Every abnormal record remains in the cohort.
 
+## Why shared seed numbers do not yet mean matching games
+
+[Checked seed/birth/RNG comparison](SEEDS-AND-COMPARISON.md) corrects an earlier overly absolute statement: cross-engine alignment is possible, but has not been established. Historical C used point buy and no-selling=true; current Neo uses rolled birth and records no-selling=false in1,799 lives (one missing birth record). C draws the Borg startup seed from the game stream; the port defaults to a constant. These are concrete confounders, not a demonstrated explanation of the mortality gap. Controlled independent cohorts and bounded C/TS scenarios remain useful without matching worlds.
+
 ## Validation and limits
 
 Three newly replayed death command streams (eye1373700124, mushroom1780052628, mold1954874415) match their completed-run SHA256 exactly. The dark-reading Blackguard replay also matches its command hash; the final-mold diagnostic replay preserves its original hash. Instrumentation is in scratch copies, not source worktrees; replays use the correct message/event host and the shared flock validation lock. Raw shards1/89/111 were downloaded and archive SHA256 verified; every retained file of target cells1713737383/406779093/199095980 matches its manifest. See evidence.json for receipts and selected records. Prior corrected-acceptance Druid/Fang and first-shard centipede receipts remain on port issues88/89 and zoo PR89.
