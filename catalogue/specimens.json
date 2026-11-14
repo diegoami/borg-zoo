@@ -726,6 +726,18 @@
       "source": "https://github.com/diegoami/borg-reborn-rs/blob/main/docs/ZOO-INTERFACE.md",
       "ref": "5f626d1777ede2042f894e904d662d2a82a606f3",
       "label": "borg-reborn-rs 5f626d1: arm A (3113c2e) plus the half-hit-point travel guard of #183, one commit (strategy.rs, +8/-1) that the repository reverts on main until the owner releases it: arm B of borg-reborn-rs #128 (G1) and #183. Built as arm A is."
+    },
+    "4.2.6-rs-m12": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "e6d13fc9baff0ef7f06de6333fbda436c961e0bf",
+      "tag": "4.2.6-impact-v12",
+      "carries": 115,
+      "exact_turns": true,
+      "depth_stream": true,
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v12",
+      "label": "borg-rs M12 (tag 4.2.6-impact-v12, v12R): the Rust Borg carrying better-borg-c milestone 12 (4e1b912cb): one consumer carry (0118 NEWKILL-95) and the official angband import to 42cd156ac, which retires the consumer's carries 0001 and 0002 because upstream now carries that logic (borg-rs PR 58, merge commit e6d13fc; independent review pass on re-review, 122 Rust tests, 70/70 C/Rust parity on the validation suites plus 25/25 and 9/9 after the options and deep oracle refresh; accepted 2026-11-14). Carries 115 = 116 + 1 - 2, as for better-borg-c M12. Like M8 to M11, its default includes the munchkin-by-class start."
     }
   }
 }
