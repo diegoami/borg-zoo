@@ -52,9 +52,9 @@ both new preflights report zero problems, and six local adapter canaries
 reach their cap with every native setting verified. Canaries check
 orchestration, not performance, and are excluded from the studies.
 
-Published studies:
+Study links:
 
-- [Development report](https://diegoami.github.io/borg-zoo/runs/rs-joint-m12-development/43643719860-1/index.html)
+- [Development workflow](https://github.com/diegoami/borg-zoo/actions/runs/43643719860) (a report appears on the zoo after results are collected)
 - [Fresh-seed confirmation report](https://diegoami.github.io/borg-zoo/runs/rs-joint-m12-confirm/43643769983-1/index.html)
 
 The confirmation finished all 5,400 games: existing rules 530 deaths,
