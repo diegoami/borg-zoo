@@ -140,14 +140,26 @@ def catalogue(root=ROOT):
 def mode_side(spec):
     """Which side of the mode cutoff (MODE_CUTOFF) a specimen plays on:
     "pre" (no munchkin-by-class rule), "post" (the rule is the default), or
-    None for engines the cutoff does not apply to (borg-rs, Mandos, Neo).
+    None for engines or single-mode builds the cutoff does not apply to.
 
     The catalogue entry's own "mode_side" wins; better-borg-c entries
-    recorded before the field fall back to the commit set above.
+    recorded before the field fall back to the commit set above. Rust ports
+    use their milestone tags (v8 onward requires explicit modes). Unknown
+    untagged borg-rs pins conservatively require explicit modes; the original
+    M0 pin is known to predate the setting. Reborn is a separate repository.
     """
     side = spec.get('mode_side')
     if side in ('pre', 'post'):
         return side
+    if spec.get('repository') == 'diegoami/borg-rs' and spec.get('kind') == 'borg-rs':
+        if spec.get('play_mode') == 'single':
+            return None
+        milestone = re.search(r'-v(\d+)$', spec.get('tag') or '')
+        if milestone:
+            return 'post' if int(milestone.group(1)) >= 8 else 'pre'
+        if spec.get('ref') == 'aa4ad6cfeea2cf19870e224219dfe66688175c6e':
+            return 'pre'
+        return 'post'
     if spec.get('repository') == MODE_CUTOFF_REPOSITORY:
         return 'post' if spec.get('ref') in MODE_CUTOFF_POST else 'pre'
     return None
@@ -226,7 +238,7 @@ def experiment(path, cat=None):
     # settings, so a mode that was never named can silently change play. An
     # experiment recorded before the cutoff says so ("pre_cutoff": "<date and
     # reason>") and keeps its arms as run; anything measured now must name a
-    # mode profile on every post-cutoff better-borg-c specimen, and no
+    # mode profile on every post-cutoff better-borg-c or borg-rs specimen, and no
     # profile may name borg_munchkin_by_class for a build that predates it
     # (the build ignores the unknown line, and every cell would config_error).
     sides = {name: mode_side(specimens[name]) for name in exp['specimens']}
@@ -235,7 +247,7 @@ def experiment(path, cat=None):
             for name in exp['profiles']:
                 if not mode_explicit(cat['profiles'][name]):
                     raise ValueError(f'profile {name} leaves the modes unnamed: every experiment whose '
-                                     f'better-borg-c specimens play after the mode cutoff ({MODE_CUTOFF[:9]}, '
+                                     f'better-borg-c or borg-rs specimens require explicit modes after the cutoff ({MODE_CUTOFF[:9]}, '
                                      'PR 302) must name a mode profile (issue #54)')
         for name, side in sides.items():
             if side != 'pre':

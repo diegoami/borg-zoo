@@ -401,21 +401,8 @@ def dashboard_plotted(s):
 
 
 def specimen_side(spec):
-    """pre/post the class-rule default (better-borg-c fd683ced).
-
-    better-borg-c entries declare `mode_side`; the Rust port carries the C
-    defaults with its milestone, so its tag tells the same story (v8 and later
-    ship `borg_munchkin_by_class` TRUE). Catalogue entries are left as they
-    are: the experiment guard predates the Rust side and recorded runs that
-    used `default` there are evidence, not something to rewrite.
-    """
-    side = cat_mod.mode_side(spec)
-    if side:
-        return side
-    if spec.get('kind') == 'borg-rs':
-        m = re.search(r'-v(\d+)$', spec.get('tag') or '')
-        return 'post' if m and int(m.group(1)) >= 8 else 'pre'
-    return None
+    """Use the same mode classification as planning and paired statistics."""
+    return cat_mod.mode_side(spec)
 
 
 def policy_profiles(spec, policy):

@@ -389,15 +389,10 @@ class ModeCutoffTest(unittest.TestCase):
                 self.assertIn(s.get('mode_side'), ('pre', 'post'), name)
             else:
                 self.assertNotIn('mode_side', s, name)
-        # the Rust port carries the C defaults with its milestone (v8 and later
-        # ship the class rule); landing derives its side from the tag because
-        # the experiment guard predates it and recorded rs runs must stay valid
-        for name, s in specs.items():
-            if s.get('kind') != 'borg-rs':
-                continue
-            m = re.search(r'-v(\d+)$', s.get('tag') or '')
-            expected = 'post' if m and int(m.group(1)) >= 8 else 'pre'
-            self.assertEqual(landing.specimen_side(s), expected, name)
+        # Planning and presentation share the same classification, including
+        # separate reborn trees and newer single-mode builds.
+        for name, spec in specs.items():
+            self.assertEqual(landing.specimen_side(spec), cat_mod.mode_side(spec), name)
         # the declared side agrees with what the commit-set fallback would
         # derive for better-borg-c specimens: the field wins in mode_side(),
         # so silent drift here would change which comparisons get excluded
@@ -418,6 +413,51 @@ class ModeCutoffTest(unittest.TestCase):
         self.assertEqual(cat_mod.mode_side(stripped['4.2.6-bbc-m7']), 'pre')
         self.assertEqual(cat_mod.mode_side(stripped['4.2.6-bbc-m8']), 'post')
         self.assertEqual(cat_mod.mode_side(stripped['4.2.6-bbc-9ca98661']), 'post')
+
+    def test_rust_mode_guard_covers_ports_but_not_other_engines(self):
+        cat = cat_mod.catalogue()
+        cases = [('4.2.6-rs-m0', 'pre'), ('4.2.6-rs-m7', 'pre'),
+                 ('4.2.6-rs-m8', 'post'), ('4.2.6-rs-m11', 'post'),
+                 ('4.2.6-rs-m13', 'post'), ('4.2.6-rs-family-buying', 'post'),
+                 ('4.2.6-rs-town', 'post'), ('4.2.6-reborn-rust', None),
+                 ('4.2.6-reborn-rust-g1-on', None), ('4.2.6-rs-joint-m12-d9a56f4', None)]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'probe.json'
+            for name, side in cases:
+                spec = cat['specimens']['specimens'][name]
+                self.assertEqual(cat_mod.mode_side(spec), side, name)
+                exp = {'name': 'probe', 'specimens': [name], 'profiles': ['default'],
+                       'suites': ['smoke'], 'control': name}
+                path.write_text(json.dumps(exp))
+                if side == 'post':
+                    with self.assertRaisesRegex(ValueError, 'leaves the modes unnamed'):
+                        cat_mod.experiment(path, cat)
+                    exp['profiles'] = ['normal', 'munchkin-class']
+                    path.write_text(json.dumps(exp))
+                    self.assertTrue(cat_mod.experiment(path, cat))
+                    exp.update(profiles=['default'], pre_cutoff='Recorded historical comparison')
+                    path.write_text(json.dumps(exp))
+                    self.assertTrue(cat_mod.experiment(path, cat))
+                else:
+                    self.assertTrue(cat_mod.experiment(path, cat))
+        unknown = {'kind': 'borg-rs', 'repository': 'diegoami/borg-rs', 'ref': 'future'}
+        self.assertEqual(cat_mod.mode_side(unknown), 'post')
+        self.assertEqual(cat_mod.mode_side(dict(unknown, mode_side='pre')), 'pre')
+        self.assertIsNone(cat_mod.mode_side(dict(unknown, play_mode='single')))
+
+    def test_rust_cross_cutoff_pairs_are_excluded_but_same_side_pairs_remain(self):
+        specs = cat_mod.catalogue()['specimens']['specimens']
+        exp = {'name': 'historical-rust', 'specimens': ['4.2.6-rs-m7', '4.2.6-rs-m8'],
+               'profiles': ['default'], 'control': '4.2.6-rs-m7', 'suites': ['smoke']}
+        cells = [dict(cell(s, seed, 'turn_cap'), harness_kind='borg-rs')
+                 for s in exp['specimens'] for seed in (11, 29)]
+        rows = stats.analyse(exp, cells, specs)['smoke']
+        self.assertIsNone(rows[1]['vs_version'])
+        self.assertTrue(site.run_cutoff(exp, specs, '2026-11-15')[1])
+        exp.update(specimens=['4.2.6-rs-m8', '4.2.6-rs-m9'], control='4.2.6-rs-m8')
+        cells = [dict(cell(s, seed, 'turn_cap'), harness_kind='borg-rs')
+                 for s in exp['specimens'] for seed in (11, 29)]
+        self.assertIsNotNone(stats.analyse(exp, cells, specs)['smoke'][1]['vs_version'])
 
     def test_munchkin_class_names_only_the_class_rule(self):
         # the class rule forces the munchkin start for WDR classes: naming
