@@ -13,5 +13,6 @@
   "suites": [
     "smoke"
   ],
-  "control": "4.2.6-rs-m9"
+  "control": "4.2.6-rs-m9",
+  "pre_cutoff": "Legacy implicit-mode smoke retained unchanged for recorded results (issue #82 audit, 2026-11-15). New comparisons must name mode profiles; this marker is not authorization for a new default-mode experiment."
 }
