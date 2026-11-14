@@ -1,0 +1,20 @@
+{
+  "profiles": {
+    "rs-joint-old-control": "Existing shopping and trip rules",
+    "rs-joint-live-reference": "New shopping + trip: ordinary provisioning",
+    "rs-joint-risk1500": "New shopping + trip: 1.5x risk forecast",
+    "rs-joint-risk2000": "New shopping + trip: 2x risk forecast",
+    "rs-joint-risk2500": "New shopping + trip: 2.5x risk forecast",
+    "rs-joint-risk2000-earlier": "New shopping + trip: 2x risk, earlier returns"
+  },
+  "experiments": {
+    "rs-joint-m12-development": {
+      "title": "Which trip and shopping settings work better?",
+      "intro": "Six choices play the same starting cases. We compare the existing rules with the new shopper and return policy, then vary supply planning and return timing. All rows use the same milestone-12 Rust Borg code."
+    },
+    "rs-joint-m12-confirm": {
+      "title": "Fresh-seed check: new shopping and trip policies",
+      "intro": "Does the locally selected supply setting reduce deaths on 1,800 fresh starting cases? Compare the existing rules, the new policies with ordinary provisioning, and the new policies planning for twice the risk. All rows use the same milestone-12 Rust Borg code."
+    }
+  }
+}
