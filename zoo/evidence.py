@@ -45,6 +45,18 @@ def attach(record, directory):
 
 def write_indexes(target, records):
     target = Path(target)
+    if any('town_shadow' in record for record in records):
+        with (target / 'town-shadow.csv').open('w', newline='') as stream:
+            fields = ['cell', 'profile_applied', 'outcome', 'observed_outcome', 'status', 'records', 'checked_records',
+                      'median_planned_spending', 'median_retained_gold', 'sha256', 'error']
+            writer = csv.DictWriter(stream, fieldnames=fields)
+            writer.writeheader()
+            for record in sorted(records, key=cell_key):
+                shadow = record.get('town_shadow') or {}
+                writer.writerow({'cell': cell_key(record), 'profile_applied': record.get('profile_applied'),
+                                 'outcome': record['outcome'],
+                                 'observed_outcome': record.get('observed_outcome', record['outcome']),
+                                 **{name: shadow.get(name) for name in fields[4:]}})
     problems = {cell_key(record): ((record.get('evidence') or {}).get('missing_required') or ['no raw evidence inventory'])
                 for record in records if not (record.get('evidence') or {}).get('complete')}
     (target / 'evidence-status.json').write_text(json.dumps({

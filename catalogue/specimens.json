@@ -770,6 +770,18 @@
       "play_mode": "single",
       "label": "borg-rs milestone-12 joint trip and live inventory candidate, pinned d9a56f4; one play mode, retired modes unavailable",
       "source": "https://github.com/diegoami/borg-rs/blob/d9a56f48bac8675c91f551619492af36b698b4cf/docs/JOINT-POLICY-OPTIMISATION.md"
+    },
+    "4.2.6-rs-town-class-shadow": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "2439dd4ad6e1e629f99d0c2449dc975c91a68a7a",
+      "exact_turns": true,
+      "depth_stream": true,
+      "verify_effective_settings": true,
+      "town_shadow_records": true,
+      "label": "Town utility class-configuration validation snapshot; observation only, no accepted class tuning or live executor.",
+      "source": "https://github.com/diegoami/borg-rs/blob/2439dd4ad6e1e629f99d0c2449dc975c91a68a7a/docs/TOWN-CLASS-CALIBRATION.md"
     }
   }
 }
