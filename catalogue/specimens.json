@@ -747,6 +747,17 @@
       "label": "better-borg-c milestone 13 runtime head 9ccb2aae (PR 519): nineteen carries since impact v12 - twelve from the issue-426 queue (0119-0130) and seven from the 2026-11-13/14 source-board pairs (0131-0137). Carries 134 = 115 + 19, counted here from the milestone package, not stated there. The 4.2.6-impact-v13 tag was placed on this commit on 2026-11-14 (owner authorization, borg-zoo#87 comment), so the tag now names the pin and the ref is unchanged; src/ at the later head cfcb6f13 is identical. The package records the per-mode effect of these units as not measured; this is the zoo's measurement of normal and the class rule (borg-zoo#87).",
       "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE13.md",
       "tag": "4.2.6-impact-v13"
+    },
+    "4.2.6-reborn-core-pilot": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "1be6edc7f2db7f73b49e08a36eadca1c3c5a556d",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "source": "https://github.com/diegoami/borg-reborn-rs/blob/1be6edc7f2db7f73b49e08a36eadca1c3c5a556d/docs/PILOT.md",
+      "label": "borg-reborn-rs 1be6edc, the option-C pilot (borg-reborn-rs #207, #208): borg-rs's core (milestone 12, vendored as borg-core/) inside the reborn shell, selected through the run's borg.txt (borg_reborn_core, borg_reborn_errand). harness/borg.txt is borg-rs's v12 borg.txt with borg_munchkin_by_class and borg_self_scum FALSE plus the two keys. Plays on borg-rs's engine (upstream 42cd156ac plus borg-rs's fork corrections, engine patch 08). Built through docs/ZOO-INTERFACE.md (harness/build.sh, BORG_IMPL=rust)."
     }
   }
 }

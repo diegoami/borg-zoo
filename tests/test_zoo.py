@@ -1372,3 +1372,34 @@ class RetiredSmokeTest(unittest.TestCase):
         spec = cat_mod.catalogue()['specimens']['specimens']['neo-fork-e731c81']
         self.assertIn('retired', spec['pending'])
         self.assertNotIn('toolkit_pins', spec)
+
+
+class WordSettingTest(unittest.TestCase):
+    """borg-reborn-rs reads words (borg_reborn_core = borg-rs) from borg.txt."""
+
+    def test_words_are_written_as_they_are_and_nothing_else(self):
+        self.assertEqual(cat_mod.setting_value('borg-rs'), 'borg-rs')
+        self.assertEqual(cat_mod.setting_value('ladder'), 'ladder')
+        for bad in ('a b', 'x\ny', '', 'a=b', None, 1.5):
+            with self.assertRaises(ValueError):
+                cat_mod.setting_value(bad)
+
+    def test_only_borg_rs_specimens_take_words(self):
+        exp = cat_mod.experiment(ROOT / 'experiments/reborn-pilot-c-classes-1800.json')
+        self.assertEqual(exp['profiles'], ['reborn-core-borgrs', 'reborn-core-ladder'])
+        cat = cat_mod.catalogue()
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'x.json'
+            path.write_text(json.dumps({**exp, 'specimens': ['4.2.6-bbc-m13'], 'control': '4.2.6-bbc-m13'}))
+            with self.assertRaises(ValueError) as ctx:
+                cat_mod.experiment(path, cat)
+            self.assertIn('words', str(ctx.exception))
+
+    def test_the_written_pilot_profile_is_checked_line_by_line(self):
+        cat = cat_mod.catalogue()
+        prof = cat['profiles']['reborn-core-ladder']
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / 'borg.txt').write_text('borg_reborn_core = reborn\nborg_reborn_errand = none\n')
+            text = borgrs.config_text(tmp, prof)
+        self.assertIsNone(borgrs.check_config(text, prof))
+        self.assertIn('borg_reborn_errand', borgrs.check_config(text.replace('= ladder', '= none'), prof))
