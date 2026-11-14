@@ -717,6 +717,21 @@
       "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
       "toolkit_ref": "9e1ac3499ef32fec622d967977ddcfcffb5959d3",
       "toolkit_path": "tools/zoo",
+      "role": "candidate",
+      "note": "Its classes-18 check (run 43582594186) stalled one cell (seed 1381972077, Half-Elf Rogue): the home plan's takeoff was refused by Neo's store phase, neo-angband-borg-mod-tracker#83. Superseded by neo-fork-48afb65; not measured on classes-1800."
+    },
+    "neo-fork-48afb65": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "48afb65c444ad821b31c28470d5074875b81b4c2",
+      "engine_repository": "neostryder/neo-angband",
+      "engine_ref": "06a2321ce30a414df20d1b20d486446e7688171c",
+      "wall_factor": 3,
+      "label": "The Neo Borg from diegoami/neo-angband-borg-mod-tracker master 48afb65: neo-fork-9e1ac34 plus the home plan's store-phase fix (the fork's #83, PR 84: takeoff and wear leave the store and run in town before the rungs that refill a slot), on engine 06a2321c, built and run by the fork's own zoo entry point (tools/zoo). No Mandos, no tracker toolkit, no pin patch.",
+      "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/commit/48afb65c444ad821b31c28470d5074875b81b4c2",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "48afb65c444ad821b31c28470d5074875b81b4c2",
+      "toolkit_path": "tools/zoo",
       "role": "candidate"
     },
     "4.2.6-reborn-rust-g1-off": {
