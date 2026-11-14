@@ -411,6 +411,132 @@
         "borg_lunal_mode": false,
         "borg_town_no_stores": true
       }
+    },
+    "rs-joint-old-control": {
+      "description": "Existing behaviour: both new policies off, same source and engine as every other arm. Retired munchkin/lunal names are omitted because this specimen has only one play mode.",
+      "settings": {
+        "borg_trip_policy": 0,
+        "borg_town_plan": 0,
+        "borg_town_no_stores": 0,
+        "borg_buy_strategy_default": 0,
+        "borg_buy_identify": 0,
+        "borg_trip_depth_margin": 0,
+        "borg_trip_pack_slack": 2,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_return_gold": 0,
+        "borg_town_target_depth": 0,
+        "borg_town_trip_turns": 0,
+        "borg_town_depth_gain": 1,
+        "borg_town_w_gold": 25,
+        "borg_town_w_bleeding": 100,
+        "borg_town_w_knowledge": 25,
+        "borg_town_risk": 1000
+      }
+    },
+    "rs-joint-live-reference": {
+      "description": "Both policies live, original inventory risk forecast 1000. Retired munchkin/lunal names are omitted because this specimen has only one play mode.",
+      "settings": {
+        "borg_trip_policy": 1,
+        "borg_town_plan": 1,
+        "borg_town_no_stores": 0,
+        "borg_buy_strategy_default": 0,
+        "borg_buy_identify": 0,
+        "borg_trip_depth_margin": 0,
+        "borg_trip_pack_slack": 2,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_return_gold": 0,
+        "borg_town_target_depth": 0,
+        "borg_town_trip_turns": 0,
+        "borg_town_depth_gain": 1,
+        "borg_town_w_gold": 25,
+        "borg_town_w_bleeding": 100,
+        "borg_town_w_knowledge": 25,
+        "borg_town_risk": 1000
+      }
+    },
+    "rs-joint-risk1500": {
+      "description": "Both policies live, 1.5x inventory risk forecast. Retired munchkin/lunal names are omitted because this specimen has only one play mode.",
+      "settings": {
+        "borg_trip_policy": 1,
+        "borg_town_plan": 1,
+        "borg_town_no_stores": 0,
+        "borg_buy_strategy_default": 0,
+        "borg_buy_identify": 0,
+        "borg_trip_depth_margin": 0,
+        "borg_trip_pack_slack": 2,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_return_gold": 0,
+        "borg_town_target_depth": 0,
+        "borg_town_trip_turns": 0,
+        "borg_town_depth_gain": 1,
+        "borg_town_w_gold": 25,
+        "borg_town_w_bleeding": 100,
+        "borg_town_w_knowledge": 25,
+        "borg_town_risk": 1500
+      }
+    },
+    "rs-joint-risk2000": {
+      "description": "Selected local candidate: both policies live, 2x inventory risk forecast; normal return thresholds. Retired munchkin/lunal names are omitted because this specimen has only one play mode.",
+      "settings": {
+        "borg_trip_policy": 1,
+        "borg_town_plan": 1,
+        "borg_town_no_stores": 0,
+        "borg_buy_strategy_default": 0,
+        "borg_buy_identify": 0,
+        "borg_trip_depth_margin": 0,
+        "borg_trip_pack_slack": 2,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_return_gold": 0,
+        "borg_town_target_depth": 0,
+        "borg_town_trip_turns": 0,
+        "borg_town_depth_gain": 1,
+        "borg_town_w_gold": 25,
+        "borg_town_w_bleeding": 100,
+        "borg_town_w_knowledge": 25,
+        "borg_town_risk": 2000
+      }
+    },
+    "rs-joint-risk2500": {
+      "description": "Both policies live, 2.5x inventory risk forecast. Retired munchkin/lunal names are omitted because this specimen has only one play mode.",
+      "settings": {
+        "borg_trip_policy": 1,
+        "borg_town_plan": 1,
+        "borg_town_no_stores": 0,
+        "borg_buy_strategy_default": 0,
+        "borg_buy_identify": 0,
+        "borg_trip_depth_margin": 0,
+        "borg_trip_pack_slack": 2,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_return_gold": 0,
+        "borg_town_target_depth": 0,
+        "borg_town_trip_turns": 0,
+        "borg_town_depth_gain": 1,
+        "borg_town_w_gold": 25,
+        "borg_town_w_bleeding": 100,
+        "borg_town_w_knowledge": 25,
+        "borg_town_risk": 2500
+      }
+    },
+    "rs-joint-risk2000-earlier": {
+      "description": "Selected inventory settings plus earlier returns: four free slots or two unknown reusable stacks; depth margin unchanged. Retired munchkin/lunal names are omitted because this specimen has only one play mode.",
+      "settings": {
+        "borg_trip_policy": 1,
+        "borg_town_plan": 1,
+        "borg_town_no_stores": 0,
+        "borg_buy_strategy_default": 0,
+        "borg_buy_identify": 0,
+        "borg_trip_depth_margin": 0,
+        "borg_trip_pack_slack": 4,
+        "borg_trip_unknown_stacks": 2,
+        "borg_trip_return_gold": 0,
+        "borg_town_target_depth": 0,
+        "borg_town_trip_turns": 0,
+        "borg_town_depth_gain": 1,
+        "borg_town_w_gold": 25,
+        "borg_town_w_bleeding": 100,
+        "borg_town_w_knowledge": 25,
+        "borg_town_risk": 2000
+      }
     }
   }
 }

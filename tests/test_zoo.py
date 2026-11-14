@@ -214,6 +214,15 @@ class PlayHashTest(unittest.TestCase):
 
 
 class BorgRsTest(unittest.TestCase):
+    def test_modern_borg_settings_must_really_be_enabled(self):
+        profile = {'settings': {'borg_town_plan': 1, 'borg_trip_policy': 1, 'borg_town_risk': 2000}}
+        self.assertIsNone(borgrs.check_effective({'effective_settings': dict(profile['settings'])}, profile))
+        self.assertIn('borg_town_plan', borgrs.check_effective(
+            {'effective_settings': profile['settings'] | {'borg_town_plan': 0}}, profile))
+        self.assertIn('borg_trip_policy', borgrs.check_effective(
+            {'effective_settings': {'borg_town_plan': 1, 'borg_town_risk': 2000}}, profile))
+        self.assertIn('no effective_settings', borgrs.check_effective({}, profile))
+
     def test_config_text_sets_birth_and_profile(self):
         with tempfile.TemporaryDirectory() as tmp:
             (Path(tmp) / 'borg.txt').write_text('borg_respawn_race = -1\nborg_respawn_class = -1\n'

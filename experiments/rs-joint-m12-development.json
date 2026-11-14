@@ -1,0 +1,28 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "specimens": [
+    "4.2.6-rs-joint-m12-d9a56f4"
+  ],
+  "control": "4.2.6-rs-joint-m12-d9a56f4",
+  "control_profile": "rs-joint-old-control",
+  "resource_budget": {
+    "max_parallel_jobs": 8,
+    "processes_per_job": 1
+  },
+  "owner_authorization": "2026-11-14 session request: schedule full zoo runs of the best joint trip/inventory settings and variations; improved shopping must act, not just shadow.",
+  "source_notes": "All arms share d9a56f4 and the milestone-12 engine. The pinned Rust Borg has one play mode; no retired mode can be enabled. Profiles declare all local-search parameters; modern native effective_settings are required and checked.",
+  "name": "rs-joint-m12-development",
+  "description": "Full 1800-case development comparison of existing behaviour, live reference, risk 1500/2000/2500 and selected inventory plus earlier returns. Six arms, 10800 games, 100000-turn cap, all nine classes and eleven races.",
+  "profiles": [
+    "rs-joint-old-control",
+    "rs-joint-live-reference",
+    "rs-joint-risk1500",
+    "rs-joint-risk2000",
+    "rs-joint-risk2500",
+    "rs-joint-risk2000-earlier"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "prespecified": "Descriptive development comparison. Owner priority: fewer natural deaths first, then mean final character level, mean deepest level and count reaching DL3+. Report all failures separately and paired rescued/newly-killed counts. No arm chosen from this suite is claimed confirmed by the separately fixed confirmation experiment."
+}
