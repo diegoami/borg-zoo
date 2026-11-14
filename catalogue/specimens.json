@@ -705,6 +705,20 @@
       "toolkit_path": "tools/zoo",
       "role": "candidate"
     },
+    "neo-fork-9e1ac34": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "9e1ac3499ef32fec622d967977ddcfcffb5959d3",
+      "engine_repository": "neostryder/neo-angband",
+      "engine_ref": "06a2321ce30a414df20d1b20d486446e7688171c",
+      "wall_factor": 3,
+      "label": "The Neo Borg from diegoami/neo-angband-borg-mod-tracker master 9e1ac34: neo-fork-ba513ff plus the fork's port fixes integrated through its PRs 75 and 76 (spellbook throw guard, race/class frame, spell seam, item-derived notice, bounded in-process home search, shop routing and the review follow-ups), on the same engine 06a2321c, built and run by the fork's own zoo entry point (tools/zoo). No Mandos, no tracker toolkit, no pin patch.",
+      "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/commit/9e1ac3499ef32fec622d967977ddcfcffb5959d3",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "9e1ac3499ef32fec622d967977ddcfcffb5959d3",
+      "toolkit_path": "tools/zoo",
+      "role": "candidate"
+    },
     "4.2.6-reborn-rust-g1-off": {
       "kind": "borg-rs",
       "impl": "rust",
