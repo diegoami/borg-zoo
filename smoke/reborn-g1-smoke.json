@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-g1-smoke",
+  "description": "Build and play check of the two borg-reborn-rs arms of #128 and #183 (3113c2e guard off, 5f626d1 guard on) on classes-18 before the full suite. The first reborn Rust arm (tag e) died on all 1,800 seeds at depth 1, so this check looks at play before 3,600 cells are spent. Says only that they build and play.",
+  "specimens": [
+    "4.2.6-reborn-rust-g1-off",
+    "4.2.6-reborn-rust-g1-on"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-g1-off",
+  "control_profile": "default"
+}

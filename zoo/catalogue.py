@@ -332,9 +332,12 @@ def expected_options(profile):
 
 
 def smoke_names(root=ROOT):
-    """Names of the smoke checks: the files in smoke/. Their runs are listed
-    under the dashboard's Smoke tab, not among the experiments."""
-    return {_load(path)['name'] for path in sorted((Path(root) / 'smoke').glob('*.json'))}
+    """Names of the smoke checks: the files in smoke/ and smoke/retired/ (checks
+    of specimens that were retired; they keep their runs on the Smoke tab but
+    are no longer planned). Their runs are listed under the dashboard's Smoke
+    tab, not among the experiments."""
+    base = Path(root) / 'smoke'
+    return {_load(path)['name'] for path in sorted([*base.glob('*.json'), *(base / 'retired').glob('*.json')])}
 
 
 def parse_arm(text):

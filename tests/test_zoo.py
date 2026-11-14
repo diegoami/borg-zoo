@@ -1365,30 +1365,10 @@ class PreflightTest(unittest.TestCase):
                                                               fetch=lambda *a: '')[0])
 
 
-class ToolkitPinPatchTest(unittest.TestCase):
-    SCRIPT = ('for (const [dir, pin] of [\n\t[engine, "' + '5' * 40 + '"],\n\t[borg, "' + '0' * 40 + '"],\n]) {}\n')
-
-    def spec(self, **over):
-        return {'engine_ref': 'a' * 40, 'ref': 'b' * 40, **over}
-
-    def test_pins_are_replaced_only_when_the_specimen_asks(self):
-        from zoo import neo_original
-        with tempfile.TemporaryDirectory() as tmp:
-            script = Path(tmp) / 'build.mjs'
-            script.write_text(self.SCRIPT)
-            same, patch = neo_original.pinned_script(self.spec(), script)
-            self.assertEqual((same, patch), (script, None))
-            out, patch = neo_original.pinned_script(self.spec(toolkit_pins='follow-specimen'), script)
-            text = out.read_text()
-            self.assertIn('[engine, "' + 'a' * 40 + '"]', text)
-            self.assertIn('[borg, "' + 'b' * 40 + '"]', text)
-            self.assertNotEqual(patch['original_sha256'], patch['patched_sha256'])
-            self.assertEqual(script.read_text(), self.SCRIPT)
-
-    def test_a_script_without_both_pins_is_refused(self):
-        from zoo import neo_original
-        with tempfile.TemporaryDirectory() as tmp:
-            script = Path(tmp) / 'build.mjs'
-            script.write_text('[engine, "' + '5' * 40 + '"]')
-            with self.assertRaises(ValueError):
-                neo_original.pinned_script(self.spec(toolkit_pins='follow-specimen'), script)
+class RetiredSmokeTest(unittest.TestCase):
+    def test_retired_smoke_checks_keep_their_tab_but_are_not_planned(self):
+        self.assertIn('neo-fork-smoke', cat_mod.smoke_names())
+        self.assertFalse((ROOT / 'smoke/neo-fork-smoke.json').exists())
+        spec = cat_mod.catalogue()['specimens']['specimens']['neo-fork-e731c81']
+        self.assertIn('retired', spec['pending'])
+        self.assertNotIn('toolkit_pins', spec)
