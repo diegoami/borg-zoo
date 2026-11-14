@@ -437,6 +437,7 @@ def run_page(meta, cells):
     exp = meta['experiment']
     specimens = meta['catalogue']['specimens']
     analysis = stats.analyse(exp, cells, specimens)
+    class_pairs = stats.paired_by_class(exp, cells, specimens)
     display = study_info(meta)
     page_title = display['title'] if display else exp['name']
     intro = display['intro'] if display else exp.get('description', '')
@@ -538,6 +539,21 @@ def run_page(meta, cells):
                                                        for s_, p_ in arms],
                                [[esc(r['value'])] + [f'{a["deaths"]}/{a["n"]} ({pct(a["rate"])})' if a['n'] else '–'
                                                       for a in r['arms']] for r in per]))
+        if class_pairs.get(suite):
+            parts.append('<h3>Paired deaths by class</h3>')
+            parts.append(explain('Each row pairs seeds within the class actually played. Only pairs where '
+                                 'both arms finished contribute to rescued/newly killed counts; unfinished '
+                                 'attempts remain reported separately. These are descriptive comparisons: '
+                                 'testing nine classes and several arms can produce small p-values by chance. '
+                                 'A class-specific improvement or regression needs fresh confirmation.'))
+            parts.append(table(['Class', 'Arm', 'Compared with', 'Pairs', 'Rescued', 'Newly killed',
+                                'Both died', 'Both lived', 'Identical play', 'p', 'Arm unfinished'],
+                               [[esc(r['class']), arm_label(meta, r['specimen'], r['profile']),
+                                 arm_label(meta, r['control_specimen'], r['control_profile']),
+                                 *[num(r['paired'][k]) for k in ('pairs', 'rescued', 'newly_killed',
+                                                               'both_died', 'both_lived', 'identical_traces')],
+                                 pval(r['paired']['death_p']), num(r['unfinished'])]
+                                for r in class_pairs[suite]], left=3))
         cz = stats.by_cause(exp, cells).get(suite)
         if cz:
             label = lambda a: a[0] if len(exp['profiles']) == 1 else f'{a[0]} · {a[1]}'
