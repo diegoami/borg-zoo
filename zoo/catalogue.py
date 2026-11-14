@@ -24,6 +24,7 @@ MODE_CUTOFF_POST = {
     '9ca986616cca66fe0f09de2b4cdc48591f94d33d',  # 4.2.6-bbc-9ca98661
     '39268ca8a470d1cbd44de27bf1fd1b3ee403bada',  # 4.2.6-bbc-m11
     '4e1b912cbf6d2b8a0243b19ebddfb2d26e7509f2',  # 4.2.6-bbc-m12
+    '9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8',  # 4.2.6-bbc-m13
 }
 
 # The settings whose built-in default drifts across the cutoff, plus the
@@ -332,9 +333,12 @@ def expected_options(profile):
 
 
 def smoke_names(root=ROOT):
-    """Names of the smoke checks: the files in smoke/. Their runs are listed
-    under the dashboard's Smoke tab, not among the experiments."""
-    return {_load(path)['name'] for path in sorted((Path(root) / 'smoke').glob('*.json'))}
+    """Names of the smoke checks: the files in smoke/ and smoke/retired/ (checks
+    of specimens that were retired; they keep their runs on the Smoke tab but
+    are no longer planned). Their runs are listed under the dashboard's Smoke
+    tab, not among the experiments."""
+    base = Path(root) / 'smoke'
+    return {_load(path)['name'] for path in sorted([*base.glob('*.json'), *(base / 'retired').glob('*.json')])}
 
 
 def parse_arm(text):

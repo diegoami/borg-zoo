@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-v13",
+  "description": "better-borg-c milestone 13 (runtime head 9ccb2aae, 134 carries: v12 plus nineteen carries 0119-0137; the v13 tag is not placed yet) on the full class grid, once under each policy the dashboard compares: normal (every mode pinned off) and munchkin-class (the class rule). Part of borg-zoo#87. The Lunal-only arm the issue lists is not run: the lunal profile only enters its mode when the Borg is prepared 15 levels deeper, which a 100,000-turn fresh-start suite does not reach by construction, so it would measure nothing (recorded, not 'neutral'). Run one arm per workflow run. Control is v13 under normal.",
+  "specimens": [
+    "4.2.6-bbc-m13"
+  ],
+  "profiles": [
+    "normal",
+    "munchkin-class"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-bbc-m13",
+  "control_profile": "normal"
+}

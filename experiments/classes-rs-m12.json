@@ -1,0 +1,17 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-rs-m12",
+  "description": "The Rust counterpart of the v12 C grid: borg-rs v12R (tag 4.2.6-impact-v12, 115 carries) on classes-1800 under normal (modes off, the plain tab) and munchkin-class (the class rule, the munchkin tab). 3,600 cells, run one arm per workflow run; compare with classes-v12 (better-borg-c M12) and classes-rs-m11.",
+  "specimens": [
+    "4.2.6-rs-m12"
+  ],
+  "profiles": [
+    "normal",
+    "munchkin-class"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-rs-m12",
+  "control_profile": "normal"
+}
