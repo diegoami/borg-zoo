@@ -1,0 +1,66 @@
+{
+  "schema": "borg-zoo/alignment-pilot@1",
+  "purpose": "Validate explicit C point-buy birth and options, starting gear and shared-seed RNG checkpoints; no population survival claim",
+  "profile": "c-point-buy-v1",
+  "cap_ticks": 2000,
+  "wall_limit_seconds_per_cell": 180,
+  "cells": [
+    {
+      "seed": 303,
+      "race": "Human",
+      "class": "Warrior"
+    },
+    {
+      "seed": 304,
+      "race": "Human",
+      "class": "Mage"
+    },
+    {
+      "seed": 305,
+      "race": "Human",
+      "class": "Druid"
+    },
+    {
+      "seed": 306,
+      "race": "Human",
+      "class": "Priest"
+    },
+    {
+      "seed": 307,
+      "race": "Human",
+      "class": "Necromancer"
+    },
+    {
+      "seed": 308,
+      "race": "Human",
+      "class": "Paladin"
+    },
+    {
+      "seed": 309,
+      "race": "Human",
+      "class": "Rogue"
+    },
+    {
+      "seed": 310,
+      "race": "Human",
+      "class": "Ranger"
+    },
+    {
+      "seed": 311,
+      "race": "Human",
+      "class": "Blackguard"
+    }
+  ],
+  "repeat_control": {
+    "seed": 303,
+    "race": "Human",
+    "class": "Warrior"
+  },
+  "planned_cells_per_engine": 10,
+  "source_pins": {
+    "C": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
+    "Neo": "06a2321ce30a414df20d1b20d486446e7688171c",
+    "Borg": "9c17cb0c582fe129008899491372787e91abdade"
+  },
+  "owner_authorization": "2026-11-14: align birth rules/options, run small C/Neo pilot and investigate shared-seed deviations; no large cohort"
+}

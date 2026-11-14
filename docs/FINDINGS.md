@@ -1,7 +1,21 @@
 # Findings
 
 What the zoo's completed experiments have shown, with the run behind each.
-Every figure is from the run's `cells.jsonl` on the `results` branch. Deaths
+
+**Local C/Neo birth-alignment pilot:**
+[report and source evidence](../reports/c-neo-birth-alignment-pilot-v1/README.md).
+Nine Human classes plus a repeat per engine verify recommended point buy,
+initial HP/SP, and all46 initial/active Boolean options. Shared seeds initialize
+the same WELL pool, but C's native birth-menu path consumes age/history draws
+before HP, while Neo's headless path rolls HP first. Gear quantities, gold and
+towns remain different. A discovered after-loop cap overrun (Necromancer2596
+for requested2000) is retained; an opt-in exact-tick observer then stops all10
+corrected Neo runs at2000, preserving their old command prefix. The native10
+records already stop at2000. This is a configuration/RNG diagnostic, not a
+survival comparison or catalogue cohort; no large experiment was launched.
+
+For the catalogue experiments below, every figure is from the run's
+`cells.jsonl` on the `results` branch. Deaths
 are before the suite's cap (100,000 game turns unless stated), out of the runs
 that finished; runs that stalled, timed out or failed are excluded, never
 counted as deaths. "Paired" figures count the seeds where only one arm died:
