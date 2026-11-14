@@ -738,6 +738,14 @@
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v12",
       "label": "borg-rs M12 (tag 4.2.6-impact-v12, v12R): the Rust Borg carrying better-borg-c milestone 12 (4e1b912cb): one consumer carry (0118 NEWKILL-95) and the official angband import to 42cd156ac, which retires the consumer's carries 0001 and 0002 because upstream now carries that logic (borg-rs PR 58, merge commit e6d13fc; independent review pass on re-review, 122 Rust tests, 70/70 C/Rust parity on the validation suites plus 25/25 and 9/9 after the options and deep oracle refresh; accepted 2026-11-14). Carries 115 = 116 + 1 - 2, as for better-borg-c M12. Like M8 to M11, its default includes the munchkin-by-class start."
+    },
+    "4.2.6-bbc-m13": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8",
+      "mode_side": "post",
+      "carries": 134,
+      "label": "better-borg-c milestone 13 runtime head 9ccb2aae (PR 519): nineteen carries since impact v12 - twelve from the issue-426 queue (0119-0130) and seven from the 2026-11-13/14 source-board pairs (0131-0137). Carries 134 = 115 + 19, counted here from the milestone package, not stated there. The 4.2.6-impact-v13 tag is not placed yet (it awaits the milestone-13 review verdict or waiver, better-borg-c#521), so the commit is pinned; src/ at the later head cfcb6f13 is identical. The package records the per-mode effect of these units as not measured; this is the zoo's measurement of normal and the class rule (borg-zoo#87).",
+      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE13.md"
     }
   }
 }
