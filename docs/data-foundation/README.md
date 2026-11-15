@@ -12,6 +12,7 @@ listed in the [plan](PLAN.md).
 | [RESUME.md](RESUME.md) | Checkpoint/resume: what each runner can do today, what is missing, how to prove a resume is faithful |
 | [PLAN.md](PLAN.md) | Zoo and cemetery redesign, cutover and salvage options, milestones, tasks, risks, owner decisions |
 | [baseline/](baseline/) | The script and numbers behind the baseline below |
+| [REVIEW-PROMPT.md](REVIEW-PROMPT.md) | A runnable prompt for an independent review of this proposal |
 
 The cemetery's own architecture proposal
 ([borg-cemetery PR #2](https://github.com/diegoami/borg-cemetery/pull/2),
