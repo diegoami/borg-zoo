@@ -831,6 +831,15 @@ def build_site(results, out):
     from . import landing
     shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
     (out / 'index.html').write_text(page('Borg zoo', landing.overview_page(runs), charts=True))
+    # The /runs/ directory contains per-run report folders, not a page of its
+    # own. Publish an index there so the directory URL is useful instead of
+    # returning 404/503, and point it at the Detailed experiment catalogue.
+    runs_index = out / 'runs'
+    runs_index.mkdir(exist_ok=True)
+    (runs_index / 'index.html').write_text(page(
+        'Experiment runs · borg zoo',
+        '<h1>Experiment runs</h1><p><a href="../detailed.html">Browse all experiment reports</a></p>'
+        '<p class="muted">Each experiment also has its own permanent report under this directory.</p>'))
     for policy in landing.POLICIES:
         (out / f'{policy["slug"]}.html').write_text(
             page(f'{policy["title"]} · borg-zoo', landing.comparison_page(runs, policy), charts=True))
