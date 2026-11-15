@@ -1,0 +1,28 @@
+{
+  "schema": "c-neo-startup-comparison@1",
+  "cases": [
+    {
+      "seed": 303,
+      "race": "Human",
+      "class": "Warrior",
+      "checks": {
+        "race": true,
+        "class": false,
+        "stats": false,
+        "gold": false,
+        "hp": false,
+        "maxHp": false,
+        "sp": false,
+        "maxSp": false,
+        "grid": false,
+        "gear": false,
+        "terrain": false,
+        "worldRng": false,
+        "borgSeed": false,
+        "postSeedGameStream": false
+      },
+      "pass": false
+    }
+  ],
+  "pass": false
+}

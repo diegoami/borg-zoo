@@ -1,0 +1,1431 @@
+
+ RUN  v5.1.0 /workspace/work/seed-alignment/engine-current
+
+ ❯ packages/core/src/store/store.test.ts (31 tests | 3 failed) 773ms
+   ❯ store stock identity (3)
+     × matches native C's first two maintenance RNG checkpoints from a common store input 15ms
+     × prepends new stacks as C pile_insert, preserving a merged stack's position 29ms
+     × does not merge differently discounted stock 7ms
+ ❯ packages/core/src/store/transact.test.ts (24 tests | 1 failed) 821ms
+   ❯ native home stock insertion order (1)
+     × prepends new home stacks and keeps a merged stack in place 63ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/core/src/store/store.test.ts > store stock identity > matches native C's first two maintenance RNG checkpoints from a common store input
+AssertionError: expected { stateI: 20, state: [ …(32) ] } to deeply equal { stateI: 25, state: [ …(32) ] }
+
+- Expected
++ Received
+
+@@ -18,20 +18,20 @@
+      2645878483,
+      212513417,
+      1944024846,
+      1667874731,
+      438161447,
+-     3729580509,
+-     2893657779,
+-     1904623542,
+-     2776293178,
+-     3929071819,
+-     1076355892,
++     2353921375,
++     1910719106,
++     3058413629,
++     1386994111,
++     4084756755,
++     4250704250,
+      494770730,
+      3465707270,
+      3928707224,
+      2818079621,
+      2268905978,
+      800449841,
+    ],
+-   "stateI": 25,
++   "stateI": 20,
+  }
+
+ ❯ packages/core/src/store/store.test.ts:246:20
+    244|     expect(pool()).toEqual({ stateI: fixture.after_first.stateI, state…
+    245|     storeMaint(ctx, general);
+    246|     expect(pool()).toEqual({ stateI: fixture.after_second.stateI, stat…
+       |                    ^
+    247|   });
+    248|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  packages/core/src/store/store.test.ts > store stock identity > prepends new stacks as C pile_insert, preserving a merged stack's position
+AssertionError: expected [ { kind: { …(37) }, …(32) }, …(2) ] to deeply equal [ { kind: { …(37) }, …(32) }, …(2) ]
+
+- Expected
++ Received
+
+@@ -3,13 +3,22 @@
+      "ac": 0,
+      "activation": null,
+      "artifact": null,
+      "brands": null,
+      "curses": null,
+-     "dd": 1,
+-     "ds": 1,
+-     "effect": null,
++     "dd": 0,
++     "ds": 0,
++     "effect": [
++       {
++         "eff": "RESTORE_STAT",
++         "type": "STR",
++       },
++       {
++         "eff": "GAIN_STAT",
++         "type": "STR",
++       },
++     ],
+      "effectMsg": "",
+      "ego": null,
+      "elInfo": [
+        {
+          "flags": 0,
+@@ -18,15 +27,15 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 1,
++         "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 0,
++         "flags": 1,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -38,15 +47,15 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 0,
++         "flags": 1,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 0,
++         "flags": 1,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -66,11 +75,11 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 0,
++         "flags": 1,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -78,11 +87,11 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 0,
++         "flags": 1,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -114,41 +123,41 @@
+      ],
+      "flags": FlagSet {
+        "bits": Uint8Array [
+          0,
+          0,
+-         4,
+-         32,
++         0,
++         0,
+          0,
+        ],
+      },
+      "grid": null,
+      "heldMIdx": 0,
+      "kind": {
+        "ac": 0,
+        "activation": null,
+        "allocMax": 100,
+-       "allocMin": 1,
+-       "allocProb": 70,
++       "allocMin": 30,
++       "allocProb": 30,
+        "base": {
+-         "attr": "yellow",
+-         "breakPerc": 50,
++         "attr": "light blue",
++         "breakPerc": 100,
+          "elInfo": [
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 1,
++             "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 0,
++             "flags": 1,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -160,15 +169,15 @@
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 0,
++             "flags": 1,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 0,
++             "flags": 1,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -188,11 +197,11 @@
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 0,
++             "flags": 1,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -200,11 +209,11 @@
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 0,
++             "flags": 1,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -243,33 +252,42 @@
+              0,
+            ],
+          },
+          "kindFlags": FlagSet {
+            "bits": Uint8Array [
+-             0,
++             32,
+              0,
+            ],
+          },
+          "maxStack": 40,
+-         "name": "Light~",
+-         "numSvals": 5,
+-         "tval": 19,
++         "name": "Potion~",
++         "numSvals": 41,
++         "tval": 26,
+        },
+        "brands": null,
+        "charge": {
+          "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+-       "cost": 2,
++       "cost": 8000,
+        "curses": null,
+-       "dAttr": "u",
+-       "dChar": "~",
+-       "dd": 1,
+-       "ds": 1,
+-       "effect": null,
++       "dAttr": "d",
++       "dChar": "!",
++       "dd": 0,
++       "ds": 0,
++       "effect": [
++         {
++           "eff": "RESTORE_STAT",
++           "type": "STR",
++         },
++         {
++           "eff": "GAIN_STAT",
++           "type": "STR",
++         },
++       ],
+        "effectMsg": "",
+        "elInfo": [
+          {
+            "flags": 0,
+            "resLevel": 0,
+@@ -371,26 +389,26 @@
+            "resLevel": 0,
+          },
+        ],
+        "flags": FlagSet {
+          "bits": Uint8Array [
++           0,
+            0,
+            0,
+-           4,
+-           32,
++           0,
+            0,
+          ],
+        },
+-       "genMultProb": 0,
+-       "kidx": 4,
++       "genMultProb": 10,
++       "kidx": 224,
+        "kindFlags": FlagSet {
+          "bits": Uint8Array [
+            32,
+            0,
+          ],
+        },
+-       "level": 1,
++       "level": 30,
+        "modifiers": [
+          {
+            "base": 0,
+            "dice": 0,
+            "mBonus": 0,
+@@ -485,21 +503,21 @@
+            "dice": 0,
+            "mBonus": 0,
+            "sides": 0,
+          },
+        ],
+-       "name": "& Wooden Torch~",
+-       "power": 0,
++       "name": "Strength",
++       "power": 20000,
+        "pval": {
+          "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+        "slays": null,
+        "stackSize": {
+-         "base": 0,
++         "base": 2,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+        "sval": 1,
+@@ -526,13 +544,13 @@
+          "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+-       "tval": 19,
++       "tval": 26,
+        "visMsg": "",
+-       "weight": 22,
++       "weight": 4,
+      },
+      "mimickingMIdx": 0,
+      "modifiers": [
+        0,
+        0,
+@@ -564,16 +582,16 @@
+        "base": 0,
+        "dice": 0,
+        "mBonus": 0,
+        "sides": 0,
+      },
+-     "timeout": 5000,
++     "timeout": 0,
+      "toA": 0,
+      "toD": 0,
+      "toH": 0,
+-     "tval": 19,
+-     "weight": 22,
++     "tval": 26,
++     "weight": 4,
+    },
+    {
+      "ac": 0,
+      "activation": null,
+      "artifact": null,
+@@ -1151,22 +1169,13 @@
+      "ac": 0,
+      "activation": null,
+      "artifact": null,
+      "brands": null,
+      "curses": null,
+-     "dd": 0,
+-     "ds": 0,
+-     "effect": [
+-       {
+-         "eff": "RESTORE_STAT",
+-         "type": "STR",
+-       },
+-       {
+-         "eff": "GAIN_STAT",
+-         "type": "STR",
+-       },
+-     ],
++     "dd": 1,
++     "ds": 1,
++     "effect": null,
+      "effectMsg": "",
+      "ego": null,
+      "elInfo": [
+        {
+          "flags": 0,
+@@ -1175,15 +1184,15 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 0,
++         "flags": 1,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 1,
++         "flags": 0,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -1195,15 +1204,15 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 1,
++         "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 1,
++         "flags": 0,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -1223,11 +1232,11 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 1,
++         "flags": 0,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -1235,11 +1244,11 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 1,
++         "flags": 0,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -1269,43 +1278,43 @@
+          "resLevel": 0,
+        },
+      ],
+      "flags": FlagSet {
+        "bits": Uint8Array [
+-         0,
+          0,
+          0,
+-         0,
++         4,
++         32,
+          0,
+        ],
+      },
+      "grid": null,
+      "heldMIdx": 0,
+      "kind": {
+        "ac": 0,
+        "activation": null,
+        "allocMax": 100,
+-       "allocMin": 30,
+-       "allocProb": 30,
++       "allocMin": 1,
++       "allocProb": 70,
+        "base": {
+-         "attr": "light blue",
+-         "breakPerc": 100,
++         "attr": "yellow",
++         "breakPerc": 50,
+          "elInfo": [
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 0,
++             "flags": 1,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 1,
++             "flags": 0,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -1317,15 +1326,15 @@
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 1,
++             "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 1,
++             "flags": 0,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -1345,11 +1354,11 @@
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 1,
++             "flags": 0,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -1357,11 +1366,11 @@
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 1,
++             "flags": 0,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -1400,42 +1409,33 @@
+              0,
+            ],
+          },
+          "kindFlags": FlagSet {
+            "bits": Uint8Array [
+-             32,
++             0,
+              0,
+            ],
+          },
+          "maxStack": 40,
+-         "name": "Potion~",
+-         "numSvals": 41,
+-         "tval": 26,
++         "name": "Light~",
++         "numSvals": 5,
++         "tval": 19,
+        },
+        "brands": null,
+        "charge": {
+          "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+-       "cost": 8000,
++       "cost": 2,
+        "curses": null,
+-       "dAttr": "d",
+-       "dChar": "!",
+-       "dd": 0,
+-       "ds": 0,
+-       "effect": [
+-         {
+-           "eff": "RESTORE_STAT",
+-           "type": "STR",
+-         },
+-         {
+-           "eff": "GAIN_STAT",
+-           "type": "STR",
+-         },
+-       ],
++       "dAttr": "u",
++       "dChar": "~",
++       "dd": 1,
++       "ds": 1,
++       "effect": null,
+        "effectMsg": "",
+        "elInfo": [
+          {
+            "flags": 0,
+            "resLevel": 0,
+@@ -1537,26 +1537,26 @@
+            "resLevel": 0,
+          },
+        ],
+        "flags": FlagSet {
+          "bits": Uint8Array [
+-           0,
+            0,
+            0,
+-           0,
++           4,
++           32,
+            0,
+          ],
+        },
+-       "genMultProb": 10,
+-       "kidx": 224,
++       "genMultProb": 0,
++       "kidx": 4,
+        "kindFlags": FlagSet {
+          "bits": Uint8Array [
+            32,
+            0,
+          ],
+        },
+-       "level": 30,
++       "level": 1,
+        "modifiers": [
+          {
+            "base": 0,
+            "dice": 0,
+            "mBonus": 0,
+@@ -1651,21 +1651,21 @@
+            "dice": 0,
+            "mBonus": 0,
+            "sides": 0,
+          },
+        ],
+-       "name": "Strength",
+-       "power": 20000,
++       "name": "& Wooden Torch~",
++       "power": 0,
+        "pval": {
+          "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+        "slays": null,
+        "stackSize": {
+-         "base": 2,
++         "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+        "sval": 1,
+@@ -1692,13 +1692,13 @@
+          "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+-       "tval": 26,
++       "tval": 19,
+        "visMsg": "",
+-       "weight": 4,
++       "weight": 22,
+      },
+      "mimickingMIdx": 0,
+      "modifiers": [
+        0,
+        0,
+@@ -1730,13 +1730,13 @@
+        "base": 0,
+        "dice": 0,
+        "mBonus": 0,
+        "sides": 0,
+      },
+-     "timeout": 0,
++     "timeout": 5000,
+      "toA": 0,
+      "toD": 0,
+      "toH": 0,
+-     "tval": 26,
+-     "weight": 4,
++     "tval": 19,
++     "weight": 22,
+    },
+  ]
+
+ ❯ packages/core/src/store/store.test.ts:256:25
+    254|       expect(storeCarry(ctx.rng, reg, constants, store, obj, true)).to…
+    255|     // store.c:981 uses pile_insert; obj-pile.c:167 prepends at the he…
+    256|     expect(store.stock).toEqual([third, second, first]);
+       |                         ^
+    257|     const merged = makeKind(TV.FLASK);
+    258|     const previous = second.number;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  packages/core/src/store/store.test.ts > store stock identity > does not merge differently discounted stock
+AssertionError: expected [ +0, 50 ] to deeply equal [ 50, +0 ]
+
+- Expected
++ Received
+
+  [
+-   50,
+    0,
++   50,
+  ]
+
+ ❯ packages/core/src/store/store.test.ts:279:59
+    277|     expect(general.stock).toHaveLength(2);
+    278|     // New distinct stock is at the head, matching C pile_insert.
+    279|     expect(general.stock.map((obj) => obj.discount ?? 0)).toEqual([50,…
+       |                                                           ^
+    280|   });
+    281| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  packages/core/src/store/transact.test.ts > native home stock insertion order > prepends new home stacks and keeps a merged stack in place
+AssertionError: expected [ { kind: { …(37) }, …(32) }, …(2) ] to deeply equal [ { kind: { …(37) }, …(32) }, …(2) ]
+
+- Expected
++ Received
+
+@@ -3,13 +3,22 @@
+      "ac": 0,
+      "activation": null,
+      "artifact": null,
+      "brands": null,
+      "curses": null,
+-     "dd": 1,
+-     "ds": 1,
+-     "effect": null,
++     "dd": 0,
++     "ds": 0,
++     "effect": [
++       {
++         "eff": "RESTORE_STAT",
++         "type": "STR",
++       },
++       {
++         "eff": "GAIN_STAT",
++         "type": "STR",
++       },
++     ],
+      "effectMsg": "",
+      "ego": null,
+      "elInfo": [
+        {
+          "flags": 0,
+@@ -18,15 +27,15 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 1,
++         "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 0,
++         "flags": 1,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -38,15 +47,15 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 0,
++         "flags": 1,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 0,
++         "flags": 1,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -66,11 +75,11 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 0,
++         "flags": 1,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -78,11 +87,11 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 0,
++         "flags": 1,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -114,41 +123,41 @@
+      ],
+      "flags": FlagSet {
+        "bits": Uint8Array [
+          0,
+          0,
+-         4,
+-         32,
++         0,
++         0,
+          0,
+        ],
+      },
+      "grid": null,
+      "heldMIdx": 0,
+      "kind": {
+        "ac": 0,
+        "activation": null,
+        "allocMax": 100,
+-       "allocMin": 1,
+-       "allocProb": 70,
++       "allocMin": 30,
++       "allocProb": 30,
+        "base": {
+-         "attr": "yellow",
+-         "breakPerc": 50,
++         "attr": "light blue",
++         "breakPerc": 100,
+          "elInfo": [
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 1,
++             "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 0,
++             "flags": 1,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -160,15 +169,15 @@
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 0,
++             "flags": 1,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 0,
++             "flags": 1,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -188,11 +197,11 @@
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 0,
++             "flags": 1,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -200,11 +209,11 @@
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 0,
++             "flags": 1,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -243,33 +252,42 @@
+              0,
+            ],
+          },
+          "kindFlags": FlagSet {
+            "bits": Uint8Array [
+-             0,
++             32,
+              0,
+            ],
+          },
+          "maxStack": 40,
+-         "name": "Light~",
+-         "numSvals": 5,
+-         "tval": 19,
++         "name": "Potion~",
++         "numSvals": 41,
++         "tval": 26,
+        },
+        "brands": null,
+        "charge": {
+          "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+-       "cost": 2,
++       "cost": 8000,
+        "curses": null,
+-       "dAttr": "u",
+-       "dChar": "~",
+-       "dd": 1,
+-       "ds": 1,
+-       "effect": null,
++       "dAttr": "d",
++       "dChar": "!",
++       "dd": 0,
++       "ds": 0,
++       "effect": [
++         {
++           "eff": "RESTORE_STAT",
++           "type": "STR",
++         },
++         {
++           "eff": "GAIN_STAT",
++           "type": "STR",
++         },
++       ],
+        "effectMsg": "",
+        "elInfo": [
+          {
+            "flags": 0,
+            "resLevel": 0,
+@@ -371,26 +389,26 @@
+            "resLevel": 0,
+          },
+        ],
+        "flags": FlagSet {
+          "bits": Uint8Array [
++           0,
+            0,
+            0,
+-           4,
+-           32,
++           0,
+            0,
+          ],
+        },
+-       "genMultProb": 0,
+-       "kidx": 4,
++       "genMultProb": 10,
++       "kidx": 224,
+        "kindFlags": FlagSet {
+          "bits": Uint8Array [
+            32,
+            0,
+          ],
+        },
+-       "level": 1,
++       "level": 30,
+        "modifiers": [
+          {
+            "base": 0,
+            "dice": 0,
+            "mBonus": 0,
+@@ -485,21 +503,21 @@
+            "dice": 0,
+            "mBonus": 0,
+            "sides": 0,
+          },
+        ],
+-       "name": "& Wooden Torch~",
+-       "power": 0,
++       "name": "Strength",
++       "power": 20000,
+        "pval": {
+          "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+        "slays": null,
+        "stackSize": {
+-         "base": 0,
++         "base": 2,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+        "sval": 1,
+@@ -526,13 +544,13 @@
+          "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+-       "tval": 19,
++       "tval": 26,
+        "visMsg": "",
+-       "weight": 22,
++       "weight": 4,
+      },
+      "mimickingMIdx": 0,
+      "modifiers": [
+        0,
+        0,
+@@ -564,16 +582,16 @@
+        "base": 0,
+        "dice": 0,
+        "mBonus": 0,
+        "sides": 0,
+      },
+-     "timeout": 5000,
++     "timeout": 0,
+      "toA": 0,
+      "toD": 0,
+      "toH": 0,
+-     "tval": 19,
+-     "weight": 22,
++     "tval": 26,
++     "weight": 4,
+    },
+    {
+      "ac": 0,
+      "activation": null,
+      "artifact": null,
+@@ -1151,22 +1169,13 @@
+      "ac": 0,
+      "activation": null,
+      "artifact": null,
+      "brands": null,
+      "curses": null,
+-     "dd": 0,
+-     "ds": 0,
+-     "effect": [
+-       {
+-         "eff": "RESTORE_STAT",
+-         "type": "STR",
+-       },
+-       {
+-         "eff": "GAIN_STAT",
+-         "type": "STR",
+-       },
+-     ],
++     "dd": 1,
++     "ds": 1,
++     "effect": null,
+      "effectMsg": "",
+      "ego": null,
+      "elInfo": [
+        {
+          "flags": 0,
+@@ -1175,15 +1184,15 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 0,
++         "flags": 1,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 1,
++         "flags": 0,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -1195,15 +1204,15 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 1,
++         "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 1,
++         "flags": 0,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -1223,11 +1232,11 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 1,
++         "flags": 0,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -1235,11 +1244,11 @@
+        {
+          "flags": 0,
+          "resLevel": 0,
+        },
+        {
+-         "flags": 1,
++         "flags": 0,
+          "resLevel": 0,
+        },
+        {
+          "flags": 0,
+          "resLevel": 0,
+@@ -1269,43 +1278,43 @@
+          "resLevel": 0,
+        },
+      ],
+      "flags": FlagSet {
+        "bits": Uint8Array [
+-         0,
+          0,
+          0,
+-         0,
++         4,
++         32,
+          0,
+        ],
+      },
+      "grid": null,
+      "heldMIdx": 0,
+      "kind": {
+        "ac": 0,
+        "activation": null,
+        "allocMax": 100,
+-       "allocMin": 30,
+-       "allocProb": 30,
++       "allocMin": 1,
++       "allocProb": 70,
+        "base": {
+-         "attr": "light blue",
+-         "breakPerc": 100,
++         "attr": "yellow",
++         "breakPerc": 50,
+          "elInfo": [
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 0,
++             "flags": 1,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 1,
++             "flags": 0,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -1317,15 +1326,15 @@
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 1,
++             "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 1,
++             "flags": 0,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -1345,11 +1354,11 @@
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 1,
++             "flags": 0,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -1357,11 +1366,11 @@
+            {
+              "flags": 0,
+              "resLevel": 0,
+            },
+            {
+-             "flags": 1,
++             "flags": 0,
+              "resLevel": 0,
+            },
+            {
+              "flags": 0,
+              "resLevel": 0,
+@@ -1400,42 +1409,33 @@
+              0,
+            ],
+          },
+          "kindFlags": FlagSet {
+            "bits": Uint8Array [
+-             32,
++             0,
+              0,
+            ],
+          },
+          "maxStack": 40,
+-         "name": "Potion~",
+-         "numSvals": 41,
+-         "tval": 26,
++         "name": "Light~",
++         "numSvals": 5,
++         "tval": 19,
+        },
+        "brands": null,
+        "charge": {
+          "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+-       "cost": 8000,
++       "cost": 2,
+        "curses": null,
+-       "dAttr": "d",
+-       "dChar": "!",
+-       "dd": 0,
+-       "ds": 0,
+-       "effect": [
+-         {
+-           "eff": "RESTORE_STAT",
+-           "type": "STR",
+-         },
+-         {
+-           "eff": "GAIN_STAT",
+-           "type": "STR",
+-         },
+-       ],
++       "dAttr": "u",
++       "dChar": "~",
++       "dd": 1,
++       "ds": 1,
++       "effect": null,
+        "effectMsg": "",
+        "elInfo": [
+          {
+            "flags": 0,
+            "resLevel": 0,
+@@ -1537,26 +1537,26 @@
+            "resLevel": 0,
+          },
+        ],
+        "flags": FlagSet {
+          "bits": Uint8Array [
+-           0,
+            0,
+            0,
+-           0,
++           4,
++           32,
+            0,
+          ],
+        },
+-       "genMultProb": 10,
+-       "kidx": 224,
++       "genMultProb": 0,
++       "kidx": 4,
+        "kindFlags": FlagSet {
+          "bits": Uint8Array [
+            32,
+            0,
+          ],
+        },
+-       "level": 30,
++       "level": 1,
+        "modifiers": [
+          {
+            "base": 0,
+            "dice": 0,
+            "mBonus": 0,
+@@ -1651,21 +1651,21 @@
+            "dice": 0,
+            "mBonus": 0,
+            "sides": 0,
+          },
+        ],
+-       "name": "Strength",
+-       "power": 20000,
++       "name": "& Wooden Torch~",
++       "power": 0,
+        "pval": {
+          "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+        "slays": null,
+        "stackSize": {
+-         "base": 2,
++         "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+        "sval": 1,
+@@ -1692,13 +1692,13 @@
+          "base": 0,
+          "dice": 0,
+          "mBonus": 0,
+          "sides": 0,
+        },
+-       "tval": 26,
++       "tval": 19,
+        "visMsg": "",
+-       "weight": 4,
++       "weight": 22,
+      },
+      "mimickingMIdx": 0,
+      "modifiers": [
+        0,
+        0,
+@@ -1730,13 +1730,13 @@
+        "base": 0,
+        "dice": 0,
+        "mBonus": 0,
+        "sides": 0,
+      },
+-     "timeout": 0,
++     "timeout": 5000,
+      "toA": 0,
+      "toD": 0,
+      "toH": 0,
+-     "tval": 26,
+-     "weight": 4,
++     "tval": 19,
++     "weight": 22,
+    },
+  ]
+
+ ❯ packages/core/src/store/transact.test.ts:683:24
+    681|     for (const obj of [first, second, third]) homeCarry(home, obj, con…
+    682|     // C home_carry uses the same head insertion as store_carry.
+    683|     expect(home.stock).toEqual([third, second, first]);
+       |                        ^
+    684|     const merged = makeObj(TV.FLASK), previous = second.number;
+    685|     homeCarry(home, merged, constants);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed | 4 passed (6)
+      Tests  4 failed | 95 passed (99)
+   Start at  01:17:18
+   Duration  2.63s (tests 42%, import 33%, transform 24%, worker 1%)
+

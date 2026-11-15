@@ -1,0 +1,249 @@
+diff --git a/packages/core/src/store/native-stock-rng.fixture.json b/packages/core/src/store/native-stock-rng.fixture.json
+new file mode 100644
+index 000000000..9d565a1df
+--- /dev/null
++++ b/packages/core/src/store/native-stock-rng.fixture.json
+@@ -0,0 +1,127 @@
++{
++  "source": "angband/angband e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
++  "seed": 303,
++  "race": "Human",
++  "class": "Warrior",
++  "observation": "native birth/owner selection and first two general-store maintenance passes",
++  "before_owner": {
++    "stage": "store-0-owner-before",
++    "quick": false,
++    "value": 0,
++    "stateI": 31,
++    "state": [
++      3354532170,
++      1916862930,
++      1303875596,
++      2575038096,
++      3411928054,
++      1879336764,
++      3958555263,
++      1119419112,
++      1504843849,
++      2099161884,
++      1683995446,
++      324515729,
++      1199695730,
++      1093993531,
++      1726884321,
++      3001404416,
++      1945615361,
++      2612121537,
++      3754035521,
++      2565459607,
++      225119828,
++      2982818896,
++      685464104,
++      1546937657,
++      504638389,
++      1392335325,
++      609189972,
++      1164739658,
++      2212631469,
++      1670092514,
++      1412272729,
++      184761148
++    ]
++  },
++  "after_first": {
++    "stage": "store-0-maint-0-after",
++    "quick": false,
++    "value": 0,
++    "stateI": 28,
++    "state": [
++      1289074,
++      4088183485,
++      3155997941,
++      3253802602,
++      3311136898,
++      2729257877,
++      2844872070,
++      3043562821,
++      3769285451,
++      1628628739,
++      1095000838,
++      192115631,
++      2243210416,
++      1530173524,
++      972961075,
++      1474406340,
++      2589912596,
++      4090980488,
++      2579532193,
++      3460429655,
++      3747727978,
++      2975819552,
++      3090429160,
++      2796967702,
++      2128808898,
++      2798029827,
++      3980628363,
++      3728577025,
++      664144745,
++      1510491108,
++      3218720158,
++      4084403958
++    ]
++  },
++  "after_second": {
++    "stage": "store-0-maint-1-after",
++    "quick": false,
++    "value": 0,
++    "stateI": 25,
++    "state": [
++      3537693431,
++      2044977909,
++      176435538,
++      1102542472,
++      2175254877,
++      3158399278,
++      2849702667,
++      2068133220,
++      4090825102,
++      3001622421,
++      921195747,
++      2468532753,
++      1226418653,
++      2982880607,
++      3088123296,
++      2645878483,
++      212513417,
++      1944024846,
++      1667874731,
++      438161447,
++      3729580509,
++      2893657779,
++      1904623542,
++      2776293178,
++      3929071819,
++      1076355892,
++      494770730,
++      3465707270,
++      3928707224,
++      2818079621,
++      2268905978,
++      800449841
++    ]
++  }
++}
+diff --git a/packages/core/src/store/store.test.ts b/packages/core/src/store/store.test.ts
+index 20c4bcd4a..cc7f12a8a 100644
+--- a/packages/core/src/store/store.test.ts
++++ b/packages/core/src/store/store.test.ts
+@@ -24,6 +24,7 @@ import {
+   storeMaint,
+   storeCarry,
+   storeReset,
++  storeChooseOwner,
+   storeUpdate,
+   storeWillBuy,
+ } from "./store.js";
+@@ -232,6 +233,34 @@ describe("store maintenance (store.c store_reset/store_maint)", () => {
+ });
+ 
+ describe("store stock identity", () => {
++  it("matches native C's first two maintenance RNG checkpoints from a common store input", () => {
++    const fixture = JSON.parse(readFileSync(new URL("./native-stock-rng.fixture.json", import.meta.url), "utf8"));
++    const { ctx, stores } = context();
++    ctx.rng.setState({ ...ctx.rng.getState(), ...fixture.before_owner });
++    const general = stores.find(store => store.feat === FEAT.STORE_GENERAL)!;
++    general.owner = storeChooseOwner(ctx.rng, general);
++    const pool = () => ({ stateI: ctx.rng.getState().stateI, state: ctx.rng.getState().state });
++    storeMaint(ctx, general);
++    expect(pool()).toEqual({ stateI: fixture.after_first.stateI, state: fixture.after_first.state });
++    storeMaint(ctx, general);
++    expect(pool()).toEqual({ stateI: fixture.after_second.stateI, state: fixture.after_second.state });
++  });
++
++  it("prepends new stacks as C pile_insert, preserving a merged stack's position", () => {
++    const { ctx, stores } = context();
++    const store = stores.find(s => s.feat === FEAT.STORE_GENERAL)!;
++    const first = makeKind(TV.POTION), second = makeKind(TV.FLASK), third = makeKind(TV.LIGHT);
++    for (const obj of [first, second, third])
++      expect(storeCarry(ctx.rng, reg, constants, store, obj, true)).toBe(obj);
++    // store.c:981 uses pile_insert; obj-pile.c:167 prepends at the head.
++    expect(store.stock).toEqual([third, second, first]);
++    const merged = makeKind(TV.FLASK);
++    const previous = second.number;
++    expect(storeCarry(ctx.rng, reg, constants, store, merged, true)).toBe(second);
++    expect(second.number).toBe(previous + merged.number);
++    expect(store.stock).toEqual([third, second, first]);
++  });
++
+   it("does not merge differently discounted stock", () => {
+     const { ctx, stores } = context();
+     const general = stores.find((store) => store.feat === FEAT.STORE_GENERAL);
+@@ -246,7 +275,8 @@ describe("store stock identity", () => {
+     storeCarry(ctx.rng, reg, constants, general, halfPrice, true);
+ 
+     expect(general.stock).toHaveLength(2);
+-    expect(general.stock.map((obj) => obj.discount ?? 0)).toEqual([0, 50]);
++    // New distinct stock is at the head, matching C pile_insert.
++    expect(general.stock.map((obj) => obj.discount ?? 0)).toEqual([50, 0]);
+   });
+ });
+ 
+diff --git a/packages/core/src/store/store.ts b/packages/core/src/store/store.ts
+index c248b1c74..bad7a2191 100644
+--- a/packages/core/src/store/store.ts
++++ b/packages/core/src/store/store.ts
+@@ -666,7 +666,8 @@ export function storeCarry(
+   /* No space? */
+   if (store.stock.length >= store.stockSize) return null;
+ 
+-  store.stock.push(obj);
++  // C store_carry/home_carry use pile_insert (obj-pile.c:167): head first.
++  store.stock.unshift(obj);
+   return obj;
+ }
+ 
+diff --git a/packages/core/src/store/transact.test.ts b/packages/core/src/store/transact.test.ts
+index 15f8f69fa..0e2e83e1c 100644
+--- a/packages/core/src/store/transact.test.ts
++++ b/packages/core/src/store/transact.test.ts
+@@ -19,6 +19,7 @@ import { priceItem } from "./price.js";
+ import { bindStoreRuntime, storeReset } from "./store.js";
+ import type { Store, StoreMaintContext } from "./store.js";
+ import {
++  homeCarry,
+   homeRetrieve,
+   homeStash,
+   purchaseAnalyze,
+@@ -671,3 +672,18 @@ describe("object_flavor_aware ignore fix at storeBuy/storeSell (#89)", () => {
+     expect(rec.noticeRequests).toBe(1);
+   });
+ });
++
++describe("native home stock insertion order", () => {
++  it("prepends new home stacks and keeps a merged stack in place", () => {
++    const { stores } = setup();
++    const home = stores.find(s => s.feat === FEAT.HOME)!;
++    const first = makeObj(TV.POTION), second = makeObj(TV.FLASK), third = makeObj(TV.LIGHT);
++    for (const obj of [first, second, third]) homeCarry(home, obj, constants);
++    // C home_carry uses the same head insertion as store_carry.
++    expect(home.stock).toEqual([third, second, first]);
++    const merged = makeObj(TV.FLASK), previous = second.number;
++    homeCarry(home, merged, constants);
++    expect(second.number).toBe(previous + merged.number);
++    expect(home.stock).toEqual([third, second, first]);
++  });
++});
+diff --git a/packages/core/src/store/transact.ts b/packages/core/src/store/transact.ts
+index 46a2c3967..af4e4a2fe 100644
+--- a/packages/core/src/store/transact.ts
++++ b/packages/core/src/store/transact.ts
+@@ -645,7 +645,8 @@ export function homeCarry(
+   /* No space? Then the object is lost (upstream frees it). */
+   if (store.stock.length >= store.stockSize) return;
+ 
+-  store.stock.push(obj);
++  // C store_carry/home_carry use pile_insert (obj-pile.c:167): head first.
++  store.stock.unshift(obj);
+ }
+ 
+ /**
