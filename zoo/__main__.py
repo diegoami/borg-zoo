@@ -73,30 +73,27 @@ def cmd_run(args):
                       if (Path(args.work) / cat_mod.cell_key(cell)).exists()]
         if collisions:
             raise ValueError(f'retained attempt already exists: {collisions[0]}')
-        with out.open('x') as stream, ThreadPoolExecutor(max_workers=args.jobs) as pool:
-            pending = {pool.submit(one, cell): cell for cell in mine}
-            records = []
-            for future in as_completed(pending):
-                try:
-                    record = future.result()
-                except Exception as exc:
-                    cell = pending[future]
-                    record = {'schema': 'borg-zoo/cell@1', **cell,
-                              'harness_kind': cat['specimens']['specimens'][cell['specimen']].get('kind', 'better-borg-c'),
-                              'boundary': cat_mod.boundary(cat['specimens']['specimens'][cell['specimen']]),
-                              'outcome': 'harness_failure', 'error': repr(exc),
-                              'cap': cat['suites'][cell['suite']]['cap'],
-                              'final': {}, 'first_turn_at_depth': {}, 'wall_seconds': None}
+    # Write each completed cell before waiting for any other cell. Retaining raw
+    # evidence must not determine whether timeout recovery preserves results.
+    with out.open('x') as stream, ThreadPoolExecutor(max_workers=args.jobs) as pool:
+        pending = {pool.submit(one, cell): cell for cell in mine}
+        records = []
+        for future in as_completed(pending):
+            try:
+                record = future.result()
+            except Exception as exc:
+                cell = pending[future]
+                record = {'schema': 'borg-zoo/cell@1', **cell,
+                          'harness_kind': cat['specimens']['specimens'][cell['specimen']].get('kind', 'better-borg-c'),
+                          'boundary': cat_mod.boundary(cat['specimens']['specimens'][cell['specimen']]),
+                          'outcome': 'harness_failure', 'error': repr(exc),
+                          'cap': cat['suites'][cell['suite']]['cap'],
+                          'final': {}, 'first_turn_at_depth': {}, 'wall_seconds': None}
+                if exp.get('retain_evidence'):
                     evidence.attach(record, Path(args.work) / cat_mod.cell_key(cell))
-                records.append(record)
-                stream.write(json.dumps(record, sort_keys=True) + '\n')
-                stream.flush()
-    else:
-        with ThreadPoolExecutor(max_workers=args.jobs) as pool:
-            records = list(pool.map(one, mine))
-        with out.open('w') as f:
-            for record in records:
-                f.write(json.dumps(record, sort_keys=True) + '\n')
+            records.append(record)
+            stream.write(json.dumps(record, sort_keys=True) + '\n')
+            stream.flush()
     print(f'{len(records)} cells -> {out}')
 
 

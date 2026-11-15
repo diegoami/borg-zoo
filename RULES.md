@@ -24,3 +24,18 @@
 9. Local heavy runs on the owner's machine take the shared lock:
    `flock /tmp/angband-validation.lock <command>`.
 10. No AI attribution trailers in commits or pull request bodies.
+11. Run and inspect smoke tests before dispatching a large experiment. Smoke
+    and the full experiment must not start together; successful builds alone
+    are not acceptance. Check completed cells, applied settings and abnormal
+    outcomes before proceeding.
+12. Split large experiments into bounded shards, one shard per Actions job.
+    For the owner-authorized M12/M13 rerun, wait until all 20 account runner
+    slots are free, then use all 20 in one workflow. Do not start alongside
+    existing experiments. Use measured smoke timings and the actual worker
+    count to size each shard with headroom below the job timeout; never pack
+    an entire experiment into one runner job. This supersedes the earlier
+    one-job wording, corrected by the owner on 2026-11-15.
+13. Persist and flush every completed cell immediately, regardless of raw
+    evidence retention. Upload completed records even when a job is cancelled
+    or times out. Verify partial-result collection with an interrupted run
+    before relying on it for a large experiment.
