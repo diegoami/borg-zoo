@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "neo-fork-48afb65-smoke",
+  "description": "Build and play check of the Neo Borg from diegoami/neo-angband-borg-mod-tracker master 48afb65 (the port fixes of the fork's PRs 75, 76 and 84) through the fork's own zoo entry point (tools/zoo). classes-18, default profile. Says only whether it builds and plays; not a comparison.",
+  "specimens": [
+    "neo-fork-48afb65"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "neo-fork-48afb65",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "neo-fork-48afb65": 6
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 6,
+    "native_wall_seconds": 900,
+    "neo_wall_seconds": 2700,
+    "job_timeout_minutes": 300
+  }
+}
