@@ -4,6 +4,7 @@ These describe the comparison, never its result. New experiments without an
 editorial question get a factual summary of the dimensions they vary.
 """
 QUESTIONS = {
+    'rs-additive-returns': 'Do the four added return-trigger settings change survival and town visits when legacy returns stay active and shopping, combat and depth rules are fixed?',
     'neo-fork-48afb65-classes-1800': 'How does the Neo fork with corrected store-phase equipment changes survive and progress?',
     'neo-fork-9c17cb0-classes-1800': 'How does the Neo repair candidate play under its historical message-deaf host?',
     'neo-fork-9c17cb0-events-classes-1800': 'How does the Neo repair candidate survive with event and message delivery restored?',
@@ -75,6 +76,12 @@ for milestone in (11, 12, 13):
 
 
 PROFILE_LABELS = {
+    'rs-additive-existing': 'Existing shopping + legacy returns',
+    'rs-additive-shopping-only': 'New shopping + legacy returns only',
+    'rs-additive-p0-u0': 'Legacy returns + full-pack trigger (0,0)',
+    'rs-additive-p1-u2': 'Legacy returns + one slot / two unknown stacks (1,2)',
+    'rs-additive-p1-u4': 'Legacy returns + one slot / four unknown stacks (1,4)',
+    'rs-additive-p2-u4': 'Legacy returns + two slots / four unknown stacks (2,4)',
     'rs-pr85-existing': 'Existing shopping and returns',
     'rs-pr85-shopping-only': 'New shopping, legacy returns',
     'rs-pr85-return-p0-u0': 'Full pack; learning return off (0,0)',

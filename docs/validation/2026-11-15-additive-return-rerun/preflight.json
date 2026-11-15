@@ -1,0 +1,33 @@
+{
+  "source_pin": "7251f64a9c3bf75fb8b90940d3fda54c4fa610bb",
+  "full_experiment": "rs-additive-returns",
+  "games": 10800,
+  "profiles": [
+    "rs-additive-existing",
+    "rs-additive-shopping-only",
+    "rs-additive-p0-u0",
+    "rs-additive-p1-u2",
+    "rs-additive-p1-u4",
+    "rs-additive-p2-u4"
+  ],
+  "suite": "classes-1800-d",
+  "cap": 100000,
+  "run_jobs": 40,
+  "games_per_shard": {
+    "min": 270,
+    "max": 270
+  },
+  "max_parallel_jobs": 20,
+  "processes_per_job": 1,
+  "validation": {
+    "zoo_unit_tests": 152,
+    "all_default_plans_and_single_arms": "passed",
+    "new_full_plan_40_shards": "passed",
+    "historical_profile_settings": "unchanged; copied exactly to new names",
+    "historical_suite_assignments": "unchanged",
+    "new_preflights": "full and smoke passed",
+    "partial_result_recovery": "existing interrupted-shard regression passed as part of 152 tests"
+  },
+  "dispatch_gate": "Complete and inspect smoke first. Check account idle, then dispatch full experiment. Runtime sizing must be confirmed from smoke before dispatch.",
+  "interpretation": "Development rerun on the old frozen seeds. New source is M13+PR88; historical PR85 was M12. No fresh-seed confirmation or cross-milestone causal claim."
+}

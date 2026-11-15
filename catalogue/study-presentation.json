@@ -18,7 +18,13 @@
     "rs-pr85-return-p0-u0": "Full pack; learning return off (0,0)",
     "rs-pr85-return-p1-u2": "One free slot / two unknown stacks (1,2)",
     "rs-pr85-return-p1-u4": "One free slot / four unknown stacks (1,4)",
-    "rs-pr85-return-p2-u4": "Two free slots / four unknown stacks (2,4)"
+    "rs-pr85-return-p2-u4": "Two free slots / four unknown stacks (2,4)",
+    "rs-additive-existing": "Existing shopping + legacy returns",
+    "rs-additive-shopping-only": "New shopping + legacy returns only",
+    "rs-additive-p0-u0": "Legacy returns + full-pack trigger (0,0)",
+    "rs-additive-p1-u2": "Legacy returns + one slot / two unknown stacks (1,2)",
+    "rs-additive-p1-u4": "Legacy returns + one slot / four unknown stacks (1,4)",
+    "rs-additive-p2-u4": "Legacy returns + two slots / four unknown stacks (2,4)"
   },
   "experiments": {
     "rs-joint-m12-development": {
@@ -49,6 +55,17 @@
         "rs-pr85-return-p2-u4"
       ],
       "candidate_label": "(2,4) return candidate"
+    },
+    "rs-additive-returns": {
+      "title": "Additive return triggers after PR88: repeat the four threshold choices",
+      "intro": "Six choices use the same corrected M13 build and the same 1800 frozen starts. Four threshold pairs add town-return requests while keeping legacy returns active. Both same-build controls are rerun; no trip-policy override of shopping, combat or depth is active.",
+      "coverage_repaired": true,
+      "scope_note": "Development rerun, not fresh-seed confirmation. Main control: new shopping + legacy returns only. Historical PR85 results used M12 and remain separate.",
+      "comparison_profiles": [
+        "rs-additive-shopping-only",
+        "rs-additive-p1-u2"
+      ],
+      "candidate_label": "(1,2) additive-return comparison"
     }
   }
 }

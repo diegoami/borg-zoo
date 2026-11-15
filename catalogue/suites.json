@@ -1408,6 +1408,35 @@
       "wall_seconds": 120,
       "stall_seconds": 60,
       "saves": false
+    },
+    "rs-additive-timing-9": {
+      "description": "PR88 additive-return functional and timing check: one assigned Human start per class, 100000-world-turn after-key cap. Diagnostic only.",
+      "role": "pilot",
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 9
+      },
+      "birth": "assigned",
+      "characters": {
+        "classes": [
+          "Warrior",
+          "Mage",
+          "Druid",
+          "Priest",
+          "Necromancer",
+          "Paladin",
+          "Rogue",
+          "Ranger",
+          "Blackguard"
+        ],
+        "races": [
+          "Human"
+        ]
+      },
+      "cap": 100000,
+      "wall_seconds": 300,
+      "stall_seconds": 60,
+      "saves": false
     }
   }
 }
