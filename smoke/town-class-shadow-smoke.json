@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "town-class-shadow-smoke",
+  "description": "Do all nine classes select the intended settings, and do native effective settings match the v5 shadow parameter vectors? The probe changes Mage cash priority to 50, Ranger future-Home discount to 750 and Blackguard risk to 1500; every other class uses shared defaults. Same-seed gameplay should stay identical between reference and probe because neither enables the planner. Snapshot plans are diagnostics, not purchases or independent trips. These are routing probes, not accepted class settings or survival contenders. Preparation only; no Actions dispatch.",
+  "specimens": [
+    "4.2.6-rs-town-class-shadow"
+  ],
+  "profiles": [
+    "rs-town-reference-by-class-normal",
+    "rs-town-class-selection-probe-by-class-normal"
+  ],
+  "suites": [
+    "town-shadow-classes-18"
+  ],
+  "control": "4.2.6-rs-town-class-shadow",
+  "control_profile": "rs-town-reference-by-class-normal",
+  "retain_evidence": true,
+  "resource_budget": {
+    "max_parallel_jobs": 4,
+    "processes_per_job": 1
+  }
+}

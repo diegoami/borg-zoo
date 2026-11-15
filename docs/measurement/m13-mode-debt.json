@@ -1,0 +1,607 @@
+{
+  "schema": "borg-zoo/measurement-debt@1",
+  "issue": "https://github.com/diegoami/borg-zoo/issues/87",
+  "source_commit": "9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8",
+  "package_commit": "cfcb6f13fad7e5392c0efc35f8bbe9d69d5087e8",
+  "status": "prepared_not_dispatched",
+  "interpretation": "Settings profiles are not source-gated fix variants. Equal outcomes without changed-branch execution do not establish neutrality. Statuses describe the owed zoo cohort batch, not the source fixtures.",
+  "units": [
+    {
+      "unit": "0100",
+      "id": "STAIRPHASE-34",
+      "patch": "patches/0100-stairphase-escape.patch",
+      "applied_commits": [
+        "293c0d71d3f89935c65c9703bf2f0f811b2b31e7"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/STAIRPHASE-34.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0101",
+      "id": "LUNALTAKE-73",
+      "patch": "patches/0101-lunaltake-skip-bad.patch",
+      "applied_commits": [
+        "e14eb464a18e8ea11e98fa2ea54bbc00bca92bbd",
+        "1ae61726a"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/LUNALTAKE-73.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "unreachable_by_construction"
+      },
+      "requirement": "Normal exploration calls borg_flow_take, not borg_flow_take_lunal. Include runtime-mode correction 0101a. Lunal entry and item rejection need evidence."
+    },
+    {
+      "unit": "0101a",
+      "id": "LUNALTAKE runtime-mode correction",
+      "applied_commits": [
+        "1ae61726a"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/LUNALTAKE-73.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "unreachable_by_construction"
+      },
+      "requirement": "Measure with 0101. The kit distinguishes runtime munchkin mode from the class/config flag; normal exploration never calls this function."
+    },
+    {
+      "unit": "0102",
+      "id": "FLOWKILLHALL-98",
+      "patch": "patches/0102-flowkill-per-monster.patch",
+      "applied_commits": [
+        "2c96f8d3a"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/FLOWKILLHALL-98.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0103",
+      "id": "HITCHANCE-63",
+      "patch": "patches/0103-hitchance-armour-tohit.patch",
+      "applied_commits": [
+        "99420fc52",
+        "fa18e1c63"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/HITCHANCE-63.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0104",
+      "id": "TAKESTAIR-71",
+      "patch": "patches/0104-takestair-nearest-stair.patch",
+      "applied_commits": [
+        "595a7b9bd"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/TAKESTAIR-71.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0105",
+      "id": "RESTPREP-108",
+      "patch": "patches/0105-restprep-timer-width.patch",
+      "applied_commits": [
+        "8dfb1cba8"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/RESTPREP-108.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0106",
+      "id": "PREPREASON-234",
+      "patch": "patches/0106-prepreason-copy.patch",
+      "applied_commits": [
+        "6cf8b4f82"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/PREPREASON-234.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0107",
+      "id": "LOSECON-61",
+      "patch": "patches/0107-losecon-con-fear.patch",
+      "applied_commits": [
+        "2abb17c35"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/LOSECON-61.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0108",
+      "id": "CRUSHV2-66",
+      "patch": "patches/0108-crushv2-ranged-danger.patch",
+      "applied_commits": [
+        "acc994185"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/CRUSHV2-66.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0109",
+      "id": "GRANITESIM-68",
+      "patch": "patches/0109-granitesim-ranged-wall.patch",
+      "applied_commits": [
+        "77ec2c55e"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/GRANITESIM-68.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0110",
+      "id": "SCOOTIDX-100",
+      "patch": "patches/0110-scootidx-adjacent-monster.patch",
+      "applied_commits": [
+        "7d917489b"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/SCOOTIDX-100.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0111",
+      "id": "EMPTYSLOT-60",
+      "patch": "patches/0111-emptyslot-empty-pack.patch",
+      "applied_commits": [
+        "0b3517c9d"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/EMPTYSLOT-60.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0112",
+      "id": "EATHURT-80",
+      "patch": "patches/0112-eathurt-when-hurt.patch",
+      "applied_commits": [
+        "9791d3361"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/EATHURT-80.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0113",
+      "id": "RINGSLOT-86",
+      "patch": "patches/0113-ringslot-left-duplicate.patch",
+      "applied_commits": [
+        "5c34c5968"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/RINGSLOT-86.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0114",
+      "id": "SWAPTRIAL-31",
+      "patch": "patches/0114-swaptrial-restore-hole.patch",
+      "applied_commits": [
+        "5e248e8a4"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/SWAPTRIAL-31.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0115",
+      "id": "HOMESKIP-29",
+      "patch": "patches/0115-homeskip-per-ware.patch",
+      "applied_commits": [
+        "ed7b2d953"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/HOMESKIP-29.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0116",
+      "id": "SELLCHARGES-132",
+      "patch": "patches/0116-sellcharges-restore.patch",
+      "applied_commits": [
+        "e5e5bf4a1"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/SELLCHARGES-132.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0117",
+      "id": "EGOSELL-133",
+      "patch": "patches/0117-egosell-item-ego.patch",
+      "applied_commits": [
+        "927b51ff4"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/EGOSELL-133.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0118",
+      "id": "NEWKILL-95",
+      "patch": "patches/0118-newkill-keep-wall.patch",
+      "applied_commits": [
+        "2b23139bc"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/NEWKILL-95.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0119",
+      "id": "GLYPHTRACK-116",
+      "patch": "patches/0119-glyph-read-tracked.patch",
+      "applied_commits": [
+        "f41782f79"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/GLYPHTRACK-116.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0120",
+      "id": "LUNALTELE-193",
+      "patch": "patches/0120-lunal-teleport-off.patch",
+      "applied_commits": [
+        "62ffd03a5"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/LUNALTELE-193.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "unreachable_by_construction"
+      },
+      "requirement": "Needs actual Lunal entry and a monster teleport; enabled flags do not prove execution."
+    },
+    {
+      "unit": "0121",
+      "id": "DEADUNIQ-101",
+      "patch": "patches/0121-deaduniq-seed-start.patch",
+      "applied_commits": [
+        "1b2ec94df"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/DEADUNIQ-101.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs dead-unique or shape-changed unique state. Fresh starts do not supply this at startup; later reachability must be demonstrated."
+    },
+    {
+      "unit": "0122",
+      "id": "UNIQUEDEAD-94",
+      "patch": "patches/0122-uniquedead-race-index.patch",
+      "applied_commits": [
+        "3e7fefb2f"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/UNIQUEDEAD-94.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs dead-unique or shape-changed unique state. Fresh starts do not supply this at startup; later reachability must be demonstrated."
+    },
+    {
+      "unit": "0123",
+      "id": "REBIRTHKEY-52",
+      "patch": "patches/0123-rebirth-menu-letters.patch",
+      "applied_commits": [
+        "7a76e7a20"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/REBIRTHKEY-52.md",
+      "mode_status": {
+        "unrestricted": "unreachable_by_construction",
+        "munchkin_lunal_only": "unreachable_by_construction",
+        "normal_only": "unreachable_by_construction"
+      },
+      "requirement": "Fresh-start no-respawn suites cannot exercise the respawn birth menu. Needs a source-provided respawn fixture."
+    },
+    {
+      "unit": "0124",
+      "id": "DANGERFULL-69",
+      "patch": "patches/0124-danger-full-comment.patch",
+      "applied_commits": [
+        "565c7aa9f"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/DANGERFULL-69.md",
+      "mode_status": {
+        "unrestricted": "no_behaviour_arm_required",
+        "munchkin_lunal_only": "no_behaviour_arm_required",
+        "normal_only": "no_behaviour_arm_required"
+      },
+      "requirement": "Source package classifies this as comments or shown-unreachable cleanup; source evidence, not a measured neutral cohort effect."
+    },
+    {
+      "unit": "0125",
+      "id": "VENOMCOST-111",
+      "patch": "patches/0125-venom-cost-dead-test.patch",
+      "applied_commits": [
+        "acfa2ea4b"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/VENOMCOST-111.md",
+      "mode_status": {
+        "unrestricted": "no_behaviour_arm_required",
+        "munchkin_lunal_only": "no_behaviour_arm_required",
+        "normal_only": "no_behaviour_arm_required"
+      },
+      "requirement": "Source package classifies this as comments or shown-unreachable cleanup; source evidence, not a measured neutral cohort effect."
+    },
+    {
+      "unit": "0126",
+      "id": "GLYPHTERM-115",
+      "patch": "patches/0126-glyph-score-term.patch",
+      "applied_commits": [
+        "ec7f388fd"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/GLYPHTERM-115.md",
+      "mode_status": {
+        "unrestricted": "no_behaviour_arm_required",
+        "munchkin_lunal_only": "no_behaviour_arm_required",
+        "normal_only": "no_behaviour_arm_required"
+      },
+      "requirement": "Source package classifies this as comments or shown-unreachable cleanup; source evidence, not a measured neutral cohort effect."
+    },
+    {
+      "unit": "0127",
+      "id": "TRAPDEAD-122",
+      "patch": "patches/0127-dark-flow-trap-case.patch",
+      "applied_commits": [
+        "4a532c869"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/TRAPDEAD-122.md",
+      "mode_status": {
+        "unrestricted": "no_behaviour_arm_required",
+        "munchkin_lunal_only": "no_behaviour_arm_required",
+        "normal_only": "no_behaviour_arm_required"
+      },
+      "requirement": "Source package classifies this as comments or shown-unreachable cleanup; source evidence, not a measured neutral cohort effect."
+    },
+    {
+      "unit": "0128",
+      "id": "DOORCAP-126",
+      "patch": "patches/0128-door-count-test.patch",
+      "applied_commits": [
+        "e99bf2a85"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/DOORCAP-126.md",
+      "mode_status": {
+        "unrestricted": "no_behaviour_arm_required",
+        "munchkin_lunal_only": "no_behaviour_arm_required",
+        "normal_only": "no_behaviour_arm_required"
+      },
+      "requirement": "Source package classifies this as comments or shown-unreachable cleanup; source evidence, not a measured neutral cohort effect."
+    },
+    {
+      "unit": "0129",
+      "id": "TELEOTIER-176",
+      "patch": "patches/0129-tele-other-tier.patch",
+      "applied_commits": [
+        "4ef1afdff"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/TELEOTIER-176.md",
+      "mode_status": {
+        "unrestricted": "no_behaviour_arm_required",
+        "munchkin_lunal_only": "no_behaviour_arm_required",
+        "normal_only": "no_behaviour_arm_required"
+      },
+      "requirement": "Source package classifies this as comments or shown-unreachable cleanup; source evidence, not a measured neutral cohort effect."
+    },
+    {
+      "unit": "0130",
+      "id": "RESTCOMMENT-486",
+      "patch": "patches/0130-rest-check-comment.patch",
+      "applied_commits": [
+        "08d83d341"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/RESTCOMMENT-486.md",
+      "mode_status": {
+        "unrestricted": "no_behaviour_arm_required",
+        "munchkin_lunal_only": "no_behaviour_arm_required",
+        "normal_only": "no_behaviour_arm_required"
+      },
+      "requirement": "Source package classifies this as comments or shown-unreachable cleanup; source evidence, not a measured neutral cohort effect."
+    },
+    {
+      "unit": "0131",
+      "id": "WANDNAMES-38",
+      "patch": "patches/0131-wand-names.patch",
+      "applied_commits": [
+        "d3e089107"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/WANDNAMES-38.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0132",
+      "id": "SWAPFEAR-202",
+      "patch": "patches/0132-swap-fear-flags.patch",
+      "applied_commits": [
+        "fe4c77c38"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/SWAPFEAR-202.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0133",
+      "id": "HEALAMOUNT-592",
+      "patch": "patches/0133-heal-amounts.patch",
+      "applied_commits": [
+        "1454dc8bf"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/HEALAMOUNT-592.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0134",
+      "id": "CURELIST-596",
+      "patch": "patches/0134-cure-lists.patch",
+      "applied_commits": [
+        "b533e8d65"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/CURELIST-596.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0135",
+      "id": "STUNPROT-589",
+      "patch": "patches/0135-stun-protection.patch",
+      "applied_commits": [
+        "e20d372f0"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/STUNPROT-589.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs a matched source pair and evidence of changed-branch execution in the tested mode."
+    },
+    {
+      "unit": "0136",
+      "id": "VULNRES-594",
+      "patch": "patches/0136-vuln-cancels-resistance.patch",
+      "applied_commits": [
+        "f6cf2a0b1"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/VULNRES-594.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Keep 0136 and 0137 together in the requested combined comparison; an intermediate arm is not the fully corrected vulnerability model."
+    },
+    {
+      "unit": "0137",
+      "id": "VULNMOD-610",
+      "patch": "patches/0137-vuln-danger-modelling.patch",
+      "applied_commits": [
+        "a817f51c9"
+      ],
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/VULNMOD-610.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Keep 0136 and 0137 together in the requested combined comparison; an intermediate arm is not the fully corrected vulnerability model."
+    },
+    {
+      "unit": "official-import",
+      "id": "Five upstream Borg commits imported in PR 478",
+      "verification": "https://github.com/diegoami/better-borg-c/blob/9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8/docs/measurement/IMPACT-MILESTONE12.md",
+      "mode_status": {
+        "unrestricted": "not_measured",
+        "munchkin_lunal_only": "not_measured",
+        "normal_only": "not_measured"
+      },
+      "requirement": "Needs source-provided matched import-hunk variants on the same engine/content. M11 versus M12 also changes engine/content and 0118, so cannot isolate these hunks."
+    }
+  ]
+}

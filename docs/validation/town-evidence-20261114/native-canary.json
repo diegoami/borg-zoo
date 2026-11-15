@@ -1,0 +1,266 @@
+[
+  {
+    "profile": "rs-joint-old-control",
+    "class": "Warrior",
+    "seed": 884072154,
+    "play_sha256": "9d6e5b8f56a100aadd651a0b3ad3846b24b847d6d92f095c77d3ba9f20015eb2",
+    "outcome": "turn_cap",
+    "final": {
+      "kind": "turns",
+      "turn": 3006,
+      "depth": 1,
+      "max_depth": 1,
+      "level": 1,
+      "max_level": 1,
+      "hp": null,
+      "decisions": null,
+      "keys": 491
+    },
+    "town_activity": {
+      "schema": "borg-zoo/town-activity@1",
+      "purchases": 14,
+      "gold_spent": 141,
+      "wallet_checks": {
+        "True": 14
+      },
+      "items": [
+        {
+          "shop_index": 0,
+          "item": "a Wooden Torch (5000 turns)",
+          "transactions": 8,
+          "units": 8,
+          "gold": 48
+        },
+        {
+          "shop_index": 0,
+          "item": "a Ration of Food",
+          "transactions": 4,
+          "units": 4,
+          "gold": 12
+        },
+        {
+          "shop_index": 4,
+          "item": "a Scroll titled \"attor sertus\"",
+          "transactions": 1,
+          "units": 1,
+          "gold": 15
+        },
+        {
+          "shop_index": 1,
+          "item": "a Leather Shield [8,+0]",
+          "transactions": 1,
+          "units": 1,
+          "gold": 66
+        }
+      ],
+      "qualification": "Native retail receipts only. Home transfers require inspection of retained messages; no planned action counts as a completed transaction."
+    },
+    "files": {
+      "keys.log": 5755,
+      "messages.log": 27957,
+      "save/Borg": 58548,
+      "state.log": 58239,
+      "stderr.log": 0,
+      "summary.json": 2494,
+      "town-recording.json": 1716,
+      "town-transactions.jsonl": 3565,
+      "user/CharOutput.txt": 111,
+      "user/borg.txt": 75764,
+      "user/lore.txt": 2422,
+      "user/window.prf": 393
+    }
+  },
+  {
+    "profile": "rs-joint-old-control",
+    "class": "Mage",
+    "seed": 2097768768,
+    "play_sha256": "a768574ff7a39053a2ec1566cf5c55d89ddc10a2484440f0828ade67eef198c0",
+    "outcome": "turn_cap",
+    "final": {
+      "kind": "turns",
+      "turn": 3001,
+      "depth": 0,
+      "max_depth": 1,
+      "level": 1,
+      "max_level": 1,
+      "hp": null,
+      "decisions": null,
+      "keys": 379
+    },
+    "town_activity": {
+      "schema": "borg-zoo/town-activity@1",
+      "purchases": 8,
+      "gold_spent": 36,
+      "wallet_checks": {
+        "True": 8
+      },
+      "items": [
+        {
+          "shop_index": 0,
+          "item": "a Ration of Food",
+          "transactions": 4,
+          "units": 4,
+          "gold": 12
+        },
+        {
+          "shop_index": 0,
+          "item": "a Wooden Torch (5000 turns)",
+          "transactions": 4,
+          "units": 4,
+          "gold": 24
+        }
+      ],
+      "qualification": "Native retail receipts only. Home transfers require inspection of retained messages; no planned action counts as a completed transaction."
+    },
+    "files": {
+      "keys.log": 4434,
+      "messages.log": 17229,
+      "save/Borg": 47556,
+      "state.log": 46001,
+      "stderr.log": 0,
+      "summary.json": 2494,
+      "town-recording.json": 1726,
+      "town-transactions.jsonl": 1994,
+      "user/CharOutput.txt": 108,
+      "user/borg.txt": 75764,
+      "user/lore.txt": 1193,
+      "user/window.prf": 393
+    }
+  },
+  {
+    "profile": "rs-joint-live-reference",
+    "class": "Warrior",
+    "seed": 884072154,
+    "play_sha256": "0ecff35b0fb6138f235b5b6d7ec5479c3a8fd64d9a636dc5267da871e6aeaa41",
+    "outcome": "turn_cap",
+    "final": {
+      "kind": "turns",
+      "turn": 3004,
+      "depth": 0,
+      "max_depth": 1,
+      "level": 1,
+      "max_level": 1,
+      "hp": null,
+      "decisions": null,
+      "keys": 436
+    },
+    "town_activity": {
+      "schema": "borg-zoo/town-activity@1",
+      "purchases": 8,
+      "gold_spent": 100,
+      "wallet_checks": {
+        "True": 8
+      },
+      "items": [
+        {
+          "shop_index": 4,
+          "item": "an Indigo Potion",
+          "transactions": 1,
+          "units": 1,
+          "gold": 20
+        },
+        {
+          "shop_index": 4,
+          "item": "a Scroll titled \"attor sertus\"",
+          "transactions": 1,
+          "units": 1,
+          "gold": 15
+        },
+        {
+          "shop_index": 4,
+          "item": "a Scroll titled \"dendax que deo\"",
+          "transactions": 1,
+          "units": 1,
+          "gold": 10
+        },
+        {
+          "shop_index": 4,
+          "item": "an Icky Green Potion",
+          "transactions": 1,
+          "units": 1,
+          "gold": 8
+        },
+        {
+          "shop_index": 4,
+          "item": "a Scroll titled \"as nus cum\"",
+          "transactions": 1,
+          "units": 1,
+          "gold": 15
+        },
+        {
+          "shop_index": 4,
+          "item": "a Potion of Cure Light Wounds",
+          "transactions": 1,
+          "units": 1,
+          "gold": 20
+        },
+        {
+          "shop_index": 0,
+          "item": "a Wooden Torch (5000 turns)",
+          "transactions": 2,
+          "units": 2,
+          "gold": 12
+        }
+      ],
+      "qualification": "Native retail receipts only. Home transfers require inspection of retained messages; no planned action counts as a completed transaction."
+    },
+    "files": {
+      "keys.log": 5120,
+      "messages.log": 19065,
+      "save/Borg": 46020,
+      "state.log": 50195,
+      "stderr.log": 0,
+      "summary.json": 2492,
+      "town-plan.jsonl": 190794,
+      "town-recording.json": 1834,
+      "town-transactions.jsonl": 2092,
+      "trip.jsonl": 1057,
+      "user/CharOutput.txt": 111,
+      "user/borg.txt": 75764,
+      "user/lore.txt": 2162,
+      "user/window.prf": 393
+    }
+  },
+  {
+    "profile": "rs-joint-live-reference",
+    "class": "Mage",
+    "seed": 2097768768,
+    "play_sha256": "3ee0df08981fdf51896477b61ed0f7631fda310464d93259eff82890d4d501be",
+    "outcome": "turn_cap",
+    "final": {
+      "kind": "turns",
+      "turn": 3001,
+      "depth": 0,
+      "max_depth": 1,
+      "level": 1,
+      "max_level": 1,
+      "hp": null,
+      "decisions": null,
+      "keys": 316
+    },
+    "town_activity": {
+      "schema": "borg-zoo/town-activity@1",
+      "purchases": 0,
+      "gold_spent": 0,
+      "wallet_checks": {},
+      "items": [],
+      "qualification": "Native retail receipts only. Home transfers require inspection of retained messages; no planned action counts as a completed transaction."
+    },
+    "files": {
+      "keys.log": 3610,
+      "messages.log": 13711,
+      "save/Borg": 46176,
+      "state.log": 38287,
+      "stderr.log": 0,
+      "summary.json": 2495,
+      "town-plan.jsonl": 54377,
+      "town-recording.json": 1844,
+      "town-transactions.jsonl": 0,
+      "trip.jsonl": 0,
+      "user/CharOutput.txt": 108,
+      "user/borg.txt": 75764,
+      "user/lore.txt": 1679,
+      "user/window.prf": 393
+    }
+  }
+]

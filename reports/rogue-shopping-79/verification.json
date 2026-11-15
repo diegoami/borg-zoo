@@ -1,0 +1,211 @@
+{
+  "results_commit": "0504c76ffe5af3d2b2205923151ffe471f4af834",
+  "inputs": [
+    {
+      "run_id": "43024249204-1",
+      "sha256": "87212f2bbf3b49ee97f25e22c9d1173c5658099f24534c402bd1cdb856a4a3c0",
+      "cells": 1800
+    },
+    {
+      "run_id": "43024253226-1",
+      "sha256": "0551d991c1b572feda40b382525b04edab974f1a7c6a6fa187cb6e48cec441c2",
+      "cells": 1800
+    }
+  ],
+  "suite": "classes-1800",
+  "specimen": "4.2.6-rs-family-buying",
+  "control_profile": "rs-buy-current-normal",
+  "arm_profile": "rs-buy-reserve410-normal",
+  "per_class": [
+    {
+      "class": "Blackguard",
+      "specimen": "4.2.6-rs-family-buying",
+      "profile": "rs-buy-reserve410-normal",
+      "control_specimen": "4.2.6-rs-family-buying",
+      "control_profile": "rs-buy-current-normal",
+      "comparison": "vs_profile",
+      "paired": {
+        "pairs": 200,
+        "rescued": 26,
+        "newly_killed": 26,
+        "both_died": 4,
+        "both_lived": 144,
+        "identical_traces": 0,
+        "death_p": 1.0,
+        "goal_gained": 7,
+        "goal_lost": 11,
+        "goal_p": 0.480682373046875
+      },
+      "unfinished": 0
+    },
+    {
+      "class": "Druid",
+      "specimen": "4.2.6-rs-family-buying",
+      "profile": "rs-buy-reserve410-normal",
+      "control_specimen": "4.2.6-rs-family-buying",
+      "control_profile": "rs-buy-current-normal",
+      "comparison": "vs_profile",
+      "paired": {
+        "pairs": 200,
+        "rescued": 52,
+        "newly_killed": 37,
+        "both_died": 75,
+        "both_lived": 36,
+        "identical_traces": 1,
+        "death_p": 0.13736797135565199,
+        "goal_gained": 2,
+        "goal_lost": 1,
+        "goal_p": 1.0
+      },
+      "unfinished": 0
+    },
+    {
+      "class": "Mage",
+      "specimen": "4.2.6-rs-family-buying",
+      "profile": "rs-buy-reserve410-normal",
+      "control_specimen": "4.2.6-rs-family-buying",
+      "control_profile": "rs-buy-current-normal",
+      "comparison": "vs_profile",
+      "paired": {
+        "pairs": 200,
+        "rescued": 39,
+        "newly_killed": 36,
+        "both_died": 19,
+        "both_lived": 106,
+        "identical_traces": 2,
+        "death_p": 0.8175538505509844,
+        "goal_gained": 0,
+        "goal_lost": 1,
+        "goal_p": 1.0
+      },
+      "unfinished": 0
+    },
+    {
+      "class": "Necromancer",
+      "specimen": "4.2.6-rs-family-buying",
+      "profile": "rs-buy-reserve410-normal",
+      "control_specimen": "4.2.6-rs-family-buying",
+      "control_profile": "rs-buy-current-normal",
+      "comparison": "vs_profile",
+      "paired": {
+        "pairs": 200,
+        "rescued": 0,
+        "newly_killed": 0,
+        "both_died": 78,
+        "both_lived": 122,
+        "identical_traces": 200,
+        "death_p": null,
+        "goal_gained": 0,
+        "goal_lost": 0,
+        "goal_p": null
+      },
+      "unfinished": 0
+    },
+    {
+      "class": "Paladin",
+      "specimen": "4.2.6-rs-family-buying",
+      "profile": "rs-buy-reserve410-normal",
+      "control_specimen": "4.2.6-rs-family-buying",
+      "control_profile": "rs-buy-current-normal",
+      "comparison": "vs_profile",
+      "paired": {
+        "pairs": 200,
+        "rescued": 29,
+        "newly_killed": 23,
+        "both_died": 6,
+        "both_lived": 142,
+        "identical_traces": 0,
+        "death_p": 0.48845566937989204,
+        "goal_gained": 6,
+        "goal_lost": 3,
+        "goal_p": 0.5078125
+      },
+      "unfinished": 0
+    },
+    {
+      "class": "Priest",
+      "specimen": "4.2.6-rs-family-buying",
+      "profile": "rs-buy-reserve410-normal",
+      "control_specimen": "4.2.6-rs-family-buying",
+      "control_profile": "rs-buy-current-normal",
+      "comparison": "vs_profile",
+      "paired": {
+        "pairs": 200,
+        "rescued": 38,
+        "newly_killed": 26,
+        "both_died": 15,
+        "both_lived": 121,
+        "identical_traces": 0,
+        "death_p": 0.16864291143970336,
+        "goal_gained": 0,
+        "goal_lost": 1,
+        "goal_p": 1.0
+      },
+      "unfinished": 0
+    },
+    {
+      "class": "Ranger",
+      "specimen": "4.2.6-rs-family-buying",
+      "profile": "rs-buy-reserve410-normal",
+      "control_specimen": "4.2.6-rs-family-buying",
+      "control_profile": "rs-buy-current-normal",
+      "comparison": "vs_profile",
+      "paired": {
+        "pairs": 200,
+        "rescued": 47,
+        "newly_killed": 39,
+        "both_died": 23,
+        "both_lived": 91,
+        "identical_traces": 1,
+        "death_p": 0.45054757600159,
+        "goal_gained": 9,
+        "goal_lost": 8,
+        "goal_p": 1.0
+      },
+      "unfinished": 0
+    },
+    {
+      "class": "Rogue",
+      "specimen": "4.2.6-rs-family-buying",
+      "profile": "rs-buy-reserve410-normal",
+      "control_specimen": "4.2.6-rs-family-buying",
+      "control_profile": "rs-buy-current-normal",
+      "comparison": "vs_profile",
+      "paired": {
+        "pairs": 200,
+        "rescued": 32,
+        "newly_killed": 48,
+        "both_died": 13,
+        "both_lived": 107,
+        "identical_traces": 0,
+        "death_p": 0.09291188222054621,
+        "goal_gained": 5,
+        "goal_lost": 10,
+        "goal_p": 0.3017578125
+      },
+      "unfinished": 0
+    },
+    {
+      "class": "Warrior",
+      "specimen": "4.2.6-rs-family-buying",
+      "profile": "rs-buy-reserve410-normal",
+      "control_specimen": "4.2.6-rs-family-buying",
+      "control_profile": "rs-buy-current-normal",
+      "comparison": "vs_profile",
+      "paired": {
+        "pairs": 200,
+        "rescued": 36,
+        "newly_killed": 25,
+        "both_died": 10,
+        "both_lived": 129,
+        "identical_traces": 0,
+        "death_p": 0.20003136851310316,
+        "goal_gained": 22,
+        "goal_lost": 20,
+        "goal_p": 0.8776143287523155
+      },
+      "unfinished": 0
+    }
+  ],
+  "qualification": "Descriptive reanalysis of existing cells, not a new experiment or confirmation."
+}

@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "specimens": [
+    "4.2.6-bbc-m12",
+    "4.2.6-bbc-m13"
+  ],
+  "profiles": [
+    "normal",
+    "munchkin-class"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-bbc-m12",
+  "control_profile": "normal",
+  "resource_budget": {
+    "max_parallel_jobs": 20,
+    "processes_per_job": 1
+  },
+  "name": "m12-m13-explicit",
+  "description": "Do the nineteen C fixes added in M13 change survival and progress compared with M12, with the starting policy held fixed? Both versions play normal (special modes off) and munchkin-class (depth-6 stair-climbing start for Warrior, Druid and Ranger), on the same 1,800 assigned starts at 100,000 turns. Read the within-profile version comparisons separately. This descriptive aggregate comparison cannot attribute an effect to an individual fix or discharge the per-mode debt in issue #87. Lunal-only measurements need evidence of mode entry and changed-branch execution first. Prepared only; dispatch is the owner’s call.",
+  "shards_by_specimen": {
+    "4.2.6-bbc-m12": 20,
+    "4.2.6-bbc-m13": 20
+  },
+  "owner_authorization": "2026-11-15 owner requested rerun only after all account runner slots are free, then use all 20. Smoke 43703188519 completed 18/18 caps. Supersedes timed-out run 43703176769; historical results remain unchanged."
+}

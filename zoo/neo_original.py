@@ -38,6 +38,16 @@ def toolkit_script(toolkit, spec, name):
     return path
 
 
+def profile_args(spec):
+    profile = spec.get('birth_profile')
+    if profile is None:
+        return [], []
+    if profile != 'c-seeded-point-buy-v2':
+        raise ValueError(f'unsupported Neo birth profile: {profile}')
+    return ['--exact-tick-cap', 'true', '--c-seed-startup', 'true',
+            '--c-gcc-coordinate-order', 'true'], ['--birth-profile', profile]
+
+
 def build(spec, source, engine, toolkit, out):
     source = check_checkout(source, spec['ref'])
     engine = check_checkout(engine, spec['engine_ref'])
@@ -50,9 +60,14 @@ def build(spec, source, engine, toolkit, out):
     subprocess.run(['pnpm', 'install', '--frozen-lockfile'], cwd=engine, env=env, check=True)
     subprocess.run(['pnpm', 'exec', 'tsc', '-b', 'packages/core', 'packages/content', 'packages/mod-sdk'],
                    cwd=engine, env=env, check=True)
+    build_args, _ = profile_args(spec)
     subprocess.run(['node', str(script), '--engine-dir', str(engine), '--borg-dir', str(source),
-                    '--out', str(out)], check=True)
+                    '--engine-pin', spec['engine_ref'], '--borg-pin', spec['ref'],
+                    '--out', str(out), *build_args], check=True)
     manifest = json.loads((out / 'build.json').read_text())
+    if spec.get('birth_profile') and not all(manifest.get(k) is True for k in
+            ('exactTickCap', 'cSeedStartup', 'cGccCoordinateOrder')):
+        raise ValueError('requested Neo startup adapters missing from build')
     bundle = out / 'bundle.mjs'
     manifest.update({'kind': 'neo-original', 'source_commit': spec['ref'],
                      'engine_commit': spec['engine_ref'], 'toolkit_commit': spec['toolkit_ref'],
@@ -74,14 +89,21 @@ def summarise(cell, spec, suite, record, error, wall):
     birth = record.get('birth') or {}
     if outcome != 'harness_failure' and record and (birth.get('race'), birth.get('class')) != (cell['race'], cell['class']):
         outcome, error = 'config_error', 'assigned race/class differs from played birth'
+    if outcome != 'harness_failure' and spec.get('birth_profile'):
+        if (record.get('inputs') or {}).get('birthProfile') != spec['birth_profile']:
+            outcome, error = 'config_error', 'Neo birth profile mismatch'
+        elif not all(identity.get(k) is True for k in ('exactTickCap', 'cSeedStartup', 'cGccCoordinateOrder')):
+            outcome, error = 'config_error', 'Neo startup adapter identity mismatch'
+        elif record.get('turn', 0) > suite['cap']:
+            outcome, error = 'harness_failure', 'exact-tick Neo run exceeded cap'
     died_after_cap = None
     if outcome == 'death' and record.get('turn', 0) > suite['cap']:
         died_after_cap = {'turn': record['turn'], 'cause': record.get('causeOfDeath')}
         outcome = 'turn_cap'
     return {'schema': 'borg-zoo/cell@1', **cell, 'harness_kind': 'neo-original',
             'specimen_ref': spec['ref'], 'engine_ref': spec['engine_ref'],
-            'toolkit_ref': spec['toolkit_ref'], 'profile_sha256': cat_mod.profile_sha256({'settings': {}}),
-            'cap': suite['cap'], 'birth': suite['birth'], 'boundary': 'after-key', 'outcome': outcome,
+            'toolkit_ref': spec['toolkit_ref'], 'measurement_profile': spec.get('birth_profile'), 'profile_sha256': cat_mod.profile_sha256({'settings': {}}),
+            'cap': suite['cap'], 'birth': suite['birth'], 'boundary': 'exact-tick' if spec.get('birth_profile') else 'after-key', 'outcome': outcome,
             'runner_outcome': record.get('outcome'), 'cause': record.get('causeOfDeath'),
             'died_after_cap': died_after_cap, 'played_race': birth.get('race'),
             'played_class': birth.get('class'), 'birth_record': birth,
@@ -116,6 +138,8 @@ def run_cell(cell, build_dir, work, cat, toolkit):
     cmd = ['node', str(script), '--bundle', str(bundle), '--seed', str(cell['seed']),
            '--race', cell['race'], '--class', cell['class'], '--turns', str(suite['cap']),
            '--out', str(run_dir)]
+    _, run_args = profile_args(spec)
+    cmd.extend(run_args)
     start = time.monotonic()
     error, record, rc = None, None, None
     limit = suite['wall_seconds'] * spec.get('wall_factor', 1)

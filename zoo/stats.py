@@ -273,6 +273,32 @@ def analyse(exp, cells, specimens=None):
     return by_suite
 
 
+def paired_by_class(exp, cells, specimens=None):
+    """Reuse the ordinary pairing rules within the class actually played.
+
+    No new pairing path: harness/stream and mode-cutoff exclusions continue
+    to apply. Attempts without an actual class remain in the overall report.
+    """
+    out = {suite: [] for suite in exp['suites']}
+    classes = sorted({cell['played_class'] for cell in cells if cell.get('played_class')})
+    for cls in classes:
+        subset = [cell for cell in cells if cell.get('played_class') == cls]
+        for suite, arms in analyse(exp, subset, specimens).items():
+            for arm in arms:
+                for comparison in ('vs_version', 'vs_profile'):
+                    if arm[comparison] is None:
+                        continue
+                    out[suite].append({
+                        'class': cls, 'specimen': arm['specimen'], 'profile': arm['profile'],
+                        'control_specimen': exp['control'] if comparison == 'vs_version' else arm['specimen'],
+                        'control_profile': arm['profile'] if comparison == 'vs_version' else
+                            exp.get('control_profile', exp['profiles'][0]),
+                        'comparison': comparison, 'paired': arm[comparison],
+                        'unfinished': arm['summary']['cells'] - arm['summary']['valid'],
+                    })
+    return out
+
+
 def by_character(exp, cells, field):
     """Deaths per class (field "class") or race (field "race") per arm.
 
