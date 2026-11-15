@@ -128,3 +128,18 @@ results for this study.
 The large workflow is dispatched only after this catalogue/tooling PR passes
 checks and merges. Dispatch identity and the live run link are recorded below
 when available. No existing run or frozen experiment is rewritten.
+
+
+## Dispatched run
+
+[Full-suite workflow 43720870587](https://github.com/diegoami/borg-zoo/actions/runs/43720870587)
+was dispatched after the catalogue PR111 merged. Its Zoo workflow/catalogue
+commit is **faae32a3b8a1ecab5c31a6c3491267b0f18d49ee**, with Borg source
+**71cff24ef45731e55aa9687930cd2d766dd0695e**. Input:
+`experiment=experiments/rs-pr85-full.json`, `shards=32`, all six arms.
+The hosted preflight and plan completed successfully and the exact pinned
+specimen build started. This is dispatch/build status, not completed results.
+The workflow will append all outcomes and publish the report automatically.
+
+Existing queued/running comparisons were left untouched. No candidate or
+threshold may be changed inside this run after dispatch.
