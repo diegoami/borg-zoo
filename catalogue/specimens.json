@@ -785,6 +785,21 @@
       "role": "candidate",
       "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/95",
       "label": "Merged Neo fork, stock/kit engine corrections, explicit C point-buy/no-selling/startup-seed profile and GCC coordinate adapter. Clock640 remains unresolved. Descriptive Neo-only cohort; not comparable as a paired causal improvement against older rolled-birth runs."
+    },
+    "neo-fork-truth-100-seeded-v2": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "967b28f5fe12c4974a6a793040f73246eb7d1200",
+      "engine_repository": "diegoami/neo-angband-tracker",
+      "engine_ref": "b4af703493d314aa35cb719604f06103aa4918f4",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "967b28f5fe12c4974a6a793040f73246eb7d1200",
+      "toolkit_path": "tools/zoo",
+      "birth_profile": "c-seeded-point-buy-v2",
+      "wall_factor": 1,
+      "role": "candidate",
+      "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/101",
+      "label": "Neo fork including merged danger/HP/retreat repairs and durable monster-truth host correction #100. Explicit C point-buy/no-selling/startup profile; engine b4af703. Clock640 unresolved. New descriptive run; old truth-denied cohort is not a repaired-Borg baseline."
     }
   }
 }
