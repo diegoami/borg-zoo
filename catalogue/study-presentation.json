@@ -5,7 +5,14 @@
     "rs-joint-risk1500": "New shopping + trip: 1.5x risk forecast",
     "rs-joint-risk2000": "New shopping + trip: 2x risk forecast",
     "rs-joint-risk2500": "New shopping + trip: 2.5x risk forecast",
-    "rs-joint-risk2000-earlier": "New shopping + trip: 2x risk, earlier returns"
+    "rs-joint-risk2000-earlier": "New shopping + trip: 2x risk, earlier returns",
+    "rs-kit-trip-control": "Existing shopping and return rules",
+    "rs-kit-trip-default": "Expanded inventory + all-item returns: defaults",
+    "rs-kit-trip-risk1500": "Expanded inventory + all-item returns: 1.5x supply risk",
+    "rs-kit-trip-attack50": "Expanded inventory + all-item returns: attack priority 50",
+    "rs-kit-trip-support25": "Expanded inventory + all-item returns: support priority 25",
+    "rs-kit-trip-knowledge5": "Expanded inventory + all-item returns: learning priority 5",
+    "rs-kit-trip-earlier": "Expanded inventory + all-item returns: earlier returns"
   },
   "experiments": {
     "rs-joint-m12-development": {
@@ -15,6 +22,16 @@
     "rs-joint-m12-confirm": {
       "title": "Fresh-seed check: new shopping and trip policies",
       "intro": "Does the locally selected supply setting reduce deaths on 1,800 fresh starting cases? Compare the existing rules, the new policies with ordinary provisioning, and the new policies planning for twice the risk. All rows use the same milestone-12 Rust Borg code."
+    },
+    "rs-kit-trip-development": {
+      "title": "Expanded inventory and all-item returns: which settings work better?",
+      "intro": "Seven choices play the same 1800 starts. The new inventory model covers ammunition, oil, devices, books, food, mushrooms and equipment. Compare its default priorities with five variations and the existing rules.",
+      "coverage_repaired": true
+    },
+    "rs-kit-trip-confirm": {
+      "title": "Fresh-case confirmation: expanded inventory and all-item returns",
+      "intro": "Does the integrated default policy reduce deaths on 1800 fresh starts? Both the expanded inventory model and the all-item learning-return rule act together. The comparison candidate was fixed before the development results.",
+      "coverage_repaired": true
     }
   }
 }

@@ -51,3 +51,24 @@ class StudyPresentationTest(unittest.TestCase):
         self.assertIn('rs-joint-m12-confirm/fixture/index.html', text)
         self.assertIn('both the new shopper and the new trip policy', text)
         self.assertEqual(landing.policy_studies([]), '')
+
+    def test_repaired_model_explains_coverage_and_inventory_priorities(self):
+        meta = self.meta()
+        meta['experiment']['name'] = 'rs-kit-trip-confirm'
+        meta['experiment']['profiles'] = ['rs-kit-trip-control', 'rs-kit-trip-default']
+        meta['catalogue']['profiles'] = {
+            'rs-kit-trip-control': {'settings': {'borg_town_plan': 0, 'borg_trip_policy': 0}},
+            'rs-kit-trip-default': {'settings': {'borg_town_plan': 1, 'borg_trip_policy': 1,
+                'borg_town_risk': 1000, 'borg_town_w_attack': 50,
+                'borg_town_w_support': 25, 'borg_town_w_knowledge': 5}}}
+        page = site.tested_settings(meta)
+        self.assertIn('104 ordinary shop kinds', page)
+        self.assertIn('eligible unknown stacks', page)
+        self.assertIn('Attack 50 / support 25 / learning 5', page)
+        self.assertNotIn('fixes now being developed are not included', page)
+        cells = [{'suite': 's', 'specimen': 'pinned', 'profile': profile,
+                  'outcome': outcome, 'final': {'level': 1, 'max_depth': 1}}
+                 for profile, outcome in [('rs-kit-trip-control', 'turn_cap'),
+                                          ('rs-kit-trip-default', 'death')]]
+        self.assertIn('integrated-default candidate had 1 more deaths',
+                      site.study_summary(meta, cells, 's'))
