@@ -229,6 +229,13 @@ def experiment(path, cat=None):
                 if cat['profiles'][prof].get('base') == 'shipped':
                     raise ValueError(f'{name}: profile {prof} needs a shipped borg.txt base, '
                                      'which the borg-rs adapter takes from harness/borg.txt only')
+    words = sorted({n for p in (q for name in exp['profiles'] for q in profile_parts(cat, name))
+                    for n, v in cat['profiles'][p].get('settings', {}).items() if isinstance(v, str)})
+    if words:
+        for name in exp['specimens']:
+            if specimens[name].get('kind') != 'borg-rs':
+                raise ValueError(f'{name}: settings {", ".join(words)} are words, which only a borg-rs '
+                                 'specimen can take (the others read numbers and flags)')
     for suite in exp['suites']:
         if cat['suites'][suite].get('role') == 'sealed' and not exp.get('unsealed_by_owner'):
             raise ValueError(f'suite {suite} is sealed: only an experiment the owner has opened it for '
@@ -278,6 +285,8 @@ def setting_value(value):
         return 'FALSE'
     if isinstance(value, int):
         return str(value)
+    if isinstance(value, str) and re.fullmatch(r'[A-Za-z0-9_.-]+', value):
+        return value  # a word, written as it is: borg-reborn-rs's borg_reborn_core = borg-rs
     raise ValueError(f'unsupported setting value: {value!r}')
 
 

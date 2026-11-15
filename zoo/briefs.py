@@ -7,6 +7,7 @@ QUESTIONS = {
     'classes-explicit': 'Does the special stair-climbing start for Warriors, Druids and Rangers help them survive and progress?',
     'reborn-g1-classes-1800': 'Can the reborn Rust Borg reach dungeon level 5, and does refusing travel below half health help?',
     'reborn-e-classes-1800': 'How does the reborn Rust Borg compare with the original C Borg and better-borg-c M7?',
+    'reborn-pilot-c-classes-1800': 'Does the borg-rs core inside the reborn shell work better with the ladder errand?',
     'rs-joint-m12-development': 'Which combination of shopping, risk tolerance and earlier town returns helps the Rust Borg?',
     'rs-joint-m12-confirm': 'Does the selected shopping and risk policy still help on fresh seeds?',
     'rs-kit-trip-development': 'Which expanded-inventory and all-item return settings help the Rust Borg?',
@@ -57,6 +58,7 @@ QUESTIONS = {
     'classes-m9-m10': 'How do M9 and M10 perform compared with the original Borg under their shipped defaults?',
     'rs-early': 'Does the Rust port press exactly the same keys as its C counterpart?',
     'classes-rs': 'Does the Rust port reproduce its C counterpart across all nine classes?',
+    'm12-m13-explicit': 'Do the M12 and M13 fixes change survival and progress under the same explicit modes?',
 }
 for milestone in (2, 3, 4, 6):
     QUESTIONS[f'classes-rs-m{milestone}'] = (

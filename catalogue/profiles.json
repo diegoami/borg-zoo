@@ -726,6 +726,20 @@
         "borg_town_attack_turns": 100,
         "borg_town_support_turns": 1000
       }
+    },
+    "reborn-core-borgrs": {
+      "description": "The option-C pilot's arm R (borg-reborn-rs #207, #208): borg-rs's core inside the reborn shell, no errand (borg_reborn_core = borg-rs, borg_reborn_errand = none). Everything else is the specimen's own harness/borg.txt. Only the borg-reborn-rs pilot specimen reads these keys.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-core-ladder": {
+      "description": "The option-C pilot's arm L (borg-reborn-rs #208): borg-rs's core with the class ladders (borg_reborn_errand = ladder; borg-core/ladders.txt at the pinned commit; every ladder ends with a repeating trip, so the errand never stops the Borg before the turn cap). Compared with reborn-core-borgrs.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "ladder"
+      }
     }
   }
 }

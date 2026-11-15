@@ -822,6 +822,17 @@
       "role": "candidate",
       "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/101",
       "label": "Neo fork including merged danger/HP/retreat repairs and durable monster-truth host correction #100. Explicit C point-buy/no-selling/startup profile; engine b4af703. Clock640 unresolved. New descriptive run; old truth-denied cohort is not a repaired-Borg baseline."
+    },
+    "4.2.6-reborn-core-pilot": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "1be6edc7f2db7f73b49e08a36eadca1c3c5a556d",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "source": "https://github.com/diegoami/borg-reborn-rs/blob/1be6edc7f2db7f73b49e08a36eadca1c3c5a556d/docs/PILOT.md",
+      "label": "borg-reborn-rs 1be6edc, the option-C pilot (borg-reborn-rs #207, #208): borg-rs's core (milestone 12, vendored as borg-core/) inside the reborn shell, selected through the run's borg.txt (borg_reborn_core, borg_reborn_errand). harness/borg.txt is borg-rs's v12 borg.txt with borg_munchkin_by_class and borg_self_scum FALSE plus the two keys. Plays on borg-rs's engine (upstream 42cd156ac plus borg-rs's fork corrections, engine patch 08). Built through docs/ZOO-INTERFACE.md (harness/build.sh, BORG_IMPL=rust)."
     }
   }
 }
