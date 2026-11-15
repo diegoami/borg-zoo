@@ -359,9 +359,21 @@ def study_identity_table(meta, cells):
             deaths = sum(c.get('outcome') == 'death' for c in finished)
             death_rate = f'{100 * deaths / len(finished):.1f}%' if finished else '–'
             choice = study_presentation()['profiles'].get(profile, profile)
-            rows.append([esc(choice), esc(exp['name']), repo_cell,
+            cfg = meta['catalogue'].get('profiles', {}).get(profile, {})
+            values = cfg.get('settings', {})
+            changed = []
+            for key in sorted(values):
+                value = values[key]
+                if value in (0, False):
+                    changed.append(f'{key} off')
+                elif value in (1, True):
+                    changed.append(f'{key} on')
+                else:
+                    changed.append(f'{key} {value}')
+            difference = '; '.join(changed) if changed else 'build defaults'
+            rows.append([esc(choice), difference, esc(exp['name']), repo_cell,
                          f'<code>{esc(build)}</code><br>{source_link}', death_rate])
-    return table(['Choice', 'Experiment ID', 'Repository', 'Build', 'Deaths'], rows)
+    return table(['Choice', 'Configuration difference', 'Experiment ID', 'Repository', 'Build', 'Deaths'], rows)
 
 
 def study_summary(meta, cells, suite):
