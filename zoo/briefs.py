@@ -24,6 +24,7 @@ QUESTIONS = {
     'neo-fork-classes-1800': 'How does the repaired Neo Borg fork survive and progress across all nine classes?',
     'neo-merged-seeded-v2-1800': 'How does the pre-truth-fix merged Neo repair stack survive and progress on 1,800 seeded-v2 starts?',
     'neo-merged-seeded-v2-corrected-1800': 'How does the corrected Neo repair stack survive and progress on 1,800 seeded-v2 starts?',
+    'neo-truth-100-seeded-v2-1800': 'How does the truth-corrected Neo repair stack survive and progress on 1,800 seeded-v2 starts?',
     'originals-20261108-classes-1800': 'How do the official C and Neo Borgs perform in their own games?',
     'original-c-20261111-classes-1800': 'What is the original C Borg baseline when rerun alongside the Rust M11 study?',
     'original-c-42cd156-classes-1800': 'How does the newer official C Borg perform on the standard class suite?',
