@@ -8,6 +8,7 @@ from pathlib import Path
 
 from . import catalogue as cat_mod
 from . import stats
+from .briefs import question, profile_label
 
 CSS = """
 :root{--card:#ffffff;--bg:#fbfaf7;--fg:#1d1d1b;--muted:#6b6a64;--line:#dcd9cf;--head:#f0eee7;--good:#1f7a3a;--bad:#a8321e;--accent:#2f5d8a;--rust:#b58700}
@@ -19,6 +20,11 @@ table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}th,t
 th{background:var(--head);font-weight:600}th:first-child,td:first-child,th.l,td.l{text-align:left}tr:last-child td{border-bottom:0}
 .good{color:var(--good)}.bad{color:var(--bad)}code{font-size:.9em;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"DejaVu Sans Mono","Liberation Mono",monospace}
 .lead{font-size:1.05rem;max-width:62rem}
+.experiment-brief{margin:16px 0;overflow-wrap:anywhere}.experiment-brief dl{display:grid;grid-template-columns:8rem 1fr;gap:8px 16px;margin:12px 0}
+.experiment-brief dt{font-weight:600}.experiment-brief dd{margin:0;overflow-wrap:anywhere}
+.experiment-brief ul{padding-left:20px;margin:0}.experiment-brief .question{font-size:1.25rem;max-width:55rem;margin:8px 0 16px}
+details.background{margin:16px 0}details.background summary{cursor:pointer;color:var(--accent)}
+@media(max-width:600px){.experiment-brief dl{grid-template-columns:1fr;gap:4px}.experiment-brief dd{margin-bottom:8px}}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,30rem),1fr));gap:16px;margin:16px 0}
 .card{border:1px solid var(--line);border-radius:8px;padding:16px;background:var(--card)}
 .card.wide{grid-column:1/-1}.chart{max-width:640px;overflow-x:auto}.chart svg{min-width:420px}.card td{white-space:normal}.card h2{margin:0 0 4px;font-size:1.1rem}.card .answer{margin:4px 0 10px}
@@ -327,6 +333,37 @@ def tested_settings(meta):
             + esc(meta['experiment'].get('prespecified', '')) + '</p></details>')
 
 
+def study_identity_table(meta, cells):
+    """The study's identities in one compact table.
+
+    A reader must be able to answer four questions without reverse-engineering
+    catalogue identifiers: which configuration was tested, which experiment it
+    came from, which repository supplied it, and which exact build was used.
+    The death percentage is included here because it is the primary endpoint of
+    these policy studies.
+    """
+    exp = meta['experiment']
+    specimens = meta['catalogue'].get('specimens', {})
+    rows = []
+    for specimen in exp['specimens']:
+        spec = specimens.get(specimen, {})
+        repo = spec.get('repository', '–')
+        repo_url = repository_url(repo)
+        build = spec.get('ref', '–')
+        source = specimen_source(spec)
+        source_link = (f'<a href="{esc(source)}">exact source</a>' if source else '–')
+        repo_cell = (f'<a href="{esc(repo_url)}">{esc(repo)}</a>' if repo_url else esc(repo))
+        for profile in exp['profiles']:
+            selected = [c for c in cells if c.get('specimen') == specimen and c.get('profile') == profile]
+            finished = [c for c in selected if c.get('outcome') in stats.VALID]
+            deaths = sum(c.get('outcome') == 'death' for c in finished)
+            death_rate = f'{100 * deaths / len(finished):.1f}%' if finished else '–'
+            choice = study_presentation()['profiles'].get(profile, profile)
+            rows.append([esc(choice), esc(exp['name']), repo_cell,
+                         f'<code>{esc(build)}</code><br>{source_link}', death_rate])
+    return table(['Choice', 'Experiment ID', 'Repository', 'Build', 'Deaths'], rows)
+
+
 def study_summary(meta, cells, suite):
     if not study_info(meta):
         return ''
@@ -361,7 +398,12 @@ def study_summary(meta, cells, suite):
     return ('<h3>Plain summary</h3>' + verdict + '<p>Means include every finished character, including those that died. '
             '“Reached DL3+” counts characters that reached dungeon level 3 or deeper. '
             'Incomplete games are shown separately and are not counted as deaths or survivors.</p>'
-            + table(['Choice', 'Games', 'Finished', 'Deaths', 'Mean character level', 'Mean deepest level', 'Reached DL3+', 'Incomplete'], rows)
+            + '<h4>Experiment and build identity</h4>'
+            + '<p>Use this table to identify each choice, its experiment, source repository, exact build and primary death result.</p>'
+            + study_identity_table(meta, cells)
+            + table(['Choice', 'Games', 'Finished', 'Deaths', 'Death %', 'Mean character level', 'Mean deepest level', 'Reached DL3+', 'Incomplete'],
+                    [[r[0], r[1], r[2], r[3], f'{100 * r[3] / r[2]:.1f}%' if r[2] else '–', r[4], r[5], r[6], r[7]]
+                     for r in rows])
             + '<h3>Detailed statistics</h3><p>The tables below add uncertainty ranges, paired comparisons and medians. '
               'Their goal measure uses dungeon level 5; it is not this study’s primary endpoint.</p>')
 
@@ -440,6 +482,97 @@ def consolidated_note(meta):
             f'<ul>{rows}</ul></details>')
 
 
+def repository_url(repository):
+    """Return the public GitHub URL for an owner/repository catalogue value."""
+    if not repository:
+        return ''
+    if '/' not in repository:
+        return ''
+    return f'https://github.com/{repository}'
+
+
+def specimen_source(spec):
+    """A direct link to the exact source used by a specimen.
+
+    Prefer the specimen's pinned commit over a branch or tag URL. The source
+    field is allowed to point at design documentation, so it is only a
+    fallback.
+    """
+    repo_url = repository_url(spec.get('repository'))
+    ref = spec.get('ref')
+    if repo_url and ref:
+        return f'{repo_url}/tree/{ref}'
+    return spec.get('source', '')
+
+
+def experiment_brief(meta, compact=False):
+    """Describe the recorded design, including historical settings, before the data."""
+    exp = meta['experiment']
+    snapshot = meta['catalogue']
+    versions = ', '.join(exp['specimens'])
+    profiles = '; '.join(profile_label(name) for name in exp['profiles'])
+    limits = []
+    for name in exp['suites']:
+        suite = snapshot['suites'][name]
+        birth = {'fixed': 'fixed Human Warrior', 'random': 'race and class chosen by seed',
+                 'assigned': 'assigned race and class'}.get(suite['birth'], suite['birth'])
+        limits.append(f'{len(suite["seeds"]):,} seeds · {suite["cap"]:,} turns per game · {birth}')
+    if compact:
+        def choices(label, names, rendered):
+            if len(names) > 3:
+                return (f'<details><summary>{len(names)} {label.lower()} compared</summary>'
+                        f'<p>{esc(rendered)}</p></details>')
+            return f'<p><strong>{label}:</strong> {esc(rendered)}</p>'
+        build_rows = []
+        for name in exp['specimens']:
+            spec = snapshot['specimens'].get(name, {})
+            source = specimen_source(spec)
+            link = (f'<a href="{esc(source)}">source</a>' if source else '–')
+            build_rows.append([esc(name), esc(spec.get('repository', '–')),
+                               f'<code>{esc(spec.get("ref", "–"))}</code>', link])
+        return (choices('Versions', exp['specimens'], versions)
+                + choices('Settings', exp['profiles'], profiles)
+                + f'<p>{esc("; ".join(limits))}</p>'
+                + '<details><summary>Builds compared</summary>'
+                + table(['Specimen', 'Repository', 'Exact commit', 'Source'], build_rows)
+                + '</details>')
+    settings = []
+    for name in exp['profiles']:
+        profile = snapshot.get('profiles', {}).get(name, {})
+        values = profile.get('settings', {})
+        written = ', '.join(f'{key} = {value}' for key, value in values.items())
+        base = 'version’s shipped configuration' if profile.get('base') == 'shipped' else 'build defaults'
+        settings.append(f'<li><strong>{esc(name)}</strong>: {esc(written or base)}'
+                        + (f' (other settings use {esc(base)})' if written else '') + '</li>')
+    control = f'{exp["control"]} · {profile_label(exp.get("control_profile", exp["profiles"][0]))}'
+    comparison = ('Versions and settings both vary.' if len(exp['specimens']) > 1 and len(exp['profiles']) > 1
+                  else 'Same version; settings vary.' if len(exp['profiles']) > 1
+                  else 'Same settings profile; versions vary.' if len(exp['specimens']) > 1
+                  else 'One configuration measured; no within-study comparison.')
+    build_rows = []
+    for name in exp['specimens']:
+        spec = snapshot['specimens'].get(name, {})
+        source = specimen_source(spec)
+        link = (f'<a href="{esc(source)}">exact source</a>' if source else '–')
+        build_rows.append([esc(name), esc(spec.get('repository', '–')),
+                           f'<code>{esc(spec.get("ref", "–"))}</code>', link])
+    return (f'<section class="card experiment-brief"><h2>What is being tested?</h2>'
+            f'<p class="question">{esc(question(exp))}</p><dl>'
+            f'<dt>Comparison</dt><dd>{esc(comparison)}</dd>'
+            f'<dt>Versions</dt><dd>{esc(versions)}</dd>'
+            f'<dt>Settings</dt><dd>{esc(profiles)}</dd>'
+            f'<dt>Baseline</dt><dd>{esc(control)}</dd>'
+            f'<dt>Test conditions</dt><dd>{"<br>".join(esc(x) for x in limits)}</dd>'
+            f'<dt>Study type</dt><dd>{"Prespecified; the study plan below defines the endpoints." if exp.get("prespecified") else "Descriptive; no prespecified primary endpoint recorded."}</dd>'
+            '<dt>Results shown</dt><dd>Deaths before the cap, dungeon depth and character level. '
+            'Stalls, timeouts and errors are reported separately.</dd></dl>'
+            '<details class="background" open><summary>Builds compared</summary>'
+            + table(['Specimen', 'Repository', 'Exact commit', 'Source'], build_rows)
+            + '</details>'
+            '<details class="background"><summary>Exact settings used</summary><ul>'
+            + ''.join(settings) + '</ul></details></section>')
+
+
 def run_page(meta, cells):
     exp = meta['experiment']
     specimens = meta['catalogue']['specimens']
@@ -449,17 +582,25 @@ def run_page(meta, cells):
     intro = display['intro'] if display else exp.get('description', '')
     parts = [f'<p><a href="../../index.html">All experiments</a></p>',
              f'<h1>{esc(page_title)}</h1><p class="lead">{esc(intro)}</p>',
+             experiment_brief(meta),
              tested_settings(meta),
-             (f'<p><strong>Prespecified:</strong> {esc(exp["prespecified"])}</p>' if exp.get('prespecified') and not display else ''),
+             '<details class="background"><summary>Background and study plan</summary>'
+             f'<p>{esc(exp.get("description", ""))}</p>'
+             + (f'<p><strong>Prespecified:</strong> {esc(exp["prespecified"])}</p>'
+                if exp.get('prespecified') and not display else '')
+             + '</details>',
              f'<p class="muted">Run {esc(meta["run_id"])} · completed {esc(meta.get("completed", "?"))} · '
              f'<a href="{esc(meta.get("run_url", "#"))}">workflow run</a> · <a href="cells.jsonl">raw cells (JSON lines)</a></p>',
              consolidated_note(meta),
-             '<p class="note">An <em>arm</em> is one Borg version run with one settings profile; every arm plays '
+             '<details class="background"><summary>How to read the statistics</summary><p class="note">An <em>arm</em> is one Borg version run with one settings profile; every arm plays '
              'the same seeds, one game per seed. Results are descriptive unless the experiment says it is '
              'prespecified above. Ranges are Wilson 95% intervals; paired p-values are exact McNemar tests on the '
              'seeds where both arms finished. Two outcomes are measured: <strong>death</strong> before the turn '
              f'cap, and <strong>alive at the cap having reached dungeon level {stats.DEPTH_GOAL}</strong> '
-             + ('(survived and made progress). Deaths are primary for this study; the goal column is descriptive.</p>' if display else '(survived and made progress). The owner has not yet chosen which one is primary.</p>')]
+             + ('(survived and made progress). Deaths are primary for this study; the goal column is descriptive.</p>'
+                if display else
+                '(survived and made progress). For prespecified studies, use the endpoints in the study plan.</p>')
+             + '</details>']
     parts.append(cutoff_note(exp, specimens, meta.get('completed', ''),
                              (meta.get('catalogue') or {}).get('harness', {}).get('commit', '')))
     for suite, rows in analysis.items():
@@ -476,7 +617,7 @@ def run_page(meta, cells):
             (f'{esc(rows[0]["specimen"])}: {first["valid"]:,} of {first["cells"]:,} runs finished and '
              f'{first["deaths"]:,} died ({pct(first["death_rate"])}); with this many seeds the true death rate '
              f'is most likely {ci(first["death_ci"])}.') if first and first['valid'] else None,
-            open_=True))
+            open_=False))
         parts.append(table(
             OUTCOME_COLS,
             [[arm_label(meta, r['specimen'], r['profile']), r['summary']['cells'], r['summary']['valid'],
@@ -623,15 +764,26 @@ def run_page(meta, cells):
             parts.append(table(['Version'] + [f'{t:,}' if t is not None else '–' for t in m_turns],
                                [[arm_label(meta, r['specimen'], r['profile'])] +
                                 [fmt_milestone(x) for x in r['milestones']] for r in rows]))
-    parts.append('<h2>Specimens and environment</h2>')
-    parts.append(explain('The Borg versions in this experiment, each built from the commit shown.'))
-    parts.append(table(['Specimen', ('Ref', 'The commit that was built.'),
-                        ('Carries', 'Fixes from the tracker carried by this version.'), 'Label'],
-                       [[esc(k), f'<code>{esc(v["ref"][:12])}</code>', num(v.get('carries')), esc(v.get('label', ''))]
-                        for k in exp['specimens'] for v in [meta['catalogue']['specimens'][k]]]))
+    parts.append('<h2>Builds compared and environment</h2>')
+    parts.append(explain('Every arm below uses the listed repository at the exact commit shown. '
+                          'The source link opens that immutable tree.'))
+    build_rows = []
+    for name in exp['specimens']:
+        spec = meta['catalogue']['specimens'][name]
+        source = specimen_source(spec)
+        link = (f'<a href="{esc(source)}">exact source</a>' if source else '–')
+        build_rows.append([esc(name), esc(spec.get('repository', '–')),
+                           f'<code>{esc(spec.get("ref", "–"))}</code>', num(spec.get('carries')),
+                           esc(spec.get('label', '')), link])
+    parts.append(table(['Specimen', 'Repository', 'Exact commit', ('Carries', 'Fixes from the tracker carried by this version.'),
+                        'Label', 'Source'], build_rows))
     env = meta.get('environment', {})
-    parts.append(f'<p class="muted">Harness {esc(meta["catalogue"]["harness"]["repository"])} '
-                 f'<code>{esc(meta["catalogue"]["harness"]["commit"][:12])}</code> · '
+    harness = meta['catalogue'].get('harness', {})
+    harness_url = repository_url(harness.get('repository'))
+    harness_link = (f'<a href="{esc(harness_url)}">{esc(harness.get("repository"))}</a>'
+                    if harness_url else esc(harness.get('repository', '–')))
+    parts.append(f'<p class="muted">Harness {harness_link} '
+                 f'<code>{esc(harness.get("commit", "–"))}</code> · '
                  f'compilers {esc(", ".join(env.get("compilers", [])))} · platforms {esc(", ".join(env.get("platforms", [])))} · '
                  f'calendar: native clock, all arms in one workflow run</p>')
     return page(f'{page_title} · borg-zoo', ''.join(parts))
