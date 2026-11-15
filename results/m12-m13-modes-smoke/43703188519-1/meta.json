@@ -1,0 +1,124 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "lunal": {
+        "description": "Lunal, the deep stair-scum path (borg_think_dungeon_lunal, borg_flow_take_lunal), munchkin off: borg_self_lunal enters the mode when the Borg is prepared for 15 levels deeper and maxdepth >= depth + 15 (borg-think-dungeon.c), so an arm needs a long suite - or a deep-start suite the zoo does not have yet - or it measures nothing. The 0101/0101a fixes live on this path and only exist from 4.2.6-bbc-9ca98661 on. borg_plays_risky must stay off (a risky Borg is in a hurry and never enters).",
+        "settings": {
+          "borg_lunal_mode": true,
+          "borg_munchkin_by_class": false,
+          "borg_munchkin_start": false,
+          "borg_self_lunal": true
+        },
+        "sha256": "d820c03c4c30bdacff41e01288c181ad302dd4efbf2122621797b5cf740f9d65"
+      },
+      "munchkin-class": {
+        "description": "Munchkin start by class: today's product default for Warrior, Druid and Ranger (stair-scumming at depth 6), every other class ordinary. The arm that replaces implicit default in class grids. Names only borg_munchkin_by_class: for WDR classes the rule then forces the munchkin start itself, so borg_munchkin_start must stay unnamed (naming it FALSE contradicts the rule and reads as a config_error). Runs only on builds that know borg_munchkin_by_class (better-borg-c fd683ced and later).",
+        "settings": {
+          "borg_munchkin_by_class": true
+        },
+        "sha256": "a4cc28b87ff4f8e0cd3ec59e94cb002fbc8776467289a454440d014fe031569f"
+      },
+      "normal": {
+        "description": "Ordinary play with every mode flag pinned off: no munchkin start, no munchkin by class, no Lunal. The arm every change can be checked against. Only builds that know borg_munchkin_by_class (better-borg-c fd683ced and later) can run it; older builds ignore the unknown setting, the observer cannot verify it, and the run is a config_error.",
+        "settings": {
+          "borg_lunal_mode": false,
+          "borg_munchkin_by_class": false,
+          "borg_munchkin_start": false,
+          "borg_self_lunal": false
+        },
+        "sha256": "b67c601bb7ce659bfef67b5aca175f7656c1423e8f5d68d79bbe6c20d1c40d20"
+      }
+    },
+    "specimens": {
+      "4.2.6-bbc-m12": {
+        "carries": 115,
+        "label": "better-borg-c milestone 12 (tag 4.2.6-impact-v12): v11 plus one carry (0118 NEWKILL-95: borg_new_kill() no longer forces a newly seen wall-walker's grid to floor) and the official angband import to master 42cd156a (12 commits past e473720, 5 of them in the Borg), which retires carries 0001 and 0002. Carries 115 = 116 + 1 - 2, counted here from the milestone package, not stated there. The milestone package says the retired carries' effect and the import's per-mode effect are not measured; this is the zoo's measurement of them. The tag message is a placeholder.",
+        "mode_side": "post",
+        "ref": "4e1b912cbf6d2b8a0243b19ebddfb2d26e7509f2",
+        "repository": "diegoami/better-borg-c",
+        "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE12.md",
+        "tag": "4.2.6-impact-v12"
+      },
+      "4.2.6-bbc-m13": {
+        "carries": 134,
+        "label": "better-borg-c milestone 13 runtime head 9ccb2aae (PR 519): nineteen carries since impact v12 - twelve from the issue-426 queue (0119-0130) and seven from the 2026-11-13/14 source-board pairs (0131-0137). Carries 134 = 115 + 19, counted here from the milestone package, not stated there. The 4.2.6-impact-v13 tag was placed on this commit on 2026-11-14 (owner authorization, borg-zoo#87 comment), so the tag now names the pin and the ref is unchanged; src/ at the later head cfcb6f13 is identical. The package records the per-mode effects as not measured. The prepared M12/M13 aggregate comparison and within-M13 policy grid do not discharge that per-unit debt; see docs/M13-MEASUREMENT.md (borg-zoo#87).",
+        "mode_side": "post",
+        "ref": "9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8",
+        "repository": "diegoami/better-borg-c",
+        "source": "https://github.com/diegoami/better-borg-c/blob/cfcb6f13fad7e5392c0efc35f8bbe9d69d5087e8/docs/measurement/IMPACT-MILESTONE13.md",
+        "tag": "4.2.6-impact-v13"
+      }
+    },
+    "suites": {
+      "smoke": {
+        "birth": "fixed",
+        "cap": 20000,
+        "description": "better-borg-c frozen cohort v1: 3 seeds, 20,000 engine turns",
+        "role": "pilot",
+        "saves": false,
+        "seeds": [
+          11,
+          29,
+          47
+        ],
+        "stall_seconds": 45,
+        "wall_seconds": 180
+      }
+    }
+  },
+  "completed": "2026-11-15 10:20 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-bbc-m12",
+    "control_profile": "normal",
+    "description": "Can M12 and M13 build and apply each explicit mode profile on the three frozen smoke seeds? This is an 18-cell build/configuration and reachability probe, not a survival comparison. The lunal flag permits the mode; it does not prove mode entry. A run with no entry or no execution of the changed branch is not exercised, never a neutral result for Lunal fixes. The unrestricted/source-gated variants required by issue #87 are not supplied by these profiles. Prepared only; no dispatch authorized by this definition.",
+    "name": "m12-m13-modes-smoke",
+    "profiles": [
+      "normal",
+      "munchkin-class",
+      "lunal"
+    ],
+    "resource_budget": {
+      "max_parallel_jobs": 8,
+      "processes_per_job": 1
+    },
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-bbc-m12",
+      "4.2.6-bbc-m13"
+    ],
+    "suites": [
+      "smoke"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "43703188519-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/43703188519",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "f5043c96a1a427d7d5cb624c91a795ef3277ae9f"
+}
