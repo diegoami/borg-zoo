@@ -1,4 +1,5 @@
 """Exact configuration evidence, separate from requested/native settings."""
+import gzip
 import hashlib
 import html
 import json
@@ -10,7 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 def verified_bytes(path, digest):
     if not digest or not path.is_file():
         return None
-    data = path.read_bytes()
+    try:
+        data = gzip.decompress(path.read_bytes()) if path.suffix == '.gz' else path.read_bytes()
+    except (OSError, EOFError):
+        return None
     return data if hashlib.sha256(data).hexdigest() == digest else None
 
 
@@ -133,7 +137,7 @@ def build_inspector(meta, cells, source, target):
         digest = cell.get('config_sha256')
         data, origin = None, None
         if valid_digest(digest):
-            candidates = [Path(source) / 'configurations' / f'{digest}.txt', recovered / f'{digest}.txt']
+            candidates = [Path(source) / 'configurations' / f'{digest}.txt', recovered / f'{digest}.txt.gz']
             # Consolidated reports can include blobs from several workflow runs.
             if meta.get('consolidated_runs'):
                 candidates.extend(Path(source).parent.parent.rglob(f'configurations/{digest}.txt'))

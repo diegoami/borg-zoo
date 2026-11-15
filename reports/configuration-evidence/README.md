@@ -1,6 +1,6 @@
 # Recovered original configuration files (#113)
 
-These content-addressed files are original `user/borg.txt` bytes from retained
+These gzip-compressed, content-addressed files are original `user/borg.txt` bytes from retained
 workflow artifacts, not reconstructions from a source checkout or defaults.
 `manifest.json` records the source artifact URL, ZIP/TGZ SHA-256 and member paths.
 The recovery tool checks each TGZ against its artifact checksum receipt.

@@ -5,6 +5,7 @@ Usage: python3 tools/recover-configurations.py ARTIFACT.zip SOURCE_URL
 Only content-addressed files and their origin receipts are written; results
 records remain immutable. Report rendering checks every cell's recorded hash.
 """
+import gzip
 import hashlib
 import io
 import json
@@ -34,10 +35,10 @@ def recover(archive, source, destination):
                         continue
                     data = tar.extractfile(member).read()
                     digest = hashlib.sha256(data).hexdigest()
-                    target = destination / f'{digest}.txt'
-                    if target.exists() and target.read_bytes() != data:
+                    target = destination / f'{digest}.txt.gz'
+                    if target.exists() and gzip.decompress(target.read_bytes()) != data:
                         raise ValueError('Conflicting content-addressed evidence')
-                    target.write_bytes(data)
+                    target.write_bytes(gzip.compress(data, mtime=0))
                     entry = manifest.setdefault(digest, {'source': source, 'archive_sha256': archive_hash,
                         'bundle_sha256': hashlib.sha256(bundle).hexdigest(), 'members': []})
                     if member.name not in entry['members']:
