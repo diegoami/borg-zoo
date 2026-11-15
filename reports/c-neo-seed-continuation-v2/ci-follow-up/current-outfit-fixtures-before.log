@@ -1,0 +1,94 @@
+
+ RUN  v5.1.0 /workspace/work/seed-alignment/engine-current-outfit
+
+ ❯ packages/core/src/monclass.upstream.test.ts (105 tests | 1 failed) 1821ms
+   ❯ c-info.c: player class binding (14)
+     × binds starting equipment and splits its birth-option list (test_equip0) 19ms
+ ❯ packages/core/src/agent/known-world.test.ts (49 tests | 1 failed) 7048ms
+   ❯ KnownWorld paired worlds (27)
+     × reports only the fuel printed in a light's name 190ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/core/src/monclass.upstream.test.ts > c-info.c: player class binding > binds starting equipment and splits its birth-option list (test_equip0)
+AssertionError: expected [ …(3) ] to deeply equal [ …(3) ]
+
+- Expected
++ Received
+
+@@ -1,12 +1,15 @@
+  [
+    [
+-     "magic book",
+-     "2",
++     "light",
++     "wooden torch",
++     1,
+      2,
+-     5,
+-     [],
++     [
++       "NOT-birth_no_recall",
++       "birth_force_descend",
++     ],
+    ],
+    [
+      "light",
+      "lantern",
+      1,
+@@ -14,15 +17,12 @@
+      [
+        "birth_no_recall",
+      ],
+    ],
+    [
+-     "light",
+-     "wooden torch",
+-     1,
++     "magic book",
++     "2",
+      2,
+-     [
+-       "NOT-birth_no_recall",
+-       "birth_force_descend",
+-     ],
++     5,
++     [],
+    ],
+  ]
+
+ ❯ packages/core/src/monclass.upstream.test.ts:802:80
+    800|       ];
+    801|     });
+    802|     expect(cls.startItems.map((s) => [s.tval, s.sval, s.min, s.max, s.…
+       |                                                                                ^
+    803|       ["magic book", "2", 2, 5, []],
+    804|       ["light", "lantern", 1, 1, ["birth_no_recall"]],
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  packages/core/src/agent/known-world.test.ts > KnownWorld paired worlds > reports only the fuel printed in a light's name
+AssertionError: expected { handle: 7, kindKey: 'kind:4', …(37) } to not have property "fuel"
+
+- Expected:
+undefined
+
++ Received:
+5000
+
+ ❯ packages/core/src/agent/known-world.test.ts:236:24
+    234|     expect(observed(b.state)).toBe(observed(a.state));
+    235|     const item = () => buildKnownWorld(b.state, b.state.knownWorldDeps…
+    236|     expect(item()).not.toHaveProperty("fuel");
+       |                        ^
+    237|     torchB.flags.off(OF.NO_FUEL);
+    238|     expect(item().name).toContain("(2500 turns)");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 152 passed (154)
+   Start at  01:30:17
+   Duration  9.31s (tests 78%, transform 13%, import 9%)
+

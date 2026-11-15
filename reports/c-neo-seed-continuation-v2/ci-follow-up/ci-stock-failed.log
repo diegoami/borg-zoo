@@ -1,0 +1,1258 @@
+test	Run pnpm test	﻿2026-11-15T00:19:51.5155294Z ##[group]Run pnpm test
+test	Run pnpm test	2026-11-15T00:19:51.5155497Z [36;1mpnpm test[0m
+test	Run pnpm test	2026-11-15T00:19:51.5199882Z shell: /usr/bin/bash -e {0}
+test	Run pnpm test	2026-11-15T00:19:51.5200051Z env:
+test	Run pnpm test	2026-11-15T00:19:51.5200182Z   ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+test	Run pnpm test	2026-11-15T00:19:51.5200373Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+test	Run pnpm test	2026-11-15T00:19:51.5200562Z ##[endgroup]
+test	Run pnpm test	2026-11-15T00:19:51.5631966Z $ vitest run
+test	Run pnpm test	2026-11-15T00:19:51.7652988Z 
+test	Run pnpm test	2026-11-15T00:19:51.7656252Z [1m[30m[46m RUN [49m[39m[22m [36mv5.1.0 [39m[90m/home/runner/work/neo-angband-tracker/neo-angband-tracker[39m
+test	Run pnpm test	2026-11-15T00:19:51.7656947Z 
+test	Run pnpm test	2026-11-15T00:19:54.2833073Z  [32m✓[39m packages/web/src/screens.test.ts [2m([22m[2m136 tests[22m[2m)[22m[32m 241[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:19:54.8565670Z (node:2660) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:19:54.8587345Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:19:55.1370737Z (node:2661) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:19:55.1371933Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:20:01.0266073Z  [32m✓[39m packages/web/src/mod-install.test.ts [2m([22m[2m158 tests[22m[2m)[22m[33m 6182[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:01.0274699Z    [32m✓[39m installing from a repository: an archive payload [2m(9)[22m
+test	Run pnpm test	2026-11-15T00:20:01.0275606Z      [33m[2m✓[22m[39m refuses an archive whose measured output exceeds the shared 128 MB total limit[33m 4266[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:01.2945908Z  [32m✓[39m packages/core/src/player/timed.upstream.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:02.9705929Z (node:2709) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:20:02.9708488Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:20:06.0216471Z  [32m✓[39m packages/web/src/mod-api2-host.test.ts [2m([22m[2m97 tests[22m[2m)[22m[33m 4123[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:06.5896601Z  [32m✓[39m packages/core/src/game/obj-cmd.test.ts [2m([22m[2m125 tests[22m[2m)[22m[32m 180[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:07.4910621Z  [32m✓[39m packages/web/src/mod-code.node.test.ts [2m([22m[2m40 tests[22m[2m)[22m[33m 326[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:08.0192419Z  [32m✓[39m packages/web/src/overlay.test.ts [2m([22m[2m123 tests[22m[2m)[22m[32m 62[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:15.5126018Z  [32m✓[39m packages/core/src/gen/gen.test.ts [2m([22m[2m94 tests[22m[2m)[22m[33m 19524[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:15.5127139Z    [32m✓[39m full level generation [2m(14)[22m
+test	Run pnpm test	2026-11-15T00:20:15.5128075Z      [33m[2m✓[22m[39m CONTROL: faithful core strands floors, exactly as upstream 4.2.6 does[33m 2103[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:15.5129020Z      [33m[2m✓[22m[39m generates valid levels across the deep profile pool[33m 1446[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:15.5129689Z    [32m✓[39m labyrinth generator [2m(4)[22m
+test	Run pnpm test	2026-11-15T00:20:15.5130680Z      [33m[2m✓[22m[39m sets light_level for a KNOWN maze and leaves it clear otherwise[33m 477[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:15.5131501Z    [32m✓[39m moria / lair / gauntlet / hard_centre generators [2m(13)[22m
+test	Run pnpm test	2026-11-15T00:20:15.5132333Z      [33m[2m✓[22m[39m hard_centre_gen produces connected caverns for several seeds[33m 368[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:15.5133008Z    [32m✓[39m help_greater_vault [2m(6)[22m
+test	Run pnpm test	2026-11-15T00:20:15.5133767Z      [33m[2m✓[22m[39m refuses a greater vault that is not the first non-staircase room[33m 595[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:15.5134893Z      [33m[2m✓[22m[39m still allows a greater vault as the second room when a staircase room precedes it[33m 1350[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:15.5136383Z      [33m[2m✓[22m[39m applies the depth ladder: ~1/3 at depth 90+, far rarer shallow[33m 4537[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:15.5137535Z      [33m[2m✓[22m[39m rejects a further 2/3 outside the classic profile[33m 4578[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:15.5138451Z      [33m[2m✓[22m[39m gates the (new) greater vault the same way, and plain vaults not at all[33m 1049[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:15.6869222Z  [32m✓[39m packages/core/src/session/save.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 6914[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:16.4219891Z  [32m✓[39m packages/web/src/birth.test.ts [2m([22m[2m54 tests[22m[2m)[22m[33m 316[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:16.8687263Z  [32m✓[39m packages/core/src/parse-objterrain.upstream.test.ts [2m([22m[2m191 tests[22m[2m)[22m[33m 863[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:17.0446177Z  [32m✓[39m packages/web/src/charsheet.test.ts [2m([22m[2m52 tests[22m[2m)[22m[32m 101[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:17.8564567Z  [32m✓[39m packages/core/src/monclass.upstream.test.ts [2m([22m[2m105 tests[22m[2m)[22m[33m 777[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:17.8725505Z (node:2780) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:20:17.8745179Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:20:17.8845045Z  [32m✓[39m packages/web/src/mod-manager/service.test.ts [2m([22m[2m70 tests[22m[2m)[22m[32m 107[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:18.2866640Z  [32m✓[39m packages/core/src/game/monster-turn.test.ts [2m([22m[2m74 tests[22m[2m)[22m[32m 93[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:18.4995911Z  [32m✓[39m packages/core/src/mod/hooks.test.ts [2m([22m[2m104 tests[22m[2m)[22m[32m 45[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:20.6979525Z  [32m✓[39m packages/mod-sdk/src/checks/checks.test.ts [2m([22m[2m183 tests[22m[2m)[22m[33m 1706[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:21.1436107Z  [32m✓[39m packages/core/src/agent/agent.test.ts [2m([22m[2m60 tests[22m[2m)[22m[32m 89[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:23.3195196Z  [32m✓[39m packages/core/src/agent/known-world.test.ts [2m([22m[2m49 tests[22m[2m)[22m[33m 5047[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:23.7672668Z  [32m✓[39m packages/mod-sdk/src/loader.test.ts [2m([22m[2m42 tests[22m[2m)[22m[32m 299[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:25.1715737Z  [32m✓[39m packages/web/src/tile-fillers.node.test.ts [2m([22m[2m45 tests[22m[2m)[22m[33m 657[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:25.3785415Z  [32m✓[39m packages/core/src/session/save-migrate.test.ts [2m([22m[2m28 tests[22m[2m)[22m[33m 3893[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:25.3786145Z    [32m✓[39m the migration chain is complete [2m(5)[22m
+test	Run pnpm test	2026-11-15T00:20:25.3786684Z      [33m[2m✓[22m[39m loads a format 7 save without inventing a mod list[33m 328[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:25.7849196Z  [32m✓[39m packages/web/src/options.test.ts [2m([22m[2m43 tests[22m[2m)[22m[32m 146[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:26.0065782Z  [32m✓[39m packages/web/src/mod-screens.test.ts [2m([22m[2m40 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:26.2265793Z  [32m✓[39m packages/core/src/game/known.test.ts [2m([22m[2m62 tests[22m[2m)[22m[32m 93[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:26.4483338Z  [32m✓[39m packages/content/src/records-objterrain.upstream.test.ts [2m([22m[2m127 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:26.6142501Z  [32m✓[39m packages/content/src/records-monclass.upstream.test.ts [2m([22m[2m89 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9226091Z  [31m❯[39m packages/core/src/agent/loadout.test.ts [2m([22m[2m42 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[33m 2462[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9235135Z    [32m✓[39m simulateLoadout runs the engine's own derive on gear nobody is wearing [2m(14)[22m
+test	Run pnpm test	2026-11-15T00:20:28.9254814Z      [32m✓[39m derives wear and takeoff with the known policy and refuses other policies[32m 159[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9256009Z      [32m✓[39m predicts EXACTLY what equipping a weapon does, measured against equipping it[32m 59[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9256883Z      [32m✓[39m predicts EXACTLY what wearing body armour does, AC and all[32m 78[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9257528Z      [32m✓[39m reports the loadout the character is already in as `before`[32m 49[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9258216Z      [32m✓[39m writes NOTHING - not the gear, not the player, not the derived state[32m 63[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9258896Z      [32m✓[39m moves what was in the slot into the pack, and says what it displaced[32m 45[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9259580Z      [32m✓[39m charges the carried weight for gear being ACQUIRED, not for gear moved[32m 44[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9260293Z      [32m✓[39m takes a worn item out of its slot and off the books when it is released[32m 46[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9260948Z      [32m✓[39m releases part of a stack and leaves the rest in the pack[32m 36[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9261593Z      [32m✓[39m prices a purchase from a shop's own stock, by shop and stock index[32m 64[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9262240Z      [32m✓[39m skips a reference that names nothing, and reports it[32m 53[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9262904Z      [32m✓[39m answers null when the session installed no derive, rather than guessing[32m 56[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9263596Z      [32m✓[39m reaches an agent through the frozen view, with the view's own deps[32m 34[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9294591Z      [32m✓[39m moves max mana when armour weight starts costing a caster[32m 51[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9295241Z    [32m✓[39m a floor reference names a remembered object by grid and pile index [2m(4)[22m
+test	Run pnpm test	2026-11-15T00:20:28.9295992Z      [32m✓[39m compares a floor armour against the worn slot exactly as the object itself compares[32m 59[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9296714Z      [32m✓[39m resolves nothing for a bad index or a grid off the map[32m 92[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9297394Z      [32m✓[39m does not reach an object the player has never seen or has only sensed[32m 53[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9298034Z      [32m✓[39m needs the floor capability on top of the player one[32m 46[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9298600Z    [31m❯[39m a loadout read needs the read for every place it looks [2m(8)[22m
+test	Run pnpm test	2026-11-15T00:20:28.9299254Z      [32m✓[39m refuses a gear reference without state:inventory.read in any entry[32m 45[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9299944Z      [32m✓[39m answers a gear reference once state:inventory.read is granted[32m 59[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9300633Z      [32m✓[39m refuses a store reference without state:stores.read in any entry[32m 49[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9301441Z [31m     [31m×[31m answers a store reference once state:stores.read is granted[39m[32m 58[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9302143Z      [32m✓[39m refuses a floor reference without state:floor.read in any entry[32m 47[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9302820Z      [32m✓[39m answers a floor reference once state:floor.read is granted[32m 56[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9303592Z      [32m✓[39m needs the inventory read for any change, since the answer lists the pack and the worn set[32m 46[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9304556Z [31m     [31m×[31m lets state:*.read cover every arm, and a trusted view needs no grant[39m[32m 45[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9305194Z    [32m✓[39m a comparison counts only the runes the player knows [2m(13)[22m
+test	Run pnpm test	2026-11-15T00:20:28.9305823Z      [32m✓[39m keeps hidden runes identical through deriveLoadout's gear arm[32m 76[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9306559Z      [32m✓[39m shows none of an unlearned rune through the gear arm until the player learns it[32m 78[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9307549Z      [32m✓[39m keeps hidden runes identical through deriveLoadout's store arm[32m 73[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9308415Z      [32m✓[39m shows none of an unlearned rune through the store arm until the player learns it[32m 63[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9309130Z      [32m✓[39m keeps hidden runes identical through deriveLoadout's floor arm[32m 79[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9309863Z      [32m✓[39m shows none of an unlearned rune through the floor arm until the player learns it[32m 78[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9310655Z      [32m✓[39m keeps hidden runes identical through deriveLoadout's object arm[32m 68[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9311694Z      [32m✓[39m shows none of an unlearned rune through the object arm until the player learns it[32m 70[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9312456Z      [32m✓[39m keeps a worn item's unlearned rune out of both sides of a swap[32m 36[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9313164Z      [32m✓[39m flags an item seen only from a distance, whose bonuses are not known yet[32m 32[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9334206Z      [32m✓[39m shows none of a worn item's unlearned runes in the player view until the player learns them[32m 78[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9335080Z      [32m✓[39m agrees with the character sheet and with a comparison's own before[32m 86[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9335765Z      [32m✓[39m reports fear from a worn item only once the player knows of it[32m 36[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9336327Z    [32m✓[39m the derived-stat projection and its diff [2m(3)[22m
+test	Run pnpm test	2026-11-15T00:20:28.9336939Z      [32m✓[39m keeps a copy, so a later refresh cannot rewrite an answer already given[32m 42[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9337629Z      [32m✓[39m says nothing changed when nothing changed, and names what did[32m 27[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:28.9338312Z      [32m✓[39m projects the same combat numbers the engine hands the combat code[32m 41[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:29.5045893Z  [32m✓[39m packages/core/src/game/mon-cmd.test.ts [2m([22m[2m35 tests[22m[2m)[22m[32m 235[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:31.8686245Z  [32m✓[39m packages/web/src/mod-worker/presenters.test.ts [2m([22m[2m102 tests[22m[2m)[22m[33m 503[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:32.0252233Z  [32m✓[39m packages/web/src/main-boot-order.test.ts [2m([22m[2m31 tests[22m[2m)[22m[33m 1726[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:32.0590184Z  [32m✓[39m packages/core/src/player/bonuses.test.ts [2m([22m[2m62 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:32.3875175Z  [32m✓[39m packages/core/src/game/display.test.ts [2m([22m[2m63 tests[22m[2m)[22m[32m 54[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:32.6712304Z  [32m✓[39m packages/web/src/mod-store.test.ts [2m([22m[2m47 tests[22m[2m)[22m[32m 39[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:33.0414746Z  [32m✓[39m packages/web/src/tutorial-mods.node.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 279[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:33.3870474Z (node:2941) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:20:33.3871609Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:20:33.4276311Z  [32m✓[39m packages/web/src/mod-api2-shim.test.ts [2m([22m[2m94 tests[22m[2m)[22m[32m 71[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:34.1707423Z (node:2956) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:20:34.1708607Z  [32m✓[39m packages/web/src/mod-context.test.ts [2m([22m[2m44 tests[22m[2m)[22m[32m 47[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:34.1710498Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:20:34.5866323Z  [32m✓[39m packages/core/src/game/wizard.test.ts [2m([22m[2m54 tests[22m[2m)[22m[32m 113[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:34.9318261Z  [32m✓[39m packages/core/src/obj/knowledge-learn.test.ts [2m([22m[2m45 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:35.3105742Z  [32m✓[39m packages/core/src/game/effect-general.test.ts [2m([22m[2m39 tests[22m[2m)[22m[32m 62[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:35.6330775Z  [32m✓[39m packages/core/src/session/save-flag-names.test.ts [2m([22m[2m49 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:38.7774370Z  [32m✓[39m packages/core/src/mod/dehydrate-roundtrip.test.ts [2m([22m[2m22 tests[22m[2m)[22m[33m 2795[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:38.7775822Z    [32m✓[39m the one-time keep/purge answer round-trips through save and load (decision 8) [2m(5)[22m
+test	Run pnpm test	2026-11-15T00:20:38.7855610Z      [33m[2m✓[22m[39m PURGE drops the orphans block permanently and leaves the rest of the save untouched[33m 366[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:39.5197369Z  [32m✓[39m packages/web/src/tile-catalog.test.ts [2m([22m[2m38 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:40.0141007Z  [32m✓[39m packages/core/src/game/cave-cmd.test.ts [2m([22m[2m47 tests[22m[2m)[22m[32m 177[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:40.6882434Z (node:3015) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:20:40.6883232Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:20:40.6900323Z  [32m✓[39m packages/web/src/mod-tier.test.ts [2m([22m[2m48 tests[22m[2m)[22m[32m 44[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:40.9106061Z  [32m✓[39m packages/core/src/game/gear-quiver.test.ts [2m([22m[2m47 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:41.3702558Z  [32m✓[39m packages/web/src/news.test.ts [2m([22m[2m47 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:43.4949582Z  [32m✓[39m packages/core/src/session/game.test.ts [2m([22m[2m30 tests[22m[2m)[22m[33m 1725[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:43.9946247Z  [32m✓[39m packages/web/src/help.test.ts [2m([22m[2m33 tests[22m[2m)[22m[32m 75[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:44.3639225Z  [32m✓[39m packages/core/src/game/ui-entry.test.ts [2m([22m[2m42 tests[22m[2m)[22m[32m 45[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:44.7625292Z  [32m✓[39m packages/core/src/game/mon-place.test.ts [2m([22m[2m36 tests[22m[2m)[22m[32m 86[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:45.3246415Z  [32m✓[39m packages/web/src/switch-census.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 436[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:45.3247272Z    [32m✓[39m the switch census [2m(8)[22m
+test	Run pnpm test	2026-11-15T00:20:45.3247911Z      [33m[2m✓[22m[39m matches the tree (run `node tools/switch-census.mjs --update`)[33m 429[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:45.6809492Z  [32m✓[39m packages/content/src/data-exactness.test.ts [2m([22m[2m67 tests[22m[2m)[22m[32m 211[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:45.8305995Z  [32m✓[39m packages/mod-sdk/src/capabilities.test.ts [2m([22m[2m79 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:46.5264576Z  [32m✓[39m packages/web/src/mod-browse.test.ts [2m([22m[2m53 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1625935Z  [32m✓[39m packages/web/src/mod-worker/host.test.ts [2m([22m[2m441 tests[22m[2m)[22m[33m 64266[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1670918Z    [32m✓[39m Worker management [2m(23)[22m
+test	Run pnpm test	2026-11-15T00:20:59.1672369Z      [33m[2m✓[22m[39m redacts the manager snapshot across the port and confirms its own configuration changes[33m 303[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1686274Z      [33m[2m✓[22m[39m refuses missing and revoked grants and does not expose install or consent writers[33m 721[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1689308Z      [33m[2m✓[22m[39m rejects stale epochs, spoofed callers, malformed arguments, and oversized messages before mutation[33m 371[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1690481Z      [33m[2m✓[22m[39m declines every mutation without changing consent, profiles, characters, or options[33m 423[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1691437Z      [33m[2m✓[22m[39m refuses profile creation at its storage limit without opening a dialog[33m 394[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1692740Z    [32m✓[39m Worker content and session transactions [2m(95)[22m
+test	Run pnpm test	2026-11-15T00:20:59.1693805Z      [33m[2m✓[22m[39m refuses malformed archive bytes and authority fields before opening a dialog[33m 403[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1694851Z      [33m[2m✓[22m[39m refuses a grant change during a content dialog without staging[33m 310[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1695672Z      [33m[2m✓[22m[39m shares the management rate ceiling with metadata requests[33m 1828[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1696297Z    [32m✓[39m Worker truth reads [2m(30)[22m
+test	Run pnpm test	2026-11-15T00:20:59.1696919Z      [33m[2m✓[22m[39m returns no truth when the save writer is missing[33m 348[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1697610Z      [33m[2m✓[22m[39m returns no truth when the save writer is false[33m 306[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1698309Z      [33m[2m✓[22m[39m returns no truth when the save writer is throws[33m 312[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1699041Z      [33m[2m✓[22m[39m returns no truth when the save writer is rejects[33m 309[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1699653Z    [32m✓[39m Worker keybinding editor [2m(2)[22m
+test	Run pnpm test	2026-11-15T00:20:59.1700365Z      [33m[2m✓[22m[39m edits only the current keyset and refuses reserved triggers[33m 390[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1701231Z    [33m[2m✓[22m[39m rejects executable and transferable values in each registry proxy before posting[33m 844[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1702083Z    [33m[2m✓[22m[39m binds registry authority to the character identity and live player object[33m 386[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1702908Z    [33m[2m✓[22m[39m leaves no mark or spawn after decline, invalid content, or invalid counts[33m 373[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1703739Z    [33m[2m✓[22m[39m rechecks authorization after the spawn dialog and after a pending save[33m 356[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1704741Z    [33m[2m✓[22m[39m rejects non-JSON publication and malformed publisher arguments without marking[33m 551[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.1705680Z    [33m[2m✓[22m[39m rejects changed bindings, concurrent spawn requests, and the fifth spawn request[33m 420[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:20:59.8535646Z  [32m✓[39m packages/web/src/wizard.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 68[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:00.7205960Z  [32m✓[39m packages/core/src/game/gear.test.ts [2m([22m[2m35 tests[22m[2m)[22m[33m 449[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:01.4167578Z  [32m✓[39m packages/core/src/game/effect-terrain.test.ts [2m([22m[2m43 tests[22m[2m)[22m[33m 309[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:05.3778731Z  [32m✓[39m packages/core/src/session/save-fields.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 3518[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:05.3779871Z    [32m✓[39m save.c field-coverage guard: the port side [2m(5)[22m
+test	Run pnpm test	2026-11-15T00:21:05.3780820Z      [33m[2m✓[22m[39m every declared field path resolves in a real mid-game save[33m 307[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:05.3781682Z    [32m✓[39m save.c field-coverage guard: the loader round-trips every field [2m(2)[22m
+test	Run pnpm test	2026-11-15T00:21:05.3782534Z      [33m[2m✓[22m[39m every declared scalar leaf survives a mutated reload[33m 2808[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:05.7634419Z  [32m✓[39m packages/core/src/obj/bind.test.ts [2m([22m[2m43 tests[22m[2m)[22m[32m 176[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:06.3360234Z  [32m✓[39m packages/web/src/screen-runtime.test.ts [2m([22m[2m31 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:07.1564542Z  [32m✓[39m packages/desktop/src/net-relay.test.ts [2m([22m[2m35 tests[22m[2m)[22m[32m 199[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:07.7060241Z (node:3162) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:21:07.7062055Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:21:07.7078036Z  [32m✓[39m packages/web/src/subwindows.test.ts [2m([22m[2m52 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:07.9204101Z  [32m✓[39m packages/web/src/subwindow-layout.test.ts [2m([22m[2m48 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:08.1048026Z  [32m✓[39m packages/web/src/screen-view.test.ts [2m([22m[2m43 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:08.2259618Z  [32m✓[39m packages/core/src/obj/object-info.test.ts [2m([22m[2m27 tests[22m[2m)[22m[33m 21307[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:08.2260586Z    [32m✓[39m the objectInfoText seam's site [2m(8)[22m
+test	Run pnpm test	2026-11-15T00:21:08.2261461Z      [33m[2m✓[22m[39m leaves every description byte-identical and gives every fragment a truthful site (seed 123, Human Warrior)[33m 6736[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:08.2262589Z      [33m[2m✓[22m[39m leaves every description byte-identical and gives every fragment a truthful site (seed 77, High-Elf Mage)[33m 4050[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:08.2263741Z      [33m[2m✓[22m[39m leaves every description byte-identical and gives every fragment a truthful site (seed 9, Hobbit Rogue)[33m 8027[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:08.2264846Z      [33m[2m✓[22m[39m names the section of every fragment, and the object it describes[33m 953[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:08.4084458Z  [32m✓[39m packages/content/src/records.upstream.test.ts [2m([22m[2m680 tests[22m[2m)[22m[32m 90[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:08.8518271Z  [32m✓[39m packages/core/src/store/store.test.ts [2m([22m[2m31 tests[22m[2m)[22m[33m 374[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:09.2121764Z  [32m✓[39m packages/web/src/linoleum-pack.test.ts [2m([22m[2m31 tests[22m[2m)[22m[32m 51[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:09.4687059Z  [32m✓[39m packages/desktop/src/origin-merge.test.ts [2m([22m[2m45 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:09.6206138Z  [32m✓[39m packages/desktop/src/packaging.test.ts [2m([22m[2m34 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:09.6544116Z (node:3206) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:21:09.6545410Z  [32m✓[39m packages/web/src/mods.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 83[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:09.6546436Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:21:10.0501273Z  [32m✓[39m packages/core/src/game/inven-wield.upstream.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 43[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:10.2356462Z  [32m✓[39m packages/web/src/mod-orphans.test.ts [2m([22m[2m39 tests[22m[2m)[22m[32m 41[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:10.7320067Z  [32m✓[39m packages/core/src/obj/known-object.test.ts [2m([22m[2m33 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:10.9998755Z  [32m✓[39m packages/mod-sdk/src/fields.test.ts [2m([22m[2m37 tests[22m[2m)[22m[32m 56[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:11.5305798Z  [32m✓[39m packages/core/src/obj/randart.test.ts [2m([22m[2m35 tests[22m[2m)[22m[33m 970[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:11.5315123Z  [32m✓[39m packages/core/src/game/target-loop.test.ts [2m([22m[2m45 tests[22m[2m)[22m[32m 92[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:12.0095923Z  [32m✓[39m packages/core/src/visuals/prefs.test.ts [2m([22m[2m44 tests[22m[2m)[22m[32m 83[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:12.0524409Z  [32m✓[39m packages/web/src/mod-discover.test.ts [2m([22m[2m38 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:12.2286041Z  [32m✓[39m packages/mod-sdk/src/compose.test.ts [2m([22m[2m32 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:12.4624224Z  [32m✓[39m packages/core/src/game/player-path.test.ts [2m([22m[2m32 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:13.1076336Z  [32m✓[39m packages/web/src/shop.test.ts [2m([22m[2m36 tests[22m[2m)[22m[32m 49[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:13.7147239Z  [32m✓[39m packages/core/src/game/chest.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 198[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:14.0030747Z  [32m✓[39m packages/web/src/main-regions.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 1190[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:14.0038826Z    [32m✓[39m term.clear() is a ratchet: the list of full-screen erases may only shrink [2m(3)[22m
+test	Run pnpm test	2026-11-15T00:21:14.0039518Z      [33m[2m✓[22m[39m has no term.clear() outside the enumerated sites[33m 964[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:14.3055966Z  [32m✓[39m packages/core/src/player/options-file.test.ts [2m([22m[2m46 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:14.3706583Z  [32m✓[39m packages/core/src/store/transact.test.ts [2m([22m[2m24 tests[22m[2m)[22m[33m 341[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:14.5989808Z  [32m✓[39m packages/desktop/src/window-state.test.ts [2m([22m[2m51 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:14.9765766Z  [32m✓[39m packages/core/src/mod/registry-host.test.ts [2m([22m[2m28 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:16.0038812Z  [32m✓[39m packages/web/src/mod-session.test.ts [2m([22m[2m27 tests[22m[2m)[22m[32m 173[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:16.3838423Z  [32m✓[39m packages/core/src/agent/inspect.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 1609[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:16.8749106Z  [32m✓[39m packages/core/src/game/pickup.test.ts [2m([22m[2m33 tests[22m[2m)[22m[32m 88[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:17.0003698Z  [32m✓[39m packages/web/src/command-menu.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 280[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:17.1935959Z  [32m✓[39m packages/web/src/update.test.ts [2m([22m[2m43 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:17.3823135Z  [32m✓[39m packages/core/src/game/mon-death.test.ts [2m([22m[2m26 tests[22m[2m)[22m[32m 62[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:17.5965771Z  [32m✓[39m packages/web/src/mod-folder.test.ts [2m([22m[2m31 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:17.7562817Z  [32m✓[39m packages/mod-sdk/src/api2/policies.test.ts [2m([22m[2m46 tests[22m[2m)[22m[32m 41[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:17.9157326Z  [32m✓[39m packages/desktop/src/backup-folder.test.ts [2m([22m[2m33 tests[22m[2m)[22m[32m 86[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:18.1309551Z  [32m✓[39m packages/core/src/combat/mon-melee.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:18.2501951Z  [32m✓[39m packages/web/src/term.test.ts [2m([22m[2m37 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:18.8855200Z  [32m✓[39m packages/web/src/mod-code.test.ts [2m([22m[2m34 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:19.0586999Z (node:3435) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:21:19.0588098Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:21:22.5997690Z  [32m✓[39m packages/web/src/mod-browse-community.test.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 2927[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:22.6039599Z    [32m✓[39m Recommended mods, with a community list [2m(5)[22m
+test	Run pnpm test	2026-11-15T00:21:22.6055005Z      [33m[2m✓[22m[39m installs a community mod as third-party once the player allows it[33m 309[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:22.6074733Z    [32m✓[39m a yes to third-party mods that cannot be saved [2m(1)[22m
+test	Run pnpm test	2026-11-15T00:21:22.6077114Z      [33m[2m✓[22m[39m says nothing can be installed, and installs nothing[33m 308[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:24.6043359Z  [32m✓[39m packages/core/src/session/projection-registry-wiring.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 1568[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:24.6056785Z    [32m✓[39m wireGame publishes the projection registry [2m(1)[22m
+test	Run pnpm test	2026-11-15T00:21:24.6057829Z      [33m[2m✓[22m[39m seeds it with core's three tables and leaves the originals alone[33m 337[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:25.0221513Z  [32m✓[39m packages/core/src/game/effect-teleport.test.ts [2m([22m[2m34 tests[22m[2m)[22m[32m 68[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:26.3847297Z (node:3464) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:21:26.3849449Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:21:26.3855876Z  [32m✓[39m packages/web/src/autoplayer-activation-gate.test.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 488[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:26.7679615Z  [32m✓[39m packages/core/src/npm-publish.test.ts [2m([22m[2m74 tests[22m[2m)[22m[32m 203[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:27.0446479Z  [32m✓[39m packages/web/src/disk-packs.test.ts [2m([22m[2m38 tests[22m[2m)[22m[32m 47[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:27.7346222Z  [32m✓[39m packages/web/src/mod-canary.test.ts [2m([22m[2m7 tests[22m[2m | [22m[33m6 skipped[39m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:28.2470476Z  [32m✓[39m packages/core/src/mon/bind.test.ts [2m([22m[2m37 tests[22m[2m)[22m[33m 349[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:28.5740091Z  [32m✓[39m packages/core/src/obj/make.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 66[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:28.7045530Z  [32m✓[39m packages/web/src/linoleum-equivalence.test.ts [2m([22m[2m42 tests[22m[2m)[22m[33m 9633[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:28.7074876Z    [32m✓[39m shockbolt-dark: a converted loose pack draws what its tilesheet draws [2m(7)[22m
+test	Run pnpm test	2026-11-15T00:21:28.7090251Z      [33m[2m✓[22m[39m resolves every covered entity to a pixel-identical tile[33m 1535[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:28.7116308Z    [32m✓[39m shockbolt-light: a converted loose pack draws what its tilesheet draws [2m(7)[22m
+test	Run pnpm test	2026-11-15T00:21:28.7144938Z      [33m[2m✓[22m[39m resolves every covered entity to a pixel-identical tile[33m 1571[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:28.7736235Z  [32m✓[39m packages/web/src/slot-attach.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:29.1561389Z  [32m✓[39m packages/core/src/game/effect-attack.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:29.2335788Z  [32m✓[39m packages/core/src/game/mon-side.test.ts [2m([22m[2m28 tests[22m[2m)[22m[32m 52[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:29.3440286Z  [32m✓[39m packages/mod-sdk/src/standards.test.ts [2m([22m[2m42 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:29.5556473Z  [32m✓[39m packages/web/src/sample-blueprint.node.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:29.7109595Z  [32m✓[39m packages/core/src/game/effect-item.test.ts [2m([22m[2m32 tests[22m[2m)[22m[32m 98[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:30.2201570Z  [32m✓[39m packages/web/src/mapview.test.ts [2m([22m[2m33 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:30.8295894Z  [32m✓[39m packages/web/src/host-io.test.ts [2m([22m[2m30 tests[22m[2m)[22m[32m 53[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:31.3752646Z  [32m✓[39m packages/web/src/panel-runtime.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:31.6103324Z  [32m✓[39m packages/core/src/game/calc-inventory.upstream.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:31.7359921Z (node:3549) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:21:31.7364681Z  [32m✓[39m packages/web/src/intent-gate.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 1532[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:31.7368264Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:21:31.9095021Z  [32m✓[39m packages/mod-sdk/src/sections.test.ts [2m([22m[2m40 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:32.0425733Z  [32m✓[39m packages/core/src/game/player-turn.test.ts [2m([22m[2m32 tests[22m[2m)[22m[32m 53[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:32.4773165Z  [32m✓[39m packages/core/src/game/floor.test.ts [2m([22m[2m36 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:32.9038074Z  [32m✓[39m packages/web/src/report.test.ts [2m([22m[2m47 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:33.2305898Z  [32m✓[39m packages/core/src/game/player-side.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 75[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:33.2630693Z  [32m✓[39m packages/web/src/mod-worker/isolation.test.ts [2m([22m[2m27 tests[22m[2m)[22m[33m 584[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:33.4187968Z  [32m✓[39m packages/web/src/ui-stack.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:33.4555340Z  [32m✓[39m packages/core/src/store/bind.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:33.5685858Z  [32m✓[39m packages/web/src/hud-view.test.ts [2m([22m[2m36 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:33.7613497Z  [32m✓[39m packages/core/src/player/birth.test.ts [2m([22m[2m33 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:34.2102287Z (node:3648) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:21:34.2103023Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:21:34.3000076Z  [32m✓[39m packages/web/src/frontend-mod.node.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 91[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:34.8525735Z  [32m✓[39m packages/web/src/mod-refresh.test.ts [2m([22m[2m41 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:35.2766455Z  [32m✓[39m packages/core/src/game/effect-melee.test.ts [2m([22m[2m26 tests[22m[2m)[22m[32m 61[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:35.4545849Z  [32m✓[39m packages/core/src/session/ui-entry-registry-wiring.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 1323[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:35.4553571Z    [32m✓[39m wireGame publishes the ui-entry registry [2m(2)[22m
+test	Run pnpm test	2026-11-15T00:21:35.4554537Z      [33m[2m✓[22m[39m seeds it with core's nine combiners and six backends, and copies both[33m 343[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:36.4053503Z  [32m✓[39m packages/web/src/mod-code-snapshot.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 217[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:36.7745587Z  [32m✓[39m packages/core/src/game/mon-ranged.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:36.8908909Z  [32m✓[39m packages/mod-sdk/src/mod-build.test.ts [2m([22m[2m25 tests[22m[2m)[22m[33m 1247[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:37.2968412Z  [32m✓[39m packages/web/src/wizard-prompts.test.ts [2m([22m[2m135 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:37.4017473Z  [32m✓[39m packages/web/src/sample-inventory.node.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:38.1696123Z  [32m✓[39m packages/web/src/tile-mods.test.ts [2m([22m[2m32 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:39.1373664Z  [32m✓[39m packages/web/src/knowledge-recall.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 1105[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:39.1405134Z    [32m✓[39m objectFakeRecall (desc_obj_fake, ui-knowledge.c L1862) [2m(6)[22m
+test	Run pnpm test	2026-11-15T00:21:39.1455633Z      [33m[2m✓[22m[39m does not disturb the live player's knowledge or the game RNG[33m 956[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:39.3629527Z (node:4019) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:21:39.3630771Z  [32m✓[39m packages/web/src/mod-engine-gate.test.ts [2m([22m[2m23 tests[22m[2m)[22m[33m 474[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:39.3694971Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:21:39.4247742Z  [32m✓[39m packages/core/src/game/inven-carry-num.upstream.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:39.8972278Z  [32m✓[39m packages/web/src/menu-runtime.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:41.0684351Z  [32m✓[39m packages/core/src/msg.upstream.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 1036[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:41.0695071Z    [32m✓[39m message/message upstream [2m(16)[22m
+test	Run pnpm test	2026-11-15T00:21:41.0713177Z      [33m[2m✓[22m[39m many_repeat[33m 979[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:41.3025337Z  [32m✓[39m packages/web/src/hud-runtime.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:41.3686498Z  [32m✓[39m packages/mcp/src/mcp.test.ts [2m([22m[2m28 tests[22m[2m)[22m[33m 1376[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:41.5153704Z  [32m✓[39m packages/web/src/input-door.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:41.9483798Z  [32m✓[39m packages/web/src/knowledge-browser.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:42.0257455Z (node:4061) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:21:42.0259162Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:21:42.0335281Z  [32m✓[39m packages/web/src/mod-list-long.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:42.4725222Z  [32m✓[39m packages/core/src/game/effect-detect.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 49[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:42.5415797Z  [32m✓[39m packages/web/src/ignore-menu.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 83[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:42.6855407Z  [32m✓[39m packages/desktop/src/unpack.test.ts [2m([22m[2m31 tests[22m[2m)[22m[32m 51[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:43.2642171Z  [32m✓[39m packages/web/src/update-ui.test.ts [2m([22m[2m40 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:44.0685937Z  [32m✓[39m packages/web/src/mod-conflicts.test.ts [2m([22m[2m36 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:44.3429562Z  [32m✓[39m packages/core/src/session/teleport-env-wiring.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 1447[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:44.3430561Z    [32m✓[39m Dimension Door (EF_TELEPORT_TO, the player-choice branch) [2m(3)[22m
+test	Run pnpm test	2026-11-15T00:21:44.3445209Z      [33m[2m✓[22m[39m a pre-resolved direction lands the player near the adjacent grid[33m 444[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:45.6725740Z  [32m✓[39m packages/core/src/game/spell-cmd.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 1135[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:46.0898946Z  [32m✓[39m packages/core/src/agent/known-level.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 1326[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:46.0899388Z    [32m✓[39m known level [2m(14)[22m
+test	Run pnpm test	2026-11-15T00:21:46.0899774Z      [33m[2m✓[22m[39m reports secret doors as granite in paired known levels and allowed actions[33m 408[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:46.7063531Z  [32m✓[39m packages/core/src/obj/fake-object.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 49[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:47.0897761Z  [32m✓[39m packages/core/src/game/player-util.upstream.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:47.3174336Z (node:4142) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:21:47.3177455Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:21:47.7421728Z (node:4167) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:21:47.7422481Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:21:47.7455327Z  [32m✓[39m packages/web/src/mod-net.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:48.2011061Z  [32m✓[39m packages/web/src/profile-ui.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:49.2331346Z  [32m✓[39m packages/core/src/mon/project-mon-context.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 650[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:49.7765776Z  [32m✓[39m packages/web/src/tiles.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:50.1998912Z  [32m✓[39m packages/core/src/game/notice.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:50.6749406Z  [32m✓[39m packages/core/src/obj/flavor.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 145[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:51.7185772Z  [32m✓[39m packages/web/src/mod-worker/panel-schema.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 201[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:51.9116343Z  [32m✓[39m packages/web/src/engine-bridge/transaction.test.ts [2m([22m[2m112 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:52.7022497Z (node:4226) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:21:52.7023259Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:21:52.7029744Z  [32m✓[39m packages/web/src/mod-visibility.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 269[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:53.1288224Z  [32m✓[39m packages/core/src/visuals/tile-prefs.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 64[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:53.3762826Z  [32m✓[39m packages/web/src/region-runtime.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:53.5573530Z  [32m✓[39m packages/mod-sdk/src/patch.test.ts [2m([22m[2m44 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:53.7166031Z  [32m✓[39m packages/core/src/mod/save-blocks.test.ts [2m([22m[2m32 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:54.1580092Z  [32m✓[39m packages/core/src/game/equip-cmp.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:54.3545709Z  [32m✓[39m packages/core/src/mon/project-mon.test.ts [2m([22m[2m43 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:55.1646173Z (node:4290) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:21:55.1734974Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:21:55.1736085Z  [32m✓[39m packages/web/src/mod-taint.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:55.3936378Z  [32m✓[39m packages/mod-sdk/src/manifest-v2.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:55.8077138Z  [32m✓[39m packages/web/src/exit-to-title.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:55.9115802Z  [32m✓[39m packages/core/src/rational.upstream.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:56.4742124Z (node:4318) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:21:56.4743597Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:21:56.4865164Z  [32m✓[39m packages/web/src/profile-runtime.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 39[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:56.6735795Z  [32m✓[39m packages/core/src/effects/chain.upstream.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:59.0308382Z  [32m✓[39m packages/core/src/session/persist-levels.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 1911[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:59.0308920Z    [32m✓[39m birth_levels_persist (A1 persistent levels) [2m(11)[22m
+test	Run pnpm test	2026-11-15T00:21:59.0309338Z      [33m[2m✓[22m[39m restores an identical frozen level on re-entry (option ON)[33m 329[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:21:59.5445981Z  [32m✓[39m packages/core/src/obj/bind.upstream.test.ts [2m([22m[2m58 tests[22m[2m)[22m[33m 328[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:01.8875728Z  [32m✓[39m packages/core/src/session/reincarnate.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 2022[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:01.8878867Z    [32m✓[39m reincarnate: race and class [2m(3)[22m
+test	Run pnpm test	2026-11-15T00:22:01.8904526Z      [33m[2m✓[22m[39m rolls them, rather than repeating one build[33m 530[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:04.1785787Z  [32m✓[39m packages/core/src/session/qol-defaults.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 1861[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:04.1792011Z    [32m✓[39m the levelGenerated seam reaches level generation from startGame [2m(3)[22m
+test	Run pnpm test	2026-11-15T00:22:04.1799711Z      [33m[2m✓[22m[39m CONTROL: a faithful game (no mod loaded) is born on a stranded floor[33m 528[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:04.1800791Z      [33m[2m✓[22m[39m a hook's refusal re-rolls the level, exactly as a monster overflow does[33m 356[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:04.8446842Z  [32m✓[39m packages/web/src/loading.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 86[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:04.9921807Z  [32m✓[39m packages/desktop/src/updater.test.ts [2m([22m[2m27 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:05.3759171Z  [32m✓[39m packages/web/src/mod-worker/registry-declarations.test.ts [2m([22m[2m54 tests[22m[2m)[22m[32m 43[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:05.9425547Z (node:4417) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:05.9454825Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:05.9538766Z  [32m✓[39m packages/web/src/mod-viewport.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 45[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:06.4442546Z  [32m✓[39m packages/core/src/mod/message-declarations.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 245[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:06.7575982Z  [32m✓[39m packages/core/src/combat/melee-effects.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:06.9235185Z  [32m✓[39m packages/web/src/sample-vitals.node.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:07.1596970Z  [32m✓[39m packages/core/src/gen/join.test.ts [2m([22m[2m27 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:07.4273975Z  [32m✓[39m packages/core/src/game/char-sheet.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:07.5372024Z  [32m✓[39m packages/web/src/regions.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:07.6916394Z  [32m✓[39m packages/core/src/effects/interpreter.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:07.9793031Z  [32m✓[39m packages/core/src/mon/lore-describe.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:08.1086256Z  [32m✓[39m packages/core/src/guard.upstream.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:08.3260701Z (node:4489) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:08.3261653Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:08.3267609Z  [32m✓[39m packages/web/src/gamepad-input.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:08.6966675Z  [32m✓[39m packages/core/src/game/effect-item-chooser.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:08.8518875Z  [32m✓[39m packages/web/src/sample-inventory-region.node.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:09.6935517Z (node:4510) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:09.6936419Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:09.6942340Z  [32m✓[39m packages/web/src/input-snapshot.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 79[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:09.9643320Z  [32m✓[39m packages/core/src/game/trap.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:10.6245844Z  [32m✓[39m packages/linoleum/src/convert.test.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 455[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:11.0876883Z  [32m✓[39m packages/web/src/messages.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:11.3756238Z  [32m✓[39m packages/core/src/game/effect-monster.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:11.5089706Z  [32m✓[39m packages/core/src/effects/handlers.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:12.1515474Z (node:4552) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:12.1516744Z  [32m✓[39m packages/web/src/mod-resources.node.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 113[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:12.1517915Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:12.7324496Z  [32m✓[39m packages/core/src/mod/provenance.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 183[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:12.9972610Z  [32m✓[39m packages/core/src/game/mon-msg-queue.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:13.2397793Z  [32m✓[39m packages/cli/src/reference-tree.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 135[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:13.5070974Z  [32m✓[39m packages/core/src/game/project-monster.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:13.6424903Z  [32m✓[39m packages/core/src/score/score.test.ts [2m([22m[2m29 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:15.1265946Z  [32m✓[39m packages/core/src/session/dungeon-level-event.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 1112[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:15.5284366Z (node:4624) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:15.5285308Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:15.5417133Z  [32m✓[39m packages/web/src/wizard-runtime.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:15.8934969Z  [32m✓[39m packages/web/src/borg-restart.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:16.4996087Z (node:4638) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:16.5014748Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:16.5525575Z  [32m✓[39m packages/web/src/mod-worker/backup.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 85[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:16.6658066Z  [32m✓[39m packages/cli/src/port-todo.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:17.7768809Z (node:4653) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:17.7770500Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:17.7778277Z  [32m✓[39m packages/web/src/mod-provenance.node.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 585[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:18.1046418Z  [32m✓[39m packages/core/src/mon/steal.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:18.9855848Z  [32m✓[39m packages/core/src/session/seam-producer-wiring.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 541[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:19.1427001Z  [32m✓[39m packages/mod-sdk/src/record-key.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:19.5410799Z  [32m✓[39m packages/core/src/game/repeat.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:19.7339831Z  [32m✓[39m packages/desktop/src/data-dir.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:19.8361018Z  [32m✓[39m packages/core/src/z-queue.upstream.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:20.2039918Z  [32m✓[39m packages/web/src/term-seams.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:20.5234608Z  [32m✓[39m packages/core/src/game/loop.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 72[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:21.1911472Z  [32m✓[39m packages/mod-sdk/src/validate.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 546[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:21.7083555Z  [32m✓[39m packages/core/src/game/shape-inspect.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:22.3686182Z  [32m✓[39m packages/web/src/mod-resources.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:22.9598722Z  [32m✓[39m packages/web/src/install-runtime.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 49[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:24.8245919Z  [32m✓[39m packages/cli/src/text-census.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:24.9846392Z  [32m✓[39m packages/web/src/mod-health.test.ts [2m([22m[2m29 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:25.2081366Z  [32m✓[39m packages/core/src/sound/mod-sound-reach.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:25.5395880Z  [32m✓[39m packages/core/src/game/mon-cast.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:25.6779889Z  [32m✓[39m packages/web/src/mod-delve-sync.test.ts [2m([22m[2m33 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:26.3305466Z  [32m✓[39m packages/core/src/obj/randart-mod-artifact.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 494[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:26.5277286Z  [32m✓[39m packages/core/src/player/spell.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 62[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:27.0246524Z  [32m✓[39m packages/web/src/equip-cmp.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:28.0128213Z (node:4803) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:28.0133451Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:28.0134896Z  [32m✓[39m packages/web/src/save-transfer.test.ts [2m([22m[2m26 tests[22m[2m)[22m[33m 479[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:28.2788221Z  [32m✓[39m packages/core/src/game/phase2-med.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:28.3955064Z  [32m✓[39m packages/core/src/game/disturb-census.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:28.7748411Z  [32m✓[39m packages/web/src/context-menu.test.ts [2m([22m[2m28 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:28.9422417Z  [32m✓[39m packages/core/src/game/combine-pack.upstream.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:29.0652044Z  [32m✓[39m packages/core/src/world/project.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:29.2623012Z  [32m✓[39m packages/core/src/mon/lore-file.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:29.4696088Z  [32m✓[39m packages/core/src/obj/ignore.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:29.7725604Z  [32m✓[39m packages/core/src/game/w2-wiring-fix.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:30.1157354Z  [32m✓[39m packages/web/src/game-menu.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:30.3711715Z  [32m✓[39m packages/core/src/game/world.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:30.6276268Z  [32m✓[39m packages/core/src/game/project-cast.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:31.0100926Z  [32m✓[39m packages/core/src/game/obj-list.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:31.7938257Z  [32m✓[39m packages/core/src/game/take-hit-hooks.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 468[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:31.9133161Z  [32m✓[39m packages/core/src/i18n/i18n.test.ts [2m([22m[2m32 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:32.0387398Z  [32m✓[39m packages/core/src/player/bind.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:32.2126185Z  [32m✓[39m packages/core/src/effects/effect-info.test.ts [2m([22m[2m31 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:32.4415816Z  [32m✓[39m packages/mod-sdk/src/authoring.test.ts [2m([22m[2m27 tests[22m[2m)[22m[32m 51[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:32.6470839Z  [32m✓[39m packages/web/src/mod-zip.test.ts [2m([22m[2m37 tests[22m[2m)[22m[32m 59[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3766217Z  [32m✓[39m packages/web/src/mod-runner/runner.node.test.ts [2m([22m[2m26 tests[22m[2m)[22m[33m 46742[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3782512Z    [32m✓[39m the headless runner [2m(25)[22m
+test	Run pnpm test	2026-11-15T00:22:33.3795728Z      [33m[2m✓[22m[39m loads an API 2 folder and registers through engine.core during composition[33m 1685[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3796666Z      [33m[2m✓[22m[39m runs a first-party API 2 toy controller through the legacy controller seam[33m 1473[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3799149Z      [33m[2m✓[22m[39m retains invalid manifest candidates[33m 1509[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3800172Z      [33m[2m✓[22m[39m fails unreadable directories and retains the load error[33m 1513[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3800881Z      [33m[2m✓[22m[39m fails unattributed rejections during import[33m 3693[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3801553Z      [33m[2m✓[22m[39m fails unattributed rejections during registration[33m 3742[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3802312Z      [33m[2m✓[22m[39m fails unattributed rejections after a delayed callback[33m 3968[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3802997Z      [33m[2m✓[22m[39m waits for returned callback promises[33m 2123[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3803708Z      [33m[2m✓[22m[39m fails callback promises that exceed the completion deadline[33m 1427[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3804521Z      [33m[2m✓[22m[39m fails a Worker host that throws[33m 1433[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3805091Z      [33m[2m✓[22m[39m fails a Worker host that omits a result[33m 1453[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3805709Z      [33m[2m✓[22m[39m accepts an explicit result for every Worker[33m 1485[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3806326Z      [33m[2m✓[22m[39m registers plugins in enabled order[33m 1419[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3806994Z      [33m[2m✓[22m[39m preserves character storage through save and reload[33m 1319[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3807659Z      [33m[2m✓[22m[39m starts a fresh module graph for repeated runs[33m 2857[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3808371Z      [33m[2m✓[22m[39m tears down after a session failure and records cleanup faults[33m 1393[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3809122Z      [33m[2m✓[22m[39m passes a known-good data mod that declares its gameplay change[33m 1536[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3810039Z      [33m[2m✓[22m[39m passes a known-good code mod, and its save matches the save with it off[33m 1398[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3810977Z      [33m[2m✓[22m[39m reports a listener that throws, and the mods after it still hear every event[33m 1409[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3811813Z      [33m[2m✓[22m[39m reports a listener added past the guard that stops an event reaching the rest[33m 1431[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3812540Z      [33m[2m✓[22m[39m reports a mod that stalls past its per-turn budget[33m 1639[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3813466Z      [33m[2m✓[22m[39m reports a mod that changes the game without declaring it[33m 1261[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3814374Z      [33m[2m✓[22m[39m counts a capability the mod uses without declaring it[33m 1293[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3815116Z      [33m[2m✓[22m[39m says a Worker-tier mod could not be checked rather than passing it[33m 1443[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3815826Z      [33m[2m✓[22m[39m writes a report that validates against its format[33m 1499[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.3816567Z    [33m[2m✓[22m[39m refuses Node page execution without the explicit developer opt-in[33m 1334[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:33.8617392Z  [32m✓[39m packages/web/src/mod-backup.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:34.0168933Z  [32m✓[39m packages/core/src/effects/effect.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:34.1735326Z  [32m✓[39m packages/cli/src/private-scan.test.ts [2m([22m[2m19 tests[22m[2m)[22m[33m 1408[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:34.1736009Z    [32m✓[39m private-scan over the tracked tree [2m(1)[22m
+test	Run pnpm test	2026-11-15T00:22:34.1736470Z      [33m[2m✓[22m[39m is clean[33m 426[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:34.1736849Z    [32m✓[39m private-scan actually bites [2m(11)[22m
+test	Run pnpm test	2026-11-15T00:22:34.1737454Z      [33m[2m✓[22m[39m flags a baseline entry that no longer matches - the other direction[33m 577[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:34.3027859Z  [32m✓[39m packages/mod-sdk/src/sort.test.ts [2m([22m[2m35 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:34.6018492Z  [32m✓[39m packages/web/src/charselect.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:34.7797155Z  [32m✓[39m packages/web/src/wizard-wiring.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 52[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:35.0093509Z  [32m✓[39m packages/core/src/combat/o-combat.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:35.0809096Z  [32m✓[39m packages/web/src/knowledge.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:35.1479581Z  [32m✓[39m packages/mod-sdk/src/manifest-compat.test.ts [2m([22m[2m30 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:35.3267816Z  [32m✓[39m packages/web/src/mod-source.test.ts [2m([22m[2m31 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:35.4399503Z  [32m✓[39m packages/cli/src/citation-check.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 240[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:35.7880360Z  [32m✓[39m packages/cli/src/host-node.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:35.9254174Z  [32m✓[39m packages/web/src/sample-dial.node.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:36.2877283Z  [32m✓[39m packages/core/src/game/target.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:36.4931538Z  [32m✓[39m packages/web/src/mod-delve.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:36.7305191Z  [32m✓[39m packages/core/src/game/arena.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 420[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:36.8999707Z  [32m✓[39m packages/core/src/game/project-world.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:37.1158528Z  [32m✓[39m packages/web/src/mod-list-page.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:37.2985615Z (node:5249) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:37.3005690Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:37.3265617Z  [32m✓[39m packages/web/src/test-sandbox.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:37.4785610Z  [32m✓[39m packages/web/src/mod-settings-doors.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:37.8922308Z  [32m✓[39m packages/web/src/prose-wrap.upstream.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 287[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:38.3249926Z (node:5271) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:38.3250899Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:38.3258659Z  [32m✓[39m packages/web/src/mod-teardown.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:38.4296854Z (node:5257) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:38.4298310Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:38.7314281Z  [32m✓[39m packages/web/src/mid-game-mods.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 959[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:38.7324005Z    [32m✓[39m presentNamespaces feeds loadGame the reconciliation set (mid-game add/remove) [2m(3)[22m
+test	Run pnpm test	2026-11-15T00:22:38.7325018Z      [33m[2m✓[22m[39m always includes core and returns namespace strings[33m 307[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:38.7325806Z    [32m✓[39m presentPackDigests feeds loadGame measured content-pack digests [2m(4)[22m
+test	Run pnpm test	2026-11-15T00:22:38.7326651Z      [33m[2m✓[22m[39m warns when an enabled installed content patch's stored bytes change[33m 334[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:38.8341595Z  [32m✓[39m packages/web/src/term-overdraw.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:39.0346152Z  [32m✓[39m packages/core/src/sound/message-types.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 130[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:39.1710462Z  [32m✓[39m packages/web/src/world-view.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:39.2366333Z  [32m✓[39m packages/web/src/host-folder.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:39.3036265Z  [32m✓[39m packages/web/src/world-render-data.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:39.3739663Z  [32m✓[39m packages/core/src/host/args.test.ts [2m([22m[2m41 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:39.4523781Z  [32m✓[39m packages/core/src/log.test.ts [2m([22m[2m31 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:39.5228924Z  [32m✓[39m packages/core/src/host/bridge.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:39.5770961Z  [32m✓[39m packages/content/src/parser.upstream.test.ts [2m([22m[2m49 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:39.9845760Z  [32m✓[39m packages/web/src/launch.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 55[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:40.2911692Z  [32m✓[39m packages/web/src/mod-detail.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:41.0434578Z  [32m✓[39m packages/web/src/mod-facets.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 33[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:41.1115897Z  [32m✓[39m packages/core/src/session/projection-radius-wiring.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 741[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:41.2768042Z  [32m✓[39m packages/core/src/game/mon-message.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:41.7402734Z  [32m✓[39m packages/web/src/main-long-press.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 150[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:41.8924547Z  [32m✓[39m packages/web/src/region-surface.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:42.1554538Z  [32m✓[39m packages/core/src/obj/desc.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:42.3307657Z (node:5389) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:42.3310320Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:42.3314381Z  [32m✓[39m packages/web/src/pack-survives-broken-mod.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 314[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:42.5926990Z  [32m✓[39m packages/core/src/visuals/pref-expr.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 72[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:42.6857486Z  [32m✓[39m packages/web/src/build-id.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 122[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:42.8895910Z  [32m✓[39m packages/web/src/gamepad-device.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:43.0965631Z  [32m✓[39m packages/web/src/roster.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:43.2745811Z (node:5424) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:43.2750385Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:43.2755050Z  [32m✓[39m packages/web/src/mod-rules.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:44.1570875Z  [32m✓[39m packages/core/src/store/store-cmd.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 444[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:44.1986327Z  [32m✓[39m packages/web/src/mod-consent-dialog.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 113[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:44.3275882Z  [32m✓[39m packages/core/src/bitflag.test.ts [2m([22m[2m29 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:44.4670282Z  [32m✓[39m packages/web/src/mod-modules.test.ts [2m([22m[2m45 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:44.6232103Z  [32m✓[39m packages/mod-sdk/src/capability-vocabulary.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:44.7685737Z  [32m✓[39m packages/core/src/score/pscore.upstream.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:45.2394220Z  [32m✓[39m packages/core/src/agent/effects-reads.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 591[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:46.1750054Z  [32m✓[39m packages/core/src/session/describe-wiring.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 919[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:46.2081272Z  [32m✓[39m packages/core/src/session/monster-light-wiring.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 504[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:46.3733657Z  [32m✓[39m packages/web/src/display-wiring.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:47.0845914Z (node:5509) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:47.0876135Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:47.1721981Z (node:5523) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:47.1723947Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:47.1728702Z  [32m✓[39m packages/web/src/mod-authoring-seam.node.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 184[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:47.4766326Z  [32m✓[39m packages/core/src/obj/effects-info.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 83[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:47.7092427Z  [32m✓[39m packages/web/src/run-report.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 623[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:48.0895660Z  [32m✓[39m packages/core/src/game/ranged-powershot.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:48.2152775Z  [32m✓[39m packages/core/src/obj/tval-table.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 349[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:48.5605718Z  [32m✓[39m packages/web/src/screen-text.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:49.0515753Z  [32m✓[39m packages/core/src/session/banish-symbol-wiring.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 435[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:49.3452132Z (node:5565) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:49.3521911Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:49.3532083Z  [32m✓[39m packages/web/src/mod-shared-values.test.ts [2m([22m[2m28 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:50.0296100Z  [32m✓[39m packages/core/src/session/command-verb-wiring.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 604[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:50.2936275Z (node:5579) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:50.2942941Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:50.2946773Z  [32m✓[39m packages/web/src/capability-gate-reach.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 130[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:50.3940433Z  [32m✓[39m packages/core/src/game/quest.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:50.4603800Z  [32m✓[39m packages/mod-sdk/src/resolve.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:50.5535940Z  [32m✓[39m packages/mod-sdk/src/resources.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:50.6021523Z  [32m✓[39m packages/web/src/mod-authors.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:50.8637239Z  [32m✓[39m packages/core/src/game/monster.upstream.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:51.3539196Z  [32m✓[39m packages/core/src/session/feeling-announce.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 338[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:51.4369382Z  [32m✓[39m packages/web/src/mod-bags.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:51.6155650Z  [32m✓[39m packages/core/src/obj/value.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:52.2495877Z  [32m✓[39m packages/web/src/mod-truth-consent.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:52.3658925Z  [32m✓[39m packages/web/src/mod-preinstall.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:52.7247155Z  [32m✓[39m packages/web/src/transfer-gate.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:53.0100251Z  [32m✓[39m packages/web/src/mod-shape.node.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 210[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:53.1521240Z  [2m[90m↓[39m[22m packages/desktop/src/update-electron.canary.test.ts [2m([22m[2m2 tests[22m[2m | [22m[33m2 skipped[39m[2m)[22m
+test	Run pnpm test	2026-11-15T00:22:53.1985453Z  [32m✓[39m packages/mod-sdk/src/project.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 317[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:53.3473629Z  [32m✓[39m packages/core/src/obj/object.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:53.4386731Z  [32m✓[39m packages/core/src/combat/ranged.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:53.4828584Z  [32m✓[39m packages/web/src/install-target.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:54.1825477Z  [32m✓[39m packages/core/src/game/gear-weight.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 363[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:54.6525214Z  [32m✓[39m packages/web/src/score-store.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:55.9123098Z  [32m✓[39m packages/web/src/panel-provider.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 124[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:56.2509058Z  [32m✓[39m packages/core/src/game/auto-dig.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:56.4575480Z  [32m✓[39m packages/core/src/combat/slays.upstream.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:56.8405911Z  [32m✓[39m packages/core/src/mon/lore.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 46[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:57.8150183Z (node:5757) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:22:57.8151114Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:22:57.8389735Z  [32m✓[39m packages/web/src/birth-session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:57.9662053Z  [32m✓[39m packages/core/src/dice.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:58.3125074Z  [32m✓[39m packages/core/src/game/pile.upstream.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:59.2910665Z  [32m✓[39m packages/web/src/subwindow-floating.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 95[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:22:59.7521330Z  [2m[90m↓[39m[22m packages/web/src/mod-discover-canary.test.ts [2m([22m[2m3 tests[22m[2m | [22m[33m3 skipped[39m[2m)[22m
+test	Run pnpm test	2026-11-15T00:23:00.2055875Z  [2m[90m↓[39m[22m packages/cli/src/noise-floor.probe.test.ts [2m([22m[2m1 test[22m[2m | [22m[33m1 skipped[39m[2m)[22m
+test	Run pnpm test	2026-11-15T00:23:00.3452879Z  [32m✓[39m packages/core/src/sound/engine.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:00.4965783Z  [32m✓[39m packages/core/src/player/timed-custom.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:00.7430780Z  [32m✓[39m packages/core/src/combat/brand-slay-temp.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:00.8923494Z  [32m✓[39m packages/desktop/src/update-plan.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:01.0549517Z  [32m✓[39m packages/core/src/mod/orphan-stash.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:01.5946850Z (node:5835) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:01.5947970Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:01.6047057Z  [32m✓[39m packages/web/src/saves-facade.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:02.0908906Z  [32m✓[39m packages/web/src/boot-menus.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:02.2981226Z  [32m✓[39m packages/web/src/mod-curated.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:02.6195640Z  [32m✓[39m packages/core/src/obj/rune-registry.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 146[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:02.8105887Z  [32m✓[39m packages/content/src/pack.test.ts [2m([22m[2m59 tests[22m[2m)[22m[32m 49[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:03.8416070Z  [32m✓[39m packages/core/src/obj/info.upstream.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 635[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:04.1133755Z  [32m✓[39m packages/core/src/game/mon-group.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:05.2747559Z (node:5884) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:05.2764514Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:05.2840359Z  [32m✓[39m packages/web/src/dungeon-level-event.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 455[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:05.6043619Z [90mstdout[2m | packages/cli/src/parity-c-stat.test.ts[2m > [22m[2mC-vs-TS generation parity (upstream 4.2.6 main-stats)[2m > [22m[2mmatches upstream generation distributions at alpha=0.01 (Bonferroni)
+test	Run pnpm test	2026-11-15T00:23:05.6047241Z [22m[39mC-vs-TS generation parity, alpha=9.80e-5 (0.01 Bonferroni-corrected over 20 per-depth tests each of density, object count, ego count, artifact count and species mix + 2 pooled feeling tests = 102), port runs=400
+test	Run pnpm test	2026-11-15T00:23:05.6048439Z depth  1 density  C=28.87 port=29.05 delta=0.18 sd=7.5 z=0.41 p=0.6811 (resolves +/-1.73)
+test	Run pnpm test	2026-11-15T00:23:05.6049552Z depth  1 objcount C=14.11 port=14.21 delta=0.10 sd=4.3 z=0.38 p=0.7071 (resolves +/-1.00)
+test	Run pnpm test	2026-11-15T00:23:05.6050272Z depth  1 egos     C=0.327 port=0.350 delta=0.023 sd=0.62 z=0.63 p=0.5301 (resolves +/-0.143)
+test	Run pnpm test	2026-11-15T00:23:05.6051001Z depth  1 artifactsC=0.022 port=0.030 delta=0.008 sd=0.17 z=0.79 p=0.4285 (resolves +/-0.039)
+test	Run pnpm test	2026-11-15T00:23:05.6052000Z depth  1 species  G=21.7 deff=1.40 G/deff=15.6 df=24 p=9.03e-1 groups=25 pooled=2 n=11620 nEff=8323 levels=400 mostClustered=canine(4.6) worst=person obs=190 exp=227
+test	Run pnpm test	2026-11-15T00:23:05.6055500Z depth  1 objFeel  G=4.1 df=6 p=0.6617 cats=7 pooled=3 worst=9 obs=69 exp=82.4
+test	Run pnpm test	2026-11-15T00:23:05.6056176Z depth  1 monFeel  G=1.3 df=2 p=0.5244 cats=3 pooled=0 worst=8 obs=182 exp=168.8
+test	Run pnpm test	2026-11-15T00:23:05.6056928Z depth  2 density  C=34.72 port=33.38 delta=-1.35 sd=8.4 z=-2.72 p=0.0065 (resolves +/-1.93)
+test	Run pnpm test	2026-11-15T00:23:05.6060793Z depth  2 objcount C=17.16 port=16.77 delta=-0.39 sd=4.8 z=-1.39 p=0.1656 (resolves +/-1.10)
+test	Run pnpm test	2026-11-15T00:23:05.6061520Z depth  2 egos     C=0.392 port=0.360 delta=-0.032 sd=0.63 z=-0.85 p=0.3932 (resolves +/-0.146)
+test	Run pnpm test	2026-11-15T00:23:05.6062225Z depth  2 artifactsC=0.032 port=0.040 delta=0.008 sd=0.20 z=0.69 p=0.4907 (resolves +/-0.045)
+test	Run pnpm test	2026-11-15T00:23:05.6063206Z depth  2 species  G=19.0 deff=1.39 G/deff=13.7 df=24 p=9.54e-1 groups=25 pooled=2 n=13351 nEff=9593 levels=400 mostClustered=spider(4.6) worst=person obs=3359 exp=3506
+test	Run pnpm test	2026-11-15T00:23:05.6064193Z depth  2 objFeel  G=9.1 df=6 p=0.1692 cats=7 pooled=3 worst=8 obs=22 exp=35.2
+test	Run pnpm test	2026-11-15T00:23:05.6064824Z depth  2 monFeel  G=5.6 df=2 p=0.0603 cats=3 pooled=0 worst=9 obs=112 exp=88.0
+test	Run pnpm test	2026-11-15T00:23:05.6065483Z depth  3 density  C=34.61 port=35.10 delta=0.49 sd=10.2 z=0.81 p=0.4164 (resolves +/-2.35)
+test	Run pnpm test	2026-11-15T00:23:05.6066210Z depth  3 objcount C=17.37 port=17.34 delta=-0.04 sd=4.6 z=-0.13 p=0.8949 (resolves +/-1.06)
+test	Run pnpm test	2026-11-15T00:23:05.6066908Z depth  3 egos     C=0.648 port=0.690 delta=0.042 sd=0.81 z=0.88 p=0.3806 (resolves +/-0.187)
+test	Run pnpm test	2026-11-15T00:23:05.6067600Z depth  3 artifactsC=0.025 port=0.037 delta=0.012 sd=0.19 z=1.11 p=0.2667 (resolves +/-0.044)
+test	Run pnpm test	2026-11-15T00:23:05.6068567Z depth  3 species  G=50.3 deff=1.68 G/deff=29.9 df=28 p=3.68e-1 groups=29 pooled=1 n=14040 nEff=8344 levels=400 mostClustered=canine(7.6) worst=canine obs=870 exp=755
+test	Run pnpm test	2026-11-15T00:23:05.6069428Z depth  3 objFeel  G=7.9 df=6 p=0.2438 cats=7 pooled=3 worst=<pooled:3> obs=1 exp=4.0
+test	Run pnpm test	2026-11-15T00:23:05.6070063Z depth  3 monFeel  G=1.6 df=3 p=0.6653 cats=4 pooled=1 worst=9 obs=63 exp=71.2
+test	Run pnpm test	2026-11-15T00:23:05.6070730Z depth  4 density  C=38.30 port=38.14 delta=-0.16 sd=11.5 z=-0.24 p=0.8129 (resolves +/-2.64)
+test	Run pnpm test	2026-11-15T00:23:05.6071856Z depth  4 objcount C=18.56 port=18.11 delta=-0.44 sd=5.1 z=-1.46 p=0.1453 (resolves +/-1.18)
+test	Run pnpm test	2026-11-15T00:23:05.6072550Z depth  4 egos     C=0.626 port=0.655 delta=0.029 sd=0.81 z=0.60 p=0.5455 (resolves +/-0.187)
+test	Run pnpm test	2026-11-15T00:23:05.6073441Z depth  4 artifactsC=0.035 port=0.037 delta=0.002 sd=0.20 z=0.21 p=0.8351 (resolves +/-0.047)
+test	Run pnpm test	2026-11-15T00:23:05.6074490Z depth  4 species  G=64.4 deff=1.99 G/deff=32.4 df=29 p=3.01e-1 groups=30 pooled=3 n=15257 nEff=7678 levels=400 mostClustered=canine(9.1) worst=canine obs=818 exp=678
+test	Run pnpm test	2026-11-15T00:23:05.6075342Z depth  4 objFeel  G=4.5 df=6 p=0.6115 cats=7 pooled=3 worst=<pooled:3> obs=6 exp=2.4
+test	Run pnpm test	2026-11-15T00:23:05.6075988Z depth  4 monFeel  G=1.6 df=3 p=0.6582 cats=4 pooled=1 worst=<pooled:1> obs=0 exp=0.8
+test	Run pnpm test	2026-11-15T00:23:05.6124454Z depth  5 density  C=41.15 port=41.34 delta=0.20 sd=20.4 z=0.16 p=0.8717 (resolves +/-4.70)
+test	Run pnpm test	2026-11-15T00:23:05.6126617Z depth  5 objcount C=19.16 port=19.05 delta=-0.12 sd=6.2 z=-0.32 p=0.7511 (resolves +/-1.43)
+test	Run pnpm test	2026-11-15T00:23:05.6127357Z depth  5 egos     C=0.750 port=0.785 delta=0.035 sd=0.93 z=0.63 p=0.5261 (resolves +/-0.215)
+test	Run pnpm test	2026-11-15T00:23:05.6128086Z depth  5 artifactsC=0.067 port=0.058 delta=-0.010 sd=0.23 z=-0.69 p=0.4909 (resolves +/-0.054)
+test	Run pnpm test	2026-11-15T00:23:05.6129085Z depth  5 species  G=321.9 deff=7.42 G/deff=43.4 df=33 p=1.07e-1 groups=34 pooled=2 n=16536 nEff=2228 levels=400 mostClustered=minor demon(51.3) worst=orc obs=581 exp=261
+test	Run pnpm test	2026-11-15T00:23:05.6129939Z depth  5 objFeel  G=5.3 df=6 p=0.5107 cats=7 pooled=3 worst=6 obs=15 exp=21.2
+test	Run pnpm test	2026-11-15T00:23:05.6130573Z depth  5 monFeel  G=14.8 df=8 p=0.0639 cats=9 pooled=0 worst=9 obs=10 exp=23.6
+test	Run pnpm test	2026-11-15T00:23:05.6131234Z depth  6 density  C=43.65 port=43.07 delta=-0.59 sd=22.2 z=-0.44 p=0.6564 (resolves +/-5.13)
+test	Run pnpm test	2026-11-15T00:23:05.6132016Z depth  6 objcount C=19.33 port=19.20 delta=-0.13 sd=6.7 z=-0.32 p=0.7456 (resolves +/-1.56)
+test	Run pnpm test	2026-11-15T00:23:05.6132708Z depth  6 egos     C=0.795 port=0.795 delta=0.000 sd=0.92 z=0.00 p=1.0000 (resolves +/-0.212)
+test	Run pnpm test	2026-11-15T00:23:05.6133404Z depth  6 artifactsC=0.072 port=0.060 delta=-0.012 sd=0.24 z=-0.85 p=0.3936 (resolves +/-0.055)
+test	Run pnpm test	2026-11-15T00:23:05.6134491Z depth  6 species  G=230.1 deff=6.65 G/deff=34.6 df=34 p=4.38e-1 groups=35 pooled=3 n=17227 nEff=2591 levels=400 mostClustered=minor demon(48.7) worst=ogre obs=0 exp=65
+test	Run pnpm test	2026-11-15T00:23:05.6135326Z depth  6 objFeel  G=2.4 df=7 p=0.9344 cats=8 pooled=2 worst=5 obs=6 exp=8.8
+test	Run pnpm test	2026-11-15T00:23:05.6136026Z depth  6 monFeel  G=9.5 df=8 p=0.3010 cats=9 pooled=1 worst=<pooled:1> obs=5 exp=0.8
+test	Run pnpm test	2026-11-15T00:23:05.6136761Z depth  7 density  C=47.85 port=46.65 delta=-1.20 sd=20.9 z=-0.97 p=0.3316 (resolves +/-4.82)
+test	Run pnpm test	2026-11-15T00:23:05.6137478Z depth  7 objcount C=20.02 port=19.43 delta=-0.59 sd=6.7 z=-1.49 p=0.1375 (resolves +/-1.54)
+test	Run pnpm test	2026-11-15T00:23:05.6138158Z depth  7 egos     C=0.818 port=0.853 delta=0.035 sd=0.95 z=0.61 p=0.5394 (resolves +/-0.219)
+test	Run pnpm test	2026-11-15T00:23:05.6138851Z depth  7 artifactsC=0.078 port=0.068 delta=-0.010 sd=0.27 z=-0.66 p=0.5116 (resolves +/-0.062)
+test	Run pnpm test	2026-11-15T00:23:05.6140210Z depth  7 species  G=141.2 deff=7.19 G/deff=19.6 df=35 p=9.83e-1 groups=36 pooled=1 n=18660 nEff=2594 levels=400 mostClustered=ogre(54.9) worst=ogre obs=55 exp=21
+test	Run pnpm test	2026-11-15T00:23:05.6141048Z depth  7 objFeel  G=8.2 df=7 p=0.3162 cats=8 pooled=2 worst=10 obs=88 exp=110.0
+test	Run pnpm test	2026-11-15T00:23:05.6141664Z depth  7 monFeel  G=15.9 df=8 p=0.0440 cats=9 pooled=0 worst=5 obs=0 exp=7.6
+test	Run pnpm test	2026-11-15T00:23:05.6142351Z depth  8 density  C=49.61 port=49.71 delta=0.11 sd=24.7 z=0.07 p=0.9425 (resolves +/-5.69)
+test	Run pnpm test	2026-11-15T00:23:05.6143045Z depth  8 objcount C=20.59 port=20.28 delta=-0.31 sd=7.9 z=-0.67 p=0.5027 (resolves +/-1.83)
+test	Run pnpm test	2026-11-15T00:23:05.6143722Z depth  8 egos     C=1.112 port=1.150 delta=0.038 sd=1.06 z=0.61 p=0.5439 (resolves +/-0.244)
+test	Run pnpm test	2026-11-15T00:23:05.6144603Z depth  8 artifactsC=0.132 port=0.142 delta=0.010 sd=0.36 z=0.49 p=0.6259 (resolves +/-0.084)
+test	Run pnpm test	2026-11-15T00:23:05.6145521Z depth  8 species  G=276.5 deff=5.08 G/deff=54.4 df=36 p=2.50e-2 groups=37 pooled=0 n=19885 nEff=3915 levels=400 mostClustered=minor demon(34.1) worst=minor demon obs=738 exp=487
+test	Run pnpm test	2026-11-15T00:23:05.6146794Z depth  8 objFeel  G=3.4 df=7 p=0.8499 cats=8 pooled=2 worst=5 obs=9 exp=4.8
+test	Run pnpm test	2026-11-15T00:23:05.6147455Z depth  8 monFeel  G=3.8 df=8 p=0.8755 cats=9 pooled=1 worst=6 obs=22 exp=28.8
+test	Run pnpm test	2026-11-15T00:23:05.6148026Z depth  9 density  C=49.91 port=49.45 delta=-0.46 sd=23.4 z=-0.34 p=0.7371 (resolves +/-5.40)
+test	Run pnpm test	2026-11-15T00:23:05.6148616Z depth  9 objcount C=19.97 port=19.84 delta=-0.13 sd=7.2 z=-0.30 p=0.7622 (resolves +/-1.67)
+test	Run pnpm test	2026-11-15T00:23:05.6149204Z depth  9 egos     C=1.009 port=1.020 delta=0.011 sd=0.97 z=0.19 p=0.8485 (resolves +/-0.224)
+test	Run pnpm test	2026-11-15T00:23:05.6149830Z depth  9 artifactsC=0.113 port=0.115 delta=0.002 sd=0.34 z=0.10 p=0.9213 (resolves +/-0.079)
+test	Run pnpm test	2026-11-15T00:23:05.6150683Z depth  9 species  G=231.7 deff=4.74 G/deff=48.9 df=37 p=9.14e-2 groups=38 pooled=3 n=19778 nEff=4173 levels=400 mostClustered=minor demon(24.0) worst=ogre obs=3 exp=74
+test	Run pnpm test	2026-11-15T00:23:05.6152000Z depth  9 objFeel  G=6.8 df=7 p=0.4516 cats=8 pooled=2 worst=10 obs=105 exp=124.4
+test	Run pnpm test	2026-11-15T00:23:05.6152592Z depth  9 monFeel  G=5.5 df=7 p=0.6020 cats=8 pooled=0 worst=2 obs=5 exp=10.4
+test	Run pnpm test	2026-11-15T00:23:05.6153384Z depth 10 density  C=55.39 port=56.39 delta=1.00 sd=27.0 z=0.63 p=0.5307 (resolves +/-6.21)
+test	Run pnpm test	2026-11-15T00:23:05.6154287Z depth 10 objcount C=21.55 port=21.91 delta=0.36 sd=8.2 z=0.74 p=0.4595 (resolves +/-1.89)
+test	Run pnpm test	2026-11-15T00:23:05.6154916Z depth 10 egos     C=1.028 port=1.020 delta=-0.008 sd=1.02 z=-0.13 p=0.8941 (resolves +/-0.234)
+test	Run pnpm test	2026-11-15T00:23:05.6155540Z depth 10 artifactsC=0.135 port=0.163 delta=0.027 sd=0.41 z=1.14 p=0.2546 (resolves +/-0.094)
+test	Run pnpm test	2026-11-15T00:23:05.6156443Z depth 10 species  G=164.4 deff=5.44 G/deff=30.2 df=39 p=8.42e-1 groups=40 pooled=3 n=22556 nEff=4145 levels=400 mostClustered=minor demon(26.7) worst=orc obs=4810 exp=4269
+test	Run pnpm test	2026-11-15T00:23:05.6157221Z depth 10 objFeel  G=4.6 df=7 p=0.7119 cats=8 pooled=2 worst=10 obs=55 exp=70.4
+test	Run pnpm test	2026-11-15T00:23:05.6157780Z depth 10 monFeel  G=3.5 df=7 p=0.8369 cats=8 pooled=0 worst=5 obs=9 exp=5.2
+test	Run pnpm test	2026-11-15T00:23:05.6158388Z depth 11 density  C=55.67 port=55.33 delta=-0.34 sd=24.7 z=-0.23 p=0.8148 (resolves +/-5.69)
+test	Run pnpm test	2026-11-15T00:23:05.6159039Z depth 11 objcount C=21.38 port=21.35 delta=-0.03 sd=7.4 z=-0.07 p=0.9412 (resolves +/-1.72)
+test	Run pnpm test	2026-11-15T00:23:05.6159689Z depth 11 egos     C=0.901 port=0.920 delta=0.019 sd=0.96 z=0.34 p=0.7372 (resolves +/-0.221)
+test	Run pnpm test	2026-11-15T00:23:05.6160309Z depth 11 artifactsC=0.153 port=0.087 delta=-0.066 sd=0.29 z=-3.80 p=0.0001 (resolves +/-0.067)
+test	Run pnpm test	2026-11-15T00:23:05.6161113Z depth 11 species  G=142.7 deff=4.70 G/deff=30.4 df=40 p=8.65e-1 groups=41 pooled=3 n=22130 nEff=4708 levels=400 mostClustered=ant(21.1) worst=ant obs=1153 exp=1399
+test	Run pnpm test	2026-11-15T00:23:05.6161831Z depth 11 objFeel  G=9.0 df=8 p=0.3398 cats=9 pooled=1 worst=6 obs=14 exp=23.2
+test	Run pnpm test	2026-11-15T00:23:05.6162356Z depth 11 monFeel  G=1.6 df=7 p=0.9777 cats=8 pooled=1 worst=8 obs=46 exp=40.4
+test	Run pnpm test	2026-11-15T00:23:05.6163023Z depth 12 density  C=61.69 port=58.48 delta=-3.21 sd=25.2 z=-2.15 p=0.0316 (resolves +/-5.81)
+test	Run pnpm test	2026-11-15T00:23:05.6165571Z depth 12 objcount C=23.23 port=22.79 delta=-0.44 sd=8.5 z=-0.88 p=0.3796 (resolves +/-1.95)
+test	Run pnpm test	2026-11-15T00:23:05.6166263Z depth 12 egos     C=1.059 port=0.998 delta=-0.061 sd=1.01 z=-1.02 p=0.3057 (resolves +/-0.234)
+test	Run pnpm test	2026-11-15T00:23:05.6166944Z depth 12 artifactsC=0.154 port=0.163 delta=0.009 sd=0.44 z=0.33 p=0.7427 (resolves +/-0.101)
+test	Run pnpm test	2026-11-15T00:23:05.6167825Z depth 12 species  G=149.4 deff=5.31 G/deff=28.1 df=43 p=9.61e-1 groups=44 pooled=1 n=23394 nEff=4407 levels=400 mostClustered=orc(30.6) worst=ogre obs=29 exp=87
+test	Run pnpm test	2026-11-15T00:23:05.6168626Z depth 12 objFeel  G=9.3 df=7 p=0.2295 cats=8 pooled=2 worst=5 obs=8 exp=1.6
+test	Run pnpm test	2026-11-15T00:23:05.6169270Z depth 12 monFeel  G=20.1 df=7 p=0.0054 cats=8 pooled=1 worst=<pooled:1> obs=6 exp=0.4
+test	Run pnpm test	2026-11-15T00:23:05.6169947Z depth 13 density  C=60.52 port=59.93 delta=-0.59 sd=24.5 z=-0.40 p=0.6868 (resolves +/-5.65)
+test	Run pnpm test	2026-11-15T00:23:05.6170641Z depth 13 objcount C=23.73 port=23.44 delta=-0.29 sd=9.2 z=-0.53 p=0.5954 (resolves +/-2.11)
+test	Run pnpm test	2026-11-15T00:23:05.6171553Z depth 13 egos     C=1.094 port=1.080 delta=-0.014 sd=1.09 z=-0.22 p=0.8277 (resolves +/-0.251)
+test	Run pnpm test	2026-11-15T00:23:05.6172309Z depth 13 artifactsC=0.177 port=0.158 delta=-0.019 sd=0.43 z=-0.77 p=0.4412 (resolves +/-0.099)
+test	Run pnpm test	2026-11-15T00:23:05.6173394Z depth 13 species  G=168.1 deff=5.19 G/deff=32.4 df=43 p=8.81e-1 groups=44 pooled=2 n=23972 nEff=4618 levels=400 mostClustered=kobold(24.4) worst=ant obs=975 exp=808
+test	Run pnpm test	2026-11-15T00:23:05.6174340Z depth 13 objFeel  G=6.0 df=7 p=0.5343 cats=8 pooled=2 worst=6 obs=33 exp=20.4
+test	Run pnpm test	2026-11-15T00:23:05.6174960Z depth 13 monFeel  G=10.2 df=7 p=0.1773 cats=8 pooled=0 worst=4 obs=6 exp=2.0
+test	Run pnpm test	2026-11-15T00:23:05.6175616Z depth 14 density  C=65.18 port=61.49 delta=-3.68 sd=24.6 z=-2.53 p=0.0113 (resolves +/-5.66)
+test	Run pnpm test	2026-11-15T00:23:05.6176289Z depth 14 objcount C=23.73 port=22.52 delta=-1.20 sd=8.2 z=-2.47 p=0.0135 (resolves +/-1.90)
+test	Run pnpm test	2026-11-15T00:23:05.6176986Z depth 14 egos     C=1.067 port=1.028 delta=-0.039 sd=1.15 z=-0.58 p=0.5626 (resolves +/-0.266)
+test	Run pnpm test	2026-11-15T00:23:05.6177698Z depth 14 artifactsC=0.221 port=0.170 delta=-0.051 sd=0.42 z=-2.05 p=0.0402 (resolves +/-0.097)
+test	Run pnpm test	2026-11-15T00:23:05.6178675Z depth 14 species  G=244.6 deff=4.21 G/deff=58.1 df=44 p=7.60e-2 groups=45 pooled=2 n=24598 nEff=5838 levels=400 mostClustered=minor demon(22.6) worst=naga obs=132 exp=240
+test	Run pnpm test	2026-11-15T00:23:05.6179519Z depth 14 objFeel  G=6.8 df=7 p=0.4462 cats=8 pooled=2 worst=8 obs=59 exp=75.2
+test	Run pnpm test	2026-11-15T00:23:05.6180118Z depth 14 monFeel  G=3.5 df=7 p=0.8379 cats=8 pooled=0 worst=2 obs=8 exp=4.0
+test	Run pnpm test	2026-11-15T00:23:05.6180767Z depth 15 density  C=66.96 port=65.45 delta=-1.51 sd=30.8 z=-0.83 p=0.4075 (resolves +/-7.11)
+test	Run pnpm test	2026-11-15T00:23:05.6181444Z depth 15 objcount C=22.69 port=22.85 delta=0.16 sd=10.2 z=0.27 p=0.7885 (resolves +/-2.34)
+test	Run pnpm test	2026-11-15T00:23:05.6182119Z depth 15 egos     C=1.058 port=1.035 delta=-0.023 sd=1.10 z=-0.35 p=0.7234 (resolves +/-0.253)
+test	Run pnpm test	2026-11-15T00:23:05.6182823Z depth 15 artifactsC=0.172 port=0.150 delta=-0.022 sd=0.38 z=-0.97 p=0.3335 (resolves +/-0.089)
+test	Run pnpm test	2026-11-15T00:23:05.6183772Z depth 15 species  G=126.9 deff=5.99 G/deff=21.2 df=45 p=9.99e-1 groups=46 pooled=2 n=26181 nEff=4374 levels=400 mostClustered=ant(35.3) worst=person obs=3485 exp=3218
+test	Run pnpm test	2026-11-15T00:23:05.6184641Z depth 15 objFeel  G=6.7 df=7 p=0.4581 cats=8 pooled=2 worst=4 obs=3 exp=7.2
+test	Run pnpm test	2026-11-15T00:23:05.6185207Z depth 15 monFeel  G=3.6 df=7 p=0.8283 cats=8 pooled=0 worst=2 obs=4 exp=6.8
+test	Run pnpm test	2026-11-15T00:23:05.6185793Z depth 16 density  C=69.46 port=69.78 delta=0.32 sd=31.5 z=0.17 p=0.8648 (resolves +/-7.25)
+test	Run pnpm test	2026-11-15T00:23:05.6186400Z depth 16 objcount C=23.53 port=23.75 delta=0.23 sd=9.1 z=0.42 p=0.6724 (resolves +/-2.10)
+test	Run pnpm test	2026-11-15T00:23:05.6186993Z depth 16 egos     C=1.055 port=1.097 delta=0.042 sd=1.09 z=0.66 p=0.5113 (resolves +/-0.252)
+test	Run pnpm test	2026-11-15T00:23:05.6187607Z depth 16 artifactsC=0.150 port=0.170 delta=0.020 sd=0.43 z=0.78 p=0.4338 (resolves +/-0.100)
+test	Run pnpm test	2026-11-15T00:23:05.6188439Z depth 16 species  G=246.2 deff=5.17 G/deff=47.6 df=46 p=4.08e-1 groups=47 pooled=0 n=27910 nEff=5394 levels=400 mostClustered=ant(28.4) worst=orc obs=4939 exp=5573
+test	Run pnpm test	2026-11-15T00:23:05.6189170Z depth 16 objFeel  G=9.0 df=7 p=0.2501 cats=8 pooled=2 worst=8 obs=88 exp=69.6
+test	Run pnpm test	2026-11-15T00:23:05.6189722Z depth 16 monFeel  G=10.4 df=7 p=0.1685 cats=8 pooled=0 worst=4 obs=7 exp=2.0
+test	Run pnpm test	2026-11-15T00:23:05.6190318Z depth 17 density  C=70.91 port=72.14 delta=1.23 sd=31.5 z=0.66 p=0.5080 (resolves +/-7.25)
+test	Run pnpm test	2026-11-15T00:23:05.6190928Z depth 17 objcount C=24.05 port=24.66 delta=0.61 sd=10.3 z=1.00 p=0.3158 (resolves +/-2.38)
+test	Run pnpm test	2026-11-15T00:23:05.6191577Z depth 17 egos     C=1.093 port=1.085 delta=-0.008 sd=1.08 z=-0.13 p=0.9001 (resolves +/-0.248)
+test	Run pnpm test	2026-11-15T00:23:05.6192251Z depth 17 artifactsC=0.172 port=0.165 delta=-0.007 sd=0.41 z=-0.29 p=0.7730 (resolves +/-0.095)
+test	Run pnpm test	2026-11-15T00:23:05.6193227Z depth 17 species  G=191.1 deff=5.18 G/deff=36.9 df=46 p=8.29e-1 groups=47 pooled=1 n=28856 nEff=5570 levels=400 mostClustered=ant(29.7) worst=killer beetle obs=166 exp=278
+test	Run pnpm test	2026-11-15T00:23:05.6194361Z depth 17 objFeel  G=6.2 df=7 p=0.5110 cats=8 pooled=2 worst=<pooled:2> obs=5 exp=2.0
+test	Run pnpm test	2026-11-15T00:23:05.6194946Z depth 17 monFeel  G=3.9 df=8 p=0.8649 cats=9 pooled=1 worst=<pooled:1> obs=0 exp=1.2
+test	Run pnpm test	2026-11-15T00:23:05.6195682Z depth 18 density  C=76.70 port=80.02 delta=3.32 sd=34.9 z=1.61 p=0.1078 (resolves +/-8.04)
+test	Run pnpm test	2026-11-15T00:23:05.6196295Z depth 18 objcount C=24.78 port=25.59 delta=0.81 sd=9.3 z=1.47 p=0.1410 (resolves +/-2.15)
+test	Run pnpm test	2026-11-15T00:23:05.6196898Z depth 18 egos     C=1.146 port=1.170 delta=0.024 sd=1.16 z=0.35 p=0.7264 (resolves +/-0.267)
+test	Run pnpm test	2026-11-15T00:23:05.6197525Z depth 18 artifactsC=0.173 port=0.122 delta=-0.050 sd=0.36 z=-2.39 p=0.0170 (resolves +/-0.082)
+test	Run pnpm test	2026-11-15T00:23:05.6198443Z depth 18 species  G=314.0 deff=5.21 G/deff=60.3 df=47 p=9.19e-2 groups=48 pooled=2 n=32008 nEff=6148 levels=400 mostClustered=minor demon(33.4) worst=minor demon obs=1055 exp=660
+test	Run pnpm test	2026-11-15T00:23:05.6199265Z depth 18 objFeel  G=5.9 df=8 p=0.6554 cats=9 pooled=1 worst=4 obs=2 exp=6.0
+test	Run pnpm test	2026-11-15T00:23:05.6199881Z depth 18 monFeel  G=9.9 df=7 p=0.1957 cats=8 pooled=1 worst=5 obs=136 exp=112.0
+test	Run pnpm test	2026-11-15T00:23:05.6200537Z depth 19 density  C=83.34 port=80.09 delta=-3.25 sd=33.7 z=-1.63 p=0.1030 (resolves +/-7.76)
+test	Run pnpm test	2026-11-15T00:23:05.6201144Z depth 19 objcount C=26.01 port=25.16 delta=-0.85 sd=9.8 z=-1.45 p=0.1462 (resolves +/-2.27)
+test	Run pnpm test	2026-11-15T00:23:05.6201746Z depth 19 egos     C=1.274 port=1.230 delta=-0.044 sd=1.17 z=-0.63 p=0.5267 (resolves +/-0.271)
+test	Run pnpm test	2026-11-15T00:23:05.6202454Z depth 19 artifactsC=0.276 port=0.195 delta=-0.081 sd=0.43 z=-3.21 p=0.0013 (resolves +/-0.098)
+test	Run pnpm test	2026-11-15T00:23:05.6203352Z depth 19 species  G=216.7 deff=4.99 G/deff=43.4 df=48 p=6.61e-1 groups=49 pooled=1 n=32038 nEff=6417 levels=400 mostClustered=ant(30.0) worst=minor demon obs=924 exp=676
+test	Run pnpm test	2026-11-15T00:23:05.6204268Z depth 19 objFeel  G=7.0 df=7 p=0.4287 cats=8 pooled=2 worst=8 obs=83 exp=68.0
+test	Run pnpm test	2026-11-15T00:23:05.6204808Z depth 19 monFeel  G=4.6 df=7 p=0.7147 cats=8 pooled=1 worst=7 obs=44 exp=33.2
+test	Run pnpm test	2026-11-15T00:23:05.6205396Z depth 20 density  C=90.65 port=90.27 delta=-0.39 sd=37.0 z=-0.18 p=0.8588 (resolves +/-8.52)
+test	Run pnpm test	2026-11-15T00:23:05.6206006Z depth 20 objcount C=31.39 port=31.42 delta=0.03 sd=14.0 z=0.04 p=0.9686 (resolves +/-3.22)
+test	Run pnpm test	2026-11-15T00:23:05.6206620Z depth 20 egos     C=1.606 port=1.603 delta=-0.004 sd=1.53 z=-0.04 p=0.9693 (resolves +/-0.354)
+test	Run pnpm test	2026-11-15T00:23:05.6207250Z depth 20 artifactsC=0.371 port=0.297 delta=-0.074 sd=0.56 z=-2.23 p=0.0256 (resolves +/-0.128)
+test	Run pnpm test	2026-11-15T00:23:05.6208101Z depth 20 species  G=351.5 deff=5.63 G/deff=62.4 df=49 p=9.43e-2 groups=50 pooled=1 n=36106 nEff=6413 levels=400 mostClustered=ant(27.0) worst=naga obs=175 exp=368
+test	Run pnpm test	2026-11-15T00:23:05.6208845Z depth 20 objFeel  G=7.2 df=8 p=0.5151 cats=9 pooled=1 worst=3 obs=4 exp=8.4
+test	Run pnpm test	2026-11-15T00:23:05.6209447Z depth 20 monFeel  G=3.5 df=7 p=0.8351 cats=8 pooled=2 worst=<pooled:2> obs=5 exp=1.6
+test	Run pnpm test	2026-11-15T00:23:05.6210573Z POOLED objFeel  G=129.6 df=138 G/df=0.94 vs measured C-vs-C null mean 1.79 max 2.60 (153 pairs) -> G/phi/df=0.52 p=1.00e+0 over 20 depths [NOT GATED: port runs 400 != C levels 1000, and G/df is not sample-size invariant]
+test	Run pnpm test	2026-11-15T00:23:05.6211885Z POOLED monFeel  G=134.2 df=127 G/df=1.06 vs measured C-vs-C null mean 1.93 max 2.54 (153 pairs) -> G/phi/df=0.55 p=1.00e+0 over 20 depths [NOT GATED: port runs 400 != C levels 1000, and G/df is not sample-size invariant]
+test	Run pnpm test	2026-11-15T00:23:05.6212811Z pooled density (Stouffer over 20 depths): Z=-1.82 p=6.87e-2 -- DIAGNOSTIC ONLY, null not yet measured
+test	Run pnpm test	2026-11-15T00:23:05.6214065Z pooled objcount (Stouffer over 20 depths): Z=-1.60 p=1.09e-1 -- DIAGNOSTIC ONLY. Null width measured at 1.155 +/- 0.122 over 153 C-vs-C pairs (parity/OBJCOUNT_NULL.md), so that p is overstated; calibrated Z=-1.39 [-1.60, -1.14] at +/-2 SE
+test	Run pnpm test	2026-11-15T00:23:05.6214894Z 
+test	Run pnpm test	2026-11-15T00:23:05.6215696Z  [32m✓[39m packages/cli/src/parity-c-stat.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:05.6585703Z  [32m✓[39m packages/core/src/game/ranged-range.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:06.0516178Z  [32m✓[39m packages/web/src/capability-describe.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:06.2355779Z  [32m✓[39m packages/core/src/rng.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:06.2905700Z  [32m✓[39m packages/web/src/main-safe-mode.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 331[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:06.5746122Z  [32m✓[39m packages/core/src/game/known-pile.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:06.6975813Z  [32m✓[39m packages/mod-sdk/src/semver.test.ts [2m([22m[2m27 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:06.7752059Z  [32m✓[39m packages/web/src/keymap-edit.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:06.9449643Z  [32m✓[39m packages/desktop/src/update-swap.integration.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 53[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:07.3530636Z  [32m✓[39m packages/web/src/user-io.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:07.7295298Z  [32m✓[39m packages/core/src/session/basic.upstream.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 661[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:07.7576494Z  [32m✓[39m packages/core/src/game/push-object.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:08.1843610Z  [32m✓[39m packages/core/src/mod/extension.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:08.4025624Z  [32m✓[39m packages/web/src/keymap-store.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:08.6009821Z  [32m✓[39m packages/core/src/world/feature.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:08.6957826Z  [32m✓[39m packages/core/src/game/timed-transition.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 607[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:08.8943059Z  [32m✓[39m packages/core/src/obj/power.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:08.9964324Z  [32m✓[39m packages/web/src/visual-filter.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:09.3878837Z  [32m✓[39m packages/core/src/game/shape.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:09.8111245Z  [32m✓[39m packages/core/src/game/wp15-commands.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:09.9523029Z  [32m✓[39m packages/core/src/agent/boundary.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 938[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:09.9976114Z  [32m✓[39m packages/web/src/gamepad-wheel-plan.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:10.1148355Z  [32m✓[39m packages/core/src/host/raw.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:10.2327584Z  [32m✓[39m packages/core/src/obj/randart-log.census.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:10.2519576Z  [32m✓[39m packages/core/src/game/effect-coverage.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:10.3543550Z  [32m✓[39m packages/web/src/amount-and-rest.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:10.3925713Z  [32m✓[39m packages/core/src/constants.upstream.test.ts [2m([22m[2m32 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:10.5275674Z  [32m✓[39m packages/core/src/visuals/engine.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:10.6732749Z  [32m✓[39m packages/core/src/game/rest.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:10.7306461Z  [32m✓[39m packages/web/src/storage-persist.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:10.9780832Z  [32m✓[39m packages/core/src/game/obj-util.upstream.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:11.1099986Z  [32m✓[39m packages/core/src/mon/desc.upstream.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:11.2919189Z  [32m✓[39m packages/core/src/world/scatter.upstream.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 73[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:11.5718209Z  [32m✓[39m packages/web/src/mod-summary.node.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:11.6941893Z  [32m✓[39m packages/mod-sdk/src/contested.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:11.7615446Z (node:6152) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:11.7616627Z  [32m✓[39m packages/web/src/sound.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:11.7624768Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:12.1518665Z  [32m✓[39m packages/web/src/spawn-runtime.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:12.1850608Z  [32m✓[39m packages/web/src/mod-prefs.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 62[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:12.3030373Z  [32m✓[39m packages/content/src/records.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:12.3205899Z  [32m✓[39m packages/web/src/install-local.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:12.6392534Z  [32m✓[39m packages/core/src/mon/lore-color.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:13.0924415Z  [32m✓[39m packages/web/src/host-electron.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:13.3268273Z  [32m✓[39m packages/core/src/mon/timed.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:13.4429098Z  [32m✓[39m packages/core/src/session/options-custom-wiring.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 762[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:13.6569939Z  [32m✓[39m packages/core/src/obj/tval-registry.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 117[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:14.0018644Z  [32m✓[39m packages/core/src/session/quiver-ammo-wiring.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 180[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:14.0189348Z  [32m✓[39m packages/core/src/game/mon-take-hit-hooks.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:14.1554116Z  [32m✓[39m packages/web/src/item-listing-cmd.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:14.3353201Z  [32m✓[39m packages/core/src/game/gear-label.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:14.4685639Z  [32m✓[39m packages/core/src/version-sync.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:14.4869520Z  [32m✓[39m packages/core/src/mon/make.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 118[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:14.5750520Z  [32m✓[39m packages/core/src/visuals/hallucination.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:14.7465700Z  [32m✓[39m packages/mod-sdk/src/references.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:14.8925650Z  [32m✓[39m packages/core/src/obj/knowledge.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:15.2502733Z  [32m✓[39m packages/cli/src/stat-test.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 118[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:15.3975494Z  [32m✓[39m packages/core/src/color-oracle.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:15.5125352Z (node:6277) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:15.5165013Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:15.5165799Z  [32m✓[39m packages/web/src/main-keymap-resolver.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 80[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:15.6655727Z  [32m✓[39m packages/web/src/mod-worker/staging.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 93[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:15.8545140Z  [32m✓[39m packages/core/src/player/timed.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:15.9448709Z  [32m✓[39m packages/web/src/pwa-navigation.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:16.0861166Z  [32m✓[39m packages/mod-sdk/src/json/contract.test.ts [2m([22m[2m45 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:16.4481600Z  [32m✓[39m packages/web/src/look-state.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:16.7955747Z  [32m✓[39m packages/core/src/game/update-object-knowledge.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 352[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:17.3495892Z  [32m✓[39m packages/core/src/session/inc-check-wiring.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 461[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:17.6755691Z  [32m✓[39m packages/web/src/linoleum-cache.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:18.0545997Z  [32m✓[39m packages/core/src/game/effect-summon.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:18.1866058Z  [32m✓[39m packages/web/src/wield-prompts.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:18.2674885Z  [32m✓[39m packages/core/src/game/object-touch.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 467[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:18.3900315Z (node:6392) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:18.3901596Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:18.4005448Z  [32m✓[39m packages/web/src/safe-launch.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:18.7133058Z  [32m✓[39m packages/core/src/mon/spell-declarations.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 162[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:18.7572591Z  [32m✓[39m packages/core/src/game/describe.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:19.0033339Z  [32m✓[39m packages/core/src/game/player-turn-coercion.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:19.1097213Z  [32m✓[39m packages/core/src/game/digging.upstream.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:19.4321454Z  [32m✓[39m packages/web/src/colors.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:19.5786101Z  [32m✓[39m packages/web/src/engine-bridge/handles.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 156[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:19.6539401Z  [32m✓[39m packages/mod-sdk/src/blueprints.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 69[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:20.3646337Z  [32m✓[39m packages/web/src/mod-consent-drift.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:20.4020986Z (node:6455) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:20.4075188Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:20.4076297Z  [32m✓[39m packages/web/src/mod-plugin-build.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 117[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:21.6429676Z  [32m✓[39m packages/core/src/game/object-inspect.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 881[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:21.6440607Z    [32m✓[39m an item description counts only the bonuses the player has learned [2m(3)[22m
+test	Run pnpm test	2026-11-15T00:23:21.6478899Z      [33m[2m✓[22m[39m describes a weapon the same beside an unlearned +to-dam as beside a plain twin[33m 438[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:21.8092895Z  [32m✓[39m packages/core/src/session/quest-wiring.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 991[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:21.8652325Z  [32m✓[39m packages/core/src/mon/spell.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:21.9801711Z  [32m✓[39m packages/web/src/render-background.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:22.0860243Z  [32m✓[39m packages/core/src/gen/find.upstream.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:22.2495798Z  [32m✓[39m packages/web/src/region-input.node.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:22.6541174Z  [32m✓[39m packages/core/src/obj/randart-vectors.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:22.9395700Z (node:6531) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:22.9453368Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:22.9454596Z  [32m✓[39m packages/web/src/terminal-ground.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:23.1695160Z  [32m✓[39m packages/web/src/mod-zip-source.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:23.3868346Z  [32m✓[39m packages/core/src/obj/chest.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:23.5553409Z  [32m✓[39m packages/core/src/host/io.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:23.6338023Z (node:6546) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:23.6338703Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:23.6430180Z  [32m✓[39m packages/web/src/mod-core-surface.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:23.7654917Z  [32m✓[39m packages/core/src/player/calcs.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:23.9625860Z  [32m✓[39m packages/core/src/game/player-side-vectors.test.ts [2m([22m[2m83 tests[22m[2m)[22m[32m 157[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:24.9218302Z  [32m✓[39m packages/web/src/report-buttons.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 223[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:24.9425173Z (node:6567) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:24.9426358Z  [32m✓[39m packages/web/src/mod-character-store-roundtrip.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 711[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:24.9456923Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:24.9795383Z  [32m✓[39m packages/core/src/session/store-aging-wiring.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 570[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:24.9824934Z    [32m✓[39m the return to town spends the accrued days (store.c:1422) [2m(1)[22m
+test	Run pnpm test	2026-11-15T00:23:24.9835024Z      [33m[2m✓[22m[39m changes the stock and zeroes daycount; a zero-day return does not[33m 460[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:25.1320402Z  [32m✓[39m packages/core/src/player/exp.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:25.1338914Z  [32m✓[39m packages/mod-sdk/src/conflicts.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:25.2421325Z  [32m✓[39m packages/mod-sdk/src/screen-abi-agreement.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:25.3796394Z  [32m✓[39m packages/core/src/mon/desc.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:25.6856109Z  [32m✓[39m packages/web/src/prefs-ui.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:25.7682208Z  [32m✓[39m packages/core/src/game/ignore-cmd.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:25.9210914Z  [32m✓[39m packages/core/src/effects/info.upstream.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:25.9726395Z  [32m✓[39m packages/core/src/game/project-feat-registry.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:26.3125996Z  [32m✓[39m packages/core/src/mod/ids.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:26.7785739Z  [32m✓[39m packages/core/src/session/bolt-blast-event-wiring.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 437[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:27.0815992Z  [32m✓[39m packages/core/src/obj/alloc.upstream.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 619[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:27.0834764Z    [32m✓[39m object/alloc (reference/src/tests/object/alloc.c) [2m(1)[22m
+test	Run pnpm test	2026-11-15T00:23:27.0864579Z      [33m[2m✓[22m[39m get_obj_num_basic[33m 618[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:27.2296311Z  [32m✓[39m packages/desktop/src/mod-origin-merge.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:27.3640076Z  [32m✓[39m packages/core/src/world/chunk.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:27.4375246Z (node:6681) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:27.4435169Z  [32m✓[39m packages/web/src/mod-hooks.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:27.4528179Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:27.5016676Z  [32m✓[39m packages/core/src/color.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:27.7505225Z  [32m✓[39m packages/core/src/session/gen-foils-wiring.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:28.0007280Z  [32m✓[39m packages/core/src/combat/melee.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:28.1446056Z  [32m✓[39m packages/core/src/dice.upstream.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:28.2065687Z  [32m✓[39m packages/core/src/agent/item-view-aware.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 327[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:28.2748036Z  [32m✓[39m packages/core/src/player/options.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:28.5465828Z  [32m✓[39m packages/core/src/game/ui-entry-unknown-combiner.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:28.6904544Z  [32m✓[39m packages/desktop/src/log-file.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:28.8685546Z  [32m✓[39m packages/core/src/obj/randart-build.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:28.8874027Z  [32m✓[39m packages/web/src/manifest-allowlist.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:29.0535858Z  [32m✓[39m packages/core/src/combat/object-bonus-curses.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:29.6185759Z  [32m✓[39m packages/core/src/game/spoil.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 85[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:29.7638564Z  [32m✓[39m packages/mod-sdk/src/api2/api2.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:29.7937814Z  [32m✓[39m packages/web/src/mod-manager/classic-mod-list.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:29.9087267Z  [32m✓[39m packages/core/src/sound/sound-registry.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:29.9338360Z  [32m✓[39m packages/core/src/expression.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:30.1455167Z  [32m✓[39m packages/core/src/combat/brand-slay.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:30.2513109Z  [32m✓[39m packages/mod-sdk/src/engine.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:30.7557146Z  [32m✓[39m packages/core/src/session/known-state-wiring.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 465[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:31.0775719Z  [32m✓[39m packages/core/src/obj/randart-file.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 380[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:31.1030023Z  [32m✓[39m packages/core/src/cmd.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:31.2923505Z  [32m✓[39m packages/core/src/world/fov.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 46[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:31.3644290Z  [32m✓[39m packages/core/src/game/run-safety-stops.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:31.4734328Z  [32m✓[39m packages/core/src/mon/take-hit.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:31.7088911Z  [32m✓[39m packages/core/src/obj/randart-log.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:31.7991291Z (node:6873) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:31.7998302Z  [32m✓[39m packages/web/src/mod-manager/mod-lists.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:31.8034795Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:31.8961368Z  [32m✓[39m packages/core/src/mod/api2-agreement.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:31.9612813Z  [32m✓[39m packages/desktop/src/restore-points.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:32.0316163Z  [32m✓[39m packages/core/src/world/projection.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:32.1520168Z  [32m✓[39m packages/web/src/mod-settings-values.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:32.2315751Z  [32m✓[39m packages/core/src/game/project-obj-vectors.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 46[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:32.3785671Z  [32m✓[39m packages/core/src/game/project-player.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:32.5483805Z  [32m✓[39m packages/web/src/logging.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:32.7105767Z  [32m✓[39m packages/core/src/session/lore-spells.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:33.0099109Z  [32m✓[39m packages/web/src/level-map-region.node.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:33.1875985Z  [32m✓[39m packages/web/src/profiles.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:33.2167626Z  [32m✓[39m packages/core/src/session/mage.upstream.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 188[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:33.3345362Z  [32m✓[39m packages/desktop/src/routes.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:33.7043645Z  [32m✓[39m packages/core/src/game/curse-tick.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:33.8115539Z  [32m✓[39m packages/linoleum/src/prf.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:33.9375650Z  [32m✓[39m packages/desktop/src/bridge-guard.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:34.0297633Z  [32m✓[39m packages/web/src/main-region-input.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 327[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:34.2280742Z  [32m✓[39m packages/core/src/combat/mon-attack.upstream.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:34.3720886Z  [32m✓[39m packages/web/src/lore-file.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:34.5124410Z  [32m✓[39m packages/web/src/crash-screen.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:34.7356314Z  [32m✓[39m packages/web/src/agents/sandbox/worker-runtime.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:34.9166003Z  [32m✓[39m packages/web/src/mod-controller-record.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:35.1058430Z  [32m✓[39m packages/core/src/game/project-obj.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:35.5561839Z  [32m✓[39m packages/web/src/control-surface.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:35.7256737Z  [32m✓[39m packages/core/src/player/history.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:35.7444234Z (node:7041) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:35.7475213Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:35.7513763Z  [32m✓[39m packages/web/src/pack-status.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 194[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:36.0675513Z  [32m✓[39m packages/core/src/game/scheduler.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:36.7057443Z  [32m✓[39m packages/web/src/main-backup-offer.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:36.7898498Z  [32m✓[39m packages/core/src/session/poly-wiring.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 644[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:36.7904246Z    [32m✓[39m polymorph is supplied on a real game (project-mon.c:1216) [2m(2)[22m
+test	Run pnpm test	2026-11-15T00:23:36.7905200Z      [33m[2m✓[22m[39m actually replaces the monster on the grid[33m 424[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:36.9915159Z  [32m✓[39m packages/core/src/mon/spell-registry.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:37.1515569Z  [32m✓[39m packages/core/src/game/steal.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:37.4237385Z  [32m✓[39m packages/core/src/game/inscription-confirm.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:37.7057423Z  [32m✓[39m packages/core/src/player/history-patch.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 81[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:37.8445307Z (node:7099) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:37.8446565Z  [32m✓[39m packages/web/src/pack-records-checked.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 265[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:37.8491757Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:38.0117226Z  [32m✓[39m packages/content/src/parser.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:38.7552135Z  [32m✓[39m packages/core/src/game/poly.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:38.8675727Z  [32m✓[39m packages/core/src/session/wizard-bundles.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 713[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:39.0895606Z  [32m✓[39m packages/core/src/visuals/glyph-table.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:39.1908215Z  [32m✓[39m packages/web/src/external-link.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:40.1075865Z  [32m✓[39m packages/core/src/game/destruction.upstream.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 540[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:40.1124916Z    [32m✓[39m effects/destruction (reference/src/tests/effects/destruction.c) [2m(2)[22m
+test	Run pnpm test	2026-11-15T00:23:40.1155109Z      [33m[2m✓[22m[39m destruction:  object pile simple[33m 319[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:40.2357054Z  [32m✓[39m packages/web/src/run-interrupt.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:40.3367085Z  [32m✓[39m packages/web/src/modding-status.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:40.4475485Z  [32m✓[39m packages/linoleum/src/targets.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:40.5576487Z  [32m✓[39m packages/web/src/aimed-verbs.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:41.3655221Z (node:7205) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:41.3684819Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:41.3754340Z  [32m✓[39m packages/web/src/session-composition.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 415[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:41.3795680Z    [32m✓[39m a session-only pack composes into the running game [2m(2)[22m
+test	Run pnpm test	2026-11-15T00:23:41.3796641Z      [33m[2m✓[22m[39m puts its record in the composed content, and its namespace in the present set[33m 312[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:41.8565776Z  [32m✓[39m packages/core/src/game/project-feat-vectors.test.ts [2m([22m[2m266 tests[22m[2m)[22m[32m 116[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:41.9571713Z  [32m✓[39m packages/core/src/session/town-known-order.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 178[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:42.0605259Z  [32m✓[39m packages/desktop/src/mod-archive.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:42.0779351Z  [32m✓[39m packages/web/src/pack-files.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:42.2063990Z  [32m✓[39m packages/core/src/obj/textblock.upstream.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:42.2210896Z  [32m✓[39m packages/web/src/rest-steal-note.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:42.3401449Z  [32m✓[39m packages/core/src/mon/project-mon-registry.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:42.3716587Z  [32m✓[39m packages/desktop/src/app-origin.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:42.7815837Z  [32m✓[39m packages/web/src/knowledge-read.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:42.9031088Z  [32m✓[39m packages/core/src/game/trap-effect-coverage.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 160[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:42.9459503Z  [32m✓[39m packages/web/src/report-links.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:43.0285723Z  [32m✓[39m packages/core/src/generated/lists.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:43.1578006Z  [32m✓[39m packages/core/src/toolchain.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:43.2389165Z  [32m✓[39m packages/core/src/game/resolved-events.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:43.3502935Z  [32m✓[39m packages/web/src/autoplayer-banner.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:43.4836404Z  [32m✓[39m packages/web/src/gamepad-analog.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:43.5665716Z  [32m✓[39m packages/web/src/mod-read-runtime.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:43.6708975Z  [32m✓[39m packages/web/src/mod-state-document.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:43.7141573Z  [32m✓[39m packages/web/src/prompt-view.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:43.8427873Z  [32m✓[39m packages/core/src/mon/knowledge-groups.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:43.9361920Z  [32m✓[39m packages/core/src/effects/effect-info-vectors.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:43.9886193Z  [32m✓[39m packages/web/src/report-watch.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:44.1086690Z  [32m✓[39m packages/desktop/src/legacy-origins.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:44.1686318Z  [32m✓[39m packages/web/src/mod-shipped-manifests.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:44.9380534Z (node:7400) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:44.9383059Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:44.9389103Z  [32m✓[39m packages/web/src/pref-documents.modprefs.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 105[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:45.5835704Z  [32m✓[39m packages/linoleum/src/authoring.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 1290[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:45.9855755Z  [32m✓[39m packages/core/src/game/walk-blocked.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:46.9245448Z (node:7421) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:46.9261363Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:46.9262342Z  [32m✓[39m packages/web/src/restored-art.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 224[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:47.0798740Z  [32m✓[39m packages/core/src/release-notes.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:47.2025517Z  [32m✓[39m packages/cli/src/spoil.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 1291[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:47.2029579Z    [32m✓[39m renderSpoiler(all) [2m(2)[22m
+test	Run pnpm test	2026-11-15T00:23:47.2030185Z      [33m[2m✓[22m[39m concatenates the four sections in order[33m 586[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:47.2030902Z      [33m[2m✓[22m[39m selects a single kind[33m 320[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:47.4400545Z  [32m✓[39m packages/web/src/mod-core-guaranteed.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:47.5591322Z  [32m✓[39m packages/web/src/autoplayer-keys.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:48.0890432Z  [32m✓[39m packages/web/src/subwindow-auto-layout.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 143[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:48.1201949Z (node:7447) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:48.1208450Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:48.1221529Z  [32m✓[39m packages/web/src/mod-added-record.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 251[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:48.2571085Z  [32m✓[39m packages/web/src/settings-store.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:48.3890917Z  [32m✓[39m packages/web/src/storage-page.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:48.5178585Z  [32m✓[39m packages/core/src/combat/hit.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:49.1145675Z  [32m✓[39m packages/web/src/chrome-theme.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:49.2258815Z  [32m✓[39m packages/core/src/game/earthquake.upstream.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 329[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:49.8615886Z  [32m✓[39m packages/core/src/session/boot.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 410[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:49.9938255Z  [32m✓[39m packages/core/src/obj/desc-localized.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:50.1481445Z  [32m✓[39m packages/web/src/mod-authoring-surface.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:50.2236392Z  [32m✓[39m packages/web/src/panel-cues.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:50.3455001Z  [32m✓[39m packages/web/src/install-choice.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:50.4789395Z  [32m✓[39m packages/core/src/visuals/object-glyph.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:50.5010891Z  [32m✓[39m packages/core/src/game/effect-wonder.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:50.6049240Z  [32m✓[39m packages/core/src/visuals/map-text.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:50.6265653Z  [32m✓[39m packages/web/src/keymap.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:51.2760132Z  [32m✓[39m packages/web/src/mod-folder-row.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:51.4536827Z  [32m✓[39m packages/core/src/player/take-hit.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:51.9326768Z  [32m✓[39m packages/web/src/agents/sandbox/host.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:52.0435034Z  [32m✓[39m packages/web/src/profile-scope.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:52.1844628Z  [32m✓[39m packages/web/src/mod-consent.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:52.3611800Z  [32m✓[39m packages/cli/src/deferral-report.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 69[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:52.4758504Z  [32m✓[39m packages/cli/src/parity.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 1477[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:52.4759555Z    [32m✓[39m statistical parity harness [2m(4)[22m
+test	Run pnpm test	2026-11-15T00:23:52.4760377Z      [33m[2m✓[22m[39m reproduces the committed baseline exactly (self-regression guard)[33m 710[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:52.6915687Z  [32m✓[39m packages/core/src/player/abilities.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:52.9762598Z  [32m✓[39m packages/web/src/ignore-menus-everseen.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:53.0257578Z  [32m✓[39m packages/core/src/game/mon-list.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:53.1102203Z  [32m✓[39m packages/core/src/obj/ostack-list.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:53.2242841Z  [32m✓[39m packages/web/src/display-ownership.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:53.6525700Z  [32m✓[39m packages/web/src/term-repaint-hook.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:54.4995915Z  [32m✓[39m packages/web/src/subwindow-drag-cancel.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 74[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:54.8657893Z  [32m✓[39m packages/core/src/game/effect-identify.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:55.5755838Z  [32m✓[39m packages/core/src/session/ignore-known-wiring.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 295[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:55.8990438Z  [32m✓[39m packages/core/src/effects/wired-coverage.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:56.0370207Z  [32m✓[39m packages/desktop/src/lab-github-auth.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:56.1646816Z  [32m✓[39m packages/web/src/projection-animation-safety.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:56.3579755Z  [32m✓[39m packages/web/src/mod-updates.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:56.4701642Z  [32m✓[39m packages/web/src/key-repeat.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:56.5811921Z  [32m✓[39m packages/core/src/expression.upstream.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:56.8440103Z  [32m✓[39m packages/core/src/game/dump-level.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:56.9711371Z  [32m✓[39m packages/core/src/mod/record-keys.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:57.3925560Z (node:7760) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:23:57.3926798Z  [32m✓[39m packages/web/src/mod-manager/classic-look.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:57.3944776Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:23:57.5039868Z  [32m✓[39m packages/web/src/main-playercan.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:57.6511801Z  [32m✓[39m packages/core/src/obj/randart-fake-agreement.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:57.7825722Z  [32m✓[39m packages/web/src/mod-command-verb.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:57.9529335Z  [32m✓[39m packages/web/src/mod-curated-released.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:58.2498935Z  [32m✓[39m packages/core/src/game/set-feat-memory.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:58.4346398Z  [32m✓[39m packages/core/src/store/price.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:58.6076089Z  [32m✓[39m packages/core/src/mon/summon.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:58.8126122Z  [32m✓[39m packages/core/src/obj/artifact-fake.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:59.0326333Z  [32m✓[39m packages/core/src/obj/rune-vectors.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:59.2305245Z  [32m✓[39m packages/core/src/obj/tval-vectors.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:59.3596256Z  [32m✓[39m packages/core/src/save/buffer.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:59.5561732Z  [32m✓[39m packages/core/src/mon/predicate.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:23:59.6985799Z  [32m✓[39m packages/core/src/world/flow.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:00.0194557Z  [32m✓[39m packages/core/src/game/effect-env.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:00.1595611Z  [32m✓[39m packages/core/src/mod/vocabulary.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:00.5681185Z  [32m✓[39m packages/web/src/pref-documents.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:00.6911865Z  [32m✓[39m packages/core/src/score/display.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:00.7999763Z  [32m✓[39m packages/mod-sdk/src/plugin-abi-agreement.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:01.1786165Z  [32m✓[39m packages/web/src/agents/sandbox/serialize.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:01.8040613Z  [32m✓[39m packages/mod-sdk/src/mod-check.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 492[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:02.7157570Z (node:7944) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:24:02.7159442Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:24:02.7165438Z  [32m✓[39m packages/web/src/input-flush-event.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 158[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:02.8633289Z  [32m✓[39m packages/linoleum/src/md5.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:02.9977343Z  [32m✓[39m packages/core/src/player/shape-lore.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:03.1217942Z  [32m✓[39m packages/core/src/msg.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:03.3717367Z  [32m✓[39m packages/core/src/obj/desc-vectors.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:03.4935576Z  [32m✓[39m packages/core/src/save/compress.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:03.6286269Z  [32m✓[39m packages/web/src/caret-input.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:03.7746215Z  [32m✓[39m packages/web/src/menu-registry.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:04.2887426Z  [32m✓[39m packages/web/src/display-frame.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:04.4591698Z  [32m✓[39m packages/core/src/world/scatter.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:04.7335693Z  [32m✓[39m packages/core/src/game/effect-probe.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:04.8733228Z  [32m✓[39m packages/core/src/visuals/grafmode.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:05.0234303Z  [32m✓[39m packages/core/src/world/view.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:05.7586251Z (node:8036) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:24:05.7605343Z  [32m✓[39m packages/web/src/title-runtime.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:05.7624609Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:24:05.8924054Z  [32m✓[39m packages/core/src/save/description.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:06.2532956Z  [32m✓[39m packages/core/src/game/history.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:07.2101162Z (node:8057) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:24:07.2110290Z  [32m✓[39m packages/web/src/pack-world-chest-binding.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 331[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:07.2111466Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:24:07.2112082Z    [32m✓[39m composed chest_trap and world records reach running game paths [2m(1)[22m
+test	Run pnpm test	2026-11-15T00:24:07.2145877Z      [33m[2m✓[22m[39m fires the patched chest text and follows the patched Town down-link[33m 329[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:07.5426256Z  [32m✓[39m packages/core/src/store/mass-produce-vectors.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:07.6785899Z  [32m✓[39m packages/core/src/player/best-digger.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:07.7985572Z  [32m✓[39m packages/web/src/command-lookup.upstream.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:08.7430234Z (node:8090) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:24:08.7439870Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:24:08.7444352Z  [32m✓[39m packages/web/src/mod-monster-spell.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 190[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:09.1896087Z  [32m✓[39m packages/web/src/ui-colors.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:09.3451601Z  [32m✓[39m packages/core/src/obj/parse-rand.upstream.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:09.6747109Z  [32m✓[39m packages/core/src/game/mon-status-messages.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:10.2687406Z  [32m✓[39m packages/core/src/session/light-view-refresh.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 188[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:11.5986251Z  [32m✓[39m packages/cli/src/wiz-stats.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 778[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:12.5419020Z  [32m✓[39m packages/web/src/stored-rename.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 449[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:12.5455383Z    [32m✓[39m renameStoredSave [2m(2)[22m
+test	Run pnpm test	2026-11-15T00:24:12.5456225Z      [33m[2m✓[22m[39m rewrites only the character's name inside the stored save[33m 324[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:13.0127458Z  [32m✓[39m packages/web/src/save-recovery.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:13.1616332Z  [32m✓[39m packages/desktop/src/blank-window.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:13.3332649Z  [32m✓[39m packages/core/src/player/playerstat.upstream.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:13.4502105Z  [32m✓[39m packages/web/src/store-modal-mode.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:13.7661018Z  [32m✓[39m packages/core/src/game/thrust.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:13.9114198Z  [32m✓[39m packages/web/src/linoleum-precache.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:14.0685817Z  [32m✓[39m packages/core/src/obj/artifact-known.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:14.1919394Z  [32m✓[39m packages/web/src/game-update-pass.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:14.5278048Z  [32m✓[39m packages/core/src/combat/blow-vectors.test.ts [2m([22m[2m482 tests[22m[2m)[22m[32m 59[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:14.6648387Z  [32m✓[39m packages/core/src/save/integrity.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:14.8376929Z  [32m✓[39m packages/desktop/src/net-guard.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:14.9857105Z  [32m✓[39m packages/core/src/combat/attack.upstream.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:15.1034118Z  [32m✓[39m packages/core/src/loc.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:15.2102287Z  [32m✓[39m packages/linoleum/src/naming.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:15.8789169Z (node:8241) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:24:15.8790168Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:24:17.3756676Z  [32m✓[39m packages/web/src/birth-continuation.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 1485[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:17.3757502Z    [32m✓[39m birth reload seed provenance [2m(5)[22m
+test	Run pnpm test	2026-11-15T00:24:17.3758244Z      [33m[2m✓[22m[39m keeps original seed 0 and the advanced stream when the next page draws another seed[33m 527[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:17.3759150Z      [33m[2m✓[22m[39m keeps original seed 4242 and the advanced stream when the next page draws another seed[33m 317[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:17.5127542Z  [32m✓[39m packages/mod-sdk/src/restored-art.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:18.0463495Z  [32m✓[39m packages/core/src/session/see-ore.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 208[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:18.1747228Z  [32m✓[39m packages/core/src/events.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:18.3548297Z (node:8269) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:24:18.3549358Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:24:18.3556503Z  [32m✓[39m packages/web/src/macro-runtime.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:18.4835823Z  [32m✓[39m packages/desktop/src/launch-query.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:18.6485951Z  [32m✓[39m packages/core/src/player/spell-afraid.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:19.1096213Z  [32m✓[39m packages/core/src/game/effect-exp-seam.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:19.2393723Z  [32m✓[39m packages/web/src/mod-pump.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:19.4121769Z  [32m✓[39m packages/web/src/wm-settings.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:19.5627204Z  [32m✓[39m packages/core/src/generated/codegen-drift.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 50[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:19.6598007Z  [32m✓[39m packages/core/src/test-collection.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:19.7716468Z  [32m✓[39m packages/desktop/src/agent-mode.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:19.9031891Z  [32m✓[39m packages/web/src/tile-conversion-indicator.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:20.6129326Z (node:8347) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:24:20.6130749Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:24:20.6235231Z  [32m✓[39m packages/web/src/player-command-event.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:21.3595787Z  [32m✓[39m packages/web/src/mod-host-abi.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:21.5168527Z  [32m✓[39m packages/core/src/constants.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:21.9526056Z  [32m✓[39m packages/web/src/mod-core-usage.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:22.1625905Z  [32m✓[39m packages/web/src/font-16x24.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 85[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:22.3672316Z  [32m✓[39m packages/web/src/orphan-saves.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:22.4745346Z  [32m✓[39m packages/cli/src/call-census.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:22.5280012Z  [32m✓[39m packages/web/src/mod-game-session.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:23.3459504Z  [32m✓[39m packages/cli/src/main-stats-wiz.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 344[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:23.3985508Z (node:8397) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+test	Run pnpm test	2026-11-15T00:24:23.3986656Z (Use `node --trace-warnings ...` to show where the warning was created)
+test	Run pnpm test	2026-11-15T00:24:23.4063692Z  [32m✓[39m packages/web/src/mod-tval.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 216[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:23.5253984Z  [32m✓[39m packages/core/src/game/energy.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:23.5698494Z  [32m✓[39m packages/web/src/lab-hook.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:23.7328136Z  [32m✓[39m packages/core/src/player/history.upstream.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 13[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:24.0342664Z  [32m✓[39m packages/web/src/subwindow-shell-filter.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:24.1622818Z  [32m✓[39m packages/web/src/tile-mode-state.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:24.1896589Z  [32m✓[39m packages/mod-sdk/src/json/subwindow-floats.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:24.3271333Z  [32m✓[39m packages/mod-sdk/src/worker-capabilities.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:24.4345919Z  [32m✓[39m packages/core/src/obj/randname.upstream.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 17[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:24.4685068Z  [32m✓[39m packages/web/src/map-margin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:24.5756025Z  [32m✓[39m packages/mod-sdk/src/manifest.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:24.5945412Z  [32m✓[39m packages/web/src/mod-list.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:24.7556157Z  [32m✓[39m packages/core/src/player/birth.upstream.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:24.8981233Z  [32m✓[39m packages/core/src/player/player.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:25.0926667Z  [32m✓[39m packages/web/src/chrome-notice.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:25.1826800Z  [32m✓[39m packages/core/src/game/pathfind.upstream.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:25.2426197Z  [32m✓[39m packages/web/src/input-queue.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:25.3020024Z  [32m✓[39m packages/core/src/guard.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:25.3999337Z  [32m✓[39m packages/web/src/mod-checks-parity.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:25.5145606Z  [32m✓[39m packages/web/src/gamepad-wheel-geometry.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:25.6360367Z  [32m✓[39m packages/web/src/store-discount-registration.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:25.7393793Z  [32m✓[39m packages/core/src/world/topology.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:25.7397991Z  [32m✓[39m packages/web/src/subwindow-css.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:25.8900196Z  [32m✓[39m packages/web/src/boot-save-gate.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:25.9376050Z  [32m✓[39m packages/desktop/src/update-guard.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:26.0047046Z  [32m✓[39m packages/web/src/presentation-phase.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:26.0590434Z  [32m✓[39m packages/web/src/lab-trust.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:24:26.3627604Z  [32m✓[39m packages/core/src/index.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:25:26.1165130Z  [32m✓[39m packages/core/src/gen/glyph-vectors.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+test	Run pnpm test	2026-11-15T00:25:26.1350804Z 
+test	Run pnpm test	2026-11-15T00:25:26.1352224Z [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 2 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+test	Run pnpm test	2026-11-15T00:25:26.1352491Z 
+test	Run pnpm test	2026-11-15T00:25:26.1354820Z [41m[1m FAIL [22m[49m packages/core/src/agent/loadout.test.ts[2m > [22ma loadout read needs the read for every place it looks[2m > [22manswers a store reference once state:stores.read is granted
+test	Run pnpm test	2026-11-15T00:25:26.1357982Z [31m[1mAssertionError[22m: expected 0 to be greater than 0[39m
+test	Run pnpm test	2026-11-15T00:25:26.1358809Z [36m [2m❯[22m packages/core/src/agent/loadout.test.ts:[2m583:65[22m[39m
+test	Run pnpm test	2026-11-15T00:25:26.1463281Z     [90m581|[39m       }
+test	Run pnpm test	2026-11-15T00:25:26.1464031Z     [90m582|[39m       expect(view.simulateLoadout!({ carry: [{ item: refs[arm] }] })!.…
+test	Run pnpm test	2026-11-15T00:25:26.1464643Z     [90m583|[39m       expect(view.compareLoadoutSlots!(refs[arm]).slots.length).toBeGr…
+test	Run pnpm test	2026-11-15T00:25:26.1465188Z     [90m   |[39m                                                                 [31m^[39m
+test	Run pnpm test	2026-11-15T00:25:26.1465553Z     [90m584|[39m     })[33m;[39m
+test	Run pnpm test	2026-11-15T00:25:26.1465855Z     [90m585|[39m   }
+test	Run pnpm test	2026-11-15T00:25:26.1465987Z 
+test	Run pnpm test	2026-11-15T00:25:26.1466615Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯[22m[39m
+test	Run pnpm test	2026-11-15T00:25:26.1466846Z 
+test	Run pnpm test	2026-11-15T00:25:26.1467738Z [41m[1m FAIL [22m[49m packages/core/src/agent/loadout.test.ts[2m > [22ma loadout read needs the read for every place it looks[2m > [22mlets state:*.read cover every arm, and a trusted view needs no grant
+test	Run pnpm test	2026-11-15T00:25:26.1468568Z [31m[1mAssertionError[22m: expected 0 to be greater than 0[39m
+test	Run pnpm test	2026-11-15T00:25:26.1469112Z [36m [2m❯[22m packages/core/src/agent/loadout.test.ts:[2m613:98[22m[39m
+test	Run pnpm test	2026-11-15T00:25:26.1470567Z     [90m611|[39m     ]) {
+test	Run pnpm test	2026-11-15T00:25:26.1471222Z     [90m612|[39m       [34mexpect[39m(view[33m.[39m[34msimulateLoadout[39m[33m![39m(change))[33m.[39mnot[33m.[39m[34mtoBeNull[39m()[33m;[39m
+test	Run pnpm test	2026-11-15T00:25:26.1471936Z     [90m613|[39m       for (const ref of Object.values(refs)) expect(view.compareLoadou…
+test	Run pnpm test	2026-11-15T00:25:26.1472536Z     [90m   |[39m                                                                                                  [31m^[39m
+test	Run pnpm test	2026-11-15T00:25:26.1472900Z     [90m614|[39m     }
+test	Run pnpm test	2026-11-15T00:25:26.1473338Z     [90m615|[39m     /* An engine object can only come from a trusted caller: any capab…
+test	Run pnpm test	2026-11-15T00:25:26.1473616Z 
+test	Run pnpm test	2026-11-15T00:25:26.1473995Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯[22m[39m
+test	Run pnpm test	2026-11-15T00:25:26.1474191Z 
+test	Run pnpm test	2026-11-15T00:25:26.1474359Z 
+test	Run pnpm test	2026-11-15T00:25:26.1535449Z [2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m731 passed[39m[22m[2m | [22m[33m3 skipped[39m[90m (735)[39m
+test	Run pnpm test	2026-11-15T00:25:26.1598782Z [2m      Tests [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m15073 passed[39m[22m[2m | [22m[33m12 skipped[39m[90m (15087)[39m
+test	Run pnpm test	2026-11-15T00:25:26.1599474Z [2m   Start at [22m 00:19:51
+test	Run pnpm test	2026-11-15T00:25:26.1609268Z [2m   Duration [22m 334.34s[2m (import 60%, tests 37%, transform 3%, environment 1%)[22m
+test	Run pnpm test	2026-11-15T00:25:26.1626580Z 
+test	Run pnpm test	2026-11-15T00:25:26.1627145Z [2m     Import [22m [33m1971 modules were evaluated 13102 times[39m[2m · 480.71s total, 60% of tracked time[22m
+test	Run pnpm test	2026-11-15T00:25:26.1628113Z [2m            [22m [2m~114.42s faster with [22m[33misolate: false[39m[2m — shared modules are evaluated once per worker instead of once per file[22m
+test	Run pnpm test	2026-11-15T00:25:26.1628967Z [2m            [22m [2mlearn more: https://vitest.dev/guide/improving-performance#test-isolation[22m
+test	Run pnpm test	2026-11-15T00:25:26.1629277Z 
+test	Run pnpm test	2026-11-15T00:25:26.1740316Z 
+test	Run pnpm test	2026-11-15T00:25:26.1762377Z ##[error]AssertionError: expected 0 to be greater than 0
+test	Run pnpm test	 ❯ packages/core/src/agent/loadout.test.ts:583:65
+test	Run pnpm test	
+test	Run pnpm test	
+test	Run pnpm test	2026-11-15T00:25:26.1767977Z 
+test	Run pnpm test	2026-11-15T00:25:26.1768977Z ##[error]AssertionError: expected 0 to be greater than 0
+test	Run pnpm test	 ❯ packages/core/src/agent/loadout.test.ts:613:98
+test	Run pnpm test	
+test	Run pnpm test	
+test	Run pnpm test	2026-11-15T00:25:26.2531972Z [ELIFECYCLE] Test failed. See above for more details.
+test	Run pnpm test	2026-11-15T00:25:26.2555849Z ##[error]Process completed with exit code 1.
