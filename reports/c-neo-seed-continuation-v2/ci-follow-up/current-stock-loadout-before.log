@@ -1,0 +1,40 @@
+
+ RUN  v5.1.0 /workspace/work/seed-alignment/engine-current
+
+ ❯ packages/core/src/agent/loadout.test.ts (42 tests | 2 failed) 4420ms
+   ❯ a loadout read needs the read for every place it looks (8)
+     × answers a store reference once state:stores.read is granted 99ms
+     × lets state:*.read cover every arm, and a trusted view needs no grant 52ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/core/src/agent/loadout.test.ts > a loadout read needs the read for every place it looks > answers a store reference once state:stores.read is granted
+AssertionError: expected 0 to be greater than 0
+ ❯ packages/core/src/agent/loadout.test.ts:583:65
+    581|       }
+    582|       expect(view.simulateLoadout!({ carry: [{ item: refs[arm] }] })!.…
+    583|       expect(view.compareLoadoutSlots!(refs[arm]).slots.length).toBeGr…
+       |                                                                 ^
+    584|     });
+    585|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  packages/core/src/agent/loadout.test.ts > a loadout read needs the read for every place it looks > lets state:*.read cover every arm, and a trusted view needs no grant
+AssertionError: expected 0 to be greater than 0
+ ❯ packages/core/src/agent/loadout.test.ts:613:98
+    611|     ]) {
+    612|       expect(view.simulateLoadout!(change)).not.toBeNull();
+    613|       for (const ref of Object.values(refs)) expect(view.compareLoadou…
+       |                                                                                                  ^
+    614|     }
+    615|     /* An engine object can only come from a trusted caller: any capab…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 40 passed (42)
+   Start at  01:27:38
+   Duration  6.30s (tests 73%, transform 14%, import 13%)
+

@@ -1,0 +1,62 @@
+{
+  "baseRefName": "master",
+  "headRefOid": "916ad0db1312b2037177f9f94f3486f1fac93207",
+  "mergeCommit": {
+    "oid": "8de069a4c14f14867316dcc61f2583019dc640e9"
+  },
+  "mergedAt": "2026-11-15T00:54:47Z",
+  "state": "MERGED",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-15T00:29:31Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/diegoami/neo-angband-tracker/actions/runs/43658400833/job/132642026064",
+      "name": "scope",
+      "startedAt": "2026-11-15T00:29:20Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-15T00:29:29Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/diegoami/neo-angband-tracker/actions/runs/43658400831/job/132642025353",
+      "name": "session",
+      "startedAt": "2026-11-15T00:29:20Z",
+      "status": "COMPLETED",
+      "workflowName": "fork-session-docs"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-15T00:29:31Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/diegoami/neo-angband-tracker/actions/runs/43658400833/job/132642089111",
+      "name": "doc-contracts",
+      "startedAt": "2026-11-15T00:29:32Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-15T00:38:25Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/diegoami/neo-angband-tracker/actions/runs/43658400833/job/132642087689",
+      "name": "test",
+      "startedAt": "2026-11-15T00:29:34Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-15T00:30:46Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/diegoami/neo-angband-tracker/actions/runs/43658400833/job/132642087537",
+      "name": "Play the game",
+      "startedAt": "2026-11-15T00:29:34Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    }
+  ],
+  "url": "https://github.com/diegoami/neo-angband-tracker/pull/638"
+}

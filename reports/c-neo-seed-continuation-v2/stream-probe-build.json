@@ -1,0 +1,202 @@
+{
+  "schema": "neo-original-build@1",
+  "alignmentProbes": true,
+  "exactTickCap": true,
+  "cSeedStartup": true,
+  "versions": {
+    "core": "1.23.0-beta.3",
+    "content": "1.23.0-beta.3",
+    "mod-sdk": "1.23.0-beta.3"
+  },
+  "appliedPatches": [],
+  "lockSha256": "b2bf577d19eeb97cd94a9a3f106d09025f2416e9b74a195c0eaf4bff260d9bb8",
+  "engine": {
+    "repository": "neostryder/neo-angband",
+    "commit": "18ee52eaa550aef7a2d10c822f6669cab57c6e7d",
+    "dirty": true,
+    "version": "1.23.0-beta.3"
+  },
+  "borg": {
+    "repository": "diegoami/neo-angband-borg-mod-tracker",
+    "commit": "9c17cb0c582fe129008899491372787e91abdade",
+    "dirty": false,
+    "manifest": {
+      "format": "neo-angband/mod/manifest",
+      "schemaVersion": 2,
+      "data": {
+        "id": "borg",
+        "name": "Borg",
+        "version": "1.4.0-beta.5",
+        "api": ">=2.0.0 <3.0.0",
+        "runtime": "in-process",
+        "engine": {
+          "range": ">=1.23.0-beta.1",
+          "because": "The first Neo Angband release with mod API 2, the truth domain the Borg reads perceived monsters through, and the loadout simulation."
+        },
+        "dependencies": {
+          "required": {
+            "core": {
+              "range": "*"
+            }
+          }
+        },
+        "capabilities": [
+          "command:add",
+          "state:player.read",
+          "state:monsters.read",
+          "state:map.read",
+          "state:inventory.read",
+          "state:floor.read",
+          "state:stores.read",
+          "state:spells.read",
+          "state:turn.read",
+          "state:monsters-actual.read",
+          "state:interaction.read",
+          "input:intent",
+          "input:prompt.reply",
+          "event:message",
+          "ui:title",
+          "profiles:manage",
+          "saves:manage"
+        ],
+        "description": "Angband's automatic player, ported from the borg in Angband 4.2.6. It plays through the same commands you use, over the frozen agent API, so it is an ordinary mod with no privileged code inside the engine.\n\nInstalling and enabling it does not give it your character. Press Ctrl-Z in play to hand over the keyboard; it warns you and asks you to confirm first. It is deterministic and draws only on its own seeded random number generator, so your save is not flagged as non-reproducible. Only one autoplayer can hold the keyboard at a time.",
+        "author": "neostryder",
+        "license": "GPL-2.0-only",
+        "repository": "https://github.com/neostryder/neo-angband-mod-borg",
+        "shape": "plugin",
+        "facets": [
+          "plugin"
+        ],
+        "rules": [
+          {
+            "flag": "borg.playsRisky",
+            "title": "Play risky",
+            "description": "borg_plays_risky. Skip the early hit-point and character-level gates that hold the Borg above a depth, wait longer before drinking a cure, and back away later in a losing fight. It reaches deeper sooner and dies more.",
+            "default": false,
+            "requiresReload": true
+          },
+          {
+            "flag": "borg.worshipsDamage",
+            "title": "Value melee and missile damage",
+            "description": "borg_worships_damage. Add weight to weapon and bow damage when the Borg scores a set of gear, so a trade that costs armour for damage looks better than it otherwise would.",
+            "default": false,
+            "requiresReload": true
+          },
+          {
+            "flag": "borg.worshipsSpeed",
+            "title": "Value speed",
+            "description": "borg_worships_speed. Add weight to a speed bonus when scoring gear.",
+            "default": false,
+            "requiresReload": true
+          },
+          {
+            "flag": "borg.worshipsHp",
+            "title": "Value hit points",
+            "description": "borg_worships_hp. Add weight to constitution and hit points when scoring gear.",
+            "default": false,
+            "requiresReload": true
+          },
+          {
+            "flag": "borg.worshipsMana",
+            "title": "Value spell points",
+            "description": "borg_worships_mana. Add weight to spell points when scoring gear. Has no effect on a warrior, who has no spell points.",
+            "default": false,
+            "requiresReload": true
+          },
+          {
+            "flag": "borg.worshipsAc",
+            "title": "Value armour class",
+            "description": "borg_worships_ac. Add weight to armour class when scoring gear.",
+            "default": false,
+            "requiresReload": true
+          },
+          {
+            "flag": "borg.worshipsGold",
+            "title": "Value gold",
+            "description": "borg_worships_gold. Sell harder, walk down rather than pay for a recall, and put off the first deep recall. It buys better equipment sooner and spends longer in town doing it. Upstream stops applying this past character level 20.",
+            "default": false,
+            "requiresReload": true
+          },
+          {
+            "flag": "borg.selfScum",
+            "title": "Save up for something it wants",
+            "description": "borg_self_scum. Let the Borg set itself a gold target and work in town until it can afford one item it has decided it needs. It only does this from character level 10, with a permanent light source and food in the pack.",
+            "default": true,
+            "requiresReload": true
+          },
+          {
+            "flag": "borg.munchkinStart",
+            "title": "Skimp on stockpiles for an early munchkin run",
+            "description": "borg_munchkin_start. Below character level borg_munchkin_level (12), value stockpiles of resist poison and speed potions, phase door, word of recall and the deeper cures less than it normally would, on the assumption that a young character is cashing out early. Upstream, this setting also makes the Borg stair-scum for loot to sell at this stage. That part is not ported, so here it changes what the Borg carries and leaves how it dives alone.",
+            "default": false,
+            "requiresReload": true
+          }
+        ]
+      }
+    }
+  },
+  "bundleSha256": "6b2fabfd2f2ed59b6de374634c73cd2ce7dbb8fac3dc4bd63a0c9502a3a1254c",
+  "packSha256": "40b5259fb659cc2305c80a96fb5da9a374286ca3d22f163f0624db829045f76f",
+  "officialHostModules": {
+    "mod-api2-host.ts": "08b149478f0502960e45914ffa8a1b7aad092366d49156ff8226b5a13434bbed",
+    "intent-gate.ts": "9c523c6c762799dfeeab8df5e34a5ec66d15a1c129aaa1ae82a0f2a622d15523",
+    "mod-context.ts": "fd560bfaf70dcc89172b56d852942c3ebcd57d8b41918ee2a0cef5efa2b46a42",
+    "input-snapshot.ts": "278c3def59931e638561607f0820ab62f72517459ca48afd108aa17e8a820a2b"
+  },
+  "contentFiles": {
+    "activation.json": "1b85183af3e9643e68e2bc81171360115167abead129c6d3b10932121b2d7161",
+    "artifact.json": "287b454c3559ca1aee26a10025c303c38ecf804d9c6895edec5d3e6aba79018e",
+    "blow_effects.json": "71074240a5a0cbfcf7870ebc6b7b405a20cd08f2d2cbf2e3bad362c3a80125ed",
+    "blow_methods.json": "644df7eadee421ed4195da2c9503c911aa995e6b2f5d74eb18fcf4b1300af1a5",
+    "body.json": "240cee26ed4a8fb655df443f4d33c91a6063558ea592d2192a3f90f1aadbee30",
+    "brand.json": "43d9e6375d786f281248564f235b0cda6839eaa69b5e23418494f0ce9c2fe514",
+    "chest_trap.json": "ebad0fc0c61771640dc4f67231c20c9c60778a2c25ad8e083787ac2c752ab7eb",
+    "class.json": "83270910108bdf526abef0e52480b42efbd62c91f62af57741176fc50107d63e",
+    "constants.json": "412f05001d3682561f190e3d4615b404be16af96a2989618a502f3b4c192a78e",
+    "curse.json": "1cafb8c0624d1ec9584a69f3dbc7cf57ac03817e67a032e17f41c28452d9b406",
+    "dungeon_profile.json": "d054d40cc8c32308ba6d00d175f7bca24d90d036eb5469d44009aee2abc67c23",
+    "ego_item.json": "818ad205a67e74e0f5f6dc954112159b64584ef733bc8d1244bed1b458608344",
+    "flavor.json": "a0439fe7f2cf69b732418f113f9d72b077af3a7052bbf105a4da2c26581f8e0e",
+    "hints.json": "f5be71348aca1181cbba1d5c058d5712863e2b7ad8ed299f295f3850cf4f750b",
+    "history.json": "fbf4d2ff9f3e70ba1804f40c1e1840647a687f5471a47465d9a6f7797126bd59",
+    "manifest.json": "50d3d57cc7ada2bc8a05fffdb03f3e8ef74d8c61ad44d1a555e899cf85d06d71",
+    "monster.json": "cb67fa54dffb6b5adc866732a224e5665a6306287fc0cb2cc3f8729658a91d2a",
+    "monster_base.json": "516067dfb99b90704e1d6e9b08477de01d2363b324059fc7b6a27634a2914e21",
+    "monster_spell.json": "b630de13ac7a3968f585843ddc42893a2b7149d82090a74828b15f3c14a8fba8",
+    "names.json": "ba36980a979ba1de4447daa4e287d7f2a8997605e352d2966ce146ef2a17966e",
+    "object.json": "6b14d384ce24ecc11e5c082d456e503512a072616663ab74105d1762b213479e",
+    "object_base.json": "7a6cda03beb743f0d5cd7ce65551b09bd1ca567fccb804150311c76524b9c3c6",
+    "object_property.json": "6ee4b169034aa268920ab651ad1685c1bd67f462d67bf3306ee559e95dabc775",
+    "p_race.json": "bac10e8d12385f9d622b7518268ae3e7bae87f439b3c4dc629771824498cd8b4",
+    "pain.json": "7295e9bead6806883f7f059affb78b335ec6b3ec28745a84ae299e0144d44ee7",
+    "pit.json": "befdc357fc3e5f822d40993e69f522e03001ff3a96beef389e447f9a0a761493",
+    "player_property.json": "acd74a7df28af525f48858ad66f054a30b6f7d9882d7efd1b9834b011975176f",
+    "player_timed.json": "50741d84079da0688edf0bad2d321ae1fc020c5defe4fbd165c93c0c14e80b61",
+    "projection.json": "8305211d07c25fec195f52d8678783cd75208373c2e6824306aa028ff274b1ed",
+    "quest.json": "5b9665e3d7cada847362fe7a32e1adb0835059ce4d00cd26f1b85886c3d0af20",
+    "realm.json": "24532cebd7ded09e4d1312f098538e20833ed1fe29fb16b3f111cffc132e99e1",
+    "room_template.json": "5bb475a1691b4d8553edf085fb3b0ca5db499ee78d494ff13b0a5eec761ed12e",
+    "shape.json": "fe394ac6621bba98fb5d6e2ae03dd8042981fe19a19a36a85102aec2144d4484",
+    "slay.json": "ffe2811a4172801fa90ffc21d93e5e3c71418471a1d7f5a78d7d2131dc1a082b",
+    "store.json": "3412fd0c7b006b4dc7c10699377a143e65c42369d704e38b668f51de835e0d5d",
+    "summon.json": "c980f2a1a4413c8946e8126f78c7e70831cc5c9d7d30f220d7d26a5e404dbdff",
+    "terrain.json": "3746911899623f4b9e8764306bd86998be36a45c948784d3e4b53e182619416f",
+    "trap.json": "9c7c0ffaad842a9a46c7bb05b9636e6a38b97c3773109d306ece50bf37b61ac9",
+    "ui_entry.json": "5c9d0bf0dde6d2bf8120308cd8d2e33d3e486125ade5f3f9dde1e5773245a7f5",
+    "ui_entry_base.json": "cb7ce71a27580a6fc1fc67bb30757ede6b6effd98a9189fae8364020154cd096",
+    "ui_entry_renderer.json": "afb4fb950c7929b3b075b6d178c7e4bddff6b882252928b17cfc898c67ea7ad5",
+    "ui_knowledge.json": "8ff9237d1bc35019243c2213c0760ca9ad6f96b372ca76bc53280c5574e37548",
+    "vault.json": "c8009d62399a1fe09c4ec739507a139048f58f480df1f19a52481bd93e5376cf",
+    "visuals.json": "21f5cf8d01faf654a9729f82cf70510c42ec51ea22caa70863f31e506bb857ba",
+    "world.json": "5055d1db4ece75a8afd917b1754bb1ee44edd001e1b8a74a45011e79f7c84e7d"
+  },
+  "toolSha256": {
+    "session.ts": "c1163acd210fd7043e867e10d3f556a80e662f030e7b4059c3b2f524e3686c36",
+    "pack.ts": "e0977a23c81af65a35318388fafcb01bbe575dfe58594e355e99a6c4bd838165",
+    "message-host.mjs": "535e140c7b57ecb13be3fe7100440634b214f6fc1daf534f5c8b71f6632ab3b3",
+    "build.mjs": "4bc35aee367f27a9a85fe9a3356712b0a408ac5549f73ffe0b2cf3b0583123c3",
+    "run.mjs": "f5f8653d32ada2e8e84ad878576cd564722de35a129f2ed1b017dea5926728bd",
+    "alignment/profile.mjs": "5710da7e13e39c2dddd462be0e33efe2ae8179644af3f168ad4973e02bb52197",
+    "alignment/seed-startup.mjs": "026a4a2ba7ac4003bcd7a820637191a95a48863794d18912a92c3fa16e8f249e"
+  }
+}

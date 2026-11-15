@@ -283,3 +283,12 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
   alternating-direction tunnel timeout. Eye/mushroom/mold deaths replay
   exactly; several approach/perception causes remain unresolved. No source
   behavior was changed by this analysis.
+
+- **Shared-seed startup correction (2026-11-15):** eleven bounded C/Neo pairs
+  now match initial stats/HP/SP, exact gear/gold, all town terrain, the active
+  game RNG pool/index and Borg startup seed. This needs native-menu birth
+  sequencing, two separately proposed engine list-order corrections, and an
+  explicit GCC14.2 coordinate-evaluation adapter. See the
+  [v2 continuation report](../reports/c-neo-seed-continuation-v2/README.md).
+  Same integer seeds are usable; later game trajectories are not yet shown
+  equivalent. This is not a new survival estimate or a dispatched large cohort.

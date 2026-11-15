@@ -1,0 +1,206 @@
+diff --git a/packages/core/src/game/gear.test.ts b/packages/core/src/game/gear.test.ts
+index 8ad01a739..94036c467 100644
+--- a/packages/core/src/game/gear.test.ts
++++ b/packages/core/src/game/gear.test.ts
+@@ -798,3 +798,27 @@ describe("partialStackMerge (mod/hooks.ts seam, entry 3 / neostryder/neo-angband
+     expect(seen).toEqual([[source, dest]]);
+   });
+ });
++
++describe("native point-buy outfit continuation", () => {
++  it("matches C seed303 quantities and gold from the same pre-outfit state", () => {
++    const fixture = JSON.parse(readFileSync(new URL("./native-outfit-rng.fixture.json", import.meta.url), "utf8"));
++    const { race, cls, body } = humanWarrior();
++    const player = blankPlayer(race, cls, body), gear = newGear(), reg = new ObjRegistry(pack.obj);
++    player.statBirth = [...fixture.stats]; player.statCur = [...fixture.stats]; player.statMax = [...fixture.stats];
++    player.au = player.auBirth = 600;
++    const rng = new Rng(fixture.seed);
++    rng.setState({ ...rng.getState(), ...fixture.after_stores });
++    rng.randint0(0x10000000); // C seed_flavor; flavor_init uses the separate quick stream.
++    outfitPlayer(gear, player, reg, rng, constants, {
++      opt: name => name === "birth_no_selling" || name === "birth_start_kit",
++    });
++    expect(player.au).toBe(fixture.gold);
++    const actual = [...gear.store.entries()].map(([handle, obj]) => ({
++      tval: obj.tval, sval: obj.sval, number: obj.number, slot: player.equipment.indexOf(handle),
++    }));
++    const sorted = (items: typeof actual) => [...items].sort((a,b) => a.tval-b.tval || a.sval-b.sval || a.slot-b.slot);
++    expect(sorted(actual)).toEqual(sorted(fixture.inventory));
++    expect(rng.getState().state).toEqual(fixture.after_outfit.state);
++    expect(rng.getState().stateI).toBe(fixture.after_outfit.stateI);
++  });
++});
+diff --git a/packages/core/src/game/native-outfit-rng.fixture.json b/packages/core/src/game/native-outfit-rng.fixture.json
+new file mode 100644
+index 000000000..0ae825f73
+--- /dev/null
++++ b/packages/core/src/game/native-outfit-rng.fixture.json
+@@ -0,0 +1,130 @@
++{
++  "source": "angband/angband e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
++  "seed": 303,
++  "after_stores": {
++    "stage": "stores-after",
++    "quick": false,
++    "value": 0,
++    "stateI": 14,
++    "state": [
++      2733997425,
++      2968610382,
++      3528692324,
++      691391539,
++      3474635521,
++      108620567,
++      1520356207,
++      3439220581,
++      695287061,
++      1606081821,
++      2132357630,
++      520760461,
++      2780522053,
++      3087392611,
++      2785776646,
++      3437770283,
++      3044919259,
++      3425291079,
++      66229433,
++      35161904,
++      717660934,
++      1662092246,
++      693517752,
++      2949575358,
++      2285607304,
++      4022356042,
++      3401882449,
++      4143668414,
++      2673688263,
++      2336062334,
++      2966306882,
++      693530545
++    ]
++  },
++  "after_outfit": {
++    "stage": "outfit-after",
++    "quick": false,
++    "value": 649468592,
++    "stateI": 11,
++    "state": [
++      2733997425,
++      2968610382,
++      3528692324,
++      691391539,
++      3474635521,
++      108620567,
++      1520356207,
++      3439220581,
++      695287061,
++      1606081821,
++      2132357630,
++      3422277463,
++      1986845274,
++      4137739707,
++      89203821,
++      3437770283,
++      3044919259,
++      3425291079,
++      66229433,
++      35161904,
++      717660934,
++      1662092246,
++      693517752,
++      2949575358,
++      2285607304,
++      4022356042,
++      3401882449,
++      4143668414,
++      2673688263,
++      2336062334,
++      2966306882,
++      693530545
++    ]
++  },
++  "stats": [
++    17,
++    10,
++    10,
++    16,
++    16
++  ],
++  "gold": 146,
++  "inventory": [
++    {
++      "tval": 25,
++      "sval": 24,
++      "number": 1,
++      "slot": -1
++    },
++    {
++      "tval": 16,
++      "sval": 2,
++      "number": 1,
++      "slot": 6
++    },
++    {
++      "tval": 9,
++      "sval": 1,
++      "number": 1,
++      "slot": 0
++    },
++    {
++      "tval": 26,
++      "sval": 26,
++      "number": 1,
++      "slot": -1
++    },
++    {
++      "tval": 19,
++      "sval": 1,
++      "number": 1,
++      "slot": 5
++    },
++    {
++      "tval": 28,
++      "sval": 5,
++      "number": 3,
++      "slot": -1
++    }
++  ]
++}
+diff --git a/packages/core/src/player/bind.test.ts b/packages/core/src/player/bind.test.ts
+index 3321f1098..5c0c265bf 100644
+--- a/packages/core/src/player/bind.test.ts
++++ b/packages/core/src/player/bind.test.ts
+@@ -145,6 +145,12 @@ describe("Warrior class spot check (class.txt)", () => {
+     expect(w.magic.totalSpells).toBe(0);
+   });
+ 
++  it("binds native prepended equip order, so RNG quantities go to the same kinds", () => {
++    expect(w!.startItems.map(item => item.sval)).toEqual([
++      "Word of Recall", "Soft Leather Armour", "Dagger", "Berserk Strength", "Wooden Torch", "Ration of Food",
++    ]);
++  });
++
+   it("binds starting inventory as kind-name refs with birth-option codes", () => {
+     if (!w) return;
+     expect(w.startItems.length).toBe(6);
+diff --git a/packages/core/src/player/bind.ts b/packages/core/src/player/bind.ts
+index 63b08166e..52c55a8ff 100644
+--- a/packages/core/src/player/bind.ts
++++ b/packages/core/src/player/bind.ts
+@@ -1024,13 +1024,15 @@ function bindClass(
+ 
+   const { skills, extra } = classSkills(rec);
+ 
++  // C parse_class_equip prepends each entry (init.c:3663). Preserve that
++  // runtime traversal order so player_outfit assigns the same random counts.
+   const startItems: StartItem[] = (rec.equip ?? []).map((e) => ({
+     tval: e.tval,
+     sval: e.sval,
+     min: e.min,
+     max: e.max,
+     eopts: parseEopts(e.eopts),
+-  }));
++  })).reverse();
+ 
+   /*
+    * parse_class_title (init.c L3564-3572) fills the fixed-size

@@ -1,0 +1,72 @@
+{
+  "baseRefName": "master",
+  "headRefOid": "08f3d7b2b6b9d058ac7383f5e7fd3341bdc6fca8",
+  "mergeCommit": {
+    "oid": "4defe69bf2ab5d1c34de3618b05a97b4ed57d3f5"
+  },
+  "mergedAt": "2026-11-15T00:55:10Z",
+  "state": "MERGED",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-14T23:07:55Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/diegoami/neo-angband-borg-mod-tracker/actions/runs/43651564083/job/132620960805",
+      "name": "scan",
+      "startedAt": "2026-11-14T23:06:50Z",
+      "status": "COMPLETED",
+      "workflowName": "Push scan backstop"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-14T23:06:57Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/diegoami/neo-angband-borg-mod-tracker/actions/runs/43651564086/job/132620960990",
+      "name": "profile",
+      "startedAt": "2026-11-14T23:06:50Z",
+      "status": "COMPLETED",
+      "workflowName": "ci"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-14T23:06:57Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/diegoami/neo-angband-borg-mod-tracker/actions/runs/43651564086/job/132620960877",
+      "name": "scan",
+      "startedAt": "2026-11-14T23:06:50Z",
+      "status": "COMPLETED",
+      "workflowName": "ci"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-14T23:10:00Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/diegoami/neo-angband-borg-mod-tracker/actions/runs/43651564086/job/132621005698",
+      "name": "checks",
+      "startedAt": "2026-11-14T23:07:00Z",
+      "status": "COMPLETED",
+      "workflowName": "ci"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-14T23:10:51Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/diegoami/neo-angband-borg-mod-tracker/actions/runs/43651564086/job/132621005764",
+      "name": "exact-source / exact-source",
+      "startedAt": "2026-11-14T23:07:00Z",
+      "status": "COMPLETED",
+      "workflowName": "ci"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-14T23:10:58Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/diegoami/neo-angband-borg-mod-tracker/actions/runs/43651564086/job/132622063200",
+      "name": "verify",
+      "startedAt": "2026-11-14T23:10:53Z",
+      "status": "COMPLETED",
+      "workflowName": "ci"
+    }
+  ],
+  "url": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/94"
+}
