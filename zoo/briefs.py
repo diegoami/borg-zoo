@@ -4,6 +4,9 @@ These describe the comparison, never its result. New experiments without an
 editorial question get a factual summary of the dimensions they vary.
 """
 QUESTIONS = {
+    'neo-fork-48afb65-classes-1800': 'How does the Neo fork with corrected store-phase equipment changes survive and progress?',
+    'neo-fork-9c17cb0-classes-1800': 'How does the Neo repair candidate play under its historical message-deaf host?',
+    'neo-fork-9c17cb0-events-classes-1800': 'How does the Neo repair candidate survive with event and message delivery restored?',
     'rs-pr85-full': 'When should the repaired Rust Borg return to town: a full pack, spare room, or unknown items worth identifying?',
     'classes-explicit': 'Does the special stair-climbing start for Warriors, Druids and Rangers help them survive and progress?',
     'reborn-g1-classes-1800': 'Can the reborn Rust Borg reach dungeon level 5, and does refusing travel below half health help?',
