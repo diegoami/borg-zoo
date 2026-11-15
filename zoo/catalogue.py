@@ -191,6 +191,10 @@ def experiment(path, cat=None):
         if specimens[name].get('pending'):
             raise ValueError(f'{name} cannot be measured yet: {specimens[name]["pending"]}')
         if specimens[name].get('kind') == 'neo-original':
+            from .neo_original import profile_args
+            profile_args(specimens[name])
+            if any(cat['suites'][n].get('measurement_profile') != specimens[name].get('birth_profile') for n in exp['suites']):
+                raise ValueError('Neo birth profile must match the frozen suite measurement profile')
             if any(cat['profiles'][p].get('settings') or cat['profiles'][p].get('base') for p in exp['profiles']):
                 raise ValueError('neo-original benchmark accepts only original default settings')
             if any(cat['suites'][n]['birth'] == 'random' for n in exp['suites']):

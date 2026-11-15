@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "neo-merged-seeded-v2-1800",
+  "description": "Owner-requested post-fix Neo measurement. Descriptive single arm; no C parity or survival-improvement claim. Retain every attempt including abnormal outcomes.",
+  "specimens": [
+    "neo-fork-76f25aa-seeded-v2"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "neo-seeded-v2-classes-1800"
+  ],
+  "control": "neo-fork-76f25aa-seeded-v2",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "neo-fork-76f25aa-seeded-v2": 36
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 4,
+    "native_wall_seconds": 600,
+    "neo_wall_seconds": 600,
+    "job_timeout_minutes": 300
+  }
+}

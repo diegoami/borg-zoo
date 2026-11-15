@@ -25,7 +25,7 @@
       "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "mode_side": "pre",
       "carries": 0,
-      "label": "Angband 4.2.6 \u2014 the original C Borg as the release ships it (angband/angband e473720)",
+      "label": "Angband 4.2.6 — the original C Borg as the release ships it (angband/angband e473720)",
       "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "formerly": [
         "pristine"
@@ -770,6 +770,21 @@
       "play_mode": "single",
       "label": "borg-rs milestone-12 joint trip and live inventory candidate, pinned d9a56f4; one play mode, retired modes unavailable",
       "source": "https://github.com/diegoami/borg-rs/blob/d9a56f48bac8675c91f551619492af36b698b4cf/docs/JOINT-POLICY-OPTIMISATION.md"
+    },
+    "neo-fork-76f25aa-seeded-v2": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "76f25aa70b912f12005ef3cd612e4133bd16c279",
+      "engine_repository": "diegoami/neo-angband-tracker",
+      "engine_ref": "b4af703493d314aa35cb719604f06103aa4918f4",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "2fd45fffe04b472286dbe0991a4320c5c9972c98",
+      "toolkit_path": "tools/zoo",
+      "birth_profile": "c-seeded-point-buy-v2",
+      "wall_factor": 1,
+      "role": "candidate",
+      "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/95",
+      "label": "Merged Neo fork, stock/kit engine corrections, explicit C point-buy/no-selling/startup-seed profile and GCC coordinate adapter. Clock640 remains unresolved. Descriptive Neo-only cohort; not comparable as a paired causal improvement against older rolled-birth runs."
     },
     "4.2.6-rs-kit-trip-m12-dd3eeac": {
       "kind": "borg-rs",

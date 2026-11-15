@@ -22,6 +22,7 @@ QUESTIONS = {
     'mandos-api2-classes-18': 'Do the repaired and upstream Neo Borg lanes behave differently on a small class sample?',
     'mandos-classes-18': 'How does full Mandos survive and progress on a small sample covering every class?',
     'neo-fork-classes-1800': 'How does the repaired Neo Borg fork survive and progress across all nine classes?',
+    'neo-merged-seeded-v2-1800': 'How does the merged Neo repair stack survive and progress on 1,800 seeded-v2 starts?',
     'originals-20261108-classes-1800': 'How do the official C and Neo Borgs perform in their own games?',
     'original-c-20261111-classes-1800': 'What is the original C Borg baseline when rerun alongside the Rust M11 study?',
     'original-c-42cd156-classes-1800': 'How does the newer official C Borg perform on the standard class suite?',

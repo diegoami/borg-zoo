@@ -1180,6 +1180,99 @@
       "stall_seconds": 45,
       "saves": false
     },
+    "neo-seeded-v2-classes-18": {
+      "description": "Fresh 18-game Neo seeded-v2 assigned-birth suite, 100000 ticks. C point buy/no-selling and compiler-order startup adapters. Independent of frozen old suites; unresolved clock difference.",
+      "role": "pilot",
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 18
+      },
+      "birth": "assigned",
+      "characters": {
+        "classes": [
+          "Warrior",
+          "Mage",
+          "Druid",
+          "Priest",
+          "Necromancer",
+          "Paladin",
+          "Rogue",
+          "Ranger",
+          "Blackguard"
+        ],
+        "races": [
+          "Human",
+          "Half-Elf",
+          "Elf",
+          "Hobbit",
+          "Gnome",
+          "Dwarf",
+          "Half-Orc",
+          "Half-Troll",
+          "Dunadan",
+          "High-Elf",
+          "Kobold"
+        ]
+      },
+      "cap": 100000,
+      "wall_seconds": 120,
+      "stall_seconds": 90,
+      "saves": false,
+      "measurement_profile": "c-seeded-point-buy-v2"
+    },
+    "neo-seeded-v2-classes-1800": {
+      "description": "Fresh 1800-game Neo seeded-v2 assigned-birth suite, 100000 ticks. C point buy/no-selling and compiler-order startup adapters. Independent of frozen old suites; unresolved clock difference.",
+      "role": "development",
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 1800
+      },
+      "birth": "assigned",
+      "characters": {
+        "classes": [
+          "Warrior",
+          "Mage",
+          "Druid",
+          "Priest",
+          "Necromancer",
+          "Paladin",
+          "Rogue",
+          "Ranger",
+          "Blackguard"
+        ],
+        "races": [
+          "Human",
+          "Half-Elf",
+          "Elf",
+          "Hobbit",
+          "Gnome",
+          "Dwarf",
+          "Half-Orc",
+          "Half-Troll",
+          "Dunadan",
+          "High-Elf",
+          "Kobold"
+        ]
+      },
+      "cap": 100000,
+      "wall_seconds": 600,
+      "stall_seconds": 90,
+      "saves": false,
+      "measurement_profile": "c-seeded-point-buy-v2"
+    },
+    "neo-seeded-v2-wall-calibration-warriors": {
+      "description": "Repeat the two Warrior births of the immutable18-game120-second acceptance with a600-second wall budget. Both made live progress past60000ticks before their old watchdog. Same seed/birth/cap; separate run identity.",
+      "role": "pilot",
+      "subset": {
+        "suite": "neo-seeded-v2-classes-18",
+        "class": "Warrior"
+      },
+      "cap": 100000,
+      "wall_seconds": 600,
+      "stall_seconds": 90,
+      "saves": false,
+      "measurement_profile": "c-seeded-point-buy-v2"
+    },
     "classes-1800-c": {
       "description": "Fresh third 1800-case confirmation suite for integrated inventory/trip: 200 starts per class across all eleven races, 100000 engine turns. Seeds are disjoint from earlier rule/list suites; prespecified comparisons only.",
       "role": "confirmation",

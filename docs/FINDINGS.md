@@ -226,3 +226,12 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
   with the original limited object coverage; subsequent coverage fixes are
   not tested by these results. The report now explains each arm directly,
   alongside means including dead characters and the detailed statistics.
+
+- **Post-fix Neo seeded-v2 measurements (2026-11-15):** the18-game100000-tick
+  acceptance retained10deaths,7wall timeouts and1tunnel stall. Partial traces
+  show live advancement before the120-second watchdog; a separate600-second
+  repeat finishes both Warrior cases normally (one death65338, one cap100000).
+  The [measurement receipts](neo-merged-seeded-v2/README.md) preserve both runs
+  and the exact-command-prefix control. The fresh1800-game cohort43670231534
+  is dispatched with the calibrated budget. Its results are pending; no C parity
+  or survival improvement follows from these acceptance counts.
