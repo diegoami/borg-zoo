@@ -267,6 +267,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'outcome': outcome, 'runner_outcome': summary.get('stop_reason'),
         'config_error': mismatch,
         'config_checked': 'native effective_settings and written file' if spec.get('verify_effective_settings') else 'written file (effective settings not required for this specimen)',
+        'native_reported_settings': native_settings or None,
         'effective_settings': {name: native_settings.get(name)
                                for name in profile['settings']} if spec.get('verify_effective_settings') else None,
         'cause': summary.get('death_cause') or ('(alive and well)' if summary and not summary.get('dead') else None),

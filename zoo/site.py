@@ -7,7 +7,7 @@ from statistics import mean
 from pathlib import Path
 
 from . import catalogue as cat_mod
-from . import stats
+from . import stats, configuration
 from .briefs import question, profile_label
 
 CSS = """
@@ -630,6 +630,7 @@ def run_page(meta, cells):
     intro = display['intro'] if display else exp.get('description', '')
     parts = [f'<p><a href="../../index.html">All experiments</a></p>',
              f'<h1>{esc(page_title)}</h1><p class="lead">{esc(intro)}</p>',
+             configuration.summary(meta),
              experiment_brief(meta),
              tested_settings(meta),
              '<details class="background"><summary>Background and study plan</summary>'
@@ -916,6 +917,7 @@ def build_site(results, out):
     for meta, cells, src in every:
         target = out / 'runs' / meta['experiment']['name'] / meta['run_id']
         target.mkdir(parents=True, exist_ok=True)
+        configuration.build_inspector(meta, cells, src, target)
         (target / 'index.html').write_text(run_page(meta, cells))
         if meta.get('consolidated_runs'):
             (target / 'cells.jsonl').write_text(''.join(json.dumps(c, sort_keys=True) + '\n' for c in cells))

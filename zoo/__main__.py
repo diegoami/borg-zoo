@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from . import catalogue as cat_mod
-from . import harness, site, evidence, preflight
+from . import harness, site, evidence, preflight, configuration
 
 
 def cmd_arms(args):
@@ -59,6 +59,9 @@ def cmd_run(args):
     def one(cell):
         keep = args.keep or exp.get('retain_evidence', False)
         record = harness.run_cell(cell, args.build, args.harness, args.work, cat, keep=keep, source=args.source, toolkit=args.toolkit)
+        applied, requested = cat_mod.resolve_profile(cat, cell)
+        record['requested_profile_settings'] = requested.get('settings', {})
+        configuration.capture(record, Path(args.work) / cat_mod.cell_key(cell), out.parent / 'configurations')
         if exp.get('retain_evidence'):
             evidence.attach(record, Path(args.work) / cat_mod.cell_key(cell))
         print(json.dumps({k: record[k] for k in ('specimen', 'profile', 'seed', 'outcome', 'wall_seconds')}),
@@ -120,6 +123,7 @@ def cmd_collect(args):
                         'final': {}, 'first_turn_at_depth': {}, 'cap': cat['suites'][suite]['cap']}
     target = Path(args.results) / exp['name'] / args.run_id
     target.mkdir(parents=True, exist_ok=False)
+    configuration.collect(records.values(), args.cells, target)
     with (target / 'cells.jsonl').open('w') as f:
         for key in sorted(records, key=lambda k: (k.split('/')[0], exp['specimens'].index(k.split('/')[1]),
                                                    exp['profiles'].index(k.split('/')[2]), int(k.split('/')[3]))):
