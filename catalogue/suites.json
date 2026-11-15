@@ -1255,7 +1255,20 @@
         ]
       },
       "cap": 100000,
-      "wall_seconds": 120,
+      "wall_seconds": 600,
+      "stall_seconds": 90,
+      "saves": false,
+      "measurement_profile": "c-seeded-point-buy-v2"
+    },
+    "neo-seeded-v2-wall-calibration-warriors": {
+      "description": "Repeat the two Warrior births of the immutable18-game120-second acceptance with a600-second wall budget. Both made live progress past60000ticks before their old watchdog. Same seed/birth/cap; separate run identity.",
+      "role": "pilot",
+      "subset": {
+        "suite": "neo-seeded-v2-classes-18",
+        "class": "Warrior"
+      },
+      "cap": 100000,
+      "wall_seconds": 600,
       "stall_seconds": 90,
       "saves": false,
       "measurement_profile": "c-seeded-point-buy-v2"

@@ -23,3 +23,15 @@ Only after its build and assigned-cell outcomes are checked, dispatch
 experiments/neo-merged-seeded-v2-1800.json via compare,18shards. The collector
 keeps raw attempts, cell JSON and site summaries under the new experiment/run ID.
 The owner authorized this queue, not a recurring automatic experiment.
+
+## Wall-budget calibration
+
+Acceptance43668428660 retained18records:10deaths,7wall timeouts and1tunnel
+stall. Each timeout's last observation was alive and advancing at47537–72682
+ticks; the120-second budget cut these short of100000. This is not evidence
+that those characters died or that the engine hung. Repeat both original Warrior
+timeout cases in a distinct subset suite at600seconds; keep the original suite
+and results unchanged. Before its first dispatch, the unmeasured1800suite uses
+600seconds and36shards (50games each). Worst-case per-job child time is
+50*600/2=250minutes, within the existing300-minute job budget; fourjobs max.
+The controlled repeat must finish before dispatching that cohort.
