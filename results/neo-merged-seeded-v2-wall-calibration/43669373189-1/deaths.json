@@ -1,0 +1,57 @@
+[
+  {
+    "cause": "soldier",
+    "cell": "neo-seeded-v2-wall-calibration-warriors/neo-fork-76f25aa-seeded-v2/default/1047012557",
+    "class": "Warrior",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "neo-seeded-v2-wall-calibration-warriors/neo-fork-76f25aa-seeded-v2/default/1047012557",
+      "complete": true,
+      "files": {
+        "run/commands.jsonl": {
+          "bytes": 697412,
+          "sha256": "d5f979bdac97e00d3776b3231a584e2ead40df820f872177ac962144c39a9e88"
+        },
+        "run/messages.jsonl": {
+          "bytes": 55437,
+          "sha256": "de8b380dbda82cbd1faf84dd8321cb1c1f3904d4860988149589322774ad965b"
+        },
+        "run/run.json": {
+          "bytes": 467024,
+          "sha256": "f421a06821b1499e350781c6c5ad5f5b5a836f550ec76ded615ffc26bd021c1d"
+        },
+        "run/states.jsonl": {
+          "bytes": 123049,
+          "sha256": "ffe452a3ca73f07369c5b1bf7acc7edac309f1115e1e017bd645abca033fd2a2"
+        },
+        "stderr.log": {
+          "bytes": 181,
+          "sha256": "c431bb1cfa861bf2be5be2dbdf3d031641abb8cf316297035bc3bddcfb9bd680"
+        },
+        "stdout.log": {
+          "bytes": 222,
+          "sha256": "4b96992d586f4d677bcdaf7ff18bfc10780e3331782052aa59f50884eb27ce79"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": 6367,
+      "depth": 4,
+      "energy": 56,
+      "hp": -6,
+      "level": 7,
+      "max_depth": 5,
+      "max_hp": 78,
+      "max_level": 7,
+      "turn": 65338
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 1047012557,
+    "specimen": "neo-fork-76f25aa-seeded-v2"
+  }
+]
