@@ -25,7 +25,7 @@
       "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "mode_side": "pre",
       "carries": 0,
-      "label": "Angband 4.2.6 \u2014 the original C Borg as the release ships it (angband/angband e473720)",
+      "label": "Angband 4.2.6 — the original C Borg as the release ships it (angband/angband e473720)",
       "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "formerly": [
         "pristine"
@@ -619,6 +619,17 @@
       "source": "https://github.com/diegoami/borg-reborn-rs/blob/main/docs/ZOO-INTERFACE.md",
       "label": "borg-reborn-rs milestone E (tag e): the reborn Borg building on its own integration - upstream Angband e473720 byte for byte, a small hook series and its own frontend, bindings and build, nothing taken from borg-rs's tree. Smoke play hashes identical to the m1 specimen (borg-zoo#48)."
     },
+    "4.2.6-reborn-rust-e-reviewed": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "f0eeee25d1ff2cb1103ed08518a6c5f6500dad46",
+      "carries": 0,
+      "exact_turns": true,
+      "depth_stream": true,
+      "source": "https://github.com/diegoami/borg-reborn-rs/blob/f0eeee25d1ff2cb1103ed08518a6c5f6500dad46/docs/ZOO-INTERFACE.md",
+      "label": "borg-reborn-rs milestone E after its accepted review corrections (#94–#96), as requested in borg-zoo#48. Separate pin preserves the pre-review tag-e results. Hallucination perception is corrected; the original C controls stay at their own pins."
+    },
     "4.2.6-rs-m11": {
       "kind": "borg-rs",
       "impl": "rust",
@@ -636,11 +647,11 @@
       "impl": "rust",
       "repository": "diegoami/borg-rs",
       "ref": "0e0439aa3f1cef85d2d18725ce61fe8fa85be629",
+      "tag": "4.2.6-rs-town-v11",
       "exact_turns": true,
       "depth_stream": true,
-      "role": "candidate",
-      "label": "borg-rs, the town-inventory redesign branch (feature/town-inventory-strategy) at the negative-baseline commit: the Rust Borg as it stands on the branch, with the new setting borg_town_no_stores exposed (default FALSE, today's behaviour). Rust-only; the C parser accepts the setting and ignores it, so no C parity cell. No derived tag yet - the ref is a branch head (borg-rs#36, PR 42; borg-zoo#81).",
-      "source": "https://github.com/diegoami/borg-rs/pull/42"
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-rs-town-v11",
+      "label": "borg-rs, the town-inventory redesign branch (feature/town-inventory-strategy) at the negative-baseline commit 0e0439aa (tag 4.2.6-rs-town-v11, owner-approved and pushed 2026-11-12): the Rust Borg as it stands on the branch, with the new setting borg_town_no_stores exposed (default FALSE, today's behaviour). Rust-only; the C parser accepts the setting and ignores it, so no C parity cell. Its harness/borg.txt carries borg_munchkin_by_class TRUE, so the side is post (v8 and later); profiles pin the modes explicitly (borg-rs#36, PR 42; borg-zoo#81)."
     },
     "angband-42cd156-original": {
       "repository": "angband/angband",
@@ -705,6 +716,35 @@
       "toolkit_path": "tools/zoo",
       "role": "candidate"
     },
+    "neo-fork-9e1ac34": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "9e1ac3499ef32fec622d967977ddcfcffb5959d3",
+      "engine_repository": "neostryder/neo-angband",
+      "engine_ref": "06a2321ce30a414df20d1b20d486446e7688171c",
+      "wall_factor": 3,
+      "label": "The Neo Borg from diegoami/neo-angband-borg-mod-tracker master 9e1ac34: neo-fork-ba513ff plus the fork's port fixes integrated through its PRs 75 and 76 (spellbook throw guard, race/class frame, spell seam, item-derived notice, bounded in-process home search, shop routing and the review follow-ups), on the same engine 06a2321c, built and run by the fork's own zoo entry point (tools/zoo). No Mandos, no tracker toolkit, no pin patch.",
+      "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/commit/9e1ac3499ef32fec622d967977ddcfcffb5959d3",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "9e1ac3499ef32fec622d967977ddcfcffb5959d3",
+      "toolkit_path": "tools/zoo",
+      "role": "candidate",
+      "note": "Its classes-18 check (run 43582594186) stalled one cell (seed 1381972077, Half-Elf Rogue): the home plan's takeoff was refused by Neo's store phase, neo-angband-borg-mod-tracker#83. Superseded by neo-fork-48afb65; not measured on classes-1800."
+    },
+    "neo-fork-48afb65": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "48afb65c444ad821b31c28470d5074875b81b4c2",
+      "engine_repository": "neostryder/neo-angband",
+      "engine_ref": "06a2321ce30a414df20d1b20d486446e7688171c",
+      "wall_factor": 3,
+      "label": "The Neo Borg from diegoami/neo-angband-borg-mod-tracker master 48afb65: neo-fork-9e1ac34 plus the home plan's store-phase fix (the fork's #83, PR 84: takeoff and wear leave the store and run in town before the rungs that refill a slot), on engine 06a2321c, built and run by the fork's own zoo entry point (tools/zoo). No Mandos, no tracker toolkit, no pin patch.",
+      "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/commit/48afb65c444ad821b31c28470d5074875b81b4c2",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "48afb65c444ad821b31c28470d5074875b81b4c2",
+      "toolkit_path": "tools/zoo",
+      "role": "candidate"
+    },
     "4.2.6-reborn-rust-g1-off": {
       "kind": "borg-rs",
       "impl": "rust",
@@ -739,13 +779,112 @@
       "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v12",
       "label": "borg-rs M12 (tag 4.2.6-impact-v12, v12R): the Rust Borg carrying better-borg-c milestone 12 (4e1b912cb): one consumer carry (0118 NEWKILL-95) and the official angband import to 42cd156ac, which retires the consumer's carries 0001 and 0002 because upstream now carries that logic (borg-rs PR 58, merge commit e6d13fc; independent review pass on re-review, 122 Rust tests, 70/70 C/Rust parity on the validation suites plus 25/25 and 9/9 after the options and deep oracle refresh; accepted 2026-11-14). Carries 115 = 116 + 1 - 2, as for better-borg-c M12. Like M8 to M11, its default includes the munchkin-by-class start."
     },
+    "4.2.6-rs-m13": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "5dcc1db907aa947ce3d2a61ca0c1f01aa9108f3d",
+      "tag": "4.2.6-impact-v13",
+      "carries": 134,
+      "exact_turns": true,
+      "depth_stream": true,
+      "source": "https://github.com/diegoami/borg-rs/tree/4.2.6-impact-v13",
+      "label": "borg-rs M13 (tag 4.2.6-impact-v13, v13R): the Rust Borg carrying better-borg-c milestone 13 (9ccb2aaee): nineteen carries 0119-0137 - twelve from the issue-426 queue (glyph-flow fixes, the Lunal teleport disconnect, the dead-unique bookkeeping fixes, the respawn birth-menu letters, the rest-danger comment and three dead-code removals) and seven from the 2026-11-13/14 source-board pairs (wand svals by name, swap fear protection, fixed 20/40/60 heal amounts, narrowed cure lists, BI_PSTUN, and the elemental-vulnerability modelling in borg_danger) (borg-rs PR 72, merge commit 5dcc1db; independent review approve with corrections, one low finding F1 - the receipt's changed-run count - corrected; consumer-side milestone-13 review approve with corrections, docs/fixture tooling only, no src/borg change; 123 Rust tests, 111/111 three-column C/Rust parity after a full two-pass oracle re-record; accepted 2026-11-14). Carries 134, as for better-borg-c M13. Unlike M8 to M12, the by-class munchkin start is OFF in this specimen's borg.txt (owner decision 2026-11-14): an unconfigured run does not stair-scum with Warriors, Druids and Rangers, so arms that want the product class rule must name the munchkin-class profile explicitly (borg-zoo#54 already requires named mode profiles), and an m12-to-m13 default comparison moves the nineteen units and this config change together."
+    },
     "4.2.6-bbc-m13": {
       "repository": "diegoami/better-borg-c",
       "ref": "9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8",
       "mode_side": "post",
       "carries": 134,
-      "label": "better-borg-c milestone 13 runtime head 9ccb2aae (PR 519): nineteen carries since impact v12 - twelve from the issue-426 queue (0119-0130) and seven from the 2026-11-13/14 source-board pairs (0131-0137). Carries 134 = 115 + 19, counted here from the milestone package, not stated there. The 4.2.6-impact-v13 tag is not placed yet (it awaits the milestone-13 review verdict or waiver, better-borg-c#521), so the commit is pinned; src/ at the later head cfcb6f13 is identical. The package records the per-mode effect of these units as not measured; this is the zoo's measurement of normal and the class rule (borg-zoo#87).",
-      "source": "https://github.com/diegoami/better-borg-c/blob/main/docs/measurement/IMPACT-MILESTONE13.md"
+      "label": "better-borg-c milestone 13 runtime head 9ccb2aae (PR 519): nineteen carries since impact v12 - twelve from the issue-426 queue (0119-0130) and seven from the 2026-11-13/14 source-board pairs (0131-0137). Carries 134 = 115 + 19, counted here from the milestone package, not stated there. The 4.2.6-impact-v13 tag was placed on this commit on 2026-11-14 (owner authorization, borg-zoo#87 comment), so the tag now names the pin and the ref is unchanged; src/ at the later head cfcb6f13 is identical. The package records the per-mode effects as not measured. The prepared M12/M13 aggregate comparison and within-M13 policy grid do not discharge that per-unit debt; see docs/M13-MEASUREMENT.md (borg-zoo#87).",
+      "source": "https://github.com/diegoami/better-borg-c/blob/cfcb6f13fad7e5392c0efc35f8bbe9d69d5087e8/docs/measurement/IMPACT-MILESTONE13.md",
+      "tag": "4.2.6-impact-v13"
+    },
+    "4.2.6-rs-joint-m12-d9a56f4": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "d9a56f48bac8675c91f551619492af36b698b4cf",
+      "depth_stream": true,
+      "verify_effective_settings": true,
+      "play_mode": "single",
+      "label": "borg-rs milestone-12 joint trip and live inventory candidate, pinned d9a56f4; one play mode, retired modes unavailable",
+      "source": "https://github.com/diegoami/borg-rs/blob/d9a56f48bac8675c91f551619492af36b698b4cf/docs/JOINT-POLICY-OPTIMISATION.md"
+    },
+    "neo-fork-76f25aa-seeded-v2": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "967b28f5fe12c4974a6a793040f73246eb7d1200",
+      "engine_repository": "diegoami/neo-angband-tracker",
+      "engine_ref": "b4af703493d314aa35cb719604f06103aa4918f4",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "967b28f5fe12c4974a6a793040f73246eb7d1200",
+      "toolkit_path": "tools/zoo",
+      "birth_profile": "c-seeded-point-buy-v2",
+      "wall_factor": 1,
+      "role": "candidate",
+      "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/101",
+      "label": "Merged Neo fork with danger/HP/retreat repairs and the headless durable truth-use receipt fix; pinned 967b28f for both Borg and toolkit, engine b4af703. Explicit C point-buy/no-selling/startup-seed profile and GCC coordinate adapter. Clock640 remains unresolved. Descriptive Neo-only cohort."
+    },
+    "4.2.6-rs-kit-trip-m12-dd3eeac": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "dd3eeac646e097bcdd7c289c092e91400896a713",
+      "depth_stream": true,
+      "verify_effective_settings": true,
+      "play_mode": "single",
+      "label": "Integrated complete ordinary-shop capability coverage and all-item learning returns, milestone-12 Rust Borg; pinned dd3eeac",
+      "source": "https://github.com/diegoami/borg-rs/blob/dd3eeac646e097bcdd7c289c092e91400896a713/docs/validation/2026-11-15-trip-inventory-integration/README.md"
+    },
+    "neo-fork-truth-100-seeded-v2": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "967b28f5fe12c4974a6a793040f73246eb7d1200",
+      "engine_repository": "diegoami/neo-angband-tracker",
+      "engine_ref": "b4af703493d314aa35cb719604f06103aa4918f4",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "967b28f5fe12c4974a6a793040f73246eb7d1200",
+      "toolkit_path": "tools/zoo",
+      "birth_profile": "c-seeded-point-buy-v2",
+      "wall_factor": 1,
+      "role": "candidate",
+      "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/101",
+      "label": "Neo fork including merged danger/HP/retreat repairs and durable monster-truth host correction #100. Explicit C point-buy/no-selling/startup profile; engine b4af703. Clock640 unresolved. New descriptive run; old truth-denied cohort is not a repaired-Borg baseline."
+    },
+    "4.2.6-reborn-core-pilot": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "1be6edc7f2db7f73b49e08a36eadca1c3c5a556d",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "source": "https://github.com/diegoami/borg-reborn-rs/blob/1be6edc7f2db7f73b49e08a36eadca1c3c5a556d/docs/PILOT.md",
+      "label": "borg-reborn-rs 1be6edc, the option-C pilot (borg-reborn-rs #207, #208): borg-rs's core (milestone 12, vendored as borg-core/) inside the reborn shell, selected through the run's borg.txt (borg_reborn_core, borg_reborn_errand). harness/borg.txt is borg-rs's v12 borg.txt with borg_munchkin_by_class and borg_self_scum FALSE plus the two keys. Plays on borg-rs's engine (upstream 42cd156ac plus borg-rs's fork corrections, engine patch 08). Built through docs/ZOO-INTERFACE.md (harness/build.sh, BORG_IMPL=rust)."
+    },
+    "4.2.6-rs-town-class-shadow": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "2439dd4ad6e1e629f99d0c2449dc975c91a68a7a",
+      "exact_turns": true,
+      "depth_stream": true,
+      "verify_effective_settings": true,
+      "town_shadow_records": true,
+      "label": "Town utility class-configuration validation snapshot; observation only, no accepted class tuning or live executor.",
+      "source": "https://github.com/diegoami/borg-rs/blob/2439dd4ad6e1e629f99d0c2449dc975c91a68a7a/docs/TOWN-CLASS-CALIBRATION.md"
+    },
+    "4.2.6-rs-pr85-returns": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "71cff24ef45731e55aa9687930cd2d766dd0695e",
+      "depth_stream": true,
+      "verify_effective_settings": true,
+      "play_mode": "single",
+      "label": "PR85 inventory/return corrections plus restored selling-pressure backstops and incremental return-goal observations; M12 Rust Borg",
+      "source": "https://github.com/diegoami/borg-rs/blob/71cff24ef45731e55aa9687930cd2d766dd0695e/docs/validation/2026-11-15-trip-sale-fallback/README.md"
     },
     "neo-fork-9c17cb0": {
       "kind": "neo-original",

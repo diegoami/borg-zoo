@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "specimens": [
+    "4.2.6-rs-kit-trip-m12-dd3eeac"
+  ],
+  "control": "4.2.6-rs-kit-trip-m12-dd3eeac",
+  "control_profile": "rs-kit-trip-control",
+  "resource_budget": {
+    "max_parallel_jobs": 6,
+    "processes_per_job": 1
+  },
+  "owner_authorization": "2026-11-15 owner request: schedule experiments after integrating the finished inventory object-capability updates with the all-item trip-return fix. Fewer deaths first, then character level/depth.",
+  "source_notes": "All arms use dd3eeac646e097bcdd7c289c092e91400896a713, milestone-12 engine. Control disables both policies; candidates use actual shopping and the all-item return rule. This tests the combined policies, not their individual contributions. All six capability calibration parameters and shared trip/supply parameters are declared and checked against native effective_settings.",
+  "name": "rs-kit-trip-confirm",
+  "description": "Fixed integrated defaults versus existing rules on 1800 fresh starting cases: 3600 games. Expanded inventory capability coverage and all-item learning returns act together.",
+  "profiles": [
+    "rs-kit-trip-control",
+    "rs-kit-trip-default"
+  ],
+  "suites": [
+    "classes-1800-c"
+  ],
+  "prespecified": "Fixed before dispatch: integrated defaults versus existing rules, paired natural death by the 100000-turn after-key cap, exact two-sided McNemar alpha 0.05 on pairs where both finish. Noncompletion categories remain visible and are not deaths or survivors; report their balance and incomplete pairs before interpreting survival. Secondary descriptive measures: mean final character level, mean deepest level and DL3+ count including dead characters; per-class results descriptive. Development winners cannot replace the default candidate. Sizing: with 0.36 discordance, 1800 completed pairs give about 80% power for a four-percentage-point absolute paired death difference using (1.96+0.842)^2*0.36/0.04^2 = 1767. This is a planning assumption, not evidence from the repaired model; incomplete pairs and smaller effects reduce power."
+}

@@ -140,14 +140,26 @@ def catalogue(root=ROOT):
 def mode_side(spec):
     """Which side of the mode cutoff (MODE_CUTOFF) a specimen plays on:
     "pre" (no munchkin-by-class rule), "post" (the rule is the default), or
-    None for engines the cutoff does not apply to (borg-rs, Mandos, Neo).
+    None for engines or single-mode builds the cutoff does not apply to.
 
     The catalogue entry's own "mode_side" wins; better-borg-c entries
-    recorded before the field fall back to the commit set above.
+    recorded before the field fall back to the commit set above. Rust ports
+    use their milestone tags (v8 onward requires explicit modes). Unknown
+    untagged borg-rs pins conservatively require explicit modes; the original
+    M0 pin is known to predate the setting. Reborn is a separate repository.
     """
     side = spec.get('mode_side')
     if side in ('pre', 'post'):
         return side
+    if spec.get('repository') == 'diegoami/borg-rs' and spec.get('kind') == 'borg-rs':
+        if spec.get('play_mode') == 'single':
+            return None
+        milestone = re.search(r'-v(\d+)$', spec.get('tag') or '')
+        if milestone:
+            return 'post' if int(milestone.group(1)) >= 8 else 'pre'
+        if spec.get('ref') == 'aa4ad6cfeea2cf19870e224219dfe66688175c6e':
+            return 'pre'
+        return 'post'
     if spec.get('repository') == MODE_CUTOFF_REPOSITORY:
         return 'post' if spec.get('ref') in MODE_CUTOFF_POST else 'pre'
     return None
@@ -190,7 +202,23 @@ def experiment(path, cat=None):
     for name in exp['specimens']:
         if specimens[name].get('pending'):
             raise ValueError(f'{name} cannot be measured yet: {specimens[name]["pending"]}')
+        if specimens[name].get('town_shadow_records'):
+            spec = specimens[name]
+            if (spec.get('kind') != 'borg-rs' or spec.get('impl') != 'rust'
+                    or not spec.get('verify_effective_settings')):
+                raise ValueError(f'{name}: shadow capture requires a Rust specimen with effective-settings verification')
+            if not exp.get('retain_evidence'):
+                raise ValueError(f'{name}: shadow capture requires retain_evidence for raw artifacts')
+            for prof in (p for n in exp['profiles'] for p in profile_parts(cat, n)):
+                settings = cat['profiles'][prof].get('settings', {})
+                if any(settings.get(key) != 0 for key in
+                       ('borg_town_plan', 'borg_town_target_depth', 'borg_town_trip_turns')):
+                    raise ValueError(f'{prof}: shadow calibration requires planner off and automatic journey depth/duration')
         if specimens[name].get('kind') == 'neo-original':
+            from .neo_original import profile_args
+            profile_args(specimens[name])
+            if any(cat['suites'][n].get('measurement_profile') != specimens[name].get('birth_profile') for n in exp['suites']):
+                raise ValueError('Neo birth profile must match the frozen suite measurement profile')
             if any(cat['profiles'][p].get('settings') or cat['profiles'][p].get('base') for p in exp['profiles']):
                 raise ValueError('neo-original benchmark accepts only original default settings')
             if any(cat['suites'][n]['birth'] == 'random' for n in exp['suites']):
@@ -213,6 +241,13 @@ def experiment(path, cat=None):
                 if cat['profiles'][prof].get('base') == 'shipped':
                     raise ValueError(f'{name}: profile {prof} needs a shipped borg.txt base, '
                                      'which the borg-rs adapter takes from harness/borg.txt only')
+    words = sorted({n for p in (q for name in exp['profiles'] for q in profile_parts(cat, name))
+                    for n, v in cat['profiles'][p].get('settings', {}).items() if isinstance(v, str)})
+    if words:
+        for name in exp['specimens']:
+            if specimens[name].get('kind') != 'borg-rs':
+                raise ValueError(f'{name}: settings {", ".join(words)} are words, which only a borg-rs '
+                                 'specimen can take (the others read numbers and flags)')
     for suite in exp['suites']:
         if cat['suites'][suite].get('role') == 'sealed' and not exp.get('unsealed_by_owner'):
             raise ValueError(f'suite {suite} is sealed: only an experiment the owner has opened it for '
@@ -226,7 +261,7 @@ def experiment(path, cat=None):
     # settings, so a mode that was never named can silently change play. An
     # experiment recorded before the cutoff says so ("pre_cutoff": "<date and
     # reason>") and keeps its arms as run; anything measured now must name a
-    # mode profile on every post-cutoff better-borg-c specimen, and no
+    # mode profile on every post-cutoff better-borg-c or borg-rs specimen, and no
     # profile may name borg_munchkin_by_class for a build that predates it
     # (the build ignores the unknown line, and every cell would config_error).
     sides = {name: mode_side(specimens[name]) for name in exp['specimens']}
@@ -235,7 +270,7 @@ def experiment(path, cat=None):
             for name in exp['profiles']:
                 if not mode_explicit(cat['profiles'][name]):
                     raise ValueError(f'profile {name} leaves the modes unnamed: every experiment whose '
-                                     f'better-borg-c specimens play after the mode cutoff ({MODE_CUTOFF[:9]}, '
+                                     f'better-borg-c or borg-rs specimens require explicit modes after the cutoff ({MODE_CUTOFF[:9]}, '
                                      'PR 302) must name a mode profile (issue #54)')
         for name, side in sides.items():
             if side != 'pre':
@@ -262,6 +297,8 @@ def setting_value(value):
         return 'FALSE'
     if isinstance(value, int):
         return str(value)
+    if isinstance(value, str) and re.fullmatch(r'[A-Za-z0-9_.-]+', value):
+        return value  # a word, written as it is: borg-reborn-rs's borg_reborn_core = borg-rs
     raise ValueError(f'unsupported setting value: {value!r}')
 
 
@@ -389,6 +426,16 @@ def cells(exp, cat=None):
 
 def cell_key(cell):
     return f"{cell['suite']}/{cell['specimen']}/{cell['profile']}/{cell['seed']}"
+
+
+def boundary(spec):
+    """Intended boundary for a cell, including attempts that never produced a record."""
+    kind = spec.get('kind', 'better-borg-c')
+    if kind == 'better-borg-c':
+        return 'exact'
+    if kind == 'borg-rs' and spec.get('exact_turns'):
+        return 'exact'
+    return 'after-key'
 
 
 def shard(cell_list, specimen, index, count):

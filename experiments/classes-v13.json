@@ -1,7 +1,7 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "classes-v13",
-  "description": "better-borg-c milestone 13 (runtime head 9ccb2aae, 134 carries: v12 plus nineteen carries 0119-0137; the v13 tag is not placed yet) on the full class grid, once under each policy the dashboard compares: normal (every mode pinned off) and munchkin-class (the class rule). Part of borg-zoo#87. The Lunal-only arm the issue lists is not run: the lunal profile only enters its mode when the Borg is prepared 15 levels deeper, which a 100,000-turn fresh-start suite does not reach by construction, so it would measure nothing (recorded, not 'neutral'). Run one arm per workflow run. Control is v13 under normal.",
+  "description": "How does C milestone 13 perform with the class-specific stair-climbing start on and off? Tag 4.2.6-impact-v13 pins runtime 9ccb2aae, 134 active carries, including nineteen added since v12. Both profiles use classes-1800: normal pins every special mode off; munchkin-class enables the depth-6 stair-climbing start for Warriors, Druids and Rangers. Run one arm per workflow run; control is v13 under normal. This compares starting policies within M13, not fixes against M12. No Lunal entry or changed-branch execution has been established on this fresh-start suite; the Lunal-only measurement remains pending, not neutral or proved unreachable. See docs/M13-MEASUREMENT.md for issue #87’s outstanding work.",
   "specimens": [
     "4.2.6-bbc-m13"
   ],
