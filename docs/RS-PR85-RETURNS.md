@@ -101,14 +101,16 @@ abort or silently remove a measured outcome.
 The workflow retains native messages, keys, states, source/config/binary
 identity and policy streams for every cell. Town plans are recorded when the
 shopper is enabled, and trip v3/v4 rows when its policy is enabled. Native
-retail receipts and recorded wallets support purchases; planned buys and
+retail receipts and recorded wallets support purchases; live purchases use
+the pre-purchase executor message as the wallet anchor, since their Buying
+confirmation follows the receipt; planned buys and
 Home transfers are not retail purchases. Raw archives have checksums and
 90-day retention. Inspect/download them before treating that retention as
 a permanent local archive. Report purchase tables remain available by class.
 
 ## Wiring validation before dispatch
 
-145 Zoo tests pass. All existing/new experiment and smoke files plan;
+146 Zoo tests pass. All existing/new experiment and smoke files plan;
 the new study and canary preflights pass. The actual native canary report
 renders the return tables. The [54 native canaries](validation/2026-11-15-pr85-return-canaries.json)
 (one start per class per choice, 2000 turns) all reach their caps with the

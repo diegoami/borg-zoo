@@ -24,6 +24,22 @@ class TownEvidenceTest(unittest.TestCase):
             self.assertEqual(summary['gold_spent'], 40)
             self.assertEqual(summary['wallet_checks'], {'True': 1})
 
+    def test_live_execution_anchors_the_first_buy_before_delayed_confirmation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out=Path(tmp)
+            (out/'state.log').write_text(''.join(f'{i} x au{gold} lv1\n' for i,gold in enumerate([100,100,80,80,80,77,77])))
+            (out/'messages.log').write_text(
+                '1 1 0 # Town plan executing action 1 at shop 4 slot 0\n'
+                '2 1 0 You bought a Green Potion for 20 gold.\n'
+                '3 1 0 # Buying Potion of Cure Light Wounds.\n'
+                '4 2 0 # Town plan executing action 1 at shop 0 slot 1\n'
+                '5 2 0 You bought a Ration of Food for 3 gold.\n'
+                '6 2 0 # Buying Ration of Food.\n')
+            summary=town.collect(out)
+            self.assertEqual(summary['wallet_checks'],{'True':2})
+            self.assertEqual([r['shop_index'] for r in summary['items']],[4,0])
+            self.assertEqual(summary['purchases'],2)
+
     def test_absent_state_and_wallet_mismatch_are_explicit(self):
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp)
