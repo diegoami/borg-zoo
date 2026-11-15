@@ -1,0 +1,19 @@
+<style>#choose{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;align-items:end}#choose label{display:grid;gap:4px;min-width:0}#choose input,#choose select{width:100%;max-width:100%;min-width:0;padding:6px}#choose button{padding:8px}#identity{display:grid;grid-template-columns:minmax(110px,150px) minmax(0,1fr);gap:6px 14px}#identity dd{margin:0}#identity dt{font-weight:600}#requested,#native{overflow:auto;max-height:30rem}@media(max-width:500px){#identity{grid-template-columns:1fr}#identity dd{margin-bottom:8px}}</style>
+<p><a href="../index.html">Back to report</a></p>
+<h1>View borg.txt</h1>
+<p>Select a game. The original file is available only when its bytes match the configuration SHA-256 recorded for that game.</p>
+<form id="choose">
+<label>Seed <input id="seed" type="text" inputmode="numeric" list="seeds" required></label><datalist id="seeds"></datalist>
+<label>Version <select id="specimen"></select></label>
+<label>Choice <select id="profile"></select></label>
+<label>Suite <select id="suite"></select></label>
+<button type="submit">View borg.txt</button>
+</form>
+<p id="status" role="status">Loading game index…</p>
+<dl id="identity" style="overflow-wrap:anywhere"></dl>
+<p><button id="copy" type="button" disabled>Copy exact file</button> <button id="download" type="button" disabled>Download borg.txt</button></p>
+<pre id="file" style="white-space:pre;overflow:auto;max-height:35rem" tabindex="0"></pre>
+<details><summary>Requested profile overrides</summary><p>Recorded requests, including the applied class-specific profile. Unspecified settings are inherited from the build; this is not a reconstruction of borg.txt.</p><pre id="requested"></pre></details>
+<details><summary>Native-reported effective settings</summary><p>Only settings actually reported by the native harness. Absence is not proof that a setting was off.</p><pre id="native"></pre></details>
+<p>Pack slack 0: wait until the pack is full. Unknown stacks 0: disable learning-driven returns.</p>
+<script src="inspector.js" defer></script>
