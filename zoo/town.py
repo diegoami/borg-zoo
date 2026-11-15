@@ -18,6 +18,7 @@ def collect(directory):
     messages = directory / 'messages.log'
     pending_key = None
     shop = None
+    live_executor = False
     if messages.exists():
         for line in messages.read_text(errors='replace').splitlines():
             match = MESSAGE.match(line)
@@ -30,7 +31,17 @@ def collect(directory):
                 shop = int(entered[1])
             if preferred:
                 shop = int(preferred[1]) - 1
-            if text.startswith('# Buying ') and not text.startswith(("# Buying '", '# Buying time ')):
+            execution = re.match(r'^# Town plan executing action (\d+) at shop (-?\d+) slot (\d+)', text)
+            if execution:
+                live_executor = True
+                action, where = int(execution[1]), int(execution[2])
+                if 0 <= where <= 7:
+                    shop = where
+                if action == 1 and 0 <= where < 7:
+                    pending_key = key
+            # In the live executor, Buying is a post-receipt confirmation.
+            # Anchor the wallet at its earlier execution message instead.
+            if not live_executor and text.startswith('# Buying ') and not text.startswith(("# Buying '", '# Buying time ')):
                 pending_key = key
             receipt = BUY.match(text)
             if not receipt:

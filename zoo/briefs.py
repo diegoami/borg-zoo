@@ -4,6 +4,7 @@ These describe the comparison, never its result. New experiments without an
 editorial question get a factual summary of the dimensions they vary.
 """
 QUESTIONS = {
+    'rs-pr85-full': 'When should the repaired Rust Borg return to town: a full pack, spare room, or unknown items worth identifying?',
     'classes-explicit': 'Does the special stair-climbing start for Warriors, Druids and Rangers help them survive and progress?',
     'reborn-g1-classes-1800': 'Can the reborn Rust Borg reach dungeon level 5, and does refusing travel below half health help?',
     'reborn-e-classes-1800': 'How does the reborn Rust Borg compare with the original C Borg and better-borg-c M7?',
@@ -71,6 +72,14 @@ for milestone in (11, 12, 13):
 
 
 PROFILE_LABELS = {
+    'rs-pr85-existing': 'Existing shopping and returns',
+    'rs-pr85-shopping-only': 'New shopping, legacy returns',
+    'rs-pr85-return-p0-u0': 'Full pack; learning return off (0,0)',
+    'rs-pr85-return-p1-u2': 'One free slot / two unknown stacks (1,2)',
+    'rs-pr85-return-p1-u4': 'One free slot / four unknown stacks (1,4)',
+    'rs-pr85-return-p2-u4': 'Two free slots / four unknown stacks (2,4)',
+
+
     'default': 'Build defaults (can differ between versions)',
     'normal': 'Ordinary play; all special modes off',
     'munchkin-class': 'Depth-6 stair-climbing start for Warrior, Druid and Ranger',
