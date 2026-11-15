@@ -1,6 +1,7 @@
 # Shared data foundation for the zoo and the cemetery (borg-zoo#114)
 
-Status: **proposal for owner review.** Nothing in it provisions a service,
+Status: **proposal for owner review, revised after its first independent
+review** ([response](REVIEW-RESPONSE.md)). Nothing in it provisions a service,
 opens a paid account, changes a running experiment, stops writing the
 `results` branch, or deletes any record. Every such step is an owner decision
 listed in the [plan](PLAN.md).
@@ -13,6 +14,7 @@ listed in the [plan](PLAN.md).
 | [PLAN.md](PLAN.md) | Zoo and cemetery redesign, cutover and salvage options, milestones, tasks, risks, owner decisions |
 | [baseline/](baseline/) | The script and numbers behind the baseline below |
 | [REVIEW-PROMPT.md](REVIEW-PROMPT.md) | A runnable prompt for an independent review of this proposal |
+| [REVIEW-RESPONSE.md](REVIEW-RESPONSE.md) | How the first review's nine findings were corrected |
 
 The cemetery's own architecture proposal
 ([borg-cemetery PR #2](https://github.com/diegoami/borg-cemetery/pull/2),
@@ -32,7 +34,7 @@ Measured on the owner's machine against `results` at `d7b05dc5` and zoo
 | Workflow runs on `results` | 107 runs, 93 experiments, 107 commits |
 | Cells (games) | 219,795, recorded in about nine days (2026-11-07 to 11-15) |
 | `results` tree, uncompressed | 775 MiB in 275 files; Git pack 89 MiB |
-| Largest single file | `rs-pr85-full/43720870587-1/cells.jsonl`, **87.7 MB**: GitHub refuses files over 100 MB |
+| Largest single file | `rs-pr85-full/43720870587-1/cells.jsonl`, **87.7 MB** (83.6 MiB): GitHub refuses files over 100 MiB |
 | All cells as one gzip stream | 60 MiB (12.4×, about 285 bytes per cell) |
 | Same, gzipped one record at a time | 294 MiB: compress in batches, not per record |
 | Site build (`python3 -m zoo site`) | **2 min 08 s, 3.0 GiB peak RSS** |
@@ -46,27 +48,29 @@ Measured on the owner's machine against `results` at `d7b05dc5` and zoo
 | Compare runs (last 100) | 90 success, 9 cancelled |
 
 Indexing all 219,795 cells in SQLite (scalar fields plus a pointer to the full
-record) took 15.5 s to load and 0.3 s to index. The scalar index is 141 MiB, or
+record) took 16 s to load and under 1 s to index. The scalar index is 141 MiB, or
 32 MiB gzipped. The dashboard queries took:
 
 | Query | Time |
 | --- | --- |
-| Outcome summary for every arm of every run (331 arms) | 41 ms |
+| Outcome summary for every arm of every run (331 arms) | 46 ms |
 | Per-class summary of the largest run | 12 ms |
-| Paired rescued/newly-killed counts, two arms of one run | 20 ms |
+| Runs sharing one exact configuration | 16 ms |
+| Paired rescued/newly-killed counts, two arms of one run (finished games, one harness kind) | 22 ms |
 | One seed's history across all runs | 0.3 ms |
-| Fetch and decompress one full cell record | 7 ms |
+| Fetch and decompress one full cell record | 9 ms |
 
 ### What the baseline says
 
 1. **Query speed is not the problem.** A single-file embedded index answers
-   every dashboard question in milliseconds at today's volume, and would at
-   ten times it. A hosted query database is not justified by latency.
+   these dashboard-shaped queries in milliseconds at today's volume (the
+   independent review reproduced 0.1–114 ms). Larger volumes were not
+   tested. A hosted query database is not justified by latency.
 2. **The site is about to break.** It copies every raw cell file into Pages,
    so its size tracks the whole results branch. One more large experiment
    takes it past 1 GB. This needs a fix now, independent of this redesign
    (task T0 in the [plan](PLAN.md)).
-3. **Single files are near GitHub's 100 MB limit.** A 9,000-cell run with
+3. **Single files are near GitHub's 100 MiB limit.** A 9,000-cell run with
    evidence hashes is already 88 MB.
 4. **Raw evidence and saves are not durable.** Saves, logs and traces exist
    only as Actions artifacts that expire after 7 to 90 days. Nothing can be
@@ -110,7 +114,7 @@ Ranked by what the owner asked for and what the baseline shows.
 | Authoritative metadata | Small compressed records sharded in Git | Immutable record batches in a bucket | Firestore documents | PostgreSQL rows |
 | Blobs | Release assets | Same bucket, by content hash | Cloud Storage for Firebase | Bucket |
 | R1 durable blobs | Weak: release assets are mutable and a release holds a limited number of assets | Yes; versioning or object lock | Yes; needs the Blaze (billing) plan | Yes |
-| R2 atomic checkpoint, claims | Refs as compare-and-swap through the API: works, but awkward and rate-limited | Conditional create/replace (`If-None-Match`, `If-Match` or generation match; vendor support to confirm in T1) | Transactions, but no transaction spans Firestore and Storage | Transactions, unique constraints, `SKIP LOCKED` queues |
+| R2 atomic checkpoint, claims | Refs as compare-and-swap through the API: works, but awkward and rate-limited | Conditional create/replace (`If-None-Match`, `If-Match` or generation match; documented by S3, GCS and R2, not yet conformance-tested). No transaction spans two objects, so each protocol needs a single commit point | Transactions, but no transaction spans Firestore and Storage | Transactions, unique constraints, `SKIP LOCKED` queues |
 | R3, R4, R5 invariants | Application code | Application code; deterministic keys make them simple | Application code ([PR #2](https://github.com/diegoami/borg-cemetery/pull/2) says so) | Mostly the schema |
 | R6 public read | Yes | Yes: a public bucket or CDN serving the index and site | Rules or an API; live reads cost per document | Needs an API or static exports |
 | R7 analytics | Derived index | Derived index (SQLite/Parquet) | No aggregate joins; exports needed for paired statistics | SQL; still export for the static site |
@@ -134,11 +138,13 @@ S3-compatible bucket, plus a derived SQLite/Parquet index rebuilt from it.**
 Git keeps code, catalogue, schemas and small reviewed fixtures. The `results`
 branch is frozen as read-only legacy at cutover.
 
-- It meets R1 to R3 with two primitives that Amazon S3 and Google Cloud
-  Storage document (others to confirm): write-once objects and conditional
-  replace. These give idempotent
-  ingestion, atomic checkpoint publication and fenced resume leases
-  ([protocols](ARCHITECTURE.md#protocols)).
+- It meets R1 to R3 with two primitives that Amazon S3, Google Cloud
+  Storage and Cloudflare R2 document: write-once objects and conditional
+  replace. Each protocol makes one conditional write its commit point:
+  accepting a segment's result, sealing a checkpoint, marking a blob for
+  deletion ([protocols](ARCHITECTURE.md#protocols)). Trusted coordinator
+  jobs make every claim and acceptance; jobs that run Borg code hold no
+  credentials.
 - The index is disposable. Losing it costs one rebuild, measured at seconds
   today.
 - Public read is a bucket or CDN path. Nobody needs an account to view a
@@ -165,6 +171,7 @@ release assets, and claims would use Git refs.
 
 **What a database does not solve.** Faithful resume needs runner support
 that does not exist yet in any adapter: Borg memory and Borg RNG are not
-saved by the native C runner, borg-rs/reborn or Mandos. That work is
+saved by the native C runner, borg-rs/reborn, the neo-original fork runner
+or Mandos. That work is
 separate from the storage choice and is the main schedule risk
 ([RESUME.md](RESUME.md)).

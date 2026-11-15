@@ -1,5 +1,9 @@
 """Bounded zoo#114 index benchmark: load every results-branch cell into SQLite
-(scalar fields + content-addressed full record) and time dashboard queries."""
+(scalar fields + content-addressed full record) and time dashboard-shaped queries.
+
+These are query *workloads*, not the zoo's statistics: the paired query keeps
+only finished games of one harness kind, as zoo/stats.py does, but it does not
+apply every pairing rule (command-stream profile, mode cutoff)."""
 import glob, gzip, hashlib, json, os, sqlite3, sys, time
 
 root, db = sys.argv[1], sys.argv[2]
@@ -62,11 +66,13 @@ Q = {
      SELECT SUM(x.outcome='death' AND y.outcome<>'death'), SUM(x.outcome<>'death' AND y.outcome='death'), COUNT(*)
      FROM cell x JOIN cell y ON x.run_id=y.run_id AND x.suite=y.suite AND x.seed=y.seed
      WHERE x.run_id=(SELECT run_id FROM r) AND x.specimen=(SELECT specimen FROM a) AND x.profile=(SELECT profile FROM a)
-       AND y.specimen=(SELECT specimen FROM b) AND y.profile=(SELECT profile FROM b)""",
+       AND y.specimen=(SELECT specimen FROM b) AND y.profile=(SELECT profile FROM b)
+       AND x.harness_kind IS y.harness_kind
+       AND x.outcome IN ('death','turn_cap','completion') AND y.outcome IN ('death','turn_cap','completion')""",
  'per-seed history across all runs': """SELECT run_id, specimen, profile, outcome, max_depth FROM cell
      WHERE suite='classes-1800' AND seed=(SELECT seed FROM cell WHERE suite='classes-1800' LIMIT 1)""",
  'runs sharing one exact configuration': """SELECT run_id, COUNT(*) FROM cell WHERE config_sha256=
-     (SELECT config_sha256 FROM cell LIMIT 1 OFFSET 1000) GROUP BY run_id""",
+     (SELECT config_sha256 FROM cell WHERE config_sha256 IS NOT NULL LIMIT 1 OFFSET 1000) GROUP BY run_id""",
  'fetch + inflate one full record': """SELECT gz FROM blob WHERE sha256=(SELECT record_sha256 FROM cell LIMIT 1 OFFSET 123456)""",
 }
 res = {}

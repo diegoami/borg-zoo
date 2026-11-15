@@ -52,9 +52,32 @@ Read at borg-reborn-rs `ec9058d1` (`engine/frontend/main-borgh.c`,
 | Plan state | The errands-plan proof of concept (borg-reborn-rs#305, PR #308) adds plan bytes, selected class and phase, cancellation and owner state, loop target and direction, town-detour state and pending decisions. All of these must be in the checkpoint ([comment on #114](https://github.com/diegoami/borg-zoo/issues/114)). The proof of concept refuses measured-harness plan runs until plan-aware identity exists |
 | C Borg inside the reborn tree | Same as native C: no memory serialisation |
 
-### Neo and Mandos: `tools/zoo-run.mjs`
+### Neo original and Neo forks: kind `neo-original`
 
-Read at better-borg (Mandos) `d32b69f`.
+The zoo's current Neo measurements (`zoo/neo_original.py`). Read at the
+newest measured triple, specimen `neo-fork-76f25aa-seeded-v2`: Borg
+`967b28f5`, engine diegoami/neo-angband-tracker `b4af7034`, toolkit
+diegoami/neo-angband-borg-mod-tracker `967b28f5` (`tools/zoo/run.mjs`,
+`session.ts`). Older specimens use the tracker's `tools/original-borg`
+toolkit at `2668adc5`.
+
+| Need | Today |
+| --- | --- |
+| Checkpoints, load, resume | None: the runner and session have no save, load or checkpoint path |
+| Evidence per game | `commands.jsonl`, checked against the record's `playSha256`, plus `stdout.log` and `stderr.log`. Kept only in the raw-evidence artifact of evidence-retaining runs |
+| Stop boundary | `after-key`; a death after the cap is recorded as `turn_cap` with `died_after_cap` |
+| RNG | The alignment profile reads RNG state for observation only; Neo keeps a separate Borg RNG |
+| Existing issues | Same engine seam as below (neo-angband-tracker#7, closed); nothing in the fork's toolkit |
+
+Neo resume is **deferred**: no Neo long run is planned. Until then these
+runs are ingested as lives with one segment from birth, evidence level
+`commands` when `commands.jsonl` was retained and verified, otherwise
+`hashes-only`, and checkpoints `unavailable`. Their identity is the
+neo-original build triple (Borg, engine, toolkit), never Mandos's.
+
+### Mandos: `tools/zoo-run.mjs`
+
+A separate adapter (kind `mandos`). Read at better-borg (Mandos) `d32b69f`.
 
 | Need | Today |
 | --- | --- |
@@ -82,7 +105,8 @@ issues are in the Mandos audit above.
 | C4 | better-borg-c | Optional frozen calendar (for example running under libfaketime, or an observer hook for `time()`), recorded in the build or execution contract | Resume across days; reproducibility around 24–26 December |
 | R1 | borg-reborn-rs (and borg-rs if still measured) | Serialise and restore the Rust Borg's memory, plan and controller state, versioned; with a `-resume` that refuses a mismatched build, configuration or plan hash | Exact continuation of Rust specimens; plan-aware long runs (#320) |
 | R2 | borg-reborn-rs | A checkpoint manifest naming every file written and its hash | Atomic publication |
-| N1 | Mandos | Checkpoint and resume in `zoo-run` (engine save, controller and Borg state), building on the parked mandos#130 and #26 | Neo long runs. Lowest priority: no Neo long run is planned, and that work is parked |
+| N1 | Mandos | Checkpoint and resume in `zoo-run` (engine save, controller and Borg state), building on the parked mandos#130 and #26 | Mandos long runs. Lowest priority: no Neo long run is planned, and that work is parked |
+| N2 | neo-angband-borg-mod-tracker (toolkit `tools/zoo`) | Checkpoint and resume in the fork's runner, for the neo-original specimens | Neo-fork long runs. Deferred for the same reason |
 
 **A shortcut to evaluate for C (spike S1).** A process-level snapshot, for
 example CRIU, would restore the whole running game *and* Borg without
@@ -115,23 +139,61 @@ native observer's `STATE` lines already carry the RNG fields.
 Start small (H = 10k, 20k, 30k turns), then 100k, 200k, 300k on the same 20
 seeds.
 
+**What is compared: the gameplay projection.** Raw traces differ for
+harmless reasons: the native observer writes a `STATE checkpoint` line when
+it saves, and a resumed process has its own start-up lines. So each run is
+reduced to a canonical projection, hashed separately from the raw evidence
+(which is kept unchanged):
+
+- the sequence of keys or commands the Borg issued after birth, each with
+  its decision index;
+- at each decision, the game turn, the full game RNG state, the Borg RNG
+  state, depth and HP;
+- the outcome and final state.
+
+Observer markers (checkpoint, start, process boundary) and wall-clock
+fields are left out. Birth input is compared separately for runs that start
+from birth. Records are aligned by decision index, not by line number. The
+projection is versioned per adapter; its definition is part of the
+qualification report.
+
+The projection must still catch real changes, so it is tested both ways:
+a trace that differs only by an extra checkpoint marker must compare equal,
+and one with a single extra game-RNG draw must not.
+
 **Pass criteria.**
 
-1. **Checkpointing does not perturb play:** A and A′ have identical key
-   streams, trace hashes and final states. This also shows that writing a
-   checkpoint adds no gameplay action and no RNG draw.
-2. **Resume is exact:** B equals A in keys, RNG states at every sample,
-   trace hash and outcome. The comparison is made at the first divergence,
-   which is reported with the turn and the state difference.
+1. **Checkpointing does not perturb play:** A and A′ have identical
+   gameplay projections. This shows that writing a checkpoint adds no
+   gameplay action and no RNG draw.
+2. **Resume is exact:** B's projection equals A's. A mismatch is reported
+   at the first divergent decision, with the turn and the state
+   difference.
 3. **Refusals work:** resuming with a different build, configuration, plan
    hash or state-format version is refused before play.
 4. **Fresh-Borg restart is labelled correctly:** F is expected to differ
    from A. The report records where it first differs. It is stored as a
    fork, never as A's life.
 5. **Storage round trip:** B's checkpoints go through the real publish,
-   seal and claim protocol, including one injected worker loss (kill the
-   holder, let the lease expire, resume from the same sealed checkpoint) and
-   one refused `staged` checkpoint.
+   seal, lease and acceptance protocols, including one injected worker loss
+   (kill the holder, let the lease expire, take it over, resume from the
+   same sealed checkpoint), and one checkpoint whose blob reference failed,
+   which must never become usable.
+
+6. **State coverage:** every field of the adapter's checkpoint state
+   schema that the plan or controller can hold must have been **non-empty
+   at some checkpoint** of a passing B run. For borg-reborn-rs with plans
+   that means at least: each selected class and phase, a phase boundary,
+   cancellation and owner state, both loop directions, a pending Recall or
+   town recovery, and a pending decision. Random seeds may never reach some
+   of these, so the qualification adds bounded fixtures: checkpoints chosen
+   or started from saves where each state is live. The report lists each
+   field as exercised or not. A field never exercised is **unqualified**,
+   not passed, and resume refuses checkpoints taken while it is non-empty.
+
+Qualification applies to one adapter, one state-format version and one
+plan/controller state schema. A new version of any of them needs a new
+qualification.
 
 If criterion 2 fails, the adapter offers only fresh-Borg restart, and the
 qualification report lists exactly which state is missing. The zoo then
@@ -146,7 +208,7 @@ labels long runs on that adapter as forks, or waits for the change request.
 2. **Native C next**, starting with C1 and C2, which are small and enough
    for fresh-Borg forks and cemetery pre-death checkpoints. Spike S1 (CRIU)
    decides whether C3 is needed before exact C long runs.
-3. **Mandos last** (N1), when a Neo long run is planned.
+3. **Neo last** (N1 for Mandos, N2 for the neo-original fork runner), when a Neo long run is planned.
 
 Until an adapter passes, the zoo can still run long games from birth as
 today. If the owner approves the protocol (decision D4 in the
