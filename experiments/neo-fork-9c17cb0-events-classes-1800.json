@@ -1,0 +1,30 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "neo-fork-9c17cb0-events-classes-1800",
+  "description": "Corrected message/event-host measurement of Borg9c17cb0 with toolkit02c33cf1871b86ea8e8d7bf8cbc870cf177b736b, engine06a2321c, frozen suiteclasses-1800. Corrects message-deaf acceptance run43615649575 (port-tracker#92). Retain every attempt; historical outcomes remain unchanged. Owner-authorized1800-cell single-arm run with death evidence. Eight parallel jobs, two processes each. Historical48afb65 and9c17cb0/deaf-host outcomes are descriptive references with different host semantics, not paired evidence of code improvement.",
+  "specimens": [
+    "neo-fork-9c17cb0-events"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "neo-fork-9c17cb0-events",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "neo-fork-9c17cb0-events": 180
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 8,
+    "native_wall_seconds": 900,
+    "neo_wall_seconds": 2700,
+    "max_cells_per_native_shard": 30,
+    "max_cells_per_neo_shard": 10,
+    "worst_case_play_minutes_per_shard": 225,
+    "job_timeout_minutes": 300
+  },
+  "owner_authorization": "2026-11-14: owner asked this session to start a borg-zoo run of the repaired Neo Borg and inspect its deaths. Run the classes-18 acceptance first, then this frozen classes-1800 suite after a clean build/play check."
+}

@@ -25,7 +25,7 @@
       "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "mode_side": "pre",
       "carries": 0,
-      "label": "Angband 4.2.6 \u2014 the original C Borg as the release ships it (angband/angband e473720)",
+      "label": "Angband 4.2.6 — the original C Borg as the release ships it (angband/angband e473720)",
       "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "formerly": [
         "pristine"
@@ -628,7 +628,7 @@
       "exact_turns": true,
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-reborn-rs/blob/f0eeee25d1ff2cb1103ed08518a6c5f6500dad46/docs/ZOO-INTERFACE.md",
-      "label": "borg-reborn-rs milestone E after its accepted review corrections (#94\u2013#96), as requested in borg-zoo#48. Separate pin preserves the pre-review tag-e results. Hallucination perception is corrected; the original C controls stay at their own pins."
+      "label": "borg-reborn-rs milestone E after its accepted review corrections (#94–#96), as requested in borg-zoo#48. Separate pin preserves the pre-review tag-e results. Hallucination perception is corrected; the original C controls stay at their own pins."
     },
     "4.2.6-rs-m11": {
       "kind": "borg-rs",
@@ -885,6 +885,34 @@
       "play_mode": "single",
       "label": "PR85 inventory/return corrections plus restored selling-pressure backstops and incremental return-goal observations; M12 Rust Borg",
       "source": "https://github.com/diegoami/borg-rs/blob/71cff24ef45731e55aa9687930cd2d766dd0695e/docs/validation/2026-11-15-trip-sale-fallback/README.md"
+    },
+    "neo-fork-9c17cb0": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "9c17cb0c582fe129008899491372787e91abdade",
+      "engine_repository": "neostryder/neo-angband",
+      "engine_ref": "06a2321ce30a414df20d1b20d486446e7688171c",
+      "wall_factor": 3,
+      "label": "Neo Borg candidate PR91 at 9c17cb0, not merged master: danger-cache/goal invalidation, HP-change invalidation and C pre-escape desperate-stair/strategic-retreat repairs, on declared engine 06a2321c. Built/run by the same commit's tools/zoo. Explicit FORK visibility/vault/anti-bounce limits remain; no population survival improvement is assumed. Historical message-deaf host (port-tracker#92); preserved for smoke43615649575, superseded by neo-fork-9c17cb0-events.",
+      "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/91",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "9c17cb0c582fe129008899491372787e91abdade",
+      "toolkit_path": "tools/zoo",
+      "role": "candidate"
+    },
+    "neo-fork-9c17cb0-events": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "9c17cb0c582fe129008899491372787e91abdade",
+      "engine_repository": "neostryder/neo-angband",
+      "engine_ref": "06a2321ce30a414df20d1b20d486446e7688171c",
+      "wall_factor": 3,
+      "label": "Neo Borg repair candidate PR91 at9c17cb0 with corrected event/message host from port-tracker PR93 at02c33cf. Borg and engine pins unchanged; toolkit now delivers messages through the official GameEvents/API2 subscription seam. Corrects message-deaf smoke43615649575; not a survival claim.",
+      "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/91",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "02c33cf1871b86ea8e8d7bf8cbc870cf177b736b",
+      "toolkit_path": "tools/zoo",
+      "role": "candidate"
     }
   }
 }
