@@ -25,7 +25,7 @@
       "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "mode_side": "pre",
       "carries": 0,
-      "label": "Angband 4.2.6 — the original C Borg as the release ships it (angband/angband e473720)",
+      "label": "Angband 4.2.6 \u2014 the original C Borg as the release ships it (angband/angband e473720)",
       "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "formerly": [
         "pristine"
@@ -628,7 +628,7 @@
       "exact_turns": true,
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-reborn-rs/blob/f0eeee25d1ff2cb1103ed08518a6c5f6500dad46/docs/ZOO-INTERFACE.md",
-      "label": "borg-reborn-rs milestone E after its accepted review corrections (#94–#96), as requested in borg-zoo#48. Separate pin preserves the pre-review tag-e results. Hallucination perception is corrected; the original C controls stay at their own pins."
+      "label": "borg-reborn-rs milestone E after its accepted review corrections (#94\u2013#96), as requested in borg-zoo#48. Separate pin preserves the pre-review tag-e results. Hallucination perception is corrected; the original C controls stay at their own pins."
     },
     "4.2.6-rs-m11": {
       "kind": "borg-rs",
@@ -913,6 +913,17 @@
       "toolkit_ref": "02c33cf1871b86ea8e8d7bf8cbc870cf177b736b",
       "toolkit_path": "tools/zoo",
       "role": "candidate"
+    },
+    "4.2.6-rs-pr88-additive-returns": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "7251f64a9c3bf75fb8b90940d3fda54c4fa610bb",
+      "depth_stream": true,
+      "verify_effective_settings": true,
+      "play_mode": "single",
+      "label": "M13 Rust Borg with merged PR88: added town-return triggers preserve legacy returns and do not alter shopping forecasts, combat reserves or depth decisions.",
+      "source": "https://github.com/diegoami/borg-rs/pull/88"
     }
   }
 }
