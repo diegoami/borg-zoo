@@ -56,6 +56,13 @@ Tests: `python3 -m unittest discover -s tests`.
 
 ## Reading the results
 
+The Detailed tab lists experiments by the question they ask. Each run starts
+with a short comparison brief: versions, settings, baseline, seed count and
+turn cap. Background, study plans and exact settings expand on demand.
+Reader-facing questions live in `zoo/briefs.py`; add one when introducing an
+experiment. The recorded run supplies the conditions, including historical
+ones.
+
 The tables are descriptive. Suites are small, intervals are wide, and the
 primary endpoint is not yet fixed. "Goal" (alive at the cap having reached
 dungeon level 5) is a placeholder until it is. Runs that stall, time out,
