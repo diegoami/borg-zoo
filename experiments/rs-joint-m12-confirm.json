@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "specimens": [
+    "4.2.6-rs-joint-m12-d9a56f4"
+  ],
+  "control": "4.2.6-rs-joint-m12-d9a56f4",
+  "control_profile": "rs-joint-old-control",
+  "resource_budget": {
+    "max_parallel_jobs": 8,
+    "processes_per_job": 1
+  },
+  "owner_authorization": "2026-11-14 session request: schedule full zoo runs of the best joint trip/inventory settings and variations; improved shopping must act, not just shadow.",
+  "source_notes": "All arms share d9a56f4 and the milestone-12 engine. The pinned Rust Borg has one play mode; no retired mode can be enabled. Profiles declare all local-search parameters; modern native effective_settings are required and checked.",
+  "name": "rs-joint-m12-confirm",
+  "description": "Prespecified fresh-seed check of the fixed locally selected risk-2000 candidate against existing behaviour and untuned live policies. Three arms, 5400 games on classes-1800-b.",
+  "profiles": [
+    "rs-joint-old-control",
+    "rs-joint-live-reference",
+    "rs-joint-risk2000"
+  ],
+  "suites": [
+    "classes-1800-b"
+  ],
+  "prespecified": "Fixed before dispatch. Primary: risk2000 versus old-control, paired natural death by the 100000-turn after-key cap on cases where both finish, exact two-sided McNemar alpha 0.05. All noncompletion categories remain reported and are not relabelled as deaths or survivors. Secondary descriptive comparison: risk2000 versus live-reference. Mean final character level, mean deepest level and DL3+ count are secondary descriptive measures, per-class figures descriptive. Candidate risk2000 is fixed from the local 45+45 study; development-suite variation winners cannot be substituted. Sizing: local fresh cases had discordance 16/45 and net death difference 2/45; the normal paired approximation (1.96+0.842)^2*(16/45)/(2/45)^2 is about 1413 cases for 80% power under those uncertain pilot assumptions. The standard 1800-case suite exceeds that approximation; incomplete pairs reduce effective size. No general improvement claim from a development table.",
+  "retain_evidence": true
+}

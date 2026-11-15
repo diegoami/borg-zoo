@@ -83,6 +83,7 @@ def cmd_run(args):
                     cell = pending[future]
                     record = {'schema': 'borg-zoo/cell@1', **cell,
                               'harness_kind': cat['specimens']['specimens'][cell['specimen']].get('kind', 'better-borg-c'),
+                              'boundary': cat_mod.boundary(cat['specimens']['specimens'][cell['specimen']]),
                               'outcome': 'harness_failure', 'error': repr(exc),
                               'cap': cat['suites'][cell['suite']]['cap'],
                               'final': {}, 'first_turn_at_depth': {}, 'wall_seconds': None}
@@ -115,6 +116,7 @@ def cmd_collect(args):
         records[key] = {'schema': 'borg-zoo/cell@1', 'suite': suite, 'specimen': specimen,
                         'profile': profile, 'seed': int(seed),
                         'harness_kind': cat['specimens']['specimens'][specimen].get('kind', 'better-borg-c'),
+                        'boundary': cat_mod.boundary(cat['specimens']['specimens'][specimen]),
                         'command_stream_profile': cat['specimens']['specimens'][specimen].get('command_stream_profile'),
                         'outcome': 'harness_failure',
                         'error': 'no record collected (job failed or was cancelled)',

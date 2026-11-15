@@ -1,0 +1,29 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "specimens": [
+    "4.2.6-rs-kit-trip-m12-dd3eeac"
+  ],
+  "control": "4.2.6-rs-kit-trip-m12-dd3eeac",
+  "control_profile": "rs-kit-trip-control",
+  "resource_budget": {
+    "max_parallel_jobs": 6,
+    "processes_per_job": 1
+  },
+  "owner_authorization": "2026-11-15 owner request: schedule experiments after integrating the finished inventory object-capability updates with the all-item trip-return fix. Fewer deaths first, then character level/depth.",
+  "source_notes": "All arms use dd3eeac646e097bcdd7c289c092e91400896a713, milestone-12 engine. Control disables both policies; candidates use actual shopping and the all-item return rule. This tests the combined policies, not their individual contributions. All six capability calibration parameters and shared trip/supply parameters are declared and checked against native effective_settings.",
+  "name": "rs-kit-trip-development",
+  "description": "Seven choices on the same 1800 starting cases: existing rules, integrated defaults, 1.5x risk forecast, lower attack/support/learning priorities and earlier returns. 12600 games.",
+  "profiles": [
+    "rs-kit-trip-control",
+    "rs-kit-trip-default",
+    "rs-kit-trip-risk1500",
+    "rs-kit-trip-attack50",
+    "rs-kit-trip-support25",
+    "rs-kit-trip-knowledge5",
+    "rs-kit-trip-earlier"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "prespecified": "Descriptive development study. Rank fewer natural deaths first; then mean final character level, mean deepest level and DL3+ count, including dead characters. Report all incomplete outcomes separately and paired rescued/newly-killed counts. Candidate settings differ one at a time from integrated defaults, except the earlier-return choice deliberately changes both return thresholds. No winner chosen here is confirmed by the independently fixed confirmation."
+}

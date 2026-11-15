@@ -101,8 +101,12 @@ jobs:
       - if: matrix.kind == 'mandos' || matrix.kind == 'neo-original'
         uses: actions/setup-node@v4
         with:
-          node-version: '26'
-      - if: matrix.kind == 'mandos' || matrix.kind == 'neo-original'
+          node-version: ${{ matrix.kind == 'neo-original' && '26' || '22' }}
+      - if: matrix.kind == 'neo-original'
+        uses: pnpm/action-setup@v4
+        with:
+          version: '12.3.4'
+      - if: matrix.kind == 'mandos'
         run: corepack enable && node --version && (cd source && pnpm --version)
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq libx11-dev > /dev/null
       - if: matrix.kind == 'borg-rs'
@@ -153,7 +157,7 @@ jobs:
       - if: matrix.kind == 'mandos' || matrix.kind == 'neo-original'
         uses: actions/setup-node@v4
         with:
-          node-version: '26'
+          node-version: ${{ matrix.kind == 'neo-original' && '26' || '22' }}
       - name: Install the Mandos checkout
         if: matrix.kind == 'mandos'
         # The run uses the bundle from the build job; zoo-run checks that this

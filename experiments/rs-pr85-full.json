@@ -1,0 +1,29 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "rs-pr85-full",
+  "description": "Full-suite owner-selected return-threshold development: existing-rules and new-shopping/old-returns controls plus (pack slack, eligible unknown stacks)=(0,0),(1,2),(1,4),(2,4). Six choices, 1800 fresh starts each, 10800 games. Legacy selling pressure is preserved in every arm.",
+  "specimens": [
+    "4.2.6-rs-pr85-returns"
+  ],
+  "control": "4.2.6-rs-pr85-returns",
+  "control_profile": "rs-pr85-existing",
+  "profiles": [
+    "rs-pr85-existing",
+    "rs-pr85-shopping-only",
+    "rs-pr85-return-p0-u0",
+    "rs-pr85-return-p1-u2",
+    "rs-pr85-return-p1-u4",
+    "rs-pr85-return-p2-u4"
+  ],
+  "suites": [
+    "classes-1800-d"
+  ],
+  "resource_budget": {
+    "max_parallel_jobs": 6,
+    "processes_per_job": 1
+  },
+  "retain_evidence": true,
+  "owner_authorization": "2026-11-15 owner explicitly requested merge of PR85, restore the old selling-pressure fallback, and tune exactly (borg_trip_pack_slack,borg_trip_unknown_stacks)=(0,0),(1,2),(1,4),(2,4) on a full Borg Zoo suite. Two existing-return controls are retained. Six concurrent game jobs, one game process each.",
+  "source_notes": "All arms use the same immutable merged borg-rs source 71cff24ef45731e55aa9687930cd2d766dd0695e: PR85 inventory/calibration repair plus PR86 restored selling-pressure fallback and v4 application records. Only the policy flags and owner-selected return thresholds vary. Full native key/message/state evidence, town plans, v3 recommendations and v4 applications are retained. Native effective settings are checked. All previous study source pins and frozen suites are unchanged.",
+  "prespecified": "Owner-selected development calibration, fixed before dispatch. Four exact threshold pairs: (0,0),(1,2),(1,4),(2,4). Zero pack slack means full pack; zero unknown threshold explicitly disables learning-driven returns. Every arm preserves inherited selling-pressure backstops, supply restock, preparedness and safety logic. Calibrated shopping is identical in all four threshold arms; existing-rules and new-shopping/legacy-returns controls isolate shopping and the added trip policy. Primary descriptive measurement: paired natural-death differences at the 100000-world-turn after-key cap on complete matched pairs. Report all noncompletions and unmatched pairs first, not as deaths/survivors. Paired McNemar statistics are descriptive across this multi-arm development set. Report every comparison, including null effects when inherited rules request an earlier return. Secondary: mean final CL, mean deepest DL, DL3+ including dead characters; native town arrivals, sampled town time, newly set custom return goals, pre-existing return goals, selling/restock notes and unfinished return requests; actual class purchases. Compare (1,4) against (2,4) for the pack threshold and (1,2) against (1,4) for the learning threshold; (0,0) changes both and is not an isolated-factor contrast. New custom-goal observations establish only a goal transition at that consultation, not a claim that the character would never return otherwise. No mid-run retuning or accepted winner. A later prespecified fresh-seed confirmation is required before an improvement claim."
+}

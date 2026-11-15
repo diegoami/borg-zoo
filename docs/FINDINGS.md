@@ -118,6 +118,14 @@ This compares two harness kinds, so the statistics don't pair them. The check wa
 
 Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
 
+**Reserve shopping's apparent Rogue regression remains unconfirmed** (#79).
+The existing `rs-family-buying-classes-1800` control/reserve410 cells reproduce
+200 Rogue pairs: 32 rescued, 48 newly killed, exact McNemar p = 0.092912.
+None of the nine post-hoc class comparisons establishes an effect; the
+Necromancer's 200 pairs have identical play hashes. The site now reports
+paired deaths by class. [Reanalysis and frozen-input hashes](../reports/rogue-shopping-79/REPORT.md).
+A fresh Rogue confirmation still needs the owner's endpoint and sizing.
+
 ## Neo Borg: Mandos lanes
 
 **The port repairs never change play.**
@@ -215,6 +223,26 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
   classes scale returns as [`m10-smoke`](../smoke/m10-smoke.json), restarted on the explicit
   profiles (munchkin-class, normal).
 
+- **Joint shopping/trip candidate did not reduce deaths in the fresh-seed confirmation.**
+  [`rs-joint-m12-confirm`](https://diegoami.github.io/borg-zoo/runs/rs-joint-m12-confirm/43643769983-1/index.html)
+  finished all 5,400 games: 530/1,800 deaths with the existing rules,
+  586/1,800 with the new shopper and trip policy at ordinary provisioning,
+  and 559/1,800 with the fixed 2x-risk supply forecast. The prespecified
+  candidate-versus-control pairing rescued 312 characters and newly killed
+  341 (exact two-sided McNemar p=0.2732). This does not support adopting
+  the candidate for fewer deaths. All arms use pinned borg-rs `d9a56f4`,
+  with the original limited object coverage; subsequent coverage fixes are
+  not tested by these results. The report now explains each arm directly,
+  alongside means including dead characters and the detailed statistics.
+
+- **Post-fix Neo seeded-v2 measurements (2026-11-15):** the18-game100000-tick
+  acceptance retained10deaths,7wall timeouts and1tunnel stall. Partial traces
+  show live advancement before the120-second watchdog; a separate600-second
+  repeat finishes both Warrior cases normally (one death65338, one cap100000).
+  The [measurement receipts](neo-merged-seeded-v2/README.md) preserve both runs
+  and the exact-command-prefix control. The fresh1800-game cohort43670231534
+  is dispatched with the calibrated budget. Its results are pending; no C parity
+  or survival improvement follows from these acceptance counts.
 
 - **Neo measurement host correction (2026-11-14):** smoke43615649575
   measured candidate9c17cb0 with a message-deaf headless host: it recorded

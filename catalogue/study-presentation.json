@@ -1,0 +1,54 @@
+{
+  "profiles": {
+    "rs-joint-old-control": "Existing shopping and trip rules",
+    "rs-joint-live-reference": "New shopping + trip: ordinary provisioning",
+    "rs-joint-risk1500": "New shopping + trip: 1.5x risk forecast",
+    "rs-joint-risk2000": "New shopping + trip: 2x risk forecast",
+    "rs-joint-risk2500": "New shopping + trip: 2.5x risk forecast",
+    "rs-joint-risk2000-earlier": "New shopping + trip: 2x risk, earlier returns",
+    "rs-kit-trip-control": "Existing shopping and return rules",
+    "rs-kit-trip-default": "Expanded inventory + all-item returns: defaults",
+    "rs-kit-trip-risk1500": "Expanded inventory + all-item returns: 1.5x supply risk",
+    "rs-kit-trip-attack50": "Expanded inventory + all-item returns: attack priority 50",
+    "rs-kit-trip-support25": "Expanded inventory + all-item returns: support priority 25",
+    "rs-kit-trip-knowledge5": "Expanded inventory + all-item returns: learning priority 5",
+    "rs-kit-trip-earlier": "Expanded inventory + all-item returns: earlier returns",
+    "rs-pr85-existing": "Existing shopping and returns",
+    "rs-pr85-shopping-only": "New shopping, legacy returns",
+    "rs-pr85-return-p0-u0": "Full pack; learning return off (0,0)",
+    "rs-pr85-return-p1-u2": "One free slot / two unknown stacks (1,2)",
+    "rs-pr85-return-p1-u4": "One free slot / four unknown stacks (1,4)",
+    "rs-pr85-return-p2-u4": "Two free slots / four unknown stacks (2,4)"
+  },
+  "experiments": {
+    "rs-joint-m12-development": {
+      "title": "Which trip and shopping settings work better?",
+      "intro": "Six choices play the same starting cases. We compare the existing rules with the new shopper and return policy, then vary supply planning and return timing. All rows use the same milestone-12 Rust Borg code."
+    },
+    "rs-joint-m12-confirm": {
+      "title": "Fresh-seed check: new shopping and trip policies",
+      "intro": "Does the locally selected supply setting reduce deaths on 1,800 fresh starting cases? Compare the existing rules, the new policies with ordinary provisioning, and the new policies planning for twice the risk. All rows use the same milestone-12 Rust Borg code."
+    },
+    "rs-kit-trip-development": {
+      "title": "Expanded inventory and all-item returns: which settings work better?",
+      "intro": "Seven choices play the same 1800 starts. The new inventory model covers ammunition, oil, devices, books, food, mushrooms and equipment. Compare its default priorities with five variations and the existing rules.",
+      "coverage_repaired": true
+    },
+    "rs-kit-trip-confirm": {
+      "title": "Fresh-case confirmation: expanded inventory and all-item returns",
+      "intro": "Does the integrated default policy reduce deaths on 1800 fresh starts? Both the expanded inventory model and the all-item learning-return rule act together. The comparison candidate was fixed before the development results.",
+      "coverage_repaired": true
+    },
+    "rs-pr85-full": {
+      "title": "PR85 full suite: when should the Borg go back to town?",
+      "intro": "Six fixed choices play the same 1800 fresh starts across all nine classes. Four owner-selected threshold pairs keep shopping fixed and preserve the inherited selling-pressure fallback. Two controls use existing return rules. This is development calibration, not a survival-improvement claim.",
+      "coverage_repaired": true,
+      "scope_note": "Shopping is fixed in the four threshold arms. Inherited selling-pressure backstops, safety, restocking and preparedness remain active; these thresholds add requests and cannot veto an existing return. Zero unknown stacks disables learning-driven returns; zero pack slack waits for a full pack.",
+      "comparison_profiles": [
+        "rs-pr85-existing",
+        "rs-pr85-return-p2-u4"
+      ],
+      "candidate_label": "(2,4) return candidate"
+    }
+  }
+}
