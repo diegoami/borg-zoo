@@ -133,19 +133,29 @@ def build_inspector(meta, cells, source, target):
     origins = json.loads((recovered / 'manifest.json').read_text()) if (recovered / 'manifest.json').exists() else {}
     rows = []
     written = set()
+    consolidated_blobs = {}
+    if meta.get('consolidated_runs'):
+        # Index once: scanning the complete results tree for every game makes
+        # historical consolidated reports needlessly expensive to publish.
+        for path in Path(source).parent.parent.rglob('configurations/*.txt'):
+            consolidated_blobs.setdefault(path.stem, path)
+    cache = {}
     for cell in cells:
         digest = cell.get('config_sha256')
         data, origin = None, None
-        if valid_digest(digest):
+        if digest in cache:
+            data, origin = cache[digest]
+        elif valid_digest(digest):
             candidates = [Path(source) / 'configurations' / f'{digest}.txt', recovered / f'{digest}.txt.gz']
             # Consolidated reports can include blobs from several workflow runs.
-            if meta.get('consolidated_runs'):
-                candidates.extend(Path(source).parent.parent.rglob(f'configurations/{digest}.txt'))
+            if digest in consolidated_blobs:
+                candidates.append(consolidated_blobs[digest])
             for candidate in candidates:
                 data = verified_bytes(candidate, digest)
                 if data is not None:
                     origin = origins.get(digest, {}).get('source', 'Captured written user/borg.txt from the recorded attempt')
                     break
+            cache[digest] = data, origin
         filename = None
         if data is not None:
             filename = f'{digest}.txt'
