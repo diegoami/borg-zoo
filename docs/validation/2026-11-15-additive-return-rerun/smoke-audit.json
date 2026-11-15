@@ -1,0 +1,121 @@
+{
+  "smoke_run": "https://github.com/diegoami/borg-zoo/actions/runs/43759453141",
+  "runner_commit": "54a2c986916749aa3bfb02f53225219dba850ec1",
+  "source_pin": "7251f64a9c3bf75fb8b90940d3fda54c4fa610bb",
+  "binary_sha256": "10668d3821e1de56ceb1f0d87647ce7063f0747d68491a374e86fee2aac8ce77",
+  "cells": 54,
+  "verified_raw_files": 828,
+  "outcomes": {
+    "turn_cap": 39,
+    "death": 15
+  },
+  "profiles": {
+    "rs-additive-existing": {
+      "outcomes": {
+        "turn_cap": 7,
+        "death": 2
+      },
+      "custom_goals": 0
+    },
+    "rs-additive-shopping-only": {
+      "outcomes": {
+        "turn_cap": 6,
+        "death": 3
+      },
+      "custom_goals": 0
+    },
+    "rs-additive-p0-u0": {
+      "outcomes": {
+        "turn_cap": 6,
+        "death": 3
+      },
+      "custom_goals": 0
+    },
+    "rs-additive-p1-u2": {
+      "outcomes": {
+        "turn_cap": 6,
+        "death": 3
+      },
+      "custom_goals": 7
+    },
+    "rs-additive-p1-u4": {
+      "outcomes": {
+        "turn_cap": 7,
+        "death": 2
+      },
+      "custom_goals": 3
+    },
+    "rs-additive-p2-u4": {
+      "outcomes": {
+        "turn_cap": 7,
+        "death": 2
+      },
+      "custom_goals": 4
+    }
+  },
+  "zero_threshold_equivalence": [
+    {
+      "seed": 483346453,
+      "class_": "Warrior",
+      "same_keys": true,
+      "added_goals": 0
+    },
+    {
+      "seed": 1306014982,
+      "class_": "Mage",
+      "same_keys": true,
+      "added_goals": 0
+    },
+    {
+      "seed": 1528406566,
+      "class_": "Druid",
+      "same_keys": true,
+      "added_goals": 0
+    },
+    {
+      "seed": 34984648,
+      "class_": "Priest",
+      "same_keys": true,
+      "added_goals": 0
+    },
+    {
+      "seed": 552290867,
+      "class_": "Necromancer",
+      "same_keys": true,
+      "added_goals": 0
+    },
+    {
+      "seed": 212791554,
+      "class_": "Paladin",
+      "same_keys": true,
+      "added_goals": 0
+    },
+    {
+      "seed": 1667207972,
+      "class_": "Rogue",
+      "same_keys": true,
+      "added_goals": 0
+    },
+    {
+      "seed": 1350235819,
+      "class_": "Ranger",
+      "same_keys": true,
+      "added_goals": 0
+    },
+    {
+      "seed": 1078776305,
+      "class_": "Blackguard",
+      "same_keys": true,
+      "added_goals": 0
+    }
+  ],
+  "timing_seconds": {
+    "median": 5.475179400000016,
+    "p95": 13.149087149000025,
+    "max": 16.149362797000038,
+    "270_games_at_twice_p95_plus_180s": 7280.507060460013
+  },
+  "full_shard_timeout_seconds": 18000,
+  "timing_gate": true,
+  "issues": []
+}
