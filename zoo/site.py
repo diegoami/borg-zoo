@@ -301,22 +301,26 @@ def tested_settings(meta):
     if not study_info(meta):
         return ''
     rows = []
+    repaired = study_info(meta).get('coverage_repaired', False)
     profiles = meta['catalogue'].get('profiles', {})
     for name in meta['experiment']['profiles']:
         cfg = profiles.get(name, {}).get('settings', {})
         live = cfg.get('borg_town_plan') == 1
         trip = cfg.get('borg_trip_policy') == 1
-        rows.append([esc(study_presentation()['profiles'].get(name, name)),
+        row = [esc(study_presentation()['profiles'].get(name, name)),
                      'New shopper — ON' if live else 'Existing shopper',
                      'New trip policy — ON' if trip else 'Existing return rules',
                      f"{cfg.get('borg_town_risk', 1000) / 1000:g}x forecast risk" if live else 'Existing supply rules',
-                     f"{cfg.get('borg_trip_pack_slack', 2)} free spaces / {cfg.get('borg_trip_unknown_stacks', 4)} unknown gear stacks" if trip else 'Existing triggers'])
+                     f"{cfg.get('borg_trip_pack_slack', 2)} free spaces / {cfg.get('borg_trip_unknown_stacks', 4)} {'eligible unknown stacks' if repaired else 'unknown gear stacks'}" if trip else 'Existing triggers']
+        if repaired:
+            row.append(f"Attack {cfg.get('borg_town_w_attack', 100)} / support {cfg.get('borg_town_w_support', 50)} / learning {cfg.get('borg_town_w_knowledge', 25)}" if live else 'Existing priorities')
+        rows.append(row)
     ids = ''.join(f'<li><code>{esc(name)}</code>: {esc(study_presentation()["profiles"].get(name, name))}</li>' for name in meta['experiment']['profiles'])
     return ('<h2>What is being tested?</h2><p>The new shopper makes actual purchases, sales and Home transfers. '
             'The trip policy decides when to go home. The risk multiplier changes supply planning; '
             'it does not make the character fight more recklessly. Other declared settings stay the same.</p>'
-            '<p>These are the frozen runs of the original, limited shopping model. The object-coverage fixes now being developed are not included.</p>'
-            + table(['Choice', 'Shopping', 'Dungeon returns', 'Supply planning', 'Return triggers'], rows)
+            + ('<p>This build includes expanded object capabilities and the all-item learning-return fix. The inventory coverage gate accounts for all 104 ordinary shop kinds, including contextual exclusions. Unknown food and mushrooms can contribute; unchanged unresolved items do not repeatedly trigger returns by themselves. This compares both policies together.</p>' if repaired else '<p>These are the frozen runs of the original, limited shopping model. The object-coverage fixes now being developed are not included.</p>')
+            + table(['Choice', 'Shopping', 'Dungeon returns', 'Supply planning', 'Return triggers'] + (['Purchase priorities'] if repaired else []), rows)
             + '<p><strong>Primary question: how many characters die?</strong> Character level and depth are secondary. '
               'Putting an unknown object in the Home frees space but does not identify it.</p>'
             + '<details><summary>Exact identifiers and statistical plan</summary><ul>' + ids + '</ul><p>'
@@ -339,16 +343,19 @@ def study_summary(meta, cells, suite):
                          sum(d >= 3 for d in depths), len(selected) - len(finished)])
     verdict = ''
     compare = {}
-    for profile in ('rs-joint-old-control', 'rs-joint-risk2000'):
+    repaired = study_info(meta).get('coverage_repaired', False)
+    control, candidate = ('rs-kit-trip-control', 'rs-kit-trip-default') if repaired else ('rs-joint-old-control', 'rs-joint-risk2000')
+    candidate_name = 'integrated-default candidate' if repaired else '2x-forecast candidate'
+    for profile in (control, candidate):
         group = [c for c in cells if c['suite'] == suite and c['profile'] == profile]
         if group and all(c['outcome'] in stats.VALID for c in group):
             compare[profile] = group
-    if len(compare) == 2 and len(compare['rs-joint-old-control']) == len(compare['rs-joint-risk2000']):
-        delta = sum(c['outcome'] == 'death' for c in compare['rs-joint-risk2000']) - sum(c['outcome'] == 'death' for c in compare['rs-joint-old-control'])
+    if len(compare) == 2 and len(compare[control]) == len(compare[candidate]):
+        delta = sum(c['outcome'] == 'death' for c in compare[candidate]) - sum(c['outcome'] == 'death' for c in compare[control])
         if delta > 0:
-            verdict = f'<p><strong>On these cases, the 2x-forecast candidate had {delta} more deaths than the existing rules. It did not reduce deaths in this comparison.</strong></p>'
+            verdict = f'<p><strong>On these cases, the {candidate_name} had {delta} more deaths than the existing rules. It did not reduce deaths in this comparison.</strong></p>'
         elif delta < 0:
-            verdict = f'<p><strong>On these cases, the 2x-forecast candidate had {-delta} fewer deaths than the existing rules.</strong> The paired analysis below shows the uncertainty.</p>'
+            verdict = f'<p><strong>On these cases, the {candidate_name} had {-delta} fewer deaths than the existing rules.</strong> The paired analysis below shows the uncertainty.</p>'
         else:
             verdict = '<p>The candidate and existing rules had the same death count.</p>'
     return ('<h3>Plain summary</h3>' + verdict + '<p>Means include every finished character, including those that died. '

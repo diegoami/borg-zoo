@@ -25,7 +25,7 @@
       "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "mode_side": "pre",
       "carries": 0,
-      "label": "Angband 4.2.6 — the original C Borg as the release ships it (angband/angband e473720)",
+      "label": "Angband 4.2.6 \u2014 the original C Borg as the release ships it (angband/angband e473720)",
       "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "formerly": [
         "pristine"
@@ -770,6 +770,17 @@
       "play_mode": "single",
       "label": "borg-rs milestone-12 joint trip and live inventory candidate, pinned d9a56f4; one play mode, retired modes unavailable",
       "source": "https://github.com/diegoami/borg-rs/blob/d9a56f48bac8675c91f551619492af36b698b4cf/docs/JOINT-POLICY-OPTIMISATION.md"
+    },
+    "4.2.6-rs-kit-trip-m12-dd3eeac": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "dd3eeac646e097bcdd7c289c092e91400896a713",
+      "depth_stream": true,
+      "verify_effective_settings": true,
+      "play_mode": "single",
+      "label": "Integrated complete ordinary-shop capability coverage and all-item learning returns, milestone-12 Rust Borg; pinned dd3eeac",
+      "source": "https://github.com/diegoami/borg-rs/blob/dd3eeac646e097bcdd7c289c092e91400896a713/docs/validation/2026-11-15-trip-inventory-integration/README.md"
     }
   }
 }
