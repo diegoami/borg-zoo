@@ -1,0 +1,30 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "neo-fork-48afb65-classes-1800",
+  "description": "The Neo Borg from diegoami/neo-angband-borg-mod-tracker master 48afb65 (neo-fork-ba513ff plus the fork's port fixes from its PRs 75, 76 and 84) on classes-1800 with retained death evidence, the same suite, profile, engine 06a2321c, toolkit path and budget as neo-fork-classes-1800. It runs as its own workflow run; neo-fork-ba513ff's run 43429544870 is the reference, and what differs between the two runs (the Borg commit, the calendar date and the runners) is stated with any comparison. Descriptive only: no improvement claim from the tables (RULES 7, 8).",
+  "specimens": [
+    "neo-fork-48afb65"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "neo-fork-48afb65",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "neo-fork-48afb65": 180
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 12,
+    "native_wall_seconds": 900,
+    "neo_wall_seconds": 2700,
+    "max_cells_per_native_shard": 30,
+    "max_cells_per_neo_shard": 10,
+    "worst_case_play_minutes_per_shard": 225,
+    "job_timeout_minutes": 300
+  },
+  "owner_authorization": "2026-11-14: the owner asked for a complete borg-zoo run of the Neo Borg from neo-angband-borg-mod-tracker after the port fixes, then to merge PR 84 when green and start the run (port-tracker session)."
+}
