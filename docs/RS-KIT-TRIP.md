@@ -76,4 +76,10 @@ seven profiles reached the 20,000-turn cap through the zoo adapter with every
 declared native setting verified. [Canary receipts](validation/2026-11-15-kit-trip-zoo-canaries.json)
 are wiring checks and are excluded from both studies. Existing frozen suites
 were checked unchanged; the new confirmation has no seed overlap with them.
-Workflow links are recorded after launch.
+Dispatched from zoo commit `091e7eee87f29a81a49f4a35b7d391764ee2cf7c`:
+
+- [Development workflow: 12,600 games](https://github.com/diegoami/borg-zoo/actions/runs/43667610732)
+- [Fresh-case confirmation: 3,600 games](https://github.com/diegoami/borg-zoo/actions/runs/43667787016)
+
+The workflows collect results and publish readable zoo reports automatically.
+The live workflow status is authoritative; dispatch is not a completed result.
