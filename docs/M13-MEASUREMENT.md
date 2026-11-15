@@ -4,8 +4,9 @@
 when the starting policy stays the same?
 
 The catalogue already pins C M13 to `9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8`
-(tag `4.2.6-impact-v13`). No specimen ref needs changing. This preparation
-adds comparisons; it records no new findings and dispatches no runs.
+(tag `4.2.6-impact-v13`). No specimen ref needs changing. The original preparation
+added comparisons without dispatching runs. The owner-authorized retry below
+supersedes its scheduling guidance.
 
 | Definition | What it tests | Games |
 | --- | --- | ---: |
@@ -17,13 +18,45 @@ The full comparison is descriptive. It isolates the milestone package under
 one settings profile, not each individual fix. Neither settings comparison
 is the source-gated per-mode batch requested in #87.
 
+## Owner-authorized retry (2026-11-15)
+
+Full run [43703176769](https://github.com/diegoami/borg-zoo/actions/runs/43703176769)
+used four shards per specimen: 900 sequential games each. All eight jobs hit
+300 minutes. Logs contain 4,930 endpoints, but the non-retained output path
+wrote JSONL only after the shard finished, so collection recorded all 7,200
+cells missing. That historical run remains unchanged.
+
+Smoke [43703188519](https://github.com/diegoami/borg-zoo/actions/runs/43703188519)
+finished 18/18 caps, but was started after the large run; it did not gate it.
+PR #115 fixes incremental persistence for every experiment and configures
+20 shards per specimen, 180 games per shard, with 20 concurrent runner jobs.
+Observed full-run times of 28–30 seconds/game suggest about 90 minutes per
+shard, with headroom below the five-hour limit. This is an estimate, not a
+worst-case runtime guarantee.
+
+The owner explicitly authorized another full comparison, only when all 20
+account runner slots are free. A local one-shot watcher is registered as
+`borg-zoo-m13-idle.service`; it waits for the current Neo run and then checks
+all non-archived owned repositories for active/queued workflows. It dispatches
+a fresh smoke, checks its collected outcomes and exact configuration evidence,
+waits for account-wide idle again, then dispatches the full comparison once.
+It does not reserve slots against unrelated future workflow dispatches.
+
+Watcher script: `/tmp/borg-m13-idle.py`; log: `/tmp/borg-m13-idle.log`;
+dispatch receipts: `/tmp/borg-m13-idle-state.json`. Inspect those before starting
+another attempt; do not duplicate a pending or ambiguously acknowledged
+workflow dispatch. The watcher fails closed on API uncertainty or failed smoke.
+The full workflow uses all four arms in one run, 40 bounded shard jobs with
+at most 20 concurrent. No extra cohort is authorized.
+
 ## What the owner can schedule
 
 1. After the catalogue PR is accepted, start the smoke check. Require both
    builds, all attempted cells counted, and no configuration/harness errors.
    Inspect actual mode entry and branch execution separately from parsing.
-2. The owner can then start the full comparison, preferably one arm at a
-   time. Its maximum concurrency is eight jobs, one process per job.
+2. The authorized retry runs all arms together after smoke acceptance and
+   account-wide idle. Its maximum concurrency is 20 jobs, one process per job,
+   across 40 shards (20 per specimen).
 3. Read M13 against M12 within the same profile. A cross-profile comparison
    changes the starting policy as well. Separate arm dispatches retain the
    site's calendar/compiler/harness/platform differences warning.
