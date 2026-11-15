@@ -292,3 +292,26 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
   [v2 continuation report](../reports/c-neo-seed-continuation-v2/README.md).
   Same integer seeds are usable; later game trajectories are not yet shown
   equivalent. This is not a new survival estimate or a dispatched large cohort.
+
+
+- **PR85 return-threshold development grid completed (2026-11-15).**
+  [Run 43720870587](https://diegoami.github.io/borg-zoo/runs/rs-pr85-full/43720870587-1/index.html)
+  retained all 10,800 endpoints on `classes-1800-d`: six choices on the same
+  1,800 assignments at the 100,000-turn after-key cap, pinned borg-rs
+  `71cff24ef45731e55aa9687930cd2d766dd0695e`. There were no stalls, wall
+  timeouts, harness failures or configuration errors in the collected cells.
+
+  | Choice | Deaths / 1,800 | Alive at cap |
+  | --- | ---: | ---: |
+  | Existing shopping and returns | 535 | 1,265 |
+  | New shopping, legacy returns | 385 | 1,415 |
+  | Full pack; learning returns disabled (0,0) | 487 | 1,313 |
+  | One free slot; two eligible unknown stacks (1,2) | 435 | 1,365 |
+  | One free slot; four eligible unknown stacks (1,4) | 471 | 1,329 |
+  | Two free slots; four eligible unknown stacks (2,4) | 471 | 1,329 |
+
+  These are descriptive development counts, not a confirmed winner or an
+  adoption decision. The equal totals for (1,4) and (2,4) do not by themselves
+  establish identical play. Pairings, class differences, purchases and return
+  diagnostics belong to the linked report; a subsequent fresh-seed,
+  prespecified confirmation is required for an improvement claim.
