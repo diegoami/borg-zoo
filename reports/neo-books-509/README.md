@@ -28,3 +28,12 @@ Druid/Blackguard stashes are later and may be legitimate surplus copies. The lat
 ## Interpretation
 
 The first question is whether known-usable first books now remain carried and casting becomes available. Death/cap counts, class breakdowns, stalls/timeouts, progress and purchase/escape use are descriptive secondary outcomes. Compare the previous run with explicit compiler/platform/calendar differences; do not claim a prespecified or confirmed population improvement. Freeze every new cell, source/bundle hash and raw trace. No C fidelity follows from seeds or a survival percentage.
+
+## Acceptance and dispatch receipts
+
+- Source [CI43758965166](https://github.com/diegoami/neo-angband-borg-mod-tracker/actions/runs/43758965166) is fully green on measurementd6215a8: ordinary and exact-source1209tests/zero skips, production truth-host gate, typecheck, currency/privacy/session.
+- Zoo PR121 catalogue head2bb49d75d9d74e2abd08b7a06a797adf0b0dc9fc passes hosted CI,152local tests and all106plans; both new preflights report zero problems.
+- [Smoke43759325350](https://github.com/diegoami/borg-zoo/actions/runs/43759325350) completed all18cells:15caps at5000ticks and3deaths; no stalls/timeouts/harness/config errors. Every raw-file hash and source/engine/toolkit identity, assigned birth, actual settings/options and durable monster-truth receipt was checked. All16casters retain their starting book; no starting-book stash message occurs. Mages cast1/5times and Priests2/9times. Rogue/Ranger cast counts remain zero in these short low-level checks; book retention alone is not casting eligibility or survival evidence. See [full acceptance record](smoke-acceptance.json).
+- Only after smoke completion/inspection, the authorized [full run43759670685](https://github.com/diegoami/borg-zoo/actions/runs/43759670685) was dispatched from exact catalogue2bb49d75d9d74e2abd08b7a06a797adf0b0dc9fc. Configuration: experiments/neo-books-509-seeded-v2-1800.json,36shards,four concurrent jobs,two processes/job. All1800old frozen assignments and100000ticks/600seconds remain. No full result exists yet; the smoke is not included in its denominator.
+
+No source PR or fork integration was merged and no local games were started for acceptance. The measurement source is a separately pinned application of the proposal on the old baseline, not later upstream/fork master.

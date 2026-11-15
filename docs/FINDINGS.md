@@ -326,3 +326,10 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
   carried-book count/value (central Neo509, mod PR113). Owner authorized a
   repeat on the previous967b28fbaseline with only that correction, after
   separate smoke acceptance. No new survival result or improvement claim yet.
+
+  Book-fix smoke [43759325350](https://github.com/diegoami/borg-zoo/actions/runs/43759325350)
+  passed18cases at5000ticks:15caps/3deaths, all16casters kept their starting
+  book and none stashed it. Actual settings/options/truth and raw hashes pass.
+  These are acceptance controls, not a survival estimate. The authorized full
+  repeat [43759670685](https://github.com/diegoami/borg-zoo/actions/runs/43759670685)
+  is now dispatched; its1800-game results remain pending.
