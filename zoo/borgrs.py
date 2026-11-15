@@ -294,8 +294,9 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     # can verify them against play_sha256; every other outcome's keys are
     # discarded as before.
     if keep:
-        from . import town
+        from . import town, returns
         record['town_activity'] = town.collect(out)
+        record['return_activity'] = returns.collect(out)
     if not keep and outcome != 'death':
         keys.unlink(missing_ok=True)
     if not keep:

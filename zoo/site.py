@@ -317,7 +317,9 @@ def tested_settings(meta):
                      'New shopper — ON' if live else 'Existing shopper',
                      'New trip policy — ON' if trip else 'Existing return rules',
                      f"{cfg.get('borg_town_risk', 1000) / 1000:g}x forecast risk" if live else 'Existing supply rules',
-                     f"{cfg.get('borg_trip_pack_slack', 2)} free spaces / {cfg.get('borg_trip_unknown_stacks', 4)} {'eligible unknown stacks' if repaired else 'unknown gear stacks'}" if trip else 'Existing triggers']
+                     (f"{cfg.get('borg_trip_pack_slack', 2)} free spaces / "
+                      + ('learning returns off' if cfg.get('borg_trip_unknown_stacks', 4) == 0 else
+                         f"{cfg.get('borg_trip_unknown_stacks', 4)} {'eligible unknown stacks' if repaired else 'unknown gear stacks'}")) if trip else 'Existing triggers']
         if repaired:
             row.append(f"Attack {cfg.get('borg_town_w_attack', 100)} / support {cfg.get('borg_town_w_support', 50)} / learning {cfg.get('borg_town_w_knowledge', 25)}" if live else 'Existing priorities')
         rows.append(row)
@@ -325,7 +327,7 @@ def tested_settings(meta):
     return ('<h2>What is being tested?</h2><p>The new shopper makes actual purchases, sales and Home transfers. '
             'The trip policy decides when to go home. The risk multiplier changes supply planning; '
             'it does not make the character fight more recklessly. Other declared settings stay the same.</p>'
-            + ('<p>This build includes expanded object capabilities and the all-item learning-return fix. The inventory coverage gate accounts for all 104 ordinary shop kinds, including contextual exclusions. Unknown food and mushrooms can contribute; unchanged unresolved items do not repeatedly trigger returns by themselves. This compares both policies together.</p>' if repaired else '<p>These are the frozen runs of the original, limited shopping model. The object-coverage fixes now being developed are not included.</p>')
+            + ('<p>This build includes expanded object capabilities and the all-item learning-return fix. The inventory coverage gate accounts for all 104 ordinary shop kinds, including contextual exclusions. Unknown food and mushrooms can contribute; unchanged unresolved items do not repeatedly trigger returns by themselves. ' + esc(study_info(meta).get('scope_note', 'This compares both policies together.')) + '</p>' if repaired else '<p>These are the frozen runs of the original, limited shopping model. The object-coverage fixes now being developed are not included.</p>')
             + table(['Choice', 'Shopping', 'Dungeon returns', 'Supply planning', 'Return triggers'] + (['Purchase priorities'] if repaired else []), rows)
             + '<p><strong>Primary question: how many characters die?</strong> Character level and depth are secondary. '
               'Putting an unknown object in the Home frees space but does not identify it.</p>'
@@ -393,8 +395,9 @@ def study_summary(meta, cells, suite):
     verdict = ''
     compare = {}
     repaired = study_info(meta).get('coverage_repaired', False)
-    control, candidate = ('rs-kit-trip-control', 'rs-kit-trip-default') if repaired else ('rs-joint-old-control', 'rs-joint-risk2000')
-    candidate_name = 'integrated-default candidate' if repaired else '2x-forecast candidate'
+    default_comparison = ('rs-kit-trip-control', 'rs-kit-trip-default') if repaired else ('rs-joint-old-control', 'rs-joint-risk2000')
+    control, candidate = study_info(meta).get('comparison_profiles', default_comparison)
+    candidate_name = study_info(meta).get('candidate_label', 'integrated-default candidate' if repaired else '2x-forecast candidate')
     for profile in (control, candidate):
         group = [c for c in cells if c['suite'] == suite and c['profile'] == profile]
         if group and all(c['outcome'] in stats.VALID for c in group):
@@ -824,6 +827,33 @@ def run_page(meta, cells):
             parts.append(table(['Version'] + [f'{t:,}' if t is not None else '–' for t in m_turns],
                                [[arm_label(meta, r['specimen'], r['profile'])] +
                                 [fmt_milestone(x) for x in r['milestones']] for r in rows]))
+    returns_by_profile = {}
+    for cell in cells:
+        activity = cell.get('return_activity')
+        if activity is not None:
+            totals = returns_by_profile.setdefault(cell['profile'], [0] * 13)
+            for i, name in enumerate(('town_arrivals', 'new_custom_return_goals', 'arrivals_after_custom_goal',
+                                      'arrivals_with_selling_note', 'unfinished_journeys_with_custom_goal',
+                                      'sampled_town_turns', 'sampled_dungeon_turns')):
+                totals[i] += activity.get(name, 0)
+            totals[7] += not activity.get('state_available', False)
+            totals[8] += activity.get('invalid_trip_records', 0)
+            for i, name in enumerate(('application_records', 'already_rising_applications', 'new_return_goals', 'return_recommendation_records'), 9):
+                totals[i] += activity.get(name, 0)
+    if returns_by_profile:
+        parts.append('<h2>What actually sent the Borg home?</h2><p>Native arrivals are separate from return requests. '
+                     'An application record can show that the policy newly set the return goal, or found it already set. '
+                     'A later arrival after such a goal is an association, not proof it would never return otherwise. '
+                     'Selling notes can overlap. Custom goals exclude shared restocking. Time is sampled from native states.</p>')
+        parts.append(table(['Profile', 'Town arrivals', 'New custom goals', 'Arrivals after custom goal',
+                            'Arrivals with selling note', 'Unfinished trips with custom goal', 'Sampled time in town', 'Missing states / invalid trip rows'],
+                           [[esc(profile), *totals[:5],
+                             f'{100 * totals[5] / (totals[5] + totals[6]):.1f}%' if totals[5] + totals[6] else '—', f'{totals[7]} / {totals[8]}']
+                            for profile, totals in sorted(returns_by_profile.items())]))
+        parts.append(table(['Profile', 'Policy applications', 'Calls already homeward', 'New return goals',
+                            'Custom subset of new goals', 'Recommendation records'],
+                           [[esc(profile), totals[9], totals[10], totals[11], totals[1], totals[12]]
+                            for profile, totals in sorted(returns_by_profile.items())]))
     shopping = {}
     for cell in cells:
         for item in (cell.get('town_activity') or {}).get('items', []):

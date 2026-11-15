@@ -95,3 +95,17 @@ def write_indexes(target, records):
             for item in (record.get('town_activity') or {}).get('items', []):
                 writer.writerow({'cell': cell_key(record), 'profile': record['profile'],
                                  'race': record.get('played_race'), 'class': record.get('played_class'), **item})
+
+    with (target / 'town-returns.csv').open('w', newline='') as stream:
+        fields = ['cell', 'profile', 'class', 'state_available', 'invalid_trip_records', 'town_arrivals', 'new_custom_return_goals',
+                  'arrivals_after_custom_goal', 'arrivals_with_selling_note',
+                  'unfinished_journeys_with_custom_goal', 'sampled_town_turns', 'sampled_dungeon_turns',
+                  'application_records', 'already_rising_applications', 'new_return_goals', 'return_recommendation_records']
+        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer.writeheader()
+        for record in sorted(records, key=cell_key):
+            activity = record.get('return_activity')
+            if activity is not None:
+                writer.writerow({'cell': cell_key(record), 'profile': record['profile'],
+                                 'class': record.get('played_class'),
+                                 **{name: activity.get(name) for name in fields[3:]}})

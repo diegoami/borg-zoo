@@ -12,7 +12,13 @@
     "rs-kit-trip-attack50": "Expanded inventory + all-item returns: attack priority 50",
     "rs-kit-trip-support25": "Expanded inventory + all-item returns: support priority 25",
     "rs-kit-trip-knowledge5": "Expanded inventory + all-item returns: learning priority 5",
-    "rs-kit-trip-earlier": "Expanded inventory + all-item returns: earlier returns"
+    "rs-kit-trip-earlier": "Expanded inventory + all-item returns: earlier returns",
+    "rs-pr85-existing": "Existing shopping and returns",
+    "rs-pr85-shopping-only": "New shopping, legacy returns",
+    "rs-pr85-return-p0-u0": "Full pack; learning return off (0,0)",
+    "rs-pr85-return-p1-u2": "One free slot / two unknown stacks (1,2)",
+    "rs-pr85-return-p1-u4": "One free slot / four unknown stacks (1,4)",
+    "rs-pr85-return-p2-u4": "Two free slots / four unknown stacks (2,4)"
   },
   "experiments": {
     "rs-joint-m12-development": {
@@ -32,6 +38,17 @@
       "title": "Fresh-case confirmation: expanded inventory and all-item returns",
       "intro": "Does the integrated default policy reduce deaths on 1800 fresh starts? Both the expanded inventory model and the all-item learning-return rule act together. The comparison candidate was fixed before the development results.",
       "coverage_repaired": true
+    },
+    "rs-pr85-full": {
+      "title": "PR85 full suite: when should the Borg go back to town?",
+      "intro": "Six fixed choices play the same 1800 fresh starts across all nine classes. Four owner-selected threshold pairs keep shopping fixed and preserve the inherited selling-pressure fallback. Two controls use existing return rules. This is development calibration, not a survival-improvement claim.",
+      "coverage_repaired": true,
+      "scope_note": "Shopping is fixed in the four threshold arms. Inherited selling-pressure backstops, safety, restocking and preparedness remain active; these thresholds add requests and cannot veto an existing return. Zero unknown stacks disables learning-driven returns; zero pack slack waits for a full pack.",
+      "comparison_profiles": [
+        "rs-pr85-existing",
+        "rs-pr85-return-p2-u4"
+      ],
+      "candidate_label": "(2,4) return candidate"
     }
   }
 }
