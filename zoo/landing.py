@@ -381,9 +381,13 @@ DEFAULT_POLICY = POLICIES[0]
 DASHBOARD_MIN_CELLS = 1500
 # A setup that survives by barely progressing is not a best Borg. The floor is
 # deliberately low (DL1 plus level 1 scores 2): it excludes the known stall
-# trap while retaining ordinary early-game progress. Among eligible setups,
-# depth + level is the primary ranking and survivability the tiebreaker.
+# trap while retaining ordinary early-game progress.
 DASHBOARD_MIN_PROGRESS = 2
+# "Best" balances both outcomes: 60% survivability and 40% progress. Progress
+# is normalised within the eligible line before it is combined, because the
+# raw depth + level scale differs between C and Rust builds and between eras.
+DASHBOARD_SURVIVAL_WEIGHT = 0.60
+DASHBOARD_PROGRESS_WEIGHT = 0.40
 
 # ... and every point is read at one turn cap. classes-1800 is 100,000 turns;
 # classes-1800-200k is 200,000, and a 200k arm survives longer by construction.
@@ -488,6 +492,37 @@ def _line(spec):
     return None
 
 
+def dashboard_rank(candidates):
+    """Rank eligible setups by 60% survivability + 40% normalised progress.
+
+    Each candidate is (entry, summary, meta, arm). Survivability is the share
+    alive at the cap. Progress is median depth + level, normalised to 0..1
+    against the highest and lowest eligible value in the same line. The line's
+    name and completed run break exact ties.
+    """
+    eligible = [c for c in candidates
+                if c[1] is not None and c[1].get('death_rate') is not None
+                and c[1].get('progress_score') is not None
+                and c[1].get('progress_score') >= DASHBOARD_MIN_PROGRESS]
+    if not eligible:
+        return None
+    scores = [c[1]['progress_score'] for c in eligible]
+    low, high = min(scores), max(scores)
+    span = high - low
+
+    def rank(candidate):
+        e, s, meta, arm = candidate
+        survival = 1 - s['death_rate']
+        progress = ((s['progress_score'] - low) / span
+                    if span else 1.0)
+        combined = (DASHBOARD_SURVIVAL_WEIGHT * survival
+                    + DASHBOARD_PROGRESS_WEIGHT * progress)
+        return (combined, survival, progress, s['valid'], e['name'],
+                meta.get('completed', '') if meta else '')
+
+    return max(eligible, key=rank)
+
+
 def exemplar_entries(runs, specs, policy, cls=None):
     """[(entry, summary, meta, arm)] for one policy tab, in chart order.
 
@@ -508,34 +543,32 @@ def exemplar_entries(runs, specs, policy, cls=None):
                              'no fixes: the baseline everything else is read against.'},
                     bs, bmeta, barm))
     for line, colour, title in (('c', C_COLOR, 'better-borg-c'), ('rust', RUST_COLOR, 'borg-rs')):
-        best = None
+        candidates = []
         for name, spec in specs.items():
             if name == '4.2.6' or _line(spec) != line:
                 continue
             profile, s, meta, arm = find_arm_for(runs, name, spec, policy, specs)
             if s is None or s['death_rate'] is None:
                 continue
-            # "Best" must mean more than merely surviving while barely moving.
-            # Require real progress before comparing survivability: a setup that
-            # stalls on DL1 at level 1 cannot win merely by avoiding death.
+            # A setup that stalls on DL1 at level 1 cannot win merely by
+            # avoiding death, so keep it out of the ranking entirely.
             progress = s.get('progress_score')
             if progress is None or progress < DASHBOARD_MIN_PROGRESS:
                 continue
-            key = (progress, 1 - s['death_rate'], s['valid'], name)
-            if best is None or key > best[0]:
-                best = (key, name, spec, profile, s, meta, arm)
+            entry = {'specimen': name, 'profile': profile,
+                     'name': f'{title} {milestone_short(name, spec)} (best {"C" if line == "c" else "Rust"})',
+                     'short': ('BBC ' if line == 'c' else 'RS ') + milestone_short(name, spec),
+                     'color': colour, 'modes': policy['modes']}
+            candidates.append((entry, s, meta, arm))
+        best = dashboard_rank(candidates)
         if best is None:
             continue
-        _, name, spec, profile, s, meta, arm = best
-        short = milestone_short(name, spec)
-        entries.append(({'specimen': name, 'profile': profile,
-                         'name': f'{title} {short} (best {"C" if line == "c" else "Rust"})',
-                         'short': ('BBC ' if line == 'c' else 'RS ') + short, 'color': colour,
-                         'modes': policy['modes'],
-                         'note': f'{spec.get("carries", "?")} carried fixes; the best-measured '
-                                 f'{title} milestone under this policy, ranked by depth + level first '
-                                 f'and survivability second.'},
-                        s, meta, arm))
+        entry, s, meta, arm = best
+        spec = specs[entry['specimen']]
+        entry['note'] = (f'{spec.get("carries", "?")} carried fixes; the best-measured '
+                         f'{title} milestone under this policy, ranked by 60% survivability '
+                         f'and 40% normalised depth + level.')
+        entries.append((entry, s, meta, arm))
     if policy['slug'] == 'no-munchkin':
         ns, nmeta, narm = find_arm(runs, 'neo-b3-api2-upstream', 'default', specs,
                                    cap=DASHBOARD_CAP)
@@ -624,21 +657,28 @@ def card_exemplars(runs, policy=DEFAULT_POLICY):
     snapshots = turn_snapshots_section(entries)
     cross_run = len(run_keys) > 1
     measured = [(e, s) for e, s, _m, _a in entries
-                if s is not None and dashboard_plotted(s) and s.get('death_rate') is not None]
-    best = max(measured, key=lambda es: (es[1].get('progress_score') or 0,
-                                          1 - es[1]['death_rate'])) if measured else (None, None)
+                if s is not None and dashboard_plotted(s) and s.get('death_rate') is not None
+                and s.get('progress_score') is not None
+                and s.get('progress_score') >= DASHBOARD_MIN_PROGRESS]
+    best = dashboard_rank([(e, s, m, a) for e, s, m, a in entries
+                            if s is not None and dashboard_plotted(s)
+                            and s.get('death_rate') is not None
+                            and s.get('progress_score') is not None
+                            and s.get('progress_score') >= DASHBOARD_MIN_PROGRESS])
     if policy['slug'] == 'munchkin':
         answer = (f'With the munchkin start held fixed, <strong>{esc(best[0]["name"])}</strong> ranks best '
-                  f'on depth + level ({num(best[1].get("progress_score"))}), with '
-                  f'{pct(1 - best[1]["death_rate"])} alive at the cap across {num(best[1]["valid"])} finished runs. '
+                  f'on the combined score: 60% survivability plus 40% normalised depth + level. '
+                  f'It has {pct(1 - best[1]["death_rate"])} alive at the cap, depth + level '
+                  f'{num(best[1].get("progress_score"))}, and {num(best[1]["valid"])} finished runs. '
                   f'The policy itself is the big mover: plain Angband '
                   f'4.2.6 loses {pct(next((s["death_rate"] for e, s in measured if e["specimen"] == "4.2.6"), 0))} '
                   f'of its runs without it, so compare points inside this tab, never against the '
                   f'no-munchkin tab.' if best[0] else 'No run at dashboard scale yet.')
     else:
         answer = (f'Without the munchkin start, <strong>{esc(best[0]["name"])}</strong> ranks best '
-                  f'on depth + level ({num(best[1].get("progress_score"))}), with '
-                  f'{pct(1 - best[1]["death_rate"])} alive at the cap across {num(best[1]["valid"])} finished runs. '
+                  f'on the combined score: 60% survivability plus 40% normalised depth + level. '
+                  f'It has {pct(1 - best[1]["death_rate"])} alive at the cap, depth + level '
+                  f'{num(best[1].get("progress_score"))}, and {num(best[1]["valid"])} finished runs. '
                   f'Only milestones with a plain run appear: beyond M7 the shipped default forces the '
                   f'start class-wide, so those versions need a <code>normal</code> run before they can '
                   f'be placed here.' if best[0] else 'No run at dashboard scale yet.')
@@ -650,8 +690,8 @@ def card_exemplars(runs, policy=DEFAULT_POLICY):
             f'<p class="foot">Each point is the run with the most finished cells for that exact version '
             f'and profile at {DASHBOARD_CAP:,} turns — not necessarily the newest, which is only the '
             f'tiebreaker — and carries its name on the chart. One point per line, the best with a full '
-            f'class run. "Best" ranks depth + level first and survivability second, so a setup that '
-            f'survives without making progress cannot win; every other milestone keeps its catalogue '
+            f'class run. "Best" combines 60% survivability with 40% normalised depth + level, so a '
+            f'setup must both survive and progress to win; every other milestone keeps its catalogue '
             f'entry and run page. "Progress" is '
             f'depth + level added unweighted, median over every finished run including deaths. The Neo '
             f'Angband point is never comparable with the rest: Mandos plays a different engine on '
