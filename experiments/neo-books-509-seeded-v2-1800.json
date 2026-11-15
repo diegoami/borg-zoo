@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "neo-books-509-seeded-v2-1800",
+  "description": "Owner-authorized repeat after carried-book value correction509. Only the book correction is added to previous measured967b28f; same frozen1800birth assignments,100000ticks,600seconds,engineb4af703/toolkit967b28f,36shards,four jobs/two processes. Retain every outcome. Descriptive development run, not confirmation or proof of complete C fidelity. Earlier run43702732056 stays immutable.",
+  "specimens": [
+    "neo-fork-books-509-seeded-v2"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "neo-seeded-v2-classes-1800"
+  ],
+  "control": "neo-fork-books-509-seeded-v2",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "neo-fork-books-509-seeded-v2": 36
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 4,
+    "native_wall_seconds": 600,
+    "neo_wall_seconds": 600,
+    "job_timeout_minutes": 300
+  }
+}

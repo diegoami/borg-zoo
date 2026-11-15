@@ -315,3 +315,14 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
   establish identical play. Pairings, class differences, purchases and return
   diagnostics belong to the linked report; a subsequent fresh-seed,
   prespecified confirmation is required for an improvement claim.
+
+- **Neo truth-corrected cohort and book omission (2026-11-15):**
+  [Run43702732056](https://github.com/diegoami/borg-zoo/actions/runs/43702732056)
+  completed all1800cells:989deaths,732caps,75stalls,4wall timeouts. Deaths are
+  57.47%of death/cap endpoints,54.94%of assigned lives. Raw caster traces show
+  early starting-book stashing across several classes, including109/200Priests
+  and200/200Mages/Necromancers. [The report and repeat protocol](../reports/neo-books-509/README.md)
+  separates later potentially legitimate stashes from the confirmed missing
+  carried-book count/value (central Neo509, mod PR113). Owner authorized a
+  repeat on the previous967b28fbaseline with only that correction, after
+  separate smoke acceptance. No new survival result or improvement claim yet.

@@ -25,7 +25,7 @@
       "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "mode_side": "pre",
       "carries": 0,
-      "label": "Angband 4.2.6 — the original C Borg as the release ships it (angband/angband e473720)",
+      "label": "Angband 4.2.6 \u2014 the original C Borg as the release ships it (angband/angband e473720)",
       "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "formerly": [
         "pristine"
@@ -628,7 +628,7 @@
       "exact_turns": true,
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-reborn-rs/blob/f0eeee25d1ff2cb1103ed08518a6c5f6500dad46/docs/ZOO-INTERFACE.md",
-      "label": "borg-reborn-rs milestone E after its accepted review corrections (#94–#96), as requested in borg-zoo#48. Separate pin preserves the pre-review tag-e results. Hallucination perception is corrected; the original C controls stay at their own pins."
+      "label": "borg-reborn-rs milestone E after its accepted review corrections (#94\u2013#96), as requested in borg-zoo#48. Separate pin preserves the pre-review tag-e results. Hallucination perception is corrected; the original C controls stay at their own pins."
     },
     "4.2.6-rs-m11": {
       "kind": "borg-rs",
@@ -913,6 +913,21 @@
       "toolkit_ref": "02c33cf1871b86ea8e8d7bf8cbc870cf177b736b",
       "toolkit_path": "tools/zoo",
       "role": "candidate"
+    },
+    "neo-fork-books-509-seeded-v2": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "d6215a8e63d101e0c6d392120fb8eacef9544480",
+      "engine_repository": "diegoami/neo-angband-tracker",
+      "engine_ref": "b4af703493d314aa35cb719604f06103aa4918f4",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "967b28f5fe12c4974a6a793040f73246eb7d1200",
+      "toolkit_path": "tools/zoo",
+      "birth_profile": "c-seeded-point-buy-v2",
+      "wall_factor": 1,
+      "role": "candidate",
+      "source": "https://github.com/neostryder/neo-angband-mod-borg/pull/113",
+      "label": "Previous truth-corrected Neo baseline967b28f plus ONLY carried-book counts/value correction509, measured atd6215a8. Engineb4af703 and toolkit967b28f unchanged. Explicit seeded-v2 profile; unresolved clock640. Descriptive development repeat; no confirmed survival claim."
     }
   }
 }
