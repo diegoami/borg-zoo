@@ -627,9 +627,10 @@ class LandingTest(unittest.TestCase):
         # no alias configured: falls back to exact match only, same as before
         self.assertEqual(landing.find_arm(runs, '4.2.6-bbc-m4', 'default', {})[0]['valid'], 3)
 
-    def test_best_exemplar_ranks_progress_before_survivability(self):
-        """A setup that survives while stuck at DL1/level 1 must not beat a
-        setup with real progress and a slightly higher death rate."""
+    def test_best_exemplar_combines_survivability_and_progress(self):
+        """Best is 60% survivability + 40% normalised depth/level. A setup
+        stuck at DL1/level 1 is ineligible, and a small progress advantage
+        cannot outweigh a large survivability deficit."""
         def arm(specimen, profile, deaths, n, depth, level):
             cells = []
             for s in range(n):
@@ -643,15 +644,18 @@ class LandingTest(unittest.TestCase):
 
         runs = [arm('4.2.6', 'default', 640, 1600, 2, 4),
                 arm('4.2.6-rs-stalled', 'default', 200, 1600, 1, 1),
-                arm('4.2.6-rs-progress', 'default', 600, 1600, 2, 4)]
+                arm('4.2.6-rs-progress', 'default', 600, 1600, 2, 4),
+                arm('4.2.6-rs-survivor', 'default', 200, 1600, 2, 4)]
         specs = cat_mod.catalogue()['specimens']['specimens']
         specs = dict(specs)
         specs['4.2.6-rs-stalled'] = {'kind': 'borg-rs', 'impl': 'rust', 'ref': 'a' * 40}
         specs['4.2.6-rs-progress'] = {'kind': 'borg-rs', 'impl': 'rust', 'ref': 'b' * 40}
+        specs['4.2.6-rs-survivor'] = {'kind': 'borg-rs', 'impl': 'rust', 'ref': 'c' * 40}
         entries = landing.exemplar_entries(runs, specs, landing.DEFAULT_POLICY)
-        rust = next(e for e, s, meta, arm in entries if e['specimen'] == '4.2.6-rs-progress')
-        self.assertEqual(rust['specimen'], '4.2.6-rs-progress')
+        rust = next(e for e, s, meta, arm in entries if e['specimen'].startswith('4.2.6-rs-'))
+        self.assertEqual(rust['specimen'], '4.2.6-rs-survivor')
         self.assertNotIn('4.2.6-rs-stalled', [e['specimen'] for e, s, meta, arm in entries])
+        self.assertIn('60% survivability', rust['note'])
 
     def test_card_exemplars_has_one_point_per_line_under_a_named_policy(self):
         def arm(specimen, profile, deaths, n, completed, classes=(), cap=100000):

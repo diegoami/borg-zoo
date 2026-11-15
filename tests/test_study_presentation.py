@@ -88,6 +88,11 @@ class StudyPresentationTest(unittest.TestCase):
             {'specimen': 'pinned', 'profile': 'rs-kit-trip-default', 'outcome': 'turn_cap'}]
         page = site.study_identity_table(meta, cells)
         self.assertIn('Choice', page)
+        self.assertIn('Configuration difference', page)
+        self.assertIn('borg_town_plan off', page)
+        self.assertIn('borg_town_plan on', page)
+        self.assertIn('borg_trip_policy off', page)
+        self.assertIn('borg_trip_policy on', page)
         self.assertIn('Experiment ID', page)
         self.assertIn('Repository', page)
         self.assertIn('Build', page)
