@@ -118,6 +118,14 @@ This compares two harness kinds, so the statistics don't pair them. The check wa
 
 Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
 
+**Reserve shopping's apparent Rogue regression remains unconfirmed** (#79).
+The existing `rs-family-buying-classes-1800` control/reserve410 cells reproduce
+200 Rogue pairs: 32 rescued, 48 newly killed, exact McNemar p = 0.092912.
+None of the nine post-hoc class comparisons establishes an effect; the
+Necromancer's 200 pairs have identical play hashes. The site now reports
+paired deaths by class. [Reanalysis and frozen-input hashes](../reports/rogue-shopping-79/REPORT.md).
+A fresh Rogue confirmation still needs the owner's endpoint and sizing.
+
 ## Neo Borg: Mandos lanes
 
 **The port repairs never change play.**
