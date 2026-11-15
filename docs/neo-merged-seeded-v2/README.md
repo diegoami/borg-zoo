@@ -20,7 +20,7 @@ and suite and a mismatch fails planning. Node26 runs Neo only; Mandos retains22.
 
 Dispatch smoke/neo-merged-seeded-v2-18.json via the existing smoke workflow.
 Only after its build and assigned-cell outcomes are checked, dispatch
-experiments/neo-merged-seeded-v2-1800.json via compare,18shards. The collector
+experiments/neo-merged-seeded-v2-1800.json via compare,36shards. The collector
 keeps raw attempts, cell JSON and site summaries under the new experiment/run ID.
 The owner authorized this queue, not a recurring automatic experiment.
 
@@ -35,3 +35,26 @@ and results unchanged. Before its first dispatch, the unmeasured1800suite uses
 600seconds and36shards (50games each). Worst-case per-job child time is
 50*600/2=250minutes, within the existing300-minute job budget; fourjobs max.
 The controlled repeat must finish before dispatching that cohort.
+
+## Completed checks and queued cohort
+
+- Acceptance [43668428660](https://github.com/diegoami/borg-zoo/actions/runs/43668428660):
+  all18records retained,10deaths,7wall timeouts,1tunnel stall. The original
+ 120-second outcomes are preserved, not relabelled.
+- Calibration [43669373189](https://github.com/diegoami/borg-zoo/actions/runs/43669373189):
+  the Human Warrior completes with death at65338 in127seconds; the Half-Elf
+  Warrior reaches100000alive in178seconds. Both are ordinary endpoints under
+  the separately declared600-second budget. A local repeat also matches all5997
+  commands of the original Human timeout trace before continuing to the same
+  death turn, confirming the budget-censoring diagnosis.
+- Cohort [43670231534](https://github.com/diegoami/borg-zoo/actions/runs/43670231534):
+  dispatched on commit6fd7666,1800games/100000ticks,36shards, fourjobs maximum,
+  two processes per job. Planning and build pass; game jobs have started.
+  No final cohort result or improvement claim is available yet.
+
+Small immutable JSON receipts are in `receipts/`; raw builds/cells/evidence are
+retained on the linked Actions runs and the normal results branch. The independent
+repository harness is [port PR96](https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/96),
+with a durable [report ledger](https://github.com/diegoami/neo-angband-borg-mod-tracker/issues/97).
+Its18-game5000-tick CI smoke reports17caps/1death; it is a different suite from
+this longer acceptance and must not be pooled with it.
