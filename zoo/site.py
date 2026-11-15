@@ -1,4 +1,5 @@
 """Static statistics site generated from the results tree."""
+import gzip
 import html
 import json
 import shutil
@@ -9,6 +10,21 @@ from pathlib import Path
 from . import catalogue as cat_mod
 from . import stats, configuration
 from .briefs import question, profile_label
+
+# Raw cell files are not copied into Pages: together they are about as large
+# as the whole results branch (991 MB on 2026-11-15, against Pages' 1 GB
+# limit, borg-zoo#114 T0). The results branch is append-only, so the file a
+# run wrote stays at the same path there and a link to it is permanent.
+RESULTS_RAW = 'https://raw.githubusercontent.com/diegoami/borg-zoo/results/results'
+
+
+def raw_cells_url(results_path):
+    """Link to a run's cells.jsonl on the results branch ('<experiment>/<run>')."""
+    return f'{RESULTS_RAW}/{results_path}/cells.jsonl'
+
+
+def results_path(src):
+    return f'{Path(src).parent.name}/{Path(src).name}'
 
 CSS = """
 :root{--card:#ffffff;--bg:#fbfaf7;--fg:#1d1d1b;--muted:#6b6a64;--line:#dcd9cf;--head:#f0eee7;--good:#1f7a3a;--bad:#a8321e;--accent:#2f5d8a;--rust:#b58700}
@@ -280,6 +296,7 @@ def consolidate(runs):
                                 for k in ('compilers', 'platforms')},
                 'missing_cells': sum(p[0].get('missing_cells', 0) for p in parts),
                 'consolidated_runs': [{'run_id': p[0]['run_id'], 'run_url': p[0].get('run_url', ''),
+                                       'results_path': results_path(p[2]),
                                        'arm': p[0]['experiment']['arm'], 'completed': p[0].get('completed', ''),
                                        'zoo_commit': p[0].get('zoo_commit', ''),
                                        'harness': (p[0]['catalogue'].get('harness') or {}).get('commit', '')}
@@ -474,12 +491,23 @@ def cutoff_note(exp, specimens, completed, harness_commit=''):
     return ''.join(lines)
 
 
+def raw_cells_link(meta):
+    if meta.get('consolidated_runs'):
+        return ('<a href="cells.jsonl.gz">merged cells (gzipped JSON lines)</a>; '
+                'each arm run\'s raw cells are linked below')
+    if meta.get('results_path'):
+        return f'<a href="{esc(raw_cells_url(meta["results_path"]))}">raw cells (JSON lines, results branch)</a>'
+    return 'raw cells on the results branch'
+
+
 def consolidated_note(meta):
     parts = meta.get('consolidated_runs')
     if not parts:
         return ''
     rows = ''.join(f'<li><a href="{esc(p["run_url"] or "#")}">{esc(p["arm"])}</a> · {esc(p["completed"])} · '
-                   f'harness {esc(p["harness"][:8])} · zoo {esc(p["zoo_commit"][:8])}</li>' for p in parts)
+                   f'harness {esc(p["harness"][:8])} · zoo {esc(p["zoo_commit"][:8])}'
+                   + (f' · <a href="{esc(raw_cells_url(p["results_path"]))}">raw cells</a>' if p.get('results_path') else '')
+                   + '</li>' for p in parts)
     env = meta.get('environment', {})
     differ = []
     if len({p['completed'][:10] for p in parts}) > 1:
@@ -639,7 +667,7 @@ def run_page(meta, cells):
                 if exp.get('prespecified') and not display else '')
              + '</details>',
              f'<p class="muted">Run {esc(meta["run_id"])} · completed {esc(meta.get("completed", "?"))} · '
-             f'<a href="{esc(meta.get("run_url", "#"))}">workflow run</a> · <a href="cells.jsonl">raw cells (JSON lines)</a></p>',
+             f'<a href="{esc(meta.get("run_url", "#"))}">workflow run</a> · {raw_cells_link(meta)}</p>',
              consolidated_note(meta),
              '<details class="background"><summary>How to read the statistics</summary><p class="note">An <em>arm</em> is one Borg version run with one settings profile; every arm plays '
              'the same seeds, one game per seed. Results are descriptive unless the experiment says it is '
@@ -917,13 +945,17 @@ def build_site(results, out):
     for meta, cells, src in every:
         target = out / 'runs' / meta['experiment']['name'] / meta['run_id']
         target.mkdir(parents=True, exist_ok=True)
+        if not meta.get('consolidated_runs'):
+            meta = {**meta, 'results_path': results_path(src)}
         configuration.build_inspector(meta, cells, src, target)
         (target / 'index.html').write_text(run_page(meta, cells))
         if meta.get('consolidated_runs'):
-            (target / 'cells.jsonl').write_text(''.join(json.dumps(c, sort_keys=True) + '\n' for c in cells))
+            # The merged set exists nowhere else, so it is published, gzipped.
+            # mtime=0 keeps the bytes reproducible across rebuilds.
+            merged = ''.join(json.dumps(c, sort_keys=True) + '\n' for c in cells).encode()
+            (target / 'cells.jsonl.gz').write_bytes(gzip.compress(merged, 6, mtime=0))
             (target / 'meta.json').write_text(json.dumps(meta, indent=2, sort_keys=True) + '\n')
         else:
-            shutil.copy(src / 'cells.jsonl', target / 'cells.jsonl')
             shutil.copy(src / 'meta.json', target / 'meta.json')
         finished = sum(1 for c in cells if c['outcome'] in stats.VALID)
         (smoke_rows if meta['experiment']['name'] in smoke else rows).append([f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
