@@ -214,3 +214,15 @@ Warriors do best at M5: 17% deaths, against 27% at M4 and 28% at M6.
   play hash — that comparison is same-version and still valid. The M9-vs-M10 question at
   classes scale returns as [`m10-smoke`](../smoke/m10-smoke.json), restarted on the explicit
   profiles (munchkin-class, normal).
+
+- **Joint shopping/trip candidate did not reduce deaths in the fresh-seed confirmation.**
+  [`rs-joint-m12-confirm`](https://diegoami.github.io/borg-zoo/runs/rs-joint-m12-confirm/43643769983-1/index.html)
+  finished all 5,400 games: 530/1,800 deaths with the existing rules,
+  586/1,800 with the new shopper and trip policy at ordinary provisioning,
+  and 559/1,800 with the fixed 2x-risk supply forecast. The prespecified
+  candidate-versus-control pairing rescued 312 characters and newly killed
+  341 (exact two-sided McNemar p=0.2732). This does not support adopting
+  the candidate for fewer deaths. All arms use pinned borg-rs `d9a56f4`,
+  with the original limited object coverage; subsequent coverage fixes are
+  not tested by these results. The report now explains each arm directly,
+  alongside means including dead characters and the detailed statistics.
