@@ -151,12 +151,17 @@ Each becomes an issue in the repository named, once the owner agrees.
 
 ## Owner decisions
 
-| # | Decision | Recommended |
+Decided by the owner on 2026-11-15. These settle direction only. Opening a
+vendor account, provisioning, cutover and any long-run cohort still need
+the owner's go-ahead at their milestone.
+
+| # | Decision | Decided |
 | --- | --- | --- |
-| D1 | The shared foundation is the base for both repositories, and PR #2's backend becomes a cemetery-service option on top of it | Yes |
-| D2 | Storage: an S3-compatible bucket (which vendor, and whether a few dollars a month is acceptable), or Git only | A bucket; vendor after T1 |
-| D3 | Cutover: clean start, selective salvage or broad migration | Selective salvage |
-| D4 | Allow fresh-Borg restart as a separately labelled long-run protocol until exact resume is qualified | Owner's call; it measures something different |
-| D5 | Frozen calendar for long runs (changes measurement conditions) | Yes, once C4 exists |
-| D6 | Are saves and logs public, like the results today? | Public, unless a class needs privacy |
-| D7 | Keep legacy URLs working (snapshot the current site), or let old `runs/` links break | Keep a legacy snapshot |
+| D1 | Is the shared foundation the base for both repositories, with PR #2's backend as a cemetery-service option on top of it? | **Yes.** PR #2 is rebased onto foundation IDs (T10) |
+| D2 | Storage: an S3-compatible bucket or Git only | **An S3-compatible bucket**, vendor chosen after T1 |
+| D3 | Cutover: clean start, selective salvage or broad migration | **Selective salvage**; raw evidence before 2027-02-06 |
+| D4 | Allow fresh-Borg restart as a separately labelled long-run protocol until exact resume is qualified | **Yes, as labelled arms**: forks with their own arm, never paired with or counted as the uninterrupted life |
+| D5 | Frozen calendar | **For long runs only**, once C4 exists; ordinary runs keep the real clock |
+| D6 | Are saves and logs public? | **Public**; writes only from trusted jobs |
+| D7 | Legacy URLs | **Keep a legacy snapshot** of the current site, without the raw copies that exceed the Pages limit |
+| T0 | Fix the Pages size now? | **Yes**, as a separate pull request |

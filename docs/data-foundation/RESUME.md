@@ -61,12 +61,18 @@ Read at better-borg (Mandos) `d32b69f`.
 | Checkpoints, load | None in the `mandos/zoo-run@1` entry point |
 | Controller RNG | `rng.snapshot()` exists and the controller captures it in memory |
 | Engine save | Unknown in the headless profile; the Neo engine comes from npm |
-| Borg memory | Plain TypeScript objects, with some `Set`s; serialisable in principle, nothing implemented |
+| Borg memory | Plain TypeScript objects, with some `Set`s; serialisable in principle, nothing implemented in `zoo-run` |
+| Existing issues | The engine seam that lets `ModSaves.load` resume a mod's controller was accepted upstream (neostryder/neo-angband PR #442) and imported; [neo-angband-tracker#7](https://github.com/diegoami/neo-angband-tracker/issues/7) is closed. Its Mandos adoption, [mandos#130](https://github.com/diegoami/mandos/issues/130), and the save-carrying stage ladder, [mandos#26](https://github.com/diegoami/mandos/issues/26), were **parked by the owner on 2026-11-06**. Whether that seam restores the Borg's memory, or only re-arms the controller, is not established here |
 
 ## What is missing, by owner
 
 The zoo does not change Borgs (zoo rule 1). Each item below is a change
 request, routed by the owner to the repository named.
+
+As of 2026-11-15 **no issue exists for saving or restoring the C or Rust
+Borg's memory.** [borg-reborn-rs#320](https://github.com/diegoami/borg-reborn-rs/issues/320)
+lists it as part of its longer-run evaluation and points here. The Neo
+issues are in the Mandos audit above.
 
 | # | Repository | Change | Needed for |
 | --- | --- | --- | --- |
@@ -76,7 +82,7 @@ request, routed by the owner to the repository named.
 | C4 | better-borg-c | Optional frozen calendar (for example running under libfaketime, or an observer hook for `time()`), recorded in the build or execution contract | Resume across days; reproducibility around 24–26 December |
 | R1 | borg-reborn-rs (and borg-rs if still measured) | Serialise and restore the Rust Borg's memory, plan and controller state, versioned; with a `-resume` that refuses a mismatched build, configuration or plan hash | Exact continuation of Rust specimens; plan-aware long runs (#320) |
 | R2 | borg-reborn-rs | A checkpoint manifest naming every file written and its hash | Atomic publication |
-| N1 | Mandos | Checkpoint and resume in `zoo-run` (engine save, controller and Borg state) | Neo long runs. Lowest priority: no Neo long run is planned |
+| N1 | Mandos | Checkpoint and resume in `zoo-run` (engine save, controller and Borg state), building on the parked mandos#130 and #26 | Neo long runs. Lowest priority: no Neo long run is planned, and that work is parked |
 
 **A shortcut to evaluate for C (spike S1).** A process-level snapshot, for
 example CRIU, would restore the whole running game *and* Borg without
