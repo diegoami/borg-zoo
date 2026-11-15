@@ -1311,6 +1311,35 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "saves": false
+    },
+    "town-shadow-classes-18": {
+      "description": "Short configuration probe: two fresh Human starts per class, 2,000 turns; no fitness inference.",
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 18
+      },
+      "cap": 2000,
+      "wall_seconds": 120,
+      "stall_seconds": 45,
+      "birth": "assigned",
+      "characters": {
+        "races": [
+          "Human"
+        ],
+        "classes": [
+          "Warrior",
+          "Mage",
+          "Druid",
+          "Priest",
+          "Necromancer",
+          "Paladin",
+          "Rogue",
+          "Ranger",
+          "Blackguard"
+        ]
+      },
+      "saves": false,
+      "role": "pilot"
     }
   }
 }

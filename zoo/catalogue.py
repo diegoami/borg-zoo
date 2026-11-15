@@ -202,6 +202,18 @@ def experiment(path, cat=None):
     for name in exp['specimens']:
         if specimens[name].get('pending'):
             raise ValueError(f'{name} cannot be measured yet: {specimens[name]["pending"]}')
+        if specimens[name].get('town_shadow_records'):
+            spec = specimens[name]
+            if (spec.get('kind') != 'borg-rs' or spec.get('impl') != 'rust'
+                    or not spec.get('verify_effective_settings')):
+                raise ValueError(f'{name}: shadow capture requires a Rust specimen with effective-settings verification')
+            if not exp.get('retain_evidence'):
+                raise ValueError(f'{name}: shadow capture requires retain_evidence for raw artifacts')
+            for prof in (p for n in exp['profiles'] for p in profile_parts(cat, n)):
+                settings = cat['profiles'][prof].get('settings', {})
+                if any(settings.get(key) != 0 for key in
+                       ('borg_town_plan', 'borg_town_target_depth', 'borg_town_trip_turns')):
+                    raise ValueError(f'{prof}: shadow calibration requires planner off and automatic journey depth/duration')
         if specimens[name].get('kind') == 'neo-original':
             from .neo_original import profile_args
             profile_args(specimens[name])

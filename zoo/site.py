@@ -583,6 +583,38 @@ def experiment_brief(meta, compact=False):
             + '</details>'
             '<details class="background"><summary>Exact settings used</summary><ul>'
             + ''.join(settings) + '</ul></details></section>')
+def town_shadow_table(meta, cells):
+    if not any(meta['catalogue']['specimens'].get(s, {}).get('town_shadow_records')
+               for s in meta['experiment']['specimens']):
+        return ''
+    from .town_shadow import QUALIFICATION
+    groups = {}
+    rows = []
+    for cell in cells:
+        char = cat_mod.character(meta['catalogue']['suites'][cell['suite']], cell['seed'])
+        cls = cell.get('played_class') or (char[1] if char else '?')
+        groups[cls] = groups.get(cls, 0) + 1
+        shadow = cell.get('town_shadow') or {}
+        vector = shadow.get('effective_vector')
+        identity = ('<details><summary>Parsed parameters</summary><pre>'
+                    + esc(json.dumps(vector, indent=2)) + '</pre></details>') if vector else 'Unavailable'
+        rows.append([esc(cls), cell['seed'], esc(cell['profile']),
+                     esc(cell.get('profile_applied', '?')), esc(cell['outcome']),
+                     esc(cell.get('observed_outcome', cell['outcome'])),
+                     esc(shadow.get('status', 'unavailable')), num(shadow.get('checked_records')),
+                     num(shadow.get('median_planned_spending')), num(shadow.get('median_retained_gold')),
+                     esc(json.dumps(shadow.get('planned_supply_copies_by_stack_class', {}))),
+                     esc(json.dumps(shadow.get('snapshot_home_dispositions', {}))),
+                     esc(cell.get('config_sha256', '?')), identity, esc(shadow.get('error') or '')])
+    return ('<h2>Shadow town diagnostics</h2><p>' + esc(QUALIFICATION) + '</p>'
+            '<p>All attempted outcomes are included. Spending and retained gold are medians over '
+            'snapshots within that cell after the urgent-purchase budget has been deducted; supply copies '
+            'and Home dispositions count proposals in those snapshots. An empty stream means no consultation '
+            'observed, not verified identical planning.</p>'
+            + table(['Class', 'Attempted games'], [[esc(cls), groups.get(cls, 0)] for cls in cat_mod.CLASSES])
+            + table(['Class', 'Seed', 'Selector', 'Applied profile', 'Outcome', 'Native outcome', 'Record check', 'Snapshots',
+                     'Planned spending (median)', 'Retained gold (median)', 'Planned supply copies by stack class',
+                     'Snapshot Home dispositions', 'Config SHA-256', 'Native parameter vector', 'Error'], rows, left=4))
 
 
 def run_page(meta, cells):
@@ -792,6 +824,28 @@ def run_page(meta, cells):
             parts.append(table(['Version'] + [f'{t:,}' if t is not None else '–' for t in m_turns],
                                [[arm_label(meta, r['specimen'], r['profile'])] +
                                 [fmt_milestone(x) for x in r['milestones']] for r in rows]))
+    shopping = {}
+    for cell in cells:
+        for item in (cell.get('town_activity') or {}).get('items', []):
+            key = (cell['profile'], cell.get('played_class') or '?', item['item'])
+            total = shopping.setdefault(key, [0, 0, 0])
+            total[0] += item['transactions']
+            total[1] += item['units']
+            total[2] += item['gold']
+    if any('town_activity' in cell for cell in cells):
+        parts.append('<h2>Observed town purchases</h2><p>Native retail receipts, grouped by profile, class and item. '
+                     'Counts include all recorded attempts. Planned buys and Home transfers are excluded. '
+                     'Full messages and policy records are in the workflow raw evidence artifacts (90-day retention).</p>')
+        parts.append(table(['Profile', 'Class', 'Item', 'Transactions', 'Units', 'Gold spent'],
+                           [[esc(profile), esc(cls), esc(item), *totals]
+                            for (profile, cls, item), totals in sorted(shopping.items())]))
+    parts.append(town_shadow_table(meta, cells))
+    parts.append('<h2>Specimens and environment</h2>')
+    parts.append(explain('The Borg versions in this experiment, each built from the commit shown.'))
+    parts.append(table(['Specimen', ('Ref', 'The commit that was built.'),
+                        ('Carries', 'Fixes from the tracker carried by this version.'), 'Label'],
+                       [[esc(k), f'<code>{esc(v["ref"][:12])}</code>', num(v.get('carries')), esc(v.get('label', ''))]
+                        for k in exp['specimens'] for v in [meta['catalogue']['specimens'][k]]]))
     parts.append('<h2>Builds compared and environment</h2>')
     parts.append(explain('Every arm below uses the listed repository at the exact commit shown. '
                           'The source link opens that immutable tree.'))

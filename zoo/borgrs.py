@@ -152,28 +152,33 @@ def check_effective(summary, profile):
     return ('settings not effective: ' + ', '.join(sorted(wrong))) if wrong else None
 
 
-def command(game_bin, out, cell, race_i, cls_i, suite, spec):
+def command(game_bin, out, cell, race_i, cls_i, suite, spec, keep=False):
     argv = [str(game_bin), '-mborgh', '-n', '-uBorg'] + \
         [f'-d{d}={out / d}' for d in ('user', 'save', 'archive', 'panic', 'scores')] + \
         ['--', '-seed', str(cell['seed']), '-race', str(race_i), '-class', str(cls_i), '-turns', str(suite['cap']),
          '-keylog', str(out / 'keys.log'), '-summary', str(out / 'summary.json'), '-menu-letters']
     if spec.get('exact_turns'):
         argv.append('-exact-turns')
-    if spec.get('depth_stream'):
+    if spec.get('depth_stream') or keep:
         argv += ['-statelog', str(out / 'state.log')]
+    if keep:
+        argv += ['-msglog', str(out / 'messages.log')]
     return argv
 
 
-def run_cell(cell, build_dir, work, cat):
+def run_cell(cell, build_dir, work, cat, keep=False):
     applied, profile = cat_mod.resolve_profile(cat, cell)
     suite = cat['suites'][cell['suite']]
     spec = cat['specimens']['specimens'][cell['specimen']]
+    keep = keep or bool(spec.get('town_shadow_records'))
     build_dir = Path(build_dir).resolve()
     manifest = json.loads((build_dir / 'build.json').read_text())
     if manifest['source_commit'] != spec['ref'] or manifest['impl'] != spec['impl']:
         raise ValueError(f'build {build_dir} does not match specimen {cell["specimen"]}')
     out = Path(work).resolve() / cat_mod.cell_key(cell)
     if out.exists():
+        if keep:
+            raise ValueError(f'refusing to overwrite retained attempt: {out}')
         shutil.rmtree(out)
     for d in ('user', 'save', 'archive', 'panic', 'scores'):
         (out / d).mkdir(parents=True)
@@ -183,8 +188,26 @@ def run_cell(cell, build_dir, work, cat):
     (out / 'user/borg.txt').write_text(text)
     mismatch = check_config(text, profile)
     game = build_dir / 'game'
-    argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec)
+    argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=keep)
     env = dict(os.environ, TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8')
+    if keep:
+        # Never let parallel cells write to an inherited process-global path.
+        for name in ('BORG_TOWN_PLAN_RECORD', 'BORG_TRIP_RECORD'):
+            env.pop(name, None)
+        streams = {}
+        for setting, name, filename in (
+                ('borg_town_plan', 'BORG_TOWN_PLAN_RECORD', 'town-plan.jsonl'),
+                ('borg_trip_policy', 'BORG_TRIP_RECORD', 'trip.jsonl')):
+            if profile['settings'].get(setting) == 1 or (setting == 'borg_town_plan' and spec.get('town_shadow_records')):
+                env[name] = str(out / filename)
+                (out / filename).touch()  # Empty means no recorded consultation.
+                streams[name] = filename
+        (out / 'town-recording.json').write_text(json.dumps({
+            'schema': 'borg-zoo/town-recording@1', 'argv': argv,
+            'source_commit': spec['ref'], 'profile_applied': applied,
+            'config_sha256': hashlib.sha256(text.encode()).hexdigest(),
+            'streams': streams,
+        }, indent=2) + '\n')
     start = time.monotonic()
     outcome, error, rc = None, None, None
     try:
@@ -216,7 +239,14 @@ def run_cell(cell, build_dir, work, cat):
         effective_error = check_effective(summary, profile)
         if effective_error:
             mismatch = (mismatch + '; ' if mismatch else '') + effective_error
-    if mismatch and outcome in ('death', 'turn_cap', 'completion'):
+    shadow = None
+    if spec.get('town_shadow_records'):
+        from . import town_shadow
+        shadow = town_shadow.collect(out / 'town-plan.jsonl', summary.get('effective_settings'))
+        if shadow.get('error'):
+            mismatch = (mismatch + '; ' if mismatch else '') + shadow['error']
+    observed_outcome = outcome
+    if mismatch and (spec.get('town_shadow_records') or outcome in ('death', 'turn_cap', 'completion')):
         outcome = 'config_error'
     keys = out / 'keys.log'
     keys_sha = sha256(keys) if keys.exists() else None
@@ -225,6 +255,8 @@ def run_cell(cell, build_dir, work, cat):
         stall_info = stall.borgh(keys.read_text(errors='replace') if keys.exists() else '', summary)
     state_log = out / 'state.log'
     states = parse_state_log(state_log.read_text(errors='replace')) if state_log.exists() else []
+    native_settings = summary.get('effective_settings')
+    native_settings = native_settings if isinstance(native_settings, dict) else {}
     record = {
         'schema': 'borg-zoo/cell@1', **cell, 'harness_kind': 'borg-rs', 'profile_applied': applied,
         'specimen_ref': spec['ref'], 'impl': spec['impl'],
@@ -235,7 +267,7 @@ def run_cell(cell, build_dir, work, cat):
         'outcome': outcome, 'runner_outcome': summary.get('stop_reason'),
         'config_error': mismatch,
         'config_checked': 'native effective_settings and written file' if spec.get('verify_effective_settings') else 'written file (effective settings not required for this specimen)',
-        'effective_settings': {name: summary.get('effective_settings', {}).get(name)
+        'effective_settings': {name: native_settings.get(name)
                                for name in profile['settings']} if spec.get('verify_effective_settings') else None,
         'cause': summary.get('death_cause') or ('(alive and well)' if summary and not summary.get('dead') else None),
         'character': ' '.join(x for x in (summary.get('race'), summary.get('class')) if x) or None,
@@ -253,11 +285,19 @@ def run_cell(cell, build_dir, work, cat):
         'binary_sha256': manifest.get('binary_sha256'), 'compiler': manifest.get('compiler'),
         'rustc': manifest.get('rustc'), 'platform': manifest.get('platform'),
     }
+    if shadow is not None:
+        record['town_shadow'] = shadow
+        record['observed_outcome'] = observed_outcome
+        (out / 'town-shadow-summary.json').write_text(json.dumps(shadow, indent=2) + '\n')
     # Death evidence: a natural death's keys are kept (not the stop-reason
     # stall path above, which already read them) so the measured repository
     # can verify them against play_sha256; every other outcome's keys are
     # discarded as before.
-    if outcome != 'death':
+    if keep:
+        from . import town
+        record['town_activity'] = town.collect(out)
+    if not keep and outcome != 'death':
         keys.unlink(missing_ok=True)
-    state_log.unlink(missing_ok=True)
+    if not keep:
+        state_log.unlink(missing_ok=True)
     return record
