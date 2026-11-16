@@ -15,6 +15,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-5arm-shop` | [#123](https://github.com/diegoami/borg-zoo/issues/123) | 5 | superseded (trip policy now off in #123) | The first #123 design: control, shop (planner + trip), plan, plan-shop, ambitious-shop. |
 | `rs-additive-6` | [#129](https://github.com/diegoami/borg-zoo/issues/129) | 6 | obsolete (#129 closed by the owner) | borg-rs: existing behaviour, shopping only, and four trip thresholds (0,0), (1,2), (1,4), (2,4) as (pack slack, unknown stacks). |
 | `neo-default` | [#137](https://github.com/diegoami/borg-zoo/issues/137) | 1 | small tier done | Neo Borg with its default recorded flags (no settings). |
+| `reborn-errand-ladder` | – | 2 | done (option-C pilot, borg-reborn-rs #207, #208) | Errands: borg-rs's core in the reborn shell with no errand against the class ladders (borg_reborn_errand = ladder). |
 
 ### `heal-pilot-12`
 
@@ -150,6 +151,21 @@ Profiles: `default`.
 | --- | --- | --- | --- |
 | [43876073942](https://github.com/diegoami/borg-zoo/actions/runs/43876073942) | small | `neo-b4-parity-books-v1` | 39 alive, 46 dead, 5 stalls (Borg loops) |
 
+### `reborn-errand-ladder`
+
+Errands: borg-rs's core in the reborn shell with no errand against the class ladders (borg_reborn_errand = ladder).
+
+Every arm: `borg_reborn_core = borg-rs`.
+
+| Profile | `borg_reborn_errand` |
+| --- | --- |
+| `reborn-core-borgrs` | none |
+| `reborn-core-ladder` | ladder |
+
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [43702957409](https://github.com/diegoami/borg-zoo/actions/runs/43702957409) | full (before RULES 14) | `4.2.6-reborn-core-pilot` | 3,600 games: ladder 448 deaths (24.9%) v no errand 524 (29.1%); descriptive, one development suite |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -161,7 +177,18 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_trip_policy` | 0, 1 | `heal-pilot-12`, `maxdepth-2x5`, `reborn-3x3-trip`, `reborn-5arm-shop`, `rs-additive-6` | Extra reasons to return to town. Barely changes play: 42 of 54 paired pilot games identical. Kept off in #123's development arms until it is shown to help (owner). From `8a0b57c8` it is borg-rs#88's additive policy. |
 | `borg_trip_unknown_stacks` | 0, 2, 3, 4, not set | `maxdepth-2x5`, `rs-additive-6` | Return when this many carried stacks are unidentified (default 4). Changes play: (3,x) differs from return-off in about 40% of games; (5,1) played like return-off in 26-27 of 30 starts. |
 | `borg_trip_pack_slack` | 0, 1, 2, not set | `maxdepth-2x5`, `rs-additive-6` | Return when this few pack slots are free (default 2). Almost no effect: 1 and 2 played identical keys in 359 of 360 #147 games. |
+| `borg_reborn_errand` | ladder, none | `reborn-errand-ladder` | The errand over the core: `none`, or a command such as `ladder` (the class ladders). The ladder looked better in the option-C pilot (24.9% v 29.1% deaths, descriptive). |
 | `borg_param_caution_heal_when_outmatched` | 1, not set | `heal-pilot-12` | A hurt Borg in lethal danger with no escape drinks its best cure potion (#151). Waits for borg-reborn-rs #461. |
+
+## Settings available for new arms
+
+Exposed by borg-reborn-rs `main` but not yet used to build arms. A profile sets a core parameter as `borg_param_<name>` (an integer); see borg-reborn-rs `docs/CALIBRATION.md`.
+
+| Setting | Values | What it does |
+| --- | --- | --- |
+| `borg_reborn_errand` | `none`, `ladder` (both run); `/town`, `/explore-level` and trips plans per borg.txt, untested through the zoo | Errands over the core (borg-reborn-rs `harness/borg.txt`). Only `ladder` against `none` has been measured (`reborn-errand-ladder`). The zoo writes a setting as one word, so a trips plan such as `/trips 1*/1,2,1*@3` cannot be written yet. |
+| `borg_param_attack_preference_<class>_<family>_permille` | 500–2000, neutral 1000 (54 settings: 9 classes × melee, projectile, thrown, spell, device, activation) | Multiplies how much the Borg values one attack family for one class (#403, promoted in #407). Defaults leave play unchanged. Details: borg-reborn-rs `docs/ATTACK-PREFERENCES.md`. |
+| `borg_param_caution_heal_outmatched_min_loss` | 0–100 %, default 50 | With the heal flag on, the share of maximum HP the Borg must have lost before it heals when outmatched (#457). |
 
 ## Specimens behind the shortcuts
 
@@ -175,3 +202,4 @@ Only the settings that differ between the arms of a shortcut.
 | `4.2.6-reborn-rust-plans-m13` | diegoami/borg-reborn-rs | `1c4b351b` | borg-reborn-rs 1c4b351b, the main merge commit of #354 (tree identical to its synced head 8eb0be69), borg-zoo#123's five-arm specimen. |
 | `4.2.6-rs-pr92-home-fix` | diegoami/borg-rs | `8c5d000a` | M13 Rust Borg at borg-rs main 8c5d000a, PR92's merge (borg-zoo#129): PR88's added town-return triggers (7251f64a, an ancestor) plus PR92, which stops a confirmed Home transfer being reversed within the same visit (the borg-rs#90 oil store/take loop). |
 | `neo-b4-parity-books-v1` | diegoami/neo-angband-borg-mod-tracker | `464a1555` | Experimental Borg1.4.0-beta.6.zoo.1: six C-parity fixes514-519 plus retained book-value correction509, on verified beta.4/API2.1 engine d27ed50f. |
+| `4.2.6-reborn-core-pilot` | diegoami/borg-reborn-rs | `1be6edc7` | borg-reborn-rs 1be6edc, the option-C pilot (borg-reborn-rs #207, #208): borg-rs's core (milestone 12, vendored as borg-core/) inside the reborn shell, selected through the run's borg.txt (borg_reborn_core, borg_reborn_errand). |

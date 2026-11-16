@@ -31,9 +31,25 @@ LESSONS = {
                                  'return-off in 26-27 of 30 starts.'),
     'borg_trip_pack_slack': ('Return when this few pack slots are free (default 2). Almost no effect: 1 and 2 '
                              'played identical keys in 359 of 360 #147 games.'),
+    'borg_reborn_errand': ('The errand over the core: `none`, or a command such as `ladder` (the class ladders). '
+                           'The ladder looked better in the option-C pilot (24.9% v 29.1% deaths, descriptive).'),
     'borg_param_caution_heal_when_outmatched': ('A hurt Borg in lethal danger with no escape drinks its best '
                                                 'cure potion (#151). Waits for borg-reborn-rs #461.'),
 }
+
+# Settings borg-reborn-rs main exposes that no shortcut varies yet.
+AVAILABLE = [
+    ('`borg_reborn_errand`', '`none`, `ladder` (both run); `/town`, `/explore-level` and trips plans per borg.txt, untested through the zoo',
+     'Errands over the core (borg-reborn-rs `harness/borg.txt`). Only `ladder` against `none` has been '
+     'measured (`reborn-errand-ladder`). The zoo writes a setting as one word, so a trips plan such as '
+     '`/trips 1*/1,2,1*@3` cannot be written yet.'),
+    ('`borg_param_attack_preference_<class>_<family>_permille`',
+     '500–2000, neutral 1000 (54 settings: 9 classes × melee, projectile, thrown, spell, device, activation)',
+     "Multiplies how much the Borg values one attack family for one class (#403, promoted in #407). "
+     "Defaults leave play unchanged. Details: borg-reborn-rs `docs/ATTACK-PREFERENCES.md`."),
+    ('`borg_param_caution_heal_outmatched_min_loss`', '0–100 %, default 50',
+     'With the heal flag on, the share of maximum HP the Borg must have lost before it heals when outmatched (#457).'),
+]
 
 
 def shortcuts(root=ROOT):
@@ -73,7 +89,8 @@ def render(cat, sc):
            '## Shortcuts', '',
            '| Shortcut | Issue | Arms | Status | What |', '| --- | --- | ---: | --- | --- |']
     for name, s in sc.items():
-        out.append(f"| `{name}` | [#{s['issue']}]({ISSUES}{s['issue']}) | {len(s['profiles'])} | "
+        issue = f"[#{s['issue']}]({ISSUES}{s['issue']})" if s.get('issue') else '–'
+        out.append(f"| `{name}` | {issue} | {len(s['profiles'])} | "
                    f"{s['status']} | {s['what']} |")
     for name, s in sc.items():
         vary, common = varying(cat, s['profiles'])
@@ -109,6 +126,11 @@ def render(cat, sc):
         vals = sorted(vals, key=lambda x: (x == 'not set', not x.lstrip('-').isdigit(),
                                            int(x) if x.lstrip('-').isdigit() else 0, x))
         out.append(f"| `{k}` | {', '.join(vals)} | {', '.join(where)} | {LESSONS.get(k, '')} |")
+    out += ['', '## Settings available for new arms', '',
+            'Exposed by borg-reborn-rs `main` but not yet used to build arms. A profile sets a core '
+            'parameter as `borg_param_<name>` (an integer); see borg-reborn-rs `docs/CALIBRATION.md`.', '',
+            '| Setting | Values | What it does |', '| --- | --- | --- |']
+    out += [f'| {k} | {v} | {w} |' for k, v, w in AVAILABLE]
     specs = cat['specimens']['specimens']
     used = []
     for s in sc.values():
