@@ -1,0 +1,58 @@
+# borg-zoo#151: heal-when-outmatched flag x trip policy x plan, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-pilot.yaml
+name: reborn-heal-pilot
+issue: 151
+question: Does healing when outmatched help, with and without the trip policy and an errands plan?
+tier: pilot
+
+specimen:
+  name: 4.2.6-reborn-rust-heal
+  repository: diegoami/borg-reborn-rs
+  ref: f02cd2940a7439a8965b3883270a9a73df7e0bf5
+  source: https://github.com/diegoami/borg-zoo/issues/151
+  label: >-
+    borg-reborn-rs f02cd294, the main merge of #463 (borg-zoo#151). Adds, over 6d1bca10:
+    #461 caution_heal_when_outmatched (default 0, play unchanged), #459 back-away never onto
+    lava, #455 Remove Hunger valued as food, #463 knowledge-only purchases off in every arm,
+    #407/#466 class/family attack preferences (neutral). Source-hash rust bb27c7c3...;
+    harness/borg.txt 88296dd1... and both max-depth plans unchanged.
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# Every arm.
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_town_plan: 1
+
+# Each entry multiplies the arms; the option names make the profile names
+# (reborn-heal0-trip0-none, ...). An empty option ({}) sets nothing.
+profile_prefix: reborn
+vary:
+  heal:
+    heal0: {}
+    heal1: {borg_param_caution_heal_when_outmatched: 1}
+  trip:
+    trip0: {borg_trip_policy: 0}
+    trip1: {borg_trip_policy: 1}
+  plan:
+    none: {}
+    plan: {borg_plan: errands_plan.txt}
+    ambitious: {borg_plan: errands_plan_ambitious.txt}
+
+control: [heal0, trip0, none]
+owner_authorization: >-
+  2026-11-16: the owner chose the 12-arm pilot design after the borg-zoo#147 death diagnosis
+  (borg-zoo#151); pilot first.
+
+prespecified: |
+  Fixed 2026-11-16, before any result was read (borg-zoo#151). Pilot only (RULES 14); small and
+  larger only after this gate and the owner. Gate: no config_error; one binary; loaded-plan copies
+  match their pins and are absent from the no-plan arms; the heal flag is written in flag-1 cells
+  only. Every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key outliers are
+  listed. Flag 0 against flag 1: list the cells where they diverge, count "# Healing (outmatched)."
+  notes in flag-1 cells, and deaths with cure potions still in the pack per arm where the logs
+  allow. Descriptive per arm: deaths, final level, deepest level, keys; paired rescued and newly
+  killed for flag 1 against flag 0 on the same start. 18 starts per arm cannot show whether the
+  flag is good.

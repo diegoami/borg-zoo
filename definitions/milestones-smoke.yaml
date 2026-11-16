@@ -1,0 +1,20 @@
+# Exported from smoke/milestones-smoke.json; edit here, then run python3 -m zoo define.
+name: milestones-smoke
+folder: smoke
+description: 'All milestones, default profile, smoke suite: a quick check that every specimen builds and
+  runs'
+specimens:
+- 4.2.6
+- 4.2.6-bbc-m1
+- 4.2.6-bbc-m2
+- 4.2.6-bbc-m3
+- 4.2.6-bbc-m4
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6
+control_profile: default
+extra:
+  control_profile: null

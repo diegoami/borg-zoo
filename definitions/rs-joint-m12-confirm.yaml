@@ -1,0 +1,74 @@
+# Exported from experiments/rs-joint-m12-confirm.json; edit here, then run python3 -m zoo define.
+name: rs-joint-m12-confirm
+description: |-
+  Prespecified fresh-seed check of the fixed locally selected risk-2000 candidate against existing behaviour and untuned live policies. Three arms, 5400 games on classes-1800-b.
+prespecified: |-
+  Fixed before dispatch. Primary: risk2000 versus old-control, paired natural death by the 100000-turn after-key cap on cases where both finish, exact two-sided McNemar alpha 0.05. All noncompletion categories remain reported and are not relabelled as deaths or survivors. Secondary descriptive comparison: risk2000 versus live-reference. Mean final character level, mean deepest level and DL3+ count are secondary descriptive measures, per-class figures descriptive. Candidate risk2000 is fixed from the local 45+45 study; development-suite variation winners cannot be substituted. Sizing: local fresh cases had discordance 16/45 and net death difference 2/45; the normal paired approximation (1.96+0.842)^2*(16/45)/(2/45)^2 is about 1413 cases for 80% power under those uncertain pilot assumptions. The standard 1800-case suite exceeds that approximation; incomplete pairs reduce effective size. No general improvement claim from a development table.
+owner_authorization: |-
+  2026-11-14 session request: schedule full zoo runs of the best joint trip/inventory settings and variations; improved shopping must act, not just shadow.
+specimens:
+- 4.2.6-rs-joint-m12-d9a56f4
+suites:
+- classes-1800-b
+profile_prefix: ''
+arms:
+  rs-joint-old-control:
+    borg_trip_policy: 0
+    borg_town_plan: 0
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+  rs-joint-live-reference:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+  rs-joint-risk2000:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 2000
+control_specimen: 4.2.6-rs-joint-m12-d9a56f4
+control_profile: rs-joint-old-control
+extra:
+  resource_budget:
+    max_parallel_jobs: 8
+    processes_per_job: 1
+  source_notes: |-
+    All arms share d9a56f4 and the milestone-12 engine. The pinned Rust Borg has one play mode; no retired mode can be enabled. Profiles declare all local-search parameters; modern native effective_settings are required and checked.
+  retain_evidence: true

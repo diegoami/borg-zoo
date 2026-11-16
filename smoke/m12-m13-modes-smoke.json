@@ -1,5 +1,8 @@
 {
   "schema": "borg-zoo/experiment@1",
+  "name": "m12-m13-modes-smoke",
+  "definition": "definitions/m12-m13-modes-smoke.yaml",
+  "description": "Can M12 and M13 build and apply each explicit mode profile on the three frozen smoke seeds? This is an 18-cell build/configuration and reachability probe, not a survival comparison. The lunal flag permits the mode; it does not prove mode entry. A run with no entry or no execution of the changed branch is not exercised, never a neutral result for Lunal fixes. The unrestricted/source-gated variants required by issue #87 are not supplied by these profiles. Prepared only; no dispatch authorized by this definition.",
   "specimens": [
     "4.2.6-bbc-m12",
     "4.2.6-bbc-m13"
@@ -17,7 +20,5 @@
   "resource_budget": {
     "max_parallel_jobs": 8,
     "processes_per_job": 1
-  },
-  "name": "m12-m13-modes-smoke",
-  "description": "Can M12 and M13 build and apply each explicit mode profile on the three frozen smoke seeds? This is an 18-cell build/configuration and reachability probe, not a survival comparison. The lunal flag permits the mode; it does not prove mode entry. A run with no entry or no execution of the changed branch is not exercised, never a neutral result for Lunal fixes. The unrestricted/source-gated variants required by issue #87 are not supplied by these profiles. Prepared only; no dispatch authorized by this definition."
+  }
 }

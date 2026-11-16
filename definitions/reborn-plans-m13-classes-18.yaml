@@ -1,0 +1,45 @@
+# Exported from experiments/reborn-plans-m13-classes-18.json; edit here, then run python3 -m zoo define.
+name: reborn-plans-m13-classes-18
+issue: 123
+description: |-
+  borg-zoo#123 five-arm pilot on the five-arm specimen (4.2.6-reborn-rust-plans-m13, borg-reborn-rs 1c4b351b, the same game as 2f74e1c5 plus the ambitious plan): control, shop, plan, plan-shop and ambitious-shop on classes-18 (9 classes x 2 seeds, assigned birth, 100,000-turn cap). 90 games. Checks the new build and the ambitious plan's plumbing before the development run.
+prespecified: |-
+  Fixed 2026-11-16, before any result was read. Pilot, not a measurement: it passes when every cell has a valid outcome (death, turn_cap or borg_stopped), no cell is config_error, plan cells record 922372ba...cb160cd and ambitious cells 9d7d8a39...d59dd2, and no cell needs a rerun. The plan in force is evidenced by the core's copy of the loaded plan in the cell's output directory (errands_plan.txt), whose sha256 must equal the requested plan's, and which must be absent in no-plan arms; otherwise the cell is config_error. A cell with 1,000 or more keys at a single game turn (borg-rs#90's oil store/take loop at the Home: 4,315-5,141 keys per burst against at most 383 in normal play) is recorded as stalled, with its observed outcome kept, and is reported separately like the other incomplete outcomes; final key counts are also reported per arm. Nothing is compared for an effect.
+owner_authorization: '2026-11-15/16: the owner authorised borg-zoo#123 and added the ambitious-plan arm;
+  pilot first.'
+specimens:
+- 4.2.6-reborn-rust-plans-m13
+suites:
+- classes-18
+profile_prefix: ''
+arms:
+  reborn-m13-control:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 0
+    borg_trip_policy: 0
+  reborn-m13-shop:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 1
+    borg_trip_policy: 1
+  reborn-m13-plan:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 0
+    borg_trip_policy: 0
+    borg_plan: errands_plan.txt
+  reborn-m13-plan-shop:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 1
+    borg_trip_policy: 1
+    borg_plan: errands_plan.txt
+  reborn-m13-ambitious-shop:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 1
+    borg_trip_policy: 1
+    borg_plan: errands_plan_ambitious.txt
+control_specimen: 4.2.6-reborn-rust-plans-m13
+control_profile: reborn-m13-control

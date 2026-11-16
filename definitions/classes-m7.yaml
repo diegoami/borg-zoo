@@ -1,0 +1,20 @@
+# Exported from experiments/classes-m7.json; edit here, then run python3 -m zoo define.
+name: classes-m7
+description: |-
+  The original C Borg against better-borg-c milestones 6 and 7, and milestone 7 with the munchkin start by class (the current main default), for every class and race (classes-1800)
+specimens:
+- 4.2.6
+- 4.2.6-bbc-m6
+- 4.2.6-bbc-m7
+- 4.2.6-bbc-munchkin-by-class
+suites:
+- classes-1800
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6
+control_profile: default
+extra:
+  pre_cutoff: |-
+    2026-11-10 (borg-zoo#54): recorded before the mode cutoff. Its default arms straddle better-borg-c fd683ced (PR 302): the original has no borg_munchkin_by_class, Munchkin-by-class (fd683ced) defaults it TRUE, so the same profile name is a different game across arms. The file stays as run; the site labels these runs pre-cutoff and excludes their straddling comparisons.
+  control_profile: null

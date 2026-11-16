@@ -1,6 +1,8 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "m10-smoke",
+  "issue": 54,
+  "definition": "definitions/m10-smoke.yaml",
   "description": "Milestones 9 and 10 smoke, restarted on the explicit mode profiles (2026-11-10, borg-zoo#54): M10 against M9 under the product default (munchkin-class), and the modes against each other on each milestone. The original run compared 4.2.6 against M9/M10 on default, which straddled the mode cutoff - better-borg-c fd683ced (PR 302) makes borg_munchkin_by_class default TRUE on M9/M10 but does not exist on 4.2.6 - so those comparisons are excluded; the original-vs-milestone question now belongs to the pre-cutoff history, and the current baseline is 4.2.6-bbc-9ca98661 (bbc-explicit-smoke).",
   "specimens": [
     "4.2.6-bbc-m9",

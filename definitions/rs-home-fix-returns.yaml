@@ -1,0 +1,270 @@
+# Exported from experiments/rs-home-fix-returns.json; edit here, then run python3 -m zoo define.
+name: rs-home-fix-returns
+issue: 129
+description: |-
+  PR92's Home fix with PR88's return-only trip policy (borg-zoo#129): the six rs-additive-returns arms on borg-rs 8c5d000a. Same frozen 1800 starts per choice, 10800 games total.
+prespecified: |-
+  Development rerun on the same frozen classes-1800-d starts and 100000-world-turn after-key cap as rs-additive-returns, not fresh-seed confirmation. Primary: paired natural deaths against rs-additive-shopping-only (live inventory planner on, added trip policy off). Report every attempted failure and incomplete cell first. Secondary: per-class outcomes, final character level and deepest level, town time, actual town arrivals, added return-goal transitions, native purchases and inventory disposition. Home-loop diagnostics: Home store/take traffic from retained native receipts, the busiest game turn per cell (a cell with 1,000+ keys at one game turn is recorded as stalled, kind frozen_turn_loop, observed outcome kept) and key outliers (more than 3 times the arm's median keys over its turn-cap cells, flagged and listed; endpoints reported with and without them). Compare (1,4) vs (2,4) for pack slack and (1,2) vs (1,4) for the learning threshold. Returns and reduced unknown counts are not proof of completed identification. No mid-run retuning; no promotion or improvement claim without a separately agreed confirmation. Cross-build comparison with rs-additive-returns (same starts, PR92 absent) is descriptive only. Inspect the 54-cell native smoke before dispatching any arm on classes-1800-d.
+owner_authorization: |-
+  2026-11-16 owner request (borg-zoo#129, from borg-rs): test merged PR92's Home fix with PR88's return-only trip policy in a fresh pinned study, reusing the rs-additive-returns design and exact shopping settings; a small configuration/native pilot first. 2026-11-16 the owner asked for a control run in the meantime. Runner rule: bounded shards, at most 20 game jobs and one game process per job.
+specimens:
+- 4.2.6-rs-pr92-home-fix
+suites:
+- classes-1800-d
+profile_prefix: ''
+arms:
+  rs-additive-existing:
+    borg_trip_policy: 0
+    borg_town_plan: 0
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+    borg_town_w_light: 100
+    borg_town_w_food: 100
+    borg_town_w_poison: 100
+    borg_town_w_escape: 50
+    borg_town_w_power: 50
+    borg_town_w_trip: 50
+    borg_town_share: 10
+    borg_town_light_depth: 15
+    borg_town_food_trip: 10
+    borg_town_explore_turns: 1000
+    borg_town_stair_turns: 50
+    borg_town_food_turns: 3000
+    borg_town_light_turns: 5000
+    borg_town_home_discount: 500
+    borg_town_w_space: 25
+    borg_town_power_scale: 40000
+    borg_town_w_ranger_missiles: 250
+    borg_town_ranger_missile_turns: 50
+  rs-additive-shopping-only:
+    borg_trip_policy: 0
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+    borg_town_w_light: 100
+    borg_town_w_food: 100
+    borg_town_w_poison: 100
+    borg_town_w_escape: 50
+    borg_town_w_power: 50
+    borg_town_w_trip: 50
+    borg_town_share: 10
+    borg_town_light_depth: 15
+    borg_town_food_trip: 10
+    borg_town_explore_turns: 1000
+    borg_town_stair_turns: 50
+    borg_town_food_turns: 3000
+    borg_town_light_turns: 5000
+    borg_town_home_discount: 500
+    borg_town_w_space: 25
+    borg_town_power_scale: 40000
+    borg_town_w_ranger_missiles: 250
+    borg_town_ranger_missile_turns: 50
+  rs-additive-p0-u0:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 0
+    borg_trip_unknown_stacks: 0
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+    borg_town_w_light: 100
+    borg_town_w_food: 100
+    borg_town_w_poison: 100
+    borg_town_w_escape: 50
+    borg_town_w_power: 50
+    borg_town_w_trip: 50
+    borg_town_share: 10
+    borg_town_light_depth: 15
+    borg_town_food_trip: 10
+    borg_town_explore_turns: 1000
+    borg_town_stair_turns: 50
+    borg_town_food_turns: 3000
+    borg_town_light_turns: 5000
+    borg_town_home_discount: 500
+    borg_town_w_space: 25
+    borg_town_power_scale: 40000
+    borg_town_w_ranger_missiles: 250
+    borg_town_ranger_missile_turns: 50
+  rs-additive-p1-u2:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 1
+    borg_trip_unknown_stacks: 2
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+    borg_town_w_light: 100
+    borg_town_w_food: 100
+    borg_town_w_poison: 100
+    borg_town_w_escape: 50
+    borg_town_w_power: 50
+    borg_town_w_trip: 50
+    borg_town_share: 10
+    borg_town_light_depth: 15
+    borg_town_food_trip: 10
+    borg_town_explore_turns: 1000
+    borg_town_stair_turns: 50
+    borg_town_food_turns: 3000
+    borg_town_light_turns: 5000
+    borg_town_home_discount: 500
+    borg_town_w_space: 25
+    borg_town_power_scale: 40000
+    borg_town_w_ranger_missiles: 250
+    borg_town_ranger_missile_turns: 50
+  rs-additive-p1-u4:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 1
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+    borg_town_w_light: 100
+    borg_town_w_food: 100
+    borg_town_w_poison: 100
+    borg_town_w_escape: 50
+    borg_town_w_power: 50
+    borg_town_w_trip: 50
+    borg_town_share: 10
+    borg_town_light_depth: 15
+    borg_town_food_trip: 10
+    borg_town_explore_turns: 1000
+    borg_town_stair_turns: 50
+    borg_town_food_turns: 3000
+    borg_town_light_turns: 5000
+    borg_town_home_discount: 500
+    borg_town_w_space: 25
+    borg_town_power_scale: 40000
+    borg_town_w_ranger_missiles: 250
+    borg_town_ranger_missile_turns: 50
+  rs-additive-p2-u4:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+    borg_town_w_light: 100
+    borg_town_w_food: 100
+    borg_town_w_poison: 100
+    borg_town_w_escape: 50
+    borg_town_w_power: 50
+    borg_town_w_trip: 50
+    borg_town_share: 10
+    borg_town_light_depth: 15
+    borg_town_food_trip: 10
+    borg_town_explore_turns: 1000
+    borg_town_stair_turns: 50
+    borg_town_food_turns: 3000
+    borg_town_light_turns: 5000
+    borg_town_home_discount: 500
+    borg_town_w_space: 25
+    borg_town_power_scale: 40000
+    borg_town_w_ranger_missiles: 250
+    borg_town_ranger_missile_turns: 50
+control_specimen: 4.2.6-rs-pr92-home-fix
+control_profile: rs-additive-shopping-only
+extra:
+  resource_budget:
+    max_parallel_jobs: 20
+    processes_per_job: 1
+  retain_evidence: true
+  source_notes: |-
+    All arms pin borg-rs main 8c5d000a58e9ddca1f1954ab9552e505856b313f, PR92's merge, which contains PR88 (7251f64a). The six profiles are the rs-additive-returns profiles, unchanged, so every resolved setting equals that study's; only the source differs (PR92 added). New specimen and experiment; rs-additive-returns, PR85, PR88 and reborn pins and results are preserved. (0,0) is full-pack returns with learning-driven returns disabled, not policy off. The trip switch does not change shopping forecasts, inventory valuation or combat oil reserves.

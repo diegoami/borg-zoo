@@ -1,12 +1,12 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "rs-additive-returns",
+  "definition": "definitions/rs-additive-returns.yaml",
   "description": "Repeat the four owner-selected return threshold pairs on the merged PR88 additive-only M13 build, with contemporaneous legacy-return controls. Same frozen 1800 starts per choice, 10800 games total; historical PR85 results remain unchanged.",
+  "prespecified": "Development rerun on the same frozen classes-1800-d starts, not fresh-seed confirmation. Primary: paired natural deaths by the 100000-world-turn after-key cap, using new shopping + legacy returns only as the main control. Report missing cells and every abnormal outcome first. Secondary: final character level, deepest level, DL3+, death timing/depth/class, actual town arrivals, custom return-goal transitions, unfinished requests, sampled town time and native purchases. Compare (1,4) vs (2,4) for pack slack and (1,2) vs (1,4) for learning threshold. (0,0) is full-pack only, with learning returns disabled; it does not disable the policy. All legacy rules remain active. Corrected shopping and combat models are identical across the four threshold arms; the extra returns may change later inventory and paths. Do not infer completed identification from a return or reduced unknown count. Report all comparisons and no mid-run retuning; no accepted winner or improvement claim without a separately agreed fresh-seed confirmation. Inspect the 54-cell native smoke and account capacity before dispatch; use measured timing with headroom below the 300-minute shard timeout.",
   "specimens": [
     "4.2.6-rs-pr88-additive-returns"
   ],
-  "control": "4.2.6-rs-pr88-additive-returns",
-  "control_profile": "rs-additive-shopping-only",
   "profiles": [
     "rs-additive-existing",
     "rs-additive-shopping-only",
@@ -18,12 +18,13 @@
   "suites": [
     "classes-1800-d"
   ],
+  "control": "4.2.6-rs-pr88-additive-returns",
+  "control_profile": "rs-additive-shopping-only",
+  "owner_authorization": "2026-11-15 owner requested repeating the experiment after PR88 merged, in particular the last four threshold rows. Keep both same-build controls to interpret the added return triggers. Existing repository runner rule: wait for account idle, then use bounded shards with at most 20 game jobs and one game process per job.",
   "resource_budget": {
     "max_parallel_jobs": 20,
     "processes_per_job": 1
   },
   "retain_evidence": true,
-  "owner_authorization": "2026-11-15 owner requested repeating the experiment after PR88 merged, in particular the last four threshold rows. Keep both same-build controls to interpret the added return triggers. Existing repository runner rule: wait for account idle, then use bounded shards with at most 20 game jobs and one game process per job.",
-  "source_notes": "All arms pin merged PR88 on M13 at 7251f64a9c3bf75fb8b90940d3fda54c4fa610bb. This is a new experiment and new specimen; historical pins and results are preserved. The four numeric pairs and all shopping settings are copied exactly from PR85. Inherited return rules remain active. The added return switch does not change live shopping forecasts, combat reserves or inherited depth decisions. The previous experiment was M12, so cross-run comparisons also change milestone and are descriptive only.",
-  "prespecified": "Development rerun on the same frozen classes-1800-d starts, not fresh-seed confirmation. Primary: paired natural deaths by the 100000-world-turn after-key cap, using new shopping + legacy returns only as the main control. Report missing cells and every abnormal outcome first. Secondary: final character level, deepest level, DL3+, death timing/depth/class, actual town arrivals, custom return-goal transitions, unfinished requests, sampled town time and native purchases. Compare (1,4) vs (2,4) for pack slack and (1,2) vs (1,4) for learning threshold. (0,0) is full-pack only, with learning returns disabled; it does not disable the policy. All legacy rules remain active. Corrected shopping and combat models are identical across the four threshold arms; the extra returns may change later inventory and paths. Do not infer completed identification from a return or reduced unknown count. Report all comparisons and no mid-run retuning; no accepted winner or improvement claim without a separately agreed fresh-seed confirmation. Inspect the 54-cell native smoke and account capacity before dispatch; use measured timing with headroom below the 300-minute shard timeout."
+  "source_notes": "All arms pin merged PR88 on M13 at 7251f64a9c3bf75fb8b90940d3fda54c4fa610bb. This is a new experiment and new specimen; historical pins and results are preserved. The four numeric pairs and all shopping settings are copied exactly from PR85. Inherited return rules remain active. The added return switch does not change live shopping forecasts, combat reserves or inherited depth decisions. The previous experiment was M12, so cross-run comparisons also change milestone and are descriptive only."
 }

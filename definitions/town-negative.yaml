@@ -1,0 +1,24 @@
+# Exported from experiments/town-negative.json; edit here, then run python3 -m zoo define.
+name: town-negative
+issue: 81
+description: |-
+  The negative baseline for the town inventory redesign (borg-zoo#81): borg-rs with no store interaction at all (town-negative), against the same build trading normally (normal). Both arms are the same specimen, so the comparison stays inside one workflow run (RULES 7). A pilot on classes-18; classes-1800 follows only if the pilot reads well. Endpoint, prespecified in borg-zoo#81: per class, paired on the seed, milestones[].level at 50% and 100% of the cap and final.max_depth; secondary milestones[].gold, first_turn_at_depth, final.keys and the death split. A calibration of trade and the stash combined, not a strategy: no improvement is claimed.
+specimens:
+- 4.2.6-rs-town
+suites:
+- classes-18
+profile_prefix: ''
+arms:
+  normal:
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  town-negative:
+    borg_town_no_stores: true
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+control_specimen: 4.2.6-rs-town
+control_profile: normal

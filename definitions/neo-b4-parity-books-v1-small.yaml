@@ -1,0 +1,29 @@
+# Exported from experiments/neo-b4-parity-books-v1-small.json; edit here, then run python3 -m zoo define.
+name: neo-b4-parity-books-v1-small
+issue: 137
+description: |-
+  Small tier (RULES 14, borg-zoo#137) of the Neo parity-and-books arm: Borg 1.4.0-beta.6.zoo.1 (source 464a1555, parity fixes 514-519 plus book-value 509), engine d27ed50f (beta.4/API 2.1), toolkit 638979d. Starts 1-90 of neo-seeded-v2-classes-1800 (10 per class, the parent's characters), 100,000 exact ticks, 600-second watchdog, default recorded Borg flags; all evidence retained. 90 games. No survival or C-parity claim.
+prespecified: |-
+  Fixed 2026-11-16, before any result was read (borg-zoo#137). Small tier only; medium, big and full each need this tier's written gate and a separate owner go. Gate: all 90 assigned records reconciled, 10 per class; every planned start has a retained outcome or an explicitly recorded incomplete or failed attempt; hashes, identities, actual births/options/settings and truth-use receipts verify. Configuration or harness errors, corrupt evidence, wrong pins or characters, or cap violations stop progression until resolved, without weakening assertions, seeds, timeouts or outcome categories. Report deaths, caps, stalls, timeouts, stops and failures separately per class and overall with assigned-start denominators; assess and retain every abnormal endpoint. Report final level and deepest depth including dead characters, shallow cap finishes, causes, book retention and casting observations, and runtime distributions; a cast intent is not a success, and zero casts in a short or low-level run is not a defect. Record the gate verdict and its runtime, storage and sharding implications. No tier advances because its jobs are green. Comparison limits: the older book cohort 43759670685 used engine b4af703 and Borg source d6215a8; no six-fix-only causal estimate, native-C trajectory parity or population improvement claim; engine clock issue neo-angband-tracker#640 is unresolved.
+owner_authorization: |-
+  2026-11-16: the owner approved adapting PR #131 to the RULES 14 tiers and running the small tier first (borg-zoo#137), after the accepted smoke 43861787363.
+specimens:
+- neo-b4-parity-books-v1
+suites:
+- neo-seeded-v2-classes-1800-small
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: neo-b4-parity-books-v1
+control_profile: default
+extra:
+  retain_evidence: true
+  shards_by_specimen:
+    neo-b4-parity-books-v1: 6
+  resource_budget:
+    processes_per_job: 2
+    max_parallel_jobs: 4
+    native_wall_seconds: 600
+    neo_wall_seconds: 600
+    job_timeout_minutes: 300
+  control_profile: null

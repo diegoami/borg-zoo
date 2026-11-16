@@ -1,0 +1,22 @@
+# Exported from smoke/m10-smoke.json; edit here, then run python3 -m zoo define.
+name: m10-smoke
+issue: 54
+folder: smoke
+description: |-
+  Milestones 9 and 10 smoke, restarted on the explicit mode profiles (2026-11-10, borg-zoo#54): M10 against M9 under the product default (munchkin-class), and the modes against each other on each milestone. The original run compared 4.2.6 against M9/M10 on default, which straddled the mode cutoff - better-borg-c fd683ced (PR 302) makes borg_munchkin_by_class default TRUE on M9/M10 but does not exist on 4.2.6 - so those comparisons are excluded; the original-vs-milestone question now belongs to the pre-cutoff history, and the current baseline is 4.2.6-bbc-9ca98661 (bbc-explicit-smoke).
+specimens:
+- 4.2.6-bbc-m9
+- 4.2.6-bbc-m10
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  munchkin-class:
+    borg_munchkin_by_class: true
+  normal:
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+control_specimen: 4.2.6-bbc-m9
+control_profile: munchkin-class

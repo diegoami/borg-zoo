@@ -1,0 +1,19 @@
+# Exported from experiments/classes-v12.json; edit here, then run python3 -m zoo define.
+name: classes-v12
+description: |-
+  better-borg-c v12 (tag 4.2.6-impact-v12, 115 carries: v11 plus 0118 NEWKILL-95 and the official import to angband 42cd156a, retiring carries 0001 and 0002) on the full class grid, once under each policy the dashboard compares: normal (every mode pinned off) and munchkin-class (the class rule). The measurement the v12 milestone package records as not done. Run one arm per workflow run, so a timeout costs an arm (classes-v11 lost half its cells that way). Control is v12 under normal.
+specimens:
+- 4.2.6-bbc-m12
+suites:
+- classes-1800
+profile_prefix: ''
+arms:
+  normal:
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  munchkin-class:
+    borg_munchkin_by_class: true
+control_specimen: 4.2.6-bbc-m12
+control_profile: normal

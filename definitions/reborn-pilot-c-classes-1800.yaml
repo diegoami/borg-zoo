@@ -1,0 +1,22 @@
+# Exported from experiments/reborn-pilot-c-classes-1800.json; edit here, then run python3 -m zoo define.
+name: reborn-pilot-c-classes-1800
+description: |-
+  borg-reborn-rs's option-C pilot (borg-reborn-rs #207, #208; docs/PILOT.md): borg-rs's core inside the reborn shell at commit 1be6edc7f2db7f73b49e08a36eadca1c3c5a556d, with and without the trips errand, on classes-1800 (9 classes x 200 seeds, assigned birth, 100,000-turn cap). Arm R: borg_reborn_core = borg-rs, borg_reborn_errand = none (profile reborn-core-borgrs). Arm L: the same with borg_reborn_errand = ladder, the class ladders of borg-core/ladders.txt (profile reborn-core-ladder). Built through docs/ZOO-INTERFACE.md (harness/build.sh, BORG_IMPL=rust), exact_turns and depth_stream on. No other control is run: the zoo's existing classes-1800 results are used for comparison. Run one arm per workflow run.
+prespecified: |-
+  Fixed 2026-11-14, before any result was read. Depth threshold D = 5; non-inferiority margin 5 percentage points (as for borg-reborn-rs #128). Primary endpoint, per class and overall: the share of cells that reach max depth D = 5 by T = 100,000 engine turns. L is compared with R: L is non-inferior when the lower bound of the 95% interval of L minus R is above -5 points. Descriptive, not endpoints: deaths (share and causes), max depth, max character level, first turn at each depth, outcome counts (a stalled outcome under L is an errand that stopped the Borg: each is reported), and L against R per class.
+owner_authorization: |-
+  2026-11-14: the owner asked for the full classes-1800 run of both pilot arms (borg-reborn-rs #207, #208; session request).
+specimens:
+- 4.2.6-reborn-core-pilot
+suites:
+- classes-1800
+profile_prefix: ''
+arms:
+  reborn-core-borgrs:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+  reborn-core-ladder:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: ladder
+control_specimen: 4.2.6-reborn-core-pilot
+control_profile: reborn-core-borgrs

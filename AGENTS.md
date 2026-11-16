@@ -28,7 +28,9 @@ Related repositories, read only:
   run the same suites.
 
 Adding a specimen, profile, suite or experiment is a catalogue change with a
-pull request. Starting a large experiment is the owner's call. It costs no
+pull request. Experiments are written as YAML in `definitions/` and generated
+with `python3 -m zoo define` (RULES 15, `docs/DEFINE.md`); what can be asked
+for is in `docs/PROFILES.md` (`/profiles`). Starting a large experiment is the owner's call. It costs no
 money (standard runners are free for this public repository), but it holds
 the account's 20 concurrent Actions jobs for hours, delays every other
 workflow of the owner's, and publishes its results.

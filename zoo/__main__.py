@@ -39,7 +39,7 @@ def cmd_plan(args):
             out.write(f"retain_evidence={str(bool(exp.get('retain_evidence'))).lower()}\n")
             out.write(f"max_parallel={exp.get('resource_budget', {}).get('max_parallel_jobs', 20)}\n")
             out.write(f"processes={exp.get('resource_budget', {}).get('processes_per_job', '')}\n")
-    print(json.dumps({'experiment': exp['name'], 'cells': plan['cells'],
+    print(json.dumps({'experiment': exp['name'], 'issue': cat_mod.issue_of(exp), 'cells': plan['cells'],
                       'builds': len(plan['specimens']), 'run_jobs': len(plan['runs'])}))
 
 
@@ -157,6 +157,11 @@ def cmd_site(args):
 
 
 def main(argv=None):
+    import sys
+    args_in = sys.argv[1:] if argv is None else list(argv)
+    if args_in[:1] == ['define']:
+        from . import define
+        return define.main(args_in[1:])
     p = argparse.ArgumentParser(prog='python -m zoo', description=__doc__)
     sub = p.add_subparsers(dest='cmd', required=True)
     s = sub.add_parser('arms', help='list the arms of an experiment, one SPECIMEN:PROFILE per line')

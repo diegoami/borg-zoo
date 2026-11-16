@@ -1,0 +1,15 @@
+# Exported from smoke/mandos-smoke.json; edit here, then run python3 -m zoo define.
+name: mandos-smoke
+folder: smoke
+description: 'Full Mandos builds and runs: the smoke suite (3 seeds, Human Warrior, 20,000 game ticks)'
+specimens:
+- neo-b3-mandos
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: neo-b3-mandos
+control_profile: default
+extra:
+  control_profile: null
