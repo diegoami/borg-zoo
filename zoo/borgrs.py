@@ -108,7 +108,8 @@ AMBIENT = ('BORG_RUN_DIR', 'BORG_CORE', 'BORG_ERRAND', 'BORG_ERRAND_BUDGET', 'BO
 
 def plan_name(name):
     """A borg_plan value the adapter can ship: a bare file name."""
-    if not isinstance(name, str) or not name or Path(name).name != name or name.startswith('.'):
+    if (not isinstance(name, str) or not name or Path(name).name != name or name.startswith('.')
+            or name == 'borg.txt'):
         raise ValueError(f'borg_plan must be a bare file name, not {name!r}')
     return name
 
@@ -249,10 +250,10 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     env = dict(os.environ, TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8')
     for name in [n for n in env if n in AMBIENT or n.startswith('BORG_PARAM_')]:
         del env[name]
+    # Never let parallel cells write to an inherited process-global path.
+    for name in ('BORG_TOWN_PLAN_RECORD', 'BORG_TRIP_RECORD'):
+        env.pop(name, None)
     if keep:
-        # Never let parallel cells write to an inherited process-global path.
-        for name in ('BORG_TOWN_PLAN_RECORD', 'BORG_TRIP_RECORD'):
-            env.pop(name, None)
         streams = {}
         for setting, name, filename in (
                 ('borg_town_plan', 'BORG_TOWN_PLAN_RECORD', 'town-plan.jsonl'),
@@ -312,7 +313,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         if shadow.get('error'):
             mismatch = (mismatch + '; ' if mismatch else '') + shadow['error']
     observed_outcome = outcome
-    if mismatch and (spec.get('town_shadow_records') or outcome in ('death', 'turn_cap', 'completion')):
+    if mismatch and (spec.get('town_shadow_records') or outcome in ('death', 'turn_cap', 'completion', 'borg_stopped')):
         outcome = 'config_error'
     keys = out / 'keys.log'
     keys_sha = sha256(keys) if keys.exists() else None

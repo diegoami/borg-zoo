@@ -36,9 +36,11 @@ class PlanArmsTest(unittest.TestCase):
             (root / 'plans').mkdir()
             (root / 'plans/errands_plan.txt').write_bytes(PLAN)
 
-    def run_with(self, cat, profile, rc=0, summary=None, env=None):
+    def run_with(self, cat, profile, rc=0, summary=None, env=None, strip_plans=False):
         cell = cell_for(cat, profile)
         spec = cat['specimens']['specimens'][cell['specimen']]
+        if strip_plans:  # the same cell on a specimen that ships no plans
+            del spec['plans']
         seen = {}
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -62,13 +64,14 @@ class PlanArmsTest(unittest.TestCase):
     def test_plan_cell_ships_the_plan_and_records_its_hash(self):
         record, seen = self.run_with(fixture_catalogue(), 'reborn-m13-plan-shop',
                                      summary={'stop_reason': 'turns', 'dead': False},
-                                     env={'BORG_RUN_DIR': '/x', 'BORG_PARAM_foo': '3', 'BORG_ERRAND': '/ladder'})
+                                     env={'BORG_RUN_DIR': '/x', 'BORG_PARAM_foo': '3', 'BORG_ERRAND': '/ladder',
+                                          'BORG_TOWN_PLAN_RECORD': '/global/bad', 'BORG_TRIP_RECORD': '/global/bad'})
         self.assertEqual(seen['plan'], PLAN)
         self.assertIn('\nborg_plan = errands_plan.txt\n', '\n' + seen['borg.txt'])
         self.assertEqual(record['plan'], {'name': 'errands_plan.txt', 'sha256': PLAN_SHA})
         self.assertEqual(record['outcome'], 'turn_cap')
         self.assertIsNone(record['config_error'])
-        for name in ('BORG_RUN_DIR', 'BORG_PARAM_foo', 'BORG_ERRAND'):
+        for name in ('BORG_RUN_DIR', 'BORG_PARAM_foo', 'BORG_ERRAND', 'BORG_TOWN_PLAN_RECORD', 'BORG_TRIP_RECORD'):
             self.assertNotIn(name, seen['env'])
 
     def test_no_plan_cell_gets_no_plan_file(self):
@@ -79,9 +82,21 @@ class PlanArmsTest(unittest.TestCase):
         self.assertNotIn('borg_plan', seen['borg.txt'])
 
     def test_exit_2_is_a_config_error(self):
-        record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-plan', rc=2)
+        for profile in ('reborn-m13-plan', 'reborn-m13-control'):
+            with self.subTest(profile=profile):
+                record, _ = self.run_with(fixture_catalogue(), profile, rc=2)
+                self.assertEqual(record['outcome'], 'config_error')
+                self.assertIn('exit code 2', record['config_error'])
+
+    def test_exit_2_stays_a_harness_failure_without_plans(self):
+        record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-control', rc=2, strip_plans=True)
+        self.assertEqual(record['outcome'], 'harness_failure')
+
+    def test_borg_stopped_with_a_mismatch_is_a_config_error(self):
+        record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-plan',
+                                  summary={'stop_reason': 'borg_stopped', 'dead': False, 'race': 'Gnome'})
         self.assertEqual(record['outcome'], 'config_error')
-        self.assertIn('exit code 2', record['config_error'])
+        self.assertIn('expected', record['config_error'])
 
     def test_borg_stopped_is_its_own_outcome_for_plan_specimens(self):
         record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-plan',
@@ -90,7 +105,9 @@ class PlanArmsTest(unittest.TestCase):
         self.assertIsNone(record['error'])
 
     def test_older_specimens_keep_their_classification(self):
-        self.assertEqual(borgrs.STOP['borg_stopped'], 'stalled')
+        record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-control', strip_plans=True,
+                                  summary={'stop_reason': 'borg_stopped', 'dead': False})
+        self.assertEqual(record['outcome'], 'stalled')
 
     def test_build_carrying_other_plan_bytes_is_refused(self):
         cat = fixture_catalogue()
@@ -119,7 +136,7 @@ class PlanArmsTest(unittest.TestCase):
                 borgrs.copy_plans(spec, source, out)
 
     def test_plan_names_are_bare_file_names(self):
-        for bad in ('../borg.txt', 'plans/x.txt', '.hidden', ''):
+        for bad in ('../borg.txt', 'plans/x.txt', '.hidden', '', 'borg.txt'):
             with self.subTest(bad=bad), self.assertRaises(ValueError):
                 borgrs.plan_name(bad)
 
