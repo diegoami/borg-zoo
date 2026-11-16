@@ -36,7 +36,10 @@ class PlanArmsTest(unittest.TestCase):
             (root / 'plans').mkdir()
             (root / 'plans/errands_plan.txt').write_bytes(PLAN)
 
-    def run_with(self, cat, profile, rc=0, summary=None, env=None, strip_plans=False):
+    def run_with(self, cat, profile, rc=0, summary=None, env=None, strip_plans=False,
+                 loaded='core', keys_text='1 k 0 0\n'):
+        """loaded: 'core' copies the plan as the core does, else the bytes to
+        write as the output directory's loaded-plan copy (None: no copy)."""
         cell = cell_for(cat, profile)
         spec = cat['specimens']['specimens'][cell['specimen']]
         if strip_plans:  # the same cell on a specimen that ships no plans
@@ -52,7 +55,10 @@ class PlanArmsTest(unittest.TestCase):
                 seen['borg.txt'] = (out / 'user/borg.txt').read_text()
                 plan = out / 'user/errands_plan.txt'
                 seen['plan'] = plan.read_bytes() if plan.exists() else None
-                (out / 'keys.log').write_text('1 k 0 0\n')
+                (out / 'keys.log').write_text(keys_text)
+                copy = (seen['plan'] if loaded == 'core' else loaded) if summary is not None else None
+                if copy is not None:
+                    (out / borgrs.LOADED_PLAN).write_bytes(copy)
                 if summary is not None:
                     race, cls = catalogue.character(cat['suites'][cell['suite']], cell['seed'])
                     (out / 'summary.json').write_text(json.dumps({'race': race, 'class': cls, **summary}))
@@ -65,14 +71,16 @@ class PlanArmsTest(unittest.TestCase):
         record, seen = self.run_with(fixture_catalogue(), 'reborn-m13-plan-shop',
                                      summary={'stop_reason': 'turns', 'dead': False},
                                      env={'BORG_RUN_DIR': '/x', 'BORG_PARAM_foo': '3', 'BORG_ERRAND': '/ladder',
+                                          'BORG_ERRANDS_PLAN': '/x/plan.txt', 'BORG_STOPSCARED': 'flee',
                                           'BORG_TOWN_PLAN_RECORD': '/global/bad', 'BORG_TRIP_RECORD': '/global/bad'})
         self.assertEqual(seen['plan'], PLAN)
         self.assertIn('\nborg_plan = errands_plan.txt\n', '\n' + seen['borg.txt'])
-        self.assertEqual(record['plan'], {'name': 'errands_plan.txt', 'sha256': PLAN_SHA})
+        self.assertEqual(record['plan'], {'name': 'errands_plan.txt', 'sha256': PLAN_SHA, 'loaded_sha256': PLAN_SHA})
+        self.assertIsNone(record['observed_outcome'])
+        self.assertEqual(record['frozen_turn_loop']['bursts'], 0)
         self.assertEqual(record['outcome'], 'turn_cap')
         self.assertIsNone(record['config_error'])
-        for name in ('BORG_RUN_DIR', 'BORG_PARAM_foo', 'BORG_ERRAND', 'BORG_TOWN_PLAN_RECORD', 'BORG_TRIP_RECORD'):
-            self.assertNotIn(name, seen['env'])
+        self.assertEqual([n for n in seen['env'] if n.startswith('BORG_')], [])
 
     def test_no_plan_cell_gets_no_plan_file(self):
         record, seen = self.run_with(fixture_catalogue(), 'reborn-m13-shop',
@@ -108,6 +116,43 @@ class PlanArmsTest(unittest.TestCase):
         record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-control', strip_plans=True,
                                   summary={'stop_reason': 'borg_stopped', 'dead': False})
         self.assertEqual(record['outcome'], 'stalled')
+
+    def test_plan_not_loaded_is_a_config_error(self):
+        for loaded in (None, b'other plan'):
+            with self.subTest(loaded=loaded):
+                record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-plan', loaded=loaded,
+                                          summary={'stop_reason': 'turns', 'dead': False})
+                self.assertEqual(record['outcome'], 'config_error')
+                self.assertIn('not loaded', record['config_error'])
+
+    def test_a_plan_loaded_without_being_asked_for_is_a_config_error(self):
+        record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-shop', loaded=PLAN,
+                                  summary={'stop_reason': 'turns', 'dead': False})
+        self.assertEqual(record['outcome'], 'config_error')
+        self.assertIn('no plan requested', record['config_error'])
+
+    def test_frozen_turn_loop_is_a_stall(self):
+        burst = ''.join(f'52639 k {i:x} 0\n' for i in range(borgrs.LOOP_KEYS))
+        normal = ''.join(f'{t} k 0 0\n' for t in range(1, 400))
+        record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-plan-shop', keys_text=normal + burst + normal,
+                                  summary={'stop_reason': 'turns', 'dead': False})
+        self.assertEqual(record['outcome'], 'stalled')
+        self.assertEqual(record['observed_outcome'], 'turn_cap')
+        self.assertIn('borg-rs#90', record['error'])
+        self.assertEqual(record['stall']['kind'], 'frozen_turn_loop')
+        self.assertEqual(record['frozen_turn_loop'], {'turn': 52639, 'max_keys': borgrs.LOOP_KEYS,
+                                                      'bursts': 1, 'burst_keys': borgrs.LOOP_KEYS})
+
+    def test_busy_shopping_turns_are_not_a_loop(self):
+        text = ''.join(f'7 k {i:x} 0\n' for i in range(383)) + '8 k 0 0\n'
+        self.assertEqual(borgrs.frozen_turn_loop(text), {'turn': 7, 'max_keys': 383, 'bursts': 0, 'burst_keys': 0})
+        self.assertEqual(borgrs.frozen_turn_loop('')['bursts'], 0)
+
+    def test_older_specimen_records_are_unchanged(self):
+        record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-control', strip_plans=True,
+                                  summary={'stop_reason': 'turns', 'dead': False})
+        self.assertNotIn('frozen_turn_loop', record)
+        self.assertNotIn('observed_outcome', record)
 
     def test_build_carrying_other_plan_bytes_is_refused(self):
         cat = fixture_catalogue()
