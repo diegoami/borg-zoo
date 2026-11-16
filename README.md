@@ -71,5 +71,9 @@ deaths. Compare arms only within one workflow run: every arm then shares the
 compiler, the machine type and the calendar date (the game's seasonal monster
 selection depends on the date).
 
+A proposed redesign of storage, long-run resume and the cemetery, shared
+with borg-cemetery, is in [docs/data-foundation/](docs/data-foundation/README.md)
+(borg-zoo#114; for owner review, not yet adopted).
+
 See [docs/DESIGN.md](docs/DESIGN.md) for the design and its open questions,
 and [AGENTS.md](AGENTS.md) and [RULES.md](RULES.md) for working rules.
