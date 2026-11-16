@@ -406,7 +406,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         if loop['bursts'] and outcome in ('death', 'turn_cap', 'borg_stopped'):
             observed_outcome, outcome = outcome, 'stalled'
             error = (f"frozen-turn loop: {loop['bursts']} game turns with {LOOP_KEYS}+ keys, "
-                     f"{loop['max_keys']} at turn {loop['turn']} (borg-rs#90)")
+                     f"{loop['max_keys']} at turn {loop['turn']} (as in borg-rs#90 and borg-reborn-rs#421)")
     if outcome not in ('death', 'turn_cap', 'completion'):
         stall_info = stall.borgh(keys.read_text(errors='replace') if keys.exists() else '', summary)
         if loop and loop['bursts']:

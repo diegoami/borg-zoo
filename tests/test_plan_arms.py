@@ -177,6 +177,20 @@ class PlanArmsTest(unittest.TestCase):
         self.assertEqual(loop['key_outlier'], {'keys': 69838, 'arm_median': 11000, 'ratio': 6.35})
         self.assertTrue(all('key_outlier' not in r for r in shop + [early_death] + small_arm))
 
+    def test_tier_suites_are_disjoint_slices_of_classes_1800(self):
+        suites = catalogue.catalogue()['suites']
+        full = suites['classes-1800']
+        union = [s for t in ('small', 'medium', 'big', 'full') for s in suites['classes-1800-' + t]['seeds']]
+        self.assertEqual(union, full['seeds'])
+        small = suites['classes-1800-small']
+        self.assertEqual(len(small['seeds']), 90)
+        for seed in small['seeds']:
+            self.assertEqual(catalogue.character(small, seed), catalogue.character(full, seed))
+        with self.assertRaisesRegex(ValueError, 'outside the parent'):
+            catalogue.expand_suites({'p': {'seed_rule': {'generator': 'sha256-v1', 'count': 9}, 'birth': 'assigned',
+                                           'characters': {'races': ['Human'], 'classes': ['Warrior']}},
+                                     't': {'subset': {'suite': 'p', 'range': [5, 10]}}})
+
     def test_build_carrying_other_plan_bytes_is_refused(self):
         cat = fixture_catalogue()
         cell = cell_for(cat, 'reborn-m13-plan')
