@@ -1,4 +1,6 @@
-# Response to the review of PR #119
+# Responses to the reviews of PR #119
+
+## First review
 
 The [independent review](https://github.com/diegoami/borg-zoo/pull/119)
 (2026-11-15) covered `00abdc9..6469853` and returned **accept with specified
@@ -8,7 +10,7 @@ decisions D1–D7 are unchanged.
 
 | Finding | Correction | Where |
 | --- | --- | --- |
-| **F1 High.** Token equality is not an atomic acceptance; no authorised actor for claims | Coordinator jobs (zoo code only) do all dispatch, takeover and acceptance; runner jobs hold no credentials. The commit point is one conditional replace of the lease from `active(g, e)` to `done(g, e, attempt, hash)`, then a write-once acceptance receipt. Expired-but-uncontested results are accepted; takeover needs a passed deadline and a finished holder job; `done` is terminal; a crash between lease and receipt is reconciled from the lease | [Leases and acceptance](ARCHITECTURE.md#leases-and-acceptance), [actors](ARCHITECTURE.md#actors-and-permissions), invariant 5 |
+| **F1 High.** Token equality is not an atomic acceptance; no authorised actor for claims | Coordinator jobs (zoo code only) do all dispatch, takeover and acceptance; runner jobs hold no credentials. The commit point is one conditional replace of the lease from `active(g, e)` to `done(g, e, attempt, hash)`, then a write-once acceptance receipt. Expired-but-uncontested results are accepted; takeover needs a passed deadline and a finished holder job; `done` is terminal; a crash between lease and receipt is reconciled from the lease | Superseded by N1/N2 below; now [segment claims and resolution](ARCHITECTURE.md#segment-claims-and-resolution) |
 | **F2 High.** Exports omit acceptance state | Statistics and resume read write-once receipts in the ledger, never leases. Exports list receipts before batches, which is coherent without pausing writers. Restore advances an epoch that every lease and attempt carries, so pre-restore workers cannot be accepted; the drill includes a paused old publisher | [Backup and restore](ARCHITECTURE.md#backup-and-restore), invariant 15 |
 | **F3 High.** Equal effective settings, different input bytes | Split **settings** (semantic, effective values) from **configuration** (every original input file's hash, including the plan file and its contract version, plus the settings ID). Profile name and settings check move to the attempt. Unknown configurations of legacy records are tied to their attempt, never merged | [Entities](ARCHITECTURE.md#entities-and-identities) |
 | **F4 High.** Two forks of one game share a life ID | New **work item** identity: execution, arm, start, origin (birth, checkpoint or scenario revision), continuation protocol, target horizon, repeat index. The expected manifest lists work items; a fork's life includes its parent checkpoint and protocol | Entities, invariant 3 |
@@ -39,3 +41,24 @@ Other points from the review's coverage table, also corrected:
   is no longer claimed.
 
 Estimates rose: M1 to 3–5 days and M2 to 3–4, about 18–30 days in all.
+
+## Re-review
+
+The [re-review](https://github.com/diegoami/borg-zoo/pull/119) (2026-11-15)
+covered `6469853..9410c15` and returned **accept with specified changes**.
+It closed F3–F9, found F1 and F2 partly closed, and raised N1–N5. All five
+were checked and hold. Corrected in the next revision:
+
+| Finding | Correction | Where |
+| --- | --- | --- |
+| **N1 High.** Claims were per work item but acceptance per segment, so two executions could both "accept" one segment | Claims and resolution live on **one control record per segment**. Work items are bookkeeping: a work item whose segment is already claimed or closed is `skipped`. The resolution record is write-once per segment and written only from that control record | [Segment claims and resolution](ARCHITECTURE.md#segment-claims-and-resolution), invariants 3 and 5 |
+| **N2 High.** Accepting a failed attempt made the segment unretryable | Outcomes either **close** a segment (death, completion, target reached with a sealed checkpoint, stall, configuration error…) or are **retryable** (harness failure, missing result, lost worker, wall timeout, crash, failed seal). A retryable failure returns the segment to `open` until the horizon plan's retry budget is used up, then it closes as `failed`. Default budget 0 keeps today's rule; long-run budgets are new owner decision D8. Every attempt stays counted | Same section, invariant 10, PLAN D8 |
+| **N3 High.** Advancing an epoch object did not fence a publisher paused before its conditional write | No in-place restore. A restore creates a **new deployment** (bucket and credentials); revoking the old write credentials, and confirming a write with them fails, is the linearization point. Old artifacts carry the old deployment ID and are refused as `stale` | [Backup and restore](ARCHITECTURE.md#backup-and-restore), invariant 15 |
+| **N4 High.** A paginated listing could export a child resolution without its parent | **Export roots** follow each resolution's lineage by direct key lookup back to birth, add batches, checkpoints and corrections with their targets, own their blobs, verify closure, and only then write the root manifest | Same section |
+| **N5 Medium.** A crash after reference promotion left a live blob with no owner | Blob references name a deterministic **owner** and are `pending` until the owner commits. Reconciliation commits or removes pending owners; a blob with no owners and no pins is an orphan and is swept. Forever-class blobs stop tracking owners after the first commit | [Retention, pins and deletion](ARCHITECTURE.md#retention-pins-and-deletion), invariant 14 |
+
+Also from the re-review: criterion 6 now uses typed predicates per state
+field (including valid `false`, zero and enum values, and transitions)
+instead of "non-empty". The re-review's failure sequences are added to the
+M1 and M2 acceptance tests. M1's estimate rose to 4–6 days, about 20–32 in
+all.

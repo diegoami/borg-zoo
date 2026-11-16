@@ -105,15 +105,15 @@ with a review pull request; the owner chooses and runs the reviewer.
 | Milestone | Delivers | Acceptance | Estimate |
 | --- | --- | --- | --- |
 | **M0 Decisions and urgent fix** | Owner decisions D1–D7 (done); T0 (Pages size, done in PR #120); T1 (vendor check) | Site under 1 GB (282 MB after T0); decisions recorded on #114; T1 worksheet | 0.5–1 |
-| **M1 Contracts** | Schemas `borg-data/*@1`; canonical JSON and identity functions; a local filesystem backend with create-if-absent and replace-if-unchanged; the lease, acceptance, blob-control and epoch protocols against it; the invariant test suite | Tests for every [invariant](ARCHITECTURE.md#invariants), including the review's failure sequences: expired-but-uncontested completion is accepted; takeover between read and commit supersedes; duplicate same-generation completion is a no-op or an alert; a `done` lease cannot be taken over; a crash between lease and receipt is reconciled; two profiles with equal settings and different bytes, and two plan files with equal flags, are different configurations; two forks of one life in one execution are different lives; a 100k arm extended later to 200k continues its lives; a pin racing a deletion either wins or fails visibly; an orphan sweep racing a commit; a result arriving after `not_received`; conflicting records in two batches | 3–5 |
-| **M2 Storage prototype and benchmark** | S3 backend tested against a local MinIO and one bounded bucket on the chosen vendor (owner approval); the M1 protocol tests rerun against both; ingest all existing cells ledger-only; index and site built from it | Conditional-write conformance on the real vendor; ingest, index and site-build times and sizes against the baseline; killed-publish and duplicate-publish fault injection; restore drill from an export into an empty bucket, including a paused pre-restore publisher whose result must be superseded; finalised decision page with measured numbers and operation costs | 3–4 |
+| **M1 Contracts** | Schemas `borg-data/*@1`; canonical JSON and identity functions; a local filesystem backend with create-if-absent and replace-if-unchanged; the segment claim/resolution, blob-owner and export-root protocols against it; the invariant test suite | Tests for every [invariant](ARCHITECTURE.md#invariants), including both reviews' failure sequences: expired-but-uncontested completion resolves; takeover between read and commit supersedes; duplicate same-generation completion is a no-op; a `closed` segment cannot be taken over; a crash before the resolution record is reconciled; two executions resuming the same checkpoint concurrently, including a crash before either writes a resolution; a wall timeout with a published artifact, a configuration error, finalisation of a missing worker, and a successful retry within budget, with no new life and no lost failure; a crash after blob upload, after owner registration and after owner commit, including shared blobs and pins; two profiles with equal settings and different bytes, and two plan files with equal flags, are different configurations; two forks of one life in one execution are different lives; a 100k arm extended later to 200k continues its lives; a pin racing a deletion either wins or fails visibly; an orphan sweep racing a commit; a result arriving after `not_received`; conflicting records in two batches | 4–6 |
+| **M2 Storage prototype and benchmark** | S3 backend tested against a local MinIO and one bounded bucket on the chosen vendor (owner approval); the M1 protocol tests rerun against both; ingest all existing cells ledger-only; index and site built from it | Conditional-write conformance on the real vendor; ingest, index and site-build times and sizes against the baseline; killed-publish and duplicate-publish fault injection; the [restore drill](ARCHITECTURE.md#backup-and-restore): restore into a new deployment, three paused pre-restore writers locked out, and an export root that stays dependency-closed while a parent and child resolution are written during the export; finalised decision page with measured numbers and operation costs | 3–4 |
 | **M3 Resume qualification** (mostly upstream) | Change requests C1, C2, R1, R2 routed by the owner; spike S1; the [qualification protocol](RESUME.md#qualifying-a-resume-as-faithful) on reborn, then on native C | A qualification report per adapter: exact continuation passes, or the missing state is listed and the adapter is fresh-Borg-only | 3–6 here, plus upstream work |
 | **M4 Zoo on the foundation** | `publish`/`finalize`/`index` jobs in `compare.yml` and `smoke.yml`; site from the index; life, build and configuration pages; horizon ladder; resume executions behind a flag. Exact resume stays disabled for an adapter until it passes M3; fresh-Borg forks (D4) can run before that | One smoke experiment produces the same statistics through the old and the new path; an interrupted shard is published and finalised correctly; two concurrent executions publish without conflict | 3–4 |
 | **M5 Cemetery on the foundation** | Case index, evidence column, pre-death checkpoint retention, case bundles; PR #2 rebased onto foundation IDs | A death from M4 appears as a case with its checkpoint and logs; its bundle downloads and verifies offline; a stall appears as a stall case, not a death | 3–5 |
 | **M6 Cutover** | Steps 1–6 above; salvage if chosen; runbook | Legacy site reachable as decided; new site live; backup and restore exercised on production data | 1–2 |
 | **M7 First long-run pilot** (owner-started only) | A small arm, for example 60 lives extended 100k → 200k → 300k by resume, on a qualified adapter | Ladder page correct; no life counted twice; every segment failure visible | Owner's call |
 
-Total: about 18–30 working days in this repository, plus the upstream
+Total: about 20–32 working days in this repository, plus the upstream
 resume work, which is the longest item and is not under the zoo's control.
 M1, M2 and the C1/C2 requests can start in parallel. M4 needs M2. M5 needs
 M4. M7 needs M3 and M4.
@@ -131,7 +131,7 @@ Each becomes an issue in the repository named, once the owner agrees.
 | T4 | borg-zoo | Ledger ingest of the existing `results` branch; index and site from it (M2) |
 | T5 | borg-zoo | `publish`, `finalize` and `index` jobs (M4) |
 | T6 | borg-zoo | Life, build, configuration and horizon-ladder pages (M4) |
-| T7 | borg-zoo | Resume executions: segment lists, leases, workers (M4, after M3) |
+| T7 | borg-zoo | Resume executions: segment lists, claims, workers (M4, after M3) |
 | T8 | borg-cemetery | Case index and evidence column over the foundation (M5) |
 | T9 | borg-cemetery | Case bundle format and offline verification (M5) |
 | T10 | borg-cemetery | Rebase PR #2's model on foundation IDs (M5) |
@@ -148,7 +148,7 @@ Each becomes an issue in the repository named, once the owner agrees.
 | Exact Borg-memory restore is large upstream work, especially for C | Long runs without replay from birth are delayed or limited to fresh-Borg forks | Reborn first; spike S1; fresh-Borg restart as a labelled protocol if the owner accepts it (D4) |
 | Pages exceeds 1 GB before T0 lands | Site deploy fails | Do T0 first, before the next large experiment |
 | Raw evidence expires (from 2027-02-06) | Saves and logs of existing deaths are lost | Decide D3 by January; run T11 early if salvage is chosen |
-| Conditional-write semantics differ between vendors | Lease or idempotency bugs | Conformance tests in T3 run against each backend, including the filesystem one |
+| Conditional-write semantics differ between vendors | Claim or idempotency bugs | Conformance tests in T3 run against each backend, including the filesystem one |
 | A coordination protocol has a race nobody tested | A life is double-counted, a result lost, or pinned evidence deleted | Every protocol has one conditional commit point; the review's failure sequences are M1 and M2 acceptance tests |
 | Calendar dependence (24–26 December) | Resumes or comparisons that straddle that window differ | Record the calendar per attempt now; frozen calendar (C4, D5) for long runs |
 | Two designs for the cemetery (this and PR #2) | Duplicate identity schemes | D1 decides; T10 rebases |
@@ -157,7 +157,7 @@ Each becomes an issue in the repository named, once the owner agrees.
 
 ## Owner decisions
 
-Decided by the owner on 2026-11-15. These settle direction only. Opening a
+D1–D7 and T0 were decided by the owner on 2026-11-15; D8 is open. These settle direction only. Opening a
 vendor account, provisioning, cutover and any long-run cohort still need
 the owner's go-ahead at their milestone.
 
@@ -171,3 +171,4 @@ the owner's go-ahead at their milestone.
 | D6 | Are saves and logs public? | **Public**; writes only from trusted jobs |
 | D7 | Legacy URLs | **Keep a legacy snapshot** of the current site, without the raw copies that exceed the Pages limit |
 | T0 | Fix the Pages size now? | **Yes**, as a separate pull request |
+| D8 | Retry budget for long-run arms: how many retryable failures (harness failure, missing result, lost worker, wall timeout, crash) a segment may have before it closes as failed | **Open.** Proposed: 0 for ordinary experiments (today's rule), 2 for long-run arms, declared in the horizon plan before the run. Play from a checkpoint is deterministic, so a retry cannot change a game's outcome, only finish it; every failed attempt stays counted and visible |

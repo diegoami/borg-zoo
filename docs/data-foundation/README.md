@@ -1,7 +1,8 @@
 # Shared data foundation for the zoo and the cemetery (borg-zoo#114)
 
-Status: **proposal for owner review, revised after its first independent
-review** ([response](REVIEW-RESPONSE.md)). Nothing in it provisions a service,
+Status: **proposal for owner review, revised after an independent review
+and a re-review** ([responses](REVIEW-RESPONSE.md)). One owner decision (D8,
+retry budgets) is open. Nothing in it provisions a service,
 opens a paid account, changes a running experiment, stops writing the
 `results` branch, or deletes any record. Every such step is an owner decision
 listed in the [plan](PLAN.md).
@@ -14,7 +15,7 @@ listed in the [plan](PLAN.md).
 | [PLAN.md](PLAN.md) | Zoo and cemetery redesign, cutover and salvage options, milestones, tasks, risks, owner decisions |
 | [baseline/](baseline/) | The script and numbers behind the baseline below |
 | [REVIEW-PROMPT.md](REVIEW-PROMPT.md) | A runnable prompt for an independent review of this proposal |
-| [REVIEW-RESPONSE.md](REVIEW-RESPONSE.md) | How the first review's nine findings were corrected |
+| [REVIEW-RESPONSE.md](REVIEW-RESPONSE.md) | How the findings of the review and the re-review were corrected |
 
 The cemetery's own architecture proposal
 ([borg-cemetery PR #2](https://github.com/diegoami/borg-cemetery/pull/2),
@@ -141,10 +142,11 @@ branch is frozen as read-only legacy at cutover.
 - It meets R1 to R3 with two primitives that Amazon S3, Google Cloud
   Storage and Cloudflare R2 document: write-once objects and conditional
   replace. Each protocol makes one conditional write its commit point:
-  accepting a segment's result, sealing a checkpoint, marking a blob for
-  deletion ([protocols](ARCHITECTURE.md#protocols)). Trusted coordinator
-  jobs make every claim and acceptance; jobs that run Borg code hold no
-  credentials.
+  resolving a segment on its single control record, sealing a checkpoint,
+  marking a blob for deletion ([protocols](ARCHITECTURE.md#protocols)).
+  Trusted coordinator jobs make every claim and resolution; jobs that run
+  Borg code hold no credentials. Restores create a new deployment with new
+  credentials, so stale writers are locked out.
 - The index is disposable. Losing it costs one rebuild, measured at seconds
   today.
 - Public read is a bucket or CDN path. Nobody needs an account to view a
@@ -155,7 +157,7 @@ branch is frozen as read-only legacy at cutover.
   depend on the backend.
 
 **When to add a database.** Add PostgreSQL (D), not Firestore, as a
-*derived* service store if any of these is measured: lease contention
+*derived* service store if any of these is measured: claim contention
 between resume workers that conditional writes cannot keep up with, a
 cemetery that must serve several users with private workspaces, or
 interactive queries the static index cannot answer. The ledger stays the

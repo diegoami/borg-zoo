@@ -175,21 +175,25 @@ and one with a single extra game-RNG draw must not.
    from A. The report records where it first differs. It is stored as a
    fork, never as A's life.
 5. **Storage round trip:** B's checkpoints go through the real publish,
-   seal, lease and acceptance protocols, including one injected worker loss
-   (kill the holder, let the lease expire, take it over, resume from the
-   same sealed checkpoint), and one checkpoint whose blob reference failed,
-   which must never become usable.
+   seal, claim and resolution protocols, including one injected worker loss
+   (kill the holder, let the claim expire, take it over, resume from the
+   same sealed checkpoint), and one checkpoint whose blob registration
+   failed, which must never become usable.
 
 6. **State coverage:** every field of the adapter's checkpoint state
-   schema that the plan or controller can hold must have been **non-empty
-   at some checkpoint** of a passing B run. For borg-reborn-rs with plans
+   schema that the plan or controller can hold must have been **exercised**
+   at some checkpoint of a passing B run. Each field has a typed predicate
+   for what exercising it means: each meaningful value, including valid
+   `false`, zero and enum values, and each transition the controller can be
+   in the middle of. Generic truthiness does not count. For borg-reborn-rs with plans
    that means at least: each selected class and phase, a phase boundary,
    cancellation and owner state, both loop directions, a pending Recall or
    town recovery, and a pending decision. Random seeds may never reach some
    of these, so the qualification adds bounded fixtures: checkpoints chosen
    or started from saves where each state is live. The report lists each
    field as exercised or not. A field never exercised is **unqualified**,
-   not passed, and resume refuses checkpoints taken while it is non-empty.
+   not passed, and resume refuses checkpoints taken while that field holds
+   a value or transition that was not exercised.
 
 Qualification applies to one adapter, one state-format version and one
 plan/controller state schema. A new version of any of them needs a new
