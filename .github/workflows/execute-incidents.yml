@@ -17,12 +17,17 @@ jobs:
       - uses: actions/checkout@v4
         with: {persist-credentials: false}
       - id: pins
+        env: {GITHUB_TOKEN: '${{ github.token }}'}
         run: |
           python3 -m zoo define --check definitions/balanced999-incidents-execution.yaml
           python3 - <<'PY'
-          import json,os,re
+          import json,os,re,urllib.request
           d=json.load(open('scenario-experiments/balanced999-incidents-execution.json'))
           assert d['expected_cells']==999 and d['per_class']==111
+          a=d['bank_artifact']
+          request=urllib.request.Request('https://api.github.com/repos/diegoami/borg-zoo/actions/artifacts/'+str(a['id']),headers={'Authorization':'Bearer '+os.environ['GITHUB_TOKEN']})
+          metadata=json.load(urllib.request.urlopen(request))
+          assert metadata['id']==a['id'] and metadata['name']=='balanced999-bank' and metadata['workflow_run']['id']==a['run_id'] and not metadata['expired']
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:
               for name in ['cemetery','source','native_tools']:
                   p=d[name]['commit'];assert re.fullmatch('[0-9a-f]{40}',p);f.write(('tools' if name=='native_tools' else name)+'='+p+'\n')
@@ -63,7 +68,7 @@ jobs:
         with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.source }}', path: source, persist-credentials: false}
       - uses: actions/download-artifact@v4
         with:
-          artifact-ids: ${{ needs.pins.outputs.artifact }}
+          name: balanced999-bank
           run-id: ${{ needs.pins.outputs.run }}
           github-token: ${{ github.token }}
           path: prepared
