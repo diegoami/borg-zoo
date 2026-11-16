@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-livelock-small",
+  "description": "borg-zoo#141: the #123 small tier on borg-reborn-rs d3ebe3c0 (#428, the borg-reborn-rs#421 stair-livelock fix on top of the #423 survival fixes), specimen 4.2.6-reborn-rust-plans-m13-livelock. Starts 1-90 of classes-1800 (classes-1800-small, 10 per class) x the five #123 arms (control, town, plan, plan-town, ambitious-town; trip policy off) = 450 games.",
+  "prespecified": "Fixed 2026-11-16, before any result was read (borg-zoo#141). Small tier only (RULES 14); medium waits for this gate and the owner. The fix counts as working when ambitious-town has no frozen-turn stall (1,000+ keys at one game turn) and no key outlier (more than 3x its arm's median) from a DL0/DL1 bounce; control and town play keys identical to reborn-survival-small (run 43874782892, 4ecb93d7). Gate: no config_error; one binary; every loaded-plan copy matches its pin and none appears in the no-plan arms; every stall and key outlier listed with its start. Report per arm: deaths / 90, stalled, mean final level, mean deepest level, DL5+; paired against control on this game and against reborn-survival-small on the same starts (before/after the #421 fix). Deaths and depths are descriptive only.",
+  "specimens": [
+    "4.2.6-reborn-rust-plans-m13-livelock"
+  ],
+  "profiles": [
+    "reborn-m13-control",
+    "reborn-m13-town",
+    "reborn-m13-plan",
+    "reborn-m13-plan-town",
+    "reborn-m13-ambitious-town"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-plans-m13-livelock",
+  "control_profile": "reborn-m13-control",
+  "owner_authorization": "2026-11-16: borg-reborn-rs asked for a small run of the #421 fix (borg-zoo#141), following the owner's zoo-side handover; small tier only."
+}
