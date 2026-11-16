@@ -442,6 +442,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'trace_sha256': keys_sha, 'play_sha256': keys_sha,
         'error': error,
         'stall': stall_info,
+        'source_sha256': (manifest.get('build_id') or {}).get('source_sha256'),
         'binary_sha256': manifest.get('binary_sha256'), 'compiler': manifest.get('compiler'),
         'rustc': manifest.get('rustc'), 'platform': manifest.get('platform'),
     }

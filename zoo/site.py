@@ -664,6 +664,37 @@ def provenance_line(exp):
     return line
 
 
+def build_used(meta, cells):
+    """What executed the games: per specimen, the exact source, binary and
+    toolchain the records report, and the zoo commit and Actions run."""
+    rows = []
+    for name in meta['experiment']['specimens']:
+        spec = meta['catalogue']['specimens'].get(name, {})
+        mine = [c for c in cells if c.get('specimen') == name]
+
+        def seen(key):
+            vals = sorted({c.get(key) for c in mine if c.get(key)})
+            if not vals:
+                return '–'
+            text = '<br>'.join(f'<code>{esc(v)}</code>' for v in vals)
+            return text + (f' <strong>({len(vals)} different)</strong>' if len(vals) > 1 else '')
+        repo, ref = spec.get('repository', ''), spec.get('ref', '')
+        commit = (f'<a href="https://github.com/{esc(repo)}/commit/{esc(ref)}"><code>{esc(ref)}</code></a>'
+                  if repo and ref else f'<code>{esc(ref or "–")}</code>')
+        rows.append([esc(name), esc(repo or '–'), commit, seen('source_sha256'), seen('binary_sha256'),
+                     seen('compiler'), seen('rustc'), seen('platform')])
+    zoo = meta.get('zoo_commit')
+    zoo_link = (f'<a href="https://github.com/diegoami/borg-zoo/commit/{esc(zoo)}"><code>{esc(zoo[:12])}</code></a>'
+                if zoo else '–')
+    run = (f'<a href="{esc(meta["run_url"])}">Actions run {esc(meta.get("run_id", ""))}</a>'
+           if meta.get('run_url') else esc(meta.get('run_id', '–')))
+    return ('<details class="build-used" open><summary>Build used to run it</summary>'
+            + table(['Specimen', 'Repository', 'Commit', 'Source hash', 'Binary SHA-256', 'Compiler', 'rustc', 'Platform'],
+                    rows)
+            + f'<p class="muted">Zoo {zoo_link} · {run}. The values are what the game records report; a source '
+              'hash is recorded for borg-rs builds from 2026-11-16 on.</p></details>')
+
+
 def run_page(meta, cells):
     exp = meta['experiment']
     specimens = meta['catalogue']['specimens']
@@ -675,6 +706,7 @@ def run_page(meta, cells):
     parts = [f'<p><a href="../../index.html">All experiments</a></p>',
              f'<h1>{esc(page_title)}</h1>',
              provenance_line(exp),
+             build_used(meta, cells),
              f'<p class="lead">{esc(intro)}</p>',
              configuration.summary(meta),
              experiment_brief(meta),
