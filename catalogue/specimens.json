@@ -856,7 +856,7 @@
       "kind": "borg-rs",
       "impl": "rust",
       "repository": "diegoami/borg-reborn-rs",
-      "ref": "8eb0be69d84f0b31fa8a7c6c34c73ed549343af0",
+      "ref": "1c4b351b38f79052f27198d0aef0dbe1e9a2a0ee",
       "exact_turns": true,
       "depth_stream": true,
       "role": "candidate",
@@ -864,8 +864,8 @@
         "errands_plan.txt": "922372ba849489c579449f8cd6f827b29ed65b6e8e0f67bd0fe8be2f3cb160cd",
         "errands_plan_ambitious.txt": "9d7d8a3984e278f2bb7bf61be7cdacdb16b9b513b364735fed7e7fa947d59dd2"
       },
-      "source": "https://github.com/diegoami/borg-reborn-rs/blob/8eb0be69d84f0b31fa8a7c6c34c73ed549343af0/docs/ZOO-INTERFACE.md",
-      "label": "borg-reborn-rs 8eb0be69, the synced head of #354 (main 72a21620 merged in), borg-zoo#123's five-arm specimen. The same game as 4.2.6-reborn-rust-plan-m13 (2f74e1c5): source-hash rust 87717140... and harness/borg.txt e5b29126...1961a88 are equal. It does not contain the #355 survival fix, which #379 reverted on main (owner decision). It also ships harness/plans/errands_plan_ambitious.txt (#354). The borg-rs#90 M13 town-planner oil store/take loop is still present."
+      "source": "https://github.com/diegoami/borg-reborn-rs/blob/1c4b351b38f79052f27198d0aef0dbe1e9a2a0ee/docs/ZOO-INTERFACE.md",
+      "label": "borg-reborn-rs 1c4b351b, the main merge commit of #354 (tree identical to its synced head 8eb0be69), borg-zoo#123's five-arm specimen. The same game as 4.2.6-reborn-rust-plan-m13 (2f74e1c5), not a different one: source-hash rust 87717140... and harness/borg.txt e5b29126...1961a88 are equal, and its control and plan-shop arms play identical keys on both. It differs only in the plans it ships, adding harness/plans/errands_plan_ambitious.txt. No #355 survival fix: main reverted it (#373, PR #379) at the owner's request. Sits beside 4.2.6-reborn-rust-plan-m13, which keeps its four-arm pilot (run 43845673921); the five-arm pilot and the development study use this one. borg-rs#90 (the M13 oil store/take loop) is still present; the adapter flags it as a frozen-turn stall."
     },
     "4.2.6-reborn-rust-plan-m13": {
       "kind": "borg-rs",

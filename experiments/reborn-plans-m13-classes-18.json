@@ -1,8 +1,8 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "reborn-plans-m13-classes-18",
-  "description": "borg-zoo#123 five-arm pilot on the five-arm specimen (4.2.6-reborn-rust-plans-m13, borg-reborn-rs 8eb0be69): control, shop, plan, plan-shop and ambitious-shop on classes-18 (9 classes x 2 seeds, assigned birth, 100,000-turn cap). 90 games. Checks the new build and the ambitious plan's plumbing before the development run.",
-  "prespecified": "Fixed 2026-11-16, before any result was read. Pilot, not a measurement: it passes when every cell has a valid outcome (death, turn_cap or borg_stopped), no cell is config_error, plan cells record 922372ba...cb160cd and ambitious cells 9d7d8a39...d59dd2, and no cell needs a rerun. Final key counts are reported per arm (borg-rs#90). Nothing is compared for an effect.",
+  "description": "borg-zoo#123 five-arm pilot on the five-arm specimen (4.2.6-reborn-rust-plans-m13, borg-reborn-rs 1c4b351b, the same game as 2f74e1c5 plus the ambitious plan): control, shop, plan, plan-shop and ambitious-shop on classes-18 (9 classes x 2 seeds, assigned birth, 100,000-turn cap). 90 games. Checks the new build and the ambitious plan's plumbing before the development run.",
+  "prespecified": "Fixed 2026-11-16, before any result was read. Pilot, not a measurement: it passes when every cell has a valid outcome (death, turn_cap or borg_stopped), no cell is config_error, plan cells record 922372ba...cb160cd and ambitious cells 9d7d8a39...d59dd2, and no cell needs a rerun. The plan in force is evidenced by the core's copy of the loaded plan in the cell's output directory (errands_plan.txt), whose sha256 must equal the requested plan's, and which must be absent in no-plan arms; otherwise the cell is config_error. A cell with 1,000 or more keys at a single game turn (borg-rs#90's oil store/take loop at the Home: 4,315-5,141 keys per burst against at most 383 in normal play) is recorded as stalled, with its observed outcome kept, and is reported separately like the other incomplete outcomes; final key counts are also reported per arm. Nothing is compared for an effect.",
   "specimens": [
     "4.2.6-reborn-rust-plans-m13"
   ],

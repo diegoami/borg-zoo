@@ -31,7 +31,9 @@ Limits compared with the better-borg-c observer, recorded per cell:
   binary exits with status 2 instead of ignoring a missing or invalid plan,
   so exit 2 without a summary is a config_error, and its borg_stopped (the
   level-50 handover or a plan's handback) is the borg_stopped outcome, not
-  a stall.
+  a stall. The cell also checks the core's copy of the loaded plan in the
+  output directory, and records a frozen-turn loop (borg-rs#90) as a stall.
+- every inherited BORG_* environment variable is cleared before a cell.
 """
 import hashlib
 import json
@@ -100,10 +102,41 @@ def sha256(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-# Environment overrides the native core prefers to the run's borg.txt
-# (borg-reborn-rs docs/ZOO-INTERFACE.md); a cell measures its file only.
-# BORG_RUN_DIR also turns on core traces.
-AMBIENT = ('BORG_RUN_DIR', 'BORG_CORE', 'BORG_ERRAND', 'BORG_ERRAND_BUDGET', 'BORG_PROFILE', 'BORG_PLAN')
+# The native core reads dozens of BORG_* environment variables and prefers
+# them to the run's borg.txt (BORG_CORE, BORG_ERRAND, BORG_ERRANDS_PLAN,
+# BORG_STOPSCARED, BORG_PARAM_*, ...; borg-reborn-rs docs/ZOO-INTERFACE.md);
+# BORG_RUN_DIR also turns on core traces. A cell measures its files only, so
+# every inherited BORG_* variable is cleared; the adapter sets its own record
+# paths afterwards.
+AMBIENT_PREFIX = 'BORG_'
+
+
+# The core's copy of the plan it loaded, in the output directory (the parent
+# of -summary when BORG_RUN_DIR is unset): the evidence a plan was in force,
+# since its "# Plan:" notes are only written with -msglog.
+LOADED_PLAN = 'errands_plan.txt'
+
+# Keys at one game turn that mark a frozen-turn loop: borg-rs#90's oil
+# store/take cycle at the Home spends 4,315-5,141 keys at single turns, while
+# normal play, shops included, peaked at 383 in 54 shopping cells
+# (borg-zoo#123). The loop ends and play resumes, so the cell reaches its
+# cap; it is a stall all the same.
+LOOP_KEYS = 1000
+
+
+def frozen_turn_loop(keys_text):
+    """Keys per game turn in a borgh keys.log: the busiest turn, and how
+    many turns reach LOOP_KEYS and with how many keys in all."""
+    counts = {}
+    for line in keys_text.splitlines():
+        turn = line.split(' ', 1)[0]
+        counts[turn] = counts.get(turn, 0) + 1
+    if not counts:
+        return {'turn': None, 'max_keys': 0, 'bursts': 0, 'burst_keys': 0}
+    turn = max(counts, key=counts.get)
+    bursts = [n for n in counts.values() if n >= LOOP_KEYS]
+    return {'turn': int(turn) if turn.isdigit() else turn, 'max_keys': counts[turn],
+            'bursts': len(bursts), 'burst_keys': sum(bursts)}
 
 
 def plan_name(name):
@@ -248,11 +281,10 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     game = build_dir / 'game'
     argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=keep)
     env = dict(os.environ, TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8')
-    for name in [n for n in env if n in AMBIENT or n.startswith('BORG_PARAM_')]:
+    # This also keeps parallel cells from writing to an inherited
+    # process-global record path (BORG_TOWN_PLAN_RECORD, BORG_TRIP_RECORD).
+    for name in [n for n in env if n.startswith(AMBIENT_PREFIX)]:
         del env[name]
-    # Never let parallel cells write to an inherited process-global path.
-    for name in ('BORG_TOWN_PLAN_RECORD', 'BORG_TRIP_RECORD'):
-        env.pop(name, None)
     if keep:
         streams = {}
         for setting, name, filename in (
@@ -306,6 +338,13 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         effective_error = check_effective(summary, profile)
         if effective_error:
             mismatch = (mismatch + '; ' if mismatch else '') + effective_error
+    loaded_plan = out / LOADED_PLAN
+    loaded_sha = sha256(loaded_plan) if loaded_plan.is_file() else None
+    if summary and spec.get('plans') and loaded_sha != plan_sha:
+        # The core copies the plan it loaded into the output directory.
+        mismatch = (mismatch + '; ' if mismatch else '') + (
+            f'plan {plan} not loaded: output copy sha256 {loaded_sha}' if plan is not None
+            else f'no plan requested, but the core loaded one (sha256 {loaded_sha})')
     shadow = None
     if spec.get('town_shadow_records'):
         from . import town_shadow
@@ -318,8 +357,17 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     keys = out / 'keys.log'
     keys_sha = sha256(keys) if keys.exists() else None
     stall_info = None
+    loop = None
+    if spec.get('plans') and keys.exists():
+        loop = frozen_turn_loop(keys.read_text(errors='replace'))
+        if loop['bursts'] and outcome in ('death', 'turn_cap', 'borg_stopped'):
+            observed_outcome, outcome = outcome, 'stalled'
+            error = (f"frozen-turn loop: {loop['bursts']} game turns with {LOOP_KEYS}+ keys, "
+                     f"{loop['max_keys']} at turn {loop['turn']} (borg-rs#90)")
     if outcome not in ('death', 'turn_cap', 'completion'):
         stall_info = stall.borgh(keys.read_text(errors='replace') if keys.exists() else '', summary)
+        if loop and loop['bursts']:
+            stall_info = {**stall_info, 'kind': 'frozen_turn_loop', 'frozen_turn_loop': loop}
     state_log = out / 'state.log'
     states = parse_state_log(state_log.read_text(errors='replace')) if state_log.exists() else []
     native_settings = summary.get('effective_settings')
@@ -329,7 +377,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'specimen_ref': spec['ref'], 'impl': spec['impl'],
         'profile_sha256': cat_mod.profile_sha256(profile),
         'config_sha256': hashlib.sha256(text.encode()).hexdigest(),
-        'plan': {'name': plan, 'sha256': plan_sha} if plan is not None else None,
+        'plan': {'name': plan, 'sha256': plan_sha, 'loaded_sha256': loaded_sha} if plan is not None else None,
         'cap': suite['cap'], 'birth': suite['birth'],
         'boundary': 'exact' if spec.get('exact_turns') else 'after-key',
         'outcome': outcome, 'runner_outcome': summary.get('stop_reason'),
@@ -354,6 +402,9 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'binary_sha256': manifest.get('binary_sha256'), 'compiler': manifest.get('compiler'),
         'rustc': manifest.get('rustc'), 'platform': manifest.get('platform'),
     }
+    if spec.get('plans'):
+        record['frozen_turn_loop'] = loop
+        record['observed_outcome'] = observed_outcome if observed_outcome != outcome else None
     if shadow is not None:
         record['town_shadow'] = shadow
         record['observed_outcome'] = observed_outcome
