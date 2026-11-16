@@ -402,3 +402,46 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
     deepest level 2.3.
   - A plumbing check, not a measurement. Its shop arms predate the
     borg-rs#90 fix and are not comparable with the development study's.
+
+- **The 3×3 trip-policy pilot found a new frozen-turn livelock (borg-zoo#123).**
+  `reborn-trip-3x3-classes-18`, run 43863985583, 162 games on
+  `4.2.6-reborn-rust-plans-m13-fix90` (borg-reborn-rs `8a0b57c8`: borg-rs#92's
+  Home guard and #88's additive trip policy). Plan (none, errand, ambitious)
+  × (default, town planner, town planner + trip (2,4)).
+  - Plumbing was clean: no `config_error`, and the loaded plans matched their pins.
+  - The trip policy barely changed play. Planner-only and planner + trip
+    played identical keys in 42 of 54 paired games. Deaths per 18 were 5 v 5
+    (no plan), 3 v 3 (errand) and 3 v 4 (ambitious). Too small to say whether
+    the trip policy helps; the development study keeps it off.
+  - Half-Elf Warrior seed 1019921749 stalls with the ambitious plan and the
+    town planner, with the trip policy on or off: 79,397 keys and 22
+    frozen-turn bursts. At the frozen turns the Borg crosses the DL0/DL1
+    stairs with no game time passing. The plan's town override ("loop town
+    overrides the loop, target DL0") alternates with the core's "Fleeing
+    level … Leaving via up stairs". Reported as borg-reborn-rs#421.
+
+- **Small tier of the #123 development study: gate passed.**
+  `reborn-plan-m13-small`, run 43868362767, 450 games: starts 1–90 of
+  `classes-1800` (10 per class) × five arms on `8a0b57c8`, with the trip
+  policy off everywhere.
+
+  | Arm | Deaths / 90 | Stalled | Mean final level | Mean deepest level | DL5+ |
+  | --- | ---: | ---: | ---: | ---: | ---: |
+  | control | 22 | 0 | 4.4 | 2.5 | 9 |
+  | town | 15 | 0 | 5.0 | 2.5 | 7 |
+  | plan | 24 | 0 | 3.8 | 2.0 | 3 |
+  | plan-town | 23 | 0 | 4.2 | 2.1 | 5 |
+  | ambitious-town | 29 | 2 | 4.2 | 2.2 | 3 |
+
+  - Gate: no `config_error`; one binary; every loaded-plan copy matched its
+    pin, and none appeared in the no-plan arms.
+  - The two stalls are both ambitious-town and both the borg-reborn-rs#421
+    stair livelock, reproduced locally. Half-Troll Rogue 926210318 had 2
+    bursts, the largest 1,098 keys. Half-Orc Rogue 1269315224 had 9 bursts,
+    the largest 8,992, and 51,937 keys (5 times its arm's median).
+  - Paired against control: town rescued 17, newly killed 10; plan 14 / 16;
+    plan-town 16 / 17; ambitious-town 15 / 22. Ambitious-town against
+    plan-town: 5 / 11.
+  - Timing: about 14 s of wall time per game. The shards took 6–9 minutes
+    for about 112 games each.
+  - Descriptive only, at 10 starts per class.
