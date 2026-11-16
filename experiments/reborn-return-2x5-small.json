@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-return-2x5-small",
+  "description": "borg-zoo#147 small tier: the two max-depth plans (errands_plan.txt, errands_plan_ambitious.txt) x five returns (off; trip policy 1 with borg_trip_unknown_stacks, borg_trip_pack_slack = (4,2) default, (4,1), (3,2), (3,1)), all with the M13 live town planner, on borg-reborn-rs 6d1bca10, classes-1800-small (starts 1-90 of classes-1800, 10 per class). 900 games.",
+  "prespecified": "Fixed 2026-11-16, before any result was read (borg-zoo#147). Small tier only (RULES 14), after the pilot reborn-return-2x5-classes-18 passes its gate; medium waits for this gate and the owner. Gate: no config_error; one binary; every loaded-plan copy matches its pin; every cell ends in death, turn_cap or borg_stopped; no frozen-turn stall (1,000+ keys at one game turn) and no restock-food loop; every key outlier (more than 3x its arm's median) listed with its start; no cell dies or ends below its plan's max-depth cap for its level. Report per arm: deaths / 90, mean final level, mean deepest level, DL5+, town visits, keys; within each plan, each return arm paired against return off on the same starts. Question: does a tighter return than the default (4,2) lower deaths, and at what cost in progress? Deaths and depths are descriptive only.",
+  "specimens": [
+    "4.2.6-reborn-rust-plans-m13-maxdepth"
+  ],
+  "profiles": [
+    "reborn-m13-plan-town",
+    "reborn-m13-plan-shop",
+    "reborn-m13-plan-return-u4s1",
+    "reborn-m13-plan-return-u3s2",
+    "reborn-m13-plan-return-u3s1",
+    "reborn-m13-ambitious-town",
+    "reborn-m13-ambitious-shop",
+    "reborn-m13-ambitious-return-u4s1",
+    "reborn-m13-ambitious-return-u3s2",
+    "reborn-m13-ambitious-return-u3s1"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-plans-m13-maxdepth",
+  "control_profile": "reborn-m13-plan-town",
+  "owner_authorization": "2026-11-16: the owner asked for this 2x5 (borg-zoo#147) and for it to be dispatched pilot first, then small; nothing bigger."
+}

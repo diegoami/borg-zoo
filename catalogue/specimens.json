@@ -852,6 +852,21 @@
       "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/101",
       "label": "Neo fork including merged danger/HP/retreat repairs and durable monster-truth host correction #100. Explicit C point-buy/no-selling/startup profile; engine b4af703. Clock640 unresolved. New descriptive run; old truth-denied cohort is not a repaired-Borg baseline."
     },
+    "4.2.6-reborn-rust-plans-m13-maxdepth": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "6d1bca10bc67d02150a1a717f111891976e98069",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "source": "https://github.com/diegoami/borg-reborn-rs/pull/444",
+      "label": "borg-reborn-rs 6d1bca10, the main merge of #444 (borg-zoo#147): plans are max-depth caps (#440: the level-loop errand is removed; a phase 'max-depth N' only sets the core's borg_no_deeper to N+1), and the town planner's item values (#444: real food only and a 5-ration floor, 45 never-used kinds worthless, buy-to-identify off under borg_trip_policy = 1, no infinite-mana spell supply). source-hash rust 8646eb97...; harness/borg.txt 88296dd1... unchanged; both plans rewritten (084bc3e8..., c3018585...)."
+    },
     "4.2.6-reborn-rust-plans-m13-livelock": {
       "kind": "borg-rs",
       "impl": "rust",

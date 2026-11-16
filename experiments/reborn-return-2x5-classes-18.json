@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-return-2x5-classes-18",
+  "description": "borg-zoo#147 pilot: the two max-depth plans (errands_plan.txt, errands_plan_ambitious.txt) x five returns (off; trip policy 1 with borg_trip_unknown_stacks, borg_trip_pack_slack = (4,2) default, (4,1), (3,2), (3,1)), all with the M13 live town planner, on borg-reborn-rs 6d1bca10 (#444 merged on #440), classes-18 (9 classes x 2 seeds, assigned birth, 100,000-turn cap). 180 games.",
+  "prespecified": "Fixed 2026-11-16, before any result was read (borg-zoo#147). Pilot, not a measurement: it checks that all ten arms run and the settings take effect. Gate: no config_error; one binary; every loaded-plan copy matches its pin; every cell ends in death, turn_cap or borg_stopped; no frozen-turn stall (1,000+ keys at one game turn) and no restock-food loop; every key outlier (more than 3x its arm's median) listed with its start; no cell dies or ends below its plan's max-depth cap for its level. Descriptive per arm: deaths, final level, deepest level, keys, town visits. The small tier (reborn-return-2x5-small) starts only after this gate is checked.",
+  "specimens": [
+    "4.2.6-reborn-rust-plans-m13-maxdepth"
+  ],
+  "profiles": [
+    "reborn-m13-plan-town",
+    "reborn-m13-plan-shop",
+    "reborn-m13-plan-return-u4s1",
+    "reborn-m13-plan-return-u3s2",
+    "reborn-m13-plan-return-u3s1",
+    "reborn-m13-ambitious-town",
+    "reborn-m13-ambitious-shop",
+    "reborn-m13-ambitious-return-u4s1",
+    "reborn-m13-ambitious-return-u3s2",
+    "reborn-m13-ambitious-return-u3s1"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-plans-m13-maxdepth",
+  "control_profile": "reborn-m13-plan-town",
+  "owner_authorization": "2026-11-16: the owner asked for this 2x5 (borg-zoo#147) and for it to be dispatched pilot first, then small; nothing bigger."
+}

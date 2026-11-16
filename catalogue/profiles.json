@@ -1551,6 +1551,78 @@
         "borg_town_w_ranger_missiles": 250,
         "borg_town_ranger_missile_turns": 50
       }
+    },
+    "reborn-m13-plan-return-u4s1": {
+      "description": "borg-zoo#147: class errands plan (errands_plan.txt) + M13 live town planner + trip policy with borg_trip_unknown_stacks = 4, borg_trip_pack_slack = 1 (the default is 4, 2: reborn-m13-plan-shop).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_pack_slack": 1,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-m13-plan-return-u3s2": {
+      "description": "borg-zoo#147: class errands plan (errands_plan.txt) + M13 live town planner + trip policy with borg_trip_unknown_stacks = 3, borg_trip_pack_slack = 2 (the default is 4, 2: reborn-m13-plan-shop).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 3,
+        "borg_trip_pack_slack": 2,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-m13-plan-return-u3s1": {
+      "description": "borg-zoo#147: class errands plan (errands_plan.txt) + M13 live town planner + trip policy with borg_trip_unknown_stacks = 3, borg_trip_pack_slack = 1 (the default is 4, 2: reborn-m13-plan-shop).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 3,
+        "borg_trip_pack_slack": 1,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-m13-ambitious-return-u4s1": {
+      "description": "borg-zoo#147: ambitious class errands plan (errands_plan_ambitious.txt) + M13 live town planner + trip policy with borg_trip_unknown_stacks = 4, borg_trip_pack_slack = 1 (the default is 4, 2: reborn-m13-ambitious-shop).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_pack_slack": 1,
+        "borg_plan": "errands_plan_ambitious.txt"
+      }
+    },
+    "reborn-m13-ambitious-return-u3s2": {
+      "description": "borg-zoo#147: ambitious class errands plan (errands_plan_ambitious.txt) + M13 live town planner + trip policy with borg_trip_unknown_stacks = 3, borg_trip_pack_slack = 2 (the default is 4, 2: reborn-m13-ambitious-shop).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 3,
+        "borg_trip_pack_slack": 2,
+        "borg_plan": "errands_plan_ambitious.txt"
+      }
+    },
+    "reborn-m13-ambitious-return-u3s1": {
+      "description": "borg-zoo#147: ambitious class errands plan (errands_plan_ambitious.txt) + M13 live town planner + trip policy with borg_trip_unknown_stacks = 3, borg_trip_pack_slack = 1 (the default is 4, 2: reborn-m13-ambitious-shop).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 3,
+        "borg_trip_pack_slack": 1,
+        "borg_plan": "errands_plan_ambitious.txt"
+      }
     }
   }
 }
