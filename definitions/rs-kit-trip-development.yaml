@@ -1,0 +1,183 @@
+# Exported from experiments/rs-kit-trip-development.json; edit here, then run python3 -m zoo define.
+name: rs-kit-trip-development
+description: |-
+  Seven choices on the same 1800 starting cases: existing rules, integrated defaults, 1.5x risk forecast, lower attack/support/learning priorities and earlier returns. 12600 games.
+prespecified: |-
+  Descriptive development study. Rank fewer natural deaths first; then mean final character level, mean deepest level and DL3+ count, including dead characters. Report all incomplete outcomes separately and paired rescued/newly-killed counts. Candidate settings differ one at a time from integrated defaults, except the earlier-return choice deliberately changes both return thresholds. No winner chosen here is confirmed by the independently fixed confirmation.
+owner_authorization: |-
+  2026-11-15 owner request: schedule experiments after integrating the finished inventory object-capability updates with the all-item trip-return fix. Fewer deaths first, then character level/depth.
+specimens:
+- 4.2.6-rs-kit-trip-m12-dd3eeac
+suites:
+- classes-1800
+profile_prefix: ''
+arms:
+  rs-kit-trip-control:
+    borg_trip_policy: 0
+    borg_town_plan: 0
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+  rs-kit-trip-default:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+  rs-kit-trip-risk1500:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1500
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+  rs-kit-trip-attack50:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 50
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+  rs-kit-trip-support25:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 25
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+  rs-kit-trip-knowledge5:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 5
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+  rs-kit-trip-earlier:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 4
+    borg_trip_unknown_stacks: 2
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+control_specimen: 4.2.6-rs-kit-trip-m12-dd3eeac
+control_profile: rs-kit-trip-control
+extra:
+  resource_budget:
+    max_parallel_jobs: 6
+    processes_per_job: 1
+  source_notes: |-
+    All arms use dd3eeac646e097bcdd7c289c092e91400896a713, milestone-12 engine. Control disables both policies; candidates use actual shopping and the all-item return rule. This tests the combined policies, not their individual contributions. All six capability calibration parameters and shared trip/supply parameters are declared and checked against native effective_settings.

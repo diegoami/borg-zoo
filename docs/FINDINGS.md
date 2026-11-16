@@ -175,6 +175,40 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
   - Descriptive only. The older book cohort (43759670685) used engine
     `b4af703` and Borg `d6215a8`, so no fix-by-fix or improvement claim is made.
 
+- **Max-depth plans × return settings, small tier: clean run, but the plan caps don't hold (borg-zoo#147).**
+  `reborn-maxdepth-returns-small`, run 43925269890, 900 games on
+  `4.2.6-reborn-rust-maxdepth` (borg-reborn-rs `6d1bca10`: #440's max-depth plans
+  and #444's planner item values). Ten arms: two plans × return off / (4,2) /
+  (4,1) / (3,2) / (3,1), as (unknown stacks, pack slack), all with the town
+  planner; `classes-1800-small`.
+
+  | Return | `errands_plan.txt` deaths / 90 | vs off rescued / killed | ambitious deaths / 90 | vs off rescued / killed |
+  | --- | ---: | ---: | ---: | ---: |
+  | off | 20 | – | 20 (+1 stalled) | – |
+  | (4,2) default | 21 | 1 / 2 | 20 | 2 / 2 |
+  | (4,1) | 21 | 1 / 2 | 20 | 2 / 2 |
+  | (3,2) | 22 | 0 / 2 | 23 | 1 / 4 |
+  | (3,1) | 22 | 0 / 2 | 23 | 1 / 4 |
+
+  - Integrity: one binary, no `config_error`, every loaded plan matched its
+    pin. There are no key outliers. One frozen-turn stall (ambitious, return
+    off, Ranger 60792140: one burst of 1,095 keys) is just over the threshold.
+  - **No return setting lowered deaths.** Tighter settings were equal or
+    slightly worse, with mean levels and depths almost unchanged.
+  - **Pack slack had almost no effect.** (4,2) and (4,1) played identical keys in
+    179 of 180 games, and (3,2) and (3,1) in all 180. Only the unknown-stacks
+    threshold and the trip switch itself changed play.
+  - **The plan caps don't hold.**
+    - 131 games went deeper than their plan's cap for their final level; 103
+      of them by one level.
+    - 35 games died or ended below the cap: 31 deaths, about 15% of the run's
+      206 deaths. They come from 7 starts, repeated across arms.
+    - A cap sets `borg_no_deeper`, which the core treats as a level it is "not
+      prepared for", by design not a hard limit. The replays show the core
+      passing it by reading unknown scrolls that are Deep Descent, by fleeing
+      down stairs when it finds no up stairs, and by plain stair descents.
+  - Descriptive only, at 10 starts per class.
+
 ## Neo Borg: Mandos lanes
 
 **The port repairs never change play.**

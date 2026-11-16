@@ -1,0 +1,19 @@
+# Exported from smoke/rs-smoke.json; edit here, then run python3 -m zoo define.
+name: rs-smoke
+folder: smoke
+description: |-
+  borg-rs on the zoo: the Rust Borg against the C Borg built in the same borg-rs tree (a key-for-key identity check at zoo scale), with the better-borg-c observer's 4.2.6 run alongside for the distributions. Runs from different harnesses are not paired: that the same seed gives the same game under both frontends is not verified.
+specimens:
+- 4.2.6-rs-m0-c
+- 4.2.6-rs-m0
+- 4.2.6
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  default: {}
+  munchkin-d6:
+    borg_munchkin_start: true
+    borg_munchkin_depth: 6
+control_specimen: 4.2.6-rs-m0-c
+control_profile: default

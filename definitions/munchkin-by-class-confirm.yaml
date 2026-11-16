@@ -1,0 +1,16 @@
+# Exported from experiments/munchkin-by-class-confirm.json; edit here, then run python3 -m zoo define.
+name: munchkin-by-class-confirm
+description: |-
+  Munchkin start by class (munchkin-wdr: munchkin-d6 for Warriors, Druids and Rangers, default otherwise) against default, on 1,800 fresh class seeds, for the original and milestone 6
+prespecified: |-
+  Written on 2026-11-08, before any run on classes-1800-b. Primary: on 4.2.6, munchkin-wdr against default, death before 100,000 engine turns, exact two-sided McNemar test on the seeds where both finished, alpha 0.05. Secondary, reported separately at alpha 0.05: the same comparison on 4.2.6-bbc-m6. Per-class figures are descriptive. Motivation: on classes-1800, munchkin-d6 helped Warriors, Druids and Rangers and hurt Mages and Priests; the class choice was made from that run, where the mix gave 34.4% against 27.6% deaths on 4.2.6. Runs that do not finish are reported, never counted as deaths.
+specimens:
+- 4.2.6
+- 4.2.6-bbc-m6
+suites:
+- classes-1800-b
+profiles:
+- default
+- munchkin-wdr
+control_specimen: 4.2.6
+control_profile: default

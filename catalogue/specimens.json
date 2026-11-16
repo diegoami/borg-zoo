@@ -852,6 +852,21 @@
       "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/101",
       "label": "Neo fork including merged danger/HP/retreat repairs and durable monster-truth host correction #100. Explicit C point-buy/no-selling/startup profile; engine b4af703. Clock640 unresolved. New descriptive run; old truth-denied cohort is not a repaired-Borg baseline."
     },
+    "4.2.6-reborn-rust-maxdepth": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "6d1bca10bc67d02150a1a717f111891976e98069",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "source": "https://github.com/diegoami/borg-reborn-rs/pull/444",
+      "label": "borg-reborn-rs 6d1bca10, the main merge of #444 (borg-zoo#147): #440's max-depth plans (a phase 'max-depth N' only caps the core with borg_no_deeper; the level-loop errand is removed and a loop-levels plan exits 2) and #444's planner item values (real food only with the 5-ration floor, 45 kinds the core never uses worthless, buy-to-identify off with the trip policy, casters' spells not valued as infinite mana). On top of d3ebe3c0. A different game: source-hash rust 8646eb97... (was 6b3b9e99...). harness/borg.txt 88296dd1... unchanged; both plans rewritten as max-depth caps, with new hashes."
+    },
     "4.2.6-reborn-rust-plans-m13-livelock": {
       "kind": "borg-rs",
       "impl": "rust",
@@ -1025,6 +1040,21 @@
       "role": "candidate",
       "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/113",
       "label": "Experimental Borg1.4.0-beta.6.zoo.1: six C-parity fixes514-519 plus retained book-value correction509, on verified beta.4/API2.1 engine d27ed50f. Toolkit638979d includes the already-verified beta.4 SDK build alias; runtime message/truth/session code matches967b28f. Previous book cohort43759670685 used beta.3 fork engineb4af703 and older Borg; cross-run comparisons are descriptive, not a six-fix-only causal estimate. Clock640 unresolved."
+    },
+    "4.2.6-reborn-rust-heal": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "f02cd2940a7439a8965b3883270a9a73df7e0bf5",
+      "source": "https://github.com/diegoami/borg-zoo/issues/151",
+      "label": "borg-reborn-rs f02cd294, the main merge of #463 (borg-zoo#151). Adds, over 6d1bca10: #461 caution_heal_when_outmatched (default 0, play unchanged), #459 back-away never onto lava, #455 Remove Hunger valued as food, #463 knowledge-only purchases off in every arm, #407/#466 class/family attack preferences (neutral). Source-hash rust bb27c7c3...; harness/borg.txt 88296dd1... and both max-depth plans unchanged.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
     },
     "4.2.6-reborn-synthetic-99473510": {
       "kind": "borg-rs",

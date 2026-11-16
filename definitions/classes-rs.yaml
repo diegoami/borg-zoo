@@ -1,0 +1,16 @@
+# Exported from experiments/classes-rs.json; edit here, then run python3 -m zoo define.
+name: classes-rs
+description: |-
+  The Rust port against the C Borg for every class and race (classes-1800): a key-for-key identity check beyond the Human Warrior
+specimens:
+- 4.2.6-rs-m0-c
+- 4.2.6-rs-m0
+suites:
+- classes-1800
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6-rs-m0-c
+control_profile: default
+extra:
+  control_profile: null

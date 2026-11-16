@@ -183,6 +183,30 @@ def mode_explicit(profile):
     return bool(set(profile.get('settings', {})) & set(MODE_SETTINGS))
 
 
+ISSUES_URL = 'https://github.com/diegoami/borg-zoo/issues/'
+DEFINITIONS_URL = 'https://github.com/diegoami/borg-zoo/blob/main/'
+
+
+def definition_of(exp, root=ROOT):
+    """The YAML definition behind an experiment (definitions/NAME.yaml), as a
+    repository path, or None."""
+    path = exp.get('definition') or f"definitions/{exp.get('name')}.yaml"
+    return path if (Path(root) / path).exists() else None
+
+
+def issue_of(exp, root=ROOT):
+    """The borg-zoo issue an experiment answers: its own "issue" field, else
+    the field of the experiment file of that name (runs collected before the
+    field existed carry none in their meta.json)."""
+    if exp.get('issue'):
+        return exp['issue']
+    for folder in ('experiments', 'smoke'):
+        path = Path(root) / folder / f"{exp.get('name')}.json"
+        if path.exists():
+            return json.loads(path.read_text()).get('issue')
+    return None
+
+
 def experiment(path, cat=None):
     cat = cat or catalogue()
     exp = _load(path)
@@ -204,6 +228,8 @@ def experiment(path, cat=None):
             for suite in exp['suites']:
                 if cat['suites'][suite]['birth'] == 'random':
                     raise ValueError(f'{name} depends on the class; suite {suite} has random birth')
+    if 'issue' in exp and not (isinstance(exp['issue'], int) and exp['issue'] > 0):
+        raise ValueError(f"{exp.get('name')}: issue must be a borg-zoo issue number, not {exp['issue']!r}")
     for name in exp['suites']:
         if name not in cat['suites']:
             raise ValueError(f'unknown suite: {name}')

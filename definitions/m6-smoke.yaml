@@ -1,0 +1,17 @@
+# Exported from smoke/m6-smoke.json; edit here, then run python3 -m zoo define.
+name: m6-smoke
+folder: smoke
+description: 'Milestone 6 builds and runs: smoke suite against the original and milestone 5'
+specimens:
+- 4.2.6
+- 4.2.6-bbc-m5
+- 4.2.6-bbc-m6
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6
+control_profile: default
+extra:
+  control_profile: null

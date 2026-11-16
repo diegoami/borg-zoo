@@ -1,0 +1,16 @@
+# Exported from experiments/mandos-api2-classes-18.json; edit here, then run python3 -m zoo define.
+name: mandos-api2-classes-18
+description: |-
+  The two api2 Mandos lanes, upstream a10655c3 and port-only, on 18 fresh seeds, every class twice (classes-18): assigned births, 100,000 game ticks
+specimens:
+- neo-b3-api2-upstream
+- neo-b3-api2-port.2
+suites:
+- classes-18
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: neo-b3-api2-upstream
+control_profile: default
+extra:
+  control_profile: null

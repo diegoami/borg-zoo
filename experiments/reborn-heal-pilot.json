@@ -1,0 +1,32 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-heal-pilot",
+  "issue": 151,
+  "definition": "definitions/reborn-heal-pilot.yaml",
+  "question": "Does healing when outmatched help, with and without the trip policy and an errands plan?",
+  "description": "Does healing when outmatched help, with and without the trip policy and an errands plan? Generated from definitions/reborn-heal-pilot.yaml: 12 arms on 4.2.6-reborn-rust-heal, suite classes-18.",
+  "prespecified": "Fixed 2026-11-16, before any result was read (borg-zoo#151). Pilot only (RULES 14); small and\nlarger only after this gate and the owner. Gate: no config_error; one binary; loaded-plan copies\nmatch their pins and are absent from the no-plan arms; the heal flag is written in flag-1 cells\nonly. Every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key outliers are\nlisted. Flag 0 against flag 1: list the cells where they diverge, count \"# Healing (outmatched).\"\nnotes in flag-1 cells, and deaths with cure potions still in the pack per arm where the logs\nallow. Descriptive per arm: deaths, final level, deepest level, keys; paired rescued and newly\nkilled for flag 1 against flag 0 on the same start. 18 starts per arm cannot show whether the\nflag is good.",
+  "specimens": [
+    "4.2.6-reborn-rust-heal"
+  ],
+  "profiles": [
+    "reborn-heal0-trip0-none",
+    "reborn-heal0-trip0-plan",
+    "reborn-heal0-trip0-ambitious",
+    "reborn-heal0-trip1-none",
+    "reborn-heal0-trip1-plan",
+    "reborn-heal0-trip1-ambitious",
+    "reborn-heal1-trip0-none",
+    "reborn-heal1-trip0-plan",
+    "reborn-heal1-trip0-ambitious",
+    "reborn-heal1-trip1-none",
+    "reborn-heal1-trip1-plan",
+    "reborn-heal1-trip1-ambitious"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-heal",
+  "control_profile": "reborn-heal0-trip0-none",
+  "owner_authorization": "2026-11-16: the owner chose the 12-arm pilot design after the borg-zoo#147 death diagnosis (borg-zoo#151); pilot first."
+}

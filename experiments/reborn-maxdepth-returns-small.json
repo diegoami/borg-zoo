@@ -1,0 +1,29 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-maxdepth-returns-small",
+  "issue": 147,
+  "definition": "definitions/reborn-maxdepth-returns-small.yaml",
+  "description": "borg-zoo#147: two max-depth plans (errands_plan.txt, errands_plan_ambitious.txt) x five return settings (trip policy off; (unknown stacks, pack slack) = (4,2) default, (4,1), (3,2), (3,1)), all with the live town planner, on borg-reborn-rs 6d1bca10 (specimen 4.2.6-reborn-rust-maxdepth). Small tier: classes-1800-small (10 starts per class), 90 games per arm, 900 games.",
+  "prespecified": "Fixed 2026-11-16, before any result was read (borg-zoo#147). Small tier only (RULES 14); medium waits for this gate and the owner. Question: does a return setting tighter than the default (4,2) lower deaths, and at what cost in progress, under each plan? Gate: no config_error; one binary; every loaded-plan copy matches its pin; no frozen-turn stall (1,000+ keys at one game turn) and no restock-food loop; the plan holds: no game's deepest level exceeds its plan's cap for its class at its final character level (caps never fall as level rises). Report per arm: deaths / 90, stalled, key outliers, mean final level, mean deepest level, DL5+, town visits and gold where recorded; paired within each plan against its return-off arm, and between plans at equal return settings. No control or town-only arm (owner). Results from #138 and #141 are a different game and are not pooled. Descriptive only.",
+  "specimens": [
+    "4.2.6-reborn-rust-maxdepth"
+  ],
+  "profiles": [
+    "reborn-maxd-plan-off",
+    "reborn-maxd-plan-u4-p2",
+    "reborn-maxd-plan-u4-p1",
+    "reborn-maxd-plan-u3-p2",
+    "reborn-maxd-plan-u3-p1",
+    "reborn-maxd-ambitious-off",
+    "reborn-maxd-ambitious-u4-p2",
+    "reborn-maxd-ambitious-u4-p1",
+    "reborn-maxd-ambitious-u3-p2",
+    "reborn-maxd-ambitious-u3-p1"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-maxdepth",
+  "control_profile": "reborn-maxd-plan-off",
+  "owner_authorization": "2026-11-16: the owner chose the 2x5 design and asked for its small run (borg-zoo#147)."
+}

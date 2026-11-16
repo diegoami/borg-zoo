@@ -1,0 +1,19 @@
+# Exported from experiments/milestones-wide.json; edit here, then run python3 -m zoo define.
+name: milestones-wide
+description: |-
+  Original C Borg against every better-borg-c milestone on 500 fresh seeds: larger milestone comparisons, and a search for stalls and crashes
+specimens:
+- 4.2.6
+- 4.2.6-bbc-m1
+- 4.2.6-bbc-m2
+- 4.2.6-bbc-m3
+- 4.2.6-bbc-m4
+suites:
+- wide-500
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6
+control_profile: default
+extra:
+  control_profile: null

@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-heal-attack-pilot",
+  "issue": 151,
+  "definition": "definitions/reborn-heal-attack-pilot.yaml",
+  "question": "Do healing when outmatched and stronger class attack preferences help, alone or together?",
+  "description": "Do healing when outmatched and stronger class attack preferences help, alone or together? Generated from definitions/reborn-heal-attack-pilot.yaml: 4 arms on 4.2.6-reborn-rust-heal, suite classes-18.",
+  "prespecified": "Fixed 2026-11-16, before any result was read. Pilot only (RULES 14); small and larger only\nafter this gate and the owner. Gate: no config_error; one binary; the heal flag is written in\nheal1 cells only and the attack preferences in attack1 cells only, applied from borg.txt\n(params-core.json). Every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and\nkey outliers are listed. Report per arm: deaths, final level, deepest level, keys; paired\nrescued and newly killed for each arm against heal0-attack0 on the same start, and the cells\nwhere play diverges. The heal0-attack0 arm should play the same keys as the #151 pilot's\nreborn-heal0-trip0-none. 18 starts per arm cannot show whether either change is good.",
+  "specimens": [
+    "4.2.6-reborn-rust-heal"
+  ],
+  "profiles": [
+    "reborn-heal0-attack0",
+    "reborn-heal0-attack1",
+    "reborn-heal1-attack0",
+    "reborn-heal1-attack1"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-heal",
+  "control_profile": "reborn-heal0-attack0",
+  "owner_authorization": "2026-11-16: the owner asked to test caution_heal_when_outmatched together with these class attack preferences (session request, following the borg-zoo#151 pilot); pilot first (RULES 14)."
+}

@@ -741,6 +741,244 @@
         "borg_reborn_errand": "ladder"
       }
     },
+    "reborn-heal0-trip0-none": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag off (default, not written); trip policy off; no plan; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0
+      }
+    },
+    "reborn-heal0-trip0-plan": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag off (default, not written); trip policy off; max-depth errands_plan.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-heal0-trip0-ambitious": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag off (default, not written); trip policy off; max-depth errands_plan_ambitious.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_plan": "errands_plan_ambitious.txt"
+      }
+    },
+    "reborn-heal0-trip1-none": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag off (default, not written); trip policy on, default thresholds (4,2); no plan; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1
+      }
+    },
+    "reborn-heal0-trip1-plan": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag off (default, not written); trip policy on, default thresholds (4,2); max-depth errands_plan.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-heal0-trip1-ambitious": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag off (default, not written); trip policy on, default thresholds (4,2); max-depth errands_plan_ambitious.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_plan": "errands_plan_ambitious.txt"
+      }
+    },
+    "reborn-heal1-trip0-none": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag on; trip policy off; no plan; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_param_caution_heal_when_outmatched": 1
+      }
+    },
+    "reborn-heal1-trip0-plan": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag on; trip policy off; max-depth errands_plan.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_plan": "errands_plan.txt",
+        "borg_param_caution_heal_when_outmatched": 1
+      }
+    },
+    "reborn-heal1-trip0-ambitious": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag on; trip policy off; max-depth errands_plan_ambitious.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_param_caution_heal_when_outmatched": 1
+      }
+    },
+    "reborn-heal1-trip1-none": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag on; trip policy on, default thresholds (4,2); no plan; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_param_caution_heal_when_outmatched": 1
+      }
+    },
+    "reborn-heal1-trip1-plan": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag on; trip policy on, default thresholds (4,2); max-depth errands_plan.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_param_caution_heal_when_outmatched": 1
+      }
+    },
+    "reborn-heal1-trip1-ambitious": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag on; trip policy on, default thresholds (4,2); max-depth errands_plan_ambitious.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_param_caution_heal_when_outmatched": 1
+      }
+    },
+    "reborn-maxd-plan-off": {
+      "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner; trip policy off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_trip_policy": 0
+      }
+    },
+    "reborn-maxd-plan-u4-p2": {
+      "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner + trip policy, return at 4 unknown stacks or 2 free pack slots (4,2) (the default).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_pack_slack": 2
+      }
+    },
+    "reborn-maxd-plan-u4-p1": {
+      "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner + trip policy, return at 4 unknown stacks or 1 free pack slots (4,1).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_pack_slack": 1
+      }
+    },
+    "reborn-maxd-plan-u3-p2": {
+      "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner + trip policy, return at 3 unknown stacks or 2 free pack slots (3,2).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 3,
+        "borg_trip_pack_slack": 2
+      }
+    },
+    "reborn-maxd-plan-u3-p1": {
+      "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner + trip policy, return at 3 unknown stacks or 1 free pack slots (3,1).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 3,
+        "borg_trip_pack_slack": 1
+      }
+    },
+    "reborn-maxd-ambitious-off": {
+      "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner; trip policy off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_trip_policy": 0
+      }
+    },
+    "reborn-maxd-ambitious-u4-p2": {
+      "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner + trip policy, return at 4 unknown stacks or 2 free pack slots (4,2) (the default).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_pack_slack": 2
+      }
+    },
+    "reborn-maxd-ambitious-u4-p1": {
+      "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner + trip policy, return at 4 unknown stacks or 1 free pack slots (4,1).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_pack_slack": 1
+      }
+    },
+    "reborn-maxd-ambitious-u3-p2": {
+      "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner + trip policy, return at 3 unknown stacks or 2 free pack slots (3,2).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 3,
+        "borg_trip_pack_slack": 2
+      }
+    },
+    "reborn-maxd-ambitious-u3-p1": {
+      "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner + trip policy, return at 3 unknown stacks or 1 free pack slots (3,1).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 3,
+        "borg_trip_pack_slack": 1
+      }
+    },
     "reborn-m13-control": {
       "description": "borg-zoo#123 control: borg-rs core in the reborn shell; no plan; M13 town planner and trip policy off. Everything else is the specimen's own harness/borg.txt.",
       "settings": {
@@ -1550,6 +1788,76 @@
         "borg_town_power_scale": 40000,
         "borg_town_w_ranger_missiles": 250,
         "borg_town_ranger_missile_turns": 50
+      }
+    },
+    "reborn-heal0-attack0": {
+      "description": "borg-zoo#151 (reborn-heal-attack-pilot.yaml): arm heal0, attack0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0
+      }
+    },
+    "reborn-heal0-attack1": {
+      "description": "borg-zoo#151 (reborn-heal-attack-pilot.yaml): arm heal0, attack1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400
+      }
+    },
+    "reborn-heal1-attack0": {
+      "description": "borg-zoo#151 (reborn-heal-attack-pilot.yaml): arm heal1, attack0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_param_caution_heal_when_outmatched": 1
+      }
+    },
+    "reborn-heal1-attack1": {
+      "description": "borg-zoo#151 (reborn-heal-attack-pilot.yaml): arm heal1, attack1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400
       }
     }
   }

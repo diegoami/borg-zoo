@@ -1,0 +1,45 @@
+# Exported from experiments/reborn-survival-small.json; edit here, then run python3 -m zoo define.
+name: reborn-survival-small
+issue: 138
+description: |-
+  borg-zoo#138: the #123 small tier repeated on borg-reborn-rs 4ecb93d7 (#423 flee-healing and Phase Door stock fixes), specimen 4.2.6-reborn-rust-plans-m13-survival. Starts 1-90 of classes-1800 (classes-1800-small, 10 per class) x the five #123 arms (control, town, plan, plan-town, ambitious-town; trip policy off) = 450 games. A repeat on a different game, not a continuation of reborn-plan-m13-small.
+prespecified: |-
+  Fixed 2026-11-16, before any result was read (borg-zoo#138). Small tier only (RULES 14); medium waits for this gate and the owner. Gate: no config_error; one binary; every loaded-plan copy matches its pin and none appears in the no-plan arms; every stall and key outlier listed with its start and checked against borg-reborn-rs#421. Report per arm: deaths / 90, stalled, mean final level, mean deepest level, DL5+. Paired comparisons: each arm against control on this game, and each arm against the same arm and starts of reborn-plan-m13-small (run 43868362767, 8a0b57c8) as a before/after of the #423 fixes. The two games differ in every arm (control included), so the runs are not pooled. The frozen-turn stall (1,000+ keys at one game turn) and the 3x-median key-outlier flag apply. Descriptive only.
+owner_authorization: |-
+  2026-11-16: the owner asked to repeat the #123 small tier on borg-reborn-rs 4ecb93d7, whose survival fixes have the owner's highest priority (borg-zoo#138).
+specimens:
+- 4.2.6-reborn-rust-plans-m13-survival
+suites:
+- classes-1800-small
+profile_prefix: ''
+arms:
+  reborn-m13-control:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 0
+    borg_trip_policy: 0
+  reborn-m13-town:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 1
+    borg_trip_policy: 0
+  reborn-m13-plan:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 0
+    borg_trip_policy: 0
+    borg_plan: errands_plan.txt
+  reborn-m13-plan-town:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 1
+    borg_trip_policy: 0
+    borg_plan: errands_plan.txt
+  reborn-m13-ambitious-town:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 1
+    borg_trip_policy: 0
+    borg_plan: errands_plan_ambitious.txt
+control_specimen: 4.2.6-reborn-rust-plans-m13-survival
+control_profile: reborn-m13-control

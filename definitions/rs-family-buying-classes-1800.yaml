@@ -1,0 +1,108 @@
+# Exported from experiments/rs-family-buying-classes-1800.json; edit here, then run python3 -m zoo define.
+name: rs-family-buying-classes-1800
+issue: 79
+description: |-
+  The borg-rs post-M10 buying family (4.2.6-rs-family-buying, 5aeb6e5, v10 base) on the full classes-1800 suite: every profile the pilots of #61, #67 and #75 exercised - the two strategies, buy-to-identify, the munchkin override and the class and class+munchkin masks - against the current/normal control. Run one arm per workflow run; the dashboard consolidates them. Owner-approved full suite, 2026-11-11 (session request). The Rogue class-mask arm was added for borg-zoo#79: the first full-suite arms showed the Rogue moving the other way under reserve410.
+specimens:
+- 4.2.6-rs-family-buying
+suites:
+- classes-1800
+profile_prefix: ''
+arms:
+  rs-buy-current-normal:
+    borg_buy_strategy_default: 0
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-current-normal-id:
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 1
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-reserve410-normal:
+    borg_buy_strategy_default: 1
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-reserve410-normal-id:
+    borg_buy_strategy_default: 1
+    borg_buy_identify: 1
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-current-munchkin:
+    borg_buy_strategy_default: 0
+    borg_munchkin_start: true
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-current-munchkin-id:
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 1
+    borg_munchkin_start: true
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-reserve410-munchkin:
+    borg_buy_strategy_default: 1
+    borg_munchkin_start: true
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-reserve410-munchkin-id:
+    borg_buy_strategy_default: 1
+    borg_buy_identify: 1
+    borg_munchkin_start: true
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-class-reserve-warrior:
+    borg_buy_strategy_default: 0
+    borg_buy_strategy_reserve410_classes: 1
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-class-reserve-warrior-id:
+    borg_buy_strategy_default: 0
+    borg_buy_strategy_reserve410_classes: 1
+    borg_buy_identify: 1
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-class-current-mage:
+    borg_buy_strategy_default: 1
+    borg_buy_strategy_current_classes: 2
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-class-reserve-rogue:
+    borg_buy_strategy_default: 0
+    borg_buy_strategy_reserve410_classes: 64
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-classmunchkin-current-warrior:
+    borg_buy_strategy_default: 1
+    borg_buy_strategy_current_munchkin_classes: 1
+    borg_munchkin_start: true
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-classmunchkin-reserve-warrior:
+    borg_buy_strategy_default: 0
+    borg_buy_strategy_reserve410_munchkin_classes: 1
+    borg_munchkin_start: true
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-munchkin-override-current:
+    borg_buy_strategy_default: 1
+    borg_buy_strategy_munchkin: 0
+    borg_munchkin_start: true
+    borg_self_lunal: false
+    borg_lunal_mode: false
+control_specimen: 4.2.6-rs-family-buying
+control_profile: rs-buy-current-normal

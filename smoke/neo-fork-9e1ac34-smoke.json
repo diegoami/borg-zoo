@@ -1,6 +1,7 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "neo-fork-9e1ac34-smoke",
+  "definition": "definitions/neo-fork-9e1ac34-smoke.yaml",
   "description": "Build and play check of the Neo Borg from diegoami/neo-angband-borg-mod-tracker master 9e1ac34 (the port fixes of the fork's PRs 75 and 76) through the fork's own zoo entry point (tools/zoo). classes-18, default profile. Says only whether it builds and plays; not a comparison.",
   "specimens": [
     "neo-fork-9e1ac34"

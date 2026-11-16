@@ -1,6 +1,7 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "neo-fork-9c17cb0-classes-1800",
+  "definition": "definitions/neo-fork-9c17cb0-classes-1800.yaml",
   "description": "Neo Borg unmerged repair candidate PR91 at 9c17cb0c582fe129008899491372787e91abdade, engine06a2321c, fork-owned tools/zoo, on frozen classes-1800 with retained death evidence. Owner-authorized single-arm descriptive run. Historical neo-fork-48afb65 is an incident reference, not a paired control: Borg/toolkit commit, workflow checkout, runners and Node runtime differ. Historical run43588226829 began2026-11-14 at11:04UTC; record the new run timestamps separately. No statistical improvement claim; count every outcome and inspect deaths against pinned C e473720e.",
   "specimens": [
     "neo-fork-9c17cb0"
@@ -12,6 +13,7 @@
     "classes-1800"
   ],
   "control": "neo-fork-9c17cb0",
+  "owner_authorization": "2026-11-14: owner asked this session to start a borg-zoo run of the repaired Neo Borg and inspect its deaths. Run the classes-18 acceptance first, then this frozen classes-1800 suite after a clean build/play check.",
   "retain_evidence": true,
   "shards_by_specimen": {
     "neo-fork-9c17cb0": 180
@@ -25,6 +27,5 @@
     "max_cells_per_neo_shard": 10,
     "worst_case_play_minutes_per_shard": 225,
     "job_timeout_minutes": 300
-  },
-  "owner_authorization": "2026-11-14: owner asked this session to start a borg-zoo run of the repaired Neo Borg and inspect its deaths. Run the classes-18 acceptance first, then this frozen classes-1800 suite after a clean build/play check."
+  }
 }
