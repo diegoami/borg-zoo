@@ -1,0 +1,209 @@
+name: Cemetery scenarios across pushids
+on:
+  pull_request:
+    paths:
+      - zoo/scenarios.py
+      - tests/test_scenarios.py
+      - tests/test_cemetery_contract.py
+      - scenario-experiments/**
+      - .github/workflows/scenarios.yml
+      - tools/archive-scenarios.sh
+  workflow_dispatch:
+    inputs:
+      definition:
+        description: Reviewed bounded scenario definition
+        type: choice
+        options: [scenario-experiments/cemetery-warrior-smoke.json]
+        default: scenario-experiments/cemetery-warrior-smoke.json
+permissions:
+  contents: read
+concurrency:
+  group: scenario-comparison
+  cancel-in-progress: false
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      targets: ${{ steps.plan.outputs.targets }}
+      bank: ${{ steps.pin.outputs.commit }}
+      name: ${{ steps.plan.outputs.name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - id: pin
+        env:
+          DEFINITION: ${{ inputs.definition || 'scenario-experiments/cemetery-warrior-smoke.json' }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          p = Path(os.environ['DEFINITION'])
+          assert p.parent == Path('scenario-experiments') and p.suffix == '.json'
+          bank = json.loads(p.read_text())['bank']
+          assert bank['repository'] == 'diegoami/borg-cemetery'
+          assert re.fullmatch('[0-9a-f]{40}', bank['commit'])
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write('commit=' + bank['commit'] + '\n')
+          PY
+      - uses: actions/checkout@v4
+        with:
+          repository: diegoami/borg-cemetery
+          ref: ${{ steps.pin.outputs.commit }}
+          path: cemetery
+          persist-credentials: false
+      - id: plan
+        env:
+          DEFINITION: ${{ inputs.definition || 'scenario-experiments/cemetery-warrior-smoke.json' }}
+        run: |
+          python3 -m zoo.scenarios plan --definition "$DEFINITION" --bank cemetery --out plan.json
+          python3 - <<'PY'
+          import json, os
+          p = json.load(open('plan.json'))
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write('targets=' + json.dumps(p['targets']) + '\n')
+              f.write('name=' + p['name'] + '\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scenario-plan
+          path: plan.json
+          retention-days: 90
+  run:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: ${{ matrix.target.timeout_minutes }}
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        target: ${{ fromJSON(needs.plan.outputs.targets) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: scenario-plan
+      - uses: actions/checkout@v4
+        with:
+          repository: diegoami/borg-cemetery
+          ref: ${{ needs.plan.outputs.bank }}
+          path: cemetery
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.target.repository }}
+          ref: ${{ matrix.target.commit }}
+          path: source
+          persist-credentials: false
+      - name: Test pinned Cemetery registry contract
+        env:
+          PINNED_CEMETERY_DIR: ${{ github.workspace }}/cemetery
+        run: python3 -m unittest discover -s tests -p test_cemetery_contract.py -v
+      - uses: dtolnay/rust-toolchain@1.100.0
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq build-essential cmake libssl-dev
+      - name: Build pinned source
+        timeout-minutes: 10
+        continue-on-error: true
+        working-directory: source
+        run: BORG_IMPL=rust flock /tmp/angband-validation.lock harness/build.sh
+      - name: Run and persist completed cells
+        if: always()
+        env:
+          PUSHID: ${{ matrix.target.pushid }}
+        run: python3 -m zoo.scenarios run --plan plan.json --bank cemetery --source source --pushid "$PUSHID" --out "attempts/$PUSHID"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scenario-cells-${{ matrix.target.pushid }}
+          path: attempts
+          if-no-files-found: warn
+          retention-days: 14
+  collect:
+    if: always() && needs.plan.result == 'success'
+    needs: [plan, run]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: scenario-plan
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: scenario-cells-*
+          path: collected
+      - name: Account for every expected cell, including missing jobs
+        env:
+          EVIDENCE_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: python3 -m zoo.scenarios collect --plan plan.json --cells collected --out comparison --evidence-url "$EVIDENCE_URL"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scenario-comparison
+          path: comparison
+          retention-days: 90
+  archive:
+    if: always() && github.event_name == 'workflow_dispatch' && needs.collect.result == 'success'
+    needs: [plan, collect]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: scenario-comparison
+          path: comparison
+      - name: Append compact synthetic comparison, outside natural results
+        env:
+          EXPERIMENT: ${{ needs.plan.outputs.name }}
+          RUN_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh auth setup-git
+          bash tools/archive-scenarios.sh "https://github.com/$GITHUB_REPOSITORY.git" comparison "$EXPERIMENT" "$RUN_ID" results-branch
+      - name: Rebuild the Zoo site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml
+  preview:
+    if: always() && needs.collect.result == 'success'
+    needs: [plan, collect]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: scenario-comparison
+          path: comparison
+      - name: Exercise archive push and site layout with an isolated Git remote
+        env:
+          EXPERIMENT: ${{ needs.plan.outputs.name }}
+          RUN_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          git init --bare --quiet "$RUNNER_TEMP/archive.git"
+          git clone --quiet "$RUNNER_TEMP/archive.git" "$RUNNER_TEMP/archive-init"
+          git -C "$RUNNER_TEMP/archive-init" config user.name github-actions
+          git -C "$RUNNER_TEMP/archive-init" config user.email github-actions@users.noreply.github.com
+          git -C "$RUNNER_TEMP/archive-init" commit --quiet --allow-empty -m 'Initialize isolated archive'
+          git -C "$RUNNER_TEMP/archive-init" push origin HEAD:results
+          bash tools/archive-scenarios.sh "$RUNNER_TEMP/archive.git" comparison "$EXPERIMENT" "$RUN_ID" "$RUNNER_TEMP/archived"
+          python3 -m zoo site --results "$RUNNER_TEMP/archived/results" --out preview
+          test -f "preview/scenarios/$EXPERIMENT/$RUN_ID/index.html"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scenario-site-preview
+          path: preview
+          retention-days: 14

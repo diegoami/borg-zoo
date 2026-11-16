@@ -54,6 +54,12 @@ python3 -m zoo site --results results --out _site
 
 Tests: `python3 -m unittest discover -s tests`.
 
+## Cemetery scenarios
+
+[Scenario dispatch](docs/SCENARIO-DISPATCH.md) compares exact pushids on an
+immutable Cemetery bank, with separate synthetic reports and complete failure
+denominators. The proposed first smoke schedules just two cells.
+
 ## Reading the results
 
 The Detailed tab lists experiments by the question they ask. Each run starts

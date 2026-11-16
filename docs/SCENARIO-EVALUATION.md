@@ -160,6 +160,10 @@ minimum-HP distributions, exposure observations and missing evidence.
 Minimum HP is descriptive, not the near-death definition. No aggregate
 improvement claim without paired scenarios; no population claim from them.
 
+The bounded Zoo implementation of this contract is described in
+[SCENARIO-DISPATCH.md](SCENARIO-DISPATCH.md) (#144). It initially permits only
+target-build differences and links the immutable Cemetery bank.
+
 ## Storage and acceptance
 
 Compact suite definitions and result JSON/reports may live in Git or a
