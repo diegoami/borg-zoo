@@ -5,6 +5,11 @@ versions and configurations differ in survival and progress?* It owns the
 catalogues, orchestration, the results store, the statistics and the site. It
 owns no Borg code.
 
+The proposed [scenario evaluation plan](SCENARIO-EVALUATION.md) adds
+cemetery-owned generated-dungeon evidence alongside identity checks and
+zoo population comparisons. It defines their separate claims, execution
+dependencies and staged acceptance gates; it is not an execution capability.
+
 ## Pieces
 
 **Specimen.** Repository, full commit SHA, carried-fix count and label. The
