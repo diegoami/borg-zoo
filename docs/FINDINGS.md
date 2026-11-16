@@ -346,9 +346,11 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 - **The M12/M13 explicit-mode grid produced no usable cells.**
   Run 43703176769 collected all 7,200 cells as `harness_failure` with
   `error: no record collected (job failed or was cancelled)`. The plan and
-  build jobs succeeded, so the failure is in the run shards. Nothing about
-  M12 versus M13 can be read from this run; it is a harness failure, not a
-  result. See [OPEN-WORK.md](OPEN-WORK.md).
+  build jobs succeeded. All 8 run shards were cancelled at exactly 5 hours,
+  the run job's `timeout-minutes: 300` (`.github/workflows/compare.yml`),
+  before any of them wrote records: the grid was too large for 8 shards, not
+  broken. Nothing about M12 versus M13 can be read from this run; it is a
+  harness failure, not a result. See [OPEN-WORK.md](OPEN-WORK.md).
 
 - **The borg-reborn-rs option-C pilot: the ladder errand looks better, on
   one development suite.**
@@ -368,3 +370,17 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
     downward travel still forcing an unprepared level, and restocking and
     selling being misread as fear). All were fixed, but findings 5–7 and the
     `/explored`/`/stall` firing in play were never verified in play.
+
+- **The errands plan × M13 shopping pilot ran cleanly (borg-zoo#123).**
+  `reborn-plan-m13-classes-18`, run 43845673921, 72 games on `classes-18`,
+  specimen `4.2.6-reborn-rust-plan-m13` (borg-reborn-rs `2f74e1c5`, without
+  the #355 survival fix). It passed its prespecified checks: every cell
+  ended in `death` or `turn_cap`, none was `config_error` or needed a rerun,
+  and all 36 plan cells recorded plan sha256 `922372ba…`. No cell ended
+  `borg_stopped`. Deaths per 18: control 9, shop 4, plan 4, plan-shop 5.
+  Mean final level was 3.8–4.5 and mean deepest level 1.8–2.6.
+  - A plumbing check, not a measurement: 18 games per arm say nothing about
+    effects.
+  - The largest key count was 19,028 (plan-shop). Nothing like the 69,838
+    keys of the oil store/take loop (borg-rs#90), which the zoo still does
+    not detect.
