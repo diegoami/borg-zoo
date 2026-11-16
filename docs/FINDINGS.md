@@ -2,6 +2,15 @@
 
 What the zoo's completed experiments have shown, with the run behind each.
 
+**Cemetery scenario dispatch smoke (#144):**
+[Two-pushid receipts and limits](../reports/scenarios/cemetery-caster-two-pushids-smoke/local-144/README.md).
+One pinned Gnome Mage birth at depth 1, seed 202, completed on reborn
+99473510 and d3ebe3c0: both survived the requested 3,000-engine-turn cap
+(actual 3,003, about 300 player turns). All 2/2 cells passed source/binary,
+start and effective-settings checks. This validates the separate synthetic
+dispatch/impact path; it is not population or improvement evidence, and it
+does not test observed caster equipment. Qualified near-death is unavailable.
+
 **Local C/Neo birth-alignment pilot:**
 [report and source evidence](../reports/c-neo-birth-alignment-pilot-v1/README.md).
 Nine Human classes plus a repeat per engine verify recommended point buy,
