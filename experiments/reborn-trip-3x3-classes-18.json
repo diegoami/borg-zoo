@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-trip-3x3-classes-18",
+  "description": "borg-zoo#123 3x3 pilot on whether the trip policy belongs in the study: plan (none, errands_plan.txt, errands_plan_ambitious.txt) x shopping (off; M13 live town planner only; town planner + trip policy) on 4.2.6-reborn-rust-plans-m13 (borg-reborn-rs 1c4b351b), classes-18 (9 classes x 2 seeds, assigned birth, 100,000-turn cap). 162 games.",
+  "prespecified": "Fixed 2026-11-16, before any result was read. Pilot, not a measurement. It checks that all nine arms run: every cell ends in death, turn_cap or borg_stopped; no config_error; loaded-plan copies match their pins and are absent in no-plan arms; frozen-turn stalls and key outliers are listed. Descriptively, per plan row, the town-only and town+trip columns are compared (deaths, final level, deepest level, keys, paired rescued/newly killed), which is the trip policy's contribution. 18 starts per arm cannot show whether the trip policy is good; that needs a development-size run. Caveats: this build still has the borg-rs#90 Home oil loop, and its trip policy is the M13 one; after borg-reborn-rs#415 the trip switch selects borg-rs PR88's additive trip policy, so this pilot's trip column does not describe that build.",
+  "specimens": [
+    "4.2.6-reborn-rust-plans-m13"
+  ],
+  "profiles": [
+    "reborn-m13-control",
+    "reborn-m13-town",
+    "reborn-m13-shop",
+    "reborn-m13-plan",
+    "reborn-m13-plan-town",
+    "reborn-m13-plan-shop",
+    "reborn-m13-ambitious",
+    "reborn-m13-ambitious-town",
+    "reborn-m13-ambitious-shop"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-plans-m13",
+  "control_profile": "reborn-m13-control",
+  "owner_authorization": "2026-11-16: the owner asked for a 3x3 pilot for #123, because whether the trip policy is good has not been established; the development arms keep it off until then."
+}
