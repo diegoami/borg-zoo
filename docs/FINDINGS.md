@@ -141,6 +141,31 @@ Necromancer's 200 pairs have identical play hashes. The site now reports
 paired deaths by class. [Reanalysis and frozen-input hashes](../reports/rogue-shopping-79/REPORT.md).
 A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 
+- **Neo parity-and-books small tier: the measurement holds; five stalls are Borg loops (borg-zoo#137).**
+  `neo-b4-parity-books-v1-small`, run 43876073942, 90 games: starts 1–90 of
+  `neo-seeded-v2-classes-1800` (10 per class, the parent's characters), 100,000
+  exact ticks. Borg 1.4.0-beta.6.zoo.1, source `464a1555`; tracker master
+  `b9beb64d` (#113) has the same tree, and master `2e468420` (#114) differs only
+  in docs. Engine `d27ed50f`, toolkit `638979d`.
+  - Integrity: all 90 records reconciled with their assigned characters; no
+    `config_error`; evidence complete for all 90.
+  - Outcomes: 46 deaths, 39 turn-cap stops, 5 stalls. Mean final level 3.1,
+    mean deepest level 2.1, 5 reached DL5+. Median wall time 106 s per game,
+    maximum 322 s.
+  - Deaths per 10 by class: Druid 9, Mage 8, Ranger 8, Necromancer 7, Priest 4,
+    Blackguard 3, Rogue 3, Warrior 3, Paladin 1. The main killers were Farmer
+    Maggot's dogs (Fang 7, Grip 5).
+  - The 5 stalls were stopped by the runner's no-progress check (the same
+    action changing nothing 40 times running). Each is a Borg loop:
+    - Elf Blackguard 907433825: keeps walking into a yellow mushroom patch
+      while "too afraid to attack" it.
+    - Half-Orc Rogue 1125182320: keeps trying to read while blind.
+    - Half-Troll Necromancer 1211397579: keeps trying to cast while blind.
+    - High-Elf Blackguard 1263080150: keeps tunnelling granite with its weapon.
+    - Half-Orc Necromancer 1770109965: keeps trying to sell a Cloak in a shop.
+  - Descriptive only. The older book cohort (43759670685) used engine
+    `b4af703` and Borg `d6215a8`, so no fix-by-fix or improvement claim is made.
+
 ## Neo Borg: Mandos lanes
 
 **The port repairs never change play.**
