@@ -1,0 +1,4550 @@
+{
+  "schema": "neo-parity-smoke-acceptance@1",
+  "source": "464a1555ca73cf662b522f020152faa9d1a2d465",
+  "engine": "d27ed50f9e3b650a43cceda5a0c007d03cc321df",
+  "toolkit": "638979da690891c11da1c1e780631828953b03d7",
+  "bundle_sha256": "7805b062c6b867dbf3967f75d9db34cd9e965ef963a0bff23d9a40fc76f8c1ac",
+  "version": "1.4.0-beta.6.zoo.1",
+  "records": 18,
+  "outcomes": {
+    "turn_cap": 18
+  },
+  "inventoried_files_verified": 108,
+  "raw_archives": {
+    "raw-neo-b4-parity-books-v1-0.tgz": "74c89d7e21b0d3099b6848b7df525921a08ab935dfa1f4c331f1c2e007f62ab2",
+    "raw-neo-b4-parity-books-v1-1.tgz": "3703bfdae26755cf0a7e4760784cc730c2901bf421f3b5824f2a103382fad6fe"
+  },
+  "all_pins_births_settings_receipts_verified": true,
+  "cells": [
+    {
+      "seed": 1495542960,
+      "class": "Necromancer",
+      "race": "Human",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "run/messages.jsonl",
+        "run/run.json",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "stderr.log",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 2332,
+          "text": "The fruit bat bites you."
+        },
+        {
+          "turn": 2336,
+          "text": "The fruit bat bites you."
+        },
+        {
+          "turn": 2449,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3379,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3379,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 3524,
+          "text": "The fruit bat bites you."
+        },
+        {
+          "turn": 3529,
+          "text": "The fruit bat bites you."
+        },
+        {
+          "turn": 3529,
+          "text": "You failed to concentrate hard enough!"
+        },
+        {
+          "turn": 3533,
+          "text": "The fruit bat bites you."
+        },
+        {
+          "turn": 3538,
+          "text": "The fruit bat bites you."
+        },
+        {
+          "turn": 3547,
+          "text": "The fruit bat bites you."
+        },
+        {
+          "turn": 3556,
+          "text": "The fruit bat bites you."
+        },
+        {
+          "turn": 3565,
+          "text": "The fruit bat bites you."
+        },
+        {
+          "turn": 3569,
+          "text": "You failed to concentrate hard enough!"
+        },
+        {
+          "turn": 3570,
+          "text": "The fruit bat bites you."
+        },
+        {
+          "turn": 3579,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3579,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 3579,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3579,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4989,
+          "text": "You feel that there are good treasures here."
+        }
+      ],
+      "book_events": [],
+      "turn": 5000,
+      "cast_attempts": 7,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4889,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4899,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4909,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4919,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4929,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4939,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4949,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4959,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4969,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4979,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4989,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4999,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null,
+      "truth_receipt": true
+    },
+    {
+      "seed": 1756650570,
+      "class": "Mage",
+      "race": "Half-Elf",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "run/messages.jsonl",
+        "run/run.json",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "stderr.log",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 4380,
+          "text": "The pitiful-looking beggar dies."
+        },
+        {
+          "turn": 4570,
+          "text": "You bought a Ration of Food for 3 gold."
+        },
+        {
+          "turn": 4570,
+          "text": "You bought a Ration of Food for 3 gold."
+        },
+        {
+          "turn": 4570,
+          "text": "You bought a Ration of Food for 3 gold."
+        },
+        {
+          "turn": 4570,
+          "text": "Taken!"
+        },
+        {
+          "turn": 4570,
+          "text": "You bought a Ration of Food for 3 gold."
+        },
+        {
+          "turn": 4570,
+          "text": "You bought a Wooden Torch (5000 turns) for 6 gold."
+        },
+        {
+          "turn": 4570,
+          "text": "Done!"
+        },
+        {
+          "turn": 4570,
+          "text": "You bought a Wooden Torch (5000 turns) for 6 gold."
+        },
+        {
+          "turn": 4570,
+          "text": "You bought a Wooden Torch (5000 turns) for 6 gold."
+        },
+        {
+          "turn": 4570,
+          "text": "You bought a Wooden Torch (5000 turns) for 6 gold."
+        },
+        {
+          "turn": 4570,
+          "text": "You bought a Wooden Torch (5000 turns) for 6 gold."
+        },
+        {
+          "turn": 4570,
+          "text": "Accepted!"
+        },
+        {
+          "turn": 4570,
+          "text": "You bought a Wooden Torch (5000 turns) for 6 gold."
+        },
+        {
+          "turn": 4570,
+          "text": "Done!"
+        },
+        {
+          "turn": 4570,
+          "text": "You bought a Ration of Food for 3 gold."
+        },
+        {
+          "turn": 4570,
+          "text": "You bought a Cloak [1,+0] for 6 gold."
+        },
+        {
+          "turn": 4570,
+          "text": "You are wearing a Cloak [1,+0] (i)."
+        },
+        {
+          "turn": 4710,
+          "text": "You failed to concentrate hard enough!"
+        },
+        {
+          "turn": 4719,
+          "text": "The singing, happy drunk begs you for money."
+        }
+      ],
+      "book_events": [],
+      "turn": 5000,
+      "cast_attempts": 6,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4640,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "shop-exit"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4640,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4650,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4660,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4670,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4680,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4690,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4700,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4710,
+          "intent": {
+            "kind": "target",
+            "x": 31,
+            "y": 13
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4710,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "cast",
+              "args": {
+                "spell": 0
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4720,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4730,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null,
+      "truth_receipt": true
+    },
+    {
+      "seed": 810392190,
+      "class": "Blackguard",
+      "race": "Human",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "run/messages.jsonl",
+        "run/run.json",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "stderr.log",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 2985,
+          "text": "The white icky thing touches you."
+        },
+        {
+          "turn": 3604,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3634,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3634,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4014,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4044,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4044,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4104,
+          "text": "You feel that there are only scraps of junk here."
+        },
+        {
+          "turn": 4324,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4354,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4354,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4391,
+          "text": "The rock lizard wakes up."
+        },
+        {
+          "turn": 4472,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4502,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4502,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4647,
+          "text": "The rock lizard wakes up."
+        },
+        {
+          "turn": 4893,
+          "text": "The rock lizard bites you."
+        },
+        {
+          "turn": 4909,
+          "text": "These monsters could provide good sport."
+        },
+        {
+          "turn": 4909,
+          "text": "Welcome to level 2."
+        },
+        {
+          "turn": 4959,
+          "text": "You enter a maze of up staircases."
+        }
+      ],
+      "book_events": [],
+      "turn": 5000,
+      "cast_attempts": 1,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4862,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 3
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4872,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4882,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "hold"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4892,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4901,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4909,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "cast",
+              "args": {
+                "spell": 0
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4919,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4929,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 3
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4939,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 3
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4949,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4959,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "ascend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4959,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null,
+      "truth_receipt": true
+    },
+    {
+      "seed": 1393553815,
+      "class": "Priest",
+      "race": "Half-Elf",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "run/messages.jsonl",
+        "run/run.json",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "stderr.log",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 1780,
+          "text": "You bought a Wooden Torch (5000 turns) for 6 gold."
+        },
+        {
+          "turn": 1780,
+          "text": "Okay."
+        },
+        {
+          "turn": 1780,
+          "text": "You bought a Wooden Torch (5000 turns) for 6 gold."
+        },
+        {
+          "turn": 1780,
+          "text": "You bought a Wooden Torch (5000 turns) for 6 gold."
+        },
+        {
+          "turn": 1780,
+          "text": "You bought a Ration of Food for 3 gold."
+        },
+        {
+          "turn": 1880,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 1880,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 1880,
+          "text": "You sense no evil creatures."
+        },
+        {
+          "turn": 2090,
+          "text": "You sense no evil creatures."
+        },
+        {
+          "turn": 3070,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3070,
+          "text": "You sense no evil creatures."
+        },
+        {
+          "turn": 3110,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3110,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 3110,
+          "text": "You sense no evil creatures."
+        },
+        {
+          "turn": 4510,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4510,
+          "text": "You sense the presence of evil creatures!"
+        },
+        {
+          "turn": 4530,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4530,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4530,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4530,
+          "text": "You sense no evil creatures."
+        }
+      ],
+      "book_events": [],
+      "turn": 5000,
+      "cast_attempts": 9,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4450,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4460,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4470,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4480,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4490,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4500,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4510,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "ascend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4510,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "cast",
+              "args": {
+                "spell": 1
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4530,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "descend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4530,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "ascend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4530,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "cast",
+              "args": {
+                "spell": 1
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4560,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null,
+      "truth_receipt": true
+    },
+    {
+      "seed": 526260513,
+      "class": "Ranger",
+      "race": "Half-Elf",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "run/messages.jsonl",
+        "run/run.json",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "stderr.log",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 3870,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3870,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4344,
+          "text": "The giant white centipede crawls on you."
+        },
+        {
+          "turn": 4344,
+          "text": "You are covered with frost!"
+        },
+        {
+          "turn": 4344,
+          "text": "The giant white centipede stings you."
+        },
+        {
+          "turn": 4366,
+          "text": "The giant white centipede crawls on you."
+        },
+        {
+          "turn": 4366,
+          "text": "You are covered with frost!"
+        },
+        {
+          "turn": 4366,
+          "text": "The giant white centipede stings you."
+        },
+        {
+          "turn": 4377,
+          "text": "You were wearing a Wicker Shield [2,+0] {cursed, ??} (d)."
+        },
+        {
+          "turn": 4392,
+          "text": "The giant white centipede flees in terror!"
+        },
+        {
+          "turn": 4399,
+          "text": "The giant white centipede is frozen to the spot!"
+        },
+        {
+          "turn": 4401,
+          "text": "The giant white centipede can move again."
+        },
+        {
+          "turn": 4900,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4900,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4900,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4900,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4900,
+          "text": "You drop a Wicker Shield [2,+0] {cursed, ??} (e)."
+        },
+        {
+          "turn": 4900,
+          "text": "You have no more Wicker Shields [2,+0] {cursed, ??} (e)."
+        },
+        {
+          "turn": 4935,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4935,
+          "text": "This seems a quiet, peaceful place."
+        }
+      ],
+      "book_events": [],
+      "turn": 5000,
+      "cast_attempts": 0,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4890,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4900,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "ascend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4900,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "descend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4900,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "ascend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4900,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "drop",
+              "args": {
+                "handle": 14,
+                "quantity": 1
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4935,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "descend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4935,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4955,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4965,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4975,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4985,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4995,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null,
+      "truth_receipt": true
+    },
+    {
+      "seed": 682304898,
+      "class": "Druid",
+      "race": "Human",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "run/messages.jsonl",
+        "run/run.json",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "stderr.log",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 2840,
+          "text": "The rock lizard bites you."
+        },
+        {
+          "turn": 3434,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3464,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3464,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 3764,
+          "text": "You feel that there is naught but cobwebs here."
+        },
+        {
+          "turn": 3874,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3904,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3904,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4244,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4274,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4274,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4524,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4524,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4524,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4524,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4574,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4574,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4690,
+          "text": "The yellow mold wakes up."
+        },
+        {
+          "turn": 4700,
+          "text": "The yellow mold releases spores at you."
+        },
+        {
+          "turn": 4714,
+          "text": "You enter a maze of up staircases."
+        }
+      ],
+      "book_events": [],
+      "turn": 5000,
+      "cast_attempts": 0,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4614,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4624,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4634,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4644,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4654,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4664,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4674,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4684,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4694,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4704,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4714,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "ascend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4714,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null,
+      "truth_receipt": true
+    },
+    {
+      "seed": 1321172726,
+      "class": "Warrior",
+      "race": "Human",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "run/messages.jsonl",
+        "run/run.json",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "stderr.log",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 3361,
+          "text": "The wild dog wakes up."
+        },
+        {
+          "turn": 3362,
+          "text": "The wild dog bites you."
+        },
+        {
+          "turn": 3369,
+          "text": "The wild dog bites you."
+        },
+        {
+          "turn": 3373,
+          "text": "The wild dog bites you."
+        },
+        {
+          "turn": 3374,
+          "text": "The wild dog bites you."
+        },
+        {
+          "turn": 3374,
+          "text": "The wild dog wakes up."
+        },
+        {
+          "turn": 3418,
+          "text": "The wild dog bites you."
+        },
+        {
+          "turn": 3706,
+          "text": "The wild dog bites you."
+        },
+        {
+          "turn": 3718,
+          "text": "The wild dog bites you."
+        },
+        {
+          "turn": 3862,
+          "text": "The wild dog bites you."
+        },
+        {
+          "turn": 4386,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4516,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4516,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4516,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4826,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4826,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4826,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4946,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4946,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4946,
+          "text": "You enter a maze of up staircases."
+        }
+      ],
+      "book_events": [],
+      "turn": 5000,
+      "cast_attempts": 0,
+      "retained_starting_book": null,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4886,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 3
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4896,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4906,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4916,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4926,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4936,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4946,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "descend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4946,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "ascend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4946,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 3
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4976,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 9
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4986,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 3
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4996,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 6
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null,
+      "truth_receipt": true
+    },
+    {
+      "seed": 1308461545,
+      "class": "Rogue",
+      "race": "Human",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "run/messages.jsonl",
+        "run/run.json",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "stderr.log",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 1980,
+          "text": "The giant yellow centipede misses you."
+        },
+        {
+          "turn": 1980,
+          "text": "The giant yellow centipede stings you."
+        },
+        {
+          "turn": 1982,
+          "text": "Welcome to level 2."
+        },
+        {
+          "turn": 1989,
+          "text": "The giant yellow centipede bites you."
+        },
+        {
+          "turn": 1989,
+          "text": "The giant yellow centipede misses you."
+        },
+        {
+          "turn": 1992,
+          "text": "The giant yellow centipede flees in terror!"
+        },
+        {
+          "turn": 2032,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 2032,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 2032,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 2032,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 2612,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 2612,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 3182,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3212,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3212,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 3838,
+          "text": "You feel that there is naught but cobwebs here."
+        },
+        {
+          "turn": 4258,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4288,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4288,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4397,
+          "text": "The wild dog bites you."
+        }
+      ],
+      "book_events": [],
+      "turn": 5000,
+      "cast_attempts": 0,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4889,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4900,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "pickup"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4900,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 3
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4910,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 6
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4920,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4930,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4940,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4950,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 9
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4960,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4970,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4980,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "open",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4990,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null,
+      "truth_receipt": true
+    },
+    {
+      "seed": 1588289649,
+      "class": "Paladin",
+      "race": "Half-Elf",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "run/messages.jsonl",
+        "run/run.json",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "stderr.log",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 3731,
+          "text": "You dig in the rubble with your weapon."
+        },
+        {
+          "turn": 3741,
+          "text": "You dig in the rubble with your weapon."
+        },
+        {
+          "turn": 3751,
+          "text": "You dig in the rubble with your weapon."
+        },
+        {
+          "turn": 3761,
+          "text": "You dig in the rubble with your weapon."
+        },
+        {
+          "turn": 3771,
+          "text": "You dig in the rubble with your weapon."
+        },
+        {
+          "turn": 3781,
+          "text": "You dig in the rubble with your weapon."
+        },
+        {
+          "turn": 3791,
+          "text": "You have removed the rubble with your weapon."
+        },
+        {
+          "turn": 4141,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4171,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4171,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4251,
+          "text": "The clear icky thing flees in terror!"
+        },
+        {
+          "turn": 4473,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4503,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4503,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4833,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4863,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4863,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4909,
+          "text": "The grey mold releases spores at you."
+        },
+        {
+          "turn": 4909,
+          "text": "The grey mold releases spores at you."
+        },
+        {
+          "turn": 4943,
+          "text": "You enter a maze of up staircases."
+        }
+      ],
+      "book_events": [],
+      "turn": 5000,
+      "cast_attempts": 0,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4833,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4853,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 9
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4863,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "descend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4863,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4883,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4893,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "open",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4903,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4913,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4923,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 3
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4933,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4943,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "ascend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4943,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null,
+      "truth_receipt": true
+    },
+    {
+      "seed": 1574307672,
+      "class": "Rogue",
+      "race": "Half-Elf",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "stderr.log",
+        "run/messages.jsonl",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "run/run.json",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 3710,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3710,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 3800,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3800,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3800,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 3800,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3800,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3800,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 3800,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3870,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3870,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4170,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4200,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4200,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4650,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4680,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4680,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4930,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4960,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4960,
+          "text": "This seems a quiet, peaceful place."
+        }
+      ],
+      "book_events": [],
+      "truth_receipt": true,
+      "turn": 5000,
+      "cast_attempts": 0,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4880,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4890,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4900,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4910,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4920,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4930,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "ascend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4930,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 6
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4950,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4960,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "descend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4960,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4980,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4990,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null
+    },
+    {
+      "seed": 941130314,
+      "class": "Necromancer",
+      "race": "Half-Elf",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "stderr.log",
+        "run/messages.jsonl",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "run/run.json",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 3565,
+          "text": "You drop a Potion of Blindness (c)."
+        },
+        {
+          "turn": 3565,
+          "text": "You have a Potion of Blindness (c)."
+        },
+        {
+          "turn": 3570,
+          "text": "You drop a Potion of Blindness (c)."
+        },
+        {
+          "turn": 3570,
+          "text": "You have no more Potions of Blindness (c)."
+        },
+        {
+          "turn": 3593,
+          "text": "The singing, happy drunk begs you for money."
+        },
+        {
+          "turn": 3596,
+          "text": "The singing, happy drunk dies."
+        },
+        {
+          "turn": 3616,
+          "text": "You drop a Potion of Blindness (c)."
+        },
+        {
+          "turn": 3616,
+          "text": "You have a Potion of Blindness (c)."
+        },
+        {
+          "turn": 3621,
+          "text": "You drop a Potion of Blindness (c)."
+        },
+        {
+          "turn": 3621,
+          "text": "You have no more Potions of Blindness (c)."
+        },
+        {
+          "turn": 3646,
+          "text": "Fine."
+        },
+        {
+          "turn": 3646,
+          "text": "You bought a Scroll of Phase Door for 15 gold."
+        },
+        {
+          "turn": 3686,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3686,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4317,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4347,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4347,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4517,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4527,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4537,
+          "text": "You have picked the lock."
+        }
+      ],
+      "book_events": [],
+      "truth_receipt": true,
+      "turn": 5000,
+      "cast_attempts": 5,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4887,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4897,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 3
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4907,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 3
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4917,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 6
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4927,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 6
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4937,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 3
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4947,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4957,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4967,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4977,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4987,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4997,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null
+    },
+    {
+      "seed": 50361376,
+      "class": "Blackguard",
+      "race": "Half-Elf",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "stderr.log",
+        "run/messages.jsonl",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "run/run.json",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 4173,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4183,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4193,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4203,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4213,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4223,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4233,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4243,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4253,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4263,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4273,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4283,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4293,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4303,
+          "text": "You have picked the lock."
+        },
+        {
+          "turn": 4653,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4683,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4683,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4933,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4963,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4963,
+          "text": "This seems a quiet, peaceful place."
+        }
+      ],
+      "book_events": [],
+      "truth_receipt": true,
+      "turn": 5000,
+      "cast_attempts": 3,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4883,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4893,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4903,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4913,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4923,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4933,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "ascend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4933,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4953,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 6
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4963,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "descend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4963,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4983,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4993,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null
+    },
+    {
+      "seed": 1516053731,
+      "class": "Druid",
+      "race": "Half-Elf",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "stderr.log",
+        "run/messages.jsonl",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "run/run.json",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 3330,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 3330,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3591,
+          "text": "The scruffy little dog bites you."
+        },
+        {
+          "turn": 3600,
+          "text": "The scruffy little dog bites you."
+        },
+        {
+          "turn": 4020,
+          "text": "You bought Studded Leather Armour (-1) [12,+0] for 150 gold."
+        },
+        {
+          "turn": 4020,
+          "text": "You had Studded Leather Armour (-1) [12,+0]."
+        },
+        {
+          "turn": 4020,
+          "text": "You bought a Small Metal Shield [5,+0] for 36 gold."
+        },
+        {
+          "turn": 4020,
+          "text": "You had a Small Metal Shield [5,+0]."
+        },
+        {
+          "turn": 4020,
+          "text": "Agreed!"
+        },
+        {
+          "turn": 4020,
+          "text": "You bought a Small Metal Shield [5,+0] for 36 gold."
+        },
+        {
+          "turn": 4020,
+          "text": "Fine."
+        },
+        {
+          "turn": 4020,
+          "text": "You bought a Small Metal Shield [5,+0] for 36 gold."
+        },
+        {
+          "turn": 4020,
+          "text": "Agreed!"
+        },
+        {
+          "turn": 4020,
+          "text": "You bought a Small Metal Shield [5,+0] for 36 gold."
+        },
+        {
+          "turn": 4020,
+          "text": "You are wearing a Small Metal Shield [5,+0] (m)."
+        },
+        {
+          "turn": 4140,
+          "text": "The pitiful-looking beggar flees in terror!"
+        },
+        {
+          "turn": 4210,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4210,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4810,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4980,
+          "text": "The village idiot wakes up."
+        }
+      ],
+      "book_events": [],
+      "truth_receipt": true,
+      "turn": 5000,
+      "cast_attempts": 0,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4890,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4900,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4910,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4920,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4930,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4940,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4950,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4960,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4970,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4980,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 1
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4990,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "shop-exit"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4990,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 9
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null
+    },
+    {
+      "seed": 414897178,
+      "class": "Ranger",
+      "race": "Human",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "stderr.log",
+        "run/messages.jsonl",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "run/run.json",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 3299,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3359,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3359,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 3709,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3709,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3709,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 3709,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3709,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3709,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 3709,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3779,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3779,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4339,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4369,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4369,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4579,
+          "text": "You failed to pick the lock."
+        },
+        {
+          "turn": 4589,
+          "text": "You have picked the lock."
+        },
+        {
+          "turn": 4899,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4929,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4929,
+          "text": "This seems a tame, sheltered place."
+        }
+      ],
+      "book_events": [],
+      "truth_receipt": true,
+      "turn": 5000,
+      "cast_attempts": 0,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4889,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4899,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "ascend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4899,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 3
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4919,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4929,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "descend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4929,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4949,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4959,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4969,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4979,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4989,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 9
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4999,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 6
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null
+    },
+    {
+      "seed": 1651693122,
+      "class": "Priest",
+      "race": "Human",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "stderr.log",
+        "run/messages.jsonl",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "run/run.json",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 2867,
+          "text": "Farmer Maggot wants his mushrooms back."
+        },
+        {
+          "turn": 2867,
+          "text": "Farmer Maggot mumbles something about mushrooms."
+        },
+        {
+          "turn": 2881,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 2881,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 2881,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 2881,
+          "text": "You sense no evil creatures."
+        },
+        {
+          "turn": 3891,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3891,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 3891,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3891,
+          "text": "You sense the presence of evil creatures!"
+        },
+        {
+          "turn": 3921,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3921,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 3921,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3921,
+          "text": "You sense no evil creatures."
+        },
+        {
+          "turn": 4191,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4191,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4191,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4608,
+          "text": "The scruffy little dog wakes up."
+        },
+        {
+          "turn": 4621,
+          "text": "You sense no evil creatures."
+        },
+        {
+          "turn": 4797,
+          "text": "The mangy-looking leper wakes up."
+        }
+      ],
+      "book_events": [],
+      "truth_receipt": true,
+      "turn": 5000,
+      "cast_attempts": 10,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4631,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4651,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4661,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4681,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4691,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4701,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4711,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4721,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4731,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4811,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4821,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 6
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4831,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null
+    },
+    {
+      "seed": 1761112893,
+      "class": "Paladin",
+      "race": "Human",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "stderr.log",
+        "run/messages.jsonl",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "run/run.json",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 4138,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4268,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4268,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4268,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4308,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4308,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4308,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4308,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4308,
+          "text": "This place seems reasonably safe."
+        },
+        {
+          "turn": 4308,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4468,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4468,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4468,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4938,
+          "text": "You bought Soft Leather Armour [8,+0] for 84 gold."
+        },
+        {
+          "turn": 4938,
+          "text": "You had Soft Leather Armour [8,+0]."
+        },
+        {
+          "turn": 4938,
+          "text": "You bought a Metal Cap [3,+0] for 24 gold."
+        },
+        {
+          "turn": 4938,
+          "text": "You had a Metal Cap [3,+0]."
+        },
+        {
+          "turn": 4938,
+          "text": "You bought a Pair of Leather Sandals [1,+0] for 6 gold."
+        },
+        {
+          "turn": 4938,
+          "text": "You had a Pair of Leather Sandals [1,+0]."
+        },
+        {
+          "turn": 4984,
+          "text": "The singing, happy drunk begs you for money."
+        }
+      ],
+      "book_events": [],
+      "truth_receipt": true,
+      "turn": 5000,
+      "cast_attempts": 2,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4938,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "shop-buy",
+              "args": {
+                "index": 3
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4938,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "shop-sell",
+              "args": {
+                "handle": 12,
+                "quantity": 1
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4938,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "shop-buy",
+              "args": {
+                "index": 9
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4938,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "shop-sell",
+              "args": {
+                "handle": 13,
+                "quantity": 1
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4938,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "shop-exit"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4938,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4948,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 9
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4958,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4968,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4978,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4988,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 9
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4995,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 9
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null
+    },
+    {
+      "seed": 1301830585,
+      "class": "Warrior",
+      "race": "Half-Elf",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "stderr.log",
+        "run/messages.jsonl",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "run/run.json",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 3367,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3367,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 3367,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3367,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3367,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 3367,
+          "text": "You have found a secret door."
+        },
+        {
+          "turn": 3367,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 3897,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 3897,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 3897,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4034,
+          "text": "The blubbering idiot wakes up."
+        },
+        {
+          "turn": 4277,
+          "text": "You bought a Scroll of Phase Door for 15 gold."
+        },
+        {
+          "turn": 4377,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4377,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4877,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4877,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4877,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4877,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4927,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4927,
+          "text": "This seems a tame, sheltered place."
+        }
+      ],
+      "book_events": [],
+      "truth_receipt": true,
+      "turn": 5000,
+      "cast_attempts": 0,
+      "retained_starting_book": null,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4877,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "descend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4877,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "ascend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4877,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4917,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 8
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4927,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "descend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4927,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4947,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 4
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4957,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4967,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4977,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 2
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4987,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 3
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4997,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 6
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null
+    },
+    {
+      "seed": 2037951800,
+      "class": "Mage",
+      "race": "Human",
+      "outcome": "turn_cap",
+      "cause": null,
+      "files": [
+        "stderr.log",
+        "run/messages.jsonl",
+        "run/commands.jsonl",
+        "run/states.jsonl",
+        "run/run.json",
+        "stdout.log"
+      ],
+      "last_messages": [
+        {
+          "turn": 4220,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4220,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4340,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4340,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4340,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4420,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4420,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4420,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4620,
+          "text": "The singing, happy drunk dies."
+        },
+        {
+          "turn": 4770,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4770,
+          "text": "This seems a quiet, peaceful place."
+        },
+        {
+          "turn": 4770,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4770,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4770,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4770,
+          "text": "You enter a maze of up staircases."
+        },
+        {
+          "turn": 4865,
+          "text": "The scruffy little dog bites you."
+        },
+        {
+          "turn": 4870,
+          "text": "The scruffy little dog dies."
+        },
+        {
+          "turn": 4940,
+          "text": "You enter a maze of down staircases."
+        },
+        {
+          "turn": 4940,
+          "text": "This seems a tame, sheltered place."
+        },
+        {
+          "turn": 4940,
+          "text": "You enter a maze of up staircases."
+        }
+      ],
+      "book_events": [],
+      "truth_receipt": true,
+      "turn": 5000,
+      "cast_attempts": 7,
+      "retained_starting_book": true,
+      "last_commands": [
+        {
+          "type": "intent",
+          "turn": 4860,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 6
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4870,
+          "intent": {
+            "kind": "target",
+            "x": 35,
+            "y": 7
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4870,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "cast",
+              "args": {
+                "spell": 0
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4880,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4890,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4900,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 7
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4910,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 9
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4920,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 9
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4930,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "walk",
+              "dir": 9
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4940,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "descend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4940,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "ascend"
+            }
+          },
+          "accepted": true
+        },
+        {
+          "type": "intent",
+          "turn": 4940,
+          "intent": {
+            "kind": "command",
+            "command": {
+              "code": "rest",
+              "args": {
+                "count": -2
+              }
+            }
+          },
+          "accepted": true
+        }
+      ],
+      "stall": null
+    }
+  ],
+  "acceptance": "accepted after review of all18 cells, raw hashes, settings, births, pins, truth receipts, progress and book/cast traces",
+  "survival_claim": false,
+  "workflow_run": 43861787363,
+  "catalogue": "2de7975d6939bc6139874fa09a50071f2d186825",
+  "review": {
+    "all_18_ordinary_caps": true,
+    "abnormal_endpoints": 0,
+    "all_entered_dungeon": true,
+    "retained_caster_starting_books": 16,
+    "caster_starts": 16,
+    "mage_cast_attempts": [
+      6,
+      7
+    ],
+    "priest_cast_attempts": [
+      9,
+      10
+    ],
+    "necromancer_cast_attempts": [
+      5,
+      7
+    ],
+    "note": "Other short low-level class runs may have no eligible/selected cast; no spell-fidelity or survival claim."
+  }
+}

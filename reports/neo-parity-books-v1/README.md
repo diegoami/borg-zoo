@@ -63,3 +63,24 @@ are byte-identical to967b28f. No gameplay, source, engine, seed or cap changes.
 The failed run is preserved; acceptance needs a fresh smoke on the corrected
 catalogue pin. Source464a155's full1363-test ordinary/exact-source gates and
 production truth-host checks passed in run43860178921.
+
+## Accepted smoke
+
+[Corrected smoke43861787363](https://github.com/diegoami/borg-zoo/actions/runs/43861787363)
+completed on immutable catalogue2de7975d6939bc6139874fa09a50071f2d186825:
+18/18 exact5000-tick caps, zero deaths/stalls/timeouts/harness/config errors.
+All18entered the dungeon; one Necromancer reached depth2. All108 inventoried
+raw files and both archive checksums were verified, as were assigned births,
+actual options/settings, source/engine/toolkit and durable truth-use receipts.
+Bundle SHA256:7805b062c6b867dbf3967f75d9db34cd9e965ef963a0bff23d9a40fc76f8c1ac.
+All16casters retain the starting book. Mage cast attempts6/7, Priest9/10,
+Necromancer5/7; short Druid/Rogue/Ranger runs do not establish casting eligibility
+or success. This is acceptance of the measurement, not a survival result.
+
+Machine-readable receipt: [smoke-43861787363-acceptance.json](smoke-43861787363-acceptance.json).
+Recheck downloaded artifacts with `python3 reports/neo-parity-books-v1/verify-smoke.py
+--artifacts ARTIFACT_DIRECTORY --catalogue CATALOGUE_CHECKOUT --out OUTPUT.json`.
+The script verifies identities/hashes and leaves outcome acceptance to review.
+Source1363-case ordinary/exact-source gates and catalogue172unit/113plan checks
+are green. The full arm is ready; dispatch must respect the no-overlap rule
+and preserve the exact accepted source/engine/toolkit/configuration.

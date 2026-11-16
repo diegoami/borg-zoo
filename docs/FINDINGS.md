@@ -402,3 +402,12 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
     deepest level 2.3.
   - A plumbing check, not a measurement. Its shop arms predate the
     borg-rs#90 fix and are not comparable with the development study's.
+
+- **Neo parity-and-books candidate accepted at smoke scale (2026-11-16).**
+  [Smoke43861787363](https://github.com/diegoami/borg-zoo/actions/runs/43861787363)
+  records18/18 exact5000-tick caps with no abnormal endpoints, all18dungeon
+  entries,16/16caster starting books retained and all108raw-file receipts verified.
+  Borg1.4.0-beta.6.zoo.1 /464a155, beta.4 engined27ed50f and toolkit638979d.
+  The first smoke failed at packaging before games; the corrected toolkit's
+  SDK alias fix preserves runtime-host bytes. [Protocol and acceptance](../reports/neo-parity-books-v1/README.md).
+  This does not establish survival improvement or complete class/spell fidelity.
