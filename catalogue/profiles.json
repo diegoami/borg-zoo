@@ -741,6 +741,128 @@
         "borg_reborn_errand": "ladder"
       }
     },
+    "reborn-heal0-trip0-none": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag off (default, not written); trip policy off; no plan; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0
+      }
+    },
+    "reborn-heal0-trip0-plan": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag off (default, not written); trip policy off; max-depth errands_plan.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-heal0-trip0-ambitious": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag off (default, not written); trip policy off; max-depth errands_plan_ambitious.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_plan": "errands_plan_ambitious.txt"
+      }
+    },
+    "reborn-heal0-trip1-none": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag off (default, not written); trip policy on, default thresholds (4,2); no plan; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1
+      }
+    },
+    "reborn-heal0-trip1-plan": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag off (default, not written); trip policy on, default thresholds (4,2); max-depth errands_plan.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-heal0-trip1-ambitious": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag off (default, not written); trip policy on, default thresholds (4,2); max-depth errands_plan_ambitious.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_plan": "errands_plan_ambitious.txt"
+      }
+    },
+    "reborn-heal1-trip0-none": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag on; trip policy off; no plan; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_param_caution_heal_when_outmatched": 1
+      }
+    },
+    "reborn-heal1-trip0-plan": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag on; trip policy off; max-depth errands_plan.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_plan": "errands_plan.txt",
+        "borg_param_caution_heal_when_outmatched": 1
+      }
+    },
+    "reborn-heal1-trip0-ambitious": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag on; trip policy off; max-depth errands_plan_ambitious.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_param_caution_heal_when_outmatched": 1
+      }
+    },
+    "reborn-heal1-trip1-none": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag on; trip policy on, default thresholds (4,2); no plan; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_param_caution_heal_when_outmatched": 1
+      }
+    },
+    "reborn-heal1-trip1-plan": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag on; trip policy on, default thresholds (4,2); max-depth errands_plan.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_param_caution_heal_when_outmatched": 1
+      }
+    },
+    "reborn-heal1-trip1-ambitious": {
+      "description": "borg-zoo#151 pilot: heal-when-outmatched flag on; trip policy on, default thresholds (4,2); max-depth errands_plan_ambitious.txt; live town planner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_param_caution_heal_when_outmatched": 1
+      }
+    },
     "reborn-maxd-plan-off": {
       "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner; trip policy off.",
       "settings": {
