@@ -1,8 +1,10 @@
 # Shared data foundation for the zoo and the cemetery (borg-zoo#114)
 
-Status: **proposal for owner review, revised after an independent review
-and a re-review** ([responses](REVIEW-RESPONSE.md)). One owner decision (D8,
-retry budgets) is open. Nothing in it provisions a service,
+Status: **accepted direction** (owner, 2026-11-16), after an independent
+review and a re-review ([responses](REVIEW-RESPONSE.md)). Owner decisions
+D1–D8 are recorded in the [plan](PLAN.md#owner-decisions). Implementation
+starts only on the owner's go-ahead, milestone by milestone; nothing here
+provisions a service or starts an experiment. Nothing in it provisions a service,
 opens a paid account, changes a running experiment, stops writing the
 `results` branch, or deletes any record. Every such step is an owner decision
 listed in the [plan](PLAN.md).

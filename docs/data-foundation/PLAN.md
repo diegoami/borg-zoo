@@ -157,7 +157,7 @@ Each becomes an issue in the repository named, once the owner agrees.
 
 ## Owner decisions
 
-D1–D7 and T0 were decided by the owner on 2026-11-15; D8 is open. These settle direction only. Opening a
+D1–D7 and T0 were decided by the owner on 2026-11-15, D8 on 2026-11-16. These settle direction only. Opening a
 vendor account, provisioning, cutover and any long-run cohort still need
 the owner's go-ahead at their milestone.
 
@@ -171,4 +171,4 @@ the owner's go-ahead at their milestone.
 | D6 | Are saves and logs public? | **Public**; writes only from trusted jobs |
 | D7 | Legacy URLs | **Keep a legacy snapshot** of the current site, without the raw copies that exceed the Pages limit |
 | T0 | Fix the Pages size now? | **Yes**, as a separate pull request |
-| D8 | Retry budget for long-run arms: how many retryable failures (harness failure, missing result, lost worker, wall timeout, crash) a segment may have before it closes as failed | **Open.** Proposed: 0 for ordinary experiments (today's rule), 2 for long-run arms, declared in the horizon plan before the run. Play from a checkpoint is deterministic, so a retry cannot change a game's outcome, only finish it; every failed attempt stays counted and visible |
+| D8 | Retry budget for long-run arms: how many retryable failures (harness failure, missing result, lost worker, wall timeout, crash) a segment may have before it closes as failed | **0 for ordinary experiments** (today's rule), **2 for long-run arms**, declared in the horizon plan before the run. Play from a checkpoint is deterministic, so a retry cannot change a game's outcome, only finish it; every failed attempt stays counted and visible |

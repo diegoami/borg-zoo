@@ -273,8 +273,9 @@ can resolve it.
 
 Play from a checkpoint is deterministic, so a retry can finish a game but
 cannot pick a different game outcome. A deterministic crash recurs and uses
-up the budget. The default budget is **0**: one attempt, and a failure
-stands, as the zoo does today. Long-run arms may declare more (decision D8).
+up the budget. Ordinary experiments have a budget of **0**: one attempt,
+and a failure stands, as the zoo does today. Long-run arms have a budget of
+**2**, declared in the horizon plan before the run (decision D8).
 
 1. **Claim.** A coordinator creates the control record (create-if-absent)
    or replaces an `open` one (replace-if-unchanged) with
