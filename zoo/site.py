@@ -1016,10 +1016,10 @@ def build_site(results, out):
                      len(cells), finished])
     from . import landing
     shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
-    (out / 'index.html').write_text(page('Borg zoo', landing.overview_page(runs) +
-        '<p><a href="scenarios/index.html">Synthetic scenario comparisons</a> · separate from population results</p>', charts=True))
+    (out / 'overview.html').write_text(page('Borg comparisons · borg-zoo', landing.overview_page(runs), charts=True))
     from . import scenarios
-    scenarios.build_site(results, out)
+    scenario_rows, scenario_missing = scenarios.build_site(results, out)
+    (out / 'scenarios.html').write_text(page('Scenarios · borg-zoo', landing.scenarios_page(scenario_rows, scenario_missing)))
     # The /runs/ directory contains per-run report folders, not a page of its
     # own. Publish an index there so the directory URL is useful instead of
     # returning 404/503, and point it at the Detailed experiment catalogue.
@@ -1032,7 +1032,9 @@ def build_site(results, out):
     for policy in landing.POLICIES:
         (out / f'{policy["slug"]}.html').write_text(
             page(f'{policy["title"]} · borg-zoo', landing.comparison_page(runs, policy), charts=True))
-    (out / 'detailed.html').write_text(page('Detailed · borg-zoo', landing.landing_page(runs, rows)))
+    full = page('Full runs · borg-zoo', landing.landing_page(runs, rows))
+    (out / 'index.html').write_text(full)
+    (out / 'detailed.html').write_text(full)  # older links
     (out / 'smoke.html').write_text(page('Smoke · borg-zoo', landing.smoke_page(smoke_rows)))
     (out / 'stalls.html').write_text(page('Stalls and crashes · borg-zoo', landing.stalls_page(runs)))
     (out / 'versions.html').write_text(page('Versions · borg-zoo', landing.versions_page()))

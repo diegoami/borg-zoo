@@ -490,7 +490,7 @@ def build_site(results, out):
     out = Path(out) / 'scenarios'
     out.mkdir(parents=True, exist_ok=True)
     roots = [Path(results).parent / 'scenario-results', catalogue.ROOT / 'reports/scenarios']
-    links, unavailable = [], []
+    links, unavailable, rows = [], [], []
     for root in roots:
         for path in sorted(root.glob('*/*/comparison.json')):
             name, run = path.parent.parent.name, path.parent.name
@@ -510,9 +510,14 @@ def build_site(results, out):
             (target / 'index.html').write_text(rendered)
             (target / 'comparison.json').write_bytes(path.read_bytes())
             links.append(f'<li><a href="{name}/{run}/index.html">{html.escape(name)} / {html.escape(run)}</a></li>')
+            rows.append(dict(name=name, run=run, href=f'scenarios/{name}/{run}/index.html',
+                             pairs=len(report.get('pairs') or []), counts=report.get('counts') or {},
+                             cells=f"{report.get('collected_cells', '?')}/{report.get('expected_cells', '?')}",
+                             evidence=report.get('evidence_url')))
     errors = ''.join(f'<li>{html.escape(r["report"])}: {html.escape(r["reason"])}</li>' for r in unavailable)
     (out / 'unavailable.json').write_text(json.dumps(unavailable, indent=2) + '\n')
     (out / 'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><title>Synthetic scenarios</title><h1>Synthetic scenario comparisons</h1><p>Separate from natural games and population statistics. <a href="../index.html">Borg zoo</a></p><ul>' + ''.join(links) + '</ul><h2>Unavailable reports</h2><ul>' + errors + '</ul></html>')
+    return rows, unavailable
 
 
 def main(argv=None):

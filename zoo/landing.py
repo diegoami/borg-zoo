@@ -1103,14 +1103,14 @@ RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.
 
 
 def nav(active):
-    tabs = [('index.html', 'Overview')] + [(f'{p["slug"]}.html', p['nav']) for p in POLICIES] + \
-           [('detailed.html', 'Detailed'), ('smoke.html', 'Smoke')]
+    tabs = [('index.html', 'Full runs'), ('smoke.html', 'Smoke runs'), ('scenarios.html', 'Scenarios')]
     return ('<p class="tabs">' +
             ''.join(f'<a class="tab{" active" if href == active else ""}" href="{href}">{esc(label)}</a>'
                     for href, label in tabs) + '</p>')
 
 
-FOOTER = (f'<p class="muted"><a href="versions.html">Versions</a> · <a href="stalls.html">Stalls and crashes</a> · '
+FOOTER = (f'<p class="muted"><a href="overview.html">Borg comparison charts</a> · '
+          f'<a href="versions.html">Versions</a> · <a href="stalls.html">Stalls and crashes</a> · '
           f'<a href="https://github.com/diegoami/borg-zoo/blob/main/docs/DESIGN.md">Method</a> · '
           f'<a href="https://github.com/diegoami/borg-zoo/tree/results">Raw results</a> · '
           f'<a href="https://github.com/diegoami/borg-zoo">Source</a></p>')
@@ -1157,7 +1157,7 @@ def overview_page(runs):
     links = class_links(runs, specs)
     buttons = ''.join(f'<a class="big-chip" href="{p["slug"]}.html">{esc(p["nav"])}</a>' for p in POLICIES)
     return (
-        f'<h1>Borg zoo</h1>{nav("index.html")}'
+        f'<h1>Borg zoo</h1>{nav("overview.html")}'
         f'<p class="muted">{total:,} runs · {len(runs)} experiment runs · latest {esc(latest)}</p>'
         f'<p class="lead">Angband Borg versions played headless on the same seeds: the original C Borg, '
         f'better-borg-c\'s milestones of carried fixes, and the borg-rs Rust port.</p>'
@@ -1166,16 +1166,41 @@ def overview_page(runs):
         f'nine classes: with it, and without it. Each tab has its own chart, its own runs and its own '
         f'class pages — read a point inside its tab, never across the two.</p>'
         f'<p>{buttons}</p>{links}</div></div>'
-        f'<p class="muted">Every milestone, the Rust port and the open stalls are on the '
-        f'<a href="detailed.html">Detailed</a> tab.</p>'
+        f'<p class="muted">Every experiment run is on the <a href="index.html">Full runs</a> tab.</p>'
         + add_your_borg_section() + FOOTER)
+
+
+SCENARIO_COLS = [('Scenario experiment', 'The scenario set and candidates; the link opens its report.'),
+                 ('Run', 'Where it ran: an Actions run, or a local check.'),
+                 ('Cells', 'Collected out of expected.'),
+                 ('Pairs', 'Baseline and candidate played from the same saved start.'),
+                 ('Outcomes', 'Pair outcomes, for example both survived.'),
+                 ('Evidence', 'The run that produced it.')]
+
+
+def scenarios_page(rows, unavailable):
+    """Synthetic scenarios: saved Cemetery starts replayed by two builds.
+    Never part of the population statistics."""
+    body = [[f'<a href="{esc(r["href"])}">{esc(r["name"])}</a>', esc(r['run']), esc(r['cells']), r['pairs'],
+             esc(', '.join(f'{k.replace("_", " ")} {v}' for k, v in sorted(r['counts'].items())) or '–'),
+             f'<a href="{esc(r["evidence"])}">evidence</a>' if r.get('evidence') else '–'] for r in rows]
+    missing = ''.join(f'<li>{esc(u["report"])}: {esc(u["reason"])}</li>' for u in unavailable)
+    return (f'<h1>Borg zoo</h1>{nav("scenarios.html")}'
+            '<h2>Scenarios</h2>'
+            + explain('Saved starting positions from the Cemetery, played by two builds from the same start. '
+                      'Paired observations, separate from natural games: they never enter the population '
+                      'statistics.', SCENARIO_COLS)
+            + (table(SCENARIO_COLS, body) if body else '<p class="muted">No scenario runs yet.</p>')
+            + (f'<details class="background"><summary>Reports that could not be read</summary><ul>{missing}</ul></details>'
+               if missing else '')
+            + FOOTER)
 
 
 def smoke_page(rows):
     """Smoke checks: a specimen (a milestone or a head) builds and plays a few
     seeds. Not experiments; kept apart so they do not crowd the comparisons."""
     return (f'<h1>Borg zoo</h1>{nav("smoke.html")}'
-            '<h2>Smoke checks</h2>'
+            '<h2>Smoke runs</h2>'
             + explain('A smoke check builds a Borg version and plays a handful of seeds to see that it runs. '
                       'It says nothing about how well the version plays, and none of it enters the comparisons. '
                       'Newest first.', RUN_COLS)
@@ -1189,8 +1214,8 @@ def landing_page(runs, run_rows):
     own tab."""
     cards = [c for c in (card_milestones(runs), card_port(runs), card_stalls(runs)) if c]
     return (
-        f'<h1>Borg zoo</h1>{nav("detailed.html")}'
-        '<h2>Experiment runs</h2>'
+        f'<h1>Borg zoo</h1>{nav("index.html")}'
+        '<h2>Full runs</h2>'
         + explain('Every experiment run, newest first, small tiers and pilots included. Each report shows '
                   'the YAML definition and the build used.', RUN_COLS)
         + (table(RUN_COLS, run_rows) if run_rows else '<p class="muted">No results yet.</p>')

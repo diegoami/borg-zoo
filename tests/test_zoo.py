@@ -640,7 +640,7 @@ class LandingTest(unittest.TestCase):
         self.assertIn("Do better-borg-c's fixes change early survival?", page)
         self.assertIn('Not measurably', page)
         self.assertNotIn('Which settings change early survival?', page)
-        self.assertIn('class="tab active" href="detailed.html"', page)
+        self.assertIn('class="tab active" href="index.html"', page)
 
     def test_find_arm_prefers_more_seeds_over_newer(self):
         small = [dict(cell('4.2.6', s, 'turn_cap'), profile='default') for s in (1, 2)]
@@ -898,7 +898,8 @@ class LandingTest(unittest.TestCase):
 
     def test_overview_page_has_no_milestone_cards(self):
         page = landing.overview_page([])
-        self.assertIn('class="tab active" href="index.html"', page)
+        self.assertNotIn('class="tab active"', page)  # the charts page is no longer a tab
+        self.assertIn('href="index.html">Full runs</a>', page)
         self.assertNotIn("Do better-borg-c's fixes change early survival?", page)
         self.assertNotIn('How far has the Rust port got?', page)
         self.assertIn('Add your Borg to the zoo', page)
