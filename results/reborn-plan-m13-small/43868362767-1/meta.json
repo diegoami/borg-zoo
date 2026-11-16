@@ -1,0 +1,602 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-m13-ambitious-town": {
+        "description": "borg-zoo#123 development arm 'ambitious-shop': ambitious class errands plan (errands_plan_ambitious.txt) + M13 live town planner; trip policy off (owner, 2026-11-16).",
+        "settings": {
+          "borg_plan": "errands_plan_ambitious.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_policy": 0
+        },
+        "sha256": "2ea69d7c5f6d247a0f26e542e7c92334a30ce698442ced11e1070865911b4af6"
+      },
+      "reborn-m13-control": {
+        "description": "borg-zoo#123 control: borg-rs core in the reborn shell; no plan; M13 town planner and trip policy off. Everything else is the specimen's own harness/borg.txt.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 0,
+          "borg_trip_policy": 0
+        },
+        "sha256": "8abbe0c3e6790b86bfd1855a0ed7c23f1458d1f2b2f8a6954f665f57e2d23583"
+      },
+      "reborn-m13-plan": {
+        "description": "borg-zoo#123: class errands plan (harness/plans/errands_plan.txt, shipped as user/errands_plan.txt); M13 policies off.",
+        "settings": {
+          "borg_plan": "errands_plan.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 0,
+          "borg_trip_policy": 0
+        },
+        "sha256": "53292119a5a6359c542efb59d3a0f88259e1c64a598ff9e87a309245df3383c4"
+      },
+      "reborn-m13-plan-town": {
+        "description": "borg-zoo#123 development arm 'plan-shop': class errands plan (errands_plan.txt) + M13 live town planner; trip policy off (owner, 2026-11-16).",
+        "settings": {
+          "borg_plan": "errands_plan.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_policy": 0
+        },
+        "sha256": "6a5ada277488d52fae7ea45ea69c7da93648391228569e677399ce9fd42da0e9"
+      },
+      "reborn-m13-town": {
+        "description": "borg-zoo#123 development arm 'shop': M13 live town planner on, trip policy off (owner, 2026-11-16: keeps borg-rs PR88's added return triggers out of #123 once borg-reborn-rs#415 vendors borg-rs 8c5d000a); no plan.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_policy": 0
+        },
+        "sha256": "8d6e6cb7b2f05e9c5a987f685896abec61389e66d231b38f24f431d812688430"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-plans-m13-fix90": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 8a0b57c8, the main merge of #415 (closes #368), borg-zoo#123's development specimen. A different game from 2f74e1c5 and 1c4b351b: the vendored core is refreshed to borg-rs 8c5d000a, so source-hash rust is 9a4ea375... (was 87717140...). It carries borg-rs#92, the live town planner's per-visit Home guard that fixes the borg-rs#90 oil loop, and borg-rs#88, with which borg_trip_policy = 1 only adds return requests and no longer changes depth, shopping or combat. harness/borg.txt is 88296dd1...42732f13 (only comments changed from e5b29126...; same settings). Same two plans. Cells with the town planner and trip policy off play byte-identically to 1c4b351b (borg-reborn-rs, 12 cells); cells with either on differ. No #355.",
+        "plans": {
+          "errands_plan.txt": "922372ba849489c579449f8cd6f827b29ed65b6e8e0f67bd0fe8be2f3cb160cd",
+          "errands_plan_ambitious.txt": "9d7d8a3984e278f2bb7bf61be7cdacdb16b9b513b364735fed7e7fa947d59dd2"
+        },
+        "ref": "8a0b57c85700abd48981c2f41a65a0a637f7dc48",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "source": "https://github.com/diegoami/borg-reborn-rs/pull/415"
+      }
+    },
+    "suites": {
+      "classes-1800-small": {
+        "assigned_characters": {
+          "102088710": [
+            "Elf",
+            "Rogue"
+          ],
+          "1028557754": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1042834709": [
+            "Gnome",
+            "Rogue"
+          ],
+          "10488336": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "1058178192": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1071405808": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "1086352478": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "1112777834": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "1149332291": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "1169386844": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "1199401383": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1217781050": [
+            "Human",
+            "Priest"
+          ],
+          "1236782037": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1248006956": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "1269315224": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1272553636": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "1277697136": [
+            "Human",
+            "Rogue"
+          ],
+          "1285833235": [
+            "Gnome",
+            "Paladin"
+          ],
+          "129607500": [
+            "Human",
+            "Ranger"
+          ],
+          "1303043906": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1304510506": [
+            "Half-Orc",
+            "Blackguard"
+          ],
+          "1326666591": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1356248624": [
+            "Elf",
+            "Warrior"
+          ],
+          "1370868461": [
+            "Dwarf",
+            "Mage"
+          ],
+          "1417651640": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "1429594888": [
+            "Dunadan",
+            "Mage"
+          ],
+          "1478804878": [
+            "Elf",
+            "Priest"
+          ],
+          "1484503304": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "1515505937": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1516096046": [
+            "Gnome",
+            "Druid"
+          ],
+          "1545553111": [
+            "High-Elf",
+            "Mage"
+          ],
+          "1552244183": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "1584060551": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "1629166764": [
+            "High-Elf",
+            "Druid"
+          ],
+          "167240942": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1678303796": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1678765969": [
+            "Elf",
+            "Druid"
+          ],
+          "1705599023": [
+            "Dwarf",
+            "Druid"
+          ],
+          "1751715076": [
+            "Human",
+            "Blackguard"
+          ],
+          "1758620521": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1759555484": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "176707408": [
+            "Human",
+            "Necromancer"
+          ],
+          "1834235471": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "1852741500": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1859521195": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1956591784": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "2002578196": [
+            "Hobbit",
+            "Druid"
+          ],
+          "200986077": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "2022908874": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "2041201968": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "2093434235": [
+            "Gnome",
+            "Mage"
+          ],
+          "2097768768": [
+            "Human",
+            "Mage"
+          ],
+          "2109297965": [
+            "Human",
+            "Druid"
+          ],
+          "234773070": [
+            "Elf",
+            "Mage"
+          ],
+          "247227001": [
+            "High-Elf",
+            "Priest"
+          ],
+          "247597266": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "25404286": [
+            "Dwarf",
+            "Blackguard"
+          ],
+          "255960706": [
+            "Dunadan",
+            "Blackguard"
+          ],
+          "300461652": [
+            "Hobbit",
+            "Mage"
+          ],
+          "352388688": [
+            "Human",
+            "Paladin"
+          ],
+          "384988836": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "399497898": [
+            "Dunadan",
+            "Priest"
+          ],
+          "406779093": [
+            "High-Elf",
+            "Blackguard"
+          ],
+          "412975293": [
+            "Elf",
+            "Necromancer"
+          ],
+          "446353753": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "507571350": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "572215387": [
+            "Elf",
+            "Ranger"
+          ],
+          "584077430": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "60792140": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "63257248": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "652511567": [
+            "Gnome",
+            "Priest"
+          ],
+          "655965451": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "674811104": [
+            "Half-Orc",
+            "Paladin"
+          ],
+          "710244031": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "736866367": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "740860644": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "765432699": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "797610775": [
+            "Dwarf",
+            "Paladin"
+          ],
+          "807773433": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "818961361": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "826156836": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "869093144": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "884072154": [
+            "Human",
+            "Warrior"
+          ],
+          "892923114": [
+            "Hobbit",
+            "Priest"
+          ],
+          "904568879": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "920137153": [
+            "Elf",
+            "Paladin"
+          ],
+          "926210318": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "957287853": [
+            "Elf",
+            "Blackguard"
+          ],
+          "979002123": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "99115049": [
+            "High-Elf",
+            "Ranger"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "Tier small of classes-1800 (RULES 14): starts 1-90 (10 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          884072154,
+          2097768768,
+          2109297965,
+          1217781050,
+          176707408,
+          352388688,
+          1277697136,
+          129607500,
+          1751715076,
+          1859521195,
+          247597266,
+          507571350,
+          584077430,
+          1199401383,
+          1584060551,
+          1759555484,
+          1758620521,
+          446353753,
+          1356248624,
+          234773070,
+          1678765969,
+          1478804878,
+          412975293,
+          920137153,
+          102088710,
+          572215387,
+          957287853,
+          1515505937,
+          300461652,
+          2002578196,
+          892923114,
+          384988836,
+          765432699,
+          826156836,
+          1248006956,
+          2022908874,
+          1326666591,
+          2093434235,
+          1516096046,
+          652511567,
+          1236782037,
+          1285833235,
+          1042834709,
+          167240942,
+          1552244183,
+          736866367,
+          1370868461,
+          1705599023,
+          1303043906,
+          10488336,
+          797610775,
+          2041201968,
+          807773433,
+          25404286,
+          1058178192,
+          200986077,
+          1169386844,
+          1852741500,
+          1417651640,
+          674811104,
+          1269315224,
+          1071405808,
+          1304510506,
+          1028557754,
+          63257248,
+          869093144,
+          1086352478,
+          1112777834,
+          1956591784,
+          926210318,
+          60792140,
+          1484503304,
+          740860644,
+          1429594888,
+          1678303796,
+          399497898,
+          904568879,
+          818961361,
+          979002123,
+          1834235471,
+          255960706,
+          655965451,
+          1545553111,
+          1629166764,
+          247227001,
+          1272553636,
+          1149332291,
+          710244031,
+          99115049,
+          406779093
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "range": [
+            0,
+            90
+          ],
+          "suite": "classes-1800"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-16 12:49 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-plans-m13-fix90",
+    "control_profile": "reborn-m13-control",
+    "description": "borg-zoo#123 development study, tier small (RULES 14): 10 starts per class (classes-1800-small, 90 starts) x the five arms = 450 games. The four tiers together are exactly reborn-plan-m13-classes-1800 (9,000 games); each is analysed on everything collected so far. Specimen 4.2.6-reborn-rust-plans-m13-fix90 (borg-reborn-rs 8a0b57c8); the trip policy is off in every arm.",
+    "name": "reborn-plan-m13-small",
+    "owner_authorization": "2026-11-15: the owner authorised the borg-reborn-rs errands plan x M13 shopping experiment (borg-zoo#123). 2026-11-16: the owner added the ambitious-plan arm, chose the pre-#355 game, and kept the trip policy off in this study until it is shown to help. Dispatch remains the owner's call. 2026-11-16: the owner asked for incremental tiers, starting with small; each later tier waits for its gate and the owner's go.",
+    "prespecified": "Shared with reborn-plan-m13-classes-1800, whose prespecification applies unchanged; this file only plays one tier of its starts. Fixed 2026-11-16, before any result was read; follows rs-kit-trip-development. Descriptive development study. Primary endpoint: fewer natural deaths first. Then mean final character level, mean deepest level and the DL5+ count, including dead characters. Every result is reported per class, because the plan differs by class. Paired rescued and newly killed counts against reborn-m13-control for each arm. Factorial effects: plan, town planner and plan x town planner. Incomplete, config_error and borg_stopped cells are reported separately. Nothing here confirms a winner; that needs a fresh confirmation suite. Amended 2026-11-16, before any result of this experiment was read. (1) Source: borg-reborn-rs 8a0b57c85700abd48981c2f41a65a0a637f7dc48 (#415), source-hash rust 9a4ea3756fb1b566..., a different game from 2f74e1c5 and 1c4b351b (87717140...). Its vendored core is borg-rs 8c5d000a, with borg-rs#92's per-visit Home guard (the borg-rs#90 oil loop fix) and borg-rs#88's additive trip policy. harness/borg.txt is 88296dd1..., with the same settings as before. Plans: errands_plan.txt 922372ba..., errands_plan_ambitious.txt 9d7d8a39.... (2) Arms: reborn-m13-control, reborn-m13-town, reborn-m13-plan, reborn-m13-plan-town and reborn-m13-ambitious-town. 'Shop' here is the live town planner only (borg_town_plan = 1, borg_trip_policy = 0), so #88's trip policy is not part of this study; whether it belongs is tested separately (reborn-trip-3x3-classes-18). The town-planner arms include #92's Home guard. Control and plan play as on 1c4b351b (byte-identical keys, checked by the zoo and by borg-reborn-rs). Earlier shop-arm results (zoo pilots 43845673921 and 43851628610, borg-reborn-rs's local 72-game pilot) had the oil loop and the trip policy on, and are not comparable. (3) A fifth arm, reborn-m13-ambitious-town, is compared with reborn-m13-control and with reborn-m13-plan-town (paired rescued and newly killed counts, per class); it is outside the 2x2. (4) The plan in force is evidenced by the core's copy of the loaded plan (errands_plan.txt in the cell's output directory): its sha256 must equal the requested plan's, and it must be absent in no-plan arms, or the cell is config_error. (5) Stalls: a cell with 1,000 or more keys at one game turn is stalled (frozen_turn_loop), with its observed outcome kept. A cell with more than 3 times its arm's median keys (over the arm's turn-cap cells) is flagged key_outlier, because #92 guards one Home visit only and a store/take across visits is still possible, though it costs game time. Flagged cells are listed, and the primary endpoint is reported with and without them. (6) Dispatch on 8 shards; 9,000 cells on 4 would come close to the run job's 300-minute limit. Tiers (RULES 14, fixed 2026-11-16 before any tier result was read): small, medium, big and full play classes-1800 starts 1-90, 91-360, 361-900 and 901-1800. Gate before medium: every one of the 450 cells has a valid outcome (death, turn_cap or borg_stopped) or a listed, explained stall; no config_error; every plan cell's loaded-plan copy matches its pin and no no-plan cell has one; each stall and key outlier is listed with its cause; measured wall time per cell is recorded.",
+    "profiles": [
+      "reborn-m13-control",
+      "reborn-m13-town",
+      "reborn-m13-plan",
+      "reborn-m13-plan-town",
+      "reborn-m13-ambitious-town"
+    ],
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-plans-m13-fix90"
+    ],
+    "suites": [
+      "classes-1800-small"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "43868362767-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/43868362767",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "dfebc263424f23552434b06fd2a1e54e86b5a3e6"
+}
