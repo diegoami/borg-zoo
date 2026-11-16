@@ -15,6 +15,7 @@ QUESTIONS = {
     'reborn-pilot-c-classes-1800': 'Does the borg-rs core inside the reborn shell work better with the ladder errand?',
     'reborn-plan-m13-classes-18': 'Do the class errands plan and the M13 shopping run cleanly in the zoo?',
     'reborn-plans-m13-classes-18': 'Does the ambitious errands plan run cleanly in the zoo alongside the other four arms?',
+    'reborn-trip-3x3-classes-18': 'Does the trip policy add anything to the town planner, with and without an errands plan?',
     'reborn-plan-m13-classes-1800': 'Do a class errands plan, the M13 shopping, both together, or the ambitious plan with shopping help the borg-rs core in the reborn shell?',
     'rs-joint-m12-development': 'Which combination of shopping, risk tolerance and earlier town returns helps the Rust Borg?',
     'rs-joint-m12-confirm': 'Does the selected shopping and risk policy still help on fresh seeds?',
