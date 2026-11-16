@@ -1,21 +1,22 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "reborn-plan-m13-classes-1800",
-  "description": "borg-zoo#123 development study: borg-reborn-rs's class errands plan crossed with the M13 shopping (live town planner + trip policy), 2x2 on one specimen (4.2.6-reborn-rust-plan-m13, borg-reborn-rs 2f74e1c5), on classes-1800 (9 classes x 200 seeds, assigned birth, 100,000-turn cap). 7,200 games. Run after reborn-plan-m13-classes-18 passes.",
-  "prespecified": "Fixed 2026-11-16, before any result was read; follows rs-kit-trip-development. Descriptive development study. Primary endpoint: fewer natural deaths first. Then mean final character level, mean deepest level and the DL5+ count, including dead characters. Every result is reported per class, because the plan differs by class. Paired rescued and newly killed counts against reborn-m13-control for each arm. Factorial effects: plan, shopping and plan x shopping. Incomplete, config_error and borg_stopped cells are reported separately. Nothing here confirms a winner; that needs a fresh confirmation suite.",
+  "description": "borg-zoo#123 development study: borg-reborn-rs's class errands plan crossed with the M13 shopping (live town planner + trip policy), 2x2, plus a fifth arm with the ambitious plan and shopping, all on one specimen (4.2.6-reborn-rust-plans-m13, borg-reborn-rs 8eb0be69, the same game as the pilot's 2f74e1c5), on classes-1800 (9 classes x 200 seeds, assigned birth, 100,000-turn cap). 9,000 games.",
+  "prespecified": "Fixed 2026-11-16, before any result was read; follows rs-kit-trip-development. Descriptive development study. Primary endpoint: fewer natural deaths first. Then mean final character level, mean deepest level and the DL5+ count, including dead characters. Every result is reported per class, because the plan differs by class. Paired rescued and newly killed counts against reborn-m13-control for each arm. Factorial effects: plan, shopping and plan x shopping. Incomplete, config_error and borg_stopped cells are reported separately. Nothing here confirms a winner; that needs a fresh confirmation suite. Amended 2026-11-16, before any result of this experiment was read (only the classes-18 plumbing pilot had run): a fifth arm, reborn-m13-ambitious-shop, is added and compared with reborn-m13-control and with reborn-m13-plan-shop (paired rescued and newly killed counts, per class); it is outside the 2x2 factorial. Its cells are expected to include the borg-rs#90 oil store/take loop, which the zoo does not yet flag: final key counts are reported per arm, so such cells stay visible.",
   "specimens": [
-    "4.2.6-reborn-rust-plan-m13"
+    "4.2.6-reborn-rust-plans-m13"
   ],
   "profiles": [
     "reborn-m13-control",
     "reborn-m13-shop",
     "reborn-m13-plan",
-    "reborn-m13-plan-shop"
+    "reborn-m13-plan-shop",
+    "reborn-m13-ambitious-shop"
   ],
   "suites": [
     "classes-1800"
   ],
-  "control": "4.2.6-reborn-rust-plan-m13",
+  "control": "4.2.6-reborn-rust-plans-m13",
   "control_profile": "reborn-m13-control",
-  "owner_authorization": "2026-11-15: the owner authorised the borg-reborn-rs errands plan x M13 shopping experiment (borg-zoo#123); proposed scale 7,200 games on classes-1800 after the classes-18 pilot. Dispatch remains the owner's call."
+  "owner_authorization": "2026-11-15: the owner authorised the borg-reborn-rs errands plan x M13 shopping experiment (borg-zoo#123); proposed scale 7,200 games on classes-1800 after the classes-18 pilot. Dispatch remains the owner's call. 2026-11-16: the owner added the ambitious-plan arm (issue addendum) and chose the pre-#355 game (borg-reborn-rs#379)."
 }
