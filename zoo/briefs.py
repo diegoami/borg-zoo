@@ -18,6 +18,7 @@ QUESTIONS = {
     'reborn-plan-m13-classes-1800': 'Do a class errands plan, the M13 shopping, both together, or the ambitious plan with shopping help the borg-rs core in the reborn shell?',
     'rs-joint-m12-development': 'Which combination of shopping, risk tolerance and earlier town returns helps the Rust Borg?',
     'rs-joint-m12-confirm': 'Does the selected shopping and risk policy still help on fresh seeds?',
+    'rs-home-fix-returns': 'Do the added town-return triggers help the Rust Borg once the Home oil loop is fixed?',
     'rs-kit-trip-development': 'Which expanded-inventory and all-item return settings help the Rust Borg?',
     'rs-kit-trip-confirm': 'Does the expanded-inventory and all-item return policy help on fresh seeds?',
     'rs-buy-combinations': 'Do class-specific and special-start shopping overrides actually change play?',

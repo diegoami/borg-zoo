@@ -943,6 +943,18 @@
       "toolkit_path": "tools/zoo",
       "role": "candidate"
     },
+    "4.2.6-rs-pr92-home-fix": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "8c5d000a58e9ddca1f1954ab9552e505856b313f",
+      "depth_stream": true,
+      "verify_effective_settings": true,
+      "play_mode": "single",
+      "loop_checks": true,
+      "label": "M13 Rust Borg at borg-rs main 8c5d000a, PR92's merge (borg-zoo#129): PR88's added town-return triggers (7251f64a, an ancestor) plus PR92, which stops a confirmed Home transfer being reversed within the same visit (the borg-rs#90 oil store/take loop). Same flags as 4.2.6-rs-pr88-additive-returns, plus the zoo's frozen-turn and key-outlier checks.",
+      "source": "https://github.com/diegoami/borg-rs/pull/92"
+    },
     "4.2.6-rs-pr88-additive-returns": {
       "kind": "borg-rs",
       "impl": "rust",
