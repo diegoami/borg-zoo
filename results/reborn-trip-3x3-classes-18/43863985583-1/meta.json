@@ -1,0 +1,238 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-m13-ambitious": {
+        "description": "borg-zoo#123 3x3 pilot: ambitious class errands plan (errands_plan_ambitious.txt); M13 town planner and trip policy off.",
+        "settings": {
+          "borg_plan": "errands_plan_ambitious.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 0,
+          "borg_trip_policy": 0
+        },
+        "sha256": "4f1df41443c188c38163c704f35f39046c00277631ca6ced3714d5e4b30f6567"
+      },
+      "reborn-m13-ambitious-shop": {
+        "description": "borg-zoo#123 addendum: ambitious class errands plan (harness/plans/errands_plan_ambitious.txt, borg-reborn-rs#354) + M13 live town planner + trip policy. Needs a specimen that pins that plan.",
+        "settings": {
+          "borg_plan": "errands_plan_ambitious.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_policy": 1
+        },
+        "sha256": "dbb7ce98de64623a0ba9acd3fa9e5fedf647c778e6890909c47fa48d16b60481"
+      },
+      "reborn-m13-ambitious-town": {
+        "description": "borg-zoo#123 development arm 'ambitious-shop': ambitious class errands plan (errands_plan_ambitious.txt) + M13 live town planner; trip policy off (owner, 2026-11-16).",
+        "settings": {
+          "borg_plan": "errands_plan_ambitious.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_policy": 0
+        },
+        "sha256": "2ea69d7c5f6d247a0f26e542e7c92334a30ce698442ced11e1070865911b4af6"
+      },
+      "reborn-m13-control": {
+        "description": "borg-zoo#123 control: borg-rs core in the reborn shell; no plan; M13 town planner and trip policy off. Everything else is the specimen's own harness/borg.txt.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 0,
+          "borg_trip_policy": 0
+        },
+        "sha256": "8abbe0c3e6790b86bfd1855a0ed7c23f1458d1f2b2f8a6954f665f57e2d23583"
+      },
+      "reborn-m13-plan": {
+        "description": "borg-zoo#123: class errands plan (harness/plans/errands_plan.txt, shipped as user/errands_plan.txt); M13 policies off.",
+        "settings": {
+          "borg_plan": "errands_plan.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 0,
+          "borg_trip_policy": 0
+        },
+        "sha256": "53292119a5a6359c542efb59d3a0f88259e1c64a598ff9e87a309245df3383c4"
+      },
+      "reborn-m13-plan-shop": {
+        "description": "borg-zoo#123: class errands plan + M13 live town planner + trip policy.",
+        "settings": {
+          "borg_plan": "errands_plan.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_policy": 1
+        },
+        "sha256": "1630511f990f741a3d97d95ca80f353b6f95d2d0038458588fa6698583cd978a"
+      },
+      "reborn-m13-plan-town": {
+        "description": "borg-zoo#123 development arm 'plan-shop': class errands plan (errands_plan.txt) + M13 live town planner; trip policy off (owner, 2026-11-16).",
+        "settings": {
+          "borg_plan": "errands_plan.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_policy": 0
+        },
+        "sha256": "6a5ada277488d52fae7ea45ea69c7da93648391228569e677399ce9fd42da0e9"
+      },
+      "reborn-m13-shop": {
+        "description": "borg-zoo#123: M13 live town planner + trip policy (the switches of rs-kit-trip-default); no plan.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_policy": 1
+        },
+        "sha256": "277a469cde7ca3acdb18d9f6ff5041e519fd03211cee14479e1fc2dacc788f2d"
+      },
+      "reborn-m13-town": {
+        "description": "borg-zoo#123 development arm 'shop': M13 live town planner on, trip policy off (owner, 2026-11-16: keeps borg-rs PR88's added return triggers out of #123 once borg-reborn-rs#415 vendors borg-rs 8c5d000a); no plan.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_policy": 0
+        },
+        "sha256": "8d6e6cb7b2f05e9c5a987f685896abec61389e66d231b38f24f431d812688430"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-plans-m13-fix90": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 8a0b57c8, the main merge of #415 (closes #368), borg-zoo#123's development specimen. A different game from 2f74e1c5 and 1c4b351b: the vendored core is refreshed to borg-rs 8c5d000a, so source-hash rust is 9a4ea375... (was 87717140...). It carries borg-rs#92, the live town planner's per-visit Home guard that fixes the borg-rs#90 oil loop, and borg-rs#88, with which borg_trip_policy = 1 only adds return requests and no longer changes depth, shopping or combat. harness/borg.txt is 88296dd1...42732f13 (only comments changed from e5b29126...; same settings). Same two plans. Cells with the town planner and trip policy off play byte-identically to 1c4b351b (borg-reborn-rs, 12 cells); cells with either on differ. No #355.",
+        "plans": {
+          "errands_plan.txt": "922372ba849489c579449f8cd6f827b29ed65b6e8e0f67bd0fe8be2f3cb160cd",
+          "errands_plan_ambitious.txt": "9d7d8a3984e278f2bb7bf61be7cdacdb16b9b513b364735fed7e7fa947d59dd2"
+        },
+        "ref": "8a0b57c85700abd48981c2f41a65a0a637f7dc48",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "source": "https://github.com/diegoami/borg-reborn-rs/pull/415"
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-16 12:14 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-plans-m13-fix90",
+    "control_profile": "reborn-m13-control",
+    "description": "borg-zoo#123 3x3 pilot on whether the trip policy belongs in the study: plan (none, errands_plan.txt, errands_plan_ambitious.txt) x shopping (off; M13 live town planner only; town planner + trip policy) on 4.2.6-reborn-rust-plans-m13-fix90 (borg-reborn-rs 8a0b57c8, #415), classes-18 (9 classes x 2 seeds, assigned birth, 100,000-turn cap). 162 games.",
+    "name": "reborn-trip-3x3-classes-18",
+    "owner_authorization": "2026-11-16: the owner asked for a 3x3 pilot for #123, because whether the trip policy is good has not been established; the development arms keep it off until then.",
+    "prespecified": "Fixed 2026-11-16, before any result was read. Pilot, not a measurement. It checks that all nine arms run: every cell ends in death, turn_cap or borg_stopped; no config_error; loaded-plan copies match their pins and are absent in no-plan arms; frozen-turn stalls and key outliers are listed. Descriptively, per plan row, the town-only and town+trip columns are compared (deaths, final level, deepest level, keys, paired rescued/newly killed), which is the trip policy's contribution. 18 starts per arm cannot show whether the trip policy is good; that needs a development-size run. On this build the trip switch selects borg-rs#88's additive trip policy (it only adds return requests), the one the development study would use, and the town planner carries #92's Home guard. Trip arms use the specimen's borg.txt thresholds: borg_trip_pack_slack = 2, borg_trip_unknown_stacks = 4. First dispatched on 1c4b351b (runs 43861771985, 43862121256, 43862742496) and cancelled each time before collecting; moved to this specimen before any result was read.",
+    "profiles": [
+      "reborn-m13-control",
+      "reborn-m13-town",
+      "reborn-m13-shop",
+      "reborn-m13-plan",
+      "reborn-m13-plan-town",
+      "reborn-m13-plan-shop",
+      "reborn-m13-ambitious",
+      "reborn-m13-ambitious-town",
+      "reborn-m13-ambitious-shop"
+    ],
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-plans-m13-fix90"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "43863985583-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/43863985583",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "f140d39b241dfd1e2ba5ad7c402117f4834441d1"
+}
