@@ -126,3 +126,17 @@ for the ones already written up.
   borg-rs: parsing the setting, watching gold rise, or seeing retail receipts
   do not prove that `shop_num` stayed -1 and that no shop or Home entry
   occurred. See `docs/OPEN-ISSUE-FOLLOWUPS.md`.
+
+## Owner-requested saved caster encounters (#144)
+
+The owner explicitly requests Zoo to run Cemetery's mixed-class saved suite.
+The separate eight-case smoke is defined in
+`definitions/cemetery-mixed-caster-encounters-smoke.yaml`; see
+[SAVED-ENCOUNTERS.md](SAVED-ENCOUNTERS.md). It uses source6d1bca10 and exact
+Cemetery bank fecca62c6b3f98452123a8256860f8251e653eb7, with two starts per pure
+caster class. Relevant PR CI executes the actual games with read-only tokens
+and publishes a job-summary report/artifacts. This is a saved-state baseline,
+independent of PR145's generated-birth qualification; it does not merge that PR
+or dispatch a larger tier. Inspect all eight source/build/profile/native-start
+receipts and per-class outcomes before proposing any larger experiment.
+Production result/site registration remains an explicit follow-up under #144.
