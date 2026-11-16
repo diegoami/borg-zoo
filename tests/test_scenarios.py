@@ -326,6 +326,10 @@ class ScenarioTests(unittest.TestCase):
     def test_relative_output_is_resolved_before_adapter_changes_directory(self):
         class ExecutionError(Exception):pass
         p=self.plan
+        case=p['cases'][0]
+        case['character_build']['profile_sha256']=hashlib.sha256(b'profile').hexdigest()
+        case['spec_sha256']=s.digest({k:v for k,v in case.items() if k not in ('id','spec_sha256')})
+        p['plan_sha256']=s.digest({k:v for k,v in p.items() if k!='plan_sha256'})
         adapter=types.SimpleNamespace(describe=lambda *args:row_fixture(p,p['cases'][0],p['targets'][0],'death')['execution_input']['build_receipt'])
         def launch(case,root,output):
             self.assertTrue(output.is_absolute())
