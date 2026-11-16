@@ -636,11 +636,28 @@ class LandingTest(unittest.TestCase):
         meta = {'experiment': exp, 'run_id': 'r1', 'completed': '2026-11-08 00:00 UTC',
                 'catalogue': {'specimens': cat_mod.catalogue()['specimens']['specimens'],
                               'suites': cat_mod.catalogue()['suites']}}
-        page = landing.landing_page([(meta, cells, None)], [])
+        page = landing.landing_page([(meta, cells, None)])
         self.assertIn("Do better-borg-c's fixes change early survival?", page)
         self.assertIn('Not measurably', page)
         self.assertNotIn('Which settings change early survival?', page)
         self.assertIn('class="tab active" href="detailed.html"', page)
+
+    def test_neo_experiments_have_a_tab_of_their_own(self):
+        def run(name, kinds):
+            specs = {f's{i}': {'kind': k} for i, k in enumerate(kinds)}
+            return ({'experiment': {'name': name, 'specimens': list(specs), 'profiles': ['p']},
+                     'run_id': 'r1', 'completed': '2026-11-16 00:00 UTC',
+                     'catalogue': {'specimens': specs}}, [], None)
+        runs = [run('neo-only', ['neo-original']), run('rust-only', ['borg-rs']),
+                run('c-vs-neo', [None, 'neo-original'])]
+        detailed, neo = landing.landing_page(runs), landing.neo_page(runs)
+        self.assertIn('runs/rust-only/r1/', detailed)
+        self.assertIn('runs/c-vs-neo/r1/', detailed)
+        self.assertNotIn('runs/neo-only/', detailed)
+        self.assertIn('runs/neo-only/r1/', neo)
+        self.assertNotIn('runs/rust-only/', neo)
+        self.assertNotIn('runs/c-vs-neo/', neo)
+        self.assertIn('class="tab active" href="neo.html"', neo)
 
     def test_find_arm_prefers_more_seeds_over_newer(self):
         small = [dict(cell('4.2.6', s, 'turn_cap'), profile='default') for s in (1, 2)]

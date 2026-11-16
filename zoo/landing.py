@@ -1104,7 +1104,7 @@ RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.
 
 def nav(active):
     tabs = [('index.html', 'Overview')] + [(f'{p["slug"]}.html', p['nav']) for p in POLICIES] + \
-           [('detailed.html', 'Detailed'), ('smoke.html', 'Smoke')]
+           [('detailed.html', 'Detailed'), ('neo.html', 'Neo'), ('smoke.html', 'Smoke')]
     return ('<p class="tabs">' +
             ''.join(f'<a class="tab{" active" if href == active else ""}" href="{href}">{esc(label)}</a>'
                     for href, label in tabs) + '</p>')
@@ -1205,27 +1205,56 @@ def smoke_page(rows):
             + FOOTER)
 
 
-def landing_page(runs, run_rows):
-    cards = [c for c in (card_milestones(runs), card_port(runs), card_stalls(runs)) if c]
-    experiments = []
+def is_neo(meta):
+    """An experiment whose every version is a Neo Borg (another engine, never
+    paired with the rest). An originals study that sets Neo beside the C Borg
+    is a cross-Borg comparison and stays on the Detailed tab."""
+    specs = meta['catalogue']['specimens']
+    kinds = {specs.get(name, {}).get('kind') for name in meta['experiment']['specimens']}
+    return kinds == {'neo-original'}
+
+
+def experiment_rows(runs, neo):
+    """The table rows of the non-smoke experiment runs, Neo-only or not."""
     smoke = cat_mod.smoke_names()
+    rows = []
     for meta, cells, _ in runs:
         exp = meta['experiment']
-        if exp['name'] in smoke:
+        if exp['name'] in smoke or is_neo(meta) != neo:
             continue
-        finished = sum(c['outcome'] in stats.VALID for c in cells)
-        experiments.append(
-            f'<article class="card experiment-brief"><h2><a href="{link(meta)}">{esc(question(exp))}</a></h2>'
-            f'<p class="muted">{esc(exp["name"])} · {esc(meta.get("completed", "?"))}'
-            + (f' · <a href="{cat_mod.ISSUES_URL}{issue}">issue #{issue}</a>' if (issue := cat_mod.issue_of(exp)) else '')
-            + '</p>'
-            + experiment_brief(meta, compact=True)
-            + f'<p>{finished:,} of {len(cells):,} games finished · <a href="{link(meta)}">View results</a></p></article>')
-    return (
-        f'<h1>Borg zoo</h1>{nav("detailed.html")}'
-        f'{policy_studies(runs)}<h2>Experiment runs</h2>'
-        '<p>Choose the question you want to investigate. Newest runs first.</p>'
-        + ('<div class="cards">' + ''.join(experiments) + '</div>' if experiments else '<p class="muted">No results yet.</p>')
-        + '<details class="background"><summary>Cross-experiment summaries and historical caveats</summary>'
-        + mode_cutoff_note() + f'<div class="cards">{"".join(cards)}</div></details>'
-        + FOOTER)
+        issue = cat_mod.issue_of(exp)
+        rows.append([f'<a href="{link(meta)}">{esc(question(exp))}</a>',
+                     f'<a href="{cat_mod.ISSUES_URL}{issue}">#{issue}</a>' if issue else '–',
+                     esc(meta.get('completed', '?')), len(exp['specimens']), len(exp['profiles']),
+                     len(cells), sum(c['outcome'] in stats.VALID for c in cells)])
+    return rows
+
+
+def landing_page(runs):
+    """Every experiment run except the smoke checks and the Neo Borg's, as one
+    table like the Smoke tab's: the question links to its report. Newest first."""
+    cards = [c for c in (card_milestones(runs), card_port(runs), card_stalls(runs)) if c]
+    rows = experiment_rows(runs, neo=False)
+    return (f'<h1>Borg zoo</h1>{nav("detailed.html")}'
+            '<h2>Experiment runs</h2>'
+            + explain('Every experiment that compares Borg versions or settings. The question links to its '
+                      'report: the settings, the tables and the statistics. Newest first; the Neo Borg\'s '
+                      'experiments are on the <a href="neo.html">Neo</a> tab and smoke checks on the '
+                      '<a href="smoke.html">Smoke</a> tab.', RUN_COLS)
+            + (table(RUN_COLS, rows) if rows else '<p class="muted">No results yet.</p>')
+            + '<details class="background"><summary>Cross-experiment summaries and historical caveats</summary>'
+            + mode_cutoff_note() + f'<div class="cards">{"".join(cards)}</div></details>'
+            + FOOTER)
+
+
+def neo_page(runs):
+    """The Neo Borg's experiments, in the Detailed tab's table. Neo plays another
+    engine (neo-angband), so its runs are read among themselves."""
+    rows = experiment_rows(runs, neo=True)
+    return (f'<h1>Borg zoo</h1>{nav("neo.html")}'
+            '<h2>Neo Borg experiments</h2>'
+            + explain('Experiments whose every version is the Neo Borg. Neo plays a different engine '
+                      '(neo-angband), so read these runs among themselves, not against the other tabs. '
+                      'The question links to its report. Newest first.', RUN_COLS)
+            + (table(RUN_COLS, rows) if rows else '<p class="muted">No Neo runs yet.</p>')
+            + FOOTER)
