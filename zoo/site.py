@@ -991,7 +991,8 @@ def build_site(results, out):
     # smoke run is still listed, marked "smoke-scale only - not plotted", and a
     # full run always outranks a smoke one. Only the run lists are split.
     runs = every
-    rows, smoke_rows = [], []
+    from . import landing
+    rows, neo_rows, smoke_rows = [], [], []
     for meta, cells, src in every:
         target = out / 'runs' / meta['experiment']['name'] / meta['run_id']
         target.mkdir(parents=True, exist_ok=True)
@@ -1008,13 +1009,12 @@ def build_site(results, out):
         else:
             shutil.copy(src / 'meta.json', target / 'meta.json')
         finished = sum(1 for c in cells if c['outcome'] in stats.VALID)
-        (smoke_rows if meta['experiment']['name'] in smoke else rows).append([f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
+        (smoke_rows if meta['experiment']['name'] in smoke else neo_rows if landing.is_neo(meta) else rows).append([f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
                      f'{esc((study_info(meta) or {}).get("title", meta["experiment"]["name"]))}</a>',
                      (f'<a href="{cat_mod.ISSUES_URL}{issue}">#{issue}</a>' if (issue := cat_mod.issue_of(meta['experiment'])) else '–'),
                      esc(meta.get('completed', '?')),
                      len(meta['experiment']['specimens']), len(meta['experiment']['profiles']),
                      len(cells), finished])
-    from . import landing
     shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
     (out / 'index.html').write_text(page('Borg zoo', landing.overview_page(runs), charts=True))
     # The /runs/ directory contains per-run report folders, not a page of its
@@ -1030,6 +1030,7 @@ def build_site(results, out):
         (out / f'{policy["slug"]}.html').write_text(
             page(f'{policy["title"]} · borg-zoo', landing.comparison_page(runs, policy), charts=True))
     (out / 'detailed.html').write_text(page('Detailed · borg-zoo', landing.landing_page(runs, rows)))
+    (out / 'neo.html').write_text(page('Neo · borg-zoo', landing.neo_page(neo_rows)))
     (out / 'smoke.html').write_text(page('Smoke · borg-zoo', landing.smoke_page(smoke_rows)))
     (out / 'stalls.html').write_text(page('Stalls and crashes · borg-zoo', landing.stalls_page(runs)))
     (out / 'versions.html').write_text(page('Versions · borg-zoo', landing.versions_page()))

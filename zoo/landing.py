@@ -1104,7 +1104,7 @@ RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.
 
 def nav(active):
     tabs = [('index.html', 'Overview')] + [(f'{p["slug"]}.html', p['nav']) for p in POLICIES] + \
-           [('detailed.html', 'Detailed'), ('smoke.html', 'Smoke')]
+           [('detailed.html', 'Detailed'), ('neo.html', 'Neo'), ('smoke.html', 'Smoke')]
     return ('<p class="tabs">' +
             ''.join(f'<a class="tab{" active" if href == active else ""}" href="{href}">{esc(label)}</a>'
                     for href, label in tabs) + '</p>')
@@ -1183,6 +1183,26 @@ def smoke_page(rows):
             + FOOTER)
 
 
+def is_neo(meta):
+    """An experiment whose every version is a Neo Borg (another engine, never
+    paired with the rest). An originals study that sets Neo beside the C Borg
+    is a cross-Borg comparison and stays on the Detailed tab."""
+    specs = meta['catalogue']['specimens']
+    return {specs.get(name, {}).get('kind') for name in meta['experiment']['specimens']} == {'neo-original'}
+
+
+def neo_page(rows):
+    """The Neo Borg's experiments, in the Detailed tab's table. Neo plays another
+    engine (neo-angband), so its runs are read among themselves."""
+    return (f'<h1>Borg zoo</h1>{nav("neo.html")}'
+            '<h2>Neo Borg experiments</h2>'
+            + explain('Experiments whose every version is the Neo Borg, newest first. Neo plays a different '
+                      'engine (neo-angband), so read these runs among themselves, not against the other tabs.',
+                      RUN_COLS)
+            + (table(RUN_COLS, rows) if rows else '<p class="muted">No Neo runs yet.</p>')
+            + FOOTER)
+
+
 def landing_page(runs, run_rows):
     """Every experiment run in one list, newest first: small tiers and pilots
     included, each with the borg-zoo issue it answers. Smoke checks keep their
@@ -1192,7 +1212,9 @@ def landing_page(runs, run_rows):
         f'<h1>Borg zoo</h1>{nav("detailed.html")}'
         '<h2>Experiment runs</h2>'
         + explain('Every experiment run, newest first, small tiers and pilots included. Each report shows '
-                  'the YAML definition and the build used.', RUN_COLS)
+                  'the YAML definition and the build used. The Neo Borg\'s experiments are on the '
+                  '<a href="neo.html">Neo</a> tab, smoke checks on the <a href="smoke.html">Smoke</a> tab.',
+                  RUN_COLS)
         + (table(RUN_COLS, run_rows) if run_rows else '<p class="muted">No results yet.</p>')
         + '<details class="background"><summary>Cross-experiment summaries and historical caveats</summary>'
         + mode_cutoff_note() + f'<div class="cards">{"".join(cards)}</div></details>'

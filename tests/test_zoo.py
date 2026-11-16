@@ -642,6 +642,17 @@ class LandingTest(unittest.TestCase):
         self.assertNotIn('Which settings change early survival?', page)
         self.assertIn('class="tab active" href="detailed.html"', page)
 
+    def test_neo_experiments_have_a_tab_of_their_own(self):
+        def meta(kinds):
+            specs = {f's{i}': {'kind': k} for i, k in enumerate(kinds)}
+            return {'experiment': {'specimens': list(specs)}, 'catalogue': {'specimens': specs}}
+        self.assertTrue(landing.is_neo(meta(['neo-original'])))
+        self.assertFalse(landing.is_neo(meta(['borg-rs'])))
+        self.assertFalse(landing.is_neo(meta([None, 'neo-original'])))  # C vs Neo stays on Detailed
+        page = landing.neo_page([['<a href="runs/neo-x/r1/index.html">x</a>', '–', 'd', 1, 1, 9, 9]])
+        self.assertIn('runs/neo-x/r1/index.html', page)
+        self.assertIn('class="tab active" href="neo.html"', page)
+
     def test_find_arm_prefers_more_seeds_over_newer(self):
         small = [dict(cell('4.2.6', s, 'turn_cap'), profile='default') for s in (1, 2)]
         big = [dict(cell('4.2.6', s, 'death' if s < 30 else 'turn_cap'), profile='default') for s in range(100)]
