@@ -384,3 +384,21 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
   - The largest key count was 19,028 (plan-shop). Nothing like the 69,838
     keys of the oil store/take loop (borg-rs#90), which the zoo still does
     not detect.
+
+- **The five-arm pilot ran cleanly, and confirms the two specimens play the
+  same game (borg-zoo#123).** `reborn-plans-m13-classes-18`, run
+  43851628610, 90 games on `classes-18`, specimen
+  `4.2.6-reborn-rust-plans-m13` (borg-reborn-rs `1c4b351b`, without #355
+  and still with the borg-rs#90 loop).
+  - Every cell ended in `death` or `turn_cap`. None was `config_error`,
+    stalled or a key outlier, and none needs a rerun.
+  - The loaded-plan copies matched their pins: `922372ba…` in the plan arms,
+    `9d7d8a39…` in ambitious-shop, and none in the no-plan arms.
+  - The busiest single turn of any cell had 383 keys, far below the
+    1,000-key loop threshold.
+  - The four arms it shares with the four-arm pilot (run 43845673921,
+    `2f74e1c5`) played identical keys in all 72 cells.
+  - Ambitious-shop died in 5 of 18 games, with mean final level 4.4 and mean
+    deepest level 2.3.
+  - A plumbing check, not a measurement. Its shop arms predate the
+    borg-rs#90 fix and are not comparable with the development study's.
