@@ -58,7 +58,10 @@ Tests: `python3 -m unittest discover -s tests`.
 
 [Scenario dispatch](docs/SCENARIO-DISPATCH.md) compares exact pushids on an
 immutable Cemetery bank, with separate synthetic reports and complete failure
-denominators. The proposed first smoke schedules just two cells.
+denominators. The **Scenarios** tab lists scenario runs with their compared
+versions, scenario counts, collected cells and paired outcomes. Each run links
+to the full report and evidence; synthetic results stay separate from the
+population comparisons.
 
 ## Reading the results
 

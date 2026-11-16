@@ -1102,11 +1102,11 @@ RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.
                          'or failed.')]
 
 
-def nav(active):
+def nav(active, base=""):
     tabs = [('index.html', 'Overview')] + [(f'{p["slug"]}.html', p['nav']) for p in POLICIES] + \
-           [('detailed.html', 'Detailed'), ('smoke.html', 'Smoke')]
+           [('detailed.html', 'Detailed'), ('smoke.html', 'Smoke'), ('scenarios/index.html', 'Scenarios')]
     return ('<p class="tabs">' +
-            ''.join(f'<a class="tab{" active" if href == active else ""}" href="{href}">{esc(label)}</a>'
+            ''.join(f'<a class="tab{" active" if href == active else ""}" href="{base}{href}">{esc(label)}</a>'
                     for href, label in tabs) + '</p>')
 
 
