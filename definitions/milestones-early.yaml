@@ -1,0 +1,18 @@
+# Exported from experiments/milestones-early.json; edit here, then run python3 -m zoo define.
+name: milestones-early
+description: Original C Borg against every better-borg-c milestone, default profile, early-game pilot
+specimens:
+- 4.2.6
+- 4.2.6-bbc-m1
+- 4.2.6-bbc-m2
+- 4.2.6-bbc-m3
+- 4.2.6-bbc-m4
+suites:
+- early-50
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6
+control_profile: default
+extra:
+  control_profile: null

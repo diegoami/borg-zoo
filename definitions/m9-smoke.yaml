@@ -1,0 +1,19 @@
+# Exported from smoke/m9-smoke.json; edit here, then run python3 -m zoo define.
+name: m9-smoke
+folder: smoke
+description: 'Milestone 9 builds and runs: smoke suite against the original and milestone 8'
+specimens:
+- 4.2.6
+- 4.2.6-bbc-m8
+- 4.2.6-bbc-m9
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6
+control_profile: default
+extra:
+  pre_cutoff: |-
+    2026-11-10 (borg-zoo#54): recorded before the mode cutoff. Its default arms straddle better-borg-c fd683ced (PR 302): the original has no borg_munchkin_by_class, M8/M9 default it TRUE. The file stays as run; the site labels these runs pre-cutoff and excludes their straddling comparisons. Milestone smokes now read the explicit modes (m10-smoke, m8-smoke).
+  control_profile: null

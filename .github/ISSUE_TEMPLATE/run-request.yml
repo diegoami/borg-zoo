@@ -1,0 +1,54 @@
+name: Run request
+description: Ask the zoo to run an experiment, defined in YAML (docs/DEFINE.md).
+title: "Run: "
+labels: ["run-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write the experiment as a YAML definition ([format and example](https://github.com/diegoami/borg-zoo/blob/main/docs/DEFINE.md)).
+        Existing arm sets and the settings asked for so far are in [docs/PROFILES.md](https://github.com/diegoami/borg-zoo/blob/main/docs/PROFILES.md).
+        Studies grow pilot → small → medium → big → full, one tier at a time (RULES 14).
+  - type: textarea
+    id: definition
+    attributes:
+      label: Definition
+      description: The YAML for definitions/NAME.yaml. Leave `issue` out; the zoo fills in this issue's number.
+      render: yaml
+      value: |
+        name: 
+        question: 
+        tier: pilot
+        specimen:
+          name: 
+          repository: diegoami/borg-reborn-rs
+          ref: 
+          label: 
+          plans: {}
+        settings:
+          borg_reborn_core: borg-rs
+          borg_reborn_errand: none
+        vary:
+          dimension:
+            option-a: {}
+            option-b: {setting: 1}
+        control: [option-a]
+        prespecified: |
+          Gate and what to report.
+    validations:
+      required: true
+  - type: textarea
+    id: identity
+    attributes:
+      label: Build identity
+      description: The source hash (harness/identity.sh source-hash rust), the borg.txt sha256, and what changed since the last measured ref.
+  - type: textarea
+    id: sanity
+    attributes:
+      label: Sanity cells
+      description: A few start × arm cells with the outcome, keys and keys.log sha256 the zoo should reproduce before dispatch.
+  - type: textarea
+    id: working
+    attributes:
+      label: What counts as working
+      description: What the run must show for the change to count as working.

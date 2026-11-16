@@ -1,0 +1,16 @@
+# Exported from experiments/classes-m5.json; edit here, then run python3 -m zoo define.
+name: classes-m5
+description: The original C Borg against better-borg-c milestones 4 and 5 for every class and race (classes-1800)
+specimens:
+- 4.2.6
+- 4.2.6-bbc-m4
+- 4.2.6-bbc-m5
+suites:
+- classes-1800
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6
+control_profile: default
+extra:
+  control_profile: null

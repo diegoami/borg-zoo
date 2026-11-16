@@ -1,0 +1,22 @@
+# Exported from experiments/town-negative-munchkin-classes-1800.json; edit here, then run python3 -m zoo define.
+name: town-negative-munchkin-classes-1800
+issue: 81
+description: |-
+  The town negative baseline (borg-zoo#81) with the munchkin start unconditionally on for every class, on classes-1800: borg-rs with no store interaction at all against the same build trading normally. The munchkin counterpart of town-negative-classes-1800 (munchkin off for every class). A calibration floor, not a candidate strategy: no improvement is claimed. Same prespecified endpoint as that experiment. Run one arm per workflow run.
+specimens:
+- 4.2.6-rs-town
+suites:
+- classes-1800
+profile_prefix: ''
+arms:
+  normal-munchkin:
+    borg_munchkin_start: true
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  town-negative-munchkin:
+    borg_munchkin_start: true
+    borg_self_lunal: false
+    borg_lunal_mode: false
+    borg_town_no_stores: true
+control_specimen: 4.2.6-rs-town
+control_profile: normal-munchkin

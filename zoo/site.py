@@ -648,6 +648,17 @@ def town_shadow_table(meta, cells):
                      'Snapshot Home dispositions', 'Config SHA-256', 'Native parameter vector', 'Error'], rows, left=4))
 
 
+def provenance_line(exp):
+    """The issue an experiment answers and the YAML that defines it."""
+    issue, definition = cat_mod.issue_of(exp), cat_mod.definition_of(exp)
+    parts = []
+    if issue:
+        parts.append(f'Answers <a href="{cat_mod.ISSUES_URL}{issue}">borg-zoo issue #{issue}</a>')
+    if definition:
+        parts.append(f'Defined in <a href="{cat_mod.DEFINITIONS_URL}{definition}"><code>{esc(definition)}</code></a>')
+    return f'<p class="issue">{" · ".join(parts)}</p>' if parts else ''
+
+
 def run_page(meta, cells):
     exp = meta['experiment']
     specimens = meta['catalogue']['specimens']
@@ -657,7 +668,9 @@ def run_page(meta, cells):
     page_title = display['title'] if display else exp['name']
     intro = display['intro'] if display else exp.get('description', '')
     parts = [f'<p><a href="../../index.html">All experiments</a></p>',
-             f'<h1>{esc(page_title)}</h1><p class="lead">{esc(intro)}</p>',
+             f'<h1>{esc(page_title)}</h1>',
+             provenance_line(exp),
+             f'<p class="lead">{esc(intro)}</p>',
              configuration.summary(meta),
              experiment_brief(meta),
              tested_settings(meta),
@@ -959,7 +972,9 @@ def build_site(results, out):
             shutil.copy(src / 'meta.json', target / 'meta.json')
         finished = sum(1 for c in cells if c['outcome'] in stats.VALID)
         (smoke_rows if meta['experiment']['name'] in smoke else rows).append([f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
-                     f'{esc((study_info(meta) or {}).get("title", meta["experiment"]["name"]))}</a>', esc(meta.get('completed', '?')),
+                     f'{esc((study_info(meta) or {}).get("title", meta["experiment"]["name"]))}</a>',
+                     (f'<a href="{cat_mod.ISSUES_URL}{issue}">#{issue}</a>' if (issue := cat_mod.issue_of(meta['experiment'])) else '–'),
+                     esc(meta.get('completed', '?')),
                      len(meta['experiment']['specimens']), len(meta['experiment']['profiles']),
                      len(cells), finished])
     from . import landing

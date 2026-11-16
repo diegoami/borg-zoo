@@ -1093,6 +1093,7 @@ def versions_page():
 
 
 RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.'),
+            ('Issue', 'The borg-zoo issue the experiment answers.'),
             ('Completed', 'When the run finished (UTC).'),
             ('Versions', 'How many Borg versions it compares.'),
             ('Profiles', 'How many settings profiles it compares.'),
@@ -1215,7 +1216,9 @@ def landing_page(runs, run_rows):
         finished = sum(c['outcome'] in stats.VALID for c in cells)
         experiments.append(
             f'<article class="card experiment-brief"><h2><a href="{link(meta)}">{esc(question(exp))}</a></h2>'
-            f'<p class="muted">{esc(exp["name"])} · {esc(meta.get("completed", "?"))}</p>'
+            f'<p class="muted">{esc(exp["name"])} · {esc(meta.get("completed", "?"))}'
+            + (f' · <a href="{cat_mod.ISSUES_URL}{issue}">issue #{issue}</a>' if (issue := cat_mod.issue_of(exp)) else '')
+            + '</p>'
             + experiment_brief(meta, compact=True)
             + f'<p>{finished:,} of {len(cells):,} games finished · <a href="{link(meta)}">View results</a></p></article>')
     return (

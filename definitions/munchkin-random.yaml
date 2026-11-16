@@ -1,0 +1,17 @@
+# Exported from experiments/munchkin-random.json; edit here, then run python3 -m zoo define.
+name: munchkin-random
+description: |-
+  Munchkin start across races and classes: default against munchkin-d6 on the original and milestone 4, 1,000 seeds with race and class chosen by the seed
+specimens:
+- 4.2.6
+- 4.2.6-bbc-m4
+suites:
+- random-1000
+profile_prefix: ''
+arms:
+  default: {}
+  munchkin-d6:
+    borg_munchkin_start: true
+    borg_munchkin_depth: 6
+control_specimen: 4.2.6
+control_profile: default

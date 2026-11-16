@@ -1,0 +1,17 @@
+# Exported from smoke/rs-m2-smoke.json; edit here, then run python3 -m zoo define.
+name: rs-m2-smoke
+folder: smoke
+description: 'borg-rs M2 builds and runs: smoke suite, Rust and C Borg of the M2 tree against 4.2.6-rs-m0'
+specimens:
+- 4.2.6-rs-m0
+- 4.2.6-rs-m2-c
+- 4.2.6-rs-m2
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6-rs-m0
+control_profile: default
+extra:
+  control_profile: null

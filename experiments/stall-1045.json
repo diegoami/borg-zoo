@@ -1,6 +1,7 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "stall-1045",
+  "definition": "definitions/stall-1045.yaml",
   "description": "Regression fixture for the stall diagnostics: the seed-1045 munchkin stair cycle on milestone 4 (expected: stalled at engine turn 59,893 as a level cycle), with M4 defaults and 4.2.6 munchkin as controls that reach the cap.",
   "specimens": [
     "4.2.6-bbc-m4",

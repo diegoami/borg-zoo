@@ -1,0 +1,20 @@
+# Exported from smoke/rs-m10-smoke.json; edit here, then run python3 -m zoo define.
+name: rs-m10-smoke
+folder: smoke
+description: |-
+  borg-rs M10 builds and runs: smoke suite, Rust and C Borg of the M10 tree against rs-m9. M10 carries no new tracker fix - the units are the I-001 and I-002 local improvements and the 0099 comment sync (borg-rs PR 24) - so this checks the new tree plays and terminates, not that it changes outcomes
+specimens:
+- 4.2.6-rs-m9
+- 4.2.6-rs-m10-c
+- 4.2.6-rs-m10
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6-rs-m9
+control_profile: default
+extra:
+  pre_cutoff: |-
+    Legacy implicit-mode smoke retained unchanged for recorded results (issue #82 audit, 2026-11-15). New comparisons must name mode profiles; this marker is not authorization for a new default-mode experiment.
+  control_profile: null

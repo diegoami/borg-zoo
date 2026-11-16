@@ -1,0 +1,20 @@
+# Exported from smoke/rs-m11-smoke.json; edit here, then run python3 -m zoo define.
+name: rs-m11-smoke
+folder: smoke
+description: |-
+  borg-rs v11R (PR 30 head) on the smoke suite under both dashboard policies: normal (all modes off) and munchkin-class (the class rule). A build and play check before the full grid - borg-rs's own default already applies the class rule from m8, so both arms are named explicitly.
+specimens:
+- 4.2.6-rs-m11
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  normal:
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  munchkin-class:
+    borg_munchkin_by_class: true
+control_specimen: 4.2.6-rs-m11
+control_profile: normal

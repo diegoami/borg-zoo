@@ -1,0 +1,17 @@
+# Exported from experiments/munchkin-default-off.json; edit here, then run python3 -m zoo define.
+name: munchkin-default-off
+issue: 54
+description: |-
+  Identity check: with the class rule switched off, the candidate must play the same games as its base with default settings. Profile default renamed munchkin-class at the mode cutoff (2026-11-10, borg-zoo#54): on this specimen the two play the same game.
+specimens:
+- 4.2.6-bbc-munchkin-by-class
+suites:
+- classes-18
+profile_prefix: ''
+arms:
+  munchkin-class:
+    borg_munchkin_by_class: true
+  munchkin-class-off:
+    borg_munchkin_by_class: false
+control_specimen: 4.2.6-bbc-munchkin-by-class
+control_profile: munchkin-class

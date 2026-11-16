@@ -1,6 +1,7 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "neo-fork-classes-1800",
+  "definition": "definitions/neo-fork-classes-1800.yaml",
   "description": "The Neo Borg from diegoami/neo-angband-borg-mod-tracker (master ba513ff: upstream port at beta.5 source 7501a78c plus the fork's repairs), through the fork's own zoo entry point, on classes-1800 with the retained death evidence of the original Neo benchmark. Neo seeds are different games from C seeds and are not paired with them; the nearest reference is neo-5a9-original in originals-20261108-classes-1800 (a different engine commit, Borg and toolkit). Descriptive only.",
   "specimens": [
     "neo-fork-ba513ff"
@@ -12,6 +13,7 @@
     "classes-1800"
   ],
   "control": "neo-fork-ba513ff",
+  "owner_authorization": "2026-11-13: the owner asked for the full classes-1800 run of the Neo Borg from neo-angband-borg-mod-tracker after the classes-18 check (session request).",
   "retain_evidence": true,
   "shards_by_specimen": {
     "neo-fork-ba513ff": 180
@@ -25,6 +27,5 @@
     "max_cells_per_neo_shard": 10,
     "worst_case_play_minutes_per_shard": 225,
     "job_timeout_minutes": 300
-  },
-  "owner_authorization": "2026-11-13: the owner asked for the full classes-1800 run of the Neo Borg from neo-angband-borg-mod-tracker after the classes-18 check (session request)."
+  }
 }

@@ -1,0 +1,125 @@
+# Exported from experiments/rs-joint-m12-development.json; edit here, then run python3 -m zoo define.
+name: rs-joint-m12-development
+description: |-
+  Full 1800-case development comparison of existing behaviour, live reference, risk 1500/2000/2500 and selected inventory plus earlier returns. Six arms, 10800 games, 100000-turn cap, all nine classes and eleven races.
+prespecified: |-
+  Descriptive development comparison. Owner priority: fewer natural deaths first, then mean final character level, mean deepest level and count reaching DL3+. Report all failures separately and paired rescued/newly-killed counts. No arm chosen from this suite is claimed confirmed by the separately fixed confirmation experiment.
+owner_authorization: |-
+  2026-11-14 session request: schedule full zoo runs of the best joint trip/inventory settings and variations; improved shopping must act, not just shadow.
+specimens:
+- 4.2.6-rs-joint-m12-d9a56f4
+suites:
+- classes-1800
+profile_prefix: ''
+arms:
+  rs-joint-old-control:
+    borg_trip_policy: 0
+    borg_town_plan: 0
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+  rs-joint-live-reference:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+  rs-joint-risk1500:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1500
+  rs-joint-risk2000:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 2000
+  rs-joint-risk2500:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 2500
+  rs-joint-risk2000-earlier:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 4
+    borg_trip_unknown_stacks: 2
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 2000
+control_specimen: 4.2.6-rs-joint-m12-d9a56f4
+control_profile: rs-joint-old-control
+extra:
+  resource_budget:
+    max_parallel_jobs: 8
+    processes_per_job: 1
+  source_notes: |-
+    All arms share d9a56f4 and the milestone-12 engine. The pinned Rust Borg has one play mode; no retired mode can be enabled. Profiles declare all local-search parameters; modern native effective_settings are required and checked.
+  retain_evidence: true

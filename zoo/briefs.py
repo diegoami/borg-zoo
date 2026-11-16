@@ -133,6 +133,8 @@ def profile_label(name):
 
 
 def question(exp):
+    if exp.get('question'):
+        return exp['question']
     if exp['name'] in QUESTIONS:
         return QUESTIONS[exp['name']]
     versions, profiles = len(exp['specimens']), len(exp['profiles'])

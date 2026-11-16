@@ -1,6 +1,7 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "originals-20261112-smoke",
+  "definition": "definitions/originals-20261112-smoke.yaml",
   "description": "Build and play check of angband master 42cd156a (the C Borg at upstream's head of 2026-11-12) before any full run: classes-18 (18 seeds), default profile. Says only that it builds and plays; not a comparison. The Neo engine 765f3997 / Borg 7501a78c arm was dropped from this check: its build fails (see the pending note on neo-765-original).",
   "specimens": [
     "angband-42cd156-original"

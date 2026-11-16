@@ -1,7 +1,8 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "classes-v13",
-  "description": "How does C milestone 13 perform with the class-specific stair-climbing start on and off? Tag 4.2.6-impact-v13 pins runtime 9ccb2aae, 134 active carries, including nineteen added since v12. Both profiles use classes-1800: normal pins every special mode off; munchkin-class enables the depth-6 stair-climbing start for Warriors, Druids and Rangers. Run one arm per workflow run; control is v13 under normal. This compares starting policies within M13, not fixes against M12. No Lunal entry or changed-branch execution has been established on this fresh-start suite; the Lunal-only measurement remains pending, not neutral or proved unreachable. See docs/M13-MEASUREMENT.md for issue #87’s outstanding work.",
+  "definition": "definitions/classes-v13.yaml",
+  "description": "How does C milestone 13 perform with the class-specific stair-climbing start on and off? Tag 4.2.6-impact-v13 pins runtime 9ccb2aae, 134 active carries, including nineteen added since v12. Both profiles use classes-1800: normal pins every special mode off; munchkin-class enables the depth-6 stair-climbing start for Warriors, Druids and Rangers. Run one arm per workflow run; control is v13 under normal. This compares starting policies within M13, not fixes against M12. No Lunal entry or changed-branch execution has been established on this fresh-start suite; the Lunal-only measurement remains pending, not neutral or proved unreachable. See docs/M13-MEASUREMENT.md for issue #87\u2019s outstanding work.",
   "specimens": [
     "4.2.6-bbc-m13"
   ],

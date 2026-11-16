@@ -1,0 +1,82 @@
+import json
+from pathlib import Path
+import tempfile
+import unittest
+
+from zoo import define
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class DefineTest(unittest.TestCase):
+    def test_every_definition_matches_the_catalogue(self):
+        for path in sorted((ROOT / 'definitions').glob('*.yaml')):
+            with self.subTest(definition=path.name):
+                _, problems, changes = define.plan(path)
+                self.assertEqual(problems, [])
+                self.assertEqual([(k, n) for k, n, _ in changes], [])
+
+    def test_every_experiment_has_a_definition(self):
+        import glob
+        defined = set()
+        for path in sorted((ROOT / 'definitions').glob('*.yaml')):
+            d = define.load(path)
+            defined.add(define.target(d, ROOT).relative_to(ROOT).as_posix())
+        files = {Path(f).as_posix() for f in glob.glob('experiments/*.json', root_dir=ROOT) + glob.glob('smoke/*.json', root_dir=ROOT)}
+        self.assertEqual(sorted(files - defined), [], 'experiment files without a definitions/*.yaml')
+
+    def write(self, root, text):
+        for name in ('specimens', 'profiles'):
+            (root / 'catalogue').mkdir(exist_ok=True)
+        (root / 'catalogue/specimens.json').write_text(json.dumps({'specimens': {}}))
+        (root / 'catalogue/profiles.json').write_text(json.dumps({'profiles': {
+            'x-a-on': {'settings': {'borg_town_plan': 1, 'k': 9}}}}))
+        (root / 'experiments').mkdir()
+        path = root / 'd.yaml'
+        path.write_text(text)
+        return path
+
+    BASE = '''name: x
+issue: 1
+tier: pilot
+prespecified: p
+specimen: {name: s, repository: diegoami/borg-reborn-rs, ref: abc}
+settings: {borg_town_plan: 1}
+'''
+
+    def test_vary_multiplies_and_names_arms(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = self.write(Path(tmp), self.BASE + "vary:\n  a: {a: {}, b: {k: 2}}\n  c: {'on': {t: 1}, 'off': {t: 0}}\n")
+            d, problems, changes = define.plan(path, tmp)
+            profiles = {n: b for k, n, b in changes if k == 'profile'}
+            # x-a-on already exists with other settings: a conflict, not a new profile
+            self.assertEqual(sorted(profiles), ['x-a-off', 'x-b-off', 'x-b-on'])
+            self.assertTrue(any('x-a-on' in p for p in problems))
+            self.assertEqual(profiles['x-b-on']['settings'], {'borg_town_plan': 1, 'k': 2, 't': 1})
+            spec = next(b for k, n, b in changes if k == 'specimen')
+            self.assertEqual((spec['kind'], spec['impl'], spec['exact_turns']), ('borg-rs', 'rust', True))
+            exp = next(b for k, n, b in changes if k == 'experiment')
+            self.assertEqual((exp['issue'], exp['suites'], len(exp['profiles'])), (1, ['classes-18'], 4))
+
+    def test_an_existing_profile_with_other_settings_is_refused(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = self.write(Path(tmp), self.BASE + "vary:\n  a: {a: {}}\n  c: {'on': {t: 1}}\n")
+            _, problems, _ = define.plan(path, tmp)
+            self.assertTrue(any('x-a-on exists with other settings' in p for p in problems))
+
+    def test_unknown_keys_and_tiers_are_errors(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'bad.yaml'
+            path.write_text(self.BASE + 'colour: red\narms: {a: {}}\n')
+            with self.assertRaisesRegex(ValueError, 'unknown keys'):
+                define.load(path)
+            path.write_text(self.BASE.replace('tier: pilot', 'tier: huge') + 'arms: {a: {}}\n')
+            with self.assertRaisesRegex(ValueError, 'tier must be'):
+                define.load(path)
+            path.write_text(self.BASE + 'vary:\n  c: {on: {t: 1}}\n')
+            with self.assertRaisesRegex(ValueError, 'quote it'):
+                define.arms(define.load(path))
+
+
+if __name__ == '__main__':
+    unittest.main()

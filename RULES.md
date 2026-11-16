@@ -48,3 +48,11 @@
     has a written gate, and the next tier is dispatched only after the gate
     is checked and the owner agrees. Never propose or start the full size
     first.
+15. Every experiment is defined in YAML (owner, 2026-11-16):
+    `definitions/NAME.yaml` is the source, and `experiments/NAME.json` (or
+    `smoke/`) with any new specimen and profiles is generated from it by
+    `python3 -m zoo define definitions/NAME.yaml`. Never edit a generated
+    experiment file by hand; change the definition and regenerate with
+    `--update`. Each definition names the borg-zoo issue it answers, and
+    each report links both. CI fails when a definition and the catalogue
+    disagree. The format is in `docs/DEFINE.md`.

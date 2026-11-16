@@ -1,0 +1,21 @@
+# Exported from smoke/bbc-explicit-smoke.json; edit here, then run python3 -m zoo define.
+name: bbc-explicit-smoke
+issue: 54
+folder: smoke
+description: |-
+  The mode-cutoff acceptance smoke (borg-zoo#54): better-borg-c at 9ca98661 - the new specimen and harness pin, with patch units 0100, 0101 and correction 0101a - under munchkin-class (the product default) and normal (every mode pinned off). On the fixed Human Warrior seeds, munchkin-class reproduces what the pre-cutoff default arms played there (the class rule forces the munchkin start); normal must play without it. A clean run here (no config_error, no stall) is the restart's go signal.
+specimens:
+- 4.2.6-bbc-9ca98661
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  munchkin-class:
+    borg_munchkin_by_class: true
+  normal:
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+control_specimen: 4.2.6-bbc-9ca98661
+control_profile: munchkin-class

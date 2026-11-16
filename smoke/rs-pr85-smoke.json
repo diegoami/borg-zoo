@@ -1,12 +1,12 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "rs-pr85-smoke",
+  "definition": "definitions/rs-pr85-smoke.yaml",
   "description": "Six owner-selected return-study profiles across nine class canaries (54 games), including preserved legacy fallback and application-record wiring. No performance inference.",
+  "prespecified": "Wiring only: every cell completes with the requested race/class/source and all declared native settings verified. No survival inference.",
   "specimens": [
     "4.2.6-rs-pr85-returns"
   ],
-  "control": "4.2.6-rs-pr85-returns",
-  "control_profile": "rs-pr85-existing",
   "profiles": [
     "rs-pr85-existing",
     "rs-pr85-shopping-only",
@@ -18,12 +18,13 @@
   "suites": [
     "rs-pr85-canary-9"
   ],
+  "control": "4.2.6-rs-pr85-returns",
+  "control_profile": "rs-pr85-existing",
+  "owner_authorization": "2026-11-15: owner explicitly requested merge of borg-rs PR85 and a full-suite Borg Zoo experiment, followed by explanation of town-return tuning. Four fixed policy combinations separate shopping and return effects.",
   "resource_budget": {
     "max_parallel_jobs": 6,
     "processes_per_job": 1
   },
   "retain_evidence": true,
-  "owner_authorization": "2026-11-15: owner explicitly requested merge of borg-rs PR85 and a full-suite Borg Zoo experiment, followed by explanation of town-return tuning. Four fixed policy combinations separate shopping and return effects.",
-  "source_notes": "All arms use the same immutable merged borg-rs source 71cff24ef45731e55aa9687930cd2d766dd0695e: PR85 inventory/calibration repair plus PR86 restored selling-pressure fallback and v4 application records. Only the policy flags and owner-selected return thresholds vary. Full native key/message/state evidence, town plans, v3 recommendations and v4 applications are retained. Native effective settings are checked. All previous study source pins and frozen suites are unchanged.",
-  "prespecified": "Wiring only: every cell completes with the requested race/class/source and all declared native settings verified. No survival inference."
+  "source_notes": "All arms use the same immutable merged borg-rs source 71cff24ef45731e55aa9687930cd2d766dd0695e: PR85 inventory/calibration repair plus PR86 restored selling-pressure fallback and v4 application records. Only the policy flags and owner-selected return thresholds vary. Full native key/message/state evidence, town plans, v3 recommendations and v4 applications are retained. Native effective settings are checked. All previous study source pins and frozen suites are unchanged."
 }

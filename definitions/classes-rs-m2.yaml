@@ -1,0 +1,17 @@
+# Exported from experiments/classes-rs-m2.json; edit here, then run python3 -m zoo define.
+name: classes-rs-m2
+description: |-
+  borg-rs M2 against 4.2.6-rs-m0 for every class and race (classes-1800): the effect of milestone 2's fixes in the Rust port, and the M2 tree's Rust/C identity
+specimens:
+- 4.2.6-rs-m0
+- 4.2.6-rs-m2-c
+- 4.2.6-rs-m2
+suites:
+- classes-1800
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6-rs-m0
+control_profile: default
+extra:
+  control_profile: null

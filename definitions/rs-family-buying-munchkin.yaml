@@ -1,0 +1,36 @@
+# Exported from experiments/rs-family-buying-munchkin.json; edit here, then run python3 -m zoo define.
+name: rs-family-buying-munchkin
+issue: 61
+description: |-
+  borg-rs buying family with the munchkin start unconditionally on (every class): the current and reserve410 strategies, each with buy-to-identify off and on, on the same three Warrior and three Mage seeds. Paired within class, strategy and seed; control is the v10 buying behaviour (current, identify off). 24 cells (borg-zoo#61, #67).
+specimens:
+- 4.2.6-rs-family-buying
+suites:
+- rs-family-warrior-3
+- rs-family-mage-3
+profile_prefix: ''
+arms:
+  rs-buy-current-munchkin:
+    borg_buy_strategy_default: 0
+    borg_munchkin_start: true
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-reserve410-munchkin:
+    borg_buy_strategy_default: 1
+    borg_munchkin_start: true
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-current-munchkin-id:
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 1
+    borg_munchkin_start: true
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  rs-buy-reserve410-munchkin-id:
+    borg_buy_strategy_default: 1
+    borg_buy_identify: 1
+    borg_munchkin_start: true
+    borg_self_lunal: false
+    borg_lunal_mode: false
+control_specimen: 4.2.6-rs-family-buying
+control_profile: rs-buy-current-munchkin

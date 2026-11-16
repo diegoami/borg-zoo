@@ -1275,7 +1275,8 @@ class EndToEndTest(unittest.TestCase):
     def test_every_existing_experiment_has_an_editorial_question(self):
         from zoo.briefs import QUESTIONS, question
         for path in (ROOT / 'experiments').glob('*.json'):
-            self.assertIn(path.stem, QUESTIONS)
+            if not json.loads(path.read_text()).get('question'):  # YAML definitions carry their own
+                self.assertIn(path.stem, QUESTIONS)
         self.assertEqual(question({'name': '<future>', 'specimens': ['a'], 'profiles': ['a', 'b']}),
                          'How do these settings change survival and progress for this Borg version?')
 

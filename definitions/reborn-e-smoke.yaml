@@ -1,0 +1,16 @@
+# Exported from smoke/reborn-e-smoke.json; edit here, then run python3 -m zoo define.
+name: reborn-e-smoke
+folder: smoke
+description: |-
+  borg-reborn-rs milestone E (tag e) against its two C controls on the smoke suite: builds the new integration and checks it plays, before the full measurement. The C controls stay at m1, the last borg-reborn-rs tree that builds a C Borg; their harness/borg.txt has borg_self_scum TRUE (upstream's default), noted in #48.
+specimens:
+- 4.2.6-reborn-rust-e
+- 4.2.6-reborn-c-pristine
+- 4.2.6-reborn-c-bbc-m7
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6-reborn-rust-e
+control_profile: default

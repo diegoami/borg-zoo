@@ -1,0 +1,16 @@
+# Exported from experiments/stall-1045.json; edit here, then run python3 -m zoo define.
+name: stall-1045
+description: |-
+  Regression fixture for the stall diagnostics: the seed-1045 munchkin stair cycle on milestone 4 (expected: stalled at engine turn 59,893 as a level cycle), with M4 defaults and 4.2.6 munchkin as controls that reach the cap.
+specimens:
+- 4.2.6-bbc-m4
+- 4.2.6
+suites:
+- seed-1045
+profile_prefix: ''
+arms:
+  default: {}
+  munchkin:
+    borg_munchkin_start: true
+control_specimen: 4.2.6
+control_profile: default
