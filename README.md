@@ -60,6 +60,9 @@ Tests: `python3 -m unittest discover -s tests`.
 immutable Cemetery bank, with separate synthetic reports and complete failure
 denominators. The proposed first smoke schedules just two cells.
 
+[Balanced999 incidents](docs/BALANCED-INCIDENTS.md) prepares equal111-case
+quotas for all nine classes and a bounded saved-state execution in Zoo.
+
 ## Reading the results
 
 The Detailed tab lists experiments by the question they ask. Each run starts

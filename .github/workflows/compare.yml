@@ -49,8 +49,14 @@ jobs:
     uses: ./.github/workflows/harvest-incidents.yml
     with:
       arm: ${{ inputs.arm }}
+  incident-execution:
+    if: inputs.experiment == 'scenario-experiments/balanced999-incidents-execution.json'
+    permissions:
+      contents: read
+      actions: read
+    uses: ./.github/workflows/execute-incidents.yml
   plan:
-    if: inputs.experiment != 'scenario-experiments/balanced999-incidents-harvest.json'
+    if: inputs.experiment != 'scenario-experiments/balanced999-incidents-harvest.json' && inputs.experiment != 'scenario-experiments/balanced999-incidents-execution.json'
     runs-on: ubuntu-24.04
     outputs:
       specimens: ${{ steps.plan.outputs.specimens }}
