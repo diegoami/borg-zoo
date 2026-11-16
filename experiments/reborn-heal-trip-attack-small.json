@@ -3,15 +3,13 @@
   "name": "reborn-heal-trip-attack-small",
   "issue": 164,
   "definition": "definitions/reborn-heal-trip-attack-small.yaml",
-  "question": "Do healing when outmatched, the trip policy and the class attack preferences help together?",
-  "description": "Do healing when outmatched, the trip policy and the class attack preferences help together? Generated from definitions/reborn-heal-trip-attack-small.yaml: 4 arms on 4.2.6-reborn-rust-heal, suite classes-1800-small.",
-  "prespecified": "Fixed 2026-11-16, before any result was read (borg-zoo#164). Small tier only. Gate: no\nconfig_error; one binary; every bundle setting applied from borg.txt (params-core.json) in\nbundle cells and none in control cells; the loaded plan copy matches its pin in plan arms and is absent from no-plan arms. Every cell ends in death, turn_cap or borg_stopped;\nfrozen-turn stalls and key outliers are listed. Report per arm and per class: deaths, final\nlevel, deepest level, keys; paired rescued and newly killed against the control on the same\nstart within each plan, and the cells where play diverges. 90 starts per arm is descriptive only.",
+  "question": "Does the errands plan help the heal + trip policy + attack preference bundle?",
+  "description": "Does the errands plan help the heal + trip policy + attack preference bundle? Generated from definitions/reborn-heal-trip-attack-small.yaml: 2 arms on 4.2.6-reborn-rust-heal, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#164). Small tier only. The question is\nwhether the errands plan helps the bundle; it says nothing about the bundle against the neutral\nbuild (that is the pilot's control arms, 18 starts). Gate: no config_error; one binary; every\nbundle setting applied from borg.txt (params-core.json) in both arms; the loaded plan copy\nmatches its pin in the plan arm and is absent from the no-plan arm. Every cell ends in death,\nturn_cap or borg_stopped; frozen-turn stalls and key outliers are listed. Report per arm and\nper class: deaths, final level, deepest level, keys; paired rescued and newly killed for the\nplan arm against the no-plan arm on the same start, and the cells where play diverges.",
   "specimens": [
     "4.2.6-reborn-rust-heal"
   ],
   "profiles": [
-    "reborn-heal0-trip0-none",
-    "reborn-heal0-trip0-plan",
     "reborn-heal1-trip1-attack1-none",
     "reborn-heal1-trip1-attack1-plan"
   ],
@@ -19,6 +17,6 @@
     "classes-1800-small"
   ],
   "control": "4.2.6-reborn-rust-heal",
-  "control_profile": "reborn-heal0-trip0-none",
-  "owner_authorization": "2026-11-16: the owner asked to test the heal flag, this trip policy (unknown_stacks 5, pack_slack 1) and these class attack preferences together, each with no plan and with errands_plan.txt on classes-1800-small. The small tier runs only after the pilot reborn-heal-trip-attack-pilot passes its gate and the owner agrees (RULES 14)."
+  "control_profile": "reborn-heal1-trip1-attack1-none",
+  "owner_authorization": "2026-11-17: the owner chose 2 arms for the small tier, the bundle (heal flag, trip policy unknown_stacks 5 / pack_slack 1, class attack preferences) with no plan against the bundle with errands_plan.txt, because the bundle is about to become the default. It runs only after the pilot reborn-heal-trip-attack-pilot passes its gate and the owner agrees (RULES 14)."
 }
