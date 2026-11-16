@@ -121,6 +121,10 @@ def cmd_collect(args):
                         'outcome': 'harness_failure',
                         'error': 'no record collected (job failed or was cancelled)',
                         'final': {}, 'first_turn_at_depth': {}, 'cap': cat['suites'][suite]['cap']}
+    plan_specimens = {name for name in exp['specimens'] if cat['specimens']['specimens'][name].get('plans')}
+    if plan_specimens:
+        from . import borgrs
+        borgrs.flag_key_outliers([r for r in records.values() if r.get('specimen') in plan_specimens])
     target = Path(args.results) / exp['name'] / args.run_id
     target.mkdir(parents=True, exist_ok=False)
     configuration.collect(records.values(), args.cells, target)

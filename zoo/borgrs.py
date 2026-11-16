@@ -139,6 +139,40 @@ def frozen_turn_loop(keys_text):
             'bursts': len(bursts), 'burst_keys': sum(bursts)}
 
 
+# A cell with more keys than this many times its arm's median (over the
+# arm's full-length, turn-cap cells) is flagged at collection. It catches a
+# store/take cycle across visits, which costs game time and so escapes the
+# per-turn check above; borg-rs#90's cell had 6.4 times its arm's median,
+# normal shopping cells at most 1.7 times (borg-zoo#123). A flag, not an
+# outcome: the cell is listed and the endpoints are reported with and
+# without flagged cells.
+KEY_OUTLIER_FACTOR = 3
+KEY_OUTLIER_MIN_CELLS = 5
+
+
+def flag_key_outliers(records):
+    """Mark records whose final keys exceed KEY_OUTLIER_FACTOR times the
+    median of their arm (suite, specimen, profile); the number flagged."""
+    arms = {}
+    for r in records:
+        arms.setdefault((r.get('suite'), r.get('specimen'), r.get('profile')), []).append(r)
+    flagged = 0
+    for cells in arms.values():
+        full = sorted(r['final']['keys'] for r in cells
+                      if (r.get('observed_outcome') or r.get('outcome')) == 'turn_cap'
+                      and isinstance((r.get('final') or {}).get('keys'), int))
+        if len(full) < KEY_OUTLIER_MIN_CELLS:
+            continue
+        mid = len(full) // 2
+        median = full[mid] if len(full) % 2 else (full[mid - 1] + full[mid]) / 2
+        for r in cells:
+            keys = (r.get('final') or {}).get('keys')
+            if isinstance(keys, int) and median and keys > KEY_OUTLIER_FACTOR * median:
+                r['key_outlier'] = {'keys': keys, 'arm_median': median, 'ratio': round(keys / median, 2)}
+                flagged += 1
+    return flagged
+
+
 def plan_name(name):
     """A borg_plan value the adapter can ship: a bare file name."""
     if (not isinstance(name, str) or not name or Path(name).name != name or name.startswith('.')
