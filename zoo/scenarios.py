@@ -117,6 +117,8 @@ def prepare(definition, bank, cat=None):
     if set(ids) - cases.keys():
         raise ValueError('unknown scenario ID (equipment indexes are not executable scenarios)')
     selected = [cases[key] for key in ids]
+    if any(c['character_build']['core'] != 'reborn' for c in selected):
+        raise ValueError('this comparison adapter requires reborn effective-parameter receipts')
     specs = (cat or catalogue.catalogue())['specimens']['specimens']
     targets, seen = [], set()
     if not isinstance(d['pushids'], list) or not 2 <= len(d['pushids']) <= 4:
@@ -167,6 +169,22 @@ def pairing_hash(plan, case):
 def execution_input(plan, case, target, identity, calendar):
     return dict(plan_sha256=plan['plan_sha256'], pairing_sha256=pairing_hash(plan, case),
                 scenario=case, target=target, build_receipt=identity, calendar=calendar)
+
+
+def effective_settings(case, text):
+    """Normalize actual settings; names/default documentation are not policy."""
+    params = json.loads(text)
+    if params.get('profile_sha256') != case['character_build']['profile_sha256']:
+        raise ValueError('effective parameter profile digest mismatch')
+    values = {}
+    for entry in params.get('parameters', []):
+        name, value = entry['name'], entry['value']
+        if name in values or not isinstance(name, str) or type(value) is not int:
+            raise ValueError('ambiguous effective parameter receipt')
+        values[name] = value
+    if not values:
+        raise ValueError('missing effective parameters')
+    return dict(core=case['character_build']['core'], profile_sha256=params['profile_sha256'], parameters=values)
 
 
 def run_target(plan, bank, source, pushid, out):
@@ -232,9 +250,23 @@ def run_target(plan, bank, source, pushid, out):
                 row.update(status=getattr(error, 'status', 'harness_failure'), reason=str(error))
         # Preserve original compact receipt bytes, not only hashes that become
         # unverifiable after raw gameplay artifacts expire.
-        row['receipts'] = {name: (attempt / 'run' / name).read_text()
-                           for name in ('summary.json', 'process.json', 'config.txt')
+        row['receipts'] = {name: (attempt / 'run' / name).read_bytes().decode('utf-8', errors='replace')
+                           for name in ('summary.json', 'process.json', 'config.txt', 'params.json')
                            if (attempt / 'run' / name).is_file()}
+        if row['status'] in VALID | {'stopped'}:
+            try:
+                row['effective_settings'] = effective_settings(case, row['receipts']['params.json'])
+                profile = (attempt / 'profile.txt').read_text()
+                for line in profile.splitlines():
+                    line = line.split('#', 1)[0].strip()
+                    if not line:
+                        continue
+                    match = re.fullmatch(r'([a-zA-Z0-9_]+)\s*=\s*(-?\d+)', line)
+                    if not match or row['effective_settings']['parameters'].get(match[1]) != int(match[2]):
+                        raise ValueError('requested profile did not take effect')
+                row['evidence']['params.json'] = dict(sha256=file_hash(attempt / 'run/params.json'))
+            except (ValueError, KeyError, OSError, TypeError, AttributeError) as error:
+                row.update(status='identity_mismatch', reason=str(error))
         write(out / 'cells' / (case['id'] + '.json'), row)
         rows.append(row)
         print(json.dumps(dict(pushid=pushid, scenario=case['id'], status=row['status'])), flush=True)
@@ -269,14 +301,16 @@ def validate_cell(plan, case, target, row):
                 not HEX.fullmatch(build.get('binary_sha256', '')) or not HEX.fullmatch(build.get('source_sha256', '')) or
                 not row.get('attempted') or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', inputs.get('calendar', ''))):
             raise ValueError('missing/invalid source/binary/calendar receipt')
-        required = {'summary.json', 'process.json', 'config.txt', 'keys.log', 'state.log', 'messages.log'}
+        required = {'summary.json', 'process.json', 'config.txt', 'params.json', 'keys.log', 'state.log', 'messages.log'}
         if not isinstance(row.get('evidence'), dict) or not required <= row['evidence'].keys() or any(
                 not isinstance(row['evidence'][key], dict) or not HEX.fullmatch(row['evidence'][key].get('sha256', '')) for key in required):
             raise ValueError('missing classified gameplay evidence')
-        for name in ('summary.json', 'process.json', 'config.txt'):
+        for name in ('summary.json', 'process.json', 'config.txt', 'params.json'):
             receipt = row.get('receipts', {}).get(name)
             if not isinstance(receipt, str) or hashlib.sha256(receipt.encode()).hexdigest() != row['evidence'][name]['sha256']:
                 raise ValueError('missing or changed compact receipt bytes')
+        if row.get('effective_settings') != effective_settings(case, row['receipts']['params.json']):
+            raise ValueError('effective configuration identity mismatch')
     return row
 
 
@@ -287,6 +321,8 @@ def compare_pair(left, right):
         return 'invalid'
     if left['execution_input']['calendar'] != right['execution_input']['calendar']:
         return 'inconclusive'
+    if left.get('effective_settings') != right.get('effective_settings'):
+        return 'invalid'
     a, b = left['status'], right['status']
     if a not in VALID or b not in VALID:
         return 'inconclusive'
@@ -338,6 +374,8 @@ def collect(plan, cells, out, evidence_url=''):
             build = case['character_build']
             pair = dict(baseline=baseline, candidate=target, scenario_id=c, class_idx=build['class_idx'],
                         depth=case['depth'], loadout=build['id'], outcome=outcome)
+            if outcome == 'invalid' and a['status'] in VALID and b['status'] in VALID:
+                pair['reason'] = 'undeclared effective-configuration difference'
             pairs.append(pair)
             groups[target, build['class_idx'], case['depth'], build['id']][outcome] += 1
     report = dict(schema='borg-zoo/scenario-comparison@1', plan=plan, cells=rows, pairs=pairs,
@@ -365,9 +403,9 @@ def render(report):
     for t in plan['targets']:
         binaries = sorted({((r.get('execution_input') or {}).get('build_receipt') or {}).get('build', {}).get('binary_sha256', 'unavailable') for r in report['cells'] if r['pushid'] == t['pushid']})
         parts.append(f'<tr><td>{esc(t["pushid"])}</td><td>{esc(t["specimen"])}</td><td><a href="https://github.com/{esc(t["repository"])}/tree/{esc(t["commit"])}">{esc(t["commit"])}</a></td><td>{esc(", ".join(binaries))}</td></tr>')
-    parts.append('</table><h2>Paired outcomes</h2><table><tr><th>Scenario</th><th>Candidate</th><th>Class</th><th>Depth</th><th>Loadout</th><th>Result</th></tr>')
+    parts.append('</table><h2>Paired outcomes</h2><table><tr><th>Scenario</th><th>Candidate</th><th>Class</th><th>Depth</th><th>Loadout</th><th>Result</th><th>Reason</th></tr>')
     for p in report['pairs']:
-        values = [p['scenario_id'], p['candidate'], catalogue.CLASSES[p['class_idx']], p['depth'], p['loadout'], p['outcome']]
+        values = [p['scenario_id'], p['candidate'], catalogue.CLASSES[p['class_idx']], p['depth'], p['loadout'], p['outcome'], p.get('reason', '')]
         parts.append('<tr>' + ''.join(f'<td>{esc(v)}</td>' for v in values) + '</tr>')
     parts.append('</table><h2>Class/depth/loadout denominators</h2><table><tr><th>Candidate</th><th>Class</th><th>Depth</th><th>Loadout</th><th>Expected pairs</th><th>Outcomes</th></tr>')
     for a in report['aggregates']:

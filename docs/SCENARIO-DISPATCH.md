@@ -36,7 +36,11 @@ reported explicitly. Reborn #382 remains the equipment-execution dependency.
 The initial implementation supports only `comparison_axis: ["target_build"]`.
 Profiles, kits and all starting conditions must be equal. Profile comparisons
 require a separately reviewed adapter extension; no arbitrary field exclusions
-are accepted. Two to four distinct source pins are supported, with at most 32
+are accepted. The initial adapter requires the reborn core's `params.json`:
+explicit profile values are checked against effective values, and all effective
+parameter values must match between targets. Silent default drift invalidates
+the pair. Cores without this receipt need their own configuration adapter.
+Two to four distinct source pins are supported, with at most 32
 scheduled cells and 1,800 seconds of aggregate execution budget. These are safety
 ceilings, not permission to expand the checked-in two-cell smoke.
 
@@ -79,6 +83,8 @@ wrap it in a second lock. The CLI `run` exits nonzero on invalid execution, whil
 still recording its cells. Collection includes every expected cell even when a
 build/job fails. Completed cells are flushed/fsynced before the next game; a
 missing final per-target report cannot discard already completed records.
+Original summary, process, configuration and effective-parameter receipt bytes
+are retained and hash-checked in the compact cell, independently of raw-log expiry.
 
 `.github/workflows/scenarios.yml` is manual only. It freezes the plan, runs the
 two targets sequentially in jobs with read-only permissions and no persisted

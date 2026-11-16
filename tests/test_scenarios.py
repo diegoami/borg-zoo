@@ -42,8 +42,11 @@ def row_fixture(plan, case, target, status):
                 evidence={name: dict(sha256='1'*64) for name in ('summary.json', 'process.json', 'config.txt', 'keys.log', 'state.log', 'messages.log')})
     row['receipts'] = {name: json.dumps(dict(fake_adapter=True, scenario=case['id'], binary=receipt['build']['binary_sha256'])) + '\n'
                        for name in ('summary.json', 'process.json', 'config.txt')}
+    row['receipts']['params.json'] = json.dumps(dict(profile_sha256=case['character_build']['profile_sha256'],
+                                                   parameters=[dict(name='rest_turns',value=75)]))
+    row['effective_settings'] = s.effective_settings(case,row['receipts']['params.json'])
     for name,text in row['receipts'].items():
-        row['evidence'][name]['sha256'] = hashlib.sha256(text.encode()).hexdigest()
+        row['evidence'][name] = dict(sha256=hashlib.sha256(text.encode()).hexdigest())
     return row
 
 
@@ -123,6 +126,12 @@ class ScenarioTests(unittest.TestCase):
         r['receipts']['config.txt']+='changed profile\n';p.write_text(json.dumps(r))
         out=s.collect(self.plan,self.root/'input',self.root/'out')
         self.assertEqual(out['counts'],{'invalid':1})
+
+    def test_silent_default_drift_is_not_a_build_only_rescue(self):
+        a=row_fixture(self.plan,self.plan['cases'][0],self.plan['targets'][0],'death')
+        b=row_fixture(self.plan,self.plan['cases'][0],self.plan['targets'][1],'survived_to_cap')
+        b['effective_settings']['parameters']['rest_turns']=90
+        self.assertEqual(s.compare_pair(a,b),'invalid')
 
     def test_duplicate_attempts_do_not_inflate_samples(self):
         self.cells(['death','death'])
