@@ -13,7 +13,7 @@ Source proposals and fork master are not merged by this experiment.
 - Specimen:neo-b4-parity-books-v1.
 - Source:464a1555ca73cf662b522f020152faa9d1a2d465.
 - Engine:officiald27ed50f9e3b650a43cceda5a0c007d03cc321df, beta.4/API2.1.
-- Toolkit:967b28f5fe12c4974a6a793040f73246eb7d1200, unchanged message/truth-corrected host.
+- Toolkit:638979da690891c11da1c1e780631828953b03d7, beta.4 SDK build-path correction; message/truth/session bytes unchanged from967b28f.
 - Explicit c-seeded-point-buy-v2 birth, no-selling, C native-menu startup seed,
   GCC coordinate-order adapter and exact tick cap.
 - Existing default Borg profile; no class-specific tuning or mode change.
@@ -51,3 +51,15 @@ The full arm is authorized by this request but must not run alongside the
 smoke or before its evidence is accepted. There is no recurring automation,
 unattended source watcher, local game/cohort or consumer/lab deployment.
 Acceptance and run IDs will be appended here after the smoke completes.
+
+## First smoke build and corrected toolkit pin
+
+[Smoke43861106244](https://github.com/diegoami/borg-zoo/actions/runs/43861106244)
+stopped before any game ran. The old967b28f builder aliases the SDK root as a
+file prefix and resolves backup-policy below index.js, which cannot load.
+The already-tested638979d toolkit adds the explicit backup-policy alias and
+anchors the SDK-root match. Its run/session/message-host/truth-host files
+are byte-identical to967b28f. No gameplay, source, engine, seed or cap changes.
+The failed run is preserved; acceptance needs a fresh smoke on the corrected
+catalogue pin. Source464a155's full1363-test ordinary/exact-source gates and
+production truth-host checks passed in run43860178921.
