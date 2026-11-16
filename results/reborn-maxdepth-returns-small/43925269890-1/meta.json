@@ -1,0 +1,680 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-maxd-ambitious-off": {
+        "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner; trip policy off.",
+        "settings": {
+          "borg_plan": "errands_plan_ambitious.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_policy": 0
+        },
+        "sha256": "950408f4b1619ce5d960ff6f9f0ebb44650dfc6594fd9a2dfc87f582bc6b7a69"
+      },
+      "reborn-maxd-ambitious-u3-p1": {
+        "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner + trip policy, return at 3 unknown stacks or 1 free pack slots (3,1).",
+        "settings": {
+          "borg_plan": "errands_plan_ambitious.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_pack_slack": 1,
+          "borg_trip_policy": 1,
+          "borg_trip_unknown_stacks": 3
+        },
+        "sha256": "b3d3bc2926f49d28abe0219da30247991d4fe38c86b4131562cdb477d89cb13b"
+      },
+      "reborn-maxd-ambitious-u3-p2": {
+        "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner + trip policy, return at 3 unknown stacks or 2 free pack slots (3,2).",
+        "settings": {
+          "borg_plan": "errands_plan_ambitious.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_pack_slack": 2,
+          "borg_trip_policy": 1,
+          "borg_trip_unknown_stacks": 3
+        },
+        "sha256": "e4eee1c32ae4f5fa7dde3382a80accc0330e3c126dc732db4060617711f737d6"
+      },
+      "reborn-maxd-ambitious-u4-p1": {
+        "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner + trip policy, return at 4 unknown stacks or 1 free pack slots (4,1).",
+        "settings": {
+          "borg_plan": "errands_plan_ambitious.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_pack_slack": 1,
+          "borg_trip_policy": 1,
+          "borg_trip_unknown_stacks": 4
+        },
+        "sha256": "01b1a35d3d4d568e1791a8df7f70f162449b257c823a094ab8abe24bdc9f23e3"
+      },
+      "reborn-maxd-ambitious-u4-p2": {
+        "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner + trip policy, return at 4 unknown stacks or 2 free pack slots (4,2) (the default).",
+        "settings": {
+          "borg_plan": "errands_plan_ambitious.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_pack_slack": 2,
+          "borg_trip_policy": 1,
+          "borg_trip_unknown_stacks": 4
+        },
+        "sha256": "ffd39a7f9c4b9392d9bc1526f86447985f89cc9e596572f39610498660721d17"
+      },
+      "reborn-maxd-plan-off": {
+        "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner; trip policy off.",
+        "settings": {
+          "borg_plan": "errands_plan.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_policy": 0
+        },
+        "sha256": "b8a4a4250ff9048d0c2d4f3d996e6dcd663ceb866b22e062573f78ce09e7ef72"
+      },
+      "reborn-maxd-plan-u3-p1": {
+        "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner + trip policy, return at 3 unknown stacks or 1 free pack slots (3,1).",
+        "settings": {
+          "borg_plan": "errands_plan.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_pack_slack": 1,
+          "borg_trip_policy": 1,
+          "borg_trip_unknown_stacks": 3
+        },
+        "sha256": "8761d13286d80506af29fceaac36f823e4fe4e23b40288705192a60fdd8d1a6e"
+      },
+      "reborn-maxd-plan-u3-p2": {
+        "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner + trip policy, return at 3 unknown stacks or 2 free pack slots (3,2).",
+        "settings": {
+          "borg_plan": "errands_plan.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_pack_slack": 2,
+          "borg_trip_policy": 1,
+          "borg_trip_unknown_stacks": 3
+        },
+        "sha256": "e1b2c49eeb95c72d1ff4bb990ba5016fb849e068df9472c394d47ddd833cc7d8"
+      },
+      "reborn-maxd-plan-u4-p1": {
+        "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner + trip policy, return at 4 unknown stacks or 1 free pack slots (4,1).",
+        "settings": {
+          "borg_plan": "errands_plan.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_pack_slack": 1,
+          "borg_trip_policy": 1,
+          "borg_trip_unknown_stacks": 4
+        },
+        "sha256": "d071562f72eea198ebad3e8bcbba67b4049d24cba99e2fbb1ddd83b63e4afdd5"
+      },
+      "reborn-maxd-plan-u4-p2": {
+        "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner + trip policy, return at 4 unknown stacks or 2 free pack slots (4,2) (the default).",
+        "settings": {
+          "borg_plan": "errands_plan.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1,
+          "borg_trip_pack_slack": 2,
+          "borg_trip_policy": 1,
+          "borg_trip_unknown_stacks": 4
+        },
+        "sha256": "98e433b441e6f5e06299c4829a3875eb3e190ac16aa1d056ce8d68b7f7678c30"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-maxdepth": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 6d1bca10, the main merge of #444 (borg-zoo#147): #440's max-depth plans (a phase 'max-depth N' only caps the core with borg_no_deeper; the level-loop errand is removed and a loop-levels plan exits 2) and #444's planner item values (real food only with the 5-ration floor, 45 kinds the core never uses worthless, buy-to-identify off with the trip policy, casters' spells not valued as infinite mana). On top of d3ebe3c0. A different game: source-hash rust 8646eb97... (was 6b3b9e99...). harness/borg.txt 88296dd1... unchanged; both plans rewritten as max-depth caps, with new hashes.",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "6d1bca10bc67d02150a1a717f111891976e98069",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "source": "https://github.com/diegoami/borg-reborn-rs/pull/444"
+      }
+    },
+    "suites": {
+      "classes-1800-small": {
+        "assigned_characters": {
+          "102088710": [
+            "Elf",
+            "Rogue"
+          ],
+          "1028557754": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1042834709": [
+            "Gnome",
+            "Rogue"
+          ],
+          "10488336": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "1058178192": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1071405808": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "1086352478": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "1112777834": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "1149332291": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "1169386844": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "1199401383": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1217781050": [
+            "Human",
+            "Priest"
+          ],
+          "1236782037": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1248006956": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "1269315224": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1272553636": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "1277697136": [
+            "Human",
+            "Rogue"
+          ],
+          "1285833235": [
+            "Gnome",
+            "Paladin"
+          ],
+          "129607500": [
+            "Human",
+            "Ranger"
+          ],
+          "1303043906": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1304510506": [
+            "Half-Orc",
+            "Blackguard"
+          ],
+          "1326666591": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1356248624": [
+            "Elf",
+            "Warrior"
+          ],
+          "1370868461": [
+            "Dwarf",
+            "Mage"
+          ],
+          "1417651640": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "1429594888": [
+            "Dunadan",
+            "Mage"
+          ],
+          "1478804878": [
+            "Elf",
+            "Priest"
+          ],
+          "1484503304": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "1515505937": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1516096046": [
+            "Gnome",
+            "Druid"
+          ],
+          "1545553111": [
+            "High-Elf",
+            "Mage"
+          ],
+          "1552244183": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "1584060551": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "1629166764": [
+            "High-Elf",
+            "Druid"
+          ],
+          "167240942": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1678303796": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1678765969": [
+            "Elf",
+            "Druid"
+          ],
+          "1705599023": [
+            "Dwarf",
+            "Druid"
+          ],
+          "1751715076": [
+            "Human",
+            "Blackguard"
+          ],
+          "1758620521": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1759555484": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "176707408": [
+            "Human",
+            "Necromancer"
+          ],
+          "1834235471": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "1852741500": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1859521195": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1956591784": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "2002578196": [
+            "Hobbit",
+            "Druid"
+          ],
+          "200986077": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "2022908874": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "2041201968": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "2093434235": [
+            "Gnome",
+            "Mage"
+          ],
+          "2097768768": [
+            "Human",
+            "Mage"
+          ],
+          "2109297965": [
+            "Human",
+            "Druid"
+          ],
+          "234773070": [
+            "Elf",
+            "Mage"
+          ],
+          "247227001": [
+            "High-Elf",
+            "Priest"
+          ],
+          "247597266": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "25404286": [
+            "Dwarf",
+            "Blackguard"
+          ],
+          "255960706": [
+            "Dunadan",
+            "Blackguard"
+          ],
+          "300461652": [
+            "Hobbit",
+            "Mage"
+          ],
+          "352388688": [
+            "Human",
+            "Paladin"
+          ],
+          "384988836": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "399497898": [
+            "Dunadan",
+            "Priest"
+          ],
+          "406779093": [
+            "High-Elf",
+            "Blackguard"
+          ],
+          "412975293": [
+            "Elf",
+            "Necromancer"
+          ],
+          "446353753": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "507571350": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "572215387": [
+            "Elf",
+            "Ranger"
+          ],
+          "584077430": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "60792140": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "63257248": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "652511567": [
+            "Gnome",
+            "Priest"
+          ],
+          "655965451": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "674811104": [
+            "Half-Orc",
+            "Paladin"
+          ],
+          "710244031": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "736866367": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "740860644": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "765432699": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "797610775": [
+            "Dwarf",
+            "Paladin"
+          ],
+          "807773433": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "818961361": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "826156836": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "869093144": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "884072154": [
+            "Human",
+            "Warrior"
+          ],
+          "892923114": [
+            "Hobbit",
+            "Priest"
+          ],
+          "904568879": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "920137153": [
+            "Elf",
+            "Paladin"
+          ],
+          "926210318": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "957287853": [
+            "Elf",
+            "Blackguard"
+          ],
+          "979002123": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "99115049": [
+            "High-Elf",
+            "Ranger"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "Tier small of classes-1800 (RULES 14): starts 1-90 (10 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          884072154,
+          2097768768,
+          2109297965,
+          1217781050,
+          176707408,
+          352388688,
+          1277697136,
+          129607500,
+          1751715076,
+          1859521195,
+          247597266,
+          507571350,
+          584077430,
+          1199401383,
+          1584060551,
+          1759555484,
+          1758620521,
+          446353753,
+          1356248624,
+          234773070,
+          1678765969,
+          1478804878,
+          412975293,
+          920137153,
+          102088710,
+          572215387,
+          957287853,
+          1515505937,
+          300461652,
+          2002578196,
+          892923114,
+          384988836,
+          765432699,
+          826156836,
+          1248006956,
+          2022908874,
+          1326666591,
+          2093434235,
+          1516096046,
+          652511567,
+          1236782037,
+          1285833235,
+          1042834709,
+          167240942,
+          1552244183,
+          736866367,
+          1370868461,
+          1705599023,
+          1303043906,
+          10488336,
+          797610775,
+          2041201968,
+          807773433,
+          25404286,
+          1058178192,
+          200986077,
+          1169386844,
+          1852741500,
+          1417651640,
+          674811104,
+          1269315224,
+          1071405808,
+          1304510506,
+          1028557754,
+          63257248,
+          869093144,
+          1086352478,
+          1112777834,
+          1956591784,
+          926210318,
+          60792140,
+          1484503304,
+          740860644,
+          1429594888,
+          1678303796,
+          399497898,
+          904568879,
+          818961361,
+          979002123,
+          1834235471,
+          255960706,
+          655965451,
+          1545553111,
+          1629166764,
+          247227001,
+          1272553636,
+          1149332291,
+          710244031,
+          99115049,
+          406779093
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "range": [
+            0,
+            90
+          ],
+          "suite": "classes-1800"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-16 18:23 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-maxdepth",
+    "control_profile": "reborn-maxd-plan-off",
+    "description": "borg-zoo#147: two max-depth plans (errands_plan.txt, errands_plan_ambitious.txt) x five return settings (trip policy off; (unknown stacks, pack slack) = (4,2) default, (4,1), (3,2), (3,1)), all with the live town planner, on borg-reborn-rs 6d1bca10 (specimen 4.2.6-reborn-rust-maxdepth). Small tier: classes-1800-small (10 starts per class), 90 games per arm, 900 games.",
+    "name": "reborn-maxdepth-returns-small",
+    "owner_authorization": "2026-11-16: the owner chose the 2x5 design and asked for its small run (borg-zoo#147).",
+    "prespecified": "Fixed 2026-11-16, before any result was read (borg-zoo#147). Small tier only (RULES 14); medium waits for this gate and the owner. Question: does a return setting tighter than the default (4,2) lower deaths, and at what cost in progress, under each plan? Gate: no config_error; one binary; every loaded-plan copy matches its pin; no frozen-turn stall (1,000+ keys at one game turn) and no restock-food loop; the plan holds: no game's deepest level exceeds its plan's cap for its class at its final character level (caps never fall as level rises). Report per arm: deaths / 90, stalled, key outliers, mean final level, mean deepest level, DL5+, town visits and gold where recorded; paired within each plan against its return-off arm, and between plans at equal return settings. No control or town-only arm (owner). Results from #138 and #141 are a different game and are not pooled. Descriptive only.",
+    "profiles": [
+      "reborn-maxd-plan-off",
+      "reborn-maxd-plan-u4-p2",
+      "reborn-maxd-plan-u4-p1",
+      "reborn-maxd-plan-u3-p2",
+      "reborn-maxd-plan-u3-p1",
+      "reborn-maxd-ambitious-off",
+      "reborn-maxd-ambitious-u4-p2",
+      "reborn-maxd-ambitious-u4-p1",
+      "reborn-maxd-ambitious-u3-p2",
+      "reborn-maxd-ambitious-u3-p1"
+    ],
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-maxdepth"
+    ],
+    "suites": [
+      "classes-1800-small"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "43925269890-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/43925269890",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "74d2c4bc1d8c9b01c999912dc0eb03de4349a9be"
+}
