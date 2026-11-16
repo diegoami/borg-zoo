@@ -100,11 +100,19 @@ def expand_suites(suites):
             parent = out.get(suite['subset']['suite'])
             if parent is None:
                 raise ValueError(f'{name}: subset of an unknown or later suite')
-            wanted = suite['subset']['class']
             chars = {seed: character(parent, seed) for seed in parent['seeds']}
             if any(c is None for c in chars.values()):
                 raise ValueError(f'{name}: the parent suite does not assign characters')
-            suite['seeds'] = [seed for seed in parent['seeds'] if chars[seed][1] == wanted]
+            if 'range' in suite['subset']:
+                # A tier (RULES 14): parent seeds [start, end) in parent order,
+                # each keeping its parent's character.
+                start, end = suite['subset']['range']
+                if not 0 <= start < end <= len(parent['seeds']):
+                    raise ValueError(f'{name}: range {start}..{end} outside the parent suite')
+                suite['seeds'] = parent['seeds'][start:end]
+            else:
+                wanted = suite['subset']['class']
+                suite['seeds'] = [seed for seed in parent['seeds'] if chars[seed][1] == wanted]
             suite['birth'] = 'assigned'
             suite['assigned_characters'] = {str(seed): list(chars[seed]) for seed in suite['seeds']}
             out[name] = suite

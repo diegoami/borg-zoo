@@ -39,3 +39,12 @@
     evidence retention. Upload completed records even when a job is cancelled
     or times out. Verify partial-result collection with an interrupted run
     before relying on it for a large experiment.
+14. Grow every measurement in tiers, and always propose the smallest first
+    (owner, 2026-11-16). After the pilot or smoke, a study runs as nested
+    slices of its development suite: small (10 starts per class), medium
+    (40), big (100) and full (all). Each tier plays only the starts the
+    previous tiers did not, so the four runs together are exactly the full
+    study, and each is analysed on everything collected so far. Every tier
+    has a written gate, and the next tier is dispatched only after the gate
+    is checked and the owner agrees. Never propose or start the full size
+    first.

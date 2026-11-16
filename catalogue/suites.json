@@ -1015,6 +1015,54 @@
       "stall_seconds": 120,
       "saves": false
     },
+    "classes-1800-small": {
+      "description": "Tier small of classes-1800 (RULES 14): starts 1-90 (10 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "range": [0, 90]
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-medium": {
+      "description": "Tier medium of classes-1800 (RULES 14): starts 91-360 (30 more per class; with small, 40 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "range": [90, 360]
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big": {
+      "description": "Tier big of classes-1800 (RULES 14): starts 361-900 (60 more per class; with small and medium, 100 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "range": [360, 900]
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full": {
+      "description": "Tier full of classes-1800 (RULES 14): starts 901-1800 (100 more per class; with the other three tiers, all 200 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "range": [900, 1800]
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
     "classes-1800-warriors": {
       "description": "The 200 Warrior seeds of classes-1800, with the same race on each seed. Development only: these seeds produced the M5 and M6 warrior findings.",
       "role": "development",
