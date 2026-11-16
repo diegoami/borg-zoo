@@ -779,6 +779,35 @@
         "borg_plan": "errands_plan.txt"
       }
     },
+    "reborn-m13-town": {
+      "description": "borg-zoo#123 development arm 'shop': M13 live town planner on, trip policy off (owner, 2026-11-16: keeps borg-rs PR88's added return triggers out of #123 once borg-reborn-rs#415 vendors borg-rs 8c5d000a); no plan.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0
+      }
+    },
+    "reborn-m13-plan-town": {
+      "description": "borg-zoo#123 development arm 'plan-shop': class errands plan (errands_plan.txt) + M13 live town planner; trip policy off (owner, 2026-11-16).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-m13-ambitious-town": {
+      "description": "borg-zoo#123 development arm 'ambitious-shop': ambitious class errands plan (errands_plan_ambitious.txt) + M13 live town planner; trip policy off (owner, 2026-11-16).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 0,
+        "borg_plan": "errands_plan_ambitious.txt"
+      }
+    },
     "reborn-m13-ambitious-shop": {
       "description": "borg-zoo#123 addendum: ambitious class errands plan (harness/plans/errands_plan_ambitious.txt, borg-reborn-rs#354) + M13 live town planner + trip policy. Needs a specimen that pins that plan.",
       "settings": {
