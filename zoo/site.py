@@ -1016,7 +1016,7 @@ def build_site(results, out):
                      len(cells), finished])
     from . import landing
     shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
-    (out / 'index.html').write_text(page('Borg zoo', landing.overview_page(runs), charts=True))
+    (out / 'overview.html').write_text(page('Borg comparisons · borg-zoo', landing.overview_page(runs), charts=True))
     from . import scenarios
     scenarios.build_site(results, out)
     # The /runs/ directory contains per-run report folders, not a page of its
@@ -1031,7 +1031,9 @@ def build_site(results, out):
     for policy in landing.POLICIES:
         (out / f'{policy["slug"]}.html').write_text(
             page(f'{policy["title"]} · borg-zoo', landing.comparison_page(runs, policy), charts=True))
-    (out / 'detailed.html').write_text(page('Detailed · borg-zoo', landing.landing_page(runs, rows)))
+    full = page('Full runs · borg-zoo', landing.landing_page(runs, rows))
+    (out / 'index.html').write_text(full)
+    (out / 'detailed.html').write_text(full)  # older links
     (out / 'smoke.html').write_text(page('Smoke · borg-zoo', landing.smoke_page(smoke_rows)))
     (out / 'stalls.html').write_text(page('Stalls and crashes · borg-zoo', landing.stalls_page(runs)))
     (out / 'versions.html').write_text(page('Versions · borg-zoo', landing.versions_page()))
