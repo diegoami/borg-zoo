@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "neo-b4-parity-books-smoke-18-v1",
+  "description": "Sequential smoke acceptance before the owner-authorized new arm. Borg1.4.0-beta.6.zoo.1 combines six parity fixes514-519 with book-value509; verified API2.1 engine d27ed50f, truth/message toolkit967b28f. Engine differs from old b4af703 book run. No new survival or C-parity claim; all outcomes/raw evidence retained.",
+  "specimens": [
+    "neo-b4-parity-books-v1"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "neo-b4-parity-books-smoke-18-v1"
+  ],
+  "control": "neo-b4-parity-books-v1",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "neo-b4-parity-books-v1": 2
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 4,
+    "native_wall_seconds": 600,
+    "neo_wall_seconds": 600,
+    "job_timeout_minutes": 300
+  }
+}
