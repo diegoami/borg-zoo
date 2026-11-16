@@ -154,6 +154,18 @@ class PlanArmsTest(unittest.TestCase):
         self.assertNotIn('frozen_turn_loop', record)
         self.assertNotIn('observed_outcome', record)
 
+    def test_key_outliers_are_flagged_against_the_arm_median(self):
+        def rec(profile, keys, outcome='turn_cap', **extra):
+            return {'suite': 's', 'specimen': 'x', 'profile': profile, 'outcome': outcome,
+                    'final': {'keys': keys}, **extra}
+        shop = [rec('shop', k) for k in (9000, 10000, 10900, 11000, 12000, 16893)]
+        loop = rec('shop', 69838, 'stalled', observed_outcome='turn_cap')
+        early_death = rec('shop', 835, 'death')
+        small_arm = [rec('plan', k) for k in (100, 100000)]
+        self.assertEqual(borgrs.flag_key_outliers(shop + [loop, early_death] + small_arm), 1)
+        self.assertEqual(loop['key_outlier'], {'keys': 69838, 'arm_median': 11000, 'ratio': 6.35})
+        self.assertTrue(all('key_outlier' not in r for r in shop + [early_death] + small_arm))
+
     def test_build_carrying_other_plan_bytes_is_refused(self):
         cat = fixture_catalogue()
         cell = cell_for(cat, 'reborn-m13-plan')
