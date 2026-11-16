@@ -1,0 +1,19 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-attackpref-small",
+  "description": "Owner's class/family attack preferences (16 borg_param_attack_preference_* settings, borg-reborn-rs #407) against neutral preferences, on the native borg-rs core with no plan, town planner and return policy off, at borg-reborn-rs ee2a5a80 (specimen 4.2.6-reborn-rust-attackpref). Small tier: classes-1800-small (10 starts per class), 90 games per arm, 180 games.",
+  "prespecified": "Fixed 2026-11-16, before any result was read. Small tier only (RULES 14); medium waits for this gate and the owner. Question: do the owner's attack preferences change deaths, and at what cost in progress, per class? Gate: no config_error; one binary; no frozen-turn stall (1,000+ keys at one game turn). Report per arm: deaths / 90, stalled, key outliers, mean final level, mean deepest level, DL5+; per class, deaths and mean final level, paired by start against the neutral arm, and the number of starts whose key stream is identical in both arms (a preference only reorders attack families that compete in the same ranking; the Warrior sanity cell never had two families eligible at once). Descriptive only.",
+  "specimens": [
+    "4.2.6-reborn-rust-attackpref"
+  ],
+  "profiles": [
+    "reborn-attackpref-neutral",
+    "reborn-attackpref-v1"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-attackpref",
+  "control_profile": "reborn-attackpref-neutral",
+  "owner_authorization": "2026-11-16: the owner gave the settings and asked for a small run (90 starts per arm) against the same core at neutral preferences, preferences only."
+}

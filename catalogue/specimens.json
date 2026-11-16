@@ -1040,6 +1040,17 @@
       "role": "candidate",
       "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/113",
       "label": "Experimental Borg1.4.0-beta.6.zoo.1: six C-parity fixes514-519 plus retained book-value correction509, on verified beta.4/API2.1 engine d27ed50f. Toolkit638979d includes the already-verified beta.4 SDK build alias; runtime message/truth/session code matches967b28f. Previous book cohort43759670685 used beta.3 fork engineb4af703 and older Borg; cross-run comparisons are descriptive, not a six-fix-only causal estimate. Clock640 unresolved."
+    },
+    "4.2.6-reborn-rust-attackpref": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "ee2a5a8007c1411b69d01f2ab1eedc37d3083ce5",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "source": "https://github.com/diegoami/borg-reborn-rs/pull/407",
+      "label": "borg-reborn-rs main ee2a5a80: #407 class/family attack preferences (54 borg_param_attack_preference_<class>_<family>_permille, default 1000 = unchanged play), with #459 (lava back-away), #461 (caution_heal_when_outmatched, default off) and #466 (death matching). source-hash rust 471f24ee...; harness/borg.txt 88296dd1... unchanged."
     }
   }
 }
