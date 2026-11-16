@@ -230,6 +230,11 @@ def run_target(plan, bank, source, pushid, out):
                 row.update(result)
             except (OSError, ValueError, subprocess.SubprocessError, module.ExecutionError) as error:
                 row.update(status=getattr(error, 'status', 'harness_failure'), reason=str(error))
+        # Preserve original compact receipt bytes, not only hashes that become
+        # unverifiable after raw gameplay artifacts expire.
+        row['receipts'] = {name: (attempt / 'run' / name).read_text()
+                           for name in ('summary.json', 'process.json', 'config.txt')
+                           if (attempt / 'run' / name).is_file()}
         write(out / 'cells' / (case['id'] + '.json'), row)
         rows.append(row)
         print(json.dumps(dict(pushid=pushid, scenario=case['id'], status=row['status'])), flush=True)
@@ -268,6 +273,10 @@ def validate_cell(plan, case, target, row):
         if not isinstance(row.get('evidence'), dict) or not required <= row['evidence'].keys() or any(
                 not isinstance(row['evidence'][key], dict) or not HEX.fullmatch(row['evidence'][key].get('sha256', '')) for key in required):
             raise ValueError('missing classified gameplay evidence')
+        for name in ('summary.json', 'process.json', 'config.txt'):
+            receipt = row.get('receipts', {}).get(name)
+            if not isinstance(receipt, str) or hashlib.sha256(receipt.encode()).hexdigest() != row['evidence'][name]['sha256']:
+                raise ValueError('missing or changed compact receipt bytes')
     return row
 
 

@@ -1,5 +1,6 @@
 """Synthetic impact pairing is distinct from Cemetery's parity verifier."""
 import copy
+import hashlib
 import json
 from pathlib import Path
 import tempfile
@@ -35,10 +36,15 @@ def row_fixture(plan, case, target, status):
                    build=dict(git_rev=target['commit'], git_dirty='no', inputs_dirty='no',
                               source_sha256='f'*64, binary_sha256=target['commit'][0]*64))
     inputs = s.execution_input(plan, case, target, receipt, '2026-11-16')
-    return dict(schema='borg-zoo/scenario-cell@1', plan_sha256=plan['plan_sha256'], pushid=target['pushid'],
+    row = dict(schema='borg-zoo/scenario-cell@1', plan_sha256=plan['plan_sha256'], pushid=target['pushid'],
                 scenario_id=case['id'], pairing_sha256=s.pairing_hash(plan, case),
                 execution_input=inputs, execution_sha256=s.digest(inputs), status=status, attempted=True,
                 evidence={name: dict(sha256='1'*64) for name in ('summary.json', 'process.json', 'config.txt', 'keys.log', 'state.log', 'messages.log')})
+    row['receipts'] = {name: json.dumps(dict(fake_adapter=True, scenario=case['id'], binary=receipt['build']['binary_sha256'])) + '\n'
+                       for name in ('summary.json', 'process.json', 'config.txt')}
+    for name,text in row['receipts'].items():
+        row['evidence'][name]['sha256'] = hashlib.sha256(text.encode()).hexdigest()
+    return row
 
 
 class ScenarioTests(unittest.TestCase):
@@ -110,6 +116,13 @@ class ScenarioTests(unittest.TestCase):
         out=s.collect(self.plan,self.root/'input',self.root/'out')
         self.assertEqual(out['counts'],{'invalid':1})
         self.assertEqual(len(out['cells']),2)
+
+    def test_changed_receipt_bytes_cannot_qualify_a_rescue(self):
+        self.cells(['death','survived_to_cap'])
+        p=self.root/'input/new/cells/one.json';r=json.loads(p.read_text())
+        r['receipts']['config.txt']+='changed profile\n';p.write_text(json.dumps(r))
+        out=s.collect(self.plan,self.root/'input',self.root/'out')
+        self.assertEqual(out['counts'],{'invalid':1})
 
     def test_duplicate_attempts_do_not_inflate_samples(self):
         self.cells(['death','death'])
