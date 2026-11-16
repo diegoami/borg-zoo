@@ -852,6 +852,20 @@
       "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/101",
       "label": "Neo fork including merged danger/HP/retreat repairs and durable monster-truth host correction #100. Explicit C point-buy/no-selling/startup profile; engine b4af703. Clock640 unresolved. New descriptive run; old truth-denied cohort is not a repaired-Borg baseline."
     },
+    "4.2.6-reborn-rust-plan-m13": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "2f74e1c5d57ce2b41ded1b5b694174b91b51f265",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "plans": {
+        "errands_plan.txt": "922372ba849489c579449f8cd6f827b29ed65b6e8e0f67bd0fe8be2f3cb160cd"
+      },
+      "source": "https://github.com/diegoami/borg-reborn-rs/blob/2f74e1c5d57ce2b41ded1b5b694174b91b51f265/docs/GAME-PLAN-LANGUAGE.md",
+      "label": "borg-reborn-rs 2f74e1c5 (main), borg-zoo#123: borg-rs's core in the reborn shell with the errands-plan POC (#308), the M13 town/trip core (tag 4.2.6-rs-town-trip-m13-v1, #332, both policies off by default) and the strict borg.txt reader (#331). Ships harness/plans/errands_plan.txt for the plan arms; harness/borg.txt sha256 e5b29126...1961a88. Settings are checked in the written borg.txt only (the frontend reports no effective_settings)."
+    },
     "4.2.6-reborn-core-pilot": {
       "kind": "borg-rs",
       "impl": "rust",

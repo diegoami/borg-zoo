@@ -23,6 +23,15 @@ Limits compared with the better-borg-c observer, recorded per cell:
   is no per-turn state stream, so neither is available. The log carries no
   item values, only gear hashes, so it gives gold on hand, not a full net
   worth (inventory and equipment value).
+- a specimen with "plans": {NAME: sha256} ships those errands plans
+  (borg-reborn-rs harness/plans/NAME, borg-zoo#123). The build copies each
+  one, checked against its pinned hash, into the build's plans/; a profile
+  setting borg_plan = NAME gets it as the cell's user/NAME, next to the
+  borg.txt that names it, and the cell records the plan's sha256. Such a
+  binary exits with status 2 instead of ignoring a missing or invalid plan,
+  so exit 2 without a summary is a config_error, and its borg_stopped (the
+  level-50 handover or a plan's handback) is the borg_stopped outcome, not
+  a stall.
 """
 import hashlib
 import json
@@ -91,6 +100,48 @@ def sha256(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+# Environment overrides the native core prefers to the run's borg.txt
+# (borg-reborn-rs docs/ZOO-INTERFACE.md); a cell measures its file only.
+# BORG_RUN_DIR also turns on core traces.
+AMBIENT = ('BORG_RUN_DIR', 'BORG_CORE', 'BORG_ERRAND', 'BORG_ERRAND_BUDGET', 'BORG_PROFILE', 'BORG_PLAN')
+
+
+def plan_name(name):
+    """A borg_plan value the adapter can ship: a bare file name."""
+    if (not isinstance(name, str) or not name or Path(name).name != name or name.startswith('.')
+            or name == 'borg.txt'):
+        raise ValueError(f'borg_plan must be a bare file name, not {name!r}')
+    return name
+
+
+def copy_plans(spec, source, out):
+    """Copy the specimen's pinned plans into the build; {name: sha256}."""
+    plans = {}
+    for name, digest in sorted((spec.get('plans') or {}).items()):
+        src = Path(source) / 'harness/plans' / plan_name(name)
+        if not src.is_file():
+            raise ValueError(f'specimen plan {name} is not in harness/plans at {spec["ref"]}')
+        if sha256(src) != digest:
+            raise ValueError(f'specimen plan {name} has sha256 {sha256(src)}, catalogue pins {digest}')
+        (out / 'plans').mkdir(exist_ok=True)
+        shutil.copy(src, out / 'plans' / name)
+        plans[name] = digest
+    return plans
+
+
+def ship_plan(spec, manifest, build_dir, out, name):
+    """Write the build's plan NAME as the cell's user/NAME; its sha256."""
+    name = plan_name(name)
+    digest = (spec.get('plans') or {}).get(name)
+    if digest is None:
+        raise ValueError(f'specimen ships no plan {name}')
+    src = Path(build_dir) / 'plans' / name
+    if (manifest.get('plans') or {}).get(name) != digest or not src.is_file() or sha256(src) != digest:
+        raise ValueError(f'build {build_dir} does not carry plan {name} at sha256 {digest}')
+    shutil.copy(src, out / 'user' / name)
+    return digest
+
+
 def build(spec, source, out):
     """Build a borg-rs checkout (at spec['ref']) and keep the game dir."""
     source = Path(source).resolve()
@@ -109,6 +160,9 @@ def build(spec, source, out):
         shutil.rmtree(out / 'game')
     shutil.copytree(game, out / 'game', symlinks=False)
     shutil.copy(source / 'harness/borg.txt', out / 'borg.txt')
+    if (out / 'plans').exists():
+        shutil.rmtree(out / 'plans')
+    plans = copy_plans(spec, source, out)
     build_id = dict(line.split('=', 1) for line in (source / 'build' / impl / 'BUILD_ID').read_text().splitlines()
                     if '=' in line)
     manifest = {'kind': 'borg-rs', 'impl': impl, 'source_commit': head,
@@ -117,6 +171,8 @@ def build(spec, source, out):
                 'compiler': subprocess.check_output(['cc', '--version'], text=True).splitlines()[0],
                 'rustc': build_id.get('rustc'),
                 'platform': f'{platform.system()} {platform.machine()}', 'complete': True}
+    if plans:
+        manifest['plans'] = plans
     if build_id.get('binary_sha256') != manifest['binary_sha256']:
         raise ValueError('copied binary does not match BUILD_ID')
     (out / 'build.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
@@ -187,13 +243,17 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     text = config_text(build_dir, profile, race_i, cls_i)
     (out / 'user/borg.txt').write_text(text)
     mismatch = check_config(text, profile)
+    plan = profile['settings'].get('borg_plan')
+    plan_sha = ship_plan(spec, manifest, build_dir, out, plan) if plan is not None else None
     game = build_dir / 'game'
     argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=keep)
     env = dict(os.environ, TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8')
+    for name in [n for n in env if n in AMBIENT or n.startswith('BORG_PARAM_')]:
+        del env[name]
+    # Never let parallel cells write to an inherited process-global path.
+    for name in ('BORG_TOWN_PLAN_RECORD', 'BORG_TRIP_RECORD'):
+        env.pop(name, None)
     if keep:
-        # Never let parallel cells write to an inherited process-global path.
-        for name in ('BORG_TOWN_PLAN_RECORD', 'BORG_TRIP_RECORD'):
-            env.pop(name, None)
         streams = {}
         for setting, name, filename in (
                 ('borg_town_plan', 'BORG_TOWN_PLAN_RECORD', 'town-plan.jsonl'),
@@ -224,13 +284,20 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         except ValueError as exc:
             error = f'unreadable summary: {exc}'
     if outcome is None:
-        if rc not in (0, None) and not summary:
+        if rc == 2 and not summary and spec.get('plans'):
+            # The binary refused its configuration (a plan it could not load,
+            # a conflicting errand, an invalid setting) before playing.
+            outcome, error = 'config_error', 'exit code 2: the binary rejected its configuration'
+            mismatch = (mismatch + '; ' if mismatch else '') + error
+        elif rc not in (0, None) and not summary:
             outcome, error = ('crash' if rc < 0 else 'harness_failure'), f'exit code {rc}'
         elif not summary:
             outcome, error = 'harness_failure', error or 'no summary.json'
         else:
             outcome = 'death' if summary.get('dead') else STOP.get(summary.get('stop_reason'), 'harness_failure')
-            if outcome == 'stalled':
+            if summary.get('stop_reason') == 'borg_stopped' and spec.get('plans') and not summary.get('dead'):
+                outcome = 'borg_stopped'
+            elif outcome == 'stalled':
                 error = f"borgh stop_reason {summary.get('stop_reason')}"
     if summary and (summary.get('race'), summary.get('class')) != (race, cls):
         mismatch = (mismatch + '; ' if mismatch else '') + \
@@ -246,7 +313,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         if shadow.get('error'):
             mismatch = (mismatch + '; ' if mismatch else '') + shadow['error']
     observed_outcome = outcome
-    if mismatch and (spec.get('town_shadow_records') or outcome in ('death', 'turn_cap', 'completion')):
+    if mismatch and (spec.get('town_shadow_records') or outcome in ('death', 'turn_cap', 'completion', 'borg_stopped')):
         outcome = 'config_error'
     keys = out / 'keys.log'
     keys_sha = sha256(keys) if keys.exists() else None
@@ -262,6 +329,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'specimen_ref': spec['ref'], 'impl': spec['impl'],
         'profile_sha256': cat_mod.profile_sha256(profile),
         'config_sha256': hashlib.sha256(text.encode()).hexdigest(),
+        'plan': {'name': plan, 'sha256': plan_sha} if plan is not None else None,
         'cap': suite['cap'], 'birth': suite['birth'],
         'boundary': 'exact' if spec.get('exact_turns') else 'after-key',
         'outcome': outcome, 'runner_outcome': summary.get('stop_reason'),
