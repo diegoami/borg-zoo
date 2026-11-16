@@ -4,6 +4,7 @@ These describe the comparison, never its result. New experiments without an
 editorial question get a factual summary of the dimensions they vary.
 """
 QUESTIONS = {
+    'neo-b4-parity-books-v1-small': 'Small tier: how does the Neo parity-and-books candidate play on the first 90 development starts?',
     'neo-b4-parity-books-v1-1800': 'How does the Neo beta.4-engine candidate with six parity repairs and retained spellbook value survive and progress?',
     'rs-additive-returns': 'Do the four added return-trigger settings change survival and town visits when legacy returns stay active and shopping, combat and depth rules are fixed?',
     'neo-fork-48afb65-classes-1800': 'How does the Neo fork with corrected store-phase equipment changes survive and progress?',

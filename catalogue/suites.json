@@ -1486,6 +1486,19 @@
       "stall_seconds": 60,
       "saves": false
     },
+    "neo-seeded-v2-classes-1800-small": {
+      "description": "Tier small of neo-seeded-v2-classes-1800 (RULES 14, borg-zoo#137): starts 1-90 (10 per class) in the parent's order, each keeping its parent's race and class. Medium, big and full are the later disjoint slices [90,360), [360,900) and [900,1800).",
+      "role": "development",
+      "subset": {
+        "suite": "neo-seeded-v2-classes-1800",
+        "range": [0, 90]
+      },
+      "cap": 100000,
+      "wall_seconds": 600,
+      "stall_seconds": 90,
+      "saves": false,
+      "measurement_profile": "c-seeded-point-buy-v2"
+    },
     "neo-b4-parity-books-smoke-18-v1": {
       "description": "Fresh18-case acceptance for the parity/books candidate: two births per class,5000exactticks,600-second watchdog; inspect every endpoint/settings/source/truth receipt before the1800-game arm.",
       "role": "pilot",
