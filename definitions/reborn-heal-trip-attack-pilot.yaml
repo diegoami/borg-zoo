@@ -7,48 +7,52 @@ tier: pilot            # classes-18: 9 classes x 2 seeds
 
 specimen: 4.2.6-reborn-rust-heal   # borg-reborn-rs f02cd294 (#151); carries the #461 heal flag and #407 attack preferences
 
-# Every arm: borg-rs's native core, no errand, the live town planner, no plan.
+# Every arm: borg-rs's native core, no errand, the live town planner.
 settings:
   borg_reborn_core: borg-rs
   borg_reborn_errand: none
   borg_town_plan: 1
 
 profile_prefix: reborn
-arms:
-  heal0-attack0:         # the existing #151 pilot control: everything at the build's default, trip policy off
-    borg_trip_policy: 0
-  heal1-trip1-attack1:   # the bundle
-    borg_trip_policy: 1
-    borg_trip_unknown_stacks: 5
-    borg_trip_pack_slack: 1
-    borg_param_caution_heal_when_outmatched: 1
-    borg_param_attack_preference_warrior_melee_permille: 1800
-    borg_param_attack_preference_warrior_projectile_permille: 1200
-    borg_param_attack_preference_warrior_thrown_permille: 1200
-    borg_param_attack_preference_mage_spell_permille: 2000
-    borg_param_attack_preference_mage_device_permille: 1200
-    borg_param_attack_preference_druid_spell_permille: 1700
-    borg_param_attack_preference_priest_spell_permille: 1700
-    borg_param_attack_preference_necromancer_spell_permille: 1800
-    borg_param_attack_preference_necromancer_device_permille: 1200
-    borg_param_attack_preference_paladin_melee_permille: 1800
-    borg_param_attack_preference_paladin_spell_permille: 1200
-    borg_param_attack_preference_rogue_projectile_permille: 1300
-    borg_param_attack_preference_rogue_thrown_permille: 1600
-    borg_param_attack_preference_ranger_projectile_permille: 2000
-    borg_param_attack_preference_blackguard_melee_permille: 1600
-    borg_param_attack_preference_blackguard_spell_permille: 1400
+vary:
+  bundle:
+    heal0-trip0:           # the #151 control: everything at the build's default, trip policy off
+      borg_trip_policy: 0
+    heal1-trip1-attack1:   # the bundle
+      borg_trip_policy: 1
+      borg_trip_unknown_stacks: 5
+      borg_trip_pack_slack: 1
+      borg_param_caution_heal_when_outmatched: 1
+      borg_param_attack_preference_warrior_melee_permille: 1800
+      borg_param_attack_preference_warrior_projectile_permille: 1200
+      borg_param_attack_preference_warrior_thrown_permille: 1200
+      borg_param_attack_preference_mage_spell_permille: 2000
+      borg_param_attack_preference_mage_device_permille: 1200
+      borg_param_attack_preference_druid_spell_permille: 1700
+      borg_param_attack_preference_priest_spell_permille: 1700
+      borg_param_attack_preference_necromancer_spell_permille: 1800
+      borg_param_attack_preference_necromancer_device_permille: 1200
+      borg_param_attack_preference_paladin_melee_permille: 1800
+      borg_param_attack_preference_paladin_spell_permille: 1200
+      borg_param_attack_preference_rogue_projectile_permille: 1300
+      borg_param_attack_preference_rogue_thrown_permille: 1600
+      borg_param_attack_preference_ranger_projectile_permille: 2000
+      borg_param_attack_preference_blackguard_melee_permille: 1600
+      borg_param_attack_preference_blackguard_spell_permille: 1400
+  plan:
+    none: {}
+    plan: {borg_plan: errands_plan.txt}
 
-control: [heal0-attack0]
+control: [heal0-trip0, none]
 owner_authorization: >-
   2026-11-16: the owner asked to test the heal flag, this trip policy (unknown_stacks 5,
-  pack_slack 1) and these class attack preferences together on classes-1800-small. The
+  pack_slack 1) and these class attack preferences together, each with no plan and with errands_plan.txt on classes-18. The
   pilot first (RULES 14); the small tier (reborn-heal-trip-attack-small) only after this gate and the owner.
 
 prespecified: |
   Fixed 2026-11-16, before any result was read (borg-zoo#164). Pilot only (RULES 14). Gate: no
   config_error; one binary; every bundle setting applied from borg.txt (params-core.json) in
-  bundle cells and none in control cells. Every cell ends in death, turn_cap or borg_stopped;
+  bundle cells and none in control cells; the loaded plan copy matches its pin in plan arms and is absent from no-plan arms. Every cell ends in death, turn_cap or borg_stopped;
   frozen-turn stalls and key outliers are listed. Report per arm and per class: deaths, final
   level, deepest level, keys; paired rescued and newly killed against the control on the same
-  start, and the cells where play diverges. 18 starts per arm cannot show whether the bundle is good.
+  start within each plan, and the cells where play diverges. 18 starts per arm cannot show whether the bundle is good.
