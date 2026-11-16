@@ -7,7 +7,7 @@ The workflow posts the readable outcome table in its GitHub job summary and
 uploads JSON/Markdown/HTML reports with the exact execution receipts.
 
 This is a separate saved-state baseline contract, not the generated-birth
-comparison contract in PR145 and not a natural seed-suite experiment. It
+comparison contract merged through PR145 and not a natural seed-suite experiment. It
 requires `loaded:true`, fresh private Borg memory and saved engine RNG. It
 makes no paired-impact, population or improvement claim. The generated-birth
 `loaded:false`/one-way restrictions are not changed. No large Zoo tier starts.
@@ -90,3 +90,8 @@ actual Zoo execution evidence and must be inspected before proposing a next
 tier. Larger runs require a written gate and owner agreement under RULES14.
 Cemetery owns canonical saves/scenarios/evidence; Zoo owns execution,
 aggregation and presentation. No Borg source or Cemetery files are changed.
+
+Compact saved-state reports live under `reports/saved-encounters/`, separate
+from the generated comparison schema in `reports/scenarios/`. This keeps the
+existing generated-scenario site catalogue qualified while saved-state site
+ingestion remains a separate follow-up.
