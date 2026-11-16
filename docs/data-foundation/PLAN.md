@@ -53,6 +53,20 @@ it:
 
 ## Cutover and salvage
 
+### Generated scenarios without source games
+
+[Cemetery #5](https://github.com/diegoami/borg-cemetery/issues/5) also adds
+synthetic dungeon scenarios that need no source life, dossier or saved
+checkpoint. The [scenario evaluation plan](../SCENARIO-EVALUATION.md)
+defines their ownership, phased delivery and evidence requirements.
+The case/replay rows above describe recorded games; they must not become
+prerequisites for generated scenarios. Synthetic results remain separate
+from natural cases and population counts. P1 can use cemetery CI and
+compact artifacts without waiting for foundation cutover. If later
+integrated, generated scenario origins and character-build/spec hashes
+need an explicit schema revision; the current checkpoint-based scenario
+mapping must not silently stand in for them.
+
 ### What exists
 
 | Data | Volume | Quality | Expires |
