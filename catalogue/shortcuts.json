@@ -2,9 +2,21 @@
   "schema": "borg-zoo/shortcuts@1",
   "note": "Named arm sets the owner can ask for: 'small run of SHORTCUT on REF'. docs/PROFILES.md is generated from this file and the catalogue (python3 -m zoo.profiles_page).",
   "shortcuts": {
+    "heal-attack-4": {
+      "issue": 151,
+      "status": "pilot dispatched",
+      "what": "Heal-when-outmatched flag (0/1) x the owner's class attack preferences (neutral / tuned), town planner on, trip off, no plan.",
+      "profiles": [
+        "reborn-heal0-attack0",
+        "reborn-heal0-attack1",
+        "reborn-heal1-attack0",
+        "reborn-heal1-attack1"
+      ],
+      "runs": []
+    },
     "heal-pilot-12": {
       "issue": 151,
-      "status": "waiting: borg-reborn-rs #461 and #463 must merge and the ref be posted on #151",
+      "status": "pilot done",
       "what": "Heal-when-outmatched flag (0/1) x trip policy (0/1) x plan (none / errands / ambitious), all with the town planner. Flag 0 is the control.",
       "profiles": [
         "reborn-heal0-trip0-none",
@@ -20,7 +32,14 @@
         "reborn-heal1-trip1-plan",
         "reborn-heal1-trip1-ambitious"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "43957833325",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-heal",
+          "result": "clean; heal flag 20 to 13 deaths over six arms, 8 rescued, 0 newly killed"
+        }
+      ]
     },
     "maxdepth-2x5": {
       "issue": 147,

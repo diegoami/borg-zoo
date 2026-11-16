@@ -8,7 +8,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 
 | Shortcut | Issue | Arms | Status | What |
 | --- | --- | ---: | --- | --- |
-| `heal-pilot-12` | [#151](https://github.com/diegoami/borg-zoo/issues/151) | 12 | waiting: borg-reborn-rs #461 and #463 must merge and the ref be posted on #151 | Heal-when-outmatched flag (0/1) x trip policy (0/1) x plan (none / errands / ambitious), all with the town planner. Flag 0 is the control. |
+| `heal-attack-4` | [#151](https://github.com/diegoami/borg-zoo/issues/151) | 4 | pilot dispatched | Heal-when-outmatched flag (0/1) x the owner's class attack preferences (neutral / tuned), town planner on, trip off, no plan. |
+| `heal-pilot-12` | [#151](https://github.com/diegoami/borg-zoo/issues/151) | 12 | pilot done | Heal-when-outmatched flag (0/1) x trip policy (0/1) x plan (none / errands / ambitious), all with the town planner. Flag 0 is the control. |
 | `maxdepth-2x5` | [#147](https://github.com/diegoami/borg-zoo/issues/147) | 10 | small tier done | Max-depth plans (errands / ambitious) x return off, (4,2), (4,1), (3,2), (3,1) as (unknown stacks, pack slack), all with the town planner. No control arm. |
 | `reborn-5arm-town` | [#123](https://github.com/diegoami/borg-zoo/issues/123) | 5 | small tier done on three refs | #123 development arms: control, town planner, errands plan, plan + town, ambitious + town. Trip policy off everywhere (owner). Loop-levels plans. |
 | `reborn-3x3-trip` | [#123](https://github.com/diegoami/borg-zoo/issues/123) | 9 | pilot done | Plan (none / errands / ambitious) x (no shopping / town planner / town planner + trip (4,2)). |
@@ -16,6 +17,19 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `rs-additive-6` | [#129](https://github.com/diegoami/borg-zoo/issues/129) | 6 | obsolete (#129 closed by the owner) | borg-rs: existing behaviour, shopping only, and four trip thresholds (0,0), (1,2), (1,4), (2,4) as (pack slack, unknown stacks). |
 | `neo-default` | [#137](https://github.com/diegoami/borg-zoo/issues/137) | 1 | small tier done | Neo Borg with its default recorded flags (no settings). |
 | `reborn-errand-ladder` | – | 2 | done (option-C pilot, borg-reborn-rs #207, #208) | Errands: borg-rs's core in the reborn shell with no errand against the class ladders (borg_reborn_errand = ladder). |
+
+### `heal-attack-4`
+
+Heal-when-outmatched flag (0/1) x the owner's class attack preferences (neutral / tuned), town planner on, trip off, no plan.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`, `borg_town_plan = 1`, `borg_trip_policy = 0`.
+
+| Profile | `borg_param_attack_preference_blackguard_melee_permille` | `borg_param_attack_preference_blackguard_spell_permille` | `borg_param_attack_preference_druid_spell_permille` | `borg_param_attack_preference_mage_device_permille` | `borg_param_attack_preference_mage_spell_permille` | `borg_param_attack_preference_necromancer_device_permille` | `borg_param_attack_preference_necromancer_spell_permille` | `borg_param_attack_preference_paladin_melee_permille` | `borg_param_attack_preference_paladin_spell_permille` | `borg_param_attack_preference_priest_spell_permille` | `borg_param_attack_preference_ranger_projectile_permille` | `borg_param_attack_preference_rogue_projectile_permille` | `borg_param_attack_preference_rogue_thrown_permille` | `borg_param_attack_preference_warrior_melee_permille` | `borg_param_attack_preference_warrior_projectile_permille` | `borg_param_attack_preference_warrior_thrown_permille` | `borg_param_caution_heal_when_outmatched` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-heal0-attack0` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-heal0-attack1` | 1600 | 1400 | 1700 | 1200 | 2000 | 1200 | 1800 | 1800 | 1200 | 1700 | 2000 | 1300 | 1600 | 1800 | 1200 | 1200 | – |
+| `reborn-heal1-attack0` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | 1 |
+| `reborn-heal1-attack1` | 1600 | 1400 | 1700 | 1200 | 2000 | 1200 | 1800 | 1800 | 1200 | 1700 | 2000 | 1300 | 1600 | 1800 | 1200 | 1200 | 1 |
 
 ### `heal-pilot-12`
 
@@ -37,6 +51,10 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`, `borg_town
 | `reborn-heal1-trip1-none` | 1 | – | 1 |
 | `reborn-heal1-trip1-plan` | 1 | errands_plan.txt | 1 |
 | `reborn-heal1-trip1-ambitious` | 1 | errands_plan_ambitious.txt | 1 |
+
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [43957833325](https://github.com/diegoami/borg-zoo/actions/runs/43957833325) | pilot | `4.2.6-reborn-rust-heal` | clean; heal flag 20 to 13 deaths over six arms, 8 rescued, 0 newly killed |
 
 ### `maxdepth-2x5`
 
@@ -178,7 +196,23 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_trip_unknown_stacks` | 0, 2, 3, 4, not set | `maxdepth-2x5`, `rs-additive-6` | Return when this many carried stacks are unidentified (default 4). Changes play: (3,x) differs from return-off in about 40% of games; (5,1) played like return-off in 26-27 of 30 starts. |
 | `borg_trip_pack_slack` | 0, 1, 2, not set | `maxdepth-2x5`, `rs-additive-6` | Return when this few pack slots are free (default 2). Almost no effect: 1 and 2 played identical keys in 359 of 360 #147 games. |
 | `borg_reborn_errand` | ladder, none | `reborn-errand-ladder` | The errand over the core: `none`, or a command such as `ladder` (the class ladders). The ladder looked better in the option-C pilot (24.9% v 29.1% deaths, descriptive). |
-| `borg_param_caution_heal_when_outmatched` | 1, not set | `heal-pilot-12` | A hurt Borg in lethal danger with no escape drinks its best cure potion (#151). Waits for borg-reborn-rs #461. |
+| `borg_param_caution_heal_when_outmatched` | 1, not set | `heal-attack-4`, `heal-pilot-12` | A hurt Borg in lethal danger with no escape drinks its best cure potion (#151). Waits for borg-reborn-rs #461. |
+| `borg_param_attack_preference_blackguard_melee_permille` | 1600, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_blackguard_spell_permille` | 1400, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_druid_spell_permille` | 1700, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_mage_device_permille` | 1200, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_mage_spell_permille` | 2000, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_necromancer_device_permille` | 1200, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_necromancer_spell_permille` | 1800, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_paladin_melee_permille` | 1800, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_paladin_spell_permille` | 1200, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_priest_spell_permille` | 1700, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_ranger_projectile_permille` | 2000, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_rogue_projectile_permille` | 1300, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_rogue_thrown_permille` | 1600, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_warrior_melee_permille` | 1800, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_warrior_projectile_permille` | 1200, not set | `heal-attack-4` |  |
+| `borg_param_attack_preference_warrior_thrown_permille` | 1200, not set | `heal-attack-4` |  |
 
 ## Settings available for new arms
 
@@ -194,6 +228,7 @@ Exposed by borg-reborn-rs `main` but not yet used to build arms. A profile sets 
 
 | Specimen | Repository | Ref | What it is |
 | --- | --- | --- | --- |
+| `4.2.6-reborn-rust-heal` | diegoami/borg-reborn-rs | `f02cd294` | borg-reborn-rs f02cd294, the main merge of #463 (borg-zoo#151). |
 | `4.2.6-reborn-rust-maxdepth` | diegoami/borg-reborn-rs | `6d1bca10` | borg-reborn-rs 6d1bca10, the main merge of #444 (borg-zoo#147): #440's max-depth plans (a phase 'max-depth N' only caps the core with borg_no_deeper; the level-loop errand is removed and a loop-levels plan exits 2) and #444's planner item values (real food only with the 5-ration floor, 45 kinds the core never uses worthless, buy-to-identify off with the trip policy, casters' spells not valued as infinite mana). |
 | `4.2.6-reborn-rust-plans-m13-fix90` | diegoami/borg-reborn-rs | `8a0b57c8` | borg-reborn-rs 8a0b57c8, the main merge of #415 (closes #368), borg-zoo#123's development specimen. |
 | `4.2.6-reborn-rust-plans-m13-survival` | diegoami/borg-reborn-rs | `4ecb93d7` | borg-reborn-rs 4ecb93d7, the main merge of #423 (borg-zoo#138): the flee-healing fix (#369: while fleeing, borg_heal() is no longer skipped because HP cannot absorb another round) and the Phase Door stock fix (#380: a learned Phase Door spell no longer zeroes the scroll's supply value), on main 8837ece2 (borg-rs 8c5d000 plus recorder v0.2.0, off by default). |

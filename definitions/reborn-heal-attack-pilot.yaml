@@ -1,0 +1,56 @@
+# Heal-when-outmatched flag x class attack preferences, pilot (owner, 2026-11-16).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-attack-pilot.yaml
+name: reborn-heal-attack-pilot
+issue: 151
+question: Do healing when outmatched and stronger class attack preferences help, alone or together?
+tier: pilot
+
+specimen: 4.2.6-reborn-rust-heal   # borg-reborn-rs f02cd294 (#151); carries the #407 attack preferences
+
+# Every arm: borg-rs's native core (borg_reborn_core = borg-rs, the same as 1), no errand,
+# the live town planner, trip policy off, no plan - the #151 pilot's heal0-trip0-none control.
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_town_plan: 1
+  borg_trip_policy: 0
+
+profile_prefix: reborn
+vary:
+  heal:
+    heal0: {}
+    heal1: {borg_param_caution_heal_when_outmatched: 1}
+  attack:
+    attack0: {}          # neutral: every preference at its default 1000
+    attack1:              # the owner's class preferences (permille of the attack's utility)
+      borg_param_attack_preference_warrior_melee_permille: 1800
+      borg_param_attack_preference_warrior_projectile_permille: 1200
+      borg_param_attack_preference_warrior_thrown_permille: 1200
+      borg_param_attack_preference_mage_spell_permille: 2000
+      borg_param_attack_preference_mage_device_permille: 1200
+      borg_param_attack_preference_druid_spell_permille: 1700
+      borg_param_attack_preference_priest_spell_permille: 1700
+      borg_param_attack_preference_necromancer_spell_permille: 1800
+      borg_param_attack_preference_necromancer_device_permille: 1200
+      borg_param_attack_preference_paladin_melee_permille: 1800
+      borg_param_attack_preference_paladin_spell_permille: 1200
+      borg_param_attack_preference_rogue_projectile_permille: 1300
+      borg_param_attack_preference_rogue_thrown_permille: 1600
+      borg_param_attack_preference_ranger_projectile_permille: 2000
+      borg_param_attack_preference_blackguard_melee_permille: 1600
+      borg_param_attack_preference_blackguard_spell_permille: 1400
+
+control: [heal0, attack0]
+owner_authorization: >-
+  2026-11-16: the owner asked to test caution_heal_when_outmatched together with these class
+  attack preferences (session request, following the borg-zoo#151 pilot); pilot first (RULES 14).
+
+prespecified: |
+  Fixed 2026-11-16, before any result was read. Pilot only (RULES 14); small and larger only
+  after this gate and the owner. Gate: no config_error; one binary; the heal flag is written in
+  heal1 cells only and the attack preferences in attack1 cells only, applied from borg.txt
+  (params-core.json). Every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and
+  key outliers are listed. Report per arm: deaths, final level, deepest level, keys; paired
+  rescued and newly killed for each arm against heal0-attack0 on the same start, and the cells
+  where play diverges. The heal0-attack0 arm should play the same keys as the #151 pilot's
+  reborn-heal0-trip0-none. 18 starts per arm cannot show whether either change is good.
