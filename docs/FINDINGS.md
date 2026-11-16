@@ -454,3 +454,27 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
   - Timing: about 14 s of wall time per game. The shards took 6–9 minutes
     for about 112 games each.
   - Descriptive only, at 10 starts per class.
+
+- **The #123 small tier repeated with the #423 survival fixes: gate passed (borg-zoo#138).**
+  `reborn-survival-small`, run 43874782892, 450 games on
+  `4.2.6-reborn-rust-plans-m13-survival` (borg-reborn-rs `4ecb93d7`: flee
+  healing #369 and Phase Door stock #380). The same 90 starts and five arms
+  as `reborn-plan-m13-small`, trip policy off. It is a different game in every
+  arm, control included, so the two runs are compared start by start and not
+  pooled.
+
+  | Arm | Deaths / 90 (on `8a0b57c8`) | Stalled | Mean final level | Mean deepest level | DL5+ | vs control rescued / newly killed | vs `8a0b57c8` rescued / newly killed |
+  | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+  | control | 21 (22) | 0 | 4.5 | 2.6 | 8 | – | 9 / 8 |
+  | town | 17 (15) | 0 | 4.9 | 2.6 | 10 | 16 / 12 | 6 / 8 |
+  | plan | 25 (24) | 0 | 3.8 | 1.8 | 0 | 14 / 18 | 5 / 6 |
+  | plan-town | 18 (23) | 0 | 4.3 | 2.1 | 3 | 13 / 10 | 10 / 5 |
+  | ambitious-town | 23 (29) | 1 | 4.4 | 2.4 | 5 | 11 / 13 | 13 / 7 |
+
+  - Gate: no `config_error`; one binary; loaded plans matched their pins, and
+    none appeared in the no-plan arms.
+  - The one stall is the same borg-reborn-rs#421 livelock as before: Half-Troll
+    Rogue 926210318, with identical bursts.
+  - Deaths fell from 113 to 104 over the five arms. The largest drops are
+    plan-town (23 to 18; caster deaths 18 to 12) and ambitious-town (29 to 23).
+  - Descriptive only, at 10 starts per class. Medium waits for the owner.
