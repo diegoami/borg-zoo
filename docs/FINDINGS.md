@@ -25,7 +25,8 @@ so results on it are descriptive. A confirmation needs a prespecified
 experiment on fresh seeds (`classes-1800-b`, `warriors-600`).
 
 Update this file when an experiment finishes: add its finding, and edit or
-remove any line it overturns.
+remove any line it overturns. Open issues, the failed `m12-m13-explicit` run
+and the owner's stated decisions are in [OPEN-WORK.md](OPEN-WORK.md).
 
 **Mode cutoff (2026-11-10, borg-zoo#54).** Everything below was measured
 before the explicit mode profiles existed. Each recorded run is labelled
@@ -294,6 +295,32 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
   equivalent. This is not a new survival estimate or a dispatched large cohort.
 
 
+- **Neo truth-corrected seeded-v2 cohort completed (2026-11-16).**
+  [Run 43702732056](https://diegoami.github.io/borg-zoo/runs/neo-truth-100-seeded-v2-1800/43702732056-1/index.html),
+  1,800 assigned-birth starts, 100,000 ticks, 600-second watchdog, Borg and
+  toolkit pinned together to `967b28f5fe12c4974a6a793040f73246eb7d1200` with
+  engine `b4af703`: 989 deaths, 732 turn-cap finishes, 75 stalls and 4 wall
+  timeouts, so 989/1,721 = 57.5% of finished games died, with median level 3
+  and median depth 2.
+  - The earlier cohort [43670231534](https://github.com/diegoami/borg-zoo/actions/runs/43670231534)
+    is kept as an immutable historical run: it was built at Borg `76f25aa`
+    before the merged danger/HP/retreat repairs, and its headless host denied
+    monster truth reads. Its 64.9% death rate is **not** a repaired-Borg
+    baseline, and the two runs are separate measurements, not a paired
+    comparison.
+  - The truth fix is visible in the causes: deaths now include monsters that
+    could not attack at all under the truth-denied host.
+  - Descriptive only. No C parity claim, no population-improvement claim, and
+    the unresolved engine clock issue (neo-angband-tracker#640) still applies.
+
+- **Neo books-509 seeded-v2 cohort completed (2026-11-16).**
+  [Run 43759670685](https://github.com/diegoami/borg-zoo/runs/neo-books-509-seeded-v2-1800/43759670685-1/index.html),
+  1,800 assigned-birth starts: 860 deaths, 843 turn-cap finishes, 95 stalls
+  and 2 wall timeouts, so 50.5% of finished games died, median level 3 and
+  median depth 2. The carried-book value correction is a separate arm from
+  the truth-corrected cohort above; PR #121 proposes a further repeat with
+  only that correction.
+
 - **PR85 return-threshold development grid completed (2026-11-15).**
   [Run 43720870587](https://diegoami.github.io/borg-zoo/runs/rs-pr85-full/43720870587-1/index.html)
   retained all 10,800 endpoints on `classes-1800-d`: six choices on the same
@@ -315,3 +342,29 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
   establish identical play. Pairings, class differences, purchases and return
   diagnostics belong to the linked report; a subsequent fresh-seed,
   prespecified confirmation is required for an improvement claim.
+
+- **The M12/M13 explicit-mode grid produced no usable cells.**
+  Run 43703176769 collected all 7,200 cells as `harness_failure` with
+  `error: no record collected (job failed or was cancelled)`. The plan and
+  build jobs succeeded, so the failure is in the run shards. Nothing about
+  M12 versus M13 can be read from this run; it is a harness failure, not a
+  result. See [OPEN-WORK.md](OPEN-WORK.md).
+
+- **The borg-reborn-rs option-C pilot: the ladder errand looks better, on
+  one development suite.**
+  [`reborn-pilot-c-classes-1800`](https://diegoami.github.io/borg-zoo/runs/reborn-pilot-c-classes-1800/43702957409-1/index.html),
+  run 43702957409, 3,600 games on `classes-1800`, borg-reborn-rs at the
+  option-C pilot pin: borg-rs's core without an errand died in 524/1,800
+  (29.1%), the same core with `borg_reborn_errand = ladder` in 448/1,800
+  (24.9%), paired 338 rescued against 262 newly killed. Median final level
+  (4) and median deepest level (2) were the same in both arms.
+  - Descriptive on one development suite: no confirmation suite has been run,
+    so this is a lead, not a finding.
+  - The source contract is in borg-reborn-rs#227, whose first review round
+    found three blocking defects in the errand shell (leave hooks advancing
+    the plan prematurely, bypassing the core's readiness and return-home
+    decisions, and reporting restocking as success) and whose re-review found
+    three more blocking ones (`/explored` and `/stall` not completing levels,
+    downward travel still forcing an unprepared level, and restocking and
+    selling being misread as fear). All were fixed, but findings 5–7 and the
+    `/explored`/`/stall` firing in play were never verified in play.

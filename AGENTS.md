@@ -5,6 +5,9 @@ specimens and profiles, storing every run, and publishing comparisons. Read
 [README](README.md), [RULES](RULES.md) and [docs/DESIGN.md](docs/DESIGN.md)
 first. What the finished experiments showed, and what is still open, is in
 [docs/FINDINGS.md](docs/FINDINGS.md). Update it when an experiment finishes.
+[docs/OPEN-WORK.md](docs/OPEN-WORK.md) holds the open issues, the failed run
+that needs attention, and the owner's stated decisions from the latest
+session.
 
 ```sh
 git status --short
