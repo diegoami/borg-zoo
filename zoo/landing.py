@@ -1150,28 +1150,6 @@ def add_your_borg_section():
         'in <a href="https://github.com/diegoami/borg-zoo/pull/32">PR #32</a>.</p>')
 
 
-def policy_studies(runs):
-    """Make policy experiments discoverable without decoding catalogue IDs."""
-    links = []
-    seen = set()
-    for meta, _, _ in runs:
-        info = study_info(meta)
-        name = meta['experiment']['name']
-        if not info or name in seen:
-            continue
-        seen.add(name)
-        href = f'runs/{esc(name)}/{esc(meta["run_id"])}/index.html'
-        links.append(f'<li><a href="{href}">{esc(info["title"])}</a> — {esc(info["intro"])}</li>')
-    if not links:
-        return ''
-    return ('<section><h2>Shopping and return-policy experiments</h2>'
-            '<p>These compare settings within one milestone-12 Rust Borg build. '
-            'The candidate rows turn on both the new shopper and the new trip policy; '
-            'the control uses the existing rules. The pages show the exact differences, '
-            'death counts, mean character level and mean deepest level.</p><ul>'
-            + ''.join(links) + '</ul></section>')
-
-
 def overview_page(runs):
     total = sum(len(c) for _, c, _ in runs)
     latest = runs[0][0].get('completed', '?') if runs else '–'
@@ -1190,7 +1168,7 @@ def overview_page(runs):
         f'<p>{buttons}</p>{links}</div></div>'
         f'<p class="muted">Every milestone, the Rust port and the open stalls are on the '
         f'<a href="detailed.html">Detailed</a> tab.</p>'
-        + policy_studies(runs) + add_your_borg_section() + FOOTER)
+        + add_your_borg_section() + FOOTER)
 
 
 def smoke_page(rows):
@@ -1206,26 +1184,16 @@ def smoke_page(rows):
 
 
 def landing_page(runs, run_rows):
+    """Every experiment run in one list, newest first: small tiers and pilots
+    included, each with the borg-zoo issue it answers. Smoke checks keep their
+    own tab."""
     cards = [c for c in (card_milestones(runs), card_port(runs), card_stalls(runs)) if c]
-    experiments = []
-    smoke = cat_mod.smoke_names()
-    for meta, cells, _ in runs:
-        exp = meta['experiment']
-        if exp['name'] in smoke:
-            continue
-        finished = sum(c['outcome'] in stats.VALID for c in cells)
-        experiments.append(
-            f'<article class="card experiment-brief"><h2><a href="{link(meta)}">{esc(question(exp))}</a></h2>'
-            f'<p class="muted">{esc(exp["name"])} · {esc(meta.get("completed", "?"))}'
-            + (f' · <a href="{cat_mod.ISSUES_URL}{issue}">issue #{issue}</a>' if (issue := cat_mod.issue_of(exp)) else '')
-            + '</p>'
-            + experiment_brief(meta, compact=True)
-            + f'<p>{finished:,} of {len(cells):,} games finished · <a href="{link(meta)}">View results</a></p></article>')
     return (
         f'<h1>Borg zoo</h1>{nav("detailed.html")}'
-        f'{policy_studies(runs)}<h2>Experiment runs</h2>'
-        '<p>Choose the question you want to investigate. Newest runs first.</p>'
-        + ('<div class="cards">' + ''.join(experiments) + '</div>' if experiments else '<p class="muted">No results yet.</p>')
+        '<h2>Experiment runs</h2>'
+        + explain('Every experiment run, newest first, small tiers and pilots included. Each report shows '
+                  'the YAML definition and the build used.', RUN_COLS)
+        + (table(RUN_COLS, run_rows) if run_rows else '<p class="muted">No results yet.</p>')
         + '<details class="background"><summary>Cross-experiment summaries and historical caveats</summary>'
         + mode_cutoff_note() + f'<div class="cards">{"".join(cards)}</div></details>'
         + FOOTER)

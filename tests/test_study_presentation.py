@@ -63,16 +63,13 @@ class StudyPresentationTest(unittest.TestCase):
         self.assertEqual(site.study_summary(meta,[],'s'),'')
         self.assertIn('pinned · rs-joint-risk2000',site.arm_label(meta,'pinned','rs-joint-risk2000'))
 
-    def test_home_page_links_explain_the_policy_study(self):
+    def test_detailed_page_lists_every_run_with_its_issue(self):
         from zoo import landing
-        meta = self.meta()
-        meta['run_id'] = 'fixture'
-        text = landing.policy_studies([(meta, [], None)])
-        self.assertIn('Shopping and return-policy experiments', text)
-        self.assertIn('Fresh-seed check', text)
-        self.assertIn('rs-joint-m12-confirm/fixture/index.html', text)
-        self.assertIn('both the new shopper and the new trip policy', text)
-        self.assertEqual(landing.policy_studies([]), '')
+        html = landing.landing_page([], [['<a href="runs/x/1/index.html">x</a>', '<a href="i">#151</a>',
+                                          '2026-11-16', 1, 12, 216, 216]])
+        self.assertIn('Issue', html)
+        self.assertIn('#151', html)
+        self.assertNotIn('Shopping and return-policy experiments', html)
 
     def test_study_identity_table_names_choice_experiment_repository_build_and_deaths(self):
         meta = self.meta()
