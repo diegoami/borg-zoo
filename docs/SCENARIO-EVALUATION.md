@@ -111,8 +111,47 @@ Keep terminal outcomes separate from exposure observations:
   null-move qualifier is unavailable, report qualified near-death as
   unavailable, never zero or a relabelled screen count.
 
-Compare by scenario ID and canonical specification hash, allowing only the
-declared target build/configuration axis to differ. Report rescued (base
+### Pairing and execution identities
+
+Freeze a comparison manifest before either arm runs. It declares the exact
+field paths allowed to differ (the target binary/build identity, profile
+settings, or an explicitly declared combination), each arm's expected
+values, and the canonicalization/hash-contract version. Hash that manifest;
+never infer exclusions from differences observed after execution.
+
+Keep the complete scenario specification and its canonical hash immutable.
+Use two additional identities for comparison:
+
+- **Pairing hash:** SHA-256 of canonical JSON containing the comparison
+  manifest hash, logical scenario ID, suite revision and all resolved
+  inputs except the manifest's explicitly declared comparison fields.
+  Keep seed, depth, race/class, starting-character-build hash, dungeon
+  rules, calendar, cap boundary and limits. Keep profile bytes/settings
+  when profile is not a comparison axis. The starting character build is
+  distinct from the target Borg binary and must never be excluded merely
+  because the experiment compares Borg builds.
+- **Execution hash:** SHA-256 of the complete canonical execution input,
+  including the full scenario specification/hash, pairing hash, exact
+  target binary/build identity, engine/harness contract and pins, and
+  requested profile bytes/settings. Verify actual start, binary identity
+  and effective settings against that input; a mismatch is a failure,
+  not a new silently accepted execution identity.
+
+Pair on logical scenario ID and pairing hash, and verify each execution
+against its arm's expected inputs. Complete scenario and execution hashes
+may differ on the declared axis; they need not match between arms.
+Undeclared differences reject the pair. Hash equality does not override
+the existing engine/harness compatibility rules.
+
+For example, `normal` versus `munchkin-class` on one pinned binary has
+equal pairing hashes and different execution hashes when profile is the
+declared axis. Comparing two Borg binaries with one fixed profile does
+likewise when target build is the declared axis. A changed starting kit,
+seed or depth must invalidate either pairing. Require fake-harness
+fixtures covering these allowed differences, rejected undeclared
+differences and actual-versus-requested identity mismatches.
+
+Report rescued (base
 died, candidate survived to cap), newly killed (the reverse), same
 terminal outcome, inconclusive and missing pairs. A stopped or failed run
 cannot establish a rescue. Publish per-scenario rows, per-depth/character-
