@@ -26,30 +26,16 @@ pull request, and starting a large experiment is the owner's call.
 | [#114](https://github.com/diegoami/borg-zoo/issues/114) | Planning | Shared data storage and redesign of Borg zoo and cemetery. |
 | [#105](https://github.com/diegoami/borg-zoo/issues/105) | Ledger open | Post-fix Neo measurement ledger. The truth-corrected cohort and the books-509 cohort have since completed; their results need adding to `docs/FINDINGS.md`. |
 
-## #123: prepared switch to the borg-rs#90 fix
+## #123: switched to the borg-rs#90 fix
 
-borg-rs PR #92 fixes the Home oil loop. borg-reborn-rs#368 (PR #415) will carry borg-rs `8c5d000a`, PR92's merge and PR88 with it, into the vendored core, and borg-reborn-rs will post the merge sha on #123. Until then `experiments/reborn-plan-m13-classes-1800.json` stays in its four-arm #125 form, marked on hold. Don't dispatch it.
-
-Measured effect of the fix (Human Warrior, seed 501, ambitious plan + shop, 100k turns):
-- keys 69,838 → 14,310, and Home takes 3,994 → 2;
-- keys.log sha256 `f42e5e2c…` → `22895c8ab448b92e…`;
-- cells with `borg_town_plan = 0` (control, plan) are byte-identical.
-
-When the sha arrives:
-1. Add a new specimen, for example `4.2.6-reborn-rust-plans-m13-fix90`, at the #368 merge sha. Re-pin both plans (expected unchanged: `922372ba…160cd` and `9d7d8a39…59dd2`) and check them at the ref. Record the new `harness/identity.sh source-hash rust`, which changes from `87717140…`, and the `harness/borg.txt` sha256.
-2. Label it **a different game** from `2f74e1c5` and `1c4b351b`. The shop arms play differently; control and plan should play the same keys. Check one control cell's play hash against `1c4b351b` to confirm.
-3. Point the development experiment at it with five arms (9,000 games): `reborn-m13-control`, `reborn-m13-town`, `reborn-m13-plan`, `reborn-m13-plan-town` and `reborn-m13-ambitious-town`. **Owner, 2026-11-16: in #123, "shop" is the live town planner only, with `borg_trip_policy = 0`.** borg-reborn-rs#415 vendors all of borg-rs `8c5d000a`, PR88's added trip policy included, and the trip switch stays off so that it doesn't enter #123. The pilots' `reborn-m13-*shop` profiles (trip policy 1) stay as recorded. Append this amendment to the prespecification:
-
-   > Amended before any result of this experiment was read. The study runs on <specimen> (borg-reborn-rs <sha>, #368), which vendors the borg-rs#90 fix (borg-rs PR #92): a different game from 2f74e1c5 and 1c4b351b (source-hash <new>). The shop arms (reborn-m13-town, reborn-m13-plan-town, reborn-m13-ambitious-town) are the live town planner with the trip policy off (borg_trip_policy = 0, owner decision 2026-11-16), so borg-rs PR88's added return triggers, vendored by the same core refresh, do not enter this study; they run with the fix. The pilots' shop arms had the trip policy on, which is a second reason they are not comparable. Control and plan should play as on 1c4b351b; check one control cell's keys. Results of the earlier pilots that still had the loop are not comparable for the shop arms: zoo runs 43845673921 (four arms) and 43851628610 (five arms), and borg-reborn-rs's local 72-game pilot. A fifth arm, reborn-m13-ambitious-town, is compared with reborn-m13-control and with reborn-m13-plan-town (paired rescued and newly killed counts, per class); it is outside the 2x2 factorial. The plan in force is evidenced by the core's copy of the loaded plan in the cell's output directory (errands_plan.txt); its sha256 must equal the requested plan's, and it must be absent in no-plan arms, or the cell is config_error. A cell with 1,000 or more keys at one game turn is recorded as stalled (kind frozen_turn_loop) with its observed outcome kept. A cell with more than 3 times its arm's median keys (over the arm's turn-cap cells) is flagged key_outlier: the fix guards only one Home visit, so a store/take cycle across visits is still possible. Flagged cells are listed, and the primary endpoint is reported both with and without them.
-
-4. Dispatch only when the owner says so, on 8 shards: 9,000 cells on 4 shards would come close to the run job's 300-minute limit.
+borg-reborn-rs#415 (closes #368) merged as `8a0b57c8`, which vendors borg-rs `8c5d000a` (#92 Home guard, #88 additive trip policy). The development experiment now runs on `4.2.6-reborn-rust-plans-m13-fix90` with five arms, all with the trip policy off (owner decision): control, town, plan, plan-town and ambitious-town, 9,000 games. Its amended prespecification records the ref, the different source hash, the stall and key-outlier flags, and the earlier loop-era pilots that are not comparable. Whether the trip policy belongs in the study is tested by the 3×3 pilot `reborn-trip-3x3-classes-18` on the same specimen. The pilot reruns on this specimen (owner, 2026-11-16); the development study is not dispatched until the owner says so.
 
 ## Closed as obsolete (owner, 2026-11-16)
 
 - **#129**, PR92's Home fix with PR88's returns in borg-rs. Its specimen `4.2.6-rs-pr92-home-fix`, the experiment `rs-home-fix-returns` and its smoke stay in the catalogue, unused. The smoke (run 43858601495) is on the results branch. All six arm runs were cancelled before collecting: 43859526668, 43861258250, 43861270610, 43861283691, 43861297380 and 43861310431.
 - **#87**, the M13 per-mode arms. They won't be measured, and `m12-m13-explicit` won't be re-dispatched. `docs/M13-MEASUREMENT.md` stays as the record of that debt.
 
-#123 is the borg-reborn-rs study still being worked on. Its 3×3 pilot `reborn-trip-3x3-classes-18` crosses plan (none, errand, ambitious) with shopping (default, new inventory, new inventory + trip (2,4)), 162 games on `1c4b351b`.
+#123 is the borg-reborn-rs study still being worked on. Its 3×3 pilot `reborn-trip-3x3-classes-18` crosses plan (none, errand, ambitious) with shopping (default, new inventory, new inventory + trip (2,4)), 162 games on `8a0b57c8`.
 
 ## Open pull requests
 
