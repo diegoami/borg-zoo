@@ -6,6 +6,7 @@ from pathlib import Path
 import tempfile
 import types
 import unittest
+import subprocess
 from unittest.mock import patch
 
 from zoo import scenarios as s
@@ -40,8 +41,21 @@ def row_fixture(plan, case, target, status):
                 scenario_id=case['id'], pairing_sha256=s.pairing_hash(plan, case),
                 execution_input=inputs, execution_sha256=s.digest(inputs), status=status, attempted=True,
                 evidence={name: dict(sha256='1'*64) for name in ('summary.json', 'process.json', 'config.txt', 'keys.log', 'state.log', 'messages.log')})
-    row['receipts'] = {name: json.dumps(dict(fake_adapter=True, scenario=case['id'], binary=receipt['build']['binary_sha256'])) + '\n'
-                       for name in ('summary.json', 'process.json', 'config.txt')}
+    character = case['character_build']
+    summary = dict(synthetic=True, loaded=False, seed=case['seed'], race_idx=character['race_idx'],
+                   class_idx=character['class_idx'], start_depth=case['depth'], initial_depth=case['depth'],
+                   initial_cave_depth=case['depth'], initial_generation_pending=False, start_build=character['start'],
+                   synthetic_contract=case['harness_contract'], dungeon_mode='one_way', initial_clevel=1,
+                   game_options=dict(birth_force_descend=True,birth_no_recall=True),
+                   dead=status=='death', stop_reason='death' if status=='death' else ('turns' if status=='survived_to_cap' else 'borg_stopped'),
+                   game_turns=case['turn_cap'])
+    process = dict(status='success',exit_code=0,timed_out=False,
+                   executable_sha256_before=receipt['build']['binary_sha256'],executable_sha256_after=receipt['build']['binary_sha256'])
+    config = dict(synthetic='1',start_depth=str(case['depth']),start_build=character['start'],
+                  synthetic_contract=case['harness_contract'],dungeon_mode='one_way',
+                  profile_sha256=character['profile_sha256'],borg_core=character['core'])
+    row['receipts'] = {'summary.json':json.dumps(summary)+'\n','process.json':json.dumps(process)+'\n',
+                       'config.txt':''.join(f'{k}={v}\n' for k,v in config.items())}
     row['receipts']['params.json'] = json.dumps(dict(profile_sha256=case['character_build']['profile_sha256'],
                                                    parameters=[dict(name='rest_turns',value=75)]))
     row['effective_settings'] = s.effective_settings(case,row['receipts']['params.json'])
@@ -155,11 +169,45 @@ class ScenarioTests(unittest.TestCase):
         from zoo import site
         self.cells(['death','survived_to_cap'])
         s.collect(self.plan,self.root/'input',self.root/'scenario-results/smoke/run1')
-        self.assertEqual(site.load_runs(self.root/'results'), [])
+        natural = self.root/'results/natural/run1'
+        natural.mkdir(parents=True)
+        cell = dict(schema='borg-zoo/cell@1',suite='smoke',specimen='natural',profile='default',seed=99,outcome='death')
+        (natural/'meta.json').write_text(json.dumps(dict(experiment=dict(name='natural'),completed='2026-11-16')))
+        (natural/'cells.jsonl').write_text(json.dumps(cell)+'\n')
+        runs=site.load_runs(self.root/'results')
+        self.assertEqual(len(runs),1)
+        self.assertEqual(runs[0][1],[cell])
         with patch.object(s.catalogue,'ROOT',self.root):
             s.build_site(self.root/'results',self.root/'site')
         self.assertIn('smoke/run1/index.html',(self.root/'site/scenarios/index.html').read_text())
         self.assertIn('rescued',(self.root/'site/scenarios/smoke/run1/index.html').read_text())
+
+    def test_corrupt_report_is_listed_without_blocking_valid_or_natural_reports(self):
+        self.cells(['death','survived_to_cap'])
+        s.collect(self.plan,self.root/'input',self.root/'scenario-results/good/run1')
+        bad=self.root/'scenario-results/bad/run2/comparison.json';bad.parent.mkdir(parents=True);bad.write_text('{broken')
+        with patch.object(s.catalogue,'ROOT',self.root):
+            s.build_site(self.root/'results',self.root/'site')
+        page=(self.root/'site/scenarios/index.html').read_text()
+        self.assertIn('good/run1/index.html',page)
+        self.assertIn('bad/run2',page)
+        self.assertTrue((self.root/'site/scenarios/good/run1/index.html').exists())
+        self.assertEqual(len(json.loads((self.root/'site/scenarios/unavailable.json').read_text())),1)
+
+    def test_retained_terminal_and_start_facts_must_match_label_even_if_rehashed(self):
+        for changed in ('status','depth','loaded','process'):
+            with self.subTest(changed=changed):
+                row=row_fixture(self.plan,self.plan['cases'][0],self.plan['targets'][0],'death')
+                if changed=='status':row['status']='survived_to_cap'
+                elif changed=='process':
+                    proc=json.loads(row['receipts']['process.json']);proc['timed_out']=True
+                    row['receipts']['process.json']=json.dumps(proc)
+                else:
+                    summary=json.loads(row['receipts']['summary.json'])
+                    summary['initial_cave_depth' if changed=='depth' else 'loaded']=99 if changed=='depth' else True
+                    row['receipts']['summary.json']=json.dumps(summary)
+                for name,text in row['receipts'].items():row['evidence'][name]['sha256']=hashlib.sha256(text.encode()).hexdigest()
+                with self.assertRaises(ValueError):s.validate_cell(self.plan,self.plan['cases'][0],self.plan['targets'][0],row)
 
     def test_preparation_rejects_moving_refs_budget_and_bank_changes(self):
         d=json.loads((s.catalogue.ROOT/'scenario-experiments/cemetery-caster-smoke.json').read_text())
@@ -171,6 +219,10 @@ class ScenarioTests(unittest.TestCase):
         path=self.root/'definition.json'
         with patch.object(s,'bank_module',return_value=module):
             path.write_text(json.dumps(d));s.prepare(path,self.root,cat)
+            repeated=copy.deepcopy(d);repeated['pushids'].append(dict(pushid='alias',specimen=d['pushids'][0]['specimen']))
+            path.write_text(json.dumps(repeated))
+            with self.assertRaisesRegex(ValueError,'distinct commit'):s.prepare(path,self.root,cat)
+            path.write_text(json.dumps(d))
             for bad in ('main','v1','abc123'):
                 changed=copy.deepcopy(cat)
                 changed['specimens']['specimens'][d['pushids'][0]['specimen']]['ref']=bad
@@ -229,6 +281,88 @@ class ScenarioTests(unittest.TestCase):
         report=s.collect(self.plan,self.root,self.root/'report')
         self.assertEqual(report['counts'],{'invalid':1})
         self.assertEqual(report['collected_cells'],2)
+
+    def git_fixture(self, name, files):
+        root=self.root/name;root.mkdir()
+        subprocess.run(['git','init','-q',str(root)],check=True,capture_output=True)
+        for key,value in [('user.name','fixture'),('user.email','fixture@example.invalid')]:
+            subprocess.run(['git','-C',str(root),'config',key,value],check=True)
+        for name,text in files.items():
+            path=root/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_text(text)
+        self.commit_fixture(root)
+        return root
+
+    def commit_fixture(self, root):
+        subprocess.run(['git','-C',str(root),'add','.'],check=True)
+        subprocess.run(['git','-C',str(root),'commit','-qm','fixture'],check=True)
+        return s.git(root,'rev-parse','HEAD')
+
+    def test_real_checkout_and_engine_tree_scope(self):
+        root=self.git_fixture('source',{'engine/frontend/start.c':'start','borg.rs':'policy'})
+        pin=s.git(root,'rev-parse','HEAD');s.checked_checkout(root,pin)
+        before=s.engine_hash(root)
+        with self.assertRaises(ValueError):s.checked_checkout(root,'main')
+        (root/'untracked').write_text('x')
+        with self.assertRaises(ValueError):s.checked_checkout(root,pin)
+        (root/'untracked').unlink();(root/'borg.rs').write_text('new policy')
+        with self.assertRaises(ValueError):s.checked_checkout(root,pin)
+        self.commit_fixture(root);self.assertEqual(before,s.engine_hash(root))
+        (root/'engine/frontend/start.c').write_text('different startup')
+        self.commit_fixture(root);self.assertNotEqual(before,s.engine_hash(root))
+
+    def test_real_bank_digest_and_contained_paths(self):
+        root=self.git_fixture('bank',{'scripts/synthetic_suite.py':'marker = 42\n','manifest.json':'{}'})
+        pin=dict(commit=s.git(root,'rev-parse','HEAD'),runner_sha256='0'*64)
+        with self.assertRaisesRegex(ValueError,'runner digest'):s.bank_module(root,pin)
+        pin['runner_sha256']=s.file_hash(root/'scripts/synthetic_suite.py')
+        self.assertEqual(s.bank_module(root,pin).marker,42)
+        self.assertEqual(s.safe_file(root,'manifest.json'),root/'manifest.json')
+        for name in ('../escape','/absolute'):
+            with self.assertRaises(ValueError):s.safe_file(root,name)
+        (root/'link').symlink_to(self.root/'outside')
+        with self.assertRaises(ValueError):s.safe_file(root,'link')
+
+    def test_run_profile_and_export_guard_failure_paths(self):
+        class ExecutionError(Exception):pass
+        for fault in ('profile_bytes','effective_value','natural_export'):
+            with self.subTest(fault=fault):
+                p=plan_fixture();case=p['cases'][0];profile=self.root/(fault+'.txt');profile.write_text('rest_turns = 75\n')
+                case['character_build']['profile_sha256']=s.file_hash(profile)
+                case['spec_sha256']=s.digest({k:v for k,v in case.items() if k not in ('id','spec_sha256')})
+                p['plan_sha256']=s.digest({k:v for k,v in p.items() if k!='plan_sha256'})
+                row=row_fixture(p,case,p['targets'][0],'survived_to_cap')
+                adapter=types.SimpleNamespace(describe=lambda *args:copy.deepcopy(row['execution_input']['build_receipt']))
+                def run(case,root,out):
+                    out.mkdir();out.parent.joinpath('profile.txt').write_text('tampered' if fault=='profile_bytes' else profile.read_text())
+                    receipts=copy.deepcopy(row['receipts'])
+                    if fault=='effective_value':
+                        data=json.loads(receipts['params.json']);data['parameters'][0]['value']=74;receipts['params.json']=json.dumps(data)
+                    for name,text in receipts.items():out.joinpath(name).write_text(text)
+                    if fault=='natural_export':out.parent.joinpath('natural-registry-guard').mkdir()
+                    return 0
+                adapter.run=run
+                module=types.SimpleNamespace(RebornAdapter=lambda source:adapter,ExecutionError=ExecutionError,
+                    generate=lambda path:dict(cases=p['cases'],root=self.root,manifest=dict(suite_id='test',revision=1)),
+                    classify=lambda *args:dict(status='survived_to_cap',evidence=copy.deepcopy(row['evidence'])),
+                    RESULT_SCHEMA='test',report=lambda doc:'fixture report')
+                with patch.object(s,'bank_module',return_value=module),patch.object(s,'checked_checkout'),patch.object(s,'engine_hash',return_value='e'*64):
+                    records=s.run_target(p,self.root,self.root,'old',self.root/fault)
+                self.assertEqual(records[0]['status'],'harness_failure' if fault=='natural_export' else 'identity_mismatch')
+
+    def test_archive_helper_pushes_isolated_git_and_refuses_overwrite(self):
+        seed=self.git_fixture('seed',{'results/natural/keep':'preserve natural records'})
+        remote=self.root/'remote.git'
+        subprocess.run(['git','init','--bare','-q',str(remote)],check=True,capture_output=True)
+        subprocess.run(['git','-C',str(seed),'remote','add','origin',str(remote)],check=True)
+        subprocess.run(['git','-C',str(seed),'push','-q','origin','HEAD:results'],check=True)
+        self.cells(['death','survived_to_cap'])
+        comparison=self.root/'comparison';s.collect(self.plan,self.root/'input',comparison)
+        script=s.catalogue.ROOT/'tools/archive-scenarios.sh'
+        argv=['bash',str(script),str(remote),str(comparison),'smoke','attempt1']
+        subprocess.run([*argv,str(self.root/'archived')],check=True,capture_output=True)
+        self.assertEqual((self.root/'archived/results/natural/keep').read_text(),'preserve natural records')
+        self.assertEqual(json.loads((self.root/'archived/scenario-results/smoke/attempt1/comparison.json').read_text())['counts'],{'rescued':1})
+        self.assertNotEqual(subprocess.run([*argv,str(self.root/'duplicate')],capture_output=True).returncode,0)
 
     def _profile(self):
         p=self.root/'profile.txt';p.write_text('profile');return p

@@ -1,12 +1,20 @@
 name: Cemetery scenarios across pushids
 on:
+  pull_request:
+    paths:
+      - zoo/scenarios.py
+      - tests/test_scenarios.py
+      - tests/test_cemetery_contract.py
+      - scenario-experiments/**
+      - .github/workflows/scenarios.yml
+      - tools/archive-scenarios.sh
   workflow_dispatch:
     inputs:
       definition:
         description: Reviewed bounded scenario definition
         type: choice
-        options: [scenario-experiments/cemetery-caster-smoke.json]
-        default: scenario-experiments/cemetery-caster-smoke.json
+        options: [scenario-experiments/cemetery-warrior-smoke.json]
+        default: scenario-experiments/cemetery-warrior-smoke.json
 permissions:
   contents: read
 concurrency:
@@ -22,10 +30,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - id: pin
         env:
-          DEFINITION: ${{ inputs.definition }}
+          DEFINITION: ${{ inputs.definition || 'scenario-experiments/cemetery-warrior-smoke.json' }}
         run: |
           python3 - <<'PY'
           import json, os, re
@@ -46,7 +55,7 @@ jobs:
           persist-credentials: false
       - id: plan
         env:
-          DEFINITION: ${{ inputs.definition }}
+          DEFINITION: ${{ inputs.definition || 'scenario-experiments/cemetery-warrior-smoke.json' }}
         run: |
           python3 -m zoo.scenarios plan --definition "$DEFINITION" --bank cemetery --out plan.json
           python3 - <<'PY'
@@ -64,7 +73,7 @@ jobs:
   run:
     needs: plan
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: ${{ matrix.target.timeout_minutes }}
     strategy:
       fail-fast: false
       max-parallel: 1
@@ -73,6 +82,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - uses: actions/download-artifact@v4
         with:
@@ -89,9 +99,14 @@ jobs:
           ref: ${{ matrix.target.commit }}
           path: source
           persist-credentials: false
+      - name: Test pinned Cemetery registry contract
+        env:
+          PINNED_CEMETERY_DIR: ${{ github.workspace }}/cemetery
+        run: python3 -m unittest discover -s tests -p test_cemetery_contract.py -v
       - uses: dtolnay/rust-toolchain@1.100.0
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq build-essential cmake libssl-dev
       - name: Build pinned source
+        timeout-minutes: 10
         continue-on-error: true
         working-directory: source
         run: BORG_IMPL=rust flock /tmp/angband-validation.lock harness/build.sh
@@ -114,6 +129,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - uses: actions/download-artifact@v4
         with:
@@ -133,6 +149,7 @@ jobs:
           path: comparison
           retention-days: 90
   archive:
+    if: github.event_name == 'workflow_dispatch'
     needs: [plan, collect]
     runs-on: ubuntu-24.04
     permissions:
@@ -148,24 +165,44 @@ jobs:
         env:
           EXPERIMENT: ${{ needs.plan.outputs.name }}
           RUN_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          git fetch origin results
-          git worktree add results-branch origin/results
-          DEST="scenario-results/$EXPERIMENT/$RUN_ID"
-          test ! -e "results-branch/$DEST"
-          mkdir -p "results-branch/$DEST"
-          cp comparison/comparison.json comparison/index.html "results-branch/$DEST/"
-          git -C results-branch config user.name github-actions
-          git -C results-branch config user.email github-actions@users.noreply.github.com
-          git -C results-branch add "$DEST"
-          git -C results-branch commit -m "Append synthetic comparison $EXPERIMENT/$RUN_ID"
-          for attempt in 1 2 3; do
-            if git -C results-branch push origin HEAD:results; then break; fi
-            git -C results-branch fetch origin results
-            git -C results-branch rebase origin/results || exit 1
-            test "$attempt" -lt 3 || exit 1
-          done
+          gh auth setup-git
+          bash tools/archive-scenarios.sh "https://github.com/$GITHUB_REPOSITORY.git" comparison "$EXPERIMENT" "$RUN_ID" results-branch
       - name: Rebuild the Zoo site
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run pages.yml
+  preview:
+    needs: [plan, collect]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: scenario-comparison
+          path: comparison
+      - name: Exercise archive push and site layout with an isolated Git remote
+        env:
+          EXPERIMENT: ${{ needs.plan.outputs.name }}
+          RUN_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          git init --bare --quiet "$RUNNER_TEMP/archive.git"
+          git clone --quiet "$RUNNER_TEMP/archive.git" "$RUNNER_TEMP/archive-init"
+          git -C "$RUNNER_TEMP/archive-init" config user.name github-actions
+          git -C "$RUNNER_TEMP/archive-init" config user.email github-actions@users.noreply.github.com
+          git -C "$RUNNER_TEMP/archive-init" commit --quiet --allow-empty -m 'Initialize isolated archive'
+          git -C "$RUNNER_TEMP/archive-init" push origin HEAD:results
+          bash tools/archive-scenarios.sh "$RUNNER_TEMP/archive.git" comparison "$EXPERIMENT" "$RUN_ID" "$RUNNER_TEMP/archived"
+          python3 -m zoo site --results "$RUNNER_TEMP/archived/results" --out preview
+          test -f "preview/scenarios/$EXPERIMENT/$RUN_ID/index.html"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scenario-site-preview
+          path: preview
+          retention-days: 14

@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 import re
 import subprocess
+import math
 
 from . import catalogue
 
@@ -132,13 +133,17 @@ def prepare(definition, bank, cat=None):
             raise ValueError('pushid requires an exact supported specimen, not a moving ref')
         targets.append(dict(entry, repository=REPO, commit=spec['ref'], specimen_snapshot=spec,
                             harness=dict(repository=REPO, commit=spec['ref'])))
-    if len({t['commit'] for t in targets}) < 2 or not HEX.fullmatch(d['engine_sha256']):
-        raise ValueError('two distinct commits and exact engine semantics digest required')
+    if len({t['commit'] for t in targets}) != len(targets) or not HEX.fullmatch(d['engine_sha256']):
+        raise ValueError('every pushid must resolve to a distinct commit; exact engine semantics digest required')
     budget = d['budget']
     if set(budget) != {'max_cells', 'max_wall_seconds', 'max_parallel'} or any(type(v) is not int for v in budget.values()) or not 2 <= budget['max_cells'] <= 32 or budget['max_parallel'] != 1:
         raise ValueError('bounded sequential smoke budget required (2..32 cells)')
     if len(selected) * len(targets) > budget['max_cells'] or not 1 <= budget['max_wall_seconds'] <= 1800 or sum(c['wall_seconds'] + 15 for c in selected) * len(targets) > budget['max_wall_seconds']:
         raise ValueError('scenario dispatch exceeds reviewed budget')
+    for target in targets:
+        # Ten minutes for a source build and three for checkout/artifact setup,
+        # plus every selected cell's declared wall/outer-cleanup allowance.
+        target['timeout_minutes'] = 13 + math.ceil(sum(c['wall_seconds'] + 15 for c in selected) / 60)
     plan = dict(schema='borg-zoo/scenario-plan@1', name=d['name'], definition=d,
                 definition_sha256=file_hash(definition), targets=targets, cases=selected,
                 semantics=dict(engine_sha256=d['engine_sha256'], dungeon_mode='one_way',
@@ -154,6 +159,8 @@ def validate_plan(plan):
     body = {k: v for k, v in plan.items() if k != 'plan_sha256'}
     if plan.get('schema') != 'borg-zoo/scenario-plan@1' or digest(body) != plan.get('plan_sha256'):
         raise ValueError('frozen plan hash mismatch')
+    if len({t['commit'] for t in plan['targets']}) != len(plan['targets']):
+        raise ValueError('duplicate target commits in frozen plan')
     for case in plan['cases']:
         payload = {k: v for k, v in case.items() if k not in ('id', 'spec_sha256')}
         if digest(payload) != case['spec_sha256']:
@@ -244,6 +251,9 @@ def run_target(plan, bank, source, pushid, out):
                 if file_hash(attempt / 'profile.txt') != case['character_build']['profile_sha256']:
                     result.update(status='identity_mismatch', terminal=None, reason='applied profile changed')
                 if (attempt / 'natural-registry-guard').exists():
+                    # Cemetery's adapter sets BORG_DEATH_RECORDS_DIR to this
+                    # directory. A mistaken natural export creates it; it is
+                    # not a sentinel file or the population-results separator.
                     result.update(status='harness_failure', terminal=None, reason='synthetic run wrote a natural registry')
                 row.update(result)
             except (OSError, ValueError, subprocess.SubprocessError, module.ExecutionError) as error:
@@ -311,7 +321,62 @@ def validate_cell(plan, case, target, row):
                 raise ValueError('missing or changed compact receipt bytes')
         if row.get('effective_settings') != effective_settings(case, row['receipts']['params.json']):
             raise ValueError('effective configuration identity mismatch')
+        validate_terminal_receipts(case, row, build['binary_sha256'])
     return row
+
+
+def validate_terminal_receipts(case, row, binary):
+    """Re-derive compact start/terminal facts, independently of the row's label.
+
+    This detects contradictory edits, not coordinated forgery: receipts are
+    unsigned assertions of the pinned execution job. Stream checks still belong
+    to Cemetery's classifier and require retained raw logs to reproduce.
+    """
+    summary = json.loads(row['receipts']['summary.json'])
+    process = json.loads(row['receipts']['process.json'])
+    config = {}
+    for line in row['receipts']['config.txt'].splitlines():
+        if '=' in line:
+            key, value = line.split('=', 1)
+            if key in config:
+                raise ValueError('duplicate retained configuration field')
+            config[key] = value
+    character = case['character_build']
+    expected = dict(synthetic=True, loaded=False, seed=case['seed'], race_idx=character['race_idx'],
+                    class_idx=character['class_idx'], start_depth=case['depth'], initial_depth=case['depth'],
+                    initial_cave_depth=case['depth'], initial_generation_pending=False, start_build=character['start'],
+                    synthetic_contract=case['harness_contract'], dungeon_mode='one_way')
+    if any(type(summary.get(k)) is not type(v) or summary.get(k) != v for k, v in expected.items()):
+        raise ValueError('retained summary contradicts the requested synthetic start')
+    for key, actual in (('level', 'initial_clevel'), ('max_hp', 'initial_max_hp'), ('max_sp', 'initial_max_sp')):
+        if key in case['expected_start'] and (type(summary.get(actual)) is not int or summary[actual] != case['expected_start'][key]):
+            raise ValueError('retained character build mismatch')
+    options = summary.get('game_options', {})
+    if options.get('birth_force_descend') is not True or options.get('birth_no_recall') is not True:
+        raise ValueError('retained one-way rules mismatch')
+    fields = dict(synthetic='1', start_depth=str(case['depth']), start_build=character['start'],
+                  synthetic_contract=case['harness_contract'], dungeon_mode='one_way',
+                  profile_sha256=character['profile_sha256'], borg_core=character['core'])
+    if any(config.get(k) != v for k, v in fields.items()):
+        raise ValueError('retained configuration contradicts the scenario')
+    if character['start'] == 'record' and (summary.get('start_build_sha256') != character['record_sha256'] or config.get('start_build_sha256') != character['record_sha256']):
+        raise ValueError('retained kit digest mismatch')
+    if (process.get('status') != 'success' or type(process.get('exit_code')) is not int or process['exit_code'] != 0 or
+            process.get('timed_out') is not False or process.get('executable_sha256_before') != binary or process.get('executable_sha256_after') != binary):
+        raise ValueError('retained process cannot establish a gameplay outcome')
+    turn, dead, reason = summary.get('game_turns'), summary.get('dead'), summary.get('stop_reason')
+    if type(turn) is not int or turn < 0 or type(dead) is not bool or not isinstance(reason, str):
+        raise ValueError('malformed retained terminal facts')
+    if dead and reason == 'death':
+        derived = 'death'
+    elif not dead and reason == 'turns' and turn >= case['turn_cap']:
+        derived = 'survived_to_cap'
+    elif not dead and reason not in ('death', 'turns'):
+        derived = 'stopped'
+    else:
+        raise ValueError('contradictory retained terminal facts')
+    if row['status'] != derived:
+        raise ValueError('reported outcome contradicts retained terminal facts')
 
 
 def compare_pair(left, right):
@@ -423,22 +488,29 @@ def build_site(results, out):
     out = Path(out) / 'scenarios'
     out.mkdir(parents=True, exist_ok=True)
     roots = [Path(results).parent / 'scenario-results', catalogue.ROOT / 'reports/scenarios']
-    links = []
+    links, unavailable = [], []
     for root in roots:
         for path in sorted(root.glob('*/*/comparison.json')):
-            report = read(path)
-            if report.get('schema') != 'borg-zoo/scenario-comparison@1':
-                continue
-            validate_plan(report['plan'])
             name, run = path.parent.parent.name, path.parent.name
-            if not NAME.fullmatch(name) or not NAME.fullmatch(run):
-                raise ValueError('unsafe scenario report path')
+            try:
+                report = read(path)
+                if report.get('schema') != 'borg-zoo/scenario-comparison@1':
+                    raise ValueError('unsupported comparison schema')
+                validate_plan(report['plan'])
+                if not NAME.fullmatch(name) or not NAME.fullmatch(run):
+                    raise ValueError('unsafe scenario report path')
+                rendered = render(report)
+            except (OSError, ValueError, TypeError, KeyError, AttributeError, IndexError) as error:
+                unavailable.append(dict(report=f'{name}/{run}', reason=str(error)))
+                continue
             target = out / name / run
             target.mkdir(parents=True, exist_ok=True)
-            (target / 'index.html').write_text(render(report))
+            (target / 'index.html').write_text(rendered)
             (target / 'comparison.json').write_bytes(path.read_bytes())
             links.append(f'<li><a href="{name}/{run}/index.html">{html.escape(name)} / {html.escape(run)}</a></li>')
-    (out / 'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><title>Synthetic scenarios</title><h1>Synthetic scenario comparisons</h1><p>Separate from natural games and population statistics. <a href="../index.html">Borg zoo</a></p><ul>' + ''.join(links) + '</ul></html>')
+    errors = ''.join(f'<li>{html.escape(r["report"])}: {html.escape(r["reason"])}</li>' for r in unavailable)
+    (out / 'unavailable.json').write_text(json.dumps(unavailable, indent=2) + '\n')
+    (out / 'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><title>Synthetic scenarios</title><h1>Synthetic scenario comparisons</h1><p>Separate from natural games and population statistics. <a href="../index.html">Borg zoo</a></p><ul>' + ''.join(links) + '</ul><h2>Unavailable reports</h2><ul>' + errors + '</ul></html>')
 
 
 def main(argv=None):

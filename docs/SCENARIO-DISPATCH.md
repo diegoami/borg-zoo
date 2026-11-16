@@ -9,11 +9,13 @@ natural-death registries.
 
 ## Reviewed definition and pushid resolution
 
-`scenario-experiments/cemetery-caster-smoke.json` is a proposed two-cell smoke:
-one Gnome Mage birth at starting depth 1, seed 202, 3,000 engine turns,
+`scenario-experiments/cemetery-warrior-smoke.json` is the two-cell CI/manual smoke:
+one Human Warrior birth at starting depth 5, seed 101, 5,000 engine turns,
 30 seconds per cell, sequential targets. The 90-second execution budget includes
 Cemetery's 15-second per-cell outer cleanup allowance; source builds have separate
-15-minute job limits. Both source pins support synthetic-start@2.
+job limits derived from the per-target cell budget plus ten build minutes and
+three setup/upload minutes. The build step is limited to ten minutes. Both
+source pins support synthetic-start@2.
 
 A `pushid` is the original operator-selected label in the definition. Its explicit
 `specimen` resolves through Zoo's catalogue to a full source commit; abbreviated
@@ -23,10 +25,12 @@ specimen snapshot are frozen. Source/harness are the same exact reborn checkout.
 by Cemetery against the clean checkout and executed binary. Failed/missing builds
 have no fabricated binary receipt.
 
-The bank is Cemetery PR #26 at exact commit
-`5edfbbdd7f792f95599924bd51607f2d90ba6a77`, with manifest, suite-spec and runner
-SHA-256 digests. This is a pinned review dependency, not a claim of milestone
-acceptance. The scenario selection names existing IDs without editing the bank
+The default bank is the merged Cemetery P1 Warrior bank at exact commit
+`9b38f76f279bfa1f7e93588dc19e8a02f086cabd`, with manifest, suite-spec and runner
+SHA-256 digests. It is reachable from Cemetery main; no new tag or external
+merge is required. The earlier caster definition and its evidence remain frozen
+at PR #26 commit `5edfbbdd7f792f95599924bd51607f2d90ba6a77`, pending that
+separate review/merge; the default workflow does not depend on it. The scenario selection names existing IDs without editing the bank
 or its cap. Caster observed-equipment records are not executable suite cases;
 unknown scenario IDs are refused and unsupported character-kit capabilities are
 reported explicitly. Reborn #382 remains the equipment-execution dependency.
@@ -40,7 +44,7 @@ are accepted. The initial adapter requires the reborn core's `params.json`:
 explicit profile values are checked against effective values, and all effective
 parameter values must match between targets. Silent default drift invalidates
 the pair. Cores without this receipt need their own configuration adapter.
-Two to four distinct source pins are supported, with at most 32
+Every pushid must resolve to a different commit. Two to four source pins are supported, with at most 32
 scheduled cells and 1,800 seconds of aggregate execution budget. These are safety
 ceilings, not permission to expand the checked-in two-cell smoke.
 
@@ -72,7 +76,7 @@ the native dependencies from the Cemetery contract. The workflow checks out each
 source at its exact commit and builds it under the shared lock. Local equivalent:
 
 ```sh
-python3 -m zoo.scenarios plan --definition scenario-experiments/cemetery-caster-smoke.json --bank /path/to/pinned-cemetery --out /tmp/scenario-plan.json
+python3 -m zoo.scenarios plan --definition scenario-experiments/cemetery-warrior-smoke.json --bank /path/to/pinned-cemetery --out /tmp/scenario-plan.json
 python3 -m zoo.scenarios run --plan /tmp/scenario-plan.json --bank /path/to/pinned-cemetery --source /path/to/reborn-99473510 --pushid 99473510 --out /tmp/scenario-cells/99473510
 python3 -m zoo.scenarios run --plan /tmp/scenario-plan.json --bank /path/to/pinned-cemetery --source /path/to/reborn-d3ebe3c0 --pushid d3ebe3c0 --out /tmp/scenario-cells/d3ebe3c0
 python3 -m zoo.scenarios collect --plan /tmp/scenario-plan.json --cells /tmp/scenario-cells --out /tmp/scenario-comparison
@@ -85,12 +89,23 @@ build/job fails. Completed cells are flushed/fsynced before the next game; a
 missing final per-target report cannot discard already completed records.
 Original summary, process, configuration and effective-parameter receipt bytes
 are retained and hash-checked in the compact cell, independently of raw-log expiry.
+Collection independently checks the typed start, kit/rules, process/binary and
+terminal facts in those receipts against the requested scenario and outcome.
+These are consistency checks on unsigned receipts, not authentication against
+an editor who changes receipts and hashes together. Trust in the original
+execution and stream classification still rests on the pinned Cemetery adapter
+and read-only execution job. Key/state/message hashes cannot be reverified
+without the raw streams after artifact expiry; compact hashes do not reconstruct
+missing bytes. No signed execution attestation is provided.
 
-`.github/workflows/scenarios.yml` is manual only. It freezes the plan, runs the
+`.github/workflows/scenarios.yml` runs the fixed two-cell smoke on relevant pull
+requests and allows manual dispatch of the reviewed definition. It freezes the plan, runs the
 two targets sequentially in jobs with read-only permissions and no persisted
 checkout credentials, and collects with `always()` after failed jobs. Cell/raw
 artifacts retain partial evidence for 14 days; comparison artifacts live 90 days.
-A separate archive job with write permission appends only compact comparison
+PR validation uses an isolated local Git remote to exercise the same archive
+script/push and renders a downloadable site preview. It publishes no production
+results or Pages changes. A separate manual-only archive job with write permission appends only compact comparison
 JSON/HTML to `scenario-results/EXPERIMENT/RUN-ATTEMPT` on `results` and rebuilds
 Pages. Concurrent result-branch pushes retry by rebasing without rewriting runs.
 The archive job never executes engine or Cemetery code. A machine cancellation
