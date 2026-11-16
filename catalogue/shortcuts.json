@@ -1,0 +1,82 @@
+{
+  "schema": "borg-zoo/shortcuts@1",
+  "note": "Named arm sets the owner can ask for: 'small run of SHORTCUT on REF'. docs/PROFILES.md is generated from this file and the catalogue (python3 -m zoo.profiles_page).",
+  "shortcuts": {
+    "heal-pilot-12": {
+      "issue": 151,
+      "status": "waiting: borg-reborn-rs #461 and #463 must merge and the ref be posted on #151",
+      "what": "Heal-when-outmatched flag (0/1) x trip policy (0/1) x plan (none / errands / ambitious), all with the town planner. Flag 0 is the control.",
+      "profiles": [
+        "reborn-heal0-trip0-none", "reborn-heal0-trip0-plan", "reborn-heal0-trip0-ambitious",
+        "reborn-heal0-trip1-none", "reborn-heal0-trip1-plan", "reborn-heal0-trip1-ambitious",
+        "reborn-heal1-trip0-none", "reborn-heal1-trip0-plan", "reborn-heal1-trip0-ambitious",
+        "reborn-heal1-trip1-none", "reborn-heal1-trip1-plan", "reborn-heal1-trip1-ambitious"
+      ],
+      "runs": []
+    },
+    "maxdepth-2x5": {
+      "issue": 147,
+      "status": "small tier done",
+      "what": "Max-depth plans (errands / ambitious) x return off, (4,2), (4,1), (3,2), (3,1) as (unknown stacks, pack slack), all with the town planner. No control arm.",
+      "profiles": [
+        "reborn-maxd-plan-off", "reborn-maxd-plan-u4-p2", "reborn-maxd-plan-u4-p1", "reborn-maxd-plan-u3-p2", "reborn-maxd-plan-u3-p1",
+        "reborn-maxd-ambitious-off", "reborn-maxd-ambitious-u4-p2", "reborn-maxd-ambitious-u4-p1", "reborn-maxd-ambitious-u3-p2", "reborn-maxd-ambitious-u3-p1"
+      ],
+      "runs": [
+        {"run": "43925269890", "tier": "small", "specimen": "4.2.6-reborn-rust-maxdepth", "result": "clean; no return setting lowered deaths; pack slack ~no effect; 35 games died or ended below the plan cap"}
+      ]
+    },
+    "reborn-5arm-town": {
+      "issue": 123,
+      "status": "small tier done on three refs",
+      "what": "#123 development arms: control, town planner, errands plan, plan + town, ambitious + town. Trip policy off everywhere (owner). Loop-levels plans.",
+      "profiles": ["reborn-m13-control", "reborn-m13-town", "reborn-m13-plan", "reborn-m13-plan-town", "reborn-m13-ambitious-town"],
+      "runs": [
+        {"run": "43868362767", "tier": "small", "specimen": "4.2.6-reborn-rust-plans-m13-fix90", "result": "gate passed; plan-town 23 deaths v town 15 (casters, borg-cemetery#19); 2 stalls (#421)"},
+        {"run": "43874782892", "tier": "small", "specimen": "4.2.6-reborn-rust-plans-m13-survival", "result": "#423 survival fixes: 104 deaths over five arms (was 113)"},
+        {"run": "43882239507", "tier": "small", "specimen": "4.2.6-reborn-rust-plans-m13-livelock", "result": "#421 fix: no stalls; control and town identical to 4ecb93d7"}
+      ]
+    },
+    "reborn-3x3-trip": {
+      "issue": 123,
+      "status": "pilot done",
+      "what": "Plan (none / errands / ambitious) x (no shopping / town planner / town planner + trip (4,2)).",
+      "profiles": [
+        "reborn-m13-control", "reborn-m13-town", "reborn-m13-shop",
+        "reborn-m13-plan", "reborn-m13-plan-town", "reborn-m13-plan-shop",
+        "reborn-m13-ambitious", "reborn-m13-ambitious-town", "reborn-m13-ambitious-shop"
+      ],
+      "runs": [
+        {"run": "43863985583", "tier": "pilot", "specimen": "4.2.6-reborn-rust-plans-m13-fix90", "result": "trip barely changes play (42 of 54 paired games identical); found the #421 stair livelock"}
+      ]
+    },
+    "reborn-5arm-shop": {
+      "issue": 123,
+      "status": "superseded (trip policy now off in #123)",
+      "what": "The first #123 design: control, shop (planner + trip), plan, plan-shop, ambitious-shop.",
+      "profiles": ["reborn-m13-control", "reborn-m13-shop", "reborn-m13-plan", "reborn-m13-plan-shop", "reborn-m13-ambitious-shop"],
+      "runs": [
+        {"run": "43845673921", "tier": "pilot", "specimen": "4.2.6-reborn-rust-plan-m13", "result": "four arms, 72 games, plumbing clean"},
+        {"run": "43851628610", "tier": "pilot", "specimen": "4.2.6-reborn-rust-plans-m13", "result": "five arms, 90 games, plumbing clean"}
+      ]
+    },
+    "rs-additive-6": {
+      "issue": 129,
+      "status": "obsolete (#129 closed by the owner)",
+      "what": "borg-rs: existing behaviour, shopping only, and four trip thresholds (0,0), (1,2), (1,4), (2,4) as (pack slack, unknown stacks).",
+      "profiles": ["rs-additive-existing", "rs-additive-shopping-only", "rs-additive-p0-u0", "rs-additive-p1-u2", "rs-additive-p1-u4", "rs-additive-p2-u4"],
+      "runs": [
+        {"run": "43858601495", "tier": "smoke", "specimen": "4.2.6-rs-pr92-home-fix", "result": "54 games clean; Home fix holds"}
+      ]
+    },
+    "neo-default": {
+      "issue": 137,
+      "status": "small tier done",
+      "what": "Neo Borg with its default recorded flags (no settings).",
+      "profiles": ["default"],
+      "runs": [
+        {"run": "43876073942", "tier": "small", "specimen": "neo-b4-parity-books-v1", "result": "39 alive, 46 dead, 5 stalls (Borg loops)"}
+      ]
+    }
+  }
+}
