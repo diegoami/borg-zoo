@@ -24,6 +24,7 @@ QUESTIONS = {
     'reborn-plan-m13-full': 'Tier full: do a class errands plan, the M13 town planner, both, or the ambitious plan with the planner help the borg-rs core in the reborn shell?',
     'reborn-survival-small': 'Do the flee-healing and Phase Door fixes change deaths in the #123 small tier?',
     'reborn-livelock-small': 'Does the #421 fix remove the stair livelock without changing the no-plan arms?',
+    'reborn-maxdepth-returns-small': 'Under max-depth plans, does a tighter return setting lower deaths, and at what cost in progress?',
     'reborn-plan-m13-classes-1800': 'Do a class errands plan, the M13 shopping, both together, or the ambitious plan with shopping help the borg-rs core in the reborn shell?',
     'rs-joint-m12-development': 'Which combination of shopping, risk tolerance and earlier town returns helps the Rust Borg?',
     'rs-joint-m12-confirm': 'Does the selected shopping and risk policy still help on fresh seeds?',

@@ -741,6 +741,122 @@
         "borg_reborn_errand": "ladder"
       }
     },
+    "reborn-maxd-plan-off": {
+      "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner; trip policy off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_trip_policy": 0
+      }
+    },
+    "reborn-maxd-plan-u4-p2": {
+      "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner + trip policy, return at 4 unknown stacks or 2 free pack slots (4,2) (the default).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_pack_slack": 2
+      }
+    },
+    "reborn-maxd-plan-u4-p1": {
+      "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner + trip policy, return at 4 unknown stacks or 1 free pack slots (4,1).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_pack_slack": 1
+      }
+    },
+    "reborn-maxd-plan-u3-p2": {
+      "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner + trip policy, return at 3 unknown stacks or 2 free pack slots (3,2).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 3,
+        "borg_trip_pack_slack": 2
+      }
+    },
+    "reborn-maxd-plan-u3-p1": {
+      "description": "borg-zoo#147: max-depth errands_plan.txt + live town planner + trip policy, return at 3 unknown stacks or 1 free pack slots (3,1).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 3,
+        "borg_trip_pack_slack": 1
+      }
+    },
+    "reborn-maxd-ambitious-off": {
+      "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner; trip policy off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_trip_policy": 0
+      }
+    },
+    "reborn-maxd-ambitious-u4-p2": {
+      "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner + trip policy, return at 4 unknown stacks or 2 free pack slots (4,2) (the default).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_pack_slack": 2
+      }
+    },
+    "reborn-maxd-ambitious-u4-p1": {
+      "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner + trip policy, return at 4 unknown stacks or 1 free pack slots (4,1).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 4,
+        "borg_trip_pack_slack": 1
+      }
+    },
+    "reborn-maxd-ambitious-u3-p2": {
+      "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner + trip policy, return at 3 unknown stacks or 2 free pack slots (3,2).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 3,
+        "borg_trip_pack_slack": 2
+      }
+    },
+    "reborn-maxd-ambitious-u3-p1": {
+      "description": "borg-zoo#147: max-depth errands_plan_ambitious.txt + live town planner + trip policy, return at 3 unknown stacks or 1 free pack slots (3,1).",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan_ambitious.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 3,
+        "borg_trip_pack_slack": 1
+      }
+    },
     "reborn-m13-control": {
       "description": "borg-zoo#123 control: borg-rs core in the reborn shell; no plan; M13 town planner and trip policy off. Everything else is the specimen's own harness/borg.txt.",
       "settings": {
