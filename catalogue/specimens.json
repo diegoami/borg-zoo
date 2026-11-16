@@ -852,6 +852,21 @@
       "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/101",
       "label": "Neo fork including merged danger/HP/retreat repairs and durable monster-truth host correction #100. Explicit C point-buy/no-selling/startup profile; engine b4af703. Clock640 unresolved. New descriptive run; old truth-denied cohort is not a repaired-Borg baseline."
     },
+    "4.2.6-reborn-rust-plans-m13-survival": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "4ecb93d77c625e03d2b838837da597d07bfbabe2",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "plans": {
+        "errands_plan.txt": "922372ba849489c579449f8cd6f827b29ed65b6e8e0f67bd0fe8be2f3cb160cd",
+        "errands_plan_ambitious.txt": "9d7d8a3984e278f2bb7bf61be7cdacdb16b9b513b364735fed7e7fa947d59dd2"
+      },
+      "source": "https://github.com/diegoami/borg-reborn-rs/pull/423",
+      "label": "borg-reborn-rs 4ecb93d7, the main merge of #423 (borg-zoo#138): the flee-healing fix (#369: while fleeing, borg_heal() is no longer skipped because HP cannot absorb another round) and the Phase Door stock fix (#380: a learned Phase Door spell no longer zeroes the scroll's supply value), on main 8837ece2 (borg-rs 8c5d000 plus recorder v0.2.0, off by default). A different game from 8a0b57c8: source-hash rust 2317021c... (was 9a4ea375...); healing applies without the planner, so the control arm changes too. harness/borg.txt 88296dd1... and both plans unchanged. borg-reborn-rs#421 (stair livelock) is not fixed here."
+    },
     "4.2.6-reborn-rust-plans-m13-fix90": {
       "kind": "borg-rs",
       "impl": "rust",
