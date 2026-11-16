@@ -143,6 +143,17 @@ class PlanArmsTest(unittest.TestCase):
         self.assertEqual(record['frozen_turn_loop'], {'turn': 52639, 'max_keys': borgrs.LOOP_KEYS,
                                                       'bursts': 1, 'burst_keys': borgrs.LOOP_KEYS})
 
+    def test_loop_checks_without_plans(self):
+        burst = ''.join(f'52639 k {i:x} 0\n' for i in range(borgrs.LOOP_KEYS))
+        cat = fixture_catalogue()
+        cat['specimens']['specimens'][SPECIMEN]['loop_checks'] = True
+        record, _ = self.run_with(cat, 'reborn-m13-shop', strip_plans=True, keys_text=burst,
+                                  summary={'stop_reason': 'turns', 'dead': False})
+        self.assertEqual(record['outcome'], 'stalled')
+        self.assertEqual(record['frozen_turn_loop']['bursts'], 1)
+        spec = catalogue.catalogue()['specimens']['specimens']['4.2.6-rs-pr92-home-fix']
+        self.assertTrue(borgrs.loop_checks(spec) and not spec.get('plans'))
+
     def test_busy_shopping_turns_are_not_a_loop(self):
         text = ''.join(f'7 k {i:x} 0\n' for i in range(383)) + '8 k 0 0\n'
         self.assertEqual(borgrs.frozen_turn_loop(text), {'turn': 7, 'max_keys': 383, 'bursts': 0, 'burst_keys': 0})

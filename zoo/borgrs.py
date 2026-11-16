@@ -33,6 +33,8 @@ Limits compared with the better-borg-c observer, recorded per cell:
   level-50 handover or a plan's handback) is the borg_stopped outcome, not
   a stall. The cell also checks the core's copy of the loaded plan in the
   output directory, and records a frozen-turn loop (borg-rs#90) as a stall.
+- a specimen with "loop_checks": true (and every plan specimen) gets the
+  frozen-turn stall and the key-outlier flag without carrying plans.
 - every inherited BORG_* environment variable is cleared before a cell.
 """
 import hashlib
@@ -122,6 +124,13 @@ LOADED_PLAN = 'errands_plan.txt'
 # (borg-zoo#123). The loop ends and play resumes, so the cell reaches its
 # cap; it is a stall all the same.
 LOOP_KEYS = 1000
+
+
+def loop_checks(spec):
+    """Whether cells of this specimen get the frozen-turn and key-outlier
+    checks: plan specimens always, others when they ask ("loop_checks":
+    true, borg-zoo#129)."""
+    return bool(spec.get('plans') or spec.get('loop_checks'))
 
 
 def frozen_turn_loop(keys_text):
@@ -392,7 +401,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     keys_sha = sha256(keys) if keys.exists() else None
     stall_info = None
     loop = None
-    if spec.get('plans') and keys.exists():
+    if loop_checks(spec) and keys.exists():
         loop = frozen_turn_loop(keys.read_text(errors='replace'))
         if loop['bursts'] and outcome in ('death', 'turn_cap', 'borg_stopped'):
             observed_outcome, outcome = outcome, 'stalled'
@@ -436,7 +445,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'binary_sha256': manifest.get('binary_sha256'), 'compiler': manifest.get('compiler'),
         'rustc': manifest.get('rustc'), 'platform': manifest.get('platform'),
     }
-    if spec.get('plans'):
+    if loop_checks(spec):
         record['frozen_turn_loop'] = loop
         record['observed_outcome'] = observed_outcome if observed_outcome != outcome else None
     if shadow is not None:
