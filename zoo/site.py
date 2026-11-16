@@ -656,7 +656,12 @@ def provenance_line(exp):
         parts.append(f'Answers <a href="{cat_mod.ISSUES_URL}{issue}">borg-zoo issue #{issue}</a>')
     if definition:
         parts.append(f'Defined in <a href="{cat_mod.DEFINITIONS_URL}{definition}"><code>{esc(definition)}</code></a>')
-    return f'<p class="issue">{" · ".join(parts)}</p>' if parts else ''
+    line = f'<p class="issue">{" · ".join(parts)}</p>' if parts else ''
+    if definition:
+        text = (cat_mod.ROOT / definition).read_text()
+        line += (f'<details class="definition" open><summary>Experiment definition: <code>{esc(definition)}</code>'
+                 f'</summary><pre>{esc(text)}</pre></details>')
+    return line
 
 
 def run_page(meta, cells):

@@ -80,3 +80,14 @@ settings: {borg_town_plan: 1}
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class ReportShowsDefinitionTest(unittest.TestCase):
+    def test_provenance_links_issue_and_embeds_the_yaml(self):
+        from zoo import site
+        html = site.provenance_line({'name': 'reborn-heal-pilot'})
+        self.assertIn('borg-zoo issue #151', html)
+        self.assertIn('definitions/reborn-heal-pilot.yaml', html)
+        self.assertIn('<details class="definition" open>', html)
+        self.assertIn('caution_heal_when_outmatched', html)  # the YAML itself, not just a link
+        self.assertEqual(site.provenance_line({'name': 'no-such-experiment'}), '')
