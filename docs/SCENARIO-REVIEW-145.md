@@ -12,7 +12,9 @@ without accepting a milestone, merging another repository, or expanding tiers.
    actual artifact upload/download/collection, an archive push against an isolated
    Git remote and site preview run before merge. Production results-branch and
    Pages dispatch remain manual; pre-merge CI does not publish those changes.
-   Cloud results will be linked after the check finishes.
+   Cloud execution, collection and the isolated archive/site preview passed at [43914778367](https://github.com/diegoami/borg-zoo/actions/runs/43914778367)
+   on runtime/workflow head `f8fe7197a3fa045ed0e4cc35d96e1276d2282535`.
+   Subsequent evidence-only commits do not change those implementation bytes.
 2. **Receipt trust and terminal consistency.** Collection now checks typed
    summary start/depth/build/one-way facts, configuration, process success and
    before/after binary hashes, and re-derives the terminal outcome before
@@ -55,3 +57,44 @@ without accepting a milestone, merging another repository, or expanding tiers.
    orchestration/configuration only. Intentional rescued/newly-killed transitions
    remain tested with controlled fixtures; no improvement claim or expanded
    experiment is added to seek a favorable outcome.
+
+## Cloud-discovered correction and validation
+
+The first cloud run [43913538368](https://github.com/diegoami/borg-zoo/actions/runs/43913538368)
+built both targets, but relative output/profile paths were resolved from the
+source checkout after the harness changed cwd. All 2/2 cells were retained as
+harness failures, not deaths/survivals. The original comparison is preserved in
+[the failed cloud packet](../reports/scenarios/cemetery-warrior-two-pushids-smoke/cloud-43913538368-1/README.md).
+
+Output paths are now made absolute before adapter execution. A relative-path
+regression covers it; its fixture's profile digest is consistent with the bytes
+it writes. Collection independently revalidated the original caster receipts
+without replaying those games. The separate pinned-Cemetery integration check
+passes locally and in the cloud execution jobs.
+
+Final local suite: 196 tests, one optional integration skip; that integration
+was also run explicitly and passed. All 22 focused scenario tests pass. Site
+build, workflow YAML, archive shell syntax and whitespace checks pass.
+
+Cloud execution exposed an additional failure-path issue: downstream previews
+were skipped after a failed run job despite successful collection. Preview and
+manual archive now explicitly use always plus collection-success conditions, so
+partial failure reports can still be rendered/archived. Production archival and
+Pages dispatch remain manual and were not exercised against the public results
+branch during PR validation. The same archive script is exercised against an
+isolated real Git remote; no broader tier or population claim is implied.
+
+## Retained corrected cloud evidence
+
+[The corrected cloud packet](../reports/scenarios/cemetery-warrior-two-pushids-smoke/cloud-43914778367-1/README.md)
+retains the original comparison from run 43914778367. All 2/2 Warrior cells
+survived to the cap (5,002 actual engine ticks, 500 player turns, 334 Borg
+decisions and 697 keys each). Both source builds, actual pinned-adapter tests,
+artifact transfers, collection and isolated archive/site preview jobs passed.
+Production archival was skipped as intended for a pull request. The downloaded
+ZIP matches GitHub's artifact digest, and all retained receipt hashes match.
+
+This is still a non-discriminating orchestration smoke. The failed predecessor
+remains a separate invalid comparison, not a death or an extra independent life.
+Evidence-only commits after the measured implementation leave runner/workflow
+bytes unchanged; their normal CI checks are reported separately on the PR.

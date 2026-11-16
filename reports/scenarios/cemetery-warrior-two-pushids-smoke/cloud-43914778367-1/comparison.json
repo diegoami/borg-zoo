@@ -1,0 +1,525 @@
+{
+  "aggregates": [
+    {
+      "candidate": "d3ebe3c0",
+      "class_idx": 0,
+      "counts": {
+        "both_survived": 1
+      },
+      "depth": 5,
+      "expected_pairs": 1,
+      "loadout": "birth"
+    }
+  ],
+  "cells": [
+    {
+      "attempted": true,
+      "candidate_screen": {
+        "count": 0,
+        "hp_threshold": 2,
+        "kind": "low_hp_candidate",
+        "sampling": "distinct engine turns in pre-key state log; provisional, not qualified exposure"
+      },
+      "death_cause": null,
+      "effective_settings": {
+        "core": "reborn",
+        "parameters": {
+          "arrival_risk_hp": 3,
+          "breeder_colony": 4,
+          "depth_hp_frac_pct": 50,
+          "depth_per_clevel_pct": 50,
+          "eat_below_food": 1500,
+          "escape_item_hp": 1,
+          "explore_budget_turns": 2000,
+          "goal_cooldown_turns": 100,
+          "last_escape_hp": 5,
+          "level_stall_turns": 5000,
+          "max_level_changes_per_turn": 2,
+          "max_tries_per_turn": 2,
+          "readiness_band_above": 5,
+          "readiness_band_below": 2,
+          "reserve_cure": 3,
+          "reserve_escape": 4,
+          "reserve_food": 3,
+          "reserve_light": 2,
+          "reserve_recall": 1,
+          "rest_below_hp_pct": 70,
+          "rest_turns": 75,
+          "risk_aversion_pct": 50,
+          "threat_horizon": 1
+        },
+        "profile_sha256": "372785a3dfab6020d2e0881a0be7a8db42d70c39ad6db40f9599d3a6d1c2fc91"
+      },
+      "evidence": {
+        "config.txt": {
+          "bytes": 439,
+          "sha256": "a0d12729391479a550b3ca822765ad111a9e5b083f75f345156f46ce89ff6d9f"
+        },
+        "keys.log": {
+          "bytes": 8802,
+          "sha256": "16d94c65d68d079142f0ccfb18815561a59fa7d3e5c8cc87402d89a5db096391"
+        },
+        "messages.log": {
+          "bytes": 5047,
+          "sha256": "33e15395b7d56f1e3a7fe2e73ce7e018b45b275b77de2d4f7cd42ac4b64e6170"
+        },
+        "params.json": {
+          "sha256": "1cd303b9ce4d00db5d6be2835a9609b53029e952ca196aaaace8fbb181ea60bd"
+        },
+        "process.json": {
+          "bytes": 2211,
+          "sha256": "696f45d7279e8e7ff89ebc15bfd59cfb47fd92b60b0d72bf18633acf32ec1aad"
+        },
+        "state.log": {
+          "bytes": 85775,
+          "sha256": "c890d7de0b3a1ad654c1ecdeed23b70603d6cc6a04ba2512d7df04a779999029"
+        },
+        "summary.json": {
+          "bytes": 2295,
+          "sha256": "c045a9bf8e31259734c4a04e8dfd1cd23287a8698910d1d9400a318dea1893cb"
+        }
+      },
+      "execution_input": {
+        "build_receipt": {
+          "build": {
+            "binary": "/home/runner/work/borg-zoo/borg-zoo/source/build/rust/game/angband",
+            "binary_sha256": "4730f04216d7bf1dacd79fdca5453037f0e792816a55e25c42947308b5361948",
+            "built_utc": "2026-11-16T17:09:36Z",
+            "cc": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+            "engine_upstream": "42cd156ac9f95ddf4311e88dd7ad462292d6d1d6",
+            "git_dirty": "no",
+            "git_rev": "99473510940b8a7bd6e77ad61e3a2b00c72a6e6d",
+            "impl": "rust",
+            "inputs_dirty": "no",
+            "rustc": "rustc 1.100.0 (0ef1bc386 2026-11-09)",
+            "source_sha256": "bf9a451c46a07142b59525a9c9c581287930e3b333baa4a81dda4816ed2a025a"
+          },
+          "capabilities_sha256": "24e868eba8406ba01df37f4c92ba065ed7f35ad516c59d4af4f64974ec70baed",
+          "commit": "99473510940b8a7bd6e77ad61e3a2b00c72a6e6d",
+          "engine_sha256": "4d80ed3b12a19beef624f8f639d0a84350dec5df8f9d76e52c3acbae79684567",
+          "repository": "diegoami/borg-reborn-rs"
+        },
+        "calendar": "2026-11-16",
+        "pairing_sha256": "97931e07665688f87225beb3839429d667d18d53500f03e4009791e1d28ee9ed",
+        "plan_sha256": "ccb0c027e08ebb5ed8ce01d8fdee424d7595d17902bf76b4c7467732a9fa3e74",
+        "scenario": {
+          "candidate_screen": {
+            "hp_threshold": 2,
+            "kind": "low_hp_candidate"
+          },
+          "character_build": {
+            "class_idx": 0,
+            "core": "reborn",
+            "id": "birth",
+            "profile": "profile.txt",
+            "profile_sha256": "372785a3dfab6020d2e0881a0be7a8db42d70c39ad6db40f9599d3a6d1c2fc91",
+            "race_idx": 0,
+            "start": "birth"
+          },
+          "depth": 5,
+          "expected_start": {
+            "level": 1
+          },
+          "harness_contract": "borg-reborn-rs/synthetic-start@2",
+          "id": "p1-warrior-58049e87970571527e48fe74",
+          "revision": 1,
+          "schema": "borg-cemetery/synthetic-scenario@1",
+          "seed": 101,
+          "spec_sha256": "58049e87970571527e48fe74adaeeb95844d3b2759d405d83d2b3dc66e8cdf43",
+          "suite_id": "p1-warrior",
+          "turn_cap": 5000,
+          "wall_seconds": 30
+        },
+        "target": {
+          "commit": "99473510940b8a7bd6e77ad61e3a2b00c72a6e6d",
+          "harness": {
+            "commit": "99473510940b8a7bd6e77ad61e3a2b00c72a6e6d",
+            "repository": "diegoami/borg-reborn-rs"
+          },
+          "pushid": "99473510",
+          "repository": "diegoami/borg-reborn-rs",
+          "specimen": "4.2.6-reborn-synthetic-99473510",
+          "specimen_snapshot": {
+            "carries": 0,
+            "impl": "rust",
+            "kind": "borg-rs",
+            "label": "Pinned synthetic P1 runtime. Scenario dispatch only; its capability is verified at execution.",
+            "ref": "99473510940b8a7bd6e77ad61e3a2b00c72a6e6d",
+            "repository": "diegoami/borg-reborn-rs",
+            "role": "candidate",
+            "source": "https://github.com/diegoami/borg-reborn-rs/tree/99473510940b8a7bd6e77ad61e3a2b00c72a6e6d"
+          },
+          "timeout_minutes": 14
+        }
+      },
+      "execution_sha256": "5e21370dbbf159a2b2fb3a11d583e2ccbcb981cd278b1b63f6179d10dc17fd02",
+      "launcher_returncode": 0,
+      "minimum_observed_living_hp": 9,
+      "observed_turns": 5002,
+      "pairing_sha256": "97931e07665688f87225beb3839429d667d18d53500f03e4009791e1d28ee9ed",
+      "plan_sha256": "ccb0c027e08ebb5ed8ce01d8fdee424d7595d17902bf76b4c7467732a9fa3e74",
+      "progress": {
+        "borg_decisions": 334,
+        "game_turns": 5002,
+        "keys": 697,
+        "player_turns": 500,
+        "stop_reason": "turns"
+      },
+      "pushid": "99473510",
+      "qualified_near_death": {
+        "count": null,
+        "coverage": "unavailable",
+        "reason": "P1 has no null-move evaluator"
+      },
+      "reason": "",
+      "receipts": {
+        "config.txt": "flags=menu,start-depth=5\nsynthetic=1\nstart_depth=5\nstart_build=birth\ndungeon_mode=one_way\nsynthetic_contract=borg-reborn-rs/synthetic-start@2\nborg_txt_sha256=11d653505888a75914c8fbb095672f01a349953c62ea2914837e124716dbd751\nprofile=/home/runner/work/borg-zoo/borg-zoo/attempts/99473510/attempts/p1-warrior-58049e87970571527e48fe74/profile.txt\nprofile_sha256=372785a3dfab6020d2e0881a0be7a8db42d70c39ad6db40f9599d3a6d1c2fc91\nborg_core=reborn\n",
+        "params.json": "{\n  \"parameters\": [\n    {\n      \"default\": 2,\n      \"evidence\": \"GOALS principle 6 (no loop without game time): after a refused rest one walk may also be refused (a wall or a monster), then the Borg takes an action that always uses time (M1 review, #42)\",\n      \"max\": 8,\n      \"min\": 1,\n      \"name\": \"max_tries_per_turn\",\n      \"unit\": \"thinks at one game turn\",\n      \"value\": 2\n    },\n    {\n      \"default\": 70,\n      \"evidence\": \"T1.5 placeholder, kept by the first strategy: rest when below 70% of maximum hit points; the strategy-manual's REST rules are the candidate replacement (c15 REST-01, to be measured, RULES 14)\",\n      \"max\": 100,\n      \"min\": 0,\n      \"name\": \"rest_below_hp_pct\",\n      \"unit\": \"percent of maximum hit points\",\n      \"value\": 70\n    },\n    {\n      \"default\": 75,\n      \"evidence\": \"the C Borg's rest command, 'R' '7' '5' Enter (spec \u00a72.6)\",\n      \"max\": 9999,\n      \"min\": 1,\n      \"name\": \"rest_turns\",\n      \"unit\": \"player turns\",\n      \"value\": 75\n    },\n    {\n      \"default\": 2000,\n      \"evidence\": \"GOALS principle 6 (a budget in game turns): a level that has revealed nothing new for this long fails its explore goal. The scale is a manual-reading player's ~100 decisions on one level (borg-runner ACCUMULATED_KNOWLEDGE \u00a71, five runs); a placeholder until the zoo measures it (RULES 14)\",\n      \"max\": 50000,\n      \"min\": 100,\n      \"name\": \"explore_budget_turns\",\n      \"unit\": \"game turns without progress\",\n      \"value\": 2000\n    },\n    {\n      \"default\": 100,\n      \"evidence\": \"GOALS principle 6 (a failed goal is blocked for a while): short enough that the mode is retried within a level's explore budget, long enough to break one-goal oscillation; a placeholder until the zoo measures it (RULES 14)\",\n      \"max\": 10000,\n      \"min\": 0,\n      \"name\": \"goal_cooldown_turns\",\n      \"unit\": \"game turns\",\n      \"value\": 100\n    },\n    {\n      \"default\": 2,\n      \"evidence\": \"M3 review PR #135, blocking finding 1: one up/down reroll per game turn at most, so level generation cannot loop for free. A separate per-level reroll limit prevents repeated exits from the same generation\",\n      \"max\": 8,\n      \"min\": 1,\n      \"name\": \"max_level_changes_per_turn\",\n      \"unit\": \"Ascend/Descend actions at one game turn\",\n      \"value\": 2\n    },\n    {\n      \"default\": 3,\n      \"evidence\": \"GOALS principle 7 and the strategy manual's CL1 shopping list (c15 \u00a712.4: 3-5 rations); the lower bound is the M3 default, to be measured (RULES 14)\",\n      \"max\": 20,\n      \"min\": 0,\n      \"name\": \"reserve_food\",\n      \"unit\": \"rations in the pack\",\n      \"value\": 3\n    },\n    {\n      \"default\": 2,\n      \"evidence\": \"GOALS principle 7 and c15 \u00a712.4 (2-3 spare torches); the equipped light is not a reserve. The lower bound is the M3 default, to be measured (RULES 14)\",\n      \"max\": 10,\n      \"min\": 0,\n      \"name\": \"reserve_light\",\n      \"unit\": \"spare torches in the pack\",\n      \"value\": 2\n    },\n    {\n      \"default\": 3,\n      \"evidence\": \"GOALS principle 7 and the owner's verified D0015 re-shop (3 CLW); c15 \u00a712.4 independently recommends 3-5 (RULES 14)\",\n      \"max\": 20,\n      \"min\": 0,\n      \"name\": \"reserve_cure\",\n      \"unit\": \"Cure Light Wounds items in the pack\",\n      \"value\": 3\n    },\n    {\n      \"default\": 4,\n      \"evidence\": \"GOALS principle 7 and the owner's verified D0015 re-shop (4 Phase Door); survival stock outranks equipment (bbc D0013, D0015, D0018, D0019)\",\n      \"max\": 20,\n      \"min\": 0,\n      \"name\": \"reserve_escape\",\n      \"unit\": \"Phase Door scrolls in the pack\",\n      \"value\": 4\n    },\n    {\n      \"default\": 1,\n      \"evidence\": \"GOALS principle 7 (a way home): keep the starting Recall, unlike bbc D0006, D0009, D0015, D0016, D0018 and D0019; c15 \u00a712.4 says one if affordable\",\n      \"max\": 5,\n      \"min\": 0,\n      \"name\": \"reserve_recall\",\n      \"unit\": \"Word of Recall scrolls in the pack\",\n      \"value\": 1\n    },\n    {\n      \"default\": 1500,\n      \"evidence\": \"#172: the engine's Hungry boundary. player_timed.txt grades FOOD in percent (Starving 1, Faint 4, Weak 8, Hungry 15) and constants.txt food-value 100 scales them (player-timed.c:318-336): Faint is 400, Weak 800, Hungry 1500. The manual (c01 \u00a71.16): eat when Hungry appears, never reach Weak. The old 300 was below Faint: the Borg ate only after fainting began, and noticed having no food too late to go home (the starvation residue since T4.6)\",\n      \"max\": 5000,\n      \"min\": 0,\n      \"name\": \"eat_below_food\",\n      \"unit\": \"food units\",\n      \"value\": 1500\n    },\n    {\n      \"default\": 50,\n      \"evidence\": \"ARCHITECTURE L4: one risk tolerance for every consumer (paths, rest, retreat, combat). 50 is the declared midpoint between expected and worst damage, not a measured optimum; the calibration report (#124) replaces it\",\n      \"max\": 100,\n      \"min\": 0,\n      \"name\": \"risk_aversion_pct\",\n      \"unit\": \"percent of the expected-to-worst gap\",\n      \"value\": 50\n    },\n    {\n      \"default\": 1,\n      \"evidence\": \"ARCHITECTURE L4: the assessment's horizon in player turns. 1 is the shortest horizon in which a normal-speed adjacent monster acts; longer horizons are the calibration report's (#124), not a tuned value\",\n      \"max\": 5,\n      \"min\": 1,\n      \"name\": \"threat_horizon\",\n      \"unit\": \"player turns\",\n      \"value\": 1\n    },\n    {\n      \"default\": 1,\n      \"evidence\": \"T4.4 (#121): what spending one consumable escape costs on the ladder's hit-point scale; 1 hit point is the declared price of a scroll the town reserves replace (bbc D0013, D0014), to be measured (RULES 14)\",\n      \"max\": 100,\n      \"min\": 0,\n      \"name\": \"escape_item_hp\",\n      \"unit\": \"hit points\",\n      \"value\": 1\n    },\n    {\n      \"default\": 5,\n      \"evidence\": \"T4.4 (#121): the extra gain the last known escape scroll must promise before it is spent; 5 hit points keeps the last Phase Door for what a step cannot end (bbc D0013, D0014, D0018), to be measured (RULES 14)\",\n      \"max\": 100,\n      \"min\": 0,\n      \"name\": \"last_escape_hp\",\n      \"unit\": \"hit points\",\n      \"value\": 5\n    },\n    {\n      \"default\": 3,\n      \"evidence\": \"T4.4 (#121): the declared landing risk of a level-changing escape whose arrival level nothing remembers (stairs, Deep Descent); 3 hit points is a placeholder until the calibration report (#124) measures arrivals (RULES 14)\",\n      \"max\": 100,\n      \"min\": 0,\n      \"name\": \"arrival_risk_hp\",\n      \"unit\": \"hit points\",\n      \"value\": 3\n    },\n    {\n      \"default\": 50,\n      \"evidence\": \"T5.1 (#125): c15 DEPTH-01, a depth is allowed when the worst single turn of the races native to its band stays below this share of maximum hit points; 50 is the manual's K_DEPTH_HP_FRAC candidate (c15 \u00a715.15), whose sweep (0.3/0.5/0.7, c15 *Things to try* item 5) is not run: declared (RULES 14)\",\n      \"max\": 100,\n      \"min\": 10,\n      \"name\": \"depth_hp_frac_pct\",\n      \"unit\": \"percent of maximum hit points\",\n      \"value\": 50\n    },\n    {\n      \"default\": 2,\n      \"evidence\": \"T5.1 (#125): c15 DEPTH-01's band starts this many levels above the target depth (d-2); declared\",\n      \"max\": 10,\n      \"min\": 0,\n      \"name\": \"readiness_band_below\",\n      \"unit\": \"dungeon levels\",\n      \"value\": 2\n    },\n    {\n      \"default\": 5,\n      \"evidence\": \"T5.1 (#125): c15 DEPTH-01's band ends this many levels below the target depth (d+5): out-of-depth monsters are generated deeper than the level (Fang, DL5, kills on DL1-2: D1638, D1654); declared\",\n      \"max\": 10,\n      \"min\": 0,\n      \"name\": \"readiness_band_above\",\n      \"unit\": \"dungeon levels\",\n      \"value\": 5\n    },\n    {\n      \"default\": 4,\n      \"evidence\": \"#183: the manual's ADVICE (c08 \u00a78.10: kill the first breeder at once or leave the level; never rest while a colony grows; c15 DANGER-08: the level deteriorates with time). The trial's giant white mouse deaths (D1875, D1876, D1880, D1889) fought swarms of 8-19 at p_death 0.7-0.99. A breeder stops breeding at 4 in its 3x3 (mon-move.c, monster_turn_multiply); 4 is the declared colony\",\n      \"max\": 50,\n      \"min\": 0,\n      \"name\": \"breeder_colony\",\n      \"unit\": \"live breeder tracks on the level (0: never leave for them)\",\n      \"value\": 4\n    },\n    {\n      \"default\": 5000,\n      \"evidence\": \"#201: 38 of the full suite's 39 survivors walked between two grids on DL1 from about turn 15,000 to the cap. Progress is a new grid mapped, experience or a level change; the C Borg leaves a level after 10,000 of its turns on it whatever it does there (borg-think-dungeon.c:1247, 'Leaving (boredom)'). 500 player turns at normal speed with nothing mapped and nothing learned; declared, to be measured\",\n      \"max\": 1000000,\n      \"min\": 0,\n      \"name\": \"level_stall_turns\",\n      \"unit\": \"game turns on one level without progress (0: never leave for it)\",\n      \"value\": 5000\n    },\n    {\n      \"default\": 50,\n      \"evidence\": \"#201 (owner, 2026-11-14): the willingness to go down is an optimisation parameter, replacing T5.1's readiness gate, which kept every survivor on DL1. Target depth = max(1, clevel x this / 100): level 10 plays DL5. Declared, to be tuned by the zoo; class, race and power terms come as arms\",\n      \"max\": 500,\n      \"min\": 1,\n      \"name\": \"depth_per_clevel_pct\",\n      \"unit\": \"% of the character level: a trip's target depth\",\n      \"value\": 50\n    }\n  ],\n  \"profile\": \"/home/runner/work/borg-zoo/borg-zoo/attempts/99473510/attempts/p1-warrior-58049e87970571527e48fe74/profile.txt\",\n  \"profile_sha256\": \"372785a3dfab6020d2e0881a0be7a8db42d70c39ad6db40f9599d3a6d1c2fc91\"\n}\n",
+        "process.json": "{\n  \"checkpoint_count\": 0,\n  \"checkpoint_errors\": [],\n  \"child_pid\": 4903,\n  \"command\": [\n    \"/home/runner/work/borg-zoo/borg-zoo/source/build/rust/game/angband\",\n    \"-mborgh\",\n    \"-n\",\n    \"-uBorg\",\n    \"-duser=/home/runner/work/borg-zoo/borg-zoo/attempts/99473510/attempts/p1-warrior-58049e87970571527e48fe74/run/user\",\n    \"-dsave=/home/runner/work/borg-zoo/borg-zoo/attempts/99473510/attempts/p1-warrior-58049e87970571527e48fe74/run/save\",\n    \"-darchive=/home/runner/work/borg-zoo/borg-zoo/attempts/99473510/attempts/p1-warrior-58049e87970571527e48fe74/run/archive\",\n    \"-dpanic=/home/runner/work/borg-zoo/borg-zoo/attempts/99473510/attempts/p1-warrior-58049e87970571527e48fe74/run/panic\",\n    \"-dscores=/home/runner/work/borg-zoo/borg-zoo/attempts/99473510/attempts/p1-warrior-58049e87970571527e48fe74/run/scores\",\n    \"--\",\n    \"-seed\",\n    \"101\",\n    \"-race\",\n    \"0\",\n    \"-class\",\n    \"0\",\n    \"-turns\",\n    \"5000\",\n    \"-keylog\",\n    \"/home/runner/work/borg-zoo/borg-zoo/attempts/99473510/attempts/p1-warrior-58049e87970571527e48fe74/run/keys.log\",\n    \"-msglog\",\n    \"/home/runner/work/borg-zoo/borg-zoo/attempts/99473510/attempts/p1-warrior-58049e87970571527e48fe74/run/messages.log\",\n    \"-statelog\",\n    \"/home/runner/work/borg-zoo/borg-zoo/attempts/99473510/attempts/p1-warrior-58049e87970571527e48fe74/run/state.log\",\n    \"-summary\",\n    \"/home/runner/work/borg-zoo/borg-zoo/attempts/99473510/attempts/p1-warrior-58049e87970571527e48fe74/run/summary.json\",\n    \"-screen\",\n    \"-menu-letters\",\n    \"-start-depth\",\n    \"5\"\n  ],\n  \"elapsed_seconds\": 1.5723983059999966,\n  \"engine_returncode\": 0,\n  \"executable_sha256_after\": \"4730f04216d7bf1dacd79fdca5453037f0e792816a55e25c42947308b5361948\",\n  \"executable_sha256_before\": \"4730f04216d7bf1dacd79fdca5453037f0e792816a55e25c42947308b5361948\",\n  \"exit_code\": 0,\n  \"interrupted_signal\": null,\n  \"last_observed_turn\": null,\n  \"progress_scope\": \"latest complete flushed native-frame world tick; legacy key-log fallback\",\n  \"signal\": null,\n  \"stall_timeout_seconds\": 0.0,\n  \"stalled\": false,\n  \"started_unix\": 1794848977.0931602,\n  \"status\": \"success\",\n  \"stderr_tail\": \"\",\n  \"supervisor_pid\": 4902,\n  \"timed_out\": false,\n  \"timeout_seconds\": 30.0\n}\n",
+        "summary.json": "{\n  \"seed\": 101,\n  \"loaded\": false,\n  \"synthetic\": true,\n  \"synthetic_contract\": \"borg-reborn-rs/synthetic-start@2\",\n  \"start_depth\": 5,\n  \"initial_depth\": 5,\n  \"initial_cave_depth\": 5,\n  \"initial_generation_pending\": false,\n  \"initial_clevel\": 1,\n  \"initial_max_hp\": 20,\n  \"initial_max_sp\": 0,\n  \"start_build\": \"birth\",\n  \"dungeon_mode\": \"one_way\",\n  \"race\": \"Human\",\n  \"race_idx\": 0,\n  \"class\": \"Warrior\",\n  \"class_idx\": 0,\n  \"menu_letters\": true,\n  \"stop_reason\": \"turns\",\n  \"game_turns\": 5002,\n  \"player_turns\": 500,\n  \"resting_turns\": 182,\n  \"clevel\": 6,\n  \"max_depth\": 5,\n  \"depth\": 5,\n  \"dead\": false,\n  \"death_cause\": \"\",\n  \"keys\": 697,\n  \"calendar\": \"fixed\",\n  \"max_clevel\": 6,\n  \"hp\": 87,\n  \"max_hp\": 87,\n  \"borg_decisions\": 334,\n  \"player_energy\": 50008,\n  \"borg_rng\": 2135587861,\n  \"game_rng\": {\"quick\": false, \"quick_rng\": 512325903, \"rng_index\": 13, \"rng\": \"4d14c12078714bb232a4e2618ac4cc797e0c0bb890f487e2d75109688a4b46bb48fa4776efcf56bf57cf1e08d19459a2dc1ba6b46086c34369ef8b072a145b5b6b50d4c2768a05aeb7948e46db9cbfbe406059827917f033c301ce7b9b3e1f9d0d27e186d8ef1247dffbfffbd1e9eed63b37d39529dd7f39c7d72c4a6e9807dd\"},\n  \"effective_settings\": {},\n  \"game_options\": {\"rogue_like_commands\": false,\"autoexplore_commands\": false,\"use_sound\": false,\"show_damage\": false,\"use_old_target\": false,\"pickup_always\": false,\"pickup_inven\": true,\"show_flavors\": false,\"show_target\": true,\"highlight_player\": false,\"disturb_near\": true,\"solid_walls\": false,\"hybrid_walls\": false,\"view_yellow_light\": false,\"animate_flicker\": false,\"center_player\": false,\"purple_uniques\": false,\"auto_more\": true,\"hp_changes_color\": true,\"mouse_movement\": true,\"notify_recharge\": false,\"effective_speed\": false,\"cheat_hear\": false,\"score_hear\": false,\"cheat_room\": false,\"score_room\": false,\"cheat_xtra\": false,\"score_xtra\": false,\"cheat_live\": false,\"score_live\": false,\"birth_randarts\": false,\"birth_connect_stairs\": true,\"birth_force_descend\": true,\"birth_no_recall\": true,\"birth_no_artifacts\": false,\"birth_stacking\": true,\"birth_lose_arts\": false,\"birth_feelings\": true,\"birth_no_selling\": true,\"birth_start_kit\": true,\"birth_ai_learn\": true,\"birth_know_runes\": false,\"birth_know_flavors\": false,\"birth_levels_persist\": false,\"birth_percent_damage\": false},\n  \"exact_turns\": false,\n  \"wall_seconds\": 1.531\n}\n"
+      },
+      "refusal_messages": {
+        "coverage": "recorded_native_messages",
+        "note": "generic engine messages, not a unique action/cost classifier; inspect adjacent messages for attribution",
+        "nothing_happens_bang": 0,
+        "nothing_happens_dot": 1
+      },
+      "scenario_id": "p1-warrior-58049e87970571527e48fe74",
+      "schema": "borg-zoo/scenario-cell@1",
+      "status": "survived_to_cap",
+      "terminal": "alive_at_horizon"
+    },
+    {
+      "attempted": true,
+      "candidate_screen": {
+        "count": 0,
+        "hp_threshold": 2,
+        "kind": "low_hp_candidate",
+        "sampling": "distinct engine turns in pre-key state log; provisional, not qualified exposure"
+      },
+      "death_cause": null,
+      "effective_settings": {
+        "core": "reborn",
+        "parameters": {
+          "arrival_risk_hp": 3,
+          "breeder_colony": 4,
+          "depth_hp_frac_pct": 50,
+          "depth_per_clevel_pct": 50,
+          "eat_below_food": 1500,
+          "escape_item_hp": 1,
+          "explore_budget_turns": 2000,
+          "goal_cooldown_turns": 100,
+          "last_escape_hp": 5,
+          "level_stall_turns": 5000,
+          "max_level_changes_per_turn": 2,
+          "max_tries_per_turn": 2,
+          "readiness_band_above": 5,
+          "readiness_band_below": 2,
+          "reserve_cure": 3,
+          "reserve_escape": 4,
+          "reserve_food": 3,
+          "reserve_light": 2,
+          "reserve_recall": 1,
+          "rest_below_hp_pct": 70,
+          "rest_turns": 75,
+          "risk_aversion_pct": 50,
+          "threat_horizon": 1
+        },
+        "profile_sha256": "372785a3dfab6020d2e0881a0be7a8db42d70c39ad6db40f9599d3a6d1c2fc91"
+      },
+      "evidence": {
+        "config.txt": {
+          "bytes": 439,
+          "sha256": "bc2fa6c3042142fb5b3519eee42e10e548610674696e95c8a462a91a73c734ce"
+        },
+        "keys.log": {
+          "bytes": 8802,
+          "sha256": "16d94c65d68d079142f0ccfb18815561a59fa7d3e5c8cc87402d89a5db096391"
+        },
+        "messages.log": {
+          "bytes": 5047,
+          "sha256": "33e15395b7d56f1e3a7fe2e73ce7e018b45b275b77de2d4f7cd42ac4b64e6170"
+        },
+        "params.json": {
+          "sha256": "3ff5195aedeeae12e5acaa9cfdc8b5d3fc6a74cb5a4d18c679811944ed2ebf15"
+        },
+        "process.json": {
+          "bytes": 2211,
+          "sha256": "c2df02724420f4287abff01fa6d266cfe8eaf0634d482f375d03d3ef8b73bbe1"
+        },
+        "state.log": {
+          "bytes": 85775,
+          "sha256": "c890d7de0b3a1ad654c1ecdeed23b70603d6cc6a04ba2512d7df04a779999029"
+        },
+        "summary.json": {
+          "bytes": 2295,
+          "sha256": "26b19852cab04b80cae239b6bae9adeeb63c3f0db3188e65f54279ee0743359c"
+        }
+      },
+      "execution_input": {
+        "build_receipt": {
+          "build": {
+            "binary": "/home/runner/work/borg-zoo/borg-zoo/source/build/rust/game/angband",
+            "binary_sha256": "125d0dc8f0518218edb55e1b0aea8d91aff879e0c0e7c3257332b0b0848a4e06",
+            "built_utc": "2026-11-16T17:10:42Z",
+            "cc": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+            "engine_upstream": "42cd156ac9f95ddf4311e88dd7ad462292d6d1d6",
+            "git_dirty": "no",
+            "git_rev": "d3ebe3c0e0e181a45893ca9e2ac855f7b5365b92",
+            "impl": "rust",
+            "inputs_dirty": "no",
+            "rustc": "rustc 1.100.0 (0ef1bc386 2026-11-09)",
+            "source_sha256": "6b3b9e9900e83873459fad6afd3a8fdf697f1208370744f79a2a324bee7ae58c"
+          },
+          "capabilities_sha256": "24e868eba8406ba01df37f4c92ba065ed7f35ad516c59d4af4f64974ec70baed",
+          "commit": "d3ebe3c0e0e181a45893ca9e2ac855f7b5365b92",
+          "engine_sha256": "4d80ed3b12a19beef624f8f639d0a84350dec5df8f9d76e52c3acbae79684567",
+          "repository": "diegoami/borg-reborn-rs"
+        },
+        "calendar": "2026-11-16",
+        "pairing_sha256": "97931e07665688f87225beb3839429d667d18d53500f03e4009791e1d28ee9ed",
+        "plan_sha256": "ccb0c027e08ebb5ed8ce01d8fdee424d7595d17902bf76b4c7467732a9fa3e74",
+        "scenario": {
+          "candidate_screen": {
+            "hp_threshold": 2,
+            "kind": "low_hp_candidate"
+          },
+          "character_build": {
+            "class_idx": 0,
+            "core": "reborn",
+            "id": "birth",
+            "profile": "profile.txt",
+            "profile_sha256": "372785a3dfab6020d2e0881a0be7a8db42d70c39ad6db40f9599d3a6d1c2fc91",
+            "race_idx": 0,
+            "start": "birth"
+          },
+          "depth": 5,
+          "expected_start": {
+            "level": 1
+          },
+          "harness_contract": "borg-reborn-rs/synthetic-start@2",
+          "id": "p1-warrior-58049e87970571527e48fe74",
+          "revision": 1,
+          "schema": "borg-cemetery/synthetic-scenario@1",
+          "seed": 101,
+          "spec_sha256": "58049e87970571527e48fe74adaeeb95844d3b2759d405d83d2b3dc66e8cdf43",
+          "suite_id": "p1-warrior",
+          "turn_cap": 5000,
+          "wall_seconds": 30
+        },
+        "target": {
+          "commit": "d3ebe3c0e0e181a45893ca9e2ac855f7b5365b92",
+          "harness": {
+            "commit": "d3ebe3c0e0e181a45893ca9e2ac855f7b5365b92",
+            "repository": "diegoami/borg-reborn-rs"
+          },
+          "pushid": "d3ebe3c0",
+          "repository": "diegoami/borg-reborn-rs",
+          "specimen": "4.2.6-reborn-rust-plans-m13-livelock",
+          "specimen_snapshot": {
+            "depth_stream": true,
+            "exact_turns": true,
+            "impl": "rust",
+            "kind": "borg-rs",
+            "label": "borg-reborn-rs d3ebe3c0, the main merge of #428 (borg-zoo#141): the borg-reborn-rs#421 stair-livelock fix (when the core refuses the next level again for the same reason with no descent in between, the level loop holds and the core plays the level it is prepared for, instead of going home and straight back down), on top of 4ecb93d7's #423 survival fixes and #378's synthetic P1 startup (off by default). A different game from 4ecb93d7 in the plan arms: source-hash rust 6b3b9e99... (was 2317021c...); control and town should play the same keys. harness/borg.txt 88296dd1... and both plans unchanged (still the loop-levels plans).",
+            "plans": {
+              "errands_plan.txt": "922372ba849489c579449f8cd6f827b29ed65b6e8e0f67bd0fe8be2f3cb160cd",
+              "errands_plan_ambitious.txt": "9d7d8a3984e278f2bb7bf61be7cdacdb16b9b513b364735fed7e7fa947d59dd2"
+            },
+            "ref": "d3ebe3c0e0e181a45893ca9e2ac855f7b5365b92",
+            "repository": "diegoami/borg-reborn-rs",
+            "role": "candidate",
+            "source": "https://github.com/diegoami/borg-reborn-rs/pull/428"
+          },
+          "timeout_minutes": 14
+        }
+      },
+      "execution_sha256": "816096e2f2e779f7906018e916c211eaaa893485b855f6074ac4a0fe8c417f3c",
+      "launcher_returncode": 0,
+      "minimum_observed_living_hp": 9,
+      "observed_turns": 5002,
+      "pairing_sha256": "97931e07665688f87225beb3839429d667d18d53500f03e4009791e1d28ee9ed",
+      "plan_sha256": "ccb0c027e08ebb5ed8ce01d8fdee424d7595d17902bf76b4c7467732a9fa3e74",
+      "progress": {
+        "borg_decisions": 334,
+        "game_turns": 5002,
+        "keys": 697,
+        "player_turns": 500,
+        "stop_reason": "turns"
+      },
+      "pushid": "d3ebe3c0",
+      "qualified_near_death": {
+        "count": null,
+        "coverage": "unavailable",
+        "reason": "P1 has no null-move evaluator"
+      },
+      "reason": "",
+      "receipts": {
+        "config.txt": "flags=menu,start-depth=5\nsynthetic=1\nstart_depth=5\nstart_build=birth\ndungeon_mode=one_way\nsynthetic_contract=borg-reborn-rs/synthetic-start@2\nborg_txt_sha256=ba4eb02081b5dc6ef4cfbece5d262521c20a5ec9963bd5dd4ed76401b141aafe\nprofile=/home/runner/work/borg-zoo/borg-zoo/attempts/d3ebe3c0/attempts/p1-warrior-58049e87970571527e48fe74/profile.txt\nprofile_sha256=372785a3dfab6020d2e0881a0be7a8db42d70c39ad6db40f9599d3a6d1c2fc91\nborg_core=reborn\n",
+        "params.json": "{\n  \"parameters\": [\n    {\n      \"default\": 2,\n      \"evidence\": \"GOALS principle 6 (no loop without game time): after a refused rest one walk may also be refused (a wall or a monster), then the Borg takes an action that always uses time (M1 review, #42)\",\n      \"max\": 8,\n      \"min\": 1,\n      \"name\": \"max_tries_per_turn\",\n      \"unit\": \"thinks at one game turn\",\n      \"value\": 2\n    },\n    {\n      \"default\": 70,\n      \"evidence\": \"T1.5 placeholder, kept by the first strategy: rest when below 70% of maximum hit points; the strategy-manual's REST rules are the candidate replacement (c15 REST-01, to be measured, RULES 14)\",\n      \"max\": 100,\n      \"min\": 0,\n      \"name\": \"rest_below_hp_pct\",\n      \"unit\": \"percent of maximum hit points\",\n      \"value\": 70\n    },\n    {\n      \"default\": 75,\n      \"evidence\": \"the C Borg's rest command, 'R' '7' '5' Enter (spec \u00a72.6)\",\n      \"max\": 9999,\n      \"min\": 1,\n      \"name\": \"rest_turns\",\n      \"unit\": \"player turns\",\n      \"value\": 75\n    },\n    {\n      \"default\": 2000,\n      \"evidence\": \"GOALS principle 6 (a budget in game turns): a level that has revealed nothing new for this long fails its explore goal. The scale is a manual-reading player's ~100 decisions on one level (borg-runner ACCUMULATED_KNOWLEDGE \u00a71, five runs); a placeholder until the zoo measures it (RULES 14)\",\n      \"max\": 50000,\n      \"min\": 100,\n      \"name\": \"explore_budget_turns\",\n      \"unit\": \"game turns without progress\",\n      \"value\": 2000\n    },\n    {\n      \"default\": 100,\n      \"evidence\": \"GOALS principle 6 (a failed goal is blocked for a while): short enough that the mode is retried within a level's explore budget, long enough to break one-goal oscillation; a placeholder until the zoo measures it (RULES 14)\",\n      \"max\": 10000,\n      \"min\": 0,\n      \"name\": \"goal_cooldown_turns\",\n      \"unit\": \"game turns\",\n      \"value\": 100\n    },\n    {\n      \"default\": 2,\n      \"evidence\": \"M3 review PR #135, blocking finding 1: one up/down reroll per game turn at most, so level generation cannot loop for free. A separate per-level reroll limit prevents repeated exits from the same generation\",\n      \"max\": 8,\n      \"min\": 1,\n      \"name\": \"max_level_changes_per_turn\",\n      \"unit\": \"Ascend/Descend actions at one game turn\",\n      \"value\": 2\n    },\n    {\n      \"default\": 3,\n      \"evidence\": \"GOALS principle 7 and the strategy manual's CL1 shopping list (c15 \u00a712.4: 3-5 rations); the lower bound is the M3 default, to be measured (RULES 14)\",\n      \"max\": 20,\n      \"min\": 0,\n      \"name\": \"reserve_food\",\n      \"unit\": \"rations in the pack\",\n      \"value\": 3\n    },\n    {\n      \"default\": 2,\n      \"evidence\": \"GOALS principle 7 and c15 \u00a712.4 (2-3 spare torches); the equipped light is not a reserve. The lower bound is the M3 default, to be measured (RULES 14)\",\n      \"max\": 10,\n      \"min\": 0,\n      \"name\": \"reserve_light\",\n      \"unit\": \"spare torches in the pack\",\n      \"value\": 2\n    },\n    {\n      \"default\": 3,\n      \"evidence\": \"GOALS principle 7 and the owner's verified D0015 re-shop (3 CLW); c15 \u00a712.4 independently recommends 3-5 (RULES 14)\",\n      \"max\": 20,\n      \"min\": 0,\n      \"name\": \"reserve_cure\",\n      \"unit\": \"Cure Light Wounds items in the pack\",\n      \"value\": 3\n    },\n    {\n      \"default\": 4,\n      \"evidence\": \"GOALS principle 7 and the owner's verified D0015 re-shop (4 Phase Door); survival stock outranks equipment (bbc D0013, D0015, D0018, D0019)\",\n      \"max\": 20,\n      \"min\": 0,\n      \"name\": \"reserve_escape\",\n      \"unit\": \"Phase Door scrolls in the pack\",\n      \"value\": 4\n    },\n    {\n      \"default\": 1,\n      \"evidence\": \"GOALS principle 7 (a way home): keep the starting Recall, unlike bbc D0006, D0009, D0015, D0016, D0018 and D0019; c15 \u00a712.4 says one if affordable\",\n      \"max\": 5,\n      \"min\": 0,\n      \"name\": \"reserve_recall\",\n      \"unit\": \"Word of Recall scrolls in the pack\",\n      \"value\": 1\n    },\n    {\n      \"default\": 1500,\n      \"evidence\": \"#172: the engine's Hungry boundary. player_timed.txt grades FOOD in percent (Starving 1, Faint 4, Weak 8, Hungry 15) and constants.txt food-value 100 scales them (player-timed.c:318-336): Faint is 400, Weak 800, Hungry 1500. The manual (c01 \u00a71.16): eat when Hungry appears, never reach Weak. The old 300 was below Faint: the Borg ate only after fainting began, and noticed having no food too late to go home (the starvation residue since T4.6)\",\n      \"max\": 5000,\n      \"min\": 0,\n      \"name\": \"eat_below_food\",\n      \"unit\": \"food units\",\n      \"value\": 1500\n    },\n    {\n      \"default\": 50,\n      \"evidence\": \"ARCHITECTURE L4: one risk tolerance for every consumer (paths, rest, retreat, combat). 50 is the declared midpoint between expected and worst damage, not a measured optimum; the calibration report (#124) replaces it\",\n      \"max\": 100,\n      \"min\": 0,\n      \"name\": \"risk_aversion_pct\",\n      \"unit\": \"percent of the expected-to-worst gap\",\n      \"value\": 50\n    },\n    {\n      \"default\": 1,\n      \"evidence\": \"ARCHITECTURE L4: the assessment's horizon in player turns. 1 is the shortest horizon in which a normal-speed adjacent monster acts; longer horizons are the calibration report's (#124), not a tuned value\",\n      \"max\": 5,\n      \"min\": 1,\n      \"name\": \"threat_horizon\",\n      \"unit\": \"player turns\",\n      \"value\": 1\n    },\n    {\n      \"default\": 1,\n      \"evidence\": \"T4.4 (#121): what spending one consumable escape costs on the ladder's hit-point scale; 1 hit point is the declared price of a scroll the town reserves replace (bbc D0013, D0014), to be measured (RULES 14)\",\n      \"max\": 100,\n      \"min\": 0,\n      \"name\": \"escape_item_hp\",\n      \"unit\": \"hit points\",\n      \"value\": 1\n    },\n    {\n      \"default\": 5,\n      \"evidence\": \"T4.4 (#121): the extra gain the last known escape scroll must promise before it is spent; 5 hit points keeps the last Phase Door for what a step cannot end (bbc D0013, D0014, D0018), to be measured (RULES 14)\",\n      \"max\": 100,\n      \"min\": 0,\n      \"name\": \"last_escape_hp\",\n      \"unit\": \"hit points\",\n      \"value\": 5\n    },\n    {\n      \"default\": 3,\n      \"evidence\": \"T4.4 (#121): the declared landing risk of a level-changing escape whose arrival level nothing remembers (stairs, Deep Descent); 3 hit points is a placeholder until the calibration report (#124) measures arrivals (RULES 14)\",\n      \"max\": 100,\n      \"min\": 0,\n      \"name\": \"arrival_risk_hp\",\n      \"unit\": \"hit points\",\n      \"value\": 3\n    },\n    {\n      \"default\": 50,\n      \"evidence\": \"T5.1 (#125): c15 DEPTH-01, a depth is allowed when the worst single turn of the races native to its band stays below this share of maximum hit points; 50 is the manual's K_DEPTH_HP_FRAC candidate (c15 \u00a715.15), whose sweep (0.3/0.5/0.7, c15 *Things to try* item 5) is not run: declared (RULES 14)\",\n      \"max\": 100,\n      \"min\": 10,\n      \"name\": \"depth_hp_frac_pct\",\n      \"unit\": \"percent of maximum hit points\",\n      \"value\": 50\n    },\n    {\n      \"default\": 2,\n      \"evidence\": \"T5.1 (#125): c15 DEPTH-01's band starts this many levels above the target depth (d-2); declared\",\n      \"max\": 10,\n      \"min\": 0,\n      \"name\": \"readiness_band_below\",\n      \"unit\": \"dungeon levels\",\n      \"value\": 2\n    },\n    {\n      \"default\": 5,\n      \"evidence\": \"T5.1 (#125): c15 DEPTH-01's band ends this many levels below the target depth (d+5): out-of-depth monsters are generated deeper than the level (Fang, DL5, kills on DL1-2: D1638, D1654); declared\",\n      \"max\": 10,\n      \"min\": 0,\n      \"name\": \"readiness_band_above\",\n      \"unit\": \"dungeon levels\",\n      \"value\": 5\n    },\n    {\n      \"default\": 4,\n      \"evidence\": \"#183: the manual's ADVICE (c08 \u00a78.10: kill the first breeder at once or leave the level; never rest while a colony grows; c15 DANGER-08: the level deteriorates with time). The trial's giant white mouse deaths (D1875, D1876, D1880, D1889) fought swarms of 8-19 at p_death 0.7-0.99. A breeder stops breeding at 4 in its 3x3 (mon-move.c, monster_turn_multiply); 4 is the declared colony\",\n      \"max\": 50,\n      \"min\": 0,\n      \"name\": \"breeder_colony\",\n      \"unit\": \"live breeder tracks on the level (0: never leave for them)\",\n      \"value\": 4\n    },\n    {\n      \"default\": 5000,\n      \"evidence\": \"#201: 38 of the full suite's 39 survivors walked between two grids on DL1 from about turn 15,000 to the cap. Progress is a new grid mapped, experience or a level change; the C Borg leaves a level after 10,000 of its turns on it whatever it does there (borg-think-dungeon.c:1247, 'Leaving (boredom)'). 500 player turns at normal speed with nothing mapped and nothing learned; declared, to be measured\",\n      \"max\": 1000000,\n      \"min\": 0,\n      \"name\": \"level_stall_turns\",\n      \"unit\": \"game turns on one level without progress (0: never leave for it)\",\n      \"value\": 5000\n    },\n    {\n      \"default\": 50,\n      \"evidence\": \"#201 (owner, 2026-11-14): the willingness to go down is an optimisation parameter, replacing T5.1's readiness gate, which kept every survivor on DL1. Target depth = max(1, clevel x this / 100): level 10 plays DL5. Declared, to be tuned by the zoo; class, race and power terms come as arms\",\n      \"max\": 500,\n      \"min\": 1,\n      \"name\": \"depth_per_clevel_pct\",\n      \"unit\": \"% of the character level: a trip's target depth\",\n      \"value\": 50\n    }\n  ],\n  \"profile\": \"/home/runner/work/borg-zoo/borg-zoo/attempts/d3ebe3c0/attempts/p1-warrior-58049e87970571527e48fe74/profile.txt\",\n  \"profile_sha256\": \"372785a3dfab6020d2e0881a0be7a8db42d70c39ad6db40f9599d3a6d1c2fc91\"\n}\n",
+        "process.json": "{\n  \"checkpoint_count\": 0,\n  \"checkpoint_errors\": [],\n  \"child_pid\": 4805,\n  \"command\": [\n    \"/home/runner/work/borg-zoo/borg-zoo/source/build/rust/game/angband\",\n    \"-mborgh\",\n    \"-n\",\n    \"-uBorg\",\n    \"-duser=/home/runner/work/borg-zoo/borg-zoo/attempts/d3ebe3c0/attempts/p1-warrior-58049e87970571527e48fe74/run/user\",\n    \"-dsave=/home/runner/work/borg-zoo/borg-zoo/attempts/d3ebe3c0/attempts/p1-warrior-58049e87970571527e48fe74/run/save\",\n    \"-darchive=/home/runner/work/borg-zoo/borg-zoo/attempts/d3ebe3c0/attempts/p1-warrior-58049e87970571527e48fe74/run/archive\",\n    \"-dpanic=/home/runner/work/borg-zoo/borg-zoo/attempts/d3ebe3c0/attempts/p1-warrior-58049e87970571527e48fe74/run/panic\",\n    \"-dscores=/home/runner/work/borg-zoo/borg-zoo/attempts/d3ebe3c0/attempts/p1-warrior-58049e87970571527e48fe74/run/scores\",\n    \"--\",\n    \"-seed\",\n    \"101\",\n    \"-race\",\n    \"0\",\n    \"-class\",\n    \"0\",\n    \"-turns\",\n    \"5000\",\n    \"-keylog\",\n    \"/home/runner/work/borg-zoo/borg-zoo/attempts/d3ebe3c0/attempts/p1-warrior-58049e87970571527e48fe74/run/keys.log\",\n    \"-msglog\",\n    \"/home/runner/work/borg-zoo/borg-zoo/attempts/d3ebe3c0/attempts/p1-warrior-58049e87970571527e48fe74/run/messages.log\",\n    \"-statelog\",\n    \"/home/runner/work/borg-zoo/borg-zoo/attempts/d3ebe3c0/attempts/p1-warrior-58049e87970571527e48fe74/run/state.log\",\n    \"-summary\",\n    \"/home/runner/work/borg-zoo/borg-zoo/attempts/d3ebe3c0/attempts/p1-warrior-58049e87970571527e48fe74/run/summary.json\",\n    \"-screen\",\n    \"-menu-letters\",\n    \"-start-depth\",\n    \"5\"\n  ],\n  \"elapsed_seconds\": 1.3077627699999965,\n  \"engine_returncode\": 0,\n  \"executable_sha256_after\": \"125d0dc8f0518218edb55e1b0aea8d91aff879e0c0e7c3257332b0b0848a4e06\",\n  \"executable_sha256_before\": \"125d0dc8f0518218edb55e1b0aea8d91aff879e0c0e7c3257332b0b0848a4e06\",\n  \"exit_code\": 0,\n  \"interrupted_signal\": null,\n  \"last_observed_turn\": null,\n  \"progress_scope\": \"latest complete flushed native-frame world tick; legacy key-log fallback\",\n  \"signal\": null,\n  \"stall_timeout_seconds\": 0.0,\n  \"stalled\": false,\n  \"started_unix\": 1794849042.8944159,\n  \"status\": \"success\",\n  \"stderr_tail\": \"\",\n  \"supervisor_pid\": 4804,\n  \"timed_out\": false,\n  \"timeout_seconds\": 30.0\n}\n",
+        "summary.json": "{\n  \"seed\": 101,\n  \"loaded\": false,\n  \"synthetic\": true,\n  \"synthetic_contract\": \"borg-reborn-rs/synthetic-start@2\",\n  \"start_depth\": 5,\n  \"initial_depth\": 5,\n  \"initial_cave_depth\": 5,\n  \"initial_generation_pending\": false,\n  \"initial_clevel\": 1,\n  \"initial_max_hp\": 20,\n  \"initial_max_sp\": 0,\n  \"start_build\": \"birth\",\n  \"dungeon_mode\": \"one_way\",\n  \"race\": \"Human\",\n  \"race_idx\": 0,\n  \"class\": \"Warrior\",\n  \"class_idx\": 0,\n  \"menu_letters\": true,\n  \"stop_reason\": \"turns\",\n  \"game_turns\": 5002,\n  \"player_turns\": 500,\n  \"resting_turns\": 182,\n  \"clevel\": 6,\n  \"max_depth\": 5,\n  \"depth\": 5,\n  \"dead\": false,\n  \"death_cause\": \"\",\n  \"keys\": 697,\n  \"calendar\": \"fixed\",\n  \"max_clevel\": 6,\n  \"hp\": 87,\n  \"max_hp\": 87,\n  \"borg_decisions\": 334,\n  \"player_energy\": 50008,\n  \"borg_rng\": 2135587861,\n  \"game_rng\": {\"quick\": false, \"quick_rng\": 512325903, \"rng_index\": 13, \"rng\": \"4d14c12078714bb232a4e2618ac4cc797e0c0bb890f487e2d75109688a4b46bb48fa4776efcf56bf57cf1e08d19459a2dc1ba6b46086c34369ef8b072a145b5b6b50d4c2768a05aeb7948e46db9cbfbe406059827917f033c301ce7b9b3e1f9d0d27e186d8ef1247dffbfffbd1e9eed63b37d39529dd7f39c7d72c4a6e9807dd\"},\n  \"effective_settings\": {},\n  \"game_options\": {\"rogue_like_commands\": false,\"autoexplore_commands\": false,\"use_sound\": false,\"show_damage\": false,\"use_old_target\": false,\"pickup_always\": false,\"pickup_inven\": true,\"show_flavors\": false,\"show_target\": true,\"highlight_player\": false,\"disturb_near\": true,\"solid_walls\": false,\"hybrid_walls\": false,\"view_yellow_light\": false,\"animate_flicker\": false,\"center_player\": false,\"purple_uniques\": false,\"auto_more\": true,\"hp_changes_color\": true,\"mouse_movement\": true,\"notify_recharge\": false,\"effective_speed\": false,\"cheat_hear\": false,\"score_hear\": false,\"cheat_room\": false,\"score_room\": false,\"cheat_xtra\": false,\"score_xtra\": false,\"cheat_live\": false,\"score_live\": false,\"birth_randarts\": false,\"birth_connect_stairs\": true,\"birth_force_descend\": true,\"birth_no_recall\": true,\"birth_no_artifacts\": false,\"birth_stacking\": true,\"birth_lose_arts\": false,\"birth_feelings\": true,\"birth_no_selling\": true,\"birth_start_kit\": true,\"birth_ai_learn\": true,\"birth_know_runes\": false,\"birth_know_flavors\": false,\"birth_levels_persist\": false,\"birth_percent_damage\": false},\n  \"exact_turns\": false,\n  \"wall_seconds\": 1.244\n}\n"
+      },
+      "refusal_messages": {
+        "coverage": "recorded_native_messages",
+        "note": "generic engine messages, not a unique action/cost classifier; inspect adjacent messages for attribution",
+        "nothing_happens_bang": 0,
+        "nothing_happens_dot": 1
+      },
+      "scenario_id": "p1-warrior-58049e87970571527e48fe74",
+      "schema": "borg-zoo/scenario-cell@1",
+      "status": "survived_to_cap",
+      "terminal": "alive_at_horizon"
+    }
+  ],
+  "collected_cells": 2,
+  "counts": {
+    "both_survived": 1
+  },
+  "evidence_url": "https://github.com/diegoami/borg-zoo/actions/runs/43914778367",
+  "expected_cells": 2,
+  "pairs": [
+    {
+      "baseline": "99473510",
+      "candidate": "d3ebe3c0",
+      "class_idx": 0,
+      "depth": 5,
+      "loadout": "birth",
+      "outcome": "both_survived",
+      "scenario_id": "p1-warrior-58049e87970571527e48fe74"
+    }
+  ],
+  "plan": {
+    "cases": [
+      {
+        "candidate_screen": {
+          "hp_threshold": 2,
+          "kind": "low_hp_candidate"
+        },
+        "character_build": {
+          "class_idx": 0,
+          "core": "reborn",
+          "id": "birth",
+          "profile": "profile.txt",
+          "profile_sha256": "372785a3dfab6020d2e0881a0be7a8db42d70c39ad6db40f9599d3a6d1c2fc91",
+          "race_idx": 0,
+          "start": "birth"
+        },
+        "depth": 5,
+        "expected_start": {
+          "level": 1
+        },
+        "harness_contract": "borg-reborn-rs/synthetic-start@2",
+        "id": "p1-warrior-58049e87970571527e48fe74",
+        "revision": 1,
+        "schema": "borg-cemetery/synthetic-scenario@1",
+        "seed": 101,
+        "spec_sha256": "58049e87970571527e48fe74adaeeb95844d3b2759d405d83d2b3dc66e8cdf43",
+        "suite_id": "p1-warrior",
+        "turn_cap": 5000,
+        "wall_seconds": 30
+      }
+    ],
+    "definition": {
+      "bank": {
+        "commit": "9b38f76f279bfa1f7e93588dc19e8a02f086cabd",
+        "manifest": "synthetic/p1-warrior/suite.json",
+        "manifest_sha256": "95395b02abb84c834deeba53d46c162396ffac77aa7e53d4dc8e174f19f1cda3",
+        "repository": "diegoami/borg-cemetery",
+        "runner_sha256": "c19ff268fab88e5f9f483f5142801cf4ae8ecda8cbb2553e2e7143365012598c",
+        "suite_spec_sha256": "8030348f3d9a16d7b1cc5ef093806d0fe7934d4cf2b2aa7b0aff700a274031c9"
+      },
+      "budget": {
+        "max_cells": 2,
+        "max_parallel": 1,
+        "max_wall_seconds": 90
+      },
+      "comparison_axis": [
+        "target_build"
+      ],
+      "engine_sha256": "4d80ed3b12a19beef624f8f639d0a84350dec5df8f9d76e52c3acbae79684567",
+      "name": "cemetery-warrior-two-pushids-smoke",
+      "pushids": [
+        {
+          "pushid": "99473510",
+          "specimen": "4.2.6-reborn-synthetic-99473510"
+        },
+        {
+          "pushid": "d3ebe3c0",
+          "specimen": "4.2.6-reborn-rust-plans-m13-livelock"
+        }
+      ],
+      "scenario_ids": [
+        "p1-warrior-58049e87970571527e48fe74"
+      ],
+      "schema": "borg-zoo/scenario-experiment@1"
+    },
+    "definition_sha256": "2085c3528cbaec70ea7882573463f0007a9fa859b0022faa08ce0b672caff73b",
+    "name": "cemetery-warrior-two-pushids-smoke",
+    "plan_sha256": "ccb0c027e08ebb5ed8ce01d8fdee424d7595d17902bf76b4c7467732a9fa3e74",
+    "schema": "borg-zoo/scenario-plan@1",
+    "semantics": {
+      "boundary": "after-key",
+      "calendar": "UTC-real-clock-same-execution",
+      "dungeon_mode": "one_way",
+      "engine_sha256": "4d80ed3b12a19beef624f8f639d0a84350dec5df8f9d76e52c3acbae79684567"
+    },
+    "targets": [
+      {
+        "commit": "99473510940b8a7bd6e77ad61e3a2b00c72a6e6d",
+        "harness": {
+          "commit": "99473510940b8a7bd6e77ad61e3a2b00c72a6e6d",
+          "repository": "diegoami/borg-reborn-rs"
+        },
+        "pushid": "99473510",
+        "repository": "diegoami/borg-reborn-rs",
+        "specimen": "4.2.6-reborn-synthetic-99473510",
+        "specimen_snapshot": {
+          "carries": 0,
+          "impl": "rust",
+          "kind": "borg-rs",
+          "label": "Pinned synthetic P1 runtime. Scenario dispatch only; its capability is verified at execution.",
+          "ref": "99473510940b8a7bd6e77ad61e3a2b00c72a6e6d",
+          "repository": "diegoami/borg-reborn-rs",
+          "role": "candidate",
+          "source": "https://github.com/diegoami/borg-reborn-rs/tree/99473510940b8a7bd6e77ad61e3a2b00c72a6e6d"
+        },
+        "timeout_minutes": 14
+      },
+      {
+        "commit": "d3ebe3c0e0e181a45893ca9e2ac855f7b5365b92",
+        "harness": {
+          "commit": "d3ebe3c0e0e181a45893ca9e2ac855f7b5365b92",
+          "repository": "diegoami/borg-reborn-rs"
+        },
+        "pushid": "d3ebe3c0",
+        "repository": "diegoami/borg-reborn-rs",
+        "specimen": "4.2.6-reborn-rust-plans-m13-livelock",
+        "specimen_snapshot": {
+          "depth_stream": true,
+          "exact_turns": true,
+          "impl": "rust",
+          "kind": "borg-rs",
+          "label": "borg-reborn-rs d3ebe3c0, the main merge of #428 (borg-zoo#141): the borg-reborn-rs#421 stair-livelock fix (when the core refuses the next level again for the same reason with no descent in between, the level loop holds and the core plays the level it is prepared for, instead of going home and straight back down), on top of 4ecb93d7's #423 survival fixes and #378's synthetic P1 startup (off by default). A different game from 4ecb93d7 in the plan arms: source-hash rust 6b3b9e99... (was 2317021c...); control and town should play the same keys. harness/borg.txt 88296dd1... and both plans unchanged (still the loop-levels plans).",
+          "plans": {
+            "errands_plan.txt": "922372ba849489c579449f8cd6f827b29ed65b6e8e0f67bd0fe8be2f3cb160cd",
+            "errands_plan_ambitious.txt": "9d7d8a3984e278f2bb7bf61be7cdacdb16b9b513b364735fed7e7fa947d59dd2"
+          },
+          "ref": "d3ebe3c0e0e181a45893ca9e2ac855f7b5365b92",
+          "repository": "diegoami/borg-reborn-rs",
+          "role": "candidate",
+          "source": "https://github.com/diegoami/borg-reborn-rs/pull/428"
+        },
+        "timeout_minutes": 14
+      }
+    ],
+    "zoo_commit": "f8fe7197a3fa045ed0e4cc35d96e1276d2282535",
+    "zoo_runner_sha256": "b8d50d4d5a9fa3ccfe9604a2f369105b6c8bedab6491c83b1da9eb38b215f3e2"
+  },
+  "population_eligible": false,
+  "qualified_near_death": {
+    "count": null,
+    "coverage": "unavailable"
+  },
+  "schema": "borg-zoo/scenario-comparison@1"
+}
