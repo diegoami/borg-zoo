@@ -403,6 +403,15 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
   - A plumbing check, not a measurement. Its shop arms predate the
     borg-rs#90 fix and are not comparable with the development study's.
 
+- **Neo parity-and-books candidate accepted at smoke scale (2026-11-16).**
+  [Smoke43861787363](https://github.com/diegoami/borg-zoo/actions/runs/43861787363)
+  records18/18 exact5000-tick caps with no abnormal endpoints, all18dungeon
+  entries,16/16caster starting books retained and all108raw-file receipts verified.
+  Borg1.4.0-beta.6.zoo.1 /464a155, beta.4 engined27ed50f and toolkit638979d.
+  The first smoke failed at packaging before games; the corrected toolkit's
+  SDK alias fix preserves runtime-host bytes. [Protocol and acceptance](../reports/neo-parity-books-v1/README.md).
+  This does not establish survival improvement or complete class/spell fidelity.
+
 - **The 3×3 trip-policy pilot found a new frozen-turn livelock (borg-zoo#123).**
   `reborn-trip-3x3-classes-18`, run 43863985583, 162 games on
   `4.2.6-reborn-rust-plans-m13-fix90` (borg-reborn-rs `8a0b57c8`: borg-rs#92's
