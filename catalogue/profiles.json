@@ -741,6 +741,54 @@
         "borg_reborn_errand": "ladder"
       }
     },
+    "reborn-m13-control": {
+      "description": "borg-zoo#123 control: borg-rs core in the reborn shell; no plan; M13 town planner and trip policy off. Everything else is the specimen's own harness/borg.txt.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 0,
+        "borg_trip_policy": 0
+      }
+    },
+    "reborn-m13-shop": {
+      "description": "borg-zoo#123: M13 live town planner + trip policy (the switches of rs-kit-trip-default); no plan.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1
+      }
+    },
+    "reborn-m13-plan": {
+      "description": "borg-zoo#123: class errands plan (harness/plans/errands_plan.txt, shipped as user/errands_plan.txt); M13 policies off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 0,
+        "borg_trip_policy": 0,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-m13-plan-shop": {
+      "description": "borg-zoo#123: class errands plan + M13 live town planner + trip policy.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-m13-ambitious-shop": {
+      "description": "borg-zoo#123 addendum: ambitious class errands plan (harness/plans/errands_plan_ambitious.txt, borg-reborn-rs#354) + M13 live town planner + trip policy. Needs a specimen that pins that plan.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_plan": "errands_plan_ambitious.txt"
+      }
+    },
     "rs-town-reference-normal": {
       "description": "reference sensitivity candidate; not an accepted class policy (shadow configuration; no live-policy outcome claim)",
       "settings": {

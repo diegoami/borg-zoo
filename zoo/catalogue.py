@@ -241,6 +241,14 @@ def experiment(path, cat=None):
                 if cat['profiles'][prof].get('base') == 'shipped':
                     raise ValueError(f'{name}: profile {prof} needs a shipped borg.txt base, '
                                      'which the borg-rs adapter takes from harness/borg.txt only')
+    for prof in sorted({p for name in exp['profiles'] for p in profile_parts(cat, name)}):
+        plan = cat['profiles'][prof].get('settings', {}).get('borg_plan')
+        if plan is None:
+            continue
+        for name in exp['specimens']:
+            if plan not in (specimens[name].get('plans') or {}):
+                raise ValueError(f'{prof}: borg_plan {plan!r} is not a plan specimen {name} pins '
+                                 '("plans": {name: sha256}, borg-zoo#123)')
     words = sorted({n for p in (q for name in exp['profiles'] for q in profile_parts(cat, name))
                     for n, v in cat['profiles'][p].get('settings', {}).items() if isinstance(v, str)})
     if words:

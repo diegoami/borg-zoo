@@ -13,6 +13,8 @@ QUESTIONS = {
     'reborn-g1-classes-1800': 'Can the reborn Rust Borg reach dungeon level 5, and does refusing travel below half health help?',
     'reborn-e-classes-1800': 'How does the reborn Rust Borg compare with the original C Borg and better-borg-c M7?',
     'reborn-pilot-c-classes-1800': 'Does the borg-rs core inside the reborn shell work better with the ladder errand?',
+    'reborn-plan-m13-classes-18': 'Do the class errands plan and the M13 shopping run cleanly in the zoo?',
+    'reborn-plan-m13-classes-1800': 'Do a class errands plan, the M13 shopping, or both together help the borg-rs core in the reborn shell?',
     'rs-joint-m12-development': 'Which combination of shopping, risk tolerance and earlier town returns helps the Rust Borg?',
     'rs-joint-m12-confirm': 'Does the selected shopping and risk policy still help on fresh seeds?',
     'rs-kit-trip-development': 'Which expanded-inventory and all-item return settings help the Rust Borg?',
