@@ -964,7 +964,10 @@ def build_site(results, out):
                      len(cells), finished])
     from . import landing
     shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
-    (out / 'index.html').write_text(page('Borg zoo', landing.overview_page(runs), charts=True))
+    (out / 'index.html').write_text(page('Borg zoo', landing.overview_page(runs) +
+        '<p><a href="scenarios/index.html">Synthetic scenario comparisons</a> · separate from population results</p>', charts=True))
+    from . import scenarios
+    scenarios.build_site(results, out)
     # The /runs/ directory contains per-run report folders, not a page of its
     # own. Publish an index there so the directory URL is useful instead of
     # returning 404/503, and point it at the Detailed experiment catalogue.

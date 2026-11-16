@@ -1025,6 +1025,16 @@
       "role": "candidate",
       "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/113",
       "label": "Experimental Borg1.4.0-beta.6.zoo.1: six C-parity fixes514-519 plus retained book-value correction509, on verified beta.4/API2.1 engine d27ed50f. Toolkit638979d includes the already-verified beta.4 SDK build alias; runtime message/truth/session code matches967b28f. Previous book cohort43759670685 used beta.3 fork engineb4af703 and older Borg; cross-run comparisons are descriptive, not a six-fix-only causal estimate. Clock640 unresolved."
+    },
+    "4.2.6-reborn-synthetic-99473510": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "99473510940b8a7bd6e77ad61e3a2b00c72a6e6d",
+      "carries": 0,
+      "role": "candidate",
+      "label": "Pinned synthetic P1 runtime. Scenario dispatch only; its capability is verified at execution.",
+      "source": "https://github.com/diegoami/borg-reborn-rs/tree/99473510940b8a7bd6e77ad61e3a2b00c72a6e6d"
     }
   }
 }
