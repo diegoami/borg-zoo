@@ -84,7 +84,7 @@ svg.scatter.compact{max-width:140px}
    for width and scrolled individually instead of just... fitting. */
 .class-cell .chart{max-width:none;overflow-x:visible}
 .class-cell .chart svg{min-width:0;max-width:100%}
-p.tabs{display:flex;gap:4px;margin:8px 0 18px;border-bottom:1px solid var(--line)}
+p.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 18px;border-bottom:1px solid var(--line)}
 p.tabs .tab{padding:6px 14px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent}
 p.tabs .tab.active{color:var(--fg);font-weight:600;border-bottom-color:var(--accent)}
 th{white-space:normal;vertical-align:bottom}th[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help}
@@ -1018,8 +1018,7 @@ def build_site(results, out):
     shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
     (out / 'overview.html').write_text(page('Borg comparisons · borg-zoo', landing.overview_page(runs), charts=True))
     from . import scenarios
-    scenario_rows, scenario_missing = scenarios.build_site(results, out)
-    (out / 'scenarios.html').write_text(page('Scenarios · borg-zoo', landing.scenarios_page(scenario_rows, scenario_missing)))
+    scenarios.build_site(results, out)
     # The /runs/ directory contains per-run report folders, not a page of its
     # own. Publish an index there so the directory URL is useful instead of
     # returning 404/503, and point it at the Detailed experiment catalogue.

@@ -1102,10 +1102,10 @@ RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.
                          'or failed.')]
 
 
-def nav(active):
-    tabs = [('index.html', 'Full runs'), ('smoke.html', 'Smoke runs'), ('scenarios.html', 'Scenarios')]
+def nav(active, base=""):
+    tabs = [('index.html', 'Full runs'), ('smoke.html', 'Smoke runs'), ('scenarios/index.html', 'Scenarios')]
     return ('<p class="tabs">' +
-            ''.join(f'<a class="tab{" active" if href == active else ""}" href="{href}">{esc(label)}</a>'
+            ''.join(f'<a class="tab{" active" if href == active else ""}" href="{base}{href}">{esc(label)}</a>'
                     for href, label in tabs) + '</p>')
 
 
@@ -1168,32 +1168,6 @@ def overview_page(runs):
         f'<p>{buttons}</p>{links}</div></div>'
         f'<p class="muted">Every experiment run is on the <a href="index.html">Full runs</a> tab.</p>'
         + add_your_borg_section() + FOOTER)
-
-
-SCENARIO_COLS = [('Scenario experiment', 'The scenario set and candidates; the link opens its report.'),
-                 ('Run', 'Where it ran: an Actions run, or a local check.'),
-                 ('Cells', 'Collected out of expected.'),
-                 ('Pairs', 'Baseline and candidate played from the same saved start.'),
-                 ('Outcomes', 'Pair outcomes, for example both survived.'),
-                 ('Evidence', 'The run that produced it.')]
-
-
-def scenarios_page(rows, unavailable):
-    """Synthetic scenarios: saved Cemetery starts replayed by two builds.
-    Never part of the population statistics."""
-    body = [[f'<a href="{esc(r["href"])}">{esc(r["name"])}</a>', esc(r['run']), esc(r['cells']), r['pairs'],
-             esc(', '.join(f'{k.replace("_", " ")} {v}' for k, v in sorted(r['counts'].items())) or '–'),
-             f'<a href="{esc(r["evidence"])}">evidence</a>' if r.get('evidence') else '–'] for r in rows]
-    missing = ''.join(f'<li>{esc(u["report"])}: {esc(u["reason"])}</li>' for u in unavailable)
-    return (f'<h1>Borg zoo</h1>{nav("scenarios.html")}'
-            '<h2>Scenarios</h2>'
-            + explain('Saved starting positions from the Cemetery, played by two builds from the same start. '
-                      'Paired observations, separate from natural games: they never enter the population '
-                      'statistics.', SCENARIO_COLS)
-            + (table(SCENARIO_COLS, body) if body else '<p class="muted">No scenario runs yet.</p>')
-            + (f'<details class="background"><summary>Reports that could not be read</summary><ul>{missing}</ul></details>'
-               if missing else '')
-            + FOOTER)
 
 
 def smoke_page(rows):
