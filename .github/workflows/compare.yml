@@ -44,7 +44,13 @@ env:
   PYTHONUNBUFFERED: '1'
 
 jobs:
+  incident-harvest:
+    if: inputs.experiment == 'scenario-experiments/balanced999-incidents-harvest.json'
+    uses: ./.github/workflows/harvest-incidents.yml
+    with:
+      arm: ${{ inputs.arm }}
   plan:
+    if: inputs.experiment != 'scenario-experiments/balanced999-incidents-harvest.json'
     runs-on: ubuntu-24.04
     outputs:
       specimens: ${{ steps.plan.outputs.specimens }}

@@ -42,6 +42,8 @@ def load(path):
     d = yaml.safe_load(Path(path).read_text())
     if not isinstance(d, dict):
         raise ValueError(f'{path}: a definition is a YAML mapping')
+    if d.get('kind') == 'balanced-incident-harvest':
+        return d  # validated against the catalogue by definition_plan
     if d.get('kind') == 'saved-encounter-smoke':
         from .encounters import validate_yaml
         validate_yaml(d)
@@ -165,6 +167,9 @@ def plan(path, root=ROOT):
     """(definition, problems, changes) for one definition file."""
     d = load(path)
     root = Path(root)
+    if d.get('kind') == 'balanced-incident-harvest':
+        from .incident_bank import definition_plan
+        return definition_plan(d, path, root)
     if d.get('kind') == 'saved-encounter-smoke':
         from .encounters import definition_plan
         return definition_plan(d, path, root)
@@ -311,8 +316,8 @@ def main(argv=None):
             failed = True
             continue
         write(changes)
-        if d.get('kind') == 'saved-encounter-smoke':
-            print(json.dumps({'definition': path, 'experiment': d['name'], 'expected_cells': 8, 'written': [c[1] for c in changes]}))
+        if d.get('kind') in ('saved-encounter-smoke', 'balanced-incident-harvest'):
+            print(json.dumps({'definition': path, 'experiment': d['name'], 'expected_cells': d.get('expected_cells', 8), 'written': [c[1] for c in changes]}))
             continue
         exp = cat_mod.experiment(target(d))  # validates
         print(json.dumps({'definition': path, 'experiment': d['name'], 'issue': d.get('issue'),
