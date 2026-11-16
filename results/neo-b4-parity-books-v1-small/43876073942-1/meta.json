@@ -1,0 +1,562 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "default": {
+        "description": "Compatibility alias for experiments recorded before the mode cutoff (2026-11-10, borg-zoo#54): settings {}, so every mode stays on the build's own default - and borg_munchkin_by_class defaults TRUE only from better-borg-c fd683ced (PR 302). The same profile name is a different game on either side of that commit, so default is NOT comparable across it: an experiment that touches a post-cutoff better-borg-c specimen must name a mode profile (normal, munchkin-class, munchkin-on, lunal) instead; plan rejects default there. Experiments recorded before the cutoff keep default under their \"pre_cutoff\" note.",
+        "settings": {},
+        "sha256": "9c7ffb08321f2d9a1dfd0ea5efe0da310a192483828308729cf71244a2b31325"
+      }
+    },
+    "specimens": {
+      "neo-b4-parity-books-v1": {
+        "birth_profile": "c-seeded-point-buy-v2",
+        "engine_ref": "d27ed50f9e3b650a43cceda5a0c007d03cc321df",
+        "engine_repository": "neostryder/neo-angband",
+        "kind": "neo-original",
+        "label": "Experimental Borg1.4.0-beta.6.zoo.1: six C-parity fixes514-519 plus retained book-value correction509, on verified beta.4/API2.1 engine d27ed50f. Toolkit638979d includes the already-verified beta.4 SDK build alias; runtime message/truth/session code matches967b28f. Previous book cohort43759670685 used beta.3 fork engineb4af703 and older Borg; cross-run comparisons are descriptive, not a six-fix-only causal estimate. Clock640 unresolved.",
+        "ref": "464a1555ca73cf662b522f020152faa9d1a2d465",
+        "repository": "diegoami/neo-angband-borg-mod-tracker",
+        "role": "candidate",
+        "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/113",
+        "toolkit_path": "tools/zoo",
+        "toolkit_ref": "638979da690891c11da1c1e780631828953b03d7",
+        "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+        "wall_factor": 1
+      }
+    },
+    "suites": {
+      "neo-seeded-v2-classes-1800-small": {
+        "assigned_characters": {
+          "1047542799": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "1050219103": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1070397578": [
+            "Elf",
+            "Necromancer"
+          ],
+          "1089417617": [
+            "Human",
+            "Druid"
+          ],
+          "1102267292": [
+            "Elf",
+            "Priest"
+          ],
+          "1125182320": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1172257321": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1197142946": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "1211397579": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "1263080150": [
+            "High-Elf",
+            "Blackguard"
+          ],
+          "1270252768": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1304180058": [
+            "High-Elf",
+            "Ranger"
+          ],
+          "1335300295": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1372517345": [
+            "Elf",
+            "Mage"
+          ],
+          "1376917013": [
+            "Half-Orc",
+            "Paladin"
+          ],
+          "13970": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1398381237": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "1409992607": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "1434615677": [
+            "Human",
+            "Mage"
+          ],
+          "144113298": [
+            "Elf",
+            "Rogue"
+          ],
+          "1495685581": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1525145896": [
+            "Elf",
+            "Ranger"
+          ],
+          "1580217358": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1582915501": [
+            "High-Elf",
+            "Druid"
+          ],
+          "159218798": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1683283325": [
+            "Elf",
+            "Paladin"
+          ],
+          "1708858932": [
+            "Dunadan",
+            "Mage"
+          ],
+          "1724417128": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1755762960": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "1759184890": [
+            "Gnome",
+            "Mage"
+          ],
+          "1770109965": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "1782851619": [
+            "Hobbit",
+            "Druid"
+          ],
+          "1783283099": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1786276282": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "1789249537": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "1834254712": [
+            "Elf",
+            "Druid"
+          ],
+          "1839592894": [
+            "Human",
+            "Ranger"
+          ],
+          "1874146915": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "1891492410": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "1913884881": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "1918878874": [
+            "Hobbit",
+            "Mage"
+          ],
+          "1925657492": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "1925681488": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "1977778830": [
+            "Gnome",
+            "Priest"
+          ],
+          "2017149103": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "2074605793": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "2077989534": [
+            "High-Elf",
+            "Mage"
+          ],
+          "2099102246": [
+            "Human",
+            "Blackguard"
+          ],
+          "2121864625": [
+            "Dwarf",
+            "Blackguard"
+          ],
+          "2125085038": [
+            "Human",
+            "Warrior"
+          ],
+          "2135641911": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "219045338": [
+            "Gnome",
+            "Rogue"
+          ],
+          "254049261": [
+            "Gnome",
+            "Warrior"
+          ],
+          "273368719": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "281230325": [
+            "Half-Orc",
+            "Blackguard"
+          ],
+          "281927602": [
+            "Dwarf",
+            "Priest"
+          ],
+          "329352955": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "335908011": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "338951283": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "342906255": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "362301888": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "394872180": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "428043577": [
+            "Human",
+            "Rogue"
+          ],
+          "436604442": [
+            "Dunadan",
+            "Blackguard"
+          ],
+          "477376406": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "490275608": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "497945951": [
+            "Dwarf",
+            "Druid"
+          ],
+          "554730444": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "580652303": [
+            "Dwarf",
+            "Paladin"
+          ],
+          "593975275": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "601134584": [
+            "Hobbit",
+            "Priest"
+          ],
+          "607217170": [
+            "Human",
+            "Paladin"
+          ],
+          "628179241": [
+            "Gnome",
+            "Ranger"
+          ],
+          "637299829": [
+            "Human",
+            "Priest"
+          ],
+          "66253025": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "682051553": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "690827153": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "717627702": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "721431691": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "752073028": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "806539351": [
+            "Gnome",
+            "Paladin"
+          ],
+          "81404363": [
+            "Elf",
+            "Warrior"
+          ],
+          "844195309": [
+            "Gnome",
+            "Druid"
+          ],
+          "85732457": [
+            "Human",
+            "Necromancer"
+          ],
+          "880349916": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "906705545": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "907433825": [
+            "Elf",
+            "Blackguard"
+          ],
+          "932406894": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "963845551": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "965212460": [
+            "Dwarf",
+            "Mage"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "Tier small of neo-seeded-v2-classes-1800 (RULES 14, borg-zoo#137): starts 1-90 (10 per class) in the parent's order, each keeping its parent's race and class. Medium, big and full are the later disjoint slices [90,360), [360,900) and [900,1800).",
+        "measurement_profile": "c-seeded-point-buy-v2",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          2125085038,
+          1434615677,
+          1089417617,
+          637299829,
+          85732457,
+          607217170,
+          428043577,
+          1839592894,
+          2099102246,
+          721431691,
+          906705545,
+          362301888,
+          66253025,
+          880349916,
+          682051553,
+          932406894,
+          1050219103,
+          1925657492,
+          81404363,
+          1372517345,
+          1834254712,
+          1102267292,
+          1070397578,
+          1683283325,
+          144113298,
+          1525145896,
+          907433825,
+          2135641911,
+          1918878874,
+          1782851619,
+          601134584,
+          342906255,
+          1755762960,
+          963845551,
+          1874146915,
+          329352955,
+          254049261,
+          1759184890,
+          844195309,
+          1977778830,
+          13970,
+          806539351,
+          219045338,
+          628179241,
+          1047542799,
+          1913884881,
+          965212460,
+          497945951,
+          281927602,
+          477376406,
+          580652303,
+          159218798,
+          690827153,
+          2121864625,
+          1724417128,
+          1786276282,
+          338951283,
+          1335300295,
+          1770109965,
+          1376917013,
+          1125182320,
+          335908011,
+          281230325,
+          273368719,
+          554730444,
+          2017149103,
+          490275608,
+          1211397579,
+          1925681488,
+          1172257321,
+          1197142946,
+          394872180,
+          1495685581,
+          1708858932,
+          1580217358,
+          1270252768,
+          717627702,
+          593975275,
+          1789249537,
+          752073028,
+          436604442,
+          1891492410,
+          2077989534,
+          1582915501,
+          1783283099,
+          1398381237,
+          1409992607,
+          2074605793,
+          1304180058,
+          1263080150
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "range": [
+            0,
+            90
+          ],
+          "suite": "neo-seeded-v2-classes-1800"
+        },
+        "wall_seconds": 600
+      }
+    }
+  },
+  "completed": "2026-11-16 13:59 UTC",
+  "environment": {
+    "compilers": [
+      "node v26.13.1"
+    ],
+    "platforms": [
+      "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+      "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39"
+    ]
+  },
+  "experiment": {
+    "control": "neo-b4-parity-books-v1",
+    "description": "Small tier (RULES 14, borg-zoo#137) of the Neo parity-and-books arm: Borg 1.4.0-beta.6.zoo.1 (source 464a1555, parity fixes 514-519 plus book-value 509), engine d27ed50f (beta.4/API 2.1), toolkit 638979d. Starts 1-90 of neo-seeded-v2-classes-1800 (10 per class, the parent's characters), 100,000 exact ticks, 600-second watchdog, default recorded Borg flags; all evidence retained. 90 games. No survival or C-parity claim.",
+    "name": "neo-b4-parity-books-v1-small",
+    "owner_authorization": "2026-11-16: the owner approved adapting PR #131 to the RULES 14 tiers and running the small tier first (borg-zoo#137), after the accepted smoke 43861787363.",
+    "prespecified": "Fixed 2026-11-16, before any result was read (borg-zoo#137). Small tier only; medium, big and full each need this tier's written gate and a separate owner go. Gate: all 90 assigned records reconciled, 10 per class; every planned start has a retained outcome or an explicitly recorded incomplete or failed attempt; hashes, identities, actual births/options/settings and truth-use receipts verify. Configuration or harness errors, corrupt evidence, wrong pins or characters, or cap violations stop progression until resolved, without weakening assertions, seeds, timeouts or outcome categories. Report deaths, caps, stalls, timeouts, stops and failures separately per class and overall with assigned-start denominators; assess and retain every abnormal endpoint. Report final level and deepest depth including dead characters, shallow cap finishes, causes, book retention and casting observations, and runtime distributions; a cast intent is not a success, and zero casts in a short or low-level run is not a defect. Record the gate verdict and its runtime, storage and sharding implications. No tier advances because its jobs are green. Comparison limits: the older book cohort 43759670685 used engine b4af703 and Borg source d6215a8; no six-fix-only causal estimate, native-C trajectory parity or population improvement claim; engine clock issue neo-angband-tracker#640 is unresolved.",
+    "profiles": [
+      "default"
+    ],
+    "resource_budget": {
+      "job_timeout_minutes": 300,
+      "max_parallel_jobs": 4,
+      "native_wall_seconds": 600,
+      "neo_wall_seconds": 600,
+      "processes_per_job": 2
+    },
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "shards_by_specimen": {
+      "neo-b4-parity-books-v1": 6
+    },
+    "specimens": [
+      "neo-b4-parity-books-v1"
+    ],
+    "suites": [
+      "neo-seeded-v2-classes-1800-small"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "43876073942-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/43876073942",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "c0f81120200b25ddb29ffa0eff95342d75f18eef"
+}
