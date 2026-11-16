@@ -7,6 +7,7 @@ import tempfile
 import types
 import unittest
 import subprocess
+import os
 from unittest.mock import patch
 
 from zoo import scenarios as s
@@ -321,6 +322,31 @@ class ScenarioTests(unittest.TestCase):
             with self.assertRaises(ValueError):s.safe_file(root,name)
         (root/'link').symlink_to(self.root/'outside')
         with self.assertRaises(ValueError):s.safe_file(root,'link')
+
+    def test_relative_output_is_resolved_before_adapter_changes_directory(self):
+        class ExecutionError(Exception):pass
+        p=self.plan
+        adapter=types.SimpleNamespace(describe=lambda *args:row_fixture(p,p['cases'][0],p['targets'][0],'death')['execution_input']['build_receipt'])
+        def launch(case,root,output):
+            self.assertTrue(output.is_absolute())
+            self.assertTrue((output.parent/'requested.json').exists())
+            output.mkdir()
+            output.parent.joinpath('profile.txt').write_text('profile')
+            return 1
+        adapter.run=launch
+        module=types.SimpleNamespace(RebornAdapter=lambda source:adapter,ExecutionError=ExecutionError,
+            generate=lambda path:dict(cases=p['cases'],root=self.root,manifest=dict(suite_id='test',revision=1)),
+            classify=lambda *args:dict(status='harness_failure',reason='fixture child failure'),
+            RESULT_SCHEMA='test',report=lambda doc:'fixture report')
+        previous=os.getcwd()
+        try:
+            os.chdir(self.root)
+            with patch.object(s,'bank_module',return_value=module),patch.object(s,'checked_checkout'),patch.object(s,'engine_hash',return_value='e'*64):
+                rows=s.run_target(p,self.root,self.root/'different-source','old','relative-output')
+            self.assertEqual(rows[0]['status'],'harness_failure')
+            self.assertTrue((self.root/'relative-output/cells').exists())
+        finally:
+            os.chdir(previous)
 
     def test_run_profile_and_export_guard_failure_paths(self):
         class ExecutionError(Exception):pass

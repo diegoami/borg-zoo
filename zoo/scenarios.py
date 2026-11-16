@@ -206,7 +206,9 @@ def run_target(plan, bank, source, pushid, out):
     actual = {c['id']: c for c in generated['cases']}
     if any(actual.get(c['id']) != c for c in plan['cases']):
         raise ValueError('bank changed since dispatch')
-    out = Path(out)
+    # The Cemetery adapter launches the harness with cwd=source. Its profile,
+    # exporter destination and output arguments must survive that cwd change.
+    out = Path(out).resolve()
     out.mkdir(parents=True, exist_ok=False)
     write(out / 'requested.json', dict(plan_sha256=plan['plan_sha256'], target=target))
     adapter = module.RebornAdapter(source)
