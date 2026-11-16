@@ -478,3 +478,25 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
   - Deaths fell from 113 to 104 over the five arms. The largest drops are
     plan-town (23 to 18; caster deaths 18 to 12) and ambitious-town (29 to 23).
   - Descriptive only, at 10 starts per class. Medium waits for the owner.
+
+- **The borg-reborn-rs#421 fix removes the stair livelock: small tier passed (borg-zoo#141).**
+  `reborn-livelock-small`, run 43882239507, 450 games on
+  `4.2.6-reborn-rust-plans-m13-livelock` (borg-reborn-rs `d3ebe3c0`, #428: the
+  #421 fix on top of `4ecb93d7`). The same 90 starts and five arms as
+  `reborn-survival-small`.
+
+  | Arm | Deaths / 90 (on `4ecb93d7`) | Stalled (on `4ecb93d7`) | Mean final level | Mean deepest level | DL5+ | Identical keys to `4ecb93d7` | vs `4ecb93d7` rescued / newly killed |
+  | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+  | control | 21 (21) | 0 (0) | 4.5 | 2.6 | 8 | 90 / 90 | 0 / 0 |
+  | town | 17 (17) | 0 (0) | 4.9 | 2.6 | 10 | 90 / 90 | 0 / 0 |
+  | plan | 22 (25) | 0 (0) | 3.7 | 1.8 | 0 | 76 / 90 | 3 / 0 |
+  | plan-town | 20 (18) | 0 (0) | 4.3 | 2.2 | 4 | 65 / 90 | 2 / 4 |
+  | ambitious-town | 17 (23) | 0 (1) | 4.4 | 2.0 | 2 | 42 / 90 | 9 / 3 |
+
+  - Every #141 criterion holds:
+    - no frozen-turn stall and no key outlier in any arm; the busiest single
+      turn was 752 keys, against a 1,000-key threshold;
+    - control and town play keys identical to `4ecb93d7` in all 90 starts each;
+    - no `config_error`; one binary; every loaded plan matched its pin.
+  - Ambitious-town fell from 23 deaths to 17.
+  - Descriptive only, at 10 starts per class. Medium waits for the owner.
