@@ -1,0 +1,35 @@
+# borg-zoo#191, small tier: caution_rising_explore_ticks 0, 300, 600 on the current borg-reborn-rs build.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-rising-ticks-small.yaml
+name: reborn-rising-ticks-small
+issue: 191
+question: On current borg-reborn-rs main, how long should a Borg heading to town explore for an up staircase (caution_rising_explore_ticks 0, 300, 600)?
+tier: small            # classes-1800 starts 1-90 (10 per class)
+
+# The current build: borg-reborn-rs HEAD 50ae902a has the same source-hash (028e2de4...) and
+# harness/borg.txt (498475fa...) as e0aa2e0a (only docs and tools changed), so the same specimen. It
+# carries #489 (the feature, compiled 300) plus #491/#496 healing, #492 and #498 since the pilot's e85b80e1.
+specimen: 4.2.6-reborn-rust-main-e0aa2e0a
+
+# Every arm reads the shipped harness/borg.txt as is and writes only this line (the pilot's profiles).
+profile_prefix: reborn-rising
+vary:
+  ticks:
+    ticks0: {borg_param_caution_rising_explore_ticks: 0}
+    ticks300: {borg_param_caution_rising_explore_ticks: 300}
+    ticks600: {borg_param_caution_rising_explore_ticks: 600}
+
+control: [ticks0]
+owner_authorization: >-
+  2026-11-17: after the #191 pilot (run 44111994343), the owner asked for the small tier with 0, 300 and
+  600 on the current build. A newer specimen than the pilot's e85b80e1, so not a nested slice of it.
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#191). Small tier on the owner's request; medium
+  only after this gate and the owner (RULES 14). Gate: no config_error; one binary; each arm's borg.txt has
+  borg_param_caution_rising_explore_ticks at its value and otherwise the shipped settings, no plan; the
+  value in params-core.json of the death replays; every cell ends in death, turn_cap or borg_stopped;
+  stalls (borg-reborn-rs#421) and key outliers listed; death bundles reproduced; in ticks0 none of #489's
+  notes appear in the death replays. Report per arm: deaths, final level, deepest level; paired rescued
+  and newly killed for ticks300 and ticks600 against ticks0, exact McNemar p; how many starts differ from
+  ticks0 at all; counts of #489's notes and of "no up stairs found, going down" on the death replays.
+  ticks300 is the shipped value. 90 starts per arm show direction, not a confirmed difference.
