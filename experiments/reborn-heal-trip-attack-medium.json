@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-heal-trip-attack-medium",
+  "issue": 164,
+  "definition": "definitions/reborn-heal-trip-attack-medium.yaml",
+  "question": "Does the errands plan help the heal + trip policy + attack preference bundle?",
+  "description": "Does the errands plan help the heal + trip policy + attack preference bundle? Generated from definitions/reborn-heal-trip-attack-medium.yaml: 2 arms on 4.2.6-reborn-rust-heal, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#164). Medium tier only (RULES 14: starts 91-360, disjoint from the small tier; analysed together with it on all 360 starts). The question is\nwhether the errands plan helps the bundle; it says nothing about the bundle against the neutral\nbuild (that is the pilot's control arms, 18 starts). Gate: no config_error; one binary; every\nbundle setting applied from borg.txt (params-core.json) in both arms; the loaded plan copy\nmatches its pin in the plan arm and is absent from the no-plan arm. Every cell ends in death,\nturn_cap or borg_stopped; frozen-turn stalls and key outliers are listed. Report per arm and\nper class: deaths, final level, deepest level, keys; paired rescued and newly killed for the\nplan arm against the no-plan arm on the same start, and the cells where play diverges.",
+  "specimens": [
+    "4.2.6-reborn-rust-heal"
+  ],
+  "profiles": [
+    "reborn-heal1-trip1-attack1-none",
+    "reborn-heal1-trip1-attack1-plan"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-heal",
+  "control_profile": "reborn-heal1-trip1-attack1-none",
+  "owner_authorization": "2026-11-17: after the small tier's gate passed (run 43977574813, bundle no plan 5/90 deaths, with plan 4/90), the owner asked for the medium tier of the same two arms. No neutral control: the bundle is about to become the default, and the owner holds the earlier controls (RULES 8 still limits what the report may claim)."
+}
