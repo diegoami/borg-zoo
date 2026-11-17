@@ -119,6 +119,12 @@ def render(r):
     if 'comparison' in r:body+=f'<p>{esc(candidate)} ran {n} saved encounters of {esc(r["suite"]["name"])}; the other setups are earlier published runs of the same suite, reused, not rerun. '
     else:body+='<p>'
     body+='Saved encounters with fresh Borg memory and saved engine RNG, an exact 2,000-engine-turn horizon and 5-second wall limit. Sources, cores and configuration differ between setups; these results do not isolate one setting or establish population improvement. Encounters from one life remain correlated. Historical critical-HP recoveries are a screen, not qualified counterfactual near-deaths.</p>'
+    shares=[]
+    for a in r['arms']:
+        deaths=sum(c['outcomes'][a['id']]=='death' for c in r['cases'])
+        label=esc(a['id'])+f' <span class="muted">{esc(a["source"]["commit"][:8])}, {esc(a.get("core",""))}</span>'
+        shares.append([label,f'{100*deaths/n:.1f}% <span class="muted">({deaths} of {n})</span>'])
+    body+='<h2>Deaths per build</h2>'+site.table(['Build','Deaths'],shares)
     tables=r.get('pairs_by_reference') or {reference:r['pairs']}
     for ref,pairs in tables.items():
         body+=f'<h2>Paired outcomes: {esc(candidate)} against {esc(ref)}</h2>'+site.table(['Outcome','Scenarios'],[[esc(k.replace('_',' ')),v] for k,v in sorted(pairs.items())])
