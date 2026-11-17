@@ -1,0 +1,25 @@
+# Exported from smoke/neo-books-509-smoke-18.json; edit here, then run python3 -m zoo define.
+name: neo-books-509-smoke-18
+folder: smoke
+description: |-
+  Sequential acceptance before the owner-authorized book509 repeat.18new cases/two per class,5000ticks,600-second watchdog. Inspect every cell, applied settings, truth receipt, source pins and caster book/cast traces before dispatching the full experiment. Not survival evidence.
+specimens:
+- neo-fork-books-509-seeded-v2
+suites:
+- neo-books-509-smoke-18
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: neo-fork-books-509-seeded-v2
+control_profile: default
+extra:
+  retain_evidence: true
+  shards_by_specimen:
+    neo-fork-books-509-seeded-v2: 2
+  resource_budget:
+    processes_per_job: 2
+    max_parallel_jobs: 4
+    native_wall_seconds: 600
+    neo_wall_seconds: 600
+    job_timeout_minutes: 300
+  control_profile: null
