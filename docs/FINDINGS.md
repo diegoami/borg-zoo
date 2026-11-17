@@ -336,17 +336,6 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 - **Deaths per class (of 111):** Warrior 23, Mage 25, Druid 46, Priest 26, Necromancer 35, Paladin 33, Rogue 33, Ranger 35, Blackguard 25.
 - **The unfinished scenario:** Rogue c6-r7-s1060140-i000 hit the 5 s wall at game turn 96,481 of 97,007. The game was fighting a breeding swarm of giant white lice (8,172 `Tracking a monster` notes). Replayed locally, it times out at 5 s every time; with a 60 s wall it reaches the horizon alive in 6.9 s. On the same save, speed30 (193d9076) needed 3.6 s and the reborn baseline 1.3 s. No other scenario took more than 1.7 s on 7e08c920. The archived record labels the cell `invalid_receipt`; the runner now labels such a cell `wall_timeout`.
 
-**Stall detector correction (#205): five `stalled` cells were Rangers buying 120 arrows one at a time, not loops.** Shop purchases take no game time, so a long purchase run puts over 1,000 keys on one game turn. The detector counted that as a frozen-turn loop and relabelled the cell `stalled`, naming borg-rs#90 and borg-reborn-rs#421 (#421 was already fixed by #428). Each cell was replayed with its run's own build; every play hash matches CI, and each burst spends gold at every purchase:
-
-| Run | Cell | Burst | Played to |
-|---|---|---|---|
-| #198 pilot, 44117547473 | `reborn-pb1` Ranger 807773433 | turn 86,658: 1,085 keys, 120 purchases, gold 522 → 402 | turn cap |
-| #198 pilot, 44117547473 | `reborn-pb3` and `reborn-pb4` Ranger 60792140 (same game) | turn 92,602: 1,083 keys, 120 purchases, gold 278 → 158 | turn cap |
-| #181 medium, 44072424588 | `reborn-shipped-defaults` Ranger 745617169 | turn 60,106: 1,084 keys, 120 purchases, gold 223 → 103 | turn cap |
-| #170 small, 44055270651 | `reborn-bundle-none-speed30-unknown3` Ranger 1071405808 | turn 75,918: 1,085 keys, 120 purchases, gold 167 → 42 | turn cap |
-
-Their archived records keep `stalled` (results are append-only), with `observed_outcome: turn_cap`. Read them as turn-cap games. From this fix on, a burst that spends gold at least once per 20 keys is recorded under `frozen_turn_loop.purchase_bursts` and leaves the outcome alone. A burst with no gold spent is still a stall, now explained as borg-rs#90's store/take cycle. A burst on a specimen without `state.log` is a stall whose cause is not determined. The purchases themselves are borg-reborn-rs#507.
-
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
@@ -698,7 +687,7 @@ its keys were identical to CI:
 | 44117547473 | reborn-pb-class-pilot (#198) | pb3, Half-Troll Ranger 60792140 | 1,083 keys, 120 purchases, turn 92,602 | turn_cap |
 | 44117547473 | reborn-pb-class-pilot (#198) | pb4, Half-Troll Ranger 60792140 | 1,083 keys, 120 purchases, turn 92,602 | turn_cap |
 | 44072424588 | reborn-main-defaults-medium (#181) | Dwarf Ranger 745617169 | 1,084 keys, 120 purchases, turn 60,106 | turn_cap |
-| 44055270651 | reborn-unknown-stacks-small (#170) | unknown3, Half-Orc Ranger 1071405808 | 1,085 keys, turn 75,918 | very likely turn_cap; not replayed (specimen 193d9076 not rebuilt) |
+| 44055270651 | reborn-unknown-stacks-small (#170) | unknown3, Half-Orc Ranger 1071405808 | 1,085 keys, 120 purchases, turn 75,918, gold 167 → 42 (replayed, keys identical to CI) | turn_cap |
 
 The borg-reborn-rs side, buying a planned purchase's copies in one
 transaction, is borg-reborn-rs#507 (PR #509).
