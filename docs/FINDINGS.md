@@ -280,6 +280,18 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 - Lower values go somewhat deeper (more DL5 games with 2 and 3) and play differently more often. 4 has the fewest deaths, but 3 against 0 is far from significant.
 - The control replays the speed30 x plan small tier's no-plan arm (run 44050742897) identically in 90/90 games.
 
+**#170, borg_trip_unknown_stacks 3-5 (medium tier, run 44065025814, 810 games, starts 91-360; value 2 dropped by the owner): no value differs from 5 on 360 starts.** Gate passed: no config_error, one binary (cdfee89a), every setting written in all 810 borg.txt files, no plan loaded, no stalls or frozen-turn bursts. 71 games exceed twice the median of 9,441 keys (max 26,827), all at the turn cap.
+
+| unknown_stacks | Medium deaths | Small + medium deaths (360) | Mean deepest DL (360) | Reached DL5 (360) | Mean max level (360) | Identical to 5 (360) |
+|---|---|---|---|---|---|---|
+| 3 | 32/270 | 38 (+1 stalled) | 2.48 | 23 | 4.96 | 197 |
+| 4 | 36/270 | 39 | 2.39 | 19 | 4.99 | 276 |
+| 5 (control) | 34/270 | 40 | 2.34 | 18 | 4.96 | - |
+
+- **Paired against 5 on 360 starts:** 3 rescued 12 and newly killed 10 (McNemar p = 0.83); 4 rescued 4 and killed 3 (p = 1.0). The small tier's lead for 4 (3 against 6 deaths) did not hold in medium (36 against 34).
+- **Per class:** deaths are within one or two of each other in every class, except Warriors with 3 (8 against 4).
+- Lower values go slightly deeper (DL5 in 23, 19 and 18 games) without fewer deaths. The records hold no message logs, so trip returns that became descents are not counted here; that needs a replay (`python3 -m zoo.deaths`).
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
