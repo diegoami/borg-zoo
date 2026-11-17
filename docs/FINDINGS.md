@@ -338,6 +338,8 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 
 **#224, cornered mode 2×2×2 on main 6101ca01 (pilot, run 44196757011, 144 games): only the on/off switch matters; radius and big-level margin change nothing.** The gate passed: one binary (259eb8a5), no config_error, all three settings written, nothing flagged. The four cornered-off arms play identically (18/18 each), and so do the four cornered-on arms: radius 2 or 3 and margin 0 or 1 changed no game. Cornered on against off: 3 deaths against 4. It changes 4 of 18 games and saves a CL2 Warrior killed by Sméagol. Mean max level is 4.94 against 4.61. The remaining deaths (two Druids, one by poison at CL6; a Ranger by poison at CL7) are the same in both arms.
 
+**#224, cornered mode off vs on, all 1,800 starts of main 6101ca01 (run 44198028729, 3,600 games): a small effect, not significant.** The gate passed: one binary (259eb8a5), no config_error, the settings written in all 198 borg.txt files, nothing flagged. Deaths are 151 (8.4%, 7.2-9.8) off and 142 (7.9%, 6.7-9.2) on. On the same start, on rescues 21 and newly kills 12 (McNemar p = 0.16); 1,418 of 1,800 games are identical. Mean max level 4.91 / 4.93, DL5 reached 22 / 26, CL1-3 deaths 96 / 96. Melee classes gain most: Rogues 11 → 5, Warriors 5 → 1. Casters are unchanged or slightly worse (Priests 19 → 21, Blackguards 11 → 14). Both arms have the named list on; their deaths are close to the #227 named arm (148).
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
