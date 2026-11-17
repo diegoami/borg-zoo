@@ -283,6 +283,23 @@ def experiment(path, cat=None):
             if plan not in (specimens[name].get('plans') or {}):
                 raise ValueError(f'{prof}: borg_plan {plan!r} is not a plan specimen {name} pins '
                                  '("plans": {name: sha256}, borg-zoo#123)')
+    for prof in sorted({p for name in exp['profiles'] for p in profile_parts(cat, name)}):
+        scary = cat['profiles'][prof].get('settings', {}).get('borg_scary_list')
+        lines = cat['profiles'][prof].get('settings', {}).get('borg_scary_list_lines')
+        if lines is not None:
+            if scary is None:
+                raise ValueError(f'{prof}: borg_scary_list_lines needs borg_scary_list (the base list they extend)')
+            if not isinstance(lines, list) or not all(
+                    isinstance(l, str) and '\n' not in l and ('|' in l or l.strip().lower().startswith('fragility:'))
+                    for l in lines):
+                raise ValueError(f'{prof}: borg_scary_list_lines must be lines like "monster | level" or '
+                                 '"fragility: class N" (borg-zoo#228)')
+        if scary is None:
+            continue
+        for name in exp['specimens']:
+            if scary not in (specimens[name].get('scary_lists') or {}):
+                raise ValueError(f'{prof}: borg_scary_list {scary!r} is not a list specimen {name} pins '
+                                 '("scary_lists": {name: sha256}, borg-zoo#228)')
     words = sorted({n for p in (q for name in exp['profiles'] for q in profile_parts(cat, name))
                     for n, v in cat['profiles'][p].get('settings', {}).items() if isinstance(v, str)})
     if words:

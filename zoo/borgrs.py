@@ -33,6 +33,12 @@ Limits compared with the better-borg-c observer, recorded per cell:
   level-50 handover or a plan's handback) is the borg_stopped outcome, not
   a stall. The cell also checks the core's copy of the loaded plan in the
   output directory, and records a frozen-turn loop (borg-rs#90) as a stall.
+- a specimen with "scary_lists": {NAME: sha256} ships those named scary
+  monster lists (borg-reborn-rs harness/NAME, #518, borg-zoo#228) the same
+  way: the build copies each, hash-checked, into the build's scary_lists/;
+  a profile setting borg_scary_list = NAME gets it as the cell's user/NAME
+  and the cell records {name, sha256}. A missing or invalid list stops the
+  binary with exit 2 before play, a config_error.
 - a specimen with "loop_checks": true (and every plan specimen) gets the
   frozen-turn stall and the key-outlier flag without carrying plans.
 - every inherited BORG_* environment variable is cleared before a cell.
@@ -239,6 +245,51 @@ def copy_plans(spec, source, out):
     return plans
 
 
+def copy_scary_lists(spec, source, out):
+    """Copy the specimen's pinned scary lists (harness/NAME) into the build; {name: sha256}."""
+    lists = {}
+    for name, digest in sorted((spec.get('scary_lists') or {}).items()):
+        src = Path(source) / 'harness' / plan_name(name)
+        if not src.is_file():
+            raise ValueError(f'specimen scary list {name} is not in harness/ at {spec["ref"]}')
+        if sha256(src) != digest:
+            raise ValueError(f'specimen scary list {name} has sha256 {sha256(src)}, catalogue pins {digest}')
+        (out / 'scary_lists').mkdir(exist_ok=True)
+        shutil.copy(src, out / 'scary_lists' / name)
+        lists[name] = digest
+    return lists
+
+
+def ship_scary_list(spec, manifest, build_dir, out, name, lines=None):
+    """Write the build's scary list NAME as the cell's user/NAME, with the arm's LINES
+    appended (borg-zoo#228: the list is an overlay, a later line for a monster
+    replaces an earlier one and `monster | none` removes it); the sha256 of the
+    file written."""
+    name = plan_name(name)
+    digest = (spec.get('scary_lists') or {}).get(name)
+    if digest is None:
+        raise ValueError(f'specimen ships no scary list {name}')
+    src = Path(build_dir) / 'scary_lists' / name
+    if (manifest.get('scary_lists') or {}).get(name) != digest or not src.is_file() or sha256(src) != digest:
+        raise ValueError(f'build {build_dir} does not carry scary list {name} at sha256 {digest}')
+    data = src.read_bytes()
+    if lines:
+        data = data + (b'' if data.endswith(b'\n') or not data else b'\n') + \
+            ''.join(f'{line}\n' for line in lines).encode()
+    (out / 'user' / name).write_bytes(data)
+    return hashlib.sha256(data).hexdigest()
+
+
+def scary_lines(profile):
+    """An arm's scary list lines, checked: strings, one line each."""
+    lines = profile['settings'].get('borg_scary_list_lines')
+    if lines is None:
+        return None
+    if not isinstance(lines, list) or not all(isinstance(l, str) and l.strip() and '\n' not in l for l in lines):
+        raise ValueError('borg_scary_list_lines must be a list of one-line strings')
+    return lines
+
+
 def ship_plan(spec, manifest, build_dir, out, name):
     """Write the build's plan NAME as the cell's user/NAME; its sha256."""
     name = plan_name(name)
@@ -273,6 +324,9 @@ def build(spec, source, out):
     if (out / 'plans').exists():
         shutil.rmtree(out / 'plans')
     plans = copy_plans(spec, source, out)
+    if (out / 'scary_lists').exists():
+        shutil.rmtree(out / 'scary_lists')
+    scary = copy_scary_lists(spec, source, out)
     build_id = dict(line.split('=', 1) for line in (source / 'build' / impl / 'BUILD_ID').read_text().splitlines()
                     if '=' in line)
     manifest = {'kind': 'borg-rs', 'impl': impl, 'source_commit': head,
@@ -283,10 +337,22 @@ def build(spec, source, out):
                 'platform': f'{platform.system()} {platform.machine()}', 'complete': True}
     if plans:
         manifest['plans'] = plans
+    if scary:
+        manifest['scary_lists'] = scary
     if build_id.get('binary_sha256') != manifest['binary_sha256']:
         raise ValueError('copied binary does not match BUILD_ID')
     (out / 'build.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
     return manifest
+
+
+# Profile settings the adapter consumes itself instead of writing to borg.txt:
+# an arm's lines appended to its scary list (borg-zoo#228).
+ADAPTER_SETTINGS = ('borg_scary_list_lines',)
+
+
+def borg_txt_settings(profile):
+    """The profile settings that go into the run's borg.txt."""
+    return {k: v for k, v in profile['settings'].items() if k not in ADAPTER_SETTINGS}
 
 
 def config_text(build_dir, profile, race=0, cls=0):
@@ -295,14 +361,14 @@ def config_text(build_dir, profile, race=0, cls=0):
     text = cat_mod._override(text, 'borg_respawn_class', str(cls))
     text = cat_mod._override(text, 'borg_cheat_death', 'FALSE')
     text = cat_mod._override(text, 'borg_respawn_winners', 'FALSE')
-    for name, value in sorted(profile['settings'].items()):
+    for name, value in sorted(borg_txt_settings(profile).items()):
         text = cat_mod._override(text, name, cat_mod.setting_value(value))
     return text
 
 
 def check_config(text, profile):
     wrong = []
-    for name, value in profile['settings'].items():
+    for name, value in borg_txt_settings(profile).items():
         if f'\n{name} = {cat_mod.setting_value(value)}\n' not in '\n' + text:
             wrong.append(name)
     return ('settings not written: ' + ', '.join(sorted(wrong))) if wrong else None
@@ -313,7 +379,7 @@ def check_effective(summary, profile):
     actual = summary.get('effective_settings')
     if not isinstance(actual, dict):
         return 'native summary has no effective_settings'
-    wrong = [name for name, value in profile['settings'].items()
+    wrong = [name for name, value in borg_txt_settings(profile).items()
              if name not in actual or actual[name] != value]
     return ('settings not effective: ' + ', '.join(sorted(wrong))) if wrong else None
 
@@ -355,6 +421,9 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     mismatch = check_config(text, profile)
     plan = profile['settings'].get('borg_plan')
     plan_sha = ship_plan(spec, manifest, build_dir, out, plan) if plan is not None else None
+    scary = profile['settings'].get('borg_scary_list')
+    lines = scary_lines(profile)
+    scary_sha = ship_scary_list(spec, manifest, build_dir, out, scary, lines) if scary is not None else None
     game = build_dir / 'game'
     argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=keep)
     env = dict(os.environ, TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8')
@@ -393,7 +462,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         except ValueError as exc:
             error = f'unreadable summary: {exc}'
     if outcome is None:
-        if rc == 2 and not summary and spec.get('plans'):
+        if rc == 2 and not summary and (spec.get('plans') or spec.get('scary_lists')):
             # The binary refused its configuration (a plan it could not load,
             # a conflicting errand, an invalid setting) before playing.
             outcome, error = 'config_error', 'exit code 2: the binary rejected its configuration'
@@ -467,6 +536,8 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'profile_sha256': cat_mod.profile_sha256(profile),
         'config_sha256': hashlib.sha256(text.encode()).hexdigest(),
         'plan': {'name': plan, 'sha256': plan_sha, 'loaded_sha256': loaded_sha} if plan is not None else None,
+        'scary_list': ({'name': scary, 'base_sha256': (spec.get('scary_lists') or {}).get(scary),
+                        'lines': lines or [], 'sha256': scary_sha} if scary is not None else None),
         'cap': suite['cap'], 'birth': suite['birth'],
         'boundary': 'exact' if spec.get('exact_turns') else 'after-key',
         'outcome': outcome, 'runner_outcome': summary.get('stop_reason'),
