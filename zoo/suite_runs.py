@@ -179,8 +179,12 @@ def make_cell(plan,case,directory):
     streams={name:n.sha(directory/'run'/name) for name in ('keys.log','state.log','messages.log')}
     cell=dict(schema=CELL,id=case['id'],arm=plan['arm']['id'],plan_hash=plan['plan_hash'],receipts=receipts,
               receipts_sha256={k:digest_text(v) for k,v in receipts.items()},streams=streams,independent_life=False)
-    try:cell['status']=validate(plan,case,receipts,streams)
-    except (ValueError,KeyError,TypeError,IndexError,AttributeError) as e:cell.update(status='invalid_receipt',reason=str(e))
+    trial=json.loads(receipts.get('trial.json','{}'))
+    if trial.get('status')=='timeout':  # the native wall limit cut the game short: no outcome, and the gate fails
+        cell.update(status='wall_timeout',reason=f"stopped by the {plan['manifest']['wall_seconds']} s wall limit before the horizon")
+    else:
+        try:cell['status']=validate(plan,case,receipts,streams)
+        except (ValueError,KeyError,TypeError,IndexError,AttributeError) as e:cell.update(status='invalid_receipt',reason=str(e))
     cell['execution_hash']=n.digest({k:v for k,v in cell.items() if k!='execution_hash'});return cell
 
 
@@ -238,8 +242,9 @@ def checked(plan,case,cell):
         if cell['plan_hash']!=plan['plan_hash'] or n.digest(body)!=cell['execution_hash']:raise ValueError('cell execution identity changed')
         for name,text in cell.get('receipts',{}).items():
             if digest_text(text)!=cell['receipts_sha256'][name]:raise ValueError('receipt changed')
-        status=validate(plan,case,cell['receipts'],cell['streams'])
-        if status!=cell['status']:raise ValueError('reported outcome differs')
+        trial=json.loads(cell['receipts'].get('trial.json','{}'))
+        status='wall_timeout' if trial.get('status')=='timeout' else validate(plan,case,cell['receipts'],cell['streams'])
+        if status!=cell['status'] and not (status=='wall_timeout' and cell['status']=='invalid_receipt'):raise ValueError('reported outcome differs')
         return status,cell
     except (ValueError,KeyError,TypeError,IndexError,AttributeError) as e:return 'invalid_receipt',dict(cell,validation_error=str(e))
 
@@ -256,7 +261,7 @@ def collect(plan_path,inputs,out,tier='smoke',run_url=''):
                 per_class={name:dict(Counter(r['status'] for r in rows if r['class_name']==name)) for name in bank.CLASSES.values()},
                 invalid_count=invalid,stopped_count=c['stopped'],run_url=run_url)
     n.write(out/'comparison.json',report)
-    lines=['# '+p['arm']['id']+' on '+p['suite']['name'],'',f"{tier}: {len(rows)} scenarios; deaths {c['death']}, survived the horizon {c['survived_horizon']}, stopped {c['stopped']}, invalid or missing {invalid}.",'',f'[Zoo run]({run_url})']
+    lines=['# '+p['arm']['id']+' on '+p['suite']['name'],'',f"{tier}: {len(rows)} scenarios; deaths {c['death']}, survived the horizon {c['survived_horizon']}, stopped {c['stopped']}, cut off by the wall limit {c['wall_timeout']}, invalid or missing {invalid-c['wall_timeout']}.",'',f'[Zoo run]({run_url})']
     (out/'comparison.md').write_text('\n'.join(lines)+'\n');return int(bool(invalid or c['stopped']))
 
 
