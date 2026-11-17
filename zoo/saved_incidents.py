@@ -119,7 +119,7 @@ def render(r):
     ids=[a['id'] for a in r['arms']]
     body='<h1>'+esc(title)+'</h1>'+landing.nav('scenarios/index.html','../../../../')
     body+=f'<h2>{esc(r["tier"])} stage: {n} scenarios, {r["expected_cells"]} cells</h2><p>{n//9} starts per class per setup. Invalid/missing: {r["invalid_count"]}; stopped: {r["stopped_count"]}.</p>'+links(r)
-    if 'suite' in r:body+=f'<p>A sanity check of one build: {esc(candidate)} played {n} saved encounters of {esc(r["suite"]["name"])} with its own <code>borg.txt</code>. Each starts with fresh Borg memory and the saved engine RNG, and plays an exact 2,000-engine-turn horizon under a 5-second wall limit. Encounters from one life are correlated.</p>'
+    if 'suite' in r:body+=f'<p>A sanity check of one build: {esc(candidate)} played {n} saved encounters of {esc(r["suite"]["name"])} with its own <code>borg.txt</code>. Each starts with fresh Borg memory and the saved engine RNG, and plays an exact 2,000-engine-turn horizon under a {esc(r.get("manifest",{}).get("wall_seconds",5))}-second wall limit. Encounters from one life are correlated.</p>'
     else:body+='<p>Saved encounters with fresh Borg memory and saved engine RNG, an exact 2,000-engine-turn horizon and 5-second wall limit. Sources, cores and configuration differ between setups; these results do not isolate one setting or establish population improvement. Encounters from one life remain correlated. Historical critical-HP recoveries are a screen, not qualified counterfactual near-deaths.</p>'
     shares=[]
     for a in r['arms']:

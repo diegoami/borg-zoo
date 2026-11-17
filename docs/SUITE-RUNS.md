@@ -3,8 +3,9 @@
 A **suite** is a frozen bank of saved encounters with its protocol:
 `scenario-suites/ID/suite.json`. **Suite 1** (`suite1-v1`) is the balanced999 bank of
 borg-zoo#168: 999 saves, 111 per class. Each save starts with fresh Borg memory and the
-saved engine RNG, and plays an exact 2,000-engine-turn horizon under a 5-second native wall
-limit.
+saved engine RNG, and plays an exact 2,000-engine-turn horizon. A 30-second native wall limit
+only guards against hangs. It was 5 s, inherited from Cemetery's first 1,000-turn scenarios, until
+main needed 6.9 s for a long fight against a breeding louse swarm (2026-11-17).
 
 A **run** is a sanity check of one build: by default borg-reborn-rs `main` at its current HEAD,
 with its **own default settings**, which are the commit's `harness/borg.txt`, unchanged. Those
