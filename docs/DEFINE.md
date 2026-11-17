@@ -72,7 +72,7 @@ prespecified: |
 | `control` | The control arm, by its option names; or `control_specimen` and `control_profile`. |
 | `prespecified` | The gate and endpoints, fixed before any result is read. |
 | `owner_authorization`, `description` | Free text, copied into the experiment. |
-| `extra` | Any other experiment field (for example `resource_budget`, `retain_evidence`, `shards_by_specimen`). |
+| `extra` | Any other experiment field (for example `resource_budget`, `retain_evidence`, `shards_by_specimen`, or `cemetery_deaths: false` to skip the death bundles of [CEMETERY-DEATHS.md](CEMETERY-DEATHS.md)). |
 | `folder`, `file` | Where the experiment file goes: `smoke` for smoke files, and the file name when it differs from `name`. |
 
 YAML reads unquoted `on`, `off`, `yes` and `no` as true and false. Quote them when they are option names (`'on'`).
