@@ -2,13 +2,13 @@ kind: balanced-incident-harvest
 name: suite2-v1-harvest
 folder: scenario-experiments
 issue: 184
-question: 'Freeze Suite 2: 999 new saved death/recovery starts, 111 per class, on
-  current borg-reborn-rs defaults.'
+question: 'Freeze Suite 2: 999 new saved death/recovery starts, 111 per class, using
+  Suite 1''s reborn preparation controller on the capture-enabled new source HEAD.'
 cemetery:
   repository: diegoami/borg-cemetery
-  commit: 0bd7db7aec151830e08e9ffcc57f6fca140d3bb3
+  commit: bfbfff217beafcf034f3cdbccdf2952bde0780ac
   spec: synthetic/suite2-v1/harvest-spec.json
-  spec_sha256: efa8033d59517657b7ab466af3226edbeb00c46e612bcf2e1136d8f797c14279
+  spec_sha256: 953839ae602ffe3071903d06fbf5fd73dfd3a3e0bd0421a61c1865979dea7f85
 preparation_source:
   repository: diegoami/borg-reborn-rs
   commit: ba26c2abc378302c7d37d4337775d3bd5fe5ad30
@@ -33,11 +33,14 @@ owner_authorization: 'Owner requests #184 and explicitly authorizes capture supp
   exact clean candidate source pin, stock settings, a successful all-class smoke and
   bounded native restarts before the full 999-case harvest; no source PR merge or
   review acceptance is implied.'
-prespecified: Current shipped borg-rs controller/settings, seeds 2000000 + class*10000
-  + ordinal; separate smoke seeds 3000000 + class*10000 + ordinal. No level gate,
-  capture from level 1. Preserve all deaths, failures and rejected candidates. Exclude
-  Suite 1 save hashes and source seeds. Exactly 111 unique starts per class, incident
-  within 2000 engine turns from at/before observable onset. Actual HP loss to <=25%,
-  recovery >=50%, not proven counterfactual lethality. Do not freeze an incomplete
-  bank.
+prespecified: Preparation uses reborn controller and its default profile at source
+  ba26c2ab, matching Suite 1 collection mode; this is an explicit controller override,
+  not the stock borg-rs controller. The new bank can subsequently be run with separately
+  pinned stock borg-rs. Full seeds 2000000 + class*10000 + ordinal; separate smoke
+  seeds 3000000 + class*10000 + ordinal. No level gate; all natural deaths and rejected
+  candidates retained. Exclude Suite 1 save hashes/source seeds. Exactly 111 unique
+  saves per class. Start at/before first observable relevant threat, incident within
+  2000 engine turns. Critical recovery requires actual HP loss to <=25%, followed
+  by recovery >=50%; no counterfactual lethality claim. Native restart smoke retains
+  2000-turn/5-second bounds. Do not freeze an incomplete bank.
 suite_id: suite2-v1

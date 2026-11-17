@@ -175,3 +175,14 @@ The new preparation snapshot uses this candidate and its stock settings,
 with separate smoke seeds starting at 3,000,000. The failed preparation remains
 preserved; Suite 2 becomes runnable only after the requested bank is actually
 harvested, validated and frozen.
+
+
+After the capture-enabled stock-controller smoke (44129811981) produced two
+qualified starts in eight classes but zero Blackguard starts in 32 lives,
+preparation selects Suite 1's **reborn** collection controller on the same new
+source HEAD, with its default parameter profile. This explicit preparation
+controller override is frozen in the Cemetery manifest and native receipts;
+it is not presented as the stock borg-rs configuration. Later suite runs select
+their own Borg/controller/settings on the identical saved starts. Natural-life
+bounds, equal quotas, true death/recovery definitions and 2,000-turn restart
+bounds are preserved, and another all-class smoke must pass before collection.
