@@ -650,3 +650,28 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
     - no `config_error`; one binary; every loaded plan matched its pin.
   - Ambitious-town fell from 23 deaths to 17.
   - Descriptive only, at 10 starts per class. Medium waits for the owner.
+
+## Correction: purchase bursts were counted as stalls (borg-zoo#205, 2026-11-17)
+
+Until #205 the frozen-turn check called any game turn with 1,000+ keys a
+stall, and named borg-rs#90 and borg-reborn-rs#421 (fixed by #428) whatever
+the cause. A Ranger buying a stack of ammunition one copy per transaction
+also passes 1,000 keys: shop transactions take no game time. The check now
+reads the state log at the burst turn. When gold falls at least once per 25
+keys, the burst is shopping: it is flagged `purchase_burst` and the outcome
+is kept. Only a burst with no purchases is a stall.
+
+These published cells are `stalled` on the results branch, which is
+append-only, but were purchase bursts. Each was replayed with the fix and
+its keys were identical to CI:
+
+| Run | Experiment | Cell | Burst | Actual outcome |
+| --- | --- | --- | --- | --- |
+| 44117547473 | reborn-pb-class-pilot (#198) | pb1, Dwarf Ranger 807773433 | 1,085 keys, 120 purchases, turn 86,658 | turn_cap |
+| 44117547473 | reborn-pb-class-pilot (#198) | pb3, Half-Troll Ranger 60792140 | 1,083 keys, 120 purchases, turn 92,602 | turn_cap |
+| 44117547473 | reborn-pb-class-pilot (#198) | pb4, Half-Troll Ranger 60792140 | 1,083 keys, 120 purchases, turn 92,602 | turn_cap |
+| 44072424588 | reborn-main-defaults-medium (#181) | Dwarf Ranger 745617169 | 1,084 keys, 120 purchases, turn 60,106 | turn_cap |
+| 44055270651 | reborn-unknown-stacks-small (#170) | unknown3, Half-Orc Ranger 1071405808 | 1,085 keys, turn 75,918 | very likely turn_cap; not replayed (specimen 193d9076 not rebuilt) |
+
+The borg-reborn-rs side, buying a planned purchase's copies in one
+transaction, is borg-reborn-rs#507 (PR #509).
