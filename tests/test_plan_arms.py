@@ -37,7 +37,7 @@ class PlanArmsTest(unittest.TestCase):
             (root / 'plans/errands_plan.txt').write_bytes(PLAN)
 
     def run_with(self, cat, profile, rc=0, summary=None, env=None, strip_plans=False,
-                 loaded='core', keys_text='1 k 0 0\n'):
+                 loaded='core', keys_text='1 k 0 0\n', state_text=None):
         """loaded: 'core' copies the plan as the core does, else the bytes to
         write as the output directory's loaded-plan copy (None: no copy)."""
         cell = cell_for(cat, profile)
@@ -56,6 +56,8 @@ class PlanArmsTest(unittest.TestCase):
                 plan = out / 'user/errands_plan.txt'
                 seen['plan'] = plan.read_bytes() if plan.exists() else None
                 (out / 'keys.log').write_text(keys_text)
+                if state_text is not None:
+                    (out / 'state.log').write_text(state_text)
                 copy = (seen['plan'] if loaded == 'core' else loaded) if summary is not None else None
                 if copy is not None:
                     (out / borgrs.LOADED_PLAN).write_bytes(copy)
@@ -138,10 +140,51 @@ class PlanArmsTest(unittest.TestCase):
                                   summary={'stop_reason': 'turns', 'dead': False})
         self.assertEqual(record['outcome'], 'stalled')
         self.assertEqual(record['observed_outcome'], 'turn_cap')
-        self.assertIn('borg-rs#90', record['error'])
+        self.assertIn('no state log to rule out shopping', record['error'])
+        self.assertNotIn('#421', record['error'])
         self.assertEqual(record['stall']['kind'], 'frozen_turn_loop')
-        self.assertEqual(record['frozen_turn_loop'], {'turn': 52639, 'max_keys': borgrs.LOOP_KEYS,
-                                                      'bursts': 1, 'burst_keys': borgrs.LOOP_KEYS})
+        self.assertEqual(record['frozen_turn_loop'], {
+            'turn': 52639, 'max_keys': borgrs.LOOP_KEYS, 'bursts': 1, 'burst_keys': borgrs.LOOP_KEYS,
+            'burst_turns': [[52639, borgrs.LOOP_KEYS]], 'loop_turns': [[52639, borgrs.LOOP_KEYS]],
+            'purchase_turns': []})
+
+    @staticmethod
+    def state(turn, golds):
+        return ''.join(f'{turn} 10,10 d0/1 hp20/20 sp0/0 f5000 au{g} xp10 lv2 t- o0:0 p{i:x} e0 r0\n'
+                       for i, g in enumerate(golds))
+
+    def test_a_purchase_burst_is_flagged_not_a_stall(self):
+        # borg-zoo#205: 120 Arrows bought one per ~9 keys at one game turn (#198, Ranger 60792140).
+        n = 1083
+        burst = ''.join(f'92602 k {i:x} 0\n' for i in range(n))
+        golds = [278 - min(i // 9, 120) for i in range(n)]
+        record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-plan-shop', keys_text=burst,
+                                  state_text=self.state(92602, golds),
+                                  summary={'stop_reason': 'turns', 'dead': False})
+        self.assertEqual(record['outcome'], 'turn_cap')
+        self.assertIsNone(record['observed_outcome'])
+        self.assertEqual(record['frozen_turn_loop']['bursts'], 0)
+        self.assertEqual(record['purchase_burst'], {'turns': [[92602, n, 120]], 'keys': n, 'purchases': 120})
+
+    def test_a_burst_with_gold_unchanged_is_a_loop(self):
+        # borg-rs#90's oil store/take cycle: nothing bought, gold unchanged.
+        n = borgrs.LOOP_KEYS + 5
+        burst = ''.join(f'52639 k {i:x} 0\n' for i in range(n))
+        record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-plan-shop', keys_text=burst,
+                                  state_text=self.state(52639, [300] * n),
+                                  summary={'stop_reason': 'turns', 'dead': False})
+        self.assertEqual(record['outcome'], 'stalled')
+        self.assertIn('gold unchanged', record['error'])
+        self.assertNotIn('purchase_burst', record)
+
+    def test_a_few_purchases_in_a_long_burst_are_still_a_loop(self):
+        n = 2000  # 10 gold drops in 2,000 keys: one per 200 keys, not shopping
+        burst = ''.join(f'60000 k {i:x} 0\n' for i in range(n))
+        golds = [500 - (i // 200) for i in range(n)]
+        record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-plan-shop', keys_text=burst,
+                                  state_text=self.state(60000, golds),
+                                  summary={'stop_reason': 'turns', 'dead': False})
+        self.assertEqual(record['outcome'], 'stalled')
 
     def test_loop_checks_without_plans(self):
         burst = ''.join(f'52639 k {i:x} 0\n' for i in range(borgrs.LOOP_KEYS))
