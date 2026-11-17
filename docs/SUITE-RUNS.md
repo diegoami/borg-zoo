@@ -102,8 +102,10 @@ Suite 2 is tracked by #184. Its preparation definition is
 `synthetic/suite2-v1/harvest-spec.json` freezes the source, controller,
 configuration hashes, full and smoke seed allocations, checkpoint cadence,
 incident definition, time limits, and Suite 1 exclusion inventory **before** play.
-It uses borg-reborn-rs `50ae902a68a8732d56a6e1adf47deca4a9db7d7f`, the HEAD
-resolved for the owner's request, with its own shipped borg-rs defaults.
+The first failed smoke used `50ae902a`; the capture-enabled continuation uses
+exact candidate `ba26c2abc378302c7d37d4337775d3bd5fe5ad30` from source PR #508,
+based on main `28360152`, with its own shipped borg-rs defaults. Source PR merge
+still waits for owner review completion.
 
 The supported preparation dispatch is separate from a suite execution:
 
@@ -143,7 +145,7 @@ to select it, pinning the tested Borg/settings separately as described above.
 Differences between separate banks are coverage differences, never paired
 rescues or newly killed cases.
 
-### Suite 2 capture blocker
+### Initial Suite 2 capture blocker and continuation
 
 The first preparation smoke, [44121110906](https://github.com/diegoami/borg-zoo/actions/runs/44121110906),
 built and played the pinned HEAD, but its completed attempts emitted no
@@ -162,3 +164,14 @@ then preparation must be pinned again and its all-class smoke must pass.
 The source preflight now rejects this known unsupported interface before
 scheduling more natural lives. The original failed evidence remains retained
 in Cemetery; no Suite 1 input or historical report is replaced.
+
+
+The owner subsequently authorized capture support in borg-reborn-rs and the
+continued harvest. [Source PR #508](https://github.com/diegoami/borg-reborn-rs/pull/508)
+adds optional core-independent native capture. Its clean candidate
+`ba26c2abc378302c7d37d4337775d3bd5fe5ad30` passes native logging-on/off stream/RNG
+identity checks, compact/full channel checks and exact saved-start capture.
+The new preparation snapshot uses this candidate and its stock settings,
+with separate smoke seeds starting at 3,000,000. The failed preparation remains
+preserved; Suite 2 becomes runnable only after the requested bank is actually
+harvested, validated and frozen.

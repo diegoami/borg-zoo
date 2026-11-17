@@ -23,11 +23,11 @@ class SavedSuitesTest(unittest.TestCase):
                 self.assertEqual((out/'suites'/entry['id']/'suite.json').read_bytes(),
                                  (ROOT/'scenario-suites'/entry['id']/'suite.json').read_bytes())
 
-    def test_blocked_preparation_is_visible_but_not_registered(self):
+    def test_preparation_is_visible_but_not_registered_before_freeze(self):
         ids={entry['id'] for entry in saved_suites.catalogue_entries(ROOT)}
         self.assertNotIn('suite2-v1',ids)
         with tempfile.TemporaryDirectory() as temp:
             listing=saved_suites.build_site(Path(temp),ROOT)
             self.assertIn('Suite 2',listing)
-            self.assertIn('Preparation blocked; not runnable',listing)
+            self.assertIn('Preparation in progress; not frozen',listing)
             self.assertIn('0 / 999',listing)

@@ -82,6 +82,7 @@ def prepare_execution(definition_path, bank, source, output, archive):
     manifest=bank/definition['bank_manifest']
     bank_info,shards=prepare_bank(manifest,bank)
     cases=[]
+    bank_core=native.read(shards[0][0])['core']
     for path,_ in shards:
         leaf=native.read(path)
         for entry in leaf['scenarios']:
@@ -107,7 +108,7 @@ def prepare_execution(definition_path, bank, source, output, archive):
         refs=[]
         for offset in range(0,len(group),8):
             path=manifest.parent/'execution'/name/f'{offset//8}.json'
-            body=dict(schema='borg-cemetery/saved-encounter-suite@1',suite_id=name+f'-{offset//8}',core='reborn',baseline_source_commit=definition['source']['commit'],
+            body=dict(schema='borg-cemetery/saved-encounter-suite@1',suite_id=name+f'-{offset//8}',core=bank_core,baseline_source_commit=definition['source']['commit'],
                       **plan['manifest'],scenarios=[dict(id=c['id'],scenario=c['scenario_path'],sha256=c['scenario_sha256']) for c in group[offset:offset+8]])
             native.write(path,body);refs.append(dict(manifest=path.relative_to(bank).as_posix(),sha256=native.sha(path)))
             for c in group[offset:offset+8]:c['native_relative']=f'shard-{offset//8+1}/'+c['id']

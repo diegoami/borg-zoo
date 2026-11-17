@@ -47,7 +47,8 @@ def build_site(out, root=None):
         prep=json.loads(path.read_text());esc=html.escape
         if prep.get('schema')!='borg-zoo/saved-suite-preparation@1' or prep['id']!=path.parent.name:
             raise ValueError('invalid suite preparation identity')
-        rows.append([f'<a href="{esc(prep["run_url"],quote=True)}">{esc(prep["name"])}</a><br><code>{esc(prep["id"])}</code><br><span class="muted">Preparation blocked; not runnable</span>',
+        status='Preparation blocked; not runnable' if prep['status'].startswith('blocked') else 'Preparation in progress; not frozen'
+        rows.append([f'<a href="{esc(prep["run_url"],quote=True)}">{esc(prep["name"])}</a><br><code>{esc(prep["id"])}</code><br><span class="muted">{status}</span>',
                      f'{prep["usable_cases"]} / {prep["expected_cases"]}',f'Target: {prep["per_class"]} per class',
                      'Not frozen'])
     return ('<h2>Saved encounter suites</h2>'

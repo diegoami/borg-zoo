@@ -6,13 +6,13 @@
   "question": "Freeze Suite 2: 999 new saved death/recovery starts, 111 per class, on current borg-reborn-rs defaults.",
   "cemetery": {
     "repository": "diegoami/borg-cemetery",
-    "commit": "dce7520ff35d04cb9149832d05f8bdad4712350f",
+    "commit": "0bd7db7aec151830e08e9ffcc57f6fca140d3bb3",
     "spec": "synthetic/suite2-v1/harvest-spec.json",
-    "spec_sha256": "4066a99087a427984a20f409bd91e7d39d0ac6cdfc8ebb1d31e7a8c0ba125c18"
+    "spec_sha256": "efa8033d59517657b7ab466af3226edbeb00c46e612bcf2e1136d8f797c14279"
   },
   "preparation_source": {
     "repository": "diegoami/borg-reborn-rs",
-    "commit": "50ae902a68a8732d56a6e1adf47deca4a9db7d7f"
+    "commit": "ba26c2abc378302c7d37d4337775d3bd5fe5ad30"
   },
   "native_tools": {
     "repository": "diegoami/borg-cemetery",
@@ -32,13 +32,13 @@
   ],
   "per_class": 111,
   "parallel_jobs": 9,
-  "owner_authorization": "Owner requests issue 184 and a new suite harvested on latest borg-reborn-rs HEAD, 2026-11-17. First inspect an all-class smoke before the requested full bank harvest.",
-  "prespecified": "Current shipped borg-rs controller/settings, seeds 2000000 + class*10000 + ordinal; separate smoke seeds 1900000 + class*10000 + ordinal. No level gate, capture from level 1. Preserve all deaths, failures and rejected candidates. Exclude Suite 1 save hashes and source seeds. Exactly 111 unique starts per class, incident within 2000 engine turns from at/before observable onset. Actual HP loss to <=25%, recovery >=50%, not proven counterfactual lethality. Do not freeze an incomplete bank.",
+  "owner_authorization": "Owner requests #184 and explicitly authorizes capture support in borg-reborn-rs and continuation of the new-suite harvest, 2026-11-17. Use the exact clean candidate source pin, stock settings, a successful all-class smoke and bounded native restarts before the full 999-case harvest; no source PR merge or review acceptance is implied.",
+  "prespecified": "Current shipped borg-rs controller/settings, seeds 2000000 + class*10000 + ordinal; separate smoke seeds 3000000 + class*10000 + ordinal. No level gate, capture from level 1. Preserve all deaths, failures and rejected candidates. Exclude Suite 1 save hashes and source seeds. Exactly 111 unique starts per class, incident within 2000 engine turns from at/before observable onset. Actual HP loss to <=25%, recovery >=50%, not proven counterfactual lethality. Do not freeze an incomplete bank.",
   "suite_id": "suite2-v1",
   "schema": "borg-zoo/balanced-incident-harvest@1",
   "definition": "definitions/suite2-v1-harvest.yaml",
   "baseline": {
     "repository": "diegoami/borg-reborn-rs",
-    "commit": "50ae902a68a8732d56a6e1adf47deca4a9db7d7f"
+    "commit": "ba26c2abc378302c7d37d4337775d3bd5fe5ad30"
   }
 }
