@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-rule4-1800",
+  "issue": 227,
+  "definition": "definitions/reborn-scary-rule4-1800.yaml",
+  "question": "On main, how does play change with no scary-monster rule, with C's named list, or with the damage rule at 40% or 60%?",
+  "description": "On main, how does play change with no scary-monster rule, with C's named list, or with the damage rule at 40% or 60%? Generated from definitions/reborn-scary-rule4-1800.yaml: 4 arms on 4.2.6-reborn-rust-main-a8ac685a, suite classes-1800.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#227). classes-1800, all 1,800 starts, four arms: ctl (no\nscary rule), named (C's compiled list), damage40, damage60 (shipped). Gate: no config_error; one binary; both\nsettings written in every arm; every cell ends in death, turn_cap or borg_stopped; stalls, purchase bursts and key\noutliers listed. Endpoints, per arm and per class: death share; deaths at CL1-3; mean max level; mean max depth;\nreached DL5. Each of named, damage40 and damage60 is paired against ctl on the same start (rescued, newly killed,\nexact McNemar); damage40 is also paired against damage60. Descriptive only: one development suite.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-a8ac685a"
+  ],
+  "profiles": [
+    "reborn-scary-ctl",
+    "reborn-scary-named",
+    "reborn-scary-damage40",
+    "reborn-scary-damage60"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-reborn-rust-main-a8ac685a",
+  "control_profile": "reborn-scary-ctl",
+  "owner_authorization": "2026-11-17: the owner asked for the full tier of the four scary-rule arms, and chose all 1,800 starts of classes-1800 (7,200 games) over the 900-start full slice, after the three-arm pilot (run 44178676657) and the four-arm pilot."
+}
