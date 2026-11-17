@@ -1,0 +1,21 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-main-defaults-medium",
+  "issue": 181,
+  "definition": "definitions/reborn-main-defaults-medium.yaml",
+  "question": "What does borg-reborn-rs main (fdaf18e5) play with its shipped default settings?",
+  "description": "What does borg-reborn-rs main (fdaf18e5) play with its shipped default settings? Generated from definitions/reborn-main-defaults-medium.yaml: 1 arms on 4.2.6-reborn-rust-main-fdaf18e5, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#181). Medium tier (RULES 14: starts 91-360,\n30 per class); the owner skipped small, whose starts 1-90 stay unplayed for this specimen and may be\nadded later. Gate: no config_error; one binary; the written borg.txt carries the shipped settings\nand no borg_plan; every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key\noutliers are listed. Descriptive: deaths per class (share and causes), final level, deepest level,\nreached DL5, keys. Compared, outcomes only, with the control arm reborn-bundle-none-speed30 of\nreborn-unknown-stacks-medium (run 44065025814: the same starts and settings on 193d9076, before #473\nand #480): deaths and depth per class, and the paired outcome on each start. Play differs from the\nfirst turns, so a paired difference is between builds, not explained by one setting.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-fdaf18e5"
+  ],
+  "profiles": [
+    "reborn-shipped-defaults"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-fdaf18e5",
+  "control_profile": "reborn-shipped-defaults",
+  "owner_authorization": "2026-11-17: after the pilot reborn-main-defaults-pilot passed its gate (run 44071581589: 3/18 deaths, no unknown-item use), the owner asked for the medium tier next, skipping small (borg-zoo#181)."
+}
