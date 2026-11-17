@@ -238,6 +238,10 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 - **Primary endpoint (reach DL5 by 100,000 turns):** 0/1,800 for A and for B, 6.9% (124/1,800) for the control. B - control = -6.9 points (95% -8.1 to -5.7): not non-inferior at 5 points, non-inferior overall at 10 (the margin stored with the run); Warrior, Rogue and Ranger fail both.
 - **#183:** B dies in 503 of 1,800 games against 245 for A (McNemar p < 0.0001), mostly Mage, Necromancer, Druid, Ranger and Priest, at level 2 on DL1 (median turn 10,807). The caveat is that both arms play almost entirely on DL1; the guard's effect on a Borg that dives was not measured.
 
+**#181, borg-reborn-rs main fdaf18e5 with its shipped defaults (pilot, run 44071581589, 18 games): 3 deaths, no unknown-item use.** Specimen `4.2.6-reborn-rust-main-fdaf18e5` (main at #480's merge, with #473; binary 3d0d6d93, source hash 258ccc77), one arm `reborn-shipped-defaults` with no settings: the shipped borg.txt sets the speed30 bundle, no plan. Gate passed: no config_error, one binary, the 18 `borg_param_*` lines and the trip settings in the written borg.txt with no `borg_plan`, no stalls, every cell death or turn_cap. The four sanity starts of the request match their local play hashes. Replayed (18/18 hashes match): no `unknown` quaff/read/eat notes and no Deep Descent read. There are 31 trip returns and 210 `no up stairs found, going down` notes (82 in Rogue 1502695781).
+- **Outcomes:** 3/18 deaths (Blackguard 888896726 to a crow on DL2, Druid 102023799 to a rock lizard, Necromancer 300036923 to a wild cat), mean deepest DL 2.06, mean max level 4.61. The control of run 44054277431 on 193d9076 had 3/18, 2.22 and 4.94, but those are different games from the first turns, so this compares outcomes only.
+- **Death report:** [reports/reborn-main-defaults-pilot-deaths/README.md](../reports/reborn-main-defaults-pilot-deaths/README.md). The cornered Borgs fought in melee with oil, a sling or spell points unused.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
