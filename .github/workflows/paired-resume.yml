@@ -131,3 +131,44 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with: {name: paired-cells-cumulative, path: cells/, retention-days: 90}
+  archive:
+    if: always() && needs.prepare.result == 'success' && needs.collect.result != 'skipped'
+    needs: [request,prepare,collect]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: 837c6a11f0681ee6ea0b79a6909ac79b078e7e10, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: paired-tier-comparison, path: comparison}
+      - name: Produce the saved-state dashboard snapshot from validated native cells
+        env: {STAGE: '${{ needs.request.outputs.stage }}', PARENT: '${{ needs.request.outputs.parent }}'}
+        run: >-
+          python3 -m zoo.saved_incidents --input comparison/comparison.json --out compact
+          --tier "$STAGE" --parent-run "$PARENT"
+          --evidence-url https://github.com/diegoami/borg-cemetery/tree/evidence/paired-smoke-validation/validation/borg-zoo/balanced999
+          --howto-url https://github.com/diegoami/borg-cemetery/blob/evidence/paired-smoke-validation/docs/RUN-A-SCENARIO.md
+      - name: Append the comparison without changing natural results or main
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          gh auth setup-git
+          bash tools/archive-saved-incidents.sh "https://github.com/$GITHUB_REPOSITORY.git" compact balanced999-baseline-vs-speed30 "$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" archived
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: saved-incident-dashboard-snapshot, path: compact/, retention-days: 90}
+  preview:
+    if: always() && needs.archive.result == 'success'
+    needs: archive
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: 837c6a11f0681ee6ea0b79a6909ac79b078e7e10, persist-credentials: false}
+      - run: |
+          git fetch --depth=1 origin results
+          git worktree add results-branch FETCH_HEAD
+          python3 -m zoo site --results results-branch/results --out preview
+          test -f "preview/scenarios/saved/balanced999-baseline-vs-speed30/$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT/index.html"
+      - uses: actions/upload-artifact@v4
+        with: {name: saved-incident-dashboard-preview, path: preview/, retention-days: 90}
