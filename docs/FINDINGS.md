@@ -689,5 +689,33 @@ its keys were identical to CI:
 | 44072424588 | reborn-main-defaults-medium (#181) | Dwarf Ranger 745617169 | 1,084 keys, 120 purchases, turn 60,106 | turn_cap |
 | 44055270651 | reborn-unknown-stacks-small (#170) | unknown3, Half-Orc Ranger 1071405808 | 1,085 keys, 120 purchases, turn 75,918, gold 167 → 42 (replayed, keys identical to CI) | turn_cap |
 
+These cells of reborn-heal-curve-medium (run 44131024789, dispatched before
+#207 merged) are purchase bursts too, replayed with the fix, keys identical
+to CI, all reaching the turn cap: r0-c100 Ranger 801109004 (1,094 keys, 121
+purchases), r0-c200 Ranger 154156985 (1,094, 121), r200-c50 Ranger 810310797
+(1,085, 120), r200-c100 Ranger 1024472395 (1,004, 111), r200-c200 Ranger
+956258985 (1,094, 121), r400-c50 Ranger 810310797 (1,049, 116), r400-c200
+Rangers 1222599014 (1,093, 121) and 1256116424 (1,121, 124).
+
 The borg-reborn-rs side, buying a planned purchase's copies in one
 transaction, is borg-reborn-rs#507 (PR #509).
+
+## Town planner healing curve scale × reserve, speed 66 (borg-zoo#192, 2026-11-17)
+
+borg-reborn-rs e0aa2e0a (shipped defaults, no plan), healing speed 66, reserve
+0/200/400 × curve scale 50/100/200; pilot (run 44125061301), then small and
+medium together (runs 44131018812, 44131024789): starts 1-360, 3,240 games,
+no config_error, 284 deaths, all reproduced in the cemetery. The c100 arms
+replay the speed-66 small tier's keys on all 270 shared games.
+
+| reserve \ curve | 50 | 100 | 200 |
+|---|---|---|---|
+| 0 | 28 | 36 (control) | 31 |
+| 200 | 32 | 35 | 31 |
+| 400 | 28 | 38 (shipped) | 25 |
+
+Deaths of 360. The shipped r400-c100 has the most deaths; curve 100 is the
+worst curve at every reserve. Best: r400-c200, against r400-c100 +29 rescued
+/ -16 newly killed, exact McNemar p = 0.07; nothing reaches p < 0.05 over 16
+comparisons. Mean level and depth are flat across arms. A lead for a
+prespecified confirmation (RULES 8), not a result.
