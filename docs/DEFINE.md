@@ -30,6 +30,8 @@ specimen:                        # a new specimen, or the name of an existing on
   plans:                         # plan files the specimen ships, pinned by sha256
     errands_plan.txt: 084bc3e8...
     errands_plan_ambitious.txt: c3018585...
+  # scary_lists:                 # named scary-monster lists (harness/NAME, borg-zoo#228), pinned by sha256;
+  #   scary_monsters.txt: c366aae8...   # a profile picks one with borg_scary_list: NAME
 
 settings:                        # in every arm
   borg_reborn_core: borg-rs

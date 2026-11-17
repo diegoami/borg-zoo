@@ -283,6 +283,14 @@ def experiment(path, cat=None):
             if plan not in (specimens[name].get('plans') or {}):
                 raise ValueError(f'{prof}: borg_plan {plan!r} is not a plan specimen {name} pins '
                                  '("plans": {name: sha256}, borg-zoo#123)')
+    for prof in sorted({p for name in exp['profiles'] for p in profile_parts(cat, name)}):
+        scary = cat['profiles'][prof].get('settings', {}).get('borg_scary_list')
+        if scary is None:
+            continue
+        for name in exp['specimens']:
+            if scary not in (specimens[name].get('scary_lists') or {}):
+                raise ValueError(f'{prof}: borg_scary_list {scary!r} is not a list specimen {name} pins '
+                                 '("scary_lists": {name: sha256}, borg-zoo#228)')
     words = sorted({n for p in (q for name in exp['profiles'] for q in profile_parts(cat, name))
                     for n, v in cat['profiles'][p].get('settings', {}).items() if isinstance(v, str)})
     if words:
