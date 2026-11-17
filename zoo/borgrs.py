@@ -280,6 +280,25 @@ def ship_scary_list(spec, manifest, build_dir, out, name, lines=None):
     return hashlib.sha256(data).hexdigest()
 
 
+SCARY_NONE = 'none'
+SCARY_LINE = re.compile(r'^[ \t]*borg_scary_list[ \t]*=[ \t]*(\S*)[ \t]*$', re.M)
+
+
+def scary_name(profile, borg_txt):
+    """(the scary list a cell reads, where it came from): the profile's
+    borg_scary_list, else the written borg.txt's own line (a specimen that
+    ships the list on, borg-zoo#228); (None, None) for the compiled C list,
+    which an arm asks for with borg_scary_list: none."""
+    name = profile['settings'].get('borg_scary_list')
+    source = 'profile'
+    if name is None:
+        m = SCARY_LINE.findall(borg_txt)
+        name, source = (m[-1] if m else None), 'shipped borg.txt'
+    if not name or name == SCARY_NONE:
+        return None, None
+    return name, source
+
+
 def scary_lines(profile):
     """An arm's scary list lines, checked: strings, one line each."""
     lines = profile['settings'].get('borg_scary_list_lines')
@@ -321,6 +340,10 @@ def build(spec, source, out):
         shutil.rmtree(out / 'game')
     shutil.copytree(game, out / 'game', symlinks=False)
     shutil.copy(source / 'harness/borg.txt', out / 'borg.txt')
+    shipped = SCARY_LINE.findall((out / 'borg.txt').read_text())
+    if shipped and shipped[-1] not in ('', SCARY_NONE) and shipped[-1] not in (spec.get('scary_lists') or {}):
+        raise ValueError(f"harness/borg.txt at {spec['ref']} sets borg_scary_list = {shipped[-1]}, which the specimen "
+                         'does not pin ("scary_lists": {name: sha256}, borg-zoo#228)')
     if (out / 'plans').exists():
         shutil.rmtree(out / 'plans')
     plans = copy_plans(spec, source, out)
@@ -421,8 +444,10 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     mismatch = check_config(text, profile)
     plan = profile['settings'].get('borg_plan')
     plan_sha = ship_plan(spec, manifest, build_dir, out, plan) if plan is not None else None
-    scary = profile['settings'].get('borg_scary_list')
+    scary, scary_source = scary_name(profile, text)
     lines = scary_lines(profile)
+    if lines and scary is None:
+        raise ValueError('borg_scary_list_lines with no scary list (the compiled C list takes no lines)')
     scary_sha = ship_scary_list(spec, manifest, build_dir, out, scary, lines) if scary is not None else None
     game = build_dir / 'game'
     argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=keep)
@@ -536,7 +561,8 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'profile_sha256': cat_mod.profile_sha256(profile),
         'config_sha256': hashlib.sha256(text.encode()).hexdigest(),
         'plan': {'name': plan, 'sha256': plan_sha, 'loaded_sha256': loaded_sha} if plan is not None else None,
-        'scary_list': ({'name': scary, 'base_sha256': (spec.get('scary_lists') or {}).get(scary),
+        'scary_list': ({'name': scary, 'source': scary_source,
+                        'base_sha256': (spec.get('scary_lists') or {}).get(scary),
                         'lines': lines or [], 'sha256': scary_sha} if scary is not None else None),
         'cap': suite['cap'], 'birth': suite['birth'],
         'boundary': 'exact' if spec.get('exact_turns') else 'after-key',

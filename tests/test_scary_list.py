@@ -28,16 +28,16 @@ def cell():
 
 
 class ScaryListTest(unittest.TestCase):
-    def build(self, root, spec):
+    def build(self, root, spec, shipped=''):
         (root / 'build.json').write_text(json.dumps({
             'source_commit': spec['ref'], 'impl': spec['impl'], 'binary_sha256': 'bin',
             'build_id': {'git_rev': spec['ref'], 'source_sha256': 'src'},
             'scary_lists': {'scary_monsters.txt': LIST_SHA}}))
-        (root / 'borg.txt').write_text('borg_reborn_core = reborn\nborg_cheat_death = FALSE\n')
+        (root / 'borg.txt').write_text('borg_reborn_core = reborn\nborg_cheat_death = FALSE\n' + shipped)
         (root / 'scary_lists').mkdir()
         (root / 'scary_lists/scary_monsters.txt').write_bytes(LIST)
 
-    def play(self, cat, dead=False):
+    def play(self, cat, dead=False, shipped=''):
         c = cell()
         spec = cat['specimens']['specimens'][SPECIMEN]
         race, cls = catalogue.character(cat['suites']['classes-18'], c['seed'])
@@ -55,7 +55,7 @@ class ScaryListTest(unittest.TestCase):
             return type('Result', (), {'returncode': 0})()
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            self.build(root, spec)
+            self.build(root, spec, shipped)
             with patch('zoo.borgrs.subprocess.run', side_effect=run), patch('zoo.deaths.subprocess.run', side_effect=run):
                 record = borgrs.run_cell(c, root, root / 'work', cat)
                 entry, files = None, {}
@@ -69,8 +69,8 @@ class ScaryListTest(unittest.TestCase):
         record, seen, _, _ = self.play(fixture_catalogue())
         self.assertEqual(seen[0]['list'], LIST)
         self.assertIn('\nborg_scary_list = scary_monsters.txt\n', '\n' + seen[0]['borg.txt'])
-        self.assertEqual(record['scary_list'], {'name': 'scary_monsters.txt', 'base_sha256': LIST_SHA,
-                                                'lines': [], 'sha256': LIST_SHA})
+        self.assertEqual(record['scary_list'], {'name': 'scary_monsters.txt', 'source': 'profile',
+                                                'base_sha256': LIST_SHA, 'lines': [], 'sha256': LIST_SHA})
         self.assertEqual(record['outcome'], 'turn_cap')
 
     def test_a_cell_without_the_setting_gets_no_list(self):
@@ -99,8 +99,9 @@ class ScaryListTest(unittest.TestCase):
         self.assertEqual(seen[0]['list'], written)
         self.assertNotIn('borg_scary_list_lines', seen[0]['borg.txt'])
         self.assertIn('\nborg_scary_list = scary_monsters.txt\n', '\n' + seen[0]['borg.txt'])
-        self.assertEqual(record['scary_list'], {'name': 'scary_monsters.txt', 'base_sha256': LIST_SHA,
-                                                'lines': self.LINES, 'sha256': hashlib.sha256(written).hexdigest()})
+        self.assertEqual(record['scary_list'], {'name': 'scary_monsters.txt', 'source': 'profile',
+                                                'base_sha256': LIST_SHA, 'lines': self.LINES,
+                                                'sha256': hashlib.sha256(written).hexdigest()})
         self.assertIsNone(record['config_error'])
 
     def test_a_death_bundle_keeps_the_file_with_the_lines(self):
@@ -114,11 +115,60 @@ class ScaryListTest(unittest.TestCase):
         self.assertIn(f'scary_list_sha256={hashlib.sha256(written).hexdigest()}', config)
         self.assertNotIn('borg_scary_list_lines', config)  # the rerun reads the kept file, not the lines
 
+    SHIPPED = 'borg_scary_list = scary_monsters.txt\n'
+
+    def test_a_shipped_list_reaches_an_arm_that_names_none(self):
+        # #228 follow-up: borg-reborn-rs ships borg_scary_list in harness/borg.txt.
+        cat = fixture_catalogue()
+        cat['profiles'][PROFILE]['settings'].pop('borg_scary_list')
+        record, seen, _, _ = self.play(cat, shipped=self.SHIPPED)
+        self.assertEqual(seen[0]['list'], LIST)
+        self.assertEqual(record['scary_list']['source'], 'shipped borg.txt')
+        self.assertEqual(record['scary_list']['sha256'], LIST_SHA)
+        self.assertEqual(record['outcome'], 'turn_cap')
+
+    def test_a_shipped_list_takes_the_arms_lines(self):
+        cat = fixture_catalogue()
+        cat['profiles'][PROFILE]['settings'].pop('borg_scary_list')
+        cat['profiles'][PROFILE]['settings']['borg_scary_list_lines'] = ['crow | 0-4']
+        record, seen, _, _ = self.play(cat, shipped=self.SHIPPED)
+        self.assertEqual(seen[0]['list'], LIST + b'crow | 0-4\n')
+        self.assertEqual(record['scary_list']['lines'], ['crow | 0-4'])
+
+    def test_none_returns_to_the_compiled_list(self):
+        cat = fixture_catalogue()
+        cat['profiles'][PROFILE]['settings']['borg_scary_list'] = 'none'
+        record, seen, _, _ = self.play(cat, shipped=self.SHIPPED)
+        self.assertIsNone(seen[0]['list'])
+        self.assertIn('\nborg_scary_list = none\n', '\n' + seen[0]['borg.txt'])
+        self.assertIsNone(record['scary_list'])
+
+    def test_a_death_bundle_records_a_shipped_list(self):
+        cat = fixture_catalogue()
+        cat['profiles'][PROFILE]['settings'].pop('borg_scary_list')
+        _, _, entry, files = self.play(cat, dead=True, shipped=self.SHIPPED)
+        self.assertEqual(entry['status'], 'reproduced')
+        self.assertEqual(files['user/scary_monsters.txt'], LIST)
+        config = dict(l.split('=', 1) for l in files['config.txt'].decode().splitlines())
+        self.assertEqual((config['borg_scary_list'], config['scary_list_sha256']), ('scary_monsters.txt', LIST_SHA))
+
+    def test_a_build_refuses_a_shipped_list_it_does_not_pin(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            src = Path(tmp) / 'src'
+            (src / 'harness').mkdir(parents=True)
+            (src / 'harness/borg.txt').write_text(self.SHIPPED)
+            (src / 'build/rust/game').mkdir(parents=True)
+            spec = {'ref': 'abc', 'impl': 'rust'}
+            with patch('zoo.borgrs.subprocess.check_output', return_value='abc\n'), \
+                    patch('zoo.borgrs.subprocess.run'):
+                with self.assertRaisesRegex(ValueError, 'does not pin'):
+                    borgrs.build(spec, src, Path(tmp) / 'out')
+
     def test_malformed_lines_or_lines_without_a_list_are_refused(self):
         exp = {'name': 'x', 'specimens': [SPECIMEN], 'profiles': [PROFILE], 'suites': ['classes-18'],
                'control': SPECIMEN, 'control_profile': PROFILE}
         for settings, message in (({'borg_scary_list_lines': ['crow 0-4']}, 'must be lines'),
-                                  ({'borg_scary_list': None, 'borg_scary_list_lines': ['crow | 0-4']}, 'needs borg_scary_list')):
+                                  ({'borg_scary_list': 'none', 'borg_scary_list_lines': ['crow | 0-4']}, 'compiled C list')):
             cat = fixture_catalogue()
             cat['profiles'][PROFILE]['settings'].update(settings)
             if cat['profiles'][PROFILE]['settings'].get('borg_scary_list') is None:
