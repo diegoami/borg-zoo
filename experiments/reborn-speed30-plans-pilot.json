@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-speed30-plans-pilot",
+  "issue": 170,
+  "definition": "definitions/reborn-speed30-plans-pilot.yaml",
+  "question": "With speed30 on the bundle, which plan is best - none, errands_plan or errands_plan_ambitious?",
+  "description": "With speed30 on the bundle, which plan is best - none, errands_plan or errands_plan_ambitious? Generated from definitions/reborn-speed30-plans-pilot.yaml: 3 arms on 4.2.6-reborn-rust-speed-fight, suite classes-18.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#170). Pilot only (RULES 14); small and larger\nonly after this gate and the owner. Gate: no config_error; one binary; every bundle setting and\nattack_speed_fight_danger_tenths = 30 written in the borg.txt and params-core.json of all three arms;\nthe loaded plan copy matches its pin in the plan and ambitious arms and is absent from the no-plan\narm; every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key outliers are\nlisted. Report per arm: deaths, final level, deepest level, keys; paired rescued and newly killed for\neach plan arm against the no-plan arm on the same start, and the cells where play diverges. The\nplan arm is the same specimen and profile as reborn-speed-fight-pilot's speed30 arm and may be\ncompared with it as a repeat. 18 starts per arm cannot show which plan is better.",
+  "specimens": [
+    "4.2.6-reborn-rust-speed-fight"
+  ],
+  "profiles": [
+    "reborn-bundle-none-speed30",
+    "reborn-bundle-plan-speed30",
+    "reborn-bundle-ambitious-speed30"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-speed-fight",
+  "control_profile": "reborn-bundle-none-speed30",
+  "owner_authorization": "2026-11-17: the owner asked to take every setting of reborn-bundle-plan-speed30 (borg-zoo#170) and try it with the three plans (none, errands_plan.txt, errands_plan_ambitious.txt), starting from the pilot (RULES 14)."
+}

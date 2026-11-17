@@ -1948,6 +1948,65 @@
         "borg_param_attack_preference_blackguard_spell_permille": 1400,
         "borg_param_attack_speed_fight_danger_tenths": 60
       }
+    },
+    "reborn-bundle-none-speed30": {
+      "description": "borg-zoo#170 (reborn-speed30-plans-pilot.yaml): arm reborn-bundle-none-speed30.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 5,
+        "borg_trip_pack_slack": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400,
+        "borg_param_attack_speed_fight_danger_tenths": 30
+      }
+    },
+    "reborn-bundle-ambitious-speed30": {
+      "description": "borg-zoo#170 (reborn-speed30-plans-pilot.yaml): arm reborn-bundle-ambitious-speed30.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 5,
+        "borg_trip_pack_slack": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400,
+        "borg_param_attack_speed_fight_danger_tenths": 30,
+        "borg_plan": "errands_plan_ambitious.txt"
+      }
     }
   }
 }
