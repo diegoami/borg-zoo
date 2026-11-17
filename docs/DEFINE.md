@@ -83,3 +83,28 @@ YAML reads unquoted `on`, `off`, `yes` and `no` as true and false. Quote them wh
 Open a **Run request** issue. Its main field is a definition like the one above.
 The zoo session copies it into `definitions/`, generates, checks the build and
 the sanity cells, and dispatches the requested tier.
+
+## Saving deaths in the cemetery
+
+The results branch keeps each cell's record (seed, class, race, cause, level, depth,
+`play_sha256`) but no key logs, so a death is replayed locally before it is read or
+saved; the game is deterministic. Say in the run request which deaths to save (the
+**Save deaths in the cemetery** field), or ask in the issue after the run. The zoo
+session then:
+
+1. builds the pinned specimen in its own checkout and replays the arm with the logs
+   kept: `python3 -m zoo run ... --arm SPECIMEN:PROFILE --build build --work work --keep`
+   (under `flock /tmp/angband-validation.lock`, RULES 9);
+2. writes a reading report for the arm, `python3 tools/report-deaths.py` into
+   `reports/NAME-deaths/` (what killed each death, the last messages and Borg notes,
+   whether the replay's keys equal the recorded `play_sha256`);
+3. saves the deaths with `python3 tools/save-deaths.py` into a **fresh clone** of
+   borg-cemetery on a branch, never another session's worktree. The tool checks every
+   replay against the recorded hashes and skips any that does not reproduce, writes the
+   run's `config.txt`, runs the cemetery's `export-death.py`, and `death_ids.py --check`;
+4. adds a short `runs/DATE-zoo-NAME/README.md` there with provenance (specimen, ref,
+   settings, replay and binary hashes), opens the cemetery pull request and links it in
+   the zoo issue.
+
+The cemetery's own tools write the dossiers; the zoo writes nothing else there. The
+cemetery PR is the owner's to review and merge.
