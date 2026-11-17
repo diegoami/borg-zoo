@@ -46,6 +46,7 @@ env:
 jobs:
   incident-harvest:
     if: inputs.experiment == 'scenario-experiments/balanced999-incidents-harvest.json'
+    permissions: {contents: read, actions: read}
     uses: ./.github/workflows/harvest-incidents.yml
     with:
       arm: ${{ inputs.arm }}
