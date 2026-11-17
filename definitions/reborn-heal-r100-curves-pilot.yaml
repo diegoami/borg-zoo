@@ -1,0 +1,42 @@
+# borg-zoo#192: healing reserve fixed at 100 x curve scale {50, 75, 100, 125, 150} at speed 66 on borg-reborn-rs main dd5f026e, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-r100-curves-pilot.yaml
+name: reborn-heal-r100-curves-pilot
+issue: 192
+question: With the healing reserve fixed at 100, which curve scale (50, 75, 100, 125, 150) should the town planner use at speed 66, on main dd5f026e?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen: 4.2.6-reborn-rust-main-dd5f026e
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_town_heal_speed_percent: 66
+  borg_param_town_heal_reserve_hp_percent: 100
+
+profile_prefix: reborn-heal
+vary:
+  reserve:
+    r100: {}
+  curve:
+    c50: {borg_param_town_heal_curve_scale_percent: 50}
+    c75: {borg_param_town_heal_curve_scale_percent: 75}
+    c100: {borg_param_town_heal_curve_scale_percent: 100}
+    c125: {borg_param_town_heal_curve_scale_percent: 125}
+    c150: {borg_param_town_heal_curve_scale_percent: 150}
+
+control: [r100, c50]
+owner_authorization: >-
+  2026-11-17: after the big tier of reserve {0, 100, 200} x curve {50, 75} on e0aa2e0a (run 44148205941, where
+  r100-c50 had the fewest deaths), the owner asked to keep reserve 100 fixed and run curve 50, 75, 100, 125,
+  150 as a pilot, on the current build (main dd5f026e).
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#192). Pilot (RULES 16) on main dd5f026e; more starts
+  only after this gate and the owner. Gate: no config_error; one binary; the three borg_param_town_heal_*
+  lines (reserve 100, the arm's curve, speed 66) in every borg.txt and in params-core.json of the death
+  replays; no plan loaded; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  death bundles reproduced. Consistency: r100-c100, r100-c125 and r100-c150 are reborn-heal-light-pilot's arms
+  of the same names (borg-zoo#219, same specimen and starts) and must replay its key hashes. Report per arm:
+  deaths, final level, deepest level, paired rescued and newly killed against r100-c50. Context, not pooled:
+  on e0aa2e0a (a different build), r100-c50 had 44 deaths of 540 on starts 361-900. 18 starts per arm show
+  direction only.
