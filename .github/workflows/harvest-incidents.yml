@@ -1,5 +1,5 @@
 name: Prepare saved incident suite
-run-name: ${{ inputs.definition == 'scenario-experiments/suite2-v1-harvest.json' && 'suite2-v1-harvest' || 'balanced999-incidents-harvest' }} ${{ inputs.stage }}
+run-name: ${{ inputs.definition }} ${{ inputs.stage }}
 on:
   workflow_dispatch:
     inputs:
@@ -62,7 +62,7 @@ jobs:
               run=os.environ['SMOKE_RUN'];assert re.fullmatch('[0-9]+',run)
               previous=json.loads(subprocess.check_output(['gh','api',f'repos/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{run}']))
               assert previous['conclusion']=='success' and previous['head_sha']==os.environ['GITHUB_SHA'] and previous['path']=='.github/workflows/harvest-incidents.yml'
-              assert previous['display_title']==d['name']+' smoke'
+              assert previous['display_title']==str(path)+' smoke'
           assert d['expected_cells']==999 and d['per_class']==111 and d['classes']==list(range(9))
           PY
       - id: pins
@@ -194,7 +194,7 @@ jobs:
           c=json.load(open(p.parent/'coverage.json'));assert set(c['class_counts'].values())=={2 if os.environ['STAGE']=='smoke' else 111}
           PY
       - name: Mixed-class native restart smoke on the assembled bank
-        if: inputs.definition == 'scenario-experiments/suite2-v1-harvest.json'
+        if: needs.pins.outputs.suite_id != 'balanced-999-incidents'
         env: {SUITE_ID: '${{ needs.pins.outputs.suite_id }}', SOURCE_SHA: '${{ needs.pins.outputs.source }}'}
         run: |
           python3 - <<'PYCODE'

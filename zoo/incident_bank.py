@@ -106,12 +106,12 @@ def prepare_execution(definition_path, bank, source, output, archive):
     for name,group in groups:
         refs=[]
         for offset in range(0,len(group),8):
-            path=bank/'synthetic/balanced-999-incidents/generated/execution'/name/f'{offset//8}.json'
+            path=manifest.parent/'execution'/name/f'{offset//8}.json'
             body=dict(schema='borg-cemetery/saved-encounter-suite@1',suite_id=name+f'-{offset//8}',core='reborn',baseline_source_commit=definition['source']['commit'],
                       **plan['manifest'],scenarios=[dict(id=c['id'],scenario=c['scenario_path'],sha256=c['scenario_sha256']) for c in group[offset:offset+8]])
             native.write(path,body);refs.append(dict(manifest=path.relative_to(bank).as_posix(),sha256=native.sha(path)))
             for c in group[offset:offset+8]:c['native_relative']=f'shard-{offset//8+1}/'+c['id']
-        path=bank/'synthetic/balanced-999-incidents/generated/execution'/name/'bank.json'
+        path=manifest.parent/'execution'/name/'bank.json'
         native.write(path,dict(schema='borg-cemetery/encounter-bank@1',id=name,expected_cases=len(group),shards=refs))
         plan['batches'].append(dict(id=name,cases=[c['id'] for c in group],manifest=path.relative_to(bank).as_posix(),manifest_sha256=native.sha(path)))
     plan['plan_hash']=native.digest(plan)

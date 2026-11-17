@@ -91,3 +91,74 @@ python3 scripts/single_encounter.py --suite <shard> --case <case id> --source ..
 ```
 
 Each case's page on the dashboard prints this command with the right values filled in.
+
+## Prepare the next independent suite
+
+A new preparation bank is a new suite number; a different executable or settings
+file on existing saves is another run of that suite. Do not regenerate Suite 1.
+
+Suite 2 is tracked by #184. Its preparation definition is
+`definitions/suite2-v1-harvest.yaml`; the pinned Cemetery
+`synthetic/suite2-v1/harvest-spec.json` freezes the source, controller,
+configuration hashes, full and smoke seed allocations, checkpoint cadence,
+incident definition, time limits, and Suite 1 exclusion inventory **before** play.
+It uses borg-reborn-rs `50ae902a68a8732d56a6e1adf47deca4a9db7d7f`, the HEAD
+resolved for the owner's request, with its own shipped borg-rs defaults.
+
+The supported preparation dispatch is separate from a suite execution:
+
+```sh
+gh workflow run harvest-incidents.yml -R diegoami/borg-zoo --ref BRANCH \
+  -f definition=scenario-experiments/suite2-v1-harvest.json -f stage=smoke
+# Inspect the completed all-class harvest and the 18 native restart receipts.
+# The full requested harvest requires that successful smoke on the exact same head.
+gh workflow run harvest-incidents.yml -R diegoami/borg-zoo --ref BRANCH \
+  -f definition=scenario-experiments/suite2-v1-harvest.json -f stage=harvest \
+  -f smoke_run=SMOKE_RUN_ID
+```
+
+This is **preparation**, not a population study or an execution of all 999 cases.
+The smoke uses separate seeds, two saved starts per class; the full harvest must
+produce 111 per class. Every natural death and failed/rejected attempt remains in
+its class's `incident-raw-N` artifact, not only the lives whose starts were
+selected. These raw artifacts last 90 days; copy them to canonical permanent
+Cemetery storage when freezing the bank. A short class fails assembly rather
+than borrowing a different class or duplicating a start.
+
+To add Suite 3, first freeze a new Cemetery `synthetic/suite3-v1/` preparation
+manifest and its source/configuration snapshots. Allocate disjoint source seeds
+and an exclusion inventory covering **every** earlier suite's initial save
+hashes and source seeds. Keep the same incident witnesses, level-1 collection,
+class quotas, and bounded native validation. Add a harvest YAML using the new
+`suite_id` and exact Cemetery/source/tools commits; generate its JSON. Dispatch
+and inspect its own smoke before the owner-authorized full harvest. Never reuse
+an existing archive path or frozen suite ID for changed inputs.
+
+Only after all 999 starts are validated, the mixed-class restart smoke passes,
+and the native archive/checksum/provenance are published in Cemetery, add
+`scenario-suites/suite3-v1/suite.json` with its exact archive location, digest,
+case plan, initial gear reference and execution protocol. Registered suites
+appear automatically in Scenarios. Use `suite: suite3-v1` in a `suite-run` YAML
+to select it, pinning the tested Borg/settings separately as described above.
+Differences between separate banks are coverage differences, never paired
+rescues or newly killed cases.
+
+### Suite 2 capture blocker
+
+The first preparation smoke, [44121110906](https://github.com/diegoami/borg-zoo/actions/runs/44121110906),
+built and played the pinned HEAD, but its completed attempts emitted no
+`encounters.jsonl`. `BORG_ENCOUNTER_LOG` is absent from this source. The
+`BORG_OBSERVATION_LOG` / `BORG_KNOWLEDGE_LOG` hooks live inside the separate
+reborn controller; the shipped borg-rs controller does not produce them.
+A saved checkpoint plus an HP log cannot establish the required first
+observable threat or full initial equipment coverage. Do not substitute a
+terminal death frame or fabricate that information.
+
+Suite 2 is **not frozen and not selectable for execution**. Scenarios shows its
+preparation status, while the execution catalogue continues to accept only
+validated `suite.json` entries. The requested full harvest was not dispatched.
+A source-compatible capture interface must be added and validated on borg-rs,
+then preparation must be pinned again and its all-class smoke must pass.
+The source preflight now rejects this known unsupported interface before
+scheduling more natural lives. The original failed evidence remains retained
+in Cemetery; no Suite 1 input or historical report is replaced.
