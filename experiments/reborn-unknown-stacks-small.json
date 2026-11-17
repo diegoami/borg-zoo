@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-unknown-stacks-small",
+  "issue": 170,
+  "definition": "definitions/reborn-unknown-stacks-small.yaml",
+  "question": "On the speed30 bundle with no plan, which borg_trip_unknown_stacks (2, 3, 4, 5) is best?",
+  "description": "On the speed30 bundle with no plan, which borg_trip_unknown_stacks (2, 3, 4, 5) is best? Generated from definitions/reborn-unknown-stacks-small.yaml: 4 arms on 4.2.6-reborn-rust-speed-fight, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#170). Small tier only (RULES 14: starts\n1-90); medium and larger only after this gate and the owner. The question is which\nborg_trip_unknown_stacks value (2, 3, 4, 5) is best on the speed30 bundle with no plan; it says\nnothing about the bundle against the neutral build. Gate: no config_error; one binary; every bundle\nsetting, speed30 and the arm's borg_trip_unknown_stacks written in the borg.txt of every arm; no\nplan loaded in any arm; every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and\nkey outliers are listed. Report per arm and per class: deaths, final level, deepest level, keys;\npaired rescued and newly killed for each of 2, 3 and 4 against 5 (the control) on the same start\n(McNemar), and the cells where play diverges. The control arm is the same specimen and profile as\nreborn-speed30-plans-small's no-plan arm and may be compared with it as a repeat.",
+  "specimens": [
+    "4.2.6-reborn-rust-speed-fight"
+  ],
+  "profiles": [
+    "reborn-bundle-none-speed30-unknown2",
+    "reborn-bundle-none-speed30-unknown3",
+    "reborn-bundle-none-speed30-unknown4",
+    "reborn-bundle-none-speed30"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-speed-fight",
+  "control_profile": "reborn-bundle-none-speed30",
+  "owner_authorization": "2026-11-17: after the pilot reborn-unknown-stacks-pilot passed its gate (run 44054277431: 3/18 deaths in every arm), the owner asked for the small tier of the same four arms (RULES 14)."
+}
