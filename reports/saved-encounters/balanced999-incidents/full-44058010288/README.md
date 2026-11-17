@@ -4,7 +4,7 @@
 
 [Full Zoo execution](https://github.com/diegoami/borg-zoo/actions/runs/44058010288) · [Archived compact JSON](https://github.com/diegoami/borg-zoo/blob/results/saved-incident-results/balanced999-baseline-vs-speed30/44058010288-1/comparison.json) · [Dashboard preview artifact](https://github.com/diegoami/borg-zoo/actions/runs/44058010288/artifacts/14316884028) · [Run one scenario](https://github.com/diegoami/borg-cemetery/blob/evidence/paired-smoke-validation/docs/RUN-A-SCENARIO.md)
 
-Live dashboard presentation is prepared in [UI PR179](https://github.com/diegoami/borg-zoo/pull/179). Automatic approval review requires explicit owner approval for that specific main-branch merge. The experiment and archive are complete; the preview contains all999 individual scenario pages.
+[The full comparison is live on the Zoo dashboard](https://diegoami.github.io/borg-zoo/scenarios/saved/balanced999-baseline-vs-speed30/44058010288-1/index.html). The owner explicitly approved merging UI PR179; merge07cbc03d deployed successfully in Pages run44077390714. The Scenarios listing, full report and individual-case pages were checked over HTTP, including all999 case links.
 
 ## Outcomes
 

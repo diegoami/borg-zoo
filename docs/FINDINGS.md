@@ -9,8 +9,8 @@ had291/708. Paired315 rescued and78 newly killed;213 both died and393 both
 survived. Both compiled builds were reused across nonoverlapping balanced tiers.
 Sources, controllers and complete configurations differ; this is descriptive
 regression evidence on an incident-selected bank. Population and isolated
-speed30 claims need separate studies. Dashboard data are archived; UI PR179
-awaits the explicit merge approval required by automatic approval review.
+speed30 claims need separate studies. The completed comparison and all999 individual case pages are live in the Zoo
+Scenarios dashboard after the owner-approved UI PR179 merge.
 
 **Saved caster encounters on Zoo (#144):** [actual eight-case cloud run43966646449](../reports/saved-encounters/cemetery-mixed-caster-encounters-smoke/cloud-43966646449/README.md)
 completed8/8 valid with two starts per pure caster class,5 deaths/3 finite-horizon
