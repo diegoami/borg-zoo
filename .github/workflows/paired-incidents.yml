@@ -11,20 +11,23 @@ jobs:
       baseline: ${{ steps.pins.outputs.baseline }}
       speed30: ${{ steps.pins.outputs.speed30 }}
       cemetery: ${{ steps.pins.outputs.cemetery }}
-      tools: ${{ steps.pins.outputs.tools }}
+      baseline_tools: ${{ steps.pins.outputs.baseline_tools }}
+      speed30_tools: ${{ steps.pins.outputs.speed30_tools }}
     steps:
       - uses: actions/checkout@v4
         with: {persist-credentials: false}
-      - run: python3 -m zoo define --check definitions/balanced999-paired-execution.yaml
+      - run: python3 -m zoo define --check definitions/balanced999-paired-smoke-v2.yaml
       - id: pins
         run: |
           python3 - <<'PY'
           import json,os
-          d=json.load(open('scenario-experiments/balanced999-paired-execution.json'))
+          d=json.load(open('scenario-experiments/balanced999-paired-smoke-v2.json'))
           p=json.load(open(d['comparison_plan']['path']))
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:
-              for a in p['arms']:f.write(a['id']+'='+a['source']['commit']+'\n')
-              f.write('cemetery='+d['cemetery']['commit']+'\ntools='+d['native_tools']['commit']+'\n')
+              for a in p['arms']:
+                  f.write(a['id']+'='+a['source']['commit']+'\n')
+                  f.write(a['id']+'_tools='+d['native_tools'][a['id']]['commit']+'\n')
+              f.write('cemetery='+d['cemetery']['commit']+'\n')
           PY
   build:
     needs: pins
@@ -36,15 +39,17 @@ jobs:
         include:
           - arm: baseline
             source: ${{ needs.pins.outputs.baseline }}
+            tools: ${{ needs.pins.outputs.baseline_tools }}
           - arm: speed30
             source: ${{ needs.pins.outputs.speed30 }}
+            tools: ${{ needs.pins.outputs.speed30_tools }}
     env:
       BORG_CEMETERY_DIR: ${{ github.workspace }}/native-tools
     steps:
       - uses: actions/checkout@v4
         with: {repository: diegoami/borg-reborn-rs, ref: '${{ matrix.source }}', path: source, persist-credentials: false}
       - uses: actions/checkout@v4
-        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.tools }}', path: native-tools, persist-credentials: false}
+        with: {repository: diegoami/borg-cemetery, ref: '${{ matrix.tools }}', path: native-tools, persist-credentials: false}
       - uses: dtolnay/rust-toolchain@1.100.0
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq build-essential cmake libssl-dev
       - working-directory: source
@@ -88,7 +93,7 @@ jobs:
                   assert '..' not in Path(m.name).parts and not(m.issym() or m.islnk())
               t.extractall('cemetery',filter='data')
           PY
-          python3 -m zoo.paired_incidents prepare --definition scenario-experiments/balanced999-paired-execution.json --cemetery cemetery --sources sources --builds builds --archive prepared/balanced999-bank.tgz --out execution-plan.json
+          python3 -m zoo.paired_incidents prepare --definition scenario-experiments/balanced999-paired-smoke-v2.json --cemetery cemetery --sources sources --builds builds --archive prepared/balanced999-bank.tgz --out execution-plan.json
           tar -C cemetery -czf execution-inputs.tgz synthetic/balanced-999-incidents/generated
       - uses: actions/upload-artifact@v4
         with:
@@ -107,8 +112,10 @@ jobs:
         include:
           - arm: baseline
             source: ${{ needs.pins.outputs.baseline }}
+            tools: ${{ needs.pins.outputs.baseline_tools }}
           - arm: speed30
             source: ${{ needs.pins.outputs.speed30 }}
+            tools: ${{ needs.pins.outputs.speed30_tools }}
     steps:
       - uses: actions/checkout@v4
         with: {persist-credentials: false}
@@ -117,7 +124,7 @@ jobs:
       - uses: actions/checkout@v4
         with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.cemetery }}', path: cemetery, persist-credentials: false}
       - uses: actions/checkout@v4
-        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.tools }}', path: native-tools, persist-credentials: false}
+        with: {repository: diegoami/borg-cemetery, ref: '${{ matrix.tools }}', path: native-tools, persist-credentials: false}
       - uses: actions/download-artifact@v4
         with: {name: 'paired-build-${{ matrix.arm }}', path: downloaded}
       - uses: actions/download-artifact@v4

@@ -20,7 +20,7 @@ def setup():
     old=receipts(fixture(),case);t=json.loads(old['trial.json']);t.update(horizon_engine_turns=2000,cap_turn=2101);t['summary']['game_turns']=2101
     arm=plan['arms'][1];arm['source']['commit']='f'*40;arm['build']=t['build'];plan['arms'][0]['source']['commit']='f'*40;plan['arms'][0]['build']=t['build']
     raw={'run/'+k:v for k,v in old.items() if k!='trial.json' and k!='initial-state'}
-    raw['initial-state']=old['initial-state'];raw['run/summary.json']=json.dumps(t['summary']);raw['initial-coverage']=json.dumps(case['scenario']['coverage'])
+    raw['initial-state']=old['initial-state'].rstrip()+' p0000000000000001 e0000000000000002 r0000000000000003\n';raw['run/summary.json']=json.dumps(t['summary']);raw['initial-coverage']=json.dumps(case['scenario']['coverage'])
     text=p.candidate_text(plan,case)
     for key,value in dict(borg_reborn_core='FALSE',borg_plan='selected-plan.txt',borg_respawn_race='4',borg_respawn_class='0',borg_cheat_death='FALSE',borg_respawn_winners='FALSE').items():text=catalogue._override(text,key,value)
     h=lambda v:hashlib.sha256(v.encode()).hexdigest()
@@ -54,6 +54,23 @@ class PairedTest(unittest.TestCase):
                 trial=json.loads(damaged['trial.json']);trial['summary']['game_turns']=2102;damaged['run/summary.json']=json.dumps(trial['summary']);damaged['trial.json']=json.dumps(trial)
             with self.subTest(fault=fault),self.assertRaises(ValueError):p.validate(plan,case,arm,damaged,streams)
 
+    def test_matching_native_gear_allows_pair_but_changed_pack_hash_invalidates_it(self):
+        plan,case,arm,raw,streams=setup()
+        def record(arm_id,receipts):
+            c=dict(schema='borg-zoo/paired-incident-cell@1',id=case['id'],arm=arm_id,plan_hash=plan['plan_hash'],status='survived_horizon',receipts=receipts,
+                   receipts_sha256={k:hashlib.sha256(v.encode()).hexdigest() for k,v in receipts.items()},streams=streams)
+            c['execution_hash']=n.digest(c);return c
+        baseline=copy.deepcopy(raw)
+        baseline['run/config.txt']='borg_core=reborn\nflags=menu,exact,keep-load-rng\nsave_sha256='+case['scenario']['save_sha256']+'\nprofile_sha256='+'a'*64+'\n'
+        for mutate in [False,True]:
+            with self.subTest(changed_pack=mutate),tempfile.TemporaryDirectory() as tmp:
+                r=Path(tmp);candidate=copy.deepcopy(raw)
+                if mutate:candidate['initial-state']=candidate['initial-state'].replace('p0000000000000001','p0000000000000099')
+                n.write(r/'plan.json',plan);n.write(r/'input/baseline.json',record('baseline',baseline));n.write(r/'input/candidate.json',record('speed30',candidate))
+                p.collect(r/'plan.json',r/'input',r/'report');result=n.read(r/'report/comparison.json')
+                self.assertEqual(result['pairs'].get('both_survived',0),0 if mutate else 1)
+                self.assertEqual(result['invalid_count'],36 if mutate else 34)
+
     def test_partial_smoke_is_collected_with_all36_expected_cells(self):
         plan,case,arm,raw,streams=setup()
         cell=dict(schema='borg-zoo/paired-incident-cell@1',id=case['id'],arm='speed30',plan_hash=plan['plan_hash'],status='survived_horizon',receipts=raw,
@@ -62,7 +79,7 @@ class PairedTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);n.write(root/'plan.json',plan);n.write(root/'input/speed.json',cell)
             self.assertEqual(p.collect(root/'plan.json',root/'input',root/'report'),1)
-            r=n.read(root/'report/comparison.json');self.assertEqual(r['expected_cells'],36);self.assertEqual(r['invalid_count'],35)
-            self.assertEqual(sum(c['status']=='survived_horizon' for c in r['cells']),1)
+            r=n.read(root/'report/comparison.json');self.assertEqual(r['expected_cells'],36);self.assertEqual(r['invalid_count'],36)
+            self.assertEqual(sum(c['status']=='unverified_pairing' for c in r['cells']),1)
             n.write(root/'input/duplicate.json',cell)
             with self.assertRaisesRegex(ValueError,'repeated'):p.collect(root/'plan.json',root/'input',root/'duplicate-report')

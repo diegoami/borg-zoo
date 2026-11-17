@@ -22,8 +22,11 @@ def definition_plan(d,path,root):
     required={'kind','name','folder','issue','question','comparison_plan','baseline_plan','cemetery','native_tools','owner_authorization','prespecified','expected_cells'}
     if set(d)!=required or d['kind']!='paired-incident-execution' or d['expected_cells']!=1998 or d['folder']!='scenario-experiments':raise ValueError('unsupported paired execution definition')
     for key in ('comparison_plan','baseline_plan'):n.local(root,d[key]['path'],d[key]['sha256'])
-    for key in ('cemetery','native_tools'):
-        if d[key]['repository']!='diegoami/borg-cemetery' or not n.SHA.fullmatch(d[key]['commit']):raise ValueError('exact Cemetery pin required')
+    pins=[d['cemetery']]
+    tools=d['native_tools']
+    pins += [tools] if 'commit' in tools else [tools[a] for a in ('baseline','speed30')]
+    for pin in pins:
+        if pin['repository']!='diegoami/borg-cemetery' or not n.SHA.fullmatch(pin['commit']):raise ValueError('exact Cemetery pin required')
     body=dict(d,schema='borg-zoo/paired-incident-definition@1',definition=Path(path).resolve().relative_to(root.resolve()).as_posix())
     target=root/d['folder']/(d['name']+'.json');changes=[]
     if not target.exists() or n.read(target)!=body:changes.append(('experiment-update' if target.exists() else 'experiment',target.relative_to(root).as_posix(),body))
@@ -43,6 +46,8 @@ def prepare(definition,cemetery,sources,builds,archive,out):
     arms=[]
     for arm in previous['arms']:
         arm=dict(arm);source=sources/arm['id'];n.checked_checkout(source,arm['source']['commit'])
+        arm['native_tools']=d['native_tools'].get(arm['id'],d['native_tools'])
+        if (source/'death-tools-pin.txt').read_text().strip()!=arm['native_tools']['commit']:raise ValueError('source requires a different death-export tools pin')
         upstream=dict(line.split('=',1) for line in (source/'engine/UPSTREAM').read_text().splitlines() if '=' in line)
         if upstream['commit']!=base['manifest']['engine_commit']:raise ValueError('save engine is incompatible')
         arm['source_sha256']=subprocess.check_output(['bash',str(source/'harness/identity.sh'),'source-hash','rust'],text=True).strip()
@@ -72,6 +77,13 @@ def candidate_text(plan,case):
     return config_text(directory,plan['reference']['reference_profile'],case['scenario']['race_idx'],case['scenario']['class_idx'])
 
 
+def gear_state(line):
+    import re
+    match=re.search(r' p([0-9a-f]{16}) e([0-9a-f]{16}) r([0-9a-f]{16})(?:\s|$)',line)
+    if not match:raise ValueError('missing native pack/equipment/rune hashes')
+    return match.groups()
+
+
 def validate(plan,case,arm,receipts,streams):
     t=json.loads(receipts['trial.json']);s=case['scenario'];summary=json.loads(receipts['run/summary.json']);process=json.loads(receipts['run/process.json'])
     expected=dict(source_commit=arm['source']['commit'],scenario_sha256=case['scenario_sha256'],save_sha256=s['save_sha256'],
@@ -85,9 +97,11 @@ def validate(plan,case,arm,receipts,streams):
     state=n.STATE.match(receipts['initial-state']);expected_state=[s['start_turn'],s['checkpoint']['depth'],s['checkpoint']['max_depth']]+[s['initial_observed'][k] for k in ('hp','max_hp','sp','max_sp')]
     if not state or list(map(int,state.groups()))!=expected_state:raise ValueError('initial resources/depth differ')
     if set(streams)!={'keys.log','state.log','messages.log'} or any(not n.HEX.fullmatch(v) for v in streams.values()):raise ValueError('missing native streams')
-    coverage=json.loads(receipts['initial-coverage'])
-    for key in ('level','depth','equipment_kind_signature','inventory'):
-        if coverage[key]!=s['coverage'][key]:raise ValueError('initial equipment/inventory differs')
+    gear_state(receipts['initial-state'])
+    if arm['id']=='baseline':
+        coverage=json.loads(receipts['initial-coverage'])
+        for key in ('level','depth','equipment_kind_signature','inventory'):
+            if coverage[key]!=s['coverage'][key]:raise ValueError('initial equipment/inventory differs')
     cfg=n.kv(receipts['run/config.txt'])
     if cfg.get('borg_core')!=arm['core'] or cfg.get('save_sha256')!=s['save_sha256'] or 'keep-load-rng' not in cfg.get('flags','').split(','):raise ValueError('core/save/RNG differs')
     if arm['id']=='baseline':
@@ -131,9 +145,10 @@ def validate(plan,case,arm,receipts,streams):
 def make_cell(plan,case,arm,directory):
     receipts={name:(directory/name).read_text() for name in FILES if (directory/name).is_file()}
     with (directory/'run/state.log').open() as f:receipts['initial-state']=next(f,'')
-    with (directory/'run/observations.jsonl').open() as f:initial=json.loads(next(f))
-    from curate_encounters import coverage
-    receipts['initial-coverage']=json.dumps(coverage(initial),sort_keys=True)
+    if arm['id']=='baseline':
+        with (directory/'run/observations.jsonl').open() as f:initial=json.loads(next(f))
+        from curate_encounters import coverage
+        receipts['initial-coverage']=json.dumps(coverage(initial),sort_keys=True)
     streams={name:n.sha(directory/'run'/name) for name in ('keys.log','state.log','messages.log')}
     cell=dict(schema='borg-zoo/paired-incident-cell@1',id=case['id'],arm=arm['id'],plan_hash=plan['plan_hash'],receipts=receipts,
               receipts_sha256={k:hashlib.sha256(v.encode()).hexdigest() for k,v in receipts.items()},streams=streams,independent_life=False)
@@ -145,7 +160,7 @@ def make_cell(plan,case,arm,directory):
 def run(plan_path,cemetery,source,tools,arm_id,batch_id,out):
     p=load(plan_path);arm=next(a for a in p['arms'] if a['id']==arm_id);batch=next(b for b in p['batches'] if b['id']==batch_id)
     if n.sha(Path(__file__))!=p['runner_sha256']:raise ValueError('runner changed')
-    for directory,pin in [(cemetery,p['definition']['cemetery']['commit']),(tools,p['definition']['native_tools']['commit']),(source,arm['source']['commit'])]:n.checked_checkout(directory,pin)
+    for directory,pin in [(cemetery,p['definition']['cemetery']['commit']),(tools,arm['native_tools']['commit']),(source,arm['source']['commit'])]:n.checked_checkout(directory,pin)
     if out.exists():raise ValueError('fresh attempt directory required')
     out.mkdir(parents=True)
     sys.path.insert(0,str(cemetery/'scripts'))
@@ -189,7 +204,11 @@ def collect(plan_path,inputs,out,tier='smoke',run_url=''):
     if out.exists():raise ValueError('fresh report directory required')
     selected=p['cases'][:bank.TIERS[tier]];expected={(a['id'],c['id']) for a in p['arms'] for c in selected};found={}
     for path in inputs.rglob('*.json'):
-        cell=n.read(path)
+        try:cell=n.read(path)
+        except (ValueError,OSError) as error:
+            parts=path.stem.split('--',1)
+            if len(parts)!=2 or tuple(parts) not in expected:raise ValueError('unidentified malformed cell') from error
+            cell=dict(schema='borg-zoo/paired-incident-cell@1',arm=parts[0],id=parts[1],status='malformed',reason=str(error))
         if cell.get('schema')!='borg-zoo/paired-incident-cell@1':continue
         key=(cell.get('arm'),cell.get('id'))
         if key not in expected or key in found:raise ValueError('unknown or repeated cell')
@@ -208,8 +227,16 @@ def collect(plan_path,inputs,out,tier='smoke',run_url=''):
                     status=validate(p,case,arm,cell['receipts'],cell['streams'])
                     if status!=cell['status']:raise ValueError('reported outcome differs')
                 except (ValueError,KeyError,TypeError,IndexError,AttributeError) as e:status='invalid_receipt';cell=dict(cell,validation_error=str(e))
-            statuses.append(status);by_class[bank.CLASSES[case['scenario']['class_idx']]][arm['id']+':'+status]+=1
+            statuses.append(status)
             rows.append(dict(id=case['id'],arm=arm['id'],class_name=bank.CLASSES[case['scenario']['class_idx']],status=status,cell=cell))
+        if all(s in n.VALID for s in statuses):
+            a,b=(r['cell']['receipts']['initial-state'] for r in rows[-2:])
+            if gear_state(a)!=gear_state(b):
+                for r in rows[-2:]:r['status']='invalid_pairing'
+                statuses=['invalid_pairing']*2
+        elif statuses[1] in n.VALID:
+            rows[-1]['status']='unverified_pairing';statuses[1]='unverified_pairing'
+        for row in rows[-2:]:by_class[row['class_name']][row['arm']+':'+row['status']]+=1
         pair='invalid' if any(s not in n.VALID for s in statuses) else 'inconclusive' if 'stopped' in statuses else {('death','death'):'both_died',('death','survived_horizon'):'rescued',('survived_horizon','death'):'newly_killed',('survived_horizon','survived_horizon'):'both_survived'}[tuple(statuses)]
         pairs[pair]+=1
     invalid=sum(r['status'] not in n.VALID for r in rows);stopped=sum(r['status']=='stopped' for r in rows)
@@ -218,7 +245,7 @@ def collect(plan_path,inputs,out,tier='smoke',run_url=''):
            '| Arm | Deaths | Horizon survival | Stopped | Invalid/missing |','|---|---:|---:|---:|---:|']
     for arm in p['arms']:
         c=Counter(r['status'] for r in rows if r['arm']==arm['id']);lines.append(f"| {arm['id']} | {c['death']} | {c['survived_horizon']} | {c['stopped']} | {sum(v for k,v in c.items() if k not in n.VALID)} |")
-    lines+=['',json.dumps(dict(pairs),sort_keys=True),'','Both setups share saved states, exact2000 engine-turn and5-second wall bounds, fresh Borg memory and saved RNG. Sources/cores/configuration differ; results do not isolate speed30. Shared-life cases are correlated. Classic settings are input-file verified; named parameters and loaded plan have native readbacks.']
+    lines+=['',json.dumps(dict(pairs),sort_keys=True),'','Both setups share saved states, exact2000 engine-turn and5-second wall bounds, fresh Borg memory and saved RNG. Sources/cores/configuration differ; results do not isolate speed30. Shared-life cases are correlated. Baseline observations validate loaded gear; candidate native pack/equipment/rune hashes must match the baseline. Classic settings are input-file verified; named parameters and loaded plan have native readbacks.']
     (out/'comparison.md').write_text('\n'.join(lines)+'\n');return int(bool(invalid or stopped))
 
 
