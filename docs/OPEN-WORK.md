@@ -1,24 +1,69 @@
 # Open work and handover state
 
 What is open in this repository, why, and what the next session should read
-first. Written 2026-11-16 after a session that merged PRs #90, #92, #97, #98,
-#100, #101, #104 and #110, closed issues #48, #79, #81 and #88, and dispatched
-several large experiments. The repository's own rules still apply: results are
-append-only, a specimen/profile/suite/experiment is a catalogue change with a
-pull request, and starting a large experiment is the owner's call.
+first. Updated 2026-11-17. The sections from "## Open issues (2026-11-16)" on
+are the previous session's handover and are kept as written. The repository's
+own rules still apply:
+- results are append-only;
+- a specimen, profile, suite or experiment is a catalogue change with a pull request;
+- every measurement starts with its pilot (RULES 16) and grows one tier at a time on the owner's go (RULES 14);
+- starting a large experiment is the owner's call.
 
 ## Read these first
 
-1. `docs/FINDINGS.md` — what the finished experiments showed. New results must
+1. `docs/FINDINGS.md`: what the finished experiments showed. New results must
    be added here when their experiment finishes.
-2. `docs/DESIGN.md` — the measurement design, the statistics, and the open
-   design questions (primary endpoint, net worth, Lunal arm).
-3. `docs/OPEN-ISSUE-FOLLOWUPS.md` — older issue follow-ups, including what is
-   still owed for the no-store baseline observer invariant.
-4. `docs/M13-MEASUREMENT.md` and `docs/measurement/` — the per-fix M13 mode
-   debt, with each owed arm marked not measured, unreachable, or cleanup.
+2. `docs/DESIGN.md`: the measurement design, the statistics, and the open
+   design questions.
+3. `docs/SUITE-RUNS.md`: saved-suite runs. Suite 1 is the balanced999 bank.
+4. `docs/DEFINE.md`: experiments in YAML. The tiers are pilot, verysmall
+   (starts 1-45), small (or small-rest after verysmall), medium, big and full.
+5. `docs/OPEN-ISSUE-FOLLOWUPS.md`, `docs/M13-MEASUREMENT.md`: older debts.
 
-## Open issues
+**Several sessions work here at once.** Before starting an issue, read its
+latest comments and `git log origin/main` for commits naming it. Work in your
+own worktree. Resolve code conflicts by hand: merging both sides is only safe
+for catalogue JSON and FINDINGS prose. Merge only when
+`python3 -m unittest discover -s tests` passes.
+
+## Skills
+
+- `/pilot-deaths`: replay a pilot's (or verysmall's) deaths from the run's own
+  build and write `reports/NAME-deaths/` (`python3 -m zoo.death_report`). Each
+  report ends with a handover section for borg-reborn-rs. Offer it after every
+  pilot gate.
+- `/rerun-suite`: a sanity check of borg-reborn-rs `main` at HEAD, with its own
+  `harness/borg.txt` and nothing overridden, on Suite 1 (`suite-run.yml`). It is
+  reported alone, with no other arm, unless the owner asks for one.
+- `/profiles`: the named arm sets and the settings tried so far.
+
+## State on 2026-11-17
+
+- **Suite 1 on main.** The latest run is `suite1-reborn-main-7e08c920-stock`, all
+  999 scenarios: 281 deaths (28.1%). One scenario, c6-r7-s1060140-i000, was cut
+  off by the 5 s wall; it is filed as borg-reborn-rs#512. Run it again with
+  `/rerun-suite` after borg-reborn-rs's calibration lands. Main is now
+  `1a128607`, but #500 only changed CI.
+- **#181, main fdaf18e5 with its shipped defaults.** The pilot (3/18 deaths) and
+  medium tier (22/270) are done, with death reports. The 25 deaths are handed to
+  borg-reborn-rs#490, for after calibration.
+- **#170, the speed30 bundle studies.** The speed30 × plan small tier and the
+  `unknown_stacks` medium tier are done. No value differed from the default. The
+  pilot death report found that a trip return to identify unknown items becomes
+  a descent when no up stair is known.
+- **#205, purchase bursts.** These are no longer counted as stalls. FINDINGS
+  lists the cells that were mislabelled `stalled`. The purchases themselves are
+  borg-reborn-rs#507.
+- **Waiting for the owner's go:** #191 (rising-ticks medium), #192 (heal curve ×
+  reserve; results in PR #213), #198 (point-blank divisor and buy quantity),
+  #184 (Suite 2, PR #202, needs a review).
+- **Owner decisions today:**
+  - pilot first, always (RULES 16);
+  - a scenario run is a plain sanity check of main with its own defaults, and its baseline is always current main;
+  - the Scenarios tab lists one row per run, and only the newest main run of each suite;
+  - the first table of a run's page is its death share per build.
+
+## Open issues (2026-11-16)
 
 - **#144:** implementation adds pinned Cemetery dispatch, immutable pushid
   resolution, durable per-cell collection and paired impact reports separate
