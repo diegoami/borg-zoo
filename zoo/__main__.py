@@ -93,7 +93,7 @@ def cmd_run(args):
         # once, so a death's replay starts soon after the death instead of
         # after every other cell: a shard cut short keeps its bundles too.
         queue = list(mine)
-        cells, bundles, records, waiting = {}, {}, [], set()
+        cells, bundles, records, waiting, indexed = {}, {}, [], set(), {}
 
         def feed():
             while queue and len(waiting) < args.jobs:
@@ -113,6 +113,7 @@ def cmd_run(args):
                                  'status': 'error', 'error': str(exc)}
                     index.write(json.dumps(entry, sort_keys=True) + '\n')
                     index.flush()
+                    indexed[entry.get('status')] = indexed.get(entry.get('status'), 0) + 1
                     print(json.dumps({k: entry.get(k) for k in ('cell', 'status', 'error')}), flush=True)
                     continue
                 try:
@@ -141,7 +142,8 @@ def cmd_run(args):
             feed()
     if index is not None:
         index.close()
-    print(f'{len(records)} cells -> {out}' + (f'; {len(bundles)} death bundles -> {death_root}' if index else ''))
+    summary = ', '.join(f'{n} {status}' for status, n in sorted(indexed.items())) or 'none'
+    print(f'{len(records)} cells -> {out}' + (f'; death bundles indexed in {death_root}: {summary}' if index else ''))
 
 
 def cmd_collect(args):
