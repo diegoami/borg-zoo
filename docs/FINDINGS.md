@@ -2,6 +2,16 @@
 
 What the zoo's completed experiments have shown, with the run behind each.
 
+**Balanced999 saved encounters (#168):** [full paired experiment](../reports/saved-encounters/balanced999-incidents/full-44058010288/README.md)
+completed1998/1998 valid cells,111 scenarios per class in each setup. Baseline
+reborn had528 deaths/471 finite-horizon survivals; the exact Zoo speed30 bundle
+had291/708. Paired315 rescued and78 newly killed;213 both died and393 both
+survived. Both compiled builds were reused across nonoverlapping balanced tiers.
+Sources, controllers and complete configurations differ; this is descriptive
+regression evidence on an incident-selected bank. Population and isolated
+speed30 claims need separate studies. Dashboard data are archived; UI PR179
+awaits the explicit merge approval required by automatic approval review.
+
 **Saved caster encounters on Zoo (#144):** [actual eight-case cloud run43966646449](../reports/saved-encounters/cemetery-mixed-caster-encounters-smoke/cloud-43966646449/README.md)
 completed8/8 valid with two starts per pure caster class,5 deaths/3 finite-horizon
 survivals and no invalid/missing cells. Native encounter execution took4.83s
