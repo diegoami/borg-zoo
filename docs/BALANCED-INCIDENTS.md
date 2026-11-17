@@ -8,7 +8,7 @@ come from each full native save, rather than a constructed common loadout.
 Preparation runs on Zoo with exact Cemetery tools/specification and the
 read-only observation projection in reborn #468. Harvest workflow
 [43979480269](https://github.com/diegoami/borg-zoo/actions/runs/43979480269)
-is in progress. Its definition is `definitions/balanced999-incidents-harvest.yaml`.
+completed successfully. Its definition is `definitions/balanced999-incidents-harvest.yaml`.
 A completed class contributes111 usable unique starts; assembly fails for any
 short or missing class. All attempted natural lives and death evidence are
 retained, including deaths excluded because no usable observable trigger exists.
@@ -43,8 +43,25 @@ cells. A failed gate prevents later stages. The smoke precedes all larger work.
 The same life can contribute multiple incidents, so these are correlated
 encounter tests rather than999 independent population trials.
 
-The execution definition will pin the completed bank artifact ID, preparation
-run and inner archive SHA; it cannot be dispatched before preparation finishes.
+The execution definition now pins artifact14289964111 from run43979480269
+and its inner archive SHA. All999 inputs passed native bank validation.
+The bank contains611 deaths and388 critical-HP recoveries from758 source lives,
+with178 equipment kind/slot combinations. Planning has not executed the bank.
+
+The owner also requests a second pass using Zoo specimen
+`4.2.6-reborn-rust-speed-fight`, source193d9076, with the complete
+`reborn-bundle-plan-speed30` profile from run43994684018 at Zoo45066aba.
+`definitions/balanced999-incidents-speed30-comparison.yaml` freezes that
+reference and its original errands-plan hash. Both arms use the same999 saves:
+1998 cells,111 per class per arm. Source/core/configuration all differ; this
+comparison cannot isolate the speed parameter alone.
+
+The existing saved runner supports the reborn baseline. Before the candidate
+can be dispatched, Zoo must integrate Cemetery
+`scenario_config.run_configured` for the borg-rs core and its parameter/loaded
+errands-plan receipts. This is an explicit execution prerequisite. The first
+paired smoke contains36 cells, two starts per class per arm. No games were
+dispatched by this planning request.
 Cemetery owns the canonical bank/native evidence; Zoo owns aggregate reports
 under `reports/saved-encounters/`. No main branch or accepted milestone changes
 are part of creating or running this suite. Improvement/configuration comparison
