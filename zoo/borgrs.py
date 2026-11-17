@@ -124,12 +124,6 @@ LOADED_PLAN = 'errands_plan.txt'
 # (borg-zoo#123). The loop ends and play resumes, so the cell reaches its
 # cap; it is a stall all the same.
 LOOP_KEYS = 1000
-# A burst that spends gold every few keys is shopping, not a loop (borg-zoo#205):
-# shop purchases take no game time, so buying 120 arrows one at a time lands
-# 1,084 keys on one turn, with gold falling at every purchase. borg-rs#90's cycle
-# stores and takes back at the Home, which costs nothing, so its gold never moves.
-PURCHASE_KEYS = 20  # at most this many keys per purchase for a burst to count as shopping
-STATE_GOLD = re.compile(r' au(-?\d+)(?: |$)')
 
 # A burst is shopping, not a loop, when gold falls at least once per this many
 # keys at the burst turn (borg-zoo#205): shop transactions take no game time,
@@ -146,20 +140,9 @@ def loop_checks(spec):
     return bool(spec.get('plans') or spec.get('loop_checks'))
 
 
-def purchases(state_lines):
-    """Gold spent at one game turn, from its state.log lines: (purchases, gold before, gold after)."""
-    gold = [int(m.group(1)) for m in map(STATE_GOLD.search, state_lines) if m]
-    if len(gold) < 2:
-        return 0, None, None
-    return sum(b < a for a, b in zip(gold, gold[1:])), gold[0], gold[-1]
-
-
-def frozen_turn_loop(keys_text, state_text=None):
+def frozen_turn_loop(keys_text):
     """Keys per game turn in a borgh keys.log: the busiest turn, and how
-    many turns reach LOOP_KEYS and with how many keys in all. With the
-    state.log, a burst that spends gold every PURCHASE_KEYS keys or fewer is
-    counted as a purchase burst, not a loop; without it, every burst is a
-    loop whose cause is undetermined."""
+    many turns reach LOOP_KEYS and with how many keys in all."""
     counts = {}
     for line in keys_text.splitlines():
         turn = line.split(' ', 1)[0]
@@ -167,23 +150,6 @@ def frozen_turn_loop(keys_text, state_text=None):
     if not counts:
         return {'turn': None, 'max_keys': 0, 'bursts': 0, 'burst_keys': 0}
     turn = max(counts, key=counts.get)
-    heavy = {t: n for t, n in counts.items() if n >= LOOP_KEYS}
-    result = {'turn': int(turn) if turn.isdigit() else turn, 'max_keys': counts[turn]}
-    if state_text is None:
-        return {**result, 'bursts': len(heavy), 'burst_keys': sum(heavy.values())}
-    lines = {}
-    for line in state_text.splitlines():
-        t = line.split(' ', 1)[0]
-        if t in heavy:
-            lines.setdefault(t, []).append(line)
-    shopping = []
-    for t, n in heavy.items():
-        bought, before, after = purchases(lines.get(t, []))
-        if bought and after < before and bought * PURCHASE_KEYS >= n:
-            shopping.append({'turn': int(t) if t.isdigit() else t, 'keys': n, 'purchases': bought, 'gold': [before, after]})
-    loops = [n for t, n in heavy.items() if all(str(b['turn']) != t for b in shopping)]
-    return {**result, 'bursts': len(loops), 'burst_keys': sum(loops), 'purchase_bursts': shopping}
-
     bursts = [n for n in counts.values() if n >= LOOP_KEYS]
     out = {'turn': int(turn) if turn.isdigit() else turn, 'max_keys': counts[turn],
            'bursts': len(bursts), 'burst_keys': sum(bursts)}
@@ -471,16 +437,6 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     loop = None
     purchase_burst = None
     if loop_checks(spec) and keys.exists():
-        state_path = out / 'state.log'
-        loop = frozen_turn_loop(keys.read_text(errors='replace'),
-                                state_path.read_text(errors='replace') if state_path.exists() else None)
-        if loop['bursts'] and outcome in ('death', 'turn_cap', 'borg_stopped'):
-            observed_outcome, outcome = outcome, 'stalled'
-            cause = ('no gold spent during it, as in the store/take cycle of borg-rs#90' if 'purchase_bursts' in loop
-                     else 'cause not determined: no state.log')
-            error = (f"frozen-turn loop: {loop['bursts']} game turns with {LOOP_KEYS}+ keys, "
-                     f"{loop['max_keys']} at turn {loop['turn']} ({cause})")
-
         loop = frozen_turn_loop(keys.read_text(errors='replace'))
         has_state = (out / 'state.log').exists()
         if loop['bursts']:
