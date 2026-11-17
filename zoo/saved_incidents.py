@@ -161,9 +161,17 @@ def build_site(results,out):
                     dest=target/'cases'/case['id'];dest.mkdir(parents=True,exist_ok=True);(dest/'index.html').write_text(case_page(r,case))
                 studies.setdefault(name,[]).append((len(r['cases']),run,r))
             except (OSError,ValueError,KeyError,TypeError,AttributeError) as error:unavailable.append(dict(report=f'{name}/{run}',reason=str(error)))
+    for records in studies.values():records.sort(key=lambda x:(x[0],x[1]))
+    latest={}  # a suite run checks the main of its day: the index shows only the newest run of each suite
+    for name,records in studies.items():
+        r=records[-1][2]
+        if 'suite' in r:
+            started=min(int(x[1].split('-')[0]) for x in records)
+            if r['suite']['id'] not in latest or started>latest[r['suite']['id']][0]:latest[r['suite']['id']]=(started,name)
     rows=[]
     for name,records in studies.items():
-        records.sort(key=lambda x:(x[0],x[1]));_,run,r=records[-1]
+        _,run,r=records[-1]
+        if 'suite' in r and latest[r['suite']['id']][1]!=name:continue
         versions='<br>'.join(esc(a.get('specimen',a['id']))+' · <code>'+esc(a['source']['commit'][:12])+'</code>' for a in r['arms'])
         if 'suite' in r:
             own=roles(r)[1];versions=next(esc(a['id'])+' · <code>'+esc(a['source']['commit'][:12])+'</code>' for a in r['arms'] if a['id']==own)
