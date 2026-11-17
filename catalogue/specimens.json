@@ -1065,6 +1065,21 @@
       "role": "candidate",
       "label": "Pinned synthetic P1 runtime. Scenario dispatch only; its capability is verified at execution.",
       "source": "https://github.com/diegoami/borg-reborn-rs/tree/99473510940b8a7bd6e77ad61e3a2b00c72a6e6d"
+    },
+    "4.2.6-reborn-rust-main-fdaf18e5": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "fdaf18e52b402d9952f432109806b210cd2074ff",
+      "source": "https://github.com/diegoami/borg-zoo/issues/181",
+      "label": "borg-reborn-rs fdaf18e5, main at the merge of #480 (the speed30 bundle made the shipped default), with #473 (never use unidentified items; discard Deep Descent). Source-hash rust 258ccc77107e...; harness/borg.txt 1b062d8b... sets borg_reborn_core = borg-rs, borg_town_plan = 1, the trip policy (unknown_stacks 5, pack_slack 1), heal when outmatched, attack_speed_fight_danger_tenths = 30 and the 16 attack preferences; no plan, errand none.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
     }
   }
 }
