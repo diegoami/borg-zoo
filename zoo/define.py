@@ -22,7 +22,8 @@ from . import catalogue as cat_mod
 ROOT = Path(__file__).resolve().parents[1]
 
 # The development suite each tier plays (RULES 14).
-TIERS = {'pilot': 'classes-18', 'small': 'classes-1800-small', 'medium': 'classes-1800-medium',
+TIERS = {'pilot': 'classes-18', 'verysmall': 'classes-1800-verysmall', 'small-rest': 'classes-1800-small-rest',
+         'small': 'classes-1800-small', 'medium': 'classes-1800-medium',
          'big': 'classes-1800-big', 'full': 'classes-1800-full'}
 
 # Specimen defaults per repository; a definition can override any of them.
