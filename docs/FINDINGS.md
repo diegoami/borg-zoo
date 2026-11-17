@@ -338,6 +338,8 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 
 **#225, borg-reborn-rs#487 healing by class and the digger gate (pilot, run 44173139346, 90 games on main a8ac685a).** The gate passed: one binary (012a06ed), no config_error, every line written, nothing flagged, and the four sanity hashes reproduced. Deaths: ctl 4, digger 4, heal 3, both (shipped) 2, speedres 2, of 18. The shipped healing cuts healing gold from 166-227 to 113-133 per game and moves it to ammunition and armour. The digger gate cuts Shovels from 12-17 to 5 per arm. No arm with the shipped healing bought a weapon. Unknown kinds are the largest spend everywhere (260-325 gold per game). Report: [reports/reborn-heal-class-pilot-deaths/README.md](../reports/reborn-heal-class-pilot-deaths/README.md).
 
+**#227, scary rule on main a8ac685a: none vs C's named list vs damage 60% (pilot, run 44178676657, 54 games).** The gate passed: one binary (012a06ed), no config_error, both settings written, nothing flagged, and all 54 replays match CI. Deaths: no rule 4 (all at CL1-3); named list 3 (none at CL1-3, all at CL4-7); damage60 2 (both at CL2: a Necromancer to a small kobold and a Priest to Fang). The damage rule fires rarely (10 `Scary guy` notes in 18 games against 11,804 for the list) and plays like no rule in 15 of 18 games. The list costs about 0.6-0.9 character levels and triples the level bouncing. Report: [reports/reborn-scary-rule-pilot-deaths/README.md](../reports/reborn-scary-rule-pilot-deaths/README.md).
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
