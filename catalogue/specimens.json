@@ -1080,6 +1080,36 @@
         "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
         "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
       }
+    },
+    "4.2.6-reborn-rust-main-e85b80e1": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "e85b80e13eb6ef50adb1f7cf96852594a8ec6843",
+      "source": "https://github.com/diegoami/borg-zoo/issues/191",
+      "label": "borg-reborn-rs e85b80e1, main at the merge of #489 (#483): while heading to town, a descent that is not a real escape is held and the Borg explores for an up staircase (caution_rising_explore_ticks, compiled 300; caution_rising_descend_danger_tenths 10). Over 4d83dd26 only that. Source-hash rust e0081f5b...; harness/borg.txt 14dc3a57... (the 4d83dd26 shipped defaults: speed30 bundle, divisor 2, no plan).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-7e08c920": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "7e08c9202016a518872c4520c430add910f89aa0",
+      "source": "https://github.com/diegoami/borg-zoo/issues/192",
+      "label": "borg-reborn-rs 7e08c920, main at the merge of #496 (#491): over 4d83dd26 it adds #489 (#483, rising to town explores for an up staircase, caution_rising_explore_ticks 300) and #496 (town planner healing reserve, curve scale and healing speed; shipped borg.txt 400 / 100 / 66).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
     }
   }
 }

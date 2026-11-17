@@ -1877,6 +1877,90 @@
       "settings": {
         "borg_param_attack_arrow_point_blank_divisor": 5
       }
+    },
+    "reborn-rising-ticks0": {
+      "description": "borg-zoo#191 (reborn-rising-ticks-pilot.yaml): arm ticks0.",
+      "settings": {
+        "borg_param_caution_rising_explore_ticks": 0
+      }
+    },
+    "reborn-rising-ticks150": {
+      "description": "borg-zoo#191 (reborn-rising-ticks-pilot.yaml): arm ticks150.",
+      "settings": {
+        "borg_param_caution_rising_explore_ticks": 150
+      }
+    },
+    "reborn-rising-ticks300": {
+      "description": "borg-zoo#191 (reborn-rising-ticks-pilot.yaml): arm ticks300.",
+      "settings": {
+        "borg_param_caution_rising_explore_ticks": 300
+      }
+    },
+    "reborn-rising-ticks600": {
+      "description": "borg-zoo#191 (reborn-rising-ticks-pilot.yaml): arm ticks600.",
+      "settings": {
+        "borg_param_caution_rising_explore_ticks": 600
+      }
+    },
+    "reborn-heal-r0-s0": {
+      "description": "borg-zoo#192 (reborn-heal-reserve-pilot.yaml): arm r0, s0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 0,
+        "borg_param_town_heal_speed_percent": 0
+      }
+    },
+    "reborn-heal-r0-s66": {
+      "description": "borg-zoo#192 (reborn-heal-reserve-pilot.yaml): arm r0, s66.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 0,
+        "borg_param_town_heal_speed_percent": 66
+      }
+    },
+    "reborn-heal-r400-s0": {
+      "description": "borg-zoo#192 (reborn-heal-reserve-pilot.yaml): arm r400, s0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 400,
+        "borg_param_town_heal_speed_percent": 0
+      }
+    },
+    "reborn-heal-r400-s66": {
+      "description": "borg-zoo#192 (reborn-heal-reserve-pilot.yaml): arm r400, s66.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 400,
+        "borg_param_town_heal_speed_percent": 66
+      }
+    },
+    "reborn-heal-r800-s0": {
+      "description": "borg-zoo#192 (reborn-heal-reserve-pilot.yaml): arm r800, s0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 800,
+        "borg_param_town_heal_speed_percent": 0
+      }
+    },
+    "reborn-heal-r800-s66": {
+      "description": "borg-zoo#192 (reborn-heal-reserve-pilot.yaml): arm r800, s66.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 800,
+        "borg_param_town_heal_speed_percent": 66
+      }
     }
   }
 }
