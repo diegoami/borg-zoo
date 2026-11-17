@@ -73,7 +73,7 @@ def sha256(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def config_text(record, cell, spec, profile, race_i, cls_i, borg_txt, plan_sha, provenance):
+def config_text(record, cell, spec, profile, race_i, cls_i, borg_txt, plan_sha, provenance, streams=()):
     """config.txt in the zoo-dossier format (borg-cemetery rerun-death.py)."""
     lines = [f"seed={cell['seed']}", f'race_idx={race_i}', f'class_idx={cls_i}',
              f"turns={record['cap']}", f"exact_turns={1 if spec.get('exact_turns') else 0}",
@@ -82,17 +82,34 @@ def config_text(record, cell, spec, profile, race_i, cls_i, borg_txt, plan_sha, 
              f"zoo_run={provenance.get('run_id') or ''}",
              f"zoo_profile={cell['profile']}", f"zoo_specimen={cell['specimen']}",
              f"zoo_suite={cell['suite']}"]
+    if streams:
+        # Observation-only record paths the cell set (a retained-evidence or
+        # town-shadow cell); a rerun sets them too, to be the cell exactly.
+        lines.append('zoo_record_streams=' + ','.join(streams))
     for name, value in sorted(profile['settings'].items()):
         if name == 'borg_plan':
-            # rerun-death.py maps this back to borg_plan = NAME and checks
-            # the dossier's errands_plan.txt against the hash.
+            # The format of the zoo dossiers already in the cemetery. Its
+            # rerun-death.py (borg-cemetery#59, zoo_plan) maps this back to
+            # borg_plan = NAME and checks the dossier's errands_plan.txt
+            # against errands_plan_sha256; the older harness path of that
+            # tool reads borg_errands_plan_sha256 and cannot rerun zoo cells.
             lines += [f'borg_errands_plan=user/{value}', f'errands_plan_sha256={plan_sha}']
         else:
             lines.append(f'{name}={cat_mod.setting_value(value)}')
     return '\n'.join(lines) + '\n'
 
 
-def replay_borgrs(record, cell, build_dir, cat, out, provenance):
+def record_streams(spec, profile, keep):
+    """The record variables borgrs.run_cell set for a cell: {VARIABLE: file}."""
+    if not (keep or spec.get('town_shadow_records')):
+        return {}
+    return {name: filename for setting, name, filename in (
+        ('borg_town_plan', 'BORG_TOWN_PLAN_RECORD', 'town-plan.jsonl'),
+        ('borg_trip_policy', 'BORG_TRIP_RECORD', 'trip.jsonl'))
+        if profile['settings'].get(setting) == 1 or (setting == 'borg_town_plan' and spec.get('town_shadow_records'))}
+
+
+def replay_borgrs(record, cell, build_dir, cat, out, provenance, keep=False):
     """Replay a borg-rs death cell into OUT with full logs; the bundle status."""
     from . import borgrs
     applied, profile = cat_mod.resolve_profile(cat, cell)
@@ -118,6 +135,12 @@ def replay_borgrs(record, cell, build_dir, cat, out, provenance):
     argv = borgrs.command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=True)
     env = {k: v for k, v in os.environ.items() if not k.startswith(borgrs.AMBIENT_PREFIX)}
     env.update(TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8', BORG_RUN_DIR=str(out))
+    # The cell's own record streams, if it had any: the replay is the cell's
+    # configuration plus logs, not a different process configuration.
+    streams = record_streams(spec, profile, keep)
+    for name, filename in streams.items():
+        env[name] = str(out / filename)
+        (out / filename).touch()
     try:
         with (out / 'stderr.log').open('w') as err:
             rc = subprocess.run(argv, cwd=game, env=env, stdout=subprocess.DEVNULL, stderr=err,
@@ -137,7 +160,7 @@ def replay_borgrs(record, cell, build_dir, cat, out, provenance):
         status = 'not_reproduced'
         why = (f'replay keys {str(keys_sha)[:12]}, cell played {str(record.get("play_sha256"))[:12]}'
                f'; exit {rc}; dead {summary.get("dead")}')
-    (out / 'config.txt').write_text(config_text(record, cell, spec, profile, race_i, cls_i, text, plan_sha, provenance))
+    (out / 'config.txt').write_text(config_text(record, cell, spec, profile, race_i, cls_i, text, plan_sha, provenance, sorted(streams)))
     (out / 'BUILD_ID').write_text(''.join(f'{k}={v}\n' for k, v in sorted((manifest.get('build_id') or {}).items())))
     for d in ('save', 'archive', 'panic', 'scores'):
         shutil.rmtree(out / d, ignore_errors=True)
@@ -148,7 +171,7 @@ def replay_borgrs(record, cell, build_dir, cat, out, provenance):
                          'trace_core': trace}
 
 
-def bundle(record, cell, build_dir, cat, root, provenance):
+def bundle(record, cell, build_dir, cat, root, provenance, keep=False):
     """Write a death bundle under ROOT for a death record; its index entry."""
     key = cat_mod.cell_key(cell)
     spec = cat['specimens']['specimens'][cell['specimen']]
@@ -161,9 +184,9 @@ def bundle(record, cell, build_dir, cat, root, provenance):
         return {**entry, 'status': 'unsupported', 'error': f'no death bundle for harness kind {kind}'}
     out = Path(root) / key
     try:
-        status, why, build = replay_borgrs(record, cell, build_dir, cat, out, provenance)
+        status, why, build = replay_borgrs(record, cell, build_dir, cat, out, provenance, keep=keep)
     except Exception as exc:  # reported per death, never dropped
-        return {**entry, 'status': 'error', 'error': repr(exc)}
+        return {**entry, 'status': 'error', 'error': f'{type(exc).__name__}: {exc}'}
     entry = {**entry, 'status': status, 'error': why, 'build': build, 'bundle': key}
     (out / 'zoo-death.json').write_text(json.dumps({**entry, 'record': record}, indent=2, sort_keys=True) + '\n')
     return entry

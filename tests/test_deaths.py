@@ -27,7 +27,7 @@ def cell_for(cat, profile):
 
 
 class DeathBundleTest(unittest.TestCase):
-    def play(self, cat, profile, replay_keys=None, trace_lines=0):
+    def play(self, cat, profile, replay_keys=None, trace_lines=0, keep=False):
         """Run a cell to a death, then bundle it; (record, entry, bundle dir files, replay env)."""
         cell = cell_for(cat, profile)
         spec = cat['specimens']['specimens'][cell['specimen']]
@@ -60,9 +60,9 @@ class DeathBundleTest(unittest.TestCase):
             with patch('zoo.borgrs.subprocess.run', side_effect=run), \
                     patch('zoo.deaths.subprocess.run', side_effect=run), \
                     patch.dict('os.environ', {'BORG_ERRAND': '/x'}):
-                record = borgrs.run_cell(cell, root, root / 'work', cat)
+                record = borgrs.run_cell(cell, root, root / 'work', cat, keep=keep)
                 entry = deaths.bundle(record, cell, root, cat, root / 'deaths',
-                                      {'experiment': 'x', 'run_id': '42'})
+                                      {'experiment': 'x', 'run_id': '42'}, keep=keep)
             out = root / 'deaths' / catalogue.cell_key(cell)
             files = {p.relative_to(out).as_posix(): p.read_bytes() for p in out.rglob('*') if p.is_file()} \
                 if out.exists() else {}
@@ -103,6 +103,75 @@ class DeathBundleTest(unittest.TestCase):
         self.assertIn('zoo-death.json', files)
         self.assertNotIn('user/errands_plan.txt', files)
         self.assertNotIn('borg_errands_plan', files['config.txt'].decode())
+
+    def test_replay_sets_the_record_streams_only_when_the_cell_did(self):
+        record_vars = ('BORG_TOWN_PLAN_RECORD', 'BORG_TRIP_RECORD')
+        cat = fixture_catalogue()
+        profile = next(name for name, p in cat['profiles'].items()
+                       if p.get('settings', {}).get('borg_town_plan') == 1 and p['settings'].get('borg_plan')
+                       and any(c['profile'] == name for c in catalogue.cells(
+                           catalogue.experiment('experiments/reborn-plan-m13-classes-18.json', cat), cat)))
+        _, entry, files, calls = self.play(cat, profile)
+        self.assertEqual(entry['status'], 'reproduced')
+        for call in calls:
+            self.assertFalse(any(v in call['env'] for v in record_vars))
+        self.assertNotIn('zoo_record_streams', files['config.txt'].decode())
+        _, entry, files, calls = self.play(cat, profile, keep=True)
+        self.assertEqual(entry['status'], 'reproduced')
+        cell_env, replay_env = calls[0]['env'], calls[1]['env']
+        self.assertIn('BORG_TOWN_PLAN_RECORD', cell_env)
+        self.assertEqual({v for v in record_vars if v in cell_env}, {v for v in record_vars if v in replay_env})
+        self.assertIn('town-plan.jsonl', files)
+        self.assertIn('zoo_record_streams=BORG_TOWN_PLAN_RECORD', files['config.txt'].decode())
+
+    def test_index_lines_are_written_while_other_cells_still_play(self):
+        import threading
+        from zoo import __main__ as cli
+        exp_path = 'experiments/reborn-plan-m13-classes-18.json'
+        cat = catalogue.catalogue()
+        exp = catalogue.load_experiment(exp_path, '', cat)
+        mine = catalogue.cells(exp, cat)[:2]
+        first, second = (catalogue.cell_key(c) for c in mine)
+        seen = {}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            index = root / 'deaths' / deaths.INDEX
+
+            def run_cell(cell, *args, **kwargs):
+                key = catalogue.cell_key(cell)
+                if key == second:  # blocks until the first death's index line exists
+                    for _ in range(200):
+                        if index.exists() and index.read_text().strip():
+                            seen['before_last_cell'] = index.read_text()
+                            break
+                        threading.Event().wait(0.05)
+                return {**cell, 'outcome': 'death' if key == first else 'turn_cap',
+                        'wall_seconds': 0.1, 'play_sha256': 'k'}
+
+            def bundle(record, cell, *args, **kwargs):
+                return {'schema': deaths.SCHEMA, 'cell': catalogue.cell_key(cell), 'status': 'reproduced'}
+
+            with patch('zoo.harness.run_cell', side_effect=run_cell), patch('zoo.deaths.bundle', side_effect=bundle), \
+                    patch('zoo.configuration.capture'), patch('zoo.catalogue.shard', return_value=mine):
+                cli.main(['run', '--experiment', exp_path, '--specimen', mine[0]['specimen'], '--build', str(root),
+                          '--work', str(root / 'work'), '--out', str(root / 'cells/c.jsonl'), '--jobs', '2',
+                          '--deaths', str(root / 'deaths')])
+            self.assertIn(first, seen.get('before_last_cell', ''))
+            self.assertEqual(len(index.read_text().splitlines()), 1)
+
+    def test_a_shard_without_deaths_has_an_empty_index(self):
+        from zoo import __main__ as cli
+        exp_path = 'experiments/reborn-plan-m13-classes-18.json'
+        cat = catalogue.catalogue()
+        mine = catalogue.cells(catalogue.load_experiment(exp_path, '', cat), cat)[:1]
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            with patch('zoo.harness.run_cell', side_effect=lambda cell, *a, **k: {**cell, 'outcome': 'turn_cap', 'wall_seconds': 1}), \
+                    patch('zoo.configuration.capture'), patch('zoo.catalogue.shard', return_value=mine):
+                cli.main(['run', '--experiment', exp_path, '--specimen', mine[0]['specimen'], '--build', str(root),
+                          '--work', str(root / 'work'), '--out', str(root / 'cells/c.jsonl'), '--jobs', '1',
+                          '--deaths', str(root / 'deaths')])
+            self.assertEqual((root / 'deaths' / deaths.INDEX).read_text(), '')
 
     def test_other_harness_kinds_are_listed_not_dropped(self):
         cat = catalogue.catalogue()
