@@ -1,0 +1,36 @@
+kind: balanced-incident-harvest
+name: balanced999-incidents-harvest
+folder: scenario-experiments
+issue: 168
+question: Can we freeze999 actual death/critical-recovery starts, exactly111 per class?
+cemetery:
+  repository: diegoami/borg-cemetery
+  commit: b93a7fc8e6509a462f05e7c2652d6ebe34c625d7
+  spec: synthetic/balanced-999-incidents/harvest-spec.json
+  spec_sha256: c0e4b78b61c7d3b85c5736f420478861199428eb7725e23a5074f2459f6646a4
+preparation_source:
+  repository: diegoami/borg-reborn-rs
+  commit: a83551378e22a4930b1a4d8d78d7d465465b0a25
+native_tools:
+  repository: diegoami/borg-cemetery
+  commit: 1afd9423d7f8a1340eca9d74cff85443e769b1a9
+baseline_specimen: 4.2.6-reborn-rust-maxdepth
+expected_cells: 999
+classes:
+- 0
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+per_class: 111
+parallel_jobs: 9
+owner_authorization: Owner explicitly requests a full about1000 bank and Zoo execution,
+  corrected to balanced111 each for all nine classes.
+prespecified: No duplicate-save padding or fabricated incidents. Preserve all attempts/deaths;
+  near-death candidate means observed actual HP loss to<=25% followed by recovery>=50%.
+  Freeze only with111 usable native-inspected cases per class. Full execution follows
+  a successful mixed-class smoke, with all expected outcomes and source-life lineage.

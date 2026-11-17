@@ -72,6 +72,9 @@ versions, scenario counts, collected cells and paired outcomes. Each run links
 to the full report and evidence; synthetic results stay separate from the
 population comparisons.
 
+[Balanced999 incidents](docs/BALANCED-INCIDENTS.md) prepares equal111-case
+quotas for all nine classes and a bounded saved-state execution in Zoo.
+
 ## Reading the results
 
 The Detailed tab lists experiments by the question they ask. Each run starts

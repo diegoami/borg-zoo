@@ -1,0 +1,27 @@
+kind: balanced-incident-comparison-plan
+name: balanced999-incidents-speed30-comparison
+folder: scenario-experiments
+issue: 168
+question: How do the baseline and Zoo's exact speed30 bundle behave on the same999 balanced saved incidents?
+baseline_definition: scenario-experiments/balanced999-incidents-execution.json
+reference:
+  inputs: scenario-inputs/balanced999-speed30
+  zoo_commit: 45066abaed03d9b966c9860925e33c68c2144fd2
+  run_id: 43994684018
+expected_cells: 1998
+owner_authorization: Owner requests a Zoo plan for the completed bank and a repeat with
+  specimen4.2.6-reborn-rust-speed-fight and profile reborn-bundle-plan-speed30.
+prespecified: |
+  Pair both setups on the same999 saves (111 per class), with the same2000-engine-turn
+  and5-second native wall bounds, saved engine RNG and fresh Borg memory.
+  Speed30 means the complete original Zoo profile, including errands_plan.txt,
+  healing, shopping/trip settings, class attack preferences and danger_tenths=30.
+  Source193d9076 and borg-rs core differ from baseline6d1bca10 and reborn core;
+  do not attribute all differences to speed30 alone. Snapshot exact input files.
+  Stages18/90/360/900/999 are cumulative, with no replay of earlier cells.
+  At each gate verify native loaded state, parameters, core and loaded plan hash.
+  Preserve all1998 expected cells including missing/invalid/stopped outcomes.
+  Report paired rescued/newly-killed, both died, both survived, stopped and invalid,
+  by class and historical incident type, with source-life correlation explicit.
+  No games are dispatched by planning. Candidate configured execution and receipt
+  integration must pass the mixed-class smoke before the larger stages run.
