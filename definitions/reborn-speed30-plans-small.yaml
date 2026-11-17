@@ -1,0 +1,57 @@
+# borg-zoo#170: the reborn-bundle-plan-speed30 settings with three plans (none, errands_plan, ambitious), small tier.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-speed30-plans-small.yaml
+name: reborn-speed30-plans-small
+issue: 170
+question: With speed30 on the bundle, which plan is best - none, errands_plan or errands_plan_ambitious?
+tier: small            # classes-1800-small: starts 1-90, 10 per class
+
+specimen: 4.2.6-reborn-rust-speed-fight
+
+# Every arm: the bundle of borg-zoo#164 with attack_speed_fight_danger_tenths = 30 (profile reborn-bundle-plan-speed30), plan varied.
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_town_plan: 1
+  borg_trip_policy: 1
+  borg_trip_unknown_stacks: 5
+  borg_trip_pack_slack: 1
+  borg_param_caution_heal_when_outmatched: 1
+  borg_param_attack_preference_warrior_melee_permille: 1800
+  borg_param_attack_preference_warrior_projectile_permille: 1200
+  borg_param_attack_preference_warrior_thrown_permille: 1200
+  borg_param_attack_preference_mage_spell_permille: 2000
+  borg_param_attack_preference_mage_device_permille: 1200
+  borg_param_attack_preference_druid_spell_permille: 1700
+  borg_param_attack_preference_priest_spell_permille: 1700
+  borg_param_attack_preference_necromancer_spell_permille: 1800
+  borg_param_attack_preference_necromancer_device_permille: 1200
+  borg_param_attack_preference_paladin_melee_permille: 1800
+  borg_param_attack_preference_paladin_spell_permille: 1200
+  borg_param_attack_preference_rogue_projectile_permille: 1300
+  borg_param_attack_preference_rogue_thrown_permille: 1600
+  borg_param_attack_preference_ranger_projectile_permille: 2000
+  borg_param_attack_preference_blackguard_melee_permille: 1600
+  borg_param_attack_preference_blackguard_spell_permille: 1400
+  borg_param_attack_speed_fight_danger_tenths: 30
+
+profile_prefix: ''
+arms:
+  reborn-bundle-none-speed30: {}
+  reborn-bundle-plan-speed30: {borg_plan: errands_plan.txt}           # the existing #170 profile, reused
+  reborn-bundle-ambitious-speed30: {borg_plan: errands_plan_ambitious.txt}
+
+control: [reborn-bundle-none-speed30]
+owner_authorization: >-
+  2026-11-17: after the pilot reborn-speed30-plans-pilot passed its gate (run 44045223515: 3/18
+  deaths in every arm), the owner asked for the small tier of the same three arms (RULES 14).
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#170). Small tier only (RULES 14: starts
+  1-90); medium and larger only after this gate and the owner. The question is which plan, if any,
+  helps the bundle with attack_speed_fight_danger_tenths = 30; it says nothing about the bundle or
+  speed30 against the neutral build. Gate: no config_error; one binary; every bundle setting and
+  speed30 written in the borg.txt of all three arms; the loaded plan copy matches its pin in the
+  plan and ambitious arms and is absent from the no-plan arm; every cell ends in death, turn_cap or
+  borg_stopped; frozen-turn stalls and key outliers are listed. Report per arm and per class:
+  deaths, final level, deepest level, keys; paired rescued and newly killed for each plan arm
+  against the no-plan arm on the same start (McNemar), and the cells where play diverges.
