@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-buy-qty-pilot",
+  "issue": 205,
+  "definition": "definitions/reborn-buy-qty-pilot.yaml",
+  "question": "Does buying a planned purchase's copies in one transaction (borg-reborn-rs#507, PR",
+  "description": "Does buying a planned purchase's copies in one transaction (borg-reborn-rs#507, PR Generated from definitions/reborn-buy-qty-pilot.yaml: 1 arms on 4.2.6-reborn-rust-main-28360152, 4.2.6-reborn-rust-buyqty-729a94ee, suite classes-18, classes-1800-small-rangers.",
+  "prespecified": "Fixed 2026-11-17, before any result was read. Pilot (RULES 14); more starts only after this gate and the\nowner. Two builds, one profile (the shipped harness/borg.txt, no plan, no errand), on classes-18 and the\n10 Ranger starts of classes-1800-small: 56 games. Gate: no config_error; one binary per specimen; no plan\nloaded; every cell ends in death, turn_cap or borg_stopped; death bundles reproduced. Endpoints, per\nspecimen: (1) the largest keys at one game turn per game and the number of games with 1,000+ (the fix\ncounts as working when the candidate has none and its per-game maximum is lower than the control's\non the same start); (2) purchases (\"You bought\") per game, and how many buy several copies; (3) ammunition\nbought (Arrows, Bolts, Shots, Pebbles, Iron Shots), in transactions and in copies, and gold on it\nagainst all gold spent; (4) deaths, final level, deepest level, paired rescued and newly killed against\nthe control on the same start; (5) any \"You do not have enough gold\" or \"You cannot carry that many\nitems\" message (expected none). Local check on three Ranger starts: the per-turn maximum fell from\n149-330 keys to 72-80 and arrow purchases from 87-237 transactions to 14, while copies bought rose\nfrom 87-237 to 276-302; whether buying more ammunition helps or costs gold elsewhere is the open\nquestion. 28 starts per build show direction only.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-main-28360152",
+    "4.2.6-reborn-rust-buyqty-729a94ee"
+  ],
+  "profiles": [
+    "reborn-shipped"
+  ],
+  "suites": [
+    "classes-18",
+    "classes-1800-small-rangers"
+  ],
+  "control": "4.2.6-reborn-rust-main-28360152",
+  "control_profile": "reborn-shipped",
+  "owner_authorization": "2026-11-17: after borg-zoo#198 found a Ranger buying 120 Arrows one transaction at a time, the owner had borg-reborn-rs#507 fixed (PR #509) and asked for a zoo pilot of the fix against main."
+}
