@@ -4,11 +4,11 @@ import datetime
 import json
 import os
 import sys
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from pathlib import Path
 
 from . import catalogue as cat_mod
-from . import harness, site, evidence, preflight, configuration
+from . import harness, site, evidence, preflight, configuration, deaths
 
 
 def cmd_arms(args):
@@ -78,26 +78,72 @@ def cmd_run(args):
             raise ValueError(f'retained attempt already exists: {collisions[0]}')
     # Write each completed cell before waiting for any other cell. Retaining raw
     # evidence must not determine whether timeout recovery preserves results.
+    death_root = Path(args.deaths) if args.deaths and deaths.enabled(exp) else None
+    provenance = deaths.provenance_from_env(exp)
+    keep = args.keep or exp.get('retain_evidence', False)
+    index = None
+    if death_root is not None:
+        # Opened before play, one flushed line per finished bundle: an
+        # interrupted shard still uploads an index for every bundle it
+        # finished, and a shard without deaths an empty one (RULES 13).
+        death_root.mkdir(parents=True, exist_ok=True)
+        index = (death_root / deaths.INDEX).open('a')
     with out.open('x') as stream, ThreadPoolExecutor(max_workers=args.jobs) as pool:
-        pending = {pool.submit(one, cell): cell for cell in mine}
-        records = []
-        for future in as_completed(pending):
-            try:
-                record = future.result()
-            except Exception as exc:
-                cell = pending[future]
-                record = {'schema': 'borg-zoo/cell@1', **cell,
-                          'harness_kind': cat['specimens']['specimens'][cell['specimen']].get('kind', 'better-borg-c'),
-                          'boundary': cat_mod.boundary(cat['specimens']['specimens'][cell['specimen']]),
-                          'outcome': 'harness_failure', 'error': repr(exc),
-                          'cap': cat['suites'][cell['suite']]['cap'],
-                          'final': {}, 'first_turn_at_depth': {}, 'wall_seconds': None}
-                if exp.get('retain_evidence'):
-                    evidence.attach(record, Path(args.work) / cat_mod.cell_key(cell))
-            records.append(record)
-            stream.write(json.dumps(record, sort_keys=True) + '\n')
-            stream.flush()
-    print(f'{len(records)} cells -> {out}')
+        # Cells are fed to the pool as workers free up, not queued all at
+        # once, so a death's replay starts soon after the death instead of
+        # after every other cell: a shard cut short keeps its bundles too.
+        queue = list(mine)
+        cells, bundles, records, waiting, indexed = {}, {}, [], set(), {}
+
+        def feed():
+            while queue and len(waiting) < args.jobs:
+                cell = queue.pop(0)
+                future = pool.submit(one, cell)
+                cells[future] = cell
+                waiting.add(future)
+        feed()
+        while waiting:
+            done, waiting = wait(waiting, return_when=FIRST_COMPLETED)
+            for future in done:
+                if future in bundles:
+                    try:
+                        entry = future.result()
+                    except Exception as exc:  # reported per death, never dropped
+                        entry = {'schema': deaths.SCHEMA, 'cell': cat_mod.cell_key(bundles[future]),
+                                 'status': 'error', 'error': str(exc)}
+                    index.write(json.dumps(entry, sort_keys=True) + '\n')
+                    index.flush()
+                    indexed[entry.get('status')] = indexed.get(entry.get('status'), 0) + 1
+                    print(json.dumps({k: entry.get(k) for k in ('cell', 'status', 'error')}), flush=True)
+                    continue
+                try:
+                    record = future.result()
+                except Exception as exc:
+                    cell = cells[future]
+                    record = {'schema': 'borg-zoo/cell@1', **cell,
+                              'harness_kind': cat['specimens']['specimens'][cell['specimen']].get('kind', 'better-borg-c'),
+                              'boundary': cat_mod.boundary(cat['specimens']['specimens'][cell['specimen']]),
+                              'outcome': 'harness_failure', 'error': repr(exc),
+                              'cap': cat['suites'][cell['suite']]['cap'],
+                              'final': {}, 'first_turn_at_depth': {}, 'wall_seconds': None}
+                    if exp.get('retain_evidence'):
+                        evidence.attach(record, Path(args.work) / cat_mod.cell_key(cell))
+                records.append(record)
+                stream.write(json.dumps(record, sort_keys=True) + '\n')
+                stream.flush()
+                if index is not None and deaths.wanted(record):
+                    # Natural deaths are replayed with full logs into death
+                    # bundles for the cemetery (borg-zoo#176), after their
+                    # records are written.
+                    bundle = pool.submit(deaths.bundle, record, cells[future], args.build, cat,
+                                         death_root, provenance, keep=keep)
+                    bundles[bundle] = cells[future]
+                    waiting.add(bundle)
+            feed()
+    if index is not None:
+        index.close()
+    summary = ', '.join(f'{n} {status}' for status, n in sorted(indexed.items())) or 'none'
+    print(f'{len(records)} cells -> {out}' + (f'; death bundles indexed in {death_root}: {summary}' if index else ''))
 
 
 def cmd_collect(args):
@@ -193,6 +239,8 @@ def main(argv=None):
     s.add_argument('--jobs', type=int, default=os.cpu_count() or 1)
     s.add_argument('--arm', default='', help='SPECIMEN:PROFILE, as for plan')
     s.add_argument('--keep', action='store_true', help='keep traces and terminal logs')
+    s.add_argument('--deaths', default=None,
+                   help='replay natural deaths with full logs into cemetery death bundles here (borg-zoo#176)')
     s.add_argument('--source', default=None, help='installed Mandos checkout at the specimen ref (Mandos specimens)')
     s.add_argument('--toolkit', default=None, help='pinned original-Neo measurement toolkit checkout')
     s = sub.add_parser('collect')

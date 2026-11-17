@@ -44,7 +44,23 @@ env:
   PYTHONUNBUFFERED: '1'
 
 jobs:
+  incident-harvest:
+    if: inputs.experiment == 'scenario-experiments/balanced999-incidents-harvest.json'
+    uses: ./.github/workflows/harvest-incidents.yml
+    with:
+      arm: ${{ inputs.arm }}
+  incident-execution:
+    if: inputs.experiment == 'scenario-experiments/balanced999-incidents-execution.json'
+    permissions:
+      contents: read
+      actions: read
+    uses: ./.github/workflows/execute-incidents.yml
+  paired-incidents:
+    if: inputs.experiment == 'scenario-experiments/balanced999-paired-smoke-v2.json'
+    permissions: {contents: read, actions: read}
+    uses: ./.github/workflows/paired-incidents.yml
   plan:
+    if: inputs.experiment != 'scenario-experiments/balanced999-incidents-harvest.json' && inputs.experiment != 'scenario-experiments/balanced999-incidents-execution.json' && inputs.experiment != 'scenario-experiments/balanced999-paired-smoke-v2.json'
     runs-on: ubuntu-24.04
     outputs:
       specimens: ${{ steps.plan.outputs.specimens }}
@@ -178,12 +194,24 @@ jobs:
           --build "$GITHUB_WORKSPACE/specimens/${{ matrix.specimen }}" --harness harness
           --work "$RUNNER_TEMP/work" --out "cells/${{ matrix.specimen }}-${{ matrix.shard }}.jsonl" --jobs "${ZOO_JOBS:-$(nproc)}"
           --source "$GITHUB_WORKSPACE/source" --toolkit "$GITHUB_WORKSPACE/neo-toolkit"
+          --deaths "deaths/${{ matrix.specimen }}-${{ matrix.shard }}"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cells-${{ matrix.specimen }}-${{ matrix.shard }}
           path: cells/
           retention-days: 30
+      # Every natural death, replayed with full logs and checked against the
+      # cell's keys, for borg-cemetery's scripts/import_zoo_deaths.py
+      # (borg-zoo#176). Kept whatever retain_evidence says.
+      - name: Keep the death bundles for the cemetery
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deaths-${{ matrix.specimen }}-${{ matrix.shard }}
+          path: deaths/
+          retention-days: 90
+          if-no-files-found: ignore
       - name: Archive all retained attempt evidence
         if: always() && needs.plan.outputs.retain_evidence == 'true'
         run: |

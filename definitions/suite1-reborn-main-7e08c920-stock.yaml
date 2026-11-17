@@ -1,0 +1,35 @@
+# borg-zoo#183: Suite 1 (balanced999) on borg-reborn-rs main 7e08c920 with its own borg.txt, a sanity check of main.
+# Inputs frozen with: python3 -m zoo.suite_runs snapshot --source <borg-reborn-rs at 7e08c920> --name suite1-reborn-main-7e08c920-stock
+# Write the generated definition with: python3 -m zoo define definitions/suite1-reborn-main-7e08c920-stock.yaml
+kind: suite-run
+name: suite1-reborn-main-7e08c920-stock
+folder: scenario-experiments
+issue: 183
+question: How does borg-reborn-rs main 7e08c920, with its own default settings, play the 999 saved encounters of Suite 1?
+suite: suite1-v1
+source:
+  repository: diegoami/borg-reborn-rs
+  commit: 7e08c9202016a518872c4520c430add910f89aa0
+settings: stock
+inputs:
+  path: scenario-inputs/suite1-reborn-main-7e08c920-stock
+  files:
+    borg.txt: 04dd52f7fd78510362d1c01a159601f23150af8fcdea0331876fd15538db95d8
+    provenance.json: cbed887ce17be89889becf6728e9ead22ce5ed40a5188c1a733005f8f0d076e5
+native_tools:
+  repository: diegoami/borg-cemetery
+  commit: 09225018dd5f2d4336a16b29478793d902c70dc3
+owner_authorization: >-
+  2026-11-17: the owner asked for the full suite now on the current state of main (borg-zoo#183): Suite 1 on
+  borg-reborn-rs main 7e08c920 with its own default settings, all stages to full 999.
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#183). A sanity check of main: the 999 saves of
+  Suite 1 with its protocol (exact 2,000-engine-turn horizon, 5-second native wall limit, fresh Borg
+  memory, saved engine RNG). Settings: the checkout's own harness/borg.txt (sha256 04dd52f7...), nothing
+  overridden, no plan because the file names none. Stages smoke 18, small 90, medium 360, big 900 and full
+  999 run in sequence on the owner's single go, without replays. A stage that fails its gate stops the
+  sequence. Gate at every stage: no missing, invalid or stopped cell; one binary; every cell's native
+  receipts show the save, the RNG, the borg-rs core, every borg.txt setting written, every borg_param_*
+  effective from borg.txt, no plan loaded, and an initial pack/equipment/rune hash equal to the suite's.
+  Reported alone: the death share, deaths per class and every scenario's outcome. Encounters from one life
+  are correlated.
