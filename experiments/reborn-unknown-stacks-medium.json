@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-unknown-stacks-medium",
+  "issue": 170,
+  "definition": "definitions/reborn-unknown-stacks-medium.yaml",
+  "question": "On the speed30 bundle with no plan, which borg_trip_unknown_stacks (2, 3, 4, 5) is best?",
+  "description": "On the speed30 bundle with no plan, which borg_trip_unknown_stacks (2, 3, 4, 5) is best? Generated from definitions/reborn-unknown-stacks-medium.yaml: 3 arms on 4.2.6-reborn-rust-speed-fight, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#170). Medium tier only (RULES 14: starts\n91-360, disjoint from the small tier; analysed together with it on all 360 starts for values 3, 4\nand 5). Value 2 is dropped: it changed play the most and had the most deaths in the small tier.\nThe question is which borg_trip_unknown_stacks value (3, 4, 5) is best on the speed30 bundle with\nno plan; it says nothing about the bundle against the neutral build. Gate: no config_error; one\nbinary; every bundle setting, speed30 and the arm's borg_trip_unknown_stacks written in the borg.txt\nof every arm; no plan loaded in any arm; every cell ends in death, turn_cap or borg_stopped;\nfrozen-turn stalls and key outliers are listed. Report per arm and per class: deaths, final level,\ndeepest level, reached DL5, keys; paired rescued and newly killed for 3 and 4 against 5 (the\ncontrol) on the same start (McNemar), on this tier and on small + medium together, and the cells\nwhere play diverges. Also count trip returns for unknown items that end in a descent, where the\nrecords allow.",
+  "specimens": [
+    "4.2.6-reborn-rust-speed-fight"
+  ],
+  "profiles": [
+    "reborn-bundle-none-speed30-unknown3",
+    "reborn-bundle-none-speed30-unknown4",
+    "reborn-bundle-none-speed30"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-speed-fight",
+  "control_profile": "reborn-bundle-none-speed30",
+  "owner_authorization": "2026-11-17: after the small tier reborn-unknown-stacks-small passed its gate (run 44055270651: deaths 8, 6, 3 and 6 of 90 for unknown_stacks 2, 3, 4 and 5), the owner asked for the medium tier without value 2 (RULES 14)."
+}
