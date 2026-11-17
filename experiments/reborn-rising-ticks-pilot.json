@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-rising-ticks-pilot",
+  "issue": 191,
+  "definition": "definitions/reborn-rising-ticks-pilot.yaml",
+  "question": "On borg-reborn-rs main e85b80e1, how long should a Borg heading to town explore for an up staircase (caution_rising_explore_ticks 0, 150, 300, 600)?",
+  "description": "On borg-reborn-rs main e85b80e1, how long should a Borg heading to town explore for an up staircase (caution_rising_explore_ticks 0, 150, 300, 600)? Generated from definitions/reborn-rising-ticks-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-e85b80e1, suite classes-18.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#191). Pilot only (RULES 14); small and larger only\nafter this gate and the owner. Gate: no config_error; one binary; each arm's borg.txt has\nborg_param_caution_rising_explore_ticks at its value and otherwise the shipped settings, no plan; every\ncell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key outliers listed; in ticks0 none\nof #489's notes (\"no up stairs found, exploring for them (rising)\", \"Holding a descent while rising to\ntown\") appear (fix-off check, on the death replays' messages). Descriptive, per arm: deaths, final\nlevel, deepest level, town visits; Trip: return decisions and how many reached town; down-then-up\nbounces (DL n -> n+1 -> n); counts of the two #489 notes and of \"no up stairs found, going down\";\npaired rescued and newly killed against ticks0 on the same start. ticks300 is the shipped value. 18\nstarts per arm cannot show which budget is best. Known and not addressed: the scary-level flee taking\na down staircase while not heading home (borg-reborn-rs#488).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-e85b80e1"
+  ],
+  "profiles": [
+    "reborn-rising-ticks0",
+    "reborn-rising-ticks150",
+    "reborn-rising-ticks300",
+    "reborn-rising-ticks600"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-e85b80e1",
+  "control_profile": "reborn-rising-ticks0",
+  "owner_authorization": "2026-11-17: the owner asked to tune caution_rising_explore_ticks with everything else at the shipped defaults, pilot first (borg-zoo#191, from borg-reborn-rs#483 / PR #489). Small only after the pilot gate and the owner (RULES 14)."
+}

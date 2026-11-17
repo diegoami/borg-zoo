@@ -1,0 +1,140 @@
+name: Prepare balanced999 incident bank
+on:
+  workflow_call:
+    inputs:
+      arm:
+        type: string
+        default: ''
+permissions:
+  contents: read
+jobs:
+  pins:
+    runs-on: ubuntu-24.04
+    outputs:
+      cemetery: ${{ steps.pins.outputs.cemetery }}
+      source: ${{ steps.pins.outputs.source }}
+      tools: ${{ steps.pins.outputs.tools }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - name: Validate definition and explicit full-bank request
+        env: {ARM: '${{ inputs.arm }}'}
+        run: |
+          python3 -m zoo define --check definitions/balanced999-incidents-harvest.yaml
+          python3 - <<'PY'
+          import json,os
+          assert os.environ['ARM']==''
+          d=json.load(open('scenario-experiments/balanced999-incidents-harvest.json'))
+          assert d['expected_cells']==999 and d['per_class']==111 and d['classes']==list(range(9))
+          PY
+      - id: pins
+        run: |
+          python3 - <<'PY'
+          import json,os,re
+          d=json.load(open('scenario-experiments/balanced999-incidents-harvest.json'))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              for name,key in [('cemetery','cemetery'),('source','preparation_source'),('tools','native_tools')]:
+                  pin=d[key]['commit'];assert re.fullmatch('[0-9a-f]{40}',pin);f.write(name+'='+pin+'\n')
+          PY
+  build:
+    needs: pins
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      BORG_CEMETERY_DIR: ${{ github.workspace }}/native-tools
+    steps:
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.source }}', path: source, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.tools }}', path: native-tools, persist-credentials: false}
+      - uses: dtolnay/rust-toolchain@1.100.0
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq build-essential cmake libssl-dev
+      - name: Build preparation source once
+        working-directory: source
+        run: BORG_IMPL=rust flock /tmp/angband-validation.lock harness/build.sh
+      - run: tar -C source -czf preparation-build.tgz build/rust/game/angband build/rust/game/lib build/rust/BUILD_ID
+      - uses: actions/upload-artifact@v4
+        with: {name: incident-preparation-build, path: preparation-build.tgz, retention-days: 90}
+  harvest:
+    needs: [pins, build]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 9
+      matrix:
+        class: [0,1,2,3,4,5,6,7,8]
+    env:
+      PYTHONUNBUFFERED: '1'
+      BORG_CEMETERY_DIR: ${{ github.workspace }}/native-tools
+    steps:
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.source }}', path: source, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.tools }}', path: native-tools, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: incident-preparation-build}
+      - run: tar -C source -xzf preparation-build.tgz
+      - name: Harvest and inspect111 usable incidents for this class
+        id: harvest
+        env: {CLASS_INDEX: '${{ matrix.class }}'}
+        run: >-
+          python3 cemetery/scripts/harvest_incidents.py
+          --spec cemetery/synthetic/balanced-999-incidents/harvest-spec.json
+          --source source --tools native-tools --out harvest --class-index "$CLASS_INDEX"
+      - name: Pack lean frozen selection for assembly
+        if: steps.harvest.outcome == 'success'
+        run: python3 cemetery/scripts/pack_incident_selection.py --harvest harvest --out selection
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: incident-selection-${{ matrix.class }}
+          path: selection/
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Preserve complete preparation evidence in a compressed archive
+        if: always()
+        run: |
+          if [ -d harvest ]; then tar -czf "harvest-class-${{ matrix.class }}.tgz" harvest; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: incident-raw-${{ matrix.class }}
+          path: harvest-class-*.tgz
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: warn
+  assemble:
+    needs: [pins, harvest]
+    if: always() && needs.pins.result == 'success'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.tools }}', path: native-tools, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {pattern: incident-selection-*, path: inputs}
+      - name: Refuse a short or unbalanced bank
+        run: >-
+          python3 cemetery/scripts/materialize_incidents.py --inputs inputs
+          --out cemetery/synthetic/balanced-999-incidents/generated --tools native-tools
+      - name: Validate all999 inputs and class balance
+        run: |
+          python3 - <<'PY'
+          import sys,json
+          from pathlib import Path
+          sys.path.insert(0,'cemetery/scripts')
+          from encounter_bank import prepare_bank
+          root=Path('cemetery').resolve();p=root/'synthetic/balanced-999-incidents/generated/bank.json'
+          bank,shards=prepare_bank(p,root)
+          assert bank['expected_cases']==999
+          c=json.load(open(p.parent/'coverage.json'));assert set(c['class_counts'].values())=={111}
+          PY
+      - run: tar -C cemetery -czf balanced999-bank.tgz synthetic/balanced-999-incidents/generated
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with: {name: balanced999-bank, path: balanced999-bank.tgz, retention-days: 90}

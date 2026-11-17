@@ -1,0 +1,187 @@
+name: Zoo balanced999 incident execution
+on:
+  workflow_call:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  pins:
+    runs-on: ubuntu-24.04
+    outputs:
+      cemetery: ${{ steps.pins.outputs.cemetery }}
+      source: ${{ steps.pins.outputs.source }}
+      tools: ${{ steps.pins.outputs.tools }}
+      artifact: ${{ steps.pins.outputs.artifact }}
+      run: ${{ steps.pins.outputs.run }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - id: pins
+        env: {GITHUB_TOKEN: '${{ github.token }}'}
+        run: |
+          python3 -m zoo define --check definitions/balanced999-incidents-execution.yaml
+          python3 - <<'PY'
+          import json,os,re,urllib.request
+          d=json.load(open('scenario-experiments/balanced999-incidents-execution.json'))
+          assert d['expected_cells']==999 and d['per_class']==111
+          a=d['bank_artifact']
+          request=urllib.request.Request('https://api.github.com/repos/diegoami/borg-zoo/actions/artifacts/'+str(a['id']),headers={'Authorization':'Bearer '+os.environ['GITHUB_TOKEN']})
+          metadata=json.load(urllib.request.urlopen(request))
+          assert metadata['id']==a['id'] and metadata['name']=='balanced999-bank' and metadata['workflow_run']['id']==a['run_id'] and not metadata['expired']
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              for name in ['cemetery','source','native_tools']:
+                  p=d[name]['commit'];assert re.fullmatch('[0-9a-f]{40}',p);f.write(('tools' if name=='native_tools' else name)+'='+p+'\n')
+              f.write('artifact='+str(d['bank_artifact']['id'])+'\nrun='+str(d['bank_artifact']['run_id'])+'\n')
+          PY
+  build:
+    needs: pins
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env: {BORG_CEMETERY_DIR: '${{ github.workspace }}/native-tools'}
+    steps:
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.source }}', path: source, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.tools }}', path: native-tools, persist-credentials: false}
+      - uses: dtolnay/rust-toolchain@1.100.0
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq build-essential cmake libssl-dev
+      - name: Build execution target once for all999 starts
+        working-directory: source
+        run: BORG_IMPL=rust flock /tmp/angband-validation.lock harness/build.sh
+      - run: tar -C source -czf execution-build.tgz build/rust/game/angband build/rust/game/lib build/rust/BUILD_ID
+      - uses: actions/upload-artifact@v4
+        with: {name: incident-execution-build, path: execution-build.tgz, retention-days: 90}
+  plan:
+    needs: pins
+    runs-on: ubuntu-24.04
+    outputs:
+      small: ${{ steps.matrix.outputs.small }}
+      medium: ${{ steps.matrix.outputs.medium }}
+      big: ${{ steps.matrix.outputs.big }}
+      full: ${{ steps.matrix.outputs.full }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.source }}', path: source, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with:
+          name: balanced999-bank
+          run-id: ${{ needs.pins.outputs.run }}
+          github-token: ${{ github.token }}
+          path: prepared
+      - name: Validate and unpack the exact prepared bank
+        run: |
+          python3 - <<'PY'
+          import json,hashlib,tarfile
+          from pathlib import Path
+          d=json.load(open('scenario-experiments/balanced999-incidents-execution.json'))
+          archive=Path('prepared/balanced999-bank.tgz')
+          assert hashlib.sha256(archive.read_bytes()).hexdigest()==d['bank_artifact']['sha256']
+          with tarfile.open(archive) as t:
+              for m in t.getmembers():
+                  assert m.name.startswith('synthetic/balanced-999-incidents/generated/') or m.name=='synthetic/balanced-999-incidents/generated'
+                  assert '..' not in Path(m.name).parts and not(m.issym() or m.islnk())
+              t.extractall('cemetery',filter='data')
+          PY
+      - run: >-
+          python3 -m zoo.incident_bank plan --definition scenario-experiments/balanced999-incidents-execution.json
+          --bank cemetery --source source --out plan.json --archive prepared/balanced999-bank.tgz
+      - id: matrix
+        run: |
+          python3 - <<'PY'
+          import json,os
+          p=json.load(open('plan.json'))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              for tier in ['small','medium','big','full']:
+                  f.write(tier+'='+json.dumps([b['id'] for b in p['batches'] if b['id'].startswith(tier+'-')])+'\n')
+          PY
+      - run: tar -C cemetery -czf execution-inputs.tgz synthetic/balanced-999-incidents/generated
+      - uses: actions/upload-artifact@v4
+        with: {name: incident-execution-plan, path: plan.json, retention-days: 90}
+      - uses: actions/upload-artifact@v4
+        with: {name: incident-execution-inputs, path: execution-inputs.tgz, retention-days: 90}
+  smoke:
+    needs: [pins,plan,build]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.source }}', path: source, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.tools }}', path: native-tools, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'incident-execution-*', path: downloaded, merge-multiple: true}
+      - run: tar -C cemetery -xzf downloaded/execution-inputs.tgz && tar -C source -xzf downloaded/execution-build.tgz
+      - run: python3 -m zoo.incident_bank run --plan downloaded/plan.json --bank cemetery --source source --tools native-tools --batch smoke --out attempt
+      - name: Gate the full run on two valid starts per class
+        if: always()
+        run: python3 -m zoo.incident_bank collect --plan downloaded/plan.json --inputs attempt --out smoke-report --smoke-only
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: incident-cells-smoke, path: 'attempt/cells/', retention-days: 90}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: incident-native-smoke, path: 'attempt/native/', retention-days: 14}
+  small:
+    needs: [pins,plan,build,smoke]
+    uses: ./.github/workflows/execute-incident-tier.yml
+    with:
+      cemetery: ${{ needs.pins.outputs.cemetery }}
+      source: ${{ needs.pins.outputs.source }}
+      tools: ${{ needs.pins.outputs.tools }}
+      batches: ${{ needs.plan.outputs.small }}
+      tier: small
+  medium:
+    needs: [pins,plan,build,small]
+    uses: ./.github/workflows/execute-incident-tier.yml
+    with:
+      cemetery: ${{ needs.pins.outputs.cemetery }}
+      source: ${{ needs.pins.outputs.source }}
+      tools: ${{ needs.pins.outputs.tools }}
+      batches: ${{ needs.plan.outputs.medium }}
+      tier: medium
+  big:
+    needs: [pins,plan,build,medium]
+    uses: ./.github/workflows/execute-incident-tier.yml
+    with:
+      cemetery: ${{ needs.pins.outputs.cemetery }}
+      source: ${{ needs.pins.outputs.source }}
+      tools: ${{ needs.pins.outputs.tools }}
+      batches: ${{ needs.plan.outputs.big }}
+      tier: big
+  full:
+    needs: [pins,plan,build,big]
+    uses: ./.github/workflows/execute-incident-tier.yml
+    with:
+      cemetery: ${{ needs.pins.outputs.cemetery }}
+      source: ${{ needs.pins.outputs.source }}
+      tools: ${{ needs.pins.outputs.tools }}
+      batches: ${{ needs.plan.outputs.full }}
+      tier: full
+  collect:
+    if: always() && needs.plan.result == 'success'
+    needs: [plan,smoke,small,medium,big,full]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: incident-execution-plan}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {pattern: 'incident-cells-*', path: collected}
+      - name: Collect all999 expected outcomes, including failed or missing batches
+        env: {RUN_URL: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'}
+        run: python3 -m zoo.incident_bank collect --plan plan.json --inputs collected --out comparison --run-url "$RUN_URL"
+      - if: always()
+        run: if [ -f comparison/comparison.md ]; then cat comparison/comparison.md >> "$GITHUB_STEP_SUMMARY"; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: balanced999-comparison, path: comparison/, retention-days: 90}

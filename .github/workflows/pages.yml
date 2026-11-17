@@ -3,6 +3,9 @@ name: pages
 # Builds the statistics site from the `results` branch and publishes it.
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: [Resume paired saved incidents, Saved suite run]
+    types: [completed]
   push:
     branches: [main]
     paths: ['zoo/**', '.github/workflows/pages.yml']
