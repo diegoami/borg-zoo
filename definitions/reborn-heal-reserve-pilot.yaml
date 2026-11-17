@@ -1,0 +1,54 @@
+# borg-zoo#192: town planner healing reserve {0, 400, 800} x speed {0, 66} on borg-reborn-rs main 7e08c920, pilot.
+# Copied from the run request; write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-reserve-pilot.yaml
+name: reborn-heal-reserve-pilot
+issue: 192
+question: On borg-reborn-rs main 7e08c920, which healing reserve (0, 400, 800 percent of max HP) and healing speed (0, 66) should the town planner use?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-7e08c920
+  repository: diegoami/borg-reborn-rs
+  ref: 7e08c9202016a518872c4520c430add910f89aa0
+  source: https://github.com/diegoami/borg-zoo/issues/192
+  label: >-
+    borg-reborn-rs 7e08c920, main at the merge of #496 (#491): over 4d83dd26 it adds #489 (#483, rising
+    to town explores for an up staircase, caution_rising_explore_ticks 300) and #496 (town planner
+    healing reserve, curve scale and healing speed; shipped borg.txt 400 / 100 / 66).
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# Every arm: the shipped harness/borg.txt (speed30 bundle, no plan, no errand), with the three
+# #491 lines written; the curve scale stays at its neutral 100.
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_town_heal_curve_scale_percent: 100
+
+profile_prefix: reborn-heal
+vary:
+  reserve:
+    r0: {borg_param_town_heal_reserve_hp_percent: 0}
+    r400: {borg_param_town_heal_reserve_hp_percent: 400}
+    r800: {borg_param_town_heal_reserve_hp_percent: 800}
+  speed:
+    s0: {borg_param_town_heal_speed_percent: 0}
+    s66: {borg_param_town_heal_speed_percent: 66}
+
+control: [r0, s0]
+
+owner_authorization: >-
+  2026-11-17: after borg-reborn-rs #491 / PR #496, the owner asked for a zoo pilot to calibrate the
+  healing reserve and healing speed parameters.
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read. Pilot only (RULES 14); small and larger only after this
+  gate and the owner. Gate: no config_error; one binary; the three borg_param_town_heal_* lines with the
+  arm's values written in the borg.txt of every arm; no plan loaded; every cell ends in death,
+  turn_cap or borg_stopped; frozen-turn stalls and key outliers listed. Control r0-s0 is the town
+  planner's healing before #491 (the curve alone); r400-s66 is the shipped value. Report per arm:
+  deaths, final level, deepest level, keys; healing potions bought (Cure Light/Serious/Critical
+  Wounds, Healing) and gold on them against total gold spent; paired rescued and newly killed for each
+  arm against the control on the same start, and the cells where play diverges. Watch level-1 casters
+  with very low max HP at r800 (a 10-HP mage spent its starting gold on 8 Cure Light Wounds and died
+  in borg-reborn-rs CI). 18 starts per arm cannot show which value is best.

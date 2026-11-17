@@ -84,7 +84,7 @@ svg.scatter.compact{max-width:140px}
    for width and scrolled individually instead of just... fitting. */
 .class-cell .chart{max-width:none;overflow-x:visible}
 .class-cell .chart svg{min-width:0;max-width:100%}
-p.tabs{display:flex;gap:4px;margin:8px 0 18px;border-bottom:1px solid var(--line)}
+p.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 18px;border-bottom:1px solid var(--line)}
 p.tabs .tab{padding:6px 14px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent}
 p.tabs .tab.active{color:var(--fg);font-weight:600;border-bottom-color:var(--accent)}
 th{white-space:normal;vertical-align:bottom}th[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help}
@@ -1016,8 +1016,7 @@ def build_site(results, out):
                      len(cells), finished])
     from . import landing
     shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
-    (out / 'index.html').write_text(page('Borg zoo', landing.overview_page(runs) +
-        '<p><a href="scenarios/index.html">Synthetic scenario comparisons</a> · separate from population results</p>', charts=True))
+    (out / 'overview.html').write_text(page('Borg comparisons · borg-zoo', landing.overview_page(runs), charts=True))
     from . import scenarios
     scenarios.build_site(results, out)
     # The /runs/ directory contains per-run report folders, not a page of its
@@ -1032,7 +1031,9 @@ def build_site(results, out):
     for policy in landing.POLICIES:
         (out / f'{policy["slug"]}.html').write_text(
             page(f'{policy["title"]} · borg-zoo', landing.comparison_page(runs, policy), charts=True))
-    (out / 'detailed.html').write_text(page('Detailed · borg-zoo', landing.landing_page(runs, rows)))
+    full = page('Full runs · borg-zoo', landing.landing_page(runs, rows))
+    (out / 'index.html').write_text(full)
+    (out / 'detailed.html').write_text(full)  # older links
     (out / 'smoke.html').write_text(page('Smoke · borg-zoo', landing.smoke_page(smoke_rows)))
     (out / 'stalls.html').write_text(page('Stalls and crashes · borg-zoo', landing.stalls_page(runs)))
     (out / 'versions.html').write_text(page('Versions · borg-zoo', landing.versions_page()))

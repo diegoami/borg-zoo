@@ -2,6 +2,24 @@
 
 What the zoo's completed experiments have shown, with the run behind each.
 
+**Balanced999 saved encounters (#168):** [full paired experiment](../reports/saved-encounters/balanced999-incidents/full-44058010288/README.md)
+completed1998/1998 valid cells,111 scenarios per class in each setup. Baseline
+reborn had528 deaths/471 finite-horizon survivals; the exact Zoo speed30 bundle
+had291/708. Paired315 rescued and78 newly killed;213 both died and393 both
+survived. Both compiled builds were reused across nonoverlapping balanced tiers.
+Sources, controllers and complete configurations differ; this is descriptive
+regression evidence on an incident-selected bank. Population and isolated
+speed30 claims need separate studies. The completed comparison and all999 individual case pages are live in the Zoo
+Scenarios dashboard after the owner-approved UI PR179 merge.
+
+**Saved caster encounters on Zoo (#144):** [actual eight-case cloud run43966646449](../reports/saved-encounters/cemetery-mixed-caster-encounters-smoke/cloud-43966646449/README.md)
+completed8/8 valid with two starts per pure caster class,5 deaths/3 finite-horizon
+survivals and no invalid/missing cells. Native encounter execution took4.83s
+after building source6d1bca10 once. The source/core/profile/save/build receipts
+and parent-life lineage are retained; canonical native bytes are in Cemetery.
+This is a saved-state baseline, not PR145's generated-birth comparison and not
+an improvement/population result. No larger tier was dispatched.
+
 **Cemetery scenario dispatch smoke (#144):**
 [Two-pushid receipts and limits](../reports/scenarios/cemetery-caster-two-pushids-smoke/local-144/README.md).
 One pinned Gnome Mage birth at depth 1, seed 202, completed on reborn
@@ -242,6 +260,11 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 - **Pilot, 4 arms of 18 starts:** deaths 4 (control, no plan), 3 (control, plan), 4 (bundle, no plan), 2 (bundle, plan). The two deaths of the last arm are in all four arms with the same keys. Saved in borg-cemetery#52.
 - **Small, bundle without and with the plan:** deaths 5/90 and 4/90 (95% ranges 2-12% and 2-11%), median max level 5 in both. Paired on the same start, the plan rescued 3 starts, newly killed 2 and both died in 2; play was identical in 46 of 90 starts. The mean deepest level was 2.42 without the plan and 2.21 with it.
 - **Reading:** the plan makes no detectable difference to the bundle at this size. This run has no neutral control arm, so it does not measure the bundle against the unchanged build (RULES 8); the only such comparison is the pilot's 18 starts (4 deaths each).
+
+**#183, Suite 1 on borg-reborn-rs main 7e08c920 with its own defaults (full, 999 saved encounters; runs 44107809205, 44108466606, 44108889978, 44109534305, 44110967531): 281 deaths, and one scenario cut off by the 5 s wall limit.** A sanity check of main: the commit's own `harness/borg.txt` (04dd52f7...), nothing overridden, reported alone. Every stage up to big passed its gate. The full stage collected all 999 cells, with no stopped cell.
+- **Outcomes:** 281 deaths (28.1%), 717 survived the 2,000-turn horizon, 1 not finished.
+- **Deaths per class (of 111):** Warrior 23, Mage 25, Druid 46, Priest 26, Necromancer 35, Paladin 33, Rogue 33, Ranger 35, Blackguard 25.
+- **The unfinished scenario:** Rogue c6-r7-s1060140-i000 hit the 5 s wall at game turn 96,481 of 97,007. The game was fighting a breeding swarm of giant white lice (8,172 `Tracking a monster` notes). Replayed locally, it times out at 5 s every time; with a 60 s wall it reaches the horizon alive in 6.9 s. On the same save, speed30 (193d9076) needed 3.6 s and the reborn baseline 1.3 s. No other scenario took more than 1.7 s on 7e08c920. The archived record labels the cell `invalid_receipt`; the runner now labels such a cell `wall_timeout`.
 
 ## Open
 

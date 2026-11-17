@@ -457,12 +457,15 @@ def collect(plan, cells, out, evidence_url=''):
     return report
 
 
-def render(report):
+def render(report, base="../../../"):
+    from . import landing, site
     esc = lambda x: html.escape(str(x), quote=True)
     plan = report['plan']
     bank = plan['definition']['bank']
     url = f'https://github.com/{BANK_REPO}/tree/{bank["commit"]}/{Path(bank["manifest"]).parent.as_posix()}'
-    parts = [f'<h1>{esc(plan["name"])}</h1>', '<p>Synthetic scenarios. No population or improvement claim. Low HP is only a candidate screen; qualified near-death is unavailable. Repeats/checkpoints are correlated.</p>',
+    parts = [f'<h1>Borg zoo</h1>{landing.nav("scenarios/index.html", base)}',
+             f'<p><a href="{base}scenarios/index.html">All scenario runs</a></p>',
+             f'<h2>{esc(plan["name"])}</h2>', '<p>Synthetic scenarios. No population or improvement claim. Low HP is only a candidate screen; qualified near-death is unavailable. Repeats/checkpoints are correlated.</p>',
              f'<p><a href="{esc(url)}">Pinned Cemetery bank, catalog and evidence</a> · <a href="comparison.json">Complete comparison receipts</a></p>']
     if report.get('evidence_url', '').startswith('https://github.com/'):
         parts.append(f'<p><a href="{esc(report["evidence_url"])}">Execution artifacts and Cemetery reports</a></p>')
@@ -482,15 +485,18 @@ def render(report):
     for r in report['cells']:
         parts.append('<tr>'+ ''.join(f'<td>{esc(r.get(k, "unavailable"))}</td>' for k in ('pushid', 'scenario_id', 'status', 'minimum_observed_living_hp', 'reason')) + '</tr>')
     parts += ['</table>', f'<p>Collected {report["collected_cells"]}/{report["expected_cells"]} cells. {esc(report["counts"])}</p>']
-    return '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Scenario comparison</title><style>body{font:16px system-ui;max-width:1100px;margin:2rem auto;padding:1rem}table{border-collapse:collapse;display:block;overflow:auto}td,th{border:1px solid #aaa;padding:.5rem;text-align:left;overflow-wrap:anywhere}</style><main>' + ''.join(parts) + '</main></html>'
+    body = ''.join(parts).replace('<table>', '<div class="wrap"><table>').replace('</table>', '</table></div>')
+    return site.page(f'{plan["name"]} · Scenarios · Borg zoo', body, base=base)
 
 
 def build_site(results, out):
     """Separate synthetic catalogue. Never feed these rows to population stats."""
+    from . import landing, site
+
     out = Path(out) / 'scenarios'
     out.mkdir(parents=True, exist_ok=True)
     roots = [Path(results).parent / 'scenario-results', catalogue.ROOT / 'reports/scenarios']
-    links, unavailable = [], []
+    rows, unavailable = [], []
     for root in roots:
         for path in sorted(root.glob('*/*/comparison.json')):
             name, run = path.parent.parent.name, path.parent.name
@@ -502,6 +508,9 @@ def build_site(results, out):
                 if not NAME.fullmatch(name) or not NAME.fullmatch(run):
                     raise ValueError('unsafe scenario report path')
                 rendered = render(report)
+                plan = report["plan"]
+                versions = "<br>".join(f'<code>{html.escape(t["pushid"])}</code> · {html.escape(t["specimen"])}' for t in plan["targets"])
+                outcomes = ", ".join(f'{key.replace("_", " ")}: {value}' for key, value in sorted(report["counts"].items()))
             except (OSError, ValueError, TypeError, KeyError, AttributeError, IndexError) as error:
                 unavailable.append(dict(report=f'{name}/{run}', reason=str(error)))
                 continue
@@ -509,10 +518,29 @@ def build_site(results, out):
             target.mkdir(parents=True, exist_ok=True)
             (target / 'index.html').write_text(rendered)
             (target / 'comparison.json').write_bytes(path.read_bytes())
-            links.append(f'<li><a href="{name}/{run}/index.html">{html.escape(name)} / {html.escape(run)}</a></li>')
-    errors = ''.join(f'<li>{html.escape(r["report"])}: {html.escape(r["reason"])}</li>' for r in unavailable)
+            rows.append([f'<a href="{name}/{run}/index.html">{html.escape(name)}</a><br><span class="muted">{html.escape(run)}</span>',
+                         versions, len(plan['cases']), f'{report["collected_cells"]}/{report["expected_cells"]}',
+                         html.escape(outcomes) or 'No paired outcomes'])
+    from . import saved_incidents
+    saved_rows, saved_unavailable = saved_incidents.build_site(results, out)
+    rows.extend(saved_rows)
+    unavailable.extend(saved_unavailable)
     (out / 'unavailable.json').write_text(json.dumps(unavailable, indent=2) + '\n')
-    (out / 'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><title>Synthetic scenarios</title><h1>Synthetic scenario comparisons</h1><p>Separate from natural games and population statistics. <a href="../index.html">Borg zoo</a></p><ul>' + ''.join(links) + '</ul><h2>Unavailable reports</h2><ul>' + errors + '</ul></html>')
+    columns = [('Scenario run', 'The comparison and execution run; opens the full report.'),
+               ('Versions', 'The exact pushids and specimens compared in this run.'),
+               ('Scenarios', 'Distinct saved or synthetic encounter starts requested per version.'),
+               ('Collected / expected cells', 'Completed records collected, including failures, out of all requested version × scenario cells.'),
+               ('Outcomes', 'Scenario pairs by outcome for a comparison (missing, invalid and inconclusive included); the death share for a suite run of one build.')]
+    body = (f'<h1>Borg zoo</h1>{landing.nav("scenarios/index.html", "../")}'
+            '<h2>Scenario runs</h2>'
+            + site.explain('Saved encounters and synthetic starts from pinned Cemetery banks, compared across exact Borg setups. '
+                           'These runs stay separate from natural games and population statistics. '
+                           'Missing and invalid cells remain visible; these comparisons alone do not establish improvement.', columns)
+            + (site.table(columns, rows, left=2) if rows else '<p class="muted">No scenario runs yet.</p>'))
+    if unavailable:
+        body += '<h2>Unavailable reports</h2>' + site.table(['Report', 'Reason'],
+            [[html.escape(r['report']), html.escape(r['reason'])] for r in unavailable], left=2)
+    (out / 'index.html').write_text(site.page('Scenarios · Borg zoo', body, base='../'))
 
 
 def main(argv=None):

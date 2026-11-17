@@ -1,0 +1,48 @@
+# borg-zoo#186: attack_arrow_point_blank_divisor 1, 2, 5 on borg-reborn-rs main 4d83dd26 shipped defaults, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-main-pbd-pilot.yaml
+name: reborn-main-pbd-pilot
+issue: 186
+question: With main's shipped settings, how does the point-blank arrow divisor (1, 2, 5) change play?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen:
+  name: 4.2.6-reborn-rust-main-4d83dd26
+  repository: diegoami/borg-reborn-rs
+  ref: 4d83dd26ef6b510e80a8ff11464f1e49d02daaaa
+  source: https://github.com/diegoami/borg-zoo/issues/186
+  label: >-
+    borg-reborn-rs 4d83dd26, main at the merge of #495 (#485): fdaf18e5 with one more shipped line,
+    borg_param_attack_arrow_point_blank_divisor = 2. Same source-hash rust as fdaf18e5 (258ccc77107e...),
+    so the same binary; harness/borg.txt 14dc3a57... is fdaf18e5's speed30 bundle defaults (no plan,
+    errand none) plus that line.
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# Every arm reads the shipped harness/borg.txt as is, apart from the adapter's respawn lines and the
+# one varied line, written explicitly in every arm so each arm's value is in its borg.txt.
+profile_prefix: reborn-main
+vary:
+  divisor:
+    pbd1: {borg_param_attack_arrow_point_blank_divisor: 1}
+    pbd2: {borg_param_attack_arrow_point_blank_divisor: 2}
+    pbd5: {borg_param_attack_arrow_point_blank_divisor: 5}
+
+control: [pbd2]
+owner_authorization: >-
+  2026-11-17: the owner asked for an experiment with a few arms of
+  borg_param_attack_arrow_point_blank_divisor (1, 2, 5) with the standard settings and current main,
+  pilot (borg-zoo#186). Small only after the pilot gate and the owner (RULES 14).
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#186). Pilot only (RULES 14); small (or
+  verysmall) only after this gate and the owner. Gate: no config_error; one binary; each arm's
+  borg.txt has borg_param_attack_arrow_point_blank_divisor at its value (1, 2, 5) and otherwise the
+  shipped settings, with no borg_plan; params-core.json reports the same value on the death replays;
+  every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key outliers are listed.
+  Report per arm: deaths, final level, deepest level, keys; for pbd1 and pbd5 against pbd2 on the same
+  start: rescued, newly killed, and how many starts play identical keys (the divisor only acts when a
+  launcher is weighed against an adjacent monster, so many starts should not differ). Cross-check:
+  pbd5 is the same binary and effective settings as borg-zoo#181's reborn-shipped-defaults on
+  fdaf18e5; where that pilot's results exist, each pbd5 cell's play hash is compared with it and any
+  difference is listed. 18 starts per arm cannot show which divisor is better.

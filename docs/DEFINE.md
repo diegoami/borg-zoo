@@ -72,7 +72,8 @@ prespecified: |
 | `control` | The control arm, by its option names; or `control_specimen` and `control_profile`. |
 | `prespecified` | The gate and endpoints, fixed before any result is read. |
 | `owner_authorization`, `description` | Free text, copied into the experiment. |
-| `extra` | Any other experiment field (for example `resource_budget`, `retain_evidence`, `shards_by_specimen`). |
+| `pilot` | `true` marks a study's first, smallest run on a suite of its own (for example one class's starts) as its pilot. `tier: pilot` and pilot-role suites are pilots already. A new experiment above pilot size is refused until a pilot of the same arms on the same specimens is in the catalogue (RULES 16). |
+| `extra` | Any other experiment field (for example `resource_budget`, `retain_evidence`, `shards_by_specimen`, or `cemetery_deaths: false` to skip the death bundles of [CEMETERY-DEATHS.md](CEMETERY-DEATHS.md)). |
 | `folder`, `file` | Where the experiment file goes: `smoke` for smoke files, and the file name when it differs from `name`. |
 
 YAML reads unquoted `on`, `off`, `yes` and `no` as true and false. Quote them when they are option names (`'on'`).

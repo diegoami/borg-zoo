@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-heal-reserve-pilot",
+  "issue": 192,
+  "definition": "definitions/reborn-heal-reserve-pilot.yaml",
+  "question": "On borg-reborn-rs main 7e08c920, which healing reserve (0, 400, 800 percent of max HP) and healing speed (0, 66) should the town planner use?",
+  "description": "On borg-reborn-rs main 7e08c920, which healing reserve (0, 400, 800 percent of max HP) and healing speed (0, 66) should the town planner use? Generated from definitions/reborn-heal-reserve-pilot.yaml: 6 arms on 4.2.6-reborn-rust-main-7e08c920, suite classes-18.",
+  "prespecified": "Fixed 2026-11-17, before any result was read. Pilot only (RULES 14); small and larger only after this\ngate and the owner. Gate: no config_error; one binary; the three borg_param_town_heal_* lines with the\narm's values written in the borg.txt of every arm; no plan loaded; every cell ends in death,\nturn_cap or borg_stopped; frozen-turn stalls and key outliers listed. Control r0-s0 is the town\nplanner's healing before #491 (the curve alone); r400-s66 is the shipped value. Report per arm:\ndeaths, final level, deepest level, keys; healing potions bought (Cure Light/Serious/Critical\nWounds, Healing) and gold on them against total gold spent; paired rescued and newly killed for each\narm against the control on the same start, and the cells where play diverges. Watch level-1 casters\nwith very low max HP at r800 (a 10-HP mage spent its starting gold on 8 Cure Light Wounds and died\nin borg-reborn-rs CI). 18 starts per arm cannot show which value is best.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-7e08c920"
+  ],
+  "profiles": [
+    "reborn-heal-r0-s0",
+    "reborn-heal-r0-s66",
+    "reborn-heal-r400-s0",
+    "reborn-heal-r400-s66",
+    "reborn-heal-r800-s0",
+    "reborn-heal-r800-s66"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-7e08c920",
+  "control_profile": "reborn-heal-r0-s0",
+  "owner_authorization": "2026-11-17: after borg-reborn-rs #491 / PR #496, the owner asked for a zoo pilot to calibrate the healing reserve and healing speed parameters."
+}

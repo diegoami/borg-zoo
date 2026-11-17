@@ -1102,15 +1102,15 @@ RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.
                          'or failed.')]
 
 
-def nav(active):
-    tabs = [('index.html', 'Overview')] + [(f'{p["slug"]}.html', p['nav']) for p in POLICIES] + \
-           [('detailed.html', 'Detailed'), ('smoke.html', 'Smoke')]
+def nav(active, base=""):
+    tabs = [('index.html', 'Full runs'), ('smoke.html', 'Smoke runs'), ('scenarios/index.html', 'Scenarios')]
     return ('<p class="tabs">' +
-            ''.join(f'<a class="tab{" active" if href == active else ""}" href="{href}">{esc(label)}</a>'
+            ''.join(f'<a class="tab{" active" if href == active else ""}" href="{base}{href}">{esc(label)}</a>'
                     for href, label in tabs) + '</p>')
 
 
-FOOTER = (f'<p class="muted"><a href="versions.html">Versions</a> · <a href="stalls.html">Stalls and crashes</a> · '
+FOOTER = (f'<p class="muted"><a href="overview.html">Borg comparison charts</a> · '
+          f'<a href="versions.html">Versions</a> · <a href="stalls.html">Stalls and crashes</a> · '
           f'<a href="https://github.com/diegoami/borg-zoo/blob/main/docs/DESIGN.md">Method</a> · '
           f'<a href="https://github.com/diegoami/borg-zoo/tree/results">Raw results</a> · '
           f'<a href="https://github.com/diegoami/borg-zoo">Source</a></p>')
@@ -1157,7 +1157,7 @@ def overview_page(runs):
     links = class_links(runs, specs)
     buttons = ''.join(f'<a class="big-chip" href="{p["slug"]}.html">{esc(p["nav"])}</a>' for p in POLICIES)
     return (
-        f'<h1>Borg zoo</h1>{nav("index.html")}'
+        f'<h1>Borg zoo</h1>{nav("overview.html")}'
         f'<p class="muted">{total:,} runs · {len(runs)} experiment runs · latest {esc(latest)}</p>'
         f'<p class="lead">Angband Borg versions played headless on the same seeds: the original C Borg, '
         f'better-borg-c\'s milestones of carried fixes, and the borg-rs Rust port.</p>'
@@ -1166,8 +1166,7 @@ def overview_page(runs):
         f'nine classes: with it, and without it. Each tab has its own chart, its own runs and its own '
         f'class pages — read a point inside its tab, never across the two.</p>'
         f'<p>{buttons}</p>{links}</div></div>'
-        f'<p class="muted">Every milestone, the Rust port and the open stalls are on the '
-        f'<a href="detailed.html">Detailed</a> tab.</p>'
+        f'<p class="muted">Every experiment run is on the <a href="index.html">Full runs</a> tab.</p>'
         + add_your_borg_section() + FOOTER)
 
 
@@ -1175,7 +1174,7 @@ def smoke_page(rows):
     """Smoke checks: a specimen (a milestone or a head) builds and plays a few
     seeds. Not experiments; kept apart so they do not crowd the comparisons."""
     return (f'<h1>Borg zoo</h1>{nav("smoke.html")}'
-            '<h2>Smoke checks</h2>'
+            '<h2>Smoke runs</h2>'
             + explain('A smoke check builds a Borg version and plays a handful of seeds to see that it runs. '
                       'It says nothing about how well the version plays, and none of it enters the comparisons. '
                       'Newest first.', RUN_COLS)
@@ -1189,8 +1188,8 @@ def landing_page(runs, run_rows):
     own tab."""
     cards = [c for c in (card_milestones(runs), card_port(runs), card_stalls(runs)) if c]
     return (
-        f'<h1>Borg zoo</h1>{nav("detailed.html")}'
-        '<h2>Experiment runs</h2>'
+        f'<h1>Borg zoo</h1>{nav("index.html")}'
+        '<h2>Full runs</h2>'
         + explain('Every experiment run, newest first, small tiers and pilots included. Each report shows '
                   'the YAML definition and the build used.', RUN_COLS)
         + (table(RUN_COLS, run_rows) if run_rows else '<p class="muted">No results yet.</p>')

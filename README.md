@@ -54,11 +54,26 @@ python3 -m zoo site --results results --out _site
 
 Tests: `python3 -m unittest discover -s tests`.
 
+## Deaths go to the cemetery
+
+Every natural death of a borg-rs or borg-reborn-rs cell is replayed once with
+full logs. Its key stream is checked against the cell's, and the result is
+uploaded as a death bundle in the run's `deaths-<specimen>-<shard>` artifacts
+(90 days). borg-cemetery imports a run's deaths as replayable dossiers with
+`python3 scripts/import_zoo_deaths.py --run RUN_ID`. See
+[docs/CEMETERY-DEATHS.md](docs/CEMETERY-DEATHS.md) (#176).
+
 ## Cemetery scenarios
 
 [Scenario dispatch](docs/SCENARIO-DISPATCH.md) compares exact pushids on an
 immutable Cemetery bank, with separate synthetic reports and complete failure
-denominators. The proposed first smoke schedules just two cells.
+denominators. The **Scenarios** tab lists scenario runs with their compared
+versions, scenario counts, collected cells and paired outcomes. Each run links
+to the full report and evidence; synthetic results stay separate from the
+population comparisons.
+
+[Balanced999 incidents](docs/BALANCED-INCIDENTS.md) prepares equal111-case
+quotas for all nine classes and a bounded saved-state execution in Zoo.
 
 ## Reading the results
 
