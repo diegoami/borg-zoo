@@ -1,0 +1,160 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-main-pbd1": {
+        "description": "borg-zoo#186 (reborn-main-pbd-pilot.yaml): arm pbd1.",
+        "settings": {
+          "borg_param_attack_arrow_point_blank_divisor": 1
+        },
+        "sha256": "568e7b951e752f3015cfbd87ac5b719570133c17bef87fad0b1db72c8b2df8f7"
+      },
+      "reborn-main-pbd2": {
+        "description": "borg-zoo#186 (reborn-main-pbd-pilot.yaml): arm pbd2.",
+        "settings": {
+          "borg_param_attack_arrow_point_blank_divisor": 2
+        },
+        "sha256": "eec97d6a896def1655e0d278793db41ea766980d112c43b54c4580d7e09fd883"
+      },
+      "reborn-main-pbd5": {
+        "description": "borg-zoo#186 (reborn-main-pbd-pilot.yaml): arm pbd5.",
+        "settings": {
+          "borg_param_attack_arrow_point_blank_divisor": 5
+        },
+        "sha256": "a102e978d9f1f0266c1516397198c18af430aea5987ce4d618faa4a590052567"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-4d83dd26": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 4d83dd26, main at the merge of #495 (#485): fdaf18e5 with one more shipped line, borg_param_attack_arrow_point_blank_divisor = 2. Same source-hash rust as fdaf18e5 (258ccc77107e...), so the same binary; harness/borg.txt 14dc3a57... is fdaf18e5's speed30 bundle defaults (no plan, errand none) plus that line.",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "4d83dd26ef6b510e80a8ff11464f1e49d02daaaa",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "source": "https://github.com/diegoami/borg-zoo/issues/186"
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-17 14:08 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-4d83dd26",
+    "control_profile": "reborn-main-pbd2",
+    "definition": "definitions/reborn-main-pbd-pilot.yaml",
+    "description": "With main's shipped settings, how does the point-blank arrow divisor (1, 2, 5) change play? Generated from definitions/reborn-main-pbd-pilot.yaml: 3 arms on 4.2.6-reborn-rust-main-4d83dd26, suite classes-18.",
+    "issue": 186,
+    "name": "reborn-main-pbd-pilot",
+    "owner_authorization": "2026-11-17: the owner asked for an experiment with a few arms of borg_param_attack_arrow_point_blank_divisor (1, 2, 5) with the standard settings and current main, pilot (borg-zoo#186). Small only after the pilot gate and the owner (RULES 14).",
+    "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#186). Pilot only (RULES 14); small (or\nverysmall) only after this gate and the owner. Gate: no config_error; one binary; each arm's\nborg.txt has borg_param_attack_arrow_point_blank_divisor at its value (1, 2, 5) and otherwise the\nshipped settings, with no borg_plan; params-core.json reports the same value on the death replays;\nevery cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key outliers are listed.\nReport per arm: deaths, final level, deepest level, keys; for pbd1 and pbd5 against pbd2 on the same\nstart: rescued, newly killed, and how many starts play identical keys (the divisor only acts when a\nlauncher is weighed against an adjacent monster, so many starts should not differ). Cross-check:\npbd5 is the same binary and effective settings as borg-zoo#181's reborn-shipped-defaults on\nfdaf18e5; where that pilot's results exist, each pbd5 cell's play hash is compared with it and any\ndifference is listed. 18 starts per arm cannot show which divisor is better.",
+    "profiles": [
+      "reborn-main-pbd1",
+      "reborn-main-pbd2",
+      "reborn-main-pbd5"
+    ],
+    "question": "With main's shipped settings, how does the point-blank arrow divisor (1, 2, 5) change play?",
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-4d83dd26"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44098927907-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44098927907",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "b861921e6c0c7ad9b1ecbedf8e7556abb1c9f971"
+}
