@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from . import catalogue as cat_mod
-from . import harness, site, evidence, preflight, configuration
+from . import harness, site, evidence, preflight, configuration, deaths
 
 
 def cmd_arms(args):
@@ -78,6 +78,11 @@ def cmd_run(args):
             raise ValueError(f'retained attempt already exists: {collisions[0]}')
     # Write each completed cell before waiting for any other cell. Retaining raw
     # evidence must not determine whether timeout recovery preserves results.
+    # Natural deaths are replayed with full logs into death bundles for the
+    # cemetery (borg-zoo#176), after their records are written.
+    death_root = Path(args.deaths) if args.deaths and deaths.enabled(exp) else None
+    provenance = deaths.provenance_from_env(exp)
+    bundles = []
     with out.open('x') as stream, ThreadPoolExecutor(max_workers=args.jobs) as pool:
         pending = {pool.submit(one, cell): cell for cell in mine}
         records = []
@@ -97,7 +102,18 @@ def cmd_run(args):
             records.append(record)
             stream.write(json.dumps(record, sort_keys=True) + '\n')
             stream.flush()
-    print(f'{len(records)} cells -> {out}')
+            if death_root is not None and deaths.wanted(record):
+                bundles.append(pool.submit(deaths.bundle, record, pending[future], args.build, cat,
+                                           death_root, provenance))
+        if bundles:
+            death_root.mkdir(parents=True, exist_ok=True)
+            with (death_root / deaths.INDEX).open('a') as index:
+                for future in as_completed(bundles):
+                    entry = future.result()
+                    index.write(json.dumps(entry, sort_keys=True) + '\n')
+                    index.flush()
+                    print(json.dumps({k: entry.get(k) for k in ('cell', 'status', 'error')}), flush=True)
+    print(f'{len(records)} cells -> {out}' + (f'; {len(bundles)} death bundles -> {death_root}' if bundles else ''))
 
 
 def cmd_collect(args):
@@ -193,6 +209,8 @@ def main(argv=None):
     s.add_argument('--jobs', type=int, default=os.cpu_count() or 1)
     s.add_argument('--arm', default='', help='SPECIMEN:PROFILE, as for plan')
     s.add_argument('--keep', action='store_true', help='keep traces and terminal logs')
+    s.add_argument('--deaths', default=None,
+                   help='replay natural deaths with full logs into cemetery death bundles here (borg-zoo#176)')
     s.add_argument('--source', default=None, help='installed Mandos checkout at the specimen ref (Mandos specimens)')
     s.add_argument('--toolkit', default=None, help='pinned original-Neo measurement toolkit checkout')
     s = sub.add_parser('collect')
