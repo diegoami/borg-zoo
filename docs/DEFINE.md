@@ -20,7 +20,7 @@ give the arm another name, because profiles are frozen once used.
 name: reborn-heal-pilot          # experiments/reborn-heal-pilot.json
 issue: 151                       # the borg-zoo issue it answers
 question: Does healing when outmatched help, with and without the trip policy and an errands plan?
-tier: pilot                      # pilot | small | medium | big | full (RULES 14)
+tier: pilot                      # pilot | verysmall | small (or small-rest) | medium | big | full (RULES 14)
 
 specimen:                        # a new specimen, or the name of an existing one
   name: 4.2.6-reborn-rust-heal
@@ -62,7 +62,7 @@ prespecified: |
 | `name` | The experiment name (results are filed under it). Required. |
 | `issue` | The borg-zoo issue the experiment answers. |
 | `question` | One line; it heads the report. |
-| `tier` | `pilot` = `classes-18`, `small`/`medium`/`big`/`full` = the `classes-1800` slices. Or give `suite` or `suites` instead. |
+| `tier` | `pilot` = `classes-18`; `verysmall` = `classes-1800` starts 1-45 (5 per class); `small`/`medium`/`big`/`full` = the `classes-1800` slices; `small-rest` = starts 46-90, the small tier of a study that ran `verysmall`. Or give `suite` or `suites` instead. |
 | `specimen` / `specimens` | One specimen (a new block or an existing name), or a list. |
 | `settings` | Settings shared by every arm. |
 | `vary` | Dimensions whose options multiply the arms. Option names build the profile names. |

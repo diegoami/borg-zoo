@@ -1066,6 +1066,21 @@
       "label": "Pinned synthetic P1 runtime. Scenario dispatch only; its capability is verified at execution.",
       "source": "https://github.com/diegoami/borg-reborn-rs/tree/99473510940b8a7bd6e77ad61e3a2b00c72a6e6d"
     },
+    "4.2.6-reborn-rust-main-fdaf18e5": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "fdaf18e52b402d9952f432109806b210cd2074ff",
+      "source": "https://github.com/diegoami/borg-zoo/issues/181",
+      "label": "borg-reborn-rs fdaf18e5, main at the merge of #480 (the speed30 bundle made the shipped default), with #473 (never use unidentified items; discard Deep Descent). Source-hash rust 258ccc77107e...; harness/borg.txt 1b062d8b... sets borg_reborn_core = borg-rs, borg_town_plan = 1, the trip policy (unknown_stacks 5, pack_slack 1), heal when outmatched, attack_speed_fight_danger_tenths = 30 and the 16 attack preferences; no plan, errand none.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
     "4.2.6-reborn-rust-speed-fight": {
       "kind": "borg-rs",
       "impl": "rust",
@@ -1136,6 +1151,38 @@
       "ref": "e0aa2e0adb53b9b3d5039cd03ce004bce15765cf",
       "source": "https://github.com/diegoami/borg-zoo/issues/192",
       "label": "borg-reborn-rs e0aa2e0a, main at the merge of #498: over 7e08c920 (the #192 pilot's specimen) it adds #492 (#486: Boldness is no buff to the town planner, no wine bought for it) and #498 (#485: point-blank divisor by class, shipped default 5, Ranger 2, Rogue 3). Source-hash rust 028e2de4...; harness/borg.txt 498475fa... keeps the #491 healing lines at 400 / 100 / 66.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-28360152": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "control",
+      "loop_checks": true,
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "283601528c85a29c1da60e63aeac9dec45d30de8",
+      "source": "https://github.com/diegoami/borg-zoo/issues/205",
+      "label": "borg-reborn-rs 28360152, main at the merge of #494 (#493: explicit gold reserve, shipped 0 with borg_town_w_gold 0). Over e0aa2e0a: #494, #497 (rules), #501 (#496 review fixes, no play change). Source-hash rust b34c8615...; harness/borg.txt 386be998... (speed30 bundle, no plan; healing 400 / 100 / 66; point-blank divisor 5, Ranger 2, Rogue 3).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-buyqty-729a94ee": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "loop_checks": true,
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "729a94ee9481c82ba67befc16a382605d64ccc15",
+      "source": "https://github.com/diegoami/borg-zoo/issues/205",
+      "label": "borg-reborn-rs 729a94ee, head of PR #509 (#507, not merged) over main 28360152: a planned BUY keeps the plan's copies, capped by stack, pack room and gold, and the Borg types them at the quantity prompt; sales and Home takes stay one copy per action. Source-hash rust 4b00fd95...; harness/borg.txt 386be998... (unchanged from 28360152).",
       "plans": {
         "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
         "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"

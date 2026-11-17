@@ -1,0 +1,43 @@
+# borg-zoo#181: borg-reborn-rs main fdaf18e5 with its shipped defaults (speed30 bundle, no plan), pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-main-defaults-pilot.yaml
+name: reborn-main-defaults-pilot
+issue: 181
+question: What does borg-reborn-rs main (fdaf18e5) play with its shipped default settings?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen:
+  name: 4.2.6-reborn-rust-main-fdaf18e5
+  repository: diegoami/borg-reborn-rs
+  ref: fdaf18e52b402d9952f432109806b210cd2074ff
+  source: https://github.com/diegoami/borg-zoo/issues/181
+  label: >-
+    borg-reborn-rs fdaf18e5, main at the merge of #480 (the speed30 bundle made the shipped default),
+    with #473 (never use unidentified items; discard Deep Descent). Source-hash rust 258ccc77107e...;
+    harness/borg.txt 1b062d8b... sets borg_reborn_core = borg-rs, borg_town_plan = 1, the trip policy
+    (unknown_stacks 5, pack_slack 1), heal when outmatched, attack_speed_fight_danger_tenths = 30 and
+    the 16 attack preferences; no plan, errand none.
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# One arm with no settings: every game reads the specimen's harness/borg.txt as shipped, apart from
+# the adapter's respawn race/class lines.
+profile_prefix: ''
+arms:
+  reborn-shipped-defaults: {}
+
+owner_authorization: >-
+  2026-11-17: the owner asked for a pilot of current borg-reborn-rs main with its shipped default
+  settings (borg-zoo#181). Small only after the pilot gate and the owner (RULES 14).
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#181). Pilot only (RULES 14); small (or verysmall)
+  only after this gate and the owner. Gate: no config_error; one binary, its play hashes recorded; the
+  written borg.txt carries the shipped settings (borg_reborn_core = borg-rs, the trip policy, the 18
+  borg_param_* lines) and no borg_plan; every cell ends in death, turn_cap or borg_stopped; frozen-turn
+  stalls and key outliers are listed; no "# Quaffing/Reading/Eating unknown" notes and no Deep Descent
+  read (checked on the death replays). Descriptive only: deaths, final level, deepest level, keys,
+  trip returns and the count of "no up stairs found, going down" (from a replay). The four death
+  starts of run 44054277431 are compared start by start with that run's control
+  (reborn-bundle-none-speed30 on 193d9076); they are different games, so this compares outcomes only.
+  18 starts cannot show whether main is better.

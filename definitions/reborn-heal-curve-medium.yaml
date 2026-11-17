@@ -1,0 +1,61 @@
+# borg-zoo#192, medium tier: healing reserve {0, 200, 400} x healing curve scale {50, 100, 200} at healing speed 66 on borg-reborn-rs main e0aa2e0a.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-curve-medium.yaml
+name: reborn-heal-curve-medium
+issue: 192
+question: On borg-reborn-rs main e0aa2e0a with healing speed 66, which healing curve scale (50, 100, 200 percent) and healing reserve (0, 200, 400 percent of max HP) should the town planner use?
+tier: medium           # classes-1800 starts 91-360 (30 more per class)
+
+specimen:
+  name: 4.2.6-reborn-rust-main-e0aa2e0a
+  repository: diegoami/borg-reborn-rs
+  ref: e0aa2e0adb53b9b3d5039cd03ce004bce15765cf
+  source: https://github.com/diegoami/borg-zoo/issues/192
+  label: >-
+    borg-reborn-rs e0aa2e0a, main at the merge of #498: over 7e08c920 (the #192 pilot's specimen) it adds
+    #492 (#486: Boldness is no buff to the town planner, no wine bought for it) and #498 (#485: point-blank
+    divisor by class, shipped default 5, Ranger 2, Rogue 3). Source-hash rust 028e2de4...; harness/borg.txt
+    498475fa... keeps the #491 healing lines at 400 / 100 / 66.
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# The same specimen as reborn-heal-reserve-s66-small: the shipped harness/borg.txt (speed30 bundle, no
+# plan, no errand) with the three #491 lines written; speed fixed at 66, reserve and curve varied.
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_town_heal_speed_percent: 66
+
+profile_prefix: reborn-heal
+vary:
+  reserve:
+    r0: {borg_param_town_heal_reserve_hp_percent: 0}
+    r200: {borg_param_town_heal_reserve_hp_percent: 200}
+    r400: {borg_param_town_heal_reserve_hp_percent: 400}
+  curve:
+    c50: {borg_param_town_heal_curve_scale_percent: 50}
+    c100: {borg_param_town_heal_curve_scale_percent: 100}
+    c200: {borg_param_town_heal_curve_scale_percent: 200}
+
+control: [r0, c100]
+owner_authorization: >-
+  2026-11-17: after the #192 small tier (run 44116104222) and the reserve x speed pilot (run 44119472667),
+  the owner noted the healing curve scale had never been varied and asked to propose reserve {0, 200, 400}
+  x curve {50, 100, 200} at speed 66, on the small tier's specimen so its arms can be compared. The owner
+  had the pilot run first (reborn-heal-curve-pilot, run 44125061301, gate passed), then asked for small and
+  medium together (2026-11-17).
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#192). Medium tier: classes-1800 starts 91-360,
+  dispatched together with the small tier (reborn-heal-curve-small, starts 1-90) on the owner's request,
+  after the pilot (run 44125061301). Together they are starts 1-360 of every arm and are analysed as one
+  (RULES 14); big only after this gate and the owner. Gate: as the small tier's (no config_error; one
+  binary; the three borg_param_town_heal_* lines with the arm's values in every borg.txt and in
+  params-core.json of the death replays; no plan loaded; every cell ends in death, turn_cap or
+  borg_stopped; stalls and key outliers listed, a key burst checked before it is called a stall; death
+  bundles reproduced). Report on starts 1-360 per arm: deaths, final level, deepest level; deaths by class,
+  low-max-HP casters (Mage, Necromancer) called out; paired rescued and newly killed against r0-c100 and,
+  per reserve, against its own c100 arm, with an exact McNemar p; healing potions and Phase Door bought,
+  and gold on each, from the death replays (deaths only). r400-c100 is the shipped value. 360 starts per
+  arm can show a difference of a few points in deaths; nothing is confirmed without a prespecified
+  confirmation run (RULES 8).

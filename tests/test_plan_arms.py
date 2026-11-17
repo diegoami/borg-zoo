@@ -141,10 +141,52 @@ class PlanArmsTest(unittest.TestCase):
         self.assertEqual(record['outcome'], 'stalled')
         self.assertEqual(record['observed_outcome'], 'turn_cap')
         self.assertIn('cause not determined', record['error'])  # no state.log in this fixture
+
+        self.assertIn('no state log to rule out shopping', record['error'])
         self.assertNotIn('#421', record['error'])
         self.assertEqual(record['stall']['kind'], 'frozen_turn_loop')
-        self.assertEqual(record['frozen_turn_loop'], {'turn': 52639, 'max_keys': borgrs.LOOP_KEYS,
-                                                      'bursts': 1, 'burst_keys': borgrs.LOOP_KEYS})
+        self.assertEqual(record['frozen_turn_loop'], {
+            'turn': 52639, 'max_keys': borgrs.LOOP_KEYS, 'bursts': 1, 'burst_keys': borgrs.LOOP_KEYS,
+            'burst_turns': [[52639, borgrs.LOOP_KEYS]], 'loop_turns': [[52639, borgrs.LOOP_KEYS]],
+            'purchase_turns': []})
+
+    @staticmethod
+    def state(turn, golds):
+        return ''.join(f'{turn} 10,10 d0/1 hp20/20 sp0/0 f5000 au{g} xp10 lv2 t- o0:0 p{i:x} e0 r0\n'
+                       for i, g in enumerate(golds))
+
+    def test_a_purchase_burst_is_flagged_not_a_stall(self):
+        # borg-zoo#205: 120 Arrows bought one per ~9 keys at one game turn (#198, Ranger 60792140).
+        n = 1083
+        burst = ''.join(f'92602 k {i:x} 0\n' for i in range(n))
+        golds = [278 - min(i // 9, 120) for i in range(n)]
+        record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-plan-shop', keys_text=burst,
+                                  state_text=self.state(92602, golds),
+                                  summary={'stop_reason': 'turns', 'dead': False})
+        self.assertEqual(record['outcome'], 'turn_cap')
+        self.assertIsNone(record['observed_outcome'])
+        self.assertEqual(record['frozen_turn_loop']['bursts'], 0)
+        self.assertEqual(record['purchase_burst'], {'turns': [[92602, n, 120]], 'keys': n, 'purchases': 120})
+
+    def test_a_burst_with_gold_unchanged_is_a_loop(self):
+        # borg-rs#90's oil store/take cycle: nothing bought, gold unchanged.
+        n = borgrs.LOOP_KEYS + 5
+        burst = ''.join(f'52639 k {i:x} 0\n' for i in range(n))
+        record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-plan-shop', keys_text=burst,
+                                  state_text=self.state(52639, [300] * n),
+                                  summary={'stop_reason': 'turns', 'dead': False})
+        self.assertEqual(record['outcome'], 'stalled')
+        self.assertIn('gold unchanged', record['error'])
+        self.assertNotIn('purchase_burst', record)
+
+    def test_a_few_purchases_in_a_long_burst_are_still_a_loop(self):
+        n = 2000  # 10 gold drops in 2,000 keys: one per 200 keys, not shopping
+        burst = ''.join(f'60000 k {i:x} 0\n' for i in range(n))
+        golds = [500 - (i // 200) for i in range(n)]
+        record, _ = self.run_with(fixture_catalogue(), 'reborn-m13-plan-shop', keys_text=burst,
+                                  state_text=self.state(60000, golds),
+                                  summary={'stop_reason': 'turns', 'dead': False})
+        self.assertEqual(record['outcome'], 'stalled')
 
     def burst_state(self, turn, keys, gold_step):
         """state.log lines for a burst: gold falls by gold_step every 9 keys (shopping), or never (gold_step 0)."""
@@ -220,6 +262,13 @@ class PlanArmsTest(unittest.TestCase):
         self.assertEqual(len(small['seeds']), 90)
         for seed in small['seeds']:
             self.assertEqual(catalogue.character(small, seed), catalogue.character(full, seed))
+        verysmall, rest = suites['classes-1800-verysmall'], suites['classes-1800-small-rest']
+        self.assertEqual(verysmall['seeds'] + rest['seeds'], small['seeds'])
+        per_class = {}
+        for seed in verysmall['seeds']:
+            cls = catalogue.character(verysmall, seed)[1]
+            per_class[cls] = per_class.get(cls, 0) + 1
+        self.assertEqual(sorted(set(per_class.values())), [5])
         with self.assertRaisesRegex(ValueError, 'outside the parent'):
             catalogue.expand_suites({'p': {'seed_rule': {'generator': 'sha256-v1', 'count': 9}, 'birth': 'assigned',
                                            'characters': {'races': ['Human'], 'classes': ['Warrior']}},

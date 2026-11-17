@@ -1,0 +1,66 @@
+# borg-zoo request from borg-reborn-rs#507 / PR #509: a planned purchase buys its copies in one transaction.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-buy-qty-pilot.yaml
+name: reborn-buy-qty-pilot
+issue: 205
+question: Does buying a planned purchase's copies in one transaction (borg-reborn-rs#507, PR #509) remove the purchase key bursts without making play worse, on borg-reborn-rs main 28360152's shipped defaults?
+suites: [classes-18, classes-1800-small-rangers]   # pilot: the 18 class starts and the 10 Ranger starts of #198
+pilot: true
+
+specimens:
+  - name: 4.2.6-reborn-rust-main-28360152
+    role: control
+    loop_checks: true
+    repository: diegoami/borg-reborn-rs
+    ref: 283601528c85a29c1da60e63aeac9dec45d30de8
+    source: https://github.com/diegoami/borg-zoo/issues/205
+    label: >-
+      borg-reborn-rs 28360152, main at the merge of #494 (#493: explicit gold reserve, shipped 0 with
+      borg_town_w_gold 0). Over e0aa2e0a: #494, #497 (rules), #501 (#496 review fixes, no play change).
+      Source-hash rust b34c8615...; harness/borg.txt 386be998... (speed30 bundle, no plan; healing
+      400 / 100 / 66; point-blank divisor 5, Ranger 2, Rogue 3).
+    plans:
+      errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+      errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  - name: 4.2.6-reborn-rust-buyqty-729a94ee
+    role: candidate
+    loop_checks: true
+    repository: diegoami/borg-reborn-rs
+    ref: 729a94ee9481c82ba67befc16a382605d64ccc15
+    source: https://github.com/diegoami/borg-zoo/issues/205
+    label: >-
+      borg-reborn-rs 729a94ee, head of PR #509 (#507, not merged) over main 28360152: a planned BUY keeps
+      the plan's copies, capped by stack, pack room and gold, and the Borg types them at the quantity
+      prompt; sales and Home takes stay one copy per action. Source-hash rust 4b00fd95...; harness/borg.txt
+      386be998... (unchanged from 28360152).
+    plans:
+      errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+      errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+profile_prefix: ''
+arms:
+  reborn-shipped:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+
+control_specimen: 4.2.6-reborn-rust-main-28360152
+control_profile: reborn-shipped
+
+owner_authorization: >-
+  2026-11-17: after borg-zoo#198 found a Ranger buying 120 Arrows one transaction at a time, the owner
+  had borg-reborn-rs#507 fixed (PR #509) and asked for a zoo pilot of the fix against main.
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read. Pilot (RULES 14); more starts only after this gate and the
+  owner. Two builds, one profile (the shipped harness/borg.txt, no plan, no errand), on classes-18 and the
+  10 Ranger starts of classes-1800-small: 56 games. Gate: no config_error; one binary per specimen; no plan
+  loaded; every cell ends in death, turn_cap or borg_stopped; death bundles reproduced. Endpoints, per
+  specimen: (1) the largest keys at one game turn per game and the number of games with 1,000+ (the fix
+  counts as working when the candidate has none and its per-game maximum is lower than the control's
+  on the same start); (2) purchases ("You bought") per game, and how many buy several copies; (3) ammunition
+  bought (Arrows, Bolts, Shots, Pebbles, Iron Shots), in transactions and in copies, and gold on it
+  against all gold spent; (4) deaths, final level, deepest level, paired rescued and newly killed against
+  the control on the same start; (5) any "You do not have enough gold" or "You cannot carry that many
+  items" message (expected none). Local check on three Ranger starts: the per-turn maximum fell from
+  149-330 keys to 72-80 and arrow purchases from 87-237 transactions to 14, while copies bought rose
+  from 87-237 to 276-302; whether buying more ammunition helps or costs gold elsewhere is the open
+  question. 28 starts per build show direction only.

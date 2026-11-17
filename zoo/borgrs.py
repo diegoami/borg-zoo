@@ -131,6 +131,13 @@ LOOP_KEYS = 1000
 PURCHASE_KEYS = 20  # at most this many keys per purchase for a burst to count as shopping
 STATE_GOLD = re.compile(r' au(-?\d+)(?: |$)')
 
+# A burst is shopping, not a loop, when gold falls at least once per this many
+# keys at the burst turn (borg-zoo#205): shop transactions take no game time,
+# so a Ranger buying 120 Arrows one at a time spent 1,083 keys at one turn
+# with 120 gold drops (one per ~9 keys), while borg-rs#90's oil store/take
+# cycle gains nothing and leaves gold unchanged.
+PURCHASE_KEYS = 25
+
 
 def loop_checks(spec):
     """Whether cells of this specimen get the frozen-turn and key-outlier
@@ -176,6 +183,37 @@ def frozen_turn_loop(keys_text, state_text=None):
             shopping.append({'turn': int(t) if t.isdigit() else t, 'keys': n, 'purchases': bought, 'gold': [before, after]})
     loops = [n for t, n in heavy.items() if all(str(b['turn']) != t for b in shopping)]
     return {**result, 'bursts': len(loops), 'burst_keys': sum(loops), 'purchase_bursts': shopping}
+
+    bursts = [n for n in counts.values() if n >= LOOP_KEYS]
+    out = {'turn': int(turn) if turn.isdigit() else turn, 'max_keys': counts[turn],
+           'bursts': len(bursts), 'burst_keys': sum(bursts)}
+    if bursts:
+        out['burst_turns'] = [[int(t) if t.isdigit() else t, n] for t, n in counts.items() if n >= LOOP_KEYS]
+    return out
+
+
+def burst_purchases(state_text, turns):
+    """{turn: times gold fell} over the -statelog lines of each burst turn."""
+    wanted, drops, last = set(turns), {t: 0 for t in turns}, {}
+    for s in parse_state_log(state_text):
+        t = s['turn']
+        if t in wanted:
+            if t in last and s['gold'] < last[t]:
+                drops[t] += 1
+            last[t] = s['gold']
+    return drops
+
+
+def classify_bursts(loop, state_text):
+    """(loop turns, purchase-burst turns) of a frozen_turn_loop result. Without
+    a state log every burst counts as a loop, as before."""
+    turns = loop.get('burst_turns') or []
+    if state_text is None:
+        return turns, []
+    drops = burst_purchases(state_text, [t for t, _ in turns])
+    shopping = [[t, n, drops[t]] for t, n in turns if drops[t] * PURCHASE_KEYS >= n]
+    loops = [[t, n] for t, n in turns if drops[t] * PURCHASE_KEYS < n]
+    return loops, shopping
 
 
 # A cell with more keys than this many times its arm's median (over the
@@ -431,6 +469,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     keys_sha = sha256(keys) if keys.exists() else None
     stall_info = None
     loop = None
+    purchase_burst = None
     if loop_checks(spec) and keys.exists():
         state_path = out / 'state.log'
         loop = frozen_turn_loop(keys.read_text(errors='replace'),
@@ -441,6 +480,23 @@ def run_cell(cell, build_dir, work, cat, keep=False):
                      else 'cause not determined: no state.log')
             error = (f"frozen-turn loop: {loop['bursts']} game turns with {LOOP_KEYS}+ keys, "
                      f"{loop['max_keys']} at turn {loop['turn']} ({cause})")
+
+        loop = frozen_turn_loop(keys.read_text(errors='replace'))
+        has_state = (out / 'state.log').exists()
+        if loop['bursts']:
+            loops, shopping = classify_bursts(
+                loop, (out / 'state.log').read_text(errors='replace') if has_state else None)
+            loop.update(loop_turns=loops, purchase_turns=shopping, bursts=len(loops))
+            if shopping:
+                # Shopping is progress, not a stall (borg-zoo#205): flagged, outcome kept.
+                purchase_burst = {'turns': shopping, 'keys': sum(n for _, n, _ in shopping),
+                                  'purchases': sum(p for _, _, p in shopping)}
+        if loop['bursts'] and outcome in ('death', 'turn_cap', 'borg_stopped'):
+            observed_outcome, outcome = outcome, 'stalled'
+            turn, keys_at = max(loop['loop_turns'], key=lambda tn: tn[1])
+            why = 'and gold unchanged (no purchases)' if has_state else '(no state log to rule out shopping)'
+            error = (f"frozen-turn loop: {loop['bursts']} game turns with {LOOP_KEYS}+ keys {why}, "
+                     f"{keys_at} at turn {turn}")
     if outcome not in ('death', 'turn_cap', 'completion'):
         stall_info = stall.borgh(keys.read_text(errors='replace') if keys.exists() else '', summary)
         if loop and loop['bursts']:
@@ -482,6 +538,8 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     }
     if loop_checks(spec):
         record['frozen_turn_loop'] = loop
+        if purchase_burst:
+            record['purchase_burst'] = purchase_burst
         record['observed_outcome'] = observed_outcome if observed_outcome != outcome else None
     if shadow is not None:
         record['town_shadow'] = shadow

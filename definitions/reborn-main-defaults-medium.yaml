@@ -1,0 +1,29 @@
+# borg-zoo#181: borg-reborn-rs main fdaf18e5 with its shipped defaults (speed30 bundle, no plan), medium tier.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-main-defaults-medium.yaml
+name: reborn-main-defaults-medium
+issue: 181
+question: What does borg-reborn-rs main (fdaf18e5) play with its shipped default settings?
+tier: medium           # classes-1800-medium: starts 91-360, 30 per class
+
+specimen: 4.2.6-reborn-rust-main-fdaf18e5
+
+# One arm with no settings: every game reads the specimen's harness/borg.txt as shipped, apart from
+# the adapter's respawn race/class lines.
+profile_prefix: ''
+arms:
+  reborn-shipped-defaults: {}
+
+owner_authorization: >-
+  2026-11-17: after the pilot reborn-main-defaults-pilot passed its gate (run 44071581589: 3/18 deaths,
+  no unknown-item use), the owner asked for the medium tier next, skipping small (borg-zoo#181).
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#181). Medium tier (RULES 14: starts 91-360,
+  30 per class); the owner skipped small, whose starts 1-90 stay unplayed for this specimen and may be
+  added later. Gate: no config_error; one binary; the written borg.txt carries the shipped settings
+  and no borg_plan; every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key
+  outliers are listed. Descriptive: deaths per class (share and causes), final level, deepest level,
+  reached DL5, keys. Compared, outcomes only, with the control arm reborn-bundle-none-speed30 of
+  reborn-unknown-stacks-medium (run 44065025814: the same starts and settings on 193d9076, before #473
+  and #480): deaths and depth per class, and the paired outcome on each start. Play differs from the
+  first turns, so a paired difference is between builds, not explained by one setting.
