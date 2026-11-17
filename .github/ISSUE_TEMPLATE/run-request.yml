@@ -52,3 +52,14 @@ body:
     attributes:
       label: What counts as working
       description: What the run must show for the change to count as working.
+  - type: dropdown
+    id: cemetery
+    attributes:
+      label: Save deaths in the cemetery
+      description: After the run, the zoo session replays the deaths of the chosen arms locally and opens a borg-cemetery pull request (docs/DEFINE.md, "Saving deaths in the cemetery").
+      options:
+        - No
+        - Every death of the bundle/treatment arms
+        - Every death of every arm
+        - Only the starts I name in a comment
+      default: 0

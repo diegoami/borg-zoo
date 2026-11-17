@@ -1,0 +1,28 @@
+{
+  "kind": "suite-run",
+  "name": "suite1-reborn-main-4d83dd26-stock",
+  "folder": "scenario-experiments",
+  "issue": 183,
+  "question": "How does borg-reborn-rs main 4d83dd26, with its stock settings, play the 999 saved encounters of Suite 1?",
+  "suite": "suite1-v1",
+  "source": {
+    "repository": "diegoami/borg-reborn-rs",
+    "commit": "4d83dd26ef6b510e80a8ff11464f1e49d02daaaa"
+  },
+  "settings": "stock",
+  "inputs": {
+    "path": "scenario-inputs/suite1-reborn-main-4d83dd26-stock",
+    "files": {
+      "borg.txt": "14dc3a576ba6743c58187230a976197220a34e9854e52a04921a2bf8b0f81de8",
+      "provenance.json": "d55b4d3bc4b4d135386e740c35fd2514a2574f100e20b5988e14b583859e8091"
+    }
+  },
+  "native_tools": {
+    "repository": "diegoami/borg-cemetery",
+    "commit": "09225018dd5f2d4336a16b29478793d902c70dc3"
+  },
+  "owner_authorization": "2026-11-17: the owner asked to build the suite-rerun tooling and start one run (borg-zoo#183): Suite 1 on the latest borg-reborn-rs main with its stock settings, smoke first.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#183). The same 999 saves of Suite 1, with its\nprotocol: exact 2,000-engine-turn horizon, 5-second native wall limit, fresh Borg memory, saved engine\nRNG. Stock settings: the checkout's harness/borg.txt (sha256 14dc3a57...), no profile, and no plan\nbecause the stock file names none. Stages smoke 18, small 90, medium 360, big 900, full 999 are\ncumulative, with no replays. Each later stage needs the owner's go. Gate at every stage: no missing,\ninvalid or stopped cell; one binary; every cell's native receipts show the save, the RNG, the\nborg-rs core, every borg.txt setting written, every borg_param_* effective from borg.txt, no plan\nloaded, and an initial pack/equipment/rune hash equal to the suite's. Compared case by case with the\npublished baseline (6d1bca10, reborn) and speed30 (193d9076, borg-rs plus the speed30 profile) arms\nof run 44058010288, reusing their outcomes; reported as rescued, newly killed, both died and both\nsurvived against each, overall and per class. Sources, cores and configurations differ, so no single\nsetting is isolated. Encounters from one life are correlated.\n",
+  "schema": "borg-zoo/suite-run-definition@1",
+  "definition": "definitions/suite1-reborn-main-4d83dd26-stock.yaml"
+}

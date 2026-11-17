@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-unknown-stacks-pilot",
+  "issue": 170,
+  "definition": "definitions/reborn-unknown-stacks-pilot.yaml",
+  "question": "On the speed30 bundle with no plan, which borg_trip_unknown_stacks (2, 3, 4, 5) is best?",
+  "description": "On the speed30 bundle with no plan, which borg_trip_unknown_stacks (2, 3, 4, 5) is best? Generated from definitions/reborn-unknown-stacks-pilot.yaml: 4 arms on 4.2.6-reborn-rust-speed-fight, suite classes-18.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#170). Pilot only (RULES 14); small and larger\nonly after this gate and the owner. Gate: no config_error; one binary; every bundle setting, speed30\nand the arm's borg_trip_unknown_stacks written in the borg.txt of every arm; no plan loaded in any\narm; every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key outliers are\nlisted. Report per arm: deaths, final level, deepest level, keys; paired rescued and newly killed for\neach of 2, 3 and 4 against 5 (the control, the bundle's value) on the same start, and the cells where\nplay diverges. The control arm is the same specimen and profile as reborn-speed30-plans-pilot's\nno-plan arm and may be compared with it as a repeat. 18 starts per arm cannot show which value is best.",
+  "specimens": [
+    "4.2.6-reborn-rust-speed-fight"
+  ],
+  "profiles": [
+    "reborn-bundle-none-speed30-unknown2",
+    "reborn-bundle-none-speed30-unknown3",
+    "reborn-bundle-none-speed30-unknown4",
+    "reborn-bundle-none-speed30"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-speed-fight",
+  "control_profile": "reborn-bundle-none-speed30",
+  "owner_authorization": "2026-11-17: after the speed30 x plan small tier (run 44050742897), the owner asked to try borg_trip_unknown_stacks 2, 3, 4 and 5 on 4.2.6-reborn-rust-speed-fight with reborn-bundle-none-speed30 (no plan, no errand), pilot first (RULES 14)."
+}

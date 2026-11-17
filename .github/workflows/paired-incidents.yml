@@ -1,0 +1,169 @@
+name: Paired saved incidents on Zoo
+on:
+  workflow_call:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  pins:
+    runs-on: ubuntu-24.04
+    outputs:
+      baseline: ${{ steps.pins.outputs.baseline }}
+      speed30: ${{ steps.pins.outputs.speed30 }}
+      cemetery: ${{ steps.pins.outputs.cemetery }}
+      baseline_tools: ${{ steps.pins.outputs.baseline_tools }}
+      speed30_tools: ${{ steps.pins.outputs.speed30_tools }}
+      bank_run: ${{ steps.pins.outputs.bank_run }}
+      bank_sha: ${{ steps.pins.outputs.bank_sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - run: python3 -m zoo define --check definitions/balanced999-paired-smoke-v2.yaml
+      - id: pins
+        run: |
+          python3 - <<'PY'
+          import json,os
+          d=json.load(open('scenario-experiments/balanced999-paired-smoke-v2.json'))
+          p=json.load(open(d['comparison_plan']['path']))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              for a in p['arms']:
+                  f.write(a['id']+'='+a['source']['commit']+'\n')
+                  f.write(a['id']+'_tools='+d['native_tools'][a['id']]['commit']+'\n')
+              f.write('cemetery='+d['cemetery']['commit']+'\n')
+              bank=json.load(open(d['baseline_plan']['path']))['definition']['bank_artifact']
+              f.write('bank_run='+str(bank['run_id'])+'\nbank_sha='+bank['sha256']+'\n')
+          PY
+  build:
+    needs: pins
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arm: baseline
+            source: ${{ needs.pins.outputs.baseline }}
+            tools: ${{ needs.pins.outputs.baseline_tools }}
+          - arm: speed30
+            source: ${{ needs.pins.outputs.speed30 }}
+            tools: ${{ needs.pins.outputs.speed30_tools }}
+    env:
+      BORG_CEMETERY_DIR: ${{ github.workspace }}/native-tools
+    steps:
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ matrix.source }}', path: source, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ matrix.tools }}', path: native-tools, persist-credentials: false}
+      - uses: dtolnay/rust-toolchain@1.100.0
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq build-essential cmake libssl-dev
+      - working-directory: source
+        run: BORG_IMPL=rust flock /tmp/angband-validation.lock harness/build.sh
+      - env: {ARM: '${{ matrix.arm }}'}
+        run: |
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          b=dict(line.split('=',1) for line in Path('source/build/rust/BUILD_ID').read_text().splitlines() if '=' in line)
+          Path('build-'+os.environ['ARM']+'.json').write_text(json.dumps(b,sort_keys=True)+'\n')
+          PY
+          tar -C source -czf "build-$ARM.tgz" build/rust/game/angband build/rust/game/lib build/rust/BUILD_ID
+      - uses: actions/upload-artifact@v4
+        with: {name: 'paired-build-${{ matrix.arm }}', path: 'build-${{ matrix.arm }}.*', retention-days: 90}
+  plan:
+    needs: [pins,build]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.baseline }}', path: sources/baseline, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.speed30 }}', path: sources/speed30, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'paired-build-*', path: builds, merge-multiple: true}
+      - uses: actions/download-artifact@v4
+        with: {name: balanced999-bank, run-id: '${{ needs.pins.outputs.bank_run }}', github-token: '${{ github.token }}', path: prepared}
+      - env: {BANK_SHA: '${{ needs.pins.outputs.bank_sha }}'}
+        run: |
+          python3 - <<'PY'
+          import tarfile,hashlib,os
+          from pathlib import Path
+          p=Path('prepared/balanced999-bank.tgz')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()==os.environ['BANK_SHA']
+          with tarfile.open(p) as t:
+              for m in t.getmembers():
+                  assert m.name.startswith('synthetic/balanced-999-incidents/generated/') or m.name=='synthetic/balanced-999-incidents/generated'
+                  assert '..' not in Path(m.name).parts and not(m.issym() or m.islnk())
+              t.extractall('cemetery',filter='data')
+          PY
+          python3 -m zoo.paired_incidents prepare --definition scenario-experiments/balanced999-paired-smoke-v2.json --cemetery cemetery --sources sources --builds builds --archive prepared/balanced999-bank.tgz --out execution-plan.json
+          tar -C cemetery -czf execution-inputs.tgz synthetic/balanced-999-incidents/generated
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paired-plan
+          path: |
+            execution-plan.json
+            execution-inputs.tgz
+          retention-days: 90
+  smoke:
+    needs: [pins,build,plan]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arm: baseline
+            source: ${{ needs.pins.outputs.baseline }}
+            tools: ${{ needs.pins.outputs.baseline_tools }}
+          - arm: speed30
+            source: ${{ needs.pins.outputs.speed30 }}
+            tools: ${{ needs.pins.outputs.speed30_tools }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ matrix.source }}', path: source, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ matrix.tools }}', path: native-tools, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: 'paired-build-${{ matrix.arm }}', path: downloaded}
+      - uses: actions/download-artifact@v4
+        with: {name: paired-plan, path: downloaded}
+      - env: {ARM: '${{ matrix.arm }}'}
+        run: |
+          tar -C source -xzf "downloaded/build-$ARM.tgz"
+          tar -C cemetery -xzf downloaded/execution-inputs.tgz
+          python3 -m zoo.paired_incidents run --plan downloaded/execution-plan.json --cemetery cemetery --source source --tools native-tools --arm "$ARM" --batch smoke --out attempt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'paired-cells-${{ matrix.arm }}', path: attempt/cells/, retention-days: 90}
+      - name: Pack original native evidence and partial attempts
+        if: always()
+        run: if [ -d attempt ]; then tar -czf native.tgz attempt; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'paired-native-${{ matrix.arm }}', path: native.tgz, retention-days: 14}
+  collect:
+    if: always() && needs.plan.result == 'success'
+    needs: [plan,smoke]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: paired-plan, path: plan}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {pattern: 'paired-cells-*', path: cells}
+      - env: {RUN_URL: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'}
+        run: python3 -m zoo.paired_incidents collect --plan plan/execution-plan.json --inputs cells --out comparison --tier smoke --run-url "$RUN_URL"
+      - if: always()
+        run: if [ -f comparison/comparison.md ]; then cat comparison/comparison.md >> "$GITHUB_STEP_SUMMARY"; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: paired-smoke-comparison, path: comparison/, retention-days: 90}
