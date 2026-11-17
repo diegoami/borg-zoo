@@ -26,8 +26,6 @@ jobs:
           assert os.environ['ARM']==''
           d=json.load(open('scenario-experiments/balanced999-incidents-harvest.json'))
           assert d['expected_cells']==999 and d['per_class']==111 and d['classes']==list(range(9))
-          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
-              pass
           PY
       - id: pins
         run: |

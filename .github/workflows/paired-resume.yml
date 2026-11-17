@@ -1,8 +1,8 @@
 name: Resume paired saved incidents
+# The balanced999 study is complete (run 44058010288), so the push trigger is off and the request
+# file is removed. To resume a study: commit requests/active-paired-stage.yaml (stage, parent_run,
+# owner_authorization), then dispatch this workflow.
 on:
-  push:
-    branches: [task/balanced999-incident-bank]
-    paths: [requests/active-paired-stage.yaml]
   workflow_dispatch:
 permissions:
   contents: read
