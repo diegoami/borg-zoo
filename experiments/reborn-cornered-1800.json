@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-cornered-1800",
+  "issue": 224,
+  "definition": "definitions/reborn-cornered-1800.yaml",
+  "question": "Does cornered mode change how current main survives, over all 1,800 starts?",
+  "description": "Does cornered mode change how current main survives, over all 1,800 starts? Generated from definitions/reborn-cornered-1800.yaml: 2 arms on 4.2.6-reborn-rust-main-6101ca01, suite classes-1800.",
+  "prespecified": "Fixed 2026-11-18, before any result was read (borg-zoo#224). classes-1800, all 1,800 starts, two arms: cornered off\n(control) and on, radius 2 and margin 0 in both, everything else as shipped on 6101ca01. Gate: no config_error; one\nbinary; the settings written in every arm; every cell ends in death, turn_cap or borg_stopped; stalls, purchase\nbursts and key outliers listed. Endpoints, per arm and per class: death share (95% interval); deaths at CL1-3; mean\nmax level and depth; reached DL5. Paired on the same start: rescued, newly killed, exact McNemar, identical play.\nDescriptive only: one development suite.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-6101ca01"
+  ],
+  "profiles": [
+    "reborn-corner-c0-r2-m0",
+    "reborn-corner-c1-r2-m0"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-reborn-rust-main-6101ca01",
+  "control_profile": "reborn-corner-c0-r2-m0",
+  "owner_authorization": "2026-11-18: after the 2x2x2 pilot (run 44196757011: radius and margin changed no game), the owner agreed to run cornered mode off vs on, with the other two at their shipped values, on all 1,800 starts of classes-1800."
+}
