@@ -2,6 +2,7 @@
 import copy
 import hashlib
 import json
+import os
 from pathlib import Path
 import tempfile
 import unittest
@@ -27,7 +28,7 @@ def cell_for(cat, profile):
 
 
 class DeathBundleTest(unittest.TestCase):
-    def play(self, cat, profile, replay_keys=None, trace_lines=0, keep=False):
+    def play(self, cat, profile, replay_keys=None, trace_lines=0, keep=False, relative=False):
         """Run a cell to a death, then bundle it; (record, entry, bundle dir files, replay env)."""
         cell = cell_for(cat, profile)
         spec = cat['specimens']['specimens'][cell['specimen']]
@@ -61,8 +62,14 @@ class DeathBundleTest(unittest.TestCase):
                     patch('zoo.deaths.subprocess.run', side_effect=run), \
                     patch.dict('os.environ', {'BORG_ERRAND': '/x'}):
                 record = borgrs.run_cell(cell, root, root / 'work', cat, keep=keep)
-                entry = deaths.bundle(record, cell, root, cat, root / 'deaths',
-                                      {'experiment': 'x', 'run_id': '42'}, keep=keep)
+                cwd = os.getcwd()
+                try:
+                    if relative:  # as compare.yml passes it: --deaths deaths/<specimen>-<shard>
+                        os.chdir(root)
+                    entry = deaths.bundle(record, cell, root, cat, Path('deaths') if relative else root / 'deaths',
+                                          {'experiment': 'x', 'run_id': '42'}, keep=keep)
+                finally:
+                    os.chdir(cwd)
             out = root / 'deaths' / catalogue.cell_key(cell)
             files = {p.relative_to(out).as_posix(): p.read_bytes() for p in out.rglob('*') if p.is_file()} \
                 if out.exists() else {}
@@ -95,6 +102,17 @@ class DeathBundleTest(unittest.TestCase):
         manifest = json.loads(files['zoo-death.json'])
         self.assertEqual(manifest['record']['play_sha256'], record['play_sha256'])
         self.assertEqual(manifest['build']['trace_core']['lines'], 500)
+
+    def test_a_relative_bundle_root_still_reproduces(self):
+        # Run 44098927907: compare.yml's relative --deaths made the game, which runs
+        # in the game directory, read and write somewhere else; all 11 bundles failed.
+        _, entry, files, calls = self.play(fixture_catalogue(), 'reborn-m13-plan-shop', relative=True)
+        argv = calls[1]['argv']
+        for flag in ('-keylog', '-summary', '-statelog', '-msglog'):
+            self.assertTrue(Path(argv[argv.index(flag) + 1]).is_absolute(), flag)
+        self.assertTrue(all(Path(a.split('=', 1)[1]).is_absolute() for a in argv if a.startswith('-duser=')))
+        self.assertEqual(entry['status'], 'reproduced')
+        self.assertIn('keys.log', files)
 
     def test_different_replay_keys_are_kept_but_not_reproduced(self):
         _, entry, files, _ = self.play(fixture_catalogue(), 'reborn-m13-shop', replay_keys='1 x 0 0\n')

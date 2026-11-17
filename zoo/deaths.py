@@ -182,7 +182,9 @@ def bundle(record, cell, build_dir, cat, root, provenance, keep=False):
              'final': record.get('final'), 'play_sha256': record.get('play_sha256'), **provenance}
     if kind != 'borg-rs':
         return {**entry, 'status': 'unsupported', 'error': f'no death bundle for harness kind {kind}'}
-    out = Path(root) / key
+    # Absolute: the game runs with the game directory as its working directory
+    # (compare.yml passes a relative --deaths; run 44098927907 lost all 11 bundles).
+    out = Path(root).resolve() / key
     try:
         status, why, build = replay_borgrs(record, cell, build_dir, cat, out, provenance, keep=keep)
     except Exception as exc:  # reported per death, never dropped
