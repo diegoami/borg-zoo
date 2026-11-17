@@ -1863,6 +1863,597 @@
     "reborn-shipped-defaults": {
       "description": "borg-zoo#181 (reborn-main-defaults-pilot.yaml): arm reborn-shipped-defaults.",
       "settings": {}
+    },
+    "reborn-bundle-plan-speed0": {
+      "description": "borg-zoo#170 (reborn-speed-fight-pilot.yaml): arm speed0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 5,
+        "borg_trip_pack_slack": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400
+      }
+    },
+    "reborn-bundle-plan-speed30": {
+      "description": "borg-zoo#170 (reborn-speed-fight-pilot.yaml): arm speed30.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 5,
+        "borg_trip_pack_slack": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400,
+        "borg_param_attack_speed_fight_danger_tenths": 30
+      }
+    },
+    "reborn-bundle-plan-speed60": {
+      "description": "borg-zoo#170 (reborn-speed-fight-pilot.yaml): arm speed60.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_plan": "errands_plan.txt",
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 5,
+        "borg_trip_pack_slack": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400,
+        "borg_param_attack_speed_fight_danger_tenths": 60
+      }
+    },
+    "reborn-bundle-none-speed30": {
+      "description": "borg-zoo#170 (reborn-speed30-plans-pilot.yaml): arm reborn-bundle-none-speed30.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 5,
+        "borg_trip_pack_slack": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400,
+        "borg_param_attack_speed_fight_danger_tenths": 30
+      }
+    },
+    "reborn-bundle-ambitious-speed30": {
+      "description": "borg-zoo#170 (reborn-speed30-plans-pilot.yaml): arm reborn-bundle-ambitious-speed30.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 5,
+        "borg_trip_pack_slack": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400,
+        "borg_param_attack_speed_fight_danger_tenths": 30,
+        "borg_plan": "errands_plan_ambitious.txt"
+      }
+    },
+    "reborn-bundle-none-speed30-unknown2": {
+      "description": "borg-zoo#170 (reborn-unknown-stacks-pilot.yaml): arm reborn-bundle-none-speed30-unknown2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_pack_slack": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400,
+        "borg_param_attack_speed_fight_danger_tenths": 30,
+        "borg_trip_unknown_stacks": 2
+      }
+    },
+    "reborn-bundle-none-speed30-unknown3": {
+      "description": "borg-zoo#170 (reborn-unknown-stacks-pilot.yaml): arm reborn-bundle-none-speed30-unknown3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_pack_slack": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400,
+        "borg_param_attack_speed_fight_danger_tenths": 30,
+        "borg_trip_unknown_stacks": 3
+      }
+    },
+    "reborn-bundle-none-speed30-unknown4": {
+      "description": "borg-zoo#170 (reborn-unknown-stacks-pilot.yaml): arm reborn-bundle-none-speed30-unknown4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_pack_slack": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400,
+        "borg_param_attack_speed_fight_danger_tenths": 30,
+        "borg_trip_unknown_stacks": 4
+      }
+    },
+    "reborn-heal1-trip1-attack1-none": {
+      "description": "borg-zoo#164 (reborn-heal-trip-attack-pilot.yaml): arm heal1-trip1-attack1, none.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 5,
+        "borg_trip_pack_slack": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400
+      }
+    },
+    "reborn-heal1-trip1-attack1-plan": {
+      "description": "borg-zoo#164 (reborn-heal-trip-attack-pilot.yaml): arm heal1-trip1-attack1, plan.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 5,
+        "borg_trip_pack_slack": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-heal1-trip1-attack1-ambitious": {
+      "description": "borg-zoo#164 (reborn-heal-trip-attack-medium.yaml): arm heal1-trip1-attack1, ambitious.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_trip_policy": 1,
+        "borg_trip_unknown_stacks": 5,
+        "borg_trip_pack_slack": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_attack_preference_warrior_melee_permille": 1800,
+        "borg_param_attack_preference_warrior_projectile_permille": 1200,
+        "borg_param_attack_preference_warrior_thrown_permille": 1200,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1200,
+        "borg_param_attack_preference_druid_spell_permille": 1700,
+        "borg_param_attack_preference_priest_spell_permille": 1700,
+        "borg_param_attack_preference_necromancer_spell_permille": 1800,
+        "borg_param_attack_preference_necromancer_device_permille": 1200,
+        "borg_param_attack_preference_paladin_melee_permille": 1800,
+        "borg_param_attack_preference_paladin_spell_permille": 1200,
+        "borg_param_attack_preference_rogue_projectile_permille": 1300,
+        "borg_param_attack_preference_rogue_thrown_permille": 1600,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1600,
+        "borg_param_attack_preference_blackguard_spell_permille": 1400,
+        "borg_plan": "errands_plan_ambitious.txt"
+      }
+    },
+    "reborn-main-pbd1": {
+      "description": "borg-zoo#186 (reborn-main-pbd-pilot.yaml): arm pbd1.",
+      "settings": {
+        "borg_param_attack_arrow_point_blank_divisor": 1
+      }
+    },
+    "reborn-main-pbd2": {
+      "description": "borg-zoo#186 (reborn-main-pbd-pilot.yaml): arm pbd2.",
+      "settings": {
+        "borg_param_attack_arrow_point_blank_divisor": 2
+      }
+    },
+    "reborn-main-pbd5": {
+      "description": "borg-zoo#186 (reborn-main-pbd-pilot.yaml): arm pbd5.",
+      "settings": {
+        "borg_param_attack_arrow_point_blank_divisor": 5
+      }
+    },
+    "reborn-rising-ticks0": {
+      "description": "borg-zoo#191 (reborn-rising-ticks-pilot.yaml): arm ticks0.",
+      "settings": {
+        "borg_param_caution_rising_explore_ticks": 0
+      }
+    },
+    "reborn-rising-ticks150": {
+      "description": "borg-zoo#191 (reborn-rising-ticks-pilot.yaml): arm ticks150.",
+      "settings": {
+        "borg_param_caution_rising_explore_ticks": 150
+      }
+    },
+    "reborn-rising-ticks300": {
+      "description": "borg-zoo#191 (reborn-rising-ticks-pilot.yaml): arm ticks300.",
+      "settings": {
+        "borg_param_caution_rising_explore_ticks": 300
+      }
+    },
+    "reborn-rising-ticks600": {
+      "description": "borg-zoo#191 (reborn-rising-ticks-pilot.yaml): arm ticks600.",
+      "settings": {
+        "borg_param_caution_rising_explore_ticks": 600
+      }
+    },
+    "reborn-heal-r0-s0": {
+      "description": "borg-zoo#192 (reborn-heal-reserve-pilot.yaml): arm r0, s0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 0,
+        "borg_param_town_heal_speed_percent": 0
+      }
+    },
+    "reborn-heal-r0-s66": {
+      "description": "borg-zoo#192 (reborn-heal-reserve-pilot.yaml): arm r0, s66.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 0,
+        "borg_param_town_heal_speed_percent": 66
+      }
+    },
+    "reborn-heal-r400-s0": {
+      "description": "borg-zoo#192 (reborn-heal-reserve-pilot.yaml): arm r400, s0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 400,
+        "borg_param_town_heal_speed_percent": 0
+      }
+    },
+    "reborn-heal-r400-s66": {
+      "description": "borg-zoo#192 (reborn-heal-reserve-pilot.yaml): arm r400, s66.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 400,
+        "borg_param_town_heal_speed_percent": 66
+      }
+    },
+    "reborn-heal-r800-s0": {
+      "description": "borg-zoo#192 (reborn-heal-reserve-pilot.yaml): arm r800, s0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 800,
+        "borg_param_town_heal_speed_percent": 0
+      }
+    },
+    "reborn-heal-r800-s66": {
+      "description": "borg-zoo#192 (reborn-heal-reserve-pilot.yaml): arm r800, s66.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 800,
+        "borg_param_town_heal_speed_percent": 66
+      }
+    },
+    "reborn-heal-r200-s66": {
+      "description": "borg-zoo#192 (reborn-heal-reserve-s66-small.yaml): arm r200, s66.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 200,
+        "borg_param_town_heal_speed_percent": 66
+      }
+    },
+    "reborn-pb1": {
+      "description": "borg-zoo#198 (reborn-pb-class-pilot.yaml): arm pb1.",
+      "settings": {
+        "borg_param_attack_arrow_point_blank_divisor_ranger": 1,
+        "borg_param_attack_arrow_point_blank_divisor_rogue": 1
+      }
+    },
+    "reborn-pb2": {
+      "description": "borg-zoo#198 (reborn-pb-class-pilot.yaml): arm pb2.",
+      "settings": {
+        "borg_param_attack_arrow_point_blank_divisor_ranger": 2,
+        "borg_param_attack_arrow_point_blank_divisor_rogue": 2
+      }
+    },
+    "reborn-pb3": {
+      "description": "borg-zoo#198 (reborn-pb-class-pilot.yaml): arm pb3.",
+      "settings": {
+        "borg_param_attack_arrow_point_blank_divisor_ranger": 3,
+        "borg_param_attack_arrow_point_blank_divisor_rogue": 3
+      }
+    },
+    "reborn-pb4": {
+      "description": "borg-zoo#198 (reborn-pb-class-pilot.yaml): arm pb4.",
+      "settings": {
+        "borg_param_attack_arrow_point_blank_divisor_ranger": 4,
+        "borg_param_attack_arrow_point_blank_divisor_rogue": 4
+      }
+    },
+    "reborn-heal-r0-s60": {
+      "description": "borg-zoo#192 (reborn-heal-r0-200-s60-80-pilot.yaml): arm r0, s60.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 0,
+        "borg_param_town_heal_speed_percent": 60
+      }
+    },
+    "reborn-heal-r0-s80": {
+      "description": "borg-zoo#192 (reborn-heal-r0-200-s60-80-pilot.yaml): arm r0, s80.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 0,
+        "borg_param_town_heal_speed_percent": 80
+      }
+    },
+    "reborn-heal-r200-s60": {
+      "description": "borg-zoo#192 (reborn-heal-r0-200-s60-80-pilot.yaml): arm r200, s60.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 200,
+        "borg_param_town_heal_speed_percent": 60
+      }
+    },
+    "reborn-heal-r200-s80": {
+      "description": "borg-zoo#192 (reborn-heal-r0-200-s60-80-pilot.yaml): arm r200, s80.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_hp_percent": 200,
+        "borg_param_town_heal_speed_percent": 80
+      }
+    },
+    "reborn-heal-r0-c50": {
+      "description": "borg-zoo#192 (reborn-heal-curve-pilot.yaml): arm r0, c50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_speed_percent": 66,
+        "borg_param_town_heal_reserve_hp_percent": 0,
+        "borg_param_town_heal_curve_scale_percent": 50
+      }
+    },
+    "reborn-heal-r0-c100": {
+      "description": "borg-zoo#192 (reborn-heal-curve-pilot.yaml): arm r0, c100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_speed_percent": 66,
+        "borg_param_town_heal_reserve_hp_percent": 0,
+        "borg_param_town_heal_curve_scale_percent": 100
+      }
+    },
+    "reborn-heal-r0-c200": {
+      "description": "borg-zoo#192 (reborn-heal-curve-pilot.yaml): arm r0, c200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_speed_percent": 66,
+        "borg_param_town_heal_reserve_hp_percent": 0,
+        "borg_param_town_heal_curve_scale_percent": 200
+      }
+    },
+    "reborn-heal-r200-c50": {
+      "description": "borg-zoo#192 (reborn-heal-curve-pilot.yaml): arm r200, c50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_speed_percent": 66,
+        "borg_param_town_heal_reserve_hp_percent": 200,
+        "borg_param_town_heal_curve_scale_percent": 50
+      }
+    },
+    "reborn-heal-r200-c100": {
+      "description": "borg-zoo#192 (reborn-heal-curve-pilot.yaml): arm r200, c100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_speed_percent": 66,
+        "borg_param_town_heal_reserve_hp_percent": 200,
+        "borg_param_town_heal_curve_scale_percent": 100
+      }
+    },
+    "reborn-heal-r200-c200": {
+      "description": "borg-zoo#192 (reborn-heal-curve-pilot.yaml): arm r200, c200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_speed_percent": 66,
+        "borg_param_town_heal_reserve_hp_percent": 200,
+        "borg_param_town_heal_curve_scale_percent": 200
+      }
+    },
+    "reborn-heal-r400-c50": {
+      "description": "borg-zoo#192 (reborn-heal-curve-pilot.yaml): arm r400, c50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_speed_percent": 66,
+        "borg_param_town_heal_reserve_hp_percent": 400,
+        "borg_param_town_heal_curve_scale_percent": 50
+      }
+    },
+    "reborn-heal-r400-c100": {
+      "description": "borg-zoo#192 (reborn-heal-curve-pilot.yaml): arm r400, c100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_speed_percent": 66,
+        "borg_param_town_heal_reserve_hp_percent": 400,
+        "borg_param_town_heal_curve_scale_percent": 100
+      }
+    },
+    "reborn-heal-r400-c200": {
+      "description": "borg-zoo#192 (reborn-heal-curve-pilot.yaml): arm r400, c200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_speed_percent": 66,
+        "borg_param_town_heal_reserve_hp_percent": 400,
+        "borg_param_town_heal_curve_scale_percent": 200
+      }
     }
   }
 }

@@ -2,6 +2,24 @@
 
 What the zoo's completed experiments have shown, with the run behind each.
 
+**Balanced999 saved encounters (#168):** [full paired experiment](../reports/saved-encounters/balanced999-incidents/full-44058010288/README.md)
+completed1998/1998 valid cells,111 scenarios per class in each setup. Baseline
+reborn had528 deaths/471 finite-horizon survivals; the exact Zoo speed30 bundle
+had291/708. Paired315 rescued and78 newly killed;213 both died and393 both
+survived. Both compiled builds were reused across nonoverlapping balanced tiers.
+Sources, controllers and complete configurations differ; this is descriptive
+regression evidence on an incident-selected bank. Population and isolated
+speed30 claims need separate studies. The completed comparison and all999 individual case pages are live in the Zoo
+Scenarios dashboard after the owner-approved UI PR179 merge.
+
+**Saved caster encounters on Zoo (#144):** [actual eight-case cloud run43966646449](../reports/saved-encounters/cemetery-mixed-caster-encounters-smoke/cloud-43966646449/README.md)
+completed8/8 valid with two starts per pure caster class,5 deaths/3 finite-horizon
+survivals and no invalid/missing cells. Native encounter execution took4.83s
+after building source6d1bca10 once. The source/core/profile/save/build receipts
+and parent-life lineage are retained; canonical native bytes are in Cemetery.
+This is a saved-state baseline, not PR145's generated-birth comparison and not
+an improvement/population result. No larger tier was dispatched.
+
 **Cemetery scenario dispatch smoke (#144):**
 [Two-pushid receipts and limits](../reports/scenarios/cemetery-caster-two-pushids-smoke/local-144/README.md).
 One pinned Gnome Mage birth at depth 1, seed 202, completed on reborn
@@ -253,6 +271,70 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 - **Causes:** main's commonest is poison (4); 193d9076's were a soldier (5), a crow (4), lava (3) and a giant white mouse (3).
 - **Depth:** the 14 dives to DL5-22 on 193d9076 are gone on main. That fits #473 discarding Deep Descent and never reading unknown scrolls, but it was not checked: the 193d9076 medium run kept no logs.
 - **The 22 deaths** (all 270 games replayed, hashes match CI): [reports/reborn-main-defaults-medium-deaths/README.md](../reports/reborn-main-defaults-medium-deaths/README.md). 19 had run out of Cure Light Wounds. 9 ended in melee at low HP. 10 carried 9-23 Flasks of oil. 5 were killed by Farmer Maggot's dogs at character level 1-2, and 4 by poison. Two Mages fainted casting Phase Door with 0 SP and died paralysed. A poisoned level-1 Rogue died in town walking to the Alchemist, and a Paladin at full HP stepped into town lava (`Twitchy!`).
+
+**#170, speed30 with each plan (pilot, run 44045223515, 54 games): the plans did not differ at 18 starts.** Every setting of `reborn-bundle-plan-speed30` on `4.2.6-reborn-rust-speed-fight` (binary cdfee89a), with no plan, errands_plan.txt and errands_plan_ambitious.txt. Gate passed: no config_error, one binary, every setting written to borg.txt in all arms, plan pins matched (and no plan in the no-plan arm), no stalls or frozen-turn bursts, every cell death or turn_cap.
+- **Deaths:** 3/18 in each arm. With the errands plan, Ranger 1739161339 survives and Warrior 1085222502 dies instead (on DL18 at level 8, to Nár). Blackguard 888896726 and Druid 934061548 die in all three arms. The ambitious plan dies on the same three starts as no plan, and 16 of its 18 games play identically to no plan.
+- **Depth:** mean deepest level 2.22 with no plan, 3.22 with the errands plan (the Warrior's DL18 dive alone accounts for most of the gap) and 2.17 with the ambitious plan.
+- **Repeat:** the errands-plan arm replays the #170 pilot's speed30 arm (run 43994684018) identically in 18/18 games.
+
+**#170, speed30 with each plan (small tier, run 44050742897, 270 games, starts 1-90): still no detectable difference between the plans.** Same three arms as the pilot. Gate passed: no config_error, one binary (cdfee89a), every setting written in all 270 borg.txt files, plan pins matched (none in the no-plan arm), no stalls or frozen-turn bursts, every cell death or turn_cap. Key outliers (over 20,000 keys, about twice the median of 9,914) are 14 Ranger games that reach the turn cap, the same four starts in every arm.
+
+| Plan | Deaths | Mean deepest DL | Reached DL5 | Mean max level |
+|---|---|---|---|---|
+| None (control) | 6/90 | 2.24 | 4 | 5.06 |
+| errands_plan.txt | 4/90 | 2.26 | 5 | 5.10 |
+| errands_plan_ambitious.txt | 7/90 | 2.28 | 5 | 5.01 |
+
+- **Paired against no plan:** the errands plan rescued 3 (Blackguard 446353753, Ranger 129607500, Warrior 740860644) and newly killed 1 (Druid 507571350), McNemar p = 0.63, with 45/90 games identical. The ambitious plan rescued none and newly killed the same Druid, p = 1.0, with 70/90 identical.
+- Without speed30, the #164 small tier had 5/90 deaths with no plan and 4/90 with the errands plan. That is a different specimen and run, so it is not a paired comparison.
+
+**#170, borg_trip_unknown_stacks 2-5 on the speed30 bundle with no plan (pilot, run 44054277431, 72 games): no difference in deaths.** `reborn-bundle-none-speed30` on `4.2.6-reborn-rust-speed-fight` with unknown_stacks 2, 3, 4 and 5 (5 = control). Gate passed: no config_error, one binary (cdfee89a), every setting and the arm's `borg_trip_unknown_stacks = N` written in every borg.txt, no plan loaded, no stalls or frozen-turn bursts, every cell death or turn_cap.
+
+| unknown_stacks | Deaths | Mean deepest DL | Mean max level | Identical to 5 |
+|---|---|---|---|---|
+| 2 | 3/18 | 2.89 | 4.61 | 7/18 |
+| 3 | 3/18 | 2.50 | 5.28 | 12/18 |
+| 4 | 3/18 | 2.17 | 5.11 | 14/18 |
+| 5 (control) | 3/18 | 2.22 | 4.94 | - |
+
+- Only 2 changes who dies: Ranger 1739161339 survives and Rogue 1502695781 dies (DL2, level 3). Blackguard 888896726 and Druid 934061548 die in every arm.
+- The control replays the speed30 x plan pilot's no-plan arm (run 44045223515) identically in 18/18 games.
+- **Deaths in the pilot** (local replay, 54/54 play hashes match CI): [reports/reborn-unknown-stacks-pilot-deaths/README.md](../reports/reborn-unknown-stacks-pilot-deaths/README.md). Where 2 or 3 split from 5, the split is a trip `return` for unknown items. With no up stair known, the Borg goes down instead (`no up stairs found, going down`). The unknown3 Ranger did this 16 times without reaching town.
+
+**#170, borg_trip_unknown_stacks 2-5 (small tier, run 44055270651, 360 games, starts 1-90): no value is distinguishable from 5.** Gate passed: no config_error, one binary (cdfee89a), every setting written (`borg_trip_unknown_stacks = N`) in all 360 borg.txt files, no plan loaded. One cell is flagged `stalled`: Ranger Half-Orc 1071405808 with unknown3, a frozen-turn loop of 1,085 keys at game turn 75,918 (as in borg-rs#90 / borg-reborn-rs#421). Its observed outcome is turn_cap at DL6, level 8. 17 games exceed twice the median of 9,956 keys.
+
+| unknown_stacks | Deaths | Mean deepest DL | Reached DL5 | Mean max level | Identical to 5 |
+|---|---|---|---|---|---|
+| 2 | 8/90 | 2.54 | 5 | 5.26 | 25/90 |
+| 3 | 6/90 (+1 stalled) | 2.46 | 7 | 5.08 | 48/90 |
+| 4 | 3/90 | 2.13 | 2 | 5.04 | 68/90 |
+| 5 (control) | 6/90 | 2.24 | 4 | 5.06 | - |
+
+- **Paired against 5:** 2 rescued 4 and newly killed 6 (3 of them Druids), McNemar p = 0.75; 3 rescued 3 and killed 3, p = 1.0; 4 rescued 3 and killed none, p = 0.25. The 3 rescued by 4 (Blackguard 446353753, Ranger 129607500, Warrior 740860644) are also rescued by 2 and 3.
+- Lower values go somewhat deeper (more DL5 games with 2 and 3) and play differently more often. 4 has the fewest deaths, but 3 against 0 is far from significant.
+- The control replays the speed30 x plan small tier's no-plan arm (run 44050742897) identically in 90/90 games.
+
+**#170, borg_trip_unknown_stacks 3-5 (medium tier, run 44065025814, 810 games, starts 91-360; value 2 dropped by the owner): no value differs from 5 on 360 starts.** Gate passed: no config_error, one binary (cdfee89a), every setting written in all 810 borg.txt files, no plan loaded, no stalls or frozen-turn bursts. 71 games exceed twice the median of 9,441 keys (max 26,827), all at the turn cap.
+
+| unknown_stacks | Medium deaths | Small + medium deaths (360) | Mean deepest DL (360) | Reached DL5 (360) | Mean max level (360) | Identical to 5 (360) |
+|---|---|---|---|---|---|---|
+| 3 | 32/270 | 38 (+1 stalled) | 2.48 | 23 | 4.96 | 197 |
+| 4 | 36/270 | 39 | 2.39 | 19 | 4.99 | 276 |
+| 5 (control) | 34/270 | 40 | 2.34 | 18 | 4.96 | - |
+
+- **Paired against 5 on 360 starts:** 3 rescued 12 and newly killed 10 (McNemar p = 0.83); 4 rescued 4 and killed 3 (p = 1.0). The small tier's lead for 4 (3 against 6 deaths) did not hold in medium (36 against 34).
+- **Per class:** deaths are within one or two of each other in every class, except Warriors with 3 (8 against 4).
+- Lower values go slightly deeper (DL5 in 23, 19 and 18 games) without fewer deaths. The records hold no message logs, so trip returns that became descents are not counted here; that needs a replay (`python3 -m zoo.deaths`).
+
+**The heal + trip policy + attack preference bundle, with and without `errands_plan.txt` (#164).** borg-reborn-rs `f02cd294`, specimen `4.2.6-reborn-rust-heal`. Pilot (`classes-18`, run 43973026635, 72 cells) and small tier (`classes-1800-small`, 90 starts per arm, run 43977574813, 180 cells). Both passed their gates: no `config_error`, one binary, settings written, plan pins matching, no stalls.
+- **Pilot, 4 arms of 18 starts:** deaths 4 (control, no plan), 3 (control, plan), 4 (bundle, no plan), 2 (bundle, plan). The two deaths of the last arm are in all four arms with the same keys. Saved in borg-cemetery#52.
+- **Small, bundle without and with the plan:** deaths 5/90 and 4/90 (95% ranges 2-12% and 2-11%), median max level 5 in both. Paired on the same start, the plan rescued 3 starts, newly killed 2 and both died in 2; play was identical in 46 of 90 starts. The mean deepest level was 2.42 without the plan and 2.21 with it.
+- **Reading:** the plan makes no detectable difference to the bundle at this size. This run has no neutral control arm, so it does not measure the bundle against the unchanged build (RULES 8); the only such comparison is the pilot's 18 starts (4 deaths each).
+
+**#183, Suite 1 on borg-reborn-rs main 7e08c920 with its own defaults (full, 999 saved encounters; runs 44107809205, 44108466606, 44108889978, 44109534305, 44110967531): 281 deaths, and one scenario cut off by the 5 s wall limit.** A sanity check of main: the commit's own `harness/borg.txt` (04dd52f7...), nothing overridden, reported alone. Every stage up to big passed its gate. The full stage collected all 999 cells, with no stopped cell.
+- **Outcomes:** 281 deaths (28.1%), 717 survived the 2,000-turn horizon, 1 not finished.
+- **Deaths per class (of 111):** Warrior 23, Mage 25, Druid 46, Priest 26, Necromancer 35, Paladin 33, Rogue 33, Ranger 35, Blackguard 25.
+- **The unfinished scenario:** Rogue c6-r7-s1060140-i000 hit the 5 s wall at game turn 96,481 of 97,007. The game was fighting a breeding swarm of giant white lice (8,172 `Tracking a monster` notes). Replayed locally, it times out at 5 s every time; with a 60 s wall it reaches the horizon alive in 6.9 s. On the same save, speed30 (193d9076) needed 3.6 s and the reborn baseline 1.3 s. No other scenario took more than 1.7 s on 7e08c920. The archived record labels the cell `invalid_receipt`; the runner now labels such a cell `wall_timeout`.
 
 ## Open
 

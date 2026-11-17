@@ -1015,6 +1015,30 @@
       "stall_seconds": 120,
       "saves": false
     },
+    "classes-1800-verysmall": {
+      "description": "Tier verysmall of classes-1800 (RULES 14): starts 1-45 (5 per class), with each seed's classes-1800 character. Between the pilot and small: a study that ran it continues with small-rest (starts 46-90), so its tiers stay disjoint.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "range": [0, 45]
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-rest": {
+      "description": "Tier small after verysmall (RULES 14): starts 46-90 (5 more per class; with verysmall, exactly the starts of small), with each seed's classes-1800 character.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "range": [45, 90]
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
     "classes-1800-small": {
       "description": "Tier small of classes-1800 (RULES 14): starts 1-90 (10 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
       "role": "development",
@@ -1022,6 +1046,24 @@
         "suite": "classes-1800",
         "range": [0, 90]
       },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-rangers": {
+      "description": "The Ranger starts of classes-1800-small (borg-zoo#198): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Ranger"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-rogues": {
+      "description": "The Rogue starts of classes-1800-small (borg-zoo#198): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Rogue"},
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,

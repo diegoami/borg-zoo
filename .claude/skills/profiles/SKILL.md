@@ -21,4 +21,4 @@ and the catalogue.
    result, and update `status`.
 
 A run request reads: "TIER run of SHORTCUT on REPOSITORY REF". Tiers grow
-pilot → small → medium → big → full, one at a time (RULES 14).
+pilot → (verysmall →) small → medium → big → full, one at a time (RULES 14).

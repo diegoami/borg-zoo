@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-speed-fight-medium",
+  "issue": 170,
+  "definition": "definitions/reborn-speed-fight-medium.yaml",
+  "question": "Does drinking a Potion of Speed before a very dangerous committed fight help the bundle with errands_plan?",
+  "description": "Does drinking a Potion of Speed before a very dangerous committed fight help the bundle with errands_plan? Generated from definitions/reborn-speed-fight-medium.yaml: 3 arms on 4.2.6-reborn-rust-speed-fight, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#170). Medium tier (RULES 14: starts 91-360,\n270 per arm, 810 games). Gate: no config_error; one binary; the plan pin matches in every arm; the\nspeed setting is written in the borg.txt and params-core.json of speed30 and speed60 only and every\nbundle setting in all three; every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls\nand key outliers are listed. Report per arm and per class: deaths, final level, deepest level, keys;\npaired rescued and newly killed for speed30 and speed60 against speed0 on the same start, and the\nnumber of starts where play diverges at all (the pilot had none). Compare only within this run;\nvalue 0 is not guaranteed to play as the f02cd294 runs (#452 hoarding, #464). No claim of improvement\nfrom the tables (RULES 8).",
+  "specimens": [
+    "4.2.6-reborn-rust-speed-fight"
+  ],
+  "profiles": [
+    "reborn-bundle-plan-speed0",
+    "reborn-bundle-plan-speed30",
+    "reborn-bundle-plan-speed60"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-speed-fight",
+  "control_profile": "reborn-bundle-plan-speed0",
+  "owner_authorization": "2026-11-17: the owner asked to apply the medium dataset to the speed pilot (borg-zoo#170, pilot run 43994684018), after its gate passed. The pilot showed no effect: play was identical across speed0, speed30 and speed60 in all 18 starts."
+}
