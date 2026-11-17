@@ -111,7 +111,7 @@ def prepare(definition,cemetery,source,build,archive,out):
     arm=dict(id=d['name'],source=d['source'],source_sha256=source_sha,core='borg-rs',native_tools=d['native_tools'],build=built,settings=profile,
              settings_label='stock' if d['settings']=='stock' else d['settings']['profile'],inputs=d['inputs'],errands_plan_sha256=n.sha(plan_file) if plan_file.exists() else None)
     plan=dict(schema=SCHEMA,definition=d,definition_sha256=n.sha(definition),runner_sha256=n.sha(Path(__file__)),zoo_commit=n.git(ROOT,'rev-parse','HEAD'),
-              suite=m,cases=base['cases'],batches=base['batches'],manifest=base['manifest'],gear=gear,arm=arm,expected_cells=len(base['cases']),exact_turns=True)
+              suite=m,cases=base['cases'],batches=base['batches'],manifest=dict(base['manifest'],wall_seconds=m['protocol']['wall_seconds']),gear=gear,arm=arm,expected_cells=len(base['cases']),exact_turns=True)
     plan['plan_hash']=n.digest(plan);n.write(out,plan);return plan
 
 

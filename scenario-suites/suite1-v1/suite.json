@@ -36,7 +36,8 @@
       "smoke": 18
     },
     "startup": "fresh Borg memory, saved engine RNG",
-    "wall_seconds": 5
+    "wall_note": "A hang guard, not part of the game: each scenario must reach its 2,000-turn horizon within this native wall time. Inherited as 5 s from Cemetery's first saved scenarios (1,000 turns); raised to 30 s on 2026-11-17 (owner) after main needed 6.9 s for a 2,000-turn fight against a breeding louse swarm (c6-r7-s1060140-i000). The bank, saves and horizon are unchanged, so outcomes stay comparable.",
+    "wall_seconds": 30
   },
   "schema": "borg-zoo/saved-suite@1",
   "version": 1
