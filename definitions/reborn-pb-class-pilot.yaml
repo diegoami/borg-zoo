@@ -1,0 +1,34 @@
+# borg-zoo#198: point-blank divisor 1/2/3/4 for Rangers and Rogues only, on borg-reborn-rs main e0aa2e0a (#498), pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-pb-class-pilot.yaml
+name: reborn-pb-class-pilot
+issue: 198
+question: Which point-blank divisor (1, 2, 3, 4) suits Rangers, and which Rogues, on borg-reborn-rs main e0aa2e0a?
+suites: [classes-1800-small-rangers, classes-1800-small-rogues]   # the 10 Ranger and 10 Rogue starts of classes-1800-small
+
+specimen: 4.2.6-reborn-rust-main-e0aa2e0a
+
+# Every arm reads the shipped harness/borg.txt (speed30 bundle, borg-rs core, no plan, general divisor 5)
+# and writes only the two class overrides (#498).
+profile_prefix: reborn
+vary:
+  divisor:
+    pb1: {borg_param_attack_arrow_point_blank_divisor_ranger: 1, borg_param_attack_arrow_point_blank_divisor_rogue: 1}
+    pb2: {borg_param_attack_arrow_point_blank_divisor_ranger: 2, borg_param_attack_arrow_point_blank_divisor_rogue: 2}
+    pb3: {borg_param_attack_arrow_point_blank_divisor_ranger: 3, borg_param_attack_arrow_point_blank_divisor_rogue: 3}
+    pb4: {borg_param_attack_arrow_point_blank_divisor_ranger: 4, borg_param_attack_arrow_point_blank_divisor_rogue: 4}
+
+control: [pb2]
+owner_authorization: >-
+  2026-11-17: the owner asked (via borg-reborn-rs, borg-zoo#198) for a pilot of the point-blank divisor for
+  Rangers and Rogues only, values 1-4, on the 20 Ranger and Rogue starts of classes-1800-small.
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#198). Pilot (RULES 14); more starts only after this
+  gate and the owner. Gate: no config_error; one binary; each arm's borg.txt has both class overrides at
+  its value and the shipped general divisor 5; params-core.json reports them on the death replays; no plan
+  loaded; every cell ends in death, turn_cap or borg_stopped; stalls and key outliers listed. Reported per
+  class and arm (the shipped value is pb2 for Rangers, pb3 for Rogues, so each class is compared with its
+  own shipped arm): deaths, final level, deepest level; shots fired ("Firing missile"), throws
+  ("Throwing"), melee attacks ("Attacking with weapon") and arrows or shots left at death, from the death
+  replays and, for games that live, from replays with logs. 10 starts per class and arm show direction
+  only.
