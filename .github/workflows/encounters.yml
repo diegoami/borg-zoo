@@ -1,0 +1,113 @@
+name: Saved caster encounters on Zoo
+on:
+  pull_request:
+    paths:
+      - zoo/encounters.py
+      - zoo/define.py
+      - tests/test_encounters.py
+      - definitions/cemetery-mixed-caster-encounters-smoke.yaml
+      - scenario-experiments/cemetery-mixed-caster-encounters-smoke.json
+      - .github/workflows/encounters.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: saved-caster-smoke-${{ github.head_ref || github.ref }}
+  cancel-in-progress: false
+jobs:
+  smoke:
+    name: Eight saved starts, four caster classes
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONUNBUFFERED: '1'
+      BORG_CEMETERY_DIR: ${{ github.workspace }}/native-tools
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m pip install PyYAML==6.0.2
+      - name: Check generated YAML definition
+        run: python3 -m zoo define --check definitions/cemetery-mixed-caster-encounters-smoke.yaml
+      - id: pins
+        name: Resolve exact source, bank and native-tools pins
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          d=json.load(open('scenario-experiments/cemetery-mixed-caster-encounters-smoke.json'))
+          assert d['schema']=='borg-zoo/saved-encounter-smoke@1'
+          assert d['source']['repository']=='diegoami/borg-reborn-rs'
+          assert d['bank']['repository']==d['native_tools']['repository']=='diegoami/borg-cemetery'
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              for name,pin in [('source',d['source']),('bank',d['bank']),('tools',d['native_tools'])]:
+                  assert re.fullmatch('[0-9a-f]{40}',pin['commit'])
+                  f.write(name+'='+pin['commit']+'\n')
+          PY
+      - uses: actions/checkout@v4
+        with:
+          repository: diegoami/borg-cemetery
+          ref: ${{ steps.pins.outputs.bank }}
+          path: cemetery
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: diegoami/borg-cemetery
+          ref: ${{ steps.pins.outputs.tools }}
+          path: native-tools
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: diegoami/borg-reborn-rs
+          ref: ${{ steps.pins.outputs.source }}
+          path: source
+          persist-credentials: false
+      - name: Freeze eight-cell saved-start plan
+        run: >-
+          python3 -m zoo.encounters plan
+          --definition scenario-experiments/cemetery-mixed-caster-encounters-smoke.json
+          --bank cemetery --source source --tools native-tools --out plan.json
+      - uses: dtolnay/rust-toolchain@1.100.0
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq build-essential cmake libssl-dev
+      - name: Build exact target once
+        timeout-minutes: 10
+        working-directory: source
+        run: BORG_IMPL=rust flock /tmp/angband-validation.lock harness/build.sh
+      - name: Zoo executes the pinned Cemetery saved starts
+        if: always() && steps.pins.outcome == 'success'
+        run: >-
+          python3 -m zoo.encounters run --plan plan.json --bank cemetery
+          --source source --tools native-tools --out attempts
+      - name: Collect every class and expected cell
+        if: always() && steps.pins.outcome == 'success'
+        run: >-
+          python3 -m zoo.encounters collect --plan plan.json --attempt attempts --out comparison
+          --run-url "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      - name: Publish the Zoo report in the job summary
+        if: always()
+        run: |
+          if [ -f comparison/comparison.md ]; then
+            cat comparison/comparison.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: saved-caster-encounter-report
+          path: |
+            plan.json
+            comparison/
+            attempts/cells/
+            attempts/execution.json
+            attempts/launcher.log
+          retention-days: 90
+          if-no-files-found: warn
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: saved-caster-encounter-native-evidence
+          path: attempts/native/
+          retention-days: 14
+          if-no-files-found: warn

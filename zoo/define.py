@@ -42,6 +42,10 @@ def load(path):
     d = yaml.safe_load(Path(path).read_text())
     if not isinstance(d, dict):
         raise ValueError(f'{path}: a definition is a YAML mapping')
+    if d.get('kind') == 'saved-encounter-smoke':
+        from .encounters import validate_yaml
+        validate_yaml(d)
+        return d
     unknown = sorted(set(d) - KEYS)
     if unknown:
         raise ValueError(f'{path}: unknown keys {unknown}; allowed: {sorted(KEYS)}')
@@ -161,6 +165,9 @@ def plan(path, root=ROOT):
     """(definition, problems, changes) for one definition file."""
     d = load(path)
     root = Path(root)
+    if d.get('kind') == 'saved-encounter-smoke':
+        from .encounters import definition_plan
+        return definition_plan(d, path, root)
     specs = json.loads((root / 'catalogue/specimens.json').read_text())['specimens']
     profs = json.loads((root / 'catalogue/profiles.json').read_text())['profiles']
     problems, changes = [], []
@@ -304,6 +311,9 @@ def main(argv=None):
             failed = True
             continue
         write(changes)
+        if d.get('kind') == 'saved-encounter-smoke':
+            print(json.dumps({'definition': path, 'experiment': d['name'], 'expected_cells': 8, 'written': [c[1] for c in changes]}))
+            continue
         exp = cat_mod.experiment(target(d))  # validates
         print(json.dumps({'definition': path, 'experiment': d['name'], 'issue': d.get('issue'),
                           'arms': len(exp['profiles']), 'cells': len(cat_mod.cells(exp)),

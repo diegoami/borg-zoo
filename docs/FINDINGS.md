@@ -2,6 +2,14 @@
 
 What the zoo's completed experiments have shown, with the run behind each.
 
+**Saved caster encounters on Zoo (#144):** [actual eight-case cloud run43966646449](../reports/saved-encounters/cemetery-mixed-caster-encounters-smoke/cloud-43966646449/README.md)
+completed8/8 valid with two starts per pure caster class,5 deaths/3 finite-horizon
+survivals and no invalid/missing cells. Native encounter execution took4.83s
+after building source6d1bca10 once. The source/core/profile/save/build receipts
+and parent-life lineage are retained; canonical native bytes are in Cemetery.
+This is a saved-state baseline, not PR145's generated-birth comparison and not
+an improvement/population result. No larger tier was dispatched.
+
 **Cemetery scenario dispatch smoke (#144):**
 [Two-pushid receipts and limits](../reports/scenarios/cemetery-caster-two-pushids-smoke/local-144/README.md).
 One pinned Gnome Mage birth at depth 1, seed 202, completed on reborn
