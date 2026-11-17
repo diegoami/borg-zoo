@@ -217,12 +217,10 @@ jobs:
         with: {name: suite-comparison-raw, path: comparison/, retention-days: 90}
       - uses: actions/upload-artifact@v4
         with: {name: suite-cells-cumulative, path: cells/, retention-days: 90}
-      - name: Dashboard record beside the suite's published runs
-        env: {STAGE: '${{ inputs.stage }}', PARENT: '${{ inputs.parent_run }}', RUN_URL: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'}
+      - name: Dashboard record of the run
+        env: {PARENT: '${{ inputs.parent_run }}', RUN_URL: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'}
         run: |
-          git fetch --depth=1 origin results
-          git worktree add results-branch FETCH_HEAD
-          python3 -m zoo.suite_runs compact --input comparison/comparison.json --results results-branch --out compact \
+          python3 -m zoo.suite_runs compact --input comparison/comparison.json --out compact \
             --evidence-url "$RUN_URL" --howto-url https://github.com/diegoami/borg-zoo/blob/main/docs/SUITE-RUNS.md ${PARENT:+--parent-run "$PARENT"}
       - uses: actions/upload-artifact@v4
         with: {name: suite-dashboard, path: compact/, retention-days: 90}

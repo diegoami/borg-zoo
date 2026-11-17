@@ -1,11 +1,10 @@
 """Run one Borg build and configuration on a frozen saved-encounter suite.
 
 A suite (scenario-suites/ID/suite.json) is a frozen bank of saved starts with its
-execution protocol; a run is one build (an exact borg-reborn-rs commit) with one
-configuration: the checkout's stock harness/borg.txt, or that file with a Zoo
-profile's settings. Runs grow in the suite's nested stages without replaying
-earlier cells, and are compared case by case with every published run of the
-same suite (its references), reusing their archived outcomes.
+execution protocol. A run is one build (an exact borg-reborn-rs commit, by default
+main's HEAD) with its own harness/borg.txt, unchanged unless the owner asks for a
+profile on top. It is a sanity check of that build: the run is reported alone, with
+no other arm. Runs grow in the suite's nested stages without replaying earlier cells.
 
     python3 -m zoo.suite_runs snapshot --source CHECKOUT --name NAME [--profile P]
     python3 -m zoo.suite_runs prepare|stage|run|collect ...   (the suite-run workflow)
@@ -279,46 +278,23 @@ def stage(plan_path,parent_report,cells,stage_name,out):
     n.write(out/'matrix.json',[dict(batch=b) for b in batches]);return batches
 
 
-def references(plan,results):
-    """Published runs of the same suite, each checked against its pinned digest."""
-    out=[]
-    for ref in plan['suite']['references']:
-        path=results/ref['path']
-        if n.sha(path)!=ref['sha256']:raise ValueError('reference report differs: '+ref['path'])
-        r=saved.validate(n.read(path))
-        if r['plan_hash'] and len(r['cases'])!=len(plan['cases']):raise ValueError('reference does not cover the whole suite')
-        out.append((ref,r))
-    return out
-
-
-def compact(report,results,evidence_url,howto_url,parent_run=None):
-    """The dashboard record: this run's outcomes beside every reference arm's, case by case."""
-    p=report['plan'];arm=p['arm'];rows={r['id']:r for r in report['cells']};refs=references(p,results)
-    arms=[];by_case={}
-    for ref,r in refs:
-        for a in r['arms']:
-            a=dict(a,reference=ref['name']+'/'+ref['run']);arms.append(a)
-        for c in r['cases']:by_case.setdefault(c['id'],{}).update(c['outcomes'])
-    ids=[a['id'] for a in arms]
-    if len(set(ids))!=len(ids) or arm['id'] in ids:raise ValueError('arm names collide with a reference')
-    reference=ids[0];cases=[]
+def compact(report,evidence_url,howto_url,parent_run=None):
+    """The dashboard record of the run alone: its build, its configuration and every scenario's outcome."""
+    p=report['plan'];arm=p['arm'];rows={r['id']:r for r in report['cells']};cases=[]
     for index,case in enumerate(p['cases'][:report['expected_cells']]):
         s=case['scenario'];row=rows[case['id']];cell=row.get('cell') or {};raw=cell.get('receipts',{})
         summary=json.loads(raw['run/summary.json']) if 'run/summary.json' in raw else {}
-        outcomes=dict(by_case[case['id']]);outcomes[arm['id']]=row['status']
         details={arm['id']:dict(status=row['status'],summary=summary,streams=cell.get('streams',{}),cell_execution_hash=cell.get('execution_hash'),elapsed_seconds=cell.get('elapsed_seconds'),reason=cell.get('validation_error',cell.get('reason')))}
         cases.append(dict(id=case['id'],class_idx=s['class_idx'],race_idx=s['race_idx'],birth_seed=s['birth_seed'],start_turn=s['start_turn'],
             historical_type=s['event_kind'],selection=s['selection'],coverage=s['coverage'],origin=s['origin'],scenario_sha256=case['scenario_sha256'],save_sha256=s['save_sha256'],
-            suite=f'synthetic/balanced-999-incidents/generated/shards/{index//8:03d}.json',outcomes=outcomes,details=details,
-            pair=saved.pairing(outcomes[reference],outcomes[arm['id']]),pair_by_reference={a:saved.pairing(outcomes[a],outcomes[arm['id']]) for a in ids}))
+            suite=f'synthetic/balanced-999-incidents/generated/shards/{index//8:03d}.json',outcomes={arm['id']:row['status']},details=details,pair=None))
     run_arm=dict(id=arm['id'],core=arm['core'],source=arm['source'],build=arm['build'],native_tools=arm['native_tools'],profile=arm['settings_label'],
                  settings=arm['settings'],errands_plan_sha256=arm['errands_plan_sha256'],inputs=arm['inputs'])
     result=dict(schema=saved.SCHEMA,name=p['definition']['name'],title=arm['id']+' on '+p['suite']['name'],suite=dict(id=p['suite']['id'],name=p['suite']['name']),
-        tier=report['tier'],run_url=report['run_url'],parent_run=parent_run,plan_hash=p['plan_hash'],definition=p['definition'],arms=arms+[run_arm],
-        comparison=dict(reference=reference,candidate=arm['id']),counted_arms=[arm['id']],manifest=p['manifest'],expected_cells=report['expected_cells'],
+        tier=report['tier'],run_url=report['run_url'],parent_run=parent_run,plan_hash=p['plan_hash'],definition=p['definition'],arms=[run_arm],
+        comparison=dict(reference=None,candidate=arm['id']),counted_arms=[arm['id']],manifest=p['manifest'],expected_cells=report['expected_cells'],
         collected_cells=sum(r.get('cell') is not None for r in report['cells']),invalid_count=report['invalid_count'],stopped_count=report['stopped_count'],
-        pairs=dict(Counter(c['pair'] for c in cases)),pairs_by_reference={a:dict(Counter(c['pair_by_reference'][a] for c in cases)) for a in ids},
-        per_class=report['per_class'],cases=cases,bank_artifact=p['suite']['bank'],evidence_url=evidence_url,howto_url=howto_url,
+        pairs={},per_class=report['per_class'],cases=cases,bank_artifact=p['suite']['bank'],evidence_url=evidence_url,howto_url=howto_url,
         independent_life=False,qualified_near_death={'coverage':'unavailable','count':None})
     saved.validate(result);return result
 
@@ -339,7 +315,7 @@ def main():
     for key in ('plan','inputs','out'):a.add_argument('--'+key,type=Path,required=True)
     a.add_argument('--tier',choices=list(bank.TIERS),default='smoke');a.add_argument('--run-url',default='')
     a=sub.add_parser('compact')
-    for key in ('input','results','out'):a.add_argument('--'+key,type=Path,required=True)
+    for key in ('input','out'):a.add_argument('--'+key,type=Path,required=True)
     a.add_argument('--evidence-url',required=True);a.add_argument('--howto-url',required=True);a.add_argument('--parent-run',type=int)
     a=q.parse_args()
     if a.action=='snapshot':print(json.dumps(snapshot(a.source.resolve(),a.name,a.profile),indent=2));return 0
@@ -350,7 +326,7 @@ def main():
     if a.action=='run':return run(a.plan.resolve(),a.cemetery.resolve(),a.source.resolve(),a.tools.resolve(),a.batch,a.out.resolve())
     if a.action=='collect':return collect(a.plan.resolve(),a.inputs.resolve(),a.out.resolve(),a.tier,a.run_url)
     if a.out.exists():raise ValueError('fresh compact output directory required')
-    raw=a.input.resolve();r=compact(n.read(raw),a.results.resolve(),a.evidence_url,a.howto_url,a.parent_run)
+    raw=a.input.resolve();r=compact(n.read(raw),a.evidence_url,a.howto_url,a.parent_run)
     r['raw_report_sha256']=n.sha(raw);a.out.mkdir(parents=True);(a.out/'comparison.json').write_text(json.dumps(r,indent=2,sort_keys=True)+'\n')
     (a.out/'index.html').write_text(saved.render(r));return 0
 

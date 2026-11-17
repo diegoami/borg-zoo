@@ -530,7 +530,7 @@ def build_site(results, out):
                ('Versions', 'The exact pushids and specimens compared in this run.'),
                ('Scenarios', 'Distinct saved or synthetic encounter starts requested per version.'),
                ('Collected / expected cells', 'Completed records collected, including failures, out of all requested version × scenario cells.'),
-               ('Paired outcomes', 'Scenario pairs by outcome, including missing, invalid and inconclusive pairs.')]
+               ('Outcomes', 'Scenario pairs by outcome for a comparison (missing, invalid and inconclusive included); the death share for a suite run of one build.')]
     body = (f'<h1>Borg zoo</h1>{landing.nav("scenarios/index.html", "../")}'
             '<h2>Scenario runs</h2>'
             + site.explain('Saved encounters and synthetic starts from pinned Cemetery banks, compared across exact Borg setups. '

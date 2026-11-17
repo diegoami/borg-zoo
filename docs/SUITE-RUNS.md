@@ -6,14 +6,14 @@ borg-zoo#168: 999 saves, 111 per class. Each save starts with fresh Borg memory 
 saved engine RNG, and plays an exact 2,000-engine-turn horizon under a 5-second native wall
 limit.
 
-A **run** is one build on a suite, with one configuration. The build is an exact
-borg-reborn-rs commit. The configuration is either the commit's stock `harness/borg.txt`, or
-that file with a Zoo profile's settings. Another build or configuration is another run of
-the same suite, never a new suite. Changing a suite's saves makes a new version (`suite1-v2`).
-
-Each run is compared case by case with the suite's **references**: published runs whose
-outcomes are reused, not rerun. Today the references are the baseline (6d1bca10, reborn core)
-and speed30 (193d9076, borg-rs plus the speed30 profile) arms of run 44058010288.
+A **run** is a sanity check of one build: by default borg-reborn-rs `main` at its current HEAD,
+with its **own default settings**, which are the commit's `harness/borg.txt`, unchanged. Those
+settings are not maintained in the Zoo. `scenario-inputs/NAME/borg.txt` is a byte-for-byte copy
+taken when the run is defined, only so the run records exactly what it played. Settings are
+overridden, with a Zoo profile on top, only when the owner asks. A run is reported alone, with
+no other build beside it, unless the owner asks for a comparison. Another build or
+configuration is another run of the same suite, never a new suite. Changing a suite's saves
+makes a new version (`suite1-v2`).
 
 ## Start a run
 
@@ -77,8 +77,8 @@ Missing, invalid and stopped cells stay in the denominator, and fail the gate.
 Each stage uploads its raw report and cumulative cells, kept 90 days, and its native evidence,
 kept 14 days. It also appends a dashboard record to the `results` branch under
 `saved-incident-results/NAME/RUN-ATTEMPT/`. The pages workflow then shows the record on the
-Scenarios tab: per class, against every reference arm, and case by case with a
-single-scenario command for the run's build and configuration.
+Scenarios tab: the build's death share, deaths per class, and every scenario's outcome with a
+single-scenario command for the build and configuration.
 
 ## Re-run one scenario
 
