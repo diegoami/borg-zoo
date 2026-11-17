@@ -1,0 +1,55 @@
+{
+  "kind": "saved-encounter-smoke",
+  "name": "cemetery-mixed-caster-encounters-smoke",
+  "folder": "scenario-experiments",
+  "issue": 144,
+  "question": "Can Zoo execute the same eight saved caster encounters, with two starts per class and complete native receipts?",
+  "specimen": "4.2.6-reborn-rust-maxdepth",
+  "bank": {
+    "repository": "diegoami/borg-cemetery",
+    "commit": "fecca62c6b3f98452123a8256860f8251e653eb7",
+    "manifest": "synthetic/caster-encounters-v2/smoke-suite.json",
+    "manifest_sha256": "d611f73de3e9c40959845919c8e2adf35a02bfa95197f47065b247f7471accdd",
+    "runner_sha256": {
+      "scripts/encounter_suite.py": "62a2f113fbefc637be0dc1c2620b0dfeff32999192446cf504f7f0f34025bab6",
+      "scripts/run_scenario.py": "efc9408b643a3e2632c5248321baf6c4edb2d09593ac818cc9b3f8e0f234cf80",
+      "scripts/curate_encounters.py": "1e4a34afbc5f392a1067fd409386e0dc6a394e0e923fd3936af66da7a158cf0b",
+      "scripts/synthetic_suite.py": "c19ff268fab88e5f9f483f5142801cf4ae8ecda8cbb2553e2e7143365012598c",
+      "scripts/run_batch.py": "b1efd34358f79f1cde86ae74bd97f367de274213e545dc2bb7d709057b51cd75",
+      "scripts/native/death_identity.py": "e8f2b39984888e111041e489ab60a0323b3ce8f1e7d24558c4217b7c1808d1c6"
+    }
+  },
+  "native_tools": {
+    "repository": "diegoami/borg-cemetery",
+    "commit": "1afd9423d7f8a1340eca9d74cff85443e769b1a9"
+  },
+  "owner_authorization": "Owner explicitly requested Zoo to run the mixed-class saved-encounter suite. Start with eight-case smoke; no larger tier authorized here.",
+  "prespecified": "Require eight complete cells, exactly two each Mage/Druid/Priest/Necromancer, native saved-start/build/configuration receipts and no invalid execution. Report all deaths, horizon survivals, stops and failures per class. Preserve parent-life lineage. No comparison or improvement claim from one build. After inspecting the smoke, request owner agreement before any larger tier.",
+  "schema": "borg-zoo/saved-encounter-smoke@1",
+  "definition": "definitions/cemetery-mixed-caster-encounters-smoke.yaml",
+  "source": {
+    "repository": "diegoami/borg-reborn-rs",
+    "commit": "6d1bca10bc67d02150a1a717f111891976e98069",
+    "specimen": "4.2.6-reborn-rust-maxdepth",
+    "snapshot": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "6d1bca10bc67d02150a1a717f111891976e98069",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "source": "https://github.com/diegoami/borg-reborn-rs/pull/444",
+      "label": "borg-reborn-rs 6d1bca10, the main merge of #444 (borg-zoo#147): #440's max-depth plans (a phase 'max-depth N' only caps the core with borg_no_deeper; the level-loop errand is removed and a loop-levels plan exits 2) and #444's planner item values (real food only with the 5-ration floor, 45 kinds the core never uses worthless, buy-to-identify off with the trip policy, casters' spells not valued as infinite mana). On top of d3ebe3c0. A different game: source-hash rust 8646eb97... (was 6b3b9e99...). harness/borg.txt 88296dd1... unchanged; both plans rewritten as max-depth caps, with new hashes."
+    }
+  },
+  "core": "reborn",
+  "expected_cells": 8,
+  "comparison_axis": [],
+  "executor": "zoo",
+  "independent_life": false
+}

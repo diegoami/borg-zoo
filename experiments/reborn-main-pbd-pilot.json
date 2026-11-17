@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-main-pbd-pilot",
+  "issue": 186,
+  "definition": "definitions/reborn-main-pbd-pilot.yaml",
+  "question": "With main's shipped settings, how does the point-blank arrow divisor (1, 2, 5) change play?",
+  "description": "With main's shipped settings, how does the point-blank arrow divisor (1, 2, 5) change play? Generated from definitions/reborn-main-pbd-pilot.yaml: 3 arms on 4.2.6-reborn-rust-main-4d83dd26, suite classes-18.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#186). Pilot only (RULES 14); small (or\nverysmall) only after this gate and the owner. Gate: no config_error; one binary; each arm's\nborg.txt has borg_param_attack_arrow_point_blank_divisor at its value (1, 2, 5) and otherwise the\nshipped settings, with no borg_plan; params-core.json reports the same value on the death replays;\nevery cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key outliers are listed.\nReport per arm: deaths, final level, deepest level, keys; for pbd1 and pbd5 against pbd2 on the same\nstart: rescued, newly killed, and how many starts play identical keys (the divisor only acts when a\nlauncher is weighed against an adjacent monster, so many starts should not differ). Cross-check:\npbd5 is the same binary and effective settings as borg-zoo#181's reborn-shipped-defaults on\nfdaf18e5; where that pilot's results exist, each pbd5 cell's play hash is compared with it and any\ndifference is listed. 18 starts per arm cannot show which divisor is better.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-4d83dd26"
+  ],
+  "profiles": [
+    "reborn-main-pbd1",
+    "reborn-main-pbd2",
+    "reborn-main-pbd5"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-4d83dd26",
+  "control_profile": "reborn-main-pbd2",
+  "owner_authorization": "2026-11-17: the owner asked for an experiment with a few arms of borg_param_attack_arrow_point_blank_divisor (1, 2, 5) with the standard settings and current main, pilot (borg-zoo#186). Small only after the pilot gate and the owner (RULES 14)."
+}

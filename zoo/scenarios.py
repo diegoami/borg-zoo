@@ -521,15 +521,19 @@ def build_site(results, out):
             rows.append([f'<a href="{name}/{run}/index.html">{html.escape(name)}</a><br><span class="muted">{html.escape(run)}</span>',
                          versions, len(plan['cases']), f'{report["collected_cells"]}/{report["expected_cells"]}',
                          html.escape(outcomes) or 'No paired outcomes'])
+    from . import saved_incidents
+    saved_rows, saved_unavailable = saved_incidents.build_site(results, out)
+    rows.extend(saved_rows)
+    unavailable.extend(saved_unavailable)
     (out / 'unavailable.json').write_text(json.dumps(unavailable, indent=2) + '\n')
     columns = [('Scenario run', 'The comparison and execution run; opens the full report.'),
                ('Versions', 'The exact pushids and specimens compared in this run.'),
-               ('Scenarios', 'Distinct synthetic starting scenarios requested per version.'),
+               ('Scenarios', 'Distinct saved or synthetic encounter starts requested per version.'),
                ('Collected / expected cells', 'Completed records collected, including failures, out of all requested version × scenario cells.'),
-               ('Paired outcomes', 'Scenario pairs by outcome, including missing, invalid and inconclusive pairs.')]
+               ('Outcomes', 'Scenario pairs by outcome for a comparison (missing, invalid and inconclusive included); the death share for a suite run of one build.')]
     body = (f'<h1>Borg zoo</h1>{landing.nav("scenarios/index.html", "../")}'
             '<h2>Scenario runs</h2>'
-            + site.explain('Synthetic starts from pinned Cemetery banks, compared across exact Borg versions. '
+            + site.explain('Saved encounters and synthetic starts from pinned Cemetery banks, compared across exact Borg setups. '
                            'These runs stay separate from natural games and population statistics. '
                            'Missing and invalid cells remain visible; these comparisons alone do not establish improvement.', columns)
             + (site.table(columns, rows, left=2) if rows else '<p class="muted">No scenario runs yet.</p>'))

@@ -1,0 +1,61 @@
+name: Zoo balanced incident execution tier
+on:
+  workflow_call:
+    inputs:
+      cemetery: {type: string, required: true}
+      source: {type: string, required: true}
+      tools: {type: string, required: true}
+      batches: {type: string, required: true}
+      tier: {type: string, required: true}
+permissions:
+  contents: read
+  actions: read
+jobs:
+  run:
+
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        batch: ${{ fromJSON(inputs.batches) }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ inputs.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ inputs.source }}', path: source, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ inputs.tools }}', path: native-tools, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'incident-execution-*', path: downloaded, merge-multiple: true}
+      - run: tar -C cemetery -xzf downloaded/execution-inputs.tgz && tar -C source -xzf downloaded/execution-build.tgz
+      - env: {BATCH: '${{ matrix.batch }}'}
+        run: python3 -m zoo.incident_bank run --plan downloaded/plan.json --bank cemetery --source source --tools native-tools --batch "$BATCH" --out attempt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'incident-cells-${{ matrix.batch }}', path: 'attempt/cells/', retention-days: 90}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'incident-native-${{ matrix.batch }}', path: 'attempt/native/', retention-days: 14}
+  gate:
+    if: always()
+    needs: run
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: incident-execution-plan}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {pattern: 'incident-cells-*', path: collected}
+      - env: {TIER: '${{ inputs.tier }}', RUN_URL: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'}
+        run: python3 -m zoo.incident_bank collect --plan plan.json --inputs collected --out tier-report --tier "$TIER" --run-url "$RUN_URL"
+      - if: always()
+        run: if [ -f tier-report/comparison.md ]; then cat tier-report/comparison.md >> "$GITHUB_STEP_SUMMARY"; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'incident-tier-${{ inputs.tier }}', path: tier-report/, retention-days: 90}

@@ -1,0 +1,35 @@
+kind: balanced-incident-execution
+name: balanced999-incidents-execution
+folder: scenario-experiments
+issue: 168
+question: Can the accepted Borg execute all999 balanced death/critical-recovery starts with valid saved-state receipts?
+cemetery:
+  repository: diegoami/borg-cemetery
+  commit: b93a7fc8e6509a462f05e7c2652d6ebe34c625d7
+native_tools:
+  repository: diegoami/borg-cemetery
+  commit: 1afd9423d7f8a1340eca9d74cff85443e769b1a9
+source:
+  repository: diegoami/borg-reborn-rs
+  commit: 6d1bca10bc67d02150a1a717f111891976e98069
+bank_artifact:
+  id: 14289964111
+  run_id: 43979480269
+  sha256: 186066b039ccc8451642cbcbd77e714c6615c20d99d0de4b18963289c5748cbf
+bank_manifest: synthetic/balanced-999-incidents/generated/bank.json
+expected_cells: 999
+per_class: 111
+owner_authorization: Owner requests about1000 balanced scenarios and Zoo execution;
+  latest instruction is to prepare the Zoo plan. This definition is preparation,
+  not evidence that any saved-scenario execution was dispatched or completed.
+prespecified: |
+  Use the exact prepared bank:999 distinct saves,111 per each of nine classes,
+  611 historical deaths and388 observed critical-HP recoveries. Recoveries are
+  actual HP loss to<=25% then observed recovery>=50%, not qualified counterfactual lethality.
+  Build accepted source6d1bca10 once, preserving saved engine RNG and fresh Borg memory.
+  Per-case bounds:2000 engine turns and5 native wall seconds. Preserve every attempted cell.
+  Nested balanced cumulative stages18/90/360/900/999 execute only newly added cases.
+  Gate every stage on valid source/build/load/configuration/outcome receipts and no
+  missing or invalid cells; intermediate gates also reject stopped outcomes.
+  At most40 cases per job, eight concurrent jobs. Shared-life cases remain correlated.
+  This is a single-baseline execution check, not a configuration or improvement comparison.

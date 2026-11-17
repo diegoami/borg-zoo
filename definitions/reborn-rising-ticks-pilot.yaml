@@ -1,0 +1,48 @@
+# borg-zoo#191: caution_rising_explore_ticks 0, 150, 300, 600 on borg-reborn-rs main e85b80e1 (#489), pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-rising-ticks-pilot.yaml
+name: reborn-rising-ticks-pilot
+issue: 191
+question: On borg-reborn-rs main e85b80e1, how long should a Borg heading to town explore for an up staircase (caution_rising_explore_ticks 0, 150, 300, 600)?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen:
+  name: 4.2.6-reborn-rust-main-e85b80e1
+  repository: diegoami/borg-reborn-rs
+  ref: e85b80e13eb6ef50adb1f7cf96852594a8ec6843
+  source: https://github.com/diegoami/borg-zoo/issues/191
+  label: >-
+    borg-reborn-rs e85b80e1, main at the merge of #489 (#483): while heading to town, a descent that is not
+    a real escape is held and the Borg explores for an up staircase (caution_rising_explore_ticks, compiled
+    300; caution_rising_descend_danger_tenths 10). Over 4d83dd26 only that. Source-hash rust e0081f5b...;
+    harness/borg.txt 14dc3a57... (the 4d83dd26 shipped defaults: speed30 bundle, divisor 2, no plan).
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# Every arm reads the shipped harness/borg.txt as is (trip unknown_stacks 5) and writes only this line.
+profile_prefix: reborn-rising
+vary:
+  ticks:
+    ticks0: {borg_param_caution_rising_explore_ticks: 0}
+    ticks150: {borg_param_caution_rising_explore_ticks: 150}
+    ticks300: {borg_param_caution_rising_explore_ticks: 300}
+    ticks600: {borg_param_caution_rising_explore_ticks: 600}
+
+control: [ticks0]
+owner_authorization: >-
+  2026-11-17: the owner asked to tune caution_rising_explore_ticks with everything else at the shipped
+  defaults, pilot first (borg-zoo#191, from borg-reborn-rs#483 / PR #489). Small only after the pilot gate
+  and the owner (RULES 14).
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#191). Pilot only (RULES 14); small and larger only
+  after this gate and the owner. Gate: no config_error; one binary; each arm's borg.txt has
+  borg_param_caution_rising_explore_ticks at its value and otherwise the shipped settings, no plan; every
+  cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key outliers listed; in ticks0 none
+  of #489's notes ("no up stairs found, exploring for them (rising)", "Holding a descent while rising to
+  town") appear (fix-off check, on the death replays' messages). Descriptive, per arm: deaths, final
+  level, deepest level, town visits; Trip: return decisions and how many reached town; down-then-up
+  bounces (DL n -> n+1 -> n); counts of the two #489 notes and of "no up stairs found, going down";
+  paired rescued and newly killed against ticks0 on the same start. ticks300 is the shipped value. 18
+  starts per arm cannot show which budget is best. Known and not addressed: the scary-level flee taking
+  a down staircase while not heading home (borg-reborn-rs#488).

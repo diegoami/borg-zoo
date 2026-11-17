@@ -1,0 +1,24 @@
+# Zoo mixed-class saved-encounter smoke
+
+Eight saved starts; fixed reborn build; fresh Borg memory and saved engine RNG.
+
+Source: `6d1bca10bc67d02150a1a717f111891976e98069`. Cemetery: `fecca62c6b3f98452123a8256860f8251e653eb7`.
+
+This is a baseline execution check, with no paired impact or population claim.
+
+| Class | Scenario | Outcome | End HP | End depth |
+|---|---|---|---:|---:|
+| Mage | mage-r4-s301 | death | -1 | 1 |
+| Mage | mage-r9-s302 | survived_horizon | 10 | 1 |
+| Druid | druid-r8-s301 | death | -1 | 1 |
+| Druid | druid-r1-s302 | death | -1 | 1 |
+| Priest | priest-r5-s301 | survived_horizon | 32 | 1 |
+| Priest | priest-r3-s302 | survived_horizon | 19 | 1 |
+| Necromancer | necromancer-r4-s303 | death | -1 | 1 |
+| Necromancer | necromancer-r6-s301 | death | -1 | 1 |
+
+Expected cells: 8. Invalid/missing: 0.
+
+Shared-life encounters stay correlated. Survival is to the finite horizon only. No qualified near-death diagnostic.
+
+[Issue](https://github.com/diegoami/borg-zoo/issues/144) · [YAML definition](https://github.com/diegoami/borg-zoo/blob/f9327c66172b629b2da4e4220e6f663a783c4a8a/definitions/cemetery-mixed-caster-encounters-smoke.yaml) · [Zoo run](https://github.com/diegoami/borg-zoo/actions/runs/43966646449)

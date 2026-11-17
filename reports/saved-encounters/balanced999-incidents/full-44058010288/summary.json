@@ -1,0 +1,33 @@
+{
+  "archive": "saved-incident-results/balanced999-baseline-vs-speed30/44058010288-1/comparison.json",
+  "completed_cells": 1998,
+  "dashboard_merge_commit": "07cbc03d952f7059f4b7526442e4e532ac513470",
+  "expected_cells": 1998,
+  "independent_life": false,
+  "invalid_count": 0,
+  "live_report_url": "https://diegoami.github.io/borg-zoo/scenarios/saved/balanced999-baseline-vs-speed30/44058010288-1/index.html",
+  "outcomes": {
+    "baseline": {
+      "death": 528,
+      "survived_horizon": 471
+    },
+    "speed30": {
+      "death": 291,
+      "survived_horizon": 708
+    }
+  },
+  "pages_run": 44077390714,
+  "pairs": {
+    "both_died": 213,
+    "both_survived": 393,
+    "newly_killed": 78,
+    "rescued": 315
+  },
+  "per_class_per_setup": 111,
+  "plan_hash": "c5da3a3cb481dfaf8a41b0ab7f83b15d472a61c2b26b8aa0bee2f4ec042cf020",
+  "preview_artifact": 14316884028,
+  "raw_report_sha256": "2bf6a09f57bcd83e59d0f5b22b414473436d12543ac9d7b10ba498f3a0add4a3",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44058010288",
+  "schema": "borg-zoo/paired-study-summary@1",
+  "stopped_count": 0
+}
