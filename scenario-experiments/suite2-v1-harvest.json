@@ -3,12 +3,12 @@
   "name": "suite2-v1-harvest",
   "folder": "scenario-experiments",
   "issue": 184,
-  "question": "Freeze Suite 2: 999 new saved death/recovery starts, 111 per class, using Suite 1's reborn preparation controller on the capture-enabled new source HEAD.",
+  "question": "Freeze Suite 2 with the current borg-reborn-rs default borg-core controller: 999 unique saved death/recovery starts, 111 per class.",
   "cemetery": {
     "repository": "diegoami/borg-cemetery",
-    "commit": "bfbfff217beafcf034f3cdbccdf2952bde0780ac",
+    "commit": "cb353610a072018032f90c10df826894a541f41d",
     "spec": "synthetic/suite2-v1/harvest-spec.json",
-    "spec_sha256": "953839ae602ffe3071903d06fbf5fd73dfd3a3e0bd0421a61c1865979dea7f85"
+    "spec_sha256": "b223e8c96dfe76d08cc0020ac521fca6a072f226f75911aa40db2cfe4cc423fd"
   },
   "preparation_source": {
     "repository": "diegoami/borg-reborn-rs",
@@ -32,8 +32,8 @@
   ],
   "per_class": 111,
   "parallel_jobs": 9,
-  "owner_authorization": "Owner requests #184 and explicitly authorizes capture support in borg-reborn-rs and continuation of the new-suite harvest, 2026-11-17. Use the exact clean candidate source pin, stock settings, a successful all-class smoke and bounded native restarts before the full 999-case harvest; no source PR merge or review acceptance is implied.",
-  "prespecified": "Preparation uses reborn controller and its default profile at source ba26c2ab, matching Suite 1 collection mode; this is an explicit controller override, not the stock borg-rs controller. The new bank can subsequently be run with separately pinned stock borg-rs. Full seeds 2000000 + class*10000 + ordinal; separate smoke seeds 3000000 + class*10000 + ordinal. No level gate; all natural deaths and rejected candidates retained. Exclude Suite 1 save hashes/source seeds. Exactly 111 unique saves per class. Start at/before first observable relevant threat, incident within 2000 engine turns. Critical recovery requires actual HP loss to <=25%, followed by recovery >=50%; no counterfactual lethality claim. Native restart smoke retains 2000-turn/5-second bounds. Do not freeze an incomplete bank.",
+  "owner_authorization": "Owner instructed resumption with the default borg-rs / vendored borg-core controller and rejected experimental reborn preparation. Use the exact capture-enabled candidate pin and unchanged shipped settings; expanded all-class smoke must pass before full harvest. No source PR merge or review acceptance is implied.",
+  "prespecified": "Use only the default borg-rs / vendored borg-core controller at source ba26c2ab with its unchanged shipped settings. Experimental reborn smoke is not an acceptance gate or source bank. Smoke searches at most 256 lives/class for 2 starts/class, on seeds 3000000 + class*10000 + ordinal. Full harvest searches at most 1024 lives/class on separate seeds 2000000 + class*10000 + ordinal for exactly 111 unique starts/class. Preserve all deaths, failures, rejection records and class shortages. A 3 GiB retained-evidence bound/class leaves upload headroom; a bound exhaustion is a shortage, never duplicate padding. Exclude Suite 1 save hashes/source seeds. Retain level-1 deaths. Start at/before first observable relevant threat; incident within 2000 engine turns. Observed recovery requires actual HP loss to <=25% and recovery >=50%, with no counterfactual lethality claim. Native restart gate is 2000 turns / 5 seconds. Never freeze an incomplete bank.",
   "suite_id": "suite2-v1",
   "schema": "borg-zoo/balanced-incident-harvest@1",
   "definition": "definitions/suite2-v1-harvest.yaml",

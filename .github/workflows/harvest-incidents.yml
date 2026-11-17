@@ -9,7 +9,7 @@ on:
         required: true
       stage:
         type: choice
-        options: [smoke, harvest, inspect]
+        options: [smoke, harvest, resume, inspect]
         default: smoke
       smoke_run:
         description: Successful smoke run required before the full harvest
@@ -48,7 +48,7 @@ jobs:
       - uses: actions/checkout@v4
         with: {persist-credentials: false}
       - name: Validate definition and explicit full-bank request
-        env: {ARM: '${{ inputs.arm }}', DEFINITION: '${{ inputs.definition }}', STAGE: '${{ inputs.stage }}', SMOKE_RUN: '${{ inputs.smoke_run }}', GH_TOKEN: '${{ github.token }}'}
+        env: {ARM: '${{ inputs.arm }}', DEFINITION: '${{ inputs.definition }}', STAGE: "${{ inputs.stage == 'resume' && 'smoke' || inputs.stage }}", SMOKE_RUN: '${{ inputs.smoke_run }}', GH_TOKEN: '${{ github.token }}'}
         run: |
           python3 - <<'PY'
           import json,os,re,subprocess
@@ -128,12 +128,12 @@ jobs:
           PY
       - name: Harvest and inspect incidents for this class
         id: harvest
-        env: {CLASS_INDEX: '${{ matrix.class }}', STAGE: '${{ inputs.stage }}'}
+        env: {CLASS_INDEX: '${{ matrix.class }}', STAGE: "${{ inputs.stage == 'resume' && 'smoke' || inputs.stage }}"}
         run: >-
           python3 cemetery/scripts/harvest_incidents.py
           --spec "cemetery/${{ needs.pins.outputs.spec }}"
           --source source --tools native-tools --out harvest --class-index "$CLASS_INDEX"
-          ${{ inputs.stage == 'smoke' && '--smoke' || '' }}
+          ${{ inputs.stage != 'harvest' && '--smoke' || '' }}
       - name: Pack lean frozen selection for assembly
         if: steps.harvest.outcome == 'success'
         run: python3 cemetery/scripts/pack_incident_selection.py --harvest harvest --out selection
@@ -178,10 +178,10 @@ jobs:
           python3 cemetery/scripts/materialize_incidents.py --inputs inputs
           --out "cemetery/synthetic/${{ needs.pins.outputs.suite_id }}/generated" --tools native-tools
           --baseline "${{ needs.pins.outputs.source }}"
-          --per-class ${{ inputs.stage == 'smoke' && '2' || '111' }}
+          --per-class ${{ inputs.stage != 'harvest' && '2' || '111' }}
           --suite-id "${{ needs.pins.outputs.suite_id }}"
       - name: Validate all999 inputs and class balance
-        env: {SUITE_ID: '${{ needs.pins.outputs.suite_id }}', STAGE: '${{ inputs.stage }}'}
+        env: {SUITE_ID: '${{ needs.pins.outputs.suite_id }}', STAGE: "${{ inputs.stage == 'resume' && 'smoke' || inputs.stage }}"}
         run: |
           python3 - <<'PY'
           import sys,json,os
@@ -222,7 +222,7 @@ jobs:
       - run: tar -C cemetery -czf prepared-bank.tgz "synthetic/${{ needs.pins.outputs.suite_id }}/generated"
       - uses: actions/upload-artifact@v4
         if: success()
-        with: {name: '${{ needs.pins.outputs.suite_id }}-${{ inputs.stage }}-bank', path: prepared-bank.tgz, retention-days: 90}
+        with: {name: "${{ needs.pins.outputs.suite_id }}-${{ inputs.stage == 'resume' && 'smoke' || inputs.stage }}-bank", path: prepared-bank.tgz, retention-days: 90}
 
   inspect:
     if: inputs.stage == 'inspect'
@@ -243,3 +243,131 @@ jobs:
                   if n.endswith('/selection.json'):
                       print(n,t.extractfile(n).read().decode()[:3000]);break
           PYCODE
+
+  full-harvest:
+    needs: [pins, build, assemble]
+    if: inputs.stage == 'resume' && needs.assemble.result == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 9
+      matrix:
+        class: [0,1,2,3,4,5,6,7,8]
+    env:
+      PYTHONUNBUFFERED: '1'
+      BORG_CEMETERY_DIR: ${{ github.workspace }}/native-tools
+    steps:
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.source }}', path: source, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.tools }}', path: native-tools, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: incident-preparation-build}
+      - run: tar -C source -xzf preparation-build.tgz
+      - name: Verify frozen preparation manifest
+        env: {SPEC: '${{ needs.pins.outputs.spec }}', SPEC_SHA256: '${{ needs.pins.outputs.spec_sha256 }}'}
+        run: |
+          python3 - <<'PY'
+          import os,hashlib
+          from pathlib import Path
+          assert hashlib.sha256(Path('cemetery',os.environ['SPEC']).read_bytes()).hexdigest()==os.environ['SPEC_SHA256']
+          PY
+      - name: Harvest and inspect incidents for this class
+        id: harvest
+        env: {CLASS_INDEX: '${{ matrix.class }}', STAGE: 'harvest'}
+        run: >-
+          python3 cemetery/scripts/harvest_incidents.py
+          --spec "cemetery/${{ needs.pins.outputs.spec }}"
+          --source source --tools native-tools --out harvest --class-index "$CLASS_INDEX"
+      - name: Pack lean frozen selection for assembly
+        if: steps.harvest.outcome == 'success'
+        run: python3 cemetery/scripts/pack_incident_selection.py --harvest harvest --out selection
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: incident-full-selection-${{ matrix.class }}
+          path: selection/
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Preserve complete preparation evidence in a compressed archive
+        if: always()
+        run: |
+          if [ -d harvest ]; then tar -czf "harvest-class-${{ matrix.class }}.tgz" harvest; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: incident-full-raw-${{ matrix.class }}
+          path: harvest-class-*.tgz
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: warn
+  full-assemble:
+    needs: [pins, full-harvest, assemble]
+    if: always() && inputs.stage == 'resume' && needs.assemble.result == 'success'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.tools }}', path: native-tools, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {pattern: incident-full-selection-*, path: inputs}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.source }}', path: source, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: incident-preparation-build}
+      - run: tar -C source -xzf preparation-build.tgz
+      - name: Refuse a short or unbalanced bank
+        run: >-
+          python3 cemetery/scripts/materialize_incidents.py --inputs inputs
+          --out "cemetery/synthetic/${{ needs.pins.outputs.suite_id }}/generated" --tools native-tools
+          --baseline "${{ needs.pins.outputs.source }}"
+          --per-class 111
+          --suite-id "${{ needs.pins.outputs.suite_id }}"
+      - name: Validate all999 inputs and class balance
+        env: {SUITE_ID: '${{ needs.pins.outputs.suite_id }}', STAGE: 'harvest'}
+        run: |
+          python3 - <<'PY'
+          import sys,json,os
+          from pathlib import Path
+          sys.path.insert(0,'cemetery/scripts')
+          from encounter_bank import prepare_bank
+          root=Path('cemetery').resolve();p=root/'synthetic'/os.environ['SUITE_ID']/'generated/bank.json'
+          bank,shards=prepare_bank(p,root)
+          assert bank['expected_cases']==(18 if os.environ['STAGE']=='smoke' else 999)
+          c=json.load(open(p.parent/'coverage.json'));assert set(c['class_counts'].values())=={2 if os.environ['STAGE']=='smoke' else 111}
+          PY
+      - name: Mixed-class native restart smoke on the assembled bank
+        if: needs.pins.outputs.suite_id != 'balanced-999-incidents'
+        env: {SUITE_ID: '${{ needs.pins.outputs.suite_id }}', SOURCE_SHA: '${{ needs.pins.outputs.source }}'}
+        run: |
+          python3 - <<'PYCODE'
+          import json,os,sys
+          from pathlib import Path
+          sys.path.insert(0,'cemetery/scripts')
+          from single_encounter import execute
+          root=Path('cemetery').resolve();generated=root/'synthetic'/os.environ['SUITE_ID']/'generated'
+          bank=json.loads((generated/'bank.json').read_text());rows=[]
+          for shard in bank['shards'][:3]:
+              path=root/shard['manifest'];manifest=json.loads(path.read_text())
+              for case in manifest['scenarios']:
+                  if len(rows)==18:break
+                  out=Path('restart-smoke',case['id']).resolve()
+                  rc=execute(path,case['id'],Path('source').resolve(),os.environ['SOURCE_SHA'],'borg-rs',Path('native-tools').resolve(),out,root/'synthetic'/os.environ['SUITE_ID']/'borg.txt')
+                  receipt=json.loads((out/'single-encounter.json').read_text())
+                  rows.append(dict(id=case['id'],status=receipt['status'],returncode=rc))
+                  Path('restart-smoke/summary.json').write_text(json.dumps(rows,indent=2)+'\n')
+                  assert rc==0 and receipt['status'] in ('death','survived_horizon'),rows[-1]
+          assert len(rows)==18
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: full-bank-restart-smoke, path: restart-smoke/, retention-days: 90, if-no-files-found: warn}
+      - run: tar -C cemetery -czf prepared-bank.tgz "synthetic/${{ needs.pins.outputs.suite_id }}/generated"
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with: {name: '${{ needs.pins.outputs.suite_id }}-harvest-bank', path: prepared-bank.tgz, retention-days: 90}

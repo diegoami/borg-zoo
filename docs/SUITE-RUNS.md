@@ -186,3 +186,28 @@ it is not presented as the stock borg-rs configuration. Later suite runs select
 their own Borg/controller/settings on the identical saved starts. Natural-life
 bounds, equal quotas, true death/recovery definitions and 2,000-turn restart
 bounds are preserved, and another all-class smoke must pass before collection.
+
+
+### Resumed default-controller collection
+
+The owner rejected experimental reborn preparation and resumed Suite 2 with
+borg-reborn-rs's default `borg-rs` / vendored borg-core controller. This is the
+current recipe; the earlier reborn smoke remains historical evidence only.
+The expanded smoke searches up to 256 lives/class for two qualified starts
+per class. It retains all class quotas, incident definitions and native bounds.
+
+To resume the whole gated preparation without another manual dispatch:
+
+```sh
+gh workflow run harvest-incidents.yml -R diegoami/borg-zoo --ref BRANCH \
+  -f definition=scenario-experiments/suite2-v1-harvest.json -f stage=resume
+```
+
+`resume` builds once, runs the expanded all-class smoke and native restart
+checks, then starts full collection automatically only after that gate passes.
+The full stage uses the separately recorded full seed allocation and exact
+111/class quota. Failed gates stop the chain. Seed-search, time and retained
+evidence bounds produce visible shortages; they never authorize padding,
+changing controllers or weakening the incident definition. A 3 GiB retained
+source-evidence bound/class leaves space for compression/upload on hosted
+runners. A short bank is not frozen or registered as runnable.
