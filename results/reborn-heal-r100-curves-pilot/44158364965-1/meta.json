@@ -1,0 +1,196 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-heal-r100-c100": {
+        "description": "borg-zoo#219 (reborn-heal-light-pilot.yaml): arm r100, c100.",
+        "settings": {
+          "borg_param_town_heal_curve_scale_percent": 100,
+          "borg_param_town_heal_reserve_hp_percent": 100,
+          "borg_param_town_heal_speed_percent": 66,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "01167a24fc0689c79d8242669a14fe68062b202e934da7e356a2f9e02c0a3fee"
+      },
+      "reborn-heal-r100-c125": {
+        "description": "borg-zoo#219 (reborn-heal-light-pilot.yaml): arm r100, c125.",
+        "settings": {
+          "borg_param_town_heal_curve_scale_percent": 125,
+          "borg_param_town_heal_reserve_hp_percent": 100,
+          "borg_param_town_heal_speed_percent": 66,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "5482634bd4e7134e3b112e0f4c4368a6390107ef7ce9f4e5c9bd0844fb04a8cf"
+      },
+      "reborn-heal-r100-c150": {
+        "description": "borg-zoo#219 (reborn-heal-light-pilot.yaml): arm r100, c150.",
+        "settings": {
+          "borg_param_town_heal_curve_scale_percent": 150,
+          "borg_param_town_heal_reserve_hp_percent": 100,
+          "borg_param_town_heal_speed_percent": 66,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "0987366cd8b9fe4b736f8bd03b0f33a4a7e8f390d37f5f642192df9aad55209e"
+      },
+      "reborn-heal-r100-c50": {
+        "description": "borg-zoo#192 (reborn-heal-curve2-pilot.yaml): arm r100, c50.",
+        "settings": {
+          "borg_param_town_heal_curve_scale_percent": 50,
+          "borg_param_town_heal_reserve_hp_percent": 100,
+          "borg_param_town_heal_speed_percent": 66,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "5a5da3078158c905b66a7058772c75ea4576127b34dee0b2fd09895cd7bc08fc"
+      },
+      "reborn-heal-r100-c75": {
+        "description": "borg-zoo#192 (reborn-heal-curve2-pilot.yaml): arm r100, c75.",
+        "settings": {
+          "borg_param_town_heal_curve_scale_percent": 75,
+          "borg_param_town_heal_reserve_hp_percent": 100,
+          "borg_param_town_heal_speed_percent": 66,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "7d3dbeb998c3d47a9414300f7f183f4e7549497fa58e4a25604e6d2f4fbbd7d7"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-dd5f026e": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs dd5f026e, main at the merge of #509 (#507: a planned purchase buys its copies in one transaction). Over e0aa2e0a (the #192 specimen) it adds #494 (#493: explicit gold reserve 0, borg_town_w_gold 0), #510 (#503: stand and fight breeders, named scary monsters off) and #509; #497, #500 and #501 change no play. Source-hash rust 18606b3e...; harness/borg.txt feb38834... (speed30 bundle, no plan; healing 400 / 100 / 66; point-blank divisor 5, Ranger 2, Rogue 3).",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "dd5f026e30c9380d494932df5fc5e439be7892c0",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "source": "https://github.com/diegoami/borg-zoo/issues/219"
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-17 19:30 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-dd5f026e",
+    "control_profile": "reborn-heal-r100-c50",
+    "definition": "definitions/reborn-heal-r100-curves-pilot.yaml",
+    "description": "With the healing reserve fixed at 100, which curve scale (50, 75, 100, 125, 150) should the town planner use at speed 66, on main dd5f026e? Generated from definitions/reborn-heal-r100-curves-pilot.yaml: 5 arms on 4.2.6-reborn-rust-main-dd5f026e, suite classes-18.",
+    "issue": 192,
+    "name": "reborn-heal-r100-curves-pilot",
+    "owner_authorization": "2026-11-17: after the big tier of reserve {0, 100, 200} x curve {50, 75} on e0aa2e0a (run 44148205941, where r100-c50 had the fewest deaths), the owner asked to keep reserve 100 fixed and run curve 50, 75, 100, 125, 150 as a pilot, on the current build (main dd5f026e).",
+    "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#192). Pilot (RULES 16) on main dd5f026e; more starts\nonly after this gate and the owner. Gate: no config_error; one binary; the three borg_param_town_heal_*\nlines (reserve 100, the arm's curve, speed 66) in every borg.txt and in params-core.json of the death\nreplays; no plan loaded; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\ndeath bundles reproduced. Consistency: r100-c100, r100-c125 and r100-c150 are reborn-heal-light-pilot's arms\nof the same names (borg-zoo#219, same specimen and starts) and must replay its key hashes. Report per arm:\ndeaths, final level, deepest level, paired rescued and newly killed against r100-c50. Context, not pooled:\non e0aa2e0a (a different build), r100-c50 had 44 deaths of 540 on starts 361-900. 18 starts per arm show\ndirection only.",
+    "profiles": [
+      "reborn-heal-r100-c50",
+      "reborn-heal-r100-c75",
+      "reborn-heal-r100-c100",
+      "reborn-heal-r100-c125",
+      "reborn-heal-r100-c150"
+    ],
+    "question": "With the healing reserve fixed at 100, which curve scale (50, 75, 100, 125, 150) should the town planner use at speed 66, on main dd5f026e?",
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-dd5f026e"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44158364965-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44158364965",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "3a7fba86d15e4e01000e396577b1ea47453ba719"
+}
