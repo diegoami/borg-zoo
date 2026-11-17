@@ -1,0 +1,77 @@
+{
+  "kind": "balanced-incident-comparison-plan",
+  "name": "balanced999-incidents-speed30-comparison",
+  "folder": "scenario-experiments",
+  "issue": 168,
+  "question": "How do the baseline and Zoo's exact speed30 bundle behave on the same999 balanced saved incidents?",
+  "baseline_definition": "scenario-experiments/balanced999-incidents-execution.json",
+  "reference": {
+    "inputs": "scenario-inputs/balanced999-speed30",
+    "zoo_commit": "45066abaed03d9b966c9860925e33c68c2144fd2",
+    "run_id": 43994684018
+  },
+  "expected_cells": 1998,
+  "owner_authorization": "Owner requests a Zoo plan for the completed bank and a repeat with specimen4.2.6-reborn-rust-speed-fight and profile reborn-bundle-plan-speed30.",
+  "prespecified": "Pair both setups on the same999 saves (111 per class), with the same2000-engine-turn\nand5-second native wall bounds, saved engine RNG and fresh Borg memory.\nSpeed30 means the complete original Zoo profile, including errands_plan.txt,\nhealing, shopping/trip settings, class attack preferences and danger_tenths=30.\nSource193d9076 and borg-rs core differ from baseline6d1bca10 and reborn core;\ndo not attribute all differences to speed30 alone. Snapshot exact input files.\nStages18/90/360/900/999 are cumulative, with no replay of earlier cells.\nAt each gate verify native loaded state, parameters, core and loaded plan hash.\nPreserve all1998 expected cells including missing/invalid/stopped outcomes.\nReport paired rescued/newly-killed, both died, both survived, stopped and invalid,\nby class and historical incident type, with source-life correlation explicit.\nNo games are dispatched by planning. Candidate configured execution and receipt\nintegration must pass the mixed-class smoke before the larger stages run.\n",
+  "schema": "borg-zoo/balanced-incident-comparison-definition@1",
+  "definition": "definitions/balanced999-incidents-speed30-comparison.yaml",
+  "reference_specimen": {
+    "depth_stream": true,
+    "exact_turns": true,
+    "impl": "rust",
+    "kind": "borg-rs",
+    "label": "borg-reborn-rs 193d9076, main at the merge of #471 (borg-zoo#170). Adds, over f02cd294 (4.2.6-reborn-rust-heal): #469 attack_speed_fight_danger_tenths (default 0 = off), #452 Potions of Speed hoarded, #464 a game's start leaves out borg.txt and flags. Source-hash rust 6448d51d3fa5...; harness/borg.txt 88296dd1... and both max-depth plans unchanged since f02cd294.",
+    "plans": {
+      "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+      "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+    },
+    "ref": "193d9076747cd5c52e1fe1f6ea314570d8f3873a",
+    "repository": "diegoami/borg-reborn-rs",
+    "role": "candidate",
+    "source": "https://github.com/diegoami/borg-zoo/issues/170"
+  },
+  "reference_profile": {
+    "description": "borg-zoo#170 (reborn-speed-fight-pilot.yaml): arm speed30.",
+    "settings": {
+      "borg_param_attack_preference_blackguard_melee_permille": 1600,
+      "borg_param_attack_preference_blackguard_spell_permille": 1400,
+      "borg_param_attack_preference_druid_spell_permille": 1700,
+      "borg_param_attack_preference_mage_device_permille": 1200,
+      "borg_param_attack_preference_mage_spell_permille": 2000,
+      "borg_param_attack_preference_necromancer_device_permille": 1200,
+      "borg_param_attack_preference_necromancer_spell_permille": 1800,
+      "borg_param_attack_preference_paladin_melee_permille": 1800,
+      "borg_param_attack_preference_paladin_spell_permille": 1200,
+      "borg_param_attack_preference_priest_spell_permille": 1700,
+      "borg_param_attack_preference_ranger_projectile_permille": 2000,
+      "borg_param_attack_preference_rogue_projectile_permille": 1300,
+      "borg_param_attack_preference_rogue_thrown_permille": 1600,
+      "borg_param_attack_preference_warrior_melee_permille": 1800,
+      "borg_param_attack_preference_warrior_projectile_permille": 1200,
+      "borg_param_attack_preference_warrior_thrown_permille": 1200,
+      "borg_param_attack_speed_fight_danger_tenths": 30,
+      "borg_param_caution_heal_when_outmatched": 1,
+      "borg_plan": "errands_plan.txt",
+      "borg_reborn_core": "borg-rs",
+      "borg_reborn_errand": "none",
+      "borg_town_plan": 1,
+      "borg_trip_pack_slack": 1,
+      "borg_trip_policy": 1,
+      "borg_trip_unknown_stacks": 5
+    }
+  },
+  "reference_provenance": {
+    "commit": "45066abaed03d9b966c9860925e33c68c2144fd2",
+    "files_sha256": {
+      "borg.txt": "88296dd1a3c2721a34ac7078b65f503b55b27b2b68b3fe2930c5228442732f13",
+      "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+      "profile.json": "2fb9613e403b62c5ce442a03c937739c1a03e1ba10a17176f6231ee7ac7632ea",
+      "specimen.json": "4ae906fb8bf21fa521afdb2592a426f8759871841949fb0d9b4131614ba2a5c5"
+    },
+    "profile": "reborn-bundle-plan-speed30",
+    "repository": "diegoami/borg-zoo",
+    "run_id": 43994684018,
+    "source_commit": "193d9076747cd5c52e1fe1f6ea314570d8f3873a",
+    "specimen": "4.2.6-reborn-rust-speed-fight"
+  }
+}

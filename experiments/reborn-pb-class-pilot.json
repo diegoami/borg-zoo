@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-pb-class-pilot",
+  "issue": 198,
+  "definition": "definitions/reborn-pb-class-pilot.yaml",
+  "question": "Which point-blank divisor (1, 2, 3, 4) suits Rangers, and which Rogues, on borg-reborn-rs main e0aa2e0a?",
+  "description": "Which point-blank divisor (1, 2, 3, 4) suits Rangers, and which Rogues, on borg-reborn-rs main e0aa2e0a? Generated from definitions/reborn-pb-class-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-e0aa2e0a, suite classes-1800-small-rangers, classes-1800-small-rogues.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#198). Pilot (RULES 14); more starts only after this\ngate and the owner. Gate: no config_error; one binary; each arm's borg.txt has both class overrides at\nits value and the shipped general divisor 5; params-core.json reports them on the death replays; no plan\nloaded; every cell ends in death, turn_cap or borg_stopped; stalls and key outliers listed. Reported per\nclass and arm (the shipped value is pb2 for Rangers, pb3 for Rogues, so each class is compared with its\nown shipped arm): deaths, final level, deepest level; shots fired (\"Firing missile\"), throws\n(\"Throwing\"), melee attacks (\"Attacking with weapon\") and arrows or shots left at death, from the death\nreplays and, for games that live, from replays with logs. 10 starts per class and arm show direction\nonly.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-e0aa2e0a"
+  ],
+  "profiles": [
+    "reborn-pb1",
+    "reborn-pb2",
+    "reborn-pb3",
+    "reborn-pb4"
+  ],
+  "suites": [
+    "classes-1800-small-rangers",
+    "classes-1800-small-rogues"
+  ],
+  "control": "4.2.6-reborn-rust-main-e0aa2e0a",
+  "control_profile": "reborn-pb2",
+  "owner_authorization": "2026-11-17: the owner asked (via borg-reborn-rs, borg-zoo#198) for a pilot of the point-blank divisor for Rangers and Rogues only, values 1-4, on the 20 Ranger and Rogue starts of classes-1800-small."
+}
