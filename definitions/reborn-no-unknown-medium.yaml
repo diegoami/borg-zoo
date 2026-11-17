@@ -1,0 +1,75 @@
+# borg-zoo#172: the #164 medium run repeated on borg-reborn-rs with the Deep Descent fix (#473).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-no-unknown-medium.yaml
+name: reborn-no-unknown-medium
+issue: 172
+question: With Deep Descent and unidentified items no longer used, does either errands plan help the heal + trip policy + attack preference bundle?
+tier: medium           # classes-1800-medium: starts 91-360, the same 270 starts as reborn-heal-trip-attack-medium
+
+specimen:
+  name: 4.2.6-reborn-rust-no-unknown
+  repository: diegoami/borg-reborn-rs
+  ref: ea0dfcd328dd822d80f9aaa21e92843de837a749
+  source: https://github.com/diegoami/borg-zoo/issues/172
+  label: >-
+    borg-reborn-rs ea0dfcd3, main at the merge of #473 (borg-zoo#172). Adds, over f02cd294 (4.2.6-reborn-rust-heal):
+    #470/#473 never use unidentified items, sell one of each unknown kind, discard Deep Descent; #471
+    attack_speed_fight_danger_tenths (default off); #452 Speed hoarded; #464 a game's start leaves out borg.txt
+    and flags. Source-hash rust 04c38aef7d6f...; harness/borg.txt 88296dd1... and both max-depth plans unchanged.
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# Every arm: borg-rs's native core, no errand, the live town planner. No neutral control: the bundle
+# is about to become the default.
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_town_plan: 1
+
+profile_prefix: reborn
+vary:
+  bundle:
+    heal1-trip1-attack1:   # the bundle
+      borg_trip_policy: 1
+      borg_trip_unknown_stacks: 5
+      borg_trip_pack_slack: 1
+      borg_param_caution_heal_when_outmatched: 1
+      borg_param_attack_preference_warrior_melee_permille: 1800
+      borg_param_attack_preference_warrior_projectile_permille: 1200
+      borg_param_attack_preference_warrior_thrown_permille: 1200
+      borg_param_attack_preference_mage_spell_permille: 2000
+      borg_param_attack_preference_mage_device_permille: 1200
+      borg_param_attack_preference_druid_spell_permille: 1700
+      borg_param_attack_preference_priest_spell_permille: 1700
+      borg_param_attack_preference_necromancer_spell_permille: 1800
+      borg_param_attack_preference_necromancer_device_permille: 1200
+      borg_param_attack_preference_paladin_melee_permille: 1800
+      borg_param_attack_preference_paladin_spell_permille: 1200
+      borg_param_attack_preference_rogue_projectile_permille: 1300
+      borg_param_attack_preference_rogue_thrown_permille: 1600
+      borg_param_attack_preference_ranger_projectile_permille: 2000
+      borg_param_attack_preference_blackguard_melee_permille: 1600
+      borg_param_attack_preference_blackguard_spell_permille: 1400
+  plan:
+    none: {}
+    plan: {borg_plan: errands_plan.txt}
+    ambitious: {borg_plan: errands_plan_ambitious.txt}
+
+control: [heal1-trip1-attack1, none]
+owner_authorization: >-
+  2026-11-17: the owner asked to repeat the borg-zoo#164 medium run (reborn-heal-trip-attack-medium, run
+  43984637985) with the medium dataset on the build that no longer reads Deep Descent, after the replay of
+  that run's Rogue deaths. No neutral control in the run (the bundle is about to become the default).
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#172). Medium tier (starts 91-360) of the three
+  bundle arms of #164. Gate: no config_error; one binary; every bundle setting applied from borg.txt
+  (params-core.json) in all arms; the loaded plan copy matches its pin in the plan arms and is absent
+  from the no-plan arm. Every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key
+  outliers are listed. Report per arm and per class: deaths, final level, deepest level, keys; paired
+  rescued and newly killed for each plan arm against the no-plan arm on the same start; and, as a
+  descriptive pairing with run 43984637985 on the same 270 starts, deaths gained and lost per start,
+  saying plainly that the runs differ in build (f02cd294 against ea0dfcd3), machine and date (RULES 7).
+  A scratch replay of the 8 Rogue starts that died in the earlier run (24 games, local) had no deaths
+  and no Deep Descent reads, and the mean deepest level fell from 7.62 to 2.21; depth is reported
+  alongside deaths, not as a gain. No claim of improvement from the tables (RULES 8).

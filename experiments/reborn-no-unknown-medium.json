@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-no-unknown-medium",
+  "issue": 172,
+  "definition": "definitions/reborn-no-unknown-medium.yaml",
+  "question": "With Deep Descent and unidentified items no longer used, does either errands plan help the heal + trip policy + attack preference bundle?",
+  "description": "With Deep Descent and unidentified items no longer used, does either errands plan help the heal + trip policy + attack preference bundle? Generated from definitions/reborn-no-unknown-medium.yaml: 3 arms on 4.2.6-reborn-rust-no-unknown, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#172). Medium tier (starts 91-360) of the three\nbundle arms of #164. Gate: no config_error; one binary; every bundle setting applied from borg.txt\n(params-core.json) in all arms; the loaded plan copy matches its pin in the plan arms and is absent\nfrom the no-plan arm. Every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key\noutliers are listed. Report per arm and per class: deaths, final level, deepest level, keys; paired\nrescued and newly killed for each plan arm against the no-plan arm on the same start; and, as a\ndescriptive pairing with run 43984637985 on the same 270 starts, deaths gained and lost per start,\nsaying plainly that the runs differ in build (f02cd294 against ea0dfcd3), machine and date (RULES 7).\nA scratch replay of the 8 Rogue starts that died in the earlier run (24 games, local) had no deaths\nand no Deep Descent reads, and the mean deepest level fell from 7.62 to 2.21; depth is reported\nalongside deaths, not as a gain. No claim of improvement from the tables (RULES 8).",
+  "specimens": [
+    "4.2.6-reborn-rust-no-unknown"
+  ],
+  "profiles": [
+    "reborn-heal1-trip1-attack1-none",
+    "reborn-heal1-trip1-attack1-plan",
+    "reborn-heal1-trip1-attack1-ambitious"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-no-unknown",
+  "control_profile": "reborn-heal1-trip1-attack1-none",
+  "owner_authorization": "2026-11-17: the owner asked to repeat the borg-zoo#164 medium run (reborn-heal-trip-attack-medium, run 43984637985) with the medium dataset on the build that no longer reads Deep Descent, after the replay of that run's Rogue deaths. No neutral control in the run (the bundle is about to become the default)."
+}
