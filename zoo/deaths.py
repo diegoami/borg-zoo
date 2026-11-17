@@ -75,6 +75,7 @@ def sha256(path):
 
 def config_text(record, cell, spec, profile, race_i, cls_i, borg_txt, plan_sha, provenance, streams=(), scary_sha=None):
     """config.txt in the zoo-dossier format (borg-cemetery rerun-death.py)."""
+    from . import borgrs
     lines = [f"seed={cell['seed']}", f'race_idx={race_i}', f'class_idx={cls_i}',
              f"turns={record['cap']}", f"exact_turns={1 if spec.get('exact_turns') else 0}",
              f'borg_txt_sha256={hashlib.sha256(borg_txt.encode()).hexdigest()}',
@@ -86,7 +87,7 @@ def config_text(record, cell, spec, profile, race_i, cls_i, borg_txt, plan_sha, 
         # Observation-only record paths the cell set (a retained-evidence or
         # town-shadow cell); a rerun sets them too, to be the cell exactly.
         lines.append('zoo_record_streams=' + ','.join(streams))
-    for name, value in sorted(profile['settings'].items()):
+    for name, value in sorted(borgrs.borg_txt_settings(profile).items()):
         if name == 'borg_plan':
             # The format of the zoo dossiers already in the cemetery. Its
             # rerun-death.py (borg-cemetery#59, zoo_plan) maps this back to
@@ -95,8 +96,9 @@ def config_text(record, cell, spec, profile, race_i, cls_i, borg_txt, plan_sha, 
             # tool reads borg_errands_plan_sha256 and cannot rerun zoo cells.
             lines += [f'borg_errands_plan=user/{value}', f'errands_plan_sha256={plan_sha}']
         elif name == 'borg_scary_list':
-            # The list's own setting, as the cell wrote it, and its hash
-            # (borg-zoo#228); the bundle keeps the file as user/NAME.
+            # The list's own setting, as the cell wrote it, and the hash of
+            # the file the cell read, base plus the arm's lines (borg-zoo#228);
+            # the bundle keeps that file as user/NAME, so the lines need no key.
             lines += [f'{name}={value}', f'scary_list_sha256={scary_sha}']
         else:
             lines.append(f'{name}={cat_mod.setting_value(value)}')
@@ -136,7 +138,8 @@ def replay_borgrs(record, cell, build_dir, cat, out, provenance, keep=False):
     plan = profile['settings'].get('borg_plan')
     plan_sha = borgrs.ship_plan(spec, manifest, build_dir, out, plan) if plan is not None else None
     scary = profile['settings'].get('borg_scary_list')
-    scary_sha = borgrs.ship_scary_list(spec, manifest, build_dir, out, scary) if scary is not None else None
+    scary_sha = (borgrs.ship_scary_list(spec, manifest, build_dir, out, scary, borgrs.scary_lines(profile))
+                 if scary is not None else None)
     game = build_dir / 'game'
     argv = borgrs.command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=True)
     env = {k: v for k, v in os.environ.items() if not k.startswith(borgrs.AMBIENT_PREFIX)}

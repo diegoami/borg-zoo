@@ -285,6 +285,15 @@ def experiment(path, cat=None):
                                  '("plans": {name: sha256}, borg-zoo#123)')
     for prof in sorted({p for name in exp['profiles'] for p in profile_parts(cat, name)}):
         scary = cat['profiles'][prof].get('settings', {}).get('borg_scary_list')
+        lines = cat['profiles'][prof].get('settings', {}).get('borg_scary_list_lines')
+        if lines is not None:
+            if scary is None:
+                raise ValueError(f'{prof}: borg_scary_list_lines needs borg_scary_list (the base list they extend)')
+            if not isinstance(lines, list) or not all(
+                    isinstance(l, str) and '\n' not in l and ('|' in l or l.strip().lower().startswith('fragility:'))
+                    for l in lines):
+                raise ValueError(f'{prof}: borg_scary_list_lines must be lines like "monster | level" or '
+                                 '"fragility: class N" (borg-zoo#228)')
         if scary is None:
             continue
         for name in exp['specimens']:

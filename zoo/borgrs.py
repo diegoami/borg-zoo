@@ -260,8 +260,11 @@ def copy_scary_lists(spec, source, out):
     return lists
 
 
-def ship_scary_list(spec, manifest, build_dir, out, name):
-    """Write the build's scary list NAME as the cell's user/NAME; its sha256 (borg-zoo#228)."""
+def ship_scary_list(spec, manifest, build_dir, out, name, lines=None):
+    """Write the build's scary list NAME as the cell's user/NAME, with the arm's LINES
+    appended (borg-zoo#228: the list is an overlay, a later line for a monster
+    replaces an earlier one and `monster | none` removes it); the sha256 of the
+    file written."""
     name = plan_name(name)
     digest = (spec.get('scary_lists') or {}).get(name)
     if digest is None:
@@ -269,8 +272,22 @@ def ship_scary_list(spec, manifest, build_dir, out, name):
     src = Path(build_dir) / 'scary_lists' / name
     if (manifest.get('scary_lists') or {}).get(name) != digest or not src.is_file() or sha256(src) != digest:
         raise ValueError(f'build {build_dir} does not carry scary list {name} at sha256 {digest}')
-    shutil.copy(src, out / 'user' / name)
-    return digest
+    data = src.read_bytes()
+    if lines:
+        data = data + (b'' if data.endswith(b'\n') or not data else b'\n') + \
+            ''.join(f'{line}\n' for line in lines).encode()
+    (out / 'user' / name).write_bytes(data)
+    return hashlib.sha256(data).hexdigest()
+
+
+def scary_lines(profile):
+    """An arm's scary list lines, checked: strings, one line each."""
+    lines = profile['settings'].get('borg_scary_list_lines')
+    if lines is None:
+        return None
+    if not isinstance(lines, list) or not all(isinstance(l, str) and l.strip() and '\n' not in l for l in lines):
+        raise ValueError('borg_scary_list_lines must be a list of one-line strings')
+    return lines
 
 
 def ship_plan(spec, manifest, build_dir, out, name):
@@ -328,20 +345,30 @@ def build(spec, source, out):
     return manifest
 
 
+# Profile settings the adapter consumes itself instead of writing to borg.txt:
+# an arm's lines appended to its scary list (borg-zoo#228).
+ADAPTER_SETTINGS = ('borg_scary_list_lines',)
+
+
+def borg_txt_settings(profile):
+    """The profile settings that go into the run's borg.txt."""
+    return {k: v for k, v in profile['settings'].items() if k not in ADAPTER_SETTINGS}
+
+
 def config_text(build_dir, profile, race=0, cls=0):
     base = (Path(build_dir) / 'borg.txt').read_text()
     text = cat_mod._override(base, 'borg_respawn_race', str(race))
     text = cat_mod._override(text, 'borg_respawn_class', str(cls))
     text = cat_mod._override(text, 'borg_cheat_death', 'FALSE')
     text = cat_mod._override(text, 'borg_respawn_winners', 'FALSE')
-    for name, value in sorted(profile['settings'].items()):
+    for name, value in sorted(borg_txt_settings(profile).items()):
         text = cat_mod._override(text, name, cat_mod.setting_value(value))
     return text
 
 
 def check_config(text, profile):
     wrong = []
-    for name, value in profile['settings'].items():
+    for name, value in borg_txt_settings(profile).items():
         if f'\n{name} = {cat_mod.setting_value(value)}\n' not in '\n' + text:
             wrong.append(name)
     return ('settings not written: ' + ', '.join(sorted(wrong))) if wrong else None
@@ -352,7 +379,7 @@ def check_effective(summary, profile):
     actual = summary.get('effective_settings')
     if not isinstance(actual, dict):
         return 'native summary has no effective_settings'
-    wrong = [name for name, value in profile['settings'].items()
+    wrong = [name for name, value in borg_txt_settings(profile).items()
              if name not in actual or actual[name] != value]
     return ('settings not effective: ' + ', '.join(sorted(wrong))) if wrong else None
 
@@ -395,7 +422,8 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     plan = profile['settings'].get('borg_plan')
     plan_sha = ship_plan(spec, manifest, build_dir, out, plan) if plan is not None else None
     scary = profile['settings'].get('borg_scary_list')
-    scary_sha = ship_scary_list(spec, manifest, build_dir, out, scary) if scary is not None else None
+    lines = scary_lines(profile)
+    scary_sha = ship_scary_list(spec, manifest, build_dir, out, scary, lines) if scary is not None else None
     game = build_dir / 'game'
     argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=keep)
     env = dict(os.environ, TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8')
@@ -508,7 +536,8 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'profile_sha256': cat_mod.profile_sha256(profile),
         'config_sha256': hashlib.sha256(text.encode()).hexdigest(),
         'plan': {'name': plan, 'sha256': plan_sha, 'loaded_sha256': loaded_sha} if plan is not None else None,
-        'scary_list': {'name': scary, 'sha256': scary_sha} if scary is not None else None,
+        'scary_list': ({'name': scary, 'base_sha256': (spec.get('scary_lists') or {}).get(scary),
+                        'lines': lines or [], 'sha256': scary_sha} if scary is not None else None),
         'cap': suite['cap'], 'birth': suite['birth'],
         'boundary': 'exact' if spec.get('exact_turns') else 'after-key',
         'outcome': outcome, 'runner_outcome': summary.get('stop_reason'),

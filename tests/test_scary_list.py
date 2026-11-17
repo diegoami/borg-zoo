@@ -69,7 +69,8 @@ class ScaryListTest(unittest.TestCase):
         record, seen, _, _ = self.play(fixture_catalogue())
         self.assertEqual(seen[0]['list'], LIST)
         self.assertIn('\nborg_scary_list = scary_monsters.txt\n', '\n' + seen[0]['borg.txt'])
-        self.assertEqual(record['scary_list'], {'name': 'scary_monsters.txt', 'sha256': LIST_SHA})
+        self.assertEqual(record['scary_list'], {'name': 'scary_monsters.txt', 'base_sha256': LIST_SHA,
+                                                'lines': [], 'sha256': LIST_SHA})
         self.assertEqual(record['outcome'], 'turn_cap')
 
     def test_a_cell_without_the_setting_gets_no_list(self):
@@ -86,6 +87,47 @@ class ScaryListTest(unittest.TestCase):
         self.assertEqual(files['user/scary_monsters.txt'], LIST)
         config = dict(l.split('=', 1) for l in files['config.txt'].decode().splitlines())
         self.assertEqual((config['borg_scary_list'], config['scary_list_sha256']), ('scary_monsters.txt', LIST_SHA))
+
+    LINES = ['crow | 0-4', 'soldier | none', 'fragility: blackguard 33']
+
+    def test_an_arm_appends_its_lines_to_the_base_list(self):
+        # Owner, 2026-11-17 (#228): adding or removing scary monsters per arm.
+        cat = fixture_catalogue()
+        cat['profiles'][PROFILE]['settings']['borg_scary_list_lines'] = self.LINES
+        record, seen, _, _ = self.play(cat)
+        written = LIST + b'crow | 0-4\nsoldier | none\nfragility: blackguard 33\n'
+        self.assertEqual(seen[0]['list'], written)
+        self.assertNotIn('borg_scary_list_lines', seen[0]['borg.txt'])
+        self.assertIn('\nborg_scary_list = scary_monsters.txt\n', '\n' + seen[0]['borg.txt'])
+        self.assertEqual(record['scary_list'], {'name': 'scary_monsters.txt', 'base_sha256': LIST_SHA,
+                                                'lines': self.LINES, 'sha256': hashlib.sha256(written).hexdigest()})
+        self.assertIsNone(record['config_error'])
+
+    def test_a_death_bundle_keeps_the_file_with_the_lines(self):
+        cat = fixture_catalogue()
+        cat['profiles'][PROFILE]['settings']['borg_scary_list_lines'] = self.LINES
+        _, _, entry, files = self.play(cat, dead=True)
+        self.assertEqual(entry['status'], 'reproduced')
+        written = LIST + b'crow | 0-4\nsoldier | none\nfragility: blackguard 33\n'
+        self.assertEqual(files['user/scary_monsters.txt'], written)
+        config = files['config.txt'].decode()
+        self.assertIn(f'scary_list_sha256={hashlib.sha256(written).hexdigest()}', config)
+        self.assertNotIn('borg_scary_list_lines', config)  # the rerun reads the kept file, not the lines
+
+    def test_malformed_lines_or_lines_without_a_list_are_refused(self):
+        exp = {'name': 'x', 'specimens': [SPECIMEN], 'profiles': [PROFILE], 'suites': ['classes-18'],
+               'control': SPECIMEN, 'control_profile': PROFILE}
+        for settings, message in (({'borg_scary_list_lines': ['crow 0-4']}, 'must be lines'),
+                                  ({'borg_scary_list': None, 'borg_scary_list_lines': ['crow | 0-4']}, 'needs borg_scary_list')):
+            cat = fixture_catalogue()
+            cat['profiles'][PROFILE]['settings'].update(settings)
+            if cat['profiles'][PROFILE]['settings'].get('borg_scary_list') is None:
+                cat['profiles'][PROFILE]['settings'].pop('borg_scary_list')
+            with self.subTest(settings=settings), tempfile.TemporaryDirectory() as tmp:
+                path = Path(tmp) / 'x.json'
+                path.write_text(json.dumps(exp))
+                with self.assertRaisesRegex(ValueError, message):
+                    catalogue.experiment(str(path), cat)
 
     def test_a_list_the_specimen_does_not_pin_is_refused(self):
         cat = fixture_catalogue(pin=False)
