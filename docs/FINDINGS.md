@@ -342,6 +342,8 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 
 **#216, named list off with and without `errands_plan.txt` (pilot, run 44163377539, 36 games on main 233ef23e): the plan changes 8 of 18 games but no outcome.** The gate passed: one binary, no config_error, both flags written, the plan loaded (pin matches) in the plan arm only, nothing flagged. The control replays the #503 pilot's `both` arm exactly (18/18). Deaths are 4 in each arm, on the same four starts: Druid 934061548, Rogue 1381972077, and the CL1 Priest 1569794094 and Necromancer 1574344917. With the plan the Druid dies earlier, to Fang at CL4 instead of a kobold shaman at CL6. Mean max level is 5.78 without the plan and 5.83 with it. The plan does not protect the level-1 casters that the named list protected.
 
+**#216, named list × errands plan, 2×2 with the breeder stand on (pilot, run 44165070793, 72 games on main 233ef23e): the list decides deaths, the plan does not.** The gate passed: one binary, no config_error, flags written, the plan loaded (pin matches) in the plan arms only, nothing flagged. `both`, `both-plan` and `fight` replay their earlier pilots exactly (18/18 each). Deaths: list off 4 (no plan) and 4 (plan), two of them at CL1; list on 1 and 1, none at CL3 or below (the same Mage, at CL4, to a giant white mouse). Turning the list on rescues 4 and newly kills 1, with and without the plan. The plan changes 8 of 18 games and no outcome, with the list either on or off. Mean max level is 5.8 with the list off and 5.0 with it on.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
