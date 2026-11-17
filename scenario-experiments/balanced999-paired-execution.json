@@ -1,0 +1,28 @@
+{
+  "kind": "paired-incident-execution",
+  "name": "balanced999-paired-execution",
+  "folder": "scenario-experiments",
+  "issue": 168,
+  "question": "Can baseline and the exact Zoo speed30 bundle execute the same balanced saved incidents with verified native receipts?",
+  "comparison_plan": {
+    "path": "reports/saved-encounters/balanced999-incidents/planning/comparison-plan.json",
+    "sha256": "84a36a028cd2cde262cb0d77f993d1a6ca64554b067c04e30c16ffaf01b5bd62"
+  },
+  "baseline_plan": {
+    "path": "reports/saved-encounters/balanced999-incidents/planning/baseline-plan.json",
+    "sha256": "639ee523e33ab4f520ed22b1de1ed5a4f03c28688292a5cedc7a1d9204aabb10"
+  },
+  "cemetery": {
+    "repository": "diegoami/borg-cemetery",
+    "commit": "2586b5f600a7ca00015965de82a566afa905831e"
+  },
+  "native_tools": {
+    "repository": "diegoami/borg-cemetery",
+    "commit": "1afd9423d7f8a1340eca9d74cff85443e769b1a9"
+  },
+  "expected_cells": 1998,
+  "owner_authorization": "Owner instructs finishing the speed30 saved-state integration, running the36-cell paired smoke, and preparing PR169 for review.",
+  "prespecified": "First run only smoke:18 shared starts, two/class, both setups,36 cells. Verify original bank/source/build/load/RNG/gear/resources, baseline parameters, every requested candidate setting, named parameter origin/value and loaded errands hash. Both arms exact2000-engine-turn and5-second wall bounds. Fresh Borg memory. Missing/invalid/stopped outcomes block expansion. Preserve every cell and native death. Full schedule remains1998 cells in nested balanced tiers; larger tiers follow smoke inspection and review. Sources/cores/configurations differ; no isolated speed30 or population-improvement claim.",
+  "schema": "borg-zoo/paired-incident-definition@1",
+  "definition": "definitions/balanced999-paired-execution.yaml"
+}

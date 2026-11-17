@@ -5,6 +5,9 @@ editorial question get a factual summary of the dimensions they vary.
 """
 QUESTIONS = {
     'neo-books-509-seeded-v2-1800': 'Do casters retain usable spellbooks and cast after restoring C book value on the previous Neo baseline?',
+    'neo-b4-parity-books-v1-small': 'Small tier: how does the Neo parity-and-books candidate play on the first 90 development starts?',
+    'neo-b4-parity-books-v1-1800': 'How does the Neo beta.4-engine candidate with six parity repairs and retained spellbook value survive and progress?',
+    'rs-additive-returns': 'Do the four added return-trigger settings change survival and town visits when legacy returns stay active and shopping, combat and depth rules are fixed?',
     'neo-fork-48afb65-classes-1800': 'How does the Neo fork with corrected store-phase equipment changes survive and progress?',
     'neo-fork-9c17cb0-classes-1800': 'How does the Neo repair candidate play under its historical message-deaf host?',
     'neo-fork-9c17cb0-events-classes-1800': 'How does the Neo repair candidate survive with event and message delivery restored?',
@@ -13,8 +16,20 @@ QUESTIONS = {
     'reborn-g1-classes-1800': 'Can the reborn Rust Borg reach dungeon level 5, and does refusing travel below half health help?',
     'reborn-e-classes-1800': 'How does the reborn Rust Borg compare with the original C Borg and better-borg-c M7?',
     'reborn-pilot-c-classes-1800': 'Does the borg-rs core inside the reborn shell work better with the ladder errand?',
+    'reborn-plan-m13-classes-18': 'Do the class errands plan and the M13 shopping run cleanly in the zoo?',
+    'reborn-plans-m13-classes-18': 'Does the ambitious errands plan run cleanly in the zoo alongside the other four arms?',
+    'reborn-trip-3x3-classes-18': 'Does the trip policy add anything to the town planner, with and without an errands plan?',
+    'reborn-plan-m13-small': 'Tier small: do a class errands plan, the M13 town planner, both, or the ambitious plan with the planner help the borg-rs core in the reborn shell?',
+    'reborn-plan-m13-medium': 'Tier medium: do a class errands plan, the M13 town planner, both, or the ambitious plan with the planner help the borg-rs core in the reborn shell?',
+    'reborn-plan-m13-big': 'Tier big: do a class errands plan, the M13 town planner, both, or the ambitious plan with the planner help the borg-rs core in the reborn shell?',
+    'reborn-plan-m13-full': 'Tier full: do a class errands plan, the M13 town planner, both, or the ambitious plan with the planner help the borg-rs core in the reborn shell?',
+    'reborn-survival-small': 'Do the flee-healing and Phase Door fixes change deaths in the #123 small tier?',
+    'reborn-livelock-small': 'Does the #421 fix remove the stair livelock without changing the no-plan arms?',
+    'reborn-maxdepth-returns-small': 'Under max-depth plans, does a tighter return setting lower deaths, and at what cost in progress?',
+    'reborn-plan-m13-classes-1800': 'Do a class errands plan, the M13 shopping, both together, or the ambitious plan with shopping help the borg-rs core in the reborn shell?',
     'rs-joint-m12-development': 'Which combination of shopping, risk tolerance and earlier town returns helps the Rust Borg?',
     'rs-joint-m12-confirm': 'Does the selected shopping and risk policy still help on fresh seeds?',
+    'rs-home-fix-returns': 'Do the added town-return triggers help the Rust Borg once the Home oil loop is fixed?',
     'rs-kit-trip-development': 'Which expanded-inventory and all-item return settings help the Rust Borg?',
     'rs-kit-trip-confirm': 'Does the expanded-inventory and all-item return policy help on fresh seeds?',
     'rs-buy-combinations': 'Do class-specific and special-start shopping overrides actually change play?',
@@ -76,6 +91,12 @@ for milestone in (11, 12, 13):
 
 
 PROFILE_LABELS = {
+    'rs-additive-existing': 'Existing shopping + legacy returns',
+    'rs-additive-shopping-only': 'New shopping + legacy returns only',
+    'rs-additive-p0-u0': 'Legacy returns + full-pack trigger (0,0)',
+    'rs-additive-p1-u2': 'Legacy returns + one slot / two unknown stacks (1,2)',
+    'rs-additive-p1-u4': 'Legacy returns + one slot / four unknown stacks (1,4)',
+    'rs-additive-p2-u4': 'Legacy returns + two slots / four unknown stacks (2,4)',
     'rs-pr85-existing': 'Existing shopping and returns',
     'rs-pr85-shopping-only': 'New shopping, legacy returns',
     'rs-pr85-return-p0-u0': 'Full pack; learning return off (0,0)',
@@ -113,6 +134,8 @@ def profile_label(name):
 
 
 def question(exp):
+    if exp.get('question'):
+        return exp['question']
     if exp['name'] in QUESTIONS:
         return QUESTIONS[exp['name']]
     versions, profiles = len(exp['specimens']), len(exp['profiles'])

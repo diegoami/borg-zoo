@@ -1,0 +1,270 @@
+# POC candidate schedules, NOT calibrated recommendations.
+# Early level gates follow the existing owner-tuned class ladder groups;
+# later depth intervals are hypotheses, shared across classes pending evaluation.
+# Native readiness/emergency/town policy always applies under the cap.
+# Deliberately no phase at level 50: hand back for the next capability-based policy.
+# There are no planned town visits: town trips are the core's own.
+# max-depth (owner, 2026-11-16): each phase is a depth cap, not a route.
+# The core plays as itself (its own dives, town trips, shopping) and is
+# never prepared for a level below the cap (borg_no_deeper). Converted from
+# the earlier loop-levels A B phases as max-depth B.
+
+[default]
+  level <= 3
+    max-depth 1
+  3 < level <= 6
+    max-depth 2
+  6 < level <= 8
+    max-depth 3
+  level == 9
+    max-depth 4
+  9 < level <= 14
+    max-depth 8
+  14 < level <= 19
+    max-depth 12
+  19 < level <= 24
+    max-depth 20
+  24 < level <= 29
+    max-depth 25
+  29 < level <= 34
+    max-depth 30
+  34 < level <= 39
+    max-depth 35
+  39 < level <= 44
+    max-depth 40
+  44 < level <= 49
+    max-depth 45
+
+[warrior]
+  level <= 2
+    max-depth 1
+  2 < level <= 4
+    max-depth 2
+  4 < level <= 6
+    max-depth 3
+  6 < level <= 9
+    max-depth 4
+  9 < level <= 14
+    max-depth 8
+  14 < level <= 19
+    max-depth 12
+  19 < level <= 24
+    max-depth 20
+  24 < level <= 29
+    max-depth 25
+  29 < level <= 34
+    max-depth 30
+  34 < level <= 39
+    max-depth 35
+  39 < level <= 44
+    max-depth 40
+  44 < level <= 49
+    max-depth 45
+
+[mage]
+  level <= 3
+    max-depth 1
+  3 < level <= 6
+    max-depth 2
+  6 < level <= 8
+    max-depth 3
+  level == 9
+    max-depth 4
+  9 < level <= 14
+    max-depth 8
+  14 < level <= 19
+    max-depth 12
+  19 < level <= 24
+    max-depth 20
+  24 < level <= 29
+    max-depth 25
+  29 < level <= 34
+    max-depth 30
+  34 < level <= 39
+    max-depth 35
+  39 < level <= 44
+    max-depth 40
+  44 < level <= 49
+    max-depth 45
+
+[druid]
+  level <= 3
+    max-depth 1
+  3 < level <= 6
+    max-depth 2
+  6 < level <= 8
+    max-depth 3
+  level == 9
+    max-depth 4
+  9 < level <= 14
+    max-depth 8
+  14 < level <= 19
+    max-depth 12
+  19 < level <= 24
+    max-depth 20
+  24 < level <= 29
+    max-depth 25
+  29 < level <= 34
+    max-depth 30
+  34 < level <= 39
+    max-depth 35
+  39 < level <= 44
+    max-depth 40
+  44 < level <= 49
+    max-depth 45
+
+[priest]
+  level <= 3
+    max-depth 1
+  3 < level <= 6
+    max-depth 2
+  6 < level <= 8
+    max-depth 3
+  level == 9
+    max-depth 4
+  9 < level <= 14
+    max-depth 8
+  14 < level <= 19
+    max-depth 12
+  19 < level <= 24
+    max-depth 20
+  24 < level <= 29
+    max-depth 25
+  29 < level <= 34
+    max-depth 30
+  34 < level <= 39
+    max-depth 35
+  39 < level <= 44
+    max-depth 40
+  44 < level <= 49
+    max-depth 45
+
+[necromancer]
+  level <= 3
+    max-depth 1
+  3 < level <= 6
+    max-depth 2
+  6 < level <= 8
+    max-depth 3
+  level == 9
+    max-depth 4
+  9 < level <= 14
+    max-depth 8
+  14 < level <= 19
+    max-depth 12
+  19 < level <= 24
+    max-depth 20
+  24 < level <= 29
+    max-depth 25
+  29 < level <= 34
+    max-depth 30
+  34 < level <= 39
+    max-depth 35
+  39 < level <= 44
+    max-depth 40
+  44 < level <= 49
+    max-depth 45
+
+[paladin]
+  level <= 2
+    max-depth 1
+  2 < level <= 4
+    max-depth 2
+  4 < level <= 6
+    max-depth 3
+  6 < level <= 9
+    max-depth 4
+  9 < level <= 14
+    max-depth 8
+  14 < level <= 19
+    max-depth 12
+  19 < level <= 24
+    max-depth 20
+  24 < level <= 29
+    max-depth 25
+  29 < level <= 34
+    max-depth 30
+  34 < level <= 39
+    max-depth 35
+  39 < level <= 44
+    max-depth 40
+  44 < level <= 49
+    max-depth 45
+
+[rogue]
+  level <= 2
+    max-depth 1
+  2 < level <= 4
+    max-depth 2
+  4 < level <= 6
+    max-depth 3
+  6 < level <= 9
+    max-depth 4
+  9 < level <= 14
+    max-depth 8
+  14 < level <= 19
+    max-depth 12
+  19 < level <= 24
+    max-depth 20
+  24 < level <= 29
+    max-depth 25
+  29 < level <= 34
+    max-depth 30
+  34 < level <= 39
+    max-depth 35
+  39 < level <= 44
+    max-depth 40
+  44 < level <= 49
+    max-depth 45
+
+[ranger]
+  level <= 2
+    max-depth 1
+  2 < level <= 4
+    max-depth 2
+  4 < level <= 6
+    max-depth 3
+  6 < level <= 9
+    max-depth 4
+  9 < level <= 14
+    max-depth 8
+  14 < level <= 19
+    max-depth 12
+  19 < level <= 24
+    max-depth 20
+  24 < level <= 29
+    max-depth 25
+  29 < level <= 34
+    max-depth 30
+  34 < level <= 39
+    max-depth 35
+  39 < level <= 44
+    max-depth 40
+  44 < level <= 49
+    max-depth 45
+
+[blackguard]
+  level <= 2
+    max-depth 1
+  2 < level <= 4
+    max-depth 2
+  4 < level <= 6
+    max-depth 3
+  6 < level <= 9
+    max-depth 4
+  9 < level <= 14
+    max-depth 8
+  14 < level <= 19
+    max-depth 12
+  19 < level <= 24
+    max-depth 20
+  24 < level <= 29
+    max-depth 25
+  29 < level <= 34
+    max-depth 30
+  34 < level <= 39
+    max-depth 35
+  39 < level <= 44
+    max-depth 40
+  44 < level <= 49
+    max-depth 45

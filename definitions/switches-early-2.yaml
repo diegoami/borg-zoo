@@ -1,0 +1,19 @@
+# Exported from experiments/switches-early-2.json; edit here, then run python3 -m zoo define.
+name: switches-early-2
+description: |-
+  More borg.txt switches on the original and the latest milestone: money scumming, chest risk, gold and mana worship. 'shipped' (the version's own borg.txt, unchanged) is an identity check: it should play exactly like default on every seed.
+specimens:
+- 4.2.6
+- 4.2.6-bbc-m4
+suites:
+- early-50
+profiles:
+- default
+- shipped
+- money-scum-5k
+- money-scum-20k
+- chest-tolerance-3
+- worships-gold
+- worships-mana
+control_specimen: 4.2.6
+control_profile: default

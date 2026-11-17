@@ -1,0 +1,24 @@
+# Exported from experiments/neo-truth-100-seeded-v2-1800.json; edit here, then run python3 -m zoo define.
+name: neo-truth-100-seeded-v2-1800
+description: |-
+  Owner-requested repeat after merging the three danger/HP/retreat fixes and fixing the truth-denied measurement host. Same frozen seeded-v2 assignments and budgets; retain every outcome. Descriptive Neo-only run, not a C paired comparison or a prespecified population-improvement claim.
+specimens:
+- neo-fork-truth-100-seeded-v2
+suites:
+- neo-seeded-v2-classes-1800
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: neo-fork-truth-100-seeded-v2
+control_profile: default
+extra:
+  retain_evidence: true
+  shards_by_specimen:
+    neo-fork-truth-100-seeded-v2: 36
+  resource_budget:
+    processes_per_job: 2
+    max_parallel_jobs: 4
+    native_wall_seconds: 600
+    neo_wall_seconds: 600
+    job_timeout_minutes: 300
+  control_profile: null

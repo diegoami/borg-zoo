@@ -1,0 +1,30 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "rs-additive-returns-smoke",
+  "definition": "definitions/rs-additive-returns-smoke.yaml",
+  "description": "54 native functional/timing checks: six configurations across all nine classes on merged PR88/M13. 100000 turns per game; diagnostic only.",
+  "prespecified": "Wiring and timing only. Inspect all 54 endpoints, native settings, actual class/race and source/binary identity. Natural deaths are normal endpoints, not wiring failures. Report every abnormal outcome. Check policy-off shopping and (0,0) key equality when no additional return request changes play. No performance inference or candidate selection from these nine starts. Full experiment is not dispatched until these checks complete successfully.",
+  "specimens": [
+    "4.2.6-rs-pr88-additive-returns"
+  ],
+  "profiles": [
+    "rs-additive-existing",
+    "rs-additive-shopping-only",
+    "rs-additive-p0-u0",
+    "rs-additive-p1-u2",
+    "rs-additive-p1-u4",
+    "rs-additive-p2-u4"
+  ],
+  "suites": [
+    "rs-additive-timing-9"
+  ],
+  "control": "4.2.6-rs-pr88-additive-returns",
+  "control_profile": "rs-additive-shopping-only",
+  "owner_authorization": "2026-11-15 owner requested repeating the experiment after PR88 merged, in particular the last four threshold rows. Keep both same-build controls to interpret the added return triggers. Existing repository runner rule: wait for account idle, then use bounded shards with at most 20 game jobs and one game process per job.",
+  "resource_budget": {
+    "max_parallel_jobs": 6,
+    "processes_per_job": 1
+  },
+  "retain_evidence": true,
+  "source_notes": "All arms pin merged PR88 on M13 at 7251f64a9c3bf75fb8b90940d3fda54c4fa610bb. This is a new experiment and new specimen; historical pins and results are preserved. The four numeric pairs and all shopping settings are copied exactly from PR85. Inherited return rules remain active. The added return switch does not change live shopping forecasts, combat reserves or inherited depth decisions. The previous experiment was M12, so cross-run comparisons also change milestone and are descriptive only."
+}

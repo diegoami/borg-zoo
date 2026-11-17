@@ -640,7 +640,7 @@ class LandingTest(unittest.TestCase):
         self.assertIn("Do better-borg-c's fixes change early survival?", page)
         self.assertIn('Not measurably', page)
         self.assertNotIn('Which settings change early survival?', page)
-        self.assertIn('class="tab active" href="detailed.html"', page)
+        self.assertIn('class="tab active" href="index.html"', page)
 
     def test_find_arm_prefers_more_seeds_over_newer(self):
         small = [dict(cell('4.2.6', s, 'turn_cap'), profile='default') for s in (1, 2)]
@@ -898,7 +898,8 @@ class LandingTest(unittest.TestCase):
 
     def test_overview_page_has_no_milestone_cards(self):
         page = landing.overview_page([])
-        self.assertIn('class="tab active" href="index.html"', page)
+        self.assertNotIn('class="tab active"', page)  # the charts page is no longer a tab
+        self.assertIn('href="index.html">Full runs</a>', page)
         self.assertNotIn("Do better-borg-c's fixes change early survival?", page)
         self.assertNotIn('How far has the Rust port got?', page)
         self.assertIn('Add your Borg to the zoo', page)
@@ -1275,7 +1276,8 @@ class EndToEndTest(unittest.TestCase):
     def test_every_existing_experiment_has_an_editorial_question(self):
         from zoo.briefs import QUESTIONS, question
         for path in (ROOT / 'experiments').glob('*.json'):
-            self.assertIn(path.stem, QUESTIONS)
+            if not json.loads(path.read_text()).get('question'):  # YAML definitions carry their own
+                self.assertIn(path.stem, QUESTIONS)
         self.assertEqual(question({'name': '<future>', 'specimens': ['a'], 'profiles': ['a', 'b']}),
                          'How do these settings change survival and progress for this Borg version?')
 
@@ -1299,6 +1301,10 @@ class EndToEndTest(unittest.TestCase):
             self.assertIn('Browse all experiment reports', runs_index)
             self.assertIn('../detailed.html', runs_index)
             page = (tmp / 'site/runs/milestones-smoke/t-1/index.html').read_text()
+            # Raw cells stay on the results branch, linked, not copied into Pages (#114 T0).
+            self.assertFalse((tmp / 'site/runs/milestones-smoke/t-1/cells.jsonl').exists())
+            self.assertTrue((tmp / 'site/runs/milestones-smoke/t-1/meta.json').exists())
+            self.assertIn(site.RESULTS_RAW + '/milestones-smoke/t-1/cells.jsonl', page)
             self.assertIn('Paired against 4.2.6, same profile', page)
             self.assertIn('Rescued', page)
             self.assertNotIn('same version', page)
@@ -1379,6 +1385,37 @@ class ArmSplitTest(unittest.TestCase):
         self.assertEqual(len(cells), 4)
         self.assertEqual(len(meta['consolidated_runs']), 2)
         self.assertIn('differ in: calendar date', site.consolidated_note(meta))
+
+    def test_consolidated_site_publishes_merged_cells_gzipped_and_links_each_arm(self):
+        import gzip
+        from zoo import site
+        cat = cat_mod.catalogue()
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            for i, profile in enumerate(('normal', 'munchkin-class')):
+                exp = cat_mod.load_experiment(self.path, f'4.2.6-rs-m11:{profile}')
+                cells = [{**c, 'schema': 'borg-zoo/cell@1', 'outcome': 'turn_cap', 'final': {},
+                          'first_turn_at_depth': {}, 'cap': 1, 'harness_kind': 'borg-rs'}
+                         for c in cat_mod.cells(exp)[:2]]
+                d = tmp / 'res' / exp['name'] / f'r{i}'
+                d.mkdir(parents=True)
+                (d / 'cells.jsonl').write_text(''.join(json.dumps(c) + '\n' for c in cells))
+                (d / 'meta.json').write_text(json.dumps({
+                    'run_id': f'r{i}', 'run_url': '', 'completed': f'2026-11-1{i} 00:00 UTC', 'zoo_commit': 'abc',
+                    'experiment': exp, 'environment': {}, 'missing_cells': 0,
+                    'catalogue': {'harness': cat['specimens']['harness'],
+                                  'specimens': {k: cat['specimens']['specimens'][k] for k in exp['specimens']},
+                                  'profiles': {k: cat['profiles'][k] for k in exp['profiles']},
+                                  'suites': {k: cat['suites'][k] for k in exp['suites']}}}))
+            site.build_site(tmp / 'res', tmp / 'site')
+            target = tmp / 'site/runs/classes-rs-m11/r0+r1'
+            self.assertFalse((target / 'cells.jsonl').exists())
+            merged = gzip.decompress((target / 'cells.jsonl.gz').read_bytes()).decode().splitlines()
+            self.assertEqual(len(merged), 4)
+            page = (target / 'index.html').read_text()
+            self.assertIn('cells.jsonl.gz', page)
+            for run in ('r0', 'r1'):
+                self.assertIn(site.RESULTS_RAW + f'/classes-rs-m11/{run}/cells.jsonl', page)
 
 
 class SmokeTabTest(unittest.TestCase):

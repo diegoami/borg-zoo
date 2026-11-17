@@ -1,0 +1,30 @@
+# Exported from smoke/m12-m13-modes-smoke.json; edit here, then run python3 -m zoo define.
+name: m12-m13-modes-smoke
+folder: smoke
+description: |-
+  Can M12 and M13 build and apply each explicit mode profile on the three frozen smoke seeds? This is an 18-cell build/configuration and reachability probe, not a survival comparison. The lunal flag permits the mode; it does not prove mode entry. A run with no entry or no execution of the changed branch is not exercised, never a neutral result for Lunal fixes. The unrestricted/source-gated variants required by issue #87 are not supplied by these profiles. Prepared only; no dispatch authorized by this definition.
+specimens:
+- 4.2.6-bbc-m12
+- 4.2.6-bbc-m13
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  normal:
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  munchkin-class:
+    borg_munchkin_by_class: true
+  lunal:
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: true
+    borg_lunal_mode: true
+control_specimen: 4.2.6-bbc-m12
+control_profile: normal
+extra:
+  resource_budget:
+    max_parallel_jobs: 8
+    processes_per_job: 1

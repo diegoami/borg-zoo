@@ -1,0 +1,270 @@
+# Exported from smoke/rs-additive-returns-smoke.json; edit here, then run python3 -m zoo define.
+name: rs-additive-returns-smoke
+folder: smoke
+description: |-
+  54 native functional/timing checks: six configurations across all nine classes on merged PR88/M13. 100000 turns per game; diagnostic only.
+prespecified: |-
+  Wiring and timing only. Inspect all 54 endpoints, native settings, actual class/race and source/binary identity. Natural deaths are normal endpoints, not wiring failures. Report every abnormal outcome. Check policy-off shopping and (0,0) key equality when no additional return request changes play. No performance inference or candidate selection from these nine starts. Full experiment is not dispatched until these checks complete successfully.
+owner_authorization: |-
+  2026-11-15 owner requested repeating the experiment after PR88 merged, in particular the last four threshold rows. Keep both same-build controls to interpret the added return triggers. Existing repository runner rule: wait for account idle, then use bounded shards with at most 20 game jobs and one game process per job.
+specimens:
+- 4.2.6-rs-pr88-additive-returns
+suites:
+- rs-additive-timing-9
+profile_prefix: ''
+arms:
+  rs-additive-existing:
+    borg_trip_policy: 0
+    borg_town_plan: 0
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+    borg_town_w_light: 100
+    borg_town_w_food: 100
+    borg_town_w_poison: 100
+    borg_town_w_escape: 50
+    borg_town_w_power: 50
+    borg_town_w_trip: 50
+    borg_town_share: 10
+    borg_town_light_depth: 15
+    borg_town_food_trip: 10
+    borg_town_explore_turns: 1000
+    borg_town_stair_turns: 50
+    borg_town_food_turns: 3000
+    borg_town_light_turns: 5000
+    borg_town_home_discount: 500
+    borg_town_w_space: 25
+    borg_town_power_scale: 40000
+    borg_town_w_ranger_missiles: 250
+    borg_town_ranger_missile_turns: 50
+  rs-additive-shopping-only:
+    borg_trip_policy: 0
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+    borg_town_w_light: 100
+    borg_town_w_food: 100
+    borg_town_w_poison: 100
+    borg_town_w_escape: 50
+    borg_town_w_power: 50
+    borg_town_w_trip: 50
+    borg_town_share: 10
+    borg_town_light_depth: 15
+    borg_town_food_trip: 10
+    borg_town_explore_turns: 1000
+    borg_town_stair_turns: 50
+    borg_town_food_turns: 3000
+    borg_town_light_turns: 5000
+    borg_town_home_discount: 500
+    borg_town_w_space: 25
+    borg_town_power_scale: 40000
+    borg_town_w_ranger_missiles: 250
+    borg_town_ranger_missile_turns: 50
+  rs-additive-p0-u0:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 0
+    borg_trip_unknown_stacks: 0
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+    borg_town_w_light: 100
+    borg_town_w_food: 100
+    borg_town_w_poison: 100
+    borg_town_w_escape: 50
+    borg_town_w_power: 50
+    borg_town_w_trip: 50
+    borg_town_share: 10
+    borg_town_light_depth: 15
+    borg_town_food_trip: 10
+    borg_town_explore_turns: 1000
+    borg_town_stair_turns: 50
+    borg_town_food_turns: 3000
+    borg_town_light_turns: 5000
+    borg_town_home_discount: 500
+    borg_town_w_space: 25
+    borg_town_power_scale: 40000
+    borg_town_w_ranger_missiles: 250
+    borg_town_ranger_missile_turns: 50
+  rs-additive-p1-u2:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 1
+    borg_trip_unknown_stacks: 2
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+    borg_town_w_light: 100
+    borg_town_w_food: 100
+    borg_town_w_poison: 100
+    borg_town_w_escape: 50
+    borg_town_w_power: 50
+    borg_town_w_trip: 50
+    borg_town_share: 10
+    borg_town_light_depth: 15
+    borg_town_food_trip: 10
+    borg_town_explore_turns: 1000
+    borg_town_stair_turns: 50
+    borg_town_food_turns: 3000
+    borg_town_light_turns: 5000
+    borg_town_home_discount: 500
+    borg_town_w_space: 25
+    borg_town_power_scale: 40000
+    borg_town_w_ranger_missiles: 250
+    borg_town_ranger_missile_turns: 50
+  rs-additive-p1-u4:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 1
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+    borg_town_w_light: 100
+    borg_town_w_food: 100
+    borg_town_w_poison: 100
+    borg_town_w_escape: 50
+    borg_town_w_power: 50
+    borg_town_w_trip: 50
+    borg_town_share: 10
+    borg_town_light_depth: 15
+    borg_town_food_trip: 10
+    borg_town_explore_turns: 1000
+    borg_town_stair_turns: 50
+    borg_town_food_turns: 3000
+    borg_town_light_turns: 5000
+    borg_town_home_discount: 500
+    borg_town_w_space: 25
+    borg_town_power_scale: 40000
+    borg_town_w_ranger_missiles: 250
+    borg_town_ranger_missile_turns: 50
+  rs-additive-p2-u4:
+    borg_trip_policy: 1
+    borg_town_plan: 1
+    borg_town_no_stores: 0
+    borg_buy_strategy_default: 0
+    borg_buy_identify: 0
+    borg_trip_depth_margin: 0
+    borg_trip_pack_slack: 2
+    borg_trip_unknown_stacks: 4
+    borg_trip_return_gold: 0
+    borg_town_target_depth: 0
+    borg_town_trip_turns: 0
+    borg_town_depth_gain: 1
+    borg_town_w_gold: 25
+    borg_town_w_bleeding: 100
+    borg_town_w_knowledge: 25
+    borg_town_risk: 1000
+    borg_town_w_attack: 100
+    borg_town_w_magic: 100
+    borg_town_w_support: 50
+    borg_town_w_restore: 100
+    borg_town_attack_turns: 100
+    borg_town_support_turns: 1000
+    borg_town_w_light: 100
+    borg_town_w_food: 100
+    borg_town_w_poison: 100
+    borg_town_w_escape: 50
+    borg_town_w_power: 50
+    borg_town_w_trip: 50
+    borg_town_share: 10
+    borg_town_light_depth: 15
+    borg_town_food_trip: 10
+    borg_town_explore_turns: 1000
+    borg_town_stair_turns: 50
+    borg_town_food_turns: 3000
+    borg_town_light_turns: 5000
+    borg_town_home_discount: 500
+    borg_town_w_space: 25
+    borg_town_power_scale: 40000
+    borg_town_w_ranger_missiles: 250
+    borg_town_ranger_missile_turns: 50
+control_specimen: 4.2.6-rs-pr88-additive-returns
+control_profile: rs-additive-shopping-only
+extra:
+  resource_budget:
+    max_parallel_jobs: 6
+    processes_per_job: 1
+  retain_evidence: true
+  source_notes: |-
+    All arms pin merged PR88 on M13 at 7251f64a9c3bf75fb8b90940d3fda54c4fa610bb. This is a new experiment and new specimen; historical pins and results are preserved. The four numeric pairs and all shopping settings are copied exactly from PR85. Inherited return rules remain active. The added return switch does not change live shopping forecasts, combat reserves or inherited depth decisions. The previous experiment was M12, so cross-run comparisons also change milestone and are descriptive only.

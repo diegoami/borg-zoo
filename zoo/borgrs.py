@@ -23,6 +23,19 @@ Limits compared with the better-borg-c observer, recorded per cell:
   is no per-turn state stream, so neither is available. The log carries no
   item values, only gear hashes, so it gives gold on hand, not a full net
   worth (inventory and equipment value).
+- a specimen with "plans": {NAME: sha256} ships those errands plans
+  (borg-reborn-rs harness/plans/NAME, borg-zoo#123). The build copies each
+  one, checked against its pinned hash, into the build's plans/; a profile
+  setting borg_plan = NAME gets it as the cell's user/NAME, next to the
+  borg.txt that names it, and the cell records the plan's sha256. Such a
+  binary exits with status 2 instead of ignoring a missing or invalid plan,
+  so exit 2 without a summary is a config_error, and its borg_stopped (the
+  level-50 handover or a plan's handback) is the borg_stopped outcome, not
+  a stall. The cell also checks the core's copy of the loaded plan in the
+  output directory, and records a frozen-turn loop (borg-rs#90) as a stall.
+- a specimen with "loop_checks": true (and every plan specimen) gets the
+  frozen-turn stall and the key-outlier flag without carrying plans.
+- every inherited BORG_* environment variable is cleared before a cell.
 """
 import hashlib
 import json
@@ -91,6 +104,154 @@ def sha256(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+# The native core reads dozens of BORG_* environment variables and prefers
+# them to the run's borg.txt (BORG_CORE, BORG_ERRAND, BORG_ERRANDS_PLAN,
+# BORG_STOPSCARED, BORG_PARAM_*, ...; borg-reborn-rs docs/ZOO-INTERFACE.md);
+# BORG_RUN_DIR also turns on core traces. A cell measures its files only, so
+# every inherited BORG_* variable is cleared; the adapter sets its own record
+# paths afterwards.
+AMBIENT_PREFIX = 'BORG_'
+
+
+# The core's copy of the plan it loaded, in the output directory (the parent
+# of -summary when BORG_RUN_DIR is unset): the evidence a plan was in force,
+# since its "# Plan:" notes are only written with -msglog.
+LOADED_PLAN = 'errands_plan.txt'
+
+# Keys at one game turn that mark a frozen-turn loop: borg-rs#90's oil
+# store/take cycle at the Home spends 4,315-5,141 keys at single turns, while
+# normal play, shops included, peaked at 383 in 54 shopping cells
+# (borg-zoo#123). The loop ends and play resumes, so the cell reaches its
+# cap; it is a stall all the same.
+LOOP_KEYS = 1000
+
+# A burst is shopping, not a loop, when gold falls at least once per this many
+# keys at the burst turn (borg-zoo#205): shop transactions take no game time,
+# so a Ranger buying 120 Arrows one at a time spent 1,083 keys at one turn
+# with 120 gold drops (one per ~9 keys), while borg-rs#90's oil store/take
+# cycle gains nothing and leaves gold unchanged.
+PURCHASE_KEYS = 25
+
+
+def loop_checks(spec):
+    """Whether cells of this specimen get the frozen-turn and key-outlier
+    checks: plan specimens always, others when they ask ("loop_checks":
+    true, borg-zoo#129)."""
+    return bool(spec.get('plans') or spec.get('loop_checks'))
+
+
+def frozen_turn_loop(keys_text):
+    """Keys per game turn in a borgh keys.log: the busiest turn, and how
+    many turns reach LOOP_KEYS and with how many keys in all."""
+    counts = {}
+    for line in keys_text.splitlines():
+        turn = line.split(' ', 1)[0]
+        counts[turn] = counts.get(turn, 0) + 1
+    if not counts:
+        return {'turn': None, 'max_keys': 0, 'bursts': 0, 'burst_keys': 0}
+    turn = max(counts, key=counts.get)
+    bursts = [n for n in counts.values() if n >= LOOP_KEYS]
+    out = {'turn': int(turn) if turn.isdigit() else turn, 'max_keys': counts[turn],
+           'bursts': len(bursts), 'burst_keys': sum(bursts)}
+    if bursts:
+        out['burst_turns'] = [[int(t) if t.isdigit() else t, n] for t, n in counts.items() if n >= LOOP_KEYS]
+    return out
+
+
+def burst_purchases(state_text, turns):
+    """{turn: times gold fell} over the -statelog lines of each burst turn."""
+    wanted, drops, last = set(turns), {t: 0 for t in turns}, {}
+    for s in parse_state_log(state_text):
+        t = s['turn']
+        if t in wanted:
+            if t in last and s['gold'] < last[t]:
+                drops[t] += 1
+            last[t] = s['gold']
+    return drops
+
+
+def classify_bursts(loop, state_text):
+    """(loop turns, purchase-burst turns) of a frozen_turn_loop result. Without
+    a state log every burst counts as a loop, as before."""
+    turns = loop.get('burst_turns') or []
+    if state_text is None:
+        return turns, []
+    drops = burst_purchases(state_text, [t for t, _ in turns])
+    shopping = [[t, n, drops[t]] for t, n in turns if drops[t] * PURCHASE_KEYS >= n]
+    loops = [[t, n] for t, n in turns if drops[t] * PURCHASE_KEYS < n]
+    return loops, shopping
+
+
+# A cell with more keys than this many times its arm's median (over the
+# arm's full-length, turn-cap cells) is flagged at collection. It catches a
+# store/take cycle across visits, which costs game time and so escapes the
+# per-turn check above; borg-rs#90's cell had 6.4 times its arm's median,
+# normal shopping cells at most 1.7 times (borg-zoo#123). A flag, not an
+# outcome: the cell is listed and the endpoints are reported with and
+# without flagged cells.
+KEY_OUTLIER_FACTOR = 3
+KEY_OUTLIER_MIN_CELLS = 5
+
+
+def flag_key_outliers(records):
+    """Mark records whose final keys exceed KEY_OUTLIER_FACTOR times the
+    median of their arm (suite, specimen, profile); the number flagged."""
+    arms = {}
+    for r in records:
+        arms.setdefault((r.get('suite'), r.get('specimen'), r.get('profile')), []).append(r)
+    flagged = 0
+    for cells in arms.values():
+        full = sorted(r['final']['keys'] for r in cells
+                      if (r.get('observed_outcome') or r.get('outcome')) == 'turn_cap'
+                      and isinstance((r.get('final') or {}).get('keys'), int))
+        if len(full) < KEY_OUTLIER_MIN_CELLS:
+            continue
+        mid = len(full) // 2
+        median = full[mid] if len(full) % 2 else (full[mid - 1] + full[mid]) / 2
+        for r in cells:
+            keys = (r.get('final') or {}).get('keys')
+            if isinstance(keys, int) and median and keys > KEY_OUTLIER_FACTOR * median:
+                r['key_outlier'] = {'keys': keys, 'arm_median': median, 'ratio': round(keys / median, 2)}
+                flagged += 1
+    return flagged
+
+
+def plan_name(name):
+    """A borg_plan value the adapter can ship: a bare file name."""
+    if (not isinstance(name, str) or not name or Path(name).name != name or name.startswith('.')
+            or name == 'borg.txt'):
+        raise ValueError(f'borg_plan must be a bare file name, not {name!r}')
+    return name
+
+
+def copy_plans(spec, source, out):
+    """Copy the specimen's pinned plans into the build; {name: sha256}."""
+    plans = {}
+    for name, digest in sorted((spec.get('plans') or {}).items()):
+        src = Path(source) / 'harness/plans' / plan_name(name)
+        if not src.is_file():
+            raise ValueError(f'specimen plan {name} is not in harness/plans at {spec["ref"]}')
+        if sha256(src) != digest:
+            raise ValueError(f'specimen plan {name} has sha256 {sha256(src)}, catalogue pins {digest}')
+        (out / 'plans').mkdir(exist_ok=True)
+        shutil.copy(src, out / 'plans' / name)
+        plans[name] = digest
+    return plans
+
+
+def ship_plan(spec, manifest, build_dir, out, name):
+    """Write the build's plan NAME as the cell's user/NAME; its sha256."""
+    name = plan_name(name)
+    digest = (spec.get('plans') or {}).get(name)
+    if digest is None:
+        raise ValueError(f'specimen ships no plan {name}')
+    src = Path(build_dir) / 'plans' / name
+    if (manifest.get('plans') or {}).get(name) != digest or not src.is_file() or sha256(src) != digest:
+        raise ValueError(f'build {build_dir} does not carry plan {name} at sha256 {digest}')
+    shutil.copy(src, out / 'user' / name)
+    return digest
+
+
 def build(spec, source, out):
     """Build a borg-rs checkout (at spec['ref']) and keep the game dir."""
     source = Path(source).resolve()
@@ -109,6 +270,9 @@ def build(spec, source, out):
         shutil.rmtree(out / 'game')
     shutil.copytree(game, out / 'game', symlinks=False)
     shutil.copy(source / 'harness/borg.txt', out / 'borg.txt')
+    if (out / 'plans').exists():
+        shutil.rmtree(out / 'plans')
+    plans = copy_plans(spec, source, out)
     build_id = dict(line.split('=', 1) for line in (source / 'build' / impl / 'BUILD_ID').read_text().splitlines()
                     if '=' in line)
     manifest = {'kind': 'borg-rs', 'impl': impl, 'source_commit': head,
@@ -117,6 +281,8 @@ def build(spec, source, out):
                 'compiler': subprocess.check_output(['cc', '--version'], text=True).splitlines()[0],
                 'rustc': build_id.get('rustc'),
                 'platform': f'{platform.system()} {platform.machine()}', 'complete': True}
+    if plans:
+        manifest['plans'] = plans
     if build_id.get('binary_sha256') != manifest['binary_sha256']:
         raise ValueError('copied binary does not match BUILD_ID')
     (out / 'build.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
@@ -187,13 +353,16 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     text = config_text(build_dir, profile, race_i, cls_i)
     (out / 'user/borg.txt').write_text(text)
     mismatch = check_config(text, profile)
+    plan = profile['settings'].get('borg_plan')
+    plan_sha = ship_plan(spec, manifest, build_dir, out, plan) if plan is not None else None
     game = build_dir / 'game'
     argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=keep)
     env = dict(os.environ, TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8')
+    # This also keeps parallel cells from writing to an inherited
+    # process-global record path (BORG_TOWN_PLAN_RECORD, BORG_TRIP_RECORD).
+    for name in [n for n in env if n.startswith(AMBIENT_PREFIX)]:
+        del env[name]
     if keep:
-        # Never let parallel cells write to an inherited process-global path.
-        for name in ('BORG_TOWN_PLAN_RECORD', 'BORG_TRIP_RECORD'):
-            env.pop(name, None)
         streams = {}
         for setting, name, filename in (
                 ('borg_town_plan', 'BORG_TOWN_PLAN_RECORD', 'town-plan.jsonl'),
@@ -224,13 +393,20 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         except ValueError as exc:
             error = f'unreadable summary: {exc}'
     if outcome is None:
-        if rc not in (0, None) and not summary:
+        if rc == 2 and not summary and spec.get('plans'):
+            # The binary refused its configuration (a plan it could not load,
+            # a conflicting errand, an invalid setting) before playing.
+            outcome, error = 'config_error', 'exit code 2: the binary rejected its configuration'
+            mismatch = (mismatch + '; ' if mismatch else '') + error
+        elif rc not in (0, None) and not summary:
             outcome, error = ('crash' if rc < 0 else 'harness_failure'), f'exit code {rc}'
         elif not summary:
             outcome, error = 'harness_failure', error or 'no summary.json'
         else:
             outcome = 'death' if summary.get('dead') else STOP.get(summary.get('stop_reason'), 'harness_failure')
-            if outcome == 'stalled':
+            if summary.get('stop_reason') == 'borg_stopped' and spec.get('plans') and not summary.get('dead'):
+                outcome = 'borg_stopped'
+            elif outcome == 'stalled':
                 error = f"borgh stop_reason {summary.get('stop_reason')}"
     if summary and (summary.get('race'), summary.get('class')) != (race, cls):
         mismatch = (mismatch + '; ' if mismatch else '') + \
@@ -239,6 +415,13 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         effective_error = check_effective(summary, profile)
         if effective_error:
             mismatch = (mismatch + '; ' if mismatch else '') + effective_error
+    loaded_plan = out / LOADED_PLAN
+    loaded_sha = sha256(loaded_plan) if loaded_plan.is_file() else None
+    if summary and spec.get('plans') and loaded_sha != plan_sha:
+        # The core copies the plan it loaded into the output directory.
+        mismatch = (mismatch + '; ' if mismatch else '') + (
+            f'plan {plan} not loaded: output copy sha256 {loaded_sha}' if plan is not None
+            else f'no plan requested, but the core loaded one (sha256 {loaded_sha})')
     shadow = None
     if spec.get('town_shadow_records'):
         from . import town_shadow
@@ -246,13 +429,34 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         if shadow.get('error'):
             mismatch = (mismatch + '; ' if mismatch else '') + shadow['error']
     observed_outcome = outcome
-    if mismatch and (spec.get('town_shadow_records') or outcome in ('death', 'turn_cap', 'completion')):
+    if mismatch and (spec.get('town_shadow_records') or outcome in ('death', 'turn_cap', 'completion', 'borg_stopped')):
         outcome = 'config_error'
     keys = out / 'keys.log'
     keys_sha = sha256(keys) if keys.exists() else None
     stall_info = None
+    loop = None
+    purchase_burst = None
+    if loop_checks(spec) and keys.exists():
+        loop = frozen_turn_loop(keys.read_text(errors='replace'))
+        has_state = (out / 'state.log').exists()
+        if loop['bursts']:
+            loops, shopping = classify_bursts(
+                loop, (out / 'state.log').read_text(errors='replace') if has_state else None)
+            loop.update(loop_turns=loops, purchase_turns=shopping, bursts=len(loops))
+            if shopping:
+                # Shopping is progress, not a stall (borg-zoo#205): flagged, outcome kept.
+                purchase_burst = {'turns': shopping, 'keys': sum(n for _, n, _ in shopping),
+                                  'purchases': sum(p for _, _, p in shopping)}
+        if loop['bursts'] and outcome in ('death', 'turn_cap', 'borg_stopped'):
+            observed_outcome, outcome = outcome, 'stalled'
+            turn, keys_at = max(loop['loop_turns'], key=lambda tn: tn[1])
+            why = 'and gold unchanged (no purchases)' if has_state else '(no state log to rule out shopping)'
+            error = (f"frozen-turn loop: {loop['bursts']} game turns with {LOOP_KEYS}+ keys {why}, "
+                     f"{keys_at} at turn {turn}")
     if outcome not in ('death', 'turn_cap', 'completion'):
         stall_info = stall.borgh(keys.read_text(errors='replace') if keys.exists() else '', summary)
+        if loop and loop['bursts']:
+            stall_info = {**stall_info, 'kind': 'frozen_turn_loop', 'frozen_turn_loop': loop}
     state_log = out / 'state.log'
     states = parse_state_log(state_log.read_text(errors='replace')) if state_log.exists() else []
     native_settings = summary.get('effective_settings')
@@ -262,6 +466,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'specimen_ref': spec['ref'], 'impl': spec['impl'],
         'profile_sha256': cat_mod.profile_sha256(profile),
         'config_sha256': hashlib.sha256(text.encode()).hexdigest(),
+        'plan': {'name': plan, 'sha256': plan_sha, 'loaded_sha256': loaded_sha} if plan is not None else None,
         'cap': suite['cap'], 'birth': suite['birth'],
         'boundary': 'exact' if spec.get('exact_turns') else 'after-key',
         'outcome': outcome, 'runner_outcome': summary.get('stop_reason'),
@@ -283,9 +488,15 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'trace_sha256': keys_sha, 'play_sha256': keys_sha,
         'error': error,
         'stall': stall_info,
+        'source_sha256': (manifest.get('build_id') or {}).get('source_sha256'),
         'binary_sha256': manifest.get('binary_sha256'), 'compiler': manifest.get('compiler'),
         'rustc': manifest.get('rustc'), 'platform': manifest.get('platform'),
     }
+    if loop_checks(spec):
+        record['frozen_turn_loop'] = loop
+        if purchase_burst:
+            record['purchase_burst'] = purchase_burst
+        record['observed_outcome'] = observed_outcome if observed_outcome != outcome else None
     if shadow is not None:
         record['town_shadow'] = shadow
         record['observed_outcome'] = observed_outcome

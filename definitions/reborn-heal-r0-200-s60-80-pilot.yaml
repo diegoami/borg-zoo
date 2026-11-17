@@ -1,0 +1,39 @@
+# borg-zoo#192: healing reserve {0, 200} x healing speed {60, 80} on borg-reborn-rs main (e0aa2e0a; HEAD 50ae902a plays the same game), pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-r0-200-s60-80-pilot.yaml
+name: reborn-heal-r0-200-s60-80-pilot
+issue: 192
+question: With healing reserve 0 or 200, does a healing speed of 60 or 80 suit the town planner better (speed 66 was run before)?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+# borg-reborn-rs HEAD 50ae902a has the same source-hash (028e2de4...) and harness/borg.txt (498475fa...) as
+# e0aa2e0a: only docs and tools/shopping-audit.py changed. The same game, so the same specimen.
+specimen: 4.2.6-reborn-rust-main-e0aa2e0a
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_town_heal_curve_scale_percent: 100
+
+profile_prefix: reborn-heal
+vary:
+  reserve:
+    r0: {borg_param_town_heal_reserve_hp_percent: 0}
+    r200: {borg_param_town_heal_reserve_hp_percent: 200}
+  speed:
+    s60: {borg_param_town_heal_speed_percent: 60}
+    s80: {borg_param_town_heal_speed_percent: 80}
+
+control: [r0, s60]
+owner_authorization: >-
+  2026-11-17: after the #192 small tier (run 44116104222, speed 66, reserve 0/200/400), the owner asked
+  for a pilot of reserve (0, 200) x speed (60, 80).
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#192). Pilot (RULES 14). Gate: no config_error;
+  one binary; the three borg_param_town_heal_* lines with the arm's values (reserve 0/200, speed 60/80,
+  curve 100) in every arm's borg.txt and in params-core.json of the death replays; no plan loaded; every
+  cell ends in death, turn_cap or borg_stopped; stalls and key outliers listed; death bundles reproduced.
+  Report per arm: deaths, final level, deepest level; paired rescued and newly killed against r0-s60, and
+  speed 80 against speed 60 within each reserve; healing potions bought (Cure Light/Serious/Critical,
+  Healing) and gold on them, from the death replays. Speed 66 is not in this pilot: the small tier's
+  speed-66 arms ran on classes-1800 starts, a different suite. 18 starts per arm show direction only.

@@ -1,0 +1,19 @@
+# Exported from experiments/classes-v11.json; edit here, then run python3 -m zoo define.
+name: classes-v11
+description: |-
+  better-borg-c v11 (tag 4.2.6-impact-v11, 116 carries) on the full class grid, once under each policy the dashboard compares: normal (every mode pinned off - the plain tab) and munchkin-class (the class rule - the munchkin tab). v11 had only a 12-cell smoke before this; the per-mode batch its own milestone doc records as not measured is this experiment. Control is v11 under normal, the plain arm.
+specimens:
+- 4.2.6-bbc-m11
+suites:
+- classes-1800
+profile_prefix: ''
+arms:
+  normal:
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  munchkin-class:
+    borg_munchkin_by_class: true
+control_specimen: 4.2.6-bbc-m11
+control_profile: normal

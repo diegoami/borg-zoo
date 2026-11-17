@@ -1,0 +1,44 @@
+{
+  "bank": {
+    "artifact": "balanced999-bank",
+    "artifact_id": 14289964111,
+    "file": "balanced999-bank.tgz",
+    "manifest": "synthetic/balanced-999-incidents/generated/bank.json",
+    "members": "synthetic/balanced-999-incidents/generated",
+    "repository": "diegoami/borg-zoo",
+    "run_id": 43979480269,
+    "sha256": "186066b039ccc8451642cbcbd77e714c6615c20d99d0de4b18963289c5748cbf"
+  },
+  "cases_plan": {
+    "path": "reports/saved-encounters/balanced999-incidents/planning/baseline-plan.json",
+    "sha256": "639ee523e33ab4f520ed22b1de1ed5a4f03c28688292a5cedc7a1d9204aabb10"
+  },
+  "cemetery": {
+    "commit": "af7bad6c35a3358e2a42ec19ecd33d8884261b42",
+    "repository": "diegoami/borg-cemetery"
+  },
+  "description": "The balanced999 saved-encounter bank (borg-zoo#168): 999 distinct saves, 111 per class, 611 historical deaths and 388 observed critical-HP recoveries from 758 source lives. Frozen: a change to its membership or saves is a new version.",
+  "gear": {
+    "path": "scenario-suites/suite1-v1/gear.json",
+    "sha256": "85321e83d56623a9246fef98c9b0709d4ad821487ac4b97e49ddcfa808415ddd",
+    "source": "native pack/equipment/rune hashes of the initial state line, equal in both arms of every case of the raw report of run 44058010288 (paired-tier-comparison, sha256 2bf6a09f57bcd83e59d0f5b22b414473436d12543ac9d7b10ba498f3a0add4a3)"
+  },
+  "id": "suite1-v1",
+  "name": "Suite 1",
+  "protocol": {
+    "engine_commit": "42cd156ac9f95ddf4311e88dd7ad462292d6d1d6",
+    "horizon_engine_turns": 2000,
+    "stages": {
+      "big": 900,
+      "full": 999,
+      "medium": 360,
+      "small": 90,
+      "smoke": 18
+    },
+    "startup": "fresh Borg memory, saved engine RNG",
+    "wall_note": "A hang guard, not part of the game: each scenario must reach its 2,000-turn horizon within this native wall time. Inherited as 5 s from Cemetery's first saved scenarios (1,000 turns); raised to 30 s on 2026-11-17 (owner) after main needed 6.9 s for a 2,000-turn fight against a breeding louse swarm (c6-r7-s1060140-i000). The bank, saves and horizon are unchanged, so outcomes stay comparable.",
+    "wall_seconds": 30
+  },
+  "schema": "borg-zoo/saved-suite@1",
+  "version": 1
+}

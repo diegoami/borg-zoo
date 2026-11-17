@@ -39,3 +39,34 @@
     evidence retention. Upload completed records even when a job is cancelled
     or times out. Verify partial-result collection with an interrupted run
     before relying on it for a large experiment.
+14. Grow every measurement in tiers, and always propose the smallest first
+    (owner, 2026-11-16). After the pilot or smoke, a study runs as nested
+    slices of its development suite: small (10 starts per class), medium
+    (40), big (100) and full (all). Each tier plays only the starts the
+    previous tiers did not, so the four runs together are exactly the full
+    study, and each is analysed on everything collected so far. Every tier
+    has a written gate, and the next tier is dispatched only after the gate
+    is checked and the owner agrees. Never propose or start the full size
+    first. The pilot always comes first (RULES 16). An optional verysmall
+    tier (starts 1-45, 5 per class) may sit between the pilot and small; a
+    study that ran it plays small-rest (starts 46-90) as its small tier, so
+    the tiers stay disjoint (owner, 2026-11-17).
+15. Every experiment is defined in YAML (owner, 2026-11-16):
+    `definitions/NAME.yaml` is the source, and `experiments/NAME.json` (or
+    `smoke/`) with any new specimen and profiles is generated from it by
+    `python3 -m zoo define definitions/NAME.yaml`. Never edit a generated
+    experiment file by hand; change the definition and regenerate with
+    `--update`. Each definition names the borg-zoo issue it answers, and
+    each report links both. CI fails when a definition and the catalogue
+    disagree. The format is in `docs/DEFINE.md`.
+16. **Always the pilot first** (owner, 2026-11-17). Every measurement starts
+    with a pilot of exactly its arms on exactly its build: the same
+    specimen(s) and the same profiles, on `classes-18` (`tier: pilot`), or
+    on the study's own suite marked `pilot: true` when it is one class's
+    starts. This holds even when a request asks for a bigger tier, and when
+    only the build changed, even if the source is the same and only
+    `borg.txt` differs. Propose the pilot instead and say why; a larger tier
+    follows only after the pilot's gate is checked and the owner agrees
+    (RULES 14). `python3 -m zoo define` refuses a new experiment above pilot
+    size when the catalogue has no such pilot. Experiments generated before
+    this rule are not rechecked.

@@ -54,6 +54,27 @@ python3 -m zoo site --results results --out _site
 
 Tests: `python3 -m unittest discover -s tests`.
 
+## Deaths go to the cemetery
+
+Every natural death of a borg-rs or borg-reborn-rs cell is replayed once with
+full logs. Its key stream is checked against the cell's, and the result is
+uploaded as a death bundle in the run's `deaths-<specimen>-<shard>` artifacts
+(90 days). borg-cemetery imports a run's deaths as replayable dossiers with
+`python3 scripts/import_zoo_deaths.py --run RUN_ID`. See
+[docs/CEMETERY-DEATHS.md](docs/CEMETERY-DEATHS.md) (#176).
+
+## Cemetery scenarios
+
+[Scenario dispatch](docs/SCENARIO-DISPATCH.md) compares exact pushids on an
+immutable Cemetery bank, with separate synthetic reports and complete failure
+denominators. The **Scenarios** tab lists scenario runs with their compared
+versions, scenario counts, collected cells and paired outcomes. Each run links
+to the full report and evidence; synthetic results stay separate from the
+population comparisons.
+
+[Balanced999 incidents](docs/BALANCED-INCIDENTS.md) prepares equal111-case
+quotas for all nine classes and a bounded saved-state execution in Zoo.
+
 ## Reading the results
 
 The Detailed tab lists experiments by the question they ask. Each run starts
@@ -70,6 +91,10 @@ crash or fail in the harness are counted and shown, never relabelled as
 deaths. Compare arms only within one workflow run: every arm then shares the
 compiler, the machine type and the calendar date (the game's seasonal monster
 selection depends on the date).
+
+A proposed redesign of storage, long-run resume and the cemetery, shared
+with borg-cemetery, is in [docs/data-foundation/](docs/data-foundation/README.md)
+(borg-zoo#114; for owner review, not yet adopted).
 
 See [docs/DESIGN.md](docs/DESIGN.md) for the design and its open questions,
 and [AGENTS.md](AGENTS.md) and [RULES.md](RULES.md) for working rules.

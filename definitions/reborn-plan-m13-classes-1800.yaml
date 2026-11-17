@@ -1,0 +1,45 @@
+# Exported from experiments/reborn-plan-m13-classes-1800.json; edit here, then run python3 -m zoo define.
+name: reborn-plan-m13-classes-1800
+issue: 123
+description: |-
+  borg-zoo#123 development study on 4.2.6-reborn-rust-plans-m13-fix90 (borg-reborn-rs 8a0b57c8, #415): a class errands plan crossed with the M13 live town planner (2x2), plus a fifth arm with the ambitious plan and the town planner, on classes-1800 (9 classes x 200 seeds, assigned birth, 100,000-turn cap). The trip policy is off in every arm (owner decision). 9,000 games. Run in tiers (RULES 14): reborn-plan-m13-small, -medium, -big and -full together are this study. Do not dispatch this file whole.
+prespecified: |-
+  Fixed 2026-11-16, before any result was read; follows rs-kit-trip-development. Descriptive development study. Primary endpoint: fewer natural deaths first. Then mean final character level, mean deepest level and the DL5+ count, including dead characters. Every result is reported per class, because the plan differs by class. Paired rescued and newly killed counts against reborn-m13-control for each arm. Factorial effects: plan, town planner and plan x town planner. Incomplete, config_error and borg_stopped cells are reported separately. Nothing here confirms a winner; that needs a fresh confirmation suite. Amended 2026-11-16, before any result of this experiment was read. (1) Source: borg-reborn-rs 8a0b57c85700abd48981c2f41a65a0a637f7dc48 (#415), source-hash rust 9a4ea3756fb1b566..., a different game from 2f74e1c5 and 1c4b351b (87717140...). Its vendored core is borg-rs 8c5d000a, with borg-rs#92's per-visit Home guard (the borg-rs#90 oil loop fix) and borg-rs#88's additive trip policy. harness/borg.txt is 88296dd1..., with the same settings as before. Plans: errands_plan.txt 922372ba..., errands_plan_ambitious.txt 9d7d8a39.... (2) Arms: reborn-m13-control, reborn-m13-town, reborn-m13-plan, reborn-m13-plan-town and reborn-m13-ambitious-town. 'Shop' here is the live town planner only (borg_town_plan = 1, borg_trip_policy = 0), so #88's trip policy is not part of this study; whether it belongs is tested separately (reborn-trip-3x3-classes-18). The town-planner arms include #92's Home guard. Control and plan play as on 1c4b351b (byte-identical keys, checked by the zoo and by borg-reborn-rs). Earlier shop-arm results (zoo pilots 43845673921 and 43851628610, borg-reborn-rs's local 72-game pilot) had the oil loop and the trip policy on, and are not comparable. (3) A fifth arm, reborn-m13-ambitious-town, is compared with reborn-m13-control and with reborn-m13-plan-town (paired rescued and newly killed counts, per class); it is outside the 2x2. (4) The plan in force is evidenced by the core's copy of the loaded plan (errands_plan.txt in the cell's output directory): its sha256 must equal the requested plan's, and it must be absent in no-plan arms, or the cell is config_error. (5) Stalls: a cell with 1,000 or more keys at one game turn is stalled (frozen_turn_loop), with its observed outcome kept. A cell with more than 3 times its arm's median keys (over the arm's turn-cap cells) is flagged key_outlier, because #92 guards one Home visit only and a store/take across visits is still possible, though it costs game time. Flagged cells are listed, and the primary endpoint is reported with and without them. (6) Dispatch on 8 shards; 9,000 cells on 4 would come close to the run job's 300-minute limit.
+owner_authorization: |-
+  2026-11-15: the owner authorised the borg-reborn-rs errands plan x M13 shopping experiment (borg-zoo#123). 2026-11-16: the owner added the ambitious-plan arm, chose the pre-#355 game, and kept the trip policy off in this study until it is shown to help. Dispatch remains the owner's call.
+specimens:
+- 4.2.6-reborn-rust-plans-m13-fix90
+suites:
+- classes-1800
+profile_prefix: ''
+arms:
+  reborn-m13-control:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 0
+    borg_trip_policy: 0
+  reborn-m13-town:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 1
+    borg_trip_policy: 0
+  reborn-m13-plan:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 0
+    borg_trip_policy: 0
+    borg_plan: errands_plan.txt
+  reborn-m13-plan-town:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 1
+    borg_trip_policy: 0
+    borg_plan: errands_plan.txt
+  reborn-m13-ambitious-town:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_town_plan: 1
+    borg_trip_policy: 0
+    borg_plan: errands_plan_ambitious.txt
+control_specimen: 4.2.6-reborn-rust-plans-m13-fix90
+control_profile: reborn-m13-control

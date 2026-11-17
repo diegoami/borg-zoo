@@ -1,0 +1,30 @@
+# Exported from experiments/switches-early.json; edit here, then run python3 -m zoo define.
+name: switches-early
+description: |-
+  Existing borg.txt switches on the original and the latest milestone, early-game pilot (neo-angband-tracker #368)
+specimens:
+- 4.2.6
+- 4.2.6-bbc-m4
+suites:
+- early-50
+profile_prefix: ''
+arms:
+  default: {}
+  plays-risky:
+    borg_plays_risky: true
+  no-swaps:
+    borg_uses_swaps: false
+  no-self-scum:
+    borg_self_scum: false
+  kills-uniques:
+    borg_kills_uniques: true
+  worships-speed:
+    borg_worships_speed: true
+  worships-hp:
+    borg_worships_hp: true
+  worships-damage:
+    borg_worships_damage: true
+  worships-ac:
+    borg_worships_ac: true
+control_specimen: 4.2.6
+control_profile: default

@@ -1,6 +1,7 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "milestones-smoke",
+  "definition": "definitions/milestones-smoke.yaml",
   "description": "All milestones, default profile, smoke suite: a quick check that every specimen builds and runs",
   "specimens": [
     "4.2.6",

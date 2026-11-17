@@ -1,0 +1,71 @@
+# borg-zoo#170: attack_speed_fight_danger_tenths (0, 30, 60) on the bundle with errands_plan, medium tier.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-speed-fight-medium.yaml
+name: reborn-speed-fight-medium
+issue: 170
+question: Does drinking a Potion of Speed before a very dangerous committed fight help the bundle with errands_plan?
+tier: medium           # classes-1800-medium: starts 91-360, 270 per arm
+
+specimen:
+  name: 4.2.6-reborn-rust-speed-fight
+  repository: diegoami/borg-reborn-rs
+  ref: 193d9076747cd5c52e1fe1f6ea314570d8f3873a
+  source: https://github.com/diegoami/borg-zoo/issues/170
+  label: >-
+    borg-reborn-rs 193d9076, main at the merge of #471 (borg-zoo#170). Adds, over f02cd294 (4.2.6-reborn-rust-heal):
+    #469 attack_speed_fight_danger_tenths (default 0 = off), #452 Potions of Speed hoarded, #464 a game's start
+    leaves out borg.txt and flags. Source-hash rust 6448d51d3fa5...; harness/borg.txt 88296dd1... and both
+    max-depth plans unchanged since f02cd294.
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# Every arm: the bundle of borg-zoo#164 with the errands plan.
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_town_plan: 1
+  borg_plan: errands_plan.txt
+  borg_trip_policy: 1
+  borg_trip_unknown_stacks: 5
+  borg_trip_pack_slack: 1
+  borg_param_caution_heal_when_outmatched: 1
+  borg_param_attack_preference_warrior_melee_permille: 1800
+  borg_param_attack_preference_warrior_projectile_permille: 1200
+  borg_param_attack_preference_warrior_thrown_permille: 1200
+  borg_param_attack_preference_mage_spell_permille: 2000
+  borg_param_attack_preference_mage_device_permille: 1200
+  borg_param_attack_preference_druid_spell_permille: 1700
+  borg_param_attack_preference_priest_spell_permille: 1700
+  borg_param_attack_preference_necromancer_spell_permille: 1800
+  borg_param_attack_preference_necromancer_device_permille: 1200
+  borg_param_attack_preference_paladin_melee_permille: 1800
+  borg_param_attack_preference_paladin_spell_permille: 1200
+  borg_param_attack_preference_rogue_projectile_permille: 1300
+  borg_param_attack_preference_rogue_thrown_permille: 1600
+  borg_param_attack_preference_ranger_projectile_permille: 2000
+  borg_param_attack_preference_blackguard_melee_permille: 1600
+  borg_param_attack_preference_blackguard_spell_permille: 1400
+
+profile_prefix: reborn-bundle-plan
+vary:
+  speed:
+    speed0: {}                 # the build's default: off
+    speed30: {borg_param_attack_speed_fight_danger_tenths: 30}
+    speed60: {borg_param_attack_speed_fight_danger_tenths: 60}
+
+control: [speed0]
+owner_authorization: >-
+  2026-11-17: the owner asked to apply the medium dataset to the speed pilot (borg-zoo#170, pilot run
+  43994684018), after its gate passed. The pilot showed no effect: play was identical across speed0,
+  speed30 and speed60 in all 18 starts.
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#170). Medium tier (RULES 14: starts 91-360,
+  270 per arm, 810 games). Gate: no config_error; one binary; the plan pin matches in every arm; the
+  speed setting is written in the borg.txt and params-core.json of speed30 and speed60 only and every
+  bundle setting in all three; every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls
+  and key outliers are listed. Report per arm and per class: deaths, final level, deepest level, keys;
+  paired rescued and newly killed for speed30 and speed60 against speed0 on the same start, and the
+  number of starts where play diverges at all (the pilot had none). Compare only within this run;
+  value 0 is not guaranteed to play as the f02cd294 runs (#452 hoarding, #464). No claim of improvement
+  from the tables (RULES 8).

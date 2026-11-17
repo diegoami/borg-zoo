@@ -1,0 +1,174 @@
+name: Resume paired saved incidents
+# The balanced999 study is complete (run 44058010288), so the push trigger is off and the request
+# file is removed. To resume a study: commit requests/active-paired-stage.yaml (stage, parent_run,
+# owner_authorization), then dispatch this workflow.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: paired-saved-resume
+  cancel-in-progress: false
+jobs:
+  request:
+    runs-on: ubuntu-24.04
+    outputs:
+      parent: ${{ steps.request.outputs.parent }}
+      stage: ${{ steps.request.outputs.stage }}
+      cells: ${{ steps.request.outputs.cells }}
+      report: ${{ steps.request.outputs.report }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - id: request
+        env: {GITHUB_TOKEN: '${{ github.token }}'}
+        run: |
+          python3 - <<'PY'
+          import yaml,json,os,urllib.request
+          d=yaml.safe_load(open('requests/active-paired-stage.yaml'))
+          assert d['stage'] in ['small','medium','big','full'] and isinstance(d['parent_run'],int) and d['parent_run']>0
+          u='https://api.github.com/repos/diegoami/borg-zoo/actions/runs/'+str(d['parent_run'])+'/artifacts?per_page=100'
+          r=urllib.request.Request(u,headers={'Authorization':'Bearer '+os.environ['GITHUB_TOKEN']})
+          names={a['name'] for a in json.load(urllib.request.urlopen(r))['artifacts'] if not a['expired']}
+          assert 'paired-plan' in names and {'paired-build-baseline','paired-build-speed30'}<=names
+          cells='paired-cells-cumulative' if 'paired-cells-cumulative' in names else 'paired-cells-*'
+          report='paired-tier-comparison' if 'paired-tier-comparison' in names else 'paired-smoke-comparison'
+          assert report in names
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('parent='+str(d['parent_run'])+'\nstage='+d['stage']+'\ncells='+cells+'\nreport='+report+'\n')
+          PY
+  prepare:
+    needs: request
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: paired-plan, run-id: '${{ needs.request.outputs.parent }}', github-token: '${{ github.token }}', path: plan}
+      - uses: actions/download-artifact@v4
+        with: {pattern: 'paired-build-*', run-id: '${{ needs.request.outputs.parent }}', github-token: '${{ github.token }}', path: builds, merge-multiple: true}
+      - uses: actions/download-artifact@v4
+        with: {pattern: '${{ needs.request.outputs.cells }}', run-id: '${{ needs.request.outputs.parent }}', github-token: '${{ github.token }}', path: prior-cells}
+      - uses: actions/download-artifact@v4
+        with: {name: '${{ needs.request.outputs.report }}', run-id: '${{ needs.request.outputs.parent }}', github-token: '${{ github.token }}', path: parent-report}
+      - env: {STAGE: '${{ needs.request.outputs.stage }}'}
+        run: python3 -m zoo.paired_resume --plan plan/execution-plan.json --parent-report parent-report/comparison.json --cells prior-cells --stage "$STAGE" --out prepared
+      - id: matrix
+        run: |
+          python3 - <<'PY'
+          import json,os
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('matrix='+json.dumps(json.load(open('prepared/matrix.json')))+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with: {name: paired-plan, path: plan/, retention-days: 90}
+      - uses: actions/upload-artifact@v4
+        with: {name: paired-build-baseline, path: 'builds/build-baseline.*', retention-days: 90}
+      - uses: actions/upload-artifact@v4
+        with: {name: paired-build-speed30, path: 'builds/build-speed30.*', retention-days: 90}
+      - uses: actions/upload-artifact@v4
+        with: {name: paired-prior-cells, path: prior-cells/, retention-days: 90}
+      - uses: actions/upload-artifact@v4
+        with: {name: paired-resume-gate, path: prepared/, retention-days: 90}
+  run:
+    needs: [request,prepare]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        include: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ matrix.source }}', path: source, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ matrix.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ matrix.tools }}', path: native-tools, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: paired-plan, path: downloaded}
+      - uses: actions/download-artifact@v4
+        with: {name: 'paired-build-${{ matrix.arm }}', path: downloaded}
+      - env: {ARM: '${{ matrix.arm }}', BATCH: '${{ matrix.batch }}'}
+        run: |
+          tar -C source -xzf "downloaded/build-$ARM.tgz"
+          tar -C cemetery -xzf downloaded/execution-inputs.tgz
+          python3 -m zoo.paired_incidents run --plan downloaded/execution-plan.json --cemetery cemetery --source source --tools native-tools --arm "$ARM" --batch "$BATCH" --out attempt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'paired-new-cells-${{ matrix.arm }}-${{ matrix.batch }}', path: attempt/cells/, retention-days: 90}
+      - if: always()
+        run: if [ -d attempt ]; then tar -czf native.tgz attempt; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'paired-native-${{ matrix.arm }}-${{ matrix.batch }}', path: native.tgz, retention-days: 14}
+  collect:
+    if: always() && needs.prepare.result == 'success'
+    needs: [request,prepare,run]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: paired-plan, path: plan}
+      - uses: actions/download-artifact@v4
+        with: {name: paired-prior-cells, path: cells/prior}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {pattern: 'paired-new-cells-*', path: cells/current}
+      - env: {STAGE: '${{ needs.request.outputs.stage }}', RUN_URL: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'}
+        run: python3 -m zoo.paired_incidents collect --plan plan/execution-plan.json --inputs cells --out comparison --tier "$STAGE" --run-url "$RUN_URL"
+      - if: always()
+        run: if [ -f comparison/comparison.md ]; then cat comparison/comparison.md >> "$GITHUB_STEP_SUMMARY"; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: paired-tier-comparison, path: comparison/, retention-days: 90}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: paired-cells-cumulative, path: cells/, retention-days: 90}
+  archive:
+    if: always() && needs.prepare.result == 'success' && needs.collect.result != 'skipped'
+    needs: [request,prepare,collect]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: 837c6a11f0681ee6ea0b79a6909ac79b078e7e10, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: paired-tier-comparison, path: comparison}
+      - name: Produce the saved-state dashboard snapshot from validated native cells
+        env: {STAGE: '${{ needs.request.outputs.stage }}', PARENT: '${{ needs.request.outputs.parent }}'}
+        run: >-
+          python3 -m zoo.saved_incidents --input comparison/comparison.json --out compact
+          --tier "$STAGE" --parent-run "$PARENT"
+          --evidence-url https://github.com/diegoami/borg-cemetery/tree/evidence/paired-smoke-validation/validation/borg-zoo/balanced999
+          --howto-url https://github.com/diegoami/borg-cemetery/blob/evidence/paired-smoke-validation/docs/RUN-A-SCENARIO.md
+      - name: Append the comparison without changing natural results or main
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          gh auth setup-git
+          bash tools/archive-saved-incidents.sh "https://github.com/$GITHUB_REPOSITORY.git" compact balanced999-baseline-vs-speed30 "$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" archived
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: saved-incident-dashboard-snapshot, path: compact/, retention-days: 90}
+  preview:
+    if: always() && needs.archive.result == 'success'
+    needs: archive
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: 837c6a11f0681ee6ea0b79a6909ac79b078e7e10, persist-credentials: false}
+      - run: |
+          git fetch --depth=1 origin results
+          git worktree add results-branch FETCH_HEAD
+          python3 -m zoo site --results results-branch/results --out preview
+          test -f "preview/scenarios/saved/balanced999-baseline-vs-speed30/$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT/index.html"
+      - uses: actions/upload-artifact@v4
+        with: {name: saved-incident-dashboard-preview, path: preview/, retention-days: 90}

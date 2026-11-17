@@ -1,0 +1,17 @@
+# Exported from smoke/reborn-e-reviewed-smoke.json; edit here, then run python3 -m zoo define.
+name: reborn-e-reviewed-smoke
+folder: smoke
+description: |-
+  Does the post-review milestone-E Rust specimen build and run through the existing exact-boundary adapter? Compare the accepted review-correction pin with the original tag-e pin on the three frozen smoke seeds. This is a build/interface and identity probe, not a survival claim; hallucination-dependent differences may be legitimate. Existing C controls and all recorded results remain unchanged. Prepared only; not dispatched.
+specimens:
+- 4.2.6-reborn-rust-e
+- 4.2.6-reborn-rust-e-reviewed
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6-reborn-rust-e
+control_profile: default
+extra:
+  control_profile: null

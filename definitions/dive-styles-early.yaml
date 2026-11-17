@@ -1,0 +1,29 @@
+# Exported from experiments/dive-styles-early.json; edit here, then run python3 -m zoo define.
+name: dive-styles-early
+description: |-
+  Dive styles on the original and the latest milestone, early-game pilot: built-in defaults, munchkin start at three target depths, risky, risky plus munchkin, and a no-deeper-than-4 anchor
+specimens:
+- 4.2.6
+- 4.2.6-bbc-m4
+suites:
+- early-50
+profile_prefix: ''
+arms:
+  default: {}
+  munchkin:
+    borg_munchkin_start: true
+  munchkin-d6:
+    borg_munchkin_start: true
+    borg_munchkin_depth: 6
+  munchkin-d10:
+    borg_munchkin_start: true
+    borg_munchkin_depth: 10
+  plays-risky:
+    borg_plays_risky: true
+  risky-munchkin:
+    borg_plays_risky: true
+    borg_munchkin_start: true
+  no-deeper-5:
+    borg_no_deeper: 5
+control_specimen: 4.2.6
+control_profile: default

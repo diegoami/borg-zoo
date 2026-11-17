@@ -1,6 +1,7 @@
 {
   "schema": "borg-zoo/experiment@1",
   "name": "rs-m9-smoke",
+  "definition": "definitions/rs-m9-smoke.yaml",
   "description": "borg-rs M9 builds and runs: smoke suite, Rust and C Borg of the M9 tree against rs-m8",
   "specimens": [
     "4.2.6-rs-m8",

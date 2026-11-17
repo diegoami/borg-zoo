@@ -1,0 +1,34 @@
+{
+  "schema": "borg-zoo/scenario-experiment@1",
+  "name": "cemetery-caster-two-pushids-smoke",
+  "bank": {
+    "repository": "diegoami/borg-cemetery",
+    "commit": "5edfbbdd7f792f95599924bd51607f2d90ba6a77",
+    "manifest": "synthetic/low-level-casters/suite.json",
+    "manifest_sha256": "63b916378906f2235b6fc380e9e86ca7539705861a3b9ffd6300973a8cc35c9c",
+    "suite_spec_sha256": "e14fa44603231ecf8c6509f3015bfd2d75b7e10dbc6e1df9615c47a7556044ed",
+    "runner_sha256": "c19ff268fab88e5f9f483f5142801cf4ae8ecda8cbb2553e2e7143365012598c"
+  },
+  "pushids": [
+    {
+      "pushid": "99473510",
+      "specimen": "4.2.6-reborn-synthetic-99473510"
+    },
+    {
+      "pushid": "d3ebe3c0",
+      "specimen": "4.2.6-reborn-rust-plans-m13-livelock"
+    }
+  ],
+  "scenario_ids": [
+    "low-level-casters-4dbd9db86cec10ca02a4d1f7"
+  ],
+  "comparison_axis": [
+    "target_build"
+  ],
+  "engine_sha256": "4d80ed3b12a19beef624f8f639d0a84350dec5df8f9d76e52c3acbae79684567",
+  "budget": {
+    "max_cells": 2,
+    "max_wall_seconds": 90,
+    "max_parallel": 1
+  }
+}

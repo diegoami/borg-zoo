@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-plan-m13-classes-18",
+  "issue": 123,
+  "definition": "definitions/reborn-plan-m13-classes-18.yaml",
+  "description": "borg-zoo#123 pilot: borg-reborn-rs's class errands plan crossed with the M13 shopping (live town planner + trip policy), 2x2 on one specimen (4.2.6-reborn-rust-plan-m13, borg-reborn-rs 2f74e1c5), on classes-18 (9 classes x 2 seeds, assigned birth, 100,000-turn cap). 72 games. Checks the plan-file plumbing, config errors and the stop mapping before any larger batch.",
+  "prespecified": "Fixed 2026-11-16, before any result was read. Pilot, not a measurement: it passes when every cell has a valid outcome (death, turn_cap or borg_stopped), no cell is config_error, plan cells record the plan's sha256 922372ba...cb160cd, and no cell needs a rerun. Outcomes are reported descriptively per arm and class; nothing is compared for an effect.",
+  "specimens": [
+    "4.2.6-reborn-rust-plan-m13"
+  ],
+  "profiles": [
+    "reborn-m13-control",
+    "reborn-m13-shop",
+    "reborn-m13-plan",
+    "reborn-m13-plan-shop"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-plan-m13",
+  "control_profile": "reborn-m13-control",
+  "owner_authorization": "2026-11-15: the owner authorised the borg-reborn-rs errands plan x M13 shopping experiment (borg-zoo#123), pilot first."
+}

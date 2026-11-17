@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-pb-class-buyqty-pilot",
+  "issue": 198,
+  "definition": "definitions/reborn-pb-class-buyqty-pilot.yaml",
+  "question": "With ammunition bought in one transaction (borg-reborn-rs#507, PR",
+  "description": "With ammunition bought in one transaction (borg-reborn-rs#507, PR Generated from definitions/reborn-pb-class-buyqty-pilot.yaml: 4 arms on 4.2.6-reborn-rust-buyqty-729a94ee, suite classes-1800-small-rangers, classes-1800-small-rogues.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#198). A new pilot of the #198 arms on a new build\n(RULES 16); more starts only after this gate and the owner. Dispatched only after reborn-buy-qty-pilot's\ngate passes. Gate: no config_error; one binary; each arm's borg.txt has both class overrides at its value\nand the shipped general divisor 5; params-core.json reports them on the death replays; no plan loaded;\nevery cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified (purchase bursts are not\nstalls, borg-zoo#205) and key outliers listed; death bundles reproduced. Report per class and arm (shipped:\npb2 for Rangers, pb3 for Rogues, each class against its own shipped arm): deaths, final level, deepest\nlevel, same-start comparison with the e0aa2e0a run of reborn-pb-class-pilot (run 44117547473; a different\nbuild, so outcomes only), and ammunition bought from the death replays. 10 starts per class and arm show\ndirection only.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-buyqty-729a94ee"
+  ],
+  "profiles": [
+    "reborn-pb1",
+    "reborn-pb2",
+    "reborn-pb3",
+    "reborn-pb4"
+  ],
+  "suites": [
+    "classes-1800-small-rangers",
+    "classes-1800-small-rogues"
+  ],
+  "control": "4.2.6-reborn-rust-buyqty-729a94ee",
+  "control_profile": "reborn-pb2",
+  "owner_authorization": "2026-11-17: the owner asked to redo reborn-pb-class-pilot on the borg-reborn-rs#509 build (buy quantity), after that build's own pilot (reborn-buy-qty-pilot, borg-zoo#205) passes its gate."
+}

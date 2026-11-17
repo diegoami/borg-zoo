@@ -1093,6 +1093,7 @@ def versions_page():
 
 
 RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.'),
+            ('Issue', 'The borg-zoo issue the experiment answers.'),
             ('Completed', 'When the run finished (UTC).'),
             ('Versions', 'How many Borg versions it compares.'),
             ('Profiles', 'How many settings profiles it compares.'),
@@ -1101,15 +1102,15 @@ RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.
                          'or failed.')]
 
 
-def nav(active):
-    tabs = [('index.html', 'Overview')] + [(f'{p["slug"]}.html', p['nav']) for p in POLICIES] + \
-           [('detailed.html', 'Detailed'), ('smoke.html', 'Smoke')]
+def nav(active, base=""):
+    tabs = [('index.html', 'Full runs'), ('smoke.html', 'Smoke runs'), ('scenarios/index.html', 'Scenarios')]
     return ('<p class="tabs">' +
-            ''.join(f'<a class="tab{" active" if href == active else ""}" href="{href}">{esc(label)}</a>'
+            ''.join(f'<a class="tab{" active" if href == active else ""}" href="{base}{href}">{esc(label)}</a>'
                     for href, label in tabs) + '</p>')
 
 
-FOOTER = (f'<p class="muted"><a href="versions.html">Versions</a> · <a href="stalls.html">Stalls and crashes</a> · '
+FOOTER = (f'<p class="muted"><a href="overview.html">Borg comparison charts</a> · '
+          f'<a href="versions.html">Versions</a> · <a href="stalls.html">Stalls and crashes</a> · '
           f'<a href="https://github.com/diegoami/borg-zoo/blob/main/docs/DESIGN.md">Method</a> · '
           f'<a href="https://github.com/diegoami/borg-zoo/tree/results">Raw results</a> · '
           f'<a href="https://github.com/diegoami/borg-zoo">Source</a></p>')
@@ -1149,28 +1150,6 @@ def add_your_borg_section():
         'in <a href="https://github.com/diegoami/borg-zoo/pull/32">PR #32</a>.</p>')
 
 
-def policy_studies(runs):
-    """Make policy experiments discoverable without decoding catalogue IDs."""
-    links = []
-    seen = set()
-    for meta, _, _ in runs:
-        info = study_info(meta)
-        name = meta['experiment']['name']
-        if not info or name in seen:
-            continue
-        seen.add(name)
-        href = f'runs/{esc(name)}/{esc(meta["run_id"])}/index.html'
-        links.append(f'<li><a href="{href}">{esc(info["title"])}</a> — {esc(info["intro"])}</li>')
-    if not links:
-        return ''
-    return ('<section><h2>Shopping and return-policy experiments</h2>'
-            '<p>These compare settings within one milestone-12 Rust Borg build. '
-            'The candidate rows turn on both the new shopper and the new trip policy; '
-            'the control uses the existing rules. The pages show the exact differences, '
-            'death counts, mean character level and mean deepest level.</p><ul>'
-            + ''.join(links) + '</ul></section>')
-
-
 def overview_page(runs):
     total = sum(len(c) for _, c, _ in runs)
     latest = runs[0][0].get('completed', '?') if runs else '–'
@@ -1178,7 +1157,7 @@ def overview_page(runs):
     links = class_links(runs, specs)
     buttons = ''.join(f'<a class="big-chip" href="{p["slug"]}.html">{esc(p["nav"])}</a>' for p in POLICIES)
     return (
-        f'<h1>Borg zoo</h1>{nav("index.html")}'
+        f'<h1>Borg zoo</h1>{nav("overview.html")}'
         f'<p class="muted">{total:,} runs · {len(runs)} experiment runs · latest {esc(latest)}</p>'
         f'<p class="lead">Angband Borg versions played headless on the same seeds: the original C Borg, '
         f'better-borg-c\'s milestones of carried fixes, and the borg-rs Rust port.</p>'
@@ -1187,16 +1166,15 @@ def overview_page(runs):
         f'nine classes: with it, and without it. Each tab has its own chart, its own runs and its own '
         f'class pages — read a point inside its tab, never across the two.</p>'
         f'<p>{buttons}</p>{links}</div></div>'
-        f'<p class="muted">Every milestone, the Rust port and the open stalls are on the '
-        f'<a href="detailed.html">Detailed</a> tab.</p>'
-        + policy_studies(runs) + add_your_borg_section() + FOOTER)
+        f'<p class="muted">Every experiment run is on the <a href="index.html">Full runs</a> tab.</p>'
+        + add_your_borg_section() + FOOTER)
 
 
 def smoke_page(rows):
     """Smoke checks: a specimen (a milestone or a head) builds and plays a few
     seeds. Not experiments; kept apart so they do not crowd the comparisons."""
     return (f'<h1>Borg zoo</h1>{nav("smoke.html")}'
-            '<h2>Smoke checks</h2>'
+            '<h2>Smoke runs</h2>'
             + explain('A smoke check builds a Borg version and plays a handful of seeds to see that it runs. '
                       'It says nothing about how well the version plays, and none of it enters the comparisons. '
                       'Newest first.', RUN_COLS)
@@ -1205,24 +1183,16 @@ def smoke_page(rows):
 
 
 def landing_page(runs, run_rows):
+    """Every experiment run in one list, newest first: small tiers and pilots
+    included, each with the borg-zoo issue it answers. Smoke checks keep their
+    own tab."""
     cards = [c for c in (card_milestones(runs), card_port(runs), card_stalls(runs)) if c]
-    experiments = []
-    smoke = cat_mod.smoke_names()
-    for meta, cells, _ in runs:
-        exp = meta['experiment']
-        if exp['name'] in smoke:
-            continue
-        finished = sum(c['outcome'] in stats.VALID for c in cells)
-        experiments.append(
-            f'<article class="card experiment-brief"><h2><a href="{link(meta)}">{esc(question(exp))}</a></h2>'
-            f'<p class="muted">{esc(exp["name"])} · {esc(meta.get("completed", "?"))}</p>'
-            + experiment_brief(meta, compact=True)
-            + f'<p>{finished:,} of {len(cells):,} games finished · <a href="{link(meta)}">View results</a></p></article>')
     return (
-        f'<h1>Borg zoo</h1>{nav("detailed.html")}'
-        f'{policy_studies(runs)}<h2>Experiment runs</h2>'
-        '<p>Choose the question you want to investigate. Newest runs first.</p>'
-        + ('<div class="cards">' + ''.join(experiments) + '</div>' if experiments else '<p class="muted">No results yet.</p>')
+        f'<h1>Borg zoo</h1>{nav("index.html")}'
+        '<h2>Full runs</h2>'
+        + explain('Every experiment run, newest first, small tiers and pilots included. Each report shows '
+                  'the YAML definition and the build used.', RUN_COLS)
+        + (table(RUN_COLS, run_rows) if run_rows else '<p class="muted">No results yet.</p>')
         + '<details class="background"><summary>Cross-experiment summaries and historical caveats</summary>'
         + mode_cutoff_note() + f'<div class="cards">{"".join(cards)}</div></details>'
         + FOOTER)

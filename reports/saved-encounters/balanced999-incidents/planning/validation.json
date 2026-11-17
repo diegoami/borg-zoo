@@ -1,0 +1,34 @@
+{
+  "baseline_plan_hash": "3be3b25955f9bc4b743790af48ce22ae4019d87880b429afb50707f04a95c0fd",
+  "class_counts": {
+    "Blackguard": 111,
+    "Druid": 111,
+    "Mage": 111,
+    "Necromancer": 111,
+    "Paladin": 111,
+    "Priest": 111,
+    "Ranger": 111,
+    "Rogue": 111,
+    "Warrior": 111
+  },
+  "comparison_plan_hash": "fa3fd0c39b609fc6cc2c220bcfa92a6bf6bef5514aafe9c90830d83862091beb",
+  "expected_comparison_cells": 1998,
+  "expected_scenarios": 999,
+  "file_sha256": {
+    "baseline-plan.json": "639ee523e33ab4f520ed22b1de1ed5a4f03c28688292a5cedc7a1d9204aabb10",
+    "comparison-plan.json": "84a36a028cd2cde262cb0d77f993d1a6ca64554b067c04e30c16ffaf01b5bd62"
+  },
+  "games_executed": 0,
+  "historical_incidents": {
+    "death": 611,
+    "observed_critical_recovery": 388
+  },
+  "next_execution_gate": "Integrate configured borg-rs candidate receipts, then36-cell paired smoke",
+  "planning_implementation_commit": "6fd4c660c18357835731539777332e6a4829a4eb",
+  "status": "planning_validated_not_executed",
+  "tested": {
+    "optional_skips": 1,
+    "zoo_tests": 218
+  },
+  "unique_saved_starts": 999
+}

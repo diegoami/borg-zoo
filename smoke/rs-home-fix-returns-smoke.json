@@ -1,0 +1,31 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "rs-home-fix-returns-smoke",
+  "issue": 129,
+  "definition": "definitions/rs-home-fix-returns-smoke.yaml",
+  "description": "54 native configuration and timing checks for rs-home-fix-returns (borg-zoo#129): six configurations across all nine classes on borg-rs 8c5d000a (PR88 + PR92). 100000 turns per game; diagnostic only.",
+  "prespecified": "Configuration and wiring only. Inspect all 54 endpoints, native effective settings against each arm, actual class/race, and source/binary identity (borg-rs 8c5d000a with PR88 and PR92). Natural deaths are normal endpoints. Report every abnormal outcome, frozen-turn stall and key outlier. Check from the retained native receipts that Home transfers settle (no store/take reversal within a visit), and that policy-off shopping and (0,0) keys are equal where no added return request changes play. No performance inference from these nine starts. No arm of rs-home-fix-returns is dispatched until these checks pass.",
+  "specimens": [
+    "4.2.6-rs-pr92-home-fix"
+  ],
+  "profiles": [
+    "rs-additive-existing",
+    "rs-additive-shopping-only",
+    "rs-additive-p0-u0",
+    "rs-additive-p1-u2",
+    "rs-additive-p1-u4",
+    "rs-additive-p2-u4"
+  ],
+  "suites": [
+    "rs-additive-timing-9"
+  ],
+  "control": "4.2.6-rs-pr92-home-fix",
+  "control_profile": "rs-additive-shopping-only",
+  "owner_authorization": "2026-11-16 owner request (borg-zoo#129, from borg-rs): test merged PR92's Home fix with PR88's return-only trip policy in a fresh pinned study, reusing the rs-additive-returns design and exact shopping settings; a small configuration/native pilot first. 2026-11-16 the owner asked for a control run in the meantime. Runner rule: bounded shards, at most 20 game jobs and one game process per job.",
+  "resource_budget": {
+    "max_parallel_jobs": 6,
+    "processes_per_job": 1
+  },
+  "retain_evidence": true,
+  "source_notes": "All arms pin borg-rs main 8c5d000a58e9ddca1f1954ab9552e505856b313f, PR92's merge, which contains PR88 (7251f64a). The six profiles are the rs-additive-returns profiles, unchanged, so every resolved setting equals that study's; only the source differs (PR92 added). New specimen and experiment; rs-additive-returns, PR85, PR88 and reborn pins and results are preserved. (0,0) is full-pack returns with learning-driven returns disabled, not policy off. The trip switch does not change shopping forecasts, inventory valuation or combat oil reserves."
+}

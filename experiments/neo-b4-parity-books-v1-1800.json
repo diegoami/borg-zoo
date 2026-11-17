@@ -1,0 +1,28 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "neo-b4-parity-books-v1-1800",
+  "issue": 137,
+  "definition": "definitions/neo-b4-parity-books-v1-1800.yaml",
+  "description": "Owner-authorized new1800-game arm after smoke acceptance. Borg1.4.0-beta.6.zoo.1 combines six parity fixes514-519 with book-value509; verified API2.1 engine d27ed50f, truth/message toolkit967b28f. Engine differs from old b4af703 book run. No new survival or C-parity claim; all outcomes/raw evidence retained. ON HOLD (borg-zoo#137, RULES 14): superseded as the next dispatch target by neo-b4-parity-books-v1-small; do not dispatch this file whole.",
+  "specimens": [
+    "neo-b4-parity-books-v1"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "neo-seeded-v2-classes-1800"
+  ],
+  "control": "neo-b4-parity-books-v1",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "neo-b4-parity-books-v1": 36
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 4,
+    "native_wall_seconds": 600,
+    "neo_wall_seconds": 600,
+    "job_timeout_minutes": 300
+  }
+}

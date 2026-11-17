@@ -25,7 +25,7 @@
       "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "mode_side": "pre",
       "carries": 0,
-      "label": "Angband 4.2.6 \u2014 the original C Borg as the release ships it (angband/angband e473720)",
+      "label": "Angband 4.2.6 — the original C Borg as the release ships it (angband/angband e473720)",
       "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "formerly": [
         "pristine"
@@ -628,7 +628,7 @@
       "exact_turns": true,
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-reborn-rs/blob/f0eeee25d1ff2cb1103ed08518a6c5f6500dad46/docs/ZOO-INTERFACE.md",
-      "label": "borg-reborn-rs milestone E after its accepted review corrections (#94\u2013#96), as requested in borg-zoo#48. Separate pin preserves the pre-review tag-e results. Hallucination perception is corrected; the original C controls stay at their own pins."
+      "label": "borg-reborn-rs milestone E after its accepted review corrections (#94–#96), as requested in borg-zoo#48. Separate pin preserves the pre-review tag-e results. Hallucination perception is corrected; the original C controls stay at their own pins."
     },
     "4.2.6-rs-m11": {
       "kind": "borg-rs",
@@ -852,6 +852,95 @@
       "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/101",
       "label": "Neo fork including merged danger/HP/retreat repairs and durable monster-truth host correction #100. Explicit C point-buy/no-selling/startup profile; engine b4af703. Clock640 unresolved. New descriptive run; old truth-denied cohort is not a repaired-Borg baseline."
     },
+    "4.2.6-reborn-rust-maxdepth": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "6d1bca10bc67d02150a1a717f111891976e98069",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "source": "https://github.com/diegoami/borg-reborn-rs/pull/444",
+      "label": "borg-reborn-rs 6d1bca10, the main merge of #444 (borg-zoo#147): #440's max-depth plans (a phase 'max-depth N' only caps the core with borg_no_deeper; the level-loop errand is removed and a loop-levels plan exits 2) and #444's planner item values (real food only with the 5-ration floor, 45 kinds the core never uses worthless, buy-to-identify off with the trip policy, casters' spells not valued as infinite mana). On top of d3ebe3c0. A different game: source-hash rust 8646eb97... (was 6b3b9e99...). harness/borg.txt 88296dd1... unchanged; both plans rewritten as max-depth caps, with new hashes."
+    },
+    "4.2.6-reborn-rust-plans-m13-livelock": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "d3ebe3c0e0e181a45893ca9e2ac855f7b5365b92",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "plans": {
+        "errands_plan.txt": "922372ba849489c579449f8cd6f827b29ed65b6e8e0f67bd0fe8be2f3cb160cd",
+        "errands_plan_ambitious.txt": "9d7d8a3984e278f2bb7bf61be7cdacdb16b9b513b364735fed7e7fa947d59dd2"
+      },
+      "source": "https://github.com/diegoami/borg-reborn-rs/pull/428",
+      "label": "borg-reborn-rs d3ebe3c0, the main merge of #428 (borg-zoo#141): the borg-reborn-rs#421 stair-livelock fix (when the core refuses the next level again for the same reason with no descent in between, the level loop holds and the core plays the level it is prepared for, instead of going home and straight back down), on top of 4ecb93d7's #423 survival fixes and #378's synthetic P1 startup (off by default). A different game from 4ecb93d7 in the plan arms: source-hash rust 6b3b9e99... (was 2317021c...); control and town should play the same keys. harness/borg.txt 88296dd1... and both plans unchanged (still the loop-levels plans)."
+    },
+    "4.2.6-reborn-rust-plans-m13-survival": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "4ecb93d77c625e03d2b838837da597d07bfbabe2",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "plans": {
+        "errands_plan.txt": "922372ba849489c579449f8cd6f827b29ed65b6e8e0f67bd0fe8be2f3cb160cd",
+        "errands_plan_ambitious.txt": "9d7d8a3984e278f2bb7bf61be7cdacdb16b9b513b364735fed7e7fa947d59dd2"
+      },
+      "source": "https://github.com/diegoami/borg-reborn-rs/pull/423",
+      "label": "borg-reborn-rs 4ecb93d7, the main merge of #423 (borg-zoo#138): the flee-healing fix (#369: while fleeing, borg_heal() is no longer skipped because HP cannot absorb another round) and the Phase Door stock fix (#380: a learned Phase Door spell no longer zeroes the scroll's supply value), on main 8837ece2 (borg-rs 8c5d000 plus recorder v0.2.0, off by default). A different game from 8a0b57c8: source-hash rust 2317021c... (was 9a4ea375...); healing applies without the planner, so the control arm changes too. harness/borg.txt 88296dd1... and both plans unchanged. borg-reborn-rs#421 (stair livelock) is not fixed here."
+    },
+    "4.2.6-reborn-rust-plans-m13-fix90": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "8a0b57c85700abd48981c2f41a65a0a637f7dc48",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "plans": {
+        "errands_plan.txt": "922372ba849489c579449f8cd6f827b29ed65b6e8e0f67bd0fe8be2f3cb160cd",
+        "errands_plan_ambitious.txt": "9d7d8a3984e278f2bb7bf61be7cdacdb16b9b513b364735fed7e7fa947d59dd2"
+      },
+      "source": "https://github.com/diegoami/borg-reborn-rs/pull/415",
+      "label": "borg-reborn-rs 8a0b57c8, the main merge of #415 (closes #368), borg-zoo#123's development specimen. A different game from 2f74e1c5 and 1c4b351b: the vendored core is refreshed to borg-rs 8c5d000a, so source-hash rust is 9a4ea375... (was 87717140...). It carries borg-rs#92, the live town planner's per-visit Home guard that fixes the borg-rs#90 oil loop, and borg-rs#88, with which borg_trip_policy = 1 only adds return requests and no longer changes depth, shopping or combat. harness/borg.txt is 88296dd1...42732f13 (only comments changed from e5b29126...; same settings). Same two plans. Cells with the town planner and trip policy off play byte-identically to 1c4b351b (borg-reborn-rs, 12 cells); cells with either on differ. No #355."
+    },
+    "4.2.6-reborn-rust-plans-m13": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "1c4b351b38f79052f27198d0aef0dbe1e9a2a0ee",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "plans": {
+        "errands_plan.txt": "922372ba849489c579449f8cd6f827b29ed65b6e8e0f67bd0fe8be2f3cb160cd",
+        "errands_plan_ambitious.txt": "9d7d8a3984e278f2bb7bf61be7cdacdb16b9b513b364735fed7e7fa947d59dd2"
+      },
+      "source": "https://github.com/diegoami/borg-reborn-rs/blob/1c4b351b38f79052f27198d0aef0dbe1e9a2a0ee/docs/ZOO-INTERFACE.md",
+      "label": "borg-reborn-rs 1c4b351b, the main merge commit of #354 (tree identical to its synced head 8eb0be69), borg-zoo#123's five-arm specimen. The same game as 4.2.6-reborn-rust-plan-m13 (2f74e1c5), not a different one: source-hash rust 87717140... and harness/borg.txt e5b29126...1961a88 are equal, and its control and plan-shop arms play identical keys on both. It differs only in the plans it ships, adding harness/plans/errands_plan_ambitious.txt. No #355 survival fix: main reverted it (#373, PR #379) at the owner's request. Sits beside 4.2.6-reborn-rust-plan-m13, which keeps its four-arm pilot (run 43845673921); the five-arm pilot uses this one. borg-rs#90 (the M13 oil store/take loop) is still present, so its shop arms are not the development study's: that waits for a specimen with the borg-rs#90 fix (borg-reborn-rs#368), a different game."
+    },
+    "4.2.6-reborn-rust-plan-m13": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "2f74e1c5d57ce2b41ded1b5b694174b91b51f265",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "plans": {
+        "errands_plan.txt": "922372ba849489c579449f8cd6f827b29ed65b6e8e0f67bd0fe8be2f3cb160cd"
+      },
+      "source": "https://github.com/diegoami/borg-reborn-rs/blob/2f74e1c5d57ce2b41ded1b5b694174b91b51f265/docs/GAME-PLAN-LANGUAGE.md",
+      "label": "borg-reborn-rs 2f74e1c5 (main), borg-zoo#123: borg-rs's core in the reborn shell with the errands-plan POC (#308), the M13 town/trip core (tag 4.2.6-rs-town-trip-m13-v1, #332, both policies off by default) and the strict borg.txt reader (#331). Ships harness/plans/errands_plan.txt for the plan arms; harness/borg.txt sha256 e5b29126...1961a88. Settings are checked in the written borg.txt only (the frontend reports no effective_settings)."
+    },
     "4.2.6-reborn-core-pilot": {
       "kind": "borg-rs",
       "impl": "rust",
@@ -913,6 +1002,191 @@
       "toolkit_ref": "02c33cf1871b86ea8e8d7bf8cbc870cf177b736b",
       "toolkit_path": "tools/zoo",
       "role": "candidate"
+    },
+    "4.2.6-rs-pr92-home-fix": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "8c5d000a58e9ddca1f1954ab9552e505856b313f",
+      "depth_stream": true,
+      "verify_effective_settings": true,
+      "play_mode": "single",
+      "loop_checks": true,
+      "label": "M13 Rust Borg at borg-rs main 8c5d000a, PR92's merge (borg-zoo#129): PR88's added town-return triggers (7251f64a, an ancestor) plus PR92, which stops a confirmed Home transfer being reversed within the same visit (the borg-rs#90 oil store/take loop). Same flags as 4.2.6-rs-pr88-additive-returns, plus the zoo's frozen-turn and key-outlier checks.",
+      "source": "https://github.com/diegoami/borg-rs/pull/92"
+    },
+    "4.2.6-rs-pr88-additive-returns": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "ref": "7251f64a9c3bf75fb8b90940d3fda54c4fa610bb",
+      "depth_stream": true,
+      "verify_effective_settings": true,
+      "play_mode": "single",
+      "label": "M13 Rust Borg with merged PR88: added town-return triggers preserve legacy returns and do not alter shopping forecasts, combat reserves or depth decisions.",
+      "source": "https://github.com/diegoami/borg-rs/pull/88"
+    },
+    "neo-b4-parity-books-v1": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "464a1555ca73cf662b522f020152faa9d1a2d465",
+      "engine_repository": "neostryder/neo-angband",
+      "engine_ref": "d27ed50f9e3b650a43cceda5a0c007d03cc321df",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "638979da690891c11da1c1e780631828953b03d7",
+      "toolkit_path": "tools/zoo",
+      "birth_profile": "c-seeded-point-buy-v2",
+      "wall_factor": 1,
+      "role": "candidate",
+      "source": "https://github.com/diegoami/neo-angband-borg-mod-tracker/pull/113",
+      "label": "Experimental Borg1.4.0-beta.6.zoo.1: six C-parity fixes514-519 plus retained book-value correction509, on verified beta.4/API2.1 engine d27ed50f. Toolkit638979d includes the already-verified beta.4 SDK build alias; runtime message/truth/session code matches967b28f. Previous book cohort43759670685 used beta.3 fork engineb4af703 and older Borg; cross-run comparisons are descriptive, not a six-fix-only causal estimate. Clock640 unresolved."
+    },
+    "4.2.6-reborn-rust-heal": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "f02cd2940a7439a8965b3883270a9a73df7e0bf5",
+      "source": "https://github.com/diegoami/borg-zoo/issues/151",
+      "label": "borg-reborn-rs f02cd294, the main merge of #463 (borg-zoo#151). Adds, over 6d1bca10: #461 caution_heal_when_outmatched (default 0, play unchanged), #459 back-away never onto lava, #455 Remove Hunger valued as food, #463 knowledge-only purchases off in every arm, #407/#466 class/family attack preferences (neutral). Source-hash rust bb27c7c3...; harness/borg.txt 88296dd1... and both max-depth plans unchanged.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-synthetic-99473510": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "99473510940b8a7bd6e77ad61e3a2b00c72a6e6d",
+      "carries": 0,
+      "role": "candidate",
+      "label": "Pinned synthetic P1 runtime. Scenario dispatch only; its capability is verified at execution.",
+      "source": "https://github.com/diegoami/borg-reborn-rs/tree/99473510940b8a7bd6e77ad61e3a2b00c72a6e6d"
+    },
+    "4.2.6-reborn-rust-main-fdaf18e5": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "fdaf18e52b402d9952f432109806b210cd2074ff",
+      "source": "https://github.com/diegoami/borg-zoo/issues/181",
+      "label": "borg-reborn-rs fdaf18e5, main at the merge of #480 (the speed30 bundle made the shipped default), with #473 (never use unidentified items; discard Deep Descent). Source-hash rust 258ccc77107e...; harness/borg.txt 1b062d8b... sets borg_reborn_core = borg-rs, borg_town_plan = 1, the trip policy (unknown_stacks 5, pack_slack 1), heal when outmatched, attack_speed_fight_danger_tenths = 30 and the 16 attack preferences; no plan, errand none.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-speed-fight": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "193d9076747cd5c52e1fe1f6ea314570d8f3873a",
+      "source": "https://github.com/diegoami/borg-zoo/issues/170",
+      "label": "borg-reborn-rs 193d9076, main at the merge of #471 (borg-zoo#170). Adds, over f02cd294 (4.2.6-reborn-rust-heal): #469 attack_speed_fight_danger_tenths (default 0 = off), #452 Potions of Speed hoarded, #464 a game's start leaves out borg.txt and flags. Source-hash rust 6448d51d3fa5...; harness/borg.txt 88296dd1... and both max-depth plans unchanged since f02cd294.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-4d83dd26": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "4d83dd26ef6b510e80a8ff11464f1e49d02daaaa",
+      "source": "https://github.com/diegoami/borg-zoo/issues/186",
+      "label": "borg-reborn-rs 4d83dd26, main at the merge of #495 (#485): fdaf18e5 with one more shipped line, borg_param_attack_arrow_point_blank_divisor = 2. Same source-hash rust as fdaf18e5 (258ccc77107e...), so the same binary; harness/borg.txt 14dc3a57... is fdaf18e5's speed30 bundle defaults (no plan, errand none) plus that line.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-e85b80e1": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "e85b80e13eb6ef50adb1f7cf96852594a8ec6843",
+      "source": "https://github.com/diegoami/borg-zoo/issues/191",
+      "label": "borg-reborn-rs e85b80e1, main at the merge of #489 (#483): while heading to town, a descent that is not a real escape is held and the Borg explores for an up staircase (caution_rising_explore_ticks, compiled 300; caution_rising_descend_danger_tenths 10). Over 4d83dd26 only that. Source-hash rust e0081f5b...; harness/borg.txt 14dc3a57... (the 4d83dd26 shipped defaults: speed30 bundle, divisor 2, no plan).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-7e08c920": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "7e08c9202016a518872c4520c430add910f89aa0",
+      "source": "https://github.com/diegoami/borg-zoo/issues/192",
+      "label": "borg-reborn-rs 7e08c920, main at the merge of #496 (#491): over 4d83dd26 it adds #489 (#483, rising to town explores for an up staircase, caution_rising_explore_ticks 300) and #496 (town planner healing reserve, curve scale and healing speed; shipped borg.txt 400 / 100 / 66).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-e0aa2e0a": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "e0aa2e0adb53b9b3d5039cd03ce004bce15765cf",
+      "source": "https://github.com/diegoami/borg-zoo/issues/192",
+      "label": "borg-reborn-rs e0aa2e0a, main at the merge of #498: over 7e08c920 (the #192 pilot's specimen) it adds #492 (#486: Boldness is no buff to the town planner, no wine bought for it) and #498 (#485: point-blank divisor by class, shipped default 5, Ranger 2, Rogue 3). Source-hash rust 028e2de4...; harness/borg.txt 498475fa... keeps the #491 healing lines at 400 / 100 / 66.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-28360152": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "control",
+      "loop_checks": true,
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "283601528c85a29c1da60e63aeac9dec45d30de8",
+      "source": "https://github.com/diegoami/borg-zoo/issues/205",
+      "label": "borg-reborn-rs 28360152, main at the merge of #494 (#493: explicit gold reserve, shipped 0 with borg_town_w_gold 0). Over e0aa2e0a: #494, #497 (rules), #501 (#496 review fixes, no play change). Source-hash rust b34c8615...; harness/borg.txt 386be998... (speed30 bundle, no plan; healing 400 / 100 / 66; point-blank divisor 5, Ranger 2, Rogue 3).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-buyqty-729a94ee": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "loop_checks": true,
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "729a94ee9481c82ba67befc16a382605d64ccc15",
+      "source": "https://github.com/diegoami/borg-zoo/issues/205",
+      "label": "borg-reborn-rs 729a94ee, head of PR #509 (#507, not merged) over main 28360152: a planned BUY keeps the plan's copies, capped by stack, pack room and gold, and the Borg types them at the quantity prompt; sales and Home takes stay one copy per action. Source-hash rust 4b00fd95...; harness/borg.txt 386be998... (unchanged from 28360152).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
     },
     "neo-fork-books-509-seeded-v2": {
       "kind": "neo-original",

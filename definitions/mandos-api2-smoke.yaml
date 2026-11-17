@@ -1,0 +1,17 @@
+# Exported from smoke/mandos-api2-smoke.json; edit here, then run python3 -m zoo define.
+name: mandos-api2-smoke
+folder: smoke
+description: |-
+  The two api2 Mandos lanes, upstream a10655c3 and port-only, on the smoke suite (3 seeds, Human Warrior, 20,000 game ticks)
+specimens:
+- neo-b3-api2-upstream
+- neo-b3-api2-port.2
+suites:
+- smoke
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: neo-b3-api2-upstream
+control_profile: default
+extra:
+  control_profile: null

@@ -1,0 +1,34 @@
+{
+  "schema": "borg-zoo/scenario-experiment@1",
+  "name": "cemetery-warrior-two-pushids-smoke",
+  "bank": {
+    "repository": "diegoami/borg-cemetery",
+    "commit": "9b38f76f279bfa1f7e93588dc19e8a02f086cabd",
+    "manifest": "synthetic/p1-warrior/suite.json",
+    "manifest_sha256": "95395b02abb84c834deeba53d46c162396ffac77aa7e53d4dc8e174f19f1cda3",
+    "suite_spec_sha256": "8030348f3d9a16d7b1cc5ef093806d0fe7934d4cf2b2aa7b0aff700a274031c9",
+    "runner_sha256": "c19ff268fab88e5f9f483f5142801cf4ae8ecda8cbb2553e2e7143365012598c"
+  },
+  "pushids": [
+    {
+      "pushid": "99473510",
+      "specimen": "4.2.6-reborn-synthetic-99473510"
+    },
+    {
+      "pushid": "d3ebe3c0",
+      "specimen": "4.2.6-reborn-rust-plans-m13-livelock"
+    }
+  ],
+  "scenario_ids": [
+    "p1-warrior-58049e87970571527e48fe74"
+  ],
+  "comparison_axis": [
+    "target_build"
+  ],
+  "engine_sha256": "4d80ed3b12a19beef624f8f639d0a84350dec5df8f9d76e52c3acbae79684567",
+  "budget": {
+    "max_cells": 2,
+    "max_wall_seconds": 90,
+    "max_parallel": 1
+  }
+}

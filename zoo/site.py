@@ -1,4 +1,5 @@
 """Static statistics site generated from the results tree."""
+import gzip
 import html
 import json
 import shutil
@@ -9,6 +10,21 @@ from pathlib import Path
 from . import catalogue as cat_mod
 from . import stats, configuration
 from .briefs import question, profile_label
+
+# Raw cell files are not copied into Pages: together they are about as large
+# as the whole results branch (991 MB on 2026-11-15, against Pages' 1 GB
+# limit, borg-zoo#114 T0). The results branch is append-only, so the file a
+# run wrote stays at the same path there and a link to it is permanent.
+RESULTS_RAW = 'https://raw.githubusercontent.com/diegoami/borg-zoo/results/results'
+
+
+def raw_cells_url(results_path):
+    """Link to a run's cells.jsonl on the results branch ('<experiment>/<run>')."""
+    return f'{RESULTS_RAW}/{results_path}/cells.jsonl'
+
+
+def results_path(src):
+    return f'{Path(src).parent.name}/{Path(src).name}'
 
 CSS = """
 :root{--card:#ffffff;--bg:#fbfaf7;--fg:#1d1d1b;--muted:#6b6a64;--line:#dcd9cf;--head:#f0eee7;--good:#1f7a3a;--bad:#a8321e;--accent:#2f5d8a;--rust:#b58700}
@@ -68,7 +84,7 @@ svg.scatter.compact{max-width:140px}
    for width and scrolled individually instead of just... fitting. */
 .class-cell .chart{max-width:none;overflow-x:visible}
 .class-cell .chart svg{min-width:0;max-width:100%}
-p.tabs{display:flex;gap:4px;margin:8px 0 18px;border-bottom:1px solid var(--line)}
+p.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 18px;border-bottom:1px solid var(--line)}
 p.tabs .tab{padding:6px 14px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent}
 p.tabs .tab.active{color:var(--fg);font-weight:600;border-bottom-color:var(--accent)}
 th{white-space:normal;vertical-align:bottom}th[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help}
@@ -280,6 +296,7 @@ def consolidate(runs):
                                 for k in ('compilers', 'platforms')},
                 'missing_cells': sum(p[0].get('missing_cells', 0) for p in parts),
                 'consolidated_runs': [{'run_id': p[0]['run_id'], 'run_url': p[0].get('run_url', ''),
+                                       'results_path': results_path(p[2]),
                                        'arm': p[0]['experiment']['arm'], 'completed': p[0].get('completed', ''),
                                        'zoo_commit': p[0].get('zoo_commit', ''),
                                        'harness': (p[0]['catalogue'].get('harness') or {}).get('commit', '')}
@@ -474,12 +491,23 @@ def cutoff_note(exp, specimens, completed, harness_commit=''):
     return ''.join(lines)
 
 
+def raw_cells_link(meta):
+    if meta.get('consolidated_runs'):
+        return ('<a href="cells.jsonl.gz">merged cells (gzipped JSON lines)</a>; '
+                'each arm run\'s raw cells are linked below')
+    if meta.get('results_path'):
+        return f'<a href="{esc(raw_cells_url(meta["results_path"]))}">raw cells (JSON lines, results branch)</a>'
+    return 'raw cells on the results branch'
+
+
 def consolidated_note(meta):
     parts = meta.get('consolidated_runs')
     if not parts:
         return ''
     rows = ''.join(f'<li><a href="{esc(p["run_url"] or "#")}">{esc(p["arm"])}</a> · {esc(p["completed"])} · '
-                   f'harness {esc(p["harness"][:8])} · zoo {esc(p["zoo_commit"][:8])}</li>' for p in parts)
+                   f'harness {esc(p["harness"][:8])} · zoo {esc(p["zoo_commit"][:8])}'
+                   + (f' · <a href="{esc(raw_cells_url(p["results_path"]))}">raw cells</a>' if p.get('results_path') else '')
+                   + '</li>' for p in parts)
     env = meta.get('environment', {})
     differ = []
     if len({p['completed'][:10] for p in parts}) > 1:
@@ -620,6 +648,53 @@ def town_shadow_table(meta, cells):
                      'Snapshot Home dispositions', 'Config SHA-256', 'Native parameter vector', 'Error'], rows, left=4))
 
 
+def provenance_line(exp):
+    """The issue an experiment answers and the YAML that defines it."""
+    issue, definition = cat_mod.issue_of(exp), cat_mod.definition_of(exp)
+    parts = []
+    if issue:
+        parts.append(f'Answers <a href="{cat_mod.ISSUES_URL}{issue}">borg-zoo issue #{issue}</a>')
+    if definition:
+        parts.append(f'Defined in <a href="{cat_mod.DEFINITIONS_URL}{definition}"><code>{esc(definition)}</code></a>')
+    line = f'<p class="issue">{" · ".join(parts)}</p>' if parts else ''
+    if definition:
+        text = (cat_mod.ROOT / definition).read_text()
+        line += (f'<details class="definition" open><summary>Experiment definition: <code>{esc(definition)}</code>'
+                 f'</summary><pre>{esc(text)}</pre></details>')
+    return line
+
+
+def build_used(meta, cells):
+    """What executed the games: per specimen, the exact source, binary and
+    toolchain the records report, and the zoo commit and Actions run."""
+    rows = []
+    for name in meta['experiment']['specimens']:
+        spec = meta['catalogue']['specimens'].get(name, {})
+        mine = [c for c in cells if c.get('specimen') == name]
+
+        def seen(key):
+            vals = sorted({c.get(key) for c in mine if c.get(key)})
+            if not vals:
+                return '–'
+            text = '<br>'.join(f'<code>{esc(v)}</code>' for v in vals)
+            return text + (f' <strong>({len(vals)} different)</strong>' if len(vals) > 1 else '')
+        repo, ref = spec.get('repository', ''), spec.get('ref', '')
+        commit = (f'<a href="https://github.com/{esc(repo)}/commit/{esc(ref)}"><code>{esc(ref)}</code></a>'
+                  if repo and ref else f'<code>{esc(ref or "–")}</code>')
+        rows.append([esc(name), esc(repo or '–'), commit, seen('source_sha256'), seen('binary_sha256'),
+                     seen('compiler'), seen('rustc'), seen('platform')])
+    zoo = meta.get('zoo_commit')
+    zoo_link = (f'<a href="https://github.com/diegoami/borg-zoo/commit/{esc(zoo)}"><code>{esc(zoo[:12])}</code></a>'
+                if zoo else '–')
+    run = (f'<a href="{esc(meta["run_url"])}">Actions run {esc(meta.get("run_id", ""))}</a>'
+           if meta.get('run_url') else esc(meta.get('run_id', '–')))
+    return ('<details class="build-used" open><summary>Build used to run it</summary>'
+            + table(['Specimen', 'Repository', 'Commit', 'Source hash', 'Binary SHA-256', 'Compiler', 'rustc', 'Platform'],
+                    rows)
+            + f'<p class="muted">Zoo {zoo_link} · {run}. The values are what the game records report; a source '
+              'hash is recorded for borg-rs builds from 2026-11-16 on.</p></details>')
+
+
 def run_page(meta, cells):
     exp = meta['experiment']
     specimens = meta['catalogue']['specimens']
@@ -629,7 +704,10 @@ def run_page(meta, cells):
     page_title = display['title'] if display else exp['name']
     intro = display['intro'] if display else exp.get('description', '')
     parts = [f'<p><a href="../../index.html">All experiments</a></p>',
-             f'<h1>{esc(page_title)}</h1><p class="lead">{esc(intro)}</p>',
+             f'<h1>{esc(page_title)}</h1>',
+             provenance_line(exp),
+             build_used(meta, cells),
+             f'<p class="lead">{esc(intro)}</p>',
              configuration.summary(meta),
              experiment_brief(meta),
              tested_settings(meta),
@@ -639,7 +717,7 @@ def run_page(meta, cells):
                 if exp.get('prespecified') and not display else '')
              + '</details>',
              f'<p class="muted">Run {esc(meta["run_id"])} · completed {esc(meta.get("completed", "?"))} · '
-             f'<a href="{esc(meta.get("run_url", "#"))}">workflow run</a> · <a href="cells.jsonl">raw cells (JSON lines)</a></p>',
+             f'<a href="{esc(meta.get("run_url", "#"))}">workflow run</a> · {raw_cells_link(meta)}</p>',
              consolidated_note(meta),
              '<details class="background"><summary>How to read the statistics</summary><p class="note">An <em>arm</em> is one Borg version run with one settings profile; every arm plays '
              'the same seeds, one game per seed. Results are descriptive unless the experiment says it is '
@@ -917,22 +995,30 @@ def build_site(results, out):
     for meta, cells, src in every:
         target = out / 'runs' / meta['experiment']['name'] / meta['run_id']
         target.mkdir(parents=True, exist_ok=True)
+        if not meta.get('consolidated_runs'):
+            meta = {**meta, 'results_path': results_path(src)}
         configuration.build_inspector(meta, cells, src, target)
         (target / 'index.html').write_text(run_page(meta, cells))
         if meta.get('consolidated_runs'):
-            (target / 'cells.jsonl').write_text(''.join(json.dumps(c, sort_keys=True) + '\n' for c in cells))
+            # The merged set exists nowhere else, so it is published, gzipped.
+            # mtime=0 keeps the bytes reproducible across rebuilds.
+            merged = ''.join(json.dumps(c, sort_keys=True) + '\n' for c in cells).encode()
+            (target / 'cells.jsonl.gz').write_bytes(gzip.compress(merged, 6, mtime=0))
             (target / 'meta.json').write_text(json.dumps(meta, indent=2, sort_keys=True) + '\n')
         else:
-            shutil.copy(src / 'cells.jsonl', target / 'cells.jsonl')
             shutil.copy(src / 'meta.json', target / 'meta.json')
         finished = sum(1 for c in cells if c['outcome'] in stats.VALID)
         (smoke_rows if meta['experiment']['name'] in smoke else rows).append([f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
-                     f'{esc((study_info(meta) or {}).get("title", meta["experiment"]["name"]))}</a>', esc(meta.get('completed', '?')),
+                     f'{esc((study_info(meta) or {}).get("title", meta["experiment"]["name"]))}</a>',
+                     (f'<a href="{cat_mod.ISSUES_URL}{issue}">#{issue}</a>' if (issue := cat_mod.issue_of(meta['experiment'])) else '–'),
+                     esc(meta.get('completed', '?')),
                      len(meta['experiment']['specimens']), len(meta['experiment']['profiles']),
                      len(cells), finished])
     from . import landing
     shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
-    (out / 'index.html').write_text(page('Borg zoo', landing.overview_page(runs), charts=True))
+    (out / 'overview.html').write_text(page('Borg comparisons · borg-zoo', landing.overview_page(runs), charts=True))
+    from . import scenarios
+    scenarios.build_site(results, out)
     # The /runs/ directory contains per-run report folders, not a page of its
     # own. Publish an index there so the directory URL is useful instead of
     # returning 404/503, and point it at the Detailed experiment catalogue.
@@ -945,7 +1031,9 @@ def build_site(results, out):
     for policy in landing.POLICIES:
         (out / f'{policy["slug"]}.html').write_text(
             page(f'{policy["title"]} · borg-zoo', landing.comparison_page(runs, policy), charts=True))
-    (out / 'detailed.html').write_text(page('Detailed · borg-zoo', landing.landing_page(runs, rows)))
+    full = page('Full runs · borg-zoo', landing.landing_page(runs, rows))
+    (out / 'index.html').write_text(full)
+    (out / 'detailed.html').write_text(full)  # older links
     (out / 'smoke.html').write_text(page('Smoke · borg-zoo', landing.smoke_page(smoke_rows)))
     (out / 'stalls.html').write_text(page('Stalls and crashes · borg-zoo', landing.stalls_page(runs)))
     (out / 'versions.html').write_text(page('Versions · borg-zoo', landing.versions_page()))

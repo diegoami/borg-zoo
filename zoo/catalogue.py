@@ -100,11 +100,19 @@ def expand_suites(suites):
             parent = out.get(suite['subset']['suite'])
             if parent is None:
                 raise ValueError(f'{name}: subset of an unknown or later suite')
-            wanted = suite['subset']['class']
             chars = {seed: character(parent, seed) for seed in parent['seeds']}
             if any(c is None for c in chars.values()):
                 raise ValueError(f'{name}: the parent suite does not assign characters')
-            suite['seeds'] = [seed for seed in parent['seeds'] if chars[seed][1] == wanted]
+            if 'range' in suite['subset']:
+                # A tier (RULES 14): parent seeds [start, end) in parent order,
+                # each keeping its parent's character.
+                start, end = suite['subset']['range']
+                if not 0 <= start < end <= len(parent['seeds']):
+                    raise ValueError(f'{name}: range {start}..{end} outside the parent suite')
+                suite['seeds'] = parent['seeds'][start:end]
+            else:
+                wanted = suite['subset']['class']
+                suite['seeds'] = [seed for seed in parent['seeds'] if chars[seed][1] == wanted]
             suite['birth'] = 'assigned'
             suite['assigned_characters'] = {str(seed): list(chars[seed]) for seed in suite['seeds']}
             out[name] = suite
@@ -175,6 +183,30 @@ def mode_explicit(profile):
     return bool(set(profile.get('settings', {})) & set(MODE_SETTINGS))
 
 
+ISSUES_URL = 'https://github.com/diegoami/borg-zoo/issues/'
+DEFINITIONS_URL = 'https://github.com/diegoami/borg-zoo/blob/main/'
+
+
+def definition_of(exp, root=ROOT):
+    """The YAML definition behind an experiment (definitions/NAME.yaml), as a
+    repository path, or None."""
+    path = exp.get('definition') or f"definitions/{exp.get('name')}.yaml"
+    return path if (Path(root) / path).exists() else None
+
+
+def issue_of(exp, root=ROOT):
+    """The borg-zoo issue an experiment answers: its own "issue" field, else
+    the field of the experiment file of that name (runs collected before the
+    field existed carry none in their meta.json)."""
+    if exp.get('issue'):
+        return exp['issue']
+    for folder in ('experiments', 'smoke'):
+        path = Path(root) / folder / f"{exp.get('name')}.json"
+        if path.exists():
+            return json.loads(path.read_text()).get('issue')
+    return None
+
+
 def experiment(path, cat=None):
     cat = cat or catalogue()
     exp = _load(path)
@@ -196,6 +228,8 @@ def experiment(path, cat=None):
             for suite in exp['suites']:
                 if cat['suites'][suite]['birth'] == 'random':
                     raise ValueError(f'{name} depends on the class; suite {suite} has random birth')
+    if 'issue' in exp and not (isinstance(exp['issue'], int) and exp['issue'] > 0):
+        raise ValueError(f"{exp.get('name')}: issue must be a borg-zoo issue number, not {exp['issue']!r}")
     for name in exp['suites']:
         if name not in cat['suites']:
             raise ValueError(f'unknown suite: {name}')
@@ -241,6 +275,14 @@ def experiment(path, cat=None):
                 if cat['profiles'][prof].get('base') == 'shipped':
                     raise ValueError(f'{name}: profile {prof} needs a shipped borg.txt base, '
                                      'which the borg-rs adapter takes from harness/borg.txt only')
+    for prof in sorted({p for name in exp['profiles'] for p in profile_parts(cat, name)}):
+        plan = cat['profiles'][prof].get('settings', {}).get('borg_plan')
+        if plan is None:
+            continue
+        for name in exp['specimens']:
+            if plan not in (specimens[name].get('plans') or {}):
+                raise ValueError(f'{prof}: borg_plan {plan!r} is not a plan specimen {name} pins '
+                                 '("plans": {name: sha256}, borg-zoo#123)')
     words = sorted({n for p in (q for name in exp['profiles'] for q in profile_parts(cat, name))
                     for n, v in cat['profiles'][p].get('settings', {}).items() if isinstance(v, str)})
     if words:

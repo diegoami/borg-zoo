@@ -1,0 +1,17 @@
+# Exported from experiments/classes-rs-m4.json; edit here, then run python3 -m zoo define.
+name: classes-rs-m4
+description: |-
+  borg-rs M4 against rs-m3 for every class and race (classes-1800): the effect of milestone 4's fixes (and the engine correction) in the Rust port, and the M4 tree's Rust/C identity
+specimens:
+- 4.2.6-rs-m3
+- 4.2.6-rs-m4-c
+- 4.2.6-rs-m4
+suites:
+- classes-1800
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: 4.2.6-rs-m3
+control_profile: default
+extra:
+  control_profile: null
