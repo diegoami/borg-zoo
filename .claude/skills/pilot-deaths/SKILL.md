@@ -37,8 +37,36 @@ a larger tier has too many deaths to read one by one.
    the work dir for anything the README does not show (town transactions:
    `town-transactions.jsonl`; depth over time: `state.log`). Write observations
    only, never a diagnosis.
-5. Commit the report on the experiment's PR branch. Comment a short summary
+5. The README also has a **Handover** section, written by the script, for a session in the Borg's
+   repository. It gives the exact build, each death's `borg.txt` (`evidence/<death>/borg.txt`), the
+   raw command and the seed, race, class and play hash to re-run each death. Add to it the
+   "where to look first" items from the observations.
+6. Give the owner a ready-to-paste prompt for that session. Use the template below, with the
+   report's GitHub link and two or three of the observations.
+7. Commit the report on the experiment's PR branch. Comment a short summary
    on the issue with the GitHub link
    (`https://github.com/diegoami/borg-zoo/blob/BRANCH/reports/NAME-deaths/README.md`),
    and give the owner the same link. Offer to save the deaths in borg-cemetery,
    but don't save them unasked.
+
+## Prompt template for the Borg's repository session
+
+```
+Work in diegoami/borg-reborn-rs with me on the deaths of borg-zoo run RUN_ID (EXPERIMENT, borg-zoo#ISSUE).
+Read the death report first: REPORT_URL. Its "Handover" section has the exact build (REF), each
+death's borg.txt in evidence/<death>/borg.txt, and the command, seed, race, class and play hash to
+re-run each death.
+
+1. Build REF (BORG_IMPL=rust harness/build.sh) in a worktree, then re-run every death in the
+   table and confirm each keys.log hash matches. Stop and tell me if any differs.
+2. For each death, read the evidence, then show me the decision that killed it: the notes and code
+   path, and the parameter or rule that decided. Observations from the zoo, not yet diagnosed:
+   - OBSERVATION 1
+   - OBSERVATION 2
+3. I'll choose the parameters or rules to change. For each change, re-run the same deaths with
+   the new value (a borg.txt key, or a BORG_PARAM_* override where the code reads one) and show me
+   before and after for each death. Then run the borg-reborn-rs tests.
+4. Changes go in a PR in borg-reborn-rs. When it merges, write me the request for the borg-zoo
+   session: a new specimen at the merged commit and a pilot (or verysmall) of the same arms.
+Follow borg-reborn-rs's AGENTS.md, RULES.md and docs/GUIDED-DEBUGGING.md.
+```

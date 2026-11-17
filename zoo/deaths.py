@@ -114,6 +114,33 @@ def replay(exp_path, exp, arm_profile, build, work, jobs):
     return {(c['profile'], c['seed']): c for c in map(json.loads, out.read_text().splitlines())}
 
 
+def handover(exp, specimen, spec, run, reruns):
+    """README section for a borg-reborn-rs session that works on these deaths."""
+    return ['## Handover: working on these deaths in the Borg\'s repository', '',
+            f"For a session in {spec.get('repository', 'the specimen repository')} that changes parameters or code "
+            'against these deaths. That repository owns the Borg; the zoo only measures, and any change is measured '
+            'here later as a new specimen.', '',
+            f"- **Build:** `{spec.get('repository')}` at `{spec['ref']}` (zoo specimen `{specimen}`): "
+            '`BORG_IMPL=rust harness/build.sh`, or the run\'s CI artifact: '
+            f'`gh run download {run} -R diegoami/borg-zoo -n build-{specimen}`.',
+            '- **Settings:** each death\'s exact `user/borg.txt` is `evidence/<death>/borg.txt` (with its plan file, if '
+            'the arm sets `borg_plan`, from the specimen\'s `harness/plans/`).',
+            '- **Evidence:** `evidence/<death>/`: inventory at death, last 300 log lines, trip decisions, summary.', '',
+            'Re-run one death from the built `game/` directory, with no `BORG_*` variables set and `OUT` holding '
+            '`user/borg.txt` and empty `save/ archive/ panic/ scores/`:', '',
+            fence(['env -u BORG_PROFILE -u BORG_CORE -u BORG_ERRAND -u BORG_PLAN TZ=UTC LANG=C.UTF-8 LC_ALL=C.UTF-8 \\',
+                   '  ./angband -mborgh -n -uBorg -duser=$OUT/user -dsave=$OUT/save -darchive=$OUT/archive '
+                   '-dpanic=$OUT/panic -dscores=$OUT/scores \\',
+                   '  -- -seed SEED -race R -class C -turns 100000 -keylog $OUT/keys.log -summary $OUT/summary.json '
+                   '-menu-letters \\',
+                   '  -exact-turns -statelog $OUT/state.log -msglog $OUT/messages.log']), '',
+            '`sha256sum keys.log` must start with the play hash below, or it is not the same game.', '',
+            '| Death | Seed | -race | -class | Arm | Play sha256 |', '|---|---|---|---|---|---|', *reruns, '',
+            f"In borg-zoo, `python3 -m zoo.deaths --experiment experiments/{exp['name']}.json --run {run}` replays and "
+            'checks them all. After a change: a PR in the Borg\'s repository, then ask the borg-zoo session for a new '
+            'specimen at the merged commit and a pilot (or verysmall) of the same arms.', '']
+
+
 def fence(lines):
     return '```\n' + '\n'.join(lines) + '\n```'
 
@@ -175,7 +202,7 @@ def main(argv=None):
                 f'**{len(mismatched)} replayed games do not match CI**: {mismatched}.'), '',
              '| Game | Dies in | Killed by | Char level | Dungeon level | Game turn | Keys |',
              '|---|---|---|---|---|---|---|']
-    sections = []
+    sections, reruns = [], []
     for g in groups:
         c = g[0]
         slug = f"{c['class'].lower()}-{c['seed']}-{c['play_sha256'][:8]}"
@@ -195,6 +222,9 @@ def main(argv=None):
         (ev / 'messages-tail.log').write_text('\n'.join(r[2] for r in rows[-300:]) + '\n')
         (ev / 'trip-decisions.log').write_text('\n'.join(trips) + '\n')
         (ev / 'summary.json').write_text((d / 'summary.json').read_text())
+        (ev / 'borg.txt').write_text((d / 'user/borg.txt').read_text())
+        reruns.append(f"| [{c['class']} {c['seed']}](#{slug}) | {c['seed']} | {cat_mod.RACES.index(c['race'])} ({c['race']}) "
+                      f"| {cat_mod.CLASSES.index(c['class'])} | `{c['profile']}` | `{c['play_sha256'][:16]}` |")
 
         in_arms = [x['profile'] for x in g]
         others = [x for x in cells if x['class'] == c['class'] and x['seed'] == c['seed'] and x['profile'] not in in_arms]
@@ -226,6 +256,7 @@ def main(argv=None):
     lines += ['', '## Observations', '',
               '_To be written by the session after reading the evidence: what each death had and did not use, '
               'and what the varied setting changed. Observations only, no diagnosis._', '']
+    lines += handover(exp, specimen, cat['specimens']['specimens'][specimen], a.run, reruns)
     (out / 'README.md').write_text('\n'.join(lines) + '\n' + '\n'.join(sections))
     print(json.dumps({'experiment': name, 'run': a.run, 'deaths': total, 'distinct': len(groups),
                       'replayed_arms': arms, 'mismatched': len(mismatched), 'report': str(out / 'README.md')}))
