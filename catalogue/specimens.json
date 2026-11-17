@@ -1065,6 +1065,21 @@
       "role": "candidate",
       "label": "Pinned synthetic P1 runtime. Scenario dispatch only; its capability is verified at execution.",
       "source": "https://github.com/diegoami/borg-reborn-rs/tree/99473510940b8a7bd6e77ad61e3a2b00c72a6e6d"
+    },
+    "4.2.6-reborn-rust-main-4d83dd26": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "4d83dd26ef6b510e80a8ff11464f1e49d02daaaa",
+      "source": "https://github.com/diegoami/borg-zoo/issues/186",
+      "label": "borg-reborn-rs 4d83dd26, main at the merge of #495 (#485): fdaf18e5 with one more shipped line, borg_param_attack_arrow_point_blank_divisor = 2. Same source-hash rust as fdaf18e5 (258ccc77107e...), so the same binary; harness/borg.txt 14dc3a57... is fdaf18e5's speed30 bundle defaults (no plan, errand none) plus that line.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
     }
   }
 }
