@@ -265,6 +265,20 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 
 - Only 2 changes who dies: Ranger 1739161339 survives and Rogue 1502695781 dies (DL2, level 3). Blackguard 888896726 and Druid 934061548 die in every arm.
 - The control replays the speed30 x plan pilot's no-plan arm (run 44045223515) identically in 18/18 games.
+- **Deaths in the pilot** (local replay, 54/54 play hashes match CI): [reports/reborn-unknown-stacks-pilot-deaths/README.md](../reports/reborn-unknown-stacks-pilot-deaths/README.md). Where 2 or 3 split from 5, the split is a trip `return` for unknown items. With no up stair known, the Borg goes down instead (`no up stairs found, going down`). The unknown3 Ranger did this 16 times without reaching town.
+
+**#170, borg_trip_unknown_stacks 2-5 (small tier, run 44055270651, 360 games, starts 1-90): no value is distinguishable from 5.** Gate passed: no config_error, one binary (cdfee89a), every setting written (`borg_trip_unknown_stacks = N`) in all 360 borg.txt files, no plan loaded. One cell is flagged `stalled`: Ranger Half-Orc 1071405808 with unknown3, a frozen-turn loop of 1,085 keys at game turn 75,918 (as in borg-rs#90 / borg-reborn-rs#421). Its observed outcome is turn_cap at DL6, level 8. 17 games exceed twice the median of 9,956 keys.
+
+| unknown_stacks | Deaths | Mean deepest DL | Reached DL5 | Mean max level | Identical to 5 |
+|---|---|---|---|---|---|
+| 2 | 8/90 | 2.54 | 5 | 5.26 | 25/90 |
+| 3 | 6/90 (+1 stalled) | 2.46 | 7 | 5.08 | 48/90 |
+| 4 | 3/90 | 2.13 | 2 | 5.04 | 68/90 |
+| 5 (control) | 6/90 | 2.24 | 4 | 5.06 | - |
+
+- **Paired against 5:** 2 rescued 4 and newly killed 6 (3 of them Druids), McNemar p = 0.75; 3 rescued 3 and killed 3, p = 1.0; 4 rescued 3 and killed none, p = 0.25. The 3 rescued by 4 (Blackguard 446353753, Ranger 129607500, Warrior 740860644) are also rescued by 2 and 3.
+- Lower values go somewhat deeper (more DL5 games with 2 and 3) and play differently more often. 4 has the fewest deaths, but 3 against 0 is far from significant.
+- The control replays the speed30 x plan small tier's no-plan arm (run 44050742897) identically in 90/90 games.
 
 ## Open
 
