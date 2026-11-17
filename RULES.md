@@ -47,12 +47,10 @@
     study, and each is analysed on everything collected so far. Every tier
     has a written gate, and the next tier is dispatched only after the gate
     is checked and the owner agrees. Never propose or start the full size
-    first. An optional verysmall tier (starts 1-45, 5 per class) may sit
-    between the pilot and small; a study that ran it plays small-rest
-    (starts 46-90) as its small tier, so the tiers stay disjoint
-    (owner, 2026-11-17).
-
-    first. The pilot always comes first (RULES 16).
+    first. The pilot always comes first (RULES 16). An optional verysmall
+    tier (starts 1-45, 5 per class) may sit between the pilot and small; a
+    study that ran it plays small-rest (starts 46-90) as its small tier, so
+    the tiers stay disjoint (owner, 2026-11-17).
 15. Every experiment is defined in YAML (owner, 2026-11-16):
     `definitions/NAME.yaml` is the source, and `experiments/NAME.json` (or
     `smoke/`) with any new specimen and profiles is generated from it by

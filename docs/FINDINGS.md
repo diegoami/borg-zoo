@@ -324,7 +324,7 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 
 - **Paired against 5 on 360 starts:** 3 rescued 12 and newly killed 10 (McNemar p = 0.83); 4 rescued 4 and killed 3 (p = 1.0). The small tier's lead for 4 (3 against 6 deaths) did not hold in medium (36 against 34).
 - **Per class:** deaths are within one or two of each other in every class, except Warriors with 3 (8 against 4).
-- Lower values go slightly deeper (DL5 in 23, 19 and 18 games) without fewer deaths. The records hold no message logs, so trip returns that became descents are not counted here; that needs a replay (`python3 -m zoo.deaths`).
+- Lower values go slightly deeper (DL5 in 23, 19 and 18 games) without fewer deaths. The records hold no message logs, so trip returns that became descents are not counted here; that needs a replay (`python3 -m zoo.death_report`).
 
 **The heal + trip policy + attack preference bundle, with and without `errands_plan.txt` (#164).** borg-reborn-rs `f02cd294`, specimen `4.2.6-reborn-rust-heal`. Pilot (`classes-18`, run 43973026635, 72 cells) and small tier (`classes-1800-small`, 90 starts per arm, run 43977574813, 180 cells). Both passed their gates: no `config_error`, one binary, settings written, plan pins matching, no stalls.
 - **Pilot, 4 arms of 18 starts:** deaths 4 (control, no plan), 3 (control, plan), 4 (bundle, no plan), 2 (bundle, plan). The two deaths of the last arm are in all four arms with the same keys. Saved in borg-cemetery#52.

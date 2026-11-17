@@ -13,7 +13,7 @@ a larger tier has too many deaths to read one by one.
 2. Generate the report:
 
    ```sh
-   python3 -m zoo.deaths --experiment experiments/NAME.json --run RUN_ID \
+   python3 -m zoo.death_report --experiment experiments/NAME.json --run RUN_ID \
      --work "$SCRATCHPAD/deaths-NAME"
    ```
 
