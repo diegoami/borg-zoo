@@ -252,6 +252,7 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 - **Paired on the same start** (different games; only 1 identical): 30 starts died on 193d9076 and live on main, and 18 the reverse, McNemar p = 0.11. Fewer deaths on main for Blackguards (2 against 5), Priests (3 against 6) and Rogues (2 against 5); Mages 6 against 5.
 - **Causes:** main's commonest is poison (4); 193d9076's were a soldier (5), a crow (4), lava (3) and a giant white mouse (3).
 - **Depth:** the 14 dives to DL5-22 on 193d9076 are gone on main. That fits #473 discarding Deep Descent and never reading unknown scrolls, but it was not checked: the 193d9076 medium run kept no logs.
+- **The 22 deaths** (all 270 games replayed, hashes match CI): [reports/reborn-main-defaults-medium-deaths/README.md](../reports/reborn-main-defaults-medium-deaths/README.md). 19 had run out of Cure Light Wounds. 9 ended in melee at low HP. 10 carried 9-23 Flasks of oil. 5 were killed by Farmer Maggot's dogs at character level 1-2, and 4 by poison. Two Mages fainted casting Phase Door with 0 SP and died paralysed. A poisoned level-1 Rogue died in town walking to the Alchemist, and a Paladin at full HP stepped into town lava (`Twitchy!`).
 
 ## Open
 
