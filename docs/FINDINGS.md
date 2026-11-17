@@ -242,6 +242,17 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 - **Outcomes:** 3/18 deaths (Blackguard 888896726 to a crow on DL2, Druid 102023799 to a rock lizard, Necromancer 300036923 to a wild cat), mean deepest DL 2.06, mean max level 4.61. The control of run 44054277431 on 193d9076 had 3/18, 2.22 and 4.94, but those are different games from the first turns, so this compares outcomes only.
 - **Death report:** [reports/reborn-main-defaults-pilot-deaths/README.md](../reports/reborn-main-defaults-pilot-deaths/README.md). The cornered Borgs fought in melee with oil, a sling or spell points unused.
 
+**#181, main fdaf18e5 shipped defaults (medium tier, run 44072424588, 270 games, starts 91-360; small skipped by the owner): fewer deaths than the 193d9076 control, and no game goes below DL4.** Gate passed: no config_error, one binary (3d0d6d93), the shipped settings and no `borg_plan` in all 99 distinct borg.txt files. One cell is `stalled`: Ranger 745617169, a frozen-turn loop of 1,084 keys at game turn 60,106 (as borg-reborn-rs#421); its observed outcome is turn_cap at max DL3. 22 games exceed twice the median of 10,195 keys.
+
+| Build (same starts and settings) | Deaths | Mean deepest DL | Reached DL5 | Deepest | Mean max level |
+|---|---|---|---|---|---|
+| main fdaf18e5 (#473, #480) | 22/270 (8.1%) | 2.05 | 0 | 4 | 4.83 |
+| 193d9076, control of run 44065025814 | 34/270 (12.6%) | 2.37 | 14 | 22 | 4.92 |
+
+- **Paired on the same start** (different games; only 1 identical): 30 starts died on 193d9076 and live on main, and 18 the reverse, McNemar p = 0.11. Fewer deaths on main for Blackguards (2 against 5), Priests (3 against 6) and Rogues (2 against 5); Mages 6 against 5.
+- **Causes:** main's commonest is poison (4); 193d9076's were a soldier (5), a crow (4), lava (3) and a giant white mouse (3).
+- **Depth:** the 14 dives to DL5-22 on 193d9076 are gone on main. That fits #473 discarding Deep Descent and never reading unknown scrolls, but it was not checked: the 193d9076 medium run kept no logs.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
