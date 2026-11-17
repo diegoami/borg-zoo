@@ -186,6 +186,13 @@ class PlanArmsTest(unittest.TestCase):
         self.assertEqual(len(small['seeds']), 90)
         for seed in small['seeds']:
             self.assertEqual(catalogue.character(small, seed), catalogue.character(full, seed))
+        verysmall, rest = suites['classes-1800-verysmall'], suites['classes-1800-small-rest']
+        self.assertEqual(verysmall['seeds'] + rest['seeds'], small['seeds'])
+        per_class = {}
+        for seed in verysmall['seeds']:
+            cls = catalogue.character(verysmall, seed)[1]
+            per_class[cls] = per_class.get(cls, 0) + 1
+        self.assertEqual(sorted(set(per_class.values())), [5])
         with self.assertRaisesRegex(ValueError, 'outside the parent'):
             catalogue.expand_suites({'p': {'seed_rule': {'generator': 'sha256-v1', 'count': 9}, 'birth': 'assigned',
                                            'characters': {'races': ['Human'], 'classes': ['Warrior']}},
