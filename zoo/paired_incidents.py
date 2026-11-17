@@ -68,7 +68,7 @@ def load(path):
     if len(p['cases'])!=999 or Counter(c['scenario']['class_idx'] for c in p['cases'])!=Counter({i:111 for i in range(9)}):raise ValueError('class quotas differ')
     expected=[(name,[c['id'] for c in group]) for name,group in bank.execution_groups(p['cases'])]
     if [(b['id'],b['cases']) for b in p['batches']]!=expected:raise ValueError('nested stage partition differs')
-    if {a['id'] for a in p['arms']}!={'baseline','speed30'} or p['manifest']['horizon_engine_turns']!=2000 or p['manifest']['wall_seconds']!=5 or p['expected_cells']!=1998:raise ValueError('execution budget/arms differ')
+    if [a['id'] for a in p['arms']]!=['baseline','speed30'] or p['manifest']['horizon_engine_turns']!=2000 or p['manifest']['wall_seconds']!=5 or p['expected_cells']!=1998:raise ValueError('execution budget/arms differ')
     return p
 
 

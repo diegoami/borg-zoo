@@ -13,6 +13,8 @@ jobs:
       cemetery: ${{ steps.pins.outputs.cemetery }}
       baseline_tools: ${{ steps.pins.outputs.baseline_tools }}
       speed30_tools: ${{ steps.pins.outputs.speed30_tools }}
+      bank_run: ${{ steps.pins.outputs.bank_run }}
+      bank_sha: ${{ steps.pins.outputs.bank_sha }}
     steps:
       - uses: actions/checkout@v4
         with: {persist-credentials: false}
@@ -28,6 +30,8 @@ jobs:
                   f.write(a['id']+'='+a['source']['commit']+'\n')
                   f.write(a['id']+'_tools='+d['native_tools'][a['id']]['commit']+'\n')
               f.write('cemetery='+d['cemetery']['commit']+'\n')
+              bank=json.load(open(d['baseline_plan']['path']))['definition']['bank_artifact']
+              f.write('bank_run='+str(bank['run_id'])+'\nbank_sha='+bank['sha256']+'\n')
           PY
   build:
     needs: pins
@@ -80,13 +84,14 @@ jobs:
       - uses: actions/download-artifact@v4
         with: {pattern: 'paired-build-*', path: builds, merge-multiple: true}
       - uses: actions/download-artifact@v4
-        with: {name: balanced999-bank, run-id: 43979480269, github-token: '${{ github.token }}', path: prepared}
-      - run: |
+        with: {name: balanced999-bank, run-id: '${{ needs.pins.outputs.bank_run }}', github-token: '${{ github.token }}', path: prepared}
+      - env: {BANK_SHA: '${{ needs.pins.outputs.bank_sha }}'}
+        run: |
           python3 - <<'PY'
-          import tarfile,hashlib
+          import tarfile,hashlib,os
           from pathlib import Path
           p=Path('prepared/balanced999-bank.tgz')
-          assert hashlib.sha256(p.read_bytes()).hexdigest()=='186066b039ccc8451642cbcbd77e714c6615c20d99d0de4b18963289c5748cbf'
+          assert hashlib.sha256(p.read_bytes()).hexdigest()==os.environ['BANK_SHA']
           with tarfile.open(p) as t:
               for m in t.getmembers():
                   assert m.name.startswith('synthetic/balanced-999-incidents/generated/') or m.name=='synthetic/balanced-999-incidents/generated'

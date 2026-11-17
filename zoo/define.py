@@ -42,7 +42,7 @@ def load(path):
     d = yaml.safe_load(Path(path).read_text())
     if not isinstance(d, dict):
         raise ValueError(f'{path}: a definition is a YAML mapping')
-    if d.get('kind') in ('balanced-incident-harvest', 'balanced-incident-execution', 'balanced-incident-comparison-plan', 'paired-incident-execution'):
+    if d.get('kind') in ('balanced-incident-harvest', 'balanced-incident-execution', 'balanced-incident-comparison-plan', 'paired-incident-execution', 'suite-run'):
         return d  # validated against the catalogue by definition_plan
     if d.get('kind') == 'saved-encounter-smoke':
         from .encounters import validate_yaml
@@ -167,8 +167,10 @@ def plan(path, root=ROOT):
     """(definition, problems, changes) for one definition file."""
     d = load(path)
     root = Path(root)
-    if d.get('kind') in ('balanced-incident-harvest', 'balanced-incident-execution', 'balanced-incident-comparison-plan', 'paired-incident-execution'):
-        if d['kind']=='paired-incident-execution':
+    if d.get('kind') in ('balanced-incident-harvest', 'balanced-incident-execution', 'balanced-incident-comparison-plan', 'paired-incident-execution', 'suite-run'):
+        if d['kind']=='suite-run':
+            from .suite_runs import definition_plan
+        elif d['kind']=='paired-incident-execution':
             from .paired_incidents import definition_plan
         elif d['kind']=='balanced-incident-comparison-plan':
             from .incident_comparison import definition_plan
@@ -321,8 +323,8 @@ def main(argv=None):
             failed = True
             continue
         write(changes)
-        if d.get('kind') in ('saved-encounter-smoke', 'balanced-incident-harvest', 'balanced-incident-execution', 'balanced-incident-comparison-plan', 'paired-incident-execution'):
-            print(json.dumps({'definition': path, 'experiment': d['name'], 'expected_cells': d.get('expected_cells', 8), 'written': [c[1] for c in changes]}))
+        if d.get('kind') in ('saved-encounter-smoke', 'balanced-incident-harvest', 'balanced-incident-execution', 'balanced-incident-comparison-plan', 'paired-incident-execution', 'suite-run'):
+            print(json.dumps({'definition': path, 'experiment': d['name'], 'suite': d.get('suite'), 'expected_cells': d.get('expected_cells', 999 if d['kind'] == 'suite-run' else 8), 'written': [c[1] for c in changes]}))
             continue
         exp = cat_mod.experiment(target(d))  # validates
         print(json.dumps({'definition': path, 'experiment': d['name'], 'issue': d.get('issue'),

@@ -18,6 +18,12 @@ def pairing(a,b):
     return {('death','death'):'both_died',('death','survived_horizon'):'rescued',('survived_horizon','death'):'newly_killed',('survived_horizon','survived_horizon'):'both_survived'}[a,b]
 
 
+def roles(r):
+    """(reference, candidate, counted arms); legacy records are baseline against speed30."""
+    c=r.get('comparison') or dict(reference='baseline',candidate='speed30')
+    return c['reference'],c['candidate'],r.get('counted_arms') or [a['id'] for a in r['arms']]
+
+
 def compact(report,tier,evidence_url,howto_url,artifact=None,parent_run=None):
     if report.get('schema')!='borg-zoo/paired-incident-results@1':raise ValueError('not a paired saved-incident report')
     p=report['plan'];size=report['expected_cells']//2
@@ -52,16 +58,22 @@ def validate(r):
     for key in ('run_url','evidence_url','howto_url'):
         if not r[key].startswith('https://github.com/'):raise ValueError('saved report links must use public GitHub HTTPS URLs')
     cases=r['cases'];n=len(cases)
-    if n not in [18,90,360,900,999] or r['expected_cells']!=2*n or len({c['id'] for c in cases})!=n:raise ValueError('saved comparison count differs')
+    reference,candidate,counted=roles(r);ids=[a['id'] for a in r['arms']]
+    if len(set(ids))!=len(ids) or reference not in ids or candidate not in ids or not set(counted)<=set(ids):raise ValueError('saved comparison arms differ')
+    if 'comparison' not in r and set(ids)!={'baseline','speed30'}:raise ValueError('saved comparison arms differ')
+    if n not in [18,90,360,900,999] or r['expected_cells']!=len(counted)*n or len({c['id'] for c in cases})!=n:raise ValueError('saved comparison count differs')
     if Counter(c['class_idx'] for c in cases)!=Counter({i:n//9 for i in range(9)}):raise ValueError('saved comparison lost class balance')
-    if {a['id'] for a in r['arms']}!={'baseline','speed30'}:raise ValueError('saved comparison arms differ')
-    counts=Counter();invalid=stopped=0
+    counts=Counter();by_reference={a:Counter() for a in r.get('pairs_by_reference',{})};invalid=stopped=0
     for c in cases:
         if not NAME.fullmatch(c['id']):raise ValueError('unsafe case ID')
-        a,b=c['outcomes']['baseline'],c['outcomes']['speed30'];result=pairing(a,b)
+        result=pairing(c['outcomes'][reference],c['outcomes'][candidate])
         if c['pair']!=result:raise ValueError('paired outcome differs')
-        counts[result]+=1;invalid+=sum(s not in VALID for s in (a,b));stopped+=sum(s=='stopped' for s in (a,b))
+        for ref in by_reference:
+            if c['pair_by_reference'][ref]!=pairing(c['outcomes'][ref],c['outcomes'][candidate]):raise ValueError('paired outcome differs')
+            by_reference[ref][c['pair_by_reference'][ref]]+=1
+        counts[result]+=1;own=[c['outcomes'][a] for a in counted];invalid+=sum(s not in VALID for s in own);stopped+=sum(s=='stopped' for s in own)
     if counts!=Counter(r['pairs']) or invalid!=r['invalid_count'] or stopped!=r['stopped_count']:raise ValueError('saved outcome totals differ')
+    if any(by_reference[a]!=Counter(v) for a,v in r.get('pairs_by_reference',{}).items()):raise ValueError('saved outcome totals differ')
     for a in r['arms']:
         if not re.fullmatch('[0-9a-f]{40}',a['source']['commit']):raise ValueError('exact source commit missing')
     return r
@@ -79,8 +91,8 @@ def builds(r):
     for a in r['arms']:
         commit=a['source']['commit'];profile=a.get('profile','saved default profile')
         rows.append('<tr>'+''.join('<td>'+v+'</td>' for v in [esc(a['id']),esc(a['core']),esc(profile),f'<a href="https://github.com/{esc(a["source"]["repository"])}/tree/{commit}"><code>{commit}</code></a>',f'<code>{esc(a["build"]["binary_sha256"])}</code>'])+'</tr>')
-    settings=next(a for a in r['arms'] if a['id']=='speed30')
-    return '<h2>Builds and configuration</h2><div class="table-wrap"><table><tr><th>Setup</th><th>Core</th><th>Profile</th><th>Source</th><th>Binary SHA-256</th></tr>'+''.join(rows)+'</table></div><details><summary>Complete speed30 settings and errands-file identity</summary><pre>'+esc(json.dumps(dict(settings=settings['settings'],errands_plan_sha256=settings['errands_plan_sha256']),indent=2))+'</pre></details>'
+    details=''.join('<details><summary>Complete '+esc(a['id'])+' settings and errands-file identity</summary><pre>'+esc(json.dumps(dict(settings=a['settings'],errands_plan_sha256=a.get('errands_plan_sha256'),inputs=a.get('inputs')),indent=2))+'</pre></details>' for a in r['arms'] if 'settings' in a)
+    return '<h2>Builds and configuration</h2><div class="table-wrap"><table><tr><th>Setup</th><th>Core</th><th>Profile</th><th>Source</th><th>Binary SHA-256</th></tr>'+''.join(rows)+'</table></div>'+details
 
 
 def case_page(r,c):
@@ -89,10 +101,11 @@ def case_page(r,c):
     body+='<p>'+esc(CLASSES[c['class_idx']])+f' · race index{c["race_idx"]} · level{c["coverage"]["level"]} · depth{c["coverage"]["depth"]} · start turn{c["start_turn"]} · '+esc(c['pair'].replace('_',' '))+'</p>'
     body+='<h2>Initial equipment and inventory</h2><pre>'+esc(json.dumps(c['coverage'],indent=2))+'</pre>'
     body+='<h2>Run this scenario</h2><p>Build or restore the exact source and its native tools once, unpack the Cemetery bank, then run from that Cemetery checkout. See the linked guide for all setup commands. Choose a fresh output directory for every attempt.</p>'
-    candidate=next(a for a in r['arms'] if a['id']=='speed30');base=next(a for a in r['arms'] if a['id']=='baseline')
-    for a in [base,candidate]:
+    for a in r['arms']:
         command=f"python3 scripts/single_encounter.py --suite {c['suite']} --case {c['id']} --source ../borg-{a['id']} --source-commit {a['source']['commit']} --core {a['core']} --native-tools ../tools-{a['id']} --out /tmp/{c['id']}-{a['id']}"
-        if a['id']=='speed30':command+=' --borg-txt studies/balanced999-speed30/borg.txt --errands-plan studies/balanced999-speed30/errands_plan.txt'
+        if a['id']=='speed30' and 'comparison' not in r:command+=' --borg-txt studies/balanced999-speed30/borg.txt --errands-plan studies/balanced999-speed30/errands_plan.txt'
+        elif a.get('inputs'):
+            command+=f" --borg-txt <borg-zoo>/{a['inputs']['path']}/borg.txt"+(f" --errands-plan <borg-zoo>/{a['inputs']['path']}/errands_plan.txt" if a.get('errands_plan_sha256') else '')
         body+='<h3>'+esc(a['id'])+'</h3><pre>'+esc(command)+'</pre>'
     body+='<h2>Outcomes and reproduction hashes</h2><pre>'+esc(json.dumps(dict(save_sha256=c['save_sha256'],scenario_sha256=c['scenario_sha256'],selection=c['selection'],origin=c['origin'],details=c['details']),indent=2))+'</pre>'
     return site.page(c['id']+' · saved scenario',body,base='../../../../../../')
@@ -100,23 +113,30 @@ def case_page(r,c):
 
 def render(r):
     from . import site,landing
-    n=len(r['cases']);body='<h1>Balanced999: baseline vs speed30</h1>'+landing.nav('scenarios/index.html','../../../../')
+    n=len(r['cases']);reference,candidate,counted=roles(r);title=r.get('title','Balanced999: baseline vs speed30');ids=[a['id'] for a in r['arms']]
+    body='<h1>'+esc(title)+'</h1>'+landing.nav('scenarios/index.html','../../../../')
     body+=f'<h2>{esc(r["tier"])} stage: {n} scenarios, {r["expected_cells"]} cells</h2><p>{n//9} starts per class per setup. Invalid/missing: {r["invalid_count"]}; stopped: {r["stopped_count"]}.</p>'+links(r)
-    body+='<p>Saved encounters with fresh Borg memory and saved engine RNG. Both setups use an exact2,000-engine-turn horizon and5-second wall limit. Sources, cores and configuration differ; these results do not isolate speed30 or establish population improvement. Encounters from one life remain correlated. Historical critical-HP recoveries are a screen, not qualified counterfactual near-deaths.</p>'
-    body+='<h2>Paired outcomes</h2>'+site.table(['Outcome','Scenarios'],[[esc(k.replace('_',' ')),v] for k,v in sorted(r['pairs'].items())])
+    if 'comparison' in r:body+=f'<p>{esc(candidate)} ran {n} saved encounters of {esc(r["suite"]["name"])}; the other setups are earlier published runs of the same suite, reused, not rerun. '
+    else:body+='<p>'
+    body+='Saved encounters with fresh Borg memory and saved engine RNG, an exact 2,000-engine-turn horizon and 5-second wall limit. Sources, cores and configuration differ between setups; these results do not isolate one setting or establish population improvement. Encounters from one life remain correlated. Historical critical-HP recoveries are a screen, not qualified counterfactual near-deaths.</p>'
+    tables=r.get('pairs_by_reference') or {reference:r['pairs']}
+    for ref,pairs in tables.items():
+        body+=f'<h2>Paired outcomes: {esc(candidate)} against {esc(ref)}</h2>'+site.table(['Outcome','Scenarios'],[[esc(k.replace('_',' ')),v] for k,v in sorted(pairs.items())])
     rows=[]
     for i,name in enumerate(CLASSES):
-        group=[c for c in r['cases'] if c['class_idx']==i];a=Counter(c['outcomes']['baseline'] for c in group);b=Counter(c['outcomes']['speed30'] for c in group)
-        pairs=Counter(c['pair'] for c in group)
-        rows.append([name,len(group),a['death'],a['survived_horizon'],b['death'],b['survived_horizon'],pairs['rescued'],pairs['newly_killed']])
-    body+='<h2>Class balance and outcomes</h2>'+site.table(['Class','Starts/setup','Baseline deaths','Baseline survived','Speed30 deaths','Speed30 survived','Rescued','Newly killed'],rows)
+        group=[c for c in r['cases'] if c['class_idx']==i];pairs=Counter(c['pair'] for c in group);row=[name,len(group)]
+        for a in ids:
+            got=Counter(c['outcomes'][a] for c in group);row+=[got['death'],got['survived_horizon']]
+        rows.append(row+[pairs['rescued'],pairs['newly_killed']])
+    head=['Class','Starts/setup']+[h for a in ids for h in (a+' deaths',a+' survived')]+[f'Rescued vs {reference}',f'Newly killed vs {reference}']
+    body+='<h2>Class balance and outcomes</h2>'+site.table(head,rows)
     body+=builds(r)
-    body+='<h2>Every scenario</h2><p>Open a scenario for its initial equipment, exact outcomes, hashes and single-scenario commands.</p><label>Filter <input id="saved-filter" placeholder="class, outcome or scenario ID"></label><table id="saved-cases"><thead><tr><th>Scenario</th><th>Class</th><th>Level/depth</th><th>Historical incident</th><th>Baseline</th><th>Speed30</th><th>Pair</th></tr></thead><tbody>'
+    body+='<h2>Every scenario</h2><p>Open a scenario for its initial equipment, exact outcomes, hashes and single-scenario commands.</p><label>Filter <input id="saved-filter" placeholder="class, outcome or scenario ID"></label><table id="saved-cases"><thead><tr><th>Scenario</th><th>Class</th><th>Level/depth</th><th>Historical incident</th>'+''.join('<th>'+esc(a)+'</th>' for a in ids)+f'<th>Pair vs {esc(reference)}</th></tr></thead><tbody>'
     for c in r['cases']:
-        vals=[f'<a href="cases/{c["id"]}/index.html">{esc(c["id"])}</a>',esc(CLASSES[c['class_idx']]),f'{c["coverage"]["level"]}/{c["coverage"]["depth"]}',esc(c['historical_type'].replace('_',' ')),esc(c['outcomes']['baseline']),esc(c['outcomes']['speed30']),esc(c['pair'].replace('_',' '))]
+        vals=[f'<a href="cases/{c["id"]}/index.html">{esc(c["id"])}</a>',esc(CLASSES[c['class_idx']]),f'{c["coverage"]["level"]}/{c["coverage"]["depth"]}',esc(c['historical_type'].replace('_',' '))]+[esc(c['outcomes'][a]) for a in ids]+[esc(c['pair'].replace('_',' '))]
         body+='<tr>'+''.join('<td>'+v+'</td>' for v in vals)+'</tr>'
     body+='</tbody></table><p><a href="comparison.json">Download the compact report</a>. Native source receipts and stream evidence are linked in Cemetery and the Zoo workflow artifacts.</p><script>document.getElementById("saved-filter").addEventListener("input",function(){const q=this.value.toLowerCase();document.querySelectorAll("#saved-cases tbody tr").forEach(r=>r.hidden=!r.textContent.toLowerCase().includes(q));});</script>'
-    return site.page('Saved incidents · baseline vs speed30',body,base='../../../../')
+    return site.page('Saved incidents · '+title,body,base='../../../../')
 
 
 def build_site(results,out):

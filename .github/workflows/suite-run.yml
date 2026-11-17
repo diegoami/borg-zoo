@@ -1,0 +1,249 @@
+name: Saved suite run
+# One build and configuration on a frozen saved-encounter suite (zoo/suite_runs.py, docs/SUITE-RUNS.md).
+# Stage smoke builds and plans; a later stage reuses the parent run's build, plan and cells,
+# gates the parent and plays only the new cases. Each stage appends its dashboard record to
+# the results branch; the Scenarios tab shows it after the pages rebuild.
+on:
+  workflow_dispatch:
+    inputs:
+      definition:
+        description: Generated suite-run definition (scenario-experiments/NAME.json)
+        required: true
+      stage:
+        description: Stage to play
+        type: choice
+        options: [smoke, small, medium, big, full]
+        default: smoke
+      parent_run:
+        description: Run ID of the preceding stage (empty for smoke)
+        required: false
+        default: ''
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: suite-run-${{ inputs.definition }}
+  cancel-in-progress: false
+jobs:
+  pins:
+    runs-on: ubuntu-24.04
+    outputs:
+      name: ${{ steps.pins.outputs.name }}
+      source: ${{ steps.pins.outputs.source }}
+      tools: ${{ steps.pins.outputs.tools }}
+      cemetery: ${{ steps.pins.outputs.cemetery }}
+      bank_run: ${{ steps.pins.outputs.bank_run }}
+      bank_artifact: ${{ steps.pins.outputs.bank_artifact }}
+      bank_file: ${{ steps.pins.outputs.bank_file }}
+      bank_members: ${{ steps.pins.outputs.bank_members }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - id: pins
+        env: {DEFINITION: '${{ inputs.definition }}', STAGE: '${{ inputs.stage }}', PARENT: '${{ inputs.parent_run }}'}
+        run: |
+          python3 - <<'PY'
+          import json,os,re
+          from pathlib import Path
+          p=Path(os.environ['DEFINITION'])
+          assert p.parent==Path('scenario-experiments') and p.suffix=='.json'
+          d=json.loads(p.read_text())
+          assert d['kind']=='suite-run' and d['schema']=='borg-zoo/suite-run-definition@1'
+          assert (os.environ['STAGE']=='smoke')==(os.environ['PARENT']=='') and re.fullmatch('[0-9]*',os.environ['PARENT'])
+          m=json.loads(Path('scenario-suites',d['suite'],'suite.json').read_text())
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write(f"name={d['name']}\nsource={d['source']['commit']}\ntools={d['native_tools']['commit']}\ncemetery={m['cemetery']['commit']}\n")
+              f.write(f"bank_run={m['bank']['run_id']}\nbank_artifact={m['bank']['artifact']}\nbank_file={m['bank']['file']}\nbank_members={m['bank']['members']}\n")
+              f.write(f"yaml={d['definition']}\n")
+          PY
+      - run: python3 -m zoo define --check "${{ steps.pins.outputs.yaml }}"
+  build:
+    if: inputs.stage == 'smoke'
+    needs: pins
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.source }}', path: source, persist-credentials: false}
+      - uses: dtolnay/rust-toolchain@1.100.0
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq build-essential cmake libssl-dev
+      - working-directory: source
+        run: BORG_IMPL=rust flock /tmp/angband-validation.lock harness/build.sh
+      - run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          b=dict(line.split('=',1) for line in Path('source/build/rust/BUILD_ID').read_text().splitlines() if '=' in line)
+          Path('build.json').write_text(json.dumps(b,sort_keys=True)+'\n')
+          PY
+          tar -C source -czf build.tgz build/rust/game/angband build/rust/game/lib build/rust/BUILD_ID
+      - uses: actions/upload-artifact@v4
+        with: {name: suite-build, path: 'build.*', retention-days: 90}
+  plan:
+    if: inputs.stage == 'smoke'
+    needs: [pins, build]
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.source }}', path: source, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: suite-build, path: build}
+      - uses: actions/download-artifact@v4
+        with: {name: '${{ needs.pins.outputs.bank_artifact }}', run-id: '${{ needs.pins.outputs.bank_run }}', github-token: '${{ github.token }}', path: prepared}
+      - env: {DEFINITION: '${{ inputs.definition }}', BANK_FILE: '${{ needs.pins.outputs.bank_file }}', BANK_MEMBERS: '${{ needs.pins.outputs.bank_members }}'}
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,tarfile
+          from pathlib import Path
+          d=json.load(open(os.environ['DEFINITION']));m=json.loads(Path('scenario-suites',d['suite'],'suite.json').read_text())
+          p=Path('prepared',m['bank']['file'])
+          assert hashlib.sha256(p.read_bytes()).hexdigest()==m['bank']['sha256']
+          with tarfile.open(p) as t:
+              for x in t.getmembers():
+                  assert x.name==m['bank']['members'] or x.name.startswith(m['bank']['members']+'/')
+                  assert '..' not in Path(x.name).parts and not (x.issym() or x.islnk())
+              t.extractall('cemetery',filter='data')
+          PY
+          python3 -m zoo.suite_runs prepare --definition "$DEFINITION" --cemetery cemetery --source source --build build/build.json --archive "prepared/$BANK_FILE" --out execution-plan.json
+          tar -C cemetery -czf execution-inputs.tgz "$BANK_MEMBERS"
+          python3 -m zoo.suite_runs stage --plan execution-plan.json --stage smoke --out gate
+      - id: matrix
+        run: python3 -c "import json;print('matrix='+json.dumps(json.load(open('gate/matrix.json'))))" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: suite-plan
+          path: |
+            execution-plan.json
+            execution-inputs.tgz
+          retention-days: 90
+  restore:
+    if: inputs.stage != 'smoke'
+    needs: pins
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: suite-plan, run-id: '${{ inputs.parent_run }}', github-token: '${{ github.token }}', path: plan}
+      - uses: actions/download-artifact@v4
+        with: {name: suite-build, run-id: '${{ inputs.parent_run }}', github-token: '${{ github.token }}', path: build}
+      - uses: actions/download-artifact@v4
+        with: {name: suite-cells-cumulative, run-id: '${{ inputs.parent_run }}', github-token: '${{ github.token }}', path: prior-cells}
+      - uses: actions/download-artifact@v4
+        with: {name: suite-comparison-raw, run-id: '${{ inputs.parent_run }}', github-token: '${{ github.token }}', path: parent-report}
+      - env: {STAGE: '${{ inputs.stage }}', DEFINITION: '${{ inputs.definition }}'}
+        run: |
+          python3 - <<'PY'
+          import json,os
+          plan=json.load(open('plan/execution-plan.json'));d=json.load(open(os.environ['DEFINITION']))
+          assert plan['definition']==d, 'the parent ran another definition'
+          PY
+          python3 -m zoo.suite_runs stage --plan plan/execution-plan.json --stage "$STAGE" --parent-report parent-report/comparison.json --cells prior-cells --out gate
+      - id: matrix
+        run: python3 -c "import json;print('matrix='+json.dumps(json.load(open('gate/matrix.json'))))" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with: {name: suite-plan, path: plan/, retention-days: 90}
+      - uses: actions/upload-artifact@v4
+        with: {name: suite-build, path: build/, retention-days: 90}
+      - uses: actions/upload-artifact@v4
+        with: {name: suite-prior-cells, path: prior-cells/, retention-days: 90}
+  run:
+    if: always() && (needs.plan.result == 'success' || needs.restore.result == 'success')
+    needs: [pins, plan, restore]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        include: ${{ fromJSON(needs.plan.outputs.matrix || needs.restore.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.source }}', path: source, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.tools }}', path: native-tools, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: suite-plan, path: downloaded}
+      - uses: actions/download-artifact@v4
+        with: {name: suite-build, path: downloaded}
+      - env: {BATCH: '${{ matrix.batch }}'}
+        run: |
+          tar -C source -xzf downloaded/build.tgz
+          tar -C cemetery -xzf downloaded/execution-inputs.tgz
+          python3 -m zoo.suite_runs run --plan downloaded/execution-plan.json --cemetery cemetery --source source --tools native-tools --batch "$BATCH" --out attempt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'suite-new-cells-${{ matrix.batch }}', path: attempt/cells/, retention-days: 90}
+      - if: always()
+        run: if [ -d attempt ]; then tar -czf native.tgz attempt; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'suite-native-${{ matrix.batch }}', path: native.tgz, retention-days: 14}
+  collect:
+    if: always() && (needs.plan.result == 'success' || needs.restore.result == 'success')
+    needs: [pins, plan, restore, run]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: suite-plan, path: plan}
+      - uses: actions/download-artifact@v4
+        if: inputs.stage != 'smoke'
+        with: {name: suite-prior-cells, path: cells/prior}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {pattern: 'suite-new-cells-*', path: cells/current}
+      - id: gate
+        env: {STAGE: '${{ inputs.stage }}', RUN_URL: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'}
+        run: |
+          set +e
+          python3 -m zoo.suite_runs collect --plan plan/execution-plan.json --inputs cells --out comparison --tier "$STAGE" --run-url "$RUN_URL"
+          echo "status=$?" >> "$GITHUB_OUTPUT"
+          cat comparison/comparison.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with: {name: suite-comparison-raw, path: comparison/, retention-days: 90}
+      - uses: actions/upload-artifact@v4
+        with: {name: suite-cells-cumulative, path: cells/, retention-days: 90}
+      - name: Dashboard record beside the suite's published runs
+        env: {STAGE: '${{ inputs.stage }}', PARENT: '${{ inputs.parent_run }}', RUN_URL: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'}
+        run: |
+          git fetch --depth=1 origin results
+          git worktree add results-branch FETCH_HEAD
+          python3 -m zoo.suite_runs compact --input comparison/comparison.json --results results-branch --out compact \
+            --evidence-url "$RUN_URL" --howto-url https://github.com/diegoami/borg-zoo/blob/main/docs/SUITE-RUNS.md ${PARENT:+--parent-run "$PARENT"}
+      - uses: actions/upload-artifact@v4
+        with: {name: suite-dashboard, path: compact/, retention-days: 90}
+      - if: steps.gate.outputs.status != '0'
+        run: |
+          echo "Gate failed - missing, invalid or stopped cells (see the summary)"
+          exit 1
+  archive:
+    if: always() && needs.collect.result != 'skipped' && needs.collect.result != 'cancelled'
+    needs: [pins, collect]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: suite-dashboard, path: compact}
+      - name: Append the record to the results branch, keeping every earlier run
+        env: {GH_TOKEN: '${{ github.token }}', NAME: '${{ needs.pins.outputs.name }}'}
+        run: |
+          gh auth setup-git
+          bash tools/archive-saved-incidents.sh "https://github.com/$GITHUB_REPOSITORY.git" compact "$NAME" "$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" archived
