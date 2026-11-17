@@ -254,6 +254,18 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 - **Paired against no plan:** the errands plan rescued 3 (Blackguard 446353753, Ranger 129607500, Warrior 740860644) and newly killed 1 (Druid 507571350), McNemar p = 0.63, with 45/90 games identical. The ambitious plan rescued none and newly killed the same Druid, p = 1.0, with 70/90 identical.
 - Without speed30, the #164 small tier had 5/90 deaths with no plan and 4/90 with the errands plan. That is a different specimen and run, so it is not a paired comparison.
 
+**#170, borg_trip_unknown_stacks 2-5 on the speed30 bundle with no plan (pilot, run 44054277431, 72 games): no difference in deaths.** `reborn-bundle-none-speed30` on `4.2.6-reborn-rust-speed-fight` with unknown_stacks 2, 3, 4 and 5 (5 = control). Gate passed: no config_error, one binary (cdfee89a), every setting and the arm's `borg_trip_unknown_stacks = N` written in every borg.txt, no plan loaded, no stalls or frozen-turn bursts, every cell death or turn_cap.
+
+| unknown_stacks | Deaths | Mean deepest DL | Mean max level | Identical to 5 |
+|---|---|---|---|---|
+| 2 | 3/18 | 2.89 | 4.61 | 7/18 |
+| 3 | 3/18 | 2.50 | 5.28 | 12/18 |
+| 4 | 3/18 | 2.17 | 5.11 | 14/18 |
+| 5 (control) | 3/18 | 2.22 | 4.94 | - |
+
+- Only 2 changes who dies: Ranger 1739161339 survives and Rogue 1502695781 dies (DL2, level 3). Blackguard 888896726 and Druid 934061548 die in every arm.
+- The control replays the speed30 x plan pilot's no-plan arm (run 44045223515) identically in 18/18 games.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
