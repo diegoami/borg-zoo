@@ -148,7 +148,8 @@ def render(r):
 
 
 def build_site(results,out):
-    roots=[Path(results).parent/'saved-incident-results'];rows=[];unavailable=[]
+    """Every archived record gets its pages; the index lists one row per study: its most complete stage."""
+    roots=[Path(results).parent/'saved-incident-results'];unavailable=[];studies={}
     for root in roots:
         for path in sorted(root.glob('*/*/comparison.json')):
             name,run=path.parent.parent.name,path.parent.name
@@ -158,13 +159,19 @@ def build_site(results,out):
                 (target/'index.html').write_text(render(r));(target/'comparison.json').write_bytes(path.read_bytes())
                 for case in r['cases']:
                     dest=target/'cases'/case['id'];dest.mkdir(parents=True,exist_ok=True);(dest/'index.html').write_text(case_page(r,case))
-                versions='<br>'.join(esc(a.get('specimen',a['id']))+' · <code>'+esc(a['source']['commit'][:12])+'</code>' for a in r['arms'])
-                if 'suite' in r:
-                    own=roles(r)[1];versions=next(esc(a['id'])+' · <code>'+esc(a['source']['commit'][:12])+'</code>' for a in r['arms'] if a['id']==own)
-                    deaths=sum(c['outcomes'][own]=='death' for c in r['cases']);summary=f'deaths: {deaths} of {len(r["cases"])} ({100*deaths/len(r["cases"]):.1f}%)'
-                else:summary=', '.join(k.replace('_',' ')+': '+str(v) for k,v in sorted(r['pairs'].items()))
-                rows.append([f'<a href="saved/{name}/{run}/index.html">{esc(name)}</a><br><span class="muted">Saved encounters · {esc(r["tier"])} · {esc(run)}</span>',versions,len(r['cases']),f'{r["collected_cells"]}/{r["expected_cells"]}',esc(summary)])
+                studies.setdefault(name,[]).append((len(r['cases']),run,r))
             except (OSError,ValueError,KeyError,TypeError,AttributeError) as error:unavailable.append(dict(report=f'{name}/{run}',reason=str(error)))
+    rows=[]
+    for name,records in studies.items():
+        records.sort(key=lambda x:(x[0],x[1]));_,run,r=records[-1]
+        versions='<br>'.join(esc(a.get('specimen',a['id']))+' · <code>'+esc(a['source']['commit'][:12])+'</code>' for a in r['arms'])
+        if 'suite' in r:
+            own=roles(r)[1];versions=next(esc(a['id'])+' · <code>'+esc(a['source']['commit'][:12])+'</code>' for a in r['arms'] if a['id']==own)
+            deaths=sum(c['outcomes'][own]=='death' for c in r['cases']);summary=f'deaths: {deaths} of {len(r["cases"])} ({100*deaths/len(r["cases"]):.1f}%)'
+        else:summary=', '.join(k.replace('_',' ')+': '+str(v) for k,v in sorted(r['pairs'].items()))
+        earlier=' · '.join(f'<a href="saved/{name}/{x[1]}/index.html">{esc(x[2]["tier"])}</a>' for x in records[:-1])
+        label=f'<a href="saved/{name}/{run}/index.html">{esc(name)}</a><br><span class="muted">Saved encounters · {esc(r["tier"])} · {esc(run)}'+(f' · earlier stages: {earlier}' if earlier else '')+'</span>'
+        rows.append([label,versions,len(r['cases']),f'{r["collected_cells"]}/{r["expected_cells"]}',esc(summary)])
     return rows,unavailable
 
 
