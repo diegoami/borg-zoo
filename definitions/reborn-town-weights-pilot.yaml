@@ -2,7 +2,7 @@
 # Write the catalogue entries with: python3 -m zoo define definitions/reborn-town-weights-pilot.yaml
 name: reborn-town-weights-pilot
 issue: 303
-question: On borg-reborn-rs main 8e7dbad4, which of the town planner's weights (borg_town_w_*, share, light_depth, food_trip) change play when halved or doubled, and in which direction for deaths and progress?
+question: On borg-reborn-rs main 8e7dbad4, which of the live town planner's weights (seven borg_town_w_* and borg_town_share) change play when halved or doubled, and in which direction for deaths and progress?
 tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
 
 specimen:
@@ -35,16 +35,12 @@ arms:
   poison-double: {borg_town_w_poison: 200}
   escape-half: {borg_town_w_escape: 25}
   escape-double: {borg_town_w_escape: 100}
-  knowledge-half: {borg_town_w_knowledge: 12}
-  knowledge-double: {borg_town_w_knowledge: 50}
   power-half: {borg_town_w_power: 25}
   power-double: {borg_town_w_power: 100}
   trip-half: {borg_town_w_trip: 25}
   trip-double: {borg_town_w_trip: 100}
   share5: {borg_town_share: 5}
   share20: {borg_town_share: 20}
-  lightdepth5: {borg_town_light_depth: 5}
-  foodtrip5: {borg_town_food_trip: 5}
 control: [ctl]
 extra:
   retain_evidence: true
@@ -52,8 +48,10 @@ extra:
 prespecified: |
   Fixed 2026-11-18, before any zoo result was read (owner: "do some calibration of these"). Pilot (RULES 16);
   larger tiers only after this gate and the owner, with only the settings that change play. One factor at a time:
-  each live weight at half and double its shipped value; share 5 and 20; light_depth 5 and food_trip 5, which
-  borg.txt says only the old v4 model reads and which should therefore play ctl's keys in every cell.
+  each weight the live planner reads at half and double its shipped value, and share 5 and 20. Left out (owner:
+  "if not used it is pointless to tune"): borg_town_w_knowledge, which the live step forces to 0
+  (borg_town_shadow::effective_params), and borg_town_light_depth and borg_town_food_trip, which only the old v4
+  model reads. A first dispatch with those arms (run 44348986112) was cancelled.
   Gate:
   - no config_error; one binary; each arm's value written;
   - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
