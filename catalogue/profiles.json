@@ -2621,6 +2621,22 @@
         "borg_param_escape_phase_adjacent_only": 1,
         "borg_param_caution_scary_ranged_no_stairs": 1
       }
+    },
+    "reborn-flee-phase-ranged": {
+      "description": "borg-zoo#235 (reborn-flee-combos-pilot.yaml): arm phase-ranged.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 0,
+        "borg_param_escape_phase_adjacent_only": 1,
+        "borg_param_caution_scary_ranged_no_stairs": 1
+      }
+    },
+    "reborn-flee-stairs-ranged": {
+      "description": "borg-zoo#235 (reborn-flee-combos-pilot.yaml): arm stairs-ranged.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 1,
+        "borg_param_escape_phase_adjacent_only": 0,
+        "borg_param_caution_scary_ranged_no_stairs": 1
+      }
     }
   }
 }
