@@ -1,0 +1,802 @@
+# This is the configuration file for the Borg. For a high-level overview
+# of the Borg and its features, see the official documentation in
+# docs/hacking/borg.rst.
+
+# This file will allow you to customize your borg along certain themes.
+# The borg is fairly successful, having won the game several times.
+# However, some players/observers of borgs would like to see it function
+# differently. Some would like to see the borg play more aggressively, or
+# more conservatively. While others would like to value armour class more.
+# Still others would like to see it collect more speed items. With the
+# expressions below, you can influence the borg's behavior and
+# equipment selection choices. To modify, simply set values to TRUE or FALSE,
+# with the exception of a few integers.
+
+
+### Worships ###
+
+# The 'borg_worship_' variables will influence his equipment selection by
+# adding additional bonuses to items which enhance that attribute. For example:
+# if a borg receives 2000 pts for a single point of armour class, an 'ac
+# worshipping' borg would receive 3000 pts. This bonus would significantly
+# influence equipment choices.
+#
+# borg_worships_gold explained:
+# The borg_worships_gold option will greatly impact how the borg treats items
+# which he finds in the dungeon. With this option on, he will return to town
+# whenever he fills up with items then sell those items. This can cause
+# the borg to lose some artifacts, since he will sell them even if not ID'd.
+# Generally speaking the borg will not sell an item unless it is at least
+# pseudo ID'd. The benefit of this option is that the borg will significantly
+# increase his income at the low clevels. This will increase his survivability
+# by allowing him to invest in armour and arrows. With this on,
+# he will not recall to town to sell stuff but climb the stairs instead.
+# He will also not recall into the dungeon until dlevel 8 (instead of 5).
+# This option has no effect after clevel 20. One other downside of this is
+# that the borg will spend more time in town and may have to evade Vets more.
+
+borg_worships_damage = FALSE
+borg_worships_speed = FALSE
+borg_worships_hp = FALSE
+borg_worships_mana = FALSE
+borg_worships_ac = FALSE
+borg_worships_gold = FALSE
+
+
+### Risky ###
+
+# A risky borg is one who is not confined by character level requirements
+# in order to dive deeper. It is also more likely to stay in a battle than
+# to teleport out. A risky borg will dive faster but is more likely to die.
+# A risky borg is not concerned with killing uniques before diving deeper.
+#
+# A borg who scums for uniques will set the auto_scum flag in order to generate
+# more exciting levels and hopefully encounter a unique
+# 
+# borgs who kill_uniques will wait for uniques to die before diving deeper
+# into the dungeon. Usually, he will not dive deeper than three uniques.
+# Example, Unique Monsters who normally reside on levels 12, 15, and 18 are
+# still alive so the borg will not dive deeper than level 18 until at least one
+# of those uniques are dead. Setting this to FALSE will allow the borg to dive
+# deeper, faster, not being held up by the uniques. But, he does run the risk
+# of finding 3 or 4 uniques on one level. That can be a bit scary.
+
+borg_plays_risky = FALSE
+borg_kills_uniques = FALSE
+
+
+### Swap Items ###
+
+# The borg is designed to use Swap Items in the inventory. A swap item
+# is an equipment item (like a sword or armour item) which possesses a
+# desirable resistance or trait. If the borg is in danger, then he will
+# consider exchanging his current item for the swap item. A prime example of
+# this is at dungeon level 60. He is required to have several resists in
+# place. If he does not have them then he will not dive deeper. However,
+# with Swaps enabled he will select an item to cover the open resist then
+# dive down. Having Swaps enabled allows the borg to dive deeper, faster.
+# The draw back is the Swap Items take up two inventory slots.
+
+borg_uses_swaps = TRUE
+
+
+### Strange Opts ###
+
+# some birth options don't allow the borg to run well. If you want to allow
+# the borg to run anyways, set this to TRUE and run at your own risk.
+
+borg_allow_strange_opts = FALSE
+
+
+### Cheat Death ###
+
+# If borg_cheat_death is set, the option to cheat death will be set and, when
+# the borg dies, he will cheat death and keep going. If this is false and the
+# option to cheat death in the game is true the borg will reincarnate (respawn)
+# as a player using the options below to pick the new player. If the option
+# to cheat death is false and this is false, the borg will stop on death.
+
+borg_cheat_death = FALSE
+
+
+### Respawn ###
+
+# If the borg is in continual play mode (as with the screen saver),
+# he will respawn a randomly generated character at death. This section
+# allows the user to make certain bias for the type of character generated.
+# You may select the race and or class and or minimal stats for the Borg.
+# You may also select the minimal character level needed before the
+# character dump is created in the game directory.
+#
+# With regards to race, the borg is programmed to accept the variety of
+# user defined races which may be in the p_info.txt file. So the values
+# given in table below are for the default races. But if you are bright
+# enough to modify the p_info.txt file then you are bright enough to figure
+# out that race 0 does not necessarily equal Human. It's just the first
+# race listed in your p_info.txt file.
+#
+# RACE:-1 Random Race          CLASS:  -1 Random Class
+#       0 Human                         0 Warrior
+#       1 Half Elf                      1 Mage
+#       2 Elf                           2 Druid
+#       3 Hobbit                        3 Priest
+#       4 Gnome                         4 Necromancer
+#       5 Dwarf                         5 Paladin
+#       6 Half Orc                      6 Rogue
+#       7 Half Troll                    7 Ranger
+#       8 Dunadan                       8 Blackguard
+#       9 High Elf
+#	   10 Kobold
+#
+# With regards to the stats. The minimal stats are rolled by the
+# borg. CON will be 16, the secondary stat (usually DEX) will be 17,
+# The primary stat will be 17. These are the maximal values which
+# can be rolled (racial and class bonuses added after).
+# If the borg can not reach the stats after 500,000 tries the game
+# will just assign you a random stat.
+#
+# After killing Morgoth, generally, the borg will stop and allow you
+# to inspect the victory. If you set the respawn_winners then after
+# killing Morgoth,the borg will generate a new character. A map file
+# is created so you can see what the final battle looked like.
+
+borg_respawn_race = 5
+borg_respawn_class = 0
+borg_respawn_winners = FALSE
+
+
+### Dumps ###
+
+# This variable will determine the minimal character level at which the borg
+# will create a character dump file. That file contains some vital information
+# concerning the status of the borg at the time of his demise. It is placed
+# in the archive directory.
+# The borg_save_death variable will tell the borg to save the game in the
+# archive directory so that it can be examined more closely. The clevel of the
+# borg must at least equal the borg_dump_level in order for the game to save.
+
+borg_dump_level = 1
+borg_save_death = 1
+
+
+### Autosave ###
+
+# This causes the borg to do a (redundant) save at the start of every level and
+# create a backup of that save to the archive directory
+
+borg_autosave = FALSE
+
+
+### Auto Stops ###
+
+# The borg is able to stop when it reaches a certain dungeon depth or character
+# level. He will also stop when he wins the game. If you want him to keep
+# playing, even after Morgoth is dead, then change the borg_stop_king to FALSE.
+# Set the other values to the level at which you want the borg to stop. Set
+# them out of bounds if you do not want him to stop.
+
+borg_stop_dlevel = 128
+borg_stop_clevel = 51
+borg_no_deeper = 127
+borg_stop_king = TRUE
+
+
+### Stop On Bell ###
+
+# If stop on bell is set, the borg will stop when the game plays the bell, 
+# which generally only happens on an error. This is to help debug issues. The
+# message log will contain a list of up to 50 of the latest keypresses.
+
+borg_stop_on_bell = FALSE
+
+
+### Chest Tolerance ###
+
+# The borg is able to search, disarm, and open chests. There is an inherent
+# risk when dealing with chests. The risk of setting off the trap vs the
+# benefit of the loot within the chest. The game uses a straight forward 
+# formula for calculating the success of a chest. It is:
+# randint(100) < the skill of the player minus the difficulty of the chest.
+# Difficulties run from 1 to 63.
+
+borg_chest_fail_tolerance = 7
+
+
+### Speed Of The Borg ###
+
+# You can slow the borg down a couple of ways. One way is to set the
+# base game delay factor in the options menu. This will slow down the borg
+# and the visual effects (like missiles shooting, explosions). If using the
+# screensaver, you will need to load angband.exe load the savefile, make the
+# modifications, then save and exit. Another way to slow the borg down is
+# to use the following variable. The formula is:
+# base_game_delay_factor^2 + borg_delay_factor^2.
+
+borg_delay_factor = 0
+
+
+### Money Scumming ###
+
+# This started as more of a joke but it does have a useful purpose. If you 
+# find yourself shopping in the BM and you really want that item and its just 
+# out of your price range, then you can set a dollar amount into this variable 
+# and the borg will run around town killing monsters and collecting items for 
+# cash. Once he has reached his monetary goal, it will unhook and stop moving. 
+# The borg will wait on the level, to build up more townspeople, kill them, 
+# buy food when it needs to. But it won't leave the level until the goal
+# is reached. To disengage the money scum, leave this variable at 0 (zero).
+# This will also simulate the borg_worships_gold and allow the borg to sell 
+# non-ID'd items which will be dropped in town. The borg will flee from town 
+# from Scary Guys. So keep this in mind with borgs under clevel 6. The borg 
+# will not scum unless he has a perma light source (phial, or some glowing 
+# artifact). The borg will stop if the General Store runs out of food to buy.
+# It is not recommended for borgs with Regeneration and no Slow 
+# Digestion, since they will spend all their money on food. But if you have a
+# borg with Satisfy Hunger spell, they can stay in town forever.
+# NOTE: if a human wants the borg to scum to a particular amount, turn the 
+# borg_self_scum to FALSE or else he will buy his own gear with that money.
+
+borg_money_scum_amount = 0
+
+
+### Borg Scumming ###
+
+# This is a companion to the Money Scum above. The borg will scum town if
+# a stat potion is in the BM. If the borg finds an item in town that he would
+# really like to have, then he will stay in town until he has gathered enough
+# money to buy it. The borg will behave like the borg_money_scum_amount above.
+# If this is TRUE, then the borg is allowed to scum for items that he wants.
+# To forbid this behavior (which can take a very long time) set it FALSE.
+# NOTE: if a human wants the borg to scum to a particular amount, turn the 
+# borg_self_scum to FALSE or else he will buy his own gear with that money.
+# Also, the borg must be at least clevel 10, with a perma light, 
+# a 65% chance to avoid the pick pocket, and lots of food.
+
+borg_self_scum = FALSE
+
+
+### Borg Verbose ###
+
+# Verbose is default off. It makes the borg give more reports on his actions
+# and thoughts. He still gives reports when verbose is FALSE, but when TRUE, 
+# he really chats up a storm.
+
+borg_verbose = FALSE
+
+
+### Removed modes (borg-rs#60) ###
+
+# The munchkin start, its by-class variant, the lunal mode and self-lunal
+# were removed: there is one play mode. Their settings are retired. An old
+# borg.txt that still names one at its "off" value starts with a warning;
+# one that would turn a removed mode on is refused at start-up, naming the
+# setting (docs/TRIP-POLICY.md, "Migration").
+
+
+### Buying Strategy Family (borg-rs#25) ###
+
+# 0 = current (the accepted impact-v10 behaviour), 1 = reserve410 (the
+# experimental early reserve inspired by rejected better-borg-c#410).
+# Class masks use 1<<class: Warrior 1, Mage 2, Druid 4, Priest 8,
+# Necromancer 16, Paladin 32, Rogue 64, Ranger 128, Blackguard 256.
+# Precedence is class, then the global default. Conflicting current/reserve
+# masks are invalid. Unspecified classes use the default. (The munchkin
+# selection went with the mode, borg-rs#60.)
+
+borg_buy_strategy_default = 0
+borg_buy_strategy_current_classes = 0
+borg_buy_strategy_reserve410_classes = 0
+
+# Rust-only learning policy (borg-rs#27); the C parser reads this field but
+# ignores it. Buy one affordable copy of each still-unaware learning-list kind
+# through CL7. Urgent needs (including light at radius 1 or below) and unmet
+# reserve410 deficits come first; when the reserve is satisfied, learning never
+# suppresses the old valuation if stock is absent or unaffordable.
+
+borg_buy_identify = 0
+
+# The negative-baseline arm for the town inventory redesign (borg-rs#36):
+# when TRUE, the Rust borg performs no store interaction at all - it never
+# buys, never sells, and never uses the home as a stash or a swap source.
+# The C parser reads this field but ignores it.
+borg_town_no_stores = FALSE
+
+# The town inventory redesign's parameter vector (borg-rs#36). The C parser
+# reads these fields but ignores them; the Rust borg reads them when
+# borg_town_plan = 1 (live utility planner); 0 keeps the historical chooser.
+# BORG_TOWN_PLAN_RECORD optionally records either mode; it is not needed
+# for live execution (default 1 since #479). Supply purchases use the marginal trip utility and
+# gold-retention model documented in docs/TOWN-UTILITY.md.
+# borg_town_w_* are the phase-1 usefulness weights, with w_light = 100 the
+# numeraire. borg_town_share is the purse-share cap k: a single purchase may
+# cost at most purse / k (0 disables the cap). borg_town_light_depth is the
+# descent target from which a second light source is required, and
+# borg_town_food_trip the food rations carried per trip.
+borg_town_plan = 1
+borg_town_w_light = 100
+borg_town_w_food = 100
+borg_town_w_bleeding = 100
+borg_town_w_poison = 100
+borg_town_w_escape = 50
+borg_town_w_knowledge = 25
+borg_town_w_power = 50
+borg_town_w_trip = 50
+borg_town_share = 10
+borg_town_light_depth = 15
+borg_town_food_trip = 10
+
+# Shadow utility model: 0 depth means the next frontier (max depth + 1);
+# 0 turns estimates exploration plus walking from that destination.
+# Explicit depth/turns declare the intended journey; neither sets item quotas.
+# w_gold prices the option of leaving gold unspent (0 disables that value).
+# Shipped 0 since #493 (owner, 2026-11-17): the reserve is explicit, see
+# borg_param_town_gold_reserve(_percent) below.
+# light_depth and food_trip above remain for replay of the old v4 model.
+borg_town_target_depth = 0
+borg_town_trip_turns = 0
+borg_town_w_gold = 0
+# Zoo calibration: rates and priorities, not item-count targets.
+# risk and home_discount are thousandths; 1000 risk is one max-HP buffer
+# per 1000 actions at equal destination depth and character level.
+# w_space is independent of the Knowledge priority.
+borg_town_depth_gain = 1
+borg_town_explore_turns = 1000
+borg_town_stair_turns = 50
+borg_town_food_turns = 3000
+borg_town_light_turns = 5000
+borg_town_risk = 1000
+borg_town_home_discount = 500
+borg_town_w_space = 25
+borg_town_power_scale = 40000
+
+
+### The trip policy (borg-rs#60) ###
+
+# How deep a trip goes and when it comes back to town: one policy, one play
+# mode. Rust-only; the C parser reads these fields and ignores them. The
+# values are provisional, not accepted (docs/TRIP-POLICY.md).
+#
+# borg_trip_policy          0 = inherited returns; 1 = add return requests
+#                           without changing depth, shopping or combat.
+#                           (with BORG_TRIP_RECORD=<file> set, every decision
+#                           and its inputs are written there in either case).
+# borg_trip_depth_margin    diagnostic depth margin only; does not change
+#                           movement, shopping or combat.
+# borg_trip_pack_slack      pack slots (per distinct stack): go back when
+#                           this many or fewer are free.
+# borg_trip_unknown_stacks  all carried item types: go back when this many
+#                           unknown stacks have a learning opportunity in town
+#                           (0 = never for this reason). Unchanged unresolved
+#                           items from the last town visit do not trigger it.
+# borg_trip_return_gold     gold per character level: go back when the gold
+#                           plus the pack's estimated sale value reaches it
+#                           (0 = never for this reason).
+# Defaults since #479 (owner, 2026-11-17): the borg-zoo#170 speed30 bundle.
+borg_trip_policy = 1
+borg_trip_depth_margin = 0
+borg_trip_pack_slack = 1
+borg_trip_unknown_stacks = 2
+borg_trip_return_gold = 0
+
+# Capability utility priorities and forecast actions per ranged/support use.
+borg_town_w_attack = 100
+borg_town_w_magic = 100
+borg_town_w_support = 50
+borg_town_w_restore = 100
+borg_town_attack_turns = 100
+borg_town_support_turns = 1000
+# Ranger-only usable missile reserve: utility weight (0 disables);
+# forecast actions per shot. Demand follows trip duration, not a fixed quota.
+borg_town_w_ranger_missiles = 250
+borg_town_ranger_missile_turns = 50
+
+
+
+### Enchant Limit ###
+
+# The borg knows how to enchant his equipment using scrolls and spells.
+# For ammo, he will stop enchanting about +10 or so. If he has access 
+# to the *enchant* spell, he can go up to +15. But the borg will spend
+# a lot of time casting and resting in order to get his item up to +15.
+# The borg has plenty of time, to waste doing this. If you want a fast
+# win, then choose a lower number like +11.
+
+borg_enchant_limit = 12
+
+# keep the ignore settings from before the borg was run
+
+borg_restore_ignore_settings = false
+
+
+### Dynamic Calculations ###
+
+# Use the FORMULA SECTION below. If false the borg will
+# use the calcs in the C code. Which is recommended since those are honed
+# more frequently than the dynamic calcs. Most borg users will
+# have more successful borgs by leaving this option as FALSE.
+# note: the dynamic calcs are slower than the internal calcs
+
+borg_uses_dynamic_calcs = FALSE
+
+
+### borg-reborn-rs (#207, #208) ###
+
+# The decision core: "reborn" (this repository's own Borg) or "borg-rs"
+# (borg-rs's core, vendored in borg-core/). BORG_CORE in the environment
+# overrides it. The Rust Borg of this repository reads only these two keys;
+# borg-rs's core reads the rest of this file (borg-rs's own borg.txt, with
+# borg_munchkin_by_class and borg_self_scum FALSE: no stair-scumming, no town
+# scumming, owner 2026-11-14). The default is borg-rs (owner, 2026-11-17,
+# #479: the reborn core is not ready yet); harness/run.sh still runs the
+# reborn core when BORG_CORE is unset, for its references.
+
+borg_reborn_core = borg-rs
+
+# The errand over borg-rs's core (borg-core/src/shell.rs): "none", "/town",
+# "/walk-back", "/explore-back", "/dive N", "/dive-exploring N",
+# "/explore-level", "/ladder" (the class's ladder in borg-core/ladders.txt)
+# or a plan ("/trips 1*/1,2,1*@3/..."). BORG_ERRAND in the environment
+# overrides it; in the game, ^Z / types one.
+
+borg_reborn_errand = none
+
+# /stopscared: when the Borg stops and hands control back. "off"; N, 1-1000:
+# when the danger where it stands reaches N% of its current hit points;
+# "flee" is 100 (one turn could kill it). BORG_STOPSCARED in the
+# environment overrides it.
+
+borg_reborn_stopscared = off
+
+
+### Default parameters ###
+
+# The settings below are the shipped defaults (#479). The compiled core keeps
+# neutral values (docs/CALIBRATION.md); these lines change them for every game
+# that reads this file. BORG_PARAM_<NAME> in the environment overrides a line,
+# and a zoo profile rewrites it in place. A setting of 0 turns a feature off.
+# A class's own values live in harness/borg_<class>.txt, folded into the
+# CLASS FILES block at the end (#520); BORG_PARAM_<NAME>__<CLASS> overrides
+# one class's value.
+
+
+### Combat ###
+
+# Drink a Potion of Speed before a fight the Borg has committed to, when the
+# danger of the monsters that can move is above this many tenths of its
+# avoidance (#469).
+
+borg_param_attack_speed_fight_danger_tenths = 30
+
+# Divide the damage of a shot or throw at an adjacent non-unique monster by
+# this (launcher ammo and thrown objects, not Magic Missile) (#485). The
+# class files set 2 for Rangers and 3 for Rogues.
+
+borg_param_attack_arrow_point_blank_divisor = 5
+
+# Count a living monster as having at least this many hit points (#546).
+# Without it a monster left with 1 HP (a floating eye at 1/9) counts as 0
+# and no attack seems worth making.
+
+borg_param_kill_live_min_power = 1
+
+
+### Healing and town shopping ###
+
+# Hurt and outmatched after every escape was declined: drink a Cure Light,
+# Serious or Critical Wounds potion instead of attacking.
+
+borg_param_caution_heal_when_outmatched = 1
+
+# Gold the town planner keeps back from shopping: the larger of a fixed
+# amount and a percent of the purse (#493).
+
+borg_param_town_gold_reserve = 0
+borg_param_town_gold_reserve_percent = 0
+
+# Healing potions to keep, in percent of max HP (#491, #487). The planner
+# buys healing first and never sells below this. The class files raise it
+# for fragile casters (300 for Mages) and keep it at 100 for Warriors.
+
+borg_param_town_heal_reserve_hp_percent = 100
+
+# Count the real HP a potion restores towards that reserve (#487). 0 = count
+# speed-weighted HP.
+
+borg_param_town_heal_reserve_real_hp = 1
+
+# How much more healing is worth beyond the reserve, in percent of the
+# historical curve (#491). The class files set 150 for Mages, 50 for
+# Warriors.
+
+borg_param_town_heal_curve_scale_percent = 125
+
+# Healing speed: a potion that heals at least this percent of max HP in one
+# swallow counts in full, a smaller one less, so a deeper character prefers
+# Cure Serious Wounds, then Healing (#491).
+
+borg_param_town_heal_speed_percent = 66
+
+# Fear cures to keep while not afraid (#516). A Potion of Boldness cures
+# fear; beyond this many in the pack the planner buys no more (it bought 35
+# and drank 7 on 18 games). 0 = value them on the diminishing curve.
+
+borg_param_town_fear_cure_count = 2
+
+# Whether a rest arms the Detect Invisible defence (#516). The C Borg stamps
+# the see-invisible clock after every rest, so every rest triggered a read:
+# 187 on 18 games, 57 in town, 171 with no unseen monster on the level.
+# 0 = a rest leaves the clock alone; 1 = the C Borg's behaviour.
+
+borg_param_recover_rest_arms_see_invis = 0
+
+# Below this much gold, buy no digger (#487): a Shovel only clears rubble,
+# and early visits spent half their gold on one.
+
+borg_param_town_digger_min_gold = 500
+
+
+### Word of Recall ###
+
+# Buying. What a Word of Recall is worth to the town planner, in percent of
+# the walk it saves (100 = as computed). Shallow, that walk is worth little,
+# so a low-level Borg never buys one; higher values make it buy and keep one
+# (#557, owner 2026-11-18).
+
+borg_param_town_recall_value_percent = 100
+
+# Buying. Keep this many Word of Recall at any depth: the planner values
+# them at the full trip weight (#557). Off here.
+
+borg_param_town_recall_reserve = 0
+
+# Buying, old chooser only (borg_town_plan = 0): the power scorer values
+# Recall only above this character level. The shipped planner does not read
+# it (#557).
+
+borg_param_power_inventory_clevel_threshold_3 = 7
+
+# Descending. A descent to this depth or deeper needs one Word of Recall
+# carried (C: from DL5). It only stops descents; it buys nothing (#557).
+# 0 = never.
+
+borg_param_prepared_recall_depth = 5
+
+# Fleeing, walk to a reachable staircase, and read Word of Recall only when
+# none is reachable (#539).
+
+borg_param_caution_flee_stairs_before_recall = 1
+
+# Fleeing. 1 = read Word of Recall as the escape (C). 0 = only on a level
+# swamped by breeders (that many known) or when chased by several awake
+# monsters that can move (that many within the distance); otherwise walk.
+# Recall then no longer counts as an easy escape in the stand tests (#557).
+# Shipped 1 (C) until borg-zoo#255 measures the gate (owner, 2026-11-18).
+
+borg_param_caution_flee_recall = 1
+borg_param_caution_flee_recall_breeders = 5
+borg_param_caution_flee_recall_chasers = 3
+borg_param_caution_flee_recall_chase_distance = 6
+
+# Fleeing. A ceiling: at depths shallower than this (2 = DL1 only) a flight
+# reads Word of Recall only with the exceptions above (breeders, chasers),
+# even with caution_flee_recall = 1: on DL1 the stairs are a short walk, and
+# the scroll is kept for the trip home. 0 or 1 = off (#557, owner
+# 2026-11-18).
+
+borg_param_caution_flee_recall_gate_below_depth = 2
+
+
+### Fleeing ###
+
+# Read Phase Door only with an awake monster next to the Borg, or one in view
+# that has a ranged attack, not while the monster is still distant (#539).
+
+borg_param_escape_phase_adjacent_only = 1
+
+# On a scary level with no reachable staircase, attack the monster at range
+# with the best ranged attack before reading Recall or Phase Door (#539).
+
+borg_param_caution_scary_ranged_no_stairs = 1
+
+# Fleeing with no up staircase known, walk to a known down staircase at any
+# distance, and keep the known stairs when bravery is boosted (#544).
+# Off here.
+
+borg_param_caution_flee_known_down_stairs = 0
+
+# After fleeing town, the stair scum grabs DL1 items near the stairs before
+# going back up, and checks no danger. With the flag 1, skip it while the
+# level is scary, the danger here is above the limit, or the HP is below the
+# maximum, and go straight back up (#549). Off here.
+
+borg_param_caution_stair_scum_threat = 1
+borg_param_caution_stair_scum_danger = 0
+
+# Walking home (rising) in the dungeon, a flight takes no down staircase
+# unless the danger here is at or above the HP; that staircase is then no
+# easy escape either (#557). Off here.
+
+borg_param_caution_rising_hold_flee_descent = 0
+
+# Walking home (rising), a descent that is not a desperate escape is held for
+# this many Borg ticks on each level while the Borg explores for an up
+# staircase (#483; the compiled default, written out for the zoo, #557).
+
+borg_param_caution_rising_explore_ticks = 1500
+
+
+### Cornered ###
+
+# Cornered: no Phase Door, teleport or escape, a known monster within the
+# radius, and danger at or above the HP (#504). Then the Borg uses every buff
+# it has (fear cure, Speed, Heroism, Berserk Strength, Blessing), reads
+# Monster Confusion against an adjacent unique or higher-level monster, and a
+# melee class (Warrior, Paladin, Rogue, Blackguard) does not retreat.
+
+borg_param_caution_cornered = 1 # 224
+
+# Danger, in tenths of the HP, at which the Borg counts as cornered
+# (10 = danger at or above the HP).
+
+borg_param_caution_cornered_danger_tenths = 10
+
+# Cornered only with a known monster within this many grids.
+
+borg_param_caution_cornered_radius = 2
+
+# An adjacent monster counts as big (worth Monster Confusion) when it is a
+# unique or its level exceeds the Borg's by more than this.
+
+borg_param_caution_cornered_big_level_margin = 0
+
+
+### Breeders ###
+
+# With breeders on the level and no easy escape, stand and fight them: they
+# no longer make the level scary or the Borg flee, and while only breeders
+# are near it does not retreat (#503).
+
+borg_param_caution_breeder_fight = 1
+
+# A free staircase within this many grids is an easy escape (as are Phase
+# Door, teleport, Teleport Level, an escape or Word of Recall).
+
+borg_param_caution_breeder_easy_escape_steps = 5
+
+# Standing against breeders, with one within this many grids and no other
+# monster near, the Borg neither retreats nor backs away.
+
+borg_param_caution_breeder_stand_radius = 5
+
+# Below CL10, hunt breeders while at most this many are known on the level
+# (#503, #558). Every class hunts (Mages and Necromancers with spells, while
+# they have half their mana), all with this count for now (#574: no class
+# values until borg-zoo#277 is read); a class value of 0 turns a class's
+# hunt off.
+
+borg_param_caution_breeder_hunt_max_count = 4
+
+# While it may hunt breeders and has at least this percent of its max HP,
+# the Borg does not rest: breeders multiply while it rests (#558).
+
+borg_param_recover_breeder_hunt_hp_percent = 50
+
+# Judge a breeder the Borg may hunt on its bite, without the armour-corrosion
+# fear of its acid (#558): a green worm mass's 1d3 bite read 630 danger.
+
+borg_param_danger_hunt_breeder_no_acid_fear = 1
+
+# Fighting breeders with no easy escape and danger at or above this many
+# tenths of the HP (5 = half), use the cornered buffs: Speed, Heroism,
+# Berserk Strength, Blessing (#504).
+
+borg_param_caution_breeder_boost_danger_tenths = 5
+
+# Breeder exit (#544): with only breeders near, one adjacent, and danger at or
+# above the HP (or surrounded), walk to the nearest known corridor or doorway
+# at least the distance below from every breeder. Off here.
+
+borg_param_caution_breeder_exit = 0
+borg_param_caution_breeder_exit_distance = 6
+
+
+### Scary monsters ###
+
+# Named scary monsters make the level scary until a new level: the Borg
+# leaves and flees and does not hunt (#503, #518). The resist-based scares
+# (nether, blindness, chaos, confusion, poison) apply either way.
+
+borg_param_caution_scary_named_monsters = 1  # 227
+
+# The list of named scary monsters, by class and character level (#518).
+# none = the C Borg's compiled list. harness/run.sh and the zoo copy the
+# file next to borg.txt and pin its hash.
+
+borg_scary_list = scary_monsters.txt
+
+# A monster is also scary when one character turn of its melee can take at
+# least this percent of max HP, so Fang is scary to a 10-HP Mage but not to
+# an 80-HP Warrior (#505). Spells are not counted.
+
+borg_param_caution_scary_damage_percent = 60
+
+# Flee a scary level only while the escape is real: a free staircase within
+# the breeders' easy-escape steps, an escape item, or no scary monster awake
+# and at least as fast as the character. Otherwise stand and fight, with the
+# cornered buffs. A monster that never moves is never scary (#530).
+
+borg_param_caution_scary_stand = 1
+
+# 1 = a scary level stays scary until a new level, even after its scary
+# monsters are gone (the C latch). 0 = re-checked each scan: with none left,
+# the level stops being scary and the scare's leave and flee are withdrawn.
+# Door scares stay latched. Needs caution_scary_stand (#515).
+
+borg_param_caution_scary_latch = 1
+
+# A named-list or damage-rule scary monster that has lost this percent of
+# its HP, or (with the flag) is afraid, makes nothing scary: Grip fled from
+# one flask of oil (#539). Resist-based and door scares still count. With the
+# latch at 1 this only stops a hurt or afraid monster from making a level
+# scary; with 0 it also ends the scare. 0 and 0 = C.
+
+borg_param_caution_scary_hurt_percent = 50
+borg_param_caution_scary_afraid = 1
+
+# #519 (owner, 2026-11-17): borg-rs's formula section (Power, Depth
+# Requirement, Restock Requirement; 790 lines) is removed. It was read only
+# with borg_uses_dynamic_calcs = TRUE, which this file sets FALSE, so the
+# core's built-in calculations were always used. borg-core/borg.txt keeps
+# borg-rs's copy. Setting TRUE here now warns "no formulas found" and keeps
+# dynamic calculations off.
+
+# ---- BEGIN CLASS FILES (generated by scripts/borg-class-files.py from harness/borg_<class>.txt; do not edit) ----
+# The settings of harness/borg_<class>.txt that override the common ones
+# for one class (#520). Edit the class files and run
+# scripts/borg-class-files.py fold.
+# warrior (harness/borg_warrior.txt)
+borg_param_attack_preference_warrior_melee_permille = 1800
+borg_param_attack_preference_warrior_projectile_permille = 1200
+borg_param_attack_preference_warrior_thrown_permille = 1200
+borg_param_town_heal_curve_scale_percent_warrior = 50
+borg_param_town_heal_reserve_hp_percent_warrior = 100
+# mage (harness/borg_mage.txt)
+borg_param_attack_preference_mage_spell_permille = 2000
+borg_param_attack_preference_mage_device_permille = 1200
+borg_param_town_heal_curve_scale_percent_mage = 150
+borg_param_town_heal_reserve_hp_percent_mage = 300
+# druid (harness/borg_druid.txt)
+borg_param_attack_preference_druid_spell_permille = 1700
+borg_param_town_heal_curve_scale_percent_druid = 125
+borg_param_town_heal_reserve_hp_percent_druid = 250
+# priest (harness/borg_priest.txt)
+borg_param_attack_preference_priest_spell_permille = 1700
+borg_param_town_heal_curve_scale_percent_priest = 125
+borg_param_town_heal_reserve_hp_percent_priest = 250
+# necromancer (harness/borg_necromancer.txt)
+borg_param_attack_preference_necromancer_spell_permille = 1800
+borg_param_attack_preference_necromancer_device_permille = 1200
+borg_param_town_heal_curve_scale_percent_necromancer = 150
+borg_param_town_heal_reserve_hp_percent_necromancer = 300
+# paladin (harness/borg_paladin.txt)
+borg_param_attack_preference_paladin_melee_permille = 1800
+borg_param_attack_preference_paladin_spell_permille = 1200
+borg_param_town_heal_curve_scale_percent_paladin = 75
+borg_param_town_heal_reserve_hp_percent_paladin = 150
+# rogue (harness/borg_rogue.txt)
+borg_param_attack_preference_rogue_projectile_permille = 1300
+borg_param_attack_preference_rogue_thrown_permille = 1600
+borg_param_attack_arrow_point_blank_divisor_rogue = 3
+borg_param_town_heal_curve_scale_percent_rogue = 100
+borg_param_town_heal_reserve_hp_percent_rogue = 200
+# ranger (harness/borg_ranger.txt)
+borg_param_attack_preference_ranger_projectile_permille = 2000
+borg_param_attack_arrow_point_blank_divisor_ranger = 2
+borg_param_town_heal_curve_scale_percent_ranger = 100
+borg_param_town_heal_reserve_hp_percent_ranger = 200
+# blackguard (harness/borg_blackguard.txt)
+borg_param_attack_preference_blackguard_melee_permille = 1600
+borg_param_attack_preference_blackguard_spell_permille = 1400
+borg_param_town_heal_curve_scale_percent_blackguard = 75
+borg_param_town_heal_reserve_hp_percent_blackguard = 150
+# ---- END CLASS FILES ----
