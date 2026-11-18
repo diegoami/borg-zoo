@@ -2502,6 +2502,34 @@
         "borg_param_town_heal_curve_scale_percent": 75
       }
     },
+    "reborn-503-ctl": {
+      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 0,
+        "borg_param_caution_scary_named_monsters": 1
+      }
+    },
+    "reborn-503-fight": {
+      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm fight.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 1,
+        "borg_param_caution_scary_named_monsters": 1
+      }
+    },
+    "reborn-503-nolist": {
+      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm nolist.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 0,
+        "borg_param_caution_scary_named_monsters": 0
+      }
+    },
+    "reborn-503-both": {
+      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm both.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 1,
+        "borg_param_caution_scary_named_monsters": 0
+      }
+    },
     "reborn-heal-r0-c125": {
       "description": "borg-zoo#219 (reborn-heal-light-pilot.yaml): arm r0, c125.",
       "settings": {
