@@ -402,18 +402,25 @@
     },
     "reborn-scary-tough": {
       "issue": 299,
-      "status": "defined (pilot on f660aecc, not dispatched)",
+      "status": "pilot done (gate passed, no deaths; t5 leads on progress); small and medium defined",
       "what": "The scary list's tough end on main f660aecc: shipped, tough - 3 and tough - 5 with fragile unchanged; read per class.",
       "profiles": [
         "reborn-scarytough-ctl",
         "reborn-scarytough-t3",
         "reborn-scarytough-t5"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "44359605720",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "54 games, no deaths; identical to ctl t3 7, t5 6; t5 mean CL 6.00 v 5.44, DL 2.50 v 2.11"
+        }
+      ]
     },
     "reborn-rising-ticks3": {
       "issue": 191,
-      "status": "defined (pilot on f660aecc, not dispatched)",
+      "status": "pilot done (gate passed, no deaths); small and medium defined",
       "what": "caution_rising_explore_ticks 300 (shipped), 500, 1000, 1500, 2000 on main f660aecc.",
       "profiles": [
         "reborn-rising3-t1000",
@@ -421,6 +428,24 @@
         "reborn-rising3-t2000",
         "reborn-rising3-t300",
         "reborn-rising3-t500"
+      ],
+      "runs": [
+        {
+          "run": "44359631721",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "90 games, no deaths; 8/18 identical to t300 in every arm; rising holds 1,101 / 1,369 / 3,823 / 3,904 / 3,202"
+        }
+      ]
+    },
+    "reborn-attack-focus": {
+      "issue": 319,
+      "status": "defined (pilot on f660aecc, not dispatched)",
+      "what": "Attack focus by class on main f660aecc: shipped class preferences, with every family a class file does not raise at 750 or 500.",
+      "profiles": [
+        "reborn-afocus-ctl",
+        "reborn-afocus-low500",
+        "reborn-afocus-low750"
       ],
       "runs": []
     }

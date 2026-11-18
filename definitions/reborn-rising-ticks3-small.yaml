@@ -1,0 +1,38 @@
+# borg-zoo#191: caution_rising_explore_ticks at 500, 1000, 1500 and 2000, small tier; owner request 2026-11-18.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-rising-ticks3-small.yaml
+name: reborn-rising-ticks3-small
+issue: 191
+question: >-
+  On borg-reborn-rs main f660aecc, does holding a descent longer to explore for an up staircase while rising to town
+  (caution_rising_explore_ticks 500, 1000, 1500, 2000 against the shipped 300) save games or cost progress?
+tier: small          # classes-1800 starts 1-90: 10 per class, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-f660aecc
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-rising3
+arms:
+  t300: {}   # shipped
+  t500: {borg_param_caution_rising_explore_ticks: 500}
+  t1000: {borg_param_caution_rising_explore_ticks: 1000}
+  t1500: {borg_param_caution_rising_explore_ticks: 1500}
+  t2000: {borg_param_caution_rising_explore_ticks: 2000}
+control: [t300]
+owner_authorization: >-
+  2026-11-18: after the pilot (gate passed) the owner asked to expand it; small and medium are defined together
+  (starts 1-360), as two tier experiments, as in the 2026-11-18 precedent.
+
+prespecified: |
+  Fixed 2026-11-18, after the pilot and before any small result was read. Same specimen and arms (RULES 16).
+  Pilot (run 44359631721): no deaths; 8 of 18 games identical to t300 in every arm (the same 8
+  starts); rising holds 1,101 (t300), 1,369, 3,823, 3,904, 3,202.
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class (small and medium pooled as one study, RULES 14): deaths and causes, CL1-3 deaths,
+  final level, deepest level; paired rescued and newly killed against the control; identical plays. No evidence is
+  retained at this size. Descriptive only.
