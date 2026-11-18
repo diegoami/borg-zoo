@@ -4023,6 +4023,39 @@
         "borg_param_caution_scary_named_monsters": 1,
         "borg_town_food_trip": 5
       }
+    },
+    "reborn-downcorn-ctl": {
+      "description": "borg-zoo#307 (reborn-down-cornered-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_known_down_stairs": 0,
+        "borg_param_caution_flee_known_down_cornered": 1,
+        "borg_param_caution_flee_known_down_max_cost": 40
+      }
+    },
+    "reborn-downcorn-corn1": {
+      "description": "borg-zoo#307 (reborn-down-cornered-pilot.yaml): arm corn1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_known_down_stairs": 1,
+        "borg_param_caution_flee_known_down_cornered": 1,
+        "borg_param_caution_flee_known_down_max_cost": 40
+      }
+    },
+    "reborn-downcorn-corn0": {
+      "description": "borg-zoo#307 (reborn-down-cornered-pilot.yaml): arm corn0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_known_down_stairs": 1,
+        "borg_param_caution_flee_known_down_cornered": 0,
+        "borg_param_caution_flee_known_down_max_cost": 40
+      }
     }
   }
 }
