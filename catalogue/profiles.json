@@ -2655,6 +2655,27 @@
         "borg_param_town_digger_min_gold": 500
       }
     },
+    "reborn-scary-ctl": {
+      "description": "borg-zoo#227 (reborn-scary-rule-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_param_caution_scary_named_monsters": 0,
+        "borg_param_caution_scary_damage_percent": 0
+      }
+    },
+    "reborn-scary-named": {
+      "description": "borg-zoo#227 (reborn-scary-rule-pilot.yaml): arm named.",
+      "settings": {
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_damage_percent": 0
+      }
+    },
+    "reborn-scary-damage60": {
+      "description": "borg-zoo#227 (reborn-scary-rule-pilot.yaml): arm damage60.",
+      "settings": {
+        "borg_param_caution_scary_named_monsters": 0,
+        "borg_param_caution_scary_damage_percent": 60
+      }
+    },
     "reborn-503-ctl": {
       "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm ctl.",
       "settings": {
