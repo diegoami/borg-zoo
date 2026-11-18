@@ -3203,6 +3203,66 @@
         "borg_param_town_heal_reserve_hp_percent_ranger": -1,
         "borg_param_town_heal_reserve_hp_percent_blackguard": -1
       }
+    },
+    "reborn-healout-noheal": {
+      "description": "borg-zoo#275 (reborn-heal-outmatched-pilot.yaml): arm noheal.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_heal_when_outmatched": 0,
+        "borg_param_caution_heal_outmatched_min_loss": 50
+      }
+    },
+    "reborn-healout-l30": {
+      "description": "borg-zoo#275 (reborn-heal-outmatched-pilot.yaml): arm l30.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_caution_heal_outmatched_min_loss": 30
+      }
+    },
+    "reborn-healout-l40": {
+      "description": "borg-zoo#275 (reborn-heal-outmatched-pilot.yaml): arm l40.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_caution_heal_outmatched_min_loss": 40
+      }
+    },
+    "reborn-healout-l50": {
+      "description": "borg-zoo#275 (reborn-heal-outmatched-pilot.yaml): arm l50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_caution_heal_outmatched_min_loss": 50
+      }
+    },
+    "reborn-healout-l60": {
+      "description": "borg-zoo#275 (reborn-heal-outmatched-pilot.yaml): arm l60.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_caution_heal_outmatched_min_loss": 60
+      }
+    },
+    "reborn-healout-l70": {
+      "description": "borg-zoo#275 (reborn-heal-outmatched-pilot.yaml): arm l70.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_caution_heal_outmatched_min_loss": 70
+      }
     }
   }
 }
