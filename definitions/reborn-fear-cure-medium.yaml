@@ -1,0 +1,30 @@
+# borg-zoo#285: fear-cure stock (town_fear_cure_count 2 vs 0), medium tier (owner, 2026-11-18, after the pilot gate passed in run 44309646816).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-fear-cure-medium.yaml
+name: reborn-fear-cure-medium
+issue: 285
+question: On borg-reborn-rs main bb4e5d1c, does capping the fear cures the planner values at 2 (town_fear_cure_count 2, shipped) save gold without costing games, against the diminishing curve (0)?
+tier: medium           # classes-1800-medium: starts 91-360, 30 per class
+
+specimen: 4.2.6-reborn-rust-main-bb4e5d1c
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only the fear-cure count.
+profile_prefix: reborn-fearcure
+arms:
+  c2: {borg_param_town_fear_cure_count: 2}
+  c0: {borg_param_town_fear_cure_count: 0}
+control: [c2]
+
+prespecified: |
+  Fixed 2026-11-18, before any zoo result was read (owner request, borg-reborn-rs #516). Pilot passed (run 44309646816:
+  no deaths; Boldness bought 5 at 2, 29 at 0); the owner asked for this medium tier. c2 is shipped and the control; c0 is the diminishing curve.
+  Gate:
+  - no config_error; one binary; the value written in both arms;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against c2;
+  Potions of Boldness bought and drunk per game (town transactions and messages); deaths while afraid.
