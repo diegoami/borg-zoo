@@ -3379,6 +3379,42 @@
         "borg_param_caution_scary_named_monsters": 1,
         "borg_param_town_fear_cure_count": 0
       }
+    },
+    "reborn-breeder-hunt-c4-h0": {
+      "description": "borg-zoo#277 (reborn-breeder-hunt-pilot.yaml): arm c4-h0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_hunt_max_count": 4,
+        "borg_param_recover_breeder_hunt_hp_percent": 0
+      }
+    },
+    "reborn-breeder-hunt-c4-h50": {
+      "description": "borg-zoo#277 (reborn-breeder-hunt-pilot.yaml): arm c4-h50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_hunt_max_count": 4,
+        "borg_param_recover_breeder_hunt_hp_percent": 50
+      }
+    },
+    "reborn-breeder-hunt-c2-h50": {
+      "description": "borg-zoo#277 (reborn-breeder-hunt-pilot.yaml): arm c2-h50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_hunt_max_count": 2,
+        "borg_param_recover_breeder_hunt_hp_percent": 50
+      }
+    },
+    "reborn-breeder-hunt-c6-h50": {
+      "description": "borg-zoo#277 (reborn-breeder-hunt-pilot.yaml): arm c6-h50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_hunt_max_count": 6,
+        "borg_param_recover_breeder_hunt_hp_percent": 50
+      }
     }
   }
 }
