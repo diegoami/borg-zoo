@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-latch-pilot",
+  "issue": 256,
+  "definition": "definitions/reborn-scary-latch-pilot.yaml",
+  "question": "On borg-reborn-rs main 162f96af, does letting a level stop being scary once its scary monsters are gone (caution_scary_latch 0) save games without costing any?",
+  "description": "On borg-reborn-rs main 162f96af, does letting a level stop being scary once its scary monsters are gone (caution_scary_latch 0) save games without costing any? Generated from definitions/reborn-scary-latch-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-162f96af, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#515, #562). Pilot (RULES 16); small and larger\nonly after this gate and the owner.\nGate:\n- no config_error; one binary; each arm's latch value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level;\n- paired rescued and newly killed against ctl;\n- per game: \"Scary guy gone: the level is no longer scary.\" notes (unlatch only), \"Scary guy on level\" notes,\n  \"standing and fighting\" notes, and trips to town;\n- the games whose keys differ from ctl, and for each the game turn of its first \"Scary guy gone\" note (with the\n  latch at 0 a game can change only after the flag first clears);\n- deaths within 2,000 game turns after a \"Scary guy gone\" note, with the killer and whether it was the monster\n  that had made the level scary (a scare that ended while its monster was only forgotten);\n- scary-level deaths (\"Scary guy on level\" in the last 100 messages).\nContext: from a mid-game save (priest-1055640847, turn 88,147), 5 seeds: ctl 2 deaths, unlatch 0. From six\nrecorded deaths from birth: 3 deaths in each arm. 18 starts per arm show direction only: this pilot checks\nsafety, and a rescue count needs a larger tier.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-162f96af"
+  ],
+  "profiles": [
+    "reborn-latch-ctl",
+    "reborn-latch-unlatch"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-162f96af",
+  "control_profile": "reborn-latch-ctl",
+  "retain_evidence": true
+}

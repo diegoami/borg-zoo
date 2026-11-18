@@ -204,7 +204,7 @@
     },
     "reborn-heal-by-class": {
       "issue": 265,
-      "status": "defined (pilot on 4a482c58, not dispatched)",
+      "status": "pilot dispatched (run 44294456089)",
       "what": "Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, and class files off (common 100/125); real-HP reserve and speed at shipped values; read per class.",
       "profiles": [
         "reborn-hbc-common",
@@ -213,6 +213,114 @@
         "reborn-hbc-curve-lo",
         "reborn-hbc-reserve-hi",
         "reborn-hbc-reserve-lo"
+      ],
+      "runs": [
+        {
+          "run": "44294456089",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-4a482c58",
+          "result": "running"
+        }
+      ]
+    },
+    "reborn-outmatched": {
+      "issue": 270,
+      "status": "superseded by #275 (reborn-heal-outmatched on 92fafc61: off, min_loss 30-70); not dispatched",
+      "what": "Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75.",
+      "profiles": [
+        "reborn-outm-ctl",
+        "reborn-outm-off0",
+        "reborn-outm-loss25",
+        "reborn-outm-loss75"
+      ],
+      "runs": []
+    },
+    "reborn-attack-by-class": {
+      "issue": 274,
+      "status": "verysmall defined (ctl, flat, half; strong dropped); not dispatched",
+      "what": "Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class.",
+      "profiles": [
+        "reborn-abc-ctl",
+        "reborn-abc-flat",
+        "reborn-abc-half",
+        "reborn-abc-strong"
+      ],
+      "runs": [
+        {
+          "run": "44308236915",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-4a482c58",
+          "result": "72 games: deaths ctl 1, flat 1, half 2, strong 1; identical to ctl: flat 8, half 11, strong 15 of 18; Priest and Blackguard unaffected"
+        }
+      ]
+    },
+    "reborn-worships": {
+      "issue": 279,
+      "status": "pilot done (gate passed); damage, speed, hp, mana inert (18/18 identical), dropped; ac changes every game",
+      "what": "The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect.",
+      "profiles": [
+        "reborn-worship-ctl",
+        "reborn-worship-damage",
+        "reborn-worship-speed",
+        "reborn-worship-hp",
+        "reborn-worship-mana",
+        "reborn-worship-ac"
+      ],
+      "runs": [
+        {
+          "run": "44308259323",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-92fafc61",
+          "result": "108 games, no deaths; damage/speed/hp/mana 18/18 identical to ctl; ac 0/18 identical, mean CL 5.17 v 5.44"
+        }
+      ]
+    },
+    "reborn-recall-settings": {
+      "issue": 280,
+      "status": "defined (pilot on f660aecc, not dispatched)",
+      "what": "Word of Recall settings on main f660aecc (#571 merged): shipped; no flight Recall on DL1-2 (gate 3); flight Recall on DL1 again (gate 0); Recall valued 300% or 1000% by the town planner; no flight Recall at any depth without breeders or chasers (caution_flee_recall 0).",
+      "profiles": [
+        "reborn-recallset-ctl",
+        "reborn-recallset-dl12",
+        "reborn-recallset-dl1off",
+        "reborn-recallset-gate",
+        "reborn-recallset-v1000",
+        "reborn-recallset-v300"
+      ],
+      "runs": []
+    },
+    "reborn-pbd-by-class": {
+      "issue": 290,
+      "status": "defined (pilot on f660aecc, not dispatched)",
+      "what": "Arrow point-blank divisor by class on main f660aecc: shipped (5, Rogue 3, Ranger 2), common 5 for all, about half, about double; read per class.",
+      "profiles": [
+        "reborn-pbdc-common",
+        "reborn-pbdc-ctl",
+        "reborn-pbdc-hi",
+        "reborn-pbdc-lo"
+      ],
+      "runs": []
+    },
+    "reborn-scary-calm": {
+      "issue": 291,
+      "status": "defined (pilot on f660aecc, not dispatched)",
+      "what": "Scary latch (1/0) x calm (hurt 50 + afraid 1, shipped, against 0/0 = C) on main f660aecc.",
+      "profiles": [
+        "reborn-calm-c-calm",
+        "reborn-calm-ctl",
+        "reborn-calm-unlatch",
+        "reborn-calm-unlatch-c"
+      ],
+      "runs": []
+    },
+    "reborn-scary-named-damage": {
+      "issue": 292,
+      "status": "defined (pilot on f660aecc, not dispatched)",
+      "what": "Named scary list with the damage rule at 60% (shipped) or 40%, and the damage rule alone, on main f660aecc.",
+      "profiles": [
+        "reborn-named-dmg-named-d40",
+        "reborn-named-dmg-named-d60",
+        "reborn-named-dmg-nolist-d60"
       ],
       "runs": []
     }
