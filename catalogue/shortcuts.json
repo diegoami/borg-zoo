@@ -288,6 +288,41 @@
         "reborn-recallset-v300"
       ],
       "runs": []
+    },
+    "reborn-pbd-by-class": {
+      "issue": 290,
+      "status": "defined (pilot on f660aecc, not dispatched)",
+      "what": "Arrow point-blank divisor by class on main f660aecc: shipped (5, Rogue 3, Ranger 2), common 5 for all, about half, about double; read per class.",
+      "profiles": [
+        "reborn-pbdc-common",
+        "reborn-pbdc-ctl",
+        "reborn-pbdc-hi",
+        "reborn-pbdc-lo"
+      ],
+      "runs": []
+    },
+    "reborn-scary-calm": {
+      "issue": 291,
+      "status": "defined (pilot on f660aecc, not dispatched)",
+      "what": "Scary latch (1/0) x calm (hurt 50 + afraid 1, shipped, against 0/0 = C) on main f660aecc.",
+      "profiles": [
+        "reborn-calm-c-calm",
+        "reborn-calm-ctl",
+        "reborn-calm-unlatch",
+        "reborn-calm-unlatch-c"
+      ],
+      "runs": []
+    },
+    "reborn-scary-named-damage": {
+      "issue": 292,
+      "status": "defined (pilot on f660aecc, not dispatched)",
+      "what": "Named scary list with the damage rule at 60% (shipped) or 40%, and the damage rule alone, on main f660aecc.",
+      "profiles": [
+        "reborn-named-dmg-named-d40",
+        "reborn-named-dmg-named-d60",
+        "reborn-named-dmg-nolist-d60"
+      ],
+      "runs": []
     }
   }
 }
