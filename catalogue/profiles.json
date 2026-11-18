@@ -3379,6 +3379,60 @@
         "borg_param_caution_scary_named_monsters": 1,
         "borg_param_town_fear_cure_count": 0
       }
+    },
+    "reborn-recallset-ctl": {
+      "description": "borg-zoo#280 (reborn-recall-settings-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 2
+      }
+    },
+    "reborn-recallset-dl12": {
+      "description": "borg-zoo#280 (reborn-recall-settings-pilot.yaml): arm dl12.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 3
+      }
+    },
+    "reborn-recallset-dl1off": {
+      "description": "borg-zoo#280 (reborn-recall-settings-pilot.yaml): arm dl1off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 0
+      }
+    },
+    "reborn-recallset-v300": {
+      "description": "borg-zoo#280 (reborn-recall-settings-pilot.yaml): arm v300.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 300
+      }
+    },
+    "reborn-recallset-v1000": {
+      "description": "borg-zoo#280 (reborn-recall-settings-pilot.yaml): arm v1000.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 1000
+      }
+    },
+    "reborn-recallset-gate": {
+      "description": "borg-zoo#280 (reborn-recall-settings-pilot.yaml): arm gate.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall": 0
+      }
     }
   }
 }
