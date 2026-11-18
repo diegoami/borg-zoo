@@ -1,0 +1,52 @@
+# borg-zoo#267: borg-reborn-rs#557/#565, no flight Recall on DL1 (caution_flee_recall_gate_below_depth 0, 1, 2), pilot; copied from the run request.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-dl1-recall-pilot.yaml
+name: reborn-dl1-recall-pilot
+issue: 267
+question: On borg-reborn-rs main 68cf9eb5, does keeping the flight Recall off DL1 (caution_flee_recall_gate_below_depth 2, shipped) save or cost games against C's Recall at every depth (0), and is 1 the no-op the code says it is?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-68cf9eb5
+  repository: diegoami/borg-reborn-rs
+  ref: 68cf9eb5430802e1dd80f2ea32b10b0975cdfb87
+  label: "borg-reborn-rs 68cf9eb5, main at the merge of #565 (#557): caution_flee_recall_gate_below_depth compiled 0, shipped 2; caution_flee_recall shipped 1. Source-hash rust 1845648a...; harness/borg.txt f04fbcb6..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only the gate depth.
+profile_prefix: reborn-dl1recall
+arms:
+  d0: {borg_param_caution_flee_recall_gate_below_depth: 0}
+  d1: {borg_param_caution_flee_recall_gate_below_depth: 1}
+  d2: {borg_param_caution_flee_recall_gate_below_depth: 2}
+control: [d0]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#557, #565). Pilot (RULES 16); small and larger
+  only after this gate and the owner. d0 is C's flight Recall at every depth; d2 is the shipped default (no flight
+  Recall on DL1 without 5 known breeders or 3 awake monsters that can move within 6 grids); d1 is a no-op by
+  construction (the town never asks) and must play keys identical to d0 in every cell.
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - d1 keys identical to d0 in all 18 cells;
+  - death bundles reproduced.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level;
+  - paired rescued and newly killed, d2 against d0;
+  - "Fleeing the level (recall)" notes per game and their depth; Word of Recall carried at the end and read in the
+    whole game;
+  - DL1 deaths within 500 game turns of a "Fleeing" note;
+  - stands on DL1 ("no escape: standing and fighting").
+  Context: a local classes-18 run of the same comparison on d419072f had 0 deaths in both arms, flight Recalls in
+  17 games at 0 and 10 at 2, sum of CL 107 against 99. 18 starts per arm show direction only.
