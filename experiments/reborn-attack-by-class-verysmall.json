@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-attack-by-class-verysmall",
+  "issue": 274,
+  "definition": "definitions/reborn-attack-by-class-verysmall.yaml",
+  "question": "On borg-reborn-rs main 4a482c58, does each class do better with its shipped attack preferences than with neutral preferences (1000), or with their distance from neutral halved?",
+  "description": "On borg-reborn-rs main 4a482c58, does each class do better with its shipped attack preferences than with neutral preferences (1000), or with their distance from neutral halved? Generated from definitions/reborn-attack-by-class-verysmall.yaml: 3 arms on 4.2.6-reborn-rust-main-4a482c58, suite classes-1800-verysmall.",
+  "prespecified": "Fixed 2026-11-18, after the pilot (run 44308236915) and before any verysmall result was read. Same specimen and the\npilot's ctl, flat and half arms (RULES 16); strong dropped. The pilot showed play changes but no death difference:\ndeaths 1/1/2 of 18, games identical to ctl flat 8 and half 11; Priests and Blackguards played ctl's keys in every arm.\nGate:\n- no config_error; one binary; each arm's 16 class lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nRead per class (5 starts each), not pooled: deaths and causes, final level, deepest level; paired rescued and newly\nkilled against ctl; identical plays per class. Descriptive only: a class whose arm leads goes to small-rest (starts\n46-90) on the owner's word; a class that plays ctl's keys again is dropped from the study.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-4a482c58"
+  ],
+  "profiles": [
+    "reborn-abc-ctl",
+    "reborn-abc-flat",
+    "reborn-abc-half"
+  ],
+  "suites": [
+    "classes-1800-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-main-4a482c58",
+  "control_profile": "reborn-abc-ctl",
+  "owner_authorization": "2026-11-18: the owner asked for the next tier of #274 after the pilot (run 44308236915, gate passed). strong is dropped: it played the shipped keys in 15 of 18 pilot games, and Mage spell and Ranger projectile are at the cap."
+}
