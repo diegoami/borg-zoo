@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-attack-focus-pilot",
+  "issue": 319,
+  "definition": "definitions/reborn-attack-focus-pilot.yaml",
+  "question": "On borg-reborn-rs main f660aecc, does each class do better when every attack family its class file does not favour is preferred less (750, or the minimum 500) than with the neutral 1000?",
+  "description": "On borg-reborn-rs main f660aecc, does each class do better when every attack family its class file does not favour is preferred less (750, or the minimum 500) than with the neutral 1000? Generated from definitions/reborn-attack-focus-pilot.yaml: 3 arms on 4.2.6-reborn-rust-main-f660aecc, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any result of these arms was read. Pilot (RULES 16). #274 (4a482c58: flat, half, strong)\nis context only.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nRead per class: identical plays against ctl; deaths and causes, final level, deepest level; paired rescued and newly\nkilled; per game, attacks by family from the messages (melee blows, shots, throws, spells, device uses), and\nammunition, flasks and spell points left at death. Direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-f660aecc"
+  ],
+  "profiles": [
+    "reborn-afocus-ctl",
+    "reborn-afocus-low750",
+    "reborn-afocus-low500"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-f660aecc",
+  "control_profile": "reborn-afocus-ctl",
+  "owner_authorization": "2026-11-18: the owner asked to make every other family smaller (e.g. Mage melee 500) instead of raising the favoured ones, which are at or near the cap. Pilot first (RULES 16).",
+  "retain_evidence": true
+}
