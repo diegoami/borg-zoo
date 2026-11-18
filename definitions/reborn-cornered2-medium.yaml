@@ -1,0 +1,32 @@
+# borg-zoo#224: cornered-mode danger threshold (5, 10) x radius (2, 4) on borg-reborn-rs main d9ff9808, medium tier.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-cornered2-medium.yaml
+name: reborn-cornered2-medium
+issue: 224
+question: Does cornered mode save more games if it triggers earlier (danger at half the HP) or from further away?
+tier: medium           # classes-1800-medium: starts 91-360, 30 per class
+
+specimen: 4.2.6-reborn-rust-main-d9ff9808
+
+# Every arm reads the shipped harness/borg.txt with cornered mode on and the big-level margin at the shipped 0; only the
+# danger threshold and the radius differ. danger_tenths 5 = cornered when danger reaches half the HP; 10 = the HP.
+profile_prefix: reborn-cornered2
+vary:
+  danger:
+    d5: {borg_param_caution_cornered: 1, borg_param_caution_cornered_big_level_margin: 0, borg_param_caution_cornered_danger_tenths: 5}
+    d10: {borg_param_caution_cornered: 1, borg_param_caution_cornered_big_level_margin: 0, borg_param_caution_cornered_danger_tenths: 10}
+  radius:
+    r2: {borg_param_caution_cornered_radius: 2}
+    r4: {borg_param_caution_cornered_radius: 4}
+
+control: [d10, r2]
+owner_authorization: >-
+  2026-11-18: after the pilot (run 44237508546: no deaths in any arm), the owner asked for the medium tier of the same
+  four arms (borg-zoo#224).
+
+prespecified: |
+  Fixed 2026-11-18, before any result was read (borg-zoo#224). Medium tier: starts 91-360 (270 per arm), four arms:
+  caution_cornered_danger_tenths (5, 10) x caution_cornered_radius (2, 4), cornered on, margin 0; control d10-r2
+  (the shipped values). Gate: no config_error; one binary; settings written; every cell ends in death, turn_cap or
+  borg_stopped; stalls, purchase bursts and key outliers listed. Endpoints, per arm and per class: death share (95%
+  interval), deaths at CL1-3, mean max level and depth; each arm paired against d10-r2 (rescued, newly killed, exact
+  McNemar, identical play). Descriptive only.
