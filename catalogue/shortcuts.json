@@ -291,7 +291,7 @@
     },
     "reborn-pbd-by-class": {
       "issue": 290,
-      "status": "defined (pilot on f660aecc, not dispatched)",
+      "status": "pilot done (gate passed); small and medium defined",
       "what": "Arrow point-blank divisor by class on main f660aecc: shipped (5, Rogue 3, Ranger 2), common 5 for all, about half, about double; read per class.",
       "profiles": [
         "reborn-pbdc-common",
@@ -299,7 +299,14 @@
         "reborn-pbdc-hi",
         "reborn-pbdc-lo"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "44317603211",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "72 games, no deaths; identical to ctl common 14, hi 13, lo 11 of 18; common changes only Rogues and Rangers"
+        }
+      ]
     },
     "reborn-scary-calm": {
       "issue": 291,
@@ -315,12 +322,31 @@
     },
     "reborn-scary-named-damage": {
       "issue": 292,
-      "status": "defined (pilot on f660aecc, not dispatched)",
+      "status": "pilot done (gate passed); superseded by reborn-scary-classes (#299): the owner wants more class bias, not less",
       "what": "Named scary list with the damage rule at 60% (shipped) or 40%, and the damage rule alone, on main f660aecc.",
       "profiles": [
         "reborn-named-dmg-named-d40",
         "reborn-named-dmg-named-d60",
         "reborn-named-dmg-nolist-d60"
+      ],
+      "runs": [
+        {
+          "run": "44317648896",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "54 games: named-d60 0 deaths, named-d40 1 (15/18 identical), nolist-d60 6 (0/18 identical)"
+        }
+      ]
+    },
+    "reborn-scary-classes": {
+      "issue": 299,
+      "status": "defined (pilot on f660aecc, not dispatched)",
+      "what": "The scary list's class spread on main f660aecc: shipped (fragile = tough + 3), fragile + 3, fragile + 6, tough - 3 and fragile + 3; read per class.",
+      "profiles": [
+        "reborn-scaryclass-both",
+        "reborn-scaryclass-ctl",
+        "reborn-scaryclass-up3",
+        "reborn-scaryclass-up6"
       ],
       "runs": []
     }
