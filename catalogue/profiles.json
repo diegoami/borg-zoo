@@ -3361,6 +3361,24 @@
         "borg_reborn_errand": "none",
         "borg_worships_ac": true
       }
+    },
+    "reborn-fearcure-c2": {
+      "description": "borg-zoo#285 (reborn-fear-cure-pilot.yaml): arm c2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_fear_cure_count": 2
+      }
+    },
+    "reborn-fearcure-c0": {
+      "description": "borg-zoo#285 (reborn-fear-cure-pilot.yaml): arm c0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_fear_cure_count": 0
+      }
     }
   }
 }

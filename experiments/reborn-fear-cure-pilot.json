@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-fear-cure-pilot",
+  "issue": 285,
+  "definition": "definitions/reborn-fear-cure-pilot.yaml",
+  "question": "On borg-reborn-rs main bb4e5d1c, does capping the fear cures the planner values at 2 (town_fear_cure_count 2, shipped) save gold without costing games, against the diminishing curve (0)?",
+  "description": "On borg-reborn-rs main bb4e5d1c, does capping the fear cures the planner values at 2 (town_fear_cure_count 2, shipped) save gold without costing games, against the diminishing curve (0)? Generated from definitions/reborn-fear-cure-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-bb4e5d1c, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any zoo result was read (owner request, borg-reborn-rs #516). Pilot (RULES 16); larger\ntiers only after this gate and the owner. c2 is shipped and the control; c0 is the diminishing curve.\nGate:\n- no config_error; one binary; the value written in both arms;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against c2;\nPotions of Boldness bought and drunk per game (town transactions and messages); deaths while afraid.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-bb4e5d1c"
+  ],
+  "profiles": [
+    "reborn-fearcure-c2",
+    "reborn-fearcure-c0"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-bb4e5d1c",
+  "control_profile": "reborn-fearcure-c2",
+  "retain_evidence": true
+}
