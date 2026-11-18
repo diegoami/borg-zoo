@@ -1,10 +1,13 @@
-# borg-zoo#279: the six borg_worships_* switches, each on, pilot; owner request 2026-11-18.
+# borg-zoo#279: the five equipment borg_worships_* switches, each on, pilot; owner request 2026-11-18.
+# borg_worships_gold is left out (owner, same day): with borg_town_plan = 1 the live planner replaces the C seller
+# whose unidentified-item exemption is its main effect; the planner's own gold setting is borg_town_w_gold.
 # Write the catalogue entries with: python3 -m zoo define definitions/reborn-worships-pilot.yaml
 name: reborn-worships-pilot
 issue: 279
 question: >-
-  On borg-reborn-rs main 92fafc61, does turning on any one of the borg_worships_* switches (damage, speed, hp, mana,
-  ac, gold; all shipped FALSE) change how the Borg plays and survives?
+  On borg-reborn-rs main 92fafc61, does turning on any one of the equipment borg_worships_* switches (damage, speed,
+  hp, mana, ac; all shipped FALSE), which add bonuses to borg_power's equipment score, change how the Borg plays and
+  survives?
 tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
 
 specimen:
@@ -34,7 +37,6 @@ arms:
   hp: {borg_worships_hp: true}
   mana: {borg_worships_mana: true}
   ac: {borg_worships_ac: true}
-  gold: {borg_worships_gold: true}
 control: [ctl]
 owner_authorization: >-
   2026-11-18: the owner asked whether the borg_worships_* switches make a difference. This is the pilot that RULES 16
@@ -54,7 +56,6 @@ prespecified: |
   - identical plays against ctl first: an arm that plays ctl's keys in (nearly) every start did nothing at this cap
     and is dropped, not grown;
   - deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;
-  - for the equipment switches (damage, speed, hp, mana, ac): the first game turn where the worn equipment differs from
+  - the first game turn where the worn equipment differs from
     ctl, and the items worn at the end;
-  - for gold: items sold, gold at each milestone, town trips by stairs and by Recall, and the deepest Recall.
   18 starts per arm show direction only.

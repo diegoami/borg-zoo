@@ -250,15 +250,14 @@
     "reborn-worships": {
       "issue": 279,
       "status": "defined (pilot on 92fafc61, not dispatched)",
-      "what": "The six borg_worships_* switches (damage, speed, hp, mana, ac, gold), each on alone against all FALSE (shipped), on main 92fafc61.",
+      "what": "The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect.",
       "profiles": [
         "reborn-worship-ctl",
         "reborn-worship-damage",
         "reborn-worship-speed",
         "reborn-worship-hp",
         "reborn-worship-mana",
-        "reborn-worship-ac",
-        "reborn-worship-gold"
+        "reborn-worship-ac"
       ],
       "runs": []
     }
