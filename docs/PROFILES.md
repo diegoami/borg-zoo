@@ -19,8 +19,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-errand-ladder` | – | 2 | done (option-C pilot, borg-reborn-rs #207, #208) | Errands: borg-rs's core in the reborn shell with no errand against the class ladders (borg_reborn_errand = ladder). |
 | `reborn-heal-by-class` | [#265](https://github.com/diegoami/borg-zoo/issues/265) | 6 | pilot dispatched (run 44294456089) | Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, and class files off (common 100/125); real-HP reserve and speed at shipped values; read per class. |
 | `reborn-outmatched` | [#270](https://github.com/diegoami/borg-zoo/issues/270) | 4 | superseded by #275 (reborn-heal-outmatched on 92fafc61: off, min_loss 30-70); not dispatched | Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75. |
-| `reborn-attack-by-class` | [#274](https://github.com/diegoami/borg-zoo/issues/274) | 4 | pilot dispatched (run 44308236915) | Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class. |
-| `reborn-worships` | [#279](https://github.com/diegoami/borg-zoo/issues/279) | 6 | pilot dispatched (run 44308259323) | The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect. |
+| `reborn-attack-by-class` | [#274](https://github.com/diegoami/borg-zoo/issues/274) | 4 | pilot done (gate passed); next tier waits for the owner | Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class. |
+| `reborn-worships` | [#279](https://github.com/diegoami/borg-zoo/issues/279) | 6 | pilot done (gate passed); damage, speed, hp, mana inert (18/18 identical), dropped; ac changes every game | The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect. |
 | `reborn-recall-settings` | [#280](https://github.com/diegoami/borg-zoo/issues/280) | 6 | defined (pilot on f660aecc, not dispatched) | Word of Recall settings on main f660aecc (#571 merged): shipped; no flight Recall on DL1-2 (gate 3); flight Recall on DL1 again (gate 0); Recall valued 300% or 1000% by the town planner; no flight Recall at any depth without breeders or chasers (caution_flee_recall 0). |
 
 ### `heal-attack-4`
@@ -236,7 +236,7 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 | Run | Tier | Specimen | Result |
 | --- | --- | --- | --- |
-| [44308236915](https://github.com/diegoami/borg-zoo/actions/runs/44308236915) | pilot | `4.2.6-reborn-rust-main-4a482c58` | running |
+| [44308236915](https://github.com/diegoami/borg-zoo/actions/runs/44308236915) | pilot | `4.2.6-reborn-rust-main-4a482c58` | 72 games: deaths ctl 1, flat 1, half 2, strong 1; identical to ctl: flat 8, half 11, strong 15 of 18; Priest and Blackguard unaffected |
 
 ### `reborn-worships`
 
@@ -255,7 +255,7 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 | Run | Tier | Specimen | Result |
 | --- | --- | --- | --- |
-| [44308259323](https://github.com/diegoami/borg-zoo/actions/runs/44308259323) | pilot | `4.2.6-reborn-rust-main-92fafc61` | running |
+| [44308259323](https://github.com/diegoami/borg-zoo/actions/runs/44308259323) | pilot | `4.2.6-reborn-rust-main-92fafc61` | 108 games, no deaths; damage/speed/hp/mana 18/18 identical to ctl; ac 0/18 identical, mean CL 5.17 v 5.44 |
 
 ### `reborn-recall-settings`
 

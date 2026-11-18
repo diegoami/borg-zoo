@@ -237,7 +237,7 @@
     },
     "reborn-attack-by-class": {
       "issue": 274,
-      "status": "pilot dispatched (run 44308236915)",
+      "status": "pilot done (gate passed); next tier waits for the owner",
       "what": "Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class.",
       "profiles": [
         "reborn-abc-ctl",
@@ -250,13 +250,13 @@
           "run": "44308236915",
           "tier": "pilot",
           "specimen": "4.2.6-reborn-rust-main-4a482c58",
-          "result": "running"
+          "result": "72 games: deaths ctl 1, flat 1, half 2, strong 1; identical to ctl: flat 8, half 11, strong 15 of 18; Priest and Blackguard unaffected"
         }
       ]
     },
     "reborn-worships": {
       "issue": 279,
-      "status": "pilot dispatched (run 44308259323)",
+      "status": "pilot done (gate passed); damage, speed, hp, mana inert (18/18 identical), dropped; ac changes every game",
       "what": "The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect.",
       "profiles": [
         "reborn-worship-ctl",
@@ -271,7 +271,7 @@
           "run": "44308259323",
           "tier": "pilot",
           "specimen": "4.2.6-reborn-rust-main-92fafc61",
-          "result": "running"
+          "result": "108 games, no deaths; damage/speed/hp/mana 18/18 identical to ctl; ac 0/18 identical, mean CL 5.17 v 5.44"
         }
       ]
     },
