@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-down-cornered-medium",
+  "issue": 307,
+  "definition": "definitions/reborn-down-cornered-medium.yaml",
+  "question": "On borg-reborn-rs main 8e7dbad4, with the down-staircase flight on, does requiring the Borg to be cornered (caution_flee_known_down_cornered 1) save or cost games against dropping that condition (0), and against the flight off (shipped)?",
+  "description": "On borg-reborn-rs main 8e7dbad4, with the down-staircase flight on, does requiring the Borg to be cornered (caution_flee_known_down_cornered 1) save or cost games against dropping that condition (0), and against the flight off (shipped)? Generated from definitions/reborn-down-cornered-medium.yaml: 3 arms on 4.2.6-reborn-rust-main-8e7dbad4, suite classes-1800-medium.",
+  "prespecified": "Medium tier (owner, 2026-11-18) after the pilot (run 44354583363: no deaths; corn0 changed 14 of 18 games, corn1 1).\nFixed 2026-11-18, before any zoo result was read (owner, after #286's pilot run 44345853505, where both narrowed\narms had cornered 1 and the narrowed flight changed 1 of 18 games). Pilot (RULES 16); larger tiers only after this\ngate and the owner. ctl is the shipped flight off; corn1 is #286's narrow arm on main; corn0 drops the cornered\ncondition and keeps the 40-step limit.\nGate:\n- no config_error; one binary; each arm's three values written;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against ctl, and\ncorn0 against corn1; games with keys identical to ctl; \"Desperate for Stairs (down, no up stairs known)\" notes per\ngame.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-8e7dbad4"
+  ],
+  "profiles": [
+    "reborn-downcorn-ctl",
+    "reborn-downcorn-corn1",
+    "reborn-downcorn-corn0"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-8e7dbad4",
+  "control_profile": "reborn-downcorn-ctl"
+}
