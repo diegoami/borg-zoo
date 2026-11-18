@@ -1,0 +1,44 @@
+# borg-zoo#246: the #549 stair-scum flag (caution_stair_scum_threat), big tier (owner, after small and medium).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-stair-scum-big.yaml
+name: reborn-stair-scum-big
+issue: 246
+question: On borg-reborn-rs main d9ff9808, does skipping the DL1 stair scum while threatened (caution_stair_scum_threat) save games without costing any?
+tier: big              # classes-1800 starts 361-900
+
+specimen:
+  name: 4.2.6-reborn-rust-main-d9ff9808
+  repository: diegoami/borg-reborn-rs
+  ref: d9ff9808236e466b42ee9966abf807aed2738107
+  label: "borg-reborn-rs d9ff9808, main at the merge of #550 (#549): caution_stair_scum_threat, compiled 0 and shipped 0. Source-hash rust 3832a3b5...; harness/borg.txt 9860fba9..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt (shipped scary list) and writes only the flag.
+profile_prefix: reborn-scum
+arms:
+  ctl: {borg_param_caution_stair_scum_threat: 0}
+  threat: {borg_param_caution_stair_scum_threat: 1}
+control: [ctl]
+
+owner_authorization: >-
+  2026-11-18: after small and medium (runs 44238199598, 44238075961; starts 1-360: 25 deaths each arm, the #549 Ranger
+  2107852048 rescued, one Blackguard newly killed), the owner asked for the bigger tier. Evidence is not retained per
+  game; deaths keep their full-log bundles.
+
+prespecified: |
+  Fixed 2026-11-18, before any result was read (borg-zoo#246). Big tier, classes-1800 starts 361-900 (RULES 14),
+  analysed with small and medium as starts 1-900. The flag acts only on DL1 right after fleeing town. Gate: as the
+  earlier tiers (no config_error; one binary; both arms' flag in borg.txt and params-core.json of the death replays;
+  every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed; death
+  bundles reproduced). Primary: deaths over starts 1-900, threat against ctl on the same start (rescued, newly killed,
+  exact McNemar p), also reported for starts 361-900 alone. Secondary: starts that play differently; mean final level
+  and deepest level over the changed starts; deaths by class; from the death replays, DL1 deaths within 500 game turns
+  of arriving from town and whether a "Flowing toward Scum item" note precedes them.

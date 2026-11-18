@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-list-pilot",
+  "issue": 241,
+  "definition": "definitions/reborn-scary-list-pilot.yaml",
+  "question": "Does the shipped data-file scary list beat the compiled C list, and does adding five unlisted early killers save low-level characters?",
+  "description": "Does the shipped data-file scary list beat the compiled C list, and does adding five unlisted early killers save low-level characters? Generated from definitions/reborn-scary-list-pilot.yaml: 3 arms on 4.2.6-reborn-rust-main-156c8e52, suite classes-18.",
+  "prespecified": "Gate: no config_error, one binary, every cell ends in death, turn_cap or borg_stopped; shipped and\nplus-early cells record the base list hash d045111b... and the written file's hash (plus-early:\n39200941...); compiled cells have no list file. List frozen-turn stalls and key outliers.\nEndpoints, per arm and per class, paired against shipped: deaths and causes; deaths by the five added\nmonsters; deaths at CL1-3; rescued / newly killed; mean max CL and max DL; \"# Scary guy on level.\"\nnotes per game; level changes (down-up bounces) per game; deaths on a scary level.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-156c8e52"
+  ],
+  "profiles": [
+    "reborn-scary-shipped",
+    "reborn-scary-compiled",
+    "reborn-scary-plus-early"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-156c8e52",
+  "control_profile": "reborn-scary-shipped",
+  "retain_evidence": true
+}

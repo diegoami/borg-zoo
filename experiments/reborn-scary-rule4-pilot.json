@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-rule4-pilot",
+  "issue": 227,
+  "definition": "definitions/reborn-scary-rule4-pilot.yaml",
+  "question": "On main, how does play change with no scary-monster rule, with C's named list, or with the damage rule at 40% or 60%?",
+  "description": "On main, how does play change with no scary-monster rule, with C's named list, or with the damage rule at 40% or 60%? Generated from definitions/reborn-scary-rule4-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-a8ac685a, suite classes-18.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#227). Pilot of the four arms. Gate: no config_error; one\nbinary; both settings written in every arm; every cell ends in death, turn_cap or borg_stopped; stalls, purchase\nbursts and key outliers listed. ctl, named and damage60 are the same specimen and profiles as run 44178676657 and\nshould replay it exactly. Descriptive: deaths and causes per class, CL1-3 deaths, mean max level and depth; paired\nagainst ctl; from replays, 'Scary guy on level.' notes and down-then-up bounces.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-a8ac685a"
+  ],
+  "profiles": [
+    "reborn-scary-ctl",
+    "reborn-scary-named",
+    "reborn-scary-damage40",
+    "reborn-scary-damage60"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-a8ac685a",
+  "control_profile": "reborn-scary-ctl",
+  "owner_authorization": "2026-11-17: after the three-arm pilot (run 44178676657: the damage rule at 60% rarely fired), the owner asked for the full tier with a damage-40% arm added. This is the pilot of the four arms that RULES 16 requires first."
+}

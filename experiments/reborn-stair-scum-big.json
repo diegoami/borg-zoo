@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-stair-scum-big",
+  "issue": 246,
+  "definition": "definitions/reborn-stair-scum-big.yaml",
+  "question": "On borg-reborn-rs main d9ff9808, does skipping the DL1 stair scum while threatened (caution_stair_scum_threat) save games without costing any?",
+  "description": "On borg-reborn-rs main d9ff9808, does skipping the DL1 stair scum while threatened (caution_stair_scum_threat) save games without costing any? Generated from definitions/reborn-stair-scum-big.yaml: 2 arms on 4.2.6-reborn-rust-main-d9ff9808, suite classes-1800-big.",
+  "prespecified": "Fixed 2026-11-18, before any result was read (borg-zoo#246). Big tier, classes-1800 starts 361-900 (RULES 14),\nanalysed with small and medium as starts 1-900. The flag acts only on DL1 right after fleeing town. Gate: as the\nearlier tiers (no config_error; one binary; both arms' flag in borg.txt and params-core.json of the death replays;\nevery cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed; death\nbundles reproduced). Primary: deaths over starts 1-900, threat against ctl on the same start (rescued, newly killed,\nexact McNemar p), also reported for starts 361-900 alone. Secondary: starts that play differently; mean final level\nand deepest level over the changed starts; deaths by class; from the death replays, DL1 deaths within 500 game turns\nof arriving from town and whether a \"Flowing toward Scum item\" note precedes them.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-d9ff9808"
+  ],
+  "profiles": [
+    "reborn-scum-ctl",
+    "reborn-scum-threat"
+  ],
+  "suites": [
+    "classes-1800-big"
+  ],
+  "control": "4.2.6-reborn-rust-main-d9ff9808",
+  "control_profile": "reborn-scum-ctl",
+  "owner_authorization": "2026-11-18: after small and medium (runs 44238199598, 44238075961; starts 1-360: 25 deaths each arm, the #549 Ranger 2107852048 rescued, one Blackguard newly killed), the owner asked for the bigger tier. Evidence is not retained per game; deaths keep their full-log bundles."
+}

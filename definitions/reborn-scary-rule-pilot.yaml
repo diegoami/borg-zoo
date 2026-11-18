@@ -1,0 +1,28 @@
+# borg-zoo#227: no scary rule vs C's named list vs the damage rule at 60%, on borg-reborn-rs main a8ac685a, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-rule-pilot.yaml
+name: reborn-scary-rule-pilot
+issue: 227
+question: On main, how does play change with no scary-monster rule, with C's named list, or with the damage rule at 60%?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen: 4.2.6-reborn-rust-main-a8ac685a
+
+# Every arm reads the shipped harness/borg.txt and sets only the two scary settings.
+profile_prefix: reborn-scary
+arms:
+  ctl: {borg_param_caution_scary_named_monsters: 0, borg_param_caution_scary_damage_percent: 0}        # no scary rule
+  named: {borg_param_caution_scary_named_monsters: 1, borg_param_caution_scary_damage_percent: 0}      # C's compiled named list
+  damage60: {borg_param_caution_scary_named_monsters: 0, borg_param_caution_scary_damage_percent: 60}  # the damage rule, as shipped
+
+control: [ctl]
+owner_authorization: >-
+  2026-11-17: the owner asked for a test of control vs the old flag (C's named list) vs the damage rule at 60% on
+  current main (borg-zoo#227). The named list's data-file version (borg-reborn-rs#518/#527, borg-zoo#228) is not merged
+  yet, so this uses the compiled flag. Pilot first (RULES 16); small only on the owner's go.
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#227). Pilot only. Gate: no config_error; one binary; both
+  settings written in every arm; every cell ends in death, turn_cap or borg_stopped; stalls, purchase bursts and key
+  outliers listed. Descriptive: deaths and causes per class, CL1-3 deaths counted, mean max level and depth; paired
+  rescued and newly killed for named and damage60 against ctl; from replays, 'Scary guy on level.' notes and down-then-up
+  bounces. 18 starts per arm cannot show which rule is better.

@@ -1,0 +1,45 @@
+# borg-zoo#246: the #549 stair-scum flag (caution_stair_scum_threat), small tier (owner, after the pilot).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-stair-scum-small.yaml
+name: reborn-stair-scum-small
+issue: 246
+question: On borg-reborn-rs main d9ff9808, does skipping the DL1 stair scum while threatened (caution_stair_scum_threat) save games without costing any?
+tier: small            # classes-1800 starts 1-90
+
+specimen:
+  name: 4.2.6-reborn-rust-main-d9ff9808
+  repository: diegoami/borg-reborn-rs
+  ref: d9ff9808236e466b42ee9966abf807aed2738107
+  label: "borg-reborn-rs d9ff9808, main at the merge of #550 (#549): caution_stair_scum_threat, compiled 0 and shipped 0. Source-hash rust 3832a3b5...; harness/borg.txt 9860fba9..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt (shipped scary list) and writes only the flag.
+profile_prefix: reborn-scum
+arms:
+  ctl: {borg_param_caution_stair_scum_threat: 0}
+  threat: {borg_param_caution_stair_scum_threat: 1}
+control: [ctl]
+
+owner_authorization: >-
+  2026-11-18: after the pilot (reborn-stair-scum-pilot, run 44236151761, gate passed, no deaths), the owner asked for
+  the medium tier; small and medium run together (starts 1-360), as for #192, #240 and #244. Evidence is not retained
+  per game; deaths keep their full-log bundles.
+
+prespecified: |
+  Fixed 2026-11-18, before any result was read (borg-zoo#246). Small tier, dispatched with the medium tier;
+  together starts 1-360 of both arms, analysed as one (RULES 14). The flag acts only on DL1 right after fleeing town
+  (borg_think_dungeon: BI_CDEPTH == 1 && goal.fleeing_to_town). Gate: no config_error; one binary; both arms' flag
+  in borg.txt and in params-core.json of the death replays; every cell ends in death, turn_cap or borg_stopped;
+  frozen-turn bursts classified and key outliers listed; death bundles reproduced. Primary: deaths over starts 1-360,
+  threat against ctl on the same start (rescued, newly killed, exact McNemar p). Secondary: how many starts play keys
+  different from ctl; mean final level and deepest level (the pilot's one cost was a level on one start); deaths by
+  class; from the death replays, deaths on DL1 within 500 game turns of arriving from town, and whether a "Flowing
+  toward Scum item" note precedes them. Pilot: no deaths in either arm, 2 of 18 starts changed.
