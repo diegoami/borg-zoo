@@ -2898,6 +2898,24 @@
         "borg_param_town_recall_reserve": 0,
         "borg_param_caution_rising_hold_flee_descent": 1
       }
+    },
+    "reborn-latch-ctl": {
+      "description": "borg-zoo#256 (reborn-scary-latch-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_latch": 1
+      }
+    },
+    "reborn-latch-unlatch": {
+      "description": "borg-zoo#256 (reborn-scary-latch-pilot.yaml): arm unlatch.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_latch": 0
+      }
     }
   }
 }
