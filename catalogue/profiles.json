@@ -3716,6 +3716,313 @@
         "borg_param_caution_scary_named_monsters": 1,
         "borg_param_caution_scary_latch": 0
       }
+    },
+    "reborn-scaryclass-ctl": {
+      "description": "borg-zoo#299 (reborn-scary-classes-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-scaryclass-up3": {
+      "description": "borg-zoo#299 (reborn-scary-classes-pilot.yaml): arm up3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 5-11",
+          "Grip, Farmer Maggot's Dog | 5-11",
+          "Fang, Farmer Maggot's Dog | 5-11",
+          "small kobold | 5-11",
+          "soldier | 8-14",
+          "cutpurse | 8-14",
+          "acolyte | 8-14",
+          "apprentice | 8-14",
+          "kobold | 8-14",
+          "shrieker mushroom patch | 8-14",
+          "Farmer Maggot | 8-14",
+          "filthy street urchin | 8-14",
+          "battle-scarred veteran | 8-14",
+          "mean-looking mercenary | 8-14",
+          "Bullroarer the Hobbit | 15-21",
+          "giant white mouse | 15-21 | | breeders",
+          "white worm mass | 15-21 | | breeders",
+          "green worm mass | 15-21 | | breeders",
+          "cave spider | 20-26",
+          "red naga | 20-26",
+          "giant red frog | 20-26",
+          "radiation eye | 20-26",
+          "yellow worm mass | 20-26 | | breeders",
+          "gravity hound | 44-50",
+          "inertia hound | 44-50",
+          "base:ancient dragon | 44-50",
+          "Beorn, the Shape-Changer | 44-50",
+          "dread | 44-50"
+        ]
+      }
+    },
+    "reborn-scaryclass-up6": {
+      "description": "borg-zoo#299 (reborn-scary-classes-pilot.yaml): arm up6.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 5-14",
+          "Grip, Farmer Maggot's Dog | 5-14",
+          "Fang, Farmer Maggot's Dog | 5-14",
+          "small kobold | 5-14",
+          "soldier | 8-17",
+          "cutpurse | 8-17",
+          "acolyte | 8-17",
+          "apprentice | 8-17",
+          "kobold | 8-17",
+          "shrieker mushroom patch | 8-17",
+          "Farmer Maggot | 8-17",
+          "filthy street urchin | 8-17",
+          "battle-scarred veteran | 8-17",
+          "mean-looking mercenary | 8-17",
+          "Bullroarer the Hobbit | 15-24",
+          "giant white mouse | 15-24 | | breeders",
+          "white worm mass | 15-24 | | breeders",
+          "green worm mass | 15-24 | | breeders",
+          "cave spider | 20-29",
+          "red naga | 20-29",
+          "giant red frog | 20-29",
+          "radiation eye | 20-29",
+          "yellow worm mass | 20-29 | | breeders",
+          "gravity hound | 44-53",
+          "inertia hound | 44-53",
+          "base:ancient dragon | 44-53",
+          "Beorn, the Shape-Changer | 44-53",
+          "dread | 44-53"
+        ]
+      }
+    },
+    "reborn-scaryclass-both": {
+      "description": "borg-zoo#299 (reborn-scary-classes-pilot.yaml): arm both.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 2-11",
+          "Grip, Farmer Maggot's Dog | 2-11",
+          "Fang, Farmer Maggot's Dog | 2-11",
+          "small kobold | 2-11",
+          "soldier | 5-14",
+          "cutpurse | 5-14",
+          "acolyte | 5-14",
+          "apprentice | 5-14",
+          "kobold | 5-14",
+          "shrieker mushroom patch | 5-14",
+          "Farmer Maggot | 5-14",
+          "filthy street urchin | 5-14",
+          "battle-scarred veteran | 5-14",
+          "mean-looking mercenary | 5-14",
+          "Bullroarer the Hobbit | 12-21",
+          "giant white mouse | 12-21 | | breeders",
+          "white worm mass | 12-21 | | breeders",
+          "green worm mass | 12-21 | | breeders",
+          "cave spider | 17-26",
+          "red naga | 17-26",
+          "giant red frog | 17-26",
+          "radiation eye | 17-26",
+          "yellow worm mass | 17-26 | | breeders",
+          "gravity hound | 41-50",
+          "inertia hound | 41-50",
+          "base:ancient dragon | 41-50",
+          "Beorn, the Shape-Changer | 41-50",
+          "dread | 41-50"
+        ]
+      }
+    },
+    "reborn-townw-ctl": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_light": 100
+      }
+    },
+    "reborn-townw-light-half": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm light-half.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_light": 50
+      }
+    },
+    "reborn-townw-light-double": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm light-double.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_light": 200
+      }
+    },
+    "reborn-townw-food-half": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm food-half.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_food": 50
+      }
+    },
+    "reborn-townw-food-double": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm food-double.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_food": 200
+      }
+    },
+    "reborn-townw-bleeding-half": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm bleeding-half.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_bleeding": 50
+      }
+    },
+    "reborn-townw-bleeding-double": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm bleeding-double.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_bleeding": 200
+      }
+    },
+    "reborn-townw-poison-half": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm poison-half.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_poison": 50
+      }
+    },
+    "reborn-townw-poison-double": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm poison-double.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_poison": 200
+      }
+    },
+    "reborn-townw-escape-half": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm escape-half.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_escape": 25
+      }
+    },
+    "reborn-townw-escape-double": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm escape-double.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_escape": 100
+      }
+    },
+    "reborn-townw-knowledge-half": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm knowledge-half.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_knowledge": 12
+      }
+    },
+    "reborn-townw-knowledge-double": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm knowledge-double.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_knowledge": 50
+      }
+    },
+    "reborn-townw-power-half": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm power-half.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_power": 25
+      }
+    },
+    "reborn-townw-power-double": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm power-double.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_power": 100
+      }
+    },
+    "reborn-townw-trip-half": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm trip-half.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_trip": 25
+      }
+    },
+    "reborn-townw-trip-double": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm trip-double.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_w_trip": 100
+      }
+    },
+    "reborn-townw-share5": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm share5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_share": 5
+      }
+    },
+    "reborn-townw-share20": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm share20.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_share": 20
+      }
+    },
+    "reborn-townw-lightdepth5": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm lightdepth5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_light_depth": 5
+      }
+    },
+    "reborn-townw-foodtrip5": {
+      "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm foodtrip5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_town_food_trip": 5
+      }
     }
   }
 }

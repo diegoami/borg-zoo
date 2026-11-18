@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-pbd-by-class-small",
+  "issue": 290,
+  "definition": "definitions/reborn-pbd-by-class-small.yaml",
+  "question": "On borg-reborn-rs main f660aecc, does each class do better with its shipped point-blank divisor (common 5, Rogue 3, Ranger 2) than with about half or double that value, or than with the common 5 for every class?",
+  "description": "On borg-reborn-rs main f660aecc, does each class do better with its shipped point-blank divisor (common 5, Rogue 3, Ranger 2) than with about half or double that value, or than with the common 5 for every class? Generated from definitions/reborn-pbd-by-class-small.yaml: 4 arms on 4.2.6-reborn-rust-main-f660aecc, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-18, after the pilot (run 44317603211) and before any small result was read. Same specimen and arms as\nthe pilot (RULES 16). Pilot: no deaths in any arm; games identical to ctl common 14, hi 13, lo 11 of 18; common\nchanged only Rogues and Rangers, lo and hi also some Warriors, Mages, Paladins and Necromancers.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nRead per class (small and medium pooled as one study, RULES 14), not pooled over classes: deaths and causes, final\nlevel, deepest level; paired rescued and newly killed against ctl; identical plays per class. Descriptive only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-f660aecc"
+  ],
+  "profiles": [
+    "reborn-pbdc-ctl",
+    "reborn-pbdc-common",
+    "reborn-pbdc-lo",
+    "reborn-pbdc-hi"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-main-f660aecc",
+  "control_profile": "reborn-pbdc-ctl",
+  "owner_authorization": "2026-11-18: after the pilot (run 44317603211, gate passed), the owner asked for medium; as in the 2026-11-18 precedent, small and medium are defined together (starts 1-360), as two tier experiments."
+}

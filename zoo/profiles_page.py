@@ -67,6 +67,8 @@ def check(cat, sc):
 
 
 def value(v):
+    if isinstance(v, list):  # borg_scary_list_lines: appended list lines (borg-zoo#228)
+        return f'{len(v)} line' + ('' if len(v) == 1 else 's')
     return cat_mod.setting_value(v) if not isinstance(v, str) or v else '""'
 
 
