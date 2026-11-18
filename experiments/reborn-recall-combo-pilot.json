@@ -1,0 +1,32 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-recall-combo-pilot",
+  "issue": 309,
+  "definition": "definitions/reborn-recall-combo-pilot.yaml",
+  "question": "On borg-reborn-rs main 8e7dbad4, how do the Word of Recall purchase value (100/300/1000), the depth from which a descent needs a Recall (5/3) and walking to stairs before reading Recall in a flight (1/0) combine on deaths and progress?",
+  "description": "On borg-reborn-rs main 8e7dbad4, how do the Word of Recall purchase value (100/300/1000), the depth from which a descent needs a Recall (5/3) and walking to stairs before reading Recall in a flight (1/0) combine on deaths and progress? Generated from definitions/reborn-recall-combo-pilot.yaml: 12 arms on 4.2.6-reborn-rust-main-8e7dbad4, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any zoo result was read (owner request). Pilot (RULES 16); larger tiers only after this\ngate and the owner. Full 3x2x2 factorial; ctl is the shipped configuration.\nGate:\n- no config_error; one binary; each arm's three values written;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against ctl; main\neffects and interactions (direction only at this size); Word of Recall bought, read in flight (\"Fleeing the level\n(recall)\") and in total, carried at the end; games with keys identical to ctl.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-8e7dbad4"
+  ],
+  "profiles": [
+    "reborn-recallcombo-ctl",
+    "reborn-recallcombo-v100-d5-s0",
+    "reborn-recallcombo-v100-d3-s1",
+    "reborn-recallcombo-v100-d3-s0",
+    "reborn-recallcombo-v300-d5-s1",
+    "reborn-recallcombo-v300-d5-s0",
+    "reborn-recallcombo-v300-d3-s1",
+    "reborn-recallcombo-v300-d3-s0",
+    "reborn-recallcombo-v1000-d5-s1",
+    "reborn-recallcombo-v1000-d5-s0",
+    "reborn-recallcombo-v1000-d3-s1",
+    "reborn-recallcombo-v1000-d3-s0"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-8e7dbad4",
+  "control_profile": "reborn-recallcombo-ctl",
+  "retain_evidence": true
+}
