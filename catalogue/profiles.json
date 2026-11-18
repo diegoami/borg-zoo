@@ -3238,6 +3238,82 @@
         "borg_param_caution_heal_when_outmatched": 1,
         "borg_param_caution_heal_outmatched_min_loss": 75
       }
+    },
+    "reborn-abc-ctl": {
+      "description": "borg-zoo#274 (reborn-attack-by-class-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-abc-flat": {
+      "description": "borg-zoo#274 (reborn-attack-by-class-pilot.yaml): arm flat.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_preference_warrior_melee_permille": 1000,
+        "borg_param_attack_preference_warrior_projectile_permille": 1000,
+        "borg_param_attack_preference_warrior_thrown_permille": 1000,
+        "borg_param_attack_preference_mage_spell_permille": 1000,
+        "borg_param_attack_preference_mage_device_permille": 1000,
+        "borg_param_attack_preference_druid_spell_permille": 1000,
+        "borg_param_attack_preference_priest_spell_permille": 1000,
+        "borg_param_attack_preference_necromancer_spell_permille": 1000,
+        "borg_param_attack_preference_necromancer_device_permille": 1000,
+        "borg_param_attack_preference_paladin_melee_permille": 1000,
+        "borg_param_attack_preference_paladin_spell_permille": 1000,
+        "borg_param_attack_preference_rogue_projectile_permille": 1000,
+        "borg_param_attack_preference_rogue_thrown_permille": 1000,
+        "borg_param_attack_preference_ranger_projectile_permille": 1000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1000,
+        "borg_param_attack_preference_blackguard_spell_permille": 1000
+      }
+    },
+    "reborn-abc-half": {
+      "description": "borg-zoo#274 (reborn-attack-by-class-pilot.yaml): arm half.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_preference_warrior_melee_permille": 1400,
+        "borg_param_attack_preference_warrior_projectile_permille": 1100,
+        "borg_param_attack_preference_warrior_thrown_permille": 1100,
+        "borg_param_attack_preference_mage_spell_permille": 1500,
+        "borg_param_attack_preference_mage_device_permille": 1100,
+        "borg_param_attack_preference_druid_spell_permille": 1350,
+        "borg_param_attack_preference_priest_spell_permille": 1350,
+        "borg_param_attack_preference_necromancer_spell_permille": 1400,
+        "borg_param_attack_preference_necromancer_device_permille": 1100,
+        "borg_param_attack_preference_paladin_melee_permille": 1400,
+        "borg_param_attack_preference_paladin_spell_permille": 1100,
+        "borg_param_attack_preference_rogue_projectile_permille": 1150,
+        "borg_param_attack_preference_rogue_thrown_permille": 1300,
+        "borg_param_attack_preference_ranger_projectile_permille": 1500,
+        "borg_param_attack_preference_blackguard_melee_permille": 1300,
+        "borg_param_attack_preference_blackguard_spell_permille": 1200
+      }
+    },
+    "reborn-abc-strong": {
+      "description": "borg-zoo#274 (reborn-attack-by-class-pilot.yaml): arm strong.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_preference_warrior_melee_permille": 2000,
+        "borg_param_attack_preference_warrior_projectile_permille": 1300,
+        "borg_param_attack_preference_warrior_thrown_permille": 1300,
+        "borg_param_attack_preference_mage_spell_permille": 2000,
+        "borg_param_attack_preference_mage_device_permille": 1300,
+        "borg_param_attack_preference_druid_spell_permille": 2000,
+        "borg_param_attack_preference_priest_spell_permille": 2000,
+        "borg_param_attack_preference_necromancer_spell_permille": 2000,
+        "borg_param_attack_preference_necromancer_device_permille": 1300,
+        "borg_param_attack_preference_paladin_melee_permille": 2000,
+        "borg_param_attack_preference_paladin_spell_permille": 1300,
+        "borg_param_attack_preference_rogue_projectile_permille": 1450,
+        "borg_param_attack_preference_rogue_thrown_permille": 1900,
+        "borg_param_attack_preference_ranger_projectile_permille": 2000,
+        "borg_param_attack_preference_blackguard_melee_permille": 1900,
+        "borg_param_attack_preference_blackguard_spell_permille": 1600
+      }
     }
   }
 }

@@ -234,6 +234,18 @@
         "reborn-outm-loss75"
       ],
       "runs": []
+    },
+    "reborn-attack-by-class": {
+      "issue": 274,
+      "status": "defined (pilot on 4a482c58, not dispatched)",
+      "what": "Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class.",
+      "profiles": [
+        "reborn-abc-ctl",
+        "reborn-abc-flat",
+        "reborn-abc-half",
+        "reborn-abc-strong"
+      ],
+      "runs": []
     }
   }
 }
