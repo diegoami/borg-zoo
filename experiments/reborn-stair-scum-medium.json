@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-stair-scum-medium",
+  "issue": 246,
+  "definition": "definitions/reborn-stair-scum-medium.yaml",
+  "question": "On borg-reborn-rs main d9ff9808, does skipping the DL1 stair scum while threatened (caution_stair_scum_threat) save games without costing any?",
+  "description": "On borg-reborn-rs main d9ff9808, does skipping the DL1 stair scum while threatened (caution_stair_scum_threat) save games without costing any? Generated from definitions/reborn-stair-scum-medium.yaml: 2 arms on 4.2.6-reborn-rust-main-d9ff9808, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-18, before any result was read (borg-zoo#246). Medium tier, dispatched with the small tier;\ntogether starts 1-360 of both arms, analysed as one (RULES 14). The flag acts only on DL1 right after fleeing town\n(borg_think_dungeon: BI_CDEPTH == 1 && goal.fleeing_to_town). Gate: no config_error; one binary; both arms' flag\nin borg.txt and in params-core.json of the death replays; every cell ends in death, turn_cap or borg_stopped;\nfrozen-turn bursts classified and key outliers listed; death bundles reproduced. Primary: deaths over starts 1-360,\nthreat against ctl on the same start (rescued, newly killed, exact McNemar p). Secondary: how many starts play keys\ndifferent from ctl; mean final level and deepest level (the pilot's one cost was a level on one start); deaths by\nclass; from the death replays, deaths on DL1 within 500 game turns of arriving from town, and whether a \"Flowing\ntoward Scum item\" note precedes them. Pilot: no deaths in either arm, 2 of 18 starts changed.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-d9ff9808"
+  ],
+  "profiles": [
+    "reborn-scum-ctl",
+    "reborn-scum-threat"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-d9ff9808",
+  "control_profile": "reborn-scum-ctl",
+  "owner_authorization": "2026-11-18: after the pilot (reborn-stair-scum-pilot, run 44236151761, gate passed, no deaths), the owner asked for the medium tier; small and medium run together (starts 1-360), as for #192, #240 and #244. Evidence is not retained per game; deaths keep their full-log bundles."
+}
