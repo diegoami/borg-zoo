@@ -1,0 +1,182 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-recallvalue-v100": {
+        "description": "borg-zoo#309 (reborn-recall-value-pilot.yaml): arm v100.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_town_recall_value_percent": 100,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "24b06314ff13c5b4defdd6cd5f210fbdaf0bab7cea1046d151153e4db68855af"
+      },
+      "reborn-recallvalue-v125": {
+        "description": "borg-zoo#309 (reborn-recall-value-pilot.yaml): arm v125.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_town_recall_value_percent": 125,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "e3a84516b348574689608b2caf49c3a343d57a19bd735a248cdcd5ca6fdcd830"
+      },
+      "reborn-recallvalue-v150": {
+        "description": "borg-zoo#309 (reborn-recall-value-pilot.yaml): arm v150.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_town_recall_value_percent": 150,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "2532f5f0178e93f3ef4f6600fe5cc0b59a610f8f9b968f4218224a1320755725"
+      },
+      "reborn-recallvalue-v75": {
+        "description": "borg-zoo#309 (reborn-recall-value-pilot.yaml): arm v75.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_town_recall_value_percent": 75,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "6cb65becda13e24f60b5a73f789580815a76113d44a829e7f7c3acb1b186a58e"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-8e7dbad4": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 8e7dbad4, main at the merge of #573 (#569 scary calm review). Ships the live town planner (borg_town_plan 1) with w_light 100, food 100, bleeding 100, poison 100, escape 50, knowledge 25, power 50, trip 50, share 10. Source-hash rust 1a6a0b9d...; harness/borg.txt dcd81f01...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "8e7dbad4b43291a95328c1b90c7d4ae4778dcc4c",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-18 18:29 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-8e7dbad4",
+    "control_profile": "reborn-recallvalue-v100",
+    "definition": "definitions/reborn-recall-value-pilot.yaml",
+    "description": "On borg-reborn-rs main 8e7dbad4, with every other setting shipped, does a Word of Recall purchase value of 75, 125 or 150 percent save or cost games against the shipped 100? Generated from definitions/reborn-recall-value-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-8e7dbad4, suite classes-18.",
+    "issue": 309,
+    "name": "reborn-recall-value-pilot",
+    "prespecified": "Fixed 2026-11-18, before any result of this study was read (owner: \"just use this variable ... 75, 100, 125,\n150\"), after #309's 3x2x2 pilot (run 44355657179), where value 1000 with stairs first progressed best. Pilot\n(RULES 16); larger tiers only after this gate and the owner. v100 is shipped and the control; every other\nsetting is the shipped borg.txt.\nGate:\n- no config_error; one binary; the value written in every arm;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against v100;\nWord of Recall bought, read in flight and in total, carried at the end; games with keys identical to v100.",
+    "profiles": [
+      "reborn-recallvalue-v100",
+      "reborn-recallvalue-v75",
+      "reborn-recallvalue-v125",
+      "reborn-recallvalue-v150"
+    ],
+    "question": "On borg-reborn-rs main 8e7dbad4, with every other setting shipped, does a Word of Recall purchase value of 75, 125 or 150 percent save or cost games against the shipped 100?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-8e7dbad4"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44369247745-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44369247745",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "1a2f4f01a4004af730ed57cee6cc5710a0351cce"
+}
