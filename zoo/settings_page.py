@@ -26,6 +26,21 @@ from .briefs import question
 from .site import esc, pval, table, explain
 
 MEDIUM = 270
+SORT_SCRIPT = (
+    '<style>th.sort{cursor:pointer;user-select:none}th.sort::after{content:" \\2195";opacity:.4}'
+    'th.sort[aria-sort=ascending]::after{content:" \\2191";opacity:1}'
+    'th.sort[aria-sort=descending]::after{content:" \\2193";opacity:1}</style>'
+    '<script>document.querySelectorAll("table").forEach(t=>{const hs=[...t.tHead.rows[0].cells];'
+    'hs.forEach((h,i)=>{h.classList.add("sort");h.tabIndex=0;const go=()=>{'
+    'const asc=h.getAttribute("aria-sort")!=="ascending";hs.forEach(x=>x.removeAttribute("aria-sort"));'
+    'h.setAttribute("aria-sort",asc?"ascending":"descending");'
+    'const key=r=>{const c=r.cells[i];const d=c.querySelector("[data-sort]");'
+    'const v=d?d.dataset.sort:c.textContent.trim();const n=parseFloat(v.replace(/[,<%]/g,""));'
+    'return /^[<\\d.,-]/.test(v)&&!isNaN(n)?n:v.toLowerCase()};'
+    'const rows=[...t.tBodies[0].rows].sort((a,b)=>{const x=key(a),y=key(b);'
+    'return (typeof x===typeof y?(x<y?-1:x>y?1:0):(typeof x==="number"?-1:1))*(asc?1:-1)});'
+    'rows.forEach(r=>t.tBodies[0].appendChild(r))};'
+    'h.addEventListener("click",go);h.addEventListener("keydown",e=>{if(e.key==="Enter")go()})})});</script>')
 VERDICTS = ['clear difference', 'suggestive', 'no difference found', 'too small to tell']
 VERDICT_NOTE = {
     'clear difference': 'An arm differs from the control in deaths, p < 0.05 after correcting for the number of arms.',
@@ -181,7 +196,7 @@ def index_page(found):
         rows.append([f'<a href="{slug(key)}.html"><code>{esc(key)}</code></a>', len(studies),
                      sum(len(s['runs']) for s in studies),
                      f'{max(head_row(s)["n"] for s in studies):,}',
-                     f'{esc(b["verdict"])} ({b["n"]:,} per arm)',
+                     f'<span data-sort="{VERDICTS.index(b["verdict"])}">{esc(b["verdict"])} ({b["n"]:,} per arm)</span>',
                      esc(max(s['runs'][0]['metas'][0].get('completed', '') for s in studies)[:10])])
     legend = ''.join(f'<li><strong>{esc(v)}</strong>: {esc(VERDICT_NOTE[v])}</li>' for v in VERDICTS)
     return (f'<h1>Borg zoo</h1>{nav("settings/index.html", "../")}'
@@ -190,7 +205,8 @@ def index_page(found):
                       'pilots included. Each link lists those experiments with their build, size, deaths per arm '
                       'and how certain the result is. Verdicts are about deaths only.', INDEX_COLS)
             + f'<ul>{legend}</ul>'
-            + (table(INDEX_COLS, rows) if rows else '<p class="muted">No settings tested yet.</p>'))
+            + '<p class="muted">Click a column heading to sort by it; click again to reverse.</p>'
+            + (table(INDEX_COLS, rows) if rows else '<p class="muted">No settings tested yet.</p>') + SORT_SCRIPT)
 
 
 def result_table(key, row):
@@ -255,7 +271,7 @@ def setting_page(key, studies):
             f'newest first: {esc(summary)}. A study run in tiers (pilot, small, medium...) is shown pooled, every '
             f'start counted once, with each run below it. Results on different builds are not interchangeable: '
             f'a later build may play differently.</p>'
-            + ''.join(study_block(key, s) for s in studies))
+            + ''.join(study_block(key, s) for s in studies) + SORT_SCRIPT)
 
 
 def build(runs, out, page):
