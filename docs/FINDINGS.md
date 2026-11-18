@@ -336,6 +336,17 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 - **Deaths per class (of 111):** Warrior 23, Mage 25, Druid 46, Priest 26, Necromancer 35, Paladin 33, Rogue 33, Ranger 35, Blackguard 25.
 - **The unfinished scenario:** Rogue c6-r7-s1060140-i000 hit the 5 s wall at game turn 96,481 of 97,007. The game was fighting a breeding swarm of giant white lice (8,172 `Tracking a monster` notes). Replayed locally, it times out at 5 s every time; with a 60 s wall it reaches the horizon alive in 6.9 s. On the same save, speed30 (193d9076) needed 3.6 s and the reborn baseline 1.3 s. No other scenario took more than 1.7 s on 7e08c920. The archived record labels the cell `invalid_receipt`; the runner now labels such a cell `wall_timeout`.
 
+**#191, caution_rising_explore_ticks 0/150/300/450 on main d9ff9808 (pilot, run 44230664898, 72 games): no deaths in any arm.** The gate passed: one binary (44b1d2f3), no config_error, the setting written in every arm, the shipped scary list loaded and recorded in all 72 cells, nothing flagged. All 72 replays match CI. Every game reached the turn cap. Mean max level is 5.28-5.39 and mean max DL 2.11-2.17 in every arm. 14 of 18 games play identically to the off arm.
+
+| ticks | `exploring for them (rising)` notes | `no up stairs found, going down` | down-then-up bounces | town visits |
+|---|---|---|---|---|
+| 0 (off) | 0 | 84 | 1,408 | 1,268 |
+| 150 | 59 | 70 | 1,368 | 1,235 |
+| 300 (default) | 111 | 63 | 1,387 | 1,259 |
+| 450 | 122 | 72 | 1,364 | 1,235 |
+
+The hold fires more as the budget grows, and the going-down notes fall from 84 to 63-72. The level bouncing and town visits hardly change. A first run of this pilot (44230015413) failed at the build, before any game, because the specimen did not yet pin the shipped scary list.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
