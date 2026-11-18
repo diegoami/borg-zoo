@@ -38,7 +38,7 @@ SORT_SCRIPT = (
     'h.setAttribute("aria-sort",asc?"ascending":"descending");'
     'const key=r=>{const c=r.cells[i];const d=c.querySelector("[data-sort]");'
     'const v=d?d.dataset.sort:c.textContent.trim();const n=parseFloat(v.replace(/[,<%]/g,""));'
-    'return /^[<\\d.,-]/.test(v)&&!isNaN(n)?n:v.toLowerCase()};'
+    'return /^<?-?[\\d,]*\\.?\\d+%?$/.test(v)&&!isNaN(n)?n:v.toLowerCase()};'
     'const rows=[...t.tBodies[0].rows].sort((a,b)=>{const x=key(a),y=key(b);'
     'return (typeof x===typeof y?(x<y?-1:x>y?1:0):(typeof x==="number"?-1:1))*(asc?1:-1)});'
     'rows.forEach(r=>t.tBodies[0].appendChild(r))};'
