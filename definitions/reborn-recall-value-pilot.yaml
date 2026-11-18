@@ -1,0 +1,36 @@
+# borg-zoo#309: Word of Recall purchase value alone (75, 100, 125, 150), pilot (owner, 2026-11-18).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-recall-value-pilot.yaml
+name: reborn-recall-value-pilot
+issue: 309
+question: On borg-reborn-rs main 8e7dbad4, with every other setting shipped, does a Word of Recall purchase value of 75, 125 or 150 percent save or cost games against the shipped 100?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-8e7dbad4
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt (prepared_recall_depth 5, stairs before Recall 1) and writes only the value.
+profile_prefix: reborn-recallvalue
+arms:
+  v100: {borg_param_town_recall_value_percent: 100}
+  v75: {borg_param_town_recall_value_percent: 75}
+  v125: {borg_param_town_recall_value_percent: 125}
+  v150: {borg_param_town_recall_value_percent: 150}
+control: [v100]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any result of this study was read (owner: "just use this variable ... 75, 100, 125,
+  150"), after #309's 3x2x2 pilot (run 44355657179), where value 1000 with stairs first progressed best. Pilot
+  (RULES 16); larger tiers only after this gate and the owner. v100 is shipped and the control; every other
+  setting is the shipped borg.txt.
+  Gate:
+  - no config_error; one binary; the value written in every arm;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against v100;
+  Word of Recall bought, read in flight and in total, carried at the end; games with keys identical to v100.
