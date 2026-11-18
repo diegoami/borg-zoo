@@ -1,0 +1,30 @@
+# borg-zoo#170: borg_trip_unknown_stacks (2, 3, 4, 5) on borg-reborn-rs main d9ff9808 with its shipped defaults, medium tier.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-unknown-main-medium.yaml
+name: reborn-unknown-main-medium
+issue: 170
+question: On current main, how many unknown stacks should trigger a trip back to town to learn them?
+tier: medium           # classes-1800-medium: starts 91-360, 30 per class
+
+specimen: 4.2.6-reborn-rust-main-d9ff9808
+
+# Every arm reads the shipped harness/borg.txt (and its pinned scary list) and sets only borg_trip_unknown_stacks.
+profile_prefix: reborn-unknown
+vary:
+  stacks:
+    s2: {borg_trip_unknown_stacks: 2}
+    s3: {borg_trip_unknown_stacks: 3}
+    s4: {borg_trip_unknown_stacks: 4}
+    s5: {borg_trip_unknown_stacks: 5}   # the shipped value
+
+control: [s5]
+owner_authorization: >-
+  2026-11-18: after the pilot (run 44236318055: no deaths in any arm), the owner asked for the medium tier of the same
+  four arms (borg-zoo#170).
+
+prespecified: |
+  Fixed 2026-11-18, before any result was read (borg-zoo#170). Medium tier: starts 91-360 (270 per arm), four arms:
+  borg_trip_unknown_stacks 2, 3, 4 and 5 (shipped, the control). Gate: no config_error; one binary; each arm's value
+  written; every cell ends in death, turn_cap or borg_stopped; stalls, purchase bursts and key outliers listed.
+  Endpoints, per arm and per class: death share (95% interval), deaths at CL1-3, mean max level and depth, reached
+  DL5; each of 2, 3 and 4 paired against 5 on the same start (rescued, newly killed, exact McNemar, identical play).
+  Descriptive only: one development suite.
