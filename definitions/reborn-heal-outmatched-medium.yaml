@@ -1,0 +1,37 @@
+# borg-zoo#275: outmatched-healing threshold (caution_heal_outmatched_min_loss 30-70, and off: arm noheal), medium tier (owner, 2026-11-18, after the pilot gate passed in run 44299561765).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-outmatched-medium.yaml
+name: reborn-heal-outmatched-medium
+issue: 275
+question: On borg-reborn-rs main 92fafc61, how much HP should a hurt, outmatched Borg have lost before it drinks a cure potion instead of attacking (caution_heal_outmatched_min_loss 30, 40, 50 shipped, 60, 70), and does the rule help at all (off)?
+tier: medium           # classes-1800-medium: starts 91-360, 30 per class
+
+specimen: 4.2.6-reborn-rust-main-92fafc61
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only these two settings.
+profile_prefix: reborn-healout
+arms:
+  noheal: {borg_param_caution_heal_when_outmatched: 0, borg_param_caution_heal_outmatched_min_loss: 50}
+  l30: {borg_param_caution_heal_when_outmatched: 1, borg_param_caution_heal_outmatched_min_loss: 30}
+  l40: {borg_param_caution_heal_when_outmatched: 1, borg_param_caution_heal_outmatched_min_loss: 40}
+  l50: {borg_param_caution_heal_when_outmatched: 1, borg_param_caution_heal_outmatched_min_loss: 50}
+  l60: {borg_param_caution_heal_when_outmatched: 1, borg_param_caution_heal_outmatched_min_loss: 60}
+  l70: {borg_param_caution_heal_when_outmatched: 1, borg_param_caution_heal_outmatched_min_loss: 70}
+control: [l50]
+
+prespecified: |
+  Fixed 2026-11-18, before any zoo result was read (owner: "a common test first, then see which classes are
+  better one way or the other"). Pilot passed (run 44299561765: deaths 0-1 per arm,
+  the rule firing in 2-4 games of 18); the owner asked for this medium tier, skipping small. l50 is the
+  shipped behaviour (rule on, compiled threshold 50) and the control; noheal is the rule disabled.
+  Gate:
+  - no config_error; one binary; both values written in every arm;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against l50
+  (exact McNemar); outmatched-heal potions drunk per game (from the messages); per class, deaths per arm, as
+  direction for a later per-class study (borg_param_caution_heal_outmatched_min_loss@<class>, #520).

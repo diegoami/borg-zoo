@@ -1,0 +1,48 @@
+# borg-zoo#267: the flight-Recall depth gate at 1 (C), 2 (shipped) and 3, pilot tier (owner, 2026-11-18:
+# "do 1,2,3 and plan the big tier"). Write the catalogue entries with:
+# python3 -m zoo define definitions/reborn-recall-depth-pilot.yaml
+name: reborn-recall-depth-pilot
+issue: 267
+question: On borg-reborn-rs main 68cf9eb5, does keeping the flight Recall off DL1 (caution_flee_recall_gate_below_depth 2, shipped) or off DL1-2 (3) save or cost games against C's Recall at every depth (1, identical to 0)?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-68cf9eb5
+  repository: diegoami/borg-reborn-rs
+  ref: 68cf9eb5430802e1dd80f2ea32b10b0975cdfb87
+  label: "borg-reborn-rs 68cf9eb5, main at the merge of #565 (#557): caution_flee_recall_gate_below_depth compiled 0, shipped 2; caution_flee_recall shipped 1. Source-hash rust 1845648a...; harness/borg.txt f04fbcb6..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only the gate depth.
+profile_prefix: reborn-recalldepth
+arms:
+  d1: {borg_param_caution_flee_recall_gate_below_depth: 1}
+  d2: {borg_param_caution_flee_recall_gate_below_depth: 2}
+  d3: {borg_param_caution_flee_recall_gate_below_depth: 3}
+control: [d1]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, after the reborn-dl1-recall pilot (run 44293222019: d0 = d1 in all 18 cells; d2 0 deaths
+  against 1, no DL1 flight Recall) and before any result of this study was read. The owner asked for 1, 2 and 3
+  up to the big tier. d1 is C's Recall at every depth (identical to 0 by construction, shown in that pilot); d2 is
+  the shipped default (no flight Recall on DL1 without 5 known breeders or 3 awake monsters that can move within
+  6 grids); d3 extends the same gate to DL2. Tiers run in order (pilot, small, medium, big); each only after the
+  previous gate passes.
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level; paired rescued and newly killed, d2 and d3 against
+  d1 (exact McNemar). Where evidence is kept (pilot, small): flight Recall notes per game and their depth, Recall
+  scrolls read, DL1-2 stands.

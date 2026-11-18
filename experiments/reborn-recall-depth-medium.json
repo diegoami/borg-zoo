@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-recall-depth-medium",
+  "issue": 267,
+  "definition": "definitions/reborn-recall-depth-medium.yaml",
+  "question": "On borg-reborn-rs main 68cf9eb5, does keeping the flight Recall off DL1 (caution_flee_recall_gate_below_depth 2, shipped) or off DL1-2 (3) save or cost games against C's Recall at every depth (1, identical to 0)?",
+  "description": "On borg-reborn-rs main 68cf9eb5, does keeping the flight Recall off DL1 (caution_flee_recall_gate_below_depth 2, shipped) or off DL1-2 (3) save or cost games against C's Recall at every depth (1, identical to 0)? Generated from definitions/reborn-recall-depth-medium.yaml: 3 arms on 4.2.6-reborn-rust-main-68cf9eb5, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-18, after the reborn-dl1-recall pilot (run 44293222019: d0 = d1 in all 18 cells; d2 0 deaths\nagainst 1, no DL1 flight Recall) and before any result of this study was read. The owner asked for 1, 2 and 3\nup to the big tier. d1 is C's Recall at every depth (identical to 0 by construction, shown in that pilot); d2 is\nthe shipped default (no flight Recall on DL1 without 5 known breeders or 3 awake monsters that can move within\n6 grids); d3 extends the same gate to DL2. Tiers run in order (pilot, small, medium, big); each only after the\nprevious gate passes.\nGate:\n- no config_error; one binary; each arm's value in borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm: deaths and causes, final level, deepest level; paired rescued and newly killed, d2 and d3 against\nd1 (exact McNemar). Where evidence is kept (pilot, small): flight Recall notes per game and their depth, Recall\nscrolls read, DL1-2 stands.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-68cf9eb5"
+  ],
+  "profiles": [
+    "reborn-recalldepth-d1",
+    "reborn-recalldepth-d2",
+    "reborn-recalldepth-d3"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-68cf9eb5",
+  "control_profile": "reborn-recalldepth-d1"
+}
