@@ -1,0 +1,46 @@
+# borg-zoo#303: town planner weights calibration, medium tier (owner, 2026-11-18), with only the arms that changed play in the pilot (run 44349934443).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-town-weights-medium.yaml
+name: reborn-town-weights-medium
+issue: 303
+question: On borg-reborn-rs main 8e7dbad4, which of the live town planner's weights (seven borg_town_w_* and borg_town_share) change play when halved or doubled, and in which direction for deaths and progress?
+tier: medium           # classes-1800-medium: starts 91-360, 30 per class
+
+specimen: 4.2.6-reborn-rust-main-8e7dbad4
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and changes one setting (ctl writes w_light at its shipped 100).
+profile_prefix: reborn-townw
+arms:
+  ctl: {borg_town_w_light: 100}
+  light-half: {borg_town_w_light: 50}
+  food-half: {borg_town_w_food: 50}
+  bleeding-half: {borg_town_w_bleeding: 50}
+  bleeding-double: {borg_town_w_bleeding: 200}
+  escape-half: {borg_town_w_escape: 25}
+  escape-double: {borg_town_w_escape: 100}
+  power-half: {borg_town_w_power: 25}
+  power-double: {borg_town_w_power: 100}
+  trip-half: {borg_town_w_trip: 25}
+  share5: {borg_town_share: 5}
+control: [ctl]
+
+prespecified: |
+  Medium tier after the pilot (run 44349934443: poison played ctl's keys in all 18 games; share 20 and trip
+  double in 17 and 15; every other change moved most games, none beat ctl). Only the arms that change play, in the
+  direction of interest; no raw evidence at this size.
+  Fixed 2026-11-18, before any zoo result was read (owner: "do some calibration of these"). Pilot (RULES 16);
+  larger tiers only after this gate and the owner, with only the settings that change play. One factor at a time:
+  each weight the live planner reads at half and double its shipped value, and share 5 and 20. Left out (owner:
+  "if not used it is pointless to tune"): borg_town_w_knowledge, which the live step forces to 0
+  (borg_town_shadow::effective_params), and borg_town_light_depth and borg_town_food_trip, which only the old v4
+  model reads. A first dispatch with those arms (run 44348986112) was cancelled.
+  Gate:
+  - no config_error; one binary; each arm's value written;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: games with keys identical to ctl; deaths; mean final level and deepest level; paired rescued and
+  newly killed against ctl; items bought per game by kind (town purchases) and gold left.
