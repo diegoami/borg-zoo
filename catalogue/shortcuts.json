@@ -225,7 +225,7 @@
     },
     "reborn-outmatched": {
       "issue": 270,
-      "status": "defined (pilot on 4a482c58, not dispatched)",
+      "status": "superseded by #275 (reborn-heal-outmatched on 92fafc61: off, min_loss 30-70); not dispatched",
       "what": "Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75.",
       "profiles": [
         "reborn-outm-ctl",
@@ -237,7 +237,7 @@
     },
     "reborn-attack-by-class": {
       "issue": 274,
-      "status": "defined (pilot on 4a482c58, not dispatched)",
+      "status": "pilot dispatched (run 44308236915)",
       "what": "Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class.",
       "profiles": [
         "reborn-abc-ctl",
@@ -245,11 +245,18 @@
         "reborn-abc-half",
         "reborn-abc-strong"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "44308236915",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-4a482c58",
+          "result": "running"
+        }
+      ]
     },
     "reborn-worships": {
       "issue": 279,
-      "status": "defined (pilot on 92fafc61, not dispatched)",
+      "status": "pilot dispatched (run 44308259323)",
       "what": "The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect.",
       "profiles": [
         "reborn-worship-ctl",
@@ -259,7 +266,14 @@
         "reborn-worship-mana",
         "reborn-worship-ac"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "44308259323",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-92fafc61",
+          "result": "running"
+        }
+      ]
     }
   }
 }

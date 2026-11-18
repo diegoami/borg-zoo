@@ -18,9 +18,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `neo-default` | [#137](https://github.com/diegoami/borg-zoo/issues/137) | 1 | small tier done | Neo Borg with its default recorded flags (no settings). |
 | `reborn-errand-ladder` | – | 2 | done (option-C pilot, borg-reborn-rs #207, #208) | Errands: borg-rs's core in the reborn shell with no errand against the class ladders (borg_reborn_errand = ladder). |
 | `reborn-heal-by-class` | [#265](https://github.com/diegoami/borg-zoo/issues/265) | 6 | pilot dispatched (run 44294456089) | Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, and class files off (common 100/125); real-HP reserve and speed at shipped values; read per class. |
-| `reborn-outmatched` | [#270](https://github.com/diegoami/borg-zoo/issues/270) | 4 | defined (pilot on 4a482c58, not dispatched) | Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75. |
-| `reborn-attack-by-class` | [#274](https://github.com/diegoami/borg-zoo/issues/274) | 4 | defined (pilot on 4a482c58, not dispatched) | Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class. |
-| `reborn-worships` | [#279](https://github.com/diegoami/borg-zoo/issues/279) | 6 | defined (pilot on 92fafc61, not dispatched) | The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect. |
+| `reborn-outmatched` | [#270](https://github.com/diegoami/borg-zoo/issues/270) | 4 | superseded by #275 (reborn-heal-outmatched on 92fafc61: off, min_loss 30-70); not dispatched | Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75. |
+| `reborn-attack-by-class` | [#274](https://github.com/diegoami/borg-zoo/issues/274) | 4 | pilot dispatched (run 44308236915) | Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class. |
+| `reborn-worships` | [#279](https://github.com/diegoami/borg-zoo/issues/279) | 6 | pilot dispatched (run 44308259323) | The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect. |
 
 ### `heal-attack-4`
 
@@ -233,6 +233,10 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-abc-half` | 1300 | 1200 | 1350 | 1100 | 1500 | 1100 | 1400 | 1400 | 1100 | 1350 | 1500 | 1150 | 1300 | 1400 | 1100 | 1100 |
 | `reborn-abc-strong` | 1900 | 1600 | 2000 | 1300 | 2000 | 1300 | 2000 | 2000 | 1300 | 2000 | 2000 | 1450 | 1900 | 2000 | 1300 | 1300 |
 
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44308236915](https://github.com/diegoami/borg-zoo/actions/runs/44308236915) | pilot | `4.2.6-reborn-rust-main-4a482c58` | running |
+
 ### `reborn-worships`
 
 The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect.
@@ -247,6 +251,10 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-worship-hp` | – | – | TRUE | – | – |
 | `reborn-worship-mana` | – | – | – | TRUE | – |
 | `reborn-worship-ac` | TRUE | – | – | – | – |
+
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44308259323](https://github.com/diegoami/borg-zoo/actions/runs/44308259323) | pilot | `4.2.6-reborn-rust-main-92fafc61` | running |
 
 ## Settings you have built arms with
 
@@ -327,3 +335,4 @@ Exposed by borg-reborn-rs `main` but not yet used to build arms. A profile sets 
 | `neo-b4-parity-books-v1` | diegoami/neo-angband-borg-mod-tracker | `464a1555` | Experimental Borg1.4.0-beta.6.zoo.1: six C-parity fixes514-519 plus retained book-value correction509, on verified beta.4/API2.1 engine d27ed50f. |
 | `4.2.6-reborn-core-pilot` | diegoami/borg-reborn-rs | `1be6edc7` | borg-reborn-rs 1be6edc, the option-C pilot (borg-reborn-rs #207, #208): borg-rs's core (milestone 12, vendored as borg-core/) inside the reborn shell, selected through the run's borg.txt (borg_reborn_core, borg_reborn_errand). |
 | `4.2.6-reborn-rust-main-4a482c58` | diegoami/borg-reborn-rs | `4a482c58` | borg-reborn-rs 4a482c58, main after #539 (caution_scary_hurt_percent 50, caution_scary_afraid 1) and fba1c6e0 (borg_trip_unknown_stacks 2, caution_stair_scum_threat 1). |
+| `4.2.6-reborn-rust-main-92fafc61` | diegoami/borg-reborn-rs | `92fafc61` | borg-reborn-rs 92fafc61, main at the merge of #561 (#558 breeder hunt by class). |
