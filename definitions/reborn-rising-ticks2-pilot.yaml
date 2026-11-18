@@ -12,11 +12,13 @@ specimen:
   source: https://github.com/diegoami/borg-zoo/issues/191
   label: >-
     borg-reborn-rs d9ff9808, main at the merge of #550 (stair-scum threat). harness/borg.txt 9860fba9... ships the named
-    list on with the damage rule at 60, cornered mode on, the borg-rs core and no plan; caution_rising_explore_ticks is
+    list on (from harness/scary_monsters.txt, d045111b...) with the damage rule at 60, cornered mode on, the borg-rs core and no plan; caution_rising_explore_ticks is
     the compiled 300.
   plans:
     errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
     errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:           # the shipped borg.txt sets borg_scary_list = scary_monsters.txt (borg-zoo#228)
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
 
 # Every arm reads the shipped harness/borg.txt and sets only caution_rising_explore_ticks (descend danger stays 10).
 profile_prefix: reborn-rising
