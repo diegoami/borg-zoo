@@ -1,0 +1,56 @@
+# borg-zoo#255: borg-reborn-rs#557's flight Recall gate, with the Recall reserve and the no-descent hold, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-flee-recall-pilot.yaml
+name: reborn-flee-recall-pilot
+issue: 255
+question: On borg-reborn-rs main 0fa5c34d, does reading Word of Recall in a flight only when breeders swamp the level or several monsters chase (caution_flee_recall 0, shipped) save games against C's flight Recall, alone and with the Recall reserve or the no-descent hold?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-0fa5c34d
+  repository: diegoami/borg-reborn-rs
+  ref: 0fa5c34d858dfb30829ddaaeebab36dcadc93c19
+  label: "borg-reborn-rs 0fa5c34d, main at the merge of #559 (#557): caution_flee_recall compiled 1, shipped 0; town_recall_reserve and caution_rising_hold_flee_descent shipped 0. Source-hash rust 05387b2f...; harness/borg.txt b48d4ce3..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only these settings.
+profile_prefix: reborn-recall
+arms:
+  ctl: {borg_param_caution_flee_recall: 1, borg_param_town_recall_reserve: 0, borg_param_caution_rising_hold_flee_descent: 0}
+  gate: {borg_param_caution_flee_recall: 0, borg_param_town_recall_reserve: 0, borg_param_caution_rising_hold_flee_descent: 0}
+  reserve: {borg_param_caution_flee_recall: 0, borg_param_town_recall_reserve: 1, borg_param_caution_rising_hold_flee_descent: 0}
+  hold: {borg_param_caution_flee_recall: 0, borg_param_town_recall_reserve: 0, borg_param_caution_rising_hold_flee_descent: 1}
+control: [ctl]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#557, #559). Pilot (RULES 16); small and larger
+  only after this gate and the owner. ctl is C's flight Recall (caution_flee_recall 1); gate is the shipped default.
+  Gate:
+  - no config_error; one binary; each arm's three values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level;
+  - paired rescued and newly killed against ctl, and gate against reserve and hold;
+  - "Fleeing the level (recall)" notes per game, and the depth of each;
+  - Word of Recall read, bought and carried at the end; town visits; game turn of the first return to town on foot;
+  - DL2<->DL3 stair changes while rising ("Trip: return");
+  - scary-level deaths ("Scary guy on level" in the last 100 messages) and deaths within 500 game turns of a
+    Recall read.
+  Context: in 144 local classes-18 games on eea1bf9c a flight read Recall in 134, 113 of 142 reads on DL1.
+  Replayed from birth, four of six recorded borg-play deaths live to 200,000 with the gate (CL5-8). 18 starts
+  per arm show direction only: this pilot checks safety, and a rescue count needs a larger tier.
+
+owner_authorization: >-
+  2026-11-18: requested from borg-reborn-rs by the owner (borg-zoo#255), with every tier up to full agreed in advance
+  on the issue; each tier still stops if its written gate fails. Pilot first (RULES 16).
