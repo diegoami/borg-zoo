@@ -1,0 +1,571 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-latch-ctl": {
+        "description": "borg-zoo#256 (reborn-scary-latch-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_param_caution_scary_latch": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "3668c7e2d56ddfe17b8aa0eff91e145b0ed73caf14d0ed1b013a53285c24ffdc"
+      },
+      "reborn-latch-unlatch": {
+        "description": "borg-zoo#256 (reborn-scary-latch-pilot.yaml): arm unlatch.",
+        "settings": {
+          "borg_param_caution_scary_latch": 0,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "5222b3b5fcf6e930abd6c4c908c4aec6f339ee4fed82acd064471892542aa722"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-162f96af": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 162f96af, main at the merge of #562 (#515): caution_scary_latch, compiled 1 and shipped 1. Source-hash rust 78d26360...; harness/borg.txt eecb3266...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "162f96af1d269de5ad6faaa54345a28365ef5c73",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-small": {
+        "assigned_characters": {
+          "102088710": [
+            "Elf",
+            "Rogue"
+          ],
+          "1028557754": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1042834709": [
+            "Gnome",
+            "Rogue"
+          ],
+          "10488336": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "1058178192": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1071405808": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "1086352478": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "1112777834": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "1149332291": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "1169386844": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "1199401383": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1217781050": [
+            "Human",
+            "Priest"
+          ],
+          "1236782037": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1248006956": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "1269315224": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1272553636": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "1277697136": [
+            "Human",
+            "Rogue"
+          ],
+          "1285833235": [
+            "Gnome",
+            "Paladin"
+          ],
+          "129607500": [
+            "Human",
+            "Ranger"
+          ],
+          "1303043906": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1304510506": [
+            "Half-Orc",
+            "Blackguard"
+          ],
+          "1326666591": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1356248624": [
+            "Elf",
+            "Warrior"
+          ],
+          "1370868461": [
+            "Dwarf",
+            "Mage"
+          ],
+          "1417651640": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "1429594888": [
+            "Dunadan",
+            "Mage"
+          ],
+          "1478804878": [
+            "Elf",
+            "Priest"
+          ],
+          "1484503304": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "1515505937": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1516096046": [
+            "Gnome",
+            "Druid"
+          ],
+          "1545553111": [
+            "High-Elf",
+            "Mage"
+          ],
+          "1552244183": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "1584060551": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "1629166764": [
+            "High-Elf",
+            "Druid"
+          ],
+          "167240942": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1678303796": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1678765969": [
+            "Elf",
+            "Druid"
+          ],
+          "1705599023": [
+            "Dwarf",
+            "Druid"
+          ],
+          "1751715076": [
+            "Human",
+            "Blackguard"
+          ],
+          "1758620521": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1759555484": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "176707408": [
+            "Human",
+            "Necromancer"
+          ],
+          "1834235471": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "1852741500": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1859521195": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1956591784": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "2002578196": [
+            "Hobbit",
+            "Druid"
+          ],
+          "200986077": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "2022908874": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "2041201968": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "2093434235": [
+            "Gnome",
+            "Mage"
+          ],
+          "2097768768": [
+            "Human",
+            "Mage"
+          ],
+          "2109297965": [
+            "Human",
+            "Druid"
+          ],
+          "234773070": [
+            "Elf",
+            "Mage"
+          ],
+          "247227001": [
+            "High-Elf",
+            "Priest"
+          ],
+          "247597266": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "25404286": [
+            "Dwarf",
+            "Blackguard"
+          ],
+          "255960706": [
+            "Dunadan",
+            "Blackguard"
+          ],
+          "300461652": [
+            "Hobbit",
+            "Mage"
+          ],
+          "352388688": [
+            "Human",
+            "Paladin"
+          ],
+          "384988836": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "399497898": [
+            "Dunadan",
+            "Priest"
+          ],
+          "406779093": [
+            "High-Elf",
+            "Blackguard"
+          ],
+          "412975293": [
+            "Elf",
+            "Necromancer"
+          ],
+          "446353753": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "507571350": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "572215387": [
+            "Elf",
+            "Ranger"
+          ],
+          "584077430": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "60792140": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "63257248": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "652511567": [
+            "Gnome",
+            "Priest"
+          ],
+          "655965451": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "674811104": [
+            "Half-Orc",
+            "Paladin"
+          ],
+          "710244031": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "736866367": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "740860644": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "765432699": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "797610775": [
+            "Dwarf",
+            "Paladin"
+          ],
+          "807773433": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "818961361": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "826156836": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "869093144": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "884072154": [
+            "Human",
+            "Warrior"
+          ],
+          "892923114": [
+            "Hobbit",
+            "Priest"
+          ],
+          "904568879": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "920137153": [
+            "Elf",
+            "Paladin"
+          ],
+          "926210318": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "957287853": [
+            "Elf",
+            "Blackguard"
+          ],
+          "979002123": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "99115049": [
+            "High-Elf",
+            "Ranger"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "Tier small of classes-1800 (RULES 14): starts 1-90 (10 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          884072154,
+          2097768768,
+          2109297965,
+          1217781050,
+          176707408,
+          352388688,
+          1277697136,
+          129607500,
+          1751715076,
+          1859521195,
+          247597266,
+          507571350,
+          584077430,
+          1199401383,
+          1584060551,
+          1759555484,
+          1758620521,
+          446353753,
+          1356248624,
+          234773070,
+          1678765969,
+          1478804878,
+          412975293,
+          920137153,
+          102088710,
+          572215387,
+          957287853,
+          1515505937,
+          300461652,
+          2002578196,
+          892923114,
+          384988836,
+          765432699,
+          826156836,
+          1248006956,
+          2022908874,
+          1326666591,
+          2093434235,
+          1516096046,
+          652511567,
+          1236782037,
+          1285833235,
+          1042834709,
+          167240942,
+          1552244183,
+          736866367,
+          1370868461,
+          1705599023,
+          1303043906,
+          10488336,
+          797610775,
+          2041201968,
+          807773433,
+          25404286,
+          1058178192,
+          200986077,
+          1169386844,
+          1852741500,
+          1417651640,
+          674811104,
+          1269315224,
+          1071405808,
+          1304510506,
+          1028557754,
+          63257248,
+          869093144,
+          1086352478,
+          1112777834,
+          1956591784,
+          926210318,
+          60792140,
+          1484503304,
+          740860644,
+          1429594888,
+          1678303796,
+          399497898,
+          904568879,
+          818961361,
+          979002123,
+          1834235471,
+          255960706,
+          655965451,
+          1545553111,
+          1629166764,
+          247227001,
+          1272553636,
+          1149332291,
+          710244031,
+          99115049,
+          406779093
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "range": [
+            0,
+            90
+          ],
+          "suite": "classes-1800"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-18 09:55 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-162f96af",
+    "control_profile": "reborn-latch-ctl",
+    "definition": "definitions/reborn-scary-latch-small.yaml",
+    "description": "On borg-reborn-rs main 162f96af, does letting a level stop being scary once its scary monsters are gone (caution_scary_latch 0) save games without costing any? Generated from definitions/reborn-scary-latch-small.yaml: 2 arms on 4.2.6-reborn-rust-main-162f96af, suite classes-1800-small.",
+    "issue": 256,
+    "name": "reborn-scary-latch-small",
+    "prespecified": "Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#515, #562). Pilot (RULES 16) passed in run 44277668188 (0 deaths\nin both arms); the owner asked for this small tier on 2026-11-18. Same gate and report as the pilot.\nGate:\n- no config_error; one binary; each arm's latch value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level;\n- paired rescued and newly killed against ctl;\n- per game: \"Scary guy gone: the level is no longer scary.\" notes (unlatch only), \"Scary guy on level\" notes,\n  \"standing and fighting\" notes, and trips to town;\n- the games whose keys differ from ctl, and for each the game turn of its first \"Scary guy gone\" note (with the\n  latch at 0 a game can change only after the flag first clears);\n- deaths within 2,000 game turns after a \"Scary guy gone\" note, with the killer and whether it was the monster\n  that had made the level scary (a scare that ended while its monster was only forgotten);\n- scary-level deaths (\"Scary guy on level\" in the last 100 messages).\nContext: from a mid-game save (priest-1055640847, turn 88,147), 5 seeds: ctl 2 deaths, unlatch 0. From six\nrecorded deaths from birth: 3 deaths in each arm. 18 starts per arm show direction only: this pilot checks\nsafety, and a rescue count needs a larger tier.",
+    "profiles": [
+      "reborn-latch-ctl",
+      "reborn-latch-unlatch"
+    ],
+    "question": "On borg-reborn-rs main 162f96af, does letting a level stop being scary once its scary monsters are gone (caution_scary_latch 0) save games without costing any?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-162f96af"
+    ],
+    "suites": [
+      "classes-1800-small"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44279232439-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44279232439",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "567e1f65a63e0f9d47d7390f5650301edb9f0f10"
+}
