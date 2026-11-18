@@ -1019,6 +1019,8 @@ def build_site(results, out):
     (out / 'overview.html').write_text(page('Borg comparisons · borg-zoo', landing.overview_page(runs), charts=True))
     from . import scenarios
     scenarios.build_site(results, out)
+    from . import settings_page
+    settings_page.build(runs, out, page)
     # The /runs/ directory contains per-run report folders, not a page of its
     # own. Publish an index there so the directory URL is useful instead of
     # returning 404/503, and point it at the Detailed experiment catalogue.

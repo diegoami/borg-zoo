@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-outmatched-pilot",
+  "issue": 270,
+  "definition": "definitions/reborn-outmatched-pilot.yaml",
+  "question": "On borg-reborn-rs main 4a482c58, does drinking a cure potion when hurt and outmatched (caution_heal_when_outmatched, shipped 1) save games against not doing it, and does it matter whether it starts after 25, 50 (compiled) or 75 percent of max HP is lost?",
+  "description": "On borg-reborn-rs main 4a482c58, does drinking a cure potion when hurt and outmatched (caution_heal_when_outmatched, shipped 1) save games against not doing it, and does it matter whether it starts after 25, 50 (compiled) or 75 percent of max HP is lost? Generated from definitions/reborn-outmatched-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-4a482c58, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any result on 4a482c58 was read. Pilot (RULES 16). The #151 pilots on\n4.2.6-reborn-rust-heal are a different game and context only.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm, overall and per class:\n- deaths and causes, final level, deepest level;\n- paired rescued and newly killed against ctl, and identical plays (an arm that plays ctl's keys did not exercise\n  its value);\n- per game, outmatched-healing quaffs (Cure Light, Serious, Critical Wounds drunk by this rule) and the HP share\n  lost when each fired; cure potions carried at death and deaths with none left; deaths in melee within 20 game\n  turns of an outmatched quaff.\n18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-4a482c58"
+  ],
+  "profiles": [
+    "reborn-outm-ctl",
+    "reborn-outm-off0",
+    "reborn-outm-loss25",
+    "reborn-outm-loss75"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-4a482c58",
+  "control_profile": "reborn-outm-ctl",
+  "owner_authorization": "2026-11-18: the owner asked for caution_heal_when_outmatched to be tested. This is the pilot that RULES 16 requires first; larger tiers only after its gate and the owner (RULES 14).",
+  "retain_evidence": true
+}

@@ -1,0 +1,50 @@
+# borg-zoo#291: scary latch x calm (hurt/afraid scary monsters), pilot; owner pick 2026-11-18 (/next-experiments 1).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-calm-pilot.yaml
+name: reborn-scary-calm-pilot
+issue: 291
+question: >-
+  On borg-reborn-rs main f660aecc, do a hurt or afraid scary monster not counting (caution_scary_hurt_percent 50,
+  caution_scary_afraid 1, shipped) and an unlatched scare (caution_scary_latch 0) save games against C's behaviour?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-f660aecc
+  repository: diegoami/borg-reborn-rs
+  ref: f660aeccb45392d47893c824c49194d9e966e129
+  label: "borg-reborn-rs f660aecc, main at the merge of #571 (#557: town_recall_value_percent, prepared_recall_depth, one Word of Recall section in borg.txt), after #561 and #575. Ships caution_flee_recall 1, gate_below_depth 2, recall value 100, reserve 0, prepared_recall_depth 5; scary named list 1, damage 60, latch 1, hurt 50, afraid 1; point-blank divisor 5 (Rogue 3, Ranger 2). harness/borg.txt 05b7ca00..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-calm
+arms:
+  ctl:       {borg_param_caution_scary_latch: 1, borg_param_caution_scary_hurt_percent: 50, borg_param_caution_scary_afraid: 1}   # shipped
+  c-calm:    {borg_param_caution_scary_latch: 1, borg_param_caution_scary_hurt_percent: 0, borg_param_caution_scary_afraid: 0}
+  unlatch:   {borg_param_caution_scary_latch: 0, borg_param_caution_scary_hurt_percent: 50, borg_param_caution_scary_afraid: 1}
+  unlatch-c: {borg_param_caution_scary_latch: 0, borg_param_caution_scary_hurt_percent: 0, borg_param_caution_scary_afraid: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-18: picked by the owner from /next-experiments (proposal 1). This is the pilot that RULES 16 requires first;
+  larger tiers only after its gate and the owner (RULES 14).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any result on f660aecc was read. Pilot (RULES 16). #256 (latch on 162f96af) is a different
+  game and context only. borg-reborn-rs measured the calm switch identical to off in 17 of 18 starts, so the calm arms
+  are expected mostly identical: this pilot checks safety and where the switches act.
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm, overall and per class:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against ctl; identical plays;
+  - per game "Scary guy on level", "Scary guy gone" and stand notes;
+  - deaths within 2,000 game turns after a scare ended, with the killer and whether it was the monster that had made
+    the level scary.

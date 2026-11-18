@@ -1,0 +1,73 @@
+# borg-zoo#290: the arrow point-blank divisor by class, pilot; owner request 2026-11-18 (follow-up of #186).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-pbd-by-class-pilot.yaml
+#
+# Each _<class> line acts on that class only, so one arm moves every class one step and each class is read on its
+# own starts. A class line of 0 means the common value (5).
+name: reborn-pbd-by-class-pilot
+issue: 290
+question: >-
+  On borg-reborn-rs main f660aecc, does each class do better with its shipped point-blank divisor (common 5, Rogue 3,
+  Ranger 2) than with about half or double that value, or than with the common 5 for every class?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-f660aecc
+  repository: diegoami/borg-reborn-rs
+  ref: f660aeccb45392d47893c824c49194d9e966e129
+  label: "borg-reborn-rs f660aecc, main at the merge of #571 (#557: town_recall_value_percent, prepared_recall_depth, one Word of Recall section in borg.txt), after #561 and #575. Ships caution_flee_recall 1, gate_below_depth 2, recall value 100, reserve 0, prepared_recall_depth 5; scary named list 1, damage 60, latch 1, hurt 50, afraid 1; point-blank divisor 5 (Rogue 3, Ranger 2). harness/borg.txt 05b7ca00..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# Every arm reads the shipped harness/borg.txt and sets only the lines below.
+profile_prefix: reborn-pbdc
+arms:
+  ctl: {}   # shipped: common 5, Rogue 3, Ranger 2
+  common:   # class files off: every class 5
+    borg_param_attack_arrow_point_blank_divisor_rogue: 0
+    borg_param_attack_arrow_point_blank_divisor_ranger: 0
+  lo:       # about half
+    borg_param_attack_arrow_point_blank_divisor_warrior: 2
+    borg_param_attack_arrow_point_blank_divisor_mage: 2
+    borg_param_attack_arrow_point_blank_divisor_druid: 2
+    borg_param_attack_arrow_point_blank_divisor_priest: 2
+    borg_param_attack_arrow_point_blank_divisor_necromancer: 2
+    borg_param_attack_arrow_point_blank_divisor_paladin: 2
+    borg_param_attack_arrow_point_blank_divisor_rogue: 2
+    borg_param_attack_arrow_point_blank_divisor_ranger: 1
+    borg_param_attack_arrow_point_blank_divisor_blackguard: 2
+  hi:       # about double
+    borg_param_attack_arrow_point_blank_divisor_warrior: 10
+    borg_param_attack_arrow_point_blank_divisor_mage: 10
+    borg_param_attack_arrow_point_blank_divisor_druid: 10
+    borg_param_attack_arrow_point_blank_divisor_priest: 10
+    borg_param_attack_arrow_point_blank_divisor_necromancer: 10
+    borg_param_attack_arrow_point_blank_divisor_paladin: 10
+    borg_param_attack_arrow_point_blank_divisor_rogue: 6
+    borg_param_attack_arrow_point_blank_divisor_ranger: 4
+    borg_param_attack_arrow_point_blank_divisor_blackguard: 10
+control: [ctl]
+owner_authorization: >-
+  2026-11-18: the owner asked for the point-blank divisor to be tested by class (follow-up of #186). This is the pilot
+  that RULES 16 requires first; larger tiers only after its gate and the owner (RULES 14).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any result on f660aecc was read. Pilot (RULES 16). #186 (4d83dd26, common 1/2/5) is a
+  different game and context only: it changed only the bow-using starts.
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Read per class (each class's own starts), not pooled:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;
+  - identical plays per class (classes that never shoot or throw at an adjacent monster are expected identical);
+  - per game, shots and throws at an adjacent monster, and melee blows instead, from the messages.
+  Two starts per class per arm show only where the divisor acts; ranking needs the next tiers.

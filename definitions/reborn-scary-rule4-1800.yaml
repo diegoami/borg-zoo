@@ -1,0 +1,29 @@
+# borg-zoo#227: no scary rule vs C's named list vs the damage rule at 40% and 60%, on borg-reborn-rs main a8ac685a, all 1,800 starts.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-rule4-1800.yaml
+name: reborn-scary-rule4-1800
+issue: 227
+question: On main, how does play change with no scary-monster rule, with C's named list, or with the damage rule at 40% or 60%?
+suite: classes-1800    # all 1,800 starts: 200 per class (owner, 2026-11-17)
+
+specimen: 4.2.6-reborn-rust-main-a8ac685a
+
+# Every arm reads the shipped harness/borg.txt and sets only the two scary settings.
+profile_prefix: reborn-scary
+arms:
+  ctl: {borg_param_caution_scary_named_monsters: 0, borg_param_caution_scary_damage_percent: 0}        # no scary rule
+  named: {borg_param_caution_scary_named_monsters: 1, borg_param_caution_scary_damage_percent: 0}      # C's compiled named list
+  damage40: {borg_param_caution_scary_named_monsters: 0, borg_param_caution_scary_damage_percent: 40}  # the damage rule, lower threshold
+  damage60: {borg_param_caution_scary_named_monsters: 0, borg_param_caution_scary_damage_percent: 60}  # the damage rule, as shipped
+
+control: [ctl]
+owner_authorization: >-
+  2026-11-17: the owner asked for the full tier of the four scary-rule arms, and chose all 1,800 starts of classes-1800
+  (7,200 games) over the 900-start full slice, after the three-arm pilot (run 44178676657) and the four-arm pilot.
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#227). classes-1800, all 1,800 starts, four arms: ctl (no
+  scary rule), named (C's compiled list), damage40, damage60 (shipped). Gate: no config_error; one binary; both
+  settings written in every arm; every cell ends in death, turn_cap or borg_stopped; stalls, purchase bursts and key
+  outliers listed. Endpoints, per arm and per class: death share; deaths at CL1-3; mean max level; mean max depth;
+  reached DL5. Each of named, damage40 and damage60 is paired against ctl on the same start (rescued, newly killed,
+  exact McNemar); damage40 is also paired against damage60. Descriptive only: one development suite.
