@@ -440,14 +440,21 @@
     },
     "reborn-attack-focus": {
       "issue": 319,
-      "status": "defined (pilot on f660aecc, not dispatched)",
+      "status": "pilot done (gate passed); small, medium and big defined (owner: big experiment)",
       "what": "Attack focus by class on main f660aecc: shipped class preferences, with every family a class file does not raise at 750 or 500.",
       "profiles": [
         "reborn-afocus-ctl",
         "reborn-afocus-low500",
         "reborn-afocus-low750"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "44377324652",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "54 games: deaths ctl 0, low750 0, low500 1; identical to ctl low750 12, low500 10 of 18; Druid, Necromancer, Rogue, Ranger change"
+        }
+      ]
     }
   }
 }

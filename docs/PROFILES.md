@@ -29,7 +29,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-pbd-rr` | [#290](https://github.com/diegoami/borg-zoo/issues/290) | 3 | pilot done (gate passed); medium and big dispatched; full defined (owner: the full suite) | Point-blank divisor for Rangers (1, 2 shipped, 3) and Rogues (2, 3 shipped, 4) on main f660aecc, played on Ranger and Rogue starts only. |
 | `reborn-scary-tough` | [#299](https://github.com/diegoami/borg-zoo/issues/299) | 3 | pilot done (gate passed, no deaths; t5 leads on progress); small and medium defined | The scary list's tough end on main f660aecc: shipped, tough - 3 and tough - 5 with fragile unchanged; read per class. |
 | `reborn-rising-ticks3` | [#191](https://github.com/diegoami/borg-zoo/issues/191) | 5 | pilot done (gate passed, no deaths); small and medium defined | caution_rising_explore_ticks 300 (shipped), 500, 1000, 1500, 2000 on main f660aecc. |
-| `reborn-attack-focus` | [#319](https://github.com/diegoami/borg-zoo/issues/319) | 3 | defined (pilot on f660aecc, not dispatched) | Attack focus by class on main f660aecc: shipped class preferences, with every family a class file does not raise at 750 or 500. |
+| `reborn-attack-focus` | [#319](https://github.com/diegoami/borg-zoo/issues/319) | 3 | pilot done (gate passed); small, medium and big defined (owner: big experiment) | Attack focus by class on main f660aecc: shipped class preferences, with every family a class file does not raise at 750 or 500. |
 
 ### `heal-attack-4`
 
@@ -411,6 +411,10 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-afocus-ctl` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
 | `reborn-afocus-low500` | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 | 500 |
 | `reborn-afocus-low750` | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 | 750 |
+
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44377324652](https://github.com/diegoami/borg-zoo/actions/runs/44377324652) | pilot | `4.2.6-reborn-rust-main-f660aecc` | 54 games: deaths ctl 0, low750 0, low500 1; identical to ctl low750 12, low500 10 of 18; Druid, Necromancer, Rogue, Ranger change |
 
 ## Settings you have built arms with
 
