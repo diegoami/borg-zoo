@@ -1,0 +1,41 @@
+# borg-zoo#285: fear-cure stock (town_fear_cure_count 2 vs 0), pilot (owner, 2026-11-18).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-fear-cure-pilot.yaml
+name: reborn-fear-cure-pilot
+issue: 285
+question: On borg-reborn-rs main bb4e5d1c, does capping the fear cures the planner values at 2 (town_fear_cure_count 2, shipped) save gold without costing games, against the diminishing curve (0)?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-bb4e5d1c
+  repository: diegoami/borg-reborn-rs
+  ref: bb4e5d1c1131a4d8f9f134c1a4dee267aa71dfc4
+  label: "borg-reborn-rs bb4e5d1c, main at the merge of #575 (#574 no breeder class values). Ships town_fear_cure_count 2. Source-hash rust 42252512...; harness/borg.txt cfc33a28..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only the fear-cure count.
+profile_prefix: reborn-fearcure
+arms:
+  c2: {borg_param_town_fear_cure_count: 2}
+  c0: {borg_param_town_fear_cure_count: 0}
+control: [c2]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any zoo result was read (owner request, borg-reborn-rs #516). Pilot (RULES 16); larger
+  tiers only after this gate and the owner. c2 is shipped and the control; c0 is the diminishing curve.
+  Gate:
+  - no config_error; one binary; the value written in both arms;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against c2;
+  Potions of Boldness bought and drunk per game (town transactions and messages); deaths while afraid.

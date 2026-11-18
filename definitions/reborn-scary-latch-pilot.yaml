@@ -1,0 +1,52 @@
+# borg-zoo#256: the #515 scary latch (caution_scary_latch), pilot; copied from the run request.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-latch-pilot.yaml
+name: reborn-scary-latch-pilot
+issue: 256
+question: On borg-reborn-rs main 162f96af, does letting a level stop being scary once its scary monsters are gone (caution_scary_latch 0) save games without costing any?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-162f96af
+  repository: diegoami/borg-reborn-rs
+  ref: 162f96af1d269de5ad6faaa54345a28365ef5c73
+  label: "borg-reborn-rs 162f96af, main at the merge of #562 (#515): caution_scary_latch, compiled 1 and shipped 1. Source-hash rust 78d26360...; harness/borg.txt eecb3266..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt (stand mode on, shipped scary list) and writes only the latch.
+profile_prefix: reborn-latch
+arms:
+  ctl: {borg_param_caution_scary_latch: 1}
+  unlatch: {borg_param_caution_scary_latch: 0}
+control: [ctl]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#515, #562). Pilot (RULES 16); small and larger
+  only after this gate and the owner.
+  Gate:
+  - no config_error; one binary; each arm's latch value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level;
+  - paired rescued and newly killed against ctl;
+  - per game: "Scary guy gone: the level is no longer scary." notes (unlatch only), "Scary guy on level" notes,
+    "standing and fighting" notes, and trips to town;
+  - the games whose keys differ from ctl, and for each the game turn of its first "Scary guy gone" note (with the
+    latch at 0 a game can change only after the flag first clears);
+  - deaths within 2,000 game turns after a "Scary guy gone" note, with the killer and whether it was the monster
+    that had made the level scary (a scare that ended while its monster was only forgotten);
+  - scary-level deaths ("Scary guy on level" in the last 100 messages).
+  Context: from a mid-game save (priest-1055640847, turn 88,147), 5 seeds: ctl 2 deaths, unlatch 0. From six
+  recorded deaths from birth: 3 deaths in each arm. 18 starts per arm show direction only: this pilot checks
+  safety, and a rescue count needs a larger tier.
