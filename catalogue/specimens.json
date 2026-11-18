@@ -1267,6 +1267,24 @@
       "scary_lists": {
         "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
       }
+    },
+    "4.2.6-reborn-rust-main-d9ff9808": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "d9ff9808236e466b42ee9966abf807aed2738107",
+      "source": "https://github.com/diegoami/borg-zoo/issues/248",
+      "label": "borg-reborn-rs d9ff9808, main at the merge of #550 (#549: no stair scum while threatened, off by default); over c9e58ca0 also #531 (stand and fight a scary monster when the escape is not real) and #553 (borg.txt layout, settings unchanged). Ships the scary list on, trip policy 1 with unknown_stacks 5. Source-hash rust 3832a3b5...; harness/borg.txt 9860fba9...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
     }
   }
 }
