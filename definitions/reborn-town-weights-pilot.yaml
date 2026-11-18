@@ -1,0 +1,60 @@
+# borg-zoo#303: town planner weights calibration, pilot (owner, 2026-11-18).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-town-weights-pilot.yaml
+name: reborn-town-weights-pilot
+issue: 303
+question: On borg-reborn-rs main 8e7dbad4, which of the live town planner's weights (seven borg_town_w_* and borg_town_share) change play when halved or doubled, and in which direction for deaths and progress?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-8e7dbad4
+  repository: diegoami/borg-reborn-rs
+  ref: 8e7dbad4b43291a95328c1b90c7d4ae4778dcc4c
+  label: "borg-reborn-rs 8e7dbad4, main at the merge of #573 (#569 scary calm review). Ships the live town planner (borg_town_plan 1) with w_light 100, food 100, bleeding 100, poison 100, escape 50, knowledge 25, power 50, trip 50, share 10. Source-hash rust 1a6a0b9d...; harness/borg.txt dcd81f01..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and changes one setting (ctl writes w_light at its shipped 100).
+profile_prefix: reborn-townw
+arms:
+  ctl: {borg_town_w_light: 100}
+  light-half: {borg_town_w_light: 50}
+  light-double: {borg_town_w_light: 200}
+  food-half: {borg_town_w_food: 50}
+  food-double: {borg_town_w_food: 200}
+  bleeding-half: {borg_town_w_bleeding: 50}
+  bleeding-double: {borg_town_w_bleeding: 200}
+  poison-half: {borg_town_w_poison: 50}
+  poison-double: {borg_town_w_poison: 200}
+  escape-half: {borg_town_w_escape: 25}
+  escape-double: {borg_town_w_escape: 100}
+  power-half: {borg_town_w_power: 25}
+  power-double: {borg_town_w_power: 100}
+  trip-half: {borg_town_w_trip: 25}
+  trip-double: {borg_town_w_trip: 100}
+  share5: {borg_town_share: 5}
+  share20: {borg_town_share: 20}
+control: [ctl]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any zoo result was read (owner: "do some calibration of these"). Pilot (RULES 16);
+  larger tiers only after this gate and the owner, with only the settings that change play. One factor at a time:
+  each weight the live planner reads at half and double its shipped value, and share 5 and 20. Left out (owner:
+  "if not used it is pointless to tune"): borg_town_w_knowledge, which the live step forces to 0
+  (borg_town_shadow::effective_params), and borg_town_light_depth and borg_town_food_trip, which only the old v4
+  model reads. A first dispatch with those arms (run 44348986112) was cancelled.
+  Gate:
+  - no config_error; one binary; each arm's value written;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: games with keys identical to ctl; deaths; mean final level and deepest level; paired rescued and
+  newly killed against ctl; items bought per game by kind (town purchases) and gold left.
