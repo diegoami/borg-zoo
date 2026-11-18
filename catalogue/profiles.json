@@ -2581,6 +2581,46 @@
         "borg_param_town_heal_reserve_hp_percent": 100,
         "borg_param_town_heal_curve_scale_percent": 150
       }
+    },
+    "reborn-flee-ctl": {
+      "description": "borg-zoo#235 (reborn-flee-switches-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 0,
+        "borg_param_escape_phase_adjacent_only": 0,
+        "borg_param_caution_scary_ranged_no_stairs": 0
+      }
+    },
+    "reborn-flee-stairs": {
+      "description": "borg-zoo#235 (reborn-flee-switches-pilot.yaml): arm stairs.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 1,
+        "borg_param_escape_phase_adjacent_only": 0,
+        "borg_param_caution_scary_ranged_no_stairs": 0
+      }
+    },
+    "reborn-flee-phase": {
+      "description": "borg-zoo#235 (reborn-flee-switches-pilot.yaml): arm phase.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 0,
+        "borg_param_escape_phase_adjacent_only": 1,
+        "borg_param_caution_scary_ranged_no_stairs": 0
+      }
+    },
+    "reborn-flee-ranged": {
+      "description": "borg-zoo#235 (reborn-flee-switches-pilot.yaml): arm ranged.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 0,
+        "borg_param_escape_phase_adjacent_only": 0,
+        "borg_param_caution_scary_ranged_no_stairs": 1
+      }
+    },
+    "reborn-flee-all": {
+      "description": "borg-zoo#235 (reborn-flee-switches-pilot.yaml): arm all.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 1,
+        "borg_param_escape_phase_adjacent_only": 1,
+        "borg_param_caution_scary_ranged_no_stairs": 1
+      }
     }
   }
 }
