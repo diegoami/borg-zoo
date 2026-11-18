@@ -9,11 +9,8 @@ specimen:
   name: 4.2.6-reborn-rust-main-d9ff9808
   repository: diegoami/borg-reborn-rs
   ref: d9ff9808236e466b42ee9966abf807aed2738107
-  source: https://github.com/diegoami/borg-zoo/issues/191
-  label: >-
-    borg-reborn-rs d9ff9808, main at the merge of #550 (stair-scum threat). harness/borg.txt 9860fba9... ships the named
-    list on (from harness/scary_monsters.txt, d045111b...) with the damage rule at 60, cornered mode on, the borg-rs core and no plan; caution_rising_explore_ticks is
-    the compiled 300.
+  source: https://github.com/diegoami/borg-zoo/issues/248
+  label: "borg-reborn-rs d9ff9808, main at the merge of #550 (#549: no stair scum while threatened, off by default); over c9e58ca0 also #531 (stand and fight a scary monster when the escape is not real) and #553 (borg.txt layout, settings unchanged). Ships the scary list on, trip policy 1 with unknown_stacks 5. Source-hash rust 3832a3b5...; harness/borg.txt 9860fba9..."
   plans:
     errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
     errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9

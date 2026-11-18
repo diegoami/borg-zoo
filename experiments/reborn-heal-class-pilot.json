@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-heal-class-pilot",
+  "issue": 225,
+  "definition": "definitions/reborn-heal-class-pilot.yaml",
+  "question": "Do class healing ladders, a real-HP healing reserve and a gold gate on diggers change what the Borg buys and how it survives?",
+  "description": "Do class healing ladders, a real-HP healing reserve and a gold gate on diggers change what the Borg buys and how it survives? Generated from definitions/reborn-heal-class-pilot.yaml: 5 arms on 4.2.6-reborn-rust-main-a8ac685a, suite classes-18.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#225). Pilot only. Gate: no config_error; one binary; each\narm's lines written in its borg.txt; every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls, purchase\nbursts and key outliers listed. Descriptive, per arm and per class: deaths and causes, final level, deepest level;\ngold spent per category per game (healing, escape, oil, ammunition, armour, weapons, diggers, unknown kinds) from the\ntown records where kept, else from 'You bought' messages in replays; healing potions carried at death; Shovels\nbought, and rubble dug with and without a digger. Paired against ctl on the same start: rescued, newly killed,\nidentical play. 18 starts per arm cannot show which setup is better.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-a8ac685a"
+  ],
+  "profiles": [
+    "reborn-487-ctl",
+    "reborn-487-digger",
+    "reborn-487-heal",
+    "reborn-487-both",
+    "reborn-487-speedres"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-a8ac685a",
+  "control_profile": "reborn-487-ctl",
+  "owner_authorization": "2026-11-17: requested from borg-reborn-rs by the owner (borg-zoo#225): a pilot of #487's healing-by-class, real-HP reserve and Shovel settings, 5 arms on classes-18. Small and larger only after the gate and the owner (RULES 14, 16)."
+}
