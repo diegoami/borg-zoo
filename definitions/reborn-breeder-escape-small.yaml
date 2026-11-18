@@ -1,0 +1,50 @@
+# borg-zoo#240: the #544 breeder exit (caution_breeder_exit, distance 4/6/10), small tier.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-escape-small.yaml
+name: reborn-breeder-escape-small
+issue: 240
+question: On borg-reborn-rs main 156c8e52, does the #544 breeder exit save games, and at which exit distance (4, 6, 10)?
+tier: small            # classes-1800 starts 1-90
+
+specimen:
+  name: 4.2.6-reborn-rust-main-156c8e52
+  repository: diegoami/borg-reborn-rs
+  ref: 156c8e52897a6aa8110ceffc896ffa0b2ca43ad7
+  source: https://github.com/diegoami/borg-zoo/issues/240
+  label: "borg-reborn-rs 156c8e52, main at the merge of #545 (#544): two breeder-room escape flags, compiled 0 and shipped 0 (caution_breeder_exit, caution_flee_known_down_stairs). Source-hash rust f28bd39c...; harness/borg.txt bb948342..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt (shipped scary list) and writes only the #544 parameters;
+# caution_flee_known_down_stairs stays 0 everywhere (borg-reborn-rs#548).
+profile_prefix: reborn-breeder
+arms:
+  ctl: {borg_param_caution_breeder_exit: 0, borg_param_caution_flee_known_down_stairs: 0}
+  exit-d4: {borg_param_caution_breeder_exit: 1, borg_param_caution_breeder_exit_distance: 4, borg_param_caution_flee_known_down_stairs: 0}
+  exit-d6: {borg_param_caution_breeder_exit: 1, borg_param_caution_breeder_exit_distance: 6, borg_param_caution_flee_known_down_stairs: 0}
+  exit-d10: {borg_param_caution_breeder_exit: 1, borg_param_caution_breeder_exit_distance: 10, borg_param_caution_flee_known_down_stairs: 0}
+control: [ctl]
+
+owner_authorization: >-
+  2026-11-18: after the pilot (reborn-breeder-escape-pilot, run 44218810321, gate passed), the owner asked for the
+  medium tier; small and medium run together (starts 1-360), as the owner chose for the #192 curve study. Evidence is
+  not retained per game (about 2 GB); deaths keep their full-log bundles.
+
+prespecified: |
+  Fixed 2026-11-18, before any result was read (borg-zoo#240). Small tier, dispatched with the medium tier on
+  the owner's request; together they are starts 1-360 of every arm and are analysed as one (RULES 14). Gate: no
+  config_error; one binary; each arm's #544 values in borg.txt and in params-core.json of the death replays; every
+  cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed; death bundles
+  reproduced; in no death replay a "# Desperate for Stairs (down, no up stairs known)" note, and in ctl's none a
+  "# Leaving the breeders' room" note. Primary: deaths per arm over starts 1-360, paired against ctl (rescued, newly
+  killed, exact McNemar p; three comparisons). Secondary: breeder deaths (killer has MULTIPLY in the build's
+  monster.txt) per arm, and their rescue against ctl, which is what the pilot could not measure; mean final level
+  and deepest level; deaths by class; from the death replays, deaths within 200 game turns of a breeder-exit note.
+  Pilot: 1 death per arm (the same game), no breeder death; d10 fired least for the same outcome.
