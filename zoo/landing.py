@@ -1103,7 +1103,8 @@ RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.
 
 
 def nav(active, base=""):
-    tabs = [('index.html', 'Full runs'), ('smoke.html', 'Smoke runs'), ('scenarios/index.html', 'Scenarios')]
+    tabs = [('index.html', 'Full runs'), ('smoke.html', 'Smoke runs'), ('scenarios/index.html', 'Scenarios'),
+            ('settings/index.html', 'Settings')]
     return ('<p class="tabs">' +
             ''.join(f'<a class="tab{" active" if href == active else ""}" href="{base}{href}">{esc(label)}</a>'
                     for href, label in tabs) + '</p>')
