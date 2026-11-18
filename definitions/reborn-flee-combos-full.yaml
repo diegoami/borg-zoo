@@ -1,0 +1,38 @@
+# borg-zoo#235: the #539 fleeing switch combinations on the full classes-1800 suite (owner's request).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-flee-combos-full.yaml
+name: reborn-flee-combos-full
+issue: 235
+question: Over all 1,800 starts of classes-1800, which combination of the #539 fleeing switches survives best - all off, phase+ranged, stairs+ranged or all on?
+suite: classes-1800    # all 1,800 starts (200 per class)
+
+specimen: 4.2.6-reborn-rust-main-9ecbfd1e
+
+# The combinations pilot's four profiles (reborn-flee-combos-pilot, run 44215031074).
+profile_prefix: reborn-flee
+arms:
+  ctl: {borg_param_caution_flee_stairs_before_recall: 0, borg_param_escape_phase_adjacent_only: 0, borg_param_caution_scary_ranged_no_stairs: 0}
+  phase-ranged: {borg_param_caution_flee_stairs_before_recall: 0, borg_param_escape_phase_adjacent_only: 1, borg_param_caution_scary_ranged_no_stairs: 1}
+  stairs-ranged: {borg_param_caution_flee_stairs_before_recall: 1, borg_param_escape_phase_adjacent_only: 0, borg_param_caution_scary_ranged_no_stairs: 1}
+  all: {borg_param_caution_flee_stairs_before_recall: 1, borg_param_escape_phase_adjacent_only: 1, borg_param_caution_scary_ranged_no_stairs: 1}
+
+control: [ctl]
+
+owner_authorization: >-
+  2026-11-18: after the combinations pilot (run 44215031074, gate passed), the owner asked for the full suite
+  with these four arms. This runs all of classes-1800 at once instead of growing small, medium, big and full
+  one at a time (RULES 14), on the owner's explicit request; the pilot of exactly these arms on this specimen
+  came first (RULES 16). Evidence is not retained for every game (about 10 GB at the pilot's 1.5 MB per game);
+  every death keeps its full-log bundle.
+
+prespecified: |
+  Fixed 2026-11-18, before any result was read (borg-zoo#235). Gate: no config_error; one binary; each arm's three
+  switch values in borg.txt and in params-core.json of the death replays; no plan loaded; every cell ends in
+  death, turn_cap or borg_stopped; frozen-turn bursts classified (purchase bursts are not stalls) and key
+  outliers listed; death bundles reproduced; no missing cells. Primary endpoint: deaths per arm over 1,800
+  starts, paired against ctl on the same start (rescued, newly killed, exact McNemar p), with phase+ranged,
+  stairs+ranged and all each compared with ctl (three comparisons; report p and say which survive a
+  three-way correction). Secondary: mean final level and deepest level; deaths by class; and from the death
+  replays only, scary-level deaths (a "Scary guy on level" note in the last 100 messages), Recall reads and the
+  two #539 notes. all is the shipped default. Context, not pooled: in the pilot (18 starts) ctl 3, phase+ranged
+  1, stairs+ranged 1, all 2 deaths. A difference here is a development result; a claim needs a prespecified
+  confirmation on fresh starts (RULES 8).

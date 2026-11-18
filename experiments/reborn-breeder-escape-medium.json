@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-breeder-escape-medium",
+  "issue": 240,
+  "definition": "definitions/reborn-breeder-escape-medium.yaml",
+  "question": "On borg-reborn-rs main 156c8e52, does the",
+  "description": "On borg-reborn-rs main 156c8e52, does the Generated from definitions/reborn-breeder-escape-medium.yaml: 4 arms on 4.2.6-reborn-rust-main-156c8e52, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-18, before any result was read (borg-zoo#240). Medium tier, dispatched with the small tier on\nthe owner's request; together they are starts 1-360 of every arm and are analysed as one (RULES 14). Gate: no\nconfig_error; one binary; each arm's #544 values in borg.txt and in params-core.json of the death replays; every\ncell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed; death bundles\nreproduced; in no death replay a \"# Desperate for Stairs (down, no up stairs known)\" note, and in ctl's none a\n\"# Leaving the breeders' room\" note. Primary: deaths per arm over starts 1-360, paired against ctl (rescued, newly\nkilled, exact McNemar p; three comparisons). Secondary: breeder deaths (killer has MULTIPLY in the build's\nmonster.txt) per arm, and their rescue against ctl, which is what the pilot could not measure; mean final level\nand deepest level; deaths by class; from the death replays, deaths within 200 game turns of a breeder-exit note.\nPilot: 1 death per arm (the same game), no breeder death; d10 fired least for the same outcome.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-156c8e52"
+  ],
+  "profiles": [
+    "reborn-breeder-ctl",
+    "reborn-breeder-exit-d4",
+    "reborn-breeder-exit-d6",
+    "reborn-breeder-exit-d10"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-156c8e52",
+  "control_profile": "reborn-breeder-ctl",
+  "owner_authorization": "2026-11-18: after the pilot (reborn-breeder-escape-pilot, run 44218810321, gate passed), the owner asked for the medium tier; small and medium run together (starts 1-360), as the owner chose for the #192 curve study. Evidence is not retained per game (about 2 GB); deaths keep their full-log bundles."
+}

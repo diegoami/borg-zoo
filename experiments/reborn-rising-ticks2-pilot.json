@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-rising-ticks2-pilot",
+  "issue": 191,
+  "definition": "definitions/reborn-rising-ticks2-pilot.yaml",
+  "question": "How long should the Borg hold a descent to explore for an up staircase while rising to town?",
+  "description": "How long should the Borg hold a descent to explore for an up staircase while rising to town? Generated from definitions/reborn-rising-ticks2-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-d9ff9808, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any result was read (borg-zoo#191). Pilot only. Gate: no config_error; one binary; each arm's\nticks written in its borg.txt; every cell ends in death, turn_cap or borg_stopped; stalls, purchase bursts and key\noutliers listed. Descriptive: deaths and causes per class (CL1-3 deaths counted), mean max level and depth, reached\nDL5; paired against t0 (rescued, newly killed, identical play); from replays, the rising-hold notes and the\n'no up stairs found, going down' notes per arm, and town visits. 18 starts per arm cannot show which value is best.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-d9ff9808"
+  ],
+  "profiles": [
+    "reborn-rising-t0",
+    "reborn-rising-t150",
+    "reborn-rising-t300",
+    "reborn-rising-t450"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-d9ff9808",
+  "control_profile": "reborn-rising-t0",
+  "owner_authorization": "2026-11-18: the owner asked for an experiment of caution_rising_explore_ticks (0, 150, 300, 450) on the current build (borg-zoo#191). Pilot first (RULES 16)."
+}

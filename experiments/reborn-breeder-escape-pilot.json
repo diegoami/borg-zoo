@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-breeder-escape-pilot",
+  "issue": 240,
+  "definition": "definitions/reborn-breeder-escape-pilot.yaml",
+  "question": "On borg-reborn-rs main 156c8e52, does the",
+  "description": "On borg-reborn-rs main 156c8e52, does the Generated from definitions/reborn-breeder-escape-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-156c8e52, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#544, #545). Pilot (RULES 16); small and larger\nonly after this gate and the owner.\nGate:\n- no config_error; one binary; each arm's three #544 values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- in ctl, no \"# Leaving the breeders' room\" note; in no arm a \"# Desperate for Stairs (down, no up stairs known)\" note.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level;\n- paired rescued and newly killed against ctl;\n- \"# Leaving the breeders' room\" notes per game, and deaths within 200 game turns of one;\n- deaths with a breeder adjacent (breeder deaths), and scary-level deaths (\"Scary guy on level\" in the last 100 messages).\nContext: a local run of this exact definition (on the identical tree, see the sanity cells) had 1 death in every\narm (the same Mage game); the exit note fired in 8-9 of 18 games per arm, up to 14 times per game. 18 starts per\narm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-156c8e52"
+  ],
+  "profiles": [
+    "reborn-breeder-ctl",
+    "reborn-breeder-exit-d4",
+    "reborn-breeder-exit-d6",
+    "reborn-breeder-exit-d10"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-156c8e52",
+  "control_profile": "reborn-breeder-ctl",
+  "retain_evidence": true
+}
