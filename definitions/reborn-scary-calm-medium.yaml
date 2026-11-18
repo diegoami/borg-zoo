@@ -1,0 +1,41 @@
+# borg-zoo#291: scary latch x calm (hurt/afraid scary monsters), pilot; owner pick 2026-11-18 (/next-experiments 1).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-calm-medium.yaml
+name: reborn-scary-calm-medium
+issue: 291
+question: >-
+  On borg-reborn-rs main f660aecc, do a hurt or afraid scary monster not counting (caution_scary_hurt_percent 50,
+  caution_scary_afraid 1, shipped) and an unlatched scare (caution_scary_latch 0) save games against C's behaviour?
+tier: medium           # classes-1800-medium: starts 91-360, 30 per class
+
+specimen: 4.2.6-reborn-rust-main-f660aecc
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-calm
+arms:
+  ctl:       {borg_param_caution_scary_latch: 1, borg_param_caution_scary_hurt_percent: 50, borg_param_caution_scary_afraid: 1}   # shipped
+  c-calm:    {borg_param_caution_scary_latch: 1, borg_param_caution_scary_hurt_percent: 0, borg_param_caution_scary_afraid: 0}
+  unlatch:   {borg_param_caution_scary_latch: 0, borg_param_caution_scary_hurt_percent: 50, borg_param_caution_scary_afraid: 1}
+  unlatch-c: {borg_param_caution_scary_latch: 0, borg_param_caution_scary_hurt_percent: 0, borg_param_caution_scary_afraid: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-18: picked by the owner from /next-experiments (proposal 1). This is the pilot that RULES 16 requires first;
+  larger tiers only after its gate and the owner (RULES 14).
+
+prespecified: |
+  Medium tier (owner, 2026-11-19: promote the finished pilots) after the pilot gate (run 44317626468: no deaths;
+  c-calm identical to ctl in 18 of 18 games, unlatching changed 15). No raw evidence at this size.
+  Fixed 2026-11-18, before any result on f660aecc was read. Pilot (RULES 16). #256 (latch on 162f96af) is a different
+  game and context only. borg-reborn-rs measured the calm switch identical to off in 17 of 18 starts, so the calm arms
+  are expected mostly identical: this pilot checks safety and where the switches act.
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm, overall and per class:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against ctl; identical plays;
+  - per game "Scary guy on level", "Scary guy gone" and stand notes;
+  - deaths within 2,000 game turns after a scare ended, with the killer and whether it was the monster that had made
+    the level scary.
