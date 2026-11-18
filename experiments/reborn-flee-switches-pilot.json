@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-flee-switches-pilot",
+  "issue": 235,
+  "definition": "definitions/reborn-flee-switches-pilot.yaml",
+  "question": "On borg-reborn-rs main 9ecbfd1e, do the",
+  "description": "On borg-reborn-rs main 9ecbfd1e, do the Generated from definitions/reborn-flee-switches-pilot.yaml: 5 arms on 4.2.6-reborn-rust-main-9ecbfd1e, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any result was read (borg-zoo#235). Pilot (RULES 14, 16); small and larger only after\nthis gate and the owner. Gate: no config_error; one binary; each arm's borg.txt has its three switch values and\nparams-core.json reports them; no plan loaded; every cell ends in death, turn_cap or borg_stopped; frozen-turn\nbursts classified and key outliers listed; death bundles reproduced; in ctl no \"# No stairs: fighting at range\non Scaryguy Level.\" and no \"# No Phase: no monster next to me\" note in any game's messages. Report per arm and\nper class: deaths and causes, final level, deepest level; Recall and Deep Descent reads per game (stairs against\nctl), and deaths with a staircase in reach while Recall was active where the messages show it; \"# No Phase\"\nnotes per game, and deaths within 20 thinks of a skipped Phase Door; \"# No stairs: fighting at range\" notes per\ngame, and the ranged attacks that followed them; scary-level deaths per arm; paired rescued and newly killed\nagainst ctl. \"all\" is the shipped default. 18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-9ecbfd1e"
+  ],
+  "profiles": [
+    "reborn-flee-ctl",
+    "reborn-flee-stairs",
+    "reborn-flee-phase",
+    "reborn-flee-ranged",
+    "reborn-flee-all"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-9ecbfd1e",
+  "control_profile": "reborn-flee-ctl",
+  "owner_authorization": "2026-11-18: the owner asked (via borg-reborn-rs, borg-zoo#235) for a pilot of the #539 fleeing switches, five arms. retain_evidence was added by the zoo session: the gate and endpoints count notes and Recall reads in every game, not only in deaths.",
+  "retain_evidence": true
+}

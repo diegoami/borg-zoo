@@ -1,0 +1,29 @@
+# borg-zoo#170: borg_trip_unknown_stacks (2, 3, 4, 5) on borg-reborn-rs main d9ff9808 with its shipped defaults, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-unknown-main-pilot.yaml
+name: reborn-unknown-main-pilot
+issue: 170
+question: On current main, how many unknown stacks should trigger a trip back to town to learn them?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen: 4.2.6-reborn-rust-main-d9ff9808
+
+# Every arm reads the shipped harness/borg.txt (and its pinned scary list) and sets only borg_trip_unknown_stacks.
+profile_prefix: reborn-unknown
+vary:
+  stacks:
+    s2: {borg_trip_unknown_stacks: 2}
+    s3: {borg_trip_unknown_stacks: 3}
+    s4: {borg_trip_unknown_stacks: 4}
+    s5: {borg_trip_unknown_stacks: 5}   # the shipped value
+
+control: [s5]
+owner_authorization: >-
+  2026-11-18: the owner asked for the borg_trip_unknown_stacks experiment (2, 3, 4, 5) on the current build
+  (borg-zoo#170; the earlier study ran on 193d9076 with the speed30 bundle). Pilot first (RULES 16).
+
+prespecified: |
+  Fixed 2026-11-18, before any result was read (borg-zoo#170). Pilot only. Gate: no config_error; one binary; each
+  arm's value written in its borg.txt; every cell ends in death, turn_cap or borg_stopped; stalls, purchase bursts and
+  key outliers listed. Descriptive: deaths and causes per class (CL1-3 deaths counted), mean max level and depth,
+  reached DL5; paired against s5 (rescued, newly killed, identical play); from replays, unknown-item trip returns and
+  the 'no up stairs found, going down' notes, and town visits. 18 starts per arm cannot show which value is best.

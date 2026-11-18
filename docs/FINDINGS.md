@@ -340,6 +340,34 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 
 **#216 small tier (run 44157865502, 360 games, starts 1-90): the pilot's pattern holds.** The gate passed: one binary, no config_error, both flags written, nothing flagged, and all 360 replays match CI. Deaths: ctl 9, fight 9, nolist 14, both (shipped) 11, of 90 each. Against ctl: nolist rescues 7 and newly kills 12 (p = 0.36); both rescues 7 and newly kills 9 (p = 0.80). With the named list off, mean max level rises from 4.8 to 5.6-5.7, down-then-up bounces fall to a third, and the `Scary guy` notes vanish. Necromancers die 0 times in ctl and 4 times with the list off, all at CL1 (Grip three times, a battle-scarred veteran once), and Priests die 1 time against 3. The breeder stand alone changes 38 games but no outcome. Report: [reports/reborn-breeder-scary-small-deaths/README.md](../reports/reborn-breeder-scary-small-deaths/README.md).
 
+**#255, Word of Recall in flight: ctl (flight Recall) vs gate (shipped) vs reserve vs hold on main 0fa5c34d (pilot 44243556206, small 44244730818, medium 44246229174, big 44248148439, full 44250411032; all 1,800 starts, 7,200 games): the gate neither saves nor clearly costs lives.** Every tier's gate passed: one binary, no config_error, settings written, no frozen-turn loops, every death bundle reproduced (6, 112, 179, 247). Deaths over 1,800 starts: ctl 127 (7.1%), gate 141 (7.8%), reserve 140 (7.8%), hold 136 (7.6%). Gate vs ctl: ctl alone dies 84, gate alone 98 (p = 0.34); the gate changes 1,580 of 1,800 games and goes slightly deeper (mean max DL 2.20 vs 2.12, CL 5.04 vs 5.02). Reserve vs gate: 1,480 games identical, outcomes differ in 3 starts. Hold vs gate: gate alone dies 10, hold alone 5 (p = 0.30). Discordant deaths split evenly by class. The pilot (18 starts, 0 vs 2 deaths) was direction only, and the larger tiers did not confirm a cost.
+
+**#191, caution_rising_explore_ticks 0/150/300/450 on main d9ff9808 (pilot, run 44230664898, 72 games): no deaths in any arm.** The gate passed: one binary (44b1d2f3), no config_error, the setting written in every arm, the shipped scary list loaded and recorded in all 72 cells, nothing flagged. All 72 replays match CI. Every game reached the turn cap. Mean max level is 5.28-5.39 and mean max DL 2.11-2.17 in every arm. 14 of 18 games play identically to the off arm.
+
+| ticks | `exploring for them (rising)` notes | `no up stairs found, going down` | down-then-up bounces | town visits |
+|---|---|---|---|---|
+| 0 (off) | 0 | 84 | 1,408 | 1,268 |
+| 150 | 59 | 70 | 1,368 | 1,235 |
+| 300 (default) | 111 | 63 | 1,387 | 1,259 |
+| 450 | 122 | 72 | 1,364 | 1,235 |
+
+The hold fires more as the budget grows, and the going-down notes fall from 84 to 63-72. The level bouncing and town visits hardly change. A first run of this pilot (44230015413) failed at the build, before any game, because the specimen did not yet pin the shipped scary list.
+
+**#170, borg_trip_unknown_stacks 2/3/4/5 on main d9ff9808 (pilot, run 44236318055, 72 games): no deaths in any arm; lower values make the Borg pendulum.** The gate passed: one binary (44b1d2f3), no config_error, the value written in every arm, nothing flagged. s5 replays the rising-ticks pilot's t300 arm exactly (18/18). All 72 replays match CI. Every game reached the turn cap. Mean max level is 5.17-5.28 and mean max DL 2.11-2.22 in every arm. Games identical to s5: 5 (s2), 10 (s3) and 13 (s4) of 18.
+
+| unknown_stacks | unknown-item trip returns | `no up stairs found, going down` | rising holds (`exploring for them`) | town visits |
+|---|---|---|---|---|
+| 2 | 109 | 198 | 2,380 | 1,375 |
+| 3 | 48 | 107 | 460 | 1,294 |
+| 4 | 50 | 100 | 403 | 1,234 |
+| 5 (shipped) | 18 | 63 | 111 | 1,259 |
+
+Lower values send the Borg back for unknown items more often. Each return brings more `going down` notes and far more rising holds, the pattern the 193d9076 death report found, now partly held by the rising hold. With no deaths, the pilot cannot rank the values on survival.
+
+**#224, cornered danger threshold (5, 10) × radius (2, 4) on main d9ff9808 (pilot, run 44237508546, 72 games): no deaths in any arm.** The gate passed: one binary (44b1d2f3), no config_error, settings written, nothing flagged. d10-r2 (the shipped values) replays the shipped arm of the unknown_stacks pilot exactly (18/18). Games identical to d10-r2: 16 (d10-r4), 13 (d5-r2) and 13 (d5-r4) of 18. Mean max level is 5.28 at threshold 10 and 5.11 at 5. Triggering earlier changes more games than a wider radius; neither can be ranked on deaths at this size.
+
+**#224, cornered danger threshold (5, 10) × radius (2, 4) on main d9ff9808 (medium tier, run 44241753524, 1,080 games, starts 91-360): no setting differs from the shipped one.** The gate passed: one binary, no config_error, settings written, no frozen-turn loops, 100 of 100 death bundles reproduced. Deaths: d10-r2 (shipped) 25 (9.3%), d10-r4 26 (9.6%), d5-r2 25 (9.3%), d5-r4 24 (8.9%) of 270. Against d10-r2 the others differ in at most 7 starts (0/1, 3/3, 3/2; p >= 0.6). Mean max level is 4.93-4.99 and mean max DL 2.10-2.11. The shipped threshold 10 and radius 2 stay.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).

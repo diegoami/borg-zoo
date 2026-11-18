@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-flee-recall-big",
+  "issue": 255,
+  "definition": "definitions/reborn-flee-recall-big.yaml",
+  "question": "On borg-reborn-rs main 0fa5c34d, does reading Word of Recall in a flight only when breeders swamp the level or several monsters chase (caution_flee_recall 0, shipped) save games against C's flight Recall, alone and with the Recall reserve or the no-descent hold?",
+  "description": "On borg-reborn-rs main 0fa5c34d, does reading Word of Recall in a flight only when breeders swamp the level or several monsters chase (caution_flee_recall 0, shipped) save games against C's flight Recall, alone and with the Recall reserve or the no-descent hold? Generated from definitions/reborn-flee-recall-big.yaml: 4 arms on 4.2.6-reborn-rust-main-0fa5c34d, suite classes-1800-big.",
+  "prespecified": "Fixed 2026-11-18, before any result of this tier was read (borg-zoo#255). The big tier (classes-1800-big: starts 361-900, 60 per class); it plays only\nstarts no earlier tier played, and is analysed with every tier before it. Gate: no config_error; one binary; each\narm's three values in borg.txt; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified\nand key outliers listed; death bundles reproduced. A failed gate stops the growth and is reported on the issue.\nPrimary, over all starts collected so far: deaths, gate against ctl paired on the same start (rescued, newly\nkilled, exact McNemar). Secondary: reserve and hold against gate; flight Recall reads per game; final level and\ndeepest level.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-0fa5c34d"
+  ],
+  "profiles": [
+    "reborn-recall-ctl",
+    "reborn-recall-gate",
+    "reborn-recall-reserve",
+    "reborn-recall-hold"
+  ],
+  "suites": [
+    "classes-1800-big"
+  ],
+  "control": "4.2.6-reborn-rust-main-0fa5c34d",
+  "control_profile": "reborn-recall-ctl",
+  "owner_authorization": "2026-11-18: the owner agreed in advance on borg-zoo#255 to every tier up to full, each starting only after the previous tier's written gate passes (RULES 14, 16)."
+}
