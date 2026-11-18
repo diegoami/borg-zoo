@@ -340,6 +340,21 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 
 **#227, scary rule on main a8ac685a: none vs C's named list vs damage 60% (pilot, run 44178676657, 54 games).** The gate passed: one binary (012a06ed), no config_error, both settings written, nothing flagged, and all 54 replays match CI. Deaths: no rule 4 (all at CL1-3); named list 3 (none at CL1-3, all at CL4-7); damage60 2 (both at CL2: a Necromancer to a small kobold and a Priest to Fang). The damage rule fires rarely (10 `Scary guy` notes in 18 games against 11,804 for the list) and plays like no rule in 15 of 18 games. The list costs about 0.6-0.9 character levels and triples the level bouncing. Report: [reports/reborn-scary-rule-pilot-deaths/README.md](../reports/reborn-scary-rule-pilot-deaths/README.md).
 
+**#227, the scary rule on all 1,800 starts of main a8ac685a (run 44183532358, 7,200 games): C's named list halves deaths. The damage rule at 60% does almost nothing; at 40% it helps a little.** The gate passed: one binary (012a06ed), no config_error, both settings written in all 396 distinct borg.txt files, no stalls, loops or purchase bursts, and every cell ended in death or turn cap.
+
+| arm | deaths | 95% interval | deaths at CL1-3 | mean max CL | mean max DL | reached DL5 | vs no rule: rescued / newly killed (McNemar p) | same play as no rule |
+|---|---|---|---|---|---|---|---|---|
+| no rule | 297 (16.5%) | 14.9-18.3 | 194 | 5.83 | 2.43 | 75 | - | - |
+| named list | 148 (8.2%) | 7.0-9.6 | 102 | 4.92 | 2.13 | 26 | 255 / 106 (< 0.0001) | 2 |
+| damage 40% | 256 (14.2%) | 12.7-15.9 | 167 | 5.85 | 2.44 | 78 | 162 / 121 (0.017) | 665 |
+| damage 60% (shipped) | 286 (15.9%) | 14.3-17.7 | 187 | 5.85 | 2.44 | 74 | 46 / 35 (0.27) | 1,504 |
+
+- **The named list lowers deaths in every class.** Against damage 60% it rescues 244 and newly kills 106 (p < 0.0001).
+  - Warriors 15 → 1, Rogues 14 → 5, Mages 48 → 23, Druids 51 → 26, Priests 46 → 22, Necromancers 39 → 21.
+  - It costs about 0.9 character levels, 0.3 dungeon levels, and two thirds of the DL5 games (75 → 26).
+- **The damage rule plays like no rule.** At 60% it does in 1,504 of 1,800 games. At 40% it changes 1,135 games and lowers deaths by 2.3 points (p = 0.017). Against 60%, 40% rescues 149 and newly kills 119 (p = 0.08). Necromancers don't benefit from either threshold (39 / 37 / 43 deaths).
+- One development suite, so this is descriptive. The data-file list (#228, borg-reborn-rs#527) is the planned successor to the compiled list.
+
 **#216, borg-reborn-rs#503's two flags, 2×2 on main 233ef23e (pilot, run 44147930313, 72 games): turning off C's named scary list is what changes play.** The gate passed: no config_error, one binary (3f122aed), both flags written in every arm, no stalls or purchase bursts, and the request's four sanity hashes reproduced. Deaths: ctl (breeder_fight 0, scary_named 1) 1/18; fight (1,1) 1; nolist (0,0) 5; both (1,0, the shipped default) 4. With the list off, the `Scary guy on level.` notes vanish, down-then-up bounces fall from about 1,450 to 450, and mean max level rises from 5.0 to 5.7-5.8. Four starts die in both list-off arms, two of them at character level 1 against monsters on the old list. The breeder stand alone changes 10 of 18 games but no outcome. Report: [reports/reborn-breeder-scary-pilot-deaths/README.md](../reports/reborn-breeder-scary-pilot-deaths/README.md).
 
 **#216 small tier (run 44157865502, 360 games, starts 1-90): the pilot's pattern holds.** The gate passed: one binary, no config_error, both flags written, nothing flagged, and all 360 replays match CI. Deaths: ctl 9, fight 9, nolist 14, both (shipped) 11, of 90 each. Against ctl: nolist rescues 7 and newly kills 12 (p = 0.36); both rescues 7 and newly kills 9 (p = 0.80). With the named list off, mean max level rises from 4.8 to 5.6-5.7, down-then-up bounces fall to a third, and the `Scary guy` notes vanish. Necromancers die 0 times in ctl and 4 times with the list off, all at CL1 (Grip three times, a battle-scarred veteran once), and Priests die 1 time against 3. The breeder stand alone changes 38 games but no outcome. Report: [reports/reborn-breeder-scary-small-deaths/README.md](../reports/reborn-breeder-scary-small-deaths/README.md).
