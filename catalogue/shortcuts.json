@@ -204,7 +204,7 @@
     },
     "reborn-heal-by-class": {
       "issue": 265,
-      "status": "defined (pilot on 4a482c58, not dispatched)",
+      "status": "pilot dispatched (run 44294456089)",
       "what": "Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, and class files off (common 100/125); real-HP reserve and speed at shipped values; read per class.",
       "profiles": [
         "reborn-hbc-common",
@@ -213,6 +213,25 @@
         "reborn-hbc-curve-lo",
         "reborn-hbc-reserve-hi",
         "reborn-hbc-reserve-lo"
+      ],
+      "runs": [
+        {
+          "run": "44294456089",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-4a482c58",
+          "result": "running"
+        }
+      ]
+    },
+    "reborn-outmatched": {
+      "issue": 270,
+      "status": "defined (pilot on 4a482c58, not dispatched)",
+      "what": "Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75.",
+      "profiles": [
+        "reborn-outm-ctl",
+        "reborn-outm-off0",
+        "reborn-outm-loss25",
+        "reborn-outm-loss75"
       ],
       "runs": []
     }

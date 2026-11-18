@@ -3203,6 +3203,41 @@
         "borg_param_town_heal_reserve_hp_percent_ranger": -1,
         "borg_param_town_heal_reserve_hp_percent_blackguard": -1
       }
+    },
+    "reborn-outm-ctl": {
+      "description": "borg-zoo#270 (reborn-outmatched-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_caution_heal_outmatched_min_loss": 50
+      }
+    },
+    "reborn-outm-off0": {
+      "description": "borg-zoo#270 (reborn-outmatched-pilot.yaml): arm off0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_heal_when_outmatched": 0
+      }
+    },
+    "reborn-outm-loss25": {
+      "description": "borg-zoo#270 (reborn-outmatched-pilot.yaml): arm loss25.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_caution_heal_outmatched_min_loss": 25
+      }
+    },
+    "reborn-outm-loss75": {
+      "description": "borg-zoo#270 (reborn-outmatched-pilot.yaml): arm loss75.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_caution_heal_outmatched_min_loss": 75
+      }
     }
   }
 }

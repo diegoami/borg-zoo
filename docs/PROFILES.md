@@ -17,7 +17,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `rs-additive-6` | [#129](https://github.com/diegoami/borg-zoo/issues/129) | 6 | obsolete (#129 closed by the owner) | borg-rs: existing behaviour, shopping only, and four trip thresholds (0,0), (1,2), (1,4), (2,4) as (pack slack, unknown stacks). |
 | `neo-default` | [#137](https://github.com/diegoami/borg-zoo/issues/137) | 1 | small tier done | Neo Borg with its default recorded flags (no settings). |
 | `reborn-errand-ladder` | – | 2 | done (option-C pilot, borg-reborn-rs #207, #208) | Errands: borg-rs's core in the reborn shell with no errand against the class ladders (borg_reborn_errand = ladder). |
-| `reborn-heal-by-class` | [#265](https://github.com/diegoami/borg-zoo/issues/265) | 6 | defined (pilot on 4a482c58, not dispatched) | Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, and class files off (common 100/125); real-HP reserve and speed at shipped values; read per class. |
+| `reborn-heal-by-class` | [#265](https://github.com/diegoami/borg-zoo/issues/265) | 6 | pilot dispatched (run 44294456089) | Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, and class files off (common 100/125); real-HP reserve and speed at shipped values; read per class. |
+| `reborn-outmatched` | [#270](https://github.com/diegoami/borg-zoo/issues/270) | 4 | defined (pilot on 4a482c58, not dispatched) | Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75. |
 
 ### `heal-attack-4`
 
@@ -200,6 +201,23 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-hbc-reserve-hi` | – | – | – | – | – | – | – | – | – | 225 | 375 | 450 | 450 | 225 | 375 | 300 | 300 | 150 |
 | `reborn-hbc-reserve-lo` | – | – | – | – | – | – | – | – | – | 75 | 125 | 150 | 150 | 75 | 125 | 100 | 100 | 50 |
 
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44294456089](https://github.com/diegoami/borg-zoo/actions/runs/44294456089) | pilot | `4.2.6-reborn-rust-main-4a482c58` | running |
+
+### `reborn-outmatched`
+
+Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_heal_outmatched_min_loss` | `borg_param_caution_heal_when_outmatched` |
+| --- | --- | --- |
+| `reborn-outm-ctl` | 50 | 1 |
+| `reborn-outm-off0` | – | 0 |
+| `reborn-outm-loss25` | 25 | 1 |
+| `reborn-outm-loss75` | 75 | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -212,7 +230,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_trip_unknown_stacks` | 0, 2, 3, 4, not set | `maxdepth-2x5`, `rs-additive-6` | Return when this many carried stacks are unidentified (default 4). Changes play: (3,x) differs from return-off in about 40% of games; (5,1) played like return-off in 26-27 of 30 starts. |
 | `borg_trip_pack_slack` | 0, 1, 2, not set | `maxdepth-2x5`, `rs-additive-6` | Return when this few pack slots are free (default 2). Almost no effect: 1 and 2 played identical keys in 359 of 360 #147 games. |
 | `borg_reborn_errand` | ladder, none | `reborn-errand-ladder` | The errand over the core: `none`, or a command such as `ladder` (the class ladders). The ladder looked better in the option-C pilot (24.9% v 29.1% deaths, descriptive). |
-| `borg_param_caution_heal_when_outmatched` | 1, not set | `heal-attack-4`, `heal-pilot-12` | A hurt Borg in lethal danger with no escape drinks its best cure potion (#151). Waits for borg-reborn-rs #461. |
+| `borg_param_caution_heal_when_outmatched` | 0, 1, not set | `heal-attack-4`, `heal-pilot-12`, `reborn-outmatched` | A hurt Borg in lethal danger with no escape drinks its best cure potion (#151). Waits for borg-reborn-rs #461. |
 | `borg_param_attack_preference_blackguard_melee_permille` | 1600, not set | `heal-attack-4` |  |
 | `borg_param_attack_preference_blackguard_spell_permille` | 1400, not set | `heal-attack-4` |  |
 | `borg_param_attack_preference_druid_spell_permille` | 1700, not set | `heal-attack-4` |  |
@@ -229,6 +247,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_melee_permille` | 1800, not set | `heal-attack-4` |  |
 | `borg_param_attack_preference_warrior_projectile_permille` | 1200, not set | `heal-attack-4` |  |
 | `borg_param_attack_preference_warrior_thrown_permille` | 1200, not set | `heal-attack-4` |  |
+| `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
 | `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_druid` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_mage` | 0, 75, 225, not set | `reborn-heal-by-class` |  |
@@ -272,3 +291,4 @@ Exposed by borg-reborn-rs `main` but not yet used to build arms. A profile sets 
 | `4.2.6-rs-pr92-home-fix` | diegoami/borg-rs | `8c5d000a` | M13 Rust Borg at borg-rs main 8c5d000a, PR92's merge (borg-zoo#129): PR88's added town-return triggers (7251f64a, an ancestor) plus PR92, which stops a confirmed Home transfer being reversed within the same visit (the borg-rs#90 oil store/take loop). |
 | `neo-b4-parity-books-v1` | diegoami/neo-angband-borg-mod-tracker | `464a1555` | Experimental Borg1.4.0-beta.6.zoo.1: six C-parity fixes514-519 plus retained book-value correction509, on verified beta.4/API2.1 engine d27ed50f. |
 | `4.2.6-reborn-core-pilot` | diegoami/borg-reborn-rs | `1be6edc7` | borg-reborn-rs 1be6edc, the option-C pilot (borg-reborn-rs #207, #208): borg-rs's core (milestone 12, vendored as borg-core/) inside the reborn shell, selected through the run's borg.txt (borg_reborn_core, borg_reborn_errand). |
+| `4.2.6-reborn-rust-main-4a482c58` | diegoami/borg-reborn-rs | `4a482c58` | borg-reborn-rs 4a482c58, main after #539 (caution_scary_hurt_percent 50, caution_scary_afraid 1) and fba1c6e0 (borg_trip_unknown_stacks 2, caution_stair_scum_threat 1). |
