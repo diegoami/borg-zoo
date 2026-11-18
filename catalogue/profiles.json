@@ -2752,6 +2752,24 @@
       "settings": {
         "borg_trip_unknown_stacks": 5
       }
+    },
+    "reborn-scum-ctl": {
+      "description": "borg-zoo#246 (reborn-stair-scum-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_stair_scum_threat": 0
+      }
+    },
+    "reborn-scum-threat": {
+      "description": "borg-zoo#246 (reborn-stair-scum-pilot.yaml): arm threat.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_stair_scum_threat": 1
+      }
     }
   }
 }
