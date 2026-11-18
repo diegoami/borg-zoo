@@ -1,0 +1,33 @@
+# borg-zoo#224: cornered mode off vs on (the shipped values) on borg-reborn-rs main 6101ca01, all 1,800 starts.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-cornered-1800.yaml
+name: reborn-cornered-1800
+issue: 224
+question: Does cornered mode change how current main survives, over all 1,800 starts?
+suite: classes-1800    # all 1,800 starts: 200 per class (owner, 2026-11-18)
+
+specimen: 4.2.6-reborn-rust-main-6101ca01
+
+# The pilot's c0-r2-m0 and c1-r2-m0 arms. Radius and big-level margin changed no game in the pilot, so they stay at
+# the shipped 2 and 0.
+profile_prefix: reborn-corner
+vary:
+  cornered:
+    c0: {borg_param_caution_cornered: 0}
+    c1: {borg_param_caution_cornered: 1}
+  radius:
+    r2: {borg_param_caution_cornered_radius: 2}
+  margin:
+    m0: {borg_param_caution_cornered_big_level_margin: 0}
+
+control: [c0, r2, m0]
+owner_authorization: >-
+  2026-11-18: after the 2x2x2 pilot (run 44196757011: radius and margin changed no game), the owner agreed to run
+  cornered mode off vs on, with the other two at their shipped values, on all 1,800 starts of classes-1800.
+
+prespecified: |
+  Fixed 2026-11-18, before any result was read (borg-zoo#224). classes-1800, all 1,800 starts, two arms: cornered off
+  (control) and on, radius 2 and margin 0 in both, everything else as shipped on 6101ca01. Gate: no config_error; one
+  binary; the settings written in every arm; every cell ends in death, turn_cap or borg_stopped; stalls, purchase
+  bursts and key outliers listed. Endpoints, per arm and per class: death share (95% interval); deaths at CL1-3; mean
+  max level and depth; reached DL5. Paired on the same start: rescued, newly killed, exact McNemar, identical play.
+  Descriptive only: one development suite.

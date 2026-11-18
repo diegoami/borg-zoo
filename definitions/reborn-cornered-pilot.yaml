@@ -1,0 +1,46 @@
+# borg-zoo#224: cornered mode (0,1) x radius (2,3) x big-level margin (0,1), on borg-reborn-rs main 6101ca01, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-cornered-pilot.yaml
+name: reborn-cornered-pilot
+issue: 224
+question: Does cornered mode, and its radius and big-monster margin, change how current main survives?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen:
+  name: 4.2.6-reborn-rust-main-6101ca01
+  repository: diegoami/borg-reborn-rs
+  ref: 6101ca010213f59a7f36d99ade3a4f27122d8ec9
+  source: https://github.com/diegoami/borg-zoo/issues/224
+  label: >-
+    borg-reborn-rs 6101ca01, main at the merge of #525, after #527 (the named list as data) and the owner's switch of
+    caution_scary_named_monsters back to 1 (#533). harness/borg.txt 77be6709... ships cornered mode on (#504),
+    breeder boost 5, the named list on with the damage rule at 60, the borg-rs core and no plan or scary-list file.
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# Every arm reads the shipped harness/borg.txt; only the three cornered settings differ (danger_tenths stays 10 and the
+# breeder boost 5, as shipped). With cornered off, radius and margin have nothing to act on: those four arms should play alike.
+profile_prefix: reborn-corner
+vary:
+  cornered:
+    c0: {borg_param_caution_cornered: 0}
+    c1: {borg_param_caution_cornered: 1}
+  radius:
+    r2: {borg_param_caution_cornered_radius: 2}
+    r3: {borg_param_caution_cornered_radius: 3}
+  margin:
+    m0: {borg_param_caution_cornered_big_level_margin: 0}
+    m1: {borg_param_caution_cornered_big_level_margin: 1}
+
+control: [c0, r2, m0]
+owner_authorization: >-
+  2026-11-18: the owner asked for an experiment of cornered mode on the current build (borg-zoo#224), as
+  caution_cornered (0,1) x caution_cornered_radius (2,3) x caution_cornered_big_level_margin (0,1). Pilot first
+  (RULES 16).
+
+prespecified: |
+  Fixed 2026-11-18, before any result was read (borg-zoo#224). Pilot only. Gate: no config_error; one binary; the
+  cornered lines written in each arm; every cell ends in death, turn_cap or borg_stopped; stalls, purchase bursts and
+  key outliers listed. Descriptive: deaths and causes per class (CL1-3 deaths counted), mean max level and depth;
+  paired rescued and newly killed against c0-r2-m0; the four c0 arms are expected to play identically (a check that radius and margin are inert with cornered off); from replays, cornered-mode notes (buffs, Monster Confusion)
+  in each arm. 18 starts per arm cannot show whether cornered mode helps.
