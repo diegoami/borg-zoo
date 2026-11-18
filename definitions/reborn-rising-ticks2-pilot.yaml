@@ -1,0 +1,40 @@
+# borg-zoo#191: caution_rising_explore_ticks (0, 150, 300, 450) on borg-reborn-rs main d9ff9808, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-rising-ticks2-pilot.yaml
+name: reborn-rising-ticks2-pilot
+issue: 191
+question: How long should the Borg hold a descent to explore for an up staircase while rising to town?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen:
+  name: 4.2.6-reborn-rust-main-d9ff9808
+  repository: diegoami/borg-reborn-rs
+  ref: d9ff9808236e466b42ee9966abf807aed2738107
+  source: https://github.com/diegoami/borg-zoo/issues/191
+  label: >-
+    borg-reborn-rs d9ff9808, main at the merge of #550 (stair-scum threat). harness/borg.txt 9860fba9... ships the named
+    list on with the damage rule at 60, cornered mode on, the borg-rs core and no plan; caution_rising_explore_ticks is
+    the compiled 300.
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# Every arm reads the shipped harness/borg.txt and sets only caution_rising_explore_ticks (descend danger stays 10).
+profile_prefix: reborn-rising
+vary:
+  ticks:
+    t0: {borg_param_caution_rising_explore_ticks: 0}       # off: C's behaviour
+    t150: {borg_param_caution_rising_explore_ticks: 150}
+    t300: {borg_param_caution_rising_explore_ticks: 300}   # the compiled default
+    t450: {borg_param_caution_rising_explore_ticks: 450}
+
+control: [t0]
+owner_authorization: >-
+  2026-11-18: the owner asked for an experiment of caution_rising_explore_ticks (0, 150, 300, 450) on the current
+  build (borg-zoo#191). Pilot first (RULES 16).
+
+prespecified: |
+  Fixed 2026-11-18, before any result was read (borg-zoo#191). Pilot only. Gate: no config_error; one binary; each arm's
+  ticks written in its borg.txt; every cell ends in death, turn_cap or borg_stopped; stalls, purchase bursts and key
+  outliers listed. Descriptive: deaths and causes per class (CL1-3 deaths counted), mean max level and depth, reached
+  DL5; paired against t0 (rescued, newly killed, identical play); from replays, the rising-hold notes and the
+  'no up stairs found, going down' notes per arm, and town visits. 18 starts per arm cannot show which value is best.
