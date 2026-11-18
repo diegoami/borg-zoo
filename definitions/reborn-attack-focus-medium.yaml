@@ -1,0 +1,117 @@
+# borg-zoo#319: attack focus by class (every family a class file does not raise, lowered), medium tier; owner 2026-11-18.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-attack-focus-medium.yaml
+#
+# Each class keeps its shipped class-file preferences; every other family of the six (melee, projectile, thrown,
+# spell, device, activation), at the neutral 1000, is lowered. Families are compared with each other, so lowering the
+# rest is raising the favourite past the 2000 cap. Each _<class> line acts on its class only; read per class.
+name: reborn-attack-focus-medium
+issue: 319
+question: >-
+  On borg-reborn-rs main f660aecc, does each class do better when every attack family its class file does not favour
+  is preferred less (750, or the minimum 500) than with the neutral 1000?
+tier: medium         # classes-1800 starts 91-360: 30 per class, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-f660aecc
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-afocus
+arms:
+  ctl: {}   # shipped
+  low750:   # every other family at 750
+    borg_param_attack_preference_warrior_spell_permille: 750
+    borg_param_attack_preference_warrior_device_permille: 750
+    borg_param_attack_preference_warrior_activation_permille: 750
+    borg_param_attack_preference_mage_melee_permille: 750
+    borg_param_attack_preference_mage_projectile_permille: 750
+    borg_param_attack_preference_mage_thrown_permille: 750
+    borg_param_attack_preference_mage_activation_permille: 750
+    borg_param_attack_preference_druid_melee_permille: 750
+    borg_param_attack_preference_druid_projectile_permille: 750
+    borg_param_attack_preference_druid_thrown_permille: 750
+    borg_param_attack_preference_druid_device_permille: 750
+    borg_param_attack_preference_druid_activation_permille: 750
+    borg_param_attack_preference_priest_melee_permille: 750
+    borg_param_attack_preference_priest_projectile_permille: 750
+    borg_param_attack_preference_priest_thrown_permille: 750
+    borg_param_attack_preference_priest_device_permille: 750
+    borg_param_attack_preference_priest_activation_permille: 750
+    borg_param_attack_preference_necromancer_melee_permille: 750
+    borg_param_attack_preference_necromancer_projectile_permille: 750
+    borg_param_attack_preference_necromancer_thrown_permille: 750
+    borg_param_attack_preference_necromancer_activation_permille: 750
+    borg_param_attack_preference_paladin_projectile_permille: 750
+    borg_param_attack_preference_paladin_thrown_permille: 750
+    borg_param_attack_preference_paladin_device_permille: 750
+    borg_param_attack_preference_paladin_activation_permille: 750
+    borg_param_attack_preference_rogue_melee_permille: 750
+    borg_param_attack_preference_rogue_spell_permille: 750
+    borg_param_attack_preference_rogue_device_permille: 750
+    borg_param_attack_preference_rogue_activation_permille: 750
+    borg_param_attack_preference_ranger_melee_permille: 750
+    borg_param_attack_preference_ranger_thrown_permille: 750
+    borg_param_attack_preference_ranger_spell_permille: 750
+    borg_param_attack_preference_ranger_device_permille: 750
+    borg_param_attack_preference_ranger_activation_permille: 750
+    borg_param_attack_preference_blackguard_projectile_permille: 750
+    borg_param_attack_preference_blackguard_thrown_permille: 750
+    borg_param_attack_preference_blackguard_device_permille: 750
+    borg_param_attack_preference_blackguard_activation_permille: 750
+  low500:   # every other family at 500 (the minimum)
+    borg_param_attack_preference_warrior_spell_permille: 500
+    borg_param_attack_preference_warrior_device_permille: 500
+    borg_param_attack_preference_warrior_activation_permille: 500
+    borg_param_attack_preference_mage_melee_permille: 500
+    borg_param_attack_preference_mage_projectile_permille: 500
+    borg_param_attack_preference_mage_thrown_permille: 500
+    borg_param_attack_preference_mage_activation_permille: 500
+    borg_param_attack_preference_druid_melee_permille: 500
+    borg_param_attack_preference_druid_projectile_permille: 500
+    borg_param_attack_preference_druid_thrown_permille: 500
+    borg_param_attack_preference_druid_device_permille: 500
+    borg_param_attack_preference_druid_activation_permille: 500
+    borg_param_attack_preference_priest_melee_permille: 500
+    borg_param_attack_preference_priest_projectile_permille: 500
+    borg_param_attack_preference_priest_thrown_permille: 500
+    borg_param_attack_preference_priest_device_permille: 500
+    borg_param_attack_preference_priest_activation_permille: 500
+    borg_param_attack_preference_necromancer_melee_permille: 500
+    borg_param_attack_preference_necromancer_projectile_permille: 500
+    borg_param_attack_preference_necromancer_thrown_permille: 500
+    borg_param_attack_preference_necromancer_activation_permille: 500
+    borg_param_attack_preference_paladin_projectile_permille: 500
+    borg_param_attack_preference_paladin_thrown_permille: 500
+    borg_param_attack_preference_paladin_device_permille: 500
+    borg_param_attack_preference_paladin_activation_permille: 500
+    borg_param_attack_preference_rogue_melee_permille: 500
+    borg_param_attack_preference_rogue_spell_permille: 500
+    borg_param_attack_preference_rogue_device_permille: 500
+    borg_param_attack_preference_rogue_activation_permille: 500
+    borg_param_attack_preference_ranger_melee_permille: 500
+    borg_param_attack_preference_ranger_thrown_permille: 500
+    borg_param_attack_preference_ranger_spell_permille: 500
+    borg_param_attack_preference_ranger_device_permille: 500
+    borg_param_attack_preference_ranger_activation_permille: 500
+    borg_param_attack_preference_blackguard_projectile_permille: 500
+    borg_param_attack_preference_blackguard_thrown_permille: 500
+    borg_param_attack_preference_blackguard_device_permille: 500
+    borg_param_attack_preference_blackguard_activation_permille: 500
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: after the pilot (run 44377324652, gate passed) the owner asked for a big experiment: small, medium and
+  big defined together (starts 1-900), as three tier experiments.
+
+prespecified: |
+  Fixed 2026-11-19, after the pilot and before any medium result was read. Same specimen and arms (RULES 16).
+  Pilot (run 44377324652): deaths ctl 0, low750 0, low500 1 (Ranger, cave spider); games identical to ctl low750 12,
+  low500 10 of 18; Warriors, Mages, Priests, Paladins and Blackguards played ctl's keys in both arms; Druids,
+  Necromancers, Rogues and Rangers changed.
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class (small, medium and big pooled as one study, RULES 14): deaths and causes, CL1-3
+  deaths, final level, deepest level; paired rescued and newly killed against ctl; identical plays. No evidence is
+  retained at this size. Descriptive only.

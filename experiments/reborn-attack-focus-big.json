@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-attack-focus-big",
+  "issue": 319,
+  "definition": "definitions/reborn-attack-focus-big.yaml",
+  "question": "On borg-reborn-rs main f660aecc, does each class do better when every attack family its class file does not favour is preferred less (750, or the minimum 500) than with the neutral 1000?",
+  "description": "On borg-reborn-rs main f660aecc, does each class do better when every attack family its class file does not favour is preferred less (750, or the minimum 500) than with the neutral 1000? Generated from definitions/reborn-attack-focus-big.yaml: 3 arms on 4.2.6-reborn-rust-main-f660aecc, suite classes-1800-big.",
+  "prespecified": "Fixed 2026-11-19, after the pilot and before any big result was read. Same specimen and arms (RULES 16).\nPilot (run 44377324652): deaths ctl 0, low750 0, low500 1 (Ranger, cave spider); games identical to ctl low750 12,\nlow500 10 of 18; Warriors, Mages, Priests, Paladins and Blackguards played ctl's keys in both arms; Druids,\nNecromancers, Rogues and Rangers changed.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class (small, medium and big pooled as one study, RULES 14): deaths and causes, CL1-3\ndeaths, final level, deepest level; paired rescued and newly killed against ctl; identical plays. No evidence is\nretained at this size. Descriptive only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-f660aecc"
+  ],
+  "profiles": [
+    "reborn-afocus-ctl",
+    "reborn-afocus-low750",
+    "reborn-afocus-low500"
+  ],
+  "suites": [
+    "classes-1800-big"
+  ],
+  "control": "4.2.6-reborn-rust-main-f660aecc",
+  "control_profile": "reborn-afocus-ctl",
+  "owner_authorization": "2026-11-19: after the pilot (run 44377324652, gate passed) the owner asked for a big experiment: small, medium and big defined together (starts 1-900), as three tier experiments."
+}
