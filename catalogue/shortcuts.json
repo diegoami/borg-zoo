@@ -277,7 +277,7 @@
     },
     "reborn-recall-settings": {
       "issue": 280,
-      "status": "defined (pilot on f660aecc, not dispatched)",
+      "status": "pilot done (gate passed); small and medium defined",
       "what": "Word of Recall settings on main f660aecc (#571 merged): shipped; no flight Recall on DL1-2 (gate 3); flight Recall on DL1 again (gate 0); Recall valued 300% or 1000% by the town planner; no flight Recall at any depth without breeders or chasers (caution_flee_recall 0).",
       "profiles": [
         "reborn-recallset-ctl",
@@ -287,7 +287,14 @@
         "reborn-recallset-v1000",
         "reborn-recallset-v300"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "44314277222",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "108 games, no deaths; flight Recalls ctl 8, dl12 3, dl1off 18, v300 8, v1000 14, gate 3; dl12 and gate identical 18/18"
+        }
+      ]
     },
     "reborn-pbd-by-class": {
       "issue": 290,
