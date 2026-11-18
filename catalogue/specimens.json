@@ -1203,21 +1203,6 @@
       "source": "https://github.com/neostryder/neo-angband-mod-borg/pull/113",
       "label": "Previous truth-corrected Neo baseline967b28f plus ONLY carried-book counts/value correction509, measured atd6215a8. Engineb4af703 and toolkit967b28f unchanged. Explicit seeded-v2 profile; unresolved clock640. Descriptive development repeat; no confirmed survival claim."
     },
-    "4.2.6-reborn-rust-main-233ef23e": {
-      "kind": "borg-rs",
-      "impl": "rust",
-      "exact_turns": true,
-      "depth_stream": true,
-      "role": "candidate",
-      "repository": "diegoami/borg-reborn-rs",
-      "ref": "233ef23ebbbbebdbc75c8cc94b74edc5682606c5",
-      "source": "https://github.com/diegoami/borg-zoo/issues/216",
-      "label": "borg-reborn-rs 233ef23e, main at the merge of #510 (#503): caution_breeder_fight (stand and fight breeders when there is no easy escape; compiled 0, shipped 1) and caution_scary_named_monsters (C's hard-coded scary list by character level; compiled 1, shipped 0). Source-hash rust cb2b78ce7459...; harness/borg.txt feb38834... ships the speed30 bundle, the borg-rs core and no plan.",
-      "plans": {
-        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
-        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
-      }
-    },
     "4.2.6-reborn-rust-main-dd5f026e": {
       "kind": "borg-rs",
       "impl": "rust",
@@ -1228,6 +1213,36 @@
       "ref": "dd5f026e30c9380d494932df5fc5e439be7892c0",
       "source": "https://github.com/diegoami/borg-zoo/issues/219",
       "label": "borg-reborn-rs dd5f026e, main at the merge of #509 (#507: a planned purchase buys its copies in one transaction). Over e0aa2e0a (the #192 specimen) it adds #494 (#493: explicit gold reserve 0, borg_town_w_gold 0), #510 (#503: stand and fight breeders, named scary monsters off) and #509; #497, #500 and #501 change no play. Source-hash rust 18606b3e...; harness/borg.txt feb38834... (speed30 bundle, no plan; healing 400 / 100 / 66; point-blank divisor 5, Ranger 2, Rogue 3).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-a8ac685a": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "a8ac685a2c90b412971fedd90d98b783b7f70380",
+      "source": "https://github.com/diegoami/borg-zoo/issues/225",
+      "label": "borg-reborn-rs a8ac685a, main at the merge of #513 (#487): healing curve scale and reserve per class, the reserve counted in real HP, and town_digger_min_gold. Also has #511 (cornered mode) and #514 (scary by damage) at their shipped values. Source-hash rust 197da47f2d80...; harness/borg.txt 3d70d60a... (borg-rs core, no plan).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-233ef23e": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "233ef23ebbbbebdbc75c8cc94b74edc5682606c5",
+      "source": "https://github.com/diegoami/borg-zoo/issues/216",
+      "label": "borg-reborn-rs 233ef23e, main at the merge of #510 (#503): caution_breeder_fight (stand and fight breeders when there is no easy escape; compiled 0, shipped 1) and caution_scary_named_monsters (C's hard-coded scary list by character level; compiled 1, shipped 0). Source-hash rust cb2b78ce7459...; harness/borg.txt feb38834... ships the speed30 bundle, the borg-rs core and no plan.",
       "plans": {
         "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
         "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"

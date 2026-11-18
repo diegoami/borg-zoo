@@ -2502,50 +2502,6 @@
         "borg_param_town_heal_curve_scale_percent": 75
       }
     },
-    "reborn-503-ctl": {
-      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm ctl.",
-      "settings": {
-        "borg_param_caution_breeder_fight": 0,
-        "borg_param_caution_scary_named_monsters": 1
-      }
-    },
-    "reborn-503-fight": {
-      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm fight.",
-      "settings": {
-        "borg_param_caution_breeder_fight": 1,
-        "borg_param_caution_scary_named_monsters": 1
-      }
-    },
-    "reborn-503-nolist": {
-      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm nolist.",
-      "settings": {
-        "borg_param_caution_breeder_fight": 0,
-        "borg_param_caution_scary_named_monsters": 0
-      }
-    },
-    "reborn-503-both": {
-      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm both.",
-      "settings": {
-        "borg_param_caution_breeder_fight": 1,
-        "borg_param_caution_scary_named_monsters": 0
-      }
-    },
-    "reborn-503-both-plan": {
-      "description": "borg-zoo#216 (reborn-nolist-plan-pilot.yaml): arm both-plan.",
-      "settings": {
-        "borg_param_caution_breeder_fight": 1,
-        "borg_param_caution_scary_named_monsters": 0,
-        "borg_plan": "errands_plan.txt"
-      }
-    },
-    "reborn-503-fight-plan": {
-      "description": "borg-zoo#216 (reborn-named-plan-pilot.yaml): arm fight-plan.",
-      "settings": {
-        "borg_param_caution_breeder_fight": 1,
-        "borg_param_caution_scary_named_monsters": 1,
-        "borg_plan": "errands_plan.txt"
-      }
-    },
     "reborn-heal-r0-c125": {
       "description": "borg-zoo#219 (reborn-heal-light-pilot.yaml): arm r0, c125.",
       "settings": {
@@ -2624,6 +2580,123 @@
         "borg_param_town_heal_speed_percent": 66,
         "borg_param_town_heal_reserve_hp_percent": 100,
         "borg_param_town_heal_curve_scale_percent": 150
+      }
+    },
+    "reborn-487-ctl": {
+      "description": "borg-zoo#225 (reborn-heal-class-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_param_town_heal_reserve_hp_percent": 400,
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_real_hp": 0,
+        "borg_param_town_heal_curve_scale_percent_warrior": 0,
+        "borg_param_town_heal_curve_scale_percent_mage": 0,
+        "borg_param_town_heal_curve_scale_percent_druid": 0,
+        "borg_param_town_heal_curve_scale_percent_priest": 0,
+        "borg_param_town_heal_curve_scale_percent_necromancer": 0,
+        "borg_param_town_heal_curve_scale_percent_paladin": 0,
+        "borg_param_town_heal_curve_scale_percent_rogue": 0,
+        "borg_param_town_heal_curve_scale_percent_ranger": 0,
+        "borg_param_town_heal_curve_scale_percent_blackguard": 0,
+        "borg_param_town_heal_reserve_hp_percent_warrior": -1,
+        "borg_param_town_heal_reserve_hp_percent_mage": -1,
+        "borg_param_town_heal_reserve_hp_percent_druid": -1,
+        "borg_param_town_heal_reserve_hp_percent_priest": -1,
+        "borg_param_town_heal_reserve_hp_percent_necromancer": -1,
+        "borg_param_town_heal_reserve_hp_percent_paladin": -1,
+        "borg_param_town_heal_reserve_hp_percent_rogue": -1,
+        "borg_param_town_heal_reserve_hp_percent_ranger": -1,
+        "borg_param_town_heal_reserve_hp_percent_blackguard": -1,
+        "borg_param_town_digger_min_gold": 0
+      }
+    },
+    "reborn-487-digger": {
+      "description": "borg-zoo#225 (reborn-heal-class-pilot.yaml): arm digger.",
+      "settings": {
+        "borg_param_town_heal_reserve_hp_percent": 400,
+        "borg_param_town_heal_curve_scale_percent": 100,
+        "borg_param_town_heal_reserve_real_hp": 0,
+        "borg_param_town_heal_curve_scale_percent_warrior": 0,
+        "borg_param_town_heal_curve_scale_percent_mage": 0,
+        "borg_param_town_heal_curve_scale_percent_druid": 0,
+        "borg_param_town_heal_curve_scale_percent_priest": 0,
+        "borg_param_town_heal_curve_scale_percent_necromancer": 0,
+        "borg_param_town_heal_curve_scale_percent_paladin": 0,
+        "borg_param_town_heal_curve_scale_percent_rogue": 0,
+        "borg_param_town_heal_curve_scale_percent_ranger": 0,
+        "borg_param_town_heal_curve_scale_percent_blackguard": 0,
+        "borg_param_town_heal_reserve_hp_percent_warrior": -1,
+        "borg_param_town_heal_reserve_hp_percent_mage": -1,
+        "borg_param_town_heal_reserve_hp_percent_druid": -1,
+        "borg_param_town_heal_reserve_hp_percent_priest": -1,
+        "borg_param_town_heal_reserve_hp_percent_necromancer": -1,
+        "borg_param_town_heal_reserve_hp_percent_paladin": -1,
+        "borg_param_town_heal_reserve_hp_percent_rogue": -1,
+        "borg_param_town_heal_reserve_hp_percent_ranger": -1,
+        "borg_param_town_heal_reserve_hp_percent_blackguard": -1,
+        "borg_param_town_digger_min_gold": 500
+      }
+    },
+    "reborn-487-heal": {
+      "description": "borg-zoo#225 (reborn-heal-class-pilot.yaml): arm heal.",
+      "settings": {
+        "borg_param_town_digger_min_gold": 0
+      }
+    },
+    "reborn-487-both": {
+      "description": "borg-zoo#225 (reborn-heal-class-pilot.yaml): arm both.",
+      "settings": {
+        "borg_param_town_digger_min_gold": 500
+      }
+    },
+    "reborn-487-speedres": {
+      "description": "borg-zoo#225 (reborn-heal-class-pilot.yaml): arm speedres.",
+      "settings": {
+        "borg_param_town_heal_reserve_real_hp": 0,
+        "borg_param_town_digger_min_gold": 500
+      }
+    },
+    "reborn-503-ctl": {
+      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 0,
+        "borg_param_caution_scary_named_monsters": 1
+      }
+    },
+    "reborn-503-fight": {
+      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm fight.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 1,
+        "borg_param_caution_scary_named_monsters": 1
+      }
+    },
+    "reborn-503-nolist": {
+      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm nolist.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 0,
+        "borg_param_caution_scary_named_monsters": 0
+      }
+    },
+    "reborn-503-both": {
+      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm both.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 1,
+        "borg_param_caution_scary_named_monsters": 0
+      }
+    },
+    "reborn-503-both-plan": {
+      "description": "borg-zoo#216 (reborn-nolist-plan-pilot.yaml): arm both-plan.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 1,
+        "borg_param_caution_scary_named_monsters": 0,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-503-fight-plan": {
+      "description": "borg-zoo#216 (reborn-named-plan-pilot.yaml): arm fight-plan.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 1,
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_plan": "errands_plan.txt"
       }
     },
     "reborn-flee-ctl": {
