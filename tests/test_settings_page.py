@@ -50,5 +50,22 @@ class SettingsPageTest(unittest.TestCase):
             self.assertIn('../runs/n-full/n-full-1/index.html', page)
 
 
+class DescriptionTest(unittest.TestCase):
+    def test_comment_block_describes_the_keys_under_it_and_class_files_do_not(self):
+        from zoo import setting_descriptions as sd
+        text = ('### Fleeing ###\n\n# Walk to stairs first.\n# Then recall.\n\nborg_param_a = 1\nborg_param_b = 2\n'
+                '# Another.\nborg_param_c = 0\n# mage (harness/borg_mage.txt)\nborg_param_d_mage = 3\n')
+        found = sd.parse(text)
+        self.assertEqual(found['borg_param_a'], 'Walk to stairs first. Then recall.')
+        self.assertEqual(found['borg_param_b'], 'Walk to stairs first. Then recall.')
+        self.assertEqual(found['borg_param_c'], 'Another.')
+        self.assertNotIn('borg_param_d_mage', found)
+        base = {'borg_param_d': {'text': 'D.', 'source': 'x/y/z'},
+                'borg_param_attack_preference_spell_permille': {'text': 'Spell.', 'source': 'x/y/z'}}
+        self.assertTrue(sd.describe('borg_param_d_mage', base)[0].startswith('The Mage value of borg_param_d'))
+        self.assertIn('Spell.', sd.describe('borg_param_attack_preference_mage_spell_permille', base)[0])
+        self.assertEqual(sd.describe('borg_unknown', base), (None, None))
+
+
 if __name__ == '__main__':
     unittest.main()
