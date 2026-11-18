@@ -347,6 +347,21 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 
 The hold fires more as the budget grows, and the going-down notes fall from 84 to 63-72. The level bouncing and town visits hardly change. A first run of this pilot (44230015413) failed at the build, before any game, because the specimen did not yet pin the shipped scary list.
 
+**#170, borg_trip_unknown_stacks 2/3/4/5 on main d9ff9808 (pilot, run 44236318055, 72 games): no deaths in any arm; lower values make the Borg pendulum.** The gate passed: one binary (44b1d2f3), no config_error, the value written in every arm, nothing flagged. s5 replays the rising-ticks pilot's t300 arm exactly (18/18). All 72 replays match CI. Every game reached the turn cap. Mean max level is 5.17-5.28 and mean max DL 2.11-2.22 in every arm. Games identical to s5: 5 (s2), 10 (s3) and 13 (s4) of 18.
+
+| unknown_stacks | unknown-item trip returns | `no up stairs found, going down` | rising holds (`exploring for them`) | town visits |
+|---|---|---|---|---|
+| 2 | 109 | 198 | 2,380 | 1,375 |
+| 3 | 48 | 107 | 460 | 1,294 |
+| 4 | 50 | 100 | 403 | 1,234 |
+| 5 (shipped) | 18 | 63 | 111 | 1,259 |
+
+Lower values send the Borg back for unknown items more often. Each return brings more `going down` notes and far more rising holds, the pattern the 193d9076 death report found, now partly held by the rising hold. With no deaths, the pilot cannot rank the values on survival.
+
+**#170, borg_trip_unknown_stacks 2/3/4/5 on main d9ff9808 (medium tier, run 44238139015, 1,080 games, starts 91-360): no value differs from 5.** The gate passed: one binary (44b1d2f3), no config_error, values written, no stalls, loops or purchase bursts. Deaths: s2 24 (8.9%), s3 26 (9.6%), s4 26 (9.6%), s5 25 (9.3%) of 270, with 18-19 of them at CL1-3 in every arm. Against s5: s2 rescues 7 and newly kills 6, s3 1 and 2, s4 0 and 1 (p = 1.0 for each). Games identical to s5: 44, 108 and 176 of 270. Mean max level is 4.85-4.99 and mean max DL 2.02-2.11. The top killers over all arms are wild cats (27), soldiers (17), crows (9), grey mushroom patches (7), small kobolds (5) and Grip (5). The zero-death pilots of main d9ff9808 were 18 easy starts: on 270 per arm main dies in about 9% of games, close to 6101ca01's 7.9-8.4%.
+
+**#170, borg_trip_unknown_stacks 2/3/4/5 on main d9ff9808 (all 1,800 starts, run 44241978132, 7,200 games): the value does not change deaths.** The gate passed: one binary (44b1d2f3), no config_error, values written, no frozen-turn loops, 506 of 506 death bundles reproduced. Its starts 91-360 replay the medium run exactly (1,080 of 1,080 key logs). Deaths: s2 125 (6.9%), s3 128 (7.1%), s4 126 (7.0%), s5 127 (7.1%) of 1,800. Every pair differs in at most 83 starts, split evenly (s2 vs s5: 40 and 42; all p >= 0.8). Higher values go slightly further: mean max level 4.91, 4.95, 4.98, 5.02 and mean max DL 2.05, 2.09, 2.09, 2.12. The shipped 5 stays.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
