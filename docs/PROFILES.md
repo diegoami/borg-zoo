@@ -21,7 +21,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-outmatched` | [#270](https://github.com/diegoami/borg-zoo/issues/270) | 4 | superseded by #275 (reborn-heal-outmatched on 92fafc61: off, min_loss 30-70); not dispatched | Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75. |
 | `reborn-attack-by-class` | [#274](https://github.com/diegoami/borg-zoo/issues/274) | 4 | verysmall defined (ctl, flat, half; strong dropped); not dispatched | Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class. |
 | `reborn-worships` | [#279](https://github.com/diegoami/borg-zoo/issues/279) | 6 | pilot done (gate passed); damage, speed, hp, mana inert (18/18 identical), dropped; ac changes every game | The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect. |
-| `reborn-recall-settings` | [#280](https://github.com/diegoami/borg-zoo/issues/280) | 6 | defined (pilot on f660aecc, not dispatched) | Word of Recall settings on main f660aecc (#571 merged): shipped; no flight Recall on DL1-2 (gate 3); flight Recall on DL1 again (gate 0); Recall valued 300% or 1000% by the town planner; no flight Recall at any depth without breeders or chasers (caution_flee_recall 0). |
+| `reborn-recall-settings` | [#280](https://github.com/diegoami/borg-zoo/issues/280) | 6 | pilot done (gate passed); small and medium defined | Word of Recall settings on main f660aecc (#571 merged): shipped; no flight Recall on DL1-2 (gate 3); flight Recall on DL1 again (gate 0); Recall valued 300% or 1000% by the town planner; no flight Recall at any depth without breeders or chasers (caution_flee_recall 0). |
 | `reborn-pbd-by-class` | [#290](https://github.com/diegoami/borg-zoo/issues/290) | 4 | pilot done (gate passed); small and medium defined | Arrow point-blank divisor by class on main f660aecc: shipped (5, Rogue 3, Ranger 2), common 5 for all, about half, about double; read per class. |
 | `reborn-scary-calm` | [#291](https://github.com/diegoami/borg-zoo/issues/291) | 4 | defined (pilot on f660aecc, not dispatched) | Scary latch (1/0) x calm (hurt 50 + afraid 1, shipped, against 0/0 = C) on main f660aecc. |
 | `reborn-scary-named-damage` | [#292](https://github.com/diegoami/borg-zoo/issues/292) | 3 | pilot done (gate passed); superseded by reborn-scary-classes (#299): the owner wants more class bias, not less | Named scary list with the damage rule at 60% (shipped) or 40%, and the damage rule alone, on main f660aecc. |
@@ -275,6 +275,10 @@ Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = bo
 | `reborn-recallset-gate` | 0 | – | – |
 | `reborn-recallset-v1000` | – | – | 1000 |
 | `reborn-recallset-v300` | – | – | 300 |
+
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44314277222](https://github.com/diegoami/borg-zoo/actions/runs/44314277222) | pilot | `4.2.6-reborn-rust-main-f660aecc` | 108 games, no deaths; flight Recalls ctl 8, dl12 3, dl1off 18, v300 8, v1000 14, gate 3; dl12 and gate identical 18/18 |
 
 ### `reborn-pbd-by-class`
 
