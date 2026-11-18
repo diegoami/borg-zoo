@@ -2,14 +2,13 @@
 # Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-by-class-pilot.yaml
 #
 # Each _<class> override acts on that class only, so one arm can move every class's value one step at once
-# and each class is read on its own starts: one experiment holds nine per-class sweeps. The global settings
-# (real_hp, speed) have no class form; their arms are also read per class.
+# and each class is read on its own starts: one experiment holds nine per-class sweeps. The global healing
+# settings (real HP reserve, speed) stay at their shipped values in every arm.
 name: reborn-heal-by-class-pilot
 issue: 265
 question: >-
   On borg-reborn-rs main 4a482c58, does each class do better with its shipped healing curve and reserve than with half
-  or one and a half times either value, or than with the common values (class files off), and how do the real-HP
-  reserve and healing speed act in each class?
+  or one and a half times either value, or than with the common values (class files off)?
 tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
 
 specimen:
@@ -95,13 +94,11 @@ arms:
     borg_param_town_heal_reserve_hp_percent_rogue: -1
     borg_param_town_heal_reserve_hp_percent_ranger: -1
     borg_param_town_heal_reserve_hp_percent_blackguard: -1
-  realhp0: {borg_param_town_heal_reserve_real_hp: 0}   # reserve counted in speed-weighted HP
-  speed0: {borg_param_town_heal_speed_percent: 0}      # every potion counts in full, whatever it heals
 
 control: [ctl]
 owner_authorization: >-
-  2026-11-18: the owner asked for the healing settings (curve scale and reserve, common and per class, real-HP reserve,
-  healing speed) to be tested by class. This is the pilot of the eight arms that RULES 16 requires first; verysmall,
+  2026-11-18: the owner asked for the healing curve scale and reserve to be tested by class; real-HP reserve and
+  healing speed stay at their shipped values (owner, same day). This is the pilot of the six arms that RULES 16 requires first; verysmall,
   small and larger only after its gate and the owner (RULES 14).
 extra:
   retain_evidence: true
