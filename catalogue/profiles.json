@@ -3314,6 +3314,53 @@
         "borg_param_attack_preference_blackguard_melee_permille": 1900,
         "borg_param_attack_preference_blackguard_spell_permille": 1600
       }
+    },
+    "reborn-worship-ctl": {
+      "description": "borg-zoo#279 (reborn-worships-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-worship-damage": {
+      "description": "borg-zoo#279 (reborn-worships-pilot.yaml): arm damage.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_worships_damage": true
+      }
+    },
+    "reborn-worship-speed": {
+      "description": "borg-zoo#279 (reborn-worships-pilot.yaml): arm speed.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_worships_speed": true
+      }
+    },
+    "reborn-worship-hp": {
+      "description": "borg-zoo#279 (reborn-worships-pilot.yaml): arm hp.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_worships_hp": true
+      }
+    },
+    "reborn-worship-mana": {
+      "description": "borg-zoo#279 (reborn-worships-pilot.yaml): arm mana.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_worships_mana": true
+      }
+    },
+    "reborn-worship-ac": {
+      "description": "borg-zoo#279 (reborn-worships-pilot.yaml): arm ac.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_worships_ac": true
+      }
     }
   }
 }
