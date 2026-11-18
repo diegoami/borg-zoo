@@ -3433,6 +3433,121 @@
         "borg_param_caution_scary_named_monsters": 1,
         "borg_param_caution_flee_recall": 0
       }
+    },
+    "reborn-pbdc-ctl": {
+      "description": "borg-zoo#290 (reborn-pbd-by-class-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-pbdc-common": {
+      "description": "borg-zoo#290 (reborn-pbd-by-class-pilot.yaml): arm common.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_arrow_point_blank_divisor_rogue": 0,
+        "borg_param_attack_arrow_point_blank_divisor_ranger": 0
+      }
+    },
+    "reborn-pbdc-lo": {
+      "description": "borg-zoo#290 (reborn-pbd-by-class-pilot.yaml): arm lo.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_arrow_point_blank_divisor_warrior": 2,
+        "borg_param_attack_arrow_point_blank_divisor_mage": 2,
+        "borg_param_attack_arrow_point_blank_divisor_druid": 2,
+        "borg_param_attack_arrow_point_blank_divisor_priest": 2,
+        "borg_param_attack_arrow_point_blank_divisor_necromancer": 2,
+        "borg_param_attack_arrow_point_blank_divisor_paladin": 2,
+        "borg_param_attack_arrow_point_blank_divisor_rogue": 2,
+        "borg_param_attack_arrow_point_blank_divisor_ranger": 1,
+        "borg_param_attack_arrow_point_blank_divisor_blackguard": 2
+      }
+    },
+    "reborn-pbdc-hi": {
+      "description": "borg-zoo#290 (reborn-pbd-by-class-pilot.yaml): arm hi.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_arrow_point_blank_divisor_warrior": 10,
+        "borg_param_attack_arrow_point_blank_divisor_mage": 10,
+        "borg_param_attack_arrow_point_blank_divisor_druid": 10,
+        "borg_param_attack_arrow_point_blank_divisor_priest": 10,
+        "borg_param_attack_arrow_point_blank_divisor_necromancer": 10,
+        "borg_param_attack_arrow_point_blank_divisor_paladin": 10,
+        "borg_param_attack_arrow_point_blank_divisor_rogue": 6,
+        "borg_param_attack_arrow_point_blank_divisor_ranger": 4,
+        "borg_param_attack_arrow_point_blank_divisor_blackguard": 10
+      }
+    },
+    "reborn-calm-ctl": {
+      "description": "borg-zoo#291 (reborn-scary-calm-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_latch": 1,
+        "borg_param_caution_scary_hurt_percent": 50,
+        "borg_param_caution_scary_afraid": 1
+      }
+    },
+    "reborn-calm-c-calm": {
+      "description": "borg-zoo#291 (reborn-scary-calm-pilot.yaml): arm c-calm.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_latch": 1,
+        "borg_param_caution_scary_hurt_percent": 0,
+        "borg_param_caution_scary_afraid": 0
+      }
+    },
+    "reborn-calm-unlatch": {
+      "description": "borg-zoo#291 (reborn-scary-calm-pilot.yaml): arm unlatch.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_latch": 0,
+        "borg_param_caution_scary_hurt_percent": 50,
+        "borg_param_caution_scary_afraid": 1
+      }
+    },
+    "reborn-calm-unlatch-c": {
+      "description": "borg-zoo#291 (reborn-scary-calm-pilot.yaml): arm unlatch-c.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_latch": 0,
+        "borg_param_caution_scary_hurt_percent": 0,
+        "borg_param_caution_scary_afraid": 0
+      }
+    },
+    "reborn-named-dmg-named-d60": {
+      "description": "borg-zoo#292 (reborn-scary-named-damage-pilot.yaml): arm named-d60.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_damage_percent": 60
+      }
+    },
+    "reborn-named-dmg-named-d40": {
+      "description": "borg-zoo#292 (reborn-scary-named-damage-pilot.yaml): arm named-d40.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_damage_percent": 40
+      }
+    },
+    "reborn-named-dmg-nolist-d60": {
+      "description": "borg-zoo#292 (reborn-scary-named-damage-pilot.yaml): arm nolist-d60.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 0,
+        "borg_param_caution_scary_damage_percent": 60
+      }
     }
   }
 }
