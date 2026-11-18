@@ -28,7 +28,8 @@ from .site import esc, pval, table, explain
 
 MEDIUM = 270
 SORT_SCRIPT = (
-    '<style>th.sort{cursor:pointer;user-select:none}th.sort::after{content:" \\2195";opacity:.4}'
+    '<style>th,td:first-child,td:nth-child(5){white-space:normal}td code,th code{overflow-wrap:anywhere}'
+    'td:first-child{min-width:10em}th.sort{cursor:pointer;user-select:none}th.sort::after{content:" \\2195";opacity:.4}'
     'th.sort[aria-sort=ascending]::after{content:" \\2191";opacity:1}'
     'th.sort[aria-sort=descending]::after{content:" \\2193";opacity:1}</style>'
     '<script>document.querySelectorAll("table").forEach(t=>{const hs=[...t.tHead.rows[0].cells];'
@@ -208,7 +209,7 @@ def index_page(found):
     for key in sorted(found):
         studies = found[key]
         b = best(studies)
-        rows.append([f'<a href="{slug(key)}.html"><code>{esc(key)}</code></a>', len(studies),
+        rows.append([f'<a href="{slug(key)}.html"><code>{esc(key).replace("_", "_<wbr>")}</code></a>', len(studies),
                      sum(len(s['runs']) for s in studies),
                      f'{max(head_row(s)["n"] for s in studies):,}',
                      f'<span data-sort="{VERDICTS.index(b["verdict"])}">{esc(b["verdict"])} ({b["n"]:,} per arm)</span>',
@@ -226,8 +227,9 @@ def index_page(found):
 
 def result_table(key, row):
     others = [k for k in row['keys'] if k != key]
+    brk = lambda k: k.replace('_', '_\u200b')  # let a long key wrap at its underscores
     cols = [('Arm', 'The profile; (control) marks the arm the others are paired with.'),
-            (key, 'The value of this setting in the arm.')] + [(k, 'Also varied in this experiment.') for k in others] + [
+            (brk(key), 'The value of this setting in the arm.')] + [(brk(k), 'Also varied in this experiment.') for k in others] + [
         ('Deaths', 'Deaths among finished games.'), ('Death rate (95%)', 'With its Wilson 95% interval.'),
         ('Only control died', 'Starts where the control died and this arm lived.'),
         ('Only this arm died', 'Starts where this arm died and the control lived.'),
