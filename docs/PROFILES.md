@@ -26,7 +26,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-scary-calm` | [#291](https://github.com/diegoami/borg-zoo/issues/291) | 4 | defined (pilot on f660aecc, not dispatched) | Scary latch (1/0) x calm (hurt 50 + afraid 1, shipped, against 0/0 = C) on main f660aecc. |
 | `reborn-scary-named-damage` | [#292](https://github.com/diegoami/borg-zoo/issues/292) | 3 | pilot done (gate passed); superseded by reborn-scary-classes (#299): the owner wants more class bias, not less | Named scary list with the damage rule at 60% (shipped) or 40%, and the damage rule alone, on main f660aecc. |
 | `reborn-scary-classes` | [#299](https://github.com/diegoami/borg-zoo/issues/299) | 4 | pilot done: up3/up6 inert at 100,000 turns; continued as reborn-scary-tough | The scary list's class spread on main f660aecc: shipped (fragile = tough + 3), fragile + 3, fragile + 6, tough - 3 and fragile + 3; read per class. |
-| `reborn-pbd-rr` | [#290](https://github.com/diegoami/borg-zoo/issues/290) | 3 | defined: pilot (small Rangers/Rogues), medium and big; not dispatched | Point-blank divisor for Rangers (1, 2 shipped, 3) and Rogues (2, 3 shipped, 4) on main f660aecc, played on Ranger and Rogue starts only. |
+| `reborn-pbd-rr` | [#290](https://github.com/diegoami/borg-zoo/issues/290) | 3 | pilot done (gate passed); medium and big dispatched; full defined (owner: the full suite) | Point-blank divisor for Rangers (1, 2 shipped, 3) and Rogues (2, 3 shipped, 4) on main f660aecc, played on Ranger and Rogue starts only. |
 | `reborn-scary-tough` | [#299](https://github.com/diegoami/borg-zoo/issues/299) | 3 | defined (pilot on f660aecc, not dispatched) | The scary list's tough end on main f660aecc: shipped, tough - 3 and tough - 5 with fragile unchanged; read per class. |
 | `reborn-rising-ticks3` | [#191](https://github.com/diegoami/borg-zoo/issues/191) | 5 | defined (pilot on f660aecc, not dispatched) | caution_rising_explore_ticks 300 (shipped), 500, 1000, 1500, 2000 on main f660aecc. |
 
@@ -358,6 +358,12 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-pbdrr-ctl` | – | – |
 | `reborn-pbdrr-hi` | 3 | 4 |
 | `reborn-pbdrr-lo` | 1 | 2 |
+
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44359581333](https://github.com/diegoami/borg-zoo/actions/runs/44359581333) | pilot | `4.2.6-reborn-rust-main-f660aecc` | 60 games: Ranger deaths ctl 1, lo 2, hi 0 of 10; Rogue none |
+| [44360811472](https://github.com/diegoami/borg-zoo/actions/runs/44360811472) | medium | `4.2.6-reborn-rust-main-f660aecc` | running |
+| [44360836868](https://github.com/diegoami/borg-zoo/actions/runs/44360836868) | big | `4.2.6-reborn-rust-main-f660aecc` | running |
 
 ### `reborn-scary-tough`
 

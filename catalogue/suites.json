@@ -1141,6 +1141,24 @@
       "stall_seconds": 90,
       "saves": false
     },
+    "classes-1800-full-rangers": {
+      "description": "The Ranger starts of classes-1800-full (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Ranger"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full-rogues": {
+      "description": "The Rogue starts of classes-1800-full (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Rogue"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
     "classes-1800-warriors": {
       "description": "The 200 Warrior seeds of classes-1800, with the same race on each seed. Development only: these seeds produced the M5 and M6 warrior findings.",
       "role": "development",

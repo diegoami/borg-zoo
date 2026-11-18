@@ -372,14 +372,33 @@
     },
     "reborn-pbd-rr": {
       "issue": 290,
-      "status": "defined: pilot (small Rangers/Rogues), medium and big; not dispatched",
+      "status": "pilot done (gate passed); medium and big dispatched; full defined (owner: the full suite)",
       "what": "Point-blank divisor for Rangers (1, 2 shipped, 3) and Rogues (2, 3 shipped, 4) on main f660aecc, played on Ranger and Rogue starts only.",
       "profiles": [
         "reborn-pbdrr-ctl",
         "reborn-pbdrr-hi",
         "reborn-pbdrr-lo"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "44359581333",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "60 games: Ranger deaths ctl 1, lo 2, hi 0 of 10; Rogue none"
+        },
+        {
+          "run": "44360811472",
+          "tier": "medium",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "running"
+        },
+        {
+          "run": "44360836868",
+          "tier": "big",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "running"
+        }
+      ]
     },
     "reborn-scary-tough": {
       "issue": 299,
