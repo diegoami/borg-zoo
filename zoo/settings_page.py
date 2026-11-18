@@ -23,6 +23,7 @@ import re
 from . import catalogue as cat_mod
 from . import stats
 from .briefs import question
+from . import setting_descriptions
 from .site import esc, pval, table, explain
 
 MEDIUM = 270
@@ -173,12 +174,31 @@ def run_link(meta, base):
     return f'{base}runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html'
 
 
+def description_html(key, found, short=False):
+    text, src = setting_descriptions.describe(key, found)
+    if not text:
+        return '<span class="muted">No description in the shipped borg.txt.</span>'
+    if short:
+        first = re.split(r'(?<=\.)\s', text, maxsplit=1)[0]
+        return esc(first if len(first) <= 220 else first[:217] + '...')
+    where = ''
+    if src.get('commit'):
+        repo, path = src['source'].split('/', 2)[:2], src['source'].split('/', 2)[2]
+        where = (f' <span class="muted">(from <a href="https://github.com/{"/".join(repo)}/blob/{src["commit"]}/{path}">'
+                 f'{esc(src["source"])}</a> at <code>{src["commit"][:8]}</code>)</span>')
+    elif src.get('source'):
+        where = f' <span class="muted">(from {esc(src["source"])})</span>'
+    return esc(text) + where
+
+
 def best(studies):
     """The setting's strongest result: the best verdict, at the largest size."""
     return min((head_row(s) for s in studies), key=lambda r: (VERDICTS.index(r['verdict']), -r['n']))
 
 
 INDEX_COLS = [('Setting', 'The exact borg.txt key; the link lists every experiment that varied it.'),
+              ('What it does', 'The first sentence of its description in the shipped borg.txt (or the parameter '
+                               'registry); the full text is on its page.'),
               ('Studies', 'Separate studies that varied it; the tiers of one study (pilot, small, medium...) '
                           'count once.'),
               ('Runs', 'Experiment runs, every tier counted.'),
@@ -189,11 +209,13 @@ INDEX_COLS = [('Setting', 'The exact borg.txt key; the link lists every experime
 
 def index_page(found):
     from .landing import nav
+    described = setting_descriptions.load()
     rows = []
     for key in sorted(found):
         studies = found[key]
         b = best(studies)
-        rows.append([f'<a href="{slug(key)}.html"><code>{esc(key)}</code></a>', len(studies),
+        rows.append([f'<a href="{slug(key)}.html"><code>{esc(key)}</code></a>',
+                     description_html(key, described, short=True), len(studies),
                      sum(len(s['runs']) for s in studies),
                      f'{max(head_row(s)["n"] for s in studies):,}',
                      f'<span data-sort="{VERDICTS.index(b["verdict"])}">{esc(b["verdict"])} ({b["n"]:,} per arm)</span>',
@@ -206,7 +228,7 @@ def index_page(found):
                       'and how certain the result is. Verdicts are about deaths only.', INDEX_COLS)
             + f'<ul>{legend}</ul>'
             + '<p class="muted">Click a column heading to sort by it; click again to reverse.</p>'
-            + (table(INDEX_COLS, rows) if rows else '<p class="muted">No settings tested yet.</p>') + SORT_SCRIPT)
+            + (table(INDEX_COLS, rows, left=2) if rows else '<p class="muted">No settings tested yet.</p>') + SORT_SCRIPT)
 
 
 def result_table(key, row):
@@ -267,6 +289,8 @@ def setting_page(key, studies):
     return (f'<h1>Borg zoo</h1>{nav("settings/index.html", "../")}'
             f'<p><a href="index.html">All settings</a></p>'
             f'<h2><code>{esc(key)}</code></h2>'
+            f'<h3>What it changes</h3><p>{description_html(key, setting_descriptions.load())}</p>'
+            f'<h3>Where it was tested</h3>'
             f'<p>Varied in {len(studies)} stud{"ies" if len(studies) != 1 else "y"} ({runs} run{"s" if runs != 1 else ""}), '
             f'newest first: {esc(summary)}. A study run in tiers (pilot, small, medium...) is shown pooled, every '
             f'start counted once, with each run below it. Results on different builds are not interchangeable: '
