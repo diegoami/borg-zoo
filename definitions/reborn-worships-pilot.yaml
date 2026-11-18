@@ -1,0 +1,60 @@
+# borg-zoo#279: the six borg_worships_* switches, each on, pilot; owner request 2026-11-18.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-worships-pilot.yaml
+name: reborn-worships-pilot
+issue: 279
+question: >-
+  On borg-reborn-rs main 92fafc61, does turning on any one of the borg_worships_* switches (damage, speed, hp, mana,
+  ac, gold; all shipped FALSE) change how the Borg plays and survives?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-92fafc61
+  repository: diegoami/borg-reborn-rs
+  ref: 92fafc610ddfbddaf3fc361a5637e41b4a548916
+  label: >-
+    borg-reborn-rs 92fafc61, main at the merge of #561 (#558 breeder hunt by class): after 4a482c58 it adds
+    caution_flee_recall_gate_below_depth 2, recover_breeder_hunt_hp_percent 50, danger_hunt_breeder_no_acid_fear 1 and
+    per-class breeder hunt counts. All six borg_worships_* FALSE.
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# Every arm reads the shipped harness/borg.txt and sets only the line below.
+profile_prefix: reborn-worship
+arms:
+  ctl: {}   # shipped: all FALSE
+  damage: {borg_worships_damage: true}
+  speed: {borg_worships_speed: true}
+  hp: {borg_worships_hp: true}
+  mana: {borg_worships_mana: true}
+  ac: {borg_worships_ac: true}
+  gold: {borg_worships_gold: true}
+control: [ctl]
+owner_authorization: >-
+  2026-11-18: the owner asked whether the borg_worships_* switches make a difference. This is the pilot that RULES 16
+  requires first; larger tiers only after its gate and the owner (RULES 14), and only for arms that changed play.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any result on 92fafc61 was read. Pilot (RULES 16). The C Borg's switches-early (early-50,
+  better-borg-c e473720e and M4) is a different Borg and context only.
+  Gate:
+  - no config_error; one binary; each arm's switch in its borg.txt and in the Borg's logged settings of the death
+    replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm, overall and per class:
+  - identical plays against ctl first: an arm that plays ctl's keys in (nearly) every start did nothing at this cap
+    and is dropped, not grown;
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;
+  - for the equipment switches (damage, speed, hp, mana, ac): the first game turn where the worn equipment differs from
+    ctl, and the items worn at the end;
+  - for gold: items sold, gold at each milestone, town trips by stairs and by Recall, and the deepest Recall.
+  18 starts per arm show direction only.
