@@ -1,0 +1,160 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-latch-ctl": {
+        "description": "borg-zoo#256 (reborn-scary-latch-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_param_caution_scary_latch": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "3668c7e2d56ddfe17b8aa0eff91e145b0ed73caf14d0ed1b013a53285c24ffdc"
+      },
+      "reborn-latch-unlatch": {
+        "description": "borg-zoo#256 (reborn-scary-latch-pilot.yaml): arm unlatch.",
+        "settings": {
+          "borg_param_caution_scary_latch": 0,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "5222b3b5fcf6e930abd6c4c908c4aec6f339ee4fed82acd064471892542aa722"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-162f96af": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 162f96af, main at the merge of #562 (#515): caution_scary_latch, compiled 1 and shipped 1. Source-hash rust 78d26360...; harness/borg.txt eecb3266...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "162f96af1d269de5ad6faaa54345a28365ef5c73",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-18 09:42 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-162f96af",
+    "control_profile": "reborn-latch-ctl",
+    "definition": "definitions/reborn-scary-latch-pilot.yaml",
+    "description": "On borg-reborn-rs main 162f96af, does letting a level stop being scary once its scary monsters are gone (caution_scary_latch 0) save games without costing any? Generated from definitions/reborn-scary-latch-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-162f96af, suite classes-18.",
+    "issue": 256,
+    "name": "reborn-scary-latch-pilot",
+    "prespecified": "Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#515, #562). Pilot (RULES 16); small and larger\nonly after this gate and the owner.\nGate:\n- no config_error; one binary; each arm's latch value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level;\n- paired rescued and newly killed against ctl;\n- per game: \"Scary guy gone: the level is no longer scary.\" notes (unlatch only), \"Scary guy on level\" notes,\n  \"standing and fighting\" notes, and trips to town;\n- the games whose keys differ from ctl, and for each the game turn of its first \"Scary guy gone\" note (with the\n  latch at 0 a game can change only after the flag first clears);\n- deaths within 2,000 game turns after a \"Scary guy gone\" note, with the killer and whether it was the monster\n  that had made the level scary (a scare that ended while its monster was only forgotten);\n- scary-level deaths (\"Scary guy on level\" in the last 100 messages).\nContext: from a mid-game save (priest-1055640847, turn 88,147), 5 seeds: ctl 2 deaths, unlatch 0. From six\nrecorded deaths from birth: 3 deaths in each arm. 18 starts per arm show direction only: this pilot checks\nsafety, and a rescue count needs a larger tier.",
+    "profiles": [
+      "reborn-latch-ctl",
+      "reborn-latch-unlatch"
+    ],
+    "question": "On borg-reborn-rs main 162f96af, does letting a level stop being scary once its scary monsters are gone (caution_scary_latch 0) save games without costing any?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-162f96af"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44277668188-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44277668188",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "376bb4895d16e00c2a25264bc98710a1298c23be"
+}
