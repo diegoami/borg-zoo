@@ -3108,60 +3108,6 @@
         "borg_param_caution_rising_hold_flee_descent": 1
       }
     },
-    "reborn-dl1recall-d0": {
-      "description": "borg-zoo#267 (reborn-dl1-recall-pilot.yaml): arm d0.",
-      "settings": {
-        "borg_reborn_core": "borg-rs",
-        "borg_reborn_errand": "none",
-        "borg_param_caution_scary_named_monsters": 1,
-        "borg_param_caution_flee_recall_gate_below_depth": 0
-      }
-    },
-    "reborn-dl1recall-d1": {
-      "description": "borg-zoo#267 (reborn-dl1-recall-pilot.yaml): arm d1.",
-      "settings": {
-        "borg_reborn_core": "borg-rs",
-        "borg_reborn_errand": "none",
-        "borg_param_caution_scary_named_monsters": 1,
-        "borg_param_caution_flee_recall_gate_below_depth": 1
-      }
-    },
-    "reborn-dl1recall-d2": {
-      "description": "borg-zoo#267 (reborn-dl1-recall-pilot.yaml): arm d2.",
-      "settings": {
-        "borg_reborn_core": "borg-rs",
-        "borg_reborn_errand": "none",
-        "borg_param_caution_scary_named_monsters": 1,
-        "borg_param_caution_flee_recall_gate_below_depth": 2
-      }
-    },
-    "reborn-recalldepth-d1": {
-      "description": "borg-zoo#267 (reborn-recall-depth-pilot.yaml): arm d1.",
-      "settings": {
-        "borg_reborn_core": "borg-rs",
-        "borg_reborn_errand": "none",
-        "borg_param_caution_scary_named_monsters": 1,
-        "borg_param_caution_flee_recall_gate_below_depth": 1
-      }
-    },
-    "reborn-recalldepth-d2": {
-      "description": "borg-zoo#267 (reborn-recall-depth-pilot.yaml): arm d2.",
-      "settings": {
-        "borg_reborn_core": "borg-rs",
-        "borg_reborn_errand": "none",
-        "borg_param_caution_scary_named_monsters": 1,
-        "borg_param_caution_flee_recall_gate_below_depth": 2
-      }
-    },
-    "reborn-recalldepth-d3": {
-      "description": "borg-zoo#267 (reborn-recall-depth-pilot.yaml): arm d3.",
-      "settings": {
-        "borg_reborn_core": "borg-rs",
-        "borg_reborn_errand": "none",
-        "borg_param_caution_scary_named_monsters": 1,
-        "borg_param_caution_flee_recall_gate_below_depth": 3
-      }
-    },
     "reborn-hbc-ctl": {
       "description": "borg-zoo#new (reborn-heal-by-class-pilot.yaml): arm ctl.",
       "settings": {
@@ -3256,6 +3202,120 @@
         "borg_param_town_heal_reserve_hp_percent_rogue": -1,
         "borg_param_town_heal_reserve_hp_percent_ranger": -1,
         "borg_param_town_heal_reserve_hp_percent_blackguard": -1
+      }
+    },
+    "reborn-healout-noheal": {
+      "description": "borg-zoo#275 (reborn-heal-outmatched-pilot.yaml): arm noheal.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_heal_when_outmatched": 0,
+        "borg_param_caution_heal_outmatched_min_loss": 50
+      }
+    },
+    "reborn-healout-l30": {
+      "description": "borg-zoo#275 (reborn-heal-outmatched-pilot.yaml): arm l30.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_caution_heal_outmatched_min_loss": 30
+      }
+    },
+    "reborn-healout-l40": {
+      "description": "borg-zoo#275 (reborn-heal-outmatched-pilot.yaml): arm l40.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_caution_heal_outmatched_min_loss": 40
+      }
+    },
+    "reborn-healout-l50": {
+      "description": "borg-zoo#275 (reborn-heal-outmatched-pilot.yaml): arm l50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_caution_heal_outmatched_min_loss": 50
+      }
+    },
+    "reborn-healout-l60": {
+      "description": "borg-zoo#275 (reborn-heal-outmatched-pilot.yaml): arm l60.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_caution_heal_outmatched_min_loss": 60
+      }
+    },
+    "reborn-healout-l70": {
+      "description": "borg-zoo#275 (reborn-heal-outmatched-pilot.yaml): arm l70.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_heal_when_outmatched": 1,
+        "borg_param_caution_heal_outmatched_min_loss": 70
+      }
+    },
+    "reborn-dl1recall-d0": {
+      "description": "borg-zoo#267 (reborn-dl1-recall-pilot.yaml): arm d0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 0
+      }
+    },
+    "reborn-dl1recall-d1": {
+      "description": "borg-zoo#267 (reborn-dl1-recall-pilot.yaml): arm d1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 1
+      }
+    },
+    "reborn-dl1recall-d2": {
+      "description": "borg-zoo#267 (reborn-dl1-recall-pilot.yaml): arm d2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 2
+      }
+    },
+    "reborn-recalldepth-d1": {
+      "description": "borg-zoo#267 (reborn-recall-depth-pilot.yaml): arm d1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 1
+      }
+    },
+    "reborn-recalldepth-d2": {
+      "description": "borg-zoo#267 (reborn-recall-depth-pilot.yaml): arm d2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 2
+      }
+    },
+    "reborn-recalldepth-d3": {
+      "description": "borg-zoo#267 (reborn-recall-depth-pilot.yaml): arm d3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 3
       }
     },
     "reborn-outm-ctl": {
