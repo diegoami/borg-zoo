@@ -1,0 +1,30 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-heal-light-pilot",
+  "issue": 219,
+  "definition": "definitions/reborn-heal-light-pilot.yaml",
+  "question": "On borg-reborn-rs main dd5f026e with healing speed 66, does a light healing reserve (0, 50, 100 percent of max HP) with a slower-fading healing curve (scale 100, 125, 150) keep healing without crowding out Phase Door?",
+  "description": "On borg-reborn-rs main dd5f026e with healing speed 66, does a light healing reserve (0, 50, 100 percent of max HP) with a slower-fading healing curve (scale 100, 125, 150) keep healing without crowding out Phase Door? Generated from definitions/reborn-heal-light-pilot.yaml: 9 arms on 4.2.6-reborn-rust-main-dd5f026e, suite classes-18.",
+  "prespecified": "Fixed 2026-11-17, before any result was read. Pilot (RULES 14, zoo RULES 16); small and medium of the same\narms only after this gate and the owner. Gate: no config_error; one binary; the three\nborg_param_town_heal_* lines with the arm's values (reserve 0/50/100, curve 100/125/150, speed 66) in every\narm's borg.txt and in params-core.json of the death replays; no plan loaded; every cell ends in death,\nturn_cap or borg_stopped; stalls, purchase bursts and key outliers listed; death bundles reproduced.\nEvidence retained for every game (retain_evidence), because the main endpoint needs the surviving games'\npurchases, not only the deaths'. Report per arm: deaths, final level, deepest level; paired rescued and\nnewly killed against r0-c100 on the same start; from every game's messages: healing potions bought (Cure\nLight/Serious/Critical Wounds, Healing) and gold on them, Phase Door bought and gold on it, against all\ngold spent; and town departures with no Phase Door carried (the crowding endpoint: a local simulation on\nborg-reborn-rs found 38 such departures without a reserve against 114 at the shipped reserve 400, on 18\nstarts), by class. For reference the shipped values are 400 / 100 / 66; none of these arms is the\nshipped value. 18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-dd5f026e"
+  ],
+  "profiles": [
+    "reborn-heal-r0-c100",
+    "reborn-heal-r0-c125",
+    "reborn-heal-r0-c150",
+    "reborn-heal-r50-c100",
+    "reborn-heal-r50-c125",
+    "reborn-heal-r50-c150",
+    "reborn-heal-r100-c100",
+    "reborn-heal-r100-c125",
+    "reborn-heal-r100-c150"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-dd5f026e",
+  "control_profile": "reborn-heal-r0-c100",
+  "owner_authorization": "2026-11-17: after the #192 curve-scale pilot (run 44125061301), the owner asked for reserve {0, 50, 100} x speed 66 x curve {100, 125, 150}: a light reserve, with the curve deciding how much healing beyond it is bought. Not a Phase Door floor (owner: Phase Door is not in the same league as healing).",
+  "retain_evidence": true
+}

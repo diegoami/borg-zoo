@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-flee-combos-pilot",
+  "issue": 235,
+  "definition": "definitions/reborn-flee-combos-pilot.yaml",
+  "question": "On borg-reborn-rs main 9ecbfd1e, does the ranged switch do better combined with the Phase Door switch or with the stairs switch?",
+  "description": "On borg-reborn-rs main 9ecbfd1e, does the ranged switch do better combined with the Phase Door switch or with the stairs switch? Generated from definitions/reborn-flee-combos-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-9ecbfd1e, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any result was read (borg-zoo#235). Pilot (RULES 16); small and larger only after this\ngate and the owner. Gate: no config_error; one binary; each arm's three switch values in borg.txt and in\nparams-core.json of the death replays; no plan loaded; every cell ends in death, turn_cap or borg_stopped;\nfrozen-turn bursts classified and key outliers listed; death bundles reproduced; in ctl neither \"# No Phase: no\nmonster next to me\" nor \"# No stairs: fighting at range on Scaryguy Level.\" appears. Consistency: ctl and all are\nreborn-flee-switches-pilot's arms of the same names (same specimen and starts) and must replay its key hashes.\nReport per arm and per class, from every game's messages: deaths and causes, final level, deepest level, paired\nrescued and newly killed against ctl; Recall reads per game; the two #539 notes per game (the \"# No Phase\" note\nalso comes from the ranged switch, so it is not the Phase switch alone); ranged attacks within 3 keys of a\n\"# No stairs\" note; scary-level deaths (a \"Scary guy on level\" note in the last 100 messages). Context: in the\nsingle-switch pilot, ranged alone had 1 death against ctl's 3. 18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-9ecbfd1e"
+  ],
+  "profiles": [
+    "reborn-flee-ctl",
+    "reborn-flee-phase-ranged",
+    "reborn-flee-stairs-ranged",
+    "reborn-flee-all"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-9ecbfd1e",
+  "control_profile": "reborn-flee-ctl",
+  "owner_authorization": "2026-11-18: after the single-switch pilot (reborn-flee-switches-pilot, run 44212346856, where ranged alone had the fewest deaths), the owner asked for a pilot of all off, phase+ranged, stairs+ranged and all on.",
+  "retain_evidence": true
+}

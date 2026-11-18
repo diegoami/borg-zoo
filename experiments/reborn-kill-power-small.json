@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-kill-power-small",
+  "issue": 244,
+  "definition": "definitions/reborn-kill-power-small.yaml",
+  "question": "Does estimating a living monster at least 1 HP (kill_live_min_power) lower deaths?",
+  "description": "Does estimating a living monster at least 1 HP (kill_live_min_power) lower deaths? Generated from definitions/reborn-kill-power-small.yaml: 2 arms on 4.2.6-reborn-rust-main-c9e58ca0, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-18, before any result was read (borg-zoo#244). Small tier, dispatched with the medium tier;\ntogether starts 1-360 of both arms, analysed as one (RULES 14). Gate: no config_error; one binary; both arms'\nborg_param_kill_live_min_power in borg.txt and in params-core.json of the death replays; every cell ends in death,\nturn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed; death bundles reproduced. Primary:\ndeaths over starts 1-360, on against off on the same start (rescued, newly killed, exact McNemar p). Secondary:\ndeaths at CL1-3; mean final level and deepest level; deaths by class; from the death replays: deaths by floating\neyes, deaths while paralysed, and deaths next to a monster the Borg had wounded (its last \"# Targeting <monster>\nwho has N Hit Points\" note in the 50 lines before death names the killer), per arm. Pilot: 1 death each (off the\nMage, on the Ranger), no floating-eye or paralysis death.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-c9e58ca0"
+  ],
+  "profiles": [
+    "reborn-kill-power-off",
+    "reborn-kill-power-on"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-main-c9e58ca0",
+  "control_profile": "reborn-kill-power-off",
+  "owner_authorization": "2026-11-18: after the pilot (reborn-kill-power-pilot, run 44221860355, gate passed), the owner asked for the medium tier; small and medium run together (starts 1-360), as for the #192 and #240 studies. Evidence is not retained per game; deaths keep their full-log bundles, which the death-based endpoints read."
+}
