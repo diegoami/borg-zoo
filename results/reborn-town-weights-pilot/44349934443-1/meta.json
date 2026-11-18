@@ -1,0 +1,325 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-townw-bleeding-double": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm bleeding-double.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_bleeding": 200
+        },
+        "sha256": "8ffbcc583393786e48128ac772c07dae68c6ef8411c2a36bf1b7dea3d8fa7486"
+      },
+      "reborn-townw-bleeding-half": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm bleeding-half.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_bleeding": 50
+        },
+        "sha256": "b1cf8e670d051fef3c0754ce11d3a54d20fa33faafc88d2cb9ff31247ff7aa33"
+      },
+      "reborn-townw-ctl": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_light": 100
+        },
+        "sha256": "0cd524b9aedc6f5df1e5a41ea89c01aa7d4c5376ace64df8c124b05c51cd9fc3"
+      },
+      "reborn-townw-escape-double": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm escape-double.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_escape": 100
+        },
+        "sha256": "6831386fd8da9bcb258962cbb55cbdcfde89f1192ffcbfaf3e9988d6d963f02f"
+      },
+      "reborn-townw-escape-half": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm escape-half.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_escape": 25
+        },
+        "sha256": "c07dccc1a2249a0a1011f6ce057ab679d89ae364e3fc1a661ccf14a64e1aaa8c"
+      },
+      "reborn-townw-food-double": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm food-double.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_food": 200
+        },
+        "sha256": "a4bc07558f3bfc03e364fb08ed0a972ab67b4ab9546a18259ed26dd078b94293"
+      },
+      "reborn-townw-food-half": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm food-half.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_food": 50
+        },
+        "sha256": "8cfcd48ca3b3cac31ae95001a10117fcec3d7ab70b85b2a9f360e54650ab9502"
+      },
+      "reborn-townw-light-double": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm light-double.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_light": 200
+        },
+        "sha256": "e1fb795020968dfe821f252f71106fec02e707df3505aec17416be3f1465dc9b"
+      },
+      "reborn-townw-light-half": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm light-half.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_light": 50
+        },
+        "sha256": "52c159dcc757d922f218ac9bc0122ca6b7665c90c75aba6dbdabb2feecbbe0a3"
+      },
+      "reborn-townw-poison-double": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm poison-double.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_poison": 200
+        },
+        "sha256": "caee3fb89b95d05d9fead39b66f369c297edf5a0244ba43d90380546eb7b285c"
+      },
+      "reborn-townw-poison-half": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm poison-half.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_poison": 50
+        },
+        "sha256": "bdde152003de5c8b0b67feb88ca43f3f3e9c1ceb06258beb3982e644f84a05d0"
+      },
+      "reborn-townw-power-double": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm power-double.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_power": 100
+        },
+        "sha256": "bb5d2a06de7b8c4382d62e5e6a60797bbb2f3d8e622eca9a03b0e4e65267ee71"
+      },
+      "reborn-townw-power-half": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm power-half.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_power": 25
+        },
+        "sha256": "54433ba74f35b12f5d5151e68bce65a79e77b3b2bad4c1522e65d43d604f8e9e"
+      },
+      "reborn-townw-share20": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm share20.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_share": 20
+        },
+        "sha256": "61d590a1f7698c799e385b1336b44ab7054794e723ead23a4a83842c3e77530d"
+      },
+      "reborn-townw-share5": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm share5.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_share": 5
+        },
+        "sha256": "c4248d01d9426c764c6343cb375695b36581f4113eb08add10a0fc3953df87c0"
+      },
+      "reborn-townw-trip-double": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm trip-double.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_trip": 100
+        },
+        "sha256": "a810d98badbe4ff39cb24fbc599c7dc1f28c24d36c8515e4559a1cee9046bbfb"
+      },
+      "reborn-townw-trip-half": {
+        "description": "borg-zoo#303 (reborn-town-weights-pilot.yaml): arm trip-half.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_trip": 25
+        },
+        "sha256": "76627e99e94039aaec529354b87b69882171e0ac79c91ec2ff3298c37ef9f731"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-8e7dbad4": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 8e7dbad4, main at the merge of #573 (#569 scary calm review). Ships the live town planner (borg_town_plan 1) with w_light 100, food 100, bleeding 100, poison 100, escape 50, knowledge 25, power 50, trip 50, share 10. Source-hash rust 1a6a0b9d...; harness/borg.txt dcd81f01...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "8e7dbad4b43291a95328c1b90c7d4ae4778dcc4c",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-18 16:46 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-8e7dbad4",
+    "control_profile": "reborn-townw-ctl",
+    "definition": "definitions/reborn-town-weights-pilot.yaml",
+    "description": "On borg-reborn-rs main 8e7dbad4, which of the live town planner's weights (seven borg_town_w_* and borg_town_share) change play when halved or doubled, and in which direction for deaths and progress? Generated from definitions/reborn-town-weights-pilot.yaml: 17 arms on 4.2.6-reborn-rust-main-8e7dbad4, suite classes-18.",
+    "issue": 303,
+    "name": "reborn-town-weights-pilot",
+    "prespecified": "Fixed 2026-11-18, before any zoo result was read (owner: \"do some calibration of these\"). Pilot (RULES 16);\nlarger tiers only after this gate and the owner, with only the settings that change play. One factor at a time:\neach weight the live planner reads at half and double its shipped value, and share 5 and 20. Left out (owner:\n\"if not used it is pointless to tune\"): borg_town_w_knowledge, which the live step forces to 0\n(borg_town_shadow::effective_params), and borg_town_light_depth and borg_town_food_trip, which only the old v4\nmodel reads. A first dispatch with those arms (run 44348986112) was cancelled.\nGate:\n- no config_error; one binary; each arm's value written;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm: games with keys identical to ctl; deaths; mean final level and deepest level; paired rescued and\nnewly killed against ctl; items bought per game by kind (town purchases) and gold left.",
+    "profiles": [
+      "reborn-townw-ctl",
+      "reborn-townw-light-half",
+      "reborn-townw-light-double",
+      "reborn-townw-food-half",
+      "reborn-townw-food-double",
+      "reborn-townw-bleeding-half",
+      "reborn-townw-bleeding-double",
+      "reborn-townw-poison-half",
+      "reborn-townw-poison-double",
+      "reborn-townw-escape-half",
+      "reborn-townw-escape-double",
+      "reborn-townw-power-half",
+      "reborn-townw-power-double",
+      "reborn-townw-trip-half",
+      "reborn-townw-trip-double",
+      "reborn-townw-share5",
+      "reborn-townw-share20"
+    ],
+    "question": "On borg-reborn-rs main 8e7dbad4, which of the live town planner's weights (seven borg_town_w_* and borg_town_share) change play when halved or doubled, and in which direction for deaths and progress?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-8e7dbad4"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44349934443-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44349934443",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "5e010315904b4ec09137a01a1f2cc05fbf3d846f"
+}
