@@ -3717,6 +3717,50 @@
         "borg_param_caution_scary_latch": 0
       }
     },
+    "reborn-downflee-ctl": {
+      "description": "borg-zoo#286 (reborn-down-stairs-flee-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_known_down_stairs": 0,
+        "borg_param_caution_jumpstart_keep_stairs": 0
+      }
+    },
+    "reborn-downflee-keep": {
+      "description": "borg-zoo#286 (reborn-down-stairs-flee-pilot.yaml): arm keep.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_known_down_stairs": 0,
+        "borg_param_caution_jumpstart_keep_stairs": 1
+      }
+    },
+    "reborn-downflee-narrow": {
+      "description": "borg-zoo#286 (reborn-down-stairs-flee-pilot.yaml): arm narrow.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_known_down_stairs": 1,
+        "borg_param_caution_flee_known_down_cornered": 1,
+        "borg_param_caution_flee_known_down_max_cost": 40,
+        "borg_param_caution_jumpstart_keep_stairs": 0
+      }
+    },
+    "reborn-downflee-narrow-keep": {
+      "description": "borg-zoo#286 (reborn-down-stairs-flee-pilot.yaml): arm narrow-keep.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_known_down_stairs": 1,
+        "borg_param_caution_flee_known_down_cornered": 1,
+        "borg_param_caution_flee_known_down_max_cost": 40,
+        "borg_param_caution_jumpstart_keep_stairs": 1
+      }
+    },
     "reborn-scaryclass-ctl": {
       "description": "borg-zoo#299 (reborn-scary-classes-pilot.yaml): arm ctl.",
       "settings": {
@@ -4024,6 +4068,171 @@
         "borg_town_food_trip": 5
       }
     },
+    "reborn-recallcombo-ctl": {
+      "description": "borg-zoo#309 (reborn-recall-combo-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 100,
+        "borg_param_prepared_recall_depth": 5,
+        "borg_param_caution_flee_stairs_before_recall": 1
+      }
+    },
+    "reborn-recallcombo-v100-d5-s0": {
+      "description": "borg-zoo#309 (reborn-recall-combo-pilot.yaml): arm v100-d5-s0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 100,
+        "borg_param_prepared_recall_depth": 5,
+        "borg_param_caution_flee_stairs_before_recall": 0
+      }
+    },
+    "reborn-recallcombo-v100-d3-s1": {
+      "description": "borg-zoo#309 (reborn-recall-combo-pilot.yaml): arm v100-d3-s1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 100,
+        "borg_param_prepared_recall_depth": 3,
+        "borg_param_caution_flee_stairs_before_recall": 1
+      }
+    },
+    "reborn-recallcombo-v100-d3-s0": {
+      "description": "borg-zoo#309 (reborn-recall-combo-pilot.yaml): arm v100-d3-s0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 100,
+        "borg_param_prepared_recall_depth": 3,
+        "borg_param_caution_flee_stairs_before_recall": 0
+      }
+    },
+    "reborn-recallcombo-v300-d5-s1": {
+      "description": "borg-zoo#309 (reborn-recall-combo-pilot.yaml): arm v300-d5-s1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 300,
+        "borg_param_prepared_recall_depth": 5,
+        "borg_param_caution_flee_stairs_before_recall": 1
+      }
+    },
+    "reborn-recallcombo-v300-d5-s0": {
+      "description": "borg-zoo#309 (reborn-recall-combo-pilot.yaml): arm v300-d5-s0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 300,
+        "borg_param_prepared_recall_depth": 5,
+        "borg_param_caution_flee_stairs_before_recall": 0
+      }
+    },
+    "reborn-recallcombo-v300-d3-s1": {
+      "description": "borg-zoo#309 (reborn-recall-combo-pilot.yaml): arm v300-d3-s1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 300,
+        "borg_param_prepared_recall_depth": 3,
+        "borg_param_caution_flee_stairs_before_recall": 1
+      }
+    },
+    "reborn-recallcombo-v300-d3-s0": {
+      "description": "borg-zoo#309 (reborn-recall-combo-pilot.yaml): arm v300-d3-s0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 300,
+        "borg_param_prepared_recall_depth": 3,
+        "borg_param_caution_flee_stairs_before_recall": 0
+      }
+    },
+    "reborn-recallcombo-v1000-d5-s1": {
+      "description": "borg-zoo#309 (reborn-recall-combo-pilot.yaml): arm v1000-d5-s1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 1000,
+        "borg_param_prepared_recall_depth": 5,
+        "borg_param_caution_flee_stairs_before_recall": 1
+      }
+    },
+    "reborn-recallcombo-v1000-d5-s0": {
+      "description": "borg-zoo#309 (reborn-recall-combo-pilot.yaml): arm v1000-d5-s0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 1000,
+        "borg_param_prepared_recall_depth": 5,
+        "borg_param_caution_flee_stairs_before_recall": 0
+      }
+    },
+    "reborn-recallcombo-v1000-d3-s1": {
+      "description": "borg-zoo#309 (reborn-recall-combo-pilot.yaml): arm v1000-d3-s1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 1000,
+        "borg_param_prepared_recall_depth": 3,
+        "borg_param_caution_flee_stairs_before_recall": 1
+      }
+    },
+    "reborn-recallcombo-v1000-d3-s0": {
+      "description": "borg-zoo#309 (reborn-recall-combo-pilot.yaml): arm v1000-d3-s0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_value_percent": 1000,
+        "borg_param_prepared_recall_depth": 3,
+        "borg_param_caution_flee_stairs_before_recall": 0
+      }
+    },
+    "reborn-downcorn-ctl": {
+      "description": "borg-zoo#307 (reborn-down-cornered-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_known_down_stairs": 0,
+        "borg_param_caution_flee_known_down_cornered": 1,
+        "borg_param_caution_flee_known_down_max_cost": 40
+      }
+    },
+    "reborn-downcorn-corn1": {
+      "description": "borg-zoo#307 (reborn-down-cornered-pilot.yaml): arm corn1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_known_down_stairs": 1,
+        "borg_param_caution_flee_known_down_cornered": 1,
+        "borg_param_caution_flee_known_down_max_cost": 40
+      }
+    },
+    "reborn-downcorn-corn0": {
+      "description": "borg-zoo#307 (reborn-down-cornered-pilot.yaml): arm corn0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_known_down_stairs": 1,
+        "borg_param_caution_flee_known_down_cornered": 0,
+        "borg_param_caution_flee_known_down_max_cost": 40
+      }
+    },
     "reborn-pbdrr-ctl": {
       "description": "borg-zoo#290 (reborn-pbd-rr-pilot.yaml): arm ctl.",
       "settings": {
@@ -4167,6 +4376,119 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none",
         "borg_param_caution_rising_explore_ticks": 2000
+      }
+    },
+    "reborn-fox-off": {
+      "description": "borg-zoo#312 (reborn-fox-form-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_fox_form": 0
+      }
+    },
+    "reborn-fox-fox": {
+      "description": "borg-zoo#312 (reborn-fox-form-pilot.yaml): arm fox.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_fox_form": 1
+      }
+    },
+    "reborn-afocus-ctl": {
+      "description": "borg-zoo#319 (reborn-attack-focus-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-afocus-low750": {
+      "description": "borg-zoo#319 (reborn-attack-focus-pilot.yaml): arm low750.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_preference_warrior_spell_permille": 750,
+        "borg_param_attack_preference_warrior_device_permille": 750,
+        "borg_param_attack_preference_warrior_activation_permille": 750,
+        "borg_param_attack_preference_mage_melee_permille": 750,
+        "borg_param_attack_preference_mage_projectile_permille": 750,
+        "borg_param_attack_preference_mage_thrown_permille": 750,
+        "borg_param_attack_preference_mage_activation_permille": 750,
+        "borg_param_attack_preference_druid_melee_permille": 750,
+        "borg_param_attack_preference_druid_projectile_permille": 750,
+        "borg_param_attack_preference_druid_thrown_permille": 750,
+        "borg_param_attack_preference_druid_device_permille": 750,
+        "borg_param_attack_preference_druid_activation_permille": 750,
+        "borg_param_attack_preference_priest_melee_permille": 750,
+        "borg_param_attack_preference_priest_projectile_permille": 750,
+        "borg_param_attack_preference_priest_thrown_permille": 750,
+        "borg_param_attack_preference_priest_device_permille": 750,
+        "borg_param_attack_preference_priest_activation_permille": 750,
+        "borg_param_attack_preference_necromancer_melee_permille": 750,
+        "borg_param_attack_preference_necromancer_projectile_permille": 750,
+        "borg_param_attack_preference_necromancer_thrown_permille": 750,
+        "borg_param_attack_preference_necromancer_activation_permille": 750,
+        "borg_param_attack_preference_paladin_projectile_permille": 750,
+        "borg_param_attack_preference_paladin_thrown_permille": 750,
+        "borg_param_attack_preference_paladin_device_permille": 750,
+        "borg_param_attack_preference_paladin_activation_permille": 750,
+        "borg_param_attack_preference_rogue_melee_permille": 750,
+        "borg_param_attack_preference_rogue_spell_permille": 750,
+        "borg_param_attack_preference_rogue_device_permille": 750,
+        "borg_param_attack_preference_rogue_activation_permille": 750,
+        "borg_param_attack_preference_ranger_melee_permille": 750,
+        "borg_param_attack_preference_ranger_thrown_permille": 750,
+        "borg_param_attack_preference_ranger_spell_permille": 750,
+        "borg_param_attack_preference_ranger_device_permille": 750,
+        "borg_param_attack_preference_ranger_activation_permille": 750,
+        "borg_param_attack_preference_blackguard_projectile_permille": 750,
+        "borg_param_attack_preference_blackguard_thrown_permille": 750,
+        "borg_param_attack_preference_blackguard_device_permille": 750,
+        "borg_param_attack_preference_blackguard_activation_permille": 750
+      }
+    },
+    "reborn-afocus-low500": {
+      "description": "borg-zoo#319 (reborn-attack-focus-pilot.yaml): arm low500.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_preference_warrior_spell_permille": 500,
+        "borg_param_attack_preference_warrior_device_permille": 500,
+        "borg_param_attack_preference_warrior_activation_permille": 500,
+        "borg_param_attack_preference_mage_melee_permille": 500,
+        "borg_param_attack_preference_mage_projectile_permille": 500,
+        "borg_param_attack_preference_mage_thrown_permille": 500,
+        "borg_param_attack_preference_mage_activation_permille": 500,
+        "borg_param_attack_preference_druid_melee_permille": 500,
+        "borg_param_attack_preference_druid_projectile_permille": 500,
+        "borg_param_attack_preference_druid_thrown_permille": 500,
+        "borg_param_attack_preference_druid_device_permille": 500,
+        "borg_param_attack_preference_druid_activation_permille": 500,
+        "borg_param_attack_preference_priest_melee_permille": 500,
+        "borg_param_attack_preference_priest_projectile_permille": 500,
+        "borg_param_attack_preference_priest_thrown_permille": 500,
+        "borg_param_attack_preference_priest_device_permille": 500,
+        "borg_param_attack_preference_priest_activation_permille": 500,
+        "borg_param_attack_preference_necromancer_melee_permille": 500,
+        "borg_param_attack_preference_necromancer_projectile_permille": 500,
+        "borg_param_attack_preference_necromancer_thrown_permille": 500,
+        "borg_param_attack_preference_necromancer_activation_permille": 500,
+        "borg_param_attack_preference_paladin_projectile_permille": 500,
+        "borg_param_attack_preference_paladin_thrown_permille": 500,
+        "borg_param_attack_preference_paladin_device_permille": 500,
+        "borg_param_attack_preference_paladin_activation_permille": 500,
+        "borg_param_attack_preference_rogue_melee_permille": 500,
+        "borg_param_attack_preference_rogue_spell_permille": 500,
+        "borg_param_attack_preference_rogue_device_permille": 500,
+        "borg_param_attack_preference_rogue_activation_permille": 500,
+        "borg_param_attack_preference_ranger_melee_permille": 500,
+        "borg_param_attack_preference_ranger_thrown_permille": 500,
+        "borg_param_attack_preference_ranger_spell_permille": 500,
+        "borg_param_attack_preference_ranger_device_permille": 500,
+        "borg_param_attack_preference_ranger_activation_permille": 500,
+        "borg_param_attack_preference_blackguard_projectile_permille": 500,
+        "borg_param_attack_preference_blackguard_thrown_permille": 500,
+        "borg_param_attack_preference_blackguard_device_permille": 500,
+        "borg_param_attack_preference_blackguard_activation_permille": 500
       }
     }
   }

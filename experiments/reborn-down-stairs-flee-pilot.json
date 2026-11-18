@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-down-stairs-flee-pilot",
+  "issue": 286,
+  "definition": "definitions/reborn-down-stairs-flee-pilot.yaml",
+  "question": "On borg-reborn-rs",
+  "description": "On borg-reborn-rs Generated from definitions/reborn-down-stairs-flee-pilot.yaml: 4 arms on 4.2.6-reborn-rust-pr566-b054287b, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#548, PR #566). Pilot (RULES 16); small and\nlarger only after this gate and the owner.\nGate:\n- no config_error; one binary; each arm's #548 values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- in ctl and keep, no \"# Desperate for Stairs (down, no up stairs known)\" note.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level;\n- paired rescued and newly killed against ctl;\n- \"# Desperate for Stairs (down, no up stairs known)\" notes per game, and deaths within 2,000 game turns of one;\n- \"Boosting bravery (3)\" jumpstarts per game, and games whose keys differ from ctl;\n- scary-level deaths (\"Scary guy on level\" in the last 100 messages) and deaths with a breeder adjacent.\nContext: a local run of these arms on the same tree (harness/run.sh, BORG_CORE=borg-rs, the 18 classes-18\nstarts, 100,000 turns; not a zoo run) had 0 deaths in ctl, narrow and narrow-keep. The note fired 15 times in\n2 games in both flag arms; narrow played ctl's keys in 17 of 18 games, narrow-keep in 12. 18 starts per arm\nshow direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr566-b054287b"
+  ],
+  "profiles": [
+    "reborn-downflee-ctl",
+    "reborn-downflee-keep",
+    "reborn-downflee-narrow",
+    "reborn-downflee-narrow-keep"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-pr566-b054287b",
+  "control_profile": "reborn-downflee-ctl",
+  "retain_evidence": true
+}

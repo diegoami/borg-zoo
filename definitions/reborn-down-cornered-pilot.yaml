@@ -1,0 +1,36 @@
+# borg-zoo#307: down-staircase flight with and without the cornered condition, pilot (owner, 2026-11-18).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-down-cornered-pilot.yaml
+name: reborn-down-cornered-pilot
+issue: 307
+question: On borg-reborn-rs main 8e7dbad4, with the down-staircase flight on, does requiring the Borg to be cornered (caution_flee_known_down_cornered 1) save or cost games against dropping that condition (0), and against the flight off (shipped)?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-8e7dbad4
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes the three flight settings.
+profile_prefix: reborn-downcorn
+arms:
+  ctl: {borg_param_caution_flee_known_down_stairs: 0, borg_param_caution_flee_known_down_cornered: 1, borg_param_caution_flee_known_down_max_cost: 40}
+  corn1: {borg_param_caution_flee_known_down_stairs: 1, borg_param_caution_flee_known_down_cornered: 1, borg_param_caution_flee_known_down_max_cost: 40}
+  corn0: {borg_param_caution_flee_known_down_stairs: 1, borg_param_caution_flee_known_down_cornered: 0, borg_param_caution_flee_known_down_max_cost: 40}
+control: [ctl]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any zoo result was read (owner, after #286's pilot run 44345853505, where both narrowed
+  arms had cornered 1 and the narrowed flight changed 1 of 18 games). Pilot (RULES 16); larger tiers only after this
+  gate and the owner. ctl is the shipped flight off; corn1 is #286's narrow arm on main; corn0 drops the cornered
+  condition and keeps the 40-step limit.
+  Gate:
+  - no config_error; one binary; each arm's three values written;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against ctl, and
+  corn0 against corn1; games with keys identical to ctl; "Desperate for Stairs (down, no up stairs known)" notes per
+  game.
