@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-pbd-rr-medium",
+  "issue": 290,
+  "definition": "definitions/reborn-pbd-rr-medium.yaml",
+  "question": "On borg-reborn-rs main f660aecc, which point-blank divisor suits Rangers (1, 2 shipped, 3) and which Rogues (2, 3 shipped, 4)?",
+  "description": "On borg-reborn-rs main f660aecc, which point-blank divisor suits Rangers (1, 2 shipped, 3) and which Rogues (2, 3 shipped, 4)? Generated from definitions/reborn-pbd-rr-medium.yaml: 3 arms on 4.2.6-reborn-rust-main-f660aecc, suite classes-1800-medium-rangers, classes-1800-medium-rogues.",
+  "prespecified": "Fixed 2026-11-18, before any result of these arms was read. Medium tier after the pilot; same arms and specimen.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nRead per class (Rangers and Rogues separately), medium and big pooled with small as one study (RULES 14): deaths and\ncauses, final level, deepest level; paired rescued and newly killed against ctl; identical plays. #290's all-class\ntiers (starts 1-360: Rangers 3 deaths of 40 in ctl, 2-4 in other arms; Rogues 1 in every arm) and #198 (e0aa2e0a)\nare context only. Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-f660aecc"
+  ],
+  "profiles": [
+    "reborn-pbdrr-ctl",
+    "reborn-pbdrr-lo",
+    "reborn-pbdrr-hi"
+  ],
+  "suites": [
+    "classes-1800-medium-rangers",
+    "classes-1800-medium-rogues"
+  ],
+  "control": "4.2.6-reborn-rust-main-f660aecc",
+  "control_profile": "reborn-pbdrr-ctl",
+  "owner_authorization": "2026-11-18: after #290's small and medium (all classes: no class's deaths moved), the owner asked for Ranger 1-2-3 and Rogue 2-3-4 and a big test. Pilot on the 10 + 10 small starts (RULES 16), then medium and big on these classes."
+}

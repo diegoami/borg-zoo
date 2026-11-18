@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-rising-ticks3-pilot",
+  "issue": 191,
+  "definition": "definitions/reborn-rising-ticks3-pilot.yaml",
+  "question": "On borg-reborn-rs main f660aecc, does holding a descent longer to explore for an up staircase while rising to town (caution_rising_explore_ticks 500, 1000, 1500, 2000 against the shipped 300) save games or cost progress?",
+  "description": "On borg-reborn-rs main f660aecc, does holding a descent longer to explore for an up staircase while rising to town (caution_rising_explore_ticks 500, 1000, 1500, 2000 against the shipped 300) save games or cost progress? Generated from definitions/reborn-rising-ticks3-pilot.yaml: 5 arms on 4.2.6-reborn-rust-main-f660aecc, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any result of these arms was read. Pilot (RULES 16). Earlier pilots are other refs and\ncontext only (d9ff9808: 0/150/300/450, no deaths, 14 of 18 games identical per arm).\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: identical plays against t300; deaths and causes, final level, deepest level; paired\nrescued and newly killed; per game rising holds (\"exploring for them\"), \"no up stairs found, going down\" notes,\ntown visits, and deaths while rising.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-f660aecc"
+  ],
+  "profiles": [
+    "reborn-rising3-t300",
+    "reborn-rising3-t500",
+    "reborn-rising3-t1000",
+    "reborn-rising3-t1500",
+    "reborn-rising3-t2000"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-f660aecc",
+  "control_profile": "reborn-rising3-t300",
+  "owner_authorization": "2026-11-18: the owner asked for higher values than the earlier pilots (0-600 on e85b80e1, 0-450 on d9ff9808). Pilot first (RULES 16).",
+  "retain_evidence": true
+}
