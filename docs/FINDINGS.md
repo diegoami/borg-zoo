@@ -347,6 +347,17 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 
 The hold fires more as the budget grows, and the going-down notes fall from 84 to 63-72. The level bouncing and town visits hardly change. A first run of this pilot (44230015413) failed at the build, before any game, because the specimen did not yet pin the shipped scary list.
 
+**#170, borg_trip_unknown_stacks 2/3/4/5 on main d9ff9808 (pilot, run 44236318055, 72 games): no deaths in any arm; lower values make the Borg pendulum.** The gate passed: one binary (44b1d2f3), no config_error, the value written in every arm, nothing flagged. s5 replays the rising-ticks pilot's t300 arm exactly (18/18). All 72 replays match CI. Every game reached the turn cap. Mean max level is 5.17-5.28 and mean max DL 2.11-2.22 in every arm. Games identical to s5: 5 (s2), 10 (s3) and 13 (s4) of 18.
+
+| unknown_stacks | unknown-item trip returns | `no up stairs found, going down` | rising holds (`exploring for them`) | town visits |
+|---|---|---|---|---|
+| 2 | 109 | 198 | 2,380 | 1,375 |
+| 3 | 48 | 107 | 460 | 1,294 |
+| 4 | 50 | 100 | 403 | 1,234 |
+| 5 (shipped) | 18 | 63 | 111 | 1,259 |
+
+Lower values send the Borg back for unknown items more often. Each return brings more `going down` notes and far more rising holds, the pattern the 193d9076 death report found, now partly held by the rising hold. With no deaths, the pilot cannot rank the values on survival.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
