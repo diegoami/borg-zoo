@@ -1,0 +1,218 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-corner8e-c0-r2-m0": {
+        "description": "borg-zoo#224 (reborn-cornered8e-pilot.yaml): arm c0, r2, m0.",
+        "settings": {
+          "borg_param_caution_cornered": 0,
+          "borg_param_caution_cornered_big_level_margin": 0,
+          "borg_param_caution_cornered_radius": 2
+        },
+        "sha256": "20caa4c4189f54e9d86bbe1f31612334fca001827a06dfbcde8d14f3c4307421"
+      },
+      "reborn-corner8e-c0-r2-m1": {
+        "description": "borg-zoo#224 (reborn-cornered8e-pilot.yaml): arm c0, r2, m1.",
+        "settings": {
+          "borg_param_caution_cornered": 0,
+          "borg_param_caution_cornered_big_level_margin": 1,
+          "borg_param_caution_cornered_radius": 2
+        },
+        "sha256": "7a5be7d44300b9b388f617e536ee236df4348542e0bb93a536f0de66ea584665"
+      },
+      "reborn-corner8e-c0-r3-m0": {
+        "description": "borg-zoo#224 (reborn-cornered8e-pilot.yaml): arm c0, r3, m0.",
+        "settings": {
+          "borg_param_caution_cornered": 0,
+          "borg_param_caution_cornered_big_level_margin": 0,
+          "borg_param_caution_cornered_radius": 3
+        },
+        "sha256": "e165e2872f08110c17d2dee37fae5090ce271e0e70a68bcbd95c2f96dbb7dd50"
+      },
+      "reborn-corner8e-c0-r3-m1": {
+        "description": "borg-zoo#224 (reborn-cornered8e-pilot.yaml): arm c0, r3, m1.",
+        "settings": {
+          "borg_param_caution_cornered": 0,
+          "borg_param_caution_cornered_big_level_margin": 1,
+          "borg_param_caution_cornered_radius": 3
+        },
+        "sha256": "2b0c78d640f7c2300a3da778c7468368dac04d43941d32306df67394e96ed18c"
+      },
+      "reborn-corner8e-c1-r2-m0": {
+        "description": "borg-zoo#224 (reborn-cornered8e-pilot.yaml): arm c1, r2, m0.",
+        "settings": {
+          "borg_param_caution_cornered": 1,
+          "borg_param_caution_cornered_big_level_margin": 0,
+          "borg_param_caution_cornered_radius": 2
+        },
+        "sha256": "f3f18f41121f3f28ace143ae104e13aace4b955e624f50730f6894c7deb04996"
+      },
+      "reborn-corner8e-c1-r2-m1": {
+        "description": "borg-zoo#224 (reborn-cornered8e-pilot.yaml): arm c1, r2, m1.",
+        "settings": {
+          "borg_param_caution_cornered": 1,
+          "borg_param_caution_cornered_big_level_margin": 1,
+          "borg_param_caution_cornered_radius": 2
+        },
+        "sha256": "75e1c0cdb792dc08e86c88377a4f3990941b5e06e4246e4c12eb1e773f06aa26"
+      },
+      "reborn-corner8e-c1-r3-m0": {
+        "description": "borg-zoo#224 (reborn-cornered8e-pilot.yaml): arm c1, r3, m0.",
+        "settings": {
+          "borg_param_caution_cornered": 1,
+          "borg_param_caution_cornered_big_level_margin": 0,
+          "borg_param_caution_cornered_radius": 3
+        },
+        "sha256": "4dd1ce8fe067713647a5ee0656edff35a4ed5e174f6b589dbaf2301d3cab6e84"
+      },
+      "reborn-corner8e-c1-r3-m1": {
+        "description": "borg-zoo#224 (reborn-cornered8e-pilot.yaml): arm c1, r3, m1.",
+        "settings": {
+          "borg_param_caution_cornered": 1,
+          "borg_param_caution_cornered_big_level_margin": 1,
+          "borg_param_caution_cornered_radius": 3
+        },
+        "sha256": "51c22d2e53a6b40322b8200dc30ccc9aa538c4529f699dfcc8df8c55d1eec069"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-8e7dbad4": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 8e7dbad4, main at the merge of #573 (#569 scary calm review). Ships the live town planner (borg_town_plan 1) with w_light 100, food 100, bleeding 100, poison 100, escape 50, knowledge 25, power 50, trip 50, share 10. Source-hash rust 1a6a0b9d...; harness/borg.txt dcd81f01...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "8e7dbad4b43291a95328c1b90c7d4ae4778dcc4c",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-18 19:13 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-8e7dbad4",
+    "control_profile": "reborn-corner8e-c0-r2-m0",
+    "definition": "definitions/reborn-cornered8e-pilot.yaml",
+    "description": "On borg-reborn-rs main 8e7dbad4, does cornered mode (caution_cornered 1, shipped) save games against off, and do its radius (2, 3) and big-level margin (0, 1) matter? Generated from definitions/reborn-cornered8e-pilot.yaml: 8 arms on 4.2.6-reborn-rust-main-8e7dbad4, suite classes-18.",
+    "issue": 224,
+    "name": "reborn-cornered8e-pilot",
+    "owner_authorization": "2026-11-18 (expanded on current main 8e7dbad4, owner: \"expand 224 ... cornered mode (0,1) x radius (2,3) x big-level margin (0,1)\"); first asked 2026-11-18: the owner asked for an experiment of cornered mode on the current build (borg-zoo#224), as caution_cornered (0,1) x caution_cornered_radius (2,3) x caution_cornered_big_level_margin (0,1). Pilot first (RULES 16).",
+    "prespecified": "Fixed 2026-11-18, before any result of this expansion was read (borg-zoo#224). Pilot on the new build first (RULES 16); the medium tier follows if this gate passes (owner asked for the expansion). Gate: no config_error; one binary; the\ncornered lines written in each arm; every cell ends in death, turn_cap or borg_stopped; stalls, purchase bursts and\nkey outliers listed. Descriptive: deaths and causes per class (CL1-3 deaths counted), mean max level and depth;\npaired rescued and newly killed against c0-r2-m0; the four c0 arms are expected to play identically (a check that radius and margin are inert with cornered off); from replays, cornered-mode notes (buffs, Monster Confusion)\nin each arm. 18 starts per arm cannot show whether cornered mode helps.",
+    "profiles": [
+      "reborn-corner8e-c0-r2-m0",
+      "reborn-corner8e-c0-r2-m1",
+      "reborn-corner8e-c0-r3-m0",
+      "reborn-corner8e-c0-r3-m1",
+      "reborn-corner8e-c1-r2-m0",
+      "reborn-corner8e-c1-r2-m1",
+      "reborn-corner8e-c1-r3-m0",
+      "reborn-corner8e-c1-r3-m1"
+    ],
+    "question": "On borg-reborn-rs main 8e7dbad4, does cornered mode (caution_cornered 1, shipped) save games against off, and do its radius (2, 3) and big-level margin (0, 1) matter?",
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-8e7dbad4"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44376837291-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44376837291",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "9d5cbaafe0b54ce53925c3a9bd555b519de0ee25"
+}
