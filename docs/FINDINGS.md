@@ -419,6 +419,18 @@ Lower values send the Borg back for unknown items more often. Each return brings
 
 **#277, borg-reborn-rs#558 breeder hunt (count 2/4/6, no-rest gate 0/50) on main bb4e5d1c (pilot 44313296425): no difference on 18 starts.** No deaths; 17 of 18 games identical in every arm (only the Mage 801785300 changes, as the request's sanity cells predicted).
 
+**#267 complete, flight-Recall depth gate 1/2/3 on main 68cf9eb5, all 1,800 starts (adds full 44361568858 to the tiers above; 1,818 paired starts): neither gate saves lives.** Deaths: 1 (C) 109 (6.0%), 2 (shipped) 122 (6.7%; 66 rescued / 79 newly killed, p = 0.32), 3 125 (6.9%; 68 / 84, p = 0.22). Like #255's flight gate, keeping the flight Recall off the shallow levels never helped survival; it only changes the Recall economy.
+
+**#277 medium, breeder hunt (run 44346827787, 1,080 games): no difference.** Deaths 16, 17, 16, 17 of 270 for count 4 / gate 0 (control), 4 / 50, 2 / 50, 6 / 50; one Priest is the only death that moves. Closed.
+
+**#286, #548 down-staircase flight on PR #566 head b054287b (pilot 44345853505), and #307 cornered 0/1 on main 8e7dbad4 (pilot 44354583363, medium 44367258196): no survival effect.** #286 pilot: no deaths; the narrowed flight changes 1 of 18 games, keeping stairs through the jumpstart 6. #307 medium: flight off 17/270, cornered 1 17 (changes 18 games), cornered 0 19 (changes 193 games, 2 rescued / 4 newly killed, p = 0.69).
+
+**#303, town planner weights on main 8e7dbad4 (pilot 44349934443, medium 44352270059, big 44367212173, full 44376882104): the shipped weights stay.** In the live planner, borg_town_w_knowledge is forced to 0 and light_depth / food_trip are read only by the old v4 model; they were dropped. Pilot: w_poison played ctl's keys in all 18 games at half and double. Medium (11 arms): nothing significant; share 5 (11 vs 17) and w_food 50 (12) led, bleeding either way and power or trip halved leaned worse. Big: share 5 reversed (42 vs 39). Full: w_food 50 was worse (71 vs 57, p = 0.038); over medium + big + full it is level (119 vs 113 of 1,710).
+
+**#309, Word of Recall value x prepared depth x stairs before Recall on main 8e7dbad4 (pilot 44355657179, medium 44367307516, value-alone pilot 44369247745): stairs first is the setting that matters; the value is a progress knob.** Pilot: every Recall-first arm lost the same Blackguard, every stairs-first arm kept it. Medium (six stairs-first arms): 16-18 deaths of 270 in every arm whatever the value (100/300/1000) or prepared depth (5/3); higher values change more games and go slightly further. Value alone at 75/100/125/150: 1-2 of 18 games change, the same 2 scrolls bought from 100 up.
+
+**#224 expanded, cornered (0,1) x radius (2,3) x big-level margin (0,1) on main 8e7dbad4 (pilot 44376837291, medium 44379732219): the margin is dead, the radius nearly so, cornered mode neutral.** Medium: margin 0 and 1 play identical keys in all 270 games; radius 3 changes 5 games and adds 1 death; cornered on vs off 17 vs 16 deaths (2 / 3). With the 6101ca01 run on all 1,800 starts (142 vs 151, p = 0.16), cornered mode does not measurably change survival on either build.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
