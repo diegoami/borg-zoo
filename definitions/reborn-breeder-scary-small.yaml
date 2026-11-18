@@ -1,0 +1,29 @@
+# borg-zoo#216: borg-reborn-rs#503's two flags, 2x2 (caution_breeder_fight x caution_scary_named_monsters), small tier.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-scary-small.yaml
+name: reborn-breeder-scary-small
+issue: 216
+question: Does standing to fight breeders, or dropping C's named scary-monster list, change how main survives and progresses?
+tier: small            # classes-1800-small: starts 1-90, 10 per class
+
+specimen: 4.2.6-reborn-rust-main-233ef23e
+
+# Every arm reads the specimen's shipped harness/borg.txt and sets only the two #503 flags.
+profile_prefix: reborn-503
+arms:
+  ctl: {borg_param_caution_breeder_fight: 0, borg_param_caution_scary_named_monsters: 1}     # C's behaviour, main before #510
+  fight: {borg_param_caution_breeder_fight: 1, borg_param_caution_scary_named_monsters: 1}   # breeder stand only
+  nolist: {borg_param_caution_breeder_fight: 0, borg_param_caution_scary_named_monsters: 0}  # named list off only
+  both: {borg_param_caution_breeder_fight: 1, borg_param_caution_scary_named_monsters: 0}    # the shipped default
+
+control: [ctl]
+owner_authorization: >-
+  2026-11-17: after the pilot reborn-breeder-scary-pilot passed its gate (run 44147930313: deaths 1, 1, 5 and 4
+  of 18 for ctl, fight, nolist and both), the owner asked for the small tier of the same four arms (RULES 14).
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#216). Small tier only (RULES 14: starts 1-90); medium and
+  larger only after this gate and the owner. Gate: no config_error; one binary; each arm's two flags written in its
+  borg.txt; every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls, purchase bursts and key outliers
+  listed. Report per arm and per class: deaths and causes, deaths at character level 1-3, final level, deepest
+  level; paired against ctl on the same start (exact McNemar): rescued, newly killed, identical play. From a replay
+  of every arm: 'Scary guy on level.' and 'Fleeing (breeder level)' notes, breeder kills, down-then-up bounces.

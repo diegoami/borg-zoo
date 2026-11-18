@@ -30,6 +30,10 @@ specimen:                        # a new specimen, or the name of an existing on
   plans:                         # plan files the specimen ships, pinned by sha256
     errands_plan.txt: 084bc3e8...
     errands_plan_ambitious.txt: c3018585...
+  # scary_lists:                 # named scary-monster lists (harness/NAME, borg-zoo#228), pinned by sha256;
+  #   scary_monsters.txt: d045111b...   # an arm picks one with borg_scary_list: NAME, and may add
+  #                                     # borg_scary_list_lines: ["crow | 0-4", "soldier | none", "fragility: blackguard 33"]
+  #                                     # (appended to the copy; a later line for a monster replaces it, "| none" removes it)
 
 settings:                        # in every arm
   borg_reborn_core: borg-rs

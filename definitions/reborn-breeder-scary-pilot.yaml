@@ -1,0 +1,43 @@
+# borg-zoo#216: borg-reborn-rs#503's two flags, 2x2 (caution_breeder_fight x caution_scary_named_monsters), pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-scary-pilot.yaml
+name: reborn-breeder-scary-pilot
+issue: 216
+question: Does standing to fight breeders, or dropping C's named scary-monster list, change how main survives and progresses?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen:
+  name: 4.2.6-reborn-rust-main-233ef23e
+  repository: diegoami/borg-reborn-rs
+  ref: 233ef23ebbbbebdbc75c8cc94b74edc5682606c5
+  source: https://github.com/diegoami/borg-zoo/issues/216
+  label: >-
+    borg-reborn-rs 233ef23e, main at the merge of #510 (#503): caution_breeder_fight (stand and fight breeders
+    when there is no easy escape; compiled 0, shipped 1) and caution_scary_named_monsters (C's hard-coded scary
+    list by character level; compiled 1, shipped 0). Source-hash rust cb2b78ce7459...; harness/borg.txt
+    feb38834... ships the speed30 bundle, the borg-rs core and no plan.
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# Every arm reads the specimen's shipped harness/borg.txt and sets only the two #503 flags.
+profile_prefix: reborn-503
+arms:
+  ctl: {borg_param_caution_breeder_fight: 0, borg_param_caution_scary_named_monsters: 1}     # C's behaviour, main before #510
+  fight: {borg_param_caution_breeder_fight: 1, borg_param_caution_scary_named_monsters: 1}   # breeder stand only
+  nolist: {borg_param_caution_breeder_fight: 0, borg_param_caution_scary_named_monsters: 0}  # named list off only
+  both: {borg_param_caution_breeder_fight: 1, borg_param_caution_scary_named_monsters: 0}    # the shipped default
+
+control: [ctl]
+owner_authorization: >-
+  2026-11-17: requested from borg-reborn-rs by the owner (borg-zoo#216): a pilot of #503's two flags, 2x2,
+  on classes-18. Small and larger only after the gate and the owner (RULES 14, 16).
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#216). Pilot only. Gate: no config_error; one binary;
+  each arm's two flags written in its borg.txt and reported by params-core.json on the death replays; every
+  cell ends in death, turn_cap or borg_stopped; frozen-turn stalls, purchase bursts and key outliers listed;
+  in ctl, none of #503's notes in the death replays. Descriptive, per arm and per class: deaths and causes,
+  final level, deepest level, town visits; '# Scary guy on level.' and '# Fleeing (breeder level)' notes;
+  breeder kills; descents and down-then-up bounces (from replays where the records do not hold them).
+  Paired against ctl on the same start: rescued, newly killed, identical play. 18 starts per arm cannot show
+  which flags are better.

@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-nolist-plan-pilot",
+  "issue": 216,
+  "definition": "definitions/reborn-nolist-plan-pilot.yaml",
+  "question": "With the named scary list off (the shipped default), does the errands plan change how main survives and progresses?",
+  "description": "With the named scary list off (the shipped default), does the errands plan change how main survives and progresses? Generated from definitions/reborn-nolist-plan-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-233ef23e, suite classes-18.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#216). Pilot only. Gate: no config_error; one binary; both\nflags written in both arms; the loaded plan copy matches its pin in both-plan and is absent from both; every cell\nends in death, turn_cap or borg_stopped; frozen-turn stalls, purchase bursts and key outliers listed. The both arm\nis the same specimen and profile as the #503 pilot's both arm and should replay it exactly. Descriptive: deaths and\ncauses (CL1-3 deaths counted), final level, deepest level; paired rescued and newly killed against both, and the\ncells where play diverges. 18 starts per arm cannot show whether the plan helps.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-233ef23e"
+  ],
+  "profiles": [
+    "reborn-503-both",
+    "reborn-503-both-plan"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-233ef23e",
+  "control_profile": "reborn-503-both",
+  "owner_authorization": "2026-11-17: after the #503 small tier (run 44157865502), the owner asked for an experiment without the named list and with the errand (errands_plan.txt). Pilot first (RULES 16); small and larger only after the gate and the owner."
+}

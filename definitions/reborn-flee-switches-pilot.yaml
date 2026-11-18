@@ -1,0 +1,49 @@
+# borg-zoo#235: the #539 fleeing switches (stairs before Recall, Phase only when adjacent, ranged on a scary level without stairs), 5 arms, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-flee-switches-pilot.yaml
+name: reborn-flee-switches-pilot
+issue: 235
+question: On borg-reborn-rs main 9ecbfd1e, do the #539 fleeing switches (stairs before Recall, Phase Door only with a monster adjacent, ranged attacks on a scary level without stairs) help, alone and together?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-9ecbfd1e
+  repository: diegoami/borg-reborn-rs
+  ref: 9ecbfd1ed3a623f09a4283699b106d95bb41e1f8
+  source: https://github.com/diegoami/borg-zoo/issues/235
+  label: >-
+    borg-reborn-rs 9ecbfd1e, main at the merge of #543 (#539): three fleeing switches, each compiled 0 and
+    shipped 1 (caution_flee_stairs_before_recall, escape_phase_adjacent_only, caution_scary_ranged_no_stairs).
+    Source-hash rust 396938c8...; harness/borg.txt 31dda2eb..., otherwise as main before #543.
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# Every arm reads the shipped harness/borg.txt and writes only the three switches.
+profile_prefix: reborn-flee
+arms:
+  ctl: {borg_param_caution_flee_stairs_before_recall: 0, borg_param_escape_phase_adjacent_only: 0, borg_param_caution_scary_ranged_no_stairs: 0}
+  stairs: {borg_param_caution_flee_stairs_before_recall: 1, borg_param_escape_phase_adjacent_only: 0, borg_param_caution_scary_ranged_no_stairs: 0}
+  phase: {borg_param_caution_flee_stairs_before_recall: 0, borg_param_escape_phase_adjacent_only: 1, borg_param_caution_scary_ranged_no_stairs: 0}
+  ranged: {borg_param_caution_flee_stairs_before_recall: 0, borg_param_escape_phase_adjacent_only: 0, borg_param_caution_scary_ranged_no_stairs: 1}
+  all: {borg_param_caution_flee_stairs_before_recall: 1, borg_param_escape_phase_adjacent_only: 1, borg_param_caution_scary_ranged_no_stairs: 1}
+
+control: [ctl]
+extra:
+  retain_evidence: true
+
+owner_authorization: >-
+  2026-11-18: the owner asked (via borg-reborn-rs, borg-zoo#235) for a pilot of the #539 fleeing switches, five
+  arms. retain_evidence was added by the zoo session: the gate and endpoints count notes and Recall reads in every
+  game, not only in deaths.
+
+prespecified: |
+  Fixed 2026-11-18, before any result was read (borg-zoo#235). Pilot (RULES 14, 16); small and larger only after
+  this gate and the owner. Gate: no config_error; one binary; each arm's borg.txt has its three switch values and
+  params-core.json reports them; no plan loaded; every cell ends in death, turn_cap or borg_stopped; frozen-turn
+  bursts classified and key outliers listed; death bundles reproduced; in ctl no "# No stairs: fighting at range
+  on Scaryguy Level." and no "# No Phase: no monster next to me" note in any game's messages. Report per arm and
+  per class: deaths and causes, final level, deepest level; Recall and Deep Descent reads per game (stairs against
+  ctl), and deaths with a staircase in reach while Recall was active where the messages show it; "# No Phase"
+  notes per game, and deaths within 20 thinks of a skipped Phase Door; "# No stairs: fighting at range" notes per
+  game, and the ranged attacks that followed them; scary-level deaths per arm; paired rescued and newly killed
+  against ctl. "all" is the shipped default. 18 starts per arm show direction only.
