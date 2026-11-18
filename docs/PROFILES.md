@@ -17,6 +17,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `rs-additive-6` | [#129](https://github.com/diegoami/borg-zoo/issues/129) | 6 | obsolete (#129 closed by the owner) | borg-rs: existing behaviour, shopping only, and four trip thresholds (0,0), (1,2), (1,4), (2,4) as (pack slack, unknown stacks). |
 | `neo-default` | [#137](https://github.com/diegoami/borg-zoo/issues/137) | 1 | small tier done | Neo Borg with its default recorded flags (no settings). |
 | `reborn-errand-ladder` | – | 2 | done (option-C pilot, borg-reborn-rs #207, #208) | Errands: borg-rs's core in the reborn shell with no errand against the class ladders (borg_reborn_errand = ladder). |
+| `reborn-heal-by-class` | [#265](https://github.com/diegoami/borg-zoo/issues/265) | 8 | defined (pilot on 4a482c58, not dispatched) | Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, class files off (common 100/125), real-HP reserve off, healing speed 0; read per class. |
 
 ### `heal-attack-4`
 
@@ -184,6 +185,23 @@ Every arm: `borg_reborn_core = borg-rs`.
 | --- | --- | --- | --- |
 | [43702957409](https://github.com/diegoami/borg-zoo/actions/runs/43702957409) | full (before RULES 14) | `4.2.6-reborn-core-pilot` | 3,600 games: ladder 448 deaths (24.9%) v no errand 524 (29.1%); descriptive, one development suite |
 
+### `reborn-heal-by-class`
+
+Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, class files off (common 100/125), real-HP reserve off, healing speed 0; read per class.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_heal_curve_scale_percent_blackguard` | `borg_param_town_heal_curve_scale_percent_druid` | `borg_param_town_heal_curve_scale_percent_mage` | `borg_param_town_heal_curve_scale_percent_necromancer` | `borg_param_town_heal_curve_scale_percent_paladin` | `borg_param_town_heal_curve_scale_percent_priest` | `borg_param_town_heal_curve_scale_percent_ranger` | `borg_param_town_heal_curve_scale_percent_rogue` | `borg_param_town_heal_curve_scale_percent_warrior` | `borg_param_town_heal_reserve_hp_percent_blackguard` | `borg_param_town_heal_reserve_hp_percent_druid` | `borg_param_town_heal_reserve_hp_percent_mage` | `borg_param_town_heal_reserve_hp_percent_necromancer` | `borg_param_town_heal_reserve_hp_percent_paladin` | `borg_param_town_heal_reserve_hp_percent_priest` | `borg_param_town_heal_reserve_hp_percent_ranger` | `borg_param_town_heal_reserve_hp_percent_rogue` | `borg_param_town_heal_reserve_hp_percent_warrior` | `borg_param_town_heal_reserve_real_hp` | `borg_param_town_heal_speed_percent` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-hbc-common` | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | – | – |
+| `reborn-hbc-ctl` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-hbc-curve-hi` | 115 | 185 | 225 | 225 | 115 | 185 | 150 | 150 | 75 | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-hbc-curve-lo` | 40 | 60 | 75 | 75 | 40 | 60 | 50 | 50 | 25 | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-hbc-realhp0` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | 0 | – |
+| `reborn-hbc-reserve-hi` | – | – | – | – | – | – | – | – | – | 225 | 375 | 450 | 450 | 225 | 375 | 300 | 300 | 150 | – | – |
+| `reborn-hbc-reserve-lo` | – | – | – | – | – | – | – | – | – | 75 | 125 | 150 | 150 | 75 | 125 | 100 | 100 | 50 | – | – |
+| `reborn-hbc-speed0` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | 0 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -213,6 +231,26 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_melee_permille` | 1800, not set | `heal-attack-4` |  |
 | `borg_param_attack_preference_warrior_projectile_permille` | 1200, not set | `heal-attack-4` |  |
 | `borg_param_attack_preference_warrior_thrown_permille` | 1200, not set | `heal-attack-4` |  |
+| `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_curve_scale_percent_druid` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_curve_scale_percent_mage` | 0, 75, 225, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_curve_scale_percent_necromancer` | 0, 75, 225, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_curve_scale_percent_paladin` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_curve_scale_percent_priest` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_curve_scale_percent_ranger` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_curve_scale_percent_rogue` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_curve_scale_percent_warrior` | 0, 25, 75, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_hp_percent_blackguard` | -1, 75, 225, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_hp_percent_druid` | -1, 125, 375, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_hp_percent_mage` | -1, 150, 450, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_hp_percent_necromancer` | -1, 150, 450, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_hp_percent_paladin` | -1, 75, 225, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_hp_percent_priest` | -1, 125, 375, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_real_hp` | 0, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_speed_percent` | 0, not set | `reborn-heal-by-class` |  |
 
 ## Settings available for new arms
 

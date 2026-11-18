@@ -1,0 +1,29 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-heal-by-class-pilot",
+  "issue": 265,
+  "definition": "definitions/reborn-heal-by-class-pilot.yaml",
+  "question": "On borg-reborn-rs main 4a482c58, does each class do better with its shipped healing curve and reserve than with half or one and a half times either value, or than with the common values (class files off), and how do the real-HP reserve and healing speed act in each class?",
+  "description": "On borg-reborn-rs main 4a482c58, does each class do better with its shipped healing curve and reserve than with half or one and a half times either value, or than with the common values (class files off), and how do the real-HP reserve and healing speed act in each class? Generated from definitions/reborn-heal-by-class-pilot.yaml: 8 arms on 4.2.6-reborn-rust-main-4a482c58, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any result on 4a482c58 was read. Pilot (RULES 16). Earlier healing runs (heal-curve,\nheal-curve2, heal-class) were on other refs and are context only.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and in params-core.json of the death replays\n  (in common, every class resolves to reserve 100 and curve 125);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nRead per class (each class's own starts), not pooled:\n- deaths and causes, final level, deepest level;\n- paired rescued and newly killed against ctl, and identical plays per class: a class whose arm plays ctl's keys\n  did not exercise that value;\n- healing potions bought (Cure Light, Cure Serious, others) and gold spent on healing per game, healing potions\n  carried at death, deaths with none left.\nTwo starts per class per arm show only whether a value changes play in that class. Per-class direction needs the\nnext tiers (verysmall 5, small 10, medium 40 starts per class), dropping the arms and classes that played ctl's\nkeys.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-4a482c58"
+  ],
+  "profiles": [
+    "reborn-hbc-ctl",
+    "reborn-hbc-curve-lo",
+    "reborn-hbc-curve-hi",
+    "reborn-hbc-reserve-lo",
+    "reborn-hbc-reserve-hi",
+    "reborn-hbc-common",
+    "reborn-hbc-realhp0",
+    "reborn-hbc-speed0"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-4a482c58",
+  "control_profile": "reborn-hbc-ctl",
+  "owner_authorization": "2026-11-18: the owner asked for the healing settings (curve scale and reserve, common and per class, real-HP reserve, healing speed) to be tested by class. This is the pilot of the eight arms that RULES 16 requires first; verysmall, small and larger only after its gate and the owner (RULES 14).",
+  "retain_evidence": true
+}
