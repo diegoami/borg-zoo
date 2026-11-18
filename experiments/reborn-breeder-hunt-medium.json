@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-breeder-hunt-medium",
+  "issue": 277,
+  "definition": "definitions/reborn-breeder-hunt-medium.yaml",
+  "question": "With every class hunting breeders at the same count, does the count (2/4/6) or the no-rest gate (0/50) change deaths or levels?",
+  "description": "With every class hunting breeders at the same count, does the count (2/4/6) or the no-rest gate (0/50) change deaths or levels? Generated from definitions/reborn-breeder-hunt-medium.yaml: 4 arms on 4.2.6-reborn-rust-main-bb4e5d1c, suite classes-1800-medium.",
+  "prespecified": "Medium tier after the pilot (run 44313296425: no deaths, 17 of 18 games identical in every arm); no raw\nevidence kept, so the message-based endpoints below are not counted at this tier.\nGate: no config_error, one binary, every cell ends in death, turn_cap or borg_stopped; every arm's\nuser/borg.txt has the arm's common count, no caution_breeder_hunt_max_count class line, and the arm's\nrecover_breeder_hunt_hp_percent; the sanity cells reproduce. List frozen-turn stalls and key outliers.\nEndpoints, per arm and per class, paired against c4-h0: deaths and causes; rescued / newly killed;\ndeaths by a breeder (RF_MULTIPLY, monster.txt) and deaths on a level with breeders known; deaths at\nCL1-9 (the hunt's range); mean max CL and max DL; breeders killed (\"You have destroyed/slain the\n<breeder>\"); \"# Flowing toward kill\" notes; \"# Not resting: breeders to hunt.\" notes;\n\"# Fleeing (breeder level)\" notes; games whose keys equal c4-h0's.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-bb4e5d1c"
+  ],
+  "profiles": [
+    "reborn-breeder-hunt-c4-h0",
+    "reborn-breeder-hunt-c4-h50",
+    "reborn-breeder-hunt-c2-h50",
+    "reborn-breeder-hunt-c6-h50"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-bb4e5d1c",
+  "control_profile": "reborn-breeder-hunt-c4-h0"
+}
