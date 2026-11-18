@@ -1093,6 +1093,42 @@
       "stall_seconds": 90,
       "saves": false
     },
+    "classes-1800-medium-rangers": {
+      "description": "The Ranger starts of classes-1800-medium (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Ranger"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-medium-rogues": {
+      "description": "The Rogue starts of classes-1800-medium (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Rogue"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-rangers": {
+      "description": "The Ranger starts of classes-1800-big (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Ranger"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-rogues": {
+      "description": "The Rogue starts of classes-1800-big (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Rogue"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
     "classes-1800-full": {
       "description": "Tier full of classes-1800 (RULES 14): starts 901-1800 (100 more per class; with the other three tiers, all 200 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
       "role": "development",

@@ -1,0 +1,28 @@
+# borg-zoo#277: medium tier (owner, 2026-11-18: "a bigger sample"), after the pilot gate passed in run 44313296425.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-hunt-medium.yaml
+name: reborn-breeder-hunt-medium
+issue: 277
+question: With every class hunting breeders at the same count, does the count (2/4/6) or the no-rest gate (0/50) change deaths or levels?
+tier: medium           # classes-1800-medium: starts 91-360, 30 per class
+specimen: 4.2.6-reborn-rust-main-bb4e5d1c
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-breeder-hunt
+arms:
+  c4-h0:  {borg_param_caution_breeder_hunt_max_count: 4, borg_param_recover_breeder_hunt_hp_percent: 0}
+  c4-h50: {borg_param_caution_breeder_hunt_max_count: 4, borg_param_recover_breeder_hunt_hp_percent: 50}
+  c2-h50: {borg_param_caution_breeder_hunt_max_count: 2, borg_param_recover_breeder_hunt_hp_percent: 50}
+  c6-h50: {borg_param_caution_breeder_hunt_max_count: 6, borg_param_recover_breeder_hunt_hp_percent: 50}
+control: [c4-h0]
+prespecified: |
+  Medium tier after the pilot (run 44313296425: no deaths, 17 of 18 games identical in every arm); no raw
+  evidence kept, so the message-based endpoints below are not counted at this tier.
+  Gate: no config_error, one binary, every cell ends in death, turn_cap or borg_stopped; every arm's
+  user/borg.txt has the arm's common count, no caution_breeder_hunt_max_count class line, and the arm's
+  recover_breeder_hunt_hp_percent; the sanity cells reproduce. List frozen-turn stalls and key outliers.
+  Endpoints, per arm and per class, paired against c4-h0: deaths and causes; rescued / newly killed;
+  deaths by a breeder (RF_MULTIPLY, monster.txt) and deaths on a level with breeders known; deaths at
+  CL1-9 (the hunt's range); mean max CL and max DL; breeders killed ("You have destroyed/slain the
+  <breeder>"); "# Flowing toward kill" notes; "# Not resting: breeders to hunt." notes;
+  "# Fleeing (breeder level)" notes; games whose keys equal c4-h0's.
