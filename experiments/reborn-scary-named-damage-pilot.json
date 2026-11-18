@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-named-damage-pilot",
+  "issue": 292,
+  "definition": "definitions/reborn-scary-named-damage-pilot.yaml",
+  "question": "On borg-reborn-rs main f660aecc, does the named scary list do better with the damage rule at 40% than at the shipped 60%, and does the list still lead without it?",
+  "description": "On borg-reborn-rs main f660aecc, does the named scary list do better with the damage rule at 40% than at the shipped 60%, and does the list still lead without it? Generated from definitions/reborn-scary-named-damage-pilot.yaml: 3 arms on 4.2.6-reborn-rust-main-f660aecc, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any result on f660aecc was read. Pilot (RULES 16). rule4-1800 (a8ac685a, #227) is a\ndifferent game and context only.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nDescriptive, overall and per class: deaths and causes, CL1-3 deaths, final level, deepest level; paired rescued and\nnewly killed against named-d60; identical plays (named-d40 identical to named-d60 means the damage rule adds nothing\nnext to the list at this cap).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-f660aecc"
+  ],
+  "profiles": [
+    "reborn-named-dmg-named-d60",
+    "reborn-named-dmg-named-d40",
+    "reborn-named-dmg-nolist-d60"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-f660aecc",
+  "control_profile": "reborn-named-dmg-named-d60",
+  "owner_authorization": "2026-11-18: picked by the owner from /next-experiments (proposal 2). This is the pilot that RULES 16 requires first; larger tiers only after its gate and the owner (RULES 14)."
+}

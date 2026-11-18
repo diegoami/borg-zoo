@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-attack-by-class-pilot",
+  "issue": 274,
+  "definition": "definitions/reborn-attack-by-class-pilot.yaml",
+  "question": "On borg-reborn-rs main 4a482c58, does each class do better with its shipped attack preferences than with neutral preferences (1000), or with their distance from neutral halved or made half again larger?",
+  "description": "On borg-reborn-rs main 4a482c58, does each class do better with its shipped attack preferences than with neutral preferences (1000), or with their distance from neutral halved or made half again larger? Generated from definitions/reborn-attack-by-class-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-4a482c58, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any result on 4a482c58 was read. Pilot (RULES 16). The #151/#164 bundles on older refs are\ncontext only.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and the resolved per-class values in\n  params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nRead per class (each class's own starts), not pooled:\n- deaths and causes, final level, deepest level;\n- paired rescued and newly killed against ctl, and identical plays per class (Rangers are expected identical in\n  strong: their only preference is already at the cap);\n- per game, attacks by family (melee, projectile, thrown, spell, device, activation) from the messages, and\n  ammunition, flasks and spell points left at death.\nTwo starts per class per arm show only whether a value changes play in that class. Per-class direction needs the\nnext tiers (verysmall 5, small 10, medium 40 starts per class), dropping the arms and classes that played ctl's\nkeys.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-4a482c58"
+  ],
+  "profiles": [
+    "reborn-abc-ctl",
+    "reborn-abc-flat",
+    "reborn-abc-half",
+    "reborn-abc-strong"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-4a482c58",
+  "control_profile": "reborn-abc-ctl",
+  "owner_authorization": "2026-11-18: the owner asked for the attack preferences to be tuned by class. This is the pilot that RULES 16 requires first; verysmall, small and larger only after its gate and the owner (RULES 14).",
+  "retain_evidence": true
+}

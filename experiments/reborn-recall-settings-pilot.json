@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-recall-settings-pilot",
+  "issue": 280,
+  "definition": "definitions/reborn-recall-settings-pilot.yaml",
+  "question": "On borg-reborn-rs main f660aecc (#571 merged), which Word of Recall settings save games or progress against the shipped ones - no flight Recall on DL1-2, flight Recall on DL1 again, Recall valued 3x or 10x by the town planner, or no flight Recall at any depth without breeders or chasers?",
+  "description": "On borg-reborn-rs main f660aecc (#571 merged), which Word of Recall settings save games or progress against the shipped ones - no flight Recall on DL1-2, flight Recall on DL1 again, Recall valued 3x or 10x by the town planner, or no flight Recall at any depth without breeders or chasers? Generated from definitions/reborn-recall-settings-pilot.yaml: 6 arms on 4.2.6-reborn-rust-main-f660aecc, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#557, #571). Amended 2026-11-18 (owner), before\ndispatch: the request pinned #571's head 055a4a9b; #571 was merged as f660aecc before the run, so the pilot runs on\nmerged main (055a4a9b plus main's #561 and #575; every shipped Recall value and pinned file unchanged). The request's\n108 local sanity cells were on 055a4a9b and are context, not a replay check. Pilot (RULES 16); small and larger\nonly after this gate and the owner. ctl is the shipped configuration; every other arm changes one setting.\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- ctl plays the shipped borg.txt's keys (its setting equals the shipped value);\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;\n- Word of Recall bought (\"You bought ... Word of Recall\"), read in flight (\"Fleeing the level (recall)\") with\n  its depth, read in total, and carried at the end;\n- town visits, and returns to town on foot (\"Trip: return\") against by Recall;\n- deaths within 500 game turns of a \"Fleeing\" note, and DL1-2 deaths.\nContext: the six borg-play deaths from birth (shipped borg.txt, 100,000 turns) bought Recall in 0 of 6 games at\n100%, 1 at 300%, 4 at 1000% (up to 3 scrolls in one game). 18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-f660aecc"
+  ],
+  "profiles": [
+    "reborn-recallset-ctl",
+    "reborn-recallset-dl12",
+    "reborn-recallset-dl1off",
+    "reborn-recallset-v300",
+    "reborn-recallset-v1000",
+    "reborn-recallset-gate"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-f660aecc",
+  "control_profile": "reborn-recallset-ctl",
+  "retain_evidence": true
+}

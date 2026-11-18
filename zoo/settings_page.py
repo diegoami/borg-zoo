@@ -28,7 +28,8 @@ from .site import esc, pval, table, explain
 
 MEDIUM = 270
 SORT_SCRIPT = (
-    '<style>th.sort{cursor:pointer;user-select:none}th.sort::after{content:" \\2195";opacity:.4}'
+    '<style>th,td:first-child,td:nth-child(5){white-space:normal}td code,th code{overflow-wrap:anywhere}'
+    'td:first-child{min-width:10em}th.sort{cursor:pointer;user-select:none}th.sort::after{content:" \\2195";opacity:.4}'
     'th.sort[aria-sort=ascending]::after{content:" \\2191";opacity:1}'
     'th.sort[aria-sort=descending]::after{content:" \\2193";opacity:1}</style>'
     '<script>document.querySelectorAll("table").forEach(t=>{const hs=[...t.tHead.rows[0].cells];'
@@ -37,7 +38,7 @@ SORT_SCRIPT = (
     'h.setAttribute("aria-sort",asc?"ascending":"descending");'
     'const key=r=>{const c=r.cells[i];const d=c.querySelector("[data-sort]");'
     'const v=d?d.dataset.sort:c.textContent.trim();const n=parseFloat(v.replace(/[,<%]/g,""));'
-    'return /^[<\\d.,-]/.test(v)&&!isNaN(n)?n:v.toLowerCase()};'
+    'return /^<?-?[\\d,]*\\.?\\d+%?$/.test(v)&&!isNaN(n)?n:v.toLowerCase()};'
     'const rows=[...t.tBodies[0].rows].sort((a,b)=>{const x=key(a),y=key(b);'
     'return (typeof x===typeof y?(x<y?-1:x>y?1:0):(typeof x==="number"?-1:1))*(asc?1:-1)});'
     'rows.forEach(r=>t.tBodies[0].appendChild(r))};'
@@ -174,13 +175,10 @@ def run_link(meta, base):
     return f'{base}runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html'
 
 
-def description_html(key, found, short=False):
+def description_html(key, found):
     text, src = setting_descriptions.describe(key, found)
     if not text:
         return '<span class="muted">No description in the shipped borg.txt.</span>'
-    if short:
-        first = re.split(r'(?<=\.)\s', text, maxsplit=1)[0]
-        return esc(first if len(first) <= 220 else first[:217] + '...')
     where = ''
     if src.get('commit'):
         repo, path = src['source'].split('/', 2)[:2], src['source'].split('/', 2)[2]
@@ -197,8 +195,6 @@ def best(studies):
 
 
 INDEX_COLS = [('Setting', 'The exact borg.txt key; the link lists every experiment that varied it.'),
-              ('What it does', 'The first sentence of its description in the shipped borg.txt (or the parameter '
-                               'registry); the full text is on its page.'),
               ('Studies', 'Separate studies that varied it; the tiers of one study (pilot, small, medium...) '
                           'count once.'),
               ('Runs', 'Experiment runs, every tier counted.'),
@@ -209,13 +205,11 @@ INDEX_COLS = [('Setting', 'The exact borg.txt key; the link lists every experime
 
 def index_page(found):
     from .landing import nav
-    described = setting_descriptions.load()
     rows = []
     for key in sorted(found):
         studies = found[key]
         b = best(studies)
-        rows.append([f'<a href="{slug(key)}.html"><code>{esc(key)}</code></a>',
-                     description_html(key, described, short=True), len(studies),
+        rows.append([f'<a href="{slug(key)}.html"><code>{esc(key).replace("_", "_<wbr>")}</code></a>', len(studies),
                      sum(len(s['runs']) for s in studies),
                      f'{max(head_row(s)["n"] for s in studies):,}',
                      f'<span data-sort="{VERDICTS.index(b["verdict"])}">{esc(b["verdict"])} ({b["n"]:,} per arm)</span>',
@@ -228,13 +222,14 @@ def index_page(found):
                       'and how certain the result is. Verdicts are about deaths only.', INDEX_COLS)
             + f'<ul>{legend}</ul>'
             + '<p class="muted">Click a column heading to sort by it; click again to reverse.</p>'
-            + (table(INDEX_COLS, rows, left=2) if rows else '<p class="muted">No settings tested yet.</p>') + SORT_SCRIPT)
+            + (table(INDEX_COLS, rows) if rows else '<p class="muted">No settings tested yet.</p>') + SORT_SCRIPT)
 
 
 def result_table(key, row):
     others = [k for k in row['keys'] if k != key]
+    brk = lambda k: k.replace('_', '_\u200b')  # let a long key wrap at its underscores
     cols = [('Arm', 'The profile; (control) marks the arm the others are paired with.'),
-            (key, 'The value of this setting in the arm.')] + [(k, 'Also varied in this experiment.') for k in others] + [
+            (brk(key), 'The value of this setting in the arm.')] + [(brk(k), 'Also varied in this experiment.') for k in others] + [
         ('Deaths', 'Deaths among finished games.'), ('Death rate (95%)', 'With its Wilson 95% interval.'),
         ('Only control died', 'Starts where the control died and this arm lived.'),
         ('Only this arm died', 'Starts where this arm died and the control lived.'),
