@@ -277,7 +277,7 @@
     },
     "reborn-recall-settings": {
       "issue": 280,
-      "status": "defined (pilot on f660aecc, not dispatched)",
+      "status": "pilot done (gate passed); small and medium defined",
       "what": "Word of Recall settings on main f660aecc (#571 merged): shipped; no flight Recall on DL1-2 (gate 3); flight Recall on DL1 again (gate 0); Recall valued 300% or 1000% by the town planner; no flight Recall at any depth without breeders or chasers (caution_flee_recall 0).",
       "profiles": [
         "reborn-recallset-ctl",
@@ -287,11 +287,18 @@
         "reborn-recallset-v1000",
         "reborn-recallset-v300"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "44314277222",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "108 games, no deaths; flight Recalls ctl 8, dl12 3, dl1off 18, v300 8, v1000 14, gate 3; dl12 and gate identical 18/18"
+        }
+      ]
     },
     "reborn-pbd-by-class": {
       "issue": 290,
-      "status": "defined (pilot on f660aecc, not dispatched)",
+      "status": "small+medium done: deaths 23/360 in every arm; continued for Rangers and Rogues as reborn-pbd-rr",
       "what": "Arrow point-blank divisor by class on main f660aecc: shipped (5, Rogue 3, Ranger 2), common 5 for all, about half, about double; read per class.",
       "profiles": [
         "reborn-pbdc-common",
@@ -299,7 +306,20 @@
         "reborn-pbdc-hi",
         "reborn-pbdc-lo"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "44317603211",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "72 games, no deaths; identical to ctl common 14, hi 13, lo 11 of 18; common changes only Rogues and Rangers"
+        },
+        {
+          "run": "44346895083 + 44346921471",
+          "tier": "small + medium",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "1,440 games: 23/360 deaths in every arm; every class within one death of ctl"
+        }
+      ]
     },
     "reborn-scary-calm": {
       "issue": 291,
@@ -315,12 +335,92 @@
     },
     "reborn-scary-named-damage": {
       "issue": 292,
-      "status": "defined (pilot on f660aecc, not dispatched)",
+      "status": "pilot done (gate passed); superseded by reborn-scary-classes (#299): the owner wants more class bias, not less",
       "what": "Named scary list with the damage rule at 60% (shipped) or 40%, and the damage rule alone, on main f660aecc.",
       "profiles": [
         "reborn-named-dmg-named-d40",
         "reborn-named-dmg-named-d60",
         "reborn-named-dmg-nolist-d60"
+      ],
+      "runs": [
+        {
+          "run": "44317648896",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "54 games: named-d60 0 deaths, named-d40 1 (15/18 identical), nolist-d60 6 (0/18 identical)"
+        }
+      ]
+    },
+    "reborn-scary-classes": {
+      "issue": 299,
+      "status": "pilot done: up3/up6 inert at 100,000 turns; continued as reborn-scary-tough",
+      "what": "The scary list's class spread on main f660aecc: shipped (fragile = tough + 3), fragile + 3, fragile + 6, tough - 3 and fragile + 3; read per class.",
+      "profiles": [
+        "reborn-scaryclass-both",
+        "reborn-scaryclass-ctl",
+        "reborn-scaryclass-up3",
+        "reborn-scaryclass-up6"
+      ],
+      "runs": [
+        {
+          "run": "44346946815",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "72 games, no deaths; up3 and up6 18/18 identical to ctl; both changes every tough-class game"
+        }
+      ]
+    },
+    "reborn-pbd-rr": {
+      "issue": 290,
+      "status": "pilot done (gate passed); medium and big dispatched; full defined (owner: the full suite)",
+      "what": "Point-blank divisor for Rangers (1, 2 shipped, 3) and Rogues (2, 3 shipped, 4) on main f660aecc, played on Ranger and Rogue starts only.",
+      "profiles": [
+        "reborn-pbdrr-ctl",
+        "reborn-pbdrr-hi",
+        "reborn-pbdrr-lo"
+      ],
+      "runs": [
+        {
+          "run": "44359581333",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "60 games: Ranger deaths ctl 1, lo 2, hi 0 of 10; Rogue none"
+        },
+        {
+          "run": "44360811472",
+          "tier": "medium",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "running"
+        },
+        {
+          "run": "44360836868",
+          "tier": "big",
+          "specimen": "4.2.6-reborn-rust-main-f660aecc",
+          "result": "running"
+        }
+      ]
+    },
+    "reborn-scary-tough": {
+      "issue": 299,
+      "status": "defined (pilot on f660aecc, not dispatched)",
+      "what": "The scary list's tough end on main f660aecc: shipped, tough - 3 and tough - 5 with fragile unchanged; read per class.",
+      "profiles": [
+        "reborn-scarytough-ctl",
+        "reborn-scarytough-t3",
+        "reborn-scarytough-t5"
+      ],
+      "runs": []
+    },
+    "reborn-rising-ticks3": {
+      "issue": 191,
+      "status": "defined (pilot on f660aecc, not dispatched)",
+      "what": "caution_rising_explore_ticks 300 (shipped), 500, 1000, 1500, 2000 on main f660aecc.",
+      "profiles": [
+        "reborn-rising3-t1000",
+        "reborn-rising3-t1500",
+        "reborn-rising3-t2000",
+        "reborn-rising3-t300",
+        "reborn-rising3-t500"
       ],
       "runs": []
     }

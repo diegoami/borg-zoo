@@ -21,10 +21,14 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-outmatched` | [#270](https://github.com/diegoami/borg-zoo/issues/270) | 4 | superseded by #275 (reborn-heal-outmatched on 92fafc61: off, min_loss 30-70); not dispatched | Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75. |
 | `reborn-attack-by-class` | [#274](https://github.com/diegoami/borg-zoo/issues/274) | 4 | verysmall defined (ctl, flat, half; strong dropped); not dispatched | Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class. |
 | `reborn-worships` | [#279](https://github.com/diegoami/borg-zoo/issues/279) | 6 | pilot done (gate passed); damage, speed, hp, mana inert (18/18 identical), dropped; ac changes every game | The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect. |
-| `reborn-recall-settings` | [#280](https://github.com/diegoami/borg-zoo/issues/280) | 6 | defined (pilot on f660aecc, not dispatched) | Word of Recall settings on main f660aecc (#571 merged): shipped; no flight Recall on DL1-2 (gate 3); flight Recall on DL1 again (gate 0); Recall valued 300% or 1000% by the town planner; no flight Recall at any depth without breeders or chasers (caution_flee_recall 0). |
-| `reborn-pbd-by-class` | [#290](https://github.com/diegoami/borg-zoo/issues/290) | 4 | defined (pilot on f660aecc, not dispatched) | Arrow point-blank divisor by class on main f660aecc: shipped (5, Rogue 3, Ranger 2), common 5 for all, about half, about double; read per class. |
+| `reborn-recall-settings` | [#280](https://github.com/diegoami/borg-zoo/issues/280) | 6 | pilot done (gate passed); small and medium defined | Word of Recall settings on main f660aecc (#571 merged): shipped; no flight Recall on DL1-2 (gate 3); flight Recall on DL1 again (gate 0); Recall valued 300% or 1000% by the town planner; no flight Recall at any depth without breeders or chasers (caution_flee_recall 0). |
+| `reborn-pbd-by-class` | [#290](https://github.com/diegoami/borg-zoo/issues/290) | 4 | small+medium done: deaths 23/360 in every arm; continued for Rangers and Rogues as reborn-pbd-rr | Arrow point-blank divisor by class on main f660aecc: shipped (5, Rogue 3, Ranger 2), common 5 for all, about half, about double; read per class. |
 | `reborn-scary-calm` | [#291](https://github.com/diegoami/borg-zoo/issues/291) | 4 | defined (pilot on f660aecc, not dispatched) | Scary latch (1/0) x calm (hurt 50 + afraid 1, shipped, against 0/0 = C) on main f660aecc. |
-| `reborn-scary-named-damage` | [#292](https://github.com/diegoami/borg-zoo/issues/292) | 3 | defined (pilot on f660aecc, not dispatched) | Named scary list with the damage rule at 60% (shipped) or 40%, and the damage rule alone, on main f660aecc. |
+| `reborn-scary-named-damage` | [#292](https://github.com/diegoami/borg-zoo/issues/292) | 3 | pilot done (gate passed); superseded by reborn-scary-classes (#299): the owner wants more class bias, not less | Named scary list with the damage rule at 60% (shipped) or 40%, and the damage rule alone, on main f660aecc. |
+| `reborn-scary-classes` | [#299](https://github.com/diegoami/borg-zoo/issues/299) | 4 | pilot done: up3/up6 inert at 100,000 turns; continued as reborn-scary-tough | The scary list's class spread on main f660aecc: shipped (fragile = tough + 3), fragile + 3, fragile + 6, tough - 3 and fragile + 3; read per class. |
+| `reborn-pbd-rr` | [#290](https://github.com/diegoami/borg-zoo/issues/290) | 3 | pilot done (gate passed); medium and big dispatched; full defined (owner: the full suite) | Point-blank divisor for Rangers (1, 2 shipped, 3) and Rogues (2, 3 shipped, 4) on main f660aecc, played on Ranger and Rogue starts only. |
+| `reborn-scary-tough` | [#299](https://github.com/diegoami/borg-zoo/issues/299) | 3 | defined (pilot on f660aecc, not dispatched) | The scary list's tough end on main f660aecc: shipped, tough - 3 and tough - 5 with fragile unchanged; read per class. |
+| `reborn-rising-ticks3` | [#191](https://github.com/diegoami/borg-zoo/issues/191) | 5 | defined (pilot on f660aecc, not dispatched) | caution_rising_explore_ticks 300 (shipped), 500, 1000, 1500, 2000 on main f660aecc. |
 
 ### `heal-attack-4`
 
@@ -275,6 +279,10 @@ Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = bo
 | `reborn-recallset-v1000` | – | – | 1000 |
 | `reborn-recallset-v300` | – | – | 300 |
 
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44314277222](https://github.com/diegoami/borg-zoo/actions/runs/44314277222) | pilot | `4.2.6-reborn-rust-main-f660aecc` | 108 games, no deaths; flight Recalls ctl 8, dl12 3, dl1off 18, v300 8, v1000 14, gate 3; dl12 and gate identical 18/18 |
+
 ### `reborn-pbd-by-class`
 
 Arrow point-blank divisor by class on main f660aecc: shipped (5, Rogue 3, Ranger 2), common 5 for all, about half, about double; read per class.
@@ -287,6 +295,11 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-pbdc-ctl` | – | – | – | – | – | – | – | – | – |
 | `reborn-pbdc-hi` | 10 | 10 | 10 | 10 | 10 | 10 | 4 | 6 | 10 |
 | `reborn-pbdc-lo` | 2 | 2 | 2 | 2 | 2 | 2 | 1 | 2 | 2 |
+
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44317603211](https://github.com/diegoami/borg-zoo/actions/runs/44317603211) | pilot | `4.2.6-reborn-rust-main-f660aecc` | 72 games, no deaths; identical to ctl common 14, hi 13, lo 11 of 18; common changes only Rogues and Rangers |
+| [44346895083 + 44346921471](https://github.com/diegoami/borg-zoo/actions/runs/44346895083 + 44346921471) | small + medium | `4.2.6-reborn-rust-main-f660aecc` | 1,440 games: 23/360 deaths in every arm; every class within one death of ctl |
 
 ### `reborn-scary-calm`
 
@@ -313,6 +326,71 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-named-dmg-named-d60` | 60 | 1 |
 | `reborn-named-dmg-nolist-d60` | 60 | 0 |
 
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44317648896](https://github.com/diegoami/borg-zoo/actions/runs/44317648896) | pilot | `4.2.6-reborn-rust-main-f660aecc` | 54 games: named-d60 0 deaths, named-d40 1 (15/18 identical), nolist-d60 6 (0/18 identical) |
+
+### `reborn-scary-classes`
+
+The scary list's class spread on main f660aecc: shipped (fragile = tough + 3), fragile + 3, fragile + 6, tough - 3 and fragile + 3; read per class.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_scary_list_lines` |
+| --- | --- |
+| `reborn-scaryclass-both` | 28 lines |
+| `reborn-scaryclass-ctl` | – |
+| `reborn-scaryclass-up3` | 28 lines |
+| `reborn-scaryclass-up6` | 28 lines |
+
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44346946815](https://github.com/diegoami/borg-zoo/actions/runs/44346946815) | pilot | `4.2.6-reborn-rust-main-f660aecc` | 72 games, no deaths; up3 and up6 18/18 identical to ctl; both changes every tough-class game |
+
+### `reborn-pbd-rr`
+
+Point-blank divisor for Rangers (1, 2 shipped, 3) and Rogues (2, 3 shipped, 4) on main f660aecc, played on Ranger and Rogue starts only.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_arrow_point_blank_divisor_ranger` | `borg_param_attack_arrow_point_blank_divisor_rogue` |
+| --- | --- | --- |
+| `reborn-pbdrr-ctl` | – | – |
+| `reborn-pbdrr-hi` | 3 | 4 |
+| `reborn-pbdrr-lo` | 1 | 2 |
+
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44359581333](https://github.com/diegoami/borg-zoo/actions/runs/44359581333) | pilot | `4.2.6-reborn-rust-main-f660aecc` | 60 games: Ranger deaths ctl 1, lo 2, hi 0 of 10; Rogue none |
+| [44360811472](https://github.com/diegoami/borg-zoo/actions/runs/44360811472) | medium | `4.2.6-reborn-rust-main-f660aecc` | running |
+| [44360836868](https://github.com/diegoami/borg-zoo/actions/runs/44360836868) | big | `4.2.6-reborn-rust-main-f660aecc` | running |
+
+### `reborn-scary-tough`
+
+The scary list's tough end on main f660aecc: shipped, tough - 3 and tough - 5 with fragile unchanged; read per class.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_scary_list_lines` |
+| --- | --- |
+| `reborn-scarytough-ctl` | – |
+| `reborn-scarytough-t3` | 28 lines |
+| `reborn-scarytough-t5` | 28 lines |
+
+### `reborn-rising-ticks3`
+
+caution_rising_explore_ticks 300 (shipped), 500, 1000, 1500, 2000 on main f660aecc.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_rising_explore_ticks` |
+| --- | --- |
+| `reborn-rising3-t1000` | 1000 |
+| `reborn-rising3-t1500` | 1500 |
+| `reborn-rising3-t2000` | 2000 |
+| `reborn-rising3-t300` | – |
+| `reborn-rising3-t500` | 500 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -332,8 +410,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_arrow_point_blank_divisor_necromancer` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_arrow_point_blank_divisor_paladin` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_arrow_point_blank_divisor_priest` | 2, 10, not set | `reborn-pbd-by-class` |  |
-| `borg_param_attack_arrow_point_blank_divisor_ranger` | 0, 1, 4, not set | `reborn-pbd-by-class` |  |
-| `borg_param_attack_arrow_point_blank_divisor_rogue` | 0, 2, 6, not set | `reborn-pbd-by-class` |  |
+| `borg_param_attack_arrow_point_blank_divisor_ranger` | 0, 1, 3, 4, not set | `reborn-pbd-by-class`, `reborn-pbd-rr` |  |
+| `borg_param_attack_arrow_point_blank_divisor_rogue` | 0, 2, 4, 6, not set | `reborn-pbd-by-class`, `reborn-pbd-rr` |  |
 | `borg_param_attack_arrow_point_blank_divisor_warrior` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_preference_blackguard_melee_permille` | 1000, 1300, 1600, 1900, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
 | `borg_param_attack_preference_blackguard_spell_permille` | 1000, 1200, 1400, 1600, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
@@ -354,6 +432,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_flee_recall_gate_below_depth` | 0, 2, 3, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
+| `borg_param_caution_rising_explore_ticks` | 500, 1000, 1500, 2000, not set | `reborn-rising-ticks3` |  |
 | `borg_param_caution_scary_afraid` | 0, 1 | `reborn-scary-calm` |  |
 | `borg_param_caution_scary_damage_percent` | 40, 60 | `reborn-scary-named-damage` |  |
 | `borg_param_caution_scary_hurt_percent` | 0, 50 | `reborn-scary-calm` |  |
@@ -378,6 +457,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
+| `borg_scary_list_lines` | 28 lines, not set | `reborn-scary-classes`, `reborn-scary-tough` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |
@@ -410,3 +490,4 @@ Exposed by borg-reborn-rs `main` but not yet used to build arms. A profile sets 
 | `4.2.6-reborn-core-pilot` | diegoami/borg-reborn-rs | `1be6edc7` | borg-reborn-rs 1be6edc, the option-C pilot (borg-reborn-rs #207, #208): borg-rs's core (milestone 12, vendored as borg-core/) inside the reborn shell, selected through the run's borg.txt (borg_reborn_core, borg_reborn_errand). |
 | `4.2.6-reborn-rust-main-4a482c58` | diegoami/borg-reborn-rs | `4a482c58` | borg-reborn-rs 4a482c58, main after #539 (caution_scary_hurt_percent 50, caution_scary_afraid 1) and fba1c6e0 (borg_trip_unknown_stacks 2, caution_stair_scum_threat 1). |
 | `4.2.6-reborn-rust-main-92fafc61` | diegoami/borg-reborn-rs | `92fafc61` | borg-reborn-rs 92fafc61, main at the merge of #561 (#558 breeder hunt by class). |
+| `4.2.6-reborn-rust-main-f660aecc` | diegoami/borg-reborn-rs | `f660aecc` | borg-reborn-rs f660aecc, main at the merge of #571 (#557: town_recall_value_percent, prepared_recall_depth, one Word of Recall section in borg.txt), after #561 and #575. |

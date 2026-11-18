@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-classes-pilot",
+  "issue": 299,
+  "definition": "definitions/reborn-scary-classes-pilot.yaml",
+  "question": "On borg-reborn-rs main f660aecc, does widening the scary list's class spread (fragile classes fear each named monster 3 or 6 levels longer, or tough classes 3 less and fragile 3 more) save games, and in which classes?",
+  "description": "On borg-reborn-rs main f660aecc, does widening the scary list's class spread (fragile classes fear each named monster 3 or 6 levels longer, or tough classes 3 less and fragile 3 more) save games, and in which classes? Generated from definitions/reborn-scary-classes-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-f660aecc, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any result of these arms was read. Pilot (RULES 16). #292's pilot (same specimen, run\n44317648896) is context: no list 6 deaths against 0 for the shipped list.\nGate:\n- no config_error; one binary; each arm's appended lines in the run's scary list (hash recorded per cell);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nRead per class, not pooled:\n- identical plays against ctl per class (Warrior, Paladin and Blackguard are expected identical in up3 and up6);\n- deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;\n- per game \"Scary guy on level\" notes with the monster and character level, flights, and time spent on DL1.\nTwo starts per class per arm show only where the spread acts; per-class direction needs the next tiers.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-f660aecc"
+  ],
+  "profiles": [
+    "reborn-scaryclass-ctl",
+    "reborn-scaryclass-up3",
+    "reborn-scaryclass-up6",
+    "reborn-scaryclass-both"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-f660aecc",
+  "control_profile": "reborn-scaryclass-ctl",
+  "owner_authorization": "2026-11-18: the owner asked for more class bias in the scary list, replacing #292 (named list x damage rule, which tested less). This is the pilot that RULES 16 requires first; larger tiers only after its gate and the owner.",
+  "retain_evidence": true
+}
