@@ -1,0 +1,49 @@
+# borg-zoo#248: borg_trip_unknown_stacks 2, 3, 4, 5 on borg-reborn-rs main d9ff9808, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-trip-unknown-pilot.yaml
+name: reborn-trip-unknown-pilot
+issue: 248
+question: On borg-reborn-rs main d9ff9808, how many unidentified item types should send the Borg back to town (borg_trip_unknown_stacks 2, 3, 4, 5)?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-d9ff9808
+  repository: diegoami/borg-reborn-rs
+  ref: d9ff9808236e466b42ee9966abf807aed2738107
+  source: https://github.com/diegoami/borg-zoo/issues/248
+  label: >-
+    borg-reborn-rs d9ff9808, main at the merge of #550 (#549: no stair scum while threatened, off by default); over
+    c9e58ca0 also #531 (stand and fight a scary monster when the escape is not real) and #553 (borg.txt layout,
+    settings unchanged). Ships the scary list on, trip policy 1 with unknown_stacks 5. Source-hash rust 3832a3b5...;
+    harness/borg.txt 9860fba9...
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+# Every arm reads the shipped harness/borg.txt and writes only this line.
+profile_prefix: reborn-tripunk
+vary:
+  unknown:
+    u2: {borg_trip_unknown_stacks: 2}
+    u3: {borg_trip_unknown_stacks: 3}
+    u4: {borg_trip_unknown_stacks: 4}
+    u5: {borg_trip_unknown_stacks: 5}
+
+control: [u5]
+extra:
+  retain_evidence: true
+
+owner_authorization: >-
+  2026-11-18: the owner asked for an experiment with borg_trip_unknown_stacks at 2, 3, 4 and 5 (borg-zoo#248). Pilot
+  first (RULES 16) on current main; small and larger only after the gate and the owner.
+
+prespecified: |
+  Fixed 2026-11-18, before any result was read (borg-zoo#248). Pilot (RULES 16). Gate: no config_error; one binary;
+  each arm's borg.txt has borg_trip_unknown_stacks at its value and otherwise the shipped settings (trip policy 1,
+  pack slack 1, the shipped scary list); no plan loaded; every cell ends in death, turn_cap or borg_stopped;
+  frozen-turn bursts classified and key outliers listed; death bundles reproduced. u5 is the shipped value, so it
+  plays the shipped game. Report per arm and per class, from every game's messages: deaths and causes, final level,
+  deepest level; paired rescued and newly killed against u5; "Trip: return" decisions per game and town visits;
+  how many starts play identical keys to u5. Context: on 193d9076 (borg-zoo#170, 360 starts) no value differed from
+  5. 18 starts per arm show direction only.

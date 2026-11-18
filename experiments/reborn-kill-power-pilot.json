@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-kill-power-pilot",
+  "issue": 244,
+  "definition": "definitions/reborn-kill-power-pilot.yaml",
+  "question": "Does estimating a living monster at least 1 HP (kill_live_min_power) lower deaths?",
+  "description": "Does estimating a living monster at least 1 HP (kill_live_min_power) lower deaths? Generated from definitions/reborn-kill-power-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-c9e58ca0, suite classes-18.",
+  "prespecified": "Gate: no config_error, one binary, every cell ends in death, turn_cap or borg_stopped; both arms write\nborg_param_kill_live_min_power as set; off plays the same keys as main 156c8e52 (the sanity cells).\nList frozen-turn stalls and key outliers.\nEndpoints, per arm and per class, paired against off: deaths and causes; rescued / newly killed;\ndeaths at CL1-3; mean max CL and max DL; deaths while paralysed or next to a monster the Borg had\nwounded (its last \"# Targeting <monster> who has N Hit Points\" note in the 50 lines before death names\nthe killer); deaths by floating eyes.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-c9e58ca0"
+  ],
+  "profiles": [
+    "reborn-kill-power-off",
+    "reborn-kill-power-on"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-c9e58ca0",
+  "control_profile": "reborn-kill-power-off",
+  "retain_evidence": true
+}

@@ -1,0 +1,31 @@
+# borg-zoo#224: cornered-mode danger threshold (5, 10) x radius (2, 4) on borg-reborn-rs main d9ff9808, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-cornered2-pilot.yaml
+name: reborn-cornered2-pilot
+issue: 224
+question: Does cornered mode save more games if it triggers earlier (danger at half the HP) or from further away?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen: 4.2.6-reborn-rust-main-d9ff9808
+
+# Every arm reads the shipped harness/borg.txt with cornered mode on and the big-level margin at the shipped 0; only the
+# danger threshold and the radius differ. danger_tenths 5 = cornered when danger reaches half the HP; 10 = the HP.
+profile_prefix: reborn-cornered2
+vary:
+  danger:
+    d5: {borg_param_caution_cornered: 1, borg_param_caution_cornered_big_level_margin: 0, borg_param_caution_cornered_danger_tenths: 5}
+    d10: {borg_param_caution_cornered: 1, borg_param_caution_cornered_big_level_margin: 0, borg_param_caution_cornered_danger_tenths: 10}
+  radius:
+    r2: {borg_param_caution_cornered_radius: 2}
+    r4: {borg_param_caution_cornered_radius: 4}
+
+control: [d10, r2]
+owner_authorization: >-
+  2026-11-18: the owner chose a 2x2 of caution_cornered_danger_tenths (5, 10) x caution_cornered_radius (2, 4) on
+  current main, cornered mode on and the big-level margin at its shipped 0 (borg-zoo#224). Pilot first (RULES 16).
+
+prespecified: |
+  Fixed 2026-11-18, before any result was read (borg-zoo#224). Pilot only. Gate: no config_error; one binary; each
+  arm's settings written in its borg.txt; every cell ends in death, turn_cap or borg_stopped; stalls, purchase bursts
+  and key outliers listed. Descriptive: deaths and causes per class (CL1-3 deaths counted), mean max level and depth;
+  paired against d10-r2 (the shipped values); from replays, the cornered-mode notes (buffs, Monster Confusion) per
+  arm. 18 starts per arm cannot show whether either change helps; all 1,800 starts only on the owner's go.

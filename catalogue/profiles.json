@@ -2682,6 +2682,367 @@
         "borg_param_caution_scary_named_monsters": 0,
         "borg_param_caution_scary_damage_percent": 40
       }
+    },
+    "reborn-503-ctl": {
+      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 0,
+        "borg_param_caution_scary_named_monsters": 1
+      }
+    },
+    "reborn-503-fight": {
+      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm fight.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 1,
+        "borg_param_caution_scary_named_monsters": 1
+      }
+    },
+    "reborn-503-nolist": {
+      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm nolist.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 0,
+        "borg_param_caution_scary_named_monsters": 0
+      }
+    },
+    "reborn-503-both": {
+      "description": "borg-zoo#216 (reborn-breeder-scary-pilot.yaml): arm both.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 1,
+        "borg_param_caution_scary_named_monsters": 0
+      }
+    },
+    "reborn-503-both-plan": {
+      "description": "borg-zoo#216 (reborn-nolist-plan-pilot.yaml): arm both-plan.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 1,
+        "borg_param_caution_scary_named_monsters": 0,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-503-fight-plan": {
+      "description": "borg-zoo#216 (reborn-named-plan-pilot.yaml): arm fight-plan.",
+      "settings": {
+        "borg_param_caution_breeder_fight": 1,
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-flee-ctl": {
+      "description": "borg-zoo#235 (reborn-flee-switches-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 0,
+        "borg_param_escape_phase_adjacent_only": 0,
+        "borg_param_caution_scary_ranged_no_stairs": 0
+      }
+    },
+    "reborn-flee-stairs": {
+      "description": "borg-zoo#235 (reborn-flee-switches-pilot.yaml): arm stairs.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 1,
+        "borg_param_escape_phase_adjacent_only": 0,
+        "borg_param_caution_scary_ranged_no_stairs": 0
+      }
+    },
+    "reborn-flee-phase": {
+      "description": "borg-zoo#235 (reborn-flee-switches-pilot.yaml): arm phase.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 0,
+        "borg_param_escape_phase_adjacent_only": 1,
+        "borg_param_caution_scary_ranged_no_stairs": 0
+      }
+    },
+    "reborn-flee-ranged": {
+      "description": "borg-zoo#235 (reborn-flee-switches-pilot.yaml): arm ranged.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 0,
+        "borg_param_escape_phase_adjacent_only": 0,
+        "borg_param_caution_scary_ranged_no_stairs": 1
+      }
+    },
+    "reborn-flee-all": {
+      "description": "borg-zoo#235 (reborn-flee-switches-pilot.yaml): arm all.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 1,
+        "borg_param_escape_phase_adjacent_only": 1,
+        "borg_param_caution_scary_ranged_no_stairs": 1
+      }
+    },
+    "reborn-flee-phase-ranged": {
+      "description": "borg-zoo#235 (reborn-flee-combos-pilot.yaml): arm phase-ranged.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 0,
+        "borg_param_escape_phase_adjacent_only": 1,
+        "borg_param_caution_scary_ranged_no_stairs": 1
+      }
+    },
+    "reborn-flee-stairs-ranged": {
+      "description": "borg-zoo#235 (reborn-flee-combos-pilot.yaml): arm stairs-ranged.",
+      "settings": {
+        "borg_param_caution_flee_stairs_before_recall": 1,
+        "borg_param_escape_phase_adjacent_only": 0,
+        "borg_param_caution_scary_ranged_no_stairs": 1
+      }
+    },
+    "reborn-breeder-ctl": {
+      "description": "borg-zoo#240 (reborn-breeder-escape-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 0,
+        "borg_param_caution_flee_known_down_stairs": 0
+      }
+    },
+    "reborn-breeder-exit-d4": {
+      "description": "borg-zoo#240 (reborn-breeder-escape-pilot.yaml): arm exit-d4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 1,
+        "borg_param_caution_breeder_exit_distance": 4,
+        "borg_param_caution_flee_known_down_stairs": 0
+      }
+    },
+    "reborn-breeder-exit-d6": {
+      "description": "borg-zoo#240 (reborn-breeder-escape-pilot.yaml): arm exit-d6.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 1,
+        "borg_param_caution_breeder_exit_distance": 6,
+        "borg_param_caution_flee_known_down_stairs": 0
+      }
+    },
+    "reborn-breeder-exit-d10": {
+      "description": "borg-zoo#240 (reborn-breeder-escape-pilot.yaml): arm exit-d10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 1,
+        "borg_param_caution_breeder_exit_distance": 10,
+        "borg_param_caution_flee_known_down_stairs": 0
+      }
+    },
+    "reborn-scary-shipped": {
+      "description": "borg-zoo#241 (reborn-scary-list-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1
+      }
+    },
+    "reborn-scary-compiled": {
+      "description": "borg-zoo#241 (reborn-scary-list-pilot.yaml): arm compiled.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_scary_list": "none"
+      }
+    },
+    "reborn-scary-plus-early": {
+      "description": "borg-zoo#241 (reborn-scary-list-pilot.yaml): arm plus-early.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_scary_list_lines": [
+          "wild cat | 2-4",
+          "crow | 2-4",
+          "giant yellow centipede | 2-4",
+          "wild dog | 2-4",
+          "kobold shaman | 3-6"
+        ]
+      }
+    },
+    "reborn-kill-power-off": {
+      "description": "borg-zoo#244 (reborn-kill-power-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kill_live_min_power": 0
+      }
+    },
+    "reborn-kill-power-on": {
+      "description": "borg-zoo#244 (reborn-kill-power-pilot.yaml): arm on.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kill_live_min_power": 1
+      }
+    },
+    "reborn-rising-t0": {
+      "description": "borg-zoo#191 (reborn-rising-ticks2-pilot.yaml): arm t0.",
+      "settings": {
+        "borg_param_caution_rising_explore_ticks": 0
+      }
+    },
+    "reborn-rising-t150": {
+      "description": "borg-zoo#191 (reborn-rising-ticks2-pilot.yaml): arm t150.",
+      "settings": {
+        "borg_param_caution_rising_explore_ticks": 150
+      }
+    },
+    "reborn-rising-t300": {
+      "description": "borg-zoo#191 (reborn-rising-ticks2-pilot.yaml): arm t300.",
+      "settings": {
+        "borg_param_caution_rising_explore_ticks": 300
+      }
+    },
+    "reborn-rising-t450": {
+      "description": "borg-zoo#191 (reborn-rising-ticks2-pilot.yaml): arm t450.",
+      "settings": {
+        "borg_param_caution_rising_explore_ticks": 450
+      }
+    },
+    "reborn-unknown-s2": {
+      "description": "borg-zoo#170 (reborn-unknown-main-pilot.yaml): arm s2.",
+      "settings": {
+        "borg_trip_unknown_stacks": 2
+      }
+    },
+    "reborn-unknown-s3": {
+      "description": "borg-zoo#170 (reborn-unknown-main-pilot.yaml): arm s3.",
+      "settings": {
+        "borg_trip_unknown_stacks": 3
+      }
+    },
+    "reborn-unknown-s4": {
+      "description": "borg-zoo#170 (reborn-unknown-main-pilot.yaml): arm s4.",
+      "settings": {
+        "borg_trip_unknown_stacks": 4
+      }
+    },
+    "reborn-unknown-s5": {
+      "description": "borg-zoo#170 (reborn-unknown-main-pilot.yaml): arm s5.",
+      "settings": {
+        "borg_trip_unknown_stacks": 5
+      }
+    },
+    "reborn-cornered2-d5-r2": {
+      "description": "borg-zoo#224 (reborn-cornered2-pilot.yaml): arm d5, r2.",
+      "settings": {
+        "borg_param_caution_cornered": 1,
+        "borg_param_caution_cornered_big_level_margin": 0,
+        "borg_param_caution_cornered_danger_tenths": 5,
+        "borg_param_caution_cornered_radius": 2
+      }
+    },
+    "reborn-cornered2-d5-r4": {
+      "description": "borg-zoo#224 (reborn-cornered2-pilot.yaml): arm d5, r4.",
+      "settings": {
+        "borg_param_caution_cornered": 1,
+        "borg_param_caution_cornered_big_level_margin": 0,
+        "borg_param_caution_cornered_danger_tenths": 5,
+        "borg_param_caution_cornered_radius": 4
+      }
+    },
+    "reborn-cornered2-d10-r2": {
+      "description": "borg-zoo#224 (reborn-cornered2-pilot.yaml): arm d10, r2.",
+      "settings": {
+        "borg_param_caution_cornered": 1,
+        "borg_param_caution_cornered_big_level_margin": 0,
+        "borg_param_caution_cornered_danger_tenths": 10,
+        "borg_param_caution_cornered_radius": 2
+      }
+    },
+    "reborn-cornered2-d10-r4": {
+      "description": "borg-zoo#224 (reborn-cornered2-pilot.yaml): arm d10, r4.",
+      "settings": {
+        "borg_param_caution_cornered": 1,
+        "borg_param_caution_cornered_big_level_margin": 0,
+        "borg_param_caution_cornered_danger_tenths": 10,
+        "borg_param_caution_cornered_radius": 4
+      }
+    },
+    "reborn-tripunk-u2": {
+      "description": "borg-zoo#248 (reborn-trip-unknown-pilot.yaml): arm u2.",
+      "settings": {
+        "borg_trip_unknown_stacks": 2
+      }
+    },
+    "reborn-tripunk-u3": {
+      "description": "borg-zoo#248 (reborn-trip-unknown-pilot.yaml): arm u3.",
+      "settings": {
+        "borg_trip_unknown_stacks": 3
+      }
+    },
+    "reborn-tripunk-u4": {
+      "description": "borg-zoo#248 (reborn-trip-unknown-pilot.yaml): arm u4.",
+      "settings": {
+        "borg_trip_unknown_stacks": 4
+      }
+    },
+    "reborn-tripunk-u5": {
+      "description": "borg-zoo#248 (reborn-trip-unknown-pilot.yaml): arm u5.",
+      "settings": {
+        "borg_trip_unknown_stacks": 5
+      }
+    },
+    "reborn-scum-ctl": {
+      "description": "borg-zoo#246 (reborn-stair-scum-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_stair_scum_threat": 0
+      }
+    },
+    "reborn-scum-threat": {
+      "description": "borg-zoo#246 (reborn-stair-scum-pilot.yaml): arm threat.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_stair_scum_threat": 1
+      }
+    },
+    "reborn-recall-ctl": {
+      "description": "borg-zoo#255 (reborn-flee-recall-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall": 1,
+        "borg_param_town_recall_reserve": 0,
+        "borg_param_caution_rising_hold_flee_descent": 0
+      }
+    },
+    "reborn-recall-gate": {
+      "description": "borg-zoo#255 (reborn-flee-recall-pilot.yaml): arm gate.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall": 0,
+        "borg_param_town_recall_reserve": 0,
+        "borg_param_caution_rising_hold_flee_descent": 0
+      }
+    },
+    "reborn-recall-reserve": {
+      "description": "borg-zoo#255 (reborn-flee-recall-pilot.yaml): arm reserve.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall": 0,
+        "borg_param_town_recall_reserve": 1,
+        "borg_param_caution_rising_hold_flee_descent": 0
+      }
+    },
+    "reborn-recall-hold": {
+      "description": "borg-zoo#255 (reborn-flee-recall-pilot.yaml): arm hold.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall": 0,
+        "borg_param_town_recall_reserve": 0,
+        "borg_param_caution_rising_hold_flee_descent": 1
+      }
     }
   }
 }

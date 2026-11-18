@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-breeder-scary-pilot",
+  "issue": 216,
+  "definition": "definitions/reborn-breeder-scary-pilot.yaml",
+  "question": "Does standing to fight breeders, or dropping C's named scary-monster list, change how main survives and progresses?",
+  "description": "Does standing to fight breeders, or dropping C's named scary-monster list, change how main survives and progresses? Generated from definitions/reborn-breeder-scary-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-233ef23e, suite classes-18.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#216). Pilot only. Gate: no config_error; one binary;\neach arm's two flags written in its borg.txt and reported by params-core.json on the death replays; every\ncell ends in death, turn_cap or borg_stopped; frozen-turn stalls, purchase bursts and key outliers listed;\nin ctl, none of #503's notes in the death replays. Descriptive, per arm and per class: deaths and causes,\nfinal level, deepest level, town visits; '# Scary guy on level.' and '# Fleeing (breeder level)' notes;\nbreeder kills; descents and down-then-up bounces (from replays where the records do not hold them).\nPaired against ctl on the same start: rescued, newly killed, identical play. 18 starts per arm cannot show\nwhich flags are better.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-233ef23e"
+  ],
+  "profiles": [
+    "reborn-503-ctl",
+    "reborn-503-fight",
+    "reborn-503-nolist",
+    "reborn-503-both"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-233ef23e",
+  "control_profile": "reborn-503-ctl",
+  "owner_authorization": "2026-11-17: requested from borg-reborn-rs by the owner (borg-zoo#216): a pilot of #503's two flags, 2x2, on classes-18. Small and larger only after the gate and the owner (RULES 14, 16)."
+}

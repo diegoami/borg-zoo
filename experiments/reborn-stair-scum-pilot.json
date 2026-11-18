@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-stair-scum-pilot",
+  "issue": 246,
+  "definition": "definitions/reborn-stair-scum-pilot.yaml",
+  "question": "On borg-reborn-rs main d9ff9808, does skipping the DL1 stair scum while threatened (caution_stair_scum_threat) save games without costing any?",
+  "description": "On borg-reborn-rs main d9ff9808, does skipping the DL1 stair scum while threatened (caution_stair_scum_threat) save games without costing any? Generated from definitions/reborn-stair-scum-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-d9ff9808, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#549, #550). Pilot (RULES 16); small and larger\nonly after this gate and the owner.\nGate:\n- no config_error; one binary; each arm's flag value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level;\n- paired rescued and newly killed against ctl;\n- \"Flowing toward Scum item\" and \"Leaving (finish shopping)\" notes per game;\n- the games whose keys differ from ctl, and for each whether ctl had a \"Flowing toward Scum item\" note (the flag\n  can also change a game without one: a skipped stair scum does not run the scum's own leave-the-level logic);\n- deaths on DL1 within 500 game turns of arriving from town;\n- scary-level deaths (\"Scary guy on level\" in the last 100 messages).\nContext: a local run of this exact definition (on the identical tree, see the sanity cells) had 0 deaths in\nboth arms, and 16 of 18 games played identical keys. 18 starts per arm show direction only: this pilot\nchecks safety, and a rescue count needs a larger tier.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-d9ff9808"
+  ],
+  "profiles": [
+    "reborn-scum-ctl",
+    "reborn-scum-threat"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-d9ff9808",
+  "control_profile": "reborn-scum-ctl",
+  "retain_evidence": true
+}

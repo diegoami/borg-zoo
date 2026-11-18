@@ -1,0 +1,31 @@
+# borg-zoo#216: named scary list (on, off) x errands plan (none, errands_plan.txt), breeder stand on, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-named-plan-pilot.yaml
+name: reborn-named-plan-pilot
+issue: 216
+question: Does the errands plan help, with and without C's named scary list, on main with the breeder stand on?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen: 4.2.6-reborn-rust-main-233ef23e
+
+# Every arm reads the shipped harness/borg.txt with the breeder stand on (shipped) and sets the named list and the plan.
+profile_prefix: reborn-503
+arms:
+  both: {borg_param_caution_breeder_fight: 1, borg_param_caution_scary_named_monsters: 0}                               # list off, no plan: the shipped default
+  both-plan: {borg_param_caution_breeder_fight: 1, borg_param_caution_scary_named_monsters: 0, borg_plan: errands_plan.txt}
+  fight: {borg_param_caution_breeder_fight: 1, borg_param_caution_scary_named_monsters: 1}                              # list on, no plan
+  fight-plan: {borg_param_caution_breeder_fight: 1, borg_param_caution_scary_named_monsters: 1, borg_plan: errands_plan.txt}
+
+control: [both]
+owner_authorization: >-
+  2026-11-17: after the named-list-off x errands-plan pilot (run 44163377539), the owner asked to add the dimension of
+  the named monsters list. Pilot first (RULES 16); small and larger only after the gate and the owner.
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#216). Pilot only. A 2x2 of the named scary list (off, on)
+  and the plan (none, errands_plan.txt), breeder stand on in every arm. Gate: no config_error; one binary; both flags
+  written in every arm; the loaded plan copy matches its pin in the plan arms and is absent from the others; every cell
+  ends in death, turn_cap or borg_stopped; frozen-turn stalls, purchase bursts and key outliers listed. both, both-plan
+  and fight are the same specimen and profiles as earlier #216 pilots and should replay them exactly. Descriptive:
+  deaths and causes (CL1-3 deaths counted), final level, deepest level; paired rescued and newly killed against both;
+  the plan's effect within each list setting, and the list's effect within each plan setting. 18 starts per arm
+  cannot show whether either helps.

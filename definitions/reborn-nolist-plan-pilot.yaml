@@ -1,0 +1,27 @@
+# borg-zoo#216: the shipped #503 defaults (named scary list off, breeder stand on) with and without errands_plan.txt, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-nolist-plan-pilot.yaml
+name: reborn-nolist-plan-pilot
+issue: 216
+question: With the named scary list off (the shipped default), does the errands plan change how main survives and progresses?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen: 4.2.6-reborn-rust-main-233ef23e
+
+# Both arms read the shipped harness/borg.txt with the shipped #503 values written out; the plan arm adds errands_plan.txt.
+profile_prefix: reborn-503
+arms:
+  both: {borg_param_caution_breeder_fight: 1, borg_param_caution_scary_named_monsters: 0}                              # the shipped default, no plan
+  both-plan: {borg_param_caution_breeder_fight: 1, borg_param_caution_scary_named_monsters: 0, borg_plan: errands_plan.txt}
+
+control: [both]
+owner_authorization: >-
+  2026-11-17: after the #503 small tier (run 44157865502), the owner asked for an experiment without the named list
+  and with the errand (errands_plan.txt). Pilot first (RULES 16); small and larger only after the gate and the owner.
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#216). Pilot only. Gate: no config_error; one binary; both
+  flags written in both arms; the loaded plan copy matches its pin in both-plan and is absent from both; every cell
+  ends in death, turn_cap or borg_stopped; frozen-turn stalls, purchase bursts and key outliers listed. The both arm
+  is the same specimen and profile as the #503 pilot's both arm and should replay it exactly. Descriptive: deaths and
+  causes (CL1-3 deaths counted), final level, deepest level; paired rescued and newly killed against both, and the
+  cells where play diverges. 18 starts per arm cannot show whether the plan helps.
