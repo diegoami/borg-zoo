@@ -70,3 +70,17 @@
     (RULES 14). `python3 -m zoo define` refuses a new experiment above pilot
     size when the catalogue has no such pilot. Experiments generated before
     this rule are not rechecked.
+17. **Several sessions work on this repository at once; claim before you
+    act** (owner, 2026-11-19). Any session may work on any issue: a study
+    "belonging" to another session only means another session may be
+    acting on it right now. Before defining, dispatching or merging
+    anything for an issue, read its latest comments, its branches and PRs
+    (`gh pr list --search "#N"`, `git ls-remote origin 'refs/heads/*'`) and
+    the running workflow runs; if nothing is in flight, post a one-line
+    "picked up by a zoo session" comment on the issue first, and only then
+    act. If another session claimed it and its work is still moving, leave
+    it and say so. Never run two tiers of the same study at once from two
+    sessions, never close or supersede another session's PR without the
+    owner, and resolve code conflicts by hand (union-merging is safe only
+    for catalogue JSON and FINDINGS prose). Every merge waits for
+    `python3 -m unittest discover -s tests` to pass.
