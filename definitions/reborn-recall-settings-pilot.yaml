@@ -1,0 +1,56 @@
+# borg-zoo#280: Word of Recall settings, pilot; copied from the run request (borg-reborn-rs, owner 2026-11-18).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-recall-settings-pilot.yaml
+name: reborn-recall-settings-pilot
+issue: 280
+question: On borg-reborn-rs main f660aecc (#571 merged), which Word of Recall settings save games or progress against the shipped ones - no flight Recall on DL1-2, flight Recall on DL1 again, Recall valued 3x or 10x by the town planner, or no flight Recall at any depth without breeders or chasers?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-f660aecc
+  repository: diegoami/borg-reborn-rs
+  ref: f660aeccb45392d47893c824c49194d9e966e129
+  label: "borg-reborn-rs f660aecc, main at the merge of #571 (#557: town_recall_value_percent, prepared_recall_depth, one Word of Recall section in borg.txt), after #561 and #575. Ships caution_flee_recall 1, gate_below_depth 2, recall value 100, reserve 0, prepared_recall_depth 5; scary named list 1, damage 60, latch 1, hurt 50, afraid 1; point-blank divisor 5 (Rogue 3, Ranger 2). harness/borg.txt 05b7ca00..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt (caution_flee_recall 1, gate_below_depth 2,
+# town_recall_value_percent 100, town_recall_reserve 0, prepared_recall_depth 5) and changes one setting.
+profile_prefix: reborn-recallset
+arms:
+  ctl: {borg_param_caution_flee_recall_gate_below_depth: 2}
+  dl12: {borg_param_caution_flee_recall_gate_below_depth: 3}
+  dl1off: {borg_param_caution_flee_recall_gate_below_depth: 0}
+  v300: {borg_param_town_recall_value_percent: 300}
+  v1000: {borg_param_town_recall_value_percent: 1000}
+  gate: {borg_param_caution_flee_recall: 0}
+control: [ctl]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#557, #571). Amended 2026-11-18 (owner), before
+  dispatch: the request pinned #571's head 055a4a9b; #571 was merged as f660aecc before the run, so the pilot runs on
+  merged main (055a4a9b plus main's #561 and #575; every shipped Recall value and pinned file unchanged). The request's
+  108 local sanity cells were on 055a4a9b and are context, not a replay check. Pilot (RULES 16); small and larger
+  only after this gate and the owner. ctl is the shipped configuration; every other arm changes one setting.
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - ctl plays the shipped borg.txt's keys (its setting equals the shipped value);
+  - death bundles reproduced.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;
+  - Word of Recall bought ("You bought ... Word of Recall"), read in flight ("Fleeing the level (recall)") with
+    its depth, read in total, and carried at the end;
+  - town visits, and returns to town on foot ("Trip: return") against by Recall;
+  - deaths within 500 game turns of a "Fleeing" note, and DL1-2 deaths.
+  Context: the six borg-play deaths from birth (shipped borg.txt, 100,000 turns) bought Recall in 0 of 6 games at
+  100%, 1 at 300%, 4 at 1000% (up to 3 scrolls in one game). 18 starts per arm show direction only.

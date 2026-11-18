@@ -21,6 +21,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-outmatched` | [#270](https://github.com/diegoami/borg-zoo/issues/270) | 4 | superseded by #275 (reborn-heal-outmatched on 92fafc61: off, min_loss 30-70); not dispatched | Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75. |
 | `reborn-attack-by-class` | [#274](https://github.com/diegoami/borg-zoo/issues/274) | 4 | pilot dispatched (run 44308236915) | Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class. |
 | `reborn-worships` | [#279](https://github.com/diegoami/borg-zoo/issues/279) | 6 | pilot dispatched (run 44308259323) | The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect. |
+| `reborn-recall-settings` | [#280](https://github.com/diegoami/borg-zoo/issues/280) | 6 | defined (pilot on f660aecc, not dispatched) | Word of Recall settings on main f660aecc (#571 merged): shipped; no flight Recall on DL1-2 (gate 3); flight Recall on DL1 again (gate 0); Recall valued 300% or 1000% by the town planner; no flight Recall at any depth without breeders or chasers (caution_flee_recall 0). |
 
 ### `heal-attack-4`
 
@@ -256,6 +257,21 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | --- | --- | --- | --- |
 | [44308259323](https://github.com/diegoami/borg-zoo/actions/runs/44308259323) | pilot | `4.2.6-reborn-rust-main-92fafc61` | running |
 
+### `reborn-recall-settings`
+
+Word of Recall settings on main f660aecc (#571 merged): shipped; no flight Recall on DL1-2 (gate 3); flight Recall on DL1 again (gate 0); Recall valued 300% or 1000% by the town planner; no flight Recall at any depth without breeders or chasers (caution_flee_recall 0).
+
+Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_flee_recall` | `borg_param_caution_flee_recall_gate_below_depth` | `borg_param_town_recall_value_percent` |
+| --- | --- | --- | --- |
+| `reborn-recallset-ctl` | – | 2 | – |
+| `reborn-recallset-dl12` | – | 3 | – |
+| `reborn-recallset-dl1off` | – | 0 | – |
+| `reborn-recallset-gate` | 0 | – | – |
+| `reborn-recallset-v1000` | – | – | 1000 |
+| `reborn-recallset-v300` | – | – | 300 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -285,6 +301,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_melee_permille` | 1000, 1400, 1800, 2000, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
 | `borg_param_attack_preference_warrior_projectile_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
 | `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
+| `borg_param_caution_flee_recall_gate_below_depth` | 0, 2, 3, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
 | `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_druid` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
@@ -304,6 +322,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |
