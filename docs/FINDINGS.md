@@ -360,6 +360,8 @@ Lower values send the Borg back for unknown items more often. Each return brings
 
 **#224, cornered danger threshold (5, 10) × radius (2, 4) on main d9ff9808 (pilot, run 44237508546, 72 games): no deaths in any arm.** The gate passed: one binary (44b1d2f3), no config_error, settings written, nothing flagged. d10-r2 (the shipped values) replays the shipped arm of the unknown_stacks pilot exactly (18/18). Games identical to d10-r2: 16 (d10-r4), 13 (d5-r2) and 13 (d5-r4) of 18. Mean max level is 5.28 at threshold 10 and 5.11 at 5. Triggering earlier changes more games than a wider radius; neither can be ranked on deaths at this size.
 
+**#224, cornered danger threshold (5, 10) × radius (2, 4) on main d9ff9808 (medium tier, run 44241753524, 1,080 games, starts 91-360): no setting differs from the shipped one.** The gate passed: one binary, no config_error, settings written, no frozen-turn loops, 100 of 100 death bundles reproduced. Deaths: d10-r2 (shipped) 25 (9.3%), d10-r4 26 (9.6%), d5-r2 25 (9.3%), d5-r4 24 (8.9%) of 270. Against d10-r2 the others differ in at most 7 starts (0/1, 3/3, 3/2; p >= 0.6). Mean max level is 4.93-4.99 and mean max DL 2.10-2.11. The shipped threshold 10 and radius 2 stay.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
