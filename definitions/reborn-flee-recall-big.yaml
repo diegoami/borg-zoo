@@ -1,0 +1,35 @@
+# borg-zoo#255: borg-reborn-rs#557's flight Recall gate, with the Recall reserve and the no-descent hold, big tier.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-flee-recall-big.yaml
+name: reborn-flee-recall-big
+issue: 255
+question: On borg-reborn-rs main 0fa5c34d, does reading Word of Recall in a flight only when breeders swamp the level or several monsters chase (caution_flee_recall 0, shipped) save games against C's flight Recall, alone and with the Recall reserve or the no-descent hold?
+tier: big            # classes-1800-big: starts 361-900, 60 per class
+
+specimen: 4.2.6-reborn-rust-main-0fa5c34d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only these settings.
+profile_prefix: reborn-recall
+arms:
+  ctl: {borg_param_caution_flee_recall: 1, borg_param_town_recall_reserve: 0, borg_param_caution_rising_hold_flee_descent: 0}
+  gate: {borg_param_caution_flee_recall: 0, borg_param_town_recall_reserve: 0, borg_param_caution_rising_hold_flee_descent: 0}
+  reserve: {borg_param_caution_flee_recall: 0, borg_param_town_recall_reserve: 1, borg_param_caution_rising_hold_flee_descent: 0}
+  hold: {borg_param_caution_flee_recall: 0, borg_param_town_recall_reserve: 0, borg_param_caution_rising_hold_flee_descent: 1}
+control: [ctl]
+
+owner_authorization: >-
+  2026-11-18: the owner agreed in advance on borg-zoo#255 to every tier up to full, each starting only after the
+  previous tier's written gate passes (RULES 14, 16).
+
+prespecified: |
+  Fixed 2026-11-18, before any result of this tier was read (borg-zoo#255). The big tier (classes-1800-big: starts 361-900, 60 per class); it plays only
+  starts no earlier tier played, and is analysed with every tier before it. Gate: no config_error; one binary; each
+  arm's three values in borg.txt; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified
+  and key outliers listed; death bundles reproduced. A failed gate stops the growth and is reported on the issue.
+  Primary, over all starts collected so far: deaths, gate against ctl paired on the same start (rescued, newly
+  killed, exact McNemar). Secondary: reserve and hold against gate; flight Recall reads per game; final level and
+  deepest level.
