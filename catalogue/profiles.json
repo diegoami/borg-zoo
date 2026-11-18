@@ -2680,6 +2680,54 @@
         "borg_param_caution_breeder_exit_distance": 10,
         "borg_param_caution_flee_known_down_stairs": 0
       }
+    },
+    "reborn-scary-shipped": {
+      "description": "borg-zoo#241 (reborn-scary-list-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1
+      }
+    },
+    "reborn-scary-compiled": {
+      "description": "borg-zoo#241 (reborn-scary-list-pilot.yaml): arm compiled.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_scary_list": "none"
+      }
+    },
+    "reborn-scary-plus-early": {
+      "description": "borg-zoo#241 (reborn-scary-list-pilot.yaml): arm plus-early.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_scary_list_lines": [
+          "wild cat | 2-4",
+          "crow | 2-4",
+          "giant yellow centipede | 2-4",
+          "wild dog | 2-4",
+          "kobold shaman | 3-6"
+        ]
+      }
+    },
+    "reborn-kill-power-off": {
+      "description": "borg-zoo#244 (reborn-kill-power-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kill_live_min_power": 0
+      }
+    },
+    "reborn-kill-power-on": {
+      "description": "borg-zoo#244 (reborn-kill-power-pilot.yaml): arm on.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kill_live_min_power": 1
+      }
     }
   }
 }
