@@ -19,8 +19,12 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-errand-ladder` | – | 2 | done (option-C pilot, borg-reborn-rs #207, #208) | Errands: borg-rs's core in the reborn shell with no errand against the class ladders (borg_reborn_errand = ladder). |
 | `reborn-heal-by-class` | [#265](https://github.com/diegoami/borg-zoo/issues/265) | 6 | pilot dispatched (run 44294456089) | Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, and class files off (common 100/125); real-HP reserve and speed at shipped values; read per class. |
 | `reborn-outmatched` | [#270](https://github.com/diegoami/borg-zoo/issues/270) | 4 | superseded by #275 (reborn-heal-outmatched on 92fafc61: off, min_loss 30-70); not dispatched | Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75. |
-| `reborn-attack-by-class` | [#274](https://github.com/diegoami/borg-zoo/issues/274) | 4 | pilot dispatched (run 44308236915) | Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class. |
-| `reborn-worships` | [#279](https://github.com/diegoami/borg-zoo/issues/279) | 6 | pilot dispatched (run 44308259323) | The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect. |
+| `reborn-attack-by-class` | [#274](https://github.com/diegoami/borg-zoo/issues/274) | 4 | verysmall defined (ctl, flat, half; strong dropped); not dispatched | Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class. |
+| `reborn-worships` | [#279](https://github.com/diegoami/borg-zoo/issues/279) | 6 | pilot done (gate passed); damage, speed, hp, mana inert (18/18 identical), dropped; ac changes every game | The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect. |
+| `reborn-recall-settings` | [#280](https://github.com/diegoami/borg-zoo/issues/280) | 6 | defined (pilot on f660aecc, not dispatched) | Word of Recall settings on main f660aecc (#571 merged): shipped; no flight Recall on DL1-2 (gate 3); flight Recall on DL1 again (gate 0); Recall valued 300% or 1000% by the town planner; no flight Recall at any depth without breeders or chasers (caution_flee_recall 0). |
+| `reborn-pbd-by-class` | [#290](https://github.com/diegoami/borg-zoo/issues/290) | 4 | defined (pilot on f660aecc, not dispatched) | Arrow point-blank divisor by class on main f660aecc: shipped (5, Rogue 3, Ranger 2), common 5 for all, about half, about double; read per class. |
+| `reborn-scary-calm` | [#291](https://github.com/diegoami/borg-zoo/issues/291) | 4 | defined (pilot on f660aecc, not dispatched) | Scary latch (1/0) x calm (hurt 50 + afraid 1, shipped, against 0/0 = C) on main f660aecc. |
+| `reborn-scary-named-damage` | [#292](https://github.com/diegoami/borg-zoo/issues/292) | 3 | defined (pilot on f660aecc, not dispatched) | Named scary list with the damage rule at 60% (shipped) or 40%, and the damage rule alone, on main f660aecc. |
 
 ### `heal-attack-4`
 
@@ -235,7 +239,7 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 | Run | Tier | Specimen | Result |
 | --- | --- | --- | --- |
-| [44308236915](https://github.com/diegoami/borg-zoo/actions/runs/44308236915) | pilot | `4.2.6-reborn-rust-main-4a482c58` | running |
+| [44308236915](https://github.com/diegoami/borg-zoo/actions/runs/44308236915) | pilot | `4.2.6-reborn-rust-main-4a482c58` | 72 games: deaths ctl 1, flat 1, half 2, strong 1; identical to ctl: flat 8, half 11, strong 15 of 18; Priest and Blackguard unaffected |
 
 ### `reborn-worships`
 
@@ -254,7 +258,60 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 | Run | Tier | Specimen | Result |
 | --- | --- | --- | --- |
-| [44308259323](https://github.com/diegoami/borg-zoo/actions/runs/44308259323) | pilot | `4.2.6-reborn-rust-main-92fafc61` | running |
+| [44308259323](https://github.com/diegoami/borg-zoo/actions/runs/44308259323) | pilot | `4.2.6-reborn-rust-main-92fafc61` | 108 games, no deaths; damage/speed/hp/mana 18/18 identical to ctl; ac 0/18 identical, mean CL 5.17 v 5.44 |
+
+### `reborn-recall-settings`
+
+Word of Recall settings on main f660aecc (#571 merged): shipped; no flight Recall on DL1-2 (gate 3); flight Recall on DL1 again (gate 0); Recall valued 300% or 1000% by the town planner; no flight Recall at any depth without breeders or chasers (caution_flee_recall 0).
+
+Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_flee_recall` | `borg_param_caution_flee_recall_gate_below_depth` | `borg_param_town_recall_value_percent` |
+| --- | --- | --- | --- |
+| `reborn-recallset-ctl` | – | 2 | – |
+| `reborn-recallset-dl12` | – | 3 | – |
+| `reborn-recallset-dl1off` | – | 0 | – |
+| `reborn-recallset-gate` | 0 | – | – |
+| `reborn-recallset-v1000` | – | – | 1000 |
+| `reborn-recallset-v300` | – | – | 300 |
+
+### `reborn-pbd-by-class`
+
+Arrow point-blank divisor by class on main f660aecc: shipped (5, Rogue 3, Ranger 2), common 5 for all, about half, about double; read per class.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_arrow_point_blank_divisor_blackguard` | `borg_param_attack_arrow_point_blank_divisor_druid` | `borg_param_attack_arrow_point_blank_divisor_mage` | `borg_param_attack_arrow_point_blank_divisor_necromancer` | `borg_param_attack_arrow_point_blank_divisor_paladin` | `borg_param_attack_arrow_point_blank_divisor_priest` | `borg_param_attack_arrow_point_blank_divisor_ranger` | `borg_param_attack_arrow_point_blank_divisor_rogue` | `borg_param_attack_arrow_point_blank_divisor_warrior` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-pbdc-common` | – | – | – | – | – | – | 0 | 0 | – |
+| `reborn-pbdc-ctl` | – | – | – | – | – | – | – | – | – |
+| `reborn-pbdc-hi` | 10 | 10 | 10 | 10 | 10 | 10 | 4 | 6 | 10 |
+| `reborn-pbdc-lo` | 2 | 2 | 2 | 2 | 2 | 2 | 1 | 2 | 2 |
+
+### `reborn-scary-calm`
+
+Scary latch (1/0) x calm (hurt 50 + afraid 1, shipped, against 0/0 = C) on main f660aecc.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_scary_afraid` | `borg_param_caution_scary_hurt_percent` | `borg_param_caution_scary_latch` |
+| --- | --- | --- | --- |
+| `reborn-calm-c-calm` | 0 | 0 | 1 |
+| `reborn-calm-ctl` | 1 | 50 | 1 |
+| `reborn-calm-unlatch` | 1 | 50 | 0 |
+| `reborn-calm-unlatch-c` | 0 | 0 | 0 |
+
+### `reborn-scary-named-damage`
+
+Named scary list with the damage rule at 60% (shipped) or 40%, and the damage rule alone, on main f660aecc.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_scary_damage_percent` | `borg_param_caution_scary_named_monsters` |
+| --- | --- | --- |
+| `reborn-named-dmg-named-d40` | 40 | 1 |
+| `reborn-named-dmg-named-d60` | 60 | 1 |
+| `reborn-named-dmg-nolist-d60` | 60 | 0 |
 
 ## Settings you have built arms with
 
@@ -269,6 +326,15 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_trip_pack_slack` | 0, 1, 2, not set | `maxdepth-2x5`, `rs-additive-6` | Return when this few pack slots are free (default 2). Almost no effect: 1 and 2 played identical keys in 359 of 360 #147 games. |
 | `borg_reborn_errand` | ladder, none | `reborn-errand-ladder` | The errand over the core: `none`, or a command such as `ladder` (the class ladders). The ladder looked better in the option-C pilot (24.9% v 29.1% deaths, descriptive). |
 | `borg_param_caution_heal_when_outmatched` | 0, 1, not set | `heal-attack-4`, `heal-pilot-12`, `reborn-outmatched` | A hurt Borg in lethal danger with no escape drinks its best cure potion (#151). Waits for borg-reborn-rs #461. |
+| `borg_param_attack_arrow_point_blank_divisor_blackguard` | 2, 10, not set | `reborn-pbd-by-class` |  |
+| `borg_param_attack_arrow_point_blank_divisor_druid` | 2, 10, not set | `reborn-pbd-by-class` |  |
+| `borg_param_attack_arrow_point_blank_divisor_mage` | 2, 10, not set | `reborn-pbd-by-class` |  |
+| `borg_param_attack_arrow_point_blank_divisor_necromancer` | 2, 10, not set | `reborn-pbd-by-class` |  |
+| `borg_param_attack_arrow_point_blank_divisor_paladin` | 2, 10, not set | `reborn-pbd-by-class` |  |
+| `borg_param_attack_arrow_point_blank_divisor_priest` | 2, 10, not set | `reborn-pbd-by-class` |  |
+| `borg_param_attack_arrow_point_blank_divisor_ranger` | 0, 1, 4, not set | `reborn-pbd-by-class` |  |
+| `borg_param_attack_arrow_point_blank_divisor_rogue` | 0, 2, 6, not set | `reborn-pbd-by-class` |  |
+| `borg_param_attack_arrow_point_blank_divisor_warrior` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_preference_blackguard_melee_permille` | 1000, 1300, 1600, 1900, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
 | `borg_param_attack_preference_blackguard_spell_permille` | 1000, 1200, 1400, 1600, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
 | `borg_param_attack_preference_druid_spell_permille` | 1000, 1350, 1700, 2000, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
@@ -285,7 +351,14 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_melee_permille` | 1000, 1400, 1800, 2000, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
 | `borg_param_attack_preference_warrior_projectile_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
 | `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
+| `borg_param_caution_flee_recall_gate_below_depth` | 0, 2, 3, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
+| `borg_param_caution_scary_afraid` | 0, 1 | `reborn-scary-calm` |  |
+| `borg_param_caution_scary_damage_percent` | 40, 60 | `reborn-scary-named-damage` |  |
+| `borg_param_caution_scary_hurt_percent` | 0, 50 | `reborn-scary-calm` |  |
+| `borg_param_caution_scary_latch` | 0, 1 | `reborn-scary-calm` |  |
+| `borg_param_caution_scary_named_monsters` | 0, 1 | `reborn-scary-named-damage` |  |
 | `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_druid` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_mage` | 0, 75, 225, not set | `reborn-heal-by-class` |  |
@@ -304,6 +377,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |

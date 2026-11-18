@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-dl1-recall-pilot",
+  "issue": 267,
+  "definition": "definitions/reborn-dl1-recall-pilot.yaml",
+  "question": "On borg-reborn-rs main 68cf9eb5, does keeping the flight Recall off DL1 (caution_flee_recall_gate_below_depth 2, shipped) save or cost games against C's Recall at every depth (0), and is 1 the no-op the code says it is?",
+  "description": "On borg-reborn-rs main 68cf9eb5, does keeping the flight Recall off DL1 (caution_flee_recall_gate_below_depth 2, shipped) save or cost games against C's Recall at every depth (0), and is 1 the no-op the code says it is? Generated from definitions/reborn-dl1-recall-pilot.yaml: 3 arms on 4.2.6-reborn-rust-main-68cf9eb5, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#557, #565). Pilot (RULES 16); small and larger\nonly after this gate and the owner. d0 is C's flight Recall at every depth; d2 is the shipped default (no flight\nRecall on DL1 without 5 known breeders or 3 awake monsters that can move within 6 grids); d1 is a no-op by\nconstruction (the town never asks) and must play keys identical to d0 in every cell.\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- d1 keys identical to d0 in all 18 cells;\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level;\n- paired rescued and newly killed, d2 against d0;\n- \"Fleeing the level (recall)\" notes per game and their depth; Word of Recall carried at the end and read in the\n  whole game;\n- DL1 deaths within 500 game turns of a \"Fleeing\" note;\n- stands on DL1 (\"no escape: standing and fighting\").\nContext: a local classes-18 run of the same comparison on d419072f had 0 deaths in both arms, flight Recalls in\n17 games at 0 and 10 at 2, sum of CL 107 against 99. 18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-68cf9eb5"
+  ],
+  "profiles": [
+    "reborn-dl1recall-d0",
+    "reborn-dl1recall-d1",
+    "reborn-dl1recall-d2"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-68cf9eb5",
+  "control_profile": "reborn-dl1recall-d0",
+  "retain_evidence": true
+}
