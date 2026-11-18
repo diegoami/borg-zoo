@@ -3107,6 +3107,102 @@
         "borg_param_town_recall_reserve": 0,
         "borg_param_caution_rising_hold_flee_descent": 1
       }
+    },
+    "reborn-hbc-ctl": {
+      "description": "borg-zoo#new (reborn-heal-by-class-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-hbc-curve-lo": {
+      "description": "borg-zoo#new (reborn-heal-by-class-pilot.yaml): arm curve-lo.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent_warrior": 25,
+        "borg_param_town_heal_curve_scale_percent_mage": 75,
+        "borg_param_town_heal_curve_scale_percent_druid": 60,
+        "borg_param_town_heal_curve_scale_percent_priest": 60,
+        "borg_param_town_heal_curve_scale_percent_necromancer": 75,
+        "borg_param_town_heal_curve_scale_percent_paladin": 40,
+        "borg_param_town_heal_curve_scale_percent_rogue": 50,
+        "borg_param_town_heal_curve_scale_percent_ranger": 50,
+        "borg_param_town_heal_curve_scale_percent_blackguard": 40
+      }
+    },
+    "reborn-hbc-curve-hi": {
+      "description": "borg-zoo#new (reborn-heal-by-class-pilot.yaml): arm curve-hi.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent_warrior": 75,
+        "borg_param_town_heal_curve_scale_percent_mage": 225,
+        "borg_param_town_heal_curve_scale_percent_druid": 185,
+        "borg_param_town_heal_curve_scale_percent_priest": 185,
+        "borg_param_town_heal_curve_scale_percent_necromancer": 225,
+        "borg_param_town_heal_curve_scale_percent_paladin": 115,
+        "borg_param_town_heal_curve_scale_percent_rogue": 150,
+        "borg_param_town_heal_curve_scale_percent_ranger": 150,
+        "borg_param_town_heal_curve_scale_percent_blackguard": 115
+      }
+    },
+    "reborn-hbc-reserve-lo": {
+      "description": "borg-zoo#new (reborn-heal-by-class-pilot.yaml): arm reserve-lo.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_reserve_hp_percent_warrior": 50,
+        "borg_param_town_heal_reserve_hp_percent_mage": 150,
+        "borg_param_town_heal_reserve_hp_percent_druid": 125,
+        "borg_param_town_heal_reserve_hp_percent_priest": 125,
+        "borg_param_town_heal_reserve_hp_percent_necromancer": 150,
+        "borg_param_town_heal_reserve_hp_percent_paladin": 75,
+        "borg_param_town_heal_reserve_hp_percent_rogue": 100,
+        "borg_param_town_heal_reserve_hp_percent_ranger": 100,
+        "borg_param_town_heal_reserve_hp_percent_blackguard": 75
+      }
+    },
+    "reborn-hbc-reserve-hi": {
+      "description": "borg-zoo#new (reborn-heal-by-class-pilot.yaml): arm reserve-hi.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_reserve_hp_percent_warrior": 150,
+        "borg_param_town_heal_reserve_hp_percent_mage": 450,
+        "borg_param_town_heal_reserve_hp_percent_druid": 375,
+        "borg_param_town_heal_reserve_hp_percent_priest": 375,
+        "borg_param_town_heal_reserve_hp_percent_necromancer": 450,
+        "borg_param_town_heal_reserve_hp_percent_paladin": 225,
+        "borg_param_town_heal_reserve_hp_percent_rogue": 300,
+        "borg_param_town_heal_reserve_hp_percent_ranger": 300,
+        "borg_param_town_heal_reserve_hp_percent_blackguard": 225
+      }
+    },
+    "reborn-hbc-common": {
+      "description": "borg-zoo#new (reborn-heal-by-class-pilot.yaml): arm common.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent_warrior": 0,
+        "borg_param_town_heal_curve_scale_percent_mage": 0,
+        "borg_param_town_heal_curve_scale_percent_druid": 0,
+        "borg_param_town_heal_curve_scale_percent_priest": 0,
+        "borg_param_town_heal_curve_scale_percent_necromancer": 0,
+        "borg_param_town_heal_curve_scale_percent_paladin": 0,
+        "borg_param_town_heal_curve_scale_percent_rogue": 0,
+        "borg_param_town_heal_curve_scale_percent_ranger": 0,
+        "borg_param_town_heal_curve_scale_percent_blackguard": 0,
+        "borg_param_town_heal_reserve_hp_percent_warrior": -1,
+        "borg_param_town_heal_reserve_hp_percent_mage": -1,
+        "borg_param_town_heal_reserve_hp_percent_druid": -1,
+        "borg_param_town_heal_reserve_hp_percent_priest": -1,
+        "borg_param_town_heal_reserve_hp_percent_necromancer": -1,
+        "borg_param_town_heal_reserve_hp_percent_paladin": -1,
+        "borg_param_town_heal_reserve_hp_percent_rogue": -1,
+        "borg_param_town_heal_reserve_hp_percent_ranger": -1,
+        "borg_param_town_heal_reserve_hp_percent_blackguard": -1
+      }
     }
   }
 }

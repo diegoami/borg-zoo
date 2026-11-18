@@ -201,6 +201,20 @@
           "result": "3,600 games: ladder 448 deaths (24.9%) v no errand 524 (29.1%); descriptive, one development suite"
         }
       ]
+    },
+    "reborn-heal-by-class": {
+      "issue": 265,
+      "status": "defined (pilot on 4a482c58, not dispatched)",
+      "what": "Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, and class files off (common 100/125); real-HP reserve and speed at shipped values; read per class.",
+      "profiles": [
+        "reborn-hbc-common",
+        "reborn-hbc-ctl",
+        "reborn-hbc-curve-hi",
+        "reborn-hbc-curve-lo",
+        "reborn-hbc-reserve-hi",
+        "reborn-hbc-reserve-lo"
+      ],
+      "runs": []
     }
   }
 }

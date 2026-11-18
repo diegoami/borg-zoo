@@ -1,0 +1,122 @@
+# borg-zoo#265: the healing settings by class (borg-reborn-rs#487's class files), pilot; owner request 2026-11-18.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-by-class-pilot.yaml
+#
+# Each _<class> override acts on that class only, so one arm can move every class's value one step at once
+# and each class is read on its own starts: one experiment holds nine per-class sweeps. The global healing
+# settings (real HP reserve, speed) stay at their shipped values in every arm.
+name: reborn-heal-by-class-pilot
+issue: 265
+question: >-
+  On borg-reborn-rs main 4a482c58, does each class do better with its shipped healing curve and reserve than with half
+  or one and a half times either value, or than with the common values (class files off)?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-4a482c58
+  repository: diegoami/borg-reborn-rs
+  ref: 4a482c58ab9ab86a663ed6549ef41d62046cf033
+  label: >-
+    borg-reborn-rs 4a482c58, main after #539 (caution_scary_hurt_percent 50, caution_scary_afraid 1) and fba1c6e0
+    (borg_trip_unknown_stacks 2, caution_stair_scum_threat 1). Shipped healing: common reserve 100, curve 125, real HP
+    1, speed 66; class files curve/reserve Warrior 50/100, Mage 150/300, Druid 125/250, Priest 125/250, Necromancer
+    150/300, Paladin 75/150, Rogue 100/200, Ranger 100/200, Blackguard 75/150.
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# Every arm reads the shipped harness/borg.txt and sets only the lines below. Steps are half and one and a half times
+# each class's shipped value, rounded to 5.
+profile_prefix: reborn-hbc
+arms:
+  ctl: {}   # shipped
+  curve-lo:
+    borg_param_town_heal_curve_scale_percent_warrior: 25
+    borg_param_town_heal_curve_scale_percent_mage: 75
+    borg_param_town_heal_curve_scale_percent_druid: 60
+    borg_param_town_heal_curve_scale_percent_priest: 60
+    borg_param_town_heal_curve_scale_percent_necromancer: 75
+    borg_param_town_heal_curve_scale_percent_paladin: 40
+    borg_param_town_heal_curve_scale_percent_rogue: 50
+    borg_param_town_heal_curve_scale_percent_ranger: 50
+    borg_param_town_heal_curve_scale_percent_blackguard: 40
+  curve-hi:
+    borg_param_town_heal_curve_scale_percent_warrior: 75
+    borg_param_town_heal_curve_scale_percent_mage: 225
+    borg_param_town_heal_curve_scale_percent_druid: 185
+    borg_param_town_heal_curve_scale_percent_priest: 185
+    borg_param_town_heal_curve_scale_percent_necromancer: 225
+    borg_param_town_heal_curve_scale_percent_paladin: 115
+    borg_param_town_heal_curve_scale_percent_rogue: 150
+    borg_param_town_heal_curve_scale_percent_ranger: 150
+    borg_param_town_heal_curve_scale_percent_blackguard: 115
+  reserve-lo:
+    borg_param_town_heal_reserve_hp_percent_warrior: 50
+    borg_param_town_heal_reserve_hp_percent_mage: 150
+    borg_param_town_heal_reserve_hp_percent_druid: 125
+    borg_param_town_heal_reserve_hp_percent_priest: 125
+    borg_param_town_heal_reserve_hp_percent_necromancer: 150
+    borg_param_town_heal_reserve_hp_percent_paladin: 75
+    borg_param_town_heal_reserve_hp_percent_rogue: 100
+    borg_param_town_heal_reserve_hp_percent_ranger: 100
+    borg_param_town_heal_reserve_hp_percent_blackguard: 75
+  reserve-hi:
+    borg_param_town_heal_reserve_hp_percent_warrior: 150
+    borg_param_town_heal_reserve_hp_percent_mage: 450
+    borg_param_town_heal_reserve_hp_percent_druid: 375
+    borg_param_town_heal_reserve_hp_percent_priest: 375
+    borg_param_town_heal_reserve_hp_percent_necromancer: 450
+    borg_param_town_heal_reserve_hp_percent_paladin: 225
+    borg_param_town_heal_reserve_hp_percent_rogue: 300
+    borg_param_town_heal_reserve_hp_percent_ranger: 300
+    borg_param_town_heal_reserve_hp_percent_blackguard: 225
+  common:   # class files off: every class uses the common reserve 100 and curve 125
+    borg_param_town_heal_curve_scale_percent_warrior: 0
+    borg_param_town_heal_curve_scale_percent_mage: 0
+    borg_param_town_heal_curve_scale_percent_druid: 0
+    borg_param_town_heal_curve_scale_percent_priest: 0
+    borg_param_town_heal_curve_scale_percent_necromancer: 0
+    borg_param_town_heal_curve_scale_percent_paladin: 0
+    borg_param_town_heal_curve_scale_percent_rogue: 0
+    borg_param_town_heal_curve_scale_percent_ranger: 0
+    borg_param_town_heal_curve_scale_percent_blackguard: 0
+    borg_param_town_heal_reserve_hp_percent_warrior: -1
+    borg_param_town_heal_reserve_hp_percent_mage: -1
+    borg_param_town_heal_reserve_hp_percent_druid: -1
+    borg_param_town_heal_reserve_hp_percent_priest: -1
+    borg_param_town_heal_reserve_hp_percent_necromancer: -1
+    borg_param_town_heal_reserve_hp_percent_paladin: -1
+    borg_param_town_heal_reserve_hp_percent_rogue: -1
+    borg_param_town_heal_reserve_hp_percent_ranger: -1
+    borg_param_town_heal_reserve_hp_percent_blackguard: -1
+
+control: [ctl]
+owner_authorization: >-
+  2026-11-18: the owner asked for the healing curve scale and reserve to be tested by class; real-HP reserve and
+  healing speed stay at their shipped values (owner, same day). This is the pilot of the six arms that RULES 16 requires first; verysmall,
+  small and larger only after its gate and the owner (RULES 14).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any result on 4a482c58 was read. Pilot (RULES 16). Earlier healing runs (heal-curve,
+  heal-curve2, heal-class) were on other refs and are context only.
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt and in params-core.json of the death replays
+    (in common, every class resolves to reserve 100 and curve 125);
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Read per class (each class's own starts), not pooled:
+  - deaths and causes, final level, deepest level;
+  - paired rescued and newly killed against ctl, and identical plays per class: a class whose arm plays ctl's keys
+    did not exercise that value;
+  - healing potions bought (Cure Light, Cure Serious, others) and gold spent on healing per game, healing potions
+    carried at death, deaths with none left.
+  Two starts per class per arm show only whether a value changes play in that class. Per-class direction needs the
+  next tiers (verysmall 5, small 10, medium 40 starts per class), dropping the arms and classes that played ctl's
+  keys.
