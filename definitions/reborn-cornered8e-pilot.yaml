@@ -1,0 +1,35 @@
+# borg-zoo#224: cornered mode (0,1) x radius (2,3) x big-level margin (0,1), on borg-reborn-rs main 6101ca01, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-cornered8e-pilot.yaml
+name: reborn-cornered8e-pilot
+issue: 224
+question: On borg-reborn-rs main 8e7dbad4, does cornered mode (caution_cornered 1, shipped) save games against off, and do its radius (2, 3) and big-level margin (0, 1) matter?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen: 4.2.6-reborn-rust-main-8e7dbad4
+
+# Every arm reads the shipped harness/borg.txt; only the three cornered settings differ (the rest of the shipped borg.txt of 8e7dbad4). With cornered off, radius and margin have nothing to act on: those four arms should play alike.
+profile_prefix: reborn-corner8e
+vary:
+  cornered:
+    c0: {borg_param_caution_cornered: 0}
+    c1: {borg_param_caution_cornered: 1}
+  radius:
+    r2: {borg_param_caution_cornered_radius: 2}
+    r3: {borg_param_caution_cornered_radius: 3}
+  margin:
+    m0: {borg_param_caution_cornered_big_level_margin: 0}
+    m1: {borg_param_caution_cornered_big_level_margin: 1}
+
+control: [c0, r2, m0]
+owner_authorization: >-
+  2026-11-18 (expanded on current main 8e7dbad4, owner: "expand 224 ... cornered mode (0,1) x radius (2,3) x big-level
+  margin (0,1)"); first asked 2026-11-18: the owner asked for an experiment of cornered mode on the current build (borg-zoo#224), as
+  caution_cornered (0,1) x caution_cornered_radius (2,3) x caution_cornered_big_level_margin (0,1). Pilot first
+  (RULES 16).
+
+prespecified: |
+  Fixed 2026-11-18, before any result of this expansion was read (borg-zoo#224). Pilot on the new build first (RULES 16); the medium tier follows if this gate passes (owner asked for the expansion). Gate: no config_error; one binary; the
+  cornered lines written in each arm; every cell ends in death, turn_cap or borg_stopped; stalls, purchase bursts and
+  key outliers listed. Descriptive: deaths and causes per class (CL1-3 deaths counted), mean max level and depth;
+  paired rescued and newly killed against c0-r2-m0; the four c0 arms are expected to play identically (a check that radius and margin are inert with cornered off); from replays, cornered-mode notes (buffs, Monster Confusion)
+  in each arm. 18 starts per arm cannot show whether cornered mode helps.
