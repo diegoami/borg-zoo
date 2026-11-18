@@ -1232,6 +1232,24 @@
         "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
         "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
       }
+    },
+    "4.2.6-reborn-rust-main-156c8e52": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "156c8e52897a6aa8110ceffc896ffa0b2ca43ad7",
+      "source": "https://github.com/diegoami/borg-zoo/issues/240",
+      "label": "borg-reborn-rs 156c8e52, main at the merge of #545 (#544): two breeder-room escape flags, compiled 0 and shipped 0 (caution_breeder_exit, caution_flee_known_down_stairs). Source-hash rust f28bd39c...; harness/borg.txt bb948342...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
     }
   }
 }

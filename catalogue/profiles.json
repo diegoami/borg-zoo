@@ -2637,6 +2637,49 @@
         "borg_param_escape_phase_adjacent_only": 0,
         "borg_param_caution_scary_ranged_no_stairs": 1
       }
+    },
+    "reborn-breeder-ctl": {
+      "description": "borg-zoo#240 (reborn-breeder-escape-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 0,
+        "borg_param_caution_flee_known_down_stairs": 0
+      }
+    },
+    "reborn-breeder-exit-d4": {
+      "description": "borg-zoo#240 (reborn-breeder-escape-pilot.yaml): arm exit-d4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 1,
+        "borg_param_caution_breeder_exit_distance": 4,
+        "borg_param_caution_flee_known_down_stairs": 0
+      }
+    },
+    "reborn-breeder-exit-d6": {
+      "description": "borg-zoo#240 (reborn-breeder-escape-pilot.yaml): arm exit-d6.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 1,
+        "borg_param_caution_breeder_exit_distance": 6,
+        "borg_param_caution_flee_known_down_stairs": 0
+      }
+    },
+    "reborn-breeder-exit-d10": {
+      "description": "borg-zoo#240 (reborn-breeder-escape-pilot.yaml): arm exit-d10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 1,
+        "borg_param_caution_breeder_exit_distance": 10,
+        "borg_param_caution_flee_known_down_stairs": 0
+      }
     }
   }
 }
