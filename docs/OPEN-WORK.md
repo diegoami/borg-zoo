@@ -36,6 +36,13 @@ for catalogue JSON and FINDINGS prose. Merge only when
   `harness/borg.txt` and nothing overridden, on Suite 1 (`suite-run.yml`). It is
   reported alone, with no other arm, unless the owner asks for one.
 - `/profiles`: the named arm sets and the settings tried so far.
+- `/next-experiments`: go through every run (`python3 -m zoo.history --pool`, tiers of
+  one study read as one) and propose the best next experiments, each with a draft
+  definition. Proposes only; the owner picks, and every new arm starts with a pilot
+  (RULES 16).
+- `/propose-config`: propose changes to borg-reborn-rs main's shipped `harness/borg.txt`
+  from the zoo's evidence, one graded proposal per setting, and a borg-reborn-rs issue
+  draft for the owner to file (the zoo never edits that repository, RULES 2).
 
 ## State on 2026-11-17
 
