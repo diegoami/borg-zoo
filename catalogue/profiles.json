@@ -2812,6 +2812,48 @@
         "borg_param_caution_cornered_danger_tenths": 10,
         "borg_param_caution_cornered_radius": 4
       }
+    },
+    "reborn-tripunk-u2": {
+      "description": "borg-zoo#248 (reborn-trip-unknown-pilot.yaml): arm u2.",
+      "settings": {
+        "borg_trip_unknown_stacks": 2
+      }
+    },
+    "reborn-tripunk-u3": {
+      "description": "borg-zoo#248 (reborn-trip-unknown-pilot.yaml): arm u3.",
+      "settings": {
+        "borg_trip_unknown_stacks": 3
+      }
+    },
+    "reborn-tripunk-u4": {
+      "description": "borg-zoo#248 (reborn-trip-unknown-pilot.yaml): arm u4.",
+      "settings": {
+        "borg_trip_unknown_stacks": 4
+      }
+    },
+    "reborn-tripunk-u5": {
+      "description": "borg-zoo#248 (reborn-trip-unknown-pilot.yaml): arm u5.",
+      "settings": {
+        "borg_trip_unknown_stacks": 5
+      }
+    },
+    "reborn-scum-ctl": {
+      "description": "borg-zoo#246 (reborn-stair-scum-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_stair_scum_threat": 0
+      }
+    },
+    "reborn-scum-threat": {
+      "description": "borg-zoo#246 (reborn-stair-scum-pilot.yaml): arm threat.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_stair_scum_threat": 1
+      }
     }
   }
 }

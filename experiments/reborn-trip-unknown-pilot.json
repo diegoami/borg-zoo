@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-trip-unknown-pilot",
+  "issue": 248,
+  "definition": "definitions/reborn-trip-unknown-pilot.yaml",
+  "question": "On borg-reborn-rs main d9ff9808, how many unidentified item types should send the Borg back to town (borg_trip_unknown_stacks 2, 3, 4, 5)?",
+  "description": "On borg-reborn-rs main d9ff9808, how many unidentified item types should send the Borg back to town (borg_trip_unknown_stacks 2, 3, 4, 5)? Generated from definitions/reborn-trip-unknown-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-d9ff9808, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any result was read (borg-zoo#248). Pilot (RULES 16). Gate: no config_error; one binary;\neach arm's borg.txt has borg_trip_unknown_stacks at its value and otherwise the shipped settings (trip policy 1,\npack slack 1, the shipped scary list); no plan loaded; every cell ends in death, turn_cap or borg_stopped;\nfrozen-turn bursts classified and key outliers listed; death bundles reproduced. u5 is the shipped value, so it\nplays the shipped game. Report per arm and per class, from every game's messages: deaths and causes, final level,\ndeepest level; paired rescued and newly killed against u5; \"Trip: return\" decisions per game and town visits;\nhow many starts play identical keys to u5. Context: on 193d9076 (borg-zoo#170, 360 starts) no value differed from\n5. 18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-d9ff9808"
+  ],
+  "profiles": [
+    "reborn-tripunk-u2",
+    "reborn-tripunk-u3",
+    "reborn-tripunk-u4",
+    "reborn-tripunk-u5"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-d9ff9808",
+  "control_profile": "reborn-tripunk-u5",
+  "owner_authorization": "2026-11-18: the owner asked for an experiment with borg_trip_unknown_stacks at 2, 3, 4 and 5 (borg-zoo#248). Pilot first (RULES 16) on current main; small and larger only after the gate and the owner.",
+  "retain_evidence": true
+}
