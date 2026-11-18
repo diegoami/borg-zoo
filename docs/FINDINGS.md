@@ -358,6 +358,8 @@ The hold fires more as the budget grows, and the going-down notes fall from 84 t
 
 Lower values send the Borg back for unknown items more often. Each return brings more `going down` notes and far more rising holds, the pattern the 193d9076 death report found, now partly held by the rising hold. With no deaths, the pilot cannot rank the values on survival.
 
+**#170, borg_trip_unknown_stacks 2/3/4/5 on main d9ff9808 (medium tier, run 44238139015, 1,080 games, starts 91-360): no value differs from 5.** The gate passed: one binary (44b1d2f3), no config_error, values written, no stalls, loops or purchase bursts. Deaths: s2 24 (8.9%), s3 26 (9.6%), s4 26 (9.6%), s5 25 (9.3%) of 270, with 18-19 of them at CL1-3 in every arm. Against s5: s2 rescues 7 and newly kills 6, s3 1 and 2, s4 0 and 1 (p = 1.0 for each). Games identical to s5: 44, 108 and 176 of 270. Mean max level is 4.85-4.99 and mean max DL 2.02-2.11. The top killers over all arms are wild cats (27), soldiers (17), crows (9), grey mushroom patches (7), small kobolds (5) and Grip (5). The zero-death pilots of main d9ff9808 were 18 easy starts: on 270 per arm main dies in about 9% of games, close to 6101ca01's 7.9-8.4%.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
