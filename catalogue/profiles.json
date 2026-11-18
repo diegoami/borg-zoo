@@ -4023,6 +4023,22 @@
         "borg_param_caution_scary_named_monsters": 1,
         "borg_town_food_trip": 5
       }
+    },
+    "reborn-fox-off": {
+      "description": "borg-zoo#312 (reborn-fox-form-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_fox_form": 0
+      }
+    },
+    "reborn-fox-fox": {
+      "description": "borg-zoo#312 (reborn-fox-form-pilot.yaml): arm fox.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_fox_form": 1
+      }
     }
   }
 }
