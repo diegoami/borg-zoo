@@ -3134,6 +3134,33 @@
         "borg_param_caution_scary_named_monsters": 1,
         "borg_param_caution_flee_recall_gate_below_depth": 2
       }
+    },
+    "reborn-recalldepth-d1": {
+      "description": "borg-zoo#267 (reborn-recall-depth-pilot.yaml): arm d1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 1
+      }
+    },
+    "reborn-recalldepth-d2": {
+      "description": "borg-zoo#267 (reborn-recall-depth-pilot.yaml): arm d2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 2
+      }
+    },
+    "reborn-recalldepth-d3": {
+      "description": "borg-zoo#267 (reborn-recall-depth-pilot.yaml): arm d3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 3
+      }
     }
   }
 }
