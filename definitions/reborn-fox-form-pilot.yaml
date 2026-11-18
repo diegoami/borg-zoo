@@ -1,0 +1,49 @@
+# borg-zoo#312: Fox Form for a fleeing Druid (escape_fox_form 0 vs 1), pilot; copied from the run request.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-fox-form-pilot.yaml
+name: reborn-fox-form-pilot
+issue: 312
+question: On borg-reborn-rs main dbe99509, does a fleeing Druid that takes Fox Form (escape_fox_form 1) survive more often without costing anything?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-dbe99509
+  repository: diegoami/borg-reborn-rs
+  ref: dbe99509b0f3c549fbdb276e54591f510bc44925
+  label: "borg-reborn-rs dbe99509, main at the merge of #594 (#551): escape_fox_form, compiled 0 and shipped 0. Source-hash rust ca07b243...; harness/borg.txt 2e51e5b9..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# Every arm reads the shipped harness/borg.txt and writes only the switch.
+profile_prefix: reborn-fox
+arms:
+  'off': {borg_param_escape_fox_form: 0}
+  fox: {borg_param_escape_fox_form: 1}
+control: ['off']
+owner_authorization: >-
+  2026-11-18: the owner asked for a test of escape_fox_form = (0, 1). Pilot first (RULES 16); the Druid tiers follow
+  only after its gate and the owner.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#551, #594). Pilot (RULES 16).
+  Gate:
+  - no config_error; one binary; each arm's switch in its borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - the 16 non-Druid games play identical keys in both arms (only a Druid knows Fox Form); any difference is a defect.
+  Report per arm and per class:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against off;
+  - per Druid game: "# Fox Form: fleeing" casts, "# Fox Form: reverting for an item or a spell" and
+    "# Fox Form: reverting to fight" notes, "You fail to concentrate" right after a cast, and blows struck as a fox
+    ("You bite" / "You claw");
+  - Druid deaths: was the Druid a fox, fleeing, or changing back to fight in the last 100 messages?
+  Context: a local run on 29 Druid starts gave the same 3 deaths in both arms (CL1-2, before any flight), sum of CL
+  161 against 156, max depth 54 against 56. 2 Druids in classes-18 show safety only; survival needs the Druid tiers.
