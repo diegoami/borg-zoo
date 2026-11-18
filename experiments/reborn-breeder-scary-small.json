@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-breeder-scary-small",
+  "issue": 216,
+  "definition": "definitions/reborn-breeder-scary-small.yaml",
+  "question": "Does standing to fight breeders, or dropping C's named scary-monster list, change how main survives and progresses?",
+  "description": "Does standing to fight breeders, or dropping C's named scary-monster list, change how main survives and progresses? Generated from definitions/reborn-breeder-scary-small.yaml: 4 arms on 4.2.6-reborn-rust-main-233ef23e, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#216). Small tier only (RULES 14: starts 1-90); medium and\nlarger only after this gate and the owner. Gate: no config_error; one binary; each arm's two flags written in its\nborg.txt; every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls, purchase bursts and key outliers\nlisted. Report per arm and per class: deaths and causes, deaths at character level 1-3, final level, deepest\nlevel; paired against ctl on the same start (exact McNemar): rescued, newly killed, identical play. From a replay\nof every arm: 'Scary guy on level.' and 'Fleeing (breeder level)' notes, breeder kills, down-then-up bounces.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-233ef23e"
+  ],
+  "profiles": [
+    "reborn-503-ctl",
+    "reborn-503-fight",
+    "reborn-503-nolist",
+    "reborn-503-both"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-main-233ef23e",
+  "control_profile": "reborn-503-ctl",
+  "owner_authorization": "2026-11-17: after the pilot reborn-breeder-scary-pilot passed its gate (run 44147930313: deaths 1, 1, 5 and 4 of 18 for ctl, fight, nolist and both), the owner asked for the small tier of the same four arms (RULES 14)."
+}

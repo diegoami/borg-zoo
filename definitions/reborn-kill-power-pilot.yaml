@@ -1,0 +1,32 @@
+# borg-zoo#244: copied from the run request (zoo session angband-35).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-kill-power-pilot.yaml
+# The arm names 'off' and 'on' are quoted (YAML reads them unquoted as booleans, docs/DEFINE.md); nothing else changed.
+name: reborn-kill-power-pilot
+issue: 244
+question: Does estimating a living monster at least 1 HP (kill_live_min_power) lower deaths?
+tier: pilot
+specimen:
+  name: 4.2.6-reborn-rust-main-c9e58ca0
+  repository: diegoami/borg-reborn-rs
+  ref: c9e58ca0fd2bdeff246c065655e331d494f9e7c4
+  label: borg-reborn-rs main at the merge of #547 (kill_live_min_power shipped 1)
+  plans: {errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87, errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9}
+  scary_lists: {scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342}
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-kill-power
+arms:
+  'off': {borg_param_kill_live_min_power: 0}
+  'on': {borg_param_kill_live_min_power: 1}
+control: ['off']
+extra:
+  retain_evidence: true
+prespecified: |
+  Gate: no config_error, one binary, every cell ends in death, turn_cap or borg_stopped; both arms write
+  borg_param_kill_live_min_power as set; off plays the same keys as main 156c8e52 (the sanity cells).
+  List frozen-turn stalls and key outliers.
+  Endpoints, per arm and per class, paired against off: deaths and causes; rescued / newly killed;
+  deaths at CL1-3; mean max CL and max DL; deaths while paralysed or next to a monster the Borg had
+  wounded (its last "# Targeting <monster> who has N Hit Points" note in the 50 lines before death names
+  the killer); deaths by floating eyes.
