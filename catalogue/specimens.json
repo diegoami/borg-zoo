@@ -1518,6 +1518,23 @@
         "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
       }
     },
+    "4.2.6-reborn-rust-pr612-2075f54e": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "2075f54e69f91ce9356de796c2810a23d6b9029c",
+      "label": "borg-reborn-rs 2075f54e, head of PR #612 (#584 step 2, unmerged; contains #602): the owner's Phase Door rule behind escape_phase_adjacent_rule, compiled and shipped 0. Source-hash rust 94678b69...; harness/borg.txt 2f846d25...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
     "4.2.6-reborn-rust-main-38858846": {
       "kind": "borg-rs",
       "impl": "rust",
@@ -1535,15 +1552,15 @@
         "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
       }
     },
-    "4.2.6-reborn-rust-pr632-985c772a": {
+    "4.2.6-reborn-rust-main-07844cf1": {
       "kind": "borg-rs",
       "impl": "rust",
       "exact_turns": true,
       "depth_stream": true,
       "role": "candidate",
       "repository": "diegoami/borg-reborn-rs",
-      "ref": "985c772ade74ccfde6f9ff32f0f5e99138072e5c",
-      "label": "borg-reborn-rs 985c772a, head of PR #632 (#556, unmerged; contains main 4acf071f): breeder-colony avoidance behind caution_breeder_avoid (0) with the fight-through fallback (1), shipped off. Source-hash rust 261fa4f0...; harness/borg.txt b6afc53e...",
+      "ref": "07844cf13c335c020df17f976d9c5e0ab16fe294",
+      "label": "borg-reborn-rs 07844cf1, main at the merge of #623 (#622 town less scary, shipped caution_town_scary_levels_less 3). Ships caution_scary_damage_percent 60 with the named list, caution_rising_explore_ticks 300. Source-hash rust 589907f0...; harness/borg.txt b5835b13...",
       "plans": {
         "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
         "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
@@ -1603,32 +1620,15 @@
         "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
       }
     },
-    "4.2.6-reborn-rust-main-07844cf1": {
+    "4.2.6-reborn-rust-pr632-985c772a": {
       "kind": "borg-rs",
       "impl": "rust",
       "exact_turns": true,
       "depth_stream": true,
       "role": "candidate",
       "repository": "diegoami/borg-reborn-rs",
-      "ref": "07844cf13c335c020df17f976d9c5e0ab16fe294",
-      "label": "borg-reborn-rs 07844cf1, main at the merge of #623 (#622 town less scary, shipped caution_town_scary_levels_less 3). Ships caution_scary_damage_percent 60 with the named list, caution_rising_explore_ticks 300. Source-hash rust 589907f0...; harness/borg.txt b5835b13...",
-      "plans": {
-        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
-        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
-      },
-      "scary_lists": {
-        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
-      }
-    },
-    "4.2.6-reborn-rust-pr612-2075f54e": {
-      "kind": "borg-rs",
-      "impl": "rust",
-      "exact_turns": true,
-      "depth_stream": true,
-      "role": "candidate",
-      "repository": "diegoami/borg-reborn-rs",
-      "ref": "2075f54e69f91ce9356de796c2810a23d6b9029c",
-      "label": "borg-reborn-rs 2075f54e, head of PR #612 (#584 step 2, unmerged; contains #602): the owner's Phase Door rule behind escape_phase_adjacent_rule, compiled and shipped 0. Source-hash rust 94678b69...; harness/borg.txt 2f846d25...",
+      "ref": "985c772ade74ccfde6f9ff32f0f5e99138072e5c",
+      "label": "borg-reborn-rs 985c772a, head of PR #632 (#556, unmerged; contains main 4acf071f): breeder-colony avoidance behind caution_breeder_avoid (0) with the fight-through fallback (1), shipped off. Source-hash rust 261fa4f0...; harness/borg.txt b6afc53e...",
       "plans": {
         "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
         "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
