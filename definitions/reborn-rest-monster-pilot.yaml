@@ -1,0 +1,48 @@
+# borg-zoo#419 (1): copied from the run request.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-rest-monster-pilot.yaml
+name: reborn-rest-monster-pilot
+issue: 419
+question: On borg-reborn-rs #645's head 348de3f7, does holding rests while an awake monster was on screen recently (recover_rest_monster_turns 100 or 200) kill or save games against off?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-pr645-348de3f7
+  repository: diegoami/borg-reborn-rs
+  ref: 348de3f7127a8143f3fc914af4c5f42dca6ed046
+  label: "borg-reborn-rs 348de3f7, head of PR #645 (#615 rule a, unmerged; contains main 592c6984): no rod, HP/SP or mana rest while an awake monster that can move was on screen recently (recover_rest_monster_turns, _distance); shipped off. harness/borg.txt 74ff4c27..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# Every arm reads the shipped harness/borg.txt and writes only the #615 rule a switch; distance 20 is the shipped default.
+profile_prefix: reborn-restmon
+arms:
+  'off': {borg_param_recover_rest_monster_turns: 0}
+  t100: {borg_param_recover_rest_monster_turns: 100, borg_param_recover_rest_monster_distance: 20}
+  t200: {borg_param_recover_rest_monster_turns: 200, borg_param_recover_rest_monster_distance: 20}
+control: ['off']
+extra:
+  retain_evidence: true
+owner_authorization: >-
+  2026-11-19: the owner asked to take #615 (rule a) and #644 forward ("let us do 615 and 644"); pilot first (RULES 16).
+
+prespecified: |
+  Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#615 rule a, PR #645). Pilot (RULES 16).
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - in off, no "# No rest: a monster was near" note.
+  Report per arm and per class:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against off;
+  - "# Resting to" notes and "# No rest: a monster was near" notes per game; rests broken within one player turn;
+  - deaths within 2,000 game turns of a held rest, and whether the Borg was hurt (HP below half) then.
+  Context: a local run on the same tree (18 classes-18 starts, 100,000 turns; not a zoo run): deaths 1 / 2 / 1,
+  sum of CL 101 / 96 / 97; the reviewer's 66 games: deaths 0 / 1 / 0, sum of CL 366 / 359 / 359, rests started
+  6,680 / 3,686 / 3,563. Direction only.
