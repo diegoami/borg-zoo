@@ -1,0 +1,302 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-scaryends-all5": {
+        "description": "borg-zoo#350 (reborn-scary-ends-pilot.yaml): arm all5.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_scary_list_lines": [
+            "squint-eyed rogue | 0-3",
+            "Grip, Farmer Maggot's Dog | 0-3",
+            "Fang, Farmer Maggot's Dog | 0-3",
+            "small kobold | 0-3",
+            "soldier | 3-6",
+            "cutpurse | 3-6",
+            "acolyte | 3-6",
+            "apprentice | 3-6",
+            "kobold | 3-6",
+            "shrieker mushroom patch | 3-6",
+            "Farmer Maggot | 3-6",
+            "filthy street urchin | 3-6",
+            "battle-scarred veteran | 3-6",
+            "mean-looking mercenary | 3-6",
+            "Bullroarer the Hobbit | 10-13",
+            "giant white mouse | 10-13 |  | breeders",
+            "white worm mass | 10-13 |  | breeders",
+            "green worm mass | 10-13 |  | breeders",
+            "cave spider | 15-18",
+            "red naga | 15-18",
+            "giant red frog | 15-18",
+            "radiation eye | 15-18",
+            "yellow worm mass | 15-18 |  | breeders",
+            "gravity hound | 39-42",
+            "inertia hound | 39-42",
+            "base:ancient dragon | 39-42",
+            "Beorn, the Shape-Changer | 39-42",
+            "dread | 39-42"
+          ]
+        },
+        "sha256": "c5f2f3b2f70ea0b77b500abcea5d92d176126321d0bc3a9f7383d7ac9d501be5"
+      },
+      "reborn-scaryends-all8": {
+        "description": "borg-zoo#350 (reborn-scary-deep-pilot.yaml): arm all8.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_scary_list_lines": [
+            "squint-eyed rogue | 0-0",
+            "Grip, Farmer Maggot's Dog | 0-0",
+            "Fang, Farmer Maggot's Dog | 0-0",
+            "small kobold | 0-0",
+            "soldier | 0-3",
+            "cutpurse | 0-3",
+            "acolyte | 0-3",
+            "apprentice | 0-3",
+            "kobold | 0-3",
+            "shrieker mushroom patch | 0-3",
+            "Farmer Maggot | 0-3",
+            "filthy street urchin | 0-3",
+            "battle-scarred veteran | 0-3",
+            "mean-looking mercenary | 0-3",
+            "Bullroarer the Hobbit | 7-10",
+            "giant white mouse | 7-10 |  | breeders",
+            "white worm mass | 7-10 |  | breeders",
+            "green worm mass | 7-10 |  | breeders",
+            "cave spider | 12-15",
+            "red naga | 12-15",
+            "giant red frog | 12-15",
+            "radiation eye | 12-15",
+            "yellow worm mass | 12-15 |  | breeders",
+            "gravity hound | 36-39",
+            "inertia hound | 36-39",
+            "base:ancient dragon | 36-39",
+            "Beorn, the Shape-Changer | 36-39",
+            "dread | 36-39"
+          ]
+        },
+        "sha256": "232adafbda73d0588cfd92dad5d504a06381b7c1f77214b3cacd6f687005a125"
+      },
+      "reborn-scaryends-ctl": {
+        "description": "borg-zoo#350 (reborn-scary-ends-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "60461455281212fbf7444366befc9a882b3dde83aad646b865e54ecd701afe47"
+      },
+      "reborn-scaryends-early-none": {
+        "description": "borg-zoo#350 (reborn-scary-deep-pilot.yaml): arm early-none.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_scary_list_lines": [
+            "squint-eyed rogue | none",
+            "Grip, Farmer Maggot's Dog | none",
+            "Fang, Farmer Maggot's Dog | none",
+            "small kobold | none",
+            "soldier | none",
+            "cutpurse | none",
+            "acolyte | none",
+            "apprentice | none",
+            "kobold | none",
+            "shrieker mushroom patch | none",
+            "Farmer Maggot | none",
+            "filthy street urchin | none",
+            "battle-scarred veteran | none",
+            "mean-looking mercenary | none"
+          ]
+        },
+        "sha256": "bf569a3dc5dc32ad2751e7d3bd9cb74df0c3d431d6cff643b74b2c1c7dcbeb9c"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-38858846": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 38858846, main at the merge of #607 (#606: borg-rs is the default core). Ships the same healing class values as 4a482c58 (curve/reserve Warrior 50/100, Mage 150/300, Druid 125/250, Priest 125/250, Necromancer 150/300, Paladin 75/150, Rogue 100/200, Ranger 100/200, Blackguard 75/150; common reserve 100, curve 125). harness/borg.txt 3ce9ae4f...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "388588468bfe91b2a8f84b38599813f2acfed64e",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-200k-pilot": {
+        "assigned_characters": {
+          "1014921445": [
+            "Human",
+            "Paladin"
+          ],
+          "1081932283": [
+            "Human",
+            "Druid"
+          ],
+          "1099358304": [
+            "Human",
+            "Necromancer"
+          ],
+          "1210117398": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1495840531": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1752703907": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "1787011608": [
+            "Human",
+            "Blackguard"
+          ],
+          "1857963368": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "24260605": [
+            "Human",
+            "Mage"
+          ],
+          "269700826": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "276305624": [
+            "Human",
+            "Rogue"
+          ],
+          "484985523": [
+            "Human",
+            "Warrior"
+          ],
+          "515721089": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "536792942": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "680357177": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "701310502": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "715959297": [
+            "Human",
+            "Priest"
+          ],
+          "960560576": [
+            "Human",
+            "Ranger"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 200000,
+        "description": "The first 18 starts of classes-1800-200k (2 per class), 200,000 engine turns: a pilot for questions that need longer games, e.g. casters past CL 8 (borg-zoo#350).",
+        "role": "pilot",
+        "saves": false,
+        "seeds": [
+          484985523,
+          24260605,
+          1081932283,
+          715959297,
+          1099358304,
+          1014921445,
+          276305624,
+          960560576,
+          1787011608,
+          269700826,
+          680357177,
+          701310502,
+          515721089,
+          1210117398,
+          1857963368,
+          536792942,
+          1495840531,
+          1752703907
+        ],
+        "stall_seconds": 120,
+        "subset": {
+          "range": [
+            0,
+            18
+          ],
+          "suite": "classes-1800-200k"
+        },
+        "wall_seconds": 1800
+      }
+    }
+  },
+  "completed": "2026-11-19 04:40 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-38858846",
+    "control_profile": "reborn-scaryends-ctl",
+    "definition": "definitions/reborn-scary-deep-200k-pilot.yaml",
+    "description": "On borg-reborn-rs main 38858846 at 200,000 turns, where does lowering the named scary monsters stop helping: both ends - 5 (all5), - 8 (all8), or the 14 early monsters (tough level 5 and 8: Grip, Fang, kobolds, soldiers, ...) not scary at all? Generated from definitions/reborn-scary-deep-200k-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-38858846, suite classes-1800-200k-pilot.",
+    "issue": 350,
+    "name": "reborn-scary-deep-200k-pilot",
+    "owner_authorization": "2026-11-19: the owner asked to queue sensible next experiments after the #350 pilots. Pilot first (RULES 16).",
+    "prespecified": "Fixed 2026-11-19, before any result of all8 or early-none was read. Pilot (RULES 16). ctl and all5 repeat the #350\npilot's arms on the same starts and should replay them.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and scary list;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nRead per class: identical plays against ctl; deaths and causes (deaths to the de-listed monsters named), CL1-3\ndeaths, final level, deepest level; paired rescued and newly killed; \"Scary guy on level\" notes per game.\nEach value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18). Direction only.",
+    "profiles": [
+      "reborn-scaryends-ctl",
+      "reborn-scaryends-all5",
+      "reborn-scaryends-all8",
+      "reborn-scaryends-early-none"
+    ],
+    "question": "On borg-reborn-rs main 38858846 at 200,000 turns, where does lowering the named scary monsters stop helping: both ends - 5 (all5), - 8 (all8), or the 14 early monsters (tough level 5 and 8: Grip, Fang, kobolds, soldiers, ...) not scary at all?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-38858846"
+    ],
+    "suites": [
+      "classes-1800-200k-pilot"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44459384054-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44459384054",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "b1ae506dd618677159f4dac18a7e3ac8a2d05b58"
+}
