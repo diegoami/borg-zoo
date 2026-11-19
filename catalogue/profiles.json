@@ -6164,6 +6164,44 @@
           "boil-covered wretch | 10-20 | | ignore"
         ]
       }
+    },
+    "reborn-crow38-ctl": {
+      "description": "borg-zoo#408 (reborn-crow-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-crow38-crow2": {
+      "description": "borg-zoo#408 (reborn-crow-pilot.yaml): arm crow2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "crow | 0-2"
+        ]
+      }
+    },
+    "reborn-crow38-crow3": {
+      "description": "borg-zoo#408 (reborn-crow-pilot.yaml): arm crow3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "crow | 0-3"
+        ]
+      }
+    },
+    "reborn-crow38-crowcat2": {
+      "description": "borg-zoo#408 (reborn-crow-pilot.yaml): arm crowcat2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "crow | 0-2",
+          "wild cat | 0-2"
+        ]
+      }
     }
   }
 }

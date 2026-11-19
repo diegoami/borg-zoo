@@ -47,6 +47,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-untested-town` | [#401](https://github.com/diegoami/borg-zoo/issues/401) | 13 | defined (pilot screen on 3ba17e2c, not dispatched) | Never-tested town planner settings halved and doubled on main 3ba17e2c: borg_town_risk, power_scale, w_attack, w_support, w_space, home_discount. |
 | `reborn-untested-caution` | [#401](https://github.com/diegoami/borg-zoo/issues/401) | 9 | defined (pilot screen on 3ba17e2c, not dispatched) | Never-tested trip, Recall and breeder settings lowered and raised on main 3ba17e2c: borg_town_explore_turns, caution_recall_rest_turns, caution_breeder_easy_escape_steps, caution_flee_recall_chasers. |
 | `reborn-errands-floor3` | [#405](https://github.com/diegoami/borg-zoo/issues/405) | 4 | defined (pilot on 3ba17e2c, not dispatched) | Errands plan × floor3 (2×2) on main 3ba17e2c: ctl, errands, floor3, both. |
+| `reborn-crow` | [#408](https://github.com/diegoami/borg-zoo/issues/408) | 4 | defined (pilot on 3ba17e2c, not dispatched) | Crows (and wild cats) scary for fragile classes at CL1-2/3 only, on main 3ba17e2c: crow 0-2, crow 0-3, crow + wild cat 0-2. |
 
 ### `heal-attack-4`
 
@@ -705,6 +706,19 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-combo38-errands` | errands_plan.txt | – |
 | `reborn-combo38-floor3` | – | 35 lines |
 
+### `reborn-crow`
+
+Crows (and wild cats) scary for fragile classes at CL1-2/3 only, on main 3ba17e2c: crow 0-2, crow 0-3, crow + wild cat 0-2.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_scary_list_lines` |
+| --- | --- |
+| `reborn-crow38-crow2` | 1 line |
+| `reborn-crow38-crow3` | 1 line |
+| `reborn-crow38-crowcat2` | 2 lines |
+| `reborn-crow38-ctl` | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -835,7 +849,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
-| `borg_scary_list_lines` | 1 line, 14 lines, 28 lines, 35 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3` |  |
+| `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow` |  |
 | `borg_town_explore_turns` | 500, 2000, not set | `reborn-untested-caution` |  |
 | `borg_town_home_discount` | 250, 1000, not set | `reborn-untested-town` |  |
 | `borg_town_power_scale` | 20000, 80000, not set | `reborn-untested-town` |  |
