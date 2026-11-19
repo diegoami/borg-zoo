@@ -1,0 +1,31 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-casters-pilot",
+  "issue": 415,
+  "definition": "definitions/reborn-casters-pilot.yaml",
+  "question": "On borg-reborn-rs main 592c6984, with the Phase Door rule and calmed unlatch, which early-game lever (more oil, more Phase Door, throwing, early animals on the scary list, a larger heal reserve) saves Mages, Priests, Necromancers and Druids?",
+  "description": "On borg-reborn-rs main 592c6984, with the Phase Door rule and calmed unlatch, which early-game lever (more oil, more Phase Door, throwing, early animals on the scary list, a larger heal reserve) saves Mages, Priests, Necromancers and Druids? Generated from definitions/reborn-casters-pilot.yaml: 6 arms on 4.2.6-reborn-rust-main-592c6984, suite classes-1800-small-mages, classes-1800-small-priests, classes-1800-small-necromancers, classes-1800-small-druids.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles was read. Pilot (RULES 16), 40 starts per arm.\nEvidence (#415, 3ba17e2c, 400 games per class): deaths Druid 47, Priest 37, Necromancer 35, Mage 34; about 85% at\nCL1-3 on DL1 before turn 25k, mostly crows, wild cats, Grip and Fang, soldiers and grey molds; casters buy little\noil and few Cure Light Wounds potions.\nGate:\n- no config_error; one binary; each arm's values in borg.txt (and the scary list lines in its list);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- each arm is reached: games identical to ctl are counted, and an arm identical in 40 of 40 is inert.\nReport per arm and per class: deaths and causes (by monster, CL and turn at death), CL1-3 deaths, mean max CL and\nDL; paired rescued and newly killed against ctl; identical plays; for oil and escape, the Flasks of oil and Phase\nDoor bought per town visit; for thrown, the throws made; for heal, the healing potions bought. RULES 18 bins,\ndirection only.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-main-592c6984"
+  ],
+  "profiles": [
+    "reborn-casters59-ctl",
+    "reborn-casters59-oil",
+    "reborn-casters59-escape",
+    "reborn-casters59-thrown",
+    "reborn-casters59-scary-animals",
+    "reborn-casters59-heal"
+  ],
+  "suites": [
+    "classes-1800-small-mages",
+    "classes-1800-small-priests",
+    "classes-1800-small-necromancers",
+    "classes-1800-small-druids"
+  ],
+  "control": "4.2.6-reborn-rust-main-592c6984",
+  "control_profile": "reborn-casters59-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for definitions of the proposed changes, focused on the weakest classes (#415 study 1). Pilot first (RULES 16), then medium, big and full, each after the previous gate (RULES 14). Dispatch is the owner's call.",
+  "retain_evidence": true
+}

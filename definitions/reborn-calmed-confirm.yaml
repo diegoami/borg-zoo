@@ -1,0 +1,41 @@
+# borg-zoo#400: confirmation of calmed unlatch (caution_scary_unlatch_calmed = 1) on fresh seeds (classes-1800-b).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-calmed-confirm.yaml
+#
+# The same specimen and profiles as the development study (all 1,800 classes-1800 starts); the pilot is
+# reborn-neutral-main-pilot (gate passed, run 44544030466).
+name: reborn-calmed-confirm
+issue: 400
+question: >-
+  On borg-reborn-rs main 3ba17e2c, does calmed unlatch (caution_scary_unlatch_calmed = 1) die less than main's 0, at no
+  cost in progress, on 1,800 fresh starts (classes-1800-b)?
+specimens: [4.2.6-reborn-rust-main-3ba17e2c]
+suites: [classes-1800-b]   # confirmation: 1,800 fresh seeds, the classes-1800 class and race assignment, 100,000 turns
+profiles: [reborn-neutral38-ctl, reborn-neutral38-calmed]
+control_specimen: 4.2.6-reborn-rust-main-3ba17e2c
+control_profile: reborn-neutral38-ctl
+owner_authorization: >-
+  2026-11-19: after the development study (#400: 93 against 105 deaths, 28 / 16, p 0.096; CL +0.093, DL +0.053, both
+  significant), the owner asked for definitions of the proposed changes. Dispatch is the owner's call.
+
+prespecified: |
+  Fixed 2026-11-19, before any classes-1800-b result of these profiles was read. Confirmation of one prespecified test
+  (RULES 8). Same specimen and profiles as the pilot reborn-neutral-main-pilot (RULES 16).
+  Primary endpoint: death by the 100,000-turn cap among the 1,800 classes-1800-b starts, calmed against ctl, paired on
+  the same start; two-sided exact McNemar test at alpha 0.05. Confirmed helpful only if p < 0.05 and calmed has fewer
+  deaths. Pairs where either cell did not finish (stall, timeout, crash, harness or config error) are left out of the
+  test, listed and counted per arm (RULES 6), never relabelled as deaths or survivors.
+  Secondary endpoints (progress, non-inferiority): mean max CL and mean max DL, calmed minus ctl, paired on the same
+  start. calmed is non-inferior when the lower bound of the two-sided 95% paired interval (normal approximation) is
+  above -0.25 CL and above -0.10 DL. Development: +0.093 CL [+0.046, +0.141], +0.053 DL [+0.022, +0.084].
+  Descriptive only: deaths, CL1-3 deaths, causes, mean max CL and DL per class, with Priests named in advance (the
+  only class worse in development, 13 against 15; a candidate for caution_scary_unlatch_calmed@priest = 0); games
+  identical to ctl.
+  Sizing: development discordance 44/1800 with a net 12/1800; the normal approximation gives about 44% power at 1,800
+  pairs if that effect holds. A result short of p < 0.05 does not show calmed has no effect on deaths.
+  Gate (before the test is read):
+  - no config_error; one binary; each arm's four values in borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - ctl writes only main's values, so it should replay reborn-errands-main-confirm's none arm (the same specimen and
+    starts) in 1,800 of 1,800 games.
+  The result is reported in a RULES 18 bin (harmful, neutral or helpful); shipping calmed is the owner's call
+  (borg-reborn-rs#672).

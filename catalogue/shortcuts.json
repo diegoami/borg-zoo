@@ -810,6 +810,43 @@
         "reborn-magepriest-spell1500"
       ],
       "runs": []
+    },
+    "reborn-bgphase": {
+      "issue": 415,
+      "status": "defined (pilot on Blackguard starts, medium, big, full on 592c6984, not dispatched)",
+      "what": "Blackguard exception to the Phase Door rule on main 592c6984: rule on (control, as main will ship) against rule off, calmed unlatch in both; Blackguard starts only.",
+      "profiles": [
+        "reborn-bgphase59-rule-off",
+        "reborn-bgphase59-rule-on"
+      ],
+      "runs": []
+    },
+    "reborn-casters": {
+      "issue": 415,
+      "status": "defined (pilot on caster starts, medium, big, full on 592c6984, not dispatched)",
+      "what": "Casters' early kit and fighting on main 592c6984, Mage, Priest, Necromancer and Druid starts only, the Phase Door rule and calmed in every arm: more oil, more Phase Door, thrown preference 1500, early animals on the scary list, heal reserve + 100.",
+      "profiles": [
+        "reborn-casters59-ctl",
+        "reborn-casters59-escape",
+        "reborn-casters59-heal",
+        "reborn-casters59-oil",
+        "reborn-casters59-scary-animals",
+        "reborn-casters59-thrown"
+      ],
+      "runs": []
+    },
+    "reborn-rebase-main": {
+      "issue": 416,
+      "status": "defined (pilot on 592c6984, not dispatched)",
+      "what": "Re-baseline on main 592c6984 after #664: shipped, the Phase Door rule, calmed unlatch, both, and the errands plan.",
+      "profiles": [
+        "reborn-rebase59-calmed",
+        "reborn-rebase59-errands",
+        "reborn-rebase59-rule",
+        "reborn-rebase59-rule-calmed",
+        "reborn-rebase59-shipped"
+      ],
+      "runs": []
     }
   }
 }

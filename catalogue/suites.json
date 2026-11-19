@@ -1755,6 +1755,177 @@
       "stall_seconds": 90,
       "saves": false,
       "measurement_profile": "c-seeded-point-buy-v2"
+    },
+    "classes-1800-small-blackguards": {
+      "description": "The Blackguard starts of classes-1800-small (borg-zoo#415, the Blackguard exception to the Phase Door rule): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Blackguard"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-medium-blackguards": {
+      "description": "The Blackguard starts of classes-1800-medium (borg-zoo#415, the Blackguard exception to the Phase Door rule): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Blackguard"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-blackguards": {
+      "description": "The Blackguard starts of classes-1800-big (borg-zoo#415, the Blackguard exception to the Phase Door rule): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Blackguard"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full-blackguards": {
+      "description": "The Blackguard starts of classes-1800-full (borg-zoo#415, the Blackguard exception to the Phase Door rule): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Blackguard"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-mages": {
+      "description": "The Mage starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Mage"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-medium-mages": {
+      "description": "The Mage starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Mage"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-mages": {
+      "description": "The Mage starts of classes-1800-big (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Mage"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full-mages": {
+      "description": "The Mage starts of classes-1800-full (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Mage"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-priests": {
+      "description": "The Priest starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Priest"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-medium-priests": {
+      "description": "The Priest starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Priest"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-priests": {
+      "description": "The Priest starts of classes-1800-big (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Priest"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full-priests": {
+      "description": "The Priest starts of classes-1800-full (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Priest"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-necromancers": {
+      "description": "The Necromancer starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Necromancer"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-medium-necromancers": {
+      "description": "The Necromancer starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Necromancer"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-necromancers": {
+      "description": "The Necromancer starts of classes-1800-big (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Necromancer"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full-necromancers": {
+      "description": "The Necromancer starts of classes-1800-full (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Necromancer"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-medium-druids": {
+      "description": "The Druid starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Druid"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-druids": {
+      "description": "The Druid starts of classes-1800-big (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Druid"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full-druids": {
+      "description": "The Druid starts of classes-1800-full (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Druid"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
     }
   }
 }
