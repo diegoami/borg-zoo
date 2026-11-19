@@ -59,6 +59,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-kill-flow-mode` | [#438](https://github.com/diegoami/borg-zoo/issues/438) | 4 | defined (pilot on PR #695 head f9c44b35, 200k turns) | The hunt removed in steps: kill_flow_mode 0 (C), 1 targeted hunts only, 2 no out-of-view hunt, 3 never hunt. |
 | `reborn-detect-min-level` | [#443](https://github.com/diegoami/borg-zoo/issues/443) | 2 | defined (pilot on PR #703 head 3ed059b6) | No detection prayer by panel below CL10 for the five casters (light_detect_evil_spell_min_level 10) against C (0). |
 | `reborn-slow-crowd-exit` | [#448](https://github.com/diegoami/borg-zoo/issues/448) | 2 | defined (pilot on PR #702 head c3747cc9; small + medium after its gate) | Walk out of a crowd of slower or immobile monsters (caution_slow_crowd_exit) against off. |
+| `reborn-untested-dbc` | [#450](https://github.com/diegoami/borg-zoo/issues/450) | 8 | defined (pilot on main dbc92d18) | Never-varied town settings: device value by class (100 / 50 / 200), shot reserve 50 / 100, shot reserve with oil 50, town flee no-worse. |
+| `reborn-class-curves-dbc` | [#433](https://github.com/diegoami/borg-zoo/issues/433) | 2 | defined (pilot, small, medium on main dbc92d18) | #433 restarted on dbc92d18: the owner's class curves against all scales 100. |
+| `reborn-detect-min-dbc` | [#443](https://github.com/diegoami/borg-zoo/issues/443) | 2 | defined (pilot, small, medium on main dbc92d18) | #443 on dbc92d18: caster detection min level 10 (shipped) against 0. |
 
 ### `heal-attack-4`
 
@@ -867,6 +870,45 @@ Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = bo
 | `reborn-slowcrowd-ctl` | 0 |
 | `reborn-slowcrowd-exit` | 1 |
 
+### `reborn-untested-dbc`
+
+Never-varied town settings: device value by class (100 / 50 / 200), shot reserve 50 / 100, shot reserve with oil 50, town flee no-worse.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_town_flee_no_worse` | `borg_param_town_devices_percent` | `borg_param_town_devices_percent@blackguard` | `borg_param_town_devices_percent@druid` | `borg_param_town_devices_percent@mage` | `borg_param_town_devices_percent@necromancer` | `borg_param_town_devices_percent@paladin` | `borg_param_town_devices_percent@priest` | `borg_param_town_devices_percent@ranger` | `borg_param_town_devices_percent@rogue` | `borg_param_town_devices_percent@warrior` | `borg_param_town_missiles_other_ranged_percent` | `borg_param_town_missiles_percent` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-untested-dbc-ctl` | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-untested-dbc-dev100` | – | – | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | – | – |
+| `reborn-untested-dbc-dev200` | – | 200 | 200 | 200 | 200 | 200 | 200 | 200 | 200 | 200 | 200 | – | – |
+| `reborn-untested-dbc-dev50` | – | 50 | 50 | 50 | 50 | 50 | 50 | 50 | 50 | 50 | 50 | – | – |
+| `reborn-untested-dbc-miss100` | – | – | – | – | – | – | – | – | – | – | – | – | 100 |
+| `reborn-untested-dbc-miss100-or50` | – | – | – | – | – | – | – | – | – | – | – | 50 | 100 |
+| `reborn-untested-dbc-miss50` | – | – | – | – | – | – | – | – | – | – | – | – | 50 |
+| `reborn-untested-dbc-townflee` | 1 | – | – | – | – | – | – | – | – | – | – | – | – |
+
+### `reborn-class-curves-dbc`
+
+#433 restarted on dbc92d18: the owner's class curves against all scales 100.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_heal_curve_scale_percent_blackguard` | `borg_param_town_heal_reserve_hp_percent_blackguard` | `borg_param_town_oil_curve_scale_percent@blackguard` | `borg_param_town_oil_curve_scale_percent@druid` | `borg_param_town_oil_curve_scale_percent@mage` | `borg_param_town_oil_curve_scale_percent@necromancer` | `borg_param_town_oil_curve_scale_percent@paladin` | `borg_param_town_oil_curve_scale_percent@priest` | `borg_param_town_oil_curve_scale_percent@ranger` | `borg_param_town_oil_curve_scale_percent@rogue` | `borg_param_town_oil_curve_scale_percent@warrior` | `borg_param_town_phase_curve_scale_percent@blackguard` | `borg_param_town_phase_curve_scale_percent@druid` | `borg_param_town_phase_curve_scale_percent@mage` | `borg_param_town_phase_curve_scale_percent@necromancer` | `borg_param_town_phase_curve_scale_percent@paladin` | `borg_param_town_phase_curve_scale_percent@priest` | `borg_param_town_phase_curve_scale_percent@ranger` | `borg_param_town_phase_curve_scale_percent@rogue` | `borg_param_town_phase_curve_scale_percent@warrior` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-curves-dbc-ctl` | 75 | 150 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 |
+| `reborn-curves-dbc-owner` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+
+### `reborn-detect-min-dbc`
+
+#443 on dbc92d18: caster detection min level 10 (shipped) against 0.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_light_detect_evil_spell_min_level@druid` | `borg_param_light_detect_evil_spell_min_level@mage` | `borg_param_light_detect_evil_spell_min_level@necromancer` | `borg_param_light_detect_evil_spell_min_level@paladin` | `borg_param_light_detect_evil_spell_min_level@priest` |
+| --- | --- | --- | --- | --- | --- |
+| `reborn-detectmin-dbc-ctl` | 0 | 0 | 0 | 0 | 0 |
+| `reborn-detectmin-dbc-switch` | – | – | – | – | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -967,6 +1009,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_unlatch_calmed` | 0, 1, not set | `reborn-neutral-main`, `reborn-rebase-main`, `reborn-death-bank38` |  |
 | `borg_param_caution_slow_crowd_exit` | 0, 1 | `reborn-slow-crowd-exit` |  |
 | `borg_param_caution_stair_parked_fallback` | 0, 1, not set | `reborn-597` |  |
+| `borg_param_caution_town_flee_no_worse` | 1, not set | `reborn-untested-dbc` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_fail` | 0, not set | `reborn-bless` |  |
@@ -980,15 +1023,25 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
 | `borg_param_kill_flow_mode` | 0, 1, 2, 3 | `reborn-kill-flow-mode` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
-| `borg_param_light_detect_evil_spell_min_level@druid` | 0, not set | `reborn-detect-min-level` |  |
-| `borg_param_light_detect_evil_spell_min_level@mage` | 0, not set | `reborn-detect-min-level` |  |
-| `borg_param_light_detect_evil_spell_min_level@necromancer` | 0, not set | `reborn-detect-min-level` |  |
-| `borg_param_light_detect_evil_spell_min_level@paladin` | 0, not set | `reborn-detect-min-level` |  |
-| `borg_param_light_detect_evil_spell_min_level@priest` | 0, not set | `reborn-detect-min-level` |  |
+| `borg_param_light_detect_evil_spell_min_level@druid` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
+| `borg_param_light_detect_evil_spell_min_level@mage` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
+| `borg_param_light_detect_evil_spell_min_level@necromancer` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
+| `borg_param_light_detect_evil_spell_min_level@paladin` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
+| `borg_param_light_detect_evil_spell_min_level@priest` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
 | `borg_param_recover_rest_arms_see_invis` | 1, not set | `reborn-stand-seeinv` |  |
+| `borg_param_town_devices_percent` | 50, 200, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_devices_percent@blackguard` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_devices_percent@druid` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_devices_percent@mage` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_devices_percent@necromancer` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_devices_percent@paladin` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_devices_percent@priest` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_devices_percent@ranger` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_devices_percent@rogue` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_devices_percent@warrior` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_gold_reserve` | 300, 1000, not set | `reborn-gold-reserve` |  |
 | `borg_param_town_gold_reserve_percent` | 25, 50, not set | `reborn-gold-reserve` |  |
-| `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 75, 115, not set | `reborn-heal-by-class`, `reborn-class-curves` |  |
+| `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 75, 115, not set | `reborn-heal-by-class`, `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_heal_curve_scale_percent_druid` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_mage` | 0, 75, 225, not set | `reborn-heal-by-class`, `reborn-mage-priest` |  |
 | `borg_param_town_heal_curve_scale_percent_necromancer` | 0, 75, 225, not set | `reborn-heal-by-class` |  |
@@ -997,7 +1050,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_curve_scale_percent_ranger` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_rogue` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_warrior` | 0, 25, 75, not set | `reborn-heal-by-class` |  |
-| `borg_param_town_heal_reserve_hp_percent_blackguard` | -1, 75, 150, 225, not set | `reborn-heal-by-class`, `reborn-class-curves` |  |
+| `borg_param_town_heal_reserve_hp_percent_blackguard` | -1, 75, 150, 225, not set | `reborn-heal-by-class`, `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_heal_reserve_hp_percent_druid` | -1, 125, 350, 375, not set | `reborn-heal-by-class`, `reborn-casters` |  |
 | `borg_param_town_heal_reserve_hp_percent_mage` | -1, 150, 400, 450, not set | `reborn-heal-by-class`, `reborn-mage-priest`, `reborn-casters` |  |
 | `borg_param_town_heal_reserve_hp_percent_necromancer` | -1, 150, 400, 450, not set | `reborn-heal-by-class`, `reborn-casters` |  |
@@ -1006,24 +1059,26 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
-| `borg_param_town_oil_curve_scale_percent@blackguard` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_oil_curve_scale_percent@druid` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_oil_curve_scale_percent@mage` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_oil_curve_scale_percent@necromancer` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_oil_curve_scale_percent@paladin` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_oil_curve_scale_percent@priest` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_oil_curve_scale_percent@ranger` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_oil_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_oil_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_phase_curve_scale_percent@blackguard` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_phase_curve_scale_percent@druid` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_phase_curve_scale_percent@mage` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_phase_curve_scale_percent@necromancer` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_phase_curve_scale_percent@paladin` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_phase_curve_scale_percent@priest` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_phase_curve_scale_percent@ranger` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_phase_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves` |  |
-| `borg_param_town_phase_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_missiles_other_ranged_percent` | 50, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_missiles_percent` | 50, 100, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_oil_curve_scale_percent@blackguard` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_oil_curve_scale_percent@druid` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_oil_curve_scale_percent@mage` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_oil_curve_scale_percent@necromancer` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_oil_curve_scale_percent@paladin` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_oil_curve_scale_percent@priest` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_oil_curve_scale_percent@ranger` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_oil_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_oil_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_phase_curve_scale_percent@blackguard` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_phase_curve_scale_percent@druid` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_phase_curve_scale_percent@mage` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_phase_curve_scale_percent@necromancer` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_phase_curve_scale_percent@paladin` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_phase_curve_scale_percent@priest` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_phase_curve_scale_percent@ranger` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_phase_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_phase_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
 | `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters` |  |

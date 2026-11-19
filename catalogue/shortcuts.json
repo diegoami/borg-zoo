@@ -925,6 +925,42 @@
         "reborn-slowcrowd-exit"
       ],
       "runs": []
+    },
+    "reborn-untested-dbc": {
+      "issue": 450,
+      "status": "defined (pilot on main dbc92d18)",
+      "what": "Never-varied town settings: device value by class (100 / 50 / 200), shot reserve 50 / 100, shot reserve with oil 50, town flee no-worse.",
+      "profiles": [
+        "reborn-untested-dbc-ctl",
+        "reborn-untested-dbc-dev100",
+        "reborn-untested-dbc-dev200",
+        "reborn-untested-dbc-dev50",
+        "reborn-untested-dbc-miss100",
+        "reborn-untested-dbc-miss100-or50",
+        "reborn-untested-dbc-miss50",
+        "reborn-untested-dbc-townflee"
+      ],
+      "runs": []
+    },
+    "reborn-class-curves-dbc": {
+      "issue": 433,
+      "status": "defined (pilot, small, medium on main dbc92d18)",
+      "what": "#433 restarted on dbc92d18: the owner's class curves against all scales 100.",
+      "profiles": [
+        "reborn-curves-dbc-ctl",
+        "reborn-curves-dbc-owner"
+      ],
+      "runs": []
+    },
+    "reborn-detect-min-dbc": {
+      "issue": 443,
+      "status": "defined (pilot, small, medium on main dbc92d18)",
+      "what": "#443 on dbc92d18: caster detection min level 10 (shipped) against 0.",
+      "profiles": [
+        "reborn-detectmin-dbc-ctl",
+        "reborn-detectmin-dbc-switch"
+      ],
+      "runs": []
     }
   }
 }

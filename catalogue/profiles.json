@@ -7062,6 +7062,149 @@
         "borg_param_caution_scary_named_monsters": 1,
         "borg_param_caution_slow_crowd_exit": 1
       }
+    },
+    "reborn-untested-dbc-ctl": {
+      "description": "borg-zoo#450 (reborn-untested-dbc-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-untested-dbc-dev100": {
+      "description": "borg-zoo#450 (reborn-untested-dbc-pilot.yaml): arm dev100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_devices_percent@warrior": 100,
+        "borg_param_town_devices_percent@mage": 100,
+        "borg_param_town_devices_percent@druid": 100,
+        "borg_param_town_devices_percent@priest": 100,
+        "borg_param_town_devices_percent@necromancer": 100,
+        "borg_param_town_devices_percent@paladin": 100,
+        "borg_param_town_devices_percent@rogue": 100,
+        "borg_param_town_devices_percent@ranger": 100,
+        "borg_param_town_devices_percent@blackguard": 100
+      }
+    },
+    "reborn-untested-dbc-dev50": {
+      "description": "borg-zoo#450 (reborn-untested-dbc-pilot.yaml): arm dev50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_devices_percent": 50,
+        "borg_param_town_devices_percent@warrior": 50,
+        "borg_param_town_devices_percent@mage": 50,
+        "borg_param_town_devices_percent@druid": 50,
+        "borg_param_town_devices_percent@priest": 50,
+        "borg_param_town_devices_percent@necromancer": 50,
+        "borg_param_town_devices_percent@paladin": 50,
+        "borg_param_town_devices_percent@rogue": 50,
+        "borg_param_town_devices_percent@ranger": 50,
+        "borg_param_town_devices_percent@blackguard": 50
+      }
+    },
+    "reborn-untested-dbc-dev200": {
+      "description": "borg-zoo#450 (reborn-untested-dbc-pilot.yaml): arm dev200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_devices_percent": 200,
+        "borg_param_town_devices_percent@warrior": 200,
+        "borg_param_town_devices_percent@mage": 200,
+        "borg_param_town_devices_percent@druid": 200,
+        "borg_param_town_devices_percent@priest": 200,
+        "borg_param_town_devices_percent@necromancer": 200,
+        "borg_param_town_devices_percent@paladin": 200,
+        "borg_param_town_devices_percent@rogue": 200,
+        "borg_param_town_devices_percent@ranger": 200,
+        "borg_param_town_devices_percent@blackguard": 200
+      }
+    },
+    "reborn-untested-dbc-miss50": {
+      "description": "borg-zoo#450 (reborn-untested-dbc-pilot.yaml): arm miss50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_missiles_percent": 50
+      }
+    },
+    "reborn-untested-dbc-miss100": {
+      "description": "borg-zoo#450 (reborn-untested-dbc-pilot.yaml): arm miss100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_missiles_percent": 100
+      }
+    },
+    "reborn-untested-dbc-miss100-or50": {
+      "description": "borg-zoo#450 (reborn-untested-dbc-pilot.yaml): arm miss100-or50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_missiles_percent": 100,
+        "borg_param_town_missiles_other_ranged_percent": 50
+      }
+    },
+    "reborn-untested-dbc-townflee": {
+      "description": "borg-zoo#450 (reborn-untested-dbc-pilot.yaml): arm townflee.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_flee_no_worse": 1
+      }
+    },
+    "reborn-curves-dbc-ctl": {
+      "description": "borg-zoo#433 (reborn-class-curves-dbc-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_curve_scale_percent@warrior": 100,
+        "borg_param_town_phase_curve_scale_percent@mage": 100,
+        "borg_param_town_phase_curve_scale_percent@druid": 100,
+        "borg_param_town_phase_curve_scale_percent@priest": 100,
+        "borg_param_town_phase_curve_scale_percent@necromancer": 100,
+        "borg_param_town_phase_curve_scale_percent@paladin": 100,
+        "borg_param_town_phase_curve_scale_percent@rogue": 100,
+        "borg_param_town_phase_curve_scale_percent@ranger": 100,
+        "borg_param_town_phase_curve_scale_percent@blackguard": 100,
+        "borg_param_town_oil_curve_scale_percent@warrior": 100,
+        "borg_param_town_oil_curve_scale_percent@mage": 100,
+        "borg_param_town_oil_curve_scale_percent@druid": 100,
+        "borg_param_town_oil_curve_scale_percent@priest": 100,
+        "borg_param_town_oil_curve_scale_percent@necromancer": 100,
+        "borg_param_town_oil_curve_scale_percent@paladin": 100,
+        "borg_param_town_oil_curve_scale_percent@rogue": 100,
+        "borg_param_town_oil_curve_scale_percent@ranger": 100,
+        "borg_param_town_oil_curve_scale_percent@blackguard": 100,
+        "borg_param_town_heal_curve_scale_percent_blackguard": 75,
+        "borg_param_town_heal_reserve_hp_percent_blackguard": 150
+      }
+    },
+    "reborn-curves-dbc-owner": {
+      "description": "borg-zoo#433 (reborn-class-curves-dbc-pilot.yaml): arm owner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-detectmin-dbc-ctl": {
+      "description": "borg-zoo#443 (reborn-detect-min-dbc-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_light_detect_evil_spell_min_level@mage": 0,
+        "borg_param_light_detect_evil_spell_min_level@druid": 0,
+        "borg_param_light_detect_evil_spell_min_level@priest": 0,
+        "borg_param_light_detect_evil_spell_min_level@necromancer": 0,
+        "borg_param_light_detect_evil_spell_min_level@paladin": 0
+      }
+    },
+    "reborn-detectmin-dbc-switch": {
+      "description": "borg-zoo#443 (reborn-detect-min-dbc-pilot.yaml): arm switch.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
     }
   }
 }

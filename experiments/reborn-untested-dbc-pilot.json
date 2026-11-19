@@ -1,0 +1,29 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-untested-dbc-pilot",
+  "issue": 450,
+  "definition": "definitions/reborn-untested-dbc-pilot.yaml",
+  "question": "On borg-reborn-rs main dbc92d18, do the never-varied town settings (device value by class, a shot reserve for any class, the shot reserve with oil, town flee no-worse) change deaths or progress against shipped?",
+  "description": "On borg-reborn-rs main dbc92d18, do the never-varied town settings (device value by class, a shot reserve for any class, the shot reserve with oil, town flee no-worse) change deaths or progress against shipped? Generated from definitions/reborn-untested-dbc-pilot.yaml: 8 arms on 4.2.6-reborn-rust-main-dbc92d18, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles was read. Pilot (RULES 16) on a new specimen.\nGate:\n- no config_error; one binary; each arm's lines written;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: deaths and causes, max CL and DL, paired rescued and newly killed, identical plays;\nwands, rods, staffs and shots bought (town-purchases). Arms that change games go on to small + medium (starts 1-360)\nafter the owner; inert arms are reported as not reached. Bins (RULES 18) only from those tiers.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-dbc92d18"
+  ],
+  "profiles": [
+    "reborn-untested-dbc-ctl",
+    "reborn-untested-dbc-dev100",
+    "reborn-untested-dbc-dev50",
+    "reborn-untested-dbc-dev200",
+    "reborn-untested-dbc-miss50",
+    "reborn-untested-dbc-miss100",
+    "reborn-untested-dbc-miss100-or50",
+    "reborn-untested-dbc-townflee"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-dbc92d18",
+  "control_profile": "reborn-untested-dbc-ctl",
+  "owner_authorization": "2026-11-19: the owner said \"go ahead\" to the proposals: #450's untested settings as one pilot on a new main specimen, #433 and #443 restarted on main dbc92d18 (pilot, then small + medium after its gate).",
+  "retain_evidence": true
+}
