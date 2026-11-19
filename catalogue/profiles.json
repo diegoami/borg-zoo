@@ -4967,6 +4967,50 @@
         "borg_param_attack_arrow_point_blank_divisor_ranger": 1,
         "borg_param_caution_flee_recall_gate_below_depth": 0
       }
+    },
+    "reborn-breederavoid-ctl": {
+      "description": "borg-zoo#364 (reborn-breeder-avoid-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_avoid": 0,
+        "borg_param_caution_breeder_avoid_fight_through": 1,
+        "borg_param_caution_breeder_exit": 0
+      }
+    },
+    "reborn-breederavoid-avoid": {
+      "description": "borg-zoo#364 (reborn-breeder-avoid-pilot.yaml): arm avoid.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_avoid": 1,
+        "borg_param_caution_breeder_avoid_fight_through": 1,
+        "borg_param_caution_breeder_exit": 0
+      }
+    },
+    "reborn-breederavoid-avoid-nofight": {
+      "description": "borg-zoo#364 (reborn-breeder-avoid-pilot.yaml): arm avoid-nofight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_avoid": 1,
+        "borg_param_caution_breeder_avoid_fight_through": 0,
+        "borg_param_caution_breeder_exit": 0
+      }
+    },
+    "reborn-breederavoid-avoid-exit": {
+      "description": "borg-zoo#364 (reborn-breeder-avoid-pilot.yaml): arm avoid-exit.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_avoid": 1,
+        "borg_param_caution_breeder_avoid_fight_through": 1,
+        "borg_param_caution_breeder_exit": 1
+      }
     }
   }
 }
