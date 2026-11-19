@@ -15,7 +15,8 @@ inputs:
   path: scenario-inputs/suite1-reborn-main-38858846-stock
   files:
     borg.txt: 3ce9ae4f0736aa94cc8ce440b2770fb6a1fd5d1013fdac10b87f73550c0d242b
-    provenance.json: 2cc20ec40d5998f6b077a71790bd3e6e96e1c193e0f63dcde0c3be47786f35ab
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+    provenance.json: 80ed056506409b0d2bf03ba424b23888afe7fe31fff7dcd710e46f96f8dd24e8
 native_tools:
   repository: diegoami/borg-cemetery
   commit: 09225018dd5f2d4336a16b29478793d902c70dc3
@@ -27,7 +28,9 @@ prespecified: |
   Fixed 2026-11-19, before any result was read (borg-zoo#183). A sanity check of main: the 999 saves of
   Suite 1 with its protocol (exact 2,000-engine-turn horizon, the suite's 30-second native wall limit, fresh Borg
   memory, saved engine RNG). Settings: the checkout's own harness/borg.txt (sha256 3ce9ae4f...), nothing
-  overridden. Stages smoke 18, small 90, medium 360, big 900 and full 999 run in sequence, each after the previous
+  overridden; the scary list it names (scary_monsters.txt d045111b...) is frozen with the inputs and read by
+  absolute path. The first smoke (run 44436640586) failed its gate because the runner did not stage that file
+  (fixed in #346). Stages smoke 18, small 90, medium 360, big 900 and full 999 run in sequence, each after the previous
   stage's gate. Gate at every stage: no missing, invalid or stopped cell; one binary; every cell's native receipts
   show the save, the RNG, the borg-rs core, every borg.txt setting written, every borg_param_* effective from
   borg.txt, and an initial pack/equipment/rune hash equal to the suite's. Reported alone: the death share, deaths
