@@ -32,7 +32,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-attack-focus` | [#319](https://github.com/diegoami/borg-zoo/issues/319) | 3 | done: small+medium+big, no outcome changed; closed (FINDINGS) | Attack focus by class on main f660aecc: shipped class preferences, with every family a class file does not raise at 750 or 500. |
 | `reborn-plays-risky` | [#330](https://github.com/diegoami/borg-zoo/issues/330) | 2 | pilot done: risky kills; closed (FINDINGS) | borg_plays_risky FALSE (shipped) against TRUE on main 6438e1cf. |
 | `reborn-597` | [#342](https://github.com/diegoami/borg-zoo/issues/342) | 3 | pilot done: both switches neutral (inert) | #597 switches on main 6438e1cf: caution_twitch_avoid_lava and caution_stair_parked_fallback each off against shipped 1. |
-| `reborn-scary-ends` | [#350](https://github.com/diegoami/borg-zoo/issues/350) | 11 | floor pilots done: floors neutral, smaller progress gain; a 360-start tier of ctl / all5 / floor3 proposed | Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846. |
+| `reborn-scary-ends` | [#350](https://github.com/diegoami/borg-zoo/issues/350) | 11 | floor3 starts 1-360 done: same deaths as ctl, most of all5's progress; big / 200k / bundle proposed | Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846. |
 | `reborn-bundle` | [#361](https://github.com/diegoami/borg-zoo/issues/361) | 11 | defined (pilot on 38858846, not dispatched) | The safe-to-adopt changes together on main 38858846: scary all5 + Ranger point-blank 1 + flight Recall on DL1 (gate 0), and the bundle without all5. |
 | `reborn-kill-power-main` | [#244](https://github.com/diegoami/borg-zoo/issues/244) | 2 | pilot done: off neutral on deaths, leans harmful on progress | kill_live_min_power shipped 1 against 0 on main 38858846. |
 
@@ -487,6 +487,7 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | --- | --- | --- | --- |
 | [44446160367 + 44446177348](https://github.com/diegoami/borg-zoo/actions/runs/44446160367 + 44446177348) | pilots (100k, 200k) | `4.2.6-reborn-rust-main-38858846` | 100k: ctl 0, all5 0 deaths, CL 5.50 v 5.83; 200k: ctl 3, all5 1 deaths, CL 6.17 v 8.22 |
 | [44465218294 + 44465235895](https://github.com/diegoami/borg-zoo/actions/runs/44465218294 + 44465235895) | floor pilots (100k, 200k) | `4.2.6-reborn-rust-main-38858846` | 200k: ctl 3, all5 1, all5-pal 2, floor3 3, floor4 3 deaths; CL 6.17 / 8.22 / 7.83 / 7.06 / 6.61; 100k no deaths |
+| [44498103824 + 44498131613](https://github.com/diegoami/borg-zoo/actions/runs/44498103824 + 44498131613) | floor3 small + medium | `4.2.6-reborn-rust-main-38858846` | starts 1-360: ctl 13, floor3 13 deaths (2/2); CL 5.25 v 5.60; all5 (paired) 18, 5.73 |
 
 ### `reborn-bundle`
 
