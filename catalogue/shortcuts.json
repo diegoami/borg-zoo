@@ -283,7 +283,7 @@
     },
     "reborn-recall-settings": {
       "issue": 280,
-      "status": "pilot done (gate passed); small and medium defined",
+      "status": "small+medium done (dl1off 17 v 23); big for ctl and dl1off defined",
       "what": "Word of Recall settings on main f660aecc (#571 merged): shipped; no flight Recall on DL1-2 (gate 3); flight Recall on DL1 again (gate 0); Recall valued 300% or 1000% by the town planner; no flight Recall at any depth without breeders or chasers (caution_flee_recall 0).",
       "profiles": [
         "reborn-recallset-ctl",
@@ -378,7 +378,7 @@
     },
     "reborn-pbd-rr": {
       "issue": 290,
-      "status": "all tiers done: Ranger divisor 1 leads (11 v 18); confirmation proposed",
+      "status": "development done (Ranger divisor 1 leads, 11 v 18); confirmation on classes-1800-b defined",
       "what": "Point-blank divisor for Rangers (1, 2 shipped, 3) and Rogues (2, 3 shipped, 4) on main f660aecc, played on Ranger and Rogue starts only.",
       "profiles": [
         "reborn-pbdrr-ctl",
@@ -414,7 +414,7 @@
     },
     "reborn-scary-tough": {
       "issue": 299,
-      "status": "big done: t5 progress lead, deaths 57 v 62; full + confirmation proposed",
+      "status": "starts 1-900 done (t5 57 v 62 deaths, higher progress); full for ctl and t5 defined",
       "what": "The scary list's tough end on main f660aecc: shipped, tough - 3 and tough - 5 with fragile unchanged; read per class.",
       "profiles": [
         "reborn-scarytough-ctl",
@@ -514,6 +514,17 @@
           "result": "36 games: ctl 0, risky 7 deaths (0/7, p 0.016)"
         }
       ]
+    },
+    "reborn-597": {
+      "issue": 342,
+      "status": "defined (pilot on 6438e1cf, not dispatched)",
+      "what": "#597 switches on main 6438e1cf: caution_twitch_avoid_lava and caution_stair_parked_fallback each off against shipped 1.",
+      "profiles": [
+        "reborn-597-ctl",
+        "reborn-597-lava0",
+        "reborn-597-parked0"
+      ],
+      "runs": []
     }
   }
 }

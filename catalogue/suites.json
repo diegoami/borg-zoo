@@ -1289,6 +1289,15 @@
       "stall_seconds": 90,
       "saves": false
     },
+    "classes-1800-b-rangers": {
+      "description": "The 200 Ranger starts of classes-1800-b (borg-zoo#290): fresh seeds for confirming a Ranger lead from classes-1800. Prespecified tests only.",
+      "role": "confirmation",
+      "subset": {"suite": "classes-1800-b", "class": "Ranger"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
     "rs-family-warrior-3": {
       "description": "Borg-family buying pilot: Human Warrior, three seeds, 20,000 engine turns",
       "role": "pilot",
