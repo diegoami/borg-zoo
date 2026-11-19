@@ -55,7 +55,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-death-bank38` | [#429](https://github.com/diegoami/borg-zoo/issues/429) | 5 | defined (replay of 3ba17e2c's 233 death starts, not dispatched) | The death-start bank of shipped main 3ba17e2c: ctl, the Phase Door rule, calmed unlatch, the errands plan, all three. |
 | `reborn-crow-escape` | [#408](https://github.com/diegoami/borg-zoo/issues/408) | 4 | defined (replay of the 55 crow/wild-cat death starts, not dispatched) | Crow/wild-cat death starts on 3ba17e2c: ctl, the Phase Door rule, the rule + throwing 1500, the rule + more oil. |
 | `reborn-breeder-stoppable` | [#411](https://github.com/diegoami/borg-zoo/issues/411) | 3 | defined (pilot on PR #632 head ed8e270d) | Kill breeders first (caution_breeder_stoppable), alone and with the flight's colony avoidance (caution_breeder_avoid), against both off. |
-| `reborn-class-curves` | [#433](https://github.com/diegoami/borg-zoo/issues/433) | 2 | defined (pilot on main a87b4c96) | The owner's #682 per-class Phase Door and oil curve scales (and Blackguard healing 100/200) against the same build set back to 100 (main before #682). |
+| `reborn-class-curves` | [#433](https://github.com/diegoami/borg-zoo/issues/433) | 2 | pilot done (run 44610324668: 0 deaths against 1); small + medium defined | The owner's #682 per-class Phase Door and oil curve scales (and Blackguard healing 100/200) against the same build set back to 100 (main before #682). |
 
 ### `heal-attack-4`
 
