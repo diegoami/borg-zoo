@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-breeder-settings-small",
+  "issue": 404,
+  "definition": "definitions/reborn-breeder-settings-small.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, do the breeder settings never varied before (the hunt's acid fear, standing next to breeders, the easy-escape distance) change deaths or progress?",
+  "description": "On borg-reborn-rs main 3ba17e2c, do the breeder settings never varied before (the hunt's acid fear, standing next to breeders, the easy-escape distance) change deaths or progress? Generated from definitions/reborn-breeder-settings-small.yaml: 5 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-small.",
+  "prespecified": "Small tier (starts 1-90); pilot gate passed, run 44547646378.\nSame specimen and profiles as reborn-breeder-settings-pilot; no raw evidence at this size. Dispatched only on the owner's go-ahead.\nFixed 2026-11-19, before any zoo result of these settings was read (owner: \"any other things to test, not tested\nor not tested enough? do it\"). Pilot (RULES 16); larger tiers only after this gate and the owner. ctl is shipped.\nGate:\n- no config_error; one binary; each arm's values in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm and per class: deaths and causes, final level, deepest level, paired rescued and newly killed\nagainst ctl, identical plays; RULES 18 bins. 18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-breederset-ctl",
+    "reborn-breederset-acidfear",
+    "reborn-breederset-nostand",
+    "reborn-breederset-esc3",
+    "reborn-breederset-esc10"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-breederset-ctl"
+}

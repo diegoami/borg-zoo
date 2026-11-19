@@ -1,0 +1,34 @@
+# borg-zoo#402: small after the pilot reborn-trip-gold-pilot (proposed 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-trip-gold-small.yaml
+name: reborn-trip-gold-small
+issue: 402
+question: On borg-reborn-rs main 3ba17e2c, does going back to town on gold (borg_trip_return_gold 50, 150, 400 per character
+  level; shipped 0 = never) save games or progress?
+tier: small
+specimen: 4.2.6-reborn-rust-main-3ba17e2c
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-tripgold
+arms:
+  g0:
+    borg_trip_return_gold: 0
+  g50:
+    borg_trip_return_gold: 50
+  g150:
+    borg_trip_return_gold: 150
+  g400:
+    borg_trip_return_gold: 400
+control:
+- g0
+prespecified: |
+  Small tier (starts 1-90); pilot gate passed, run 44547600652.
+  Same specimen and profiles as reborn-trip-gold-pilot; no raw evidence at this size. Dispatched only on the owner's go-ahead.
+  Fixed 2026-11-19, before any zoo result of these settings was read (owner: "any other things to test, not tested
+  or not tested enough? do it"). Pilot (RULES 16); larger tiers only after this gate and the owner. ctl is shipped.
+  Gate:
+  - no config_error; one binary; each arm's values in its borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm and per class: deaths and causes, final level, deepest level, paired rescued and newly killed
+  against ctl, identical plays; RULES 18 bins. 18 starts per arm show direction only.
