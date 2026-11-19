@@ -62,6 +62,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-untested-dbc` | [#450](https://github.com/diegoami/borg-zoo/issues/450) | 8 | defined (pilot on main dbc92d18) | Never-varied town settings: device value by class (100 / 50 / 200), shot reserve 50 / 100, shot reserve with oil 50, town flee no-worse. |
 | `reborn-class-curves-dbc` | [#433](https://github.com/diegoami/borg-zoo/issues/433) | 2 | defined (pilot, small, medium on main dbc92d18) | #433 restarted on dbc92d18: the owner's class curves against all scales 100. |
 | `reborn-detect-min-dbc` | [#443](https://github.com/diegoami/borg-zoo/issues/443) | 2 | defined (pilot, small, medium on main dbc92d18) | #443 on dbc92d18: caster detection min level 10 (shipped) against 0. |
+| `reborn-breederstop-dbc` | [#411](https://github.com/diegoami/borg-zoo/issues/411) | 3 | defined (pilot, small, medium on main dbc92d18) | #411 on dbc92d18: kill breeders first (stoppable), alone and with avoidance, against both off. |
 
 ### `heal-attack-4`
 
@@ -909,6 +910,18 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-detectmin-dbc-ctl` | 0 | 0 | 0 | 0 | 0 |
 | `reborn-detectmin-dbc-switch` | – | – | – | – | – |
 
+### `reborn-breederstop-dbc`
+
+#411 on dbc92d18: kill breeders first (stoppable), alone and with avoidance, against both off.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_breeder_avoid` | `borg_param_caution_breeder_stoppable` |
+| --- | --- | --- |
+| `reborn-breederstop-dbc-ctl` | 0 | 0 |
+| `reborn-breederstop-dbc-stop` | 0 | 1 |
+| `reborn-breederstop-dbc-stop-avoid` | 1 | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -990,9 +1003,9 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_town_dangerous_bonus_percent` | 600, not set | `reborn-town-dangerous` |  |
 | `borg_param_attack_town_dangerous_min_damage` | 3, not set | `reborn-town-dangerous` |  |
 | `borg_param_attack_town_dangerous_on_sight` | 0, 1, not set | `reborn-town-dangerous`, `reborn-neutral-main` |  |
-| `borg_param_caution_breeder_avoid` | 0, 1 | `reborn-breeder-stoppable` |  |
+| `borg_param_caution_breeder_avoid` | 0, 1 | `reborn-breeder-stoppable`, `reborn-breederstop-dbc` |  |
 | `borg_param_caution_breeder_easy_escape_steps` | 3, 10, not set | `reborn-untested-caution` |  |
-| `borg_param_caution_breeder_stoppable` | 0, 1 | `reborn-breeder-stoppable` |  |
+| `borg_param_caution_breeder_stoppable` | 0, 1 | `reborn-breeder-stoppable`, `reborn-breederstop-dbc` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_flee_recall_chasers` | 2, 6, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_flee_recall_gate_below_depth` | 0, 2, 3, not set | `reborn-recall-settings`, `reborn-bundle` |  |
