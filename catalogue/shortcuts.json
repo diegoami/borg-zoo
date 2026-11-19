@@ -847,6 +847,31 @@
         "reborn-rebase59-shipped"
       ],
       "runs": []
+    },
+    "reborn-death-bank38": {
+      "issue": 429,
+      "status": "defined (replay of 3ba17e2c's 233 death starts, not dispatched)",
+      "what": "The death-start bank of shipped main 3ba17e2c: ctl, the Phase Door rule, calmed unlatch, the errands plan, all three.",
+      "profiles": [
+        "reborn-bank38-all3",
+        "reborn-bank38-calmed",
+        "reborn-bank38-ctl",
+        "reborn-bank38-errands",
+        "reborn-bank38-phase"
+      ],
+      "runs": []
+    },
+    "reborn-crow-escape": {
+      "issue": 408,
+      "status": "defined (replay of the 55 crow/wild-cat death starts, not dispatched)",
+      "what": "Crow/wild-cat death starts on 3ba17e2c: ctl, the Phase Door rule, the rule + throwing 1500, the rule + more oil.",
+      "profiles": [
+        "reborn-crowesc38-ctl",
+        "reborn-crowesc38-phase",
+        "reborn-crowesc38-phase-oil",
+        "reborn-crowesc38-phase-thrown"
+      ],
+      "runs": []
     }
   }
 }

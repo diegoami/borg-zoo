@@ -6809,6 +6809,91 @@
         "borg_param_caution_recall_wait_as_usual": 1,
         "borg_plan": "errands_plan.txt"
       }
+    },
+    "reborn-bank38-ctl": {
+      "description": "borg-zoo#429 (reborn-death-bank38.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-bank38-phase": {
+      "description": "borg-zoo#429 (reborn-death-bank38.yaml): arm phase.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-bank38-calmed": {
+      "description": "borg-zoo#429 (reborn-death-bank38.yaml): arm calmed.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_unlatch_calmed": 1
+      }
+    },
+    "reborn-bank38-errands": {
+      "description": "borg-zoo#429 (reborn-death-bank38.yaml): arm errands.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-bank38-all3": {
+      "description": "borg-zoo#429 (reborn-death-bank38.yaml): arm all3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100,
+        "borg_param_caution_scary_unlatch_calmed": 1,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-crowesc38-ctl": {
+      "description": "borg-zoo#408 (reborn-crow-escape-replay.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-crowesc38-phase": {
+      "description": "borg-zoo#408 (reborn-crow-escape-replay.yaml): arm phase.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-crowesc38-phase-thrown": {
+      "description": "borg-zoo#408 (reborn-crow-escape-replay.yaml): arm phase-thrown.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100,
+        "borg_param_attack_preference_thrown_permille": 1500
+      }
+    },
+    "reborn-crowesc38-phase-oil": {
+      "description": "borg-zoo#408 (reborn-crow-escape-replay.yaml): arm phase-oil.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100,
+        "borg_town_w_attack": 200,
+        "borg_town_attack_turns": 50
+      }
     }
   }
 }
