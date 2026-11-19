@@ -872,6 +872,27 @@
         "reborn-crowesc38-phase-thrown"
       ],
       "runs": []
+    },
+    "reborn-breeder-stoppable": {
+      "issue": 411,
+      "status": "defined (pilot on PR #632 head ed8e270d)",
+      "what": "Kill breeders first (caution_breeder_stoppable), alone and with the flight's colony avoidance (caution_breeder_avoid), against both off.",
+      "profiles": [
+        "reborn-breederstop-ctl",
+        "reborn-breederstop-stop",
+        "reborn-breederstop-stop-avoid"
+      ],
+      "runs": []
+    },
+    "reborn-class-curves": {
+      "issue": 433,
+      "status": "defined (pilot on main a87b4c96)",
+      "what": "The owner's #682 per-class Phase Door and oil curve scales (and Blackguard healing 100/200) against the same build set back to 100 (main before #682).",
+      "profiles": [
+        "reborn-curves-a87b-ctl",
+        "reborn-curves-a87b-owner"
+      ],
+      "runs": []
     }
   }
 }

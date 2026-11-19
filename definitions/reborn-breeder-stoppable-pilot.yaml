@@ -1,0 +1,55 @@
+# borg-zoo#411: borg-reborn-rs#556 redesigned (kill breeders first), the issue's definition as filed; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-stoppable-pilot.yaml
+name: reborn-breeder-stoppable-pilot
+issue: 411
+question: On borg-reborn-rs PR #632's head ed8e270d, does "kill breeders first, flee only what cannot be stopped" (caution_breeder_stoppable), alone or with the flight's colony avoidance (caution_breeder_avoid), save or cost games against ctl?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-pr632-ed8e270d
+  repository: diegoami/borg-reborn-rs
+  ref: ed8e270d64ac04a13205012a86b33194fc69e286
+  label: "borg-reborn-rs ed8e270d, head of PR #632 (#556 redesigned, unmerged; contains main 3ba17e2c): kill breeders first behind caution_breeder_stoppable (0), the flight's colony avoidance behind caution_breeder_avoid (0). Source-hash rust b48a199a...; harness/borg.txt f69f7655..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only these two parameters.
+profile_prefix: reborn-breederstop
+arms:
+  ctl: {borg_param_caution_breeder_stoppable: 0, borg_param_caution_breeder_avoid: 0}
+  stop: {borg_param_caution_breeder_stoppable: 1, borg_param_caution_breeder_avoid: 0}
+  stop-avoid: {borg_param_caution_breeder_stoppable: 1, borg_param_caution_breeder_avoid: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked to do the open requests ("do other experiments, issues and pilots"), after the proposal
+  to define and dispatch #411 and #433.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of this definition was read (borg-reborn-rs#556, PR #632; replaces
+  borg-zoo#364, which pinned the replaced design). Pilot (RULES 16); small and medium (starts 1-360, borg-zoo#240's
+  tier) only after this gate and the owner: breeder deaths are rare and 18 starts show direction only.
+  Gate:
+  - no config_error; one binary; each arm's two values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - in ctl, no "# Breeders cannot be stopped" and no "# Fighting through the breeders" note.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final and maximum level, deepest level; breeder deaths (the killer has MULTIPLY);
+  - paired rescued and newly killed against ctl;
+  - breeder kills per game ("You have slain" a MULTIPLY race); "# Breeders cannot be stopped" per game, with its
+    births and turns-a-kill;
+  - the breeder flees per game ("Fleeing (breeder level)", "Ignoring breeders (no recall)", scary-level flees with
+    breeders known), and for stop-avoid "# Fighting through the breeders to the stairs";
+  - deaths within 500 game turns of a "# Breeders cannot be stopped" note.
+  Context: a local run on the same tree (18 classes-18 starts, 100,000 turns; not a zoo run): ctl 1 death, stop 3,
+  stop-avoid 2; sum of max CL 101 / 88 / 92 with a median paired change of 0; breeder kills 106 / 99 / 134.
