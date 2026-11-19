@@ -54,6 +54,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-rebase-main` | [#416](https://github.com/diegoami/borg-zoo/issues/416) | 5 | defined (pilot on 592c6984, not dispatched) | Re-baseline on main 592c6984 after #664: shipped, the Phase Door rule, calmed unlatch, both, and the errands plan. |
 | `reborn-death-bank38` | [#429](https://github.com/diegoami/borg-zoo/issues/429) | 5 | defined (replay of 3ba17e2c's 233 death starts, not dispatched) | The death-start bank of shipped main 3ba17e2c: ctl, the Phase Door rule, calmed unlatch, the errands plan, all three. |
 | `reborn-crow-escape` | [#408](https://github.com/diegoami/borg-zoo/issues/408) | 4 | defined (replay of the 55 crow/wild-cat death starts, not dispatched) | Crow/wild-cat death starts on 3ba17e2c: ctl, the Phase Door rule, the rule + throwing 1500, the rule + more oil. |
+| `reborn-breeder-stoppable` | [#411](https://github.com/diegoami/borg-zoo/issues/411) | 3 | defined (pilot on PR #632 head ed8e270d) | Kill breeders first (caution_breeder_stoppable), alone and with the flight's colony avoidance (caution_breeder_avoid), against both off. |
+| `reborn-class-curves` | [#433](https://github.com/diegoami/borg-zoo/issues/433) | 2 | defined (pilot on main a87b4c96) | The owner's #682 per-class Phase Door and oil curve scales (and Blackguard healing 100/200) against the same build set back to 100 (main before #682). |
 
 ### `heal-attack-4`
 
@@ -804,6 +806,29 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-crowesc38-phase-oil` | – | 1 | 100 | 0 | 50 | 200 |
 | `reborn-crowesc38-phase-thrown` | 1500 | 1 | 100 | 0 | – | – |
 
+### `reborn-breeder-stoppable`
+
+Kill breeders first (caution_breeder_stoppable), alone and with the flight's colony avoidance (caution_breeder_avoid), against both off.
+
+Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_breeder_avoid` | `borg_param_caution_breeder_stoppable` |
+| --- | --- | --- |
+| `reborn-breederstop-ctl` | 0 | 0 |
+| `reborn-breederstop-stop` | 0 | 1 |
+| `reborn-breederstop-stop-avoid` | 1 | 1 |
+
+### `reborn-class-curves`
+
+The owner's #682 per-class Phase Door and oil curve scales (and Blackguard healing 100/200) against the same build set back to 100 (main before #682).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_heal_curve_scale_percent_blackguard` | `borg_param_town_heal_reserve_hp_percent_blackguard` | `borg_param_town_oil_curve_scale_percent@blackguard` | `borg_param_town_oil_curve_scale_percent@druid` | `borg_param_town_oil_curve_scale_percent@mage` | `borg_param_town_oil_curve_scale_percent@necromancer` | `borg_param_town_oil_curve_scale_percent@paladin` | `borg_param_town_oil_curve_scale_percent@priest` | `borg_param_town_oil_curve_scale_percent@ranger` | `borg_param_town_oil_curve_scale_percent@rogue` | `borg_param_town_oil_curve_scale_percent@warrior` | `borg_param_town_phase_curve_scale_percent@blackguard` | `borg_param_town_phase_curve_scale_percent@druid` | `borg_param_town_phase_curve_scale_percent@mage` | `borg_param_town_phase_curve_scale_percent@necromancer` | `borg_param_town_phase_curve_scale_percent@paladin` | `borg_param_town_phase_curve_scale_percent@priest` | `borg_param_town_phase_curve_scale_percent@ranger` | `borg_param_town_phase_curve_scale_percent@rogue` | `borg_param_town_phase_curve_scale_percent@warrior` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-curves-a87b-ctl` | 75 | 150 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 |
+| `reborn-curves-a87b-owner` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -885,7 +910,9 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_town_dangerous_bonus_percent` | 600, not set | `reborn-town-dangerous` |  |
 | `borg_param_attack_town_dangerous_min_damage` | 3, not set | `reborn-town-dangerous` |  |
 | `borg_param_attack_town_dangerous_on_sight` | 0, 1, not set | `reborn-town-dangerous`, `reborn-neutral-main` |  |
+| `borg_param_caution_breeder_avoid` | 0, 1 | `reborn-breeder-stoppable` |  |
 | `borg_param_caution_breeder_easy_escape_steps` | 3, 10, not set | `reborn-untested-caution` |  |
+| `borg_param_caution_breeder_stoppable` | 0, 1 | `reborn-breeder-stoppable` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_flee_recall_chasers` | 2, 6, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_flee_recall_gate_below_depth` | 0, 2, 3, not set | `reborn-recall-settings`, `reborn-bundle` |  |
@@ -916,7 +943,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_recover_rest_arms_see_invis` | 1, not set | `reborn-stand-seeinv` |  |
 | `borg_param_town_gold_reserve` | 300, 1000, not set | `reborn-gold-reserve` |  |
 | `borg_param_town_gold_reserve_percent` | 25, 50, not set | `reborn-gold-reserve` |  |
-| `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 75, 115, not set | `reborn-heal-by-class`, `reborn-class-curves` |  |
 | `borg_param_town_heal_curve_scale_percent_druid` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_mage` | 0, 75, 225, not set | `reborn-heal-by-class`, `reborn-mage-priest` |  |
 | `borg_param_town_heal_curve_scale_percent_necromancer` | 0, 75, 225, not set | `reborn-heal-by-class` |  |
@@ -925,7 +952,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_curve_scale_percent_ranger` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_rogue` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_warrior` | 0, 25, 75, not set | `reborn-heal-by-class` |  |
-| `borg_param_town_heal_reserve_hp_percent_blackguard` | -1, 75, 225, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_hp_percent_blackguard` | -1, 75, 150, 225, not set | `reborn-heal-by-class`, `reborn-class-curves` |  |
 | `borg_param_town_heal_reserve_hp_percent_druid` | -1, 125, 350, 375, not set | `reborn-heal-by-class`, `reborn-casters` |  |
 | `borg_param_town_heal_reserve_hp_percent_mage` | -1, 150, 400, 450, not set | `reborn-heal-by-class`, `reborn-mage-priest`, `reborn-casters` |  |
 | `borg_param_town_heal_reserve_hp_percent_necromancer` | -1, 150, 400, 450, not set | `reborn-heal-by-class`, `reborn-casters` |  |
@@ -934,6 +961,24 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_oil_curve_scale_percent@blackguard` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_oil_curve_scale_percent@druid` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_oil_curve_scale_percent@mage` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_oil_curve_scale_percent@necromancer` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_oil_curve_scale_percent@paladin` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_oil_curve_scale_percent@priest` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_oil_curve_scale_percent@ranger` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_oil_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_oil_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_phase_curve_scale_percent@blackguard` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_phase_curve_scale_percent@druid` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_phase_curve_scale_percent@mage` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_phase_curve_scale_percent@necromancer` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_phase_curve_scale_percent@paladin` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_phase_curve_scale_percent@priest` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_phase_curve_scale_percent@ranger` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_phase_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves` |  |
+| `borg_param_town_phase_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
 | `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters` |  |

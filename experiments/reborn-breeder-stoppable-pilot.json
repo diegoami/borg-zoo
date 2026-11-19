@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-breeder-stoppable-pilot",
+  "issue": 411,
+  "definition": "definitions/reborn-breeder-stoppable-pilot.yaml",
+  "question": "On borg-reborn-rs PR",
+  "description": "On borg-reborn-rs PR Generated from definitions/reborn-breeder-stoppable-pilot.yaml: 3 arms on 4.2.6-reborn-rust-pr632-ed8e270d, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result of this definition was read (borg-reborn-rs#556, PR #632; replaces\nborg-zoo#364, which pinned the replaced design). Pilot (RULES 16); small and medium (starts 1-360, borg-zoo#240's\ntier) only after this gate and the owner: breeder deaths are rare and 18 starts show direction only.\nGate:\n- no config_error; one binary; each arm's two values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- in ctl, no \"# Breeders cannot be stopped\" and no \"# Fighting through the breeders\" note.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final and maximum level, deepest level; breeder deaths (the killer has MULTIPLY);\n- paired rescued and newly killed against ctl;\n- breeder kills per game (\"You have slain\" a MULTIPLY race); \"# Breeders cannot be stopped\" per game, with its\n  births and turns-a-kill;\n- the breeder flees per game (\"Fleeing (breeder level)\", \"Ignoring breeders (no recall)\", scary-level flees with\n  breeders known), and for stop-avoid \"# Fighting through the breeders to the stairs\";\n- deaths within 500 game turns of a \"# Breeders cannot be stopped\" note.\nContext: a local run on the same tree (18 classes-18 starts, 100,000 turns; not a zoo run): ctl 1 death, stop 3,\nstop-avoid 2; sum of max CL 101 / 88 / 92 with a median paired change of 0; breeder kills 106 / 99 / 134.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr632-ed8e270d"
+  ],
+  "profiles": [
+    "reborn-breederstop-ctl",
+    "reborn-breederstop-stop",
+    "reborn-breederstop-stop-avoid"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-pr632-ed8e270d",
+  "control_profile": "reborn-breederstop-ctl",
+  "owner_authorization": "2026-11-19: the owner asked to do the open requests (\"do other experiments, issues and pilots\"), after the proposal to define and dispatch #411 and #433.",
+  "retain_evidence": true
+}

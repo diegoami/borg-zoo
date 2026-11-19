@@ -6894,6 +6894,70 @@
         "borg_town_w_attack": 200,
         "borg_town_attack_turns": 50
       }
+    },
+    "reborn-breederstop-ctl": {
+      "description": "borg-zoo#411 (reborn-breeder-stoppable-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_stoppable": 0,
+        "borg_param_caution_breeder_avoid": 0
+      }
+    },
+    "reborn-breederstop-stop": {
+      "description": "borg-zoo#411 (reborn-breeder-stoppable-pilot.yaml): arm stop.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_stoppable": 1,
+        "borg_param_caution_breeder_avoid": 0
+      }
+    },
+    "reborn-breederstop-stop-avoid": {
+      "description": "borg-zoo#411 (reborn-breeder-stoppable-pilot.yaml): arm stop-avoid.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_stoppable": 1,
+        "borg_param_caution_breeder_avoid": 1
+      }
+    },
+    "reborn-curves-a87b-ctl": {
+      "description": "borg-zoo#433 (reborn-class-curves-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_curve_scale_percent@warrior": 100,
+        "borg_param_town_oil_curve_scale_percent@warrior": 100,
+        "borg_param_town_phase_curve_scale_percent@mage": 100,
+        "borg_param_town_oil_curve_scale_percent@mage": 100,
+        "borg_param_town_phase_curve_scale_percent@druid": 100,
+        "borg_param_town_oil_curve_scale_percent@druid": 100,
+        "borg_param_town_phase_curve_scale_percent@priest": 100,
+        "borg_param_town_oil_curve_scale_percent@priest": 100,
+        "borg_param_town_phase_curve_scale_percent@necromancer": 100,
+        "borg_param_town_oil_curve_scale_percent@necromancer": 100,
+        "borg_param_town_phase_curve_scale_percent@paladin": 100,
+        "borg_param_town_oil_curve_scale_percent@paladin": 100,
+        "borg_param_town_phase_curve_scale_percent@rogue": 100,
+        "borg_param_town_oil_curve_scale_percent@rogue": 100,
+        "borg_param_town_phase_curve_scale_percent@ranger": 100,
+        "borg_param_town_oil_curve_scale_percent@ranger": 100,
+        "borg_param_town_phase_curve_scale_percent@blackguard": 100,
+        "borg_param_town_oil_curve_scale_percent@blackguard": 100,
+        "borg_param_town_heal_curve_scale_percent_blackguard": 75,
+        "borg_param_town_heal_reserve_hp_percent_blackguard": 150
+      }
+    },
+    "reborn-curves-a87b-owner": {
+      "description": "borg-zoo#433 (reborn-class-curves-pilot.yaml): arm owner.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
     }
   }
 }

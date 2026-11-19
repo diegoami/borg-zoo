@@ -1,0 +1,69 @@
+# borg-zoo#433: the owner's #682 class curves for Phase Door and flasks of oil, against the same build set back to
+# today's play; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-class-curves-pilot.yaml
+#
+# ctl writes every class's two scales back to 100 and the Blackguard's healing back to 75 / 150: at 100 the scales are
+# byte-identical to main before #688 (borg-reborn-rs's local check: 18/18 identical keys), so ctl is "main without #682".
+name: reborn-class-curves-pilot
+issue: 433
+question: >-
+  On borg-reborn-rs main a87b4c96 (#688), do the owner's per-class Phase Door and flask-of-oil curve scales (and the
+  Blackguard's healing 100 / 200) change deaths or progress, per class, against the same build with them set to 100?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-a87b4c96
+  repository: diegoami/borg-reborn-rs
+  ref: a87b4c96cff9cf636f95cbb9818526f22a025625
+  label: "borg-reborn-rs main a87b4c96, the merge of #688 (#682: town_phase_curve_scale_percent and town_oil_curve_scale_percent per class, the owner's values; Blackguard healing 100/200). Tree 9f0cda19; harness/borg.txt 63a4d1be..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-curves-a87b
+arms:
+  ctl:   # main before #682: every scale 100, the Blackguard's healing as before
+    borg_param_town_phase_curve_scale_percent@warrior: 100
+    borg_param_town_oil_curve_scale_percent@warrior: 100
+    borg_param_town_phase_curve_scale_percent@mage: 100
+    borg_param_town_oil_curve_scale_percent@mage: 100
+    borg_param_town_phase_curve_scale_percent@druid: 100
+    borg_param_town_oil_curve_scale_percent@druid: 100
+    borg_param_town_phase_curve_scale_percent@priest: 100
+    borg_param_town_oil_curve_scale_percent@priest: 100
+    borg_param_town_phase_curve_scale_percent@necromancer: 100
+    borg_param_town_oil_curve_scale_percent@necromancer: 100
+    borg_param_town_phase_curve_scale_percent@paladin: 100
+    borg_param_town_oil_curve_scale_percent@paladin: 100
+    borg_param_town_phase_curve_scale_percent@rogue: 100
+    borg_param_town_oil_curve_scale_percent@rogue: 100
+    borg_param_town_phase_curve_scale_percent@ranger: 100
+    borg_param_town_oil_curve_scale_percent@ranger: 100
+    borg_param_town_phase_curve_scale_percent@blackguard: 100
+    borg_param_town_oil_curve_scale_percent@blackguard: 100
+    borg_param_town_heal_curve_scale_percent_blackguard: 75
+    borg_param_town_heal_reserve_hp_percent_blackguard: 150
+  owner: {}   # shipped: Phase Door / oil % Warrior 75/100, Mage 175/100, Druid 175/150, Priest 125/150, Necromancer 175/100, Paladin 100/125, Rogue 125/125, Ranger 150/50, Blackguard 50/100
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner said yes to "a zoo measurement of the owner's #682 values against main" (#433), and asked to do
+  the open requests ("do other experiments, issues and pilots"). Pilot first (RULES 16), then classes-1800 by tier.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles was read. Pilot (RULES 16).
+  Gate:
+  - no config_error; one binary; ctl's 20 lines written in borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class: deaths and causes, CL1-3 deaths, max CL and DL; paired rescued and newly killed;
+  identical plays; Phase Door scrolls and flasks of oil bought (town-purchases) and used. 18 starts show direction and
+  safety only; the per-class question (keep, adjust or revert a class's values) needs the classes-1800 tiers.
+  Reported in a RULES 18 bin only from those tiers.
