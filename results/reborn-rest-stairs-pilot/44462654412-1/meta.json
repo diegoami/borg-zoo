@@ -1,0 +1,202 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-reststairs-both": {
+        "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm both.",
+        "settings": {
+          "borg_param_caution_stairs_leave_danger_percent": 10,
+          "borg_param_caution_stairs_leave_down": 1,
+          "borg_param_caution_stairs_leave_on_monster": 1,
+          "borg_param_recover_rest_reach_stairs": 20,
+          "borg_param_recover_rest_reach_stairs_memory": 10,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "ddaf12a1129ddda85d967187e0e82f0ed17c13aae73851f89811f1d6de66763b"
+      },
+      "reborn-reststairs-leave": {
+        "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm leave.",
+        "settings": {
+          "borg_param_caution_stairs_leave_danger_percent": 10,
+          "borg_param_caution_stairs_leave_down": 1,
+          "borg_param_caution_stairs_leave_on_monster": 1,
+          "borg_param_recover_rest_reach_stairs": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "0510d0c09ad6ee139a737d027639154168c8ce4bdf9fac572713050c13964cb4"
+      },
+      "reborn-reststairs-leaveup": {
+        "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm leaveup.",
+        "settings": {
+          "borg_param_caution_stairs_leave_danger_percent": 10,
+          "borg_param_caution_stairs_leave_down": 0,
+          "borg_param_caution_stairs_leave_on_monster": 1,
+          "borg_param_recover_rest_reach_stairs": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "2dab7025fbf9d35e2ced37b1165a82b3a225f2436f5af648e00e02fcea189f25"
+      },
+      "reborn-reststairs-off": {
+        "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm off.",
+        "settings": {
+          "borg_param_caution_stairs_leave_on_monster": 0,
+          "borg_param_recover_rest_reach_stairs": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "793907ae4fda3f3078eb6a525ab51acbfe1ec577bdca126820cbd9754cf881b5"
+      },
+      "reborn-reststairs-reach": {
+        "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm reach.",
+        "settings": {
+          "borg_param_caution_stairs_leave_on_monster": 0,
+          "borg_param_recover_rest_reach_stairs": 20,
+          "borg_param_recover_rest_reach_stairs_memory": 10,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "3a263ebc378689f3c2a7ceaa03c004b59bd454c842bc9638a6a2071ba034cd73"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-pr616-8a427494": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 8a427494, head of PR #616 (#614, unmerged; contains main 38858846): rest at the stairs (recover_rest_reach_stairs, _memory) and leaving by the stairs when a monster comes while recovering (caution_stairs_leave_on_monster, _danger_percent, _down); all shipped off. harness/borg.txt fc64c28a...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "8a427494fa3cf16cefabe24cd1681b287b0137d2",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-19 05:14 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-pr616-8a427494",
+    "control_profile": "reborn-reststairs-off",
+    "definition": "definitions/reborn-rest-stairs-pilot.yaml",
+    "description": "On borg-reborn-rs Generated from definitions/reborn-rest-stairs-pilot.yaml: 5 arms on 4.2.6-reborn-rust-pr616-8a427494, suite classes-18.",
+    "issue": 365,
+    "name": "reborn-rest-stairs-pilot",
+    "owner_authorization": "2026-11-19: the owner asked for the zoo pilot of #614 (off, reach 20, leave, leave up only, both) on PR #616's head. Pilot first (RULES 16); small and larger only after this gate and the owner.",
+    "prespecified": "Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#614, PR #616). Pilot (RULES 16).\nGate:\n- no config_error; one binary; each arm's #614 values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- in off, no \"# No rest: committed to the stairs\" and no \"# Leaving by the stairs\" note.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level; paired rescued and newly killed against off;\n- games whose keys differ from off, and the first message where each differs;\n- \"# No rest: committed to the stairs, N steps to go.\" and \"# Leaving by the stairs: a monster while recovering\n  (danger N, up|down).\" notes per game; deaths within 2,000 game turns of either;\n- deaths with \"Resting\" or Phase Door in the last 100 messages while a flight to stairs was under way;\n- stair trips taken by the leave rule that land on a deeper level (down) and what follows.\nContext: a local run on the same tree (harness/run.sh, the 18 classes-18 starts, 100,000 turns; not a zoo run):\ndeaths off 0, reach 2, leave 1, leaveup 1, both 2; sum of CL 99 / 92 / 97 / 98 / 93; games playing off's keys\n5 / 10 / 10 / 3 of 18. Every death came long after the game diverged from off. 18 starts show direction only.",
+    "profiles": [
+      "reborn-reststairs-off",
+      "reborn-reststairs-reach",
+      "reborn-reststairs-leave",
+      "reborn-reststairs-leaveup",
+      "reborn-reststairs-both"
+    ],
+    "question": "On borg-reborn-rs",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-pr616-8a427494"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44462654412-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44462654412",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "edd303f86edc466abaca4759fa48f22706fe957b"
+}
