@@ -1,0 +1,50 @@
+# borg-zoo#334: copied from the run request.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-phase-rule-pilot.yaml
+name: reborn-phase-rule-pilot
+issue: 334
+question: On borg-reborn-rs #612's head 2075f54e, does #584's Phase Door rule (Phase Door only with an enemy adjacent and the fight lost; otherwise attack, else boost) save or cost games against ctl, at a lost threshold of 100 or 150 percent of the HP?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-pr612-2075f54e
+  repository: diegoami/borg-reborn-rs
+  ref: 2075f54e69f91ce9356de796c2810a23d6b9029c
+  label: "borg-reborn-rs 2075f54e, head of PR #612 (#584 step 2, unmerged; contains #602): the owner's Phase Door rule behind escape_phase_adjacent_rule, compiled and shipped 0. Source-hash rust 94678b69...; harness/borg.txt 2f846d25..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only the two #584 parameters.
+profile_prefix: reborn-phaserule
+arms:
+  ctl: {borg_param_escape_phase_adjacent_rule: 0, borg_param_escape_phase_lost_danger_percent: 100}
+  rule-100: {borg_param_escape_phase_adjacent_rule: 1, borg_param_escape_phase_lost_danger_percent: 100}
+  rule-150: {borg_param_escape_phase_adjacent_rule: 1, borg_param_escape_phase_lost_danger_percent: 150}
+control: [ctl]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#584, PR #612). Pilot (RULES 16); small and
+  larger only after this gate and the owner.
+  Gate:
+  - no config_error; one binary; each arm's two #584 values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - in ctl, no "# Phase (<site>): no, no enemy on an adjacent square", "... fight is not lost" or "... phase allowed" note.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level;
+  - paired rescued and newly killed against ctl;
+  - Phase Doors done ("# Phase (<site>): done"), per site; the rule's notes per game (no adjacent enemy, fight not lost,
+    phase allowed) and its boosts ("# Phase (<site>) boost: <what>");
+  - deaths with no Phase Door left (no Phase Door in the pack at death) and deaths within 200 game turns of a refused phase.
+  Context: a local run on the same tree (harness binary, BORG_CORE=borg-rs, the 18 classes-18 starts, 100,000 turns; not
+  a zoo run): ctl 150 Phase Doors and 0 deaths; rule at 100: 83 Phase Doors, 18 boosts, 1 death (Rogue 1502695781, wild
+  cat on DL1, no Phase Door left). 18 starts per arm show direction only.

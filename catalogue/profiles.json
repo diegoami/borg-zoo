@@ -4929,6 +4929,36 @@
         "borg_param_caution_flee_recall_gate_below_depth": 1,
         "borg_param_caution_flee_recall_danger_percent": 100
       }
+    },
+    "reborn-phaserule-ctl": {
+      "description": "borg-zoo#334 (reborn-phase-rule-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-phaserule-rule-100": {
+      "description": "borg-zoo#334 (reborn-phase-rule-pilot.yaml): arm rule-100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-phaserule-rule-150": {
+      "description": "borg-zoo#334 (reborn-phase-rule-pilot.yaml): arm rule-150.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_danger_percent": 150
+      }
     }
   }
 }
