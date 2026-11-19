@@ -54,7 +54,8 @@ def character(suite, seed):
     birth "fixed" is Human Warrior; "random" lets the seeded game choose (None);
     "assigned" deals classes in turn over the seed list and cycles races once
     per round of classes, so every class meets every race. A subset suite
-    carries its parent's assignment per seed.
+    carries its parent's assignment per seed; it selects its seeds by
+    "range" (a tier), "class", or "seeds" (an explicit list of chosen starts).
     """
     if 'assigned_characters' in suite:
         race, cls = suite['assigned_characters'][str(seed)]
@@ -110,6 +111,17 @@ def expand_suites(suites):
                 if not 0 <= start < end <= len(parent['seeds']):
                     raise ValueError(f'{name}: range {start}..{end} outside the parent suite')
                 suite['seeds'] = parent['seeds'][start:end]
+            elif 'seeds' in suite['subset']:
+                # Chosen starts (e.g. the starts where a control died to one
+                # monster), in parent order, each keeping its parent's character.
+                wanted = suite['subset']['seeds']
+                missing = sorted(set(wanted) - set(parent['seeds']))
+                if missing:
+                    raise ValueError(f'{name}: seeds not in the parent suite: {missing[:5]}')
+                if len(set(wanted)) != len(wanted):
+                    raise ValueError(f'{name}: repeated seeds')
+                keep = set(wanted)
+                suite['seeds'] = [seed for seed in parent['seeds'] if seed in keep]
             else:
                 wanted = suite['subset']['class']
                 suite['seeds'] = [seed for seed in parent['seeds'] if chars[seed][1] == wanted]

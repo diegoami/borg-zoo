@@ -47,7 +47,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-untested-town` | [#401](https://github.com/diegoami/borg-zoo/issues/401) | 13 | defined (pilot screen on 3ba17e2c, not dispatched) | Never-tested town planner settings halved and doubled on main 3ba17e2c: borg_town_risk, power_scale, w_attack, w_support, w_space, home_discount. |
 | `reborn-untested-caution` | [#401](https://github.com/diegoami/borg-zoo/issues/401) | 9 | defined (pilot screen on 3ba17e2c, not dispatched) | Never-tested trip, Recall and breeder settings lowered and raised on main 3ba17e2c: borg_town_explore_turns, caution_recall_rest_turns, caution_breeder_easy_escape_steps, caution_flee_recall_chasers. |
 | `reborn-errands-floor3` | [#405](https://github.com/diegoami/borg-zoo/issues/405) | 4 | defined (pilot on 3ba17e2c, not dispatched) | Errands plan × floor3 (2×2) on main 3ba17e2c: ctl, errands, floor3, both. |
-| `reborn-crow` | [#408](https://github.com/diegoami/borg-zoo/issues/408) | 4 | defined (pilot on 3ba17e2c, not dispatched) | Crows (and wild cats) scary for fragile classes at CL1-2/3 only, on main 3ba17e2c: crow 0-2, crow 0-3, crow + wild cat 0-2. |
+| `reborn-crow` | [#408](https://github.com/diegoami/borg-zoo/issues/408) | 4 | pilot done (inert on classes-18); replay on the 55 crow / wild-cat death starts defined | Crows (and wild cats) scary for fragile classes at CL1-2/3 only, on main 3ba17e2c: crow 0-2, crow 0-3, crow + wild cat 0-2. |
 
 ### `heal-attack-4`
 

@@ -1177,6 +1177,15 @@
       "stall_seconds": 90,
       "saves": false
     },
+    "classes-1800-crowcat-deaths": {
+      "description": "The 32 starts of classes-1800 where shipped borg-reborn-rs main 3ba17e2c (reborn-errands38-none) died to a crow or a wild cat (borg-zoo#408): chosen starts for a mechanism check, not a random sample.",
+      "role": "development",
+      "subset": {"suite": "classes-1800", "seeds": [46720842, 121466703, 213995942, 238601369, 256351365, 300461652, 440347779, 458006127, 504233000, 518606877, 520757110, 773106230, 810310797, 861292696, 1005268769, 1082949996, 1209439220, 1244628290, 1267936921, 1290636548, 1311784001, 1330341082, 1447548027, 1532260360, 1612359658, 1643476647, 1808419225, 1838309752, 1935672562, 1960118704, 1996566312, 2128748366]},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
     "classes-1800-full-rangers": {
       "description": "The Ranger starts of classes-1800-full (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
@@ -1311,6 +1320,15 @@
           "Kobold"
         ]
       },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-b-crowcat-deaths": {
+      "description": "The 23 starts of classes-1800-b where shipped borg-reborn-rs main 3ba17e2c (reborn-errands38-none) died to a crow or a wild cat (borg-zoo#408): chosen starts for a mechanism check, not a random sample.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-b", "seeds": [9976609, 83189782, 453812472, 461333610, 473090660, 499926828, 662456967, 688038640, 926161511, 960896019, 1064906563, 1161859855, 1198994146, 1254893248, 1358440192, 1364225192, 1365836524, 1579321526, 1625381930, 1637197562, 1723335135, 1840832686, 1944217924]},
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
