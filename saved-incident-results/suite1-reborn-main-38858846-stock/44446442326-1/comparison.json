@@ -1,0 +1,2058 @@
+{
+  "arms": [
+    {
+      "build": {
+        "binary": "/home/runner/work/borg-zoo/borg-zoo/source/build/rust/game/angband",
+        "binary_sha256": "30da021c0acc174d1dc2b4538cff2ead38c5f37ae7c296a63be2515a6f12ecbd",
+        "built_utc": "2026-11-19T02:45:19Z",
+        "cc": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "engine_upstream": "42cd156ac9f95ddf4311e88dd7ad462292d6d1d6",
+        "git_dirty": "no",
+        "git_rev": "388588468bfe91b2a8f84b38599813f2acfed64e",
+        "impl": "rust",
+        "inputs_dirty": "no",
+        "rustc": "rustc 1.100.0 (0ef1bc386 2026-11-09)",
+        "source_sha256": "a64b288205947332ff2336efaaa29f5dd72ed6b72cea88dfcb711a3891b4b67f"
+      },
+      "core": "borg-rs",
+      "errands_plan_sha256": null,
+      "id": "suite1-reborn-main-38858846-stock",
+      "inputs": {
+        "files": {
+          "borg.txt": "3ce9ae4f0736aa94cc8ce440b2770fb6a1fd5d1013fdac10b87f73550c0d242b",
+          "provenance.json": "80ed056506409b0d2bf03ba424b23888afe7fe31fff7dcd710e46f96f8dd24e8",
+          "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+        },
+        "path": "scenario-inputs/suite1-reborn-main-38858846-stock"
+      },
+      "native_tools": {
+        "commit": "09225018dd5f2d4336a16b29478793d902c70dc3",
+        "repository": "diegoami/borg-cemetery"
+      },
+      "profile": "stock",
+      "settings": {},
+      "source": {
+        "commit": "388588468bfe91b2a8f84b38599813f2acfed64e",
+        "repository": "diegoami/borg-reborn-rs"
+      }
+    }
+  ],
+  "bank_artifact": {
+    "artifact": "balanced999-bank",
+    "artifact_id": 14289964111,
+    "file": "balanced999-bank.tgz",
+    "manifest": "synthetic/balanced-999-incidents/generated/bank.json",
+    "members": "synthetic/balanced-999-incidents/generated",
+    "repository": "diegoami/borg-zoo",
+    "run_id": 43979480269,
+    "sha256": "186066b039ccc8451642cbcbd77e714c6615c20d99d0de4b18963289c5748cbf"
+  },
+  "cases": [
+    {
+      "birth_seed": 1000005,
+      "class_idx": 0,
+      "coverage": {
+        "depth": 4,
+        "equipment": [
+          {
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (1733 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Soft Leather Armour [8,+0]",
+            "kind": 107,
+            "slot": 6
+          },
+          {
+            "description": "Cloak [1,+0]",
+            "kind": 123,
+            "slot": 7
+          },
+          {
+            "description": "Wicker Shield [2,+0]",
+            "kind": 132,
+            "slot": 8
+          }
+        ],
+        "equipment_kind_signature": "6e834cb9ba5872b305bff7313a071c08df4c65b8176f2cba81aa9b4905d149a3",
+        "hp": 89,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Necromantic Tome [Into the Shadows]",
+            "kind": 391
+          },
+          {
+            "count": 1,
+            "description": "Ration of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Potion of Berserk Strength",
+            "kind": 249
+          },
+          {
+            "count": 2,
+            "description": "Cloudy Potions",
+            "kind": 247
+          },
+          {
+            "count": 1,
+            "description": "Cerulean Potion",
+            "kind": 250
+          },
+          {
+            "count": 2,
+            "description": "Yellow Potions",
+            "kind": 237
+          },
+          {
+            "count": 1,
+            "description": "Misty Potion",
+            "kind": 248
+          },
+          {
+            "count": 1,
+            "description": "Light Pink Potion",
+            "kind": 256
+          },
+          {
+            "count": 5,
+            "description": "Scrolls titled \"mitacio mosum\"",
+            "kind": 189
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 8,
+        "mana_state": "full",
+        "max_hp": 89,
+        "max_sp": 0,
+        "sp": 0
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "927b66f393476d010a928048a08eed1cca6cd97eba2bb4d7b791484409b0fca6",
+          "elapsed_seconds": 0.002071652999802609,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "death",
+      "id": "c0-r0-s1000005-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-0bcff26ad83d6add0464db57188bd7b7965ca86d4f8b4802082871285ac673c4",
+        "parent_death_id": "D-4cd95412aa2b05e4c50df4bd50fe35a816016d2f86b8496d326f4101948a0c1d",
+        "program": "borg-reborn-rs",
+        "seed": 1000005,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 0,
+      "save_sha256": "9c50f2d4421e5343a95d49dc47f8f34dfe32ba528b7c3d6b8ee50de40d5e826a",
+      "scenario_sha256": "8ae760ebe1e5c4e7a8fef04cfdaa286e1decc8c93ec5556b451210181716c609",
+      "selection": {
+        "first_visible_turn": 73985,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 80,
+        "monster_index": 39,
+        "monster_kind": "scout",
+        "no_omniscient_trigger": true,
+        "observation_line": 7283,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 73985
+      },
+      "start_turn": 73905,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1010000,
+      "class_idx": 1,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Rapier (1d6) (+0,+0)",
+            "kind": 35,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (4152 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "581551ca0bcdca9b672352c4f8216ed34c6ca525fdd287635612ab011afa74d6",
+        "hp": 12,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Magic Spells [First Spells]",
+            "kind": 376
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 3,
+            "description": "Potions of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 2,
+            "description": "Scrolls of Phase Door",
+            "kind": 185
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 1,
+            "description": "Scroll titled \"pharum vus pro\"",
+            "kind": 189
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 2,
+        "mana_state": "partial",
+        "max_hp": 12,
+        "max_sp": 4,
+        "sp": 3
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "79ee1c826c81ba888e38e018c27c5eaa160bb2db3eaaac5853cb2991feb8ec15",
+          "elapsed_seconds": 0.0013331889999790292,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "observed_critical_recovery",
+      "id": "c1-r2-s1010000-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-d112377d0e071ee634056fa5eb6655e8be6028886e8ddfc3a285d5b21e608ded",
+        "parent_death_id": "D-d0ab6c0b4bc155aa45ed889c9c5978797209f2e30ec3721cd2493921dc679550",
+        "program": "borg-reborn-rs",
+        "seed": 1010000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "16a19cde50c5ece841babb770802afdc9f5b38632ad89aa13b717667d445007b",
+      "scenario_sha256": "4c33730da6ed65e8147ceaa2fdd574b70eeba5af887c9b76d3a42cad5c5591b2",
+      "selection": {
+        "first_visible_turn": 9082,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 80,
+        "monster_index": 24,
+        "monster_kind": "grey mushroom patch",
+        "no_omniscient_trigger": true,
+        "observation_line": 911,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 9082
+      },
+      "start_turn": 9002,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1020000,
+      "class_idx": 2,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Whip (1d3) (+0,+0)",
+            "kind": 47,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (4619 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "85c02c5b3eb730b04d3579f990b8978618d626962fe9be478576dff9a8201273",
+        "hp": 11,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Nature Magics [Lesser Charms]",
+            "kind": 381
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 3,
+            "description": "Potions of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 1,
+        "mana_state": "full",
+        "max_hp": 11,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "6b371152988daf10e547dc91cd2bccddc2cd5eb18273e39f666b181bca8d0d55",
+          "elapsed_seconds": 0.0012239889999818843,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "death",
+      "id": "c2-r2-s1020000-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-064dcc45245bbd45f62700cb8af628ec66e467cb3a872000ff3d872db4ccd071",
+        "parent_death_id": "D-8f76d2bb1d7ecd6c613b0be3729c3cb1e7e6690b2908c97e1909077c8cc6eb33",
+        "program": "borg-reborn-rs",
+        "seed": 1020000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "ce8515fcecf4464cdd70b1b79d1a60a5a7194fdd8e871e092e8476cdb1cb0ed7",
+      "scenario_sha256": "e7049ae2aa3d4f03e9bb7f212994911b336587da6a6620ac24edd2609b2a1f60",
+      "selection": {
+        "first_visible_turn": 4083,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 80,
+        "monster_index": 4,
+        "monster_kind": "giant yellow centipede",
+        "no_omniscient_trigger": true,
+        "observation_line": 419,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 4083
+      },
+      "start_turn": 4003,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1030000,
+      "class_idx": 3,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Mace (2d4) (+0,+0)",
+            "kind": 52,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (4992 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "d9df93b11d86787f1bfe90ecf85c92b75d3c8975ae7e0c34c7cf1c118dc0e254",
+        "hp": 11,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Holy Book of Prayers [Novice's Handbook]",
+            "kind": 386
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 3,
+            "description": "Potions of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 2,
+            "description": "Potions of Cure Serious Wounds",
+            "kind": 232
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 1,
+        "mana_state": "full",
+        "max_hp": 11,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "dc32ce463007311adcff1a2978364f54b5749fa2798fa505c71427706b1d2539",
+          "elapsed_seconds": 0.001203381999857811,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "death",
+      "id": "c3-r2-s1030000-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-25eb9facf978202e48694ee373cbb1897391d1ddddc96bc4d21775852ce9ee13",
+        "parent_death_id": "D-6a5cb6b72c6a92c23336e2dc6caa76bdbe9a93f4fec1ec5be9a75e8268e79188",
+        "program": "borg-reborn-rs",
+        "seed": 1030000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "fd96a683a8c1d1caad385d3ad7196b326580973c70525fc792114c1a38d4bd9c",
+      "scenario_sha256": "13a7c985a999416dea09817804ab095ed25c6558b6788edbc5dac3d3ba280e8a",
+      "selection": {
+        "first_visible_turn": 411,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 10,
+        "monster_index": 7,
+        "monster_kind": "Grip, Farmer Maggot's Dog",
+        "no_omniscient_trigger": true,
+        "observation_line": 48,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 411
+      },
+      "start_turn": 401,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1040000,
+      "class_idx": 4,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Main Gauche (1d5) (+0,+0)",
+            "kind": 34,
+            "slot": 1
+          }
+        ],
+        "equipment_kind_signature": "cb1d5ab23bfa7af3cc87d35f1c55db19f8488c3ed2a2a4e41f5dae982745bfea",
+        "hp": 11,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Necromantic Tome [Into the Shadows]",
+            "kind": 391
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 3,
+            "description": "Potions of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Phase Door",
+            "kind": 185
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 1,
+        "mana_state": "empty",
+        "max_hp": 11,
+        "max_sp": 2,
+        "sp": 0
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "db25542ce0a059149a7baad9edb8fcab1a5cbb9698a431fb97b075bd48283729",
+          "elapsed_seconds": 0.0012404419999256788,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "death",
+      "id": "c4-r2-s1040000-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-1d2d28cc8861e22109c3458a565a05e90aec1f7c3799d4ee72061f5c272c2bb6",
+        "parent_death_id": "D-b80424f6ba029ba13ebbac088cf9a4f2d260ff692ff2a507d68083f6a71398a0",
+        "program": "borg-reborn-rs",
+        "seed": 1040000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "5373a1e82c6c4576f80dbce5078e3160a8dabb8d28b3806e72153e9b81c2f233",
+      "scenario_sha256": "25ca771e428bbe3b4ecd467d654c27584af3d53dbebca1fd377ef12f9b428086",
+      "selection": {
+        "first_visible_turn": 1361,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 60,
+        "monster_index": 4,
+        "monster_kind": "Fang, Farmer Maggot's Dog",
+        "no_omniscient_trigger": true,
+        "observation_line": 149,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 1361
+      },
+      "start_turn": 1301,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1050000,
+      "class_idx": 5,
+      "coverage": {
+        "depth": 2,
+        "equipment": [
+          {
+            "description": "Main Gauche (1d5) (+0,+0)",
+            "kind": 34,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (2090 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "396d347da935b74a95cc2fe5c1d272f47bce7205858a75e4fdaae2e57e13a4d7",
+        "hp": 40,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Holy Book of Prayers [Novice's Handbook]",
+            "kind": 386
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 3,
+            "description": "Green Potions",
+            "kind": 258
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Protection from Evil",
+            "kind": 215
+          },
+          {
+            "count": 3,
+            "description": "Scrolls titled \"conoto noco\"",
+            "kind": 190
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          },
+          {
+            "count": 1,
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33
+          }
+        ],
+        "level": 4,
+        "mana_state": "full",
+        "max_hp": 46,
+        "max_sp": 4,
+        "sp": 4
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "a92fa0600da82ae2ab7e2b73c6ead01952fe87b3378066643b2bb5672aeea551",
+          "elapsed_seconds": 0.00120316799984721,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "observed_critical_recovery",
+      "id": "c5-r2-s1050000-i001",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-7b9a658ded6a872a3eaf76285afe5c2d42a9d116cb716911ccefb244ba84be37",
+        "parent_death_id": "D-c06f34ab7b3932d44dd036294e482c8acd9629168389395ee7a8eebd8a994796",
+        "program": "borg-reborn-rs",
+        "seed": 1050000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "42268f1fd27394cb9a239584362a73acf2b725e220afde95f5c9b0777dcd7117",
+      "scenario_sha256": "842de0c94501971d2476dd1c64f68fe69569e7f82ed1837a6e30a7dc122d4b7a",
+      "selection": {
+        "first_visible_turn": 29590,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 82,
+        "monster_index": 16,
+        "monster_kind": "kobold",
+        "no_omniscient_trigger": true,
+        "observation_line": 2609,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 29590
+      },
+      "start_turn": 29508,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1060000,
+      "class_idx": 6,
+      "coverage": {
+        "depth": 2,
+        "equipment": [
+          {
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (4368 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Soft Leather Armour [8,+0]",
+            "kind": 107,
+            "slot": 6
+          }
+        ],
+        "equipment_kind_signature": "f03ed916dec37601d5333db03fdd7fc6ed5e41a7b5417e004e1834af5e79a906",
+        "hp": 41,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Magic Spells [First Spells]",
+            "kind": 376
+          },
+          {
+            "count": 11,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 5,
+        "mana_state": "full",
+        "max_hp": 54,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "2ff8de2e444f98cadcfedfe6d028df5b2aa7a79d772f13e86fe624b71da874fb",
+          "elapsed_seconds": 0.001310921999902348,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "observed_critical_recovery",
+      "id": "c6-r2-s1060000-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-c293d4825f2bab996256b790a278be56650c77669f384b53324dc396b92ac3d3",
+        "parent_death_id": "D-fa2513a78fe8a1bbd44b6710a4ff552678ca0f6f2b8b044c27a9bcf7f4456ba4",
+        "program": "borg-reborn-rs",
+        "seed": 1060000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "28971a711bfe962763b84c4e53786982c6cd7ff96a6fd5583a4af34c543d5481",
+      "scenario_sha256": "1b4a84cbbb32d7ce6909fe01a2c6ce9895eb0a012e571fefb95cec1d68d923e7",
+      "selection": {
+        "first_visible_turn": 57063,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 60,
+        "monster_index": 14,
+        "monster_kind": "cave spider",
+        "no_omniscient_trigger": true,
+        "observation_line": 5397,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 57063
+      },
+      "start_turn": 57003,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1070001,
+      "class_idx": 7,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Main Gauche (1d5) (+0,+0)",
+            "kind": 34,
+            "slot": 1
+          },
+          {
+            "description": "Short Bow (x2) (+0,+0)",
+            "kind": 77,
+            "slot": 2
+          },
+          {
+            "description": "Wooden Torch (2537 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "99164c726742ebb66e211fe5abd2c20e314869249d60f1ea2775efa8402b8c81",
+        "hp": 28,
+        "inventory": [
+          {
+            "count": 2,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Vermilion Potion",
+            "kind": 250
+          }
+        ],
+        "level": 3,
+        "mana_state": "full",
+        "max_hp": 32,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "6b296716ebf90995d5de2ce37df597d1404052caa789471349facc471d0abca5",
+          "elapsed_seconds": 0.0011983399999735411,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "death",
+      "id": "c7-r3-s1070001-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-0fbb713cd47d0472a39a6bd978bad4f166a20c27d9fce1879dac9dd00d76cf84",
+        "parent_death_id": "D-7fde3daf585f459738813f2e9969905d05e224bb383cb5ac7b1ed9e30419e612",
+        "program": "borg-reborn-rs",
+        "seed": 1070001,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 3,
+      "save_sha256": "4671c9eaaf99ba2adb6871ff94c87e0514888dab2894bf8024b74c2010c61339",
+      "scenario_sha256": "077c79f3c60175ecdad8c4c819c57fbf7d321281079682dee6c2f3821cbbf401",
+      "selection": {
+        "first_visible_turn": 79927,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 20,
+        "monster_index": 1,
+        "monster_kind": "metallic red centipede",
+        "no_omniscient_trigger": true,
+        "observation_line": 7885,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 79927
+      },
+      "start_turn": 79907,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1080000,
+      "class_idx": 8,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Tulwar (2d4) (+0,+0)",
+            "kind": 38,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (1147 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Robe [2,+0]",
+            "kind": 106,
+            "slot": 6
+          },
+          {
+            "description": "Leather Shield [8,+0]",
+            "kind": 134,
+            "slot": 8
+          }
+        ],
+        "equipment_kind_signature": "322c16ca8cccaca5ee393c8938ef92739a9824960e80bd1a54dd84ad5b92fe31",
+        "hp": 1,
+        "inventory": [
+          {
+            "count": 2,
+            "description": "Necromantic Tomes [Into the Shadows]",
+            "kind": 391
+          },
+          {
+            "count": 1,
+            "description": "Book of Nature Magics [Lesser Charms]",
+            "kind": 381
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Light Brown Potion",
+            "kind": 248
+          },
+          {
+            "count": 2,
+            "description": "Scrolls titled \"plaus ariesis\"",
+            "kind": 190
+          },
+          {
+            "count": 1,
+            "description": "Scroll titled \"alentea lamuo\"",
+            "kind": 211
+          },
+          {
+            "count": 1,
+            "description": "Scroll titled \"minno infendam\"",
+            "kind": 199
+          },
+          {
+            "count": 3,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 5,
+        "mana_state": "partial",
+        "max_hp": 63,
+        "max_sp": 7,
+        "sp": 6
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "fccbce0133409c53f0d6f674b6b6c814ce8804d01c8cf22dc3fc992387eaf0cd",
+          "elapsed_seconds": 0.0012175419999493897,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "death",
+      "id": "c8-r2-s1080000-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-ee40c603dff990263bb82ccc2a122e422e33c9c542bbf7ee2499d73452fa3368",
+        "parent_death_id": "D-f1ed9b8cb132ce10e3e4529ab7a4a690799e28fdfed6d48a9f8a60a34fceadf3",
+        "program": "borg-reborn-rs",
+        "seed": 1080000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "515e68dab14f282b4691c7b1f29975324b086b2aba5a6420036b8a51f81aeffa",
+      "scenario_sha256": "d370c7abd49c6a89ae8280d769481f3d2abd55e41d14653f05ca337632b6d24a",
+      "selection": {
+        "first_visible_turn": 39118,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 10,
+        "monster_index": 52,
+        "monster_kind": "giant white mouse",
+        "no_omniscient_trigger": true,
+        "observation_line": 3758,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 39118
+      },
+      "start_turn": 39108,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1000011,
+      "class_idx": 0,
+      "coverage": {
+        "depth": 4,
+        "equipment": [
+          {
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (2461 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Soft Leather Armour [8,-1]",
+            "kind": 107,
+            "slot": 6
+          },
+          {
+            "description": "Pair of Iron Shod Boots [4,+4]",
+            "kind": 95,
+            "slot": 11
+          }
+        ],
+        "equipment_kind_signature": "c3dc22ca7412bdd31090e8b22d4d87f15fa27926c003d6d0d158e26012c69943",
+        "hp": 85,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Magic Spells [First Spells]",
+            "kind": 376
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Potion of Berserk Strength",
+            "kind": 249
+          },
+          {
+            "count": 3,
+            "description": "Orange Speckled Potions",
+            "kind": 247
+          },
+          {
+            "count": 1,
+            "description": "Dark Green Potion",
+            "kind": 250
+          },
+          {
+            "count": 1,
+            "description": "Clear Potion",
+            "kind": 254
+          },
+          {
+            "count": 2,
+            "description": "Scrolls titled \"no posus spor\"",
+            "kind": 211
+          },
+          {
+            "count": 3,
+            "description": "Scrolls titled \"has lautor\"",
+            "kind": 190
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          },
+          {
+            "count": 1,
+            "description": "Pair of Leather Sandals [1,+4]",
+            "kind": 93
+          },
+          {
+            "count": 1,
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33
+          }
+        ],
+        "level": 8,
+        "mana_state": "full",
+        "max_hp": 85,
+        "max_sp": 0,
+        "sp": 0
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "d05b20b336a31551a05bab1a196c1a099a4180460fc750cdae63960a347b3104",
+          "elapsed_seconds": 0.0012340589998984797,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "death",
+      "id": "c0-r2-s1000011-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-7445bcc7bf41287c4f185c1ab8934ec0937a41c3233811a4ea19c02de4197194",
+        "parent_death_id": "D-416046f52341cb5660bcea3542c9999f7775a7672734b2846af2255a29d9daf5",
+        "program": "borg-reborn-rs",
+        "seed": 1000011,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "dfc041a9c0864ae51747ef65bd62de7b89a575fe6053ed6ae65205c8beaba25c",
+      "scenario_sha256": "bb9361a403231f9ae5317ef17e0ef8b7a50b38eda7a1481ee1740ee274af3aa9",
+      "selection": {
+        "first_visible_turn": 76078,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 70,
+        "monster_index": 33,
+        "monster_kind": "scout",
+        "no_omniscient_trigger": true,
+        "observation_line": 7481,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 76078
+      },
+      "start_turn": 76008,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1010000,
+      "class_idx": 1,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Rapier (1d6) (+0,+0)",
+            "kind": 35,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (3702 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "581551ca0bcdca9b672352c4f8216ed34c6ca525fdd287635612ab011afa74d6",
+        "hp": 12,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Magic Spells [First Spells]",
+            "kind": 376
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Phase Door",
+            "kind": 185
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 1,
+            "description": "Scroll titled \"pharum vus pro\"",
+            "kind": 189
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 2,
+        "mana_state": "full",
+        "max_hp": 12,
+        "max_sp": 4,
+        "sp": 4
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "19ae80519b46ff02336d93c8d0484620eba85699fe419a22527ac65a6a72d736",
+          "elapsed_seconds": 0.0012181990000499354,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "observed_critical_recovery",
+      "id": "c1-r2-s1010000-i001",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-d112377d0e071ee634056fa5eb6655e8be6028886e8ddfc3a285d5b21e608ded",
+        "parent_death_id": "D-d0ab6c0b4bc155aa45ed889c9c5978797209f2e30ec3721cd2493921dc679550",
+        "program": "borg-reborn-rs",
+        "seed": 1010000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "63e1fedf9da979c15274c14b96e34bbccb1e13d40f308bba73f9ecb78762ffff",
+      "scenario_sha256": "ede2000de7acfa0c94f72811949886c9c09de5eea30811edc4677eb66582a42e",
+      "selection": {
+        "first_visible_turn": 13572,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 70,
+        "monster_index": 12,
+        "monster_kind": "small kobold",
+        "no_omniscient_trigger": true,
+        "observation_line": 1360,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 13572
+      },
+      "start_turn": 13502,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1020001,
+      "class_idx": 2,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Whip (1d3) (+0,+0)",
+            "kind": 47,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (4874 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "85c02c5b3eb730b04d3579f990b8978618d626962fe9be478576dff9a8201273",
+        "hp": 10,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Nature Magics [Lesser Charms]",
+            "kind": 381
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Potion of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 1,
+        "mana_state": "full",
+        "max_hp": 10,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "41ba0c9ea960408380bed41fd02ccda20620823a1b80a04f59263eb2b4a356cf",
+          "elapsed_seconds": 0.0011962949999997363,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "death",
+      "id": "c2-r3-s1020001-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-bb0742cc012654a1d90a7e0ff66a1b7c9eee016397db25daf9bb66642faf69c6",
+        "parent_death_id": "D-245782fee8c5ac989480d680e5545f154178e08a3fb47fe08a8b8543ff213c54",
+        "program": "borg-reborn-rs",
+        "seed": 1020001,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 3,
+      "save_sha256": "cf6f2e418b663d035f1e08efc40a1fddfd42d2a0d671bd8704819f41d7696bf7",
+      "scenario_sha256": "2cd943833e68584247e1af08025ff4f5ab8c7e2852140216e5f96e5ca76e8777",
+      "selection": {
+        "first_visible_turn": 1578,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 70,
+        "monster_index": 8,
+        "monster_kind": "small kobold",
+        "no_omniscient_trigger": true,
+        "observation_line": 166,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 1578
+      },
+      "start_turn": 1508,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1030001,
+      "class_idx": 3,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Mace (2d4) (+0,+0)",
+            "kind": 52,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (4643 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "d9df93b11d86787f1bfe90ecf85c92b75d3c8975ae7e0c34c7cf1c118dc0e254",
+        "hp": 8,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Holy Book of Prayers [Novice's Handbook]",
+            "kind": 386
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 3,
+            "description": "Potions of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 2,
+            "description": "Potions of Cure Serious Wounds",
+            "kind": 232
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 1,
+        "mana_state": "full",
+        "max_hp": 10,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "1e9d36f1496a9d9bd28f7c525c60013a1aebe10f872f534bcce31c4b8929b901",
+          "elapsed_seconds": 0.0012594270001500263,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "death",
+      "id": "c3-r3-s1030001-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-657fc0c936a3129356663693828e487924edd27e8c4095b92746ce1a9f2207f9",
+        "parent_death_id": "D-261806667819a5c86f0b44b0f9c9d284598e36c4618f94ff4916044fb089440d",
+        "program": "borg-reborn-rs",
+        "seed": 1030001,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 3,
+      "save_sha256": "8e1a1d921515e943ae03bf28f7f859219d63a39583da602b491485abd3ba5a4a",
+      "scenario_sha256": "8c4d37977af9f593af0b900d3654c6fb469c866daad0ada75333e046badca972",
+      "selection": {
+        "first_visible_turn": 3961,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 10,
+        "monster_index": 13,
+        "monster_kind": "kobold shaman",
+        "no_omniscient_trigger": true,
+        "observation_line": 386,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 3961
+      },
+      "start_turn": 3951,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1040001,
+      "class_idx": 4,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Main Gauche (1d5) (+0,+0)",
+            "kind": 34,
+            "slot": 1
+          }
+        ],
+        "equipment_kind_signature": "cb1d5ab23bfa7af3cc87d35f1c55db19f8488c3ed2a2a4e41f5dae982745bfea",
+        "hp": 9,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Necromantic Tome [Into the Shadows]",
+            "kind": 391
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Potion of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 1,
+        "mana_state": "partial",
+        "max_hp": 9,
+        "max_sp": 2,
+        "sp": 1
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "2793ef3a613419d50c4002c21a821659cb2700442f633709d33cc4cef90fca45",
+          "elapsed_seconds": 0.001218808999965404,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "death",
+      "id": "c4-r3-s1040001-i001",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-bd06f7ed0701eca7676ce8fd0631251100901edb9acd36e07a3ba9ce4cc7fa90",
+        "parent_death_id": "D-a0a6fd0d838344650fbb55eb8cdae01c2a18a49cea088a6a56de4f8b5c6006a5",
+        "program": "borg-reborn-rs",
+        "seed": 1040001,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 3,
+      "save_sha256": "92245f1b815586817d0eddd88cd50dc5b9e3d87ea445cf846f13252786d903d4",
+      "scenario_sha256": "527485a2c5d0e663c11f5c0afcda48d9daf029cefbc623b77b46bf3897351df3",
+      "selection": {
+        "first_visible_turn": 9128,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 20,
+        "monster_index": 25,
+        "monster_kind": "grey mushroom patch",
+        "no_omniscient_trigger": true,
+        "observation_line": 859,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 9128
+      },
+      "start_turn": 9108,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1050001,
+      "class_idx": 5,
+      "coverage": {
+        "depth": 2,
+        "equipment": [
+          {
+            "description": "Main Gauche (1d5) (+0,+0)",
+            "kind": 34,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (1450 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Cloak [1,+4]",
+            "kind": 123,
+            "slot": 7
+          }
+        ],
+        "equipment_kind_signature": "b147dde72450507d7f77098335e8483e70b6a7184e6489ce7fead816158d3f2a",
+        "hp": 23,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Holy Book of Prayers [Novice's Handbook]",
+            "kind": 386
+          },
+          {
+            "count": 1,
+            "description": "Book of Nature Magics [Lesser Charms]",
+            "kind": 381
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Protection from Evil",
+            "kind": 215
+          },
+          {
+            "count": 3,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          },
+          {
+            "count": 1,
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33
+          }
+        ],
+        "level": 4,
+        "mana_state": "full",
+        "max_hp": 53,
+        "max_sp": 5,
+        "sp": 5
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "2aa1949146befedd50da2e9db0ef9d709adaad489e376e1e151f10409a3501a0",
+          "elapsed_seconds": 0.0011870629998611548,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "observed_critical_recovery",
+      "id": "c5-r3-s1050001-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-7e9613c1dee1e5a6cb99450f44c1cb7803d4f4a516bcc29339a2a1b6a9c55742",
+        "parent_death_id": null,
+        "program": "borg-reborn-rs",
+        "seed": 1050001,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 3,
+      "save_sha256": "e87b12a38d7f315b27598f674c7f7f51c5b273e841f43e41bcf9b403356572cd",
+      "scenario_sha256": "044bec9218df7a3ed2ed8a890fb995cdba76ce03f32ce3da347c41f8687074c2",
+      "selection": {
+        "first_visible_turn": 86516,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 108,
+        "monster_index": 29,
+        "monster_kind": "crow",
+        "no_omniscient_trigger": true,
+        "observation_line": 8439,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 86514
+      },
+      "start_turn": 86406,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1060000,
+      "class_idx": 6,
+      "coverage": {
+        "depth": 3,
+        "equipment": [
+          {
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (508 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Soft Leather Armour [8,+0]",
+            "kind": 107,
+            "slot": 6
+          },
+          {
+            "description": "Cloak [1,+0]",
+            "kind": 123,
+            "slot": 7
+          },
+          {
+            "description": "Wicker Shield [2,+0]",
+            "kind": 132,
+            "slot": 8
+          }
+        ],
+        "equipment_kind_signature": "6e834cb9ba5872b305bff7313a071c08df4c65b8176f2cba81aa9b4905d149a3",
+        "hp": 26,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Magic Spells [First Spells]",
+            "kind": 376
+          },
+          {
+            "count": 7,
+            "description": "Scrolls of Light",
+            "kind": 207
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Scrolls of Blessing",
+            "kind": 212
+          },
+          {
+            "count": 3,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 6,
+        "mana_state": "full",
+        "max_hp": 61,
+        "max_sp": 3,
+        "sp": 3
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "37b2952e0a539e75aaeeac30d2dac658f01458e259a3dee6c1987d9fb34d871a",
+          "elapsed_seconds": 0.0011970399998517678,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "death",
+      "id": "c6-r2-s1060000-i001",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-c293d4825f2bab996256b790a278be56650c77669f384b53324dc396b92ac3d3",
+        "parent_death_id": "D-fa2513a78fe8a1bbd44b6710a4ff552678ca0f6f2b8b044c27a9bcf7f4456ba4",
+        "program": "borg-reborn-rs",
+        "seed": 1060000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "989bc706f54cfa97c0fa6749158ef3cee08f612807a855422746d85d3ead4279",
+      "scenario_sha256": "704375d7c611b3e9d5330c9e20e944c08342eb9db4ae8d3b41eca70833dc416b",
+      "selection": {
+        "first_visible_turn": 95647,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 40,
+        "monster_index": 13,
+        "monster_kind": "acolyte",
+        "no_omniscient_trigger": true,
+        "observation_line": 9164,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 95647
+      },
+      "start_turn": 95607,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1070003,
+      "class_idx": 7,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Main Gauche (1d5) (+0,+0)",
+            "kind": 34,
+            "slot": 1
+          },
+          {
+            "description": "Short Bow (x2) (+0,+0)",
+            "kind": 77,
+            "slot": 2
+          },
+          {
+            "description": "Wooden Torch (4641 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "99164c726742ebb66e211fe5abd2c20e314869249d60f1ea2775efa8402b8c81",
+        "hp": 16,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Nature Magics [Lesser Charms]",
+            "kind": 381
+          },
+          {
+            "count": 2,
+            "description": "Handfuls of Dried Fruits",
+            "kind": 9
+          },
+          {
+            "count": 5,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 2,
+            "description": "Misty Potions",
+            "kind": 247
+          },
+          {
+            "count": 1,
+            "description": "Scroll titled \"depropon ho so\"",
+            "kind": 211
+          },
+          {
+            "count": 2,
+            "description": "Scrolls titled \"in etis eque\"",
+            "kind": 190
+          },
+          {
+            "count": 1,
+            "description": "Wooden Torch (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 3,
+        "mana_state": "full",
+        "max_hp": 17,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "8705d244715fc252ce7ac3e9ddc8276948c2b8070ba0c660fd54309f8a0de48d",
+          "elapsed_seconds": 0.0012012970000796486,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "observed_critical_recovery",
+      "id": "c7-r10-s1070003-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-c7b22f260844d4d80011e9584b7d94033d1d52f3ec4016bf65fb83510babceaf",
+        "parent_death_id": "D-7ed3eeb87aaf4aa639b473ac160b79c5bce8982026c8f7823ee68ec9fd71da76",
+        "program": "borg-reborn-rs",
+        "seed": 1070003,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 10,
+      "save_sha256": "5527355aadec86e2f6f37a50473f8ef93e37fd4b09ff0599c19de59e924ee54f",
+      "scenario_sha256": "ba98db847cfa92c27fe5c54a0840e50750238c96980e6207deb9425eb10ede47",
+      "selection": {
+        "first_visible_turn": 56057,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 57,
+        "monster_index": 26,
+        "monster_kind": "wild dog",
+        "no_omniscient_trigger": true,
+        "observation_line": 5494,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 56057
+      },
+      "start_turn": 56000,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/002.json"
+    },
+    {
+      "birth_seed": 1080003,
+      "class_idx": 8,
+      "coverage": {
+        "depth": 3,
+        "equipment": [
+          {
+            "description": "Tulwar (2d4) (+0,+0)",
+            "kind": 38,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (2330 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Leather Shield [8,+0]",
+            "kind": 134,
+            "slot": 8
+          },
+          {
+            "description": "Pair of Leather Sandals [1,+3]",
+            "kind": 93,
+            "slot": 11
+          }
+        ],
+        "equipment_kind_signature": "7c3b257289de0b11a37e29f27b1a3dfc63fda23daf752b653db978d8edf74cbc",
+        "hp": 7,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Necromantic Tome [Into the Shadows]",
+            "kind": 391
+          },
+          {
+            "count": 1,
+            "description": "Holy Book of Prayers [Novice's Handbook]",
+            "kind": 386
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Potion of Neutralize Poison",
+            "kind": 237
+          },
+          {
+            "count": 4,
+            "description": "Potions of Slowness",
+            "kind": 261
+          },
+          {
+            "count": 1,
+            "description": "Metallic Green Potion",
+            "kind": 259
+          },
+          {
+            "count": 4,
+            "description": "Scrolls of Treasure Detection",
+            "kind": 189
+          },
+          {
+            "count": 2,
+            "description": "Scrolls titled \"deguor coler\"",
+            "kind": 211
+          },
+          {
+            "count": 1,
+            "description": "Scroll titled \"quo vo wizzy\"",
+            "kind": 190
+          },
+          {
+            "count": 3,
+            "description": "Scrolls titled \"quo scienus ca\"",
+            "kind": 199
+          },
+          {
+            "count": 1,
+            "description": "Wooden Torch (5000 turns)",
+            "kind": 4
+          },
+          {
+            "count": 1,
+            "description": "Dagger (1d4) (+6,+2)",
+            "kind": 33
+          }
+        ],
+        "level": 6,
+        "mana_state": "partial",
+        "max_hp": 57,
+        "max_sp": 6,
+        "sp": 5
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "ee49fc147afa1c24c4e02c8f1b77ed9ba4de387e2456f575560f047a7c8e8a67",
+          "elapsed_seconds": 0.001218157000039355,
+          "reason": "'receipts'",
+          "status": "invalid_receipt",
+          "streams": {},
+          "summary": {}
+        }
+      },
+      "historical_type": "death",
+      "id": "c8-r10-s1080003-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-e22a99a1024c6d4dc9859d393ac8bceaada0c3ded2512ddb53ee0a1a02d96002",
+        "parent_death_id": "D-b07289f3cfabe6a9e7a066ac2267bdb5b3882b4d69ec7ef7e55c610d6e026685",
+        "program": "borg-reborn-rs",
+        "seed": 1080003,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "invalid_receipt"
+      },
+      "pair": null,
+      "race_idx": 10,
+      "save_sha256": "f605f9d48fb01310eba3010fa4b934fc95031eb82f0a093b3f342713cec8cc32",
+      "scenario_sha256": "1818b223787b66c415b7288535ed9d3b5cca15e55b9f30af2d8f258fdf86a826",
+      "selection": {
+        "first_visible_turn": 77267,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 65,
+        "monster_index": 37,
+        "monster_kind": "metallic red centipede",
+        "no_omniscient_trigger": true,
+        "observation_line": 7561,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 77267
+      },
+      "start_turn": 77202,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/002.json"
+    }
+  ],
+  "collected_cells": 18,
+  "comparison": {
+    "candidate": "suite1-reborn-main-38858846-stock",
+    "reference": null
+  },
+  "counted_arms": [
+    "suite1-reborn-main-38858846-stock"
+  ],
+  "definition": {
+    "definition": "definitions/suite1-reborn-main-38858846-stock.yaml",
+    "folder": "scenario-experiments",
+    "inputs": {
+      "files": {
+        "borg.txt": "3ce9ae4f0736aa94cc8ce440b2770fb6a1fd5d1013fdac10b87f73550c0d242b",
+        "provenance.json": "80ed056506409b0d2bf03ba424b23888afe7fe31fff7dcd710e46f96f8dd24e8",
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      },
+      "path": "scenario-inputs/suite1-reborn-main-38858846-stock"
+    },
+    "issue": 183,
+    "kind": "suite-run",
+    "name": "suite1-reborn-main-38858846-stock",
+    "native_tools": {
+      "commit": "09225018dd5f2d4336a16b29478793d902c70dc3",
+      "repository": "diegoami/borg-cemetery"
+    },
+    "owner_authorization": "2026-11-19: the owner agreed to a sanity rerun of Suite 1 on current main (borg-zoo#183), after borg-reborn-rs #600 (lava and staircase fixes, shipped on) and #607 (the harness plays the borg-rs core by default) changed main's defaults: Suite 1 on borg-reborn-rs main 38858846 with its own default settings, stage by stage to full.",
+    "prespecified": "Fixed 2026-11-19, before any result was read (borg-zoo#183). A sanity check of main: the 999 saves of\nSuite 1 with its protocol (exact 2,000-engine-turn horizon, the suite's 30-second native wall limit, fresh Borg\nmemory, saved engine RNG). Settings: the checkout's own harness/borg.txt (sha256 3ce9ae4f...), nothing\noverridden; the scary list it names (scary_monsters.txt d045111b...) is frozen with the inputs and read by\nabsolute path. The first smoke (run 44436640586) failed its gate because the runner did not stage that file\n(fixed in #346). Stages smoke 18, small 90, medium 360, big 900 and full 999 run in sequence, each after the previous\nstage's gate. Gate at every stage: no missing, invalid or stopped cell; one binary; every cell's native receipts\nshow the save, the RNG, the borg-rs core, every borg.txt setting written, every borg_param_* effective from\nborg.txt, and an initial pack/equipment/rune hash equal to the suite's. Reported alone: the death share, deaths\nper class and every scenario's outcome. Encounters from one life are correlated.\n",
+    "question": "How does borg-reborn-rs main 38858846, with its own default settings, play the 999 saved encounters of Suite 1?",
+    "schema": "borg-zoo/suite-run-definition@1",
+    "settings": "stock",
+    "source": {
+      "commit": "388588468bfe91b2a8f84b38599813f2acfed64e",
+      "repository": "diegoami/borg-reborn-rs"
+    },
+    "suite": "suite1-v1"
+  },
+  "evidence_url": "https://github.com/diegoami/borg-zoo/actions/runs/44446442326",
+  "expected_cells": 18,
+  "howto_url": "https://github.com/diegoami/borg-zoo/blob/main/docs/SUITE-RUNS.md",
+  "independent_life": false,
+  "invalid_count": 18,
+  "manifest": {
+    "engine_commit": "42cd156ac9f95ddf4311e88dd7ad462292d6d1d6",
+    "horizon_engine_turns": 2000,
+    "wall_seconds": 30
+  },
+  "name": "suite1-reborn-main-38858846-stock",
+  "pairs": {},
+  "parent_run": null,
+  "per_class": {
+    "Blackguard": {
+      "invalid_receipt": 2
+    },
+    "Druid": {
+      "invalid_receipt": 2
+    },
+    "Mage": {
+      "invalid_receipt": 2
+    },
+    "Necromancer": {
+      "invalid_receipt": 2
+    },
+    "Paladin": {
+      "invalid_receipt": 2
+    },
+    "Priest": {
+      "invalid_receipt": 2
+    },
+    "Ranger": {
+      "invalid_receipt": 2
+    },
+    "Rogue": {
+      "invalid_receipt": 2
+    },
+    "Warrior": {
+      "invalid_receipt": 2
+    }
+  },
+  "plan_hash": "a483eee043e4e7ead9d3ffabc6e708246e33e0b5cc42ed22e9d566b84f11bdb2",
+  "qualified_near_death": {
+    "count": null,
+    "coverage": "unavailable"
+  },
+  "raw_report_sha256": "52bcf419d7f53083477cee1311a249e8263972ffe4bfac648f1a6cb23e45c86b",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44446442326",
+  "schema": "borg-zoo/saved-incident-comparison@1",
+  "stopped_count": 0,
+  "suite": {
+    "id": "suite1-v1",
+    "name": "Suite 1"
+  },
+  "tier": "smoke",
+  "title": "suite1-reborn-main-38858846-stock on Suite 1"
+}
