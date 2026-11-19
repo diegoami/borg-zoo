@@ -6060,6 +6060,208 @@
         "borg_reborn_errand": "none",
         "borg_param_caution_flee_recall_chasers": 6
       }
+    },
+    "reborn-tripgold-g0": {
+      "description": "borg-zoo#402 (reborn-trip-gold-pilot.yaml): arm g0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_trip_return_gold": 0
+      }
+    },
+    "reborn-tripgold-g50": {
+      "description": "borg-zoo#402 (reborn-trip-gold-pilot.yaml): arm g50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_trip_return_gold": 50
+      }
+    },
+    "reborn-tripgold-g150": {
+      "description": "borg-zoo#402 (reborn-trip-gold-pilot.yaml): arm g150.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_trip_return_gold": 150
+      }
+    },
+    "reborn-tripgold-g400": {
+      "description": "borg-zoo#402 (reborn-trip-gold-pilot.yaml): arm g400.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_trip_return_gold": 400
+      }
+    },
+    "reborn-forecast-ctl": {
+      "description": "borg-zoo#403 (reborn-town-forecast-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_depth_gain": 1,
+        "borg_town_explore_turns": 1000,
+        "borg_town_stair_turns": 50,
+        "borg_town_attack_turns": 100,
+        "borg_town_support_turns": 1000
+      }
+    },
+    "reborn-forecast-gain2": {
+      "description": "borg-zoo#403 (reborn-town-forecast-pilot.yaml): arm gain2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_depth_gain": 2,
+        "borg_town_explore_turns": 1000,
+        "borg_town_stair_turns": 50,
+        "borg_town_attack_turns": 100,
+        "borg_town_support_turns": 1000
+      }
+    },
+    "reborn-forecast-explore500": {
+      "description": "borg-zoo#403 (reborn-town-forecast-pilot.yaml): arm explore500.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_depth_gain": 1,
+        "borg_town_explore_turns": 500,
+        "borg_town_stair_turns": 50,
+        "borg_town_attack_turns": 100,
+        "borg_town_support_turns": 1000
+      }
+    },
+    "reborn-forecast-explore2000": {
+      "description": "borg-zoo#403 (reborn-town-forecast-pilot.yaml): arm explore2000.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_depth_gain": 1,
+        "borg_town_explore_turns": 2000,
+        "borg_town_stair_turns": 50,
+        "borg_town_attack_turns": 100,
+        "borg_town_support_turns": 1000
+      }
+    },
+    "reborn-forecast-stair25": {
+      "description": "borg-zoo#403 (reborn-town-forecast-pilot.yaml): arm stair25.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_depth_gain": 1,
+        "borg_town_explore_turns": 1000,
+        "borg_town_stair_turns": 25,
+        "borg_town_attack_turns": 100,
+        "borg_town_support_turns": 1000
+      }
+    },
+    "reborn-forecast-stair100": {
+      "description": "borg-zoo#403 (reborn-town-forecast-pilot.yaml): arm stair100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_depth_gain": 1,
+        "borg_town_explore_turns": 1000,
+        "borg_town_stair_turns": 100,
+        "borg_town_attack_turns": 100,
+        "borg_town_support_turns": 1000
+      }
+    },
+    "reborn-forecast-attack50": {
+      "description": "borg-zoo#403 (reborn-town-forecast-pilot.yaml): arm attack50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_depth_gain": 1,
+        "borg_town_explore_turns": 1000,
+        "borg_town_stair_turns": 50,
+        "borg_town_attack_turns": 50,
+        "borg_town_support_turns": 1000
+      }
+    },
+    "reborn-forecast-attack200": {
+      "description": "borg-zoo#403 (reborn-town-forecast-pilot.yaml): arm attack200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_depth_gain": 1,
+        "borg_town_explore_turns": 1000,
+        "borg_town_stair_turns": 50,
+        "borg_town_attack_turns": 200,
+        "borg_town_support_turns": 1000
+      }
+    },
+    "reborn-forecast-support500": {
+      "description": "borg-zoo#403 (reborn-town-forecast-pilot.yaml): arm support500.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_depth_gain": 1,
+        "borg_town_explore_turns": 1000,
+        "borg_town_stair_turns": 50,
+        "borg_town_attack_turns": 100,
+        "borg_town_support_turns": 500
+      }
+    },
+    "reborn-forecast-support2000": {
+      "description": "borg-zoo#403 (reborn-town-forecast-pilot.yaml): arm support2000.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_depth_gain": 1,
+        "borg_town_explore_turns": 1000,
+        "borg_town_stair_turns": 50,
+        "borg_town_attack_turns": 100,
+        "borg_town_support_turns": 2000
+      }
+    },
+    "reborn-breederset-ctl": {
+      "description": "borg-zoo#404 (reborn-breeder-settings-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_danger_hunt_breeder_no_acid_fear": 1,
+        "borg_param_caution_breeder_stand_radius": 5,
+        "borg_param_caution_breeder_easy_escape_steps": 5
+      }
+    },
+    "reborn-breederset-acidfear": {
+      "description": "borg-zoo#404 (reborn-breeder-settings-pilot.yaml): arm acidfear.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_danger_hunt_breeder_no_acid_fear": 0,
+        "borg_param_caution_breeder_stand_radius": 5,
+        "borg_param_caution_breeder_easy_escape_steps": 5
+      }
+    },
+    "reborn-breederset-nostand": {
+      "description": "borg-zoo#404 (reborn-breeder-settings-pilot.yaml): arm nostand.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_danger_hunt_breeder_no_acid_fear": 1,
+        "borg_param_caution_breeder_stand_radius": 0,
+        "borg_param_caution_breeder_easy_escape_steps": 5
+      }
+    },
+    "reborn-breederset-esc3": {
+      "description": "borg-zoo#404 (reborn-breeder-settings-pilot.yaml): arm esc3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_danger_hunt_breeder_no_acid_fear": 1,
+        "borg_param_caution_breeder_stand_radius": 5,
+        "borg_param_caution_breeder_easy_escape_steps": 3
+      }
+    },
+    "reborn-breederset-esc10": {
+      "description": "borg-zoo#404 (reborn-breeder-settings-pilot.yaml): arm esc10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_danger_hunt_breeder_no_acid_fear": 1,
+        "borg_param_caution_breeder_stand_radius": 5,
+        "borg_param_caution_breeder_easy_escape_steps": 10
+      }
     }
   }
 }
