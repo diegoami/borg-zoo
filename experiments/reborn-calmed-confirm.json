@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-calmed-confirm",
+  "issue": 400,
+  "definition": "definitions/reborn-calmed-confirm.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, does calmed unlatch (caution_scary_unlatch_calmed = 1) die less than main's 0, at no cost in progress, on 1,800 fresh starts (classes-1800-b)?",
+  "description": "On borg-reborn-rs main 3ba17e2c, does calmed unlatch (caution_scary_unlatch_calmed = 1) die less than main's 0, at no cost in progress, on 1,800 fresh starts (classes-1800-b)? Generated from definitions/reborn-calmed-confirm.yaml: 2 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-b.",
+  "prespecified": "Fixed 2026-11-19, before any classes-1800-b result of these profiles was read. Confirmation of one prespecified test\n(RULES 8). Same specimen and profiles as the pilot reborn-neutral-main-pilot (RULES 16).\nPrimary endpoint: death by the 100,000-turn cap among the 1,800 classes-1800-b starts, calmed against ctl, paired on\nthe same start; two-sided exact McNemar test at alpha 0.05. Confirmed helpful only if p < 0.05 and calmed has fewer\ndeaths. Pairs where either cell did not finish (stall, timeout, crash, harness or config error) are left out of the\ntest, listed and counted per arm (RULES 6), never relabelled as deaths or survivors.\nSecondary endpoints (progress, non-inferiority): mean max CL and mean max DL, calmed minus ctl, paired on the same\nstart. calmed is non-inferior when the lower bound of the two-sided 95% paired interval (normal approximation) is\nabove -0.25 CL and above -0.10 DL. Development: +0.093 CL [+0.046, +0.141], +0.053 DL [+0.022, +0.084].\nDescriptive only: deaths, CL1-3 deaths, causes, mean max CL and DL per class, with Priests named in advance (the\nonly class worse in development, 13 against 15; a candidate for caution_scary_unlatch_calmed@priest = 0); games\nidentical to ctl.\nSizing: development discordance 44/1800 with a net 12/1800; the normal approximation gives about 44% power at 1,800\npairs if that effect holds. A result short of p < 0.05 does not show calmed has no effect on deaths.\nGate (before the test is read):\n- no config_error; one binary; each arm's four values in borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- ctl writes only main's values, so it should replay reborn-errands-main-confirm's none arm (the same specimen and\n  starts) in 1,800 of 1,800 games.\nThe result is reported in a RULES 18 bin (harmful, neutral or helpful); shipping calmed is the owner's call\n(borg-reborn-rs#672).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-neutral38-ctl",
+    "reborn-neutral38-calmed"
+  ],
+  "suites": [
+    "classes-1800-b"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-neutral38-ctl",
+  "owner_authorization": "2026-11-19: after the development study (#400: 93 against 105 deaths, 28 / 16, p 0.096; CL +0.093, DL +0.053, both significant), the owner asked for definitions of the proposed changes. Dispatch is the owner's call."
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-casters-big",
+  "issue": 415,
+  "definition": "definitions/reborn-casters-big.yaml",
+  "question": "On borg-reborn-rs main 592c6984, with the Phase Door rule and calmed unlatch, which early-game lever (more oil, more Phase Door, throwing, early animals on the scary list, a larger heal reserve) saves Mages, Priests, Necromancers and Druids?",
+  "description": "On borg-reborn-rs main 592c6984, with the Phase Door rule and calmed unlatch, which early-game lever (more oil, more Phase Door, throwing, early animals on the scary list, a larger heal reserve) saves Mages, Priests, Necromancers and Druids? Generated from definitions/reborn-casters-big.yaml: 6 arms on 4.2.6-reborn-rust-main-592c6984, suite classes-1800-big-mages, classes-1800-big-priests, classes-1800-big-necromancers, classes-1800-big-druids.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles was read. Same specimen and profiles as the pilot\nreborn-casters-pilot (RULES 16); no raw evidence at this size. A development study (RULES 14): descriptive, no claim\nwithout a confirmation (RULES 8).\nGate:\n- no config_error; one binary; each arm's values in borg.txt (and the scary list lines in its list);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, pooled over the tiers so far (RULES 14): deaths and causes, CL1-3 deaths, mean max CL\nand DL; paired rescued and newly killed against ctl, with each arm's exact McNemar p and its Holm-adjusted value\nover the five comparisons (deaths, all four classes pooled); per class the same counts, descriptive. An unadjusted\np < 0.05 that does not survive Holm is a lead, not a result. Each arm is reported as harmful, neutral (safe to\nadopt) or helpful (RULES 18), overall and per class; a per-class lead is a candidate for an @class line\n(borg-reborn-rs#673).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-592c6984"
+  ],
+  "profiles": [
+    "reborn-casters59-ctl",
+    "reborn-casters59-oil",
+    "reborn-casters59-escape",
+    "reborn-casters59-thrown",
+    "reborn-casters59-scary-animals",
+    "reborn-casters59-heal"
+  ],
+  "suites": [
+    "classes-1800-big-mages",
+    "classes-1800-big-priests",
+    "classes-1800-big-necromancers",
+    "classes-1800-big-druids"
+  ],
+  "control": "4.2.6-reborn-rust-main-592c6984",
+  "control_profile": "reborn-casters59-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for definitions of the proposed changes, focused on the weakest classes (#415 study 1). Dispatched only after reborn-casters-medium's gate and the owner (RULES 14)."
+}

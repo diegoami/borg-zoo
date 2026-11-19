@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-rebase-main-pilot",
+  "issue": 416,
+  "definition": "definitions/reborn-rebase-main-pilot.yaml",
+  "question": "On borg-reborn-rs main 592c6984, after #664 changed play, how do shipped main, the Phase Door rule, calmed unlatch, both together and the errands plan compare, against what they did on 3ba17e2c on the same starts?",
+  "description": "On borg-reborn-rs main 592c6984, after #664 changed play, how do shipped main, the Phase Door rule, calmed unlatch, both together and the errands plan compare, against what they did on 3ba17e2c on the same starts? Generated from definitions/reborn-rebase-main-pilot.yaml: 5 arms on 4.2.6-reborn-rust-main-592c6984, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles on 592c6984 was read. Pilot (RULES 16), descriptive.\nThis is a new build: #664 changed play since 3ba17e2c, so shipped is not expected to replay any 3ba17e2c arm.\nGate:\n- no config_error; one binary; each arm's values in its borg.txt; errands' plan recorded per cell and checked\n  against the pin;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: deaths and causes, CL1-3 deaths, mean max CL and DL; paired rescued and newly killed\nagainst shipped; identical plays. Descriptively, for each arm, the same arm's games on 3ba17e2c on the same 18 starts\n(shipped: reborn-errands-main-pilot's none; rule: reborn-phaserule38-thr-100's pilot; calmed:\nreborn-neutral-main-pilot's calmed; errands: reborn-errands-main-pilot's errands): how many games #664 changed, and\nthe deaths, CL and DL either side. If PR #414's pilot runs on the same specimen, its ctl, phase-rule and errands\narms should replay shipped, rule and errands here. RULES 18 bins; 18 starts show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-592c6984"
+  ],
+  "profiles": [
+    "reborn-rebase59-shipped",
+    "reborn-rebase59-rule",
+    "reborn-rebase59-calmed",
+    "reborn-rebase59-rule-calmed",
+    "reborn-rebase59-errands"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-592c6984",
+  "control_profile": "reborn-rebase59-shipped",
+  "owner_authorization": "2026-11-19: the owner asked for definitions of the proposed changes, focused on the weakest classes; #416 lists a re-baseline on the new main. Pilot (RULES 16); dispatch is the owner's call.",
+  "retain_evidence": true
+}

@@ -6430,6 +6430,152 @@
           "wild cat | 0-2"
         ]
       }
+    },
+    "reborn-rebase59-shipped": {
+      "description": "borg-zoo#416 (reborn-rebase-main-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-rebase59-rule": {
+      "description": "borg-zoo#416 (reborn-rebase-main-pilot.yaml): arm rule.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-rebase59-calmed": {
+      "description": "borg-zoo#416 (reborn-rebase-main-pilot.yaml): arm calmed.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_unlatch_calmed": 1
+      }
+    },
+    "reborn-rebase59-rule-calmed": {
+      "description": "borg-zoo#416 (reborn-rebase-main-pilot.yaml): arm rule-calmed.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100,
+        "borg_param_caution_scary_unlatch_calmed": 1
+      }
+    },
+    "reborn-rebase59-errands": {
+      "description": "borg-zoo#416 (reborn-rebase-main-pilot.yaml): arm errands.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-bgphase59-rule-on": {
+      "description": "borg-zoo#415 (reborn-bgphase-pilot.yaml): arm rule-on.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_unlatch_calmed": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-bgphase59-rule-off": {
+      "description": "borg-zoo#415 (reborn-bgphase-pilot.yaml): arm rule-off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_unlatch_calmed": 1,
+        "borg_param_escape_phase_adjacent_rule": 0,
+        "borg_param_escape_phase_lost_test": 1,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-casters59-ctl": {
+      "description": "borg-zoo#415 (reborn-casters-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100,
+        "borg_param_caution_scary_unlatch_calmed": 1
+      }
+    },
+    "reborn-casters59-oil": {
+      "description": "borg-zoo#415 (reborn-casters-pilot.yaml): arm oil.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100,
+        "borg_param_caution_scary_unlatch_calmed": 1,
+        "borg_town_w_attack": 200,
+        "borg_town_attack_turns": 50
+      }
+    },
+    "reborn-casters59-escape": {
+      "description": "borg-zoo#415 (reborn-casters-pilot.yaml): arm escape.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100,
+        "borg_param_caution_scary_unlatch_calmed": 1,
+        "borg_town_w_escape": 100
+      }
+    },
+    "reborn-casters59-thrown": {
+      "description": "borg-zoo#415 (reborn-casters-pilot.yaml): arm thrown.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100,
+        "borg_param_caution_scary_unlatch_calmed": 1,
+        "borg_param_attack_preference_thrown_permille": 1500
+      }
+    },
+    "reborn-casters59-scary-animals": {
+      "description": "borg-zoo#415 (reborn-casters-pilot.yaml): arm scary-animals.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100,
+        "borg_param_caution_scary_unlatch_calmed": 1,
+        "borg_scary_list_lines": [
+          "crow | 1-4",
+          "wild cat | 1-4",
+          "grey mold | 1-4",
+          "wild dog | 1-4"
+        ]
+      }
+    },
+    "reborn-casters59-heal": {
+      "description": "borg-zoo#415 (reborn-casters-pilot.yaml): arm heal.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100,
+        "borg_param_caution_scary_unlatch_calmed": 1,
+        "borg_param_town_heal_reserve_hp_percent_mage": 400,
+        "borg_param_town_heal_reserve_hp_percent_priest": 350,
+        "borg_param_town_heal_reserve_hp_percent_druid": 350,
+        "borg_param_town_heal_reserve_hp_percent_necromancer": 400
+      }
     }
   }
 }
