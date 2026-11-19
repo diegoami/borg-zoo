@@ -6430,6 +6430,93 @@
           "wild cat | 0-2"
         ]
       }
+    },
+    "reborn-newflags59-ctl": {
+      "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-newflags59-onsight": {
+      "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm onsight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_town_dangerous_on_sight": 1
+      }
+    },
+    "reborn-newflags59-onsight-wand": {
+      "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm onsight-wand.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_town_dangerous_on_sight": 1,
+        "borg_param_attack_town_dangerous_wand": 1
+      }
+    },
+    "reborn-newflags59-onsight-walk": {
+      "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm onsight-walk.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_town_dangerous_on_sight": 1,
+        "borg_param_attack_town_dangerous_caster_walk": 1
+      }
+    },
+    "reborn-newflags59-onsight-bonus": {
+      "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm onsight-bonus.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_town_dangerous_on_sight": 1,
+        "borg_param_attack_town_dangerous_bonus_whole": 1
+      }
+    },
+    "reborn-newflags59-onsight-all": {
+      "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm onsight-all.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_town_dangerous_on_sight": 1,
+        "borg_param_attack_town_dangerous_wand": 1,
+        "borg_param_attack_town_dangerous_caster_walk": 1,
+        "borg_param_attack_town_dangerous_bonus_whole": 1
+      }
+    },
+    "reborn-newflags59-foxtown": {
+      "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm foxtown.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_fox_form_town": 1
+      }
+    },
+    "reborn-newflags59-recall-rest": {
+      "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm recall-rest.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_recall_rest_monster_turns": 200
+      }
+    },
+    "reborn-newflags59-phase-rule": {
+      "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm phase-rule.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-newflags59-errands": {
+      "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm errands.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_plan": "errands_plan.txt"
+      }
     }
   }
 }
