@@ -1069,6 +1069,15 @@
       "stall_seconds": 90,
       "saves": false
     },
+    "classes-1800-small-druids": {
+      "description": "The Druid starts of classes-1800-small (borg-zoo#312): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Druid"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
     "classes-1800-medium": {
       "description": "Tier medium of classes-1800 (RULES 14): starts 91-360 (30 more per class; with small, 40 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
       "role": "development",
