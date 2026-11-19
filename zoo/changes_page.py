@@ -115,6 +115,10 @@ def norm(v):
 def versus_main(diff, described):
     """Whether adopting the change today would change what borg-reborn-rs main plays."""
     known = [(k, v, setting_descriptions.shipped(k, described)[0]) for k, v in diff.items()]
+    if any(now == 'retired' for _, _, now in known):
+        return 'retired', 'Main reads and ignores this setting: it no longer changes play.'
+    if any(now == 'not read' for _, _, now in known):
+        return 'not in main', 'borg-reborn-rs does not read this setting (an older Borg did).'
     if any(now is None for _, _, now in known):
         return 'unknown', 'Main does not write this setting and has no compiled default for it.'
     if all(norm(v) == norm(now) for _, v, now in known):
@@ -139,7 +143,9 @@ def change_row(c, described):
     arm, ctl, row = c['arm'], c['ctl'], c['row']
     def now(k):
         value, where = setting_descriptions.shipped(k, described)
-        return 'unknown' if value is None else (value + (' compiled' if where != 'borg.txt' else ''))
+        if value is None:
+            return 'unknown' if k != 'borg_scary_list_lines' else 'scary_monsters.txt as shipped'
+        return value + ('' if where == 'borg.txt' else f' ({where})')
     change = '<br>'.join(f'<a href="{slug(k)}.html"><code>{esc(k)}</code></a> = <code>{esc(fmt(v))}</code>'
                          f' <span class="muted">(control {esc(fmt(ctl["values"].get(k)))}, main now {esc(now(k))})</span>'
                          for k, v in sorted(c['diff'].items())) or f'<code>{esc(arm["profile"])}</code>'
