@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-phase-rule-main-pilot",
+  "issue": 347,
+  "definition": "definitions/reborn-phase-rule-main-pilot.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c (the rule shipped off), does #584's Phase Door rule at the 100 percent threshold (thr-100) die less than ctl?",
+  "description": "On borg-reborn-rs main 3ba17e2c (the rule shipped off), does #584's Phase Door rule at the 100 percent threshold (thr-100) die less than ctl? Generated from definitions/reborn-phase-rule-main-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles was read. Pilot (RULES 16) of reborn-phase-rule-main-confirm.\nDevelopment study (classes-1800 on 4acf071f: pilot, medium, big, full; 1,728 paired starts): ctl 93, thr-100 77\ndeaths (55 / 39, p 0.12); mean max CL 5.10 / 5.13, DL 2.08 / 2.07.\nGate:\n- no config_error; one binary; each arm's three #584 values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- in ctl, no \"# Phase rule\" note; ctl writes only shipped values, so it should replay reborn-errands-main-pilot's\n  none arm (the same specimen and starts) in 18 of 18 games.\nReport per arm and per class: deaths and causes, final level, deepest level; paired rescued and newly killed against\nctl; identical plays; Phase Doors done (\"# Phase (<site>): done\") and \"# Phase rule\" verdicts per game. RULES 18\nbins. 18 starts show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-phaserule38-ctl",
+    "reborn-phaserule38-thr-100"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-phaserule38-ctl",
+  "owner_authorization": "2026-11-19: after the development study on 4acf071f, the owner asked to file the suggested runs, the confirmation of thr-100 on current main among them. Pilot first (RULES 16); dispatch is the owner's call.",
+  "retain_evidence": true
+}

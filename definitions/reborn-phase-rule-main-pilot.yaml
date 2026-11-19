@@ -1,0 +1,44 @@
+# borg-zoo#347: the Phase Door rule (thr-100) against ctl on main 3ba17e2c, pilot before the confirmation.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-phase-rule-main-pilot.yaml
+#
+# The development study ran on 4acf071f; main has moved since (#621 ignore lines, caution_scary_damage_percent 50,
+# caution_rising_explore_ticks 500), so the confirmation build needs its own pilot (RULES 16) and its own profiles.
+name: reborn-phase-rule-main-pilot
+issue: 347
+question: >-
+  On borg-reborn-rs main 3ba17e2c (the rule shipped off), does #584's Phase Door rule at the 100 percent threshold
+  (thr-100) die less than ctl?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-3ba17e2c
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# Every arm reads the shipped harness/borg.txt (617cc79c...) and writes only the three #584 parameters;
+# ctl writes the shipped values.
+profile_prefix: reborn-phaserule38
+arms:
+  ctl: {borg_param_escape_phase_adjacent_rule: 0, borg_param_escape_phase_lost_test: 1, borg_param_escape_phase_lost_danger_percent: 100}
+  thr-100: {borg_param_escape_phase_adjacent_rule: 1, borg_param_escape_phase_lost_test: 0, borg_param_escape_phase_lost_danger_percent: 100}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: after the development study on 4acf071f, the owner asked to file the suggested runs, the confirmation of
+  thr-100 on current main among them. Pilot first (RULES 16); dispatch is the owner's call.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles was read. Pilot (RULES 16) of reborn-phase-rule-main-confirm.
+  Development study (classes-1800 on 4acf071f: pilot, medium, big, full; 1,728 paired starts): ctl 93, thr-100 77
+  deaths (55 / 39, p 0.12); mean max CL 5.10 / 5.13, DL 2.08 / 2.07.
+  Gate:
+  - no config_error; one binary; each arm's three #584 values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - in ctl, no "# Phase rule" note; ctl writes only shipped values, so it should replay reborn-errands-main-pilot's
+    none arm (the same specimen and starts) in 18 of 18 games.
+  Report per arm and per class: deaths and causes, final level, deepest level; paired rescued and newly killed against
+  ctl; identical plays; Phase Doors done ("# Phase (<site>): done") and "# Phase rule" verdicts per game. RULES 18
+  bins. 18 starts show direction only.

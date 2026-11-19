@@ -1,0 +1,34 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-untested-town-pilot",
+  "issue": 401,
+  "definition": "definitions/reborn-untested-town-pilot.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, which of the never-tested town planner settings (risk, power_scale, w_attack, w_support, w_space, home_discount) change deaths or progress when halved or doubled?",
+  "description": "On borg-reborn-rs main 3ba17e2c, which of the never-tested town planner settings (risk, power_scale, w_attack, w_support, w_space, home_discount) change deaths or progress when halved or doubled? Generated from definitions/reborn-untested-town-pilot.yaml: 13 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles was read. Pilot screen (RULES 16): direction only, no claim.\nborg.txt's own impact (games of 6 that change): risk 2000: 6; power_scale 80000: 5; w_attack 200: 6;\nw_support 100: 6; w_space 50: 6; home_discount 1000: 6. None was ever changed on a borg-reborn-rs specimen.\nGate:\n- no config_error; one binary; each arm's value in its written borg.txt (and in the effective settings the cell records);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- ctl writes nothing, so it should replay reborn-errands-main-pilot's none arm (the same specimen and starts) in\n  18 of 18 games.\nReport per arm and per class: games identical to ctl; deaths and causes, CL1-3 deaths, mean max CL and DL; paired\nrescued and newly killed; town purchases that change (the planner's bought items per visit). Each arm is reported\nas harmful, neutral or helpful (RULES 18), direction only.\nFollow-up rule, fixed now: an arm goes to the small tier if it changes at least 3 of 18 games and is not behind ctl\non deaths by 2 or more, or if it is ahead of ctl on deaths or mean max CL; an arm that changes no game is inert and\ndropped. The owner decides which arms go on.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-untested38-ctl",
+    "reborn-untested38-risk-lo",
+    "reborn-untested38-risk-hi",
+    "reborn-untested38-power-lo",
+    "reborn-untested38-power-hi",
+    "reborn-untested38-attack-lo",
+    "reborn-untested38-attack-hi",
+    "reborn-untested38-support-lo",
+    "reborn-untested38-support-hi",
+    "reborn-untested38-space-lo",
+    "reborn-untested38-space-hi",
+    "reborn-untested38-home-lo",
+    "reborn-untested38-home-hi"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-untested38-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for more runs, \"runs with untested parameters\" among them. A pilot screen (RULES 16); the arms worth following into tiers are chosen at the gate with the owner. Dispatch is the owner's call.",
+  "retain_evidence": true
+}

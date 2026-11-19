@@ -1,0 +1,86 @@
+# borg-zoo#369: the scary list's floor3 against ctl on current main 3ba17e2c, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-floor-main-pilot.yaml
+#
+# floor3 was measured on 38858846. Main has moved since: #621 added ignore lines to harness/scary_monsters.txt
+# (Farmer Maggot and the harmless townsfolk), #622 caution_town_scary_levels_less = 3, and e0c4a527
+# caution_scary_damage_percent 60 -> 50 and caution_rising_explore_ticks 300 -> 500. The scare ranges of the
+# shipped list (6ed44686...) are the same as on 38858846 (d045111b...), so floor3's ranges are unchanged.
+name: reborn-scary-floor-main-pilot
+issue: 369
+question: >-
+  On borg-reborn-rs main 3ba17e2c, does the scary list cut by 5 with a floor at CL 3 (floor3) keep its progress gain
+  over the shipped list without more deaths?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-3ba17e2c
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# Both arms read the shipped scary_monsters.txt (borg.txt's borg_scary_list) with its seven #621 ignore lines.
+# floor3 appends its scare ranges and repeats the seven ignore lines exactly as shipped: a later line replaces an
+# earlier one of the same monster and kind (scare or ignore), so the ignore entries are unchanged and the two arms
+# differ only in the scare ranges.
+profile_prefix: reborn-scary38
+arms:
+  ctl: {}   # shipped: kobold 8-11, Grip 5-8, the ignore lines at 10-20
+  floor3:   # both ends - 5, no monster stops scaring before CL 3: kobold 3-6, Grip 3-3; the ignore lines as shipped
+    borg_scary_list_lines:
+      - "squint-eyed rogue | 3-3"
+      - "Grip, Farmer Maggot's Dog | 3-3"
+      - "Fang, Farmer Maggot's Dog | 3-3"
+      - "small kobold | 3-3"
+      - "soldier | 3-6"
+      - "cutpurse | 3-6"
+      - "acolyte | 3-6"
+      - "apprentice | 3-6"
+      - "kobold | 3-6"
+      - "shrieker mushroom patch | 3-6"
+      - "Farmer Maggot | 3-6"
+      - "filthy street urchin | 3-6"
+      - "battle-scarred veteran | 3-6"
+      - "mean-looking mercenary | 3-6"
+      - "Bullroarer the Hobbit | 10-13"
+      - "giant white mouse | 10-13 |  | breeders"
+      - "white worm mass | 10-13 |  | breeders"
+      - "green worm mass | 10-13 |  | breeders"
+      - "cave spider | 15-18"
+      - "red naga | 15-18"
+      - "giant red frog | 15-18"
+      - "radiation eye | 15-18"
+      - "yellow worm mass | 15-18 |  | breeders"
+      - "gravity hound | 39-42"
+      - "inertia hound | 39-42"
+      - "base:ancient dragon | 39-42"
+      - "Beorn, the Shape-Changer | 39-42"
+      - "dread | 39-42"
+      - "Farmer Maggot | 10-20 | | ignore"
+      - "pitiful-looking beggar | 10-20 | | ignore"
+      - "singing, happy drunk | 10-20 | | ignore"
+      - "blubbering idiot | 10-20 | | ignore"
+      - "village idiot | 10-20 | | ignore"
+      - "mangy-looking leper | 10-20 | | ignore"
+      - "boil-covered wretch | 10-20 | | ignore"
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: after floor3's study on 38858846, the owner asked to file the suggested runs, floor3 on current main
+  among them. Pilot first (RULES 16), then small, medium, big and full, each after the previous gate (RULES 14).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles was read. Pilot (RULES 16).
+  floor3 on 38858846 (classes-1800, all 1,800 starts, 100,000 turns): 103 against ctl's 100 deaths, mean max CL +0.37,
+  DL +0.13; 200,000 turns, starts 19-90: CL +0.64. Main has since changed the town scares (caution_town_scary_levels_less
+  3, which takes floor3's town monsters at 3-3 to no scare in town), the damage rule (50) and the rising ticks (500).
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt and scary list (floor3's written list differs from
+    ctl's only in the scare ranges; the ignore entries are the same);
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - ctl writes nothing, so it should replay reborn-errands-main-pilot's none arm (the same specimen and starts) in 18
+    of 18 games.
+  Read per class: identical plays against ctl; deaths and causes (by monster, and CL at death), CL1-4 deaths, final
+  level, deepest level; paired rescued and newly killed. Each value is reported as harmful, neutral (safe to adopt)
+  or helpful (RULES 18). Direction only.

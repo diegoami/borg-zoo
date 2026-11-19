@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-neutral-main-full",
+  "issue": 400,
+  "definition": "definitions/reborn-neutral-main-full.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, does each setting found neutral on an older build or at pilot size (unlatch when calmed, Recall wait-as-usual, kill dangerous townspeople on sight, Fox Form) stay neutral, alone, against main?",
+  "description": "On borg-reborn-rs main 3ba17e2c, does each setting found neutral on an older build or at pilot size (unlatch when calmed, Recall wait-as-usual, kill dangerous townspeople on sight, Fox Form) stay neutral, alone, against main? Generated from definitions/reborn-neutral-main-full.yaml: 5 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-full.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles was read. Same specimen and profiles as the pilot\nreborn-neutral-main-pilot (RULES 16); no raw evidence at this size. A development study (RULES 14): descriptive,\nno claim without a confirmation (RULES 8).\nGate:\n- no config_error; one binary; each arm's four values in borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- ctl should replay reborn-errands-main-full's none arm (the same specimen and starts); fox's non-Druid games should\n  equal ctl's (differences listed).\nReport per arm and per class, pooled over the tiers so far (RULES 14): deaths and causes, CL1-3 deaths, mean max CL\nand DL; paired rescued and newly killed against ctl, with the exact McNemar p of each of the four comparisons and\nits Holm-adjusted value over the four (deaths); identical plays. fox is also read on Druids alone. Each arm is\nreported as harmful, neutral (safe to adopt) or helpful (RULES 18); an unadjusted p < 0.05 that does not survive\nHolm is a lead, not a result.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-neutral38-ctl",
+    "reborn-neutral38-calmed",
+    "reborn-neutral38-recall-usual",
+    "reborn-neutral38-town-kill",
+    "reborn-neutral38-fox"
+  ],
+  "suites": [
+    "classes-1800-full"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-neutral38-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for more runs, \"what you consider neutral\" among them. Pilot first (RULES 16), then small, medium, big and full, each after the previous gate (RULES 14). Dispatched only after reborn-neutral-main-big's gate and the owner."
+}

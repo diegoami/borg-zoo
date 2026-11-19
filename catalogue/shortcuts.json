@@ -634,7 +634,7 @@
     },
     "reborn-errands-main": {
       "issue": 383,
-      "status": "defined: pilot (dispatch first), small, medium, big, full on 3ba17e2c",
+      "status": "all 1,800 starts done: errands 91 v 105 deaths (18 / 4, p 0.004); confirmation on classes-1800-b and 200k pilot + small defined, not dispatched",
       "what": "Errands plan vs no plan on main 3ba17e2c: none (shipped), errands_plan.txt, errands_plan_ambitious.txt; pilot to full.",
       "profiles": [
         "reborn-errands38-ambitious",
@@ -678,6 +678,113 @@
         "reborn-towndanger-onsight",
         "reborn-towndanger-onsight-b600",
         "reborn-towndanger-onsight-min3"
+      ],
+      "runs": []
+    },
+    "reborn-gold-reserve": {
+      "issue": 392,
+      "status": "defined (pilot on 3ba17e2c, not dispatched)",
+      "what": "Town gold reserve on main 3ba17e2c: fixed 300 / 1000, percent 25 / 50, against 0 (shipped).",
+      "profiles": [
+        "reborn-goldres-ctl",
+        "reborn-goldres-p25",
+        "reborn-goldres-p50",
+        "reborn-goldres-r1000",
+        "reborn-goldres-r300"
+      ],
+      "runs": []
+    },
+    "reborn-stand-seeinv": {
+      "issue": 393,
+      "status": "defined (pilot on 3ba17e2c, not dispatched)",
+      "what": "caution_scary_stand 0 (always flee) and recover_rest_arms_see_invis 1 against shipped, on main 3ba17e2c.",
+      "profiles": [
+        "reborn-standinv-ctl",
+        "reborn-standinv-seeinv1",
+        "reborn-standinv-stand0"
+      ],
+      "runs": []
+    },
+    "reborn-phase-rule-main": {
+      "issue": 347,
+      "status": "defined (pilot and classes-1800-b confirmation on 3ba17e2c, not dispatched)",
+      "what": "#584's Phase Door rule on main 3ba17e2c: ctl (shipped off) against thr-100 (escape_phase_adjacent_rule 1, escape_phase_lost_test 0); pilot, then a confirmation on fresh seeds.",
+      "profiles": [
+        "reborn-phaserule38-ctl",
+        "reborn-phaserule38-thr-100"
+      ],
+      "runs": []
+    },
+    "reborn-scary-floor-main": {
+      "issue": 369,
+      "status": "defined (pilot, small, medium, big, full on 3ba17e2c, not dispatched)",
+      "what": "The scary list's floor3 (every range - 5, floor CL 3) against the shipped list on main 3ba17e2c, with #621's ignore lines in both arms; pilot to full.",
+      "profiles": [
+        "reborn-scary38-ctl",
+        "reborn-scary38-floor3"
+      ],
+      "runs": []
+    },
+    "reborn-neutral-main": {
+      "issue": 400,
+      "status": "defined (pilot, small, medium, big, full on 3ba17e2c, not dispatched)",
+      "what": "Settings found neutral elsewhere, each alone on main 3ba17e2c: caution_scary_unlatch_calmed, caution_recall_wait_as_usual, attack_town_dangerous_on_sight, escape_fox_form (1 against shipped 0).",
+      "profiles": [
+        "reborn-neutral38-calmed",
+        "reborn-neutral38-ctl",
+        "reborn-neutral38-fox",
+        "reborn-neutral38-recall-usual",
+        "reborn-neutral38-town-kill"
+      ],
+      "runs": []
+    },
+    "reborn-untested-town": {
+      "issue": 401,
+      "status": "defined (pilot screen on 3ba17e2c, not dispatched)",
+      "what": "Never-tested town planner settings halved and doubled on main 3ba17e2c: borg_town_risk, power_scale, w_attack, w_support, w_space, home_discount.",
+      "profiles": [
+        "reborn-untested38-ctl",
+        "reborn-untested38-risk-lo",
+        "reborn-untested38-risk-hi",
+        "reborn-untested38-power-lo",
+        "reborn-untested38-power-hi",
+        "reborn-untested38-attack-lo",
+        "reborn-untested38-attack-hi",
+        "reborn-untested38-support-lo",
+        "reborn-untested38-support-hi",
+        "reborn-untested38-space-lo",
+        "reborn-untested38-space-hi",
+        "reborn-untested38-home-lo",
+        "reborn-untested38-home-hi"
+      ],
+      "runs": []
+    },
+    "reborn-untested-caution": {
+      "issue": 401,
+      "status": "defined (pilot screen on 3ba17e2c, not dispatched)",
+      "what": "Never-tested trip, Recall and breeder settings lowered and raised on main 3ba17e2c: borg_town_explore_turns, caution_recall_rest_turns, caution_breeder_easy_escape_steps, caution_flee_recall_chasers.",
+      "profiles": [
+        "reborn-untested38-ctl",
+        "reborn-untested38-explore-lo",
+        "reborn-untested38-explore-hi",
+        "reborn-untested38-recallrest-lo",
+        "reborn-untested38-recallrest-hi",
+        "reborn-untested38-easyesc-lo",
+        "reborn-untested38-easyesc-hi",
+        "reborn-untested38-chasers-lo",
+        "reborn-untested38-chasers-hi"
+      ],
+      "runs": []
+    },
+    "reborn-errands-floor3": {
+      "issue": 405,
+      "status": "defined (pilot on 3ba17e2c, not dispatched)",
+      "what": "Errands plan × floor3 (2×2) on main 3ba17e2c: ctl, errands, floor3, both.",
+      "profiles": [
+        "reborn-combo38-both",
+        "reborn-combo38-ctl",
+        "reborn-combo38-errands",
+        "reborn-combo38-floor3"
       ],
       "runs": []
     }

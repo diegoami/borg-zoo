@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-gold-reserve-pilot",
+  "issue": 392,
+  "definition": "definitions/reborn-gold-reserve-pilot.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, does keeping gold back from shopping (a fixed 300 or 1000, or 25% or 50% of the purse; shipped 0) change deaths, progress or what the Borg buys?",
+  "description": "On borg-reborn-rs main 3ba17e2c, does keeping gold back from shopping (a fixed 300 or 1000, or 25% or 50% of the purse; shipped 0) change deaths, progress or what the Borg buys? Generated from definitions/reborn-gold-reserve-pilot.yaml: 5 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result was read. Pilot (RULES 16).\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: identical plays against ctl; deaths and causes, CL1-3 deaths, final level, deepest\nlevel; paired rescued and newly killed; gold at each milestone, gold spent per category from the town records (healing, escapes, armour, weapons). Each arm is reported as harmful, neutral (safe to adopt) or helpful\n(RULES 18). Direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-goldres-ctl",
+    "reborn-goldres-r300",
+    "reborn-goldres-r1000",
+    "reborn-goldres-p25",
+    "reborn-goldres-p50"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-goldres-ctl",
+  "owner_authorization": "2026-11-19: the owner asked to find interesting untested parameters; this one's borg.txt impact note is large and it has never run in the zoo. Pilot first (RULES 16).",
+  "retain_evidence": true
+}

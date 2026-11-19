@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-floor-main-big",
+  "issue": 369,
+  "definition": "definitions/reborn-scary-floor-main-big.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, does the scary list cut by 5 with a floor at CL 3 (floor3) keep its progress gain over the shipped list without more deaths?",
+  "description": "On borg-reborn-rs main 3ba17e2c, does the scary list cut by 5 with a floor at CL 3 (floor3) keep its progress gain over the shipped list without more deaths? Generated from definitions/reborn-scary-floor-main-big.yaml: 2 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-big.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles was read. Same specimen and profiles as the pilot\nreborn-scary-floor-main-pilot (RULES 16); no raw evidence at this size.\nfloor3 on 38858846 (classes-1800, all 1,800 starts, 100,000 turns): 103 against ctl's 100 deaths, mean max CL +0.37,\nDL +0.13. Main has since changed the town scares (caution_town_scary_levels_less 3), the damage rule (50) and the\nrising ticks (500).\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and scary list;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- ctl writes nothing, so it should replay reborn-errands-main-big's none arm (the same specimen and starts).\nReport per arm and per class, pooled over the tiers so far (RULES 14): deaths and causes (by monster, and CL at\ndeath), CL1-4 deaths, mean max CL and DL; paired rescued and newly killed against ctl; identical plays. Each value\nis reported as harmful, neutral (safe to adopt) or helpful (RULES 18).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-scary38-ctl",
+    "reborn-scary38-floor3"
+  ],
+  "suites": [
+    "classes-1800-big"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-scary38-ctl",
+  "owner_authorization": "2026-11-19: after floor3's study on 38858846, the owner asked to file the suggested runs, floor3 on current main among them. Pilot first (RULES 16), then small, medium, big and full, each after the previous gate (RULES 14). Dispatched only after reborn-scary-floor-main-medium's gate and the owner."
+}

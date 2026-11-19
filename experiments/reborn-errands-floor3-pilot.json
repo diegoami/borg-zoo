@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-errands-floor3-pilot",
+  "issue": 405,
+  "definition": "definitions/reborn-errands-floor3-pilot.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, do the errands plan (fewer deaths) and floor3 (more progress) add up when combined?",
+  "description": "On borg-reborn-rs main 3ba17e2c, do the errands plan (fewer deaths) and floor3 (more progress) add up when combined? Generated from definitions/reborn-errands-floor3-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result was read. Pilot (RULES 16). ctl, errands and floor3 should replay\nreborn-errands-main-pilot's none / errands and reborn-scary-floor-main-pilot's floor3 games on the same starts.\nGate:\n- no config_error; one binary; each arm's plan (recorded per cell) and scary lines verified;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: deaths and causes, CL1-3 deaths, final level, deepest level; paired rescued and newly\nkilled against ctl; identical plays; for both, whether it keeps errands' deaths and floor3's progress. Each arm is\nreported as harmful, neutral (safe to adopt) or helpful (RULES 18). Direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-combo38-ctl",
+    "reborn-combo38-errands",
+    "reborn-combo38-floor3",
+    "reborn-combo38-both"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-combo38-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for what is still uncovered and might have impact; nobody measures the two strongest results of the day together. Pilot first (RULES 16).",
+  "retain_evidence": true
+}
