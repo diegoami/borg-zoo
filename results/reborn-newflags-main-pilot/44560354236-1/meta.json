@@ -1,0 +1,246 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-newflags59-ctl": {
+        "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "4c6cdb359dda616ebf6ee860d2b92c6910146fa021e05ade37d07f8ffbf89a13"
+      },
+      "reborn-newflags59-errands": {
+        "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm errands.",
+        "settings": {
+          "borg_plan": "errands_plan.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "705a91524b3581c36a965addf630c02c2dd317f31eb4db45a1a40a0de3c35717"
+      },
+      "reborn-newflags59-foxtown": {
+        "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm foxtown.",
+        "settings": {
+          "borg_param_escape_fox_form_town": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "3a61ffa4a4423d13efbd41ad63be4d7a71f7a6dfe5ad72de28eb9b0d72eac28e"
+      },
+      "reborn-newflags59-onsight": {
+        "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm onsight.",
+        "settings": {
+          "borg_param_attack_town_dangerous_on_sight": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "505e01e21c9eb6ed12d2694a1a212fa54808aa26ddd9d6729537fe6cb99cf0c3"
+      },
+      "reborn-newflags59-onsight-all": {
+        "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm onsight-all.",
+        "settings": {
+          "borg_param_attack_town_dangerous_bonus_whole": 1,
+          "borg_param_attack_town_dangerous_caster_walk": 1,
+          "borg_param_attack_town_dangerous_on_sight": 1,
+          "borg_param_attack_town_dangerous_wand": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "a2940770e7fc6acd35d01c2ac5a5fbea48db349e3ef5f1856be8c571a2cd90e1"
+      },
+      "reborn-newflags59-onsight-bonus": {
+        "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm onsight-bonus.",
+        "settings": {
+          "borg_param_attack_town_dangerous_bonus_whole": 1,
+          "borg_param_attack_town_dangerous_on_sight": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "b821eff0087e95ed5f3e7d3b056aeea6dbc146f777b4857f9cea421248708db6"
+      },
+      "reborn-newflags59-onsight-walk": {
+        "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm onsight-walk.",
+        "settings": {
+          "borg_param_attack_town_dangerous_caster_walk": 1,
+          "borg_param_attack_town_dangerous_on_sight": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "be6267a5595725d933ae6bc8dc6c5d1500abe6b569e3be490a3e0f57515239e9"
+      },
+      "reborn-newflags59-onsight-wand": {
+        "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm onsight-wand.",
+        "settings": {
+          "borg_param_attack_town_dangerous_on_sight": 1,
+          "borg_param_attack_town_dangerous_wand": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "8b61c8abe55cad6abb034329639a31361e77e26f5c5cc4a4f0f30f379008ce1e"
+      },
+      "reborn-newflags59-phase-rule": {
+        "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm phase-rule.",
+        "settings": {
+          "borg_param_escape_phase_adjacent_rule": 1,
+          "borg_param_escape_phase_lost_danger_percent": 100,
+          "borg_param_escape_phase_lost_test": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "02cc727ea76f47a3d08ed836286103d7e8774670a02da39863db64b1080e247a"
+      },
+      "reborn-newflags59-recall-rest": {
+        "description": "borg-zoo#413 (reborn-newflags-main-pilot.yaml): arm recall-rest.",
+        "settings": {
+          "borg_param_caution_recall_rest_monster_turns": 200,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "fbd7b641679272e49d836e7414c4c561ef19d1073e493bb9646f6fb0f5ab764e"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-592c6984": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 592c6984, main at the merge of #640 (after #664 low-value support, #653 town-kill follow-ups, #648 town Fox Form). harness/borg.txt 6e68ea22...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "592c69842d070108b05314b1e871a47e2f26f52a",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-19 16:00 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-592c6984",
+    "control_profile": "reborn-newflags59-ctl",
+    "definition": "definitions/reborn-newflags-main-pilot.yaml",
+    "description": "On borg-reborn-rs main 592c6984, are the new switches (#637 town wand, caster walk, whole bonus; #620 town Fox Form; #640 Recall rest near monsters) reached, and do the Phase Door rule and the errands plan still behave as on 3ba17e2c? Generated from definitions/reborn-newflags-main-pilot.yaml: 10 arms on 4.2.6-reborn-rust-main-592c6984, suite classes-18.",
+    "issue": 413,
+    "name": "reborn-newflags-main-pilot",
+    "owner_authorization": "2026-11-19: the owner asked to test the new-flags study proposed after the neutral-settings study (\"Test these\"), on the latest main HEAD (\"use the latest HEAD if possible\"). Pilot first (RULES 16); larger tiers on the owner's go.",
+    "prespecified": "Fixed 2026-11-19, before any result on 592c6984 was read. Pilot (RULES 16). ctl is shipped main.\nGate:\n- no config_error; one binary; each arm's values in its borg.txt; errands' plan recorded per cell and checked against the pin;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm: deaths and causes, final level, deepest level, paired rescued and newly killed against ctl, identical\nplays (an arm identical to ctl in 18 of 18 games is not reached at this size). RULES 18 bins; 18 starts show\ndirection only. On 3ba17e2c, phase-rule (1,800 fresh starts: 128 to 89 deaths) and errands (128 to 117) were\nconfirmed; on_sight and escape_fox_form were neutral (#400).",
+    "profiles": [
+      "reborn-newflags59-ctl",
+      "reborn-newflags59-onsight",
+      "reborn-newflags59-onsight-wand",
+      "reborn-newflags59-onsight-walk",
+      "reborn-newflags59-onsight-bonus",
+      "reborn-newflags59-onsight-all",
+      "reborn-newflags59-foxtown",
+      "reborn-newflags59-recall-rest",
+      "reborn-newflags59-phase-rule",
+      "reborn-newflags59-errands"
+    ],
+    "question": "On borg-reborn-rs main 592c6984, are the new switches (#637 town wand, caster walk, whole bonus; #620 town Fox Form; #640 Recall rest near monsters) reached, and do the Phase Door rule and the errands plan still behave as on 3ba17e2c?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-592c6984"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44560354236-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44560354236",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "53ea4885fbafb80a2d1bfe72c7c6b8fd797726a5"
+}
