@@ -1,0 +1,52 @@
+# borg-zoo#335: medium after the pilot reborn-recall-danger-pilot (owner, 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-recall-danger-medium.yaml
+name: reborn-recall-danger-medium
+issue: 335
+question: On borg-reborn-rs main 38858846, with a flight's Word of Recall held back (the DL1 gate at 2, or caution_flee_recall
+  0), does allowing it from a danger share of the HP (caution_flee_recall_danger_percent 50, 100, 200) save games or progress?
+tier: medium
+specimen: 4.2.6-reborn-rust-main-38858846
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+profile_prefix: reborn-recalldanger
+arms:
+  ctl:
+    borg_param_caution_flee_recall: 1
+    borg_param_caution_flee_recall_gate_below_depth: 1
+    borg_param_caution_flee_recall_danger_percent: 0
+  g2:
+    borg_param_caution_flee_recall: 1
+    borg_param_caution_flee_recall_gate_below_depth: 2
+    borg_param_caution_flee_recall_danger_percent: 0
+  g2d100:
+    borg_param_caution_flee_recall: 1
+    borg_param_caution_flee_recall_gate_below_depth: 2
+    borg_param_caution_flee_recall_danger_percent: 100
+  r0:
+    borg_param_caution_flee_recall: 0
+    borg_param_caution_flee_recall_gate_below_depth: 1
+    borg_param_caution_flee_recall_danger_percent: 0
+  r0d100:
+    borg_param_caution_flee_recall: 0
+    borg_param_caution_flee_recall_gate_below_depth: 1
+    borg_param_caution_flee_recall_danger_percent: 100
+control:
+- ctl
+prespecified: |
+  Medium tier (starts 91-360) after the pilot gate passed with all arms neutral (RULES 18). Narrowed to five arms: g2d50 and g2d200 dropped (lower level in the pilot).
+  Same specimen and profiles as reborn-recall-danger-pilot; no raw evidence at this size. Owner, 2026-11-19: "go ahead with the tiers you propose".
+  Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#587, #591). Pilot (RULES 16); larger tiers only
+  after this gate and the owner. ctl is the shipped configuration, where nothing holds a flight's Recall back and the
+  danger setting cannot fire. The danger arms compare against their gate's own 0 arm: g2d* against g2, r0d100 against r0.
+  Gate:
+  - no config_error; one binary; each arm's three values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against ctl, against g2 (g2d*) and
+    against r0 (r0d100);
+  - "Fleeing the level (recall)" notes per game and their depth; Word of Recall read in total and carried at the end;
+  - deaths within 500 game turns of a Recall read, and deaths within 2,000 game turns of a flight that did not read one.
+  18 starts per arm show direction only.

@@ -559,14 +559,17 @@
     },
     "reborn-scary-ends": {
       "issue": 350,
-      "status": "pilots done (all5 helpful on progress); 100k small+medium, 200k small and the deeper-cut pilots (all8, early-none) defined",
+      "status": "floor3 starts 1-360 done; big and 200k small defined",
       "what": "Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846.",
       "profiles": [
         "reborn-scaryends-all5",
+        "reborn-scaryends-all5-pal",
         "reborn-scaryends-all8",
         "reborn-scaryends-ctl",
         "reborn-scaryends-early-none",
         "reborn-scaryends-f3",
+        "reborn-scaryends-floor3",
+        "reborn-scaryends-floor4",
         "reborn-scaryends-fraghalf",
         "reborn-scaryends-t5",
         "reborn-scaryends-t5f6"
@@ -577,18 +580,31 @@
           "tier": "pilots (100k, 200k)",
           "specimen": "4.2.6-reborn-rust-main-38858846",
           "result": "100k: ctl 0, all5 0 deaths, CL 5.50 v 5.83; 200k: ctl 3, all5 1 deaths, CL 6.17 v 8.22"
+        },
+        {
+          "run": "44465218294 + 44465235895",
+          "tier": "floor pilots (100k, 200k)",
+          "specimen": "4.2.6-reborn-rust-main-38858846",
+          "result": "200k: ctl 3, all5 1, all5-pal 2, floor3 3, floor4 3 deaths; CL 6.17 / 8.22 / 7.83 / 7.06 / 6.61; 100k no deaths"
+        },
+        {
+          "run": "44498103824 + 44498131613",
+          "tier": "floor3 small + medium",
+          "specimen": "4.2.6-reborn-rust-main-38858846",
+          "result": "starts 1-360: ctl 13, floor3 13 deaths (2/2); CL 5.25 v 5.60; all5 (paired) 18, 5.73"
         }
       ]
     },
     "reborn-bundle": {
       "issue": 361,
-      "status": "defined (pilot on 38858846, not dispatched)",
+      "status": "all5 bundle pilot done; floor3 bundle pilot defined",
       "what": "The safe-to-adopt changes together on main 38858846: scary all5 + Ranger point-blank 1 + flight Recall on DL1 (gate 0), and the bundle without all5.",
       "profiles": [
         "reborn-bundle-ambitious-speed30",
         "reborn-bundle-bundle",
         "reborn-bundle-bundle-noscary",
         "reborn-bundle-ctl",
+        "reborn-bundle-floor3",
         "reborn-bundle-none-speed30",
         "reborn-bundle-none-speed30-unknown2",
         "reborn-bundle-none-speed30-unknown3",
@@ -598,6 +614,23 @@
         "reborn-bundle-plan-speed60"
       ],
       "runs": []
+    },
+    "reborn-kill-power-main": {
+      "issue": 244,
+      "status": "pilot done: off neutral on deaths, leans harmful on progress",
+      "what": "kill_live_min_power shipped 1 against 0 on main 38858846.",
+      "profiles": [
+        "reborn-killpow38-ctl",
+        "reborn-killpow38-off0"
+      ],
+      "runs": [
+        {
+          "run": "44465254082",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-38858846",
+          "result": "36 games, no deaths; off CL 5.11 v 5.50"
+        }
+      ]
     }
   }
 }

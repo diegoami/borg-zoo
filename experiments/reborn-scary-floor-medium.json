@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-floor-medium",
+  "issue": 369,
+  "definition": "definitions/reborn-scary-floor-medium.yaml",
+  "question": "On borg-reborn-rs main 38858846, does cutting the scary list by 5 with a floor at CL 3 (floor3) keep the progress of all5 without its early deaths (starts 91-360, 100,000 turns)?",
+  "description": "On borg-reborn-rs main 38858846, does cutting the scary list by 5 with a floor at CL 3 (floor3) keep the progress of all5 without its early deaths (starts 91-360, 100,000 turns)? Generated from definitions/reborn-scary-floor-medium.yaml: 2 arms on 4.2.6-reborn-rust-main-38858846, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-19, before any floor3 result on these starts was read. Same specimen and profiles as the pilot\n(RULES 16). ctl must replay reborn-scary-ends-medium's ctl exactly; all5 is taken from that run.\nStarts 1-360 of #350: ctl 13, all5 18 deaths; mean max CL 5.25 / 5.73.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and scary list; ctl replays the #350 tier;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, small and medium pooled (RULES 14): deaths and causes, CL1-4 deaths, mean max CL and\nDL; paired rescued and newly killed for floor3 and all5 against ctl, and floor3 against all5.\nEach value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-38858846"
+  ],
+  "profiles": [
+    "reborn-scaryends-ctl",
+    "reborn-scaryends-floor3"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-38858846",
+  "control_profile": "reborn-scaryends-ctl",
+  "owner_authorization": "2026-11-19: after the floor pilots, the owner asked for the 360-start tier comparing ctl, all5 and floor3."
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-phase-rule-pilot-2",
+  "issue": 347,
+  "definition": "definitions/reborn-phase-rule-pilot-2.yaml",
+  "question": "On borg-reborn-rs",
+  "description": "On borg-reborn-rs Generated from definitions/reborn-phase-rule-pilot-2.yaml: 5 arms on 4.2.6-reborn-rust-main-4acf071f, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result of this definition was read (borg-reborn-rs#584, PR #612; replaces\nborg-zoo#334, whose run measured an earlier version). Pilot (RULES 16); small and larger only after this gate and\nthe owner.\nGate:\n- no config_error; one binary; each arm's three #584 values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- in ctl, no \"# Phase rule\" note.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level;\n- paired rescued and newly killed against ctl;\n- Phase Doors done (\"# Phase (<site>): done\"), per site; \"# Phase rule (from <site>)\" verdicts per game, \"# Phase\n  rule: attacked instead of a Phase Door\", \"# Phase rule boost\"; for fight and fight-landing, the \"# Phase rule: the\n  fight: ... lost / not lost\" counts;\n- deaths with no Phase Door left, and deaths within 200 game turns of a \"no Phase Door\" verdict.\nContext: a local run on the same tree (18 classes-18 starts, 100,000 turns; not a zoo run): ctl 150 Phase Doors,\n0 deaths; threshold 100: 63 and 1 death; fight: 17 and 1 death; fight-landing: 21 and 1 death; sum of max CL 99 /\n96 / 93 / 93. 18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-4acf071f"
+  ],
+  "profiles": [
+    "reborn-phaserule2-ctl",
+    "reborn-phaserule2-thr-100",
+    "reborn-phaserule2-thr-150",
+    "reborn-phaserule2-fight",
+    "reborn-phaserule2-fight-landing"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-4acf071f",
+  "control_profile": "reborn-phaserule2-ctl",
+  "retain_evidence": true
+}

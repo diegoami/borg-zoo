@@ -94,3 +94,10 @@
     adopt if preferred) or **helpful**. Say plainly which values are safe to
     adopt, and leave the choice to the owner. A study's issue is closed only
     when the owner says so.
+19. **The site is at most about an hour old** (owner, 2026-11-19). The
+    statistics site (https://diegoami.github.io/borg-zoo/, including
+    `settings/changes.html`) is rebuilt by `pages.yml` every hour on a
+    schedule, as well as after every finished run and on pushes to main that
+    touch `zoo/`, `catalogue/` or the workflow. A session that finds a page
+    more than two hours behind the results branch dispatches
+    `gh workflow run pages.yml` and checks why the schedule did not fire.

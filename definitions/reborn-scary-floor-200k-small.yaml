@@ -1,0 +1,24 @@
+# borg-zoo#369: floor3 at 200,000 turns, small tier (starts 19-90).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-floor-200k-small.yaml
+name: reborn-scary-floor-200k-small
+issue: 369
+question: >-
+  On borg-reborn-rs main 38858846 at 200,000 turns, does floor3 keep its deaths at the shipped level with more progress (starts 19-90)?
+specimens: [4.2.6-reborn-rust-main-38858846]
+suites: [classes-1800-200k-small]   # starts 19-90, 200,000 turns
+profiles: [reborn-scaryends-ctl, reborn-scaryends-floor3]
+control_specimen: 4.2.6-reborn-rust-main-38858846
+control_profile: reborn-scaryends-ctl
+owner_authorization: >-
+  2026-11-19: after floor3's small + medium (13 against 13 deaths, CL 5.60 against 5.25), the owner asked for the big tier, the 200k tier and the bundle.
+
+prespecified: |
+  Fixed 2026-11-19, before any result of this tier was read. Same specimen and profiles as the pilot (RULES 16).
+  200k pilot: ctl 3, floor3 3 deaths, CL 6.17 / 7.06. all5 on these starts (#350): 6 against 4 deaths, CL 7.65 / 6.83.
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt and scary list;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, pooled with the earlier tiers (RULES 14): deaths and causes, CL1-4 deaths, mean max CL
+  and DL; paired rescued and newly killed. Each value is reported as harmful, neutral (safe to adopt) or helpful
+  (RULES 18).
