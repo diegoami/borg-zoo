@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-lava-parked-pilot",
+  "issue": 342,
+  "definition": "definitions/reborn-lava-parked-pilot.yaml",
+  "question": "On borg-reborn-rs main 6438e1cf, does turning off either #597 switch (caution_twitch_avoid_lava, caution_stair_parked_fallback; compiled 0, shipped 1) change deaths, progress or stalls?",
+  "description": "On borg-reborn-rs main 6438e1cf, does turning off either #597 switch (caution_twitch_avoid_lava, caution_stair_parked_fallback; compiled 0, shipped 1) change deaths, progress or stalls? Generated from definitions/reborn-lava-parked-pilot.yaml: 3 arms on 4.2.6-reborn-rust-main-6438e1cf, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result was read. Pilot (RULES 16).\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: identical plays against ctl; deaths and causes (lava deaths), final level, deepest\nlevel; paired rescued and newly killed; per game, lava steps, twitch notes, stair flows waiting on a parked monster,\nand frozen-turn bursts. 18 starts per arm show direction only.\nEach value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18); the choice is the owner's.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-6438e1cf"
+  ],
+  "profiles": [
+    "reborn-597-ctl",
+    "reborn-597-lava0",
+    "reborn-597-parked0"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-6438e1cf",
+  "control_profile": "reborn-597-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for the new switches on main that have no zoo run. Pilot first (RULES 16).",
+  "retain_evidence": true
+}

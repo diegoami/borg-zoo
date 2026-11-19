@@ -47,6 +47,12 @@ def parse(text):
     return out
 
 
+VALUE = re.compile(r'^(borg_[\w@]+)\s*=\s*(\S+)', re.M)
+CLASSIC = re.compile(r'\b([bi])\(c"(borg_\w+)",\s*(-?\w+)\)')
+RETIRED = re.compile(r'retired\(c"(borg_\w+)"')
+DEFAULT = re.compile(r'^\s*(\w+)\s*=>\s*\(\s*(-?\d+)\s*,', re.M)
+
+
 def gh(*args):
     return subprocess.run(['gh', 'api', *args], check=True, capture_output=True, text=True).stdout
 
@@ -58,17 +64,87 @@ def refresh():
         text = gh(f'repos/{repo}/contents/{path}?ref={commit}', '-H', 'Accept: application/vnd.github.raw')
         for key, desc in parse(text).items():
             found.setdefault(key, {'text': desc, 'source': f'{repo}/{path}', 'commit': commit})
+        if repo == 'diegoami/borg-reborn-rs':
+            shipped = dict(VALUE.findall(text))
     repo, path = REGISTRY
     commit = json.loads(gh(f'repos/{repo}/commits/HEAD'))['sha']
     text = gh(f'repos/{repo}/contents/{path}?ref={commit}', '-H', 'Accept: application/vnd.github.raw')
     for name, desc in SPEC.findall(text):
         found.setdefault('borg_param_' + name, {'text': desc.replace('\\"', '"'), 'source': f'{repo}/{path}',
                                                 'commit': commit})
+    compiled = {'borg_param_' + name: value for name, value in DEFAULT.findall(text)}
+    # The classic settings' compiled defaults, and the retired (inert) ones.
+    init = gh(f'repos/{repo}/contents/borg-core/src/borg_init.rs?ref={commit}', '-H', 'Accept: application/vnd.github.raw')
+    for kind, name, value in CLASSIC.findall(init):
+        compiled.setdefault(name, {'true': 'TRUE', 'false': 'FALSE'}.get(value, value) if kind == 'b' else value)
+    retired = set(RETIRED.findall(init))
+    # The class files (#520): a class's own value, else the general one.
+    for cls in CLASSES:
+        try:
+            ctext = gh(f'repos/{repo}/contents/harness/borg_{cls}.txt?ref={commit}', '-H', 'Accept: application/vnd.github.raw')
+        except subprocess.CalledProcessError:
+            continue
+        for name, value in VALUE.findall(ctext):
+            general = name.removeprefix('borg_param_')
+            m = re.fullmatch(r'attack_preference_(\w+)_permille', general)
+            for alias in ([f'borg_param_attack_preference_{cls}_{m.group(1)}_permille'] if m else []) + [
+                    f'{name}_{cls}', f'{name}@{cls}']:
+                shipped.setdefault(alias, value)
+    for key in list(found):
+        if key not in shipped and key not in compiled:
+            m = re.fullmatch(r'borg_param_attack_preference_(\w+?)_(\w+)_permille', key)
+            cls = next((c for c in CLASSES if key.endswith('_' + c)), None)
+            general = (f'borg_param_attack_preference_{m.group(2)}_permille' if m and m.group(1) in CLASSES
+                       else key[:-len(cls) - 1] if cls else None)
+            if general and (general in shipped or general in compiled):
+                found[key]['shipped'] = shipped.get(general, compiled.get(general))
+                found[key]['shipped_from'] = 'general value (no class line)'
+    for key in retired:
+        found.setdefault(key, {'text': 'Retired in borg-reborn-rs: read and ignored.', 'source': f'{repo}/borg-core/src/borg_init.rs',
+                               'commit': commit})
+        found[key]['shipped'] = 'retired'
+        found[key]['shipped_from'] = 'retired (inert)'
+    # No borg_plan line: main plays without an errands plan.
+    found.setdefault('borg_plan', {'text': 'The errands plan file the Borg follows.', 'source': f'{repo}/harness/borg.txt',
+                                   'commit': commit})
+    if 'borg_plan' not in shipped:
+        found['borg_plan']['shipped'] = 'none'
+        found['borg_plan']['shipped_from'] = 'not set in borg.txt (no plan)'
+    # What borg-reborn-rs main plays today: its borg.txt's value, else the compiled default.
+    for key in shipped:
+        if key not in found:
+            found[key] = {'text': '', 'source': f'{repo}/harness', 'commit': commit}
+    for key, d in found.items():
+        if 'shipped' in d:
+            continue
+        if key in shipped:
+            d['shipped'] = shipped[key]
+        elif key in compiled:
+            d['shipped'] = compiled[key]
+            d['shipped_from'] = 'compiled default'
     PATH.write_text(json.dumps(dict(sorted(found.items())), indent=1, ensure_ascii=False) + '\n')
     return len(found)
 
 
 CLASSES = ('warrior', 'mage', 'druid', 'priest', 'necromancer', 'paladin', 'rogue', 'ranger', 'blackguard')
+
+
+def shipped(key, found=None):
+    """(value, where) borg-reborn-rs main plays for a key today, or (None, None)."""
+    found = load() if found is None else found
+    d = found.get(key) or {}
+    if 'shipped' in d:
+        return d['shipped'], d.get('shipped_from', 'borg.txt')
+    # A per-class key with no class line anywhere plays the general value.
+    m = re.fullmatch(r'borg_param_attack_preference_(\w+?)_(\w+)_permille', key)
+    cls = next((c for c in CLASSES if key.endswith('_' + c)), None)
+    general = (f'borg_param_attack_preference_{m.group(2)}_permille' if m and m.group(1) in CLASSES
+               else key[:-len(cls) - 1] if cls else None)
+    if general and 'shipped' in (found.get(general) or {}):
+        return found[general]['shipped'], 'general value, no class line'
+    if key.startswith('borg_') and key not in found:
+        return 'not read', 'not a borg-reborn-rs setting'
+    return None, None
 
 
 def load():

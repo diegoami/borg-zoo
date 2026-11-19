@@ -4692,6 +4692,311 @@
         "borg_param_escape_phase_adjacent_rule": 1,
         "borg_param_escape_phase_lost_danger_percent": 150
       }
+    },
+    "reborn-597-ctl": {
+      "description": "borg-zoo#342 (reborn-lava-parked-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_twitch_avoid_lava": 1,
+        "borg_param_caution_stair_parked_fallback": 1
+      }
+    },
+    "reborn-597-lava0": {
+      "description": "borg-zoo#342 (reborn-lava-parked-pilot.yaml): arm lava0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_twitch_avoid_lava": 0
+      }
+    },
+    "reborn-597-parked0": {
+      "description": "borg-zoo#342 (reborn-lava-parked-pilot.yaml): arm parked0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stair_parked_fallback": 0
+      }
+    },
+    "reborn-scaryends-ctl": {
+      "description": "borg-zoo#350 (reborn-scary-ends-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-scaryends-t5": {
+      "description": "borg-zoo#350 (reborn-scary-ends-pilot.yaml): arm t5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 0-8",
+          "Grip, Farmer Maggot's Dog | 0-8",
+          "Fang, Farmer Maggot's Dog | 0-8",
+          "small kobold | 0-8",
+          "soldier | 3-11",
+          "cutpurse | 3-11",
+          "acolyte | 3-11",
+          "apprentice | 3-11",
+          "kobold | 3-11",
+          "shrieker mushroom patch | 3-11",
+          "Farmer Maggot | 3-11",
+          "filthy street urchin | 3-11",
+          "battle-scarred veteran | 3-11",
+          "mean-looking mercenary | 3-11",
+          "Bullroarer the Hobbit | 10-18",
+          "giant white mouse | 10-18 |  | breeders",
+          "white worm mass | 10-18 |  | breeders",
+          "green worm mass | 10-18 |  | breeders",
+          "cave spider | 15-23",
+          "red naga | 15-23",
+          "giant red frog | 15-23",
+          "radiation eye | 15-23",
+          "yellow worm mass | 15-23 |  | breeders",
+          "gravity hound | 39-47",
+          "inertia hound | 39-47",
+          "base:ancient dragon | 39-47",
+          "Beorn, the Shape-Changer | 39-47",
+          "dread | 39-47"
+        ]
+      }
+    },
+    "reborn-scaryends-all5": {
+      "description": "borg-zoo#350 (reborn-scary-ends-pilot.yaml): arm all5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 0-3",
+          "Grip, Farmer Maggot's Dog | 0-3",
+          "Fang, Farmer Maggot's Dog | 0-3",
+          "small kobold | 0-3",
+          "soldier | 3-6",
+          "cutpurse | 3-6",
+          "acolyte | 3-6",
+          "apprentice | 3-6",
+          "kobold | 3-6",
+          "shrieker mushroom patch | 3-6",
+          "Farmer Maggot | 3-6",
+          "filthy street urchin | 3-6",
+          "battle-scarred veteran | 3-6",
+          "mean-looking mercenary | 3-6",
+          "Bullroarer the Hobbit | 10-13",
+          "giant white mouse | 10-13 |  | breeders",
+          "white worm mass | 10-13 |  | breeders",
+          "green worm mass | 10-13 |  | breeders",
+          "cave spider | 15-18",
+          "red naga | 15-18",
+          "giant red frog | 15-18",
+          "radiation eye | 15-18",
+          "yellow worm mass | 15-18 |  | breeders",
+          "gravity hound | 39-42",
+          "inertia hound | 39-42",
+          "base:ancient dragon | 39-42",
+          "Beorn, the Shape-Changer | 39-42",
+          "dread | 39-42"
+        ]
+      }
+    },
+    "reborn-scaryends-t5f6": {
+      "description": "borg-zoo#350 (reborn-scary-ends-pilot.yaml): arm t5f6.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 0-2",
+          "Grip, Farmer Maggot's Dog | 0-2",
+          "Fang, Farmer Maggot's Dog | 0-2",
+          "small kobold | 0-2",
+          "soldier | 3-5",
+          "cutpurse | 3-5",
+          "acolyte | 3-5",
+          "apprentice | 3-5",
+          "kobold | 3-5",
+          "shrieker mushroom patch | 3-5",
+          "Farmer Maggot | 3-5",
+          "filthy street urchin | 3-5",
+          "battle-scarred veteran | 3-5",
+          "mean-looking mercenary | 3-5",
+          "Bullroarer the Hobbit | 10-12",
+          "giant white mouse | 10-12 |  | breeders",
+          "white worm mass | 10-12 |  | breeders",
+          "green worm mass | 10-12 |  | breeders",
+          "cave spider | 15-17",
+          "red naga | 15-17",
+          "giant red frog | 15-17",
+          "radiation eye | 15-17",
+          "yellow worm mass | 15-17 |  | breeders",
+          "gravity hound | 39-41",
+          "inertia hound | 39-41",
+          "base:ancient dragon | 39-41",
+          "Beorn, the Shape-Changer | 39-41",
+          "dread | 39-41"
+        ]
+      }
+    },
+    "reborn-scaryends-f3": {
+      "description": "borg-zoo#350 (reborn-scary-ends-200k-pilot.yaml): arm f3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 5-5",
+          "Grip, Farmer Maggot's Dog | 5-5",
+          "Fang, Farmer Maggot's Dog | 5-5",
+          "small kobold | 5-5",
+          "soldier | 8-8",
+          "cutpurse | 8-8",
+          "acolyte | 8-8",
+          "apprentice | 8-8",
+          "kobold | 8-8",
+          "shrieker mushroom patch | 8-8",
+          "Farmer Maggot | 8-8",
+          "filthy street urchin | 8-8",
+          "battle-scarred veteran | 8-8",
+          "mean-looking mercenary | 8-8",
+          "Bullroarer the Hobbit | 15-15",
+          "giant white mouse | 15-15 |  | breeders",
+          "white worm mass | 15-15 |  | breeders",
+          "green worm mass | 15-15 |  | breeders",
+          "cave spider | 20-20",
+          "red naga | 20-20",
+          "giant red frog | 20-20",
+          "radiation eye | 20-20",
+          "yellow worm mass | 20-20 |  | breeders",
+          "gravity hound | 44-44",
+          "inertia hound | 44-44",
+          "base:ancient dragon | 44-44",
+          "Beorn, the Shape-Changer | 44-44",
+          "dread | 44-44"
+        ]
+      }
+    },
+    "reborn-scaryends-fraghalf": {
+      "description": "borg-zoo#350 (reborn-scary-ends-200k-pilot.yaml): arm fraghalf.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "fragility: warrior 0, paladin 0, blackguard 0, ranger 17, rogue 17, priest 33, druid 33, mage 50, necromancer 50"
+        ]
+      }
+    },
+    "reborn-scaryends-all8": {
+      "description": "borg-zoo#350 (reborn-scary-deep-pilot.yaml): arm all8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 0-0",
+          "Grip, Farmer Maggot's Dog | 0-0",
+          "Fang, Farmer Maggot's Dog | 0-0",
+          "small kobold | 0-0",
+          "soldier | 0-3",
+          "cutpurse | 0-3",
+          "acolyte | 0-3",
+          "apprentice | 0-3",
+          "kobold | 0-3",
+          "shrieker mushroom patch | 0-3",
+          "Farmer Maggot | 0-3",
+          "filthy street urchin | 0-3",
+          "battle-scarred veteran | 0-3",
+          "mean-looking mercenary | 0-3",
+          "Bullroarer the Hobbit | 7-10",
+          "giant white mouse | 7-10 |  | breeders",
+          "white worm mass | 7-10 |  | breeders",
+          "green worm mass | 7-10 |  | breeders",
+          "cave spider | 12-15",
+          "red naga | 12-15",
+          "giant red frog | 12-15",
+          "radiation eye | 12-15",
+          "yellow worm mass | 12-15 |  | breeders",
+          "gravity hound | 36-39",
+          "inertia hound | 36-39",
+          "base:ancient dragon | 36-39",
+          "Beorn, the Shape-Changer | 36-39",
+          "dread | 36-39"
+        ]
+      }
+    },
+    "reborn-scaryends-early-none": {
+      "description": "borg-zoo#350 (reborn-scary-deep-pilot.yaml): arm early-none.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | none",
+          "Grip, Farmer Maggot's Dog | none",
+          "Fang, Farmer Maggot's Dog | none",
+          "small kobold | none",
+          "soldier | none",
+          "cutpurse | none",
+          "acolyte | none",
+          "apprentice | none",
+          "kobold | none",
+          "shrieker mushroom patch | none",
+          "Farmer Maggot | none",
+          "filthy street urchin | none",
+          "battle-scarred veteran | none",
+          "mean-looking mercenary | none"
+        ]
+      }
+    },
+    "reborn-bundle-ctl": {
+      "description": "borg-zoo#361 (reborn-bundle-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-bundle-bundle": {
+      "description": "borg-zoo#361 (reborn-bundle-pilot.yaml): arm bundle.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_arrow_point_blank_divisor_ranger": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 0,
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 0-3",
+          "Grip, Farmer Maggot's Dog | 0-3",
+          "Fang, Farmer Maggot's Dog | 0-3",
+          "small kobold | 0-3",
+          "soldier | 3-6",
+          "cutpurse | 3-6",
+          "acolyte | 3-6",
+          "apprentice | 3-6",
+          "kobold | 3-6",
+          "shrieker mushroom patch | 3-6",
+          "Farmer Maggot | 3-6",
+          "filthy street urchin | 3-6",
+          "battle-scarred veteran | 3-6",
+          "mean-looking mercenary | 3-6",
+          "Bullroarer the Hobbit | 10-13",
+          "giant white mouse | 10-13 |  | breeders",
+          "white worm mass | 10-13 |  | breeders",
+          "green worm mass | 10-13 |  | breeders",
+          "cave spider | 15-18",
+          "red naga | 15-18",
+          "giant red frog | 15-18",
+          "radiation eye | 15-18",
+          "yellow worm mass | 15-18 |  | breeders",
+          "gravity hound | 39-42",
+          "inertia hound | 39-42",
+          "base:ancient dragon | 39-42",
+          "Beorn, the Shape-Changer | 39-42",
+          "dread | 39-42"
+        ]
+      }
+    },
+    "reborn-bundle-bundle-noscary": {
+      "description": "borg-zoo#361 (reborn-bundle-pilot.yaml): arm bundle-noscary.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_arrow_point_blank_divisor_ranger": 1,
+        "borg_param_caution_flee_recall_gate_below_depth": 0
+      }
     }
   }
 }
