@@ -5353,6 +5353,24 @@
         "borg_reborn_errand": "none",
         "borg_param_kill_live_min_power": 0
       }
+    },
+    "reborn-recallusual-main-ctl": {
+      "description": "borg-zoo#358 (reborn-recall-usual-main-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_recall_wait_as_usual": 0
+      }
+    },
+    "reborn-recallusual-main-usual": {
+      "description": "borg-zoo#358 (reborn-recall-usual-main-pilot.yaml): arm usual.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_recall_wait_as_usual": 1
+      }
     }
   }
 }

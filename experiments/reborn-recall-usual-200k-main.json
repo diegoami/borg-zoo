@@ -1,0 +1,21 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-recall-usual-200k-main",
+  "issue": 358,
+  "definition": "definitions/reborn-recall-usual-200k-main.yaml",
+  "question": "On borg-reborn-rs main 13e1187c (PR #627 merged), does playing by the ordinary rules while Word of Recall counts down, on DL2 and deeper (caution_recall_wait_as_usual), save games or progress against the Recall-only rules?",
+  "description": "On borg-reborn-rs main 13e1187c (PR #627 merged), does playing by the ordinary rules while Word of Recall counts down, on DL2 and deeper (caution_recall_wait_as_usual), save games or progress against the Recall-only rules? Generated from definitions/reborn-recall-usual-200k-main.yaml: 2 arms on 4.2.6-reborn-rust-main-13e1187c, suite classes-1800-200k-small.",
+  "prespecified": "Rerun of reborn-recall-usual-200k-small (run 44462245391, on PR #627's head cdd065ca) on borg-reborn-rs main after\n#627 merged: the switch's code is unchanged, but main's shipped play moved in between (#584, #593, #614, #618, #621,\n#622 and e0c4a527: caution_scary_damage_percent 50, caution_rising_explore_ticks 500), and #627's re-review asked\nthat the tier be re-run on the merged code before it is read as evidence. Owner, 2026-11-19: \"rerun zoo tier\".\nFixed before any result of this run was read. ctl is the shipped configuration (the switch off).\nSame suite, starts 19-90 of classes-1800-200k, 72 per arm; no raw evidence at this size.\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;\n- per Recall read: its depth, the wait in game turns, whether it fired, the level changes during the wait, and\n  \"Buying time waiting for Recall\" / \"Resting for Recall\" notes; deaths during a wait;\n- potions and scrolls used during waits.\nCompared with the cdd065ca run: the same paired questions, and whether the switch acts in a similar share of games.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-13e1187c"
+  ],
+  "profiles": [
+    "reborn-recallusual-main-ctl",
+    "reborn-recallusual-main-usual"
+  ],
+  "suites": [
+    "classes-1800-200k-small"
+  ],
+  "control": "4.2.6-reborn-rust-main-13e1187c",
+  "control_profile": "reborn-recallusual-main-ctl"
+}

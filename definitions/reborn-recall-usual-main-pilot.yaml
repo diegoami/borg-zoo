@@ -1,0 +1,43 @@
+# borg-zoo#358: the pilot (RULES 16) before the 200,000-turn small tier rerun on borg-reborn-rs main after PR #627 merged (owner, 2026-11-19: "rerun zoo tier").
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-recall-usual-main-pilot.yaml
+name: reborn-recall-usual-main-pilot
+issue: 358
+question: 'On borg-reborn-rs main 13e1187c (PR #627 merged), does playing by the ordinary rules while Word of Recall counts down,
+  on DL2 and deeper (caution_recall_wait_as_usual), save games or progress against the Recall-only rules?'
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-13e1187c
+  repository: diegoami/borg-reborn-rs
+  ref: 13e1187c5bef4588c3b10a8dc2d66a8537c4f36c
+  label: "borg-reborn-rs main 13e1187c, the merge of PR #627 (#603): caution_recall_wait_as_usual, compiled and shipped 0; only on DL2 and deeper. Source-hash rust a168de4f...; harness/borg.txt 7603032c..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+profile_prefix: reborn-recallusual-main
+arms:
+  ctl: {borg_param_caution_recall_wait_as_usual: 0}
+  usual: {borg_param_caution_recall_wait_as_usual: 1}
+control: [ctl]
+
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Pilot (RULES 16) on borg-reborn-rs main 13e1187c (PR #627 merged) before rerunning reborn-recall-usual-200k-small
+  there as reborn-recall-usual-200k-main; same arms as reborn-recall-usual-pilot (cdd065ca). Owner, 2026-11-19:
+  "rerun zoo tier". Fixed before any result of this run was read. ctl is the shipped configuration (the switch off).
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm: deaths, CL, deepest level, games identical to ctl, Recalls read and fired, and against the
+  cdd065ca pilot. Most flight Recalls in classes-18 are read on DL1, where the switch does not act: this shows safety.

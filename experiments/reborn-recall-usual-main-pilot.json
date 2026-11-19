@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-recall-usual-main-pilot",
+  "issue": 358,
+  "definition": "definitions/reborn-recall-usual-main-pilot.yaml",
+  "question": "On borg-reborn-rs main 13e1187c (PR #627 merged), does playing by the ordinary rules while Word of Recall counts down, on DL2 and deeper (caution_recall_wait_as_usual), save games or progress against the Recall-only rules?",
+  "description": "On borg-reborn-rs main 13e1187c (PR #627 merged), does playing by the ordinary rules while Word of Recall counts down, on DL2 and deeper (caution_recall_wait_as_usual), save games or progress against the Recall-only rules? Generated from definitions/reborn-recall-usual-main-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-13e1187c, suite classes-18.",
+  "prespecified": "Pilot (RULES 16) on borg-reborn-rs main 13e1187c (PR #627 merged) before rerunning reborn-recall-usual-200k-small\nthere as reborn-recall-usual-200k-main; same arms as reborn-recall-usual-pilot (cdd065ca). Owner, 2026-11-19:\n\"rerun zoo tier\". Fixed before any result of this run was read. ctl is the shipped configuration (the switch off).\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm: deaths, CL, deepest level, games identical to ctl, Recalls read and fired, and against the\ncdd065ca pilot. Most flight Recalls in classes-18 are read on DL1, where the switch does not act: this shows safety.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-13e1187c"
+  ],
+  "profiles": [
+    "reborn-recallusual-main-ctl",
+    "reborn-recallusual-main-usual"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-13e1187c",
+  "control_profile": "reborn-recallusual-main-ctl",
+  "retain_evidence": true
+}
