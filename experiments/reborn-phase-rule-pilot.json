@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-phase-rule-pilot",
+  "issue": 334,
+  "definition": "definitions/reborn-phase-rule-pilot.yaml",
+  "question": "On borg-reborn-rs",
+  "description": "On borg-reborn-rs Generated from definitions/reborn-phase-rule-pilot.yaml: 3 arms on 4.2.6-reborn-rust-pr612-2075f54e, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#584, PR #612). Pilot (RULES 16); small and\nlarger only after this gate and the owner.\nGate:\n- no config_error; one binary; each arm's two #584 values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- in ctl, no \"# Phase (<site>): no, no enemy on an adjacent square\", \"... fight is not lost\" or \"... phase allowed\" note.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level;\n- paired rescued and newly killed against ctl;\n- Phase Doors done (\"# Phase (<site>): done\"), per site; the rule's notes per game (no adjacent enemy, fight not lost,\n  phase allowed) and its boosts (\"# Phase (<site>) boost: <what>\");\n- deaths with no Phase Door left (no Phase Door in the pack at death) and deaths within 200 game turns of a refused phase.\nContext: a local run on the same tree (harness binary, BORG_CORE=borg-rs, the 18 classes-18 starts, 100,000 turns; not\na zoo run): ctl 150 Phase Doors and 0 deaths; rule at 100: 83 Phase Doors, 18 boosts, 1 death (Rogue 1502695781, wild\ncat on DL1, no Phase Door left). 18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr612-2075f54e"
+  ],
+  "profiles": [
+    "reborn-phaserule-ctl",
+    "reborn-phaserule-rule-100",
+    "reborn-phaserule-rule-150"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-pr612-2075f54e",
+  "control_profile": "reborn-phaserule-ctl",
+  "retain_evidence": true
+}
