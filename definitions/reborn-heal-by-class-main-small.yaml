@@ -1,0 +1,24 @@
+# borg-zoo#265: healing by class, small tier on current main (starts 1-90), the arms that lean harmful.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-by-class-main-small.yaml
+name: reborn-heal-by-class-main-small
+issue: 265
+question: >-
+  On borg-reborn-rs main 38858846, do lower class healing values (curve about 0.5x, reserve about 0.5x, or the common values) cost games, per class (starts 1-90)?
+specimens: [4.2.6-reborn-rust-main-38858846]
+suites: [classes-1800-small]
+profiles: [reborn-hbc-ctl, reborn-hbc-curve-lo, reborn-hbc-reserve-lo, reborn-hbc-common]
+control_specimen: 4.2.6-reborn-rust-main-38858846
+control_profile: reborn-hbc-ctl
+owner_authorization: >-
+  2026-11-19: the owner asked to queue sensible next experiments; #265's arms that lean harmful on two builds.
+
+prespecified: |
+  Fixed 2026-11-19, before any result of this tier was read. Same specimen and profiles as the pilot (RULES 16).
+  Re-pilot (run 44445305823): deaths ctl 0, curve-lo 3, reserve-lo 2, common 2 of 18; on 4a482c58 1, 2, 3, 2.
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt and scary list;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, pooled with the earlier tiers as one study (RULES 14): deaths and causes, CL1-3 deaths,
+  mean max CL and DL; paired rescued and newly killed; identical plays. Descriptive.
+  Each value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18).

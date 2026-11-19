@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-deep-pilot",
+  "issue": 350,
+  "definition": "definitions/reborn-scary-deep-pilot.yaml",
+  "question": "On borg-reborn-rs main 38858846 at 100,000 turns, where does lowering the named scary monsters stop helping: both ends - 5 (all5), - 8 (all8), or the 14 early monsters (tough level 5 and 8: Grip, Fang, kobolds, soldiers, ...) not scary at all?",
+  "description": "On borg-reborn-rs main 38858846 at 100,000 turns, where does lowering the named scary monsters stop helping: both ends - 5 (all5), - 8 (all8), or the 14 early monsters (tough level 5 and 8: Grip, Fang, kobolds, soldiers, ...) not scary at all? Generated from definitions/reborn-scary-deep-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-38858846, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result of all8 or early-none was read. Pilot (RULES 16). ctl and all5 repeat the #350\npilot's arms on the same starts and should replay them.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and scary list;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nRead per class: identical plays against ctl; deaths and causes (deaths to the de-listed monsters named), CL1-3\ndeaths, final level, deepest level; paired rescued and newly killed; \"Scary guy on level\" notes per game.\nEach value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18). Direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-38858846"
+  ],
+  "profiles": [
+    "reborn-scaryends-ctl",
+    "reborn-scaryends-all5",
+    "reborn-scaryends-all8",
+    "reborn-scaryends-early-none"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-38858846",
+  "control_profile": "reborn-scaryends-ctl",
+  "owner_authorization": "2026-11-19: the owner asked to queue sensible next experiments after the #350 pilots. Pilot first (RULES 16).",
+  "retain_evidence": true
+}

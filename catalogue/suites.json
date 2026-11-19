@@ -1024,6 +1024,15 @@
       "stall_seconds": 120,
       "saves": false
     },
+    "classes-1800-200k-small": {
+      "description": "Starts 19-90 of classes-1800-200k (8 per class), 200,000 engine turns: the small tier after classes-1800-200k-pilot (starts 1-18), disjoint from it (borg-zoo#350).",
+      "role": "development",
+      "subset": {"suite": "classes-1800-200k", "range": [18, 90]},
+      "cap": 200000,
+      "wall_seconds": 1800,
+      "stall_seconds": 120,
+      "saves": false
+    },
     "classes-1800-verysmall": {
       "description": "Tier verysmall of classes-1800 (RULES 14): starts 1-45 (5 per class), with each seed's classes-1800 character. Between the pilot and small: a study that ran it continues with small-rest (starts 46-90), so its tiers stay disjoint.",
       "role": "development",

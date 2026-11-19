@@ -1,0 +1,69 @@
+# borg-zoo#361: the safe-to-adopt changes together, pilot; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-bundle-pilot.yaml
+name: reborn-bundle-pilot
+issue: 361
+question: >-
+  On borg-reborn-rs main 38858846, do the scary list all5, Ranger point-blank divisor 1 and flight Recall on DL1 again,
+  each safe to adopt alone, work together without harm?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-38858846
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-bundle
+arms:
+  ctl: {}   # shipped
+  bundle:
+    borg_param_attack_arrow_point_blank_divisor_ranger: 1
+    borg_param_caution_flee_recall_gate_below_depth: 0
+    borg_scary_list_lines:
+      - "squint-eyed rogue | 0-3"
+      - "Grip, Farmer Maggot's Dog | 0-3"
+      - "Fang, Farmer Maggot's Dog | 0-3"
+      - "small kobold | 0-3"
+      - "soldier | 3-6"
+      - "cutpurse | 3-6"
+      - "acolyte | 3-6"
+      - "apprentice | 3-6"
+      - "kobold | 3-6"
+      - "shrieker mushroom patch | 3-6"
+      - "Farmer Maggot | 3-6"
+      - "filthy street urchin | 3-6"
+      - "battle-scarred veteran | 3-6"
+      - "mean-looking mercenary | 3-6"
+      - "Bullroarer the Hobbit | 10-13"
+      - "giant white mouse | 10-13 |  | breeders"
+      - "white worm mass | 10-13 |  | breeders"
+      - "green worm mass | 10-13 |  | breeders"
+      - "cave spider | 15-18"
+      - "red naga | 15-18"
+      - "giant red frog | 15-18"
+      - "radiation eye | 15-18"
+      - "yellow worm mass | 15-18 |  | breeders"
+      - "gravity hound | 39-42"
+      - "inertia hound | 39-42"
+      - "base:ancient dragon | 39-42"
+      - "Beorn, the Shape-Changer | 39-42"
+      - "dread | 39-42"
+  bundle-noscary:
+    borg_param_attack_arrow_point_blank_divisor_ranger: 1
+    borg_param_caution_flee_recall_gate_below_depth: 0
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked to queue sensible next experiments after the #350 pilots. Pilot first (RULES 16).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result was read. Pilot (RULES 16). Alone: all5 (#350) helpful on progress; Ranger 1
+  (#290) neutral, leaning helpful; dl1off (#280) neutral.
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt and scary list;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class: deaths and causes, CL1-3 deaths, final level, deepest level; paired rescued and newly
+  killed against ctl; identical plays; flight Recalls on DL1.
+  Each value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18). Direction only.
