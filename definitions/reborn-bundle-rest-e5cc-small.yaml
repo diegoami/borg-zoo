@@ -1,0 +1,37 @@
+# borg-zoo#428: small after the pilot reborn-bundle-rest-e5cc-pilot (owner, 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-bundle-rest-e5cc-small.yaml
+name: reborn-bundle-rest-e5cc-small
+issue: 428
+question: On borg-reborn-rs main e5cc5469, which ships calmed and the Phase Door rule, do Recall wait-as-usual and the errands
+  plan, alone and together, still save games?
+tier: small
+specimen: 4.2.6-reborn-rust-main-e5cc5469
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-bundlerest-e5cc
+arms:
+  ctl: {}
+  recall-wait:
+    borg_param_caution_recall_wait_as_usual: 1
+  errands:
+    borg_plan: errands_plan.txt
+  both:
+    borg_param_caution_recall_wait_as_usual: 1
+    borg_plan: errands_plan.txt
+control:
+- ctl
+prespecified: |
+  Small tier after the pilot's gate (run 44599338458: 72 cells, gate passed; deaths 1 in every arm, the same start; recall-wait identical to ctl in 18 of 18, errands and both differ in 6).
+  Same specimen and profiles as reborn-bundle-rest-e5cc-pilot; no raw evidence at this size. Owner, 2026-11-19: "do all them" (pilot, then small after its gate).
+  Fixed 2026-11-19, before any result on e5cc5469 was read. Pilot (RULES 16). ctl is shipped main (calmed and the
+  Phase Door rule on).
+  Gate:
+  - no config_error; one binary; each arm's values in its borg.txt; the plan recorded per cell and checked against the pin;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level, paired rescued and newly killed against ctl,
+  identical plays. RULES 18 bins; 18 starts show direction only. Small (starts 1-90) next with the same arms if the
+  gate passes.
+owner_authorization: '2026-11-19: the owner said "do all them" to the proposed pilot-then-small of the bundle''s remaining
+  parts on the new main. Pilot first (RULES 16); small only after the pilot''s gate.'
