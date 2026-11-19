@@ -7232,6 +7232,24 @@
         "borg_param_caution_breeder_stoppable": 1,
         "borg_param_caution_breeder_avoid": 1
       }
+    },
+    "reborn-storeow-ctl": {
+      "description": "borg-zoo#457 (reborn-store-overweight-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_store_only_overweight": 0
+      }
+    },
+    "reborn-storeow-overweight": {
+      "description": "borg-zoo#457 (reborn-store-overweight-pilot.yaml): arm overweight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_store_only_overweight": 1
+      }
     }
   }
 }

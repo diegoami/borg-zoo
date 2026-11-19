@@ -60,9 +60,10 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-detect-min-level` | [#443](https://github.com/diegoami/borg-zoo/issues/443) | 2 | defined (pilot on PR #703 head 3ed059b6) | No detection prayer by panel below CL10 for the five casters (light_detect_evil_spell_min_level 10) against C (0). |
 | `reborn-slow-crowd-exit` | [#448](https://github.com/diegoami/borg-zoo/issues/448) | 2 | defined (pilot on PR #702 head c3747cc9; small + medium after its gate) | Walk out of a crowd of slower or immobile monsters (caution_slow_crowd_exit) against off. |
 | `reborn-untested-dbc` | [#450](https://github.com/diegoami/borg-zoo/issues/450) | 8 | defined (pilot on main dbc92d18) | Never-varied town settings: device value by class (100 / 50 / 200), shot reserve 50 / 100, shot reserve with oil 50, town flee no-worse. |
-| `reborn-class-curves-dbc` | [#433](https://github.com/diegoami/borg-zoo/issues/433) | 2 | defined (pilot, small, medium on main dbc92d18) | #433 restarted on dbc92d18: the owner's class curves against all scales 100. |
+| `reborn-class-curves-dbc` | [#433](https://github.com/diegoami/borg-zoo/issues/433) | 2 | small + medium done (13 against 12 deaths of 360); big + full defined | #433 restarted on dbc92d18: the owner's class curves against all scales 100. |
 | `reborn-detect-min-dbc` | [#443](https://github.com/diegoami/borg-zoo/issues/443) | 2 | defined (pilot, small, medium on main dbc92d18) | #443 on dbc92d18: caster detection min level 10 (shipped) against 0. |
 | `reborn-breederstop-dbc` | [#411](https://github.com/diegoami/borg-zoo/issues/411) | 3 | defined (pilot, small, medium on main dbc92d18) | #411 on dbc92d18: kill breeders first (stoppable), alone and with avoidance, against both off. |
+| `reborn-store-overweight` | [#457](https://github.com/diegoami/borg-zoo/issues/457) | 2 | defined (pilot on PR #714 head d9e5a37e) | Store at home only when overweight (town_store_only_overweight) against off. |
 
 ### `heal-attack-4`
 
@@ -922,6 +923,17 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-breederstop-dbc-stop` | 0 | 1 |
 | `reborn-breederstop-dbc-stop-avoid` | 1 | 1 |
 
+### `reborn-store-overweight`
+
+Store at home only when overweight (town_store_only_overweight) against off.
+
+Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_store_only_overweight` |
+| --- | --- |
+| `reborn-storeow-ctl` | 0 |
+| `reborn-storeow-overweight` | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1093,6 +1105,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
+| `borg_param_town_store_only_overweight` | 0, 1 | `reborn-store-overweight` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
 | `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters` |  |
 | `borg_town_attack_turns` | 50, not set | `reborn-casters`, `reborn-crow-escape` |  |
