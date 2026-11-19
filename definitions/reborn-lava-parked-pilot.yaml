@@ -1,0 +1,33 @@
+# borg-zoo#342: #597's lava twitch and parked-stair fallback, pilot; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-lava-parked-pilot.yaml
+name: reborn-lava-parked-pilot
+issue: 342
+question: >-
+  On borg-reborn-rs main 6438e1cf, does turning off either #597 switch (caution_twitch_avoid_lava,
+  caution_stair_parked_fallback; compiled 0, shipped 1) change deaths, progress or stalls?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+specimen: 4.2.6-reborn-rust-main-6438e1cf
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-597
+arms:
+  ctl: {borg_param_caution_twitch_avoid_lava: 1, borg_param_caution_stair_parked_fallback: 1}   # shipped
+  lava0: {borg_param_caution_twitch_avoid_lava: 0}
+  parked0: {borg_param_caution_stair_parked_fallback: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked for the new switches on main that have no zoo run. Pilot first (RULES 16).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result was read. Pilot (RULES 16).
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class: identical plays against ctl; deaths and causes (lava deaths), final level, deepest
+  level; paired rescued and newly killed; per game, lava steps, twitch notes, stair flows waiting on a parked monster,
+  and frozen-turn bursts. 18 starts per arm show direction only.
+  Each value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18); the choice is the owner's.

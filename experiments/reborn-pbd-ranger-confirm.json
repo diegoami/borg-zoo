@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-pbd-ranger-confirm",
+  "issue": 290,
+  "definition": "definitions/reborn-pbd-ranger-confirm.yaml",
+  "question": "On borg-reborn-rs main f660aecc, do Rangers with no point-blank penalty (attack_arrow_point_blank_divisor_ranger 1) die less than with the shipped 2, on 200 fresh Ranger starts (classes-1800-b)?",
+  "description": "On borg-reborn-rs main f660aecc, do Rangers with no point-blank penalty (attack_arrow_point_blank_divisor_ranger 1) die less than with the shipped 2, on 200 fresh Ranger starts (classes-1800-b)? Generated from definitions/reborn-pbd-ranger-confirm.yaml: 2 arms on 4.2.6-reborn-rust-main-f660aecc, suite classes-1800-b-rangers.",
+  "prespecified": "Fixed 2026-11-19, before any classes-1800-b result was read. Confirmation of one prespecified test (RULES 14).\nPrimary endpoint: deaths among the 200 Ranger starts, divisor 1 against 2, paired on the same start; two-sided exact\nMcNemar test at 0.05. Secondary (descriptive): CL1-3 deaths, mean max CL and DL, identical plays.\nDevelopment result (classes-1800, the same build): 11/200 against 18/200.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nEach value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18); the choice is the owner's.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-f660aecc"
+  ],
+  "profiles": [
+    "reborn-pbdrr-ctl",
+    "reborn-pbdrr-lo"
+  ],
+  "suites": [
+    "classes-1800-b-rangers"
+  ],
+  "control": "4.2.6-reborn-rust-main-f660aecc",
+  "control_profile": "reborn-pbdrr-ctl",
+  "owner_authorization": "2026-11-19: after the development study (all 200 Ranger starts of classes-1800: divisor 1 11 deaths against 18, rescued 11, newly killed 4, p 0.12), the owner asked to confirm the Ranger lead."
+}
