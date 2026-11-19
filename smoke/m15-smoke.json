@@ -1,0 +1,21 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "m15-smoke",
+  "issue": 432,
+  "definition": "definitions/m15-smoke.yaml",
+  "description": "Build and play check of better-borg-c milestone 15 (tag 4.2.6-impact-v15, 646ebfc2, on angband master 574b618c) before classes-v15: classes-18, normal and munchkin-class. Says only that it builds and plays; not a comparison.",
+  "specimens": [
+    "4.2.6-bbc-m15"
+  ],
+  "profiles": [
+    "normal",
+    "munchkin-class"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-bbc-m15",
+  "control_profile": "normal",
+  "owner_authorization": "2026-11-19: the owner asked for \"a full test on the new Angband head and on the latest release / milestone of bbc\" (borg-zoo#432).",
+  "retain_evidence": true
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-v15",
+  "issue": 432,
+  "definition": "definitions/classes-v15.yaml",
+  "description": "How does C milestone 15 perform? Tag 4.2.6-impact-v15 pins 646ebfc2: official angband master 574b618c with 137 carried C Borg fixes (better-borg-c#547). Same profiles and suite as classes-v13: normal pins every special mode off (control); munchkin-class enables the depth-6 stair-climbing start for Warriors, Druids and Rangers (the product default). Set beside original-c-574b618-classes-1800 (the same game commit, no carries) descriptively: the original has no mode settings, so the two are not one experiment (#54).",
+  "specimens": [
+    "4.2.6-bbc-m15"
+  ],
+  "profiles": [
+    "normal",
+    "munchkin-class"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-bbc-m15",
+  "control_profile": "normal",
+  "owner_authorization": "2026-11-19: the owner asked for \"a full test on the new Angband head and on the latest release / milestone of bbc\" (borg-zoo#432). Dispatched after m15-smoke passes its gate.",
+  "shards_by_specimen": {
+    "4.2.6-bbc-m15": 20
+  }
+}

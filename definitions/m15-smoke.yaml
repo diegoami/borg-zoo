@@ -1,0 +1,25 @@
+# borg-zoo#432: build and play check of better-borg-c impact v15 before its full run.
+name: m15-smoke
+folder: smoke
+issue: 432
+description: |-
+  Build and play check of better-borg-c milestone 15 (tag 4.2.6-impact-v15, 646ebfc2, on angband master 574b618c) before classes-v15: classes-18, normal and munchkin-class. Says only that it builds and plays; not a comparison.
+owner_authorization: |-
+  2026-11-19: the owner asked for "a full test on the new Angband head and on the latest release / milestone of bbc" (borg-zoo#432).
+specimens:
+- 4.2.6-bbc-m15
+suites:
+- classes-18
+profile_prefix: ''
+arms:
+  normal:
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  munchkin-class:
+    borg_munchkin_by_class: true
+control_specimen: 4.2.6-bbc-m15
+control_profile: normal
+extra:
+  retain_evidence: true
