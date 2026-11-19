@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-class-curves-medium",
+  "issue": 433,
+  "definition": "definitions/reborn-class-curves-medium.yaml",
+  "question": "On borg-reborn-rs main a87b4c96 (#688), do the owner's per-class Phase Door and flask-of-oil curve scales (and the Blackguard's healing 100 / 200) change deaths or progress, per class, against the same build with them set to 100?",
+  "description": "On borg-reborn-rs main a87b4c96 (#688), do the owner's per-class Phase Door and flask-of-oil curve scales (and the Blackguard's healing 100 / 200) change deaths or progress, per class, against the same build with them set to 100? Generated from definitions/reborn-class-curves-medium.yaml: 2 arms on 4.2.6-reborn-rust-main-a87b4c96, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-19, before any classes-1800 result of these profiles was read. Same specimen and profiles as the pilot\n(RULES 16).\nGate:\n- no config_error; one binary; ctl's 20 lines written;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts and stalls classified, key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, pooled over the tiers (RULES 14): deaths and causes, CL1-3 deaths, max CL and DL;\npaired rescued and newly killed against ctl (exact McNemar), overall and per class; identical plays; Phase Door\nscrolls and flasks of oil bought. Each class's values are reported as harmful, neutral or helpful (RULES 18) only\nafter the full classes-1800 (about 200 starts per class); starts 1-360 give 40 per class, direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-a87b4c96"
+  ],
+  "profiles": [
+    "reborn-curves-a87b-ctl",
+    "reborn-curves-a87b-owner"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-a87b4c96",
+  "control_profile": "reborn-curves-a87b-ctl",
+  "owner_authorization": "2026-11-19: after the pilot's gate (0 deaths against 1, every game changes), the owner said yes to dispatching the small and medium tiers (starts 1-360) together, the 2026-11-18 precedent."
+}
