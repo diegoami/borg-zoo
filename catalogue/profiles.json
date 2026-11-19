@@ -6742,6 +6742,74 @@
         "borg_plan": "errands_plan.txt"
       }
     },
+    "reborn-rangedimmobile-ctl": {
+      "description": "borg-zoo#426 (reborn-ranged-immobile-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_ranged_vs_immobile": 0
+      }
+    },
+    "reborn-rangedimmobile-step": {
+      "description": "borg-zoo#426 (reborn-ranged-immobile-pilot.yaml): arm step.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_ranged_vs_immobile": 1
+      }
+    },
+    "reborn-throwmelee-ctl": {
+      "description": "borg-zoo#427 (reborn-throw-as-melee-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_attack_throw_as_melee": 0
+      }
+    },
+    "reborn-throwmelee-throw": {
+      "description": "borg-zoo#427 (reborn-throw-as-melee-pilot.yaml): arm throw.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_attack_throw_as_melee": 1
+      }
+    },
+    "reborn-bundlerest-e5cc-ctl": {
+      "description": "borg-zoo#428 (reborn-bundle-rest-e5cc-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-bundlerest-e5cc-recall-wait": {
+      "description": "borg-zoo#428 (reborn-bundle-rest-e5cc-pilot.yaml): arm recall-wait.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_recall_wait_as_usual": 1
+      }
+    },
+    "reborn-bundlerest-e5cc-errands": {
+      "description": "borg-zoo#428 (reborn-bundle-rest-e5cc-pilot.yaml): arm errands.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-bundlerest-e5cc-both": {
+      "description": "borg-zoo#428 (reborn-bundle-rest-e5cc-pilot.yaml): arm both.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_recall_wait_as_usual": 1,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
     "reborn-bank38-ctl": {
       "description": "borg-zoo#429 (reborn-death-bank38.yaml): arm ctl.",
       "settings": {

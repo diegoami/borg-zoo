@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-throw-as-melee-pilot",
+  "issue": 427,
+  "definition": "definitions/reborn-throw-as-melee-pilot.yaml",
+  "question": "On borg-reborn-rs 7c9b4cd1 (PR",
+  "description": "On borg-reborn-rs 7c9b4cd1 (PR Generated from definitions/reborn-throw-as-melee-pilot.yaml: 2 arms on 4.2.6-reborn-rust-t568-7c9b4cd1, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#568, PR #687). Pilot (RULES 16); larger tiers\nonly after this gate and the owner. ctl is the shipped configuration (the switch off).\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;\n- \"# Throwing painful object\" and \"# Attacking with weapon\" notes per game; flasks of oil thrown, and the share that hit\n  (\"Your Flask of oil hits\");\n- throws at a unique (\"Targeting <unique>\" followed by a throw), and how the fight ended (the unique fled, died, or the Borg\n  left or died);\n- flasks left in the pack at death or at the cap, and games that ran out of flasks with a monster in view.\nFlasks count as missiles only below CL15 and missile conservation applies above CL20; most of the effect is at DL1-3.\n#686 (flasks valued in the town plan) is not in this specimen; the two together need a later run.",
+  "specimens": [
+    "4.2.6-reborn-rust-t568-7c9b4cd1"
+  ],
+  "profiles": [
+    "reborn-throwmelee-ctl",
+    "reborn-throwmelee-throw"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-t568-7c9b4cd1",
+  "control_profile": "reborn-throwmelee-ctl",
+  "owner_authorization": "2026-11-19: requested by the borg-reborn-rs owner in this issue; the owner of the zoo said \"do all them\" to the proposed pilots. Pilot first (RULES 16).",
+  "retain_evidence": true
+}
