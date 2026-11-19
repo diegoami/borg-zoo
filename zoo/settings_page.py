@@ -88,8 +88,12 @@ def analyse(row):
         valid = [c for c in cells if c['outcome'] in stats.VALID]
         deaths = sum(c['outcome'] == 'death' for c in valid)
         pair = stats.paired(row['arm_cells'][row['control']], cells) if p != row['control'] else None
+        level = [c['final'].get('max_level') or c['final'].get('level') or 0 for c in valid]
+        depth = [c['final'].get('max_depth') or 0 for c in valid]
         arms.append({'profile': p, 'n': len(valid), 'deaths': deaths, 'ci': stats.wilson(deaths, len(valid)),
-                     'paired': pair, 'values': row['values'][p]})
+                     'paired': pair, 'values': row['values'][p],
+                     'level': sum(level) / len(level) if level else None,
+                     'depth': sum(depth) / len(depth) if depth else None})
     ps = [a['paired']['death_p'] for a in arms if a['paired'] and a['paired']['death_p'] is not None]
     n = min(a['n'] for a in arms)
     k = max(1, len(arms) - 1)
@@ -222,6 +226,8 @@ def index_page(found):
                       'and how certain the result is. Verdicts are about deaths only.', INDEX_COLS)
             + f'<ul>{legend}</ul>'
             + '<p class="muted">Click a column heading to sort by it; click again to reverse.</p>'
+            + '<p><a href="changes.html">Plausible changes</a>: every tested change ranked from helpful to harmful, '
+              'with the settings no experiment has varied yet.</p>'
             + (table(INDEX_COLS, rows) if rows else '<p class="muted">No settings tested yet.</p>') + SORT_SCRIPT)
 
 
@@ -300,4 +306,6 @@ def build(runs, out, page):
     (target / 'index.html').write_text(page('Settings tested · borg-zoo', index_page(found), base='../'))
     for key, studies in found.items():
         (target / f'{slug(key)}.html').write_text(page(f'{key} · borg-zoo', setting_page(key, studies), base='../'))
+    from . import changes_page
+    (target / 'changes.html').write_text(page('Plausible changes · borg-zoo', changes_page.page_body(found), base='../'))
     return len(found)

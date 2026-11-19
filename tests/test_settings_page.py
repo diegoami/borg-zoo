@@ -50,6 +50,19 @@ class SettingsPageTest(unittest.TestCase):
             self.assertIn('../runs/n-full/n-full-1/index.html', page)
 
 
+class ChangesPageTest(unittest.TestCase):
+    def test_changes_are_binned_and_ranked(self):
+        from zoo import changes_page
+        runs = [run('h-full', 'classes-1800', set(range(40)), set(range(10)), 300, '2026-01-04')]
+        found = settings_page.collect(runs)
+        [c] = changes_page.changes(found)
+        self.assertEqual(c['bin'], 'helpful')
+        self.assertEqual(c['diff'], {'borg_param_x': 1})
+        body = changes_page.page_body(found)
+        self.assertIn('Plausible changes', body)
+        self.assertIn('borg_param_x.html', body)
+
+
 class DescriptionTest(unittest.TestCase):
     def test_comment_block_describes_the_keys_under_it_and_class_files_do_not(self):
         from zoo import setting_descriptions as sd
