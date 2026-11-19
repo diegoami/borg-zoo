@@ -1,0 +1,47 @@
+# borg-zoo#379: point-blank divisor Ranger 1 / Rogue 2 on main 3ba17e2c, pilot (owner, 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-pbd3b-pilot.yaml
+#
+# Only the Ranger and Rogue lines change, so only their starts are played; one arm carries both (each class reads its own).
+name: reborn-pbd3b-pilot
+issue: 379
+question: >-
+  On borg-reborn-rs main 3ba17e2c, do Rangers do better with point-blank divisor 1 (main 2) and Rogues with 2 (main 3)?
+suites: [classes-1800-small-rangers, classes-1800-small-rogues]
+pilot: true   # the 10 Ranger and 10 Rogue starts of small
+
+specimen:
+  name: 4.2.6-reborn-rust-main-3ba17e2c
+  repository: diegoami/borg-reborn-rs
+  ref: 3ba17e2c21ae203d2dd45fa53f1dbada87acba75
+  label: "borg-reborn-rs 3ba17e2c, main at the merge of #633. Ships attack_arrow_point_blank_divisor Ranger 2 and Rogue 3 (class files). Tree 23632fb4; source-hash rust bc79f0a6...; harness/borg.txt 617cc79c..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-pbd3b
+arms:
+  ctl: {borg_param_attack_arrow_point_blank_divisor_ranger: 2, borg_param_attack_arrow_point_blank_divisor_rogue: 3}
+  lo: {borg_param_attack_arrow_point_blank_divisor_ranger: 1, borg_param_attack_arrow_point_blank_divisor_rogue: 2}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked for a full experiment of Ranger 1 (main 2) and Rogue 2 (main 3). Pilot on the 10 + 10
+  small starts (RULES 16), then the remaining 190 + 190 starts.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result on this build was read. Pilot (RULES 16); the rest of the 200 + 200 starts
+  follows when this gate passes (owner's request).
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Read per class (Rangers and Rogues separately), the rest pooled with the pilot as one study (RULES 14): deaths and
+  causes, final level, deepest level; paired rescued and newly killed against ctl (exact McNemar); identical plays;
+  RULES 18 bins. #290 on f660aecc (Ranger 1: 11 against 18 of 200; Rogue 2: 8 against 6) is context only.

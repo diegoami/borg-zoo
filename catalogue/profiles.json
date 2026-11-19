@@ -5475,6 +5475,24 @@
         "borg_param_kill_live_min_power": 0
       }
     },
+    "reborn-pbd3b-ctl": {
+      "description": "borg-zoo#379 (reborn-pbd3b-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_arrow_point_blank_divisor_ranger": 2,
+        "borg_param_attack_arrow_point_blank_divisor_rogue": 3
+      }
+    },
+    "reborn-pbd3b-lo": {
+      "description": "borg-zoo#379 (reborn-pbd3b-pilot.yaml): arm lo.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_arrow_point_blank_divisor_ranger": 1,
+        "borg_param_attack_arrow_point_blank_divisor_rogue": 2
+      }
+    },
     "reborn-bundle-floor3": {
       "description": "borg-zoo#361 (reborn-bundle-floor3-pilot.yaml): arm floor3.",
       "settings": {
