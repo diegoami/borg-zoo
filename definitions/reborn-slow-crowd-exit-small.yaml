@@ -1,0 +1,25 @@
+# borg-zoo#448: walk out of a slower crowd, small tier; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-slow-crowd-exit-small.yaml
+#
+# The pilot is reborn-slow-crowd-exit-pilot (classes-18, the same specimen and profiles). Dispatched only after its gate.
+name: reborn-slow-crowd-exit-small
+issue: 448
+question: >-
+  On borg-reborn-rs PR #702's head c3747cc9, does walking out of a crowd of slower or immobile monsters
+  (caution_slow_crowd_exit) save or cost games against ctl?
+specimens: [4.2.6-reborn-rust-pr702-c3747cc9]
+tier: small          # classes-1800 starts 1-90
+profiles: [reborn-slowcrowd-ctl, reborn-slowcrowd-exit]
+control_specimen: 4.2.6-reborn-rust-pr702-c3747cc9
+control_profile: reborn-slowcrowd-ctl
+owner_authorization: >-
+  2026-11-19: the owner asked to "do 448", whose request is small and medium (starts 1-360) right after the pilot's
+  gate, because the rule never fires on classes-18.
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles was read. Same specimen and profiles as the pilot (RULES 16).
+  Gate: as the pilot's (no config_error; one binary; values written; every cell ends in death, turn_cap or
+  borg_stopped; frozen-turn bursts classified; death bundles reproduced).
+  Report per arm and per class, pooled over the tiers (RULES 14): deaths and causes; deaths to a slower or
+  never-moving killer (monster.txt speed below 110, or NEVER_MOVE); paired rescued and newly killed against ctl (exact
+  McNemar); max CL and DL; identical plays. Reported in a RULES 18 bin (harmful, neutral or helpful).

@@ -915,6 +915,16 @@
         "reborn-detectmin-switch"
       ],
       "runs": []
+    },
+    "reborn-slow-crowd-exit": {
+      "issue": 448,
+      "status": "defined (pilot on PR #702 head c3747cc9; small + medium after its gate)",
+      "what": "Walk out of a crowd of slower or immobile monsters (caution_slow_crowd_exit) against off.",
+      "profiles": [
+        "reborn-slowcrowd-ctl",
+        "reborn-slowcrowd-exit"
+      ],
+      "runs": []
     }
   }
 }

@@ -7044,6 +7044,24 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-slowcrowd-ctl": {
+      "description": "borg-zoo#448 (reborn-slow-crowd-exit-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_slow_crowd_exit": 0
+      }
+    },
+    "reborn-slowcrowd-exit": {
+      "description": "borg-zoo#448 (reborn-slow-crowd-exit-pilot.yaml): arm exit.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_slow_crowd_exit": 1
+      }
     }
   }
 }

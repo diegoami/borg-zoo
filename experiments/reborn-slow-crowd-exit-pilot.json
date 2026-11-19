@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-slow-crowd-exit-pilot",
+  "issue": 448,
+  "definition": "definitions/reborn-slow-crowd-exit-pilot.yaml",
+  "question": "On borg-reborn-rs PR",
+  "description": "On borg-reborn-rs PR Generated from definitions/reborn-slow-crowd-exit-pilot.yaml: 2 arms on 4.2.6-reborn-rust-pr702-c3747cc9, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result of this definition was read (borg-reborn-rs#690, PR #702). Pilot (RULES 16);\nsmall and medium (starts 1-360) after this gate: locally the rule never fires on classes-18, so the pilot shows\nsafety only, and the owner asked for the measurement.\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- in ctl, no \"# Walking out of a slower crowd\" note.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final and maximum level, deepest level; deaths to a slower or never-moving killer\n  (monster.txt speed below 110, or NEVER_MOVE);\n- paired rescued and newly killed against ctl;\n- \"# Walking out of a slower crowd\" notes per game, by kind (exit grids or open grids) and distance;\n- deaths within 500 game turns of such a note;\n- games with \"Possibility of being surrounded\" at danger at or above the HP for 20 or more thinks on one grid.\nContext: local classes-18 (100,000 turns), the two arms play identical keys (18/18); on the case's own build the\nrule turns borg-cemetery#78's death into a survival.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr702-c3747cc9"
+  ],
+  "profiles": [
+    "reborn-slowcrowd-ctl",
+    "reborn-slowcrowd-exit"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-pr702-c3747cc9",
+  "control_profile": "reborn-slowcrowd-ctl",
+  "owner_authorization": "2026-11-19: the owner asked to \"do 448\": the pilot, then small and medium (starts 1-360) right after its gate.",
+  "retain_evidence": true
+}

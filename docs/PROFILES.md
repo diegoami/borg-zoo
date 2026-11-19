@@ -58,6 +58,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-class-curves` | [#433](https://github.com/diegoami/borg-zoo/issues/433) | 2 | pilot done (run 44610324668: 0 deaths against 1); small + medium defined | The owner's #682 per-class Phase Door and oil curve scales (and Blackguard healing 100/200) against the same build set back to 100 (main before #682). |
 | `reborn-kill-flow-mode` | [#438](https://github.com/diegoami/borg-zoo/issues/438) | 4 | defined (pilot on PR #695 head f9c44b35, 200k turns) | The hunt removed in steps: kill_flow_mode 0 (C), 1 targeted hunts only, 2 no out-of-view hunt, 3 never hunt. |
 | `reborn-detect-min-level` | [#443](https://github.com/diegoami/borg-zoo/issues/443) | 2 | defined (pilot on PR #703 head 3ed059b6) | No detection prayer by panel below CL10 for the five casters (light_detect_evil_spell_min_level 10) against C (0). |
+| `reborn-slow-crowd-exit` | [#448](https://github.com/diegoami/borg-zoo/issues/448) | 2 | defined (pilot on PR #702 head c3747cc9; small + medium after its gate) | Walk out of a crowd of slower or immobile monsters (caution_slow_crowd_exit) against off. |
 
 ### `heal-attack-4`
 
@@ -855,6 +856,17 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-detectmin-ctl` | 0 | 0 | 0 | 0 | 0 |
 | `reborn-detectmin-switch` | – | – | – | – | – |
 
+### `reborn-slow-crowd-exit`
+
+Walk out of a crowd of slower or immobile monsters (caution_slow_crowd_exit) against off.
+
+Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_slow_crowd_exit` |
+| --- | --- |
+| `reborn-slowcrowd-ctl` | 0 |
+| `reborn-slowcrowd-exit` | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -953,6 +965,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_named_monsters` | 0, 1 | `reborn-scary-named-damage` |  |
 | `borg_param_caution_scary_stand` | 0, not set | `reborn-stand-seeinv` |  |
 | `borg_param_caution_scary_unlatch_calmed` | 0, 1, not set | `reborn-neutral-main`, `reborn-rebase-main`, `reborn-death-bank38` |  |
+| `borg_param_caution_slow_crowd_exit` | 0, 1 | `reborn-slow-crowd-exit` |  |
 | `borg_param_caution_stair_parked_fallback` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
