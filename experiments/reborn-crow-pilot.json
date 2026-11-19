@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-crow-pilot",
+  "issue": 408,
+  "definition": "definitions/reborn-crow-pilot.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, does making crows (and wild cats), the top early killers, scary for the fragile classes up to CL2 or CL3 save the low-level deaths without costing progress?",
+  "description": "On borg-reborn-rs main 3ba17e2c, does making crows (and wild cats), the top early killers, scary for the fragile classes up to CL2 or CL3 save the low-level deaths without costing progress? Generated from definitions/reborn-crow-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result was read. Pilot (RULES 16). #241 (156c8e52, five early killers at 2-4) is\ncontext only.\nGate:\n- no config_error; one binary; each arm's appended lines in the run's scary list;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: identical plays against ctl; deaths and causes (deaths to crows and wild cats named),\nCL1-3 deaths, final level, deepest level; paired rescued and newly killed; \"Scary guy on level\" notes naming a crow\nor wild cat. Each arm is reported as harmful, neutral (safe to adopt) or helpful (RULES 18). Direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-crow38-ctl",
+    "reborn-crow38-crow2",
+    "reborn-crow38-crow3",
+    "reborn-crow38-crowcat2"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-crow38-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for the crow pilot after the death profile of shipped main (crows 21 of 105 deaths over 1,800 starts, 62% of deaths at CL1-2). Pilot first (RULES 16).",
+  "retain_evidence": true
+}
