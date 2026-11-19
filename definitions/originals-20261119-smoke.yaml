@@ -1,0 +1,27 @@
+# borg-zoo#432: build and play check of Angband master 574b618c before its full run.
+name: originals-20261119-smoke
+folder: smoke
+issue: 432
+description: |-
+  Build and play check of angband master 574b618c (the C Borg at upstream's head of 2026-11-17) before the full run: classes-18 (18 seeds), default profile. Says only that it builds and plays; not a comparison.
+owner_authorization: |-
+  2026-11-19: the owner asked for "a full test on the new Angband head and on the latest release / milestone of bbc" (borg-zoo#432).
+specimens:
+- angband-574b618-original
+suites:
+- classes-18
+profile_prefix: ''
+arms:
+  default: {}
+control_specimen: angband-574b618-original
+control_profile: default
+extra:
+  retain_evidence: true
+  shards_by_specimen:
+    angband-574b618-original: 3
+  resource_budget:
+    processes_per_job: 2
+    max_parallel_jobs: 3
+    native_wall_seconds: 900
+    job_timeout_minutes: 300
+  control_profile: null

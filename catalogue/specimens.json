@@ -1739,6 +1739,23 @@
         "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
       }
     },
+    "angband-574b618-original": {
+      "repository": "angband/angband",
+      "ref": "574b618c3bfec595f3503a58f8e488b1c4ae3a46",
+      "mode_side": "pre",
+      "carries": 0,
+      "label": "Angband master 574b618c, C Borg: upstream's head on 2026-11-17, the base of better-borg-c impact v15. The vanilla C Borg to set beside angband-42cd156-original; its results are not paired with 42cd156's, because the game changed.",
+      "source": "https://github.com/angband/angband/commit/574b618c3bfec595f3503a58f8e488b1c4ae3a46"
+    },
+    "4.2.6-bbc-m15": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "646ebfc2a3a80a0caf87f1ab72fe4bcee0d94343",
+      "mode_side": "post",
+      "carries": 137,
+      "label": "better-borg-c milestone 15 (tag 4.2.6-impact-v15, 2026-11-19): official angband master 574b618c with 137 carried C Borg fixes (review issue better-borg-c#547). Same game commit as angband-574b618-original.",
+      "source": "https://github.com/diegoami/better-borg-c/blob/646ebfc2a3a80a0caf87f1ab72fe4bcee0d94343/docs/measurement/IMPACT-MILESTONE15.md",
+      "tag": "4.2.6-impact-v15"
+    },
     "4.2.6-reborn-rust-main-0d8b61d7": {
       "kind": "borg-rs",
       "impl": "rust",
@@ -1790,6 +1807,23 @@
         "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
       }
     },
+    "4.2.6-reborn-rust-pr632-ed8e270d": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "ed8e270d64ac04a13205012a86b33194fc69e286",
+      "label": "borg-reborn-rs ed8e270d, head of PR #632 (#556 redesigned, unmerged; contains main 3ba17e2c): kill breeders first behind caution_breeder_stoppable (0), the flight's colony avoidance behind caution_breeder_avoid (0). Source-hash rust b48a199a...; harness/borg.txt f69f7655...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
     "4.2.6-reborn-rust-main-a87b4c96": {
       "kind": "borg-rs",
       "impl": "rust",
@@ -1798,7 +1832,7 @@
       "role": "candidate",
       "repository": "diegoami/borg-reborn-rs",
       "ref": "a87b4c96cff9cf636f95cbb9818526f22a025625",
-      "label": "borg-reborn-rs a87b4c96, main at the merge of #688 (per-class Phase Door and oil curves, @class lines), after #662 (Phase Door rule shipped) and #672 (calmed shipped). harness/borg.txt 63a4d1be...",
+      "label": "borg-reborn-rs main a87b4c96, the merge of #688 (#682: town_phase_curve_scale_percent and town_oil_curve_scale_percent per class, the owner's values; Blackguard healing 100/200). Tree 9f0cda19; harness/borg.txt 63a4d1be...",
       "plans": {
         "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
         "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
