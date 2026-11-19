@@ -46,6 +46,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-neutral-main` | [#400](https://github.com/diegoami/borg-zoo/issues/400) | 5 | defined (pilot, small, medium, big, full on 3ba17e2c, not dispatched) | Settings found neutral elsewhere, each alone on main 3ba17e2c: caution_scary_unlatch_calmed, caution_recall_wait_as_usual, attack_town_dangerous_on_sight, escape_fox_form (1 against shipped 0). |
 | `reborn-untested-town` | [#401](https://github.com/diegoami/borg-zoo/issues/401) | 13 | defined (pilot screen on 3ba17e2c, not dispatched) | Never-tested town planner settings halved and doubled on main 3ba17e2c: borg_town_risk, power_scale, w_attack, w_support, w_space, home_discount. |
 | `reborn-untested-caution` | [#401](https://github.com/diegoami/borg-zoo/issues/401) | 9 | defined (pilot screen on 3ba17e2c, not dispatched) | Never-tested trip, Recall and breeder settings lowered and raised on main 3ba17e2c: borg_town_explore_turns, caution_recall_rest_turns, caution_breeder_easy_escape_steps, caution_flee_recall_chasers. |
+| `reborn-errands-floor3` | [#405](https://github.com/diegoami/borg-zoo/issues/405) | 4 | defined (pilot on 3ba17e2c, not dispatched) | Errands plan × floor3 (2×2) on main 3ba17e2c: ctl, errands, floor3, both. |
 
 ### `heal-attack-4`
 
@@ -691,13 +692,26 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-untested38-chasers-lo` | – | 2 | – | – |
 | `reborn-untested38-chasers-hi` | – | 6 | – | – |
 
+### `reborn-errands-floor3`
+
+Errands plan × floor3 (2×2) on main 3ba17e2c: ctl, errands, floor3, both.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_plan` | `borg_scary_list_lines` |
+| --- | --- | --- |
+| `reborn-combo38-both` | errands_plan.txt | 35 lines |
+| `reborn-combo38-ctl` | – | – |
+| `reborn-combo38-errands` | errands_plan.txt | – |
+| `reborn-combo38-floor3` | – | 35 lines |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
 
 | Setting | Values used | Shortcuts | What it does, and what we learned |
 | --- | --- | --- | --- |
-| `borg_plan` | errands_plan.txt, errands_plan_ambitious.txt, not set | `heal-pilot-12`, `maxdepth-2x5`, `reborn-5arm-town`, `reborn-3x3-trip`, `reborn-5arm-shop`, `reborn-bundle`, `reborn-errands-main` | The errands plan the Borg follows. Loop-levels plans up to `d3ebe3c0`: the errands plan added caster deaths with the town planner (borg-cemetery#19). Max-depth caps from `6d1bca10` (#440): a cap is a preparation check, not a hard limit; 35 of 900 games died or ended below it (#147). |
+| `borg_plan` | errands_plan.txt, errands_plan_ambitious.txt, not set | `heal-pilot-12`, `maxdepth-2x5`, `reborn-5arm-town`, `reborn-3x3-trip`, `reborn-5arm-shop`, `reborn-bundle`, `reborn-errands-main`, `reborn-errands-floor3` | The errands plan the Borg follows. Loop-levels plans up to `d3ebe3c0`: the errands plan added caster deaths with the town planner (borg-cemetery#19). Max-depth caps from `6d1bca10` (#440): a cap is a preparation check, not a hard limit; 35 of 900 games died or ended below it (#147). |
 | `borg_town_plan` | 0, 1, not set | `reborn-5arm-town`, `reborn-3x3-trip`, `reborn-5arm-shop`, `rs-additive-6`, `reborn-bundle` | "New inventory": the live town planner. Alone it looked best in the #123 small tier (15 deaths v control 22 of 90). |
 | `borg_trip_policy` | 0, 1, not set | `heal-pilot-12`, `maxdepth-2x5`, `reborn-3x3-trip`, `reborn-5arm-shop`, `rs-additive-6`, `reborn-bundle` | Extra reasons to return to town. Barely changes play: 42 of 54 paired pilot games identical. Kept off in #123's development arms until it is shown to help (owner). From `8a0b57c8` it is borg-rs#88's additive policy. |
 | `borg_trip_unknown_stacks` | 0, 2, 3, 4, 5, not set | `maxdepth-2x5`, `rs-additive-6`, `reborn-bundle` | Return when this many carried stacks are unidentified (default 4). Changes play: (3,x) differs from return-off in about 40% of games; (5,1) played like return-off in 26-27 of 30 starts. |
@@ -821,7 +835,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
-| `borg_scary_list_lines` | 1 line, 14 lines, 28 lines, 35 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main` |  |
+| `borg_scary_list_lines` | 1 line, 14 lines, 28 lines, 35 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3` |  |
 | `borg_town_explore_turns` | 500, 2000, not set | `reborn-untested-caution` |  |
 | `borg_town_home_discount` | 250, 1000, not set | `reborn-untested-town` |  |
 | `borg_town_power_scale` | 20000, 80000, not set | `reborn-untested-town` |  |
