@@ -535,6 +535,20 @@ Lower values send the Borg back for unknown items more often. Each return brings
 
 **#413, new flags on main HEAD 592c6984 (pilot 44560354236, small 44570516913; 108 starts per arm):** the three #637 flags (town wand, caster walk, whole bonus) play byte-identical games to on_sight alone in 18 of 18 pilot starts, so they are **not reached** in early games. ctl 4 deaths; onsight 4, foxtown 4 (12 of 108 games change), recall-rest (#640, 200 turns) 6 (1 / 3), phase-rule 5 (3 / 4, CL +0.21), errands 5 (0 / 1). **Bins:** onsight and foxtown neutral, as on 3ba17e2c; recall-rest neutral leaning worse; the Phase Door rule and errands re-checks run normally on the new main, but 108 starts cannot see their 3ba17e2c effects.
 
+**#383, the errands plan: confirmation and 200,000 turns (main 3ba17e2c).** Confirmation on classes-1800-b (1,800 fresh starts): none 128 deaths, **errands 117 (p 0.035)**, CL −0.09 and DL −0.08. Survival is confirmed, and DL just misses the prespecified −0.10 non-inferiority margin. At 200,000 turns (starts 1-360, pilot + small + medium): 23 against 22 (4 / 3), CL −0.07, **DL −0.23**. All of the depth cost is at CL7-14: mean ΔDL −0.29 at control CL7-9 and −1.60 at CL10-14, against +0.04 to +0.12 below CL7, where the caps are 1-2 and the survival lead is. **Bins:** helpful on deaths at 100k, with a depth cost that grows with game length. A variant that keeps the caps of 1-2 and takes the ambitious plan's caps after (`errands_plan_early.txt`) is proposed on borg-reborn-rs#674. It needs the file in a main commit before a pilot.
+
+**#369, floor3 Rogue confirmation (the 200 Rogue starts of classes-1800-b, main 3ba17e2c):** ctl 8 deaths, floor3 7 (7 / 6, p 1.0), CL +0.46. **Bin:** neutral on deaths, helpful on progress for Rogues. On main, floor3 is on #416's "not to ship" list for its all-class deaths (105 to 127).
+
+**#415 study 2, Mage and Priest on main 592c6984 (pilot, 20 starts per arm):** ctl 1 death; heal-hi (Mage 225 / 450, Priest 185 / 375) 2 (1 / 2); spell preference 1500 1, with 17 of 20 games identical. **Bins:** heal-hi neutral; spell 1500 neutral and mostly inert.
+
+**Death-start replays on main 3ba17e2c (#408, #429): they measure reach, not effect.** These runs replay only the starts where shipped main died: 55 crow / wild-cat deaths, and all 233 deaths of the development and confirmation suites. ctl replays every death exactly.
+- **Scary-list crow arms** (crow2, crow3, crowcat2): they change 0-1 of the 55 games. **Not reached:** the Borg is already fleeing when the crow catches it.
+- **The death bank** (233 starts): the Phase Door rule 86 deaths (changes 163 games), calmed 178 (66), errands 198 (37), all three 80 (169).
+- **The crow escape replay** (55 starts): the rule 30 deaths, rule + throwing 1500 30 (53 of 55 identical to the rule: inert), rule + more oil (`borg_town_w_attack` 200, `attack_turns` 50) 10 (changes 50).
+- **Caveat:** a game that changes dies only 5-17% of the time, whatever the change, close to the 6% random-start death rate. A start's death is mostly the bad luck of one path. So rescue counts measure how often an arm changes the game, not whether its mechanism saves.
+- **No bin from these runs.** Only "not reached" is a reading.
+- **Oil on random starts:** in the #415 casters pilot (40 starts, 592c6984), oil has 6 deaths against 2 (1 / 5, p 0.22). It buys 190 more flasks in total, and 27 fewer Cure Light Wounds and 11 fewer Phase Door. The extra deaths were not to oil-related situations. The per-class oil curves of #433 test it on random starts.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
