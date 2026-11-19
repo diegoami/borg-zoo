@@ -886,11 +886,33 @@
     },
     "reborn-class-curves": {
       "issue": 433,
-      "status": "defined (pilot on main a87b4c96)",
+      "status": "pilot done (run 44610324668: 0 deaths against 1); small + medium defined",
       "what": "The owner's #682 per-class Phase Door and oil curve scales (and Blackguard healing 100/200) against the same build set back to 100 (main before #682).",
       "profiles": [
         "reborn-curves-a87b-ctl",
         "reborn-curves-a87b-owner"
+      ],
+      "runs": []
+    },
+    "reborn-kill-flow-mode": {
+      "issue": 438,
+      "status": "defined (pilot on PR #695 head f9c44b35, 200k turns)",
+      "what": "The hunt removed in steps: kill_flow_mode 0 (C), 1 targeted hunts only, 2 no out-of-view hunt, 3 never hunt.",
+      "profiles": [
+        "reborn-killflow-ctl",
+        "reborn-killflow-inview",
+        "reborn-killflow-nohunt",
+        "reborn-killflow-targeted"
+      ],
+      "runs": []
+    },
+    "reborn-detect-min-level": {
+      "issue": 443,
+      "status": "defined (pilot on PR #703 head 3ed059b6)",
+      "what": "No detection prayer by panel below CL10 for the five casters (light_detect_evil_spell_min_level 10) against C (0).",
+      "profiles": [
+        "reborn-detectmin-ctl",
+        "reborn-detectmin-switch"
       ],
       "runs": []
     }

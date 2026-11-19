@@ -55,7 +55,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-death-bank38` | [#429](https://github.com/diegoami/borg-zoo/issues/429) | 5 | defined (replay of 3ba17e2c's 233 death starts, not dispatched) | The death-start bank of shipped main 3ba17e2c: ctl, the Phase Door rule, calmed unlatch, the errands plan, all three. |
 | `reborn-crow-escape` | [#408](https://github.com/diegoami/borg-zoo/issues/408) | 4 | defined (replay of the 55 crow/wild-cat death starts, not dispatched) | Crow/wild-cat death starts on 3ba17e2c: ctl, the Phase Door rule, the rule + throwing 1500, the rule + more oil. |
 | `reborn-breeder-stoppable` | [#411](https://github.com/diegoami/borg-zoo/issues/411) | 3 | defined (pilot on PR #632 head ed8e270d) | Kill breeders first (caution_breeder_stoppable), alone and with the flight's colony avoidance (caution_breeder_avoid), against both off. |
-| `reborn-class-curves` | [#433](https://github.com/diegoami/borg-zoo/issues/433) | 2 | defined (pilot on main a87b4c96) | The owner's #682 per-class Phase Door and oil curve scales (and Blackguard healing 100/200) against the same build set back to 100 (main before #682). |
+| `reborn-class-curves` | [#433](https://github.com/diegoami/borg-zoo/issues/433) | 2 | pilot done (run 44610324668: 0 deaths against 1); small + medium defined | The owner's #682 per-class Phase Door and oil curve scales (and Blackguard healing 100/200) against the same build set back to 100 (main before #682). |
+| `reborn-kill-flow-mode` | [#438](https://github.com/diegoami/borg-zoo/issues/438) | 4 | defined (pilot on PR #695 head f9c44b35, 200k turns) | The hunt removed in steps: kill_flow_mode 0 (C), 1 targeted hunts only, 2 no out-of-view hunt, 3 never hunt. |
+| `reborn-detect-min-level` | [#443](https://github.com/diegoami/borg-zoo/issues/443) | 2 | defined (pilot on PR #703 head 3ed059b6) | No detection prayer by panel below CL10 for the five casters (light_detect_evil_spell_min_level 10) against C (0). |
 
 ### `heal-attack-4`
 
@@ -829,6 +831,30 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-curves-a87b-ctl` | 75 | 150 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 |
 | `reborn-curves-a87b-owner` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
 
+### `reborn-kill-flow-mode`
+
+The hunt removed in steps: kill_flow_mode 0 (C), 1 targeted hunts only, 2 no out-of-view hunt, 3 never hunt.
+
+Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_kill_flow_mode` |
+| --- | --- |
+| `reborn-killflow-ctl` | 0 |
+| `reborn-killflow-inview` | 2 |
+| `reborn-killflow-nohunt` | 3 |
+| `reborn-killflow-targeted` | 1 |
+
+### `reborn-detect-min-level`
+
+No detection prayer by panel below CL10 for the five casters (light_detect_evil_spell_min_level 10) against C (0).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_light_detect_evil_spell_min_level@druid` | `borg_param_light_detect_evil_spell_min_level@mage` | `borg_param_light_detect_evil_spell_min_level@necromancer` | `borg_param_light_detect_evil_spell_min_level@paladin` | `borg_param_light_detect_evil_spell_min_level@priest` |
+| --- | --- | --- | --- | --- | --- |
+| `reborn-detectmin-ctl` | 0 | 0 | 0 | 0 | 0 |
+| `reborn-detectmin-switch` | – | – | – | – | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -939,7 +965,13 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_phase_lost_test` | 0, 1, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
 | `borg_param_escape_phase_ordinary_danger_tenths` | 5, 20, not set | `reborn-phase-thresholds` |  |
 | `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
+| `borg_param_kill_flow_mode` | 0, 1, 2, 3 | `reborn-kill-flow-mode` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
+| `borg_param_light_detect_evil_spell_min_level@druid` | 0, not set | `reborn-detect-min-level` |  |
+| `borg_param_light_detect_evil_spell_min_level@mage` | 0, not set | `reborn-detect-min-level` |  |
+| `borg_param_light_detect_evil_spell_min_level@necromancer` | 0, not set | `reborn-detect-min-level` |  |
+| `borg_param_light_detect_evil_spell_min_level@paladin` | 0, not set | `reborn-detect-min-level` |  |
+| `borg_param_light_detect_evil_spell_min_level@priest` | 0, not set | `reborn-detect-min-level` |  |
 | `borg_param_recover_rest_arms_see_invis` | 1, not set | `reborn-stand-seeinv` |  |
 | `borg_param_town_gold_reserve` | 300, 1000, not set | `reborn-gold-reserve` |  |
 | `borg_param_town_gold_reserve_percent` | 25, 50, not set | `reborn-gold-reserve` |  |

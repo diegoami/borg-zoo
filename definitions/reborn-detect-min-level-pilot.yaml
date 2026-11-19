@@ -1,0 +1,56 @@
+# borg-zoo#443: borg-reborn-rs#685, no detection prayer by panel below CL10 for the casters; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-detect-min-level-pilot.yaml
+#
+# PR #703 is not merged; the specimen is its head 3ed059b6 (on main a87b4c96). ctl writes the five class lines back to 0
+# (the C behaviour; the common line is already 0), so the other four classes play the same in both arms.
+name: reborn-detect-min-level-pilot
+issue: 443
+question: >-
+  On borg-reborn-rs 3ed059b6 (PR #703), does casting no Detect Evil / Detect Monsters / Read Minds / Seek Battle by
+  panel below CL10 for Priest, Paladin, Mage, Necromancer and Druid (light_detect_evil_spell_min_level 10) change
+  deaths or progress against the C behaviour (0)?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-pr703-3ed059b6
+  repository: diegoami/borg-reborn-rs
+  ref: 3ed059b6b309c1d2602c52575c9411920ae8be63
+  label: "borg-reborn-rs PR #703 head 3ed059b6 on main a87b4c96 (#685: light_detect_evil_spell_min_level, 10 for Priest, Paladin, Mage, Necromancer and Druid). Tree d59363ad; harness/borg.txt e876a25a..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-detectmin
+arms:
+  ctl:   # C: detect by panel at any level
+    borg_param_light_detect_evil_spell_min_level@mage: 0
+    borg_param_light_detect_evil_spell_min_level@druid: 0
+    borg_param_light_detect_evil_spell_min_level@priest: 0
+    borg_param_light_detect_evil_spell_min_level@necromancer: 0
+    borg_param_light_detect_evil_spell_min_level@paladin: 0
+  switch: {}   # as shipped by the PR: 10 for the five casters
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner set 10 for the casters (#443) and asked to look at the open issues and do the pilots they
+  request. Pilot first (RULES 16), then classes-1800 with a per-class breakdown.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles was read. Pilot (RULES 16).
+  Gate:
+  - no config_error; one binary; ctl's five lines written;
+  - the Warrior, Rogue, Ranger and Blackguard games identical in both arms (the switch does not touch them);
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class: deaths and causes, CL1-3 deaths, max CL and DL; paired rescued and newly killed;
+  identical plays. 18 starts show direction and safety only; the per-class reading needs classes-1800, and a RULES 18
+  bin comes from those tiers.
+  Context (borg-reborn-rs local check, 34 death-selected Priest and Paladin starts): Priest CL 4.72 -> 5.96, mana rest
+  40% -> 18%, deaths 1 vs 1.

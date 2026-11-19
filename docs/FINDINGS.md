@@ -132,6 +132,19 @@ both on `classes-1800-200k`:
 unchanged from M9: its units are two local-only improvements never proposed upstream and a
 crash correction to the already-carried patch 0099. No death-rate comparison yet - see "Open".
 
+**Milestone 15 and the new upstream head (#432, 2026-11-19; runs 44604305970 and 44604334824, classes-1800).**
+- **The new upstream head:** the original C Borg at Angband master 574b618c (10 commits past 42cd156) has 618 deaths, against 617 on 42cd156 (15 / 16). It is unchanged.
+- **better-borg-c v15** (tag 4.2.6-impact-v15, 137 carries on that same game commit):
+  - normal (modes off): 482 deaths, 26.8%;
+  - munchkin-class: 452, 25.1%.
+  These are the fewest of any milestone (v13: 526 and 469).
+- **Depth under normal:** v15 reaches less depth than v13 (mean max DL 2.10 against 2.40) at the same CL.
+- **Against the original on the same game:**
+  - v15 normal has 136 fewer deaths (417 / 281, descriptive across the mode cutoff, #54);
+  - Warriors, Rogues, Blackguards, Rangers and Druids gain most;
+  - Necromancers (73 against 64) and Priests (54 against 50) die more.
+- **Munchkin-class against normal:** fewer deaths (111 / 81, p 0.036). Warriors gain (26 → 10) and Druids gain (111 → 84), but Rangers die more (59 → 72).
+
 ## Rust Borg: borg-rs
 
 **The port is exact at M4, M5 and M6.** The Rust Borg and the C Borg of the same borg-rs tree play identically on 1,800 of 1,800 seeds at each milestone:
@@ -548,6 +561,38 @@ Lower values send the Borg back for unknown items more often. Each return brings
 - **Caveat:** a game that changes dies only 5-17% of the time, whatever the change, close to the 6% random-start death rate. A start's death is mostly the bad luck of one path. So rescue counts measure how often an arm changes the game, not whether its mechanism saves.
 - **No bin from these runs.** Only "not reached" is a reading.
 - **Oil on random starts:** in the #415 casters pilot (40 starts, 592c6984), oil has 6 deaths against 2 (1 / 5, p 0.22). It buys 190 more flasks in total, and 27 fewer Cure Light Wounds and 11 fewer Phase Door. The extra deaths were not to oil-related situations. The per-class oil curves of #433 test it on random starts.
+
+**Studies on borg-reborn-rs main e5cc5469 and a87b4c96 (2026-11-19 evening; every gate passed):**
+- **The new base has a new death:** a CL3 Paladin (seed 766958386, classes-18) dies of poison in town at turn 5,100 in every arm on e5cc5469. The same start reached the cap on 0d8b61d7 and 592c6984.
+- **#426, ranged first against immobile attackers** (pilot 44599279288, 0d8b61d7):
+  - deaths 0 → 1, a Blackguard to a yellow worm mass (the local run's case);
+  - 13 of 18 games change;
+  - CL +0.28.
+  - **Bin:** neutral.
+- **#427, throws rated like melee** (pilot 44599308992, PR #687 head 7c9b4cd1):
+  - 1 death against 1, the shared Paladin;
+  - 16 of 18 games change;
+  - CL −0.06.
+  - **Bin:** neutral.
+- **#428, the rest of the bundle on e5cc5469** (pilot 44599338458, small 44602792133; 108 starts per arm). ctl 2 deaths.
+  - **Recall wait-as-usual:** 2 deaths; changes 3 of 108 games. **Bin:** neutral, barely reached.
+  - **Errands:** 3 deaths (0 / 1), **mean max DL −0.18** (2.24 → 2.06). **Bin:** leaning worse.
+  - **Both:** the same as errands.
+  - With calmed and the Phase Door rule shipped, the plan's 3ba17e2c survival gain is gone at this size, and its depth cost stays.
+- **#403, support500 at medium** (44599368117, 3ba17e2c):
+  - medium: 17 against 20 (6 / 9);
+  - with pilot and small (378 per arm): 20 against 24 (7 / 11, p 0.48), with CL and DL unchanged.
+  - **Bin:** neutral. Shipped 1000 stays.
+- **Suite 1 on e5cc5469** (smoke 44599396105, #183): 8 deaths of 18. Per class, it matches the 38858846 smoke.
+- **#437, Blackguards and the Phase Door rule on a87b4c96** (pilot 44607237940, the 10 Blackguard starts of classes-1800-small):
+  - no deaths in either arm;
+  - rule-off changes all 10 games, CL +0.7 and DL +0.6.
+  - **Bin:** neutral on deaths, leaning better on progress. Medium is proposed.
+- **#436, caster oil on a87b4c96** (pilot 44607268031, 40 caster starts):
+  - `borg_town_w_attack` 200: 3 deaths against 3 (3 / 3), CL +0.25;
+  - it rescues the two CL1-2 deaths and adds three later ones.
+  - **Bin:** neutral.
+  - The oil-curve arms wait for profile-writable class lines (borg-reborn-rs#696).
 
 ## Open
 
