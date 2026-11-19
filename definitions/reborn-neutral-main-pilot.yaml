@@ -1,0 +1,68 @@
+# borg-zoo#400: settings found neutral elsewhere, each alone against main 3ba17e2c; pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-neutral-main-pilot.yaml
+#
+# attack_arrow_point_blank_divisor_rogue = 2 is left out: #379 measured it alone on this build over all 200 Rogue
+# starts of classes-1800, and an arm here would replay those games (its confirmation is in PR #397).
+name: reborn-neutral-main-pilot
+issue: 400
+question: >-
+  On borg-reborn-rs main 3ba17e2c, does each setting found neutral on an older build or at pilot size (unlatch when
+  calmed, Recall wait-as-usual, kill dangerous townspeople on sight, Fox Form) stay neutral, alone, against main?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-3ba17e2c
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# Every arm writes the four switches; ctl writes main's shipped values, each other arm changes one.
+profile_prefix: reborn-neutral38
+arms:
+  ctl:
+    borg_param_caution_scary_unlatch_calmed: 0
+    borg_param_caution_recall_wait_as_usual: 0
+    borg_param_attack_town_dangerous_on_sight: 0
+    borg_param_escape_fox_form: 0
+  calmed:
+    borg_param_caution_scary_unlatch_calmed: 1
+    borg_param_caution_recall_wait_as_usual: 0
+    borg_param_attack_town_dangerous_on_sight: 0
+    borg_param_escape_fox_form: 0
+  recall-usual:
+    borg_param_caution_scary_unlatch_calmed: 0
+    borg_param_caution_recall_wait_as_usual: 1
+    borg_param_attack_town_dangerous_on_sight: 0
+    borg_param_escape_fox_form: 0
+  town-kill:
+    borg_param_caution_scary_unlatch_calmed: 0
+    borg_param_caution_recall_wait_as_usual: 0
+    borg_param_attack_town_dangerous_on_sight: 1
+    borg_param_escape_fox_form: 0
+  fox:
+    borg_param_caution_scary_unlatch_calmed: 0
+    borg_param_caution_recall_wait_as_usual: 0
+    borg_param_attack_town_dangerous_on_sight: 0
+    borg_param_escape_fox_form: 1
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked for more runs, "what you consider neutral" among them. Pilot first (RULES 16), then
+  small, medium, big and full, each after the previous gate (RULES 14). Dispatch is the owner's call.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles was read. Pilot (RULES 16).
+  Earlier evidence, each on another build or at pilot size: calmed 46 against 49 of 810 (#357, 49933db7);
+  recall-usual 18/18 identical at 100k (#358, 13e1187c); town-kill 0 against 0, 15 identical (#385, 0892ebd7);
+  fox 13 against 12 of 280 (#312, dbe99509). Overlap: #396 bundles calmed and recall-usual with Phase Door thr-100 and
+  Rogue divisor 2 (PR #397); #390's pilot has the town-kill arm.
+  Gate:
+  - no config_error; one binary; each arm's four values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - ctl writes only shipped values, so it should replay reborn-errands-main-pilot's none arm (the same specimen and
+    starts) in 18 of 18 games; fox acts only for Druids, so its other 16 games should equal ctl's (differences listed).
+  Report per arm and per class: deaths and causes, CL1-3 deaths, mean max CL and DL; paired rescued and newly killed
+  against ctl; identical plays. Each arm is reported as harmful, neutral (safe to adopt) or helpful (RULES 18).
+  Direction only.
