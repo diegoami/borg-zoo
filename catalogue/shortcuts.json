@@ -944,7 +944,7 @@
     },
     "reborn-class-curves-dbc": {
       "issue": 433,
-      "status": "defined (pilot, small, medium on main dbc92d18)",
+      "status": "small + medium done (13 against 12 deaths of 360); big + full defined",
       "what": "#433 restarted on dbc92d18: the owner's class curves against all scales 100.",
       "profiles": [
         "reborn-curves-dbc-ctl",
@@ -970,6 +970,16 @@
         "reborn-breederstop-dbc-ctl",
         "reborn-breederstop-dbc-stop",
         "reborn-breederstop-dbc-stop-avoid"
+      ],
+      "runs": []
+    },
+    "reborn-store-overweight": {
+      "issue": 457,
+      "status": "defined (pilot on PR #714 head d9e5a37e)",
+      "what": "Store at home only when overweight (town_store_only_overweight) against off.",
+      "profiles": [
+        "reborn-storeow-ctl",
+        "reborn-storeow-overweight"
       ],
       "runs": []
     }

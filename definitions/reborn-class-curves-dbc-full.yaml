@@ -1,0 +1,24 @@
+# borg-zoo#433 on main dbc92d18, full tier; owner 2026-11-20.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-class-curves-dbc-full.yaml
+#
+# The pilot is reborn-class-curves-dbc-pilot (gate passed, run 44632898782); small + medium (starts 1-360): 13 against
+# 12 deaths, with Mage 5 -> 1 and Blackguard and Warrior 0 -> 2 each.
+name: reborn-class-curves-dbc-full
+issue: 433
+question: >-
+  On borg-reborn-rs main dbc92d18, do the owner's per-class Phase Door and flask-of-oil curve scales (and the
+  Blackguard's healing 100 / 200) change deaths or progress, per class, against the same build with them set to 100?
+specimens: [4.2.6-reborn-rust-main-dbc92d18]
+tier: full          # classes-1800 starts 901-1800
+profiles: [reborn-curves-dbc-ctl, reborn-curves-dbc-owner]
+control_specimen: 4.2.6-reborn-rust-main-dbc92d18
+control_profile: reborn-curves-dbc-ctl
+owner_authorization: >-
+  2026-11-20: after small + medium, the owner said yes to big + full, to settle the per-class values.
+
+prespecified: |
+  Fixed 2026-11-20, before any result of these profiles on starts 361-1800 was read. Same specimen and profiles as the
+  pilot (RULES 16). Gate as the pilot's. Report per arm and per class, pooled over all tiers (all 1,800 starts, 200
+  per class; RULES 14): deaths and causes, CL1-3 deaths, max CL and DL; paired rescued and newly killed (exact
+  McNemar), overall and per class, with Holm over the nine classes; identical plays. Each class's values are binned
+  harmful, neutral or helpful (RULES 18). Starts 1-360 led on Mage (helpful) and Blackguard and Warrior (harmful).

@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-store-overweight-pilot",
+  "issue": 457,
+  "definition": "definitions/reborn-store-overweight-pilot.yaml",
+  "question": "On borg-reborn-rs PR",
+  "description": "On borg-reborn-rs PR Generated from definitions/reborn-store-overweight-pilot.yaml: 2 arms on 4.2.6-reborn-rust-pr714-d9e5a37e, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this definition was read (borg-reborn-rs#711, PR #714; replaces\nborg-zoo#456). Pilot (RULES 16); small and medium (starts 1-360) right after this gate.\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final and maximum level, deepest level; paired rescued and newly killed against ctl;\n- \"# Town plan executing action 5 at shop 7\" (Store) per game, by item, and how many are fight consumables\n  (Cure Light/Serious/Critical Wounds, Flasks of oil, Phase Door, Heroism, Boldness, Blessing, Berserk Strength);\n- purchases (action 1), takes from the Home (action 2), cures quaffed (\"# Quaffing Potion(s) of Cure\"), oil thrown\n  (\"Throwing painful object 'Flask\");\n- deaths with a cure potion or a Flask of oil in the Home and none in the pack.\nContext: local classes-18 on the same tree: ctl 329 stores (130 fight consumables), 1 death, sum max CL 103, DL 37;\noverweight 39 stores (25), 0 deaths, 109, 40.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr714-d9e5a37e"
+  ],
+  "profiles": [
+    "reborn-storeow-ctl",
+    "reborn-storeow-overweight"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-pr714-d9e5a37e",
+  "control_profile": "reborn-storeow-ctl",
+  "owner_authorization": "2026-11-20: the owner said \"yes do 1 and 2\": this pilot, and #433's big + full.",
+  "retain_evidence": true
+}
