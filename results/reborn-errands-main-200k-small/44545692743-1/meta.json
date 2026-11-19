@@ -1,0 +1,478 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-errands38-errands": {
+        "description": "borg-zoo#383 (reborn-errands-main-pilot.yaml): arm errands.",
+        "settings": {
+          "borg_plan": "errands_plan.txt",
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "58a98c60be5c26597832a1cec42f57b46157f5f39c791c21ec5f10dddd488d6f"
+      },
+      "reborn-errands38-none": {
+        "description": "borg-zoo#383 (reborn-errands-main-pilot.yaml): arm none.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "c62e1a2883a02b6f84c6d2d18c6cadb4bd6c57a09e7fff6c5b24baf0f8328f6a"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-3ba17e2c": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 3ba17e2c, main at the merge of #633. Ships attack_arrow_point_blank_divisor Ranger 2 and Rogue 3 (class files). Tree 23632fb4; source-hash rust bc79f0a6...; harness/borg.txt 617cc79c...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "3ba17e2c21ae203d2dd45fa53f1dbada87acba75",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-200k-small": {
+        "assigned_characters": {
+          "100299379": [
+            "Dwarf",
+            "Paladin"
+          ],
+          "1025749871": [
+            "Gnome",
+            "Paladin"
+          ],
+          "1028198117": [
+            "Elf",
+            "Blackguard"
+          ],
+          "1054787239": [
+            "Elf",
+            "Druid"
+          ],
+          "1083261516": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "1133889972": [
+            "Dwarf",
+            "Blackguard"
+          ],
+          "114619258": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "1151047705": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "1199913421": [
+            "Elf",
+            "Rogue"
+          ],
+          "1218426403": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1235353287": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "1259340838": [
+            "High-Elf",
+            "Ranger"
+          ],
+          "1267538142": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "1293637791": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "131226675": [
+            "Dunadan",
+            "Blackguard"
+          ],
+          "1312944558": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "1329923158": [
+            "Dunadan",
+            "Mage"
+          ],
+          "1333838632": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1337820894": [
+            "Hobbit",
+            "Mage"
+          ],
+          "1449368462": [
+            "Gnome",
+            "Druid"
+          ],
+          "146314963": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1475838139": [
+            "Dwarf",
+            "Druid"
+          ],
+          "1535487883": [
+            "Gnome",
+            "Priest"
+          ],
+          "1550668738": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1685800162": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "1690637538": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "1751231748": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "1762555726": [
+            "High-Elf",
+            "Mage"
+          ],
+          "1777909386": [
+            "Elf",
+            "Paladin"
+          ],
+          "1825930228": [
+            "Half-Orc",
+            "Paladin"
+          ],
+          "1852890573": [
+            "Elf",
+            "Mage"
+          ],
+          "1861474291": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1862188622": [
+            "High-Elf",
+            "Blackguard"
+          ],
+          "1862730222": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "1885351579": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "189752888": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "1912573423": [
+            "Dwarf",
+            "Mage"
+          ],
+          "195169650": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "2006160855": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "2013329729": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "2046389640": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "2069526057": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "2094664944": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "253542105": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "26391637": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "349285118": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "39906897": [
+            "Elf",
+            "Warrior"
+          ],
+          "39952278": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "400586804": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "404315884": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "425583996": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "44423192": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "495743290": [
+            "Dunadan",
+            "Druid"
+          ],
+          "538315326": [
+            "Gnome",
+            "Mage"
+          ],
+          "576022711": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "610530827": [
+            "Gnome",
+            "Rogue"
+          ],
+          "612726095": [
+            "Hobbit",
+            "Druid"
+          ],
+          "632849410": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "668213469": [
+            "Gnome",
+            "Ranger"
+          ],
+          "760932648": [
+            "Elf",
+            "Necromancer"
+          ],
+          "807173793": [
+            "Elf",
+            "Ranger"
+          ],
+          "810418227": [
+            "Elf",
+            "Priest"
+          ],
+          "812729166": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "84584110": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "847400765": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "847589906": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "848505221": [
+            "Dwarf",
+            "Priest"
+          ],
+          "856210392": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "873285335": [
+            "Half-Orc",
+            "Blackguard"
+          ],
+          "913789368": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "942984391": [
+            "High-Elf",
+            "Priest"
+          ],
+          "968242211": [
+            "High-Elf",
+            "Druid"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 200000,
+        "description": "Starts 19-90 of classes-1800-200k (8 per class), 200,000 engine turns: the small tier after classes-1800-200k-pilot (starts 1-18), disjoint from it (borg-zoo#350).",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          39906897,
+          1852890573,
+          1054787239,
+          810418227,
+          760932648,
+          1777909386,
+          1199913421,
+          807173793,
+          1028198117,
+          576022711,
+          1337820894,
+          612726095,
+          1861474291,
+          2006160855,
+          1267538142,
+          1083261516,
+          856210392,
+          400586804,
+          1218426403,
+          538315326,
+          1449368462,
+          1535487883,
+          146314963,
+          1025749871,
+          610530827,
+          668213469,
+          1862730222,
+          1312944558,
+          1912573423,
+          1475838139,
+          848505221,
+          632849410,
+          100299379,
+          253542105,
+          1293637791,
+          1133889972,
+          1550668738,
+          913789368,
+          1685800162,
+          26391637,
+          1885351579,
+          1825930228,
+          2069526057,
+          39952278,
+          873285335,
+          195169650,
+          1151047705,
+          812729166,
+          2046389640,
+          84584110,
+          349285118,
+          425583996,
+          1235353287,
+          404315884,
+          847589906,
+          1329923158,
+          495743290,
+          1333838632,
+          189752888,
+          847400765,
+          44423192,
+          1690637538,
+          131226675,
+          1751231748,
+          1762555726,
+          968242211,
+          942984391,
+          2094664944,
+          114619258,
+          2013329729,
+          1259340838,
+          1862188622
+        ],
+        "stall_seconds": 120,
+        "subset": {
+          "range": [
+            18,
+            90
+          ],
+          "suite": "classes-1800-200k"
+        },
+        "wall_seconds": 1800
+      }
+    }
+  },
+  "completed": "2026-11-19 14:51 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-3ba17e2c",
+    "control_profile": "reborn-errands38-none",
+    "definition": "definitions/reborn-errands-main-200k-small.yaml",
+    "description": "On borg-reborn-rs main 3ba17e2c at 200,000 turns, where the errands plan's depth caps bind more, does the errands plan keep its survival lead without costing progress (starts 19-90)? Generated from definitions/reborn-errands-main-200k-small.yaml: 2 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-200k-small.",
+    "issue": 383,
+    "name": "reborn-errands-main-200k-small",
+    "owner_authorization": "2026-11-19: after the 100,000-turn study, the owner asked to file the suggested runs, a 200,000-turn tier among them. Dispatched only after reborn-errands-main-200k-pilot's gate and the owner (RULES 14).",
+    "prespecified": "Fixed 2026-11-19, before any 200,000-turn result of these profiles was read. Same specimen and profiles as\nreborn-errands-main-pilot and reborn-errands-main-200k-pilot (RULES 16); no raw evidence at this size.\n100,000-turn study (classes-1800, all 1,800 starts): none 105, errands 91 deaths (18 / 4, p 0.0043); mean max CL\n5.15 / 5.12, DL 2.09 / 2.05.\nGate:\n- no config_error; one binary; each arm's plan recorded per cell (plan name and sha256) and checked against the pin;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts and stalls classified, key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, pooled with the 200k pilot (RULES 14): deaths and causes, CL1-3 deaths, mean max CL\nand DL; paired rescued and newly killed against none; identical plays; borg_stopped cells and plan-phase notes; the\ndeepest level against the plan's cap for the character's level (games held at a cap). RULES 18 bins. 90 starts per\narm show direction.",
+    "profiles": [
+      "reborn-errands38-none",
+      "reborn-errands38-errands"
+    ],
+    "question": "On borg-reborn-rs main 3ba17e2c at 200,000 turns, where the errands plan's depth caps bind more, does the errands plan keep its survival lead without costing progress (starts 19-90)?",
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-3ba17e2c"
+    ],
+    "suites": [
+      "classes-1800-200k-small"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44545692743-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44545692743",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "a29b7d01de8b0a33239671ca96a099228f965cdc"
+}
