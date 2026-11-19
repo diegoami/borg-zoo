@@ -1,0 +1,54 @@
+# borg-zoo#347: copied from the run request (specimen re-pinned to main 4acf071f as the request asks).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-phase-rule-pilot-2.yaml
+name: reborn-phase-rule-pilot-2
+issue: 347
+question: On borg-reborn-rs #612's head 4acf071f, does #584's Phase Door rule save or cost games against ctl, and which 'cannot win' test (threshold at 100 or 150 percent of the HP, the fight compared, the fight and the landing compared) works best?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-4acf071f
+  repository: diegoami/borg-reborn-rs
+  ref: 4acf071fbea098fd6d1d189032d1dd2298b90a8a
+  label: "borg-reborn-rs 4acf071f, main at the merge of #612 (#584 step 2): the owner's Phase Door rule behind escape_phase_adjacent_rule (0) with escape_phase_lost_test (1), all shipped off; also #622's caution_town_scary_levels_less = 3. Source-hash rust aacb842d...; harness/borg.txt 09170d73..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only the three #584 parameters.
+profile_prefix: reborn-phaserule2
+arms:
+  ctl: {borg_param_escape_phase_adjacent_rule: 0, borg_param_escape_phase_lost_test: 1, borg_param_escape_phase_lost_danger_percent: 100}
+  thr-100: {borg_param_escape_phase_adjacent_rule: 1, borg_param_escape_phase_lost_test: 0, borg_param_escape_phase_lost_danger_percent: 100}
+  thr-150: {borg_param_escape_phase_adjacent_rule: 1, borg_param_escape_phase_lost_test: 0, borg_param_escape_phase_lost_danger_percent: 150}
+  fight: {borg_param_escape_phase_adjacent_rule: 1, borg_param_escape_phase_lost_test: 1, borg_param_escape_phase_lost_danger_percent: 100}
+  fight-landing: {borg_param_escape_phase_adjacent_rule: 1, borg_param_escape_phase_lost_test: 2, borg_param_escape_phase_lost_danger_percent: 100}
+control: [ctl]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of this definition was read (borg-reborn-rs#584, PR #612; replaces
+  borg-zoo#334, whose run measured an earlier version). Pilot (RULES 16); small and larger only after this gate and
+  the owner.
+  Gate:
+  - no config_error; one binary; each arm's three #584 values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - in ctl, no "# Phase rule" note.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level;
+  - paired rescued and newly killed against ctl;
+  - Phase Doors done ("# Phase (<site>): done"), per site; "# Phase rule (from <site>)" verdicts per game, "# Phase
+    rule: attacked instead of a Phase Door", "# Phase rule boost"; for fight and fight-landing, the "# Phase rule: the
+    fight: ... lost / not lost" counts;
+  - deaths with no Phase Door left, and deaths within 200 game turns of a "no Phase Door" verdict.
+  Context: a local run on the same tree (18 classes-18 starts, 100,000 turns; not a zoo run): ctl 150 Phase Doors,
+  0 deaths; threshold 100: 63 and 1 death; fight: 17 and 1 death; fight-landing: 21 and 1 death; sum of max CL 99 /
+  96 / 93 / 93. 18 starts per arm show direction only.

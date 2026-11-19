@@ -5137,6 +5137,119 @@
         "borg_param_caution_scary_named_monsters": 1,
         "borg_param_caution_rising_explore_ticks": 900
       }
+    },
+    "reborn-phaserule2-ctl": {
+      "description": "borg-zoo#347 (reborn-phase-rule-pilot-2.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 0,
+        "borg_param_escape_phase_lost_test": 1,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-phaserule2-thr-100": {
+      "description": "borg-zoo#347 (reborn-phase-rule-pilot-2.yaml): arm thr-100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-phaserule2-thr-150": {
+      "description": "borg-zoo#347 (reborn-phase-rule-pilot-2.yaml): arm thr-150.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 150
+      }
+    },
+    "reborn-phaserule2-fight": {
+      "description": "borg-zoo#347 (reborn-phase-rule-pilot-2.yaml): arm fight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 1,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-phaserule2-fight-landing": {
+      "description": "borg-zoo#347 (reborn-phase-rule-pilot-2.yaml): arm fight-landing.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 2,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-recallusual-ctl": {
+      "description": "borg-zoo#358 (reborn-recall-usual-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_recall_wait_as_usual": 0
+      }
+    },
+    "reborn-recallusual-usual": {
+      "description": "borg-zoo#358 (reborn-recall-usual-pilot.yaml): arm usual.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_recall_wait_as_usual": 1
+      }
+    },
+    "reborn-scarycalm-latch": {
+      "description": "borg-zoo#357 (reborn-scary-calmed-pilot.yaml): arm latch.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_unlatch_kill": 0,
+        "borg_param_caution_scary_unlatch_calmed": 0
+      }
+    },
+    "reborn-scarycalm-calmed": {
+      "description": "borg-zoo#357 (reborn-scary-calmed-pilot.yaml): arm calmed.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_unlatch_kill": 0,
+        "borg_param_caution_scary_unlatch_calmed": 1
+      }
+    },
+    "reborn-scarycalm-kill": {
+      "description": "borg-zoo#357 (reborn-scary-calmed-pilot.yaml): arm kill.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_unlatch_kill": 1,
+        "borg_param_caution_scary_unlatch_calmed": 0
+      }
+    },
+    "reborn-scarycalm-both": {
+      "description": "borg-zoo#357 (reborn-scary-calmed-pilot.yaml): arm both.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_unlatch_kill": 1,
+        "borg_param_caution_scary_unlatch_calmed": 1
+      }
     }
   }
 }
