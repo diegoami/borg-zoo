@@ -25,7 +25,7 @@
       "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "mode_side": "pre",
       "carries": 0,
-      "label": "Angband 4.2.6 \u2014 the original C Borg as the release ships it (angband/angband e473720)",
+      "label": "Angband 4.2.6 — the original C Borg as the release ships it (angband/angband e473720)",
       "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "formerly": [
         "pristine"
@@ -628,7 +628,7 @@
       "exact_turns": true,
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-reborn-rs/blob/f0eeee25d1ff2cb1103ed08518a6c5f6500dad46/docs/ZOO-INTERFACE.md",
-      "label": "borg-reborn-rs milestone E after its accepted review corrections (#94\u2013#96), as requested in borg-zoo#48. Separate pin preserves the pre-review tag-e results. Hallucination perception is corrected; the original C controls stay at their own pins."
+      "label": "borg-reborn-rs milestone E after its accepted review corrections (#94–#96), as requested in borg-zoo#48. Separate pin preserves the pre-review tag-e results. Hallucination perception is corrected; the original C controls stay at their own pins."
     },
     "4.2.6-rs-m11": {
       "kind": "borg-rs",
@@ -1738,6 +1738,23 @@
       "scary_lists": {
         "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
       }
+    },
+    "angband-574b618-original": {
+      "repository": "angband/angband",
+      "ref": "574b618c3bfec595f3503a58f8e488b1c4ae3a46",
+      "mode_side": "pre",
+      "carries": 0,
+      "label": "Angband master 574b618c, C Borg: upstream's head on 2026-11-17, the base of better-borg-c impact v15. The vanilla C Borg to set beside angband-42cd156-original; its results are not paired with 42cd156's, because the game changed.",
+      "source": "https://github.com/angband/angband/commit/574b618c3bfec595f3503a58f8e488b1c4ae3a46"
+    },
+    "4.2.6-bbc-m15": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "646ebfc2a3a80a0caf87f1ab72fe4bcee0d94343",
+      "mode_side": "post",
+      "carries": 137,
+      "label": "better-borg-c milestone 15 (tag 4.2.6-impact-v15, 2026-11-19): official angband master 574b618c with 137 carried C Borg fixes (review issue better-borg-c#547). Same game commit as angband-574b618-original.",
+      "source": "https://github.com/diegoami/better-borg-c/blob/646ebfc2a3a80a0caf87f1ab72fe4bcee0d94343/docs/measurement/IMPACT-MILESTONE15.md",
+      "tag": "4.2.6-impact-v15"
     },
     "4.2.6-reborn-rust-main-0d8b61d7": {
       "kind": "borg-rs",
