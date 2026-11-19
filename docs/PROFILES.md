@@ -32,8 +32,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-attack-focus` | [#319](https://github.com/diegoami/borg-zoo/issues/319) | 3 | done: small+medium+big, no outcome changed; closed (FINDINGS) | Attack focus by class on main f660aecc: shipped class preferences, with every family a class file does not raise at 750 or 500. |
 | `reborn-plays-risky` | [#330](https://github.com/diegoami/borg-zoo/issues/330) | 2 | pilot done: risky kills; closed (FINDINGS) | borg_plays_risky FALSE (shipped) against TRUE on main 6438e1cf. |
 | `reborn-597` | [#342](https://github.com/diegoami/borg-zoo/issues/342) | 3 | pilot done: both switches neutral (inert) | #597 switches on main 6438e1cf: caution_twitch_avoid_lava and caution_stair_parked_fallback each off against shipped 1. |
-| `reborn-scary-ends` | [#350](https://github.com/diegoami/borg-zoo/issues/350) | 8 | pilots done (all5 helpful on progress); 100k small+medium, 200k small and the deeper-cut pilots (all8, early-none) defined | Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846. |
+| `reborn-scary-ends` | [#350](https://github.com/diegoami/borg-zoo/issues/350) | 11 | floor pilots done; floor3 small+medium (ctl, floor3; all5 paired from #350's tiers) defined | Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846. |
 | `reborn-bundle` | [#361](https://github.com/diegoami/borg-zoo/issues/361) | 11 | defined (pilot on 38858846, not dispatched) | The safe-to-adopt changes together on main 38858846: scary all5 + Ranger point-blank 1 + flight Recall on DL1 (gate 0), and the bundle without all5. |
+| `reborn-kill-power-main` | [#244](https://github.com/diegoami/borg-zoo/issues/244) | 2 | pilot done: off neutral on deaths, leans harmful on progress | kill_live_min_power shipped 1 against 0 on main 38858846. |
 
 ### `heal-attack-4`
 
@@ -471,10 +472,13 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | Profile | `borg_scary_list_lines` |
 | --- | --- |
 | `reborn-scaryends-all5` | 28 lines |
+| `reborn-scaryends-all5-pal` | 28 lines |
 | `reborn-scaryends-all8` | 28 lines |
 | `reborn-scaryends-ctl` | – |
 | `reborn-scaryends-early-none` | 14 lines |
 | `reborn-scaryends-f3` | 28 lines |
+| `reborn-scaryends-floor3` | 28 lines |
+| `reborn-scaryends-floor4` | 28 lines |
 | `reborn-scaryends-fraghalf` | 1 line |
 | `reborn-scaryends-t5` | 28 lines |
 | `reborn-scaryends-t5f6` | 28 lines |
@@ -482,6 +486,7 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | Run | Tier | Specimen | Result |
 | --- | --- | --- | --- |
 | [44446160367 + 44446177348](https://github.com/diegoami/borg-zoo/actions/runs/44446160367 + 44446177348) | pilots (100k, 200k) | `4.2.6-reborn-rust-main-38858846` | 100k: ctl 0, all5 0 deaths, CL 5.50 v 5.83; 200k: ctl 3, all5 1 deaths, CL 6.17 v 8.22 |
+| [44465218294 + 44465235895](https://github.com/diegoami/borg-zoo/actions/runs/44465218294 + 44465235895) | floor pilots (100k, 200k) | `4.2.6-reborn-rust-main-38858846` | 200k: ctl 3, all5 1, all5-pal 2, floor3 3, floor4 3 deaths; CL 6.17 / 8.22 / 7.83 / 7.06 / 6.61; 100k no deaths |
 
 ### `reborn-bundle`
 
@@ -502,6 +507,21 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-bundle-plan-speed0` | – | 1600 | 1400 | 1700 | 1200 | 2000 | 1200 | 1800 | 1800 | 1200 | 1700 | 2000 | 1300 | 1600 | 1800 | 1200 | 1200 | – | – | 1 | errands_plan.txt | – | 1 | 1 | 1 | 5 |
 | `reborn-bundle-plan-speed30` | – | 1600 | 1400 | 1700 | 1200 | 2000 | 1200 | 1800 | 1800 | 1200 | 1700 | 2000 | 1300 | 1600 | 1800 | 1200 | 1200 | 30 | – | 1 | errands_plan.txt | – | 1 | 1 | 1 | 5 |
 | `reborn-bundle-plan-speed60` | – | 1600 | 1400 | 1700 | 1200 | 2000 | 1200 | 1800 | 1800 | 1200 | 1700 | 2000 | 1300 | 1600 | 1800 | 1200 | 1200 | 60 | – | 1 | errands_plan.txt | – | 1 | 1 | 1 | 5 |
+
+### `reborn-kill-power-main`
+
+kill_live_min_power shipped 1 against 0 on main 38858846.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_kill_live_min_power` |
+| --- | --- |
+| `reborn-killpow38-ctl` | 1 |
+| `reborn-killpow38-off0` | 0 |
+
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44465254082](https://github.com/diegoami/borg-zoo/actions/runs/44465254082) | pilot | `4.2.6-reborn-rust-main-38858846` | 36 games, no deaths; off CL 5.11 v 5.50 |
 
 ## Settings you have built arms with
 
@@ -591,6 +611,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_named_monsters` | 0, 1 | `reborn-scary-named-damage` |  |
 | `borg_param_caution_stair_parked_fallback` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
+| `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
 | `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_druid` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_mage` | 0, 75, 225, not set | `reborn-heal-by-class` |  |

@@ -468,6 +468,31 @@ Lower values send the Borg back for unknown items more often. Each return brings
 - **200,000 turns (first 18 starts of classes-1800-200k):** ctl 3 deaths, CL 6.17, DL 2.28. all5 1 death, CL 8.22, DL 3.33 (rescued 3, newly killed 1). t5f6 2 deaths, CL 8.22, DL 3.33. f3 (fragile = tough) and fraghalf (class fragility halved) play ctl's keys in 10 and 16 of 18 games, with the same 3 deaths.
 - **Why the fragile end barely acts:** even at 200,000 turns no caster passes CL 8 in ctl (Mages 5 and 7), so the fragile end of most monsters is never reached.
 - **Bins (direction only):** all5 is helpful on progress at both lengths and neutral or helpful on deaths; t5f6 is helpful on progress at 200k and leans harmful at 100k; f3 and fraghalf are neutral.
+- **Tiers at 100,000 turns, starts 1-360 (small + medium, runs 44459418261 and 44459437284):** ctl 13 deaths, t5 18 (rescued 2, newly killed 7, p 0.18), all5 18 (4 / 9, p 0.27). Mean max CL 5.25 / 5.53 / 5.73. The extra deaths are mostly Paladins (5 against 1 in both arms) and soldiers (all5 4, t5 3, ctl 1).
+- **200,000 turns, starts 19-90 (run 44459456699):** ctl 4/72 deaths, CL 6.83; all5 6/72, CL 7.65 (0 / 2). Two all5 deaths are Druids at CL2, killed by an apprentice and by Grip.
+- **Deeper cuts (pilots 44459366821 and 44459384054; ctl and all5 replay the #350 pilots, 36 of 36 at each length):** all8 (both ends − 8) and early-none (the 14 early monsters removed) have 3 deaths of 18 at 100k against 0 (0 rescued; Fang, Grip, soldiers, a crow and a wild cat, at CL1-4). At 200k they have 0 and 1 against 3, with CL 8.4.
+- **Bins (RULES 18):** all5 and t5 are helpful on progress in every tier but **lean harmful on deaths** on this build: a trade-off whose cost sits at CL1-4. all8 and early-none are **harmful** at 100k. The floor pilots (#369) keep the early fear and cut it above.
+
+**#265 small tier on main 38858846 (run 44459475886, starts 1-90, 360 games): lowering the class healing values is harmful.** Deaths: shipped class files 2/90, common 6 (rescued 0, newly killed 4, p 0.12), curve-lo 8 (2 / 8, p 0.11), reserve-lo 7 (0 / 5, p 0.062). Every lowered arm also levels slower (CL 4.96-5.03 against 5.36), and Druids die most in each. The direction is the same in both pilots (4a482c58, 38858846) and here. **Bins:** curve-lo, reserve-lo and common are harmful; the shipped class values are the best tested.
+
+**#361, the bundle of safe-to-adopt changes on 38858846 (pilot, run 44459401300, 54 games):** no deaths in any arm. scary all5 + Ranger divisor 1 + Recall gate 0 reaches CL 5.89 against 5.50; without all5 the pair plays ctl's keys in 16 of 18 games. **Bins:** both neutral on deaths. The bundle's progress comes from all5, whose early-death cost (above) argues for carrying the winning scary variant instead.
+
+**#369, the scary list cut with a level floor on 38858846 (pilots 44465218294 and 44465235895; ctl and all5 replay #350's pilots exactly):** at 100k no arm has a death. At 200k: ctl 3/18 deaths and CL 6.17; all5 1 and CL 8.22; all5-pal (Paladins keep the shipped levels) 2 and 7.83; floor3 3 and 7.06; floor4 3 and 6.61. The floors keep exactly the ctl's three early deaths (CL2-3 on DL1: a cave spider, a giant white centipede and Fang), which all5 avoids, and they give part of all5's progress gain. **Bins (direction only):** floor3, floor4 and all5-pal are neutral on deaths. The early-death cost all5 showed over 360 starts at 100k (18 against 13) needs a 360-start tier of ctl, all5 and floor3 to settle.
+
+**#244, kill_live_min_power re-piloted on main 38858846 (run 44465254082, 36 games):** no deaths in either arm. Turning it off changes 17 of 18 games and lowers the mean max CL (5.11 against 5.50). **Bin:** off is neutral on deaths and leans harmful on progress. On c9e58ca0 the shipped 1 had 22 deaths against 28 over 360 starts.
+
+**#329 / #318 complete, kill-unlatch x latch on 6438e1cf (adds big and full 44453041589; all 1,800 starts, 1,728 paired per arm): kill-unlatch costs nothing; plain unlatching leans worse.** Every tier's gate passed (156 of 156 death bundles reproduced in the full tier). Deaths: shipped latch 98 (5.7%), kill-unlatch 98 (rescued 20, newly killed 20, p 1.0; mean max CL 5.18 against 5.10, DL 2.10 against 2.06), plain unlatch 115 (29 / 46, p 0.064). **Bins (RULES 18):** kill-unlatch is **neutral, safe to adopt**, with a small progress gain; plain unlatch **leans worse**.
+
+**#334, #584's Phase Door rule on PR #612 head 2075f54e (pilot 44436156652, 54 games):** ctl 0 deaths, rule-100 1, rule-150 2; Phase Door reads fall from 30 to 12 and 4, and every game changes. **Bins (direction only):** rule-100 neutral, rule-150 leaning worse. Superseded by #347, which measures the version merged to main.
+
+**#335, flight Recall from danger on 38858846 (pilot 44453013990, 7 arms, 126 games):** one death (g2d200) in 126 games; every arm changes 12-16 of 18 games. **Bins:** all neutral at pilot size.
+
+**Pilots of 2026-11-19 (classes-18, 18 starts per arm, all gates passed, direction only):**
+- **#355, caution_scary_damage_percent 40/50/60 on main 07844cf1 (run 44456214066):** 60 (shipped) 0 deaths, 50 1, 40 1, the same Druid (seed 934061548, CL1, wild cat on DL1); 1-2 of 18 games change. All neutral.
+- **#356, caution_rising_explore_ticks 300/500/700/900 on 07844cf1 (run 44456243022):** 0, 0, 1 (a Warrior CL7 on DL2 under 700), 0 deaths; every longer value changes 9 of 18 games and ends slightly lower (CL 5.39-5.50 against 5.67). All neutral; consistent with #191 (longer holds cost progress).
+- **#347, #584's Phase Door rule as merged, on main 4acf071f (run 44458680428, 5 arms):** ctl 1 death, thr-100 2, thr-150 1, fight 2, fight-landing 1; the shared death is the same Druid; the rule changes 17-18 of 18 games. fight-landing is the only arm level with ctl on progress (CL 5.22, DL 2.11). All neutral.
+- **#357, caution_scary_unlatch_calmed on PR #595 head 49933db7 (run 44458706433):** no deaths in any arm; calmed, kill and both change 14 of 18 games, with calmed and both alike as expected. All neutral.
+- **#358, caution_recall_wait_as_usual on PR #627 head cdd065ca (run 44458734474):** no deaths; 1 of 18 games changes (most flight Recalls here are read on DL1, where the switch does not act). Neutral.
 
 ## Open
 

@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-rest-stairs-pilot",
+  "issue": 365,
+  "definition": "definitions/reborn-rest-stairs-pilot.yaml",
+  "question": "On borg-reborn-rs",
+  "description": "On borg-reborn-rs Generated from definitions/reborn-rest-stairs-pilot.yaml: 5 arms on 4.2.6-reborn-rust-pr616-8a427494, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#614, PR #616). Pilot (RULES 16).\nGate:\n- no config_error; one binary; each arm's #614 values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- in off, no \"# No rest: committed to the stairs\" and no \"# Leaving by the stairs\" note.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level; paired rescued and newly killed against off;\n- games whose keys differ from off, and the first message where each differs;\n- \"# No rest: committed to the stairs, N steps to go.\" and \"# Leaving by the stairs: a monster while recovering\n  (danger N, up|down).\" notes per game; deaths within 2,000 game turns of either;\n- deaths with \"Resting\" or Phase Door in the last 100 messages while a flight to stairs was under way;\n- stair trips taken by the leave rule that land on a deeper level (down) and what follows.\nContext: a local run on the same tree (harness/run.sh, the 18 classes-18 starts, 100,000 turns; not a zoo run):\ndeaths off 0, reach 2, leave 1, leaveup 1, both 2; sum of CL 99 / 92 / 97 / 98 / 93; games playing off's keys\n5 / 10 / 10 / 3 of 18. Every death came long after the game diverged from off. 18 starts show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr616-8a427494"
+  ],
+  "profiles": [
+    "reborn-reststairs-off",
+    "reborn-reststairs-reach",
+    "reborn-reststairs-leave",
+    "reborn-reststairs-leaveup",
+    "reborn-reststairs-both"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-pr616-8a427494",
+  "control_profile": "reborn-reststairs-off",
+  "owner_authorization": "2026-11-19: the owner asked for the zoo pilot of #614 (off, reach 20, leave, leave up only, both) on PR #616's head. Pilot first (RULES 16); small and larger only after this gate and the owner.",
+  "retain_evidence": true
+}
