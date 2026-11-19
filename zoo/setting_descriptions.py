@@ -47,6 +47,10 @@ def parse(text):
     return out
 
 
+VALUE = re.compile(r'^(borg_[\w@]+)\s*=\s*(\S+)', re.M)
+DEFAULT = re.compile(r'^\s*(\w+)\s*=>\s*\(\s*(-?\d+)\s*,', re.M)
+
+
 def gh(*args):
     return subprocess.run(['gh', 'api', *args], check=True, capture_output=True, text=True).stdout
 
@@ -58,17 +62,36 @@ def refresh():
         text = gh(f'repos/{repo}/contents/{path}?ref={commit}', '-H', 'Accept: application/vnd.github.raw')
         for key, desc in parse(text).items():
             found.setdefault(key, {'text': desc, 'source': f'{repo}/{path}', 'commit': commit})
+        if repo == 'diegoami/borg-reborn-rs':
+            shipped = dict(VALUE.findall(text))
     repo, path = REGISTRY
     commit = json.loads(gh(f'repos/{repo}/commits/HEAD'))['sha']
     text = gh(f'repos/{repo}/contents/{path}?ref={commit}', '-H', 'Accept: application/vnd.github.raw')
     for name, desc in SPEC.findall(text):
         found.setdefault('borg_param_' + name, {'text': desc.replace('\\"', '"'), 'source': f'{repo}/{path}',
                                                 'commit': commit})
+    compiled = {'borg_param_' + name: value for name, value in DEFAULT.findall(text)}
+    # What borg-reborn-rs main plays today: its borg.txt's value, else the compiled default.
+    for key, d in found.items():
+        if key in shipped:
+            d['shipped'] = shipped[key]
+        elif key in compiled:
+            d['shipped'] = compiled[key]
+            d['shipped_from'] = 'compiled default'
     PATH.write_text(json.dumps(dict(sorted(found.items())), indent=1, ensure_ascii=False) + '\n')
     return len(found)
 
 
 CLASSES = ('warrior', 'mage', 'druid', 'priest', 'necromancer', 'paladin', 'rogue', 'ranger', 'blackguard')
+
+
+def shipped(key, found=None):
+    """(value, where) borg-reborn-rs main plays for a key today, or (None, None)."""
+    found = load() if found is None else found
+    d = found.get(key) or {}
+    if 'shipped' not in d:
+        return None, None
+    return d['shipped'], d.get('shipped_from', 'borg.txt')
 
 
 def load():
