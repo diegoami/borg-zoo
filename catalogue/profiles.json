@@ -4662,6 +4662,31 @@
         "borg_reborn_errand": "none",
         "borg_param_caution_town_never_scary": 1
       }
+    },
+    "reborn-597-ctl": {
+      "description": "borg-zoo#342 (reborn-lava-parked-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_twitch_avoid_lava": 1,
+        "borg_param_caution_stair_parked_fallback": 1
+      }
+    },
+    "reborn-597-lava0": {
+      "description": "borg-zoo#342 (reborn-lava-parked-pilot.yaml): arm lava0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_twitch_avoid_lava": 0
+      }
+    },
+    "reborn-597-parked0": {
+      "description": "borg-zoo#342 (reborn-lava-parked-pilot.yaml): arm parked0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stair_parked_fallback": 0
+      }
     }
   }
 }

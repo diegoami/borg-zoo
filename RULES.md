@@ -84,3 +84,13 @@
     owner, and resolve code conflicts by hand (union-merging is safe only
     for catalogue JSON and FINDINGS prose). Every merge waits for
     `python3 -m unittest discover -s tests` to pass.
+18. **A change with little effect is not ruled out** (owner, 2026-11-19). The
+    owner may prefer a setting because it is a better way to play, not only
+    because it saves games. A result that shows no measurable effect, or a
+    small one, therefore never ends with "the shipped value stays" as if the
+    question were settled. Report every tested value in one of three bins:
+    **harmful** (more deaths or clearly less progress, significant or a
+    consistent lean across tiers), **neutral** (no measurable cost: safe to
+    adopt if preferred) or **helpful**. Say plainly which values are safe to
+    adopt, and leave the choice to the owner. A study's issue is closed only
+    when the owner says so.

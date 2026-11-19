@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-tough-full",
+  "issue": 299,
+  "definition": "definitions/reborn-scary-tough-full.yaml",
+  "question": "On borg-reborn-rs main f660aecc, does lowering the scary list's tough end by 5 (fragile unchanged) keep its progress lead without more deaths on the remaining 900 starts?",
+  "description": "On borg-reborn-rs main f660aecc, does lowering the scary list's tough end by 5 (fragile unchanged) keep its progress lead without more deaths on the remaining 900 starts? Generated from definitions/reborn-scary-tough-full.yaml: 2 arms on 4.2.6-reborn-rust-main-f660aecc, suite classes-1800-full.",
+  "prespecified": "Fixed 2026-11-19, before any full result was read. Same specimen and profiles as the pilot (RULES 16).\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, pooled with starts 1-900 as one study (RULES 14): deaths and causes, CL1-3 deaths,\nmean max CL and DL; paired rescued and newly killed; identical plays. Descriptive.\nEach value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18); the choice is the owner's.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-f660aecc"
+  ],
+  "profiles": [
+    "reborn-scarytough-ctl",
+    "reborn-scarytough-t5"
+  ],
+  "suites": [
+    "classes-1800-full"
+  ],
+  "control": "4.2.6-reborn-rust-main-f660aecc",
+  "control_profile": "reborn-scarytough-ctl",
+  "owner_authorization": "2026-11-19: after small + medium + big (starts 1-900: ctl 62, t3 69, t5 57 deaths; mean max CL 5.08 / 5.26 / 5.45) the owner asked for the full tier of the t5 lead. t3 is not carried."
+}
