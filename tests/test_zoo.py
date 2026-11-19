@@ -1160,6 +1160,30 @@ class SubsetSuiteTest(unittest.TestCase):
             self.assertEqual(cat_mod.character(sub, seed), cat_mod.character(parent, seed))
             self.assertEqual(cat_mod.character(sub, seed)[1], 'Warrior')
 
+    def test_seed_list_subset_keeps_parent_order_and_characters(self):
+        cat = cat_mod.catalogue()
+        parent = cat['suites']['classes-1800']
+        chosen = [parent['seeds'][7], parent['seeds'][2], parent['seeds'][40]]
+        suites = {name: s for name, s in cat_mod._load(cat_mod.ROOT / 'catalogue/suites.json')['suites'].items()
+                  if name in ('classes-1800',)}
+        suites['picked'] = {'description': 't', 'role': 'development', 'cap': 100000,
+                            'subset': {'suite': 'classes-1800', 'seeds': chosen}}
+        out = cat_mod.expand_suites(suites)
+        self.assertEqual(out['picked']['seeds'], [parent['seeds'][2], parent['seeds'][7], parent['seeds'][40]])
+        for seed in chosen:
+            self.assertEqual(cat_mod.character(out['picked'], seed), cat_mod.character(parent, seed))
+
+    def test_seed_list_subset_refuses_unknown_or_repeated_seeds(self):
+        cat = cat_mod.catalogue()
+        base = {name: s for name, s in cat_mod._load(cat_mod.ROOT / 'catalogue/suites.json')['suites'].items()
+                if name in ('classes-1800',)}
+        first = cat['suites']['classes-1800']['seeds'][0]
+        for bad in ([1], [first, first]):
+            suites = dict(base, bad={'description': 't', 'role': 'development', 'cap': 100000,
+                                     'subset': {'suite': 'classes-1800', 'seeds': bad}})
+            with self.assertRaises(ValueError):
+                cat_mod.expand_suites(suites)
+
     def test_warrior_confirmation_seeds_are_fresh(self):
         cat = cat_mod.catalogue()
         mine = set(cat['suites']['warriors-600']['seeds'])

@@ -1,0 +1,34 @@
+# borg-zoo#408: the crow arms on the starts where shipped main died to a crow or a wild cat; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-crow-deaths-replay.yaml
+#
+# The pilot (classes-18) never reached a crow scare: those starts have no crow death. These are the 55 starts of
+# classes-1800 and classes-1800-b where reborn-errands38-none (the same settings as reborn-crow38-ctl) died to a crow
+# (28) or a wild cat (27). Chosen starts: the run shows whether the scare fires and rescues; it cannot show new deaths
+# elsewhere, which needs random starts afterwards.
+name: reborn-crow-deaths-replay
+issue: 408
+question: >-
+  On borg-reborn-rs main 3ba17e2c, on the starts where shipped main died to a crow or a wild cat, does making crows
+  (and wild cats) scary for the fragile classes up to CL2 or CL3 save them?
+specimens: [4.2.6-reborn-rust-main-3ba17e2c]
+suites: [classes-1800-crowcat-deaths, classes-1800-b-crowcat-deaths]
+pilot: true   # the study's first run on suites of its own (chosen starts)
+profiles: [reborn-crow38-ctl, reborn-crow38-crow2, reborn-crow38-crow3, reborn-crow38-crowcat2]
+control_specimen: 4.2.6-reborn-rust-main-3ba17e2c
+control_profile: reborn-crow38-ctl
+owner_authorization: >-
+  2026-11-19: the owner asked for the proposals: replay the crow-death starts with the crow arms (the zoo's new
+  seed-list suites).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result on these starts was read. Mechanism check on chosen starts.
+  Gate:
+  - no config_error; one binary; each arm's lines in the run's scary list;
+  - ctl replays reborn-errands38-none's deaths on every start (the same settings and build);
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class: rescued starts (ctl dies, the arm does not), separately for crow and wild-cat deaths;
+  deaths to other monsters on the rescued starts; mean max CL and DL; "Scary guy on level" notes naming a crow or wild
+  cat. Each arm is reported as harmful, neutral or helpful only after a follow-up on random starts (RULES 18).
