@@ -19,7 +19,7 @@ Three deaths per arm, and each start dies in one arm only. The other arm of the 
 
 - **Druid 1678303796 (ctl; poison, CL5, DL1, turn 37,330).**
   - **The death:** it was poisoned again and again by a **white worm mass** while "Goal_less, Fleeing" toward the up stairs, backing up one square at a time.
-  - **Unused:** 3 Potions of Cure Serious Wounds, 20 Flasks of oil, a Sling with 37 Iron Shots, and two unknown potions.
+  - **In the pack:** a Sling with 37 Iron Shots and two unknown potions, but no cure and no oil. Its 3 Cure Serious Wounds and 20 Flasks of oil were **in the home**: it bought them and stashed them there (borg-reborn-rs#710).
   - **In the tail:** no throw, no Phase Door, no cure.
 - **Druid 1678765969 (ctl; wild cat, CL1, DL1, turn 6,951).**
   - **The death:** it was clawed down by a wild cat after quaffing one Cure Light Wounds ("Healing Level 1").
@@ -27,7 +27,7 @@ Three deaths per arm, and each start dies in one arm only. The other arm of the 
   - **Unused:** 23 Flasks of oil, 3 Cure Light Wounds and 7 Phase Door.
 - **Druid 2109297965 (w_attack-200; poison, CL7, DL1, turn 84,230).**
   - **The death:** like the first Druid, it was poisoned 11 times by **white worm masses** ("Spent too long (1299) on level", "Bored but unable to flow to up stairs"). Phase Door is mentioned 15 times in the tail.
-  - **Unused:** 17 Flasks of oil, 3 Cure Serious Wounds, and a Sling (+5,+5) with 48 Iron Shots.
+  - **In the pack:** a Sling (+5,+5) with 48 Iron Shots and 6 Phase Door. Its 17 Flasks of oil and 3 Cure Serious Wounds were **in the home** (borg-reborn-rs#710).
 - **Mage 247597266 (ctl; Grip, CL2, DL1, turn 11,116).**
   - **The death:** it fought Grip, with a small kobold alongside, using the sling and Magic Missile, and died at the dog's bite.
   - **Unused:** a Potion of Speed. It carried no Flasks of oil.
@@ -39,7 +39,7 @@ Three deaths per arm, and each start dies in one arm only. The other arm of the 
   - **Inventory:** no torch, no oil, no cure potions.
 
 **Notes across the six deaths:**
-- **Oil was carried and not used:** four of the six deaths carried Flasks of oil (4-23) or Cure Serious Wounds that weren't used at the end.
+- **Oil and cures:** two deaths carried Flasks of oil that weren't used at the end: the wild-cat Druid (23) and the Necromancer (4). The two poisoned Druids had left theirs, and their Cure Serious Wounds, in the home (borg-reborn-rs#710). Cure Serious Wounds does not cure poison in 4.2; only Cure Critical Wounds does.
 - **Worm masses:** two deaths, one in each arm, are long poisonings by white worm masses at CL5-7. These are breeders, which #632 and #656 (compiled in, shipped off) address.
 - **The arm's own deaths come late:** w_attack-200's three deaths come at turns 50k-88k, later than ctl's CL1-2 deaths.
 
