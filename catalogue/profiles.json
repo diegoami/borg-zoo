@@ -6559,6 +6559,42 @@
         "borg_reborn_errand": "none",
         "borg_param_recover_rest_breeders": 1
       }
+    },
+    "reborn-magepriest-ctl": {
+      "description": "borg-zoo#415 (reborn-mage-priest-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_caution_scary_unlatch_calmed": 1
+      }
+    },
+    "reborn-magepriest-heal-hi": {
+      "description": "borg-zoo#415 (reborn-mage-priest-pilot.yaml): arm heal-hi.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_caution_scary_unlatch_calmed": 1,
+        "borg_param_town_heal_reserve_hp_percent_mage": 450,
+        "borg_param_town_heal_curve_scale_percent_mage": 225,
+        "borg_param_town_heal_reserve_hp_percent_priest": 375,
+        "borg_param_town_heal_curve_scale_percent_priest": 185
+      }
+    },
+    "reborn-magepriest-spell1500": {
+      "description": "borg-zoo#415 (reborn-mage-priest-pilot.yaml): arm spell1500.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_caution_scary_unlatch_calmed": 1,
+        "borg_param_attack_preference_mage_spell_permille": 1500,
+        "borg_param_attack_preference_priest_spell_permille": 1500
+      }
     }
   }
 }
