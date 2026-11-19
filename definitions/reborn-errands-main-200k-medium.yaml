@@ -1,0 +1,24 @@
+# borg-zoo#383: errands plan at 200,000 turns, medium tier (starts 91-360); owner 2026-11-19 (#416).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-errands-main-200k-medium.yaml
+name: reborn-errands-main-200k-medium
+issue: 383
+question: >-
+  On borg-reborn-rs main 3ba17e2c at 200,000 turns, what does the errands plan cost or save on starts 91-360: the
+  same deaths and about 0.18 less depth, as on starts 1-90?
+specimens: [4.2.6-reborn-rust-main-3ba17e2c]
+suites: [classes-1800-200k-medium]   # starts 91-360, 200,000 turns
+profiles: [reborn-errands38-none, reborn-errands38-errands]
+control_specimen: 4.2.6-reborn-rust-main-3ba17e2c
+control_profile: reborn-errands38-none
+owner_authorization: >-
+  2026-11-19: #416's backlog (errands plan at 200k: medium tier); the owner asked to take up its experiments.
+
+prespecified: |
+  Fixed 2026-11-19, before any result of this tier was read. Same specimen and profiles as the 200k pilot (RULES 16).
+  200k pilot + small (starts 1-90): none 8, errands 8 deaths; CL 6.57 / 6.56; DL 2.66 / 2.48.
+  Gate:
+  - no config_error; one binary; each arm's settings (plan, scary lines) verified per cell;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, pooled with starts 1-90 (RULES 14): deaths and causes, CL1-3 deaths, mean max CL and
+  DL; paired rescued and newly killed; identical plays. Reported as harmful, neutral or helpful (RULES 18).
