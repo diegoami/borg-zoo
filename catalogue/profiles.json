@@ -5554,6 +5554,117 @@
         "borg_reborn_errand": "none",
         "borg_plan": "errands_plan_ambitious.txt"
       }
+    },
+    "reborn-phaseth-ctl": {
+      "description": "borg-zoo#389 (reborn-phase-thresholds-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-phaseth-ord5": {
+      "description": "borg-zoo#389 (reborn-phase-thresholds-pilot.yaml): arm ord5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_ordinary_danger_tenths": 5
+      }
+    },
+    "reborn-phaseth-ord20": {
+      "description": "borg-zoo#389 (reborn-phase-thresholds-pilot.yaml): arm ord20.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_ordinary_danger_tenths": 20
+      }
+    },
+    "reborn-phaseth-uniq7": {
+      "description": "borg-zoo#389 (reborn-phase-thresholds-pilot.yaml): arm uniq7.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_unique_danger_tenths": 7
+      }
+    },
+    "reborn-phaseth-anti0": {
+      "description": "borg-zoo#389 (reborn-phase-thresholds-pilot.yaml): arm anti0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_antisummon_delay": 0
+      }
+    },
+    "reborn-towndanger-ctl": {
+      "description": "borg-zoo#390 (reborn-town-dangerous-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-towndanger-onsight": {
+      "description": "borg-zoo#390 (reborn-town-dangerous-pilot.yaml): arm onsight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_town_dangerous_on_sight": 1
+      }
+    },
+    "reborn-towndanger-onsight-b600": {
+      "description": "borg-zoo#390 (reborn-town-dangerous-pilot.yaml): arm onsight-b600.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_town_dangerous_on_sight": 1,
+        "borg_param_attack_town_dangerous_bonus_percent": 600
+      }
+    },
+    "reborn-towndanger-onsight-min3": {
+      "description": "borg-zoo#390 (reborn-town-dangerous-pilot.yaml): arm onsight-min3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_town_dangerous_on_sight": 1,
+        "borg_param_attack_town_dangerous_min_damage": 3
+      }
+    },
+    "reborn-bless-ctl": {
+      "description": "borg-zoo#388 (reborn-bless-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-bless-none": {
+      "description": "borg-zoo#388 (reborn-bless-pilot.yaml): arm none.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_defend_bless_fail": 0
+      }
+    },
+    "reborn-bless-maxdd4": {
+      "description": "borg-zoo#388 (reborn-bless-pilot.yaml): arm maxdd4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_defend_bless_max_danger_divisor": 4
+      }
+    },
+    "reborn-bless-maxdd1": {
+      "description": "borg-zoo#388 (reborn-bless-pilot.yaml): arm maxdd1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_defend_bless_max_danger_divisor": 1
+      }
+    },
+    "reborn-bless-dd6": {
+      "description": "borg-zoo#388 (reborn-bless-pilot.yaml): arm dd6.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_defend_bless_danger_divisor": 6
+      }
     }
   }
 }

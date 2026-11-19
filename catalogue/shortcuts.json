@@ -642,6 +642,44 @@
         "reborn-errands38-none"
       ],
       "runs": []
+    },
+    "reborn-bless": {
+      "issue": 388,
+      "status": "defined (pilot on 3ba17e2c, not dispatched)",
+      "what": "Bless rules (#560) on main 3ba17e2c: never cast, stop sooner (max_danger_divisor 4), bless longer (1), bless at lower danger (danger_divisor 6).",
+      "profiles": [
+        "reborn-bless-ctl",
+        "reborn-bless-dd6",
+        "reborn-bless-maxdd1",
+        "reborn-bless-maxdd4",
+        "reborn-bless-none"
+      ],
+      "runs": []
+    },
+    "reborn-phase-thresholds": {
+      "issue": 389,
+      "status": "defined (pilot on 3ba17e2c, not dispatched)",
+      "what": "Phase Door thresholds on main 3ba17e2c: ordinary danger 5 / 20 tenths, unique 7, no anti-summon delay.",
+      "profiles": [
+        "reborn-phaseth-anti0",
+        "reborn-phaseth-ctl",
+        "reborn-phaseth-ord20",
+        "reborn-phaseth-ord5",
+        "reborn-phaseth-uniq7"
+      ],
+      "runs": []
+    },
+    "reborn-town-dangerous": {
+      "issue": 390,
+      "status": "defined (pilot on 3ba17e2c, not dispatched)",
+      "what": "Attacking dangerous townspeople on sight (#619) on main 3ba17e2c: on (bonus 300), bonus 600, min_damage 3.",
+      "profiles": [
+        "reborn-towndanger-ctl",
+        "reborn-towndanger-onsight",
+        "reborn-towndanger-onsight-b600",
+        "reborn-towndanger-onsight-min3"
+      ],
+      "runs": []
     }
   }
 }

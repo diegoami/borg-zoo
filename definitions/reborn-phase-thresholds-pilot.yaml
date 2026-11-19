@@ -1,0 +1,36 @@
+# borg-zoo#389: the Phase Door thresholds (escape_phase_*), pilot; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-phase-thresholds-pilot.yaml
+name: reborn-phase-thresholds-pilot
+issue: 389
+question: >-
+  On borg-reborn-rs main 3ba17e2c, do the Phase Door thresholds (ordinary and unique danger, anti-summon delay) change deaths when moved well away from the shipped values?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-3ba17e2c
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-phaseth
+arms:
+  ctl: {}   # shipped
+  ord5: {borg_param_escape_phase_ordinary_danger_tenths: 5}
+  ord20: {borg_param_escape_phase_ordinary_danger_tenths: 20}
+  uniq7: {borg_param_escape_phase_unique_danger_tenths: 7}
+  anti0: {borg_param_escape_phase_antisummon_delay: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked to pilot the recent parameters with no zoo coverage, biggest impact first. Pilot first
+  (RULES 16).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result was read. Pilot (RULES 16).
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class: identical plays against ctl; deaths and causes, CL1-3 deaths, final level, deepest
+  level; paired rescued and newly killed; Phase Door casts per game. Each arm is reported as harmful, neutral (safe to adopt) or helpful
+  (RULES 18). Direction only.
