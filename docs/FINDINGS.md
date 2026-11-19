@@ -520,6 +520,21 @@ Lower values send the Borg back for unknown items more often. Each return brings
 - **Scary stand off (#393):** 2 deaths against 1, **neutral**. **Detect Invisible after every rest (#393):** changes 16 games and **leans harmful on progress** (CL 5.00).
 - **Crows scary at CL1-2 (#408):** every arm plays ctl's keys in 18 of 18 games. The lines are in the list and crows appear, but the scare never fires on these starts, which have no crow death. **Not tested:** it needs the crow-death starts themselves.
 
+**Suite 1 smoke on borg-cemetery 3d1d0374 and borg-reborn-rs main 38858846 (run 44523525112, #183):** 18 of 18 encounters ran, none invalid or stopped; 9 deaths and 9 survivals. The class-value check that failed runs 44442676041 and 44446442326 passes on this pin.
+
+**#379, Rogue point-blank divisor 2: the fresh-seed confirmation does not hold (run 44524153538, the 200 Rogue starts of classes-1800-b, main 3ba17e2c).** Main's 3 8 deaths, 2 9 (0 / 1, p 1.0), CL 5.59 against 5.55. With the development starts: 16 against 19 (4 / 1). **Final bin:** Rogue 2 is neutral, safe to adopt but with no measured benefit.
+
+**#347, thr-100 at 200,000 turns (run 44524189120, classes-1800-200k starts 19-90, main 4acf071f):** 5 deaths against 5 (3 / 3), CL 6.68 against 6.86. **Bin:** neutral; no extra deaths after turn 100,000.
+
+**#396, the safe-to-adopt bundle on main 3ba17e2c (calmed 1, Recall wait-as-usual 1, Phase Door thr-100, Rogue divisor 2; pilot 44524209558, medium 44553471958, big 44570626345): helpful.** Medium: ctl 20, bundle 11 of 270 (15 / 6, p 0.078). Big (starts 361-900): 37 against 22 of 540 (22 / 7, **p 0.008**). Medium + big: 57 against 33 of 810 (37 / 13, p 0.001). Mean max CL +0.13 (95% CI +0.04 to +0.22) and DL +0.03 over 828 paired starts; no class is worse. **Bin: helpful.** The parts were each developed on classes-1800, so a classes-1800-b confirmation would settle it.
+
+**Untested settings on main 3ba17e2c, small tiers (starts 1-90, with the pilot 108 per arm; every gate passed):**
+- **Trip gold return (#402, small 44570213189):** g0 (shipped, never) 4 deaths, g50 4, g150 6, g400 4. g50 costs 0.30 CL and 0.36 DL, and g150 0.14 CL and 0.19 DL. **Bins:** neutral on deaths with a progress cost; shipped 0 stays.
+- **Town trip forecast (#403, small 44570316850):** ctl 4; gain2 8, explore500 9, explore2000 6, stair25 9, stair100 8, attack50 7, attack200 7, **support2000 12 (1 / 9, p 0.021)**, support500 3. **Bins:** support2000 harmful (uncorrected for nine arms; 0.19 corrected); explore500, stair25 and stair100 leaning worse; the rest neutral. Nine of ten changes die more than shipped. support500 is the only candidate.
+- **Breeder settings (#404, small 44570413639):** ctl 4, acidfear 5, nostand 5, esc3 6, esc10 5; 6-32 of 90 games change, and no arm saves a game. **Bins:** all neutral, rarely reached.
+
+**#413, new flags on main HEAD 592c6984 (pilot 44560354236, small 44570516913; 108 starts per arm):** the three #637 flags (town wand, caster walk, whole bonus) play byte-identical games to on_sight alone in 18 of 18 pilot starts, so they are **not reached** in early games. ctl 4 deaths; onsight 4, foxtown 4 (12 of 108 games change), recall-rest (#640, 200 turns) 6 (1 / 3), phase-rule 5 (3 / 4, CL +0.21), errands 5 (0 / 1). **Bins:** onsight and foxtown neutral, as on 3ba17e2c; recall-rest neutral leaning worse; the Phase Door rule and errands re-checks run normally on the new main, but 108 starts cannot see their 3ba17e2c effects.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
