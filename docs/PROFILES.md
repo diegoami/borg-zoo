@@ -32,6 +32,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-attack-focus` | [#319](https://github.com/diegoami/borg-zoo/issues/319) | 3 | done: small+medium+big, no outcome changed; closed (FINDINGS) | Attack focus by class on main f660aecc: shipped class preferences, with every family a class file does not raise at 750 or 500. |
 | `reborn-plays-risky` | [#330](https://github.com/diegoami/borg-zoo/issues/330) | 2 | pilot done: risky kills; closed (FINDINGS) | borg_plays_risky FALSE (shipped) against TRUE on main 6438e1cf. |
 | `reborn-597` | [#342](https://github.com/diegoami/borg-zoo/issues/342) | 3 | defined (pilot on 6438e1cf, not dispatched) | #597 switches on main 6438e1cf: caution_twitch_avoid_lava and caution_stair_parked_fallback each off against shipped 1. |
+| `reborn-scary-ends` | [#350](https://github.com/diegoami/borg-zoo/issues/350) | 6 | defined: 100k pilot and 200k pilot on 38858846, not dispatched | Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846. |
 
 ### `heal-attack-4`
 
@@ -452,6 +453,21 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-597-lava0` | – | 0 |
 | `reborn-597-parked0` | 0 | – |
 
+### `reborn-scary-ends`
+
+Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_scary_list_lines` |
+| --- | --- |
+| `reborn-scaryends-all5` | 28 lines |
+| `reborn-scaryends-ctl` | – |
+| `reborn-scaryends-f3` | 28 lines |
+| `reborn-scaryends-fraghalf` | 1 line |
+| `reborn-scaryends-t5` | 28 lines |
+| `reborn-scaryends-t5f6` | 28 lines |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -559,7 +575,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
-| `borg_scary_list_lines` | 28 lines, not set | `reborn-scary-classes`, `reborn-scary-tough` |  |
+| `borg_scary_list_lines` | 1 line, 28 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |
