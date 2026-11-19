@@ -36,6 +36,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-bundle` | [#361](https://github.com/diegoami/borg-zoo/issues/361) | 12 | all5 bundle pilot done; floor3 bundle pilot defined | The safe-to-adopt changes together on main 38858846: scary all5 + Ranger point-blank 1 + flight Recall on DL1 (gate 0), and the bundle without all5. |
 | `reborn-kill-power-main` | [#244](https://github.com/diegoami/borg-zoo/issues/244) | 2 | pilot done: off neutral on deaths, leans harmful on progress | kill_live_min_power shipped 1 against 0 on main 38858846. |
 | `reborn-errands-main` | [#383](https://github.com/diegoami/borg-zoo/issues/383) | 3 | defined: pilot (dispatch first), small, medium, big, full on 3ba17e2c | Errands plan vs no plan on main 3ba17e2c: none (shipped), errands_plan.txt, errands_plan_ambitious.txt; pilot to full. |
+| `reborn-bless` | [#388](https://github.com/diegoami/borg-zoo/issues/388) | 5 | defined (pilot on 3ba17e2c, not dispatched) | Bless rules (#560) on main 3ba17e2c: never cast, stop sooner (max_danger_divisor 4), bless longer (1), bless at lower danger (danger_divisor 6). |
+| `reborn-phase-thresholds` | [#389](https://github.com/diegoami/borg-zoo/issues/389) | 5 | defined (pilot on 3ba17e2c, not dispatched) | Phase Door thresholds on main 3ba17e2c: ordinary danger 5 / 20 tenths, unique 7, no anti-summon delay. |
+| `reborn-town-dangerous` | [#390](https://github.com/diegoami/borg-zoo/issues/390) | 4 | defined (pilot on 3ba17e2c, not dispatched) | Attacking dangerous townspeople on sight (#619) on main 3ba17e2c: on (bonus 300), bonus 600, min_damage 3. |
 
 ### `heal-attack-4`
 
@@ -538,6 +541,47 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-errands38-errands` | errands_plan.txt |
 | `reborn-errands38-none` | – |
 
+### `reborn-bless`
+
+Bless rules (#560) on main 3ba17e2c: never cast, stop sooner (max_danger_divisor 4), bless longer (1), bless at lower danger (danger_divisor 6).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_defend_bless_danger_divisor` | `borg_param_defend_bless_fail` | `borg_param_defend_bless_max_danger_divisor` |
+| --- | --- | --- | --- |
+| `reborn-bless-ctl` | – | – | – |
+| `reborn-bless-dd6` | 6 | – | – |
+| `reborn-bless-maxdd1` | – | – | 1 |
+| `reborn-bless-maxdd4` | – | – | 4 |
+| `reborn-bless-none` | – | 0 | – |
+
+### `reborn-phase-thresholds`
+
+Phase Door thresholds on main 3ba17e2c: ordinary danger 5 / 20 tenths, unique 7, no anti-summon delay.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_escape_phase_antisummon_delay` | `borg_param_escape_phase_ordinary_danger_tenths` | `borg_param_escape_phase_unique_danger_tenths` |
+| --- | --- | --- | --- |
+| `reborn-phaseth-anti0` | 0 | – | – |
+| `reborn-phaseth-ctl` | – | – | – |
+| `reborn-phaseth-ord20` | – | 20 | – |
+| `reborn-phaseth-ord5` | – | 5 | – |
+| `reborn-phaseth-uniq7` | – | – | 7 |
+
+### `reborn-town-dangerous`
+
+Attacking dangerous townspeople on sight (#619) on main 3ba17e2c: on (bonus 300), bonus 600, min_damage 3.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_town_dangerous_bonus_percent` | `borg_param_attack_town_dangerous_min_damage` | `borg_param_attack_town_dangerous_on_sight` |
+| --- | --- | --- | --- |
+| `reborn-towndanger-ctl` | – | – | – |
+| `reborn-towndanger-onsight` | – | – | 1 |
+| `reborn-towndanger-onsight-b600` | 600 | – | 1 |
+| `reborn-towndanger-onsight-min3` | – | 3 | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -615,6 +659,9 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_spell_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |
+| `borg_param_attack_town_dangerous_bonus_percent` | 600, not set | `reborn-town-dangerous` |  |
+| `borg_param_attack_town_dangerous_min_damage` | 3, not set | `reborn-town-dangerous` |  |
+| `borg_param_attack_town_dangerous_on_sight` | 1, not set | `reborn-town-dangerous` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_flee_recall_gate_below_depth` | 0, 2, 3, not set | `reborn-recall-settings`, `reborn-bundle` |  |
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
@@ -626,6 +673,12 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_named_monsters` | 0, 1 | `reborn-scary-named-damage` |  |
 | `borg_param_caution_stair_parked_fallback` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
+| `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
+| `borg_param_defend_bless_fail` | 0, not set | `reborn-bless` |  |
+| `borg_param_defend_bless_max_danger_divisor` | 1, 4, not set | `reborn-bless` |  |
+| `borg_param_escape_phase_antisummon_delay` | 0, not set | `reborn-phase-thresholds` |  |
+| `borg_param_escape_phase_ordinary_danger_tenths` | 5, 20, not set | `reborn-phase-thresholds` |  |
+| `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
 | `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_druid` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
