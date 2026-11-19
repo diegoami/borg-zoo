@@ -1534,6 +1534,23 @@
       "scary_lists": {
         "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
       }
+    },
+    "4.2.6-reborn-rust-pr616-8a427494": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "8a427494fa3cf16cefabe24cd1681b287b0137d2",
+      "label": "borg-reborn-rs 8a427494, head of PR #616 (#614, unmerged; contains main 38858846): rest at the stairs (recover_rest_reach_stairs, _memory) and leaving by the stairs when a monster comes while recovering (caution_stairs_leave_on_monster, _danger_percent, _down); all shipped off. harness/borg.txt fc64c28a...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
     }
   }
 }

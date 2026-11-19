@@ -4967,6 +4967,59 @@
         "borg_param_attack_arrow_point_blank_divisor_ranger": 1,
         "borg_param_caution_flee_recall_gate_below_depth": 0
       }
+    },
+    "reborn-reststairs-off": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 0,
+        "borg_param_caution_stairs_leave_on_monster": 0
+      }
+    },
+    "reborn-reststairs-reach": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm reach.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 20,
+        "borg_param_recover_rest_reach_stairs_memory": 10,
+        "borg_param_caution_stairs_leave_on_monster": 0
+      }
+    },
+    "reborn-reststairs-leave": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm leave.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 0,
+        "borg_param_caution_stairs_leave_on_monster": 1,
+        "borg_param_caution_stairs_leave_danger_percent": 10,
+        "borg_param_caution_stairs_leave_down": 1
+      }
+    },
+    "reborn-reststairs-leaveup": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm leaveup.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 0,
+        "borg_param_caution_stairs_leave_on_monster": 1,
+        "borg_param_caution_stairs_leave_danger_percent": 10,
+        "borg_param_caution_stairs_leave_down": 0
+      }
+    },
+    "reborn-reststairs-both": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm both.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 20,
+        "borg_param_recover_rest_reach_stairs_memory": 10,
+        "borg_param_caution_stairs_leave_on_monster": 1,
+        "borg_param_caution_stairs_leave_danger_percent": 10,
+        "borg_param_caution_stairs_leave_down": 1
+      }
     }
   }
 }
