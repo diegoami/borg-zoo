@@ -1738,6 +1738,23 @@
       "scary_lists": {
         "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
       }
+    },
+    "angband-574b618-original": {
+      "repository": "angband/angband",
+      "ref": "574b618c3bfec595f3503a58f8e488b1c4ae3a46",
+      "mode_side": "pre",
+      "carries": 0,
+      "label": "Angband master 574b618c, C Borg: upstream's head on 2026-11-17, the base of better-borg-c impact v15. The vanilla C Borg to set beside angband-42cd156-original; its results are not paired with 42cd156's, because the game changed.",
+      "source": "https://github.com/angband/angband/commit/574b618c3bfec595f3503a58f8e488b1c4ae3a46"
+    },
+    "4.2.6-bbc-m15": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "646ebfc2a3a80a0caf87f1ab72fe4bcee0d94343",
+      "mode_side": "post",
+      "carries": 137,
+      "label": "better-borg-c milestone 15 (tag 4.2.6-impact-v15, 2026-11-19): official angband master 574b618c with 137 carried C Borg fixes (review issue better-borg-c#547). Same game commit as angband-574b618-original.",
+      "source": "https://github.com/diegoami/better-borg-c/blob/646ebfc2a3a80a0caf87f1ab72fe4bcee0d94343/docs/measurement/IMPACT-MILESTONE15.md",
+      "tag": "4.2.6-impact-v15"
     }
   }
 }
