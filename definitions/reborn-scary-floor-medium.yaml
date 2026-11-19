@@ -1,0 +1,29 @@
+# borg-zoo#369: the scary list's floor3, medium tier at 100,000 turns (starts 91-360); owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-floor-medium.yaml
+#
+# all5 already ran on these starts on the same specimen (#350, reborn-scary-ends-medium); its games are exact
+# replays, so the study pairs floor3 against them and only floor3 and ctl (the control, a replay check) are played.
+name: reborn-scary-floor-medium
+issue: 369
+question: >-
+  On borg-reborn-rs main 38858846, does cutting the scary list by 5 with a floor at CL 3 (floor3) keep the progress of
+  all5 without its early deaths (starts 91-360, 100,000 turns)?
+specimens: [4.2.6-reborn-rust-main-38858846]
+suites: [classes-1800-medium]
+profiles: [reborn-scaryends-ctl, reborn-scaryends-floor3]
+control_specimen: 4.2.6-reborn-rust-main-38858846
+control_profile: reborn-scaryends-ctl
+owner_authorization: >-
+  2026-11-19: after the floor pilots, the owner asked for the 360-start tier comparing ctl, all5 and floor3.
+
+prespecified: |
+  Fixed 2026-11-19, before any floor3 result on these starts was read. Same specimen and profiles as the pilot
+  (RULES 16). ctl must replay reborn-scary-ends-medium's ctl exactly; all5 is taken from that run.
+  Starts 1-360 of #350: ctl 13, all5 18 deaths; mean max CL 5.25 / 5.73.
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt and scary list; ctl replays the #350 tier;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, small and medium pooled (RULES 14): deaths and causes, CL1-4 deaths, mean max CL and
+  DL; paired rescued and newly killed for floor3 and all5 against ctl, and floor3 against all5.
+  Each value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18).
