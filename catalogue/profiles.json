@@ -6517,6 +6517,48 @@
         "borg_reborn_errand": "none",
         "borg_plan": "errands_plan.txt"
       }
+    },
+    "reborn-restmon-off": {
+      "description": "borg-zoo#419 (reborn-rest-monster-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_monster_turns": 0
+      }
+    },
+    "reborn-restmon-t100": {
+      "description": "borg-zoo#419 (reborn-rest-monster-pilot.yaml): arm t100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_monster_turns": 100,
+        "borg_param_recover_rest_monster_distance": 20
+      }
+    },
+    "reborn-restmon-t200": {
+      "description": "borg-zoo#419 (reborn-rest-monster-pilot.yaml): arm t200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_monster_turns": 200,
+        "borg_param_recover_rest_monster_distance": 20
+      }
+    },
+    "reborn-restbreed-off": {
+      "description": "borg-zoo#419 (reborn-rest-breeders-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_breeders": 0
+      }
+    },
+    "reborn-restbreed-on": {
+      "description": "borg-zoo#419 (reborn-rest-breeders-pilot.yaml): arm on.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_breeders": 1
+      }
     }
   }
 }

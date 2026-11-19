@@ -1,0 +1,47 @@
+# borg-zoo#419 (2): copied from the run request.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-rest-breeders-pilot.yaml
+name: reborn-rest-breeders-pilot
+issue: 419
+question: On borg-reborn-rs #656's head e2df04bd, does holding rests while breeders are known on the level, hunting them or leaving (recover_rest_breeders 1), kill or save games against off?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-pr656-e2df04bd
+  repository: diegoami/borg-reborn-rs
+  ref: e2df04bdfc5db90aef3365ddf0757ac294da7d2a
+  label: "borg-reborn-rs e2df04bd, head of PR #656 (#644, unmerged; contains main 592c6984): no rod, HP/SP or mana rest while breeders are known on the level, hunt them or leave (recover_rest_breeders); shipped off. harness/borg.txt 05ac2aaf..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# Every arm reads the shipped harness/borg.txt and writes only the #644 switch.
+profile_prefix: reborn-restbreed
+arms:
+  'off': {borg_param_recover_rest_breeders: 0}
+  'on': {borg_param_recover_rest_breeders: 1}
+control: ['off']
+extra:
+  retain_evidence: true
+owner_authorization: >-
+  2026-11-19: the owner asked to take #615 (rule a) and #644 forward ("let us do 615 and 644"); pilot first (RULES 16).
+
+prespecified: |
+  Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#644, PR #656). Pilot (RULES 16).
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - in off, no "breeders known on the level" note.
+  Report per arm and per class:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against off;
+  - "# No rest: N breeders known on the level, hunting them|leaving" notes, "# Leaving (breeders on the level, no
+    rest)" and "# Not leaving: the breeder hunt applies again" per game;
+  - deaths with a breeder adjacent or within 2,000 game turns of a held rest; levels left by the rule and what follows.
+  Context: a local run on the same tree (18 classes-18 starts, 100,000 turns; not a zoo run): 0 deaths in both arms,
+  sum of CL 97 / 100; 561 held rests in 13 games (126 hunting, 25 leaves, 1 hunt resumed). Direction only.
