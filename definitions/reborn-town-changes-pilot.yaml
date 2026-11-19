@@ -1,0 +1,36 @@
+# borg-zoo#385: copied from the run request.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-town-changes-pilot.yaml
+name: reborn-town-changes-pilot
+issue: 385
+question: Do the town changes on main (fewer town scares, the ignore list) keep deaths and levels while cutting town time, and does killing the dangerous town monsters on sight help?
+tier: pilot
+specimen:
+  name: 4.2.6-reborn-rust-main-0892ebd7
+  repository: diegoami/borg-reborn-rs
+  ref: 0892ebd7cd775bdd5265611540394fcf7e0097c8
+  label: borg-reborn-rs main at the merge of #624 (town scares 3 levels less, ignore list, kill on sight written out at 0)
+  plans: {errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87, errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9}
+  scary_lists: {scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d}
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-town-changes
+arms:
+  shipped: {}
+  town-off:
+    borg_param_caution_town_scary_levels_less: 0
+    borg_scary_list_lines: ["Farmer Maggot | none | | ignore", "pitiful-looking beggar | none | | ignore", "singing, happy drunk | none | | ignore", "blubbering idiot | none | | ignore", "village idiot | none | | ignore", "mangy-looking leper | none | | ignore", "boil-covered wretch | none | | ignore"]
+  kill-on-sight: {borg_param_attack_town_dangerous_on_sight: 1}
+  never-scary: {borg_param_caution_town_never_scary: 1}
+control: [shipped]
+extra:
+  retain_evidence: true
+prespecified: |
+  Gate: no config_error, one binary, every cell ends in death, turn_cap or borg_stopped; each arm writes its
+  values as set; town-off cells record the base list hash 6ed44686... and the written file's hash
+  (f93ce244e32ba2deef4aa7531ab496201e267943f08da6e45c5547d4b2840d7d); the sanity cells reproduce. List
+  frozen-turn stalls and key outliers.
+  Endpoints, per arm and per class, paired against shipped: deaths and causes; rescued / newly killed;
+  deaths in town (depth 0) and on DL1; mean max CL and max DL; game turns at depth 0; town <-> DL1 level
+  changes; "# Leaving (finish shopping)" notes; "# Scary guy on level." notes in town; town monsters
+  killed in town, by race (the four dangerous ones apart); thefts in town.

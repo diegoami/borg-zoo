@@ -39,6 +39,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-bless` | [#388](https://github.com/diegoami/borg-zoo/issues/388) | 5 | defined (pilot on 3ba17e2c, not dispatched) | Bless rules (#560) on main 3ba17e2c: never cast, stop sooner (max_danger_divisor 4), bless longer (1), bless at lower danger (danger_divisor 6). |
 | `reborn-phase-thresholds` | [#389](https://github.com/diegoami/borg-zoo/issues/389) | 5 | defined (pilot on 3ba17e2c, not dispatched) | Phase Door thresholds on main 3ba17e2c: ordinary danger 5 / 20 tenths, unique 7, no anti-summon delay. |
 | `reborn-town-dangerous` | [#390](https://github.com/diegoami/borg-zoo/issues/390) | 4 | defined (pilot on 3ba17e2c, not dispatched) | Attacking dangerous townspeople on sight (#619) on main 3ba17e2c: on (bonus 300), bonus 600, min_damage 3. |
+| `reborn-gold-reserve` | [#392](https://github.com/diegoami/borg-zoo/issues/392) | 5 | defined (pilot on 3ba17e2c, not dispatched) | Town gold reserve on main 3ba17e2c: fixed 300 / 1000, percent 25 / 50, against 0 (shipped). |
+| `reborn-stand-seeinv` | [#393](https://github.com/diegoami/borg-zoo/issues/393) | 3 | defined (pilot on 3ba17e2c, not dispatched) | caution_scary_stand 0 (always flee) and recover_rest_arms_see_invis 1 against shipped, on main 3ba17e2c. |
 
 ### `heal-attack-4`
 
@@ -582,6 +584,32 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-towndanger-onsight-b600` | 600 | – | 1 |
 | `reborn-towndanger-onsight-min3` | – | 3 | 1 |
 
+### `reborn-gold-reserve`
+
+Town gold reserve on main 3ba17e2c: fixed 300 / 1000, percent 25 / 50, against 0 (shipped).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_gold_reserve` | `borg_param_town_gold_reserve_percent` |
+| --- | --- | --- |
+| `reborn-goldres-ctl` | – | – |
+| `reborn-goldres-p25` | – | 25 |
+| `reborn-goldres-p50` | – | 50 |
+| `reborn-goldres-r1000` | 1000 | – |
+| `reborn-goldres-r300` | 300 | – |
+
+### `reborn-stand-seeinv`
+
+caution_scary_stand 0 (always flee) and recover_rest_arms_see_invis 1 against shipped, on main 3ba17e2c.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_scary_stand` | `borg_param_recover_rest_arms_see_invis` |
+| --- | --- | --- |
+| `reborn-standinv-ctl` | – | – |
+| `reborn-standinv-seeinv1` | – | 1 |
+| `reborn-standinv-stand0` | 0 | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -671,6 +699,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_hurt_percent` | 0, 50 | `reborn-scary-calm` |  |
 | `borg_param_caution_scary_latch` | 0, 1 | `reborn-scary-calm` |  |
 | `borg_param_caution_scary_named_monsters` | 0, 1 | `reborn-scary-named-damage` |  |
+| `borg_param_caution_scary_stand` | 0, not set | `reborn-stand-seeinv` |  |
 | `borg_param_caution_stair_parked_fallback` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
@@ -680,6 +709,9 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_phase_ordinary_danger_tenths` | 5, 20, not set | `reborn-phase-thresholds` |  |
 | `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
+| `borg_param_recover_rest_arms_see_invis` | 1, not set | `reborn-stand-seeinv` |  |
+| `borg_param_town_gold_reserve` | 300, 1000, not set | `reborn-gold-reserve` |  |
+| `borg_param_town_gold_reserve_percent` | 25, 50, not set | `reborn-gold-reserve` |  |
 | `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_druid` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_mage` | 0, 75, 225, not set | `reborn-heal-by-class` |  |

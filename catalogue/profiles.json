@@ -5555,6 +5555,46 @@
         "borg_plan": "errands_plan_ambitious.txt"
       }
     },
+    "reborn-town-changes-shipped": {
+      "description": "borg-zoo#385 (reborn-town-changes-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-town-changes-town-off": {
+      "description": "borg-zoo#385 (reborn-town-changes-pilot.yaml): arm town-off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_scary_levels_less": 0,
+        "borg_scary_list_lines": [
+          "Farmer Maggot | none | | ignore",
+          "pitiful-looking beggar | none | | ignore",
+          "singing, happy drunk | none | | ignore",
+          "blubbering idiot | none | | ignore",
+          "village idiot | none | | ignore",
+          "mangy-looking leper | none | | ignore",
+          "boil-covered wretch | none | | ignore"
+        ]
+      }
+    },
+    "reborn-town-changes-kill-on-sight": {
+      "description": "borg-zoo#385 (reborn-town-changes-pilot.yaml): arm kill-on-sight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_town_dangerous_on_sight": 1
+      }
+    },
+    "reborn-town-changes-never-scary": {
+      "description": "borg-zoo#385 (reborn-town-changes-pilot.yaml): arm never-scary.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_never_scary": 1
+      }
+    },
     "reborn-phaseth-ctl": {
       "description": "borg-zoo#389 (reborn-phase-thresholds-pilot.yaml): arm ctl.",
       "settings": {
@@ -5664,6 +5704,68 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none",
         "borg_param_defend_bless_danger_divisor": 6
+      }
+    },
+    "reborn-goldres-ctl": {
+      "description": "borg-zoo#392 (reborn-gold-reserve-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-goldres-r300": {
+      "description": "borg-zoo#392 (reborn-gold-reserve-pilot.yaml): arm r300.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_gold_reserve": 300
+      }
+    },
+    "reborn-goldres-r1000": {
+      "description": "borg-zoo#392 (reborn-gold-reserve-pilot.yaml): arm r1000.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_gold_reserve": 1000
+      }
+    },
+    "reborn-goldres-p25": {
+      "description": "borg-zoo#392 (reborn-gold-reserve-pilot.yaml): arm p25.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_gold_reserve_percent": 25
+      }
+    },
+    "reborn-goldres-p50": {
+      "description": "borg-zoo#392 (reborn-gold-reserve-pilot.yaml): arm p50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_gold_reserve_percent": 50
+      }
+    },
+    "reborn-standinv-ctl": {
+      "description": "borg-zoo#393 (reborn-stand-seeinv-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-standinv-stand0": {
+      "description": "borg-zoo#393 (reborn-stand-seeinv-pilot.yaml): arm stand0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_stand": 0
+      }
+    },
+    "reborn-standinv-seeinv1": {
+      "description": "borg-zoo#393 (reborn-stand-seeinv-pilot.yaml): arm seeinv1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_arms_see_invis": 1
       }
     }
   }
