@@ -1,0 +1,496 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-crowesc38-ctl": {
+        "description": "borg-zoo#408 (reborn-crow-escape-replay.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "3b9985ed5f6a3754d0560b2273d5b012c37854c25244ab826923807f39547ba4"
+      },
+      "reborn-crowesc38-phase": {
+        "description": "borg-zoo#408 (reborn-crow-escape-replay.yaml): arm phase.",
+        "settings": {
+          "borg_param_escape_phase_adjacent_rule": 1,
+          "borg_param_escape_phase_lost_danger_percent": 100,
+          "borg_param_escape_phase_lost_test": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "70c1ce292f25f472c7fa081abac93f45c802a72735341057f6ff18704d9e4bcb"
+      },
+      "reborn-crowesc38-phase-oil": {
+        "description": "borg-zoo#408 (reborn-crow-escape-replay.yaml): arm phase-oil.",
+        "settings": {
+          "borg_param_escape_phase_adjacent_rule": 1,
+          "borg_param_escape_phase_lost_danger_percent": 100,
+          "borg_param_escape_phase_lost_test": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_attack_turns": 50,
+          "borg_town_w_attack": 200
+        },
+        "sha256": "e666d8cc40db82aa11080153382159fe89e87165966467fba4b2435e65c8d5d0"
+      },
+      "reborn-crowesc38-phase-thrown": {
+        "description": "borg-zoo#408 (reborn-crow-escape-replay.yaml): arm phase-thrown.",
+        "settings": {
+          "borg_param_attack_preference_thrown_permille": 1500,
+          "borg_param_escape_phase_adjacent_rule": 1,
+          "borg_param_escape_phase_lost_danger_percent": 100,
+          "borg_param_escape_phase_lost_test": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "f4b97134b31d8cc7a71dd2a7729107ee4c6b1d3a7fa1e846f236ff18d481f7f7"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-3ba17e2c": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 3ba17e2c, main at the merge of #633. Ships attack_arrow_point_blank_divisor Ranger 2 and Rogue 3 (class files). Tree 23632fb4; source-hash rust bc79f0a6...; harness/borg.txt 617cc79c...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "3ba17e2c21ae203d2dd45fa53f1dbada87acba75",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-b-crowcat-deaths": {
+        "assigned_characters": {
+          "1064906563": [
+            "Human",
+            "Mage"
+          ],
+          "1161859855": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "1198994146": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "1254893248": [
+            "Elf",
+            "Druid"
+          ],
+          "1358440192": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1364225192": [
+            "Kobold",
+            "Druid"
+          ],
+          "1365836524": [
+            "Elf",
+            "Druid"
+          ],
+          "1579321526": [
+            "Kobold",
+            "Blackguard"
+          ],
+          "1625381930": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "1637197562": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "1723335135": [
+            "Dwarf",
+            "Mage"
+          ],
+          "1840832686": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "1944217924": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "453812472": [
+            "Hobbit",
+            "Priest"
+          ],
+          "461333610": [
+            "Dunadan",
+            "Mage"
+          ],
+          "473090660": [
+            "Kobold",
+            "Druid"
+          ],
+          "499926828": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "662456967": [
+            "Human",
+            "Ranger"
+          ],
+          "688038640": [
+            "Kobold",
+            "Priest"
+          ],
+          "83189782": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "926161511": [
+            "Elf",
+            "Ranger"
+          ],
+          "960896019": [
+            "Dunadan",
+            "Priest"
+          ],
+          "9976609": [
+            "Dwarf",
+            "Priest"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The 23 starts of classes-1800-b where shipped borg-reborn-rs main 3ba17e2c (reborn-errands38-none) died to a crow or a wild cat (borg-zoo#408): chosen starts for a mechanism check, not a random sample.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          1064906563,
+          9976609,
+          1365836524,
+          499926828,
+          1364225192,
+          453812472,
+          960896019,
+          1358440192,
+          1637197562,
+          83189782,
+          1254893248,
+          926161511,
+          1161859855,
+          1723335135,
+          688038640,
+          1625381930,
+          1579321526,
+          461333610,
+          473090660,
+          1944217924,
+          662456967,
+          1840832686,
+          1198994146
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "seeds": [
+            9976609,
+            83189782,
+            453812472,
+            461333610,
+            473090660,
+            499926828,
+            662456967,
+            688038640,
+            926161511,
+            960896019,
+            1064906563,
+            1161859855,
+            1198994146,
+            1254893248,
+            1358440192,
+            1364225192,
+            1365836524,
+            1579321526,
+            1625381930,
+            1637197562,
+            1723335135,
+            1840832686,
+            1944217924
+          ],
+          "suite": "classes-1800-b"
+        },
+        "wall_seconds": 900
+      },
+      "classes-1800-crowcat-deaths": {
+        "assigned_characters": {
+          "1005268769": [
+            "Hobbit",
+            "Mage"
+          ],
+          "1082949996": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "1209439220": [
+            "Human",
+            "Druid"
+          ],
+          "121466703": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "1244628290": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1267936921": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "1290636548": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "1311784001": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1330341082": [
+            "Kobold",
+            "Rogue"
+          ],
+          "1447548027": [
+            "Hobbit",
+            "Druid"
+          ],
+          "1532260360": [
+            "Hobbit",
+            "Mage"
+          ],
+          "1612359658": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1643476647": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "1808419225": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "1838309752": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "1935672562": [
+            "Human",
+            "Priest"
+          ],
+          "1960118704": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "1996566312": [
+            "Human",
+            "Necromancer"
+          ],
+          "2128748366": [
+            "Kobold",
+            "Druid"
+          ],
+          "213995942": [
+            "Dunadan",
+            "Mage"
+          ],
+          "238601369": [
+            "Kobold",
+            "Mage"
+          ],
+          "256351365": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "300461652": [
+            "Hobbit",
+            "Mage"
+          ],
+          "440347779": [
+            "Hobbit",
+            "Mage"
+          ],
+          "458006127": [
+            "Elf",
+            "Rogue"
+          ],
+          "46720842": [
+            "Kobold",
+            "Rogue"
+          ],
+          "504233000": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "518606877": [
+            "Gnome",
+            "Mage"
+          ],
+          "520757110": [
+            "High-Elf",
+            "Mage"
+          ],
+          "773106230": [
+            "Human",
+            "Blackguard"
+          ],
+          "810310797": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "861292696": [
+            "Half-Elf",
+            "Necromancer"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The 32 starts of classes-1800 where shipped borg-reborn-rs main 3ba17e2c (reborn-errands38-none) died to a crow or a wild cat (borg-zoo#408): chosen starts for a mechanism check, not a random sample.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          300461652,
+          1209439220,
+          1643476647,
+          810310797,
+          1244628290,
+          1612359658,
+          1996566312,
+          773106230,
+          861292696,
+          1311784001,
+          1082949996,
+          518606877,
+          520757110,
+          46720842,
+          1267936921,
+          458006127,
+          1838309752,
+          1005268769,
+          1960118704,
+          2128748366,
+          1532260360,
+          1808419225,
+          213995942,
+          1330341082,
+          440347779,
+          238601369,
+          1935672562,
+          121466703,
+          256351365,
+          1447548027,
+          1290636548,
+          504233000
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "seeds": [
+            46720842,
+            121466703,
+            213995942,
+            238601369,
+            256351365,
+            300461652,
+            440347779,
+            458006127,
+            504233000,
+            518606877,
+            520757110,
+            773106230,
+            810310797,
+            861292696,
+            1005268769,
+            1082949996,
+            1209439220,
+            1244628290,
+            1267936921,
+            1290636548,
+            1311784001,
+            1330341082,
+            1447548027,
+            1532260360,
+            1612359658,
+            1643476647,
+            1808419225,
+            1838309752,
+            1935672562,
+            1960118704,
+            1996566312,
+            2128748366
+          ],
+          "suite": "classes-1800"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-19 19:19 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-3ba17e2c",
+    "control_profile": "reborn-crowesc38-ctl",
+    "definition": "definitions/reborn-crow-escape-replay.yaml",
+    "description": "On borg-reborn-rs main 3ba17e2c, on the starts where shipped main died to a crow or a wild cat, does the Phase Door rule save them, and do throwing or more oil on top of it save more? Generated from definitions/reborn-crow-escape-replay.yaml: 4 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-crowcat-deaths, classes-1800-b-crowcat-deaths.",
+    "issue": 408,
+    "name": "reborn-crow-escape-replay",
+    "owner_authorization": "2026-11-19: the owner asked for the proposed crow/wild-cat replay with the Phase Door rule and oil-throwing (item 2).",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-19, before any result of these profiles on these starts was read. Mechanism check on chosen starts.\nGate:\n- no config_error; one binary;\n- ctl replays reborn-errands38-none's death on every start (as in reborn-crow-deaths-replay);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: rescued starts (ctl dies, the arm does not), separately for crow and wild-cat deaths;\nphase-thrown and phase-oil against phase (rescued and newly killed); deaths to other monsters on the rescued starts;\nflasks of oil bought and thrown; mean max CL and DL. No RULES 18 bin from this run (chosen starts).",
+    "profiles": [
+      "reborn-crowesc38-ctl",
+      "reborn-crowesc38-phase",
+      "reborn-crowesc38-phase-thrown",
+      "reborn-crowesc38-phase-oil"
+    ],
+    "question": "On borg-reborn-rs main 3ba17e2c, on the starts where shipped main died to a crow or a wild cat, does the Phase Door rule save them, and do throwing or more oil on top of it save more?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-3ba17e2c"
+    ],
+    "suites": [
+      "classes-1800-crowcat-deaths",
+      "classes-1800-b-crowcat-deaths"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44596030310-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44596030310",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "b1ddd5a41ddc4db8559b8b0464bf2c256212cf20"
+}
