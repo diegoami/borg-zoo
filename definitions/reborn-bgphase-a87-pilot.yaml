@@ -1,0 +1,51 @@
+# borg-zoo#437: Blackguards and the shipped Phase Door rule on main a87b4c96 (Blackguard Phase Door curve 50); pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-bgphase-a87-pilot.yaml
+#
+# Only Blackguards are played. rule-on is shipped main; rule-off switches the common rule lines off. No class line sets
+# escape_phase_adjacent_rule or escape_phase_lost_test at a87b4c96, so on Blackguard starts the common lines decide.
+name: reborn-bgphase-a87-pilot
+issue: 437
+question: >-
+  On borg-reborn-rs main a87b4c96, which ships the Phase Door rule and carries fewer Phase Door scrolls for
+  Blackguards (curve 50), do Blackguards die less with the rule off?
+suites: [classes-1800-small-blackguards]
+pilot: true   # the 10 Blackguard starts of classes-1800-small
+
+specimen:
+  name: 4.2.6-reborn-rust-main-a87b4c96
+  repository: diegoami/borg-reborn-rs
+  ref: a87b4c96cff9cf636f95cbb9818526f22a025625
+  label: "borg-reborn-rs main a87b4c96, the merge of #688 (#682: town_phase_curve_scale_percent and town_oil_curve_scale_percent per class, the owner's values; Blackguard healing 100/200). Tree 9f0cda19; harness/borg.txt 63a4d1be..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-bgphase-a87
+arms:
+  rule-on: {}
+  rule-off: {borg_param_escape_phase_adjacent_rule: 0, borg_param_escape_phase_lost_test: 1}
+control: [rule-on]
+owner_authorization: >-
+  2026-11-19: the owner pointed this session at the filed studies ("Issue 436 and 437"). Pilot first (RULES 16); medium,
+  big and full (all 200 classes-1800 Blackguard starts) each after the previous gate and on the owner's go.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result on a87b4c96 was read. Pilot (RULES 16), 10 starts per arm.
+  Control: rule-on, shipped main. Evidence: Blackguards were the only class worse with the rule, 13 against 18 deaths
+  over #347's two studies; the 592c6984 pilot (10 starts) had no deaths in either arm. #688 set the Blackguard Phase
+  Door curve to 50, which changes what the rule governs.
+  Gate:
+  - no config_error; one binary; each arm's values in borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced;
+  - in rule-off, no "# Phase rule" note.
+  Primary: Blackguard deaths; secondary: mean max CL and DL. Paired rescued and newly killed (rule-off against rule-on),
+  identical plays. RULES 18 bins; 10 starts show direction only.
