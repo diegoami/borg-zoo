@@ -5665,6 +5665,32 @@
         "borg_reborn_errand": "none",
         "borg_param_defend_bless_danger_divisor": 6
       }
+    },
+    "reborn-bundle1119-ctl": {
+      "description": "borg-zoo#347 (reborn-bundle-1119-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_unlatch_calmed": 0,
+        "borg_param_caution_recall_wait_as_usual": 0,
+        "borg_param_escape_phase_adjacent_rule": 0,
+        "borg_param_escape_phase_lost_test": 1,
+        "borg_param_escape_phase_lost_danger_percent": 100,
+        "borg_param_attack_arrow_point_blank_divisor_rogue": 3
+      }
+    },
+    "reborn-bundle1119-bundle": {
+      "description": "borg-zoo#347 (reborn-bundle-1119-pilot.yaml): arm bundle.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_unlatch_calmed": 1,
+        "borg_param_caution_recall_wait_as_usual": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100,
+        "borg_param_attack_arrow_point_blank_divisor_rogue": 2
+      }
     }
   }
 }
