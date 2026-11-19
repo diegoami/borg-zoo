@@ -17,7 +17,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `rs-additive-6` | [#129](https://github.com/diegoami/borg-zoo/issues/129) | 6 | obsolete (#129 closed by the owner) | borg-rs: existing behaviour, shopping only, and four trip thresholds (0,0), (1,2), (1,4), (2,4) as (pack slack, unknown stacks). |
 | `neo-default` | [#137](https://github.com/diegoami/borg-zoo/issues/137) | 1 | small tier done | Neo Borg with its default recorded flags (no settings). |
 | `reborn-errand-ladder` | – | 2 | done (option-C pilot, borg-reborn-rs #207, #208) | Errands: borg-rs's core in the reborn shell with no errand against the class ladders (borg_reborn_errand = ladder). |
-| `reborn-heal-by-class` | [#265](https://github.com/diegoami/borg-zoo/issues/265) | 6 | pilot dispatched (run 44294456089) | Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, and class files off (common 100/125); real-HP reserve and speed at shipped values; read per class. |
+| `reborn-heal-by-class` | [#265](https://github.com/diegoami/borg-zoo/issues/265) | 6 | pilot done (gate passed); owner asked: next tier on 4a482c58 or re-pilot on current main | Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, and class files off (common 100/125); real-HP reserve and speed at shipped values; read per class. |
 | `reborn-outmatched` | [#270](https://github.com/diegoami/borg-zoo/issues/270) | 4 | superseded by #275 (reborn-heal-outmatched on 92fafc61: off, min_loss 30-70); not dispatched | Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75. |
 | `reborn-attack-by-class` | [#274](https://github.com/diegoami/borg-zoo/issues/274) | 4 | verysmall defined (ctl, flat, half; strong dropped); not dispatched | Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class. |
 | `reborn-worships` | [#279](https://github.com/diegoami/borg-zoo/issues/279) | 6 | pilot done (gate passed); damage, speed, hp, mana inert (18/18 identical), dropped; ac changes every game | The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect. |
@@ -27,9 +27,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-scary-named-damage` | [#292](https://github.com/diegoami/borg-zoo/issues/292) | 3 | pilot done (gate passed); superseded by reborn-scary-classes (#299): the owner wants more class bias, not less | Named scary list with the damage rule at 60% (shipped) or 40%, and the damage rule alone, on main f660aecc. |
 | `reborn-scary-classes` | [#299](https://github.com/diegoami/borg-zoo/issues/299) | 4 | pilot done: up3/up6 inert at 100,000 turns; continued as reborn-scary-tough | The scary list's class spread on main f660aecc: shipped (fragile = tough + 3), fragile + 3, fragile + 6, tough - 3 and fragile + 3; read per class. |
 | `reborn-pbd-rr` | [#290](https://github.com/diegoami/borg-zoo/issues/290) | 3 | pilot done (gate passed); medium and big dispatched; full defined (owner: the full suite) | Point-blank divisor for Rangers (1, 2 shipped, 3) and Rogues (2, 3 shipped, 4) on main f660aecc, played on Ranger and Rogue starts only. |
-| `reborn-scary-tough` | [#299](https://github.com/diegoami/borg-zoo/issues/299) | 3 | pilot done (gate passed, no deaths; t5 leads on progress); small and medium defined | The scary list's tough end on main f660aecc: shipped, tough - 3 and tough - 5 with fragile unchanged; read per class. |
-| `reborn-rising-ticks3` | [#191](https://github.com/diegoami/borg-zoo/issues/191) | 5 | pilot done (gate passed, no deaths); small and medium defined | caution_rising_explore_ticks 300 (shipped), 500, 1000, 1500, 2000 on main f660aecc. |
-| `reborn-attack-focus` | [#319](https://github.com/diegoami/borg-zoo/issues/319) | 3 | pilot done (gate passed); small, medium and big defined (owner: big experiment) | Attack focus by class on main f660aecc: shipped class preferences, with every family a class file does not raise at 750 or 500. |
+| `reborn-scary-tough` | [#299](https://github.com/diegoami/borg-zoo/issues/299) | 3 | small+medium done: progress lead for t5, deaths unchanged; big waits for the owner | The scary list's tough end on main f660aecc: shipped, tough - 3 and tough - 5 with fragile unchanged; read per class. |
+| `reborn-rising-ticks3` | [#191](https://github.com/diegoami/borg-zoo/issues/191) | 5 | done: small+medium, no death change, progress lower above 1000; closed (FINDINGS) | caution_rising_explore_ticks 300 (shipped), 500, 1000, 1500, 2000 on main f660aecc. |
+| `reborn-attack-focus` | [#319](https://github.com/diegoami/borg-zoo/issues/319) | 3 | done: small+medium+big, no outcome changed; closed (FINDINGS) | Attack focus by class on main f660aecc: shipped class preferences, with every family a class file does not raise at 750 or 500. |
 
 ### `heal-attack-4`
 
@@ -214,7 +214,7 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 | Run | Tier | Specimen | Result |
 | --- | --- | --- | --- |
-| [44294456089](https://github.com/diegoami/borg-zoo/actions/runs/44294456089) | pilot | `4.2.6-reborn-rust-main-4a482c58` | running |
+| [44294456089](https://github.com/diegoami/borg-zoo/actions/runs/44294456089) | pilot | `4.2.6-reborn-rust-main-4a482c58` | 108 games: deaths ctl 1, curve-lo 2, curve-hi 1, reserve-lo 3, reserve-hi 1, common 2; both Druids die with common and reserve-lo |
 
 ### `reborn-outmatched`
 
@@ -381,6 +381,7 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | Run | Tier | Specimen | Result |
 | --- | --- | --- | --- |
 | [44359605720](https://github.com/diegoami/borg-zoo/actions/runs/44359605720) | pilot | `4.2.6-reborn-rust-main-f660aecc` | 54 games, no deaths; identical to ctl t3 7, t5 6; t5 mean CL 6.00 v 5.44, DL 2.50 v 2.11 |
+| [44377349082 + 44377372817](https://github.com/diegoami/borg-zoo/actions/runs/44377349082 + 44377372817) | small + medium | `4.2.6-reborn-rust-main-f660aecc` | 1,080 games: deaths ctl 23, t3 24, t5 22 of 360; mean CL 5.09 / 5.34 / 5.45 |
 
 ### `reborn-rising-ticks3`
 
@@ -399,6 +400,7 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | Run | Tier | Specimen | Result |
 | --- | --- | --- | --- |
 | [44359631721](https://github.com/diegoami/borg-zoo/actions/runs/44359631721) | pilot | `4.2.6-reborn-rust-main-f660aecc` | 90 games, no deaths; 8/18 identical to t300 in every arm; rising holds 1,101 / 1,369 / 3,823 / 3,904 / 3,202 |
+| [44377398372 + 44377423630](https://github.com/diegoami/borg-zoo/actions/runs/44377398372 + 44377423630) | small + medium | `4.2.6-reborn-rust-main-f660aecc` | 1,800 games: deaths 23/23/21/22/22 of 360 (300/500/1000/1500/2000); mean CL 5.09 to 4.81 |
 
 ### `reborn-attack-focus`
 
@@ -415,6 +417,7 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | Run | Tier | Specimen | Result |
 | --- | --- | --- | --- |
 | [44377324652](https://github.com/diegoami/borg-zoo/actions/runs/44377324652) | pilot | `4.2.6-reborn-rust-main-f660aecc` | 54 games: deaths ctl 0, low750 0, low500 1; identical to ctl low750 12, low500 10 of 18; Druid, Necromancer, Rogue, Ranger change |
+| [44423205315 + 44423223366 + 44423242333](https://github.com/diegoami/borg-zoo/actions/runs/44423205315 + 44423223366 + 44423242333) | small + medium + big | `4.2.6-reborn-rust-main-f660aecc` | 2,700 games: deaths ctl 62, low750 60, low500 61 of 900; mean CL 5.05-5.08 |
 
 ## Settings you have built arms with
 
