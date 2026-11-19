@@ -1,0 +1,188 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-goldres-ctl": {
+        "description": "borg-zoo#392 (reborn-gold-reserve-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "940e67670f6e54363235b0254e7e54e362b6ffad4cd5c1a06f49870fac1c31e1"
+      },
+      "reborn-goldres-p25": {
+        "description": "borg-zoo#392 (reborn-gold-reserve-pilot.yaml): arm p25.",
+        "settings": {
+          "borg_param_town_gold_reserve_percent": 25,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "8a1d72e1e9e17c108b79c7b323159debfb8de285ae4a556539bd91ff988dfd3d"
+      },
+      "reborn-goldres-p50": {
+        "description": "borg-zoo#392 (reborn-gold-reserve-pilot.yaml): arm p50.",
+        "settings": {
+          "borg_param_town_gold_reserve_percent": 50,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "4f6f2647c00c0d6931885615e7a00b9f06bc2eb44307f7ce37eb336ba6ff3153"
+      },
+      "reborn-goldres-r1000": {
+        "description": "borg-zoo#392 (reborn-gold-reserve-pilot.yaml): arm r1000.",
+        "settings": {
+          "borg_param_town_gold_reserve": 1000,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "a4bbdb4291f90b2abed84ce788387bf1447b1f46f519f5cfd1da9693fdfc85cc"
+      },
+      "reborn-goldres-r300": {
+        "description": "borg-zoo#392 (reborn-gold-reserve-pilot.yaml): arm r300.",
+        "settings": {
+          "borg_param_town_gold_reserve": 300,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "38451ee101eaaea110f34985937bfb3acbca5201c3b9cde8295679399f28497d"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-3ba17e2c": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 3ba17e2c, main at the merge of #633. Ships attack_arrow_point_blank_divisor Ranger 2 and Rogue 3 (class files). Tree 23632fb4; source-hash rust bc79f0a6...; harness/borg.txt 617cc79c...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "3ba17e2c21ae203d2dd45fa53f1dbada87acba75",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-19 12:31 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-3ba17e2c",
+    "control_profile": "reborn-goldres-ctl",
+    "definition": "definitions/reborn-gold-reserve-pilot.yaml",
+    "description": "On borg-reborn-rs main 3ba17e2c, does keeping gold back from shopping (a fixed 300 or 1000, or 25% or 50% of the purse; shipped 0) change deaths, progress or what the Borg buys? Generated from definitions/reborn-gold-reserve-pilot.yaml: 5 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-18.",
+    "issue": 392,
+    "name": "reborn-gold-reserve-pilot",
+    "owner_authorization": "2026-11-19: the owner asked to find interesting untested parameters; this one's borg.txt impact note is large and it has never run in the zoo. Pilot first (RULES 16).",
+    "prespecified": "Fixed 2026-11-19, before any result was read. Pilot (RULES 16).\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: identical plays against ctl; deaths and causes, CL1-3 deaths, final level, deepest\nlevel; paired rescued and newly killed; gold at each milestone, gold spent per category from the town records (healing, escapes, armour, weapons). Each arm is reported as harmful, neutral (safe to adopt) or helpful\n(RULES 18). Direction only.",
+    "profiles": [
+      "reborn-goldres-ctl",
+      "reborn-goldres-r300",
+      "reborn-goldres-r1000",
+      "reborn-goldres-p25",
+      "reborn-goldres-p50"
+    ],
+    "question": "On borg-reborn-rs main 3ba17e2c, does keeping gold back from shopping (a fixed 300 or 1000, or 25% or 50% of the purse; shipped 0) change deaths, progress or what the Borg buys?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-3ba17e2c"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44523725177-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44523725177",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "35596af28749ddc6d950b484199730d74f8c9552"
+}
