@@ -1,0 +1,29 @@
+{
+  "kind": "suite-run",
+  "name": "suite1-reborn-main-e5cc5469-stock",
+  "folder": "scenario-experiments",
+  "issue": 183,
+  "question": "How does borg-reborn-rs main e5cc5469, with its own default settings, play the 999 saved encounters of Suite 1?",
+  "suite": "suite1-v1",
+  "source": {
+    "repository": "diegoami/borg-reborn-rs",
+    "commit": "e5cc54697cf58338536ee34959d6d6780ccdddbc"
+  },
+  "settings": "stock",
+  "inputs": {
+    "path": "scenario-inputs/suite1-reborn-main-e5cc5469-stock",
+    "files": {
+      "borg.txt": "6bf515d3f505693b3f52c99c0849ae1692b1dfc953247b06283866aadf64c7b0",
+      "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d",
+      "provenance.json": "1f73667ec32a5990a117ff597f01aa5e99ea368ed3a411defc8b9846d034c285"
+    }
+  },
+  "native_tools": {
+    "repository": "diegoami/borg-cemetery",
+    "commit": "a4c76ac57a3eea3357d6f0ade3709185eb2c43dc"
+  },
+  "owner_authorization": "2026-11-19: the owner said \"do all them\" to a proposed sanity run of Suite 1 on main e5cc5469, after borg-reborn-rs shipped caution_scary_unlatch_calmed (#672) and the Phase Door rule (#662). Smoke first; later stages each after the previous stage's gate.",
+  "prespecified": "Fixed 2026-11-19, before any result was read (borg-zoo#183). A sanity check of main: the 999 saves of\nSuite 1 with its protocol (exact 2,000-engine-turn horizon, the suite's 30-second native wall limit, fresh Borg\nmemory, saved engine RNG). Settings: the checkout's own harness/borg.txt (sha256 6bf515d3...), nothing\noverridden; the scary list it names (scary_monsters.txt 6ed44686...) is frozen with the inputs. Stages smoke 18,\nthen small 90, medium 360, big 900 and full 999, each after the previous stage's gate and proposed to the owner.\nGate at every stage: no missing, invalid or stopped cell; one binary; every cell's native receipts show the save,\nthe RNG, the borg-rs core, every borg.txt setting written, every borg_param_* effective from borg.txt, and an\ninitial pack/equipment/rune hash equal to the suite's. Reported alone: the death share, deaths per class and every\nscenario's outcome. Encounters from one life are correlated.\n",
+  "schema": "borg-zoo/suite-run-definition@1",
+  "definition": "definitions/suite1-reborn-main-e5cc5469-stock.yaml"
+}
