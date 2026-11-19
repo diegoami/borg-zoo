@@ -1,0 +1,47 @@
+# borg-zoo#426: pilot requested by borg-reborn-rs, definition as given in the issue.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-ranged-immobile-pilot.yaml
+name: reborn-ranged-immobile-pilot
+issue: 426
+question: On borg-reborn-rs main 0d8b61d7, does stepping away from immobile attackers and not curing confusion next to them (caution_ranged_vs_immobile) save games or progress?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-0d8b61d7
+  repository: diegoami/borg-reborn-rs
+  ref: 0d8b61d77992f2b4fc690d5eba0296b97d92b491
+  label: "borg-reborn-rs main 0d8b61d7 (#659 merged: caution_ranged_vs_immobile, shipped 0; #664, #654, #668). Source-hash rust 3498b38b...; harness/borg.txt 5b3ea486..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+profile_prefix: reborn-rangedimmobile
+arms:
+  ctl: {borg_param_caution_ranged_vs_immobile: 0}
+  step: {borg_param_caution_ranged_vs_immobile: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: requested by the borg-reborn-rs owner in this issue; the owner of the zoo said "do all them" to the proposed pilots. Pilot first (RULES 16).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#646, PR #659). Pilot (RULES 16); larger tiers
+  only after this gate and the owner. ctl is the shipped configuration (the switch off).
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;
+  - "# Stepping away from immobile" notes (confused and ranged first), most per game, and any loop (many steps at one attacker);
+  - "# Not fixing Confusion next to an immobile attacker" notes, and any confusion cure in the same turn after one (expected 0);
+  - confusion cures quaffed per game; deaths next to an immobile attacker.
+  Most immobile attackers at DL1-3 are molds and mushroom patches the Borg below CL10 does not hunt; the effect needs
+  a larger tier.
