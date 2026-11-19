@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-kill-power-main-pilot",
+  "issue": 244,
+  "definition": "definitions/reborn-kill-power-main-pilot.yaml",
+  "question": "On borg-reborn-rs main 38858846 (ships kill_live_min_power 1), does turning it off cost games?",
+  "description": "On borg-reborn-rs main 38858846 (ships kill_live_min_power 1), does turning it off cost games? Generated from definitions/reborn-kill-power-main-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-38858846, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result on 38858846 was read. Pilot (RULES 16); c9e58ca0 is context only.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and scary list;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: deaths and causes, CL1-3 deaths, final level, deepest level; paired rescued and newly\nkilled; identical plays.\nEach value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18). Direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-38858846"
+  ],
+  "profiles": [
+    "reborn-killpow38-ctl",
+    "reborn-killpow38-off0"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-38858846",
+  "control_profile": "reborn-killpow38-ctl",
+  "owner_authorization": "2026-11-19: the owner asked to file other experiments; the c9e58ca0 lead (22 against 28 deaths of 360) was never re-checked on a current build. Pilot first (RULES 16)."
+}
