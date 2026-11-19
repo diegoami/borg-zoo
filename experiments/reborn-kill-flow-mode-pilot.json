@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-kill-flow-mode-pilot",
+  "issue": 438,
+  "definition": "definitions/reborn-kill-flow-mode-pilot.yaml",
+  "question": "On borg-reborn-rs f9c44b35 (PR",
+  "description": "On borg-reborn-rs f9c44b35 (PR Generated from definitions/reborn-kill-flow-mode-pilot.yaml: 4 arms on 4.2.6-reborn-rust-t691-f9c44b35, suite classes-1800-200k-pilot.",
+  "prespecified": "Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#691, PR #695). Pilot (RULES 16) on the 200,000-turn\npilot suite, because the question is CL10 and above; larger tiers only after this gate and the owner. ctl is shipped.\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final and maximum level, deepest level; paired rescued and newly killed against ctl;\n- \"# Flowing toward kill\" per game, split by character level band (CL1-9, 10-15, 16-25, 26+);\n- kills per game (\"# DIED:\" with \"(+)\") and experience at the end;\n- for every death in any arm: was the Borg walking to a fight (a \"Flowing toward kill\" in the 20 decisions before it), and\n  in which level band; ctl deaths of that kind are the hunt's cost, arm 3's missing kills its value.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-t691-f9c44b35"
+  ],
+  "profiles": [
+    "reborn-killflow-ctl",
+    "reborn-killflow-targeted",
+    "reborn-killflow-inview",
+    "reborn-killflow-nohunt"
+  ],
+  "suites": [
+    "classes-1800-200k-pilot"
+  ],
+  "control": "4.2.6-reborn-rust-t691-f9c44b35",
+  "control_profile": "reborn-killflow-ctl",
+  "owner_authorization": "2026-11-19: the owner asked to look at the open issues and do the experiments and pilots they request.",
+  "retain_evidence": true
+}
