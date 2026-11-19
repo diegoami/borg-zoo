@@ -5,16 +5,7 @@ issue: 329
 question: On borg-reborn-rs main 6438e1cf, does clearing a level's scary flag only when its scary monster was killed (caution_scary_unlatch_kill 1) keep unlatching's progress without the deaths after a forgotten monster, with the latch on and off?
 tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
 
-specimen:
-  name: 4.2.6-reborn-rust-main-6438e1cf
-  repository: diegoami/borg-reborn-rs
-  ref: 6438e1cf080fa774a4657e7192eb814d7818395a
-  label: "borg-reborn-rs 6438e1cf, main at the merge of #605 (#604 town loop), with #590's caution_scary_unlatch_kill (shipped 0). Ships caution_scary_stand 1, caution_scary_latch 1, the named list. Source-hash rust bc3dfca6...; harness/borg.txt c6afd905..."
-  plans:
-    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
-    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
-  scary_lists:
-    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+specimen: 4.2.6-reborn-rust-main-6438e1cf
 
 settings:
   borg_reborn_core: borg-rs

@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-tough-big",
+  "issue": 299,
+  "definition": "definitions/reborn-scary-tough-big.yaml",
+  "question": "On borg-reborn-rs main f660aecc, does letting the tough classes stop fearing the named monsters sooner (tough - 3 or tough - 5, fragile unchanged) save games or progress, and in which classes?",
+  "description": "On borg-reborn-rs main f660aecc, does letting the tough classes stop fearing the named monsters sooner (tough - 3 or tough - 5, fragile unchanged) save games or progress, and in which classes? Generated from definitions/reborn-scary-tough-big.yaml: 3 arms on 4.2.6-reborn-rust-main-f660aecc, suite classes-1800-big.",
+  "prespecified": "Fixed 2026-11-19, after small + medium and before any big result was read. Same specimen and arms (RULES 16).\nPilot (run 44359605720): no deaths; games identical to ctl t3 7, t5 6 of 18; Mages, Necromancers\nand Priests identical in both arms; t5 mean max CL 6.00 against 5.44, DL 2.50 against 2.11.\nSmall + medium (runs 44377349082, 44377372817, starts 1-360): deaths ctl 23, t3 24, t5 22 of 360; mean max CL\n5.09, 5.34, 5.45.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class (pilot, small, medium and big pooled as one study, RULES 14): deaths and causes, CL1-3 deaths,\nfinal level, deepest level; paired rescued and newly killed against the control; identical plays. No evidence is\nretained at this size. Descriptive only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-f660aecc"
+  ],
+  "profiles": [
+    "reborn-scarytough-ctl",
+    "reborn-scarytough-t3",
+    "reborn-scarytough-t5"
+  ],
+  "suites": [
+    "classes-1800-big"
+  ],
+  "control": "4.2.6-reborn-rust-main-f660aecc",
+  "control_profile": "reborn-scarytough-ctl",
+  "owner_authorization": "2026-11-19: after small + medium (starts 1-360, gate passed) the owner asked for the big tier."
+}

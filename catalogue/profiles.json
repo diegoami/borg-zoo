@@ -4630,6 +4630,22 @@
         "borg_param_caution_scary_latch": 0,
         "borg_param_caution_scary_unlatch_kill": 1
       }
+    },
+    "reborn-risky-ctl": {
+      "description": "borg-zoo#330 (reborn-plays-risky-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_plays_risky": false
+      }
+    },
+    "reborn-risky-risky": {
+      "description": "borg-zoo#330 (reborn-plays-risky-pilot.yaml): arm risky.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_plays_risky": true
+      }
     }
   }
 }
