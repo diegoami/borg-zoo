@@ -59,6 +59,12 @@ def snapshot(source,name,profile=None,root=ROOT):
     plan=merged.get('borg_plan')
     if plan:
         (out/'errands_plan.txt').write_bytes((source/'harness/plans'/plan).read_bytes());files['errands_plan.txt']=n.sha(out/'errands_plan.txt')
+    scary=merged.get('borg_scary_list')
+    if scary:
+        # The saved-state runner stages only borg.txt and the plan in user/; the frozen
+        # scary list is read by absolute path instead (see template).
+        if '/' in scary:raise ValueError('borg_scary_list must name a file in harness/')
+        (out/scary).write_bytes((source/'harness'/scary).read_bytes());files[scary]=n.sha(out/scary)
     tools=(source/'death-tools-pin.txt').read_text().strip()
     settings=dict(stock=True) if not profile else dict(profile=profile,values=chosen)
     n.write(out/'provenance.json',dict(source=dict(repository='diegoami/borg-reborn-rs',commit=commit),settings=settings,native_tools=tools,files_sha256=files,
@@ -109,7 +115,8 @@ def prepare(definition,cemetery,source,build,archive,out):
     profile={} if d['settings']=='stock' else json.loads((ROOT/'catalogue/profiles.json').read_text())['profiles'][d['settings']['profile']]['settings']
     plan_file=inputs/'errands_plan.txt'
     arm=dict(id=d['name'],source=d['source'],source_sha256=source_sha,core='borg-rs',native_tools=d['native_tools'],build=built,settings=profile,
-             settings_label='stock' if d['settings']=='stock' else d['settings']['profile'],inputs=d['inputs'],errands_plan_sha256=n.sha(plan_file) if plan_file.exists() else None)
+             settings_label='stock' if d['settings']=='stock' else d['settings']['profile'],inputs=d['inputs'],errands_plan_sha256=n.sha(plan_file) if plan_file.exists() else None,
+             scary_list=scary_list_of(inputs,d['inputs']['files']))
     plan=dict(schema=SCHEMA,definition=d,definition_sha256=n.sha(definition),runner_sha256=n.sha(Path(__file__)),zoo_commit=n.git(ROOT,'rev-parse','HEAD'),
               suite=m,cases=base['cases'],batches=base['batches'],manifest=dict(base['manifest'],wall_seconds=m['protocol']['wall_seconds']),gear=gear,arm=arm,expected_cells=len(base['cases']),exact_turns=True)
     plan['plan_hash']=n.digest(plan);n.write(out,plan);return plan
@@ -124,8 +131,25 @@ def load(path):
     return p
 
 
+SCARY_SETTING=re.compile(r'^[ \t]*borg_scary_list[ \t]*=.*$',re.M)
+
+
+def scary_list_of(inputs,files):
+    """{name, sha256} of the frozen scary list the inputs' borg.txt names, or None."""
+    name=settings_of((inputs/'borg.txt').read_text()).get('borg_scary_list')
+    if not name:return None
+    if name not in files:raise ValueError('borg.txt names a scary list the inputs did not freeze: '+name)
+    return dict(name=name,sha256=files[name])
+
+
 def template(plan,case):
-    return config_text(ROOT/plan['arm']['inputs']['path'],dict(settings=plan['arm']['settings']),case['scenario']['race_idx'],case['scenario']['class_idx'])
+    text=config_text(ROOT/plan['arm']['inputs']['path'],dict(settings=plan['arm']['settings']),case['scenario']['race_idx'],case['scenario']['class_idx'])
+    scary=plan['arm'].get('scary_list')
+    if scary:
+        # borg-reborn-rs resolves an absolute borg_scary_list as it is (scary_list.rs).
+        path=n.local(ROOT/plan['arm']['inputs']['path'],scary['name'],scary['sha256'])
+        text=SCARY_SETTING.sub('borg_scary_list = '+str(path.resolve()),text)
+    return text
 
 
 def validate(plan,case,receipts,streams):
