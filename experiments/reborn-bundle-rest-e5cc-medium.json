@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-bundle-rest-e5cc-medium",
+  "issue": 428,
+  "definition": "definitions/reborn-bundle-rest-e5cc-medium.yaml",
+  "question": "On borg-reborn-rs main e5cc5469, which ships calmed and the Phase Door rule, do Recall wait-as-usual and the errands",
+  "description": "On borg-reborn-rs main e5cc5469, which ships calmed and the Phase Door rule, do Recall wait-as-usual and the errands Generated from definitions/reborn-bundle-rest-e5cc-medium.yaml: 2 arms on 4.2.6-reborn-rust-main-e5cc5469, suite classes-1800-medium.",
+  "prespecified": "Medium for errands only, after the small tier (run 44602792133: errands 3 against 2 deaths of 108 with the pilot, mean max DL -0.18). recall-wait (3 of 108 games changed) and both (as errands) are dropped.\nSame specimen and profiles as reborn-bundle-rest-e5cc-small; no raw evidence at this size. Owner, 2026-11-19: \"Yes go\" (to the proposed mediums).\nSmall tier after the pilot's gate (run 44599338458: 72 cells, gate passed; deaths 1 in every arm, the same start; recall-wait identical to ctl in 18 of 18, errands and both differ in 6).\nSame specimen and profiles as reborn-bundle-rest-e5cc-pilot; no raw evidence at this size. Owner, 2026-11-19: \"do all them\" (pilot, then small after its gate).\nFixed 2026-11-19, before any result on e5cc5469 was read. Pilot (RULES 16). ctl is shipped main (calmed and the\nPhase Door rule on).\nGate:\n- no config_error; one binary; each arm's values in its borg.txt; the plan recorded per cell and checked against the pin;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm: deaths and causes, final level, deepest level, paired rescued and newly killed against ctl,\nidentical plays. RULES 18 bins; 18 starts show direction only. Small (starts 1-90) next with the same arms if the\ngate passes.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-e5cc5469"
+  ],
+  "profiles": [
+    "reborn-bundlerest-e5cc-ctl",
+    "reborn-bundlerest-e5cc-errands"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-e5cc5469",
+  "control_profile": "reborn-bundlerest-e5cc-ctl",
+  "owner_authorization": "2026-11-19: the owner said \"do all them\" to the proposed pilot-then-small of the bundle's remaining parts on the new main. Pilot first (RULES 16); small only after the pilot's gate."
+}

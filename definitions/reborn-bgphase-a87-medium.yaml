@@ -1,0 +1,36 @@
+# borg-zoo#437: classes-1800-medium-blackguards after the pilot reborn-bgphase-a87-pilot (owner, 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-bgphase-a87-medium.yaml
+name: reborn-bgphase-a87-medium
+issue: 437
+question: On borg-reborn-rs main a87b4c96, which ships the Phase Door rule and carries fewer Phase Door scrolls for Blackguards
+  (curve 50), do Blackguards die less with the rule off?
+suites:
+- classes-1800-medium-blackguards
+specimen: 4.2.6-reborn-rust-main-a87b4c96
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-bgphase-a87
+arms:
+  rule-on: {}
+  rule-off:
+    borg_param_escape_phase_adjacent_rule: 0
+    borg_param_escape_phase_lost_test: 1
+control:
+- rule-on
+prespecified: |
+  Medium after the pilot's gate (run 44607237940: no deaths in either arm; rule-off changed 10 of 10, CL +0.7, DL +0.6).
+  Same specimen and profiles as reborn-bgphase-a87-pilot; no raw evidence at this size. Owner, 2026-11-19: "Yes go" (to the proposed mediums).
+  Fixed 2026-11-19, before any result on a87b4c96 was read. Pilot (RULES 16), 10 starts per arm.
+  Control: rule-on, shipped main. Evidence: Blackguards were the only class worse with the rule, 13 against 18 deaths
+  over #347's two studies; the 592c6984 pilot (10 starts) had no deaths in either arm. #688 set the Blackguard Phase
+  Door curve to 50, which changes what the rule governs.
+  Gate:
+  - no config_error; one binary; each arm's values in borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced;
+  - in rule-off, no "# Phase rule" note.
+  Primary: Blackguard deaths; secondary: mean max CL and DL. Paired rescued and newly killed (rule-off against rule-on),
+  identical plays. RULES 18 bins; 10 starts show direction only.
+owner_authorization: '2026-11-19: the owner pointed this session at the filed studies ("Issue 436 and 437"). Pilot first (RULES
+  16); medium, big and full (all 200 classes-1800 Blackguard starts) each after the previous gate and on the owner''s go.'
