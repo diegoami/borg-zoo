@@ -1,0 +1,58 @@
+# borg-zoo#413: new flags on borg-reborn-rs main HEAD 592c6984, plus a re-check of the Phase Door rule and the errands plan; pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-newflags-main-pilot.yaml
+name: reborn-newflags-main-pilot
+issue: 413
+question: >-
+  On borg-reborn-rs main 592c6984, are the new switches (#637 town wand, caster walk, whole bonus; #620 town Fox Form;
+  #640 Recall rest near monsters) reached, and do the Phase Door rule and the errands plan still behave as on 3ba17e2c?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-592c6984
+  repository: diegoami/borg-reborn-rs
+  ref: 592c69842d070108b05314b1e871a47e2f26f52a
+  label: "borg-reborn-rs 592c6984, main at the merge of #640 (after #664 low-value support, #653 town-kill follow-ups, #648 town Fox Form). harness/borg.txt 6e68ea22..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# Every arm except errands writes the switches it changes; ctl writes nothing (shipped harness/borg.txt).
+profile_prefix: reborn-newflags59
+arms:
+  ctl: {}
+  onsight: {borg_param_attack_town_dangerous_on_sight: 1}
+  onsight-wand: {borg_param_attack_town_dangerous_on_sight: 1, borg_param_attack_town_dangerous_wand: 1}
+  onsight-walk: {borg_param_attack_town_dangerous_on_sight: 1, borg_param_attack_town_dangerous_caster_walk: 1}
+  onsight-bonus: {borg_param_attack_town_dangerous_on_sight: 1, borg_param_attack_town_dangerous_bonus_whole: 1}
+  onsight-all:
+    borg_param_attack_town_dangerous_on_sight: 1
+    borg_param_attack_town_dangerous_wand: 1
+    borg_param_attack_town_dangerous_caster_walk: 1
+    borg_param_attack_town_dangerous_bonus_whole: 1
+  foxtown: {borg_param_escape_fox_form_town: 1}
+  recall-rest: {borg_param_caution_recall_rest_monster_turns: 200}
+  phase-rule: {borg_param_escape_phase_adjacent_rule: 1, borg_param_escape_phase_lost_test: 0, borg_param_escape_phase_lost_danger_percent: 100}
+  errands: {borg_plan: errands_plan.txt}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked to test the new-flags study proposed after the neutral-settings study ("Test these"),
+  on the latest main HEAD ("use the latest HEAD if possible"). Pilot first (RULES 16); larger tiers on the owner's go.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result on 592c6984 was read. Pilot (RULES 16). ctl is shipped main.
+  Gate:
+  - no config_error; one binary; each arm's values in its borg.txt; errands' plan recorded per cell and checked against the pin;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level, paired rescued and newly killed against ctl, identical
+  plays (an arm identical to ctl in 18 of 18 games is not reached at this size). RULES 18 bins; 18 starts show
+  direction only. On 3ba17e2c, phase-rule (1,800 fresh starts: 128 to 89 deaths) and errands (128 to 117) were
+  confirmed; on_sight and escape_fox_form were neutral (#400).
