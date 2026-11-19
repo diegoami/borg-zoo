@@ -1096,6 +1096,24 @@
       "stall_seconds": 90,
       "saves": false
     },
+    "classes-1800-small-mages": {
+      "description": "The Mage starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Mage"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-priests": {
+      "description": "The Priest starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Priest"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
     "classes-1800-small-druids": {
       "description": "The Druid starts of classes-1800-small (borg-zoo#312): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
