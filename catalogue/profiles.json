@@ -4853,6 +4853,212 @@
         ]
       }
     },
+    "reborn-phaserule2-ctl": {
+      "description": "borg-zoo#347 (reborn-phase-rule-pilot-2.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 0,
+        "borg_param_escape_phase_lost_test": 1,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-phaserule2-thr-100": {
+      "description": "borg-zoo#347 (reborn-phase-rule-pilot-2.yaml): arm thr-100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-phaserule2-thr-150": {
+      "description": "borg-zoo#347 (reborn-phase-rule-pilot-2.yaml): arm thr-150.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 0,
+        "borg_param_escape_phase_lost_danger_percent": 150
+      }
+    },
+    "reborn-phaserule2-fight": {
+      "description": "borg-zoo#347 (reborn-phase-rule-pilot-2.yaml): arm fight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 1,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-phaserule2-fight-landing": {
+      "description": "borg-zoo#347 (reborn-phase-rule-pilot-2.yaml): arm fight-landing.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_test": 2,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-recallusual-ctl": {
+      "description": "borg-zoo#358 (reborn-recall-usual-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_recall_wait_as_usual": 0
+      }
+    },
+    "reborn-recallusual-usual": {
+      "description": "borg-zoo#358 (reborn-recall-usual-pilot.yaml): arm usual.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_recall_wait_as_usual": 1
+      }
+    },
+    "reborn-scarycalm-latch": {
+      "description": "borg-zoo#357 (reborn-scary-calmed-pilot.yaml): arm latch.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_unlatch_kill": 0,
+        "borg_param_caution_scary_unlatch_calmed": 0
+      }
+    },
+    "reborn-scarycalm-calmed": {
+      "description": "borg-zoo#357 (reborn-scary-calmed-pilot.yaml): arm calmed.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_unlatch_kill": 0,
+        "borg_param_caution_scary_unlatch_calmed": 1
+      }
+    },
+    "reborn-scarycalm-kill": {
+      "description": "borg-zoo#357 (reborn-scary-calmed-pilot.yaml): arm kill.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_unlatch_kill": 1,
+        "borg_param_caution_scary_unlatch_calmed": 0
+      }
+    },
+    "reborn-scarycalm-both": {
+      "description": "borg-zoo#357 (reborn-scary-calmed-pilot.yaml): arm both.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_unlatch_kill": 1,
+        "borg_param_caution_scary_unlatch_calmed": 1
+      }
+    },
+    "reborn-scarydmg-v40": {
+      "description": "borg-zoo#355 (reborn-scary-damage-pilot.yaml): arm v40.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_damage_percent": 40
+      }
+    },
+    "reborn-scarydmg-v50": {
+      "description": "borg-zoo#355 (reborn-scary-damage-pilot.yaml): arm v50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_damage_percent": 50
+      }
+    },
+    "reborn-scarydmg-v60": {
+      "description": "borg-zoo#355 (reborn-scary-damage-pilot.yaml): arm v60.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_damage_percent": 60
+      }
+    },
+    "reborn-ticks4-v300": {
+      "description": "borg-zoo#356 (reborn-rising-ticks4-pilot.yaml): arm v300.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_rising_explore_ticks": 300
+      }
+    },
+    "reborn-ticks4-v500": {
+      "description": "borg-zoo#356 (reborn-rising-ticks4-pilot.yaml): arm v500.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_rising_explore_ticks": 500
+      }
+    },
+    "reborn-ticks4-v700": {
+      "description": "borg-zoo#356 (reborn-rising-ticks4-pilot.yaml): arm v700.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_rising_explore_ticks": 700
+      }
+    },
+    "reborn-ticks4-v900": {
+      "description": "borg-zoo#356 (reborn-rising-ticks4-pilot.yaml): arm v900.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_rising_explore_ticks": 900
+      }
+    },
+    "reborn-phaserule-ctl": {
+      "description": "borg-zoo#334 (reborn-phase-rule-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-phaserule-rule-100": {
+      "description": "borg-zoo#334 (reborn-phase-rule-pilot.yaml): arm rule-100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-phaserule-rule-150": {
+      "description": "borg-zoo#334 (reborn-phase-rule-pilot.yaml): arm rule-150.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_danger_percent": 150
+      }
+    },
     "reborn-scaryends-all8": {
       "description": "borg-zoo#350 (reborn-scary-deep-pilot.yaml): arm all8.",
       "settings": {
@@ -4966,6 +5172,186 @@
         "borg_reborn_errand": "none",
         "borg_param_attack_arrow_point_blank_divisor_ranger": 1,
         "borg_param_caution_flee_recall_gate_below_depth": 0
+      }
+    },
+    "reborn-reststairs-off": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 0,
+        "borg_param_caution_stairs_leave_on_monster": 0
+      }
+    },
+    "reborn-reststairs-reach": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm reach.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 20,
+        "borg_param_recover_rest_reach_stairs_memory": 10,
+        "borg_param_caution_stairs_leave_on_monster": 0
+      }
+    },
+    "reborn-reststairs-leave": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm leave.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 0,
+        "borg_param_caution_stairs_leave_on_monster": 1,
+        "borg_param_caution_stairs_leave_danger_percent": 10,
+        "borg_param_caution_stairs_leave_down": 1
+      }
+    },
+    "reborn-reststairs-leaveup": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm leaveup.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 0,
+        "borg_param_caution_stairs_leave_on_monster": 1,
+        "borg_param_caution_stairs_leave_danger_percent": 10,
+        "borg_param_caution_stairs_leave_down": 0
+      }
+    },
+    "reborn-reststairs-both": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm both.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 20,
+        "borg_param_recover_rest_reach_stairs_memory": 10,
+        "borg_param_caution_stairs_leave_on_monster": 1,
+        "borg_param_caution_stairs_leave_danger_percent": 10,
+        "borg_param_caution_stairs_leave_down": 1
+      }
+    },
+    "reborn-scaryends-floor3": {
+      "description": "borg-zoo#369 (reborn-scary-floor-pilot.yaml): arm floor3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 3-3",
+          "Grip, Farmer Maggot's Dog | 3-3",
+          "Fang, Farmer Maggot's Dog | 3-3",
+          "small kobold | 3-3",
+          "soldier | 3-6",
+          "cutpurse | 3-6",
+          "acolyte | 3-6",
+          "apprentice | 3-6",
+          "kobold | 3-6",
+          "shrieker mushroom patch | 3-6",
+          "Farmer Maggot | 3-6",
+          "filthy street urchin | 3-6",
+          "battle-scarred veteran | 3-6",
+          "mean-looking mercenary | 3-6",
+          "Bullroarer the Hobbit | 10-13",
+          "giant white mouse | 10-13 |  | breeders",
+          "white worm mass | 10-13 |  | breeders",
+          "green worm mass | 10-13 |  | breeders",
+          "cave spider | 15-18",
+          "red naga | 15-18",
+          "giant red frog | 15-18",
+          "radiation eye | 15-18",
+          "yellow worm mass | 15-18 |  | breeders",
+          "gravity hound | 39-42",
+          "inertia hound | 39-42",
+          "base:ancient dragon | 39-42",
+          "Beorn, the Shape-Changer | 39-42",
+          "dread | 39-42"
+        ]
+      }
+    },
+    "reborn-scaryends-floor4": {
+      "description": "borg-zoo#369 (reborn-scary-floor-pilot.yaml): arm floor4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 4-4",
+          "Grip, Farmer Maggot's Dog | 4-4",
+          "Fang, Farmer Maggot's Dog | 4-4",
+          "small kobold | 4-4",
+          "soldier | 4-6",
+          "cutpurse | 4-6",
+          "acolyte | 4-6",
+          "apprentice | 4-6",
+          "kobold | 4-6",
+          "shrieker mushroom patch | 4-6",
+          "Farmer Maggot | 4-6",
+          "filthy street urchin | 4-6",
+          "battle-scarred veteran | 4-6",
+          "mean-looking mercenary | 4-6",
+          "Bullroarer the Hobbit | 10-13",
+          "giant white mouse | 10-13 |  | breeders",
+          "white worm mass | 10-13 |  | breeders",
+          "green worm mass | 10-13 |  | breeders",
+          "cave spider | 15-18",
+          "red naga | 15-18",
+          "giant red frog | 15-18",
+          "radiation eye | 15-18",
+          "yellow worm mass | 15-18 |  | breeders",
+          "gravity hound | 39-42",
+          "inertia hound | 39-42",
+          "base:ancient dragon | 39-42",
+          "Beorn, the Shape-Changer | 39-42",
+          "dread | 39-42"
+        ]
+      }
+    },
+    "reborn-scaryends-all5-pal": {
+      "description": "borg-zoo#369 (reborn-scary-floor-pilot.yaml): arm all5-pal.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 0-3 | paladin 5 | ",
+          "Grip, Farmer Maggot's Dog | 0-3 | paladin 5 | ",
+          "Fang, Farmer Maggot's Dog | 0-3 | paladin 5 | ",
+          "small kobold | 0-3 | paladin 5 | ",
+          "soldier | 3-6 | paladin 8 | ",
+          "cutpurse | 3-6 | paladin 8 | ",
+          "acolyte | 3-6 | paladin 8 | ",
+          "apprentice | 3-6 | paladin 8 | ",
+          "kobold | 3-6 | paladin 8 | ",
+          "shrieker mushroom patch | 3-6 | paladin 8 | ",
+          "Farmer Maggot | 3-6 | paladin 8 | ",
+          "filthy street urchin | 3-6 | paladin 8 | ",
+          "battle-scarred veteran | 3-6 | paladin 8 | ",
+          "mean-looking mercenary | 3-6 | paladin 8 | ",
+          "Bullroarer the Hobbit | 10-13 | paladin 15 | ",
+          "giant white mouse | 10-13 | paladin 15 | breeders",
+          "white worm mass | 10-13 | paladin 15 | breeders",
+          "green worm mass | 10-13 | paladin 15 | breeders",
+          "cave spider | 15-18 | paladin 20 | ",
+          "red naga | 15-18 | paladin 20 | ",
+          "giant red frog | 15-18 | paladin 20 | ",
+          "radiation eye | 15-18 | paladin 20 | ",
+          "yellow worm mass | 15-18 | paladin 20 | breeders",
+          "gravity hound | 39-42 | paladin 44 | ",
+          "inertia hound | 39-42 | paladin 44 | ",
+          "base:ancient dragon | 39-42 | paladin 44 | ",
+          "Beorn, the Shape-Changer | 39-42 | paladin 44 | ",
+          "dread | 39-42 | paladin 44 | "
+        ]
+      }
+    },
+    "reborn-killpow38-ctl": {
+      "description": "borg-zoo#244 (reborn-kill-power-main-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kill_live_min_power": 1
+      }
+    },
+    "reborn-killpow38-off0": {
+      "description": "borg-zoo#244 (reborn-kill-power-main-pilot.yaml): arm off0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kill_live_min_power": 0
       }
     }
   }

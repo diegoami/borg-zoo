@@ -1,0 +1,55 @@
+# borg-zoo#365: copied from the run request.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-rest-stairs-pilot.yaml
+name: reborn-rest-stairs-pilot
+issue: 365
+question: On borg-reborn-rs #616's head 8a427494, does holding rests until the stairs are reached (recover_rest_reach_stairs 20), taking the stairs when a monster comes while recovering on them (caution_stairs_leave_on_monster 1, both ways or up only), or both, kill or save games against off?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-pr616-8a427494
+  repository: diegoami/borg-reborn-rs
+  ref: 8a427494fa3cf16cefabe24cd1681b287b0137d2
+  label: "borg-reborn-rs 8a427494, head of PR #616 (#614, unmerged; contains main 38858846): rest at the stairs (recover_rest_reach_stairs, _memory) and leaving by the stairs when a monster comes while recovering (caution_stairs_leave_on_monster, _danger_percent, _down); all shipped off. harness/borg.txt fc64c28a..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# Every arm reads the shipped harness/borg.txt and writes only the #614 switches; memory 10, danger 10%
+# and down 1 are the shipped defaults, written out where an arm turns a switch on.
+profile_prefix: reborn-reststairs
+arms:
+  'off': {borg_param_recover_rest_reach_stairs: 0, borg_param_caution_stairs_leave_on_monster: 0}
+  reach: {borg_param_recover_rest_reach_stairs: 20, borg_param_recover_rest_reach_stairs_memory: 10, borg_param_caution_stairs_leave_on_monster: 0}
+  leave: {borg_param_recover_rest_reach_stairs: 0, borg_param_caution_stairs_leave_on_monster: 1, borg_param_caution_stairs_leave_danger_percent: 10, borg_param_caution_stairs_leave_down: 1}
+  leaveup: {borg_param_recover_rest_reach_stairs: 0, borg_param_caution_stairs_leave_on_monster: 1, borg_param_caution_stairs_leave_danger_percent: 10, borg_param_caution_stairs_leave_down: 0}
+  both: {borg_param_recover_rest_reach_stairs: 20, borg_param_recover_rest_reach_stairs_memory: 10, borg_param_caution_stairs_leave_on_monster: 1, borg_param_caution_stairs_leave_danger_percent: 10, borg_param_caution_stairs_leave_down: 1}
+control: ['off']
+extra:
+  retain_evidence: true
+owner_authorization: >-
+  2026-11-19: the owner asked for the zoo pilot of #614 (off, reach 20, leave, leave up only, both) on PR #616's head.
+  Pilot first (RULES 16); small and larger only after this gate and the owner.
+
+prespecified: |
+  Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#614, PR #616). Pilot (RULES 16).
+  Gate:
+  - no config_error; one binary; each arm's #614 values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - in off, no "# No rest: committed to the stairs" and no "# Leaving by the stairs" note.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against off;
+  - games whose keys differ from off, and the first message where each differs;
+  - "# No rest: committed to the stairs, N steps to go." and "# Leaving by the stairs: a monster while recovering
+    (danger N, up|down)." notes per game; deaths within 2,000 game turns of either;
+  - deaths with "Resting" or Phase Door in the last 100 messages while a flight to stairs was under way;
+  - stair trips taken by the leave rule that land on a deeper level (down) and what follows.
+  Context: a local run on the same tree (harness/run.sh, the 18 classes-18 starts, 100,000 turns; not a zoo run):
+  deaths off 0, reach 2, leave 1, leaveup 1, both 2; sum of CL 99 / 92 / 97 / 98 / 93; games playing off's keys
+  5 / 10 / 10 / 3 of 18. Every death came long after the game diverged from off. 18 starts show direction only.

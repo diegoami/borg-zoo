@@ -1,0 +1,42 @@
+# borg-zoo#355: borg_param_caution_scary_damage_percent 40/50/60, pilot (owner, 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-damage-pilot.yaml
+name: reborn-scary-damage-pilot
+issue: 355
+question: On borg-reborn-rs main 07844cf1, with the named scary list on, which damage threshold for a scary monster (caution_scary_damage_percent 40, 50, 60 shipped) is harmful, neutral or helpful?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-07844cf1
+  repository: diegoami/borg-reborn-rs
+  ref: 07844cf13c335c020df17f976d9c5e0ab16fe294
+  label: "borg-reborn-rs 07844cf1, main at the merge of #623 (#622 town less scary, shipped caution_town_scary_levels_less 3). Ships caution_scary_damage_percent 60 with the named list, caution_rising_explore_ticks 300. Source-hash rust 589907f0...; harness/borg.txt b5835b13..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only borg_param_caution_scary_damage_percent.
+profile_prefix: reborn-scarydmg
+arms:
+  v40: {borg_param_caution_scary_damage_percent: 40}
+  v50: {borg_param_caution_scary_damage_percent: 50}
+  v60: {borg_param_caution_scary_damage_percent: 60}
+control: [v60]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any zoo result was read (owner: "we need more experiments with" this setting; values chosen by the owner). Pilot
+  (RULES 16); larger tiers only after this gate and the owner. v60 is shipped and the control.
+  Gate:
+  - no config_error; one binary; each arm's value written;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against v60;
+  games with keys identical to v60; RULES 18 bins (harmful / neutral / helpful); deaths per class.
