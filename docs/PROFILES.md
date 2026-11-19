@@ -35,6 +35,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-scary-ends` | [#350](https://github.com/diegoami/borg-zoo/issues/350) | 11 | floor3 starts 1-360 done: same deaths as ctl, most of all5's progress; big / 200k / bundle proposed | Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846. |
 | `reborn-bundle` | [#361](https://github.com/diegoami/borg-zoo/issues/361) | 11 | defined (pilot on 38858846, not dispatched) | The safe-to-adopt changes together on main 38858846: scary all5 + Ranger point-blank 1 + flight Recall on DL1 (gate 0), and the bundle without all5. |
 | `reborn-kill-power-main` | [#244](https://github.com/diegoami/borg-zoo/issues/244) | 2 | pilot done: off neutral on deaths, leans harmful on progress | kill_live_min_power shipped 1 against 0 on main 38858846. |
+| `reborn-errands-main` | [#383](https://github.com/diegoami/borg-zoo/issues/383) | 3 | defined: pilot (dispatch first), small, medium, big, full on 3ba17e2c | Errands plan vs no plan on main 3ba17e2c: none (shipped), errands_plan.txt, errands_plan_ambitious.txt; pilot to full. |
 
 ### `heal-attack-4`
 
@@ -524,13 +525,25 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | --- | --- | --- | --- |
 | [44465254082](https://github.com/diegoami/borg-zoo/actions/runs/44465254082) | pilot | `4.2.6-reborn-rust-main-38858846` | 36 games, no deaths; off CL 5.11 v 5.50 |
 
+### `reborn-errands-main`
+
+Errands plan vs no plan on main 3ba17e2c: none (shipped), errands_plan.txt, errands_plan_ambitious.txt; pilot to full.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_plan` |
+| --- | --- |
+| `reborn-errands38-ambitious` | errands_plan_ambitious.txt |
+| `reborn-errands38-errands` | errands_plan.txt |
+| `reborn-errands38-none` | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
 
 | Setting | Values used | Shortcuts | What it does, and what we learned |
 | --- | --- | --- | --- |
-| `borg_plan` | errands_plan.txt, errands_plan_ambitious.txt, not set | `heal-pilot-12`, `maxdepth-2x5`, `reborn-5arm-town`, `reborn-3x3-trip`, `reborn-5arm-shop`, `reborn-bundle` | The errands plan the Borg follows. Loop-levels plans up to `d3ebe3c0`: the errands plan added caster deaths with the town planner (borg-cemetery#19). Max-depth caps from `6d1bca10` (#440): a cap is a preparation check, not a hard limit; 35 of 900 games died or ended below it (#147). |
+| `borg_plan` | errands_plan.txt, errands_plan_ambitious.txt, not set | `heal-pilot-12`, `maxdepth-2x5`, `reborn-5arm-town`, `reborn-3x3-trip`, `reborn-5arm-shop`, `reborn-bundle`, `reborn-errands-main` | The errands plan the Borg follows. Loop-levels plans up to `d3ebe3c0`: the errands plan added caster deaths with the town planner (borg-cemetery#19). Max-depth caps from `6d1bca10` (#440): a cap is a preparation check, not a hard limit; 35 of 900 games died or ended below it (#147). |
 | `borg_town_plan` | 0, 1, not set | `reborn-5arm-town`, `reborn-3x3-trip`, `reborn-5arm-shop`, `rs-additive-6`, `reborn-bundle` | "New inventory": the live town planner. Alone it looked best in the #123 small tier (15 deaths v control 22 of 90). |
 | `borg_trip_policy` | 0, 1, not set | `heal-pilot-12`, `maxdepth-2x5`, `reborn-3x3-trip`, `reborn-5arm-shop`, `rs-additive-6`, `reborn-bundle` | Extra reasons to return to town. Barely changes play: 42 of 54 paired pilot games identical. Kept off in #123's development arms until it is shown to help (owner). From `8a0b57c8` it is borg-rs#88's additive policy. |
 | `borg_trip_unknown_stacks` | 0, 2, 3, 4, 5, not set | `maxdepth-2x5`, `rs-additive-6`, `reborn-bundle` | Return when this many carried stacks are unidentified (default 4). Changes play: (3,x) differs from return-off in about 40% of games; (5,1) played like return-off in 26-27 of 30 starts. |
