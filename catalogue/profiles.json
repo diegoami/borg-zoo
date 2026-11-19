@@ -4590,6 +4590,46 @@
         "borg_param_attack_preference_blackguard_device_permille": 500,
         "borg_param_attack_preference_blackguard_activation_permille": 500
       }
+    },
+    "reborn-unlkill-l1-k0": {
+      "description": "borg-zoo#329 (reborn-unlatch-kill-pilot.yaml): arm l1-k0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_latch": 1,
+        "borg_param_caution_scary_unlatch_kill": 0
+      }
+    },
+    "reborn-unlkill-l1-k1": {
+      "description": "borg-zoo#329 (reborn-unlatch-kill-pilot.yaml): arm l1-k1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_latch": 1,
+        "borg_param_caution_scary_unlatch_kill": 1
+      }
+    },
+    "reborn-unlkill-l0-k0": {
+      "description": "borg-zoo#329 (reborn-unlatch-kill-pilot.yaml): arm l0-k0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_latch": 0,
+        "borg_param_caution_scary_unlatch_kill": 0
+      }
+    },
+    "reborn-unlkill-l0-k1": {
+      "description": "borg-zoo#329 (reborn-unlatch-kill-pilot.yaml): arm l0-k1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_latch": 0,
+        "borg_param_caution_scary_unlatch_kill": 1
+      }
     }
   }
 }

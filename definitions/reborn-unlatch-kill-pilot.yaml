@@ -1,0 +1,44 @@
+# borg-zoo#329: scary flag clears on a kill (caution_scary_unlatch_kill) x latch, pilot (owner, 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-unlatch-kill-pilot.yaml
+name: reborn-unlatch-kill-pilot
+issue: 329
+question: On borg-reborn-rs main 6438e1cf, does clearing a level's scary flag only when its scary monster was killed (caution_scary_unlatch_kill 1) keep unlatching's progress without the deaths after a forgotten monster, with the latch on and off?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-6438e1cf
+  repository: diegoami/borg-reborn-rs
+  ref: 6438e1cf080fa774a4657e7192eb814d7818395a
+  label: "borg-reborn-rs 6438e1cf, main at the merge of #605 (#604 town loop), with #590's caution_scary_unlatch_kill (shipped 0). Ships caution_scary_stand 1, caution_scary_latch 1, the named list. Source-hash rust bc3dfca6...; harness/borg.txt c6afd905..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt (caution_scary_stand 1) and writes the latch and unlatch_kill.
+profile_prefix: reborn-unlkill
+arms:
+  l1-k0: {borg_param_caution_scary_latch: 1, borg_param_caution_scary_unlatch_kill: 0}
+  l1-k1: {borg_param_caution_scary_latch: 1, borg_param_caution_scary_unlatch_kill: 1}
+  l0-k0: {borg_param_caution_scary_latch: 0, borg_param_caution_scary_unlatch_kill: 0}
+  l0-k1: {borg_param_caution_scary_latch: 0, borg_param_caution_scary_unlatch_kill: 1}
+control: [l1-k0]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any zoo result was read (owner; borg-reborn-rs #590, after borg-zoo#256). Pilot (RULES
+  16); a medium tier follows if this gate passes. l1-k0 is shipped and the control; l0-k0 is #256's unlatch.
+  Gate:
+  - no config_error; one binary; both values written in every arm;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against l1-k0;
+  games with keys identical to l1-k0; "Scary guy gone" notes per game and how each scare ended (the scary monster
+  slain, or only forgotten); deaths within 2,000 game turns of a "Scary guy gone" note.
