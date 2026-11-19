@@ -1,0 +1,28 @@
+{
+  "kind": "suite-run",
+  "name": "suite1-reborn-main-38858846-stock",
+  "folder": "scenario-experiments",
+  "issue": 183,
+  "question": "How does borg-reborn-rs main 38858846, with its own default settings, play the 999 saved encounters of Suite 1?",
+  "suite": "suite1-v1",
+  "source": {
+    "repository": "diegoami/borg-reborn-rs",
+    "commit": "388588468bfe91b2a8f84b38599813f2acfed64e"
+  },
+  "settings": "stock",
+  "inputs": {
+    "path": "scenario-inputs/suite1-reborn-main-38858846-stock",
+    "files": {
+      "borg.txt": "3ce9ae4f0736aa94cc8ce440b2770fb6a1fd5d1013fdac10b87f73550c0d242b",
+      "provenance.json": "2cc20ec40d5998f6b077a71790bd3e6e96e1c193e0f63dcde0c3be47786f35ab"
+    }
+  },
+  "native_tools": {
+    "repository": "diegoami/borg-cemetery",
+    "commit": "09225018dd5f2d4336a16b29478793d902c70dc3"
+  },
+  "owner_authorization": "2026-11-19: the owner agreed to a sanity rerun of Suite 1 on current main (borg-zoo#183), after borg-reborn-rs #600 (lava and staircase fixes, shipped on) and #607 (the harness plays the borg-rs core by default) changed main's defaults: Suite 1 on borg-reborn-rs main 38858846 with its own default settings, stage by stage to full.",
+  "prespecified": "Fixed 2026-11-19, before any result was read (borg-zoo#183). A sanity check of main: the 999 saves of\nSuite 1 with its protocol (exact 2,000-engine-turn horizon, the suite's 30-second native wall limit, fresh Borg\nmemory, saved engine RNG). Settings: the checkout's own harness/borg.txt (sha256 3ce9ae4f...), nothing\noverridden. Stages smoke 18, small 90, medium 360, big 900 and full 999 run in sequence, each after the previous\nstage's gate. Gate at every stage: no missing, invalid or stopped cell; one binary; every cell's native receipts\nshow the save, the RNG, the borg-rs core, every borg.txt setting written, every borg_param_* effective from\nborg.txt, and an initial pack/equipment/rune hash equal to the suite's. Reported alone: the death share, deaths\nper class and every scenario's outcome. Encounters from one life are correlated.\n",
+  "schema": "borg-zoo/suite-run-definition@1",
+  "definition": "definitions/suite1-reborn-main-38858846-stock.yaml"
+}
