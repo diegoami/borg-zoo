@@ -491,6 +491,8 @@ Lower values send the Borg back for unknown items more often. Each return brings
 - **#364 small + medium, breeder-colony avoidance on PR #632 head 985c772a (run 44462234908, starts 1-360, 360 per arm):** ctl 14, avoid 14 (6 / 6), avoid-nofight 15, avoid-exit 15; about 330 of 360 games change, progress level. **Bins:** all **neutral, safe to adopt**.
 - **#358, caution_recall_wait_as_usual at 200,000 turns on PR #627 head cdd065ca (run 44462245391, classes-1800-200k starts 19-90, 72 per arm):** 4 deaths in each arm, the same characters; the switch changes 19 of 72 games. **Bin:** neutral, safe to adopt.
 
+**#379, point-blank divisor Ranger 1 / Rogue 2 on main 3ba17e2c (pilot 44505026276, rest 44505764140; all 200 Ranger and 200 Rogue starts of classes-1800, 800 games): the Ranger lead of #290 reverses; Rogue 2 leads.** The gate passed (50 of 50 death bundles reproduced). Rangers: main's 2 12 deaths, 1 21 (rescued 6, newly killed 15, p 0.078), mean max CL 5.71 against 5.54. Rogues: main's 3 11, 2 7 (4 / 0, p 0.125), CL 5.56 against 5.49; 69 of 200 games identical. **Bins (RULES 18):** Ranger 1 **leaning worse** (main's 2 stays better on this build); Rogue 2 **leaning better**, safe to adopt.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
