@@ -634,7 +634,7 @@
     },
     "reborn-errands-main": {
       "issue": 383,
-      "status": "defined: pilot (dispatch first), small, medium, big, full on 3ba17e2c",
+      "status": "all 1,800 starts done: errands 91 v 105 deaths (18 / 4, p 0.004); confirmation on classes-1800-b and 200k pilot + small defined, not dispatched",
       "what": "Errands plan vs no plan on main 3ba17e2c: none (shipped), errands_plan.txt, errands_plan_ambitious.txt; pilot to full.",
       "profiles": [
         "reborn-errands38-ambitious",
@@ -702,6 +702,26 @@
         "reborn-standinv-ctl",
         "reborn-standinv-seeinv1",
         "reborn-standinv-stand0"
+      ],
+      "runs": []
+    },
+    "reborn-phase-rule-main": {
+      "issue": 347,
+      "status": "defined (pilot and classes-1800-b confirmation on 3ba17e2c, not dispatched)",
+      "what": "#584's Phase Door rule on main 3ba17e2c: ctl (shipped off) against thr-100 (escape_phase_adjacent_rule 1, escape_phase_lost_test 0); pilot, then a confirmation on fresh seeds.",
+      "profiles": [
+        "reborn-phaserule38-ctl",
+        "reborn-phaserule38-thr-100"
+      ],
+      "runs": []
+    },
+    "reborn-scary-floor-main": {
+      "issue": 369,
+      "status": "defined (pilot, small, medium, big, full on 3ba17e2c, not dispatched)",
+      "what": "The scary list's floor3 (every range - 5, floor CL 3) against the shipped list on main 3ba17e2c, with #621's ignore lines in both arms; pilot to full.",
+      "profiles": [
+        "reborn-scary38-ctl",
+        "reborn-scary38-floor3"
       ],
       "runs": []
     }

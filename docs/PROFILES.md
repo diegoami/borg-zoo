@@ -35,12 +35,14 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-scary-ends` | [#350](https://github.com/diegoami/borg-zoo/issues/350) | 11 | floor3 starts 1-900 done (49 v 51 deaths, CL 5.50 v 5.13); full defined | Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846. |
 | `reborn-bundle` | [#361](https://github.com/diegoami/borg-zoo/issues/361) | 12 | all5 bundle pilot done; floor3 bundle pilot defined | The safe-to-adopt changes together on main 38858846: scary all5 + Ranger point-blank 1 + flight Recall on DL1 (gate 0), and the bundle without all5. |
 | `reborn-kill-power-main` | [#244](https://github.com/diegoami/borg-zoo/issues/244) | 2 | pilot done: off neutral on deaths, leans harmful on progress | kill_live_min_power shipped 1 against 0 on main 38858846. |
-| `reborn-errands-main` | [#383](https://github.com/diegoami/borg-zoo/issues/383) | 3 | defined: pilot (dispatch first), small, medium, big, full on 3ba17e2c | Errands plan vs no plan on main 3ba17e2c: none (shipped), errands_plan.txt, errands_plan_ambitious.txt; pilot to full. |
+| `reborn-errands-main` | [#383](https://github.com/diegoami/borg-zoo/issues/383) | 3 | all 1,800 starts done: errands 91 v 105 deaths (18 / 4, p 0.004); confirmation on classes-1800-b and 200k pilot + small defined, not dispatched | Errands plan vs no plan on main 3ba17e2c: none (shipped), errands_plan.txt, errands_plan_ambitious.txt; pilot to full. |
 | `reborn-bless` | [#388](https://github.com/diegoami/borg-zoo/issues/388) | 5 | defined (pilot on 3ba17e2c, not dispatched) | Bless rules (#560) on main 3ba17e2c: never cast, stop sooner (max_danger_divisor 4), bless longer (1), bless at lower danger (danger_divisor 6). |
 | `reborn-phase-thresholds` | [#389](https://github.com/diegoami/borg-zoo/issues/389) | 5 | defined (pilot on 3ba17e2c, not dispatched) | Phase Door thresholds on main 3ba17e2c: ordinary danger 5 / 20 tenths, unique 7, no anti-summon delay. |
 | `reborn-town-dangerous` | [#390](https://github.com/diegoami/borg-zoo/issues/390) | 4 | defined (pilot on 3ba17e2c, not dispatched) | Attacking dangerous townspeople on sight (#619) on main 3ba17e2c: on (bonus 300), bonus 600, min_damage 3. |
 | `reborn-gold-reserve` | [#392](https://github.com/diegoami/borg-zoo/issues/392) | 5 | defined (pilot on 3ba17e2c, not dispatched) | Town gold reserve on main 3ba17e2c: fixed 300 / 1000, percent 25 / 50, against 0 (shipped). |
 | `reborn-stand-seeinv` | [#393](https://github.com/diegoami/borg-zoo/issues/393) | 3 | defined (pilot on 3ba17e2c, not dispatched) | caution_scary_stand 0 (always flee) and recover_rest_arms_see_invis 1 against shipped, on main 3ba17e2c. |
+| `reborn-phase-rule-main` | [#347](https://github.com/diegoami/borg-zoo/issues/347) | 2 | defined (pilot and classes-1800-b confirmation on 3ba17e2c, not dispatched) | #584's Phase Door rule on main 3ba17e2c: ctl (shipped off) against thr-100 (escape_phase_adjacent_rule 1, escape_phase_lost_test 0); pilot, then a confirmation on fresh seeds. |
+| `reborn-scary-floor-main` | [#369](https://github.com/diegoami/borg-zoo/issues/369) | 2 | defined (pilot, small, medium, big, full on 3ba17e2c, not dispatched) | The scary list's floor3 (every range - 5, floor CL 3) against the shipped list on main 3ba17e2c, with #621's ignore lines in both arms; pilot to full. |
 
 ### `heal-attack-4`
 
@@ -610,6 +612,28 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-standinv-seeinv1` | – | 1 |
 | `reborn-standinv-stand0` | 0 | – |
 
+### `reborn-phase-rule-main`
+
+#584's Phase Door rule on main 3ba17e2c: ctl (shipped off) against thr-100 (escape_phase_adjacent_rule 1, escape_phase_lost_test 0); pilot, then a confirmation on fresh seeds.
+
+Every arm: `borg_param_escape_phase_lost_danger_percent = 100`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_escape_phase_adjacent_rule` | `borg_param_escape_phase_lost_test` |
+| --- | --- | --- |
+| `reborn-phaserule38-ctl` | 0 | 1 |
+| `reborn-phaserule38-thr-100` | 1 | 0 |
+
+### `reborn-scary-floor-main`
+
+The scary list's floor3 (every range - 5, floor CL 3) against the shipped list on main 3ba17e2c, with #621's ignore lines in both arms; pilot to full.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_scary_list_lines` |
+| --- | --- |
+| `reborn-scary38-ctl` | – |
+| `reborn-scary38-floor3` | 35 lines |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -705,7 +729,9 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_fail` | 0, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_max_danger_divisor` | 1, 4, not set | `reborn-bless` |  |
+| `borg_param_escape_phase_adjacent_rule` | 0, 1 | `reborn-phase-rule-main` |  |
 | `borg_param_escape_phase_antisummon_delay` | 0, not set | `reborn-phase-thresholds` |  |
+| `borg_param_escape_phase_lost_test` | 0, 1 | `reborn-phase-rule-main` |  |
 | `borg_param_escape_phase_ordinary_danger_tenths` | 5, 20, not set | `reborn-phase-thresholds` |  |
 | `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
@@ -732,7 +758,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
-| `borg_scary_list_lines` | 1 line, 14 lines, 28 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle` |  |
+| `borg_scary_list_lines` | 1 line, 14 lines, 28 lines, 35 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |
