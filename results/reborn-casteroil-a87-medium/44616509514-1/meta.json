@@ -1,0 +1,769 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-casteroil-a87-ctl": {
+        "description": "borg-zoo#436 (reborn-casteroil-a87-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "9d6d7e0cccba2f565b7b76af111ed58685aa78401fd05fcbedab3d8b837c4cbb"
+      },
+      "reborn-casteroil-a87-w_attack-200": {
+        "description": "borg-zoo#436 (reborn-casteroil-a87-pilot.yaml): arm w_attack-200.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_w_attack": 200
+        },
+        "sha256": "3521f9ea35a40121ccd37249cece632c3de2c7adc46734d74db4bce89a11dbf7"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-a87b4c96": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs main a87b4c96, the merge of #688 (#682: town_phase_curve_scale_percent and town_oil_curve_scale_percent per class, the owner's values; Blackguard healing 100/200). Tree 9f0cda19; harness/borg.txt 63a4d1be...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "a87b4c96cff9cf636f95cbb9818526f22a025625",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-medium-druids": {
+        "assigned_characters": {
+          "1043829164": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "1209439220": [
+            "Human",
+            "Druid"
+          ],
+          "12875881": [
+            "Elf",
+            "Druid"
+          ],
+          "1336231868": [
+            "Elf",
+            "Druid"
+          ],
+          "1383026924": [
+            "High-Elf",
+            "Druid"
+          ],
+          "139582688": [
+            "Human",
+            "Druid"
+          ],
+          "1411053900": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1535619678": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "1554177396": [
+            "Elf",
+            "Druid"
+          ],
+          "1597327873": [
+            "Gnome",
+            "Druid"
+          ],
+          "1612359658": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1626421950": [
+            "Gnome",
+            "Druid"
+          ],
+          "1636428579": [
+            "Hobbit",
+            "Druid"
+          ],
+          "1641674337": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "1643476647": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "1825382063": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "1876025142": [
+            "Hobbit",
+            "Druid"
+          ],
+          "1912305826": [
+            "Dwarf",
+            "Druid"
+          ],
+          "1916101798": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "2030243243": [
+            "Kobold",
+            "Druid"
+          ],
+          "413895312": [
+            "Gnome",
+            "Druid"
+          ],
+          "45125364": [
+            "Dwarf",
+            "Druid"
+          ],
+          "460387443": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "492635012": [
+            "Kobold",
+            "Druid"
+          ],
+          "494977617": [
+            "Dwarf",
+            "Druid"
+          ],
+          "536761474": [
+            "Hobbit",
+            "Druid"
+          ],
+          "625213959": [
+            "Human",
+            "Druid"
+          ],
+          "629801476": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "630171777": [
+            "High-Elf",
+            "Druid"
+          ],
+          "729362605": [
+            "Kobold",
+            "Druid"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The Druid starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          492635012,
+          1209439220,
+          1643476647,
+          12875881,
+          1636428579,
+          413895312,
+          1912305826,
+          1916101798,
+          1043829164,
+          1612359658,
+          630171777,
+          2030243243,
+          139582688,
+          629801476,
+          1554177396,
+          1876025142,
+          1626421950,
+          45125364,
+          1825382063,
+          1641674337,
+          1411053900,
+          1383026924,
+          729362605,
+          625213959,
+          460387443,
+          1336231868,
+          536761474,
+          1597327873,
+          494977617,
+          1535619678
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "class": "Druid",
+          "suite": "classes-1800-medium"
+        },
+        "wall_seconds": 900
+      },
+      "classes-1800-medium-mages": {
+        "assigned_characters": {
+          "1104889116": [
+            "Elf",
+            "Mage"
+          ],
+          "1135740722": [
+            "Kobold",
+            "Mage"
+          ],
+          "1158815282": [
+            "Elf",
+            "Mage"
+          ],
+          "1263833284": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "132877853": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "136470996": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "1407199175": [
+            "Dwarf",
+            "Mage"
+          ],
+          "1485426234": [
+            "Human",
+            "Mage"
+          ],
+          "1583131908": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "1630912278": [
+            "Kobold",
+            "Mage"
+          ],
+          "1643026877": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "1786941047": [
+            "Gnome",
+            "Mage"
+          ],
+          "1881082035": [
+            "Kobold",
+            "Mage"
+          ],
+          "1895752893": [
+            "Hobbit",
+            "Mage"
+          ],
+          "1946087915": [
+            "Human",
+            "Mage"
+          ],
+          "1975829439": [
+            "High-Elf",
+            "Mage"
+          ],
+          "199638637": [
+            "Dwarf",
+            "Mage"
+          ],
+          "2017596150": [
+            "Dunadan",
+            "Mage"
+          ],
+          "283260151": [
+            "High-Elf",
+            "Mage"
+          ],
+          "295453496": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "346089353": [
+            "Gnome",
+            "Mage"
+          ],
+          "38374894": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "461220874": [
+            "Human",
+            "Mage"
+          ],
+          "520732413": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "589244119": [
+            "Dwarf",
+            "Mage"
+          ],
+          "693142926": [
+            "Hobbit",
+            "Mage"
+          ],
+          "912444426": [
+            "Elf",
+            "Mage"
+          ],
+          "937586108": [
+            "Gnome",
+            "Mage"
+          ],
+          "939658134": [
+            "Dunadan",
+            "Mage"
+          ],
+          "973650473": [
+            "Hobbit",
+            "Mage"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The Mage starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          1135740722,
+          1946087915,
+          136470996,
+          1104889116,
+          1895752893,
+          346089353,
+          199638637,
+          520732413,
+          1643026877,
+          2017596150,
+          283260151,
+          1881082035,
+          461220874,
+          132877853,
+          1158815282,
+          973650473,
+          1786941047,
+          1407199175,
+          38374894,
+          1583131908,
+          939658134,
+          1975829439,
+          1630912278,
+          1485426234,
+          295453496,
+          912444426,
+          693142926,
+          937586108,
+          589244119,
+          1263833284
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "class": "Mage",
+          "suite": "classes-1800-medium"
+        },
+        "wall_seconds": 900
+      },
+      "classes-1800-medium-necromancers": {
+        "assigned_characters": {
+          "1217894062": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1221623918": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "1499601828": [
+            "Elf",
+            "Necromancer"
+          ],
+          "1705507033": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "1718908179": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "1761439354": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "1835100007": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "1955608206": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "1984944170": [
+            "Kobold",
+            "Necromancer"
+          ],
+          "1996566312": [
+            "Human",
+            "Necromancer"
+          ],
+          "2079962982": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "235711524": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "294809530": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "303741412": [
+            "Elf",
+            "Necromancer"
+          ],
+          "39054154": [
+            "Human",
+            "Necromancer"
+          ],
+          "422563129": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "459443830": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "465223303": [
+            "Kobold",
+            "Necromancer"
+          ],
+          "519864573": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "535199615": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "543214216": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "557410670": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "565038126": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "662185821": [
+            "Kobold",
+            "Necromancer"
+          ],
+          "738597549": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "793050868": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "861292696": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "895240287": [
+            "Human",
+            "Necromancer"
+          ],
+          "93034700": [
+            "Elf",
+            "Necromancer"
+          ],
+          "947292160": [
+            "Gnome",
+            "Necromancer"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The Necromancer starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          662185821,
+          39054154,
+          543214216,
+          1499601828,
+          1955608206,
+          535199615,
+          1835100007,
+          422563129,
+          1705507033,
+          738597549,
+          557410670,
+          1984944170,
+          1996566312,
+          1217894062,
+          93034700,
+          294809530,
+          459443830,
+          519864573,
+          2079962982,
+          1761439354,
+          565038126,
+          1221623918,
+          465223303,
+          895240287,
+          861292696,
+          303741412,
+          235711524,
+          947292160,
+          1718908179,
+          793050868
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "class": "Necromancer",
+          "suite": "classes-1800-medium"
+        },
+        "wall_seconds": 900
+      },
+      "classes-1800-medium-priests": {
+        "assigned_characters": {
+          "1002239165": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1012848986": [
+            "Gnome",
+            "Priest"
+          ],
+          "1112911014": [
+            "Elf",
+            "Priest"
+          ],
+          "112960677": [
+            "Kobold",
+            "Priest"
+          ],
+          "1151763704": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1244628290": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1277144831": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "1387344181": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "1455373684": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "150307609": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1577979420": [
+            "Elf",
+            "Priest"
+          ],
+          "1712476764": [
+            "Human",
+            "Priest"
+          ],
+          "1854256300": [
+            "Human",
+            "Priest"
+          ],
+          "1870400446": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1985974231": [
+            "High-Elf",
+            "Priest"
+          ],
+          "2000488047": [
+            "Gnome",
+            "Priest"
+          ],
+          "2019282601": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "2053553896": [
+            "Hobbit",
+            "Priest"
+          ],
+          "235160511": [
+            "Elf",
+            "Priest"
+          ],
+          "240655275": [
+            "Kobold",
+            "Priest"
+          ],
+          "2613747": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "31959072": [
+            "Gnome",
+            "Priest"
+          ],
+          "320204827": [
+            "Dwarf",
+            "Priest"
+          ],
+          "347791329": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "350159779": [
+            "Dwarf",
+            "Priest"
+          ],
+          "354395849": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "507639047": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "524850074": [
+            "Kobold",
+            "Priest"
+          ],
+          "685052922": [
+            "Dwarf",
+            "Priest"
+          ],
+          "809881907": [
+            "Human",
+            "Priest"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The Priest starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          112960677,
+          1712476764,
+          1387344181,
+          1577979420,
+          1244628290,
+          31959072,
+          350159779,
+          354395849,
+          2019282601,
+          150307609,
+          1151763704,
+          240655275,
+          809881907,
+          1277144831,
+          235160511,
+          1870400446,
+          2000488047,
+          685052922,
+          1455373684,
+          2613747,
+          1002239165,
+          1985974231,
+          524850074,
+          1854256300,
+          347791329,
+          1112911014,
+          2053553896,
+          1012848986,
+          320204827,
+          507639047
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "class": "Priest",
+          "suite": "classes-1800-medium"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-19 21:18 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-a87b4c96",
+    "control_profile": "reborn-casteroil-a87-ctl",
+    "definition": "definitions/reborn-casteroil-a87-medium.yaml",
+    "description": "On borg-reborn-rs main a87b4c96 (per-class oil curves: Druid and Priest 150, Mage and Necromancer 100), does a higher town attack weight (borg_town_w_attack 200, more Flasks of oil) save Mages, Priests, Necromancers and Druids? Generated from definitions/reborn-casteroil-a87-medium.yaml: 2 arms on 4.2.6-reborn-rust-main-a87b4c96, suite classes-1800-medium-mages, classes-1800-medium-priests, classes-1800-medium-necromancers, classes-1800-medium-druids.",
+    "issue": 436,
+    "name": "reborn-casteroil-a87-medium",
+    "owner_authorization": "2026-11-19: the owner pointed this session at the filed studies (\"Issue 436 and 437\"). Pilot first (RULES 16); the oil-curve arms join when borg-reborn-rs makes the class lines profile-writable; medium, big and full on the owner's go.",
+    "prespecified": "Medium after the pilot's gate (run 44607268031: 3 deaths against 3, 3 / 3, CL +0.25). The oil-curve arms still wait for borg-reborn-rs#696 (PR #700, open).\nSame specimen and profiles as reborn-casteroil-a87-pilot; no raw evidence at this size. Owner, 2026-11-19: \"Yes go\" (to the proposed mediums).\nFixed 2026-11-19, before any result on a87b4c96 was read. Pilot (RULES 16), 40 caster starts per arm.\nEvidence that disagrees: on the 55 crow / wild-cat death starts (3ba17e2c) the Phase Door rule plus\nborg_town_w_attack 200 rescued 45 against the rule alone's 25; on 40 unselected caster starts (592c6984) an oil arm\n(w_attack 200 with attack_turns 50) had 6 deaths against 2. Main now ships per-class oil curves.\nGate:\n- no config_error; one binary; each arm's values in borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced;\n- the arm is reached: games identical to ctl are counted.\nReport per arm and per class: deaths and causes (monster, CL, turn), CL1-3 deaths, mean max CL and DL, paired\nrescued and newly killed, Flasks of oil bought per town visit. RULES 18 bins; Holm over the comparisons at the\nlarger tiers.",
+    "profiles": [
+      "reborn-casteroil-a87-ctl",
+      "reborn-casteroil-a87-w_attack-200"
+    ],
+    "question": "On borg-reborn-rs main a87b4c96 (per-class oil curves: Druid and Priest 150, Mage and Necromancer 100), does a higher town attack weight (borg_town_w_attack 200, more Flasks of oil) save Mages, Priests, Necromancers and Druids?",
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-a87b4c96"
+    ],
+    "suites": [
+      "classes-1800-medium-mages",
+      "classes-1800-medium-priests",
+      "classes-1800-medium-necromancers",
+      "classes-1800-medium-druids"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44616509514-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44616509514",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "8bd3ea23cfa16803517ea9b18e9934bd1c6f9172"
+}
