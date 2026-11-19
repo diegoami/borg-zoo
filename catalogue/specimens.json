@@ -25,7 +25,7 @@
       "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "mode_side": "pre",
       "carries": 0,
-      "label": "Angband 4.2.6 \u2014 the original C Borg as the release ships it (angband/angband e473720)",
+      "label": "Angband 4.2.6 — the original C Borg as the release ships it (angband/angband e473720)",
       "source": "https://github.com/angband/angband/commit/e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
       "formerly": [
         "pristine"
@@ -628,7 +628,7 @@
       "exact_turns": true,
       "depth_stream": true,
       "source": "https://github.com/diegoami/borg-reborn-rs/blob/f0eeee25d1ff2cb1103ed08518a6c5f6500dad46/docs/ZOO-INTERFACE.md",
-      "label": "borg-reborn-rs milestone E after its accepted review corrections (#94\u2013#96), as requested in borg-zoo#48. Separate pin preserves the pre-review tag-e results. Hallucination perception is corrected; the original C controls stay at their own pins."
+      "label": "borg-reborn-rs milestone E after its accepted review corrections (#94–#96), as requested in borg-zoo#48. Separate pin preserves the pre-review tag-e results. Hallucination perception is corrected; the original C controls stay at their own pins."
     },
     "4.2.6-rs-m11": {
       "kind": "borg-rs",
@@ -1544,6 +1544,40 @@
       "repository": "diegoami/borg-reborn-rs",
       "ref": "07844cf13c335c020df17f976d9c5e0ab16fe294",
       "label": "borg-reborn-rs 07844cf1, main at the merge of #623 (#622 town less scary, shipped caution_town_scary_levels_less 3). Ships caution_scary_damage_percent 60 with the named list, caution_rising_explore_ticks 300. Source-hash rust 589907f0...; harness/borg.txt b5835b13...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-pr612-2075f54e": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "2075f54e69f91ce9356de796c2810a23d6b9029c",
+      "label": "borg-reborn-rs 2075f54e, head of PR #612 (#584 step 2, unmerged; contains #602): the owner's Phase Door rule behind escape_phase_adjacent_rule, compiled and shipped 0. Source-hash rust 94678b69...; harness/borg.txt 2f846d25...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-pr616-8a427494": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "8a427494fa3cf16cefabe24cd1681b287b0137d2",
+      "label": "borg-reborn-rs 8a427494, head of PR #616 (#614, unmerged; contains main 38858846): rest at the stairs (recover_rest_reach_stairs, _memory) and leaving by the stairs when a monster comes while recovering (caution_stairs_leave_on_monster, _danger_percent, _down); all shipped off. harness/borg.txt fc64c28a...",
       "plans": {
         "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
         "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"

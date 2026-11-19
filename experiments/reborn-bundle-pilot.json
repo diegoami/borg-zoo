@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-bundle-pilot",
+  "issue": 361,
+  "definition": "definitions/reborn-bundle-pilot.yaml",
+  "question": "On borg-reborn-rs main 38858846, do the scary list all5, Ranger point-blank divisor 1 and flight Recall on DL1 again, each safe to adopt alone, work together without harm?",
+  "description": "On borg-reborn-rs main 38858846, do the scary list all5, Ranger point-blank divisor 1 and flight Recall on DL1 again, each safe to adopt alone, work together without harm? Generated from definitions/reborn-bundle-pilot.yaml: 3 arms on 4.2.6-reborn-rust-main-38858846, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result was read. Pilot (RULES 16). Alone: all5 (#350) helpful on progress; Ranger 1\n(#290) neutral, leaning helpful; dl1off (#280) neutral.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and scary list;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: deaths and causes, CL1-3 deaths, final level, deepest level; paired rescued and newly\nkilled against ctl; identical plays; flight Recalls on DL1.\nEach value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18). Direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-38858846"
+  ],
+  "profiles": [
+    "reborn-bundle-ctl",
+    "reborn-bundle-bundle",
+    "reborn-bundle-bundle-noscary"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-38858846",
+  "control_profile": "reborn-bundle-ctl",
+  "owner_authorization": "2026-11-19: the owner asked to queue sensible next experiments after the #350 pilots. Pilot first (RULES 16).",
+  "retain_evidence": true
+}
