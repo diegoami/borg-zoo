@@ -1,0 +1,229 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-recalldanger-ctl": {
+        "description": "borg-zoo#335 (reborn-recall-danger-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_param_caution_flee_recall": 1,
+          "borg_param_caution_flee_recall_danger_percent": 0,
+          "borg_param_caution_flee_recall_gate_below_depth": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "af604350b9c51910b1fe3b35b1ba7bdb1b440d5ca47dbfa0930e3b9b5c214d28"
+      },
+      "reborn-recalldanger-g2": {
+        "description": "borg-zoo#335 (reborn-recall-danger-pilot.yaml): arm g2.",
+        "settings": {
+          "borg_param_caution_flee_recall": 1,
+          "borg_param_caution_flee_recall_danger_percent": 0,
+          "borg_param_caution_flee_recall_gate_below_depth": 2,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "795f89cc750782d5fa7369a9cf6e75766d166faf87bda2bcef62e2e0d54faca3"
+      },
+      "reborn-recalldanger-g2d100": {
+        "description": "borg-zoo#335 (reborn-recall-danger-pilot.yaml): arm g2d100.",
+        "settings": {
+          "borg_param_caution_flee_recall": 1,
+          "borg_param_caution_flee_recall_danger_percent": 100,
+          "borg_param_caution_flee_recall_gate_below_depth": 2,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "899b57ea3553c8d43f12eca247c9a1ee61d9af6f49f79a44543029d88e462392"
+      },
+      "reborn-recalldanger-g2d200": {
+        "description": "borg-zoo#335 (reborn-recall-danger-pilot.yaml): arm g2d200.",
+        "settings": {
+          "borg_param_caution_flee_recall": 1,
+          "borg_param_caution_flee_recall_danger_percent": 200,
+          "borg_param_caution_flee_recall_gate_below_depth": 2,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "034d107ef0b1c69c56ebdd028a4c81db7deb2b388765f9784ae54f45b0ed2ba8"
+      },
+      "reborn-recalldanger-g2d50": {
+        "description": "borg-zoo#335 (reborn-recall-danger-pilot.yaml): arm g2d50.",
+        "settings": {
+          "borg_param_caution_flee_recall": 1,
+          "borg_param_caution_flee_recall_danger_percent": 50,
+          "borg_param_caution_flee_recall_gate_below_depth": 2,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "be6380499cf006d6a0dde785a602146e96438919134ae4286120f15dcf1e4059"
+      },
+      "reborn-recalldanger-r0": {
+        "description": "borg-zoo#335 (reborn-recall-danger-pilot.yaml): arm r0.",
+        "settings": {
+          "borg_param_caution_flee_recall": 0,
+          "borg_param_caution_flee_recall_danger_percent": 0,
+          "borg_param_caution_flee_recall_gate_below_depth": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "42df5cd9222a6de34f904b5092000b2542715e576e99f97e0f80c41bd55e14c6"
+      },
+      "reborn-recalldanger-r0d100": {
+        "description": "borg-zoo#335 (reborn-recall-danger-pilot.yaml): arm r0d100.",
+        "settings": {
+          "borg_param_caution_flee_recall": 0,
+          "borg_param_caution_flee_recall_danger_percent": 100,
+          "borg_param_caution_flee_recall_gate_below_depth": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "088ed14bd768a1805e01cb84f9e0867fd684480799526b6ea2c06ba98796c14e"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-38858846": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 38858846, main at the merge of #607 (#606: borg-rs is the default core). Ships the same healing class values as 4a482c58 (curve/reserve Warrior 50/100, Mage 150/300, Druid 125/250, Priest 125/250, Necromancer 150/300, Paladin 75/150, Rogue 100/200, Ranger 100/200, Blackguard 75/150; common reserve 100, curve 125). harness/borg.txt 3ce9ae4f...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "388588468bfe91b2a8f84b38599813f2acfed64e",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-19 03:45 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-38858846",
+    "control_profile": "reborn-recalldanger-ctl",
+    "definition": "definitions/reborn-recall-danger-pilot.yaml",
+    "description": "On borg-reborn-rs main 38858846, with a flight's Word of Recall held back (the DL1 gate at 2, or caution_flee_recall 0), does allowing it from a danger share of the HP (caution_flee_recall_danger_percent 50, 100, 200) save games or progress? Generated from definitions/reborn-recall-danger-pilot.yaml: 7 arms on 4.2.6-reborn-rust-main-38858846, suite classes-18.",
+    "issue": 335,
+    "name": "reborn-recall-danger-pilot",
+    "prespecified": "Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#587, #591). Pilot (RULES 16); larger tiers only\nafter this gate and the owner. ctl is the shipped configuration, where nothing holds a flight's Recall back and the\ndanger setting cannot fire. The danger arms compare against their gate's own 0 arm: g2d* against g2, r0d100 against r0.\nGate:\n- no config_error; one binary; each arm's three values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level; paired rescued and newly killed against ctl, against g2 (g2d*) and\n  against r0 (r0d100);\n- \"Fleeing the level (recall)\" notes per game and their depth; Word of Recall read in total and carried at the end;\n- deaths within 500 game turns of a Recall read, and deaths within 2,000 game turns of a flight that did not read one.\n18 starts per arm show direction only.",
+    "profiles": [
+      "reborn-recalldanger-ctl",
+      "reborn-recalldanger-g2",
+      "reborn-recalldanger-g2d50",
+      "reborn-recalldanger-g2d100",
+      "reborn-recalldanger-g2d200",
+      "reborn-recalldanger-r0",
+      "reborn-recalldanger-r0d100"
+    ],
+    "question": "On borg-reborn-rs main 38858846, with a flight's Word of Recall held back (the DL1 gate at 2, or caution_flee_recall 0), does allowing it from a danger share of the HP (caution_flee_recall_danger_percent 50, 100, 200) save games or progress?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-38858846"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44453013990-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44453013990",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "a8f10867ea8ad023b32fd550dcd7818cd37628ad"
+}
