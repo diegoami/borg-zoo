@@ -1,0 +1,1118 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-pbd3b-ctl": {
+        "description": "borg-zoo#379 (reborn-pbd3b-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_param_attack_arrow_point_blank_divisor_ranger": 2,
+          "borg_param_attack_arrow_point_blank_divisor_rogue": 3,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "7db00d1e2653c67336221a8ee3cefebd5f995cdd67d64e82ebd59495075e0e99"
+      },
+      "reborn-pbd3b-lo": {
+        "description": "borg-zoo#379 (reborn-pbd3b-pilot.yaml): arm lo.",
+        "settings": {
+          "borg_param_attack_arrow_point_blank_divisor_ranger": 1,
+          "borg_param_attack_arrow_point_blank_divisor_rogue": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "58107c6f0f7c54f9090d8926da8e71233bf3c62d5bfaeb67b4958d75bfc286b9"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-3ba17e2c": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 3ba17e2c, main at the merge of #633. Ships attack_arrow_point_blank_divisor Ranger 2 and Rogue 3 (class files). Tree 23632fb4; source-hash rust bc79f0a6...; harness/borg.txt 617cc79c...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "3ba17e2c21ae203d2dd45fa53f1dbada87acba75",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-b-rogues": {
+        "assigned_characters": {
+          "1015418240": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "1017585673": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1026883157": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "103939380": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1041282847": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1066773007": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1067421540": [
+            "Kobold",
+            "Rogue"
+          ],
+          "1070215813": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1126441726": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1133492796": [
+            "Human",
+            "Rogue"
+          ],
+          "1135743367": [
+            "Elf",
+            "Rogue"
+          ],
+          "1155065766": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1160649430": [
+            "Elf",
+            "Rogue"
+          ],
+          "1162431011": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "117810707": [
+            "Human",
+            "Rogue"
+          ],
+          "1187006662": [
+            "Elf",
+            "Rogue"
+          ],
+          "1189260265": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1223846260": [
+            "Gnome",
+            "Rogue"
+          ],
+          "123147471": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "124392193": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1244106735": [
+            "Human",
+            "Rogue"
+          ],
+          "1248189787": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1250691128": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1253521372": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "1260117610": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1287172975": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1291914616": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "1326874153": [
+            "Elf",
+            "Rogue"
+          ],
+          "1329296497": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "1348126269": [
+            "Elf",
+            "Rogue"
+          ],
+          "1367897919": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1381787612": [
+            "Human",
+            "Rogue"
+          ],
+          "1382953359": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1385133751": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "1410517628": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "1418462428": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "1429088358": [
+            "Elf",
+            "Rogue"
+          ],
+          "143962741": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "1444819358": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1480730572": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "1480802338": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1499350582": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1499705468": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "1511710646": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "1514211225": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1525123741": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "1527819743": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "1536754171": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1546216601": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "154974137": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "1562247591": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "1563121118": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "1585005874": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "1589188775": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "1601705793": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1603237607": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "1613157620": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1631271300": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1653793447": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "165556059": [
+            "Elf",
+            "Rogue"
+          ],
+          "1659659483": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1663055695": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "167026650": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1676828619": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1688865825": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "1692811081": [
+            "Kobold",
+            "Rogue"
+          ],
+          "1706614380": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1716920133": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "172268061": [
+            "Human",
+            "Rogue"
+          ],
+          "1762698341": [
+            "Kobold",
+            "Rogue"
+          ],
+          "1794892635": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1796488259": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "1818968569": [
+            "Kobold",
+            "Rogue"
+          ],
+          "1823724730": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1827245270": [
+            "Human",
+            "Rogue"
+          ],
+          "1831337738": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1838383358": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1840832686": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "1861825905": [
+            "Elf",
+            "Rogue"
+          ],
+          "186303548": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1865895662": [
+            "Elf",
+            "Rogue"
+          ],
+          "1866189079": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "1869229716": [
+            "Elf",
+            "Rogue"
+          ],
+          "1884861455": [
+            "Human",
+            "Rogue"
+          ],
+          "1885788351": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1904943626": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "1914763252": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1923644723": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "1924215065": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "1943834826": [
+            "Human",
+            "Rogue"
+          ],
+          "19466098": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1974114484": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1989707992": [
+            "Human",
+            "Rogue"
+          ],
+          "200123237": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "2008168391": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "2041905110": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "2045819784": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "207562659": [
+            "Kobold",
+            "Rogue"
+          ],
+          "2083792835": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "2088175458": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "2105747903": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "2119325794": [
+            "Kobold",
+            "Rogue"
+          ],
+          "2120546552": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "2138133000": [
+            "Human",
+            "Rogue"
+          ],
+          "2141067080": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "2144129274": [
+            "Elf",
+            "Rogue"
+          ],
+          "216328035": [
+            "Elf",
+            "Rogue"
+          ],
+          "247507319": [
+            "Gnome",
+            "Rogue"
+          ],
+          "258339091": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "259568869": [
+            "Human",
+            "Rogue"
+          ],
+          "26020611": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "280605534": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "292288166": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "305382628": [
+            "Kobold",
+            "Rogue"
+          ],
+          "305635718": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "316276654": [
+            "Human",
+            "Rogue"
+          ],
+          "326290983": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "331035141": [
+            "Gnome",
+            "Rogue"
+          ],
+          "367626082": [
+            "Kobold",
+            "Rogue"
+          ],
+          "381574272": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "382879135": [
+            "Elf",
+            "Rogue"
+          ],
+          "3985447": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "406027944": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "409247692": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "421460038": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "424494896": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "428549881": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "436290308": [
+            "Human",
+            "Rogue"
+          ],
+          "447563483": [
+            "Gnome",
+            "Rogue"
+          ],
+          "456734304": [
+            "Human",
+            "Rogue"
+          ],
+          "461808451": [
+            "Gnome",
+            "Rogue"
+          ],
+          "463611627": [
+            "Kobold",
+            "Rogue"
+          ],
+          "48571462": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "489333104": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "491850816": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "493431325": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "510053898": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "521581839": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "540272748": [
+            "Elf",
+            "Rogue"
+          ],
+          "540349066": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "545829148": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "547130177": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "549988362": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "560238244": [
+            "Gnome",
+            "Rogue"
+          ],
+          "561334718": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "569120798": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "581502268": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "583895294": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "584410815": [
+            "Kobold",
+            "Rogue"
+          ],
+          "594928554": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "60782646": [
+            "Gnome",
+            "Rogue"
+          ],
+          "631022445": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "640762499": [
+            "Kobold",
+            "Rogue"
+          ],
+          "646224035": [
+            "Gnome",
+            "Rogue"
+          ],
+          "649459063": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "658485540": [
+            "Elf",
+            "Rogue"
+          ],
+          "6649877": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "688718803": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "702594756": [
+            "Kobold",
+            "Rogue"
+          ],
+          "703524400": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "709540002": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "70999782": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "723865149": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "739470394": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "744872860": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "746681360": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "752454161": [
+            "Human",
+            "Rogue"
+          ],
+          "760082385": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "766260604": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "770015914": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "783923353": [
+            "Human",
+            "Rogue"
+          ],
+          "809782798": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "810027385": [
+            "Human",
+            "Rogue"
+          ],
+          "810245796": [
+            "Gnome",
+            "Rogue"
+          ],
+          "811655494": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "823115513": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "824180472": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "827795403": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "830824238": [
+            "Human",
+            "Rogue"
+          ],
+          "832064062": [
+            "Elf",
+            "Rogue"
+          ],
+          "832950666": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "845723538": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "861308098": [
+            "Kobold",
+            "Rogue"
+          ],
+          "872673234": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "874993142": [
+            "Kobold",
+            "Rogue"
+          ],
+          "886120581": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "895199309": [
+            "Kobold",
+            "Rogue"
+          ],
+          "895927543": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "898191778": [
+            "Kobold",
+            "Rogue"
+          ],
+          "904970668": [
+            "Elf",
+            "Rogue"
+          ],
+          "905995292": [
+            "Kobold",
+            "Rogue"
+          ],
+          "908473671": [
+            "Gnome",
+            "Rogue"
+          ],
+          "916336461": [
+            "Kobold",
+            "Rogue"
+          ],
+          "923903455": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "936325802": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "941966166": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "948300407": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "961308052": [
+            "Elf",
+            "Rogue"
+          ],
+          "965733666": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "975430413": [
+            "Human",
+            "Rogue"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The 200 Rogue starts of classes-1800-b (borg-zoo#379): fresh seeds for confirming a Rogue lead from classes-1800. Prespecified tests only.",
+        "role": "confirmation",
+        "saves": false,
+        "seeds": [
+          1827245270,
+          1866189079,
+          1160649430,
+          143962741,
+          908473671,
+          1499350582,
+          1444819358,
+          124392193,
+          406027944,
+          3985447,
+          207562659,
+          2138133000,
+          1525123741,
+          216328035,
+          2083792835,
+          447563483,
+          491850816,
+          1536754171,
+          1189260265,
+          1418462428,
+          424494896,
+          305382628,
+          1943834826,
+          872673234,
+          1187006662,
+          1253521372,
+          1223846260,
+          823115513,
+          1659659483,
+          2120546552,
+          6649877,
+          1026883157,
+          1818968569,
+          830824238,
+          154974137,
+          1429088358,
+          561334718,
+          1126441726,
+          1367897919,
+          948300407,
+          1287172975,
+          409247692,
+          1585005874,
+          640762499,
+          117810707,
+          1410517628,
+          1861825905,
+          688718803,
+          1041282847,
+          760082385,
+          48571462,
+          1260117610,
+          886120581,
+          1329296497,
+          916336461,
+          456734304,
+          2088175458,
+          1135743367,
+          1589188775,
+          1066773007,
+          1155065766,
+          521581839,
+          103939380,
+          1480730572,
+          569120798,
+          1067421540,
+          259568869,
+          549988362,
+          961308052,
+          26020611,
+          560238244,
+          1017585673,
+          723865149,
+          895927543,
+          1663055695,
+          832950666,
+          2119325794,
+          316276654,
+          1015418240,
+          1326874153,
+          631022445,
+          646224035,
+          1070215813,
+          1838383358,
+          581502268,
+          2141067080,
+          1688865825,
+          895199309,
+          1989707992,
+          746681360,
+          2144129274,
+          326290983,
+          461808451,
+          1885788351,
+          583895294,
+          1514211225,
+          1499705468,
+          428549881,
+          898191778,
+          172268061,
+          305635718,
+          1348126269,
+          493431325,
+          1250691128,
+          1706614380,
+          1382953359,
+          547130177,
+          1603237607,
+          824180472,
+          367626082,
+          810027385,
+          1796488259,
+          832064062,
+          811655494,
+          1480802338,
+          1823724730,
+          2105747903,
+          280605534,
+          1511710646,
+          1653793447,
+          584410815,
+          975430413,
+          923903455,
+          1869229716,
+          1546216601,
+          1631271300,
+          1831337738,
+          19466098,
+          739470394,
+          766260604,
+          1904943626,
+          1692811081,
+          1133492796,
+          827795403,
+          1865895662,
+          1562247591,
+          810245796,
+          1676828619,
+          809782798,
+          186303548,
+          292288166,
+          1162431011,
+          905995292,
+          1381787612,
+          941966166,
+          540272748,
+          510053898,
+          1974114484,
+          1914763252,
+          965733666,
+          709540002,
+          936325802,
+          421460038,
+          1762698341,
+          752454161,
+          1527819743,
+          382879135,
+          258339091,
+          60782646,
+          1613157620,
+          1794892635,
+          1601705793,
+          703524400,
+          1923644723,
+          463611627,
+          436290308,
+          770015914,
+          904970668,
+          489333104,
+          1248189787,
+          123147471,
+          540349066,
+          167026650,
+          649459063,
+          1563121118,
+          874993142,
+          1244106735,
+          744872860,
+          165556059,
+          1291914616,
+          247507319,
+          2041905110,
+          200123237,
+          2045819784,
+          1385133751,
+          1924215065,
+          702594756,
+          783923353,
+          845723538,
+          658485540,
+          1840832686,
+          331035141,
+          545829148,
+          381574272,
+          1716920133,
+          70999782,
+          2008168391,
+          861308098,
+          1884861455,
+          594928554
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "class": "Rogue",
+          "suite": "classes-1800-b"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-19 15:59 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-3ba17e2c",
+    "control_profile": "reborn-pbd3b-ctl",
+    "definition": "definitions/reborn-pbd3b-rogue-confirm.yaml",
+    "description": "On borg-reborn-rs main 3ba17e2c, do Rogues with point-blank divisor 2 (attack_arrow_point_blank_divisor_rogue) die less than with main's 3, on 200 fresh Rogue starts (classes-1800-b)? Generated from definitions/reborn-pbd3b-rogue-confirm.yaml: 2 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-b-rogues.",
+    "issue": 379,
+    "name": "reborn-pbd3b-rogue-confirm",
+    "owner_authorization": "2026-11-19: after the development study (all 200 Rogue starts of classes-1800: divisor 2 7 deaths against 11, rescued 4, newly killed 0, p 0.125), the owner asked to confirm the Rogue lead on fresh seeds.",
+    "prespecified": "Fixed 2026-11-19, before any classes-1800-b result was read. Confirmation of one prespecified test (RULES 14).\nPrimary endpoint: deaths among the 200 Rogue starts, divisor 2 against 3, paired on the same start; two-sided exact\nMcNemar test at 0.05. Secondary (descriptive): CL1-3 deaths, mean max CL and DL, identical plays.\nDevelopment result (classes-1800, the same build): 7/200 against 11/200.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nEach value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18); the choice is the owner's.",
+    "profiles": [
+      "reborn-pbd3b-ctl",
+      "reborn-pbd3b-lo"
+    ],
+    "question": "On borg-reborn-rs main 3ba17e2c, do Rogues with point-blank divisor 2 (attack_arrow_point_blank_divisor_rogue) die less than with main's 3, on 200 fresh Rogue starts (classes-1800-b)?",
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-3ba17e2c"
+    ],
+    "suites": [
+      "classes-1800-b-rogues"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44524153538-2",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44524153538",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "830192ca23e4cca437cc899bd72136e769672066"
+}
