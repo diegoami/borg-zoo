@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-heal-by-class-main-pilot",
+  "issue": 265,
+  "definition": "definitions/reborn-heal-by-class-main-pilot.yaml",
+  "question": "On borg-reborn-rs main 38858846, does each class do better with its shipped healing curve and reserve than with half or one and a half times either value, or than with the common values (class files off)?",
+  "description": "On borg-reborn-rs main 38858846, does each class do better with its shipped healing curve and reserve than with half or one and a half times either value, or than with the common values (class files off)? Generated from definitions/reborn-heal-by-class-main-pilot.yaml: 6 arms on 4.2.6-reborn-rust-main-38858846, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result on 38858846 was read. Pilot (RULES 16), the same six arms as the 4a482c58 pilot.\n4a482c58 (context only, a different game): deaths ctl 1, curve-lo 2, curve-hi 1, reserve-lo 3, reserve-hi 1,\ncommon 2 of 18; both Druids died with common and reserve-lo, neither with the shipped values.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nRead per class (each class's own starts), not pooled: deaths and causes, final level, deepest level; paired rescued\nand newly killed against ctl; identical plays per class; healing potions bought and carried at death. Each value is\nreported as harmful, neutral (safe to adopt) or helpful (RULES 18). Two starts per class show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-38858846"
+  ],
+  "profiles": [
+    "reborn-hbc-ctl",
+    "reborn-hbc-curve-lo",
+    "reborn-hbc-curve-hi",
+    "reborn-hbc-reserve-lo",
+    "reborn-hbc-reserve-hi",
+    "reborn-hbc-common"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-38858846",
+  "control_profile": "reborn-hbc-ctl",
+  "owner_authorization": "2026-11-19: after the pilot on 4a482c58 (run 44294456089), now 43+ merges old, the owner chose to re-pilot the same six arms on current main before any larger tier (RULES 16).",
+  "retain_evidence": true
+}
