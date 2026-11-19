@@ -48,6 +48,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-untested-caution` | [#401](https://github.com/diegoami/borg-zoo/issues/401) | 9 | defined (pilot screen on 3ba17e2c, not dispatched) | Never-tested trip, Recall and breeder settings lowered and raised on main 3ba17e2c: borg_town_explore_turns, caution_recall_rest_turns, caution_breeder_easy_escape_steps, caution_flee_recall_chasers. |
 | `reborn-errands-floor3` | [#405](https://github.com/diegoami/borg-zoo/issues/405) | 4 | defined (pilot on 3ba17e2c, not dispatched) | Errands plan × floor3 (2×2) on main 3ba17e2c: ctl, errands, floor3, both. |
 | `reborn-crow` | [#408](https://github.com/diegoami/borg-zoo/issues/408) | 4 | defined (pilot on 3ba17e2c, not dispatched) | Crows (and wild cats) scary for fragile classes at CL1-2/3 only, on main 3ba17e2c: crow 0-2, crow 0-3, crow + wild cat 0-2. |
+| `reborn-mage-priest` | [#415](https://github.com/diegoami/borg-zoo/issues/415) | 3 | defined (pilot on 592c6984, not dispatched) | Study 2 of #415 on main 592c6984, Mage and Priest starts, rule and calmed in every arm: healing x1.5, spell preference 1500. |
 
 ### `heal-attack-4`
 
@@ -719,6 +720,18 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-crow38-crowcat2` | 2 lines |
 | `reborn-crow38-ctl` | – |
 
+### `reborn-mage-priest`
+
+Study 2 of #415 on main 592c6984, Mage and Priest starts, rule and calmed in every arm: healing x1.5, spell preference 1500.
+
+Every arm: `borg_param_caution_scary_unlatch_calmed = 1`, `borg_param_escape_phase_adjacent_rule = 1`, `borg_param_escape_phase_lost_test = 0`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_preference_mage_spell_permille` | `borg_param_attack_preference_priest_spell_permille` | `borg_param_town_heal_curve_scale_percent_mage` | `borg_param_town_heal_curve_scale_percent_priest` | `borg_param_town_heal_reserve_hp_percent_mage` | `borg_param_town_heal_reserve_hp_percent_priest` |
+| --- | --- | --- | --- | --- | --- | --- |
+| `reborn-magepriest-ctl` | – | – | – | – | – | – |
+| `reborn-magepriest-heal-hi` | – | – | 225 | 185 | 450 | 375 |
+| `reborn-magepriest-spell1500` | 1500 | 1500 | – | – | – | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -757,7 +770,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_mage_device_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_mage_melee_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_mage_projectile_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_mage_spell_permille` | 1000, 1500, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
+| `borg_param_attack_preference_mage_spell_permille` | 1000, 1500, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle`, `reborn-mage-priest` |  |
 | `borg_param_attack_preference_mage_thrown_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_necromancer_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_necromancer_device_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
@@ -775,7 +788,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_priest_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_priest_melee_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_priest_projectile_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_priest_spell_permille` | 1000, 1350, 1700, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
+| `borg_param_attack_preference_priest_spell_permille` | 1000, 1350, 1500, 1700, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle`, `reborn-mage-priest` |  |
 | `borg_param_attack_preference_priest_thrown_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_ranger_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_ranger_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
@@ -831,19 +844,19 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_gold_reserve_percent` | 25, 50, not set | `reborn-gold-reserve` |  |
 | `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_druid` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
-| `borg_param_town_heal_curve_scale_percent_mage` | 0, 75, 225, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_curve_scale_percent_mage` | 0, 75, 225, not set | `reborn-heal-by-class`, `reborn-mage-priest` |  |
 | `borg_param_town_heal_curve_scale_percent_necromancer` | 0, 75, 225, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_paladin` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
-| `borg_param_town_heal_curve_scale_percent_priest` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_curve_scale_percent_priest` | 0, 60, 185, not set | `reborn-heal-by-class`, `reborn-mage-priest` |  |
 | `borg_param_town_heal_curve_scale_percent_ranger` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_rogue` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_warrior` | 0, 25, 75, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_blackguard` | -1, 75, 225, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_druid` | -1, 125, 375, not set | `reborn-heal-by-class` |  |
-| `borg_param_town_heal_reserve_hp_percent_mage` | -1, 150, 450, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_hp_percent_mage` | -1, 150, 450, not set | `reborn-heal-by-class`, `reborn-mage-priest` |  |
 | `borg_param_town_heal_reserve_hp_percent_necromancer` | -1, 150, 450, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_paladin` | -1, 75, 225, not set | `reborn-heal-by-class` |  |
-| `borg_param_town_heal_reserve_hp_percent_priest` | -1, 125, 375, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_hp_percent_priest` | -1, 125, 375, not set | `reborn-heal-by-class`, `reborn-mage-priest` |  |
 | `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
