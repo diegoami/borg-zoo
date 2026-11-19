@@ -1307,6 +1307,15 @@
       "stall_seconds": 90,
       "saves": false
     },
+    "classes-1800-b-rogues": {
+      "description": "The 200 Rogue starts of classes-1800-b (borg-zoo#379): fresh seeds for confirming a Rogue lead from classes-1800. Prespecified tests only.",
+      "role": "confirmation",
+      "subset": {"suite": "classes-1800-b", "class": "Rogue"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
     "classes-1800-b-rangers": {
       "description": "The 200 Ranger starts of classes-1800-b (borg-zoo#290): fresh seeds for confirming a Ranger lead from classes-1800. Prespecified tests only.",
       "role": "confirmation",

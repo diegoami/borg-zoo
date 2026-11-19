@@ -1,0 +1,27 @@
+# borg-zoo#379: confirmation of the Rogue point-blank lead (divisor 2 against main's 3) on fresh seeds.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-pbd3b-rogue-confirm.yaml
+name: reborn-pbd3b-rogue-confirm
+issue: 379
+question: >-
+  On borg-reborn-rs main 3ba17e2c, do Rogues with point-blank divisor 2 (attack_arrow_point_blank_divisor_rogue)
+  die less than with main's 3, on 200 fresh Rogue starts (classes-1800-b)?
+specimens: [4.2.6-reborn-rust-main-3ba17e2c]
+suites: [classes-1800-b-rogues]
+# The development study's profiles: on Rogue starts reborn-pbd3b-lo is Rogue divisor 2 (its Ranger line does not act).
+profiles: [reborn-pbd3b-ctl, reborn-pbd3b-lo]
+control_specimen: 4.2.6-reborn-rust-main-3ba17e2c
+control_profile: reborn-pbd3b-ctl
+owner_authorization: >-
+  2026-11-19: after the development study (all 200 Rogue starts of classes-1800: divisor 2 7 deaths against 11,
+  rescued 4, newly killed 0, p 0.125), the owner asked to confirm the Rogue lead on fresh seeds.
+
+prespecified: |
+  Fixed 2026-11-19, before any classes-1800-b result was read. Confirmation of one prespecified test (RULES 14).
+  Primary endpoint: deaths among the 200 Rogue starts, divisor 2 against 3, paired on the same start; two-sided exact
+  McNemar test at 0.05. Secondary (descriptive): CL1-3 deaths, mean max CL and DL, identical plays.
+  Development result (classes-1800, the same build): 7/200 against 11/200.
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Each value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18); the choice is the owner's.

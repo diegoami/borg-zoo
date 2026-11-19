@@ -1,0 +1,21 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-bundle-1119-medium",
+  "issue": 396,
+  "definition": "definitions/reborn-bundle-1119-medium.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, do the safe-to-adopt changes of 2026-11-19 together (unlatch when calmed, Recall wait-as-usual, the Phase Door rule at 100 percent, Rogue point-blank divisor 2) keep deaths and progress against main?",
+  "description": "On borg-reborn-rs main 3ba17e2c, do the safe-to-adopt changes of 2026-11-19 together (unlatch when calmed, Recall wait-as-usual, the Phase Door rule at 100 percent, Rogue point-blank divisor 2) keep deaths and progress against main? Generated from definitions/reborn-bundle-1119-medium.yaml: 2 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-medium.",
+  "prespecified": "Medium tier after the pilot reborn-bundle-1119-pilot; same specimen and profiles; no raw evidence at this size.\nFixed 2026-11-19, before any result of this bundle was read. Pilot (RULES 16); the medium tier follows if this gate\npasses (owner: \"do 1,2,3\"). Each change alone was neutral or leaning better (#357 calmed 46 against 49 of 810;\n#358 4 against 4 of 72 at 200k; #347 thr-100 77 against 93 of 1,728; #379 Rogue 2 7 against 11 of 200), each on its\nown build. This tests that they do not interact badly on one build.\nGate:\n- no config_error; one binary; each arm's six values in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm and per class: deaths and causes, final level, deepest level, paired rescued and newly killed\nagainst ctl, identical plays; RULES 18 bins.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-bundle1119-ctl",
+    "reborn-bundle1119-bundle"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-bundle1119-ctl"
+}
