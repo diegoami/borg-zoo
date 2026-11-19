@@ -439,6 +439,16 @@ Lower values send the Borg back for unknown items more often. Each return brings
 - **Spread pilot (run 44346946815, 72 games):** fragile + 3 and + 6 played the shipped keys in 18 of 18 games, with the lines verified in the run's list. No character outgrows the shipped fragile limit in 100,000 turns: Mages reach CL 4-5 and Necromancers CL 5, against a limit of 8 for the earliest monsters.
 - **Tough end, pilot then small + medium (runs 44359605720, 44377349082 and 44377372817; starts 1-360, 1,080 games):** tough − 3 and − 5 with the fragile end unchanged. The gate passed. Deaths: ctl 23/360, t3 24, t5 22. Mean max CL: 5.09, 5.34 and 5.45; mean max DL: 2.01, 2.12 and 2.19. With t5, Warriors reach CL 7.2 against 5.9, Paladins 5.2 against 4.2 and Blackguards 6.2 against 5.1. Mages and Necromancers play ctl's keys in every start. This is a lead on progress, not on survival. Big (starts 361-900) waits for the owner.
 
+**#291 medium, scary latch x calm on f660aecc (pilot 44317626468, medium 44425156291): the calm settings do nothing; unlatching is level.** Medium, 270 per arm: shipped 17, calm off 17 (259 games identical), unlatch 15, unlatch + calm off 15 (8 rescued / 6 newly killed); unlatching goes slightly further (CL +0.11, depth +0.14).
+
+**#279 medium, borg_worships_* switches on 92fafc61 (pilot 44308259323, medium 44425189094): hp, mana and speed are inert; none helps.** hp, mana and speed play ctl's keys in all 270 games (gold was dropped from the pilot for the same reason: the live planner bypasses it); damage changes 21 games and ac 245, each 17 deaths against 16.
+
+**#312 medium, Fox Form for a fleeing Druid on dbe99509 (pilot 44365539348, medium 44425221666): no effect.** 12 deaths in each arm of 270; 26 games change.
+
+**#329 / #318, the scary flag clears only after a kill (caution_scary_unlatch_kill) x latch on 6438e1cf (pilot 44428541791, medium 44431942508): the shipped latch is best.** Pilot: kill-unlatch clears the flag only after a kill (46 times in 15 games) and never on a forgotten monster; plain unlatching cleared 56 times, 38 right after a "Forgetting a monster" note; with kill-unlatch on, the latch makes no difference (identical keys). Medium: shipped latch 11 deaths of 270; kill-unlatch 15 (1 rescued / 5 newly killed, p = 0.22); plain unlatch 18 (1 / 8, p = 0.039, early DL1 deaths to Grip, small kobolds and poison).
+
+**#328, caution_town_never_scary on 6438e1cf (pilot 44431977979): changes every game; 2 new deaths, both on DL1.** Off 0, on 2 of 18 (a Druid CL2 and a Mage CL4 to wild cats on DL1); none in town. Direction only.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
