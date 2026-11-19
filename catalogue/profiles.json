@@ -4590,6 +4590,22 @@
         "borg_param_attack_preference_blackguard_device_permille": 500,
         "borg_param_attack_preference_blackguard_activation_permille": 500
       }
+    },
+    "reborn-risky-ctl": {
+      "description": "borg-zoo#330 (reborn-plays-risky-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_plays_risky": false
+      }
+    },
+    "reborn-risky-risky": {
+      "description": "borg-zoo#330 (reborn-plays-risky-pilot.yaml): arm risky.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_plays_risky": true
+      }
     }
   }
 }

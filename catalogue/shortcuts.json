@@ -402,7 +402,7 @@
     },
     "reborn-scary-tough": {
       "issue": 299,
-      "status": "small+medium done: progress lead for t5, deaths unchanged; big waits for the owner",
+      "status": "small+medium done (progress lead for t5); big defined (owner)",
       "what": "The scary list's tough end on main f660aecc: shipped, tough - 3 and tough - 5 with fragile unchanged; read per class.",
       "profiles": [
         "reborn-scarytough-ctl",
@@ -426,7 +426,7 @@
     },
     "reborn-rising-ticks3": {
       "issue": 191,
-      "status": "done: small+medium, no death change, progress lower above 1000; closed (FINDINGS)",
+      "status": "small+medium done (closed in FINDINGS); big defined at the owner's request",
       "what": "caution_rising_explore_ticks 300 (shipped), 500, 1000, 1500, 2000 on main f660aecc.",
       "profiles": [
         "reborn-rising3-t1000",
@@ -473,6 +473,16 @@
           "result": "2,700 games: deaths ctl 62, low750 60, low500 61 of 900; mean CL 5.05-5.08"
         }
       ]
+    },
+    "reborn-plays-risky": {
+      "issue": 330,
+      "status": "defined (pilot on 6438e1cf, not dispatched)",
+      "what": "borg_plays_risky FALSE (shipped) against TRUE on main 6438e1cf.",
+      "profiles": [
+        "reborn-risky-ctl",
+        "reborn-risky-risky"
+      ],
+      "runs": []
     }
   }
 }
