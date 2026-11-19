@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-detect-min-level-pilot",
+  "issue": 443,
+  "definition": "definitions/reborn-detect-min-level-pilot.yaml",
+  "question": "On borg-reborn-rs 3ed059b6 (PR #703), does casting no Detect Evil / Detect Monsters / Read Minds / Seek Battle by panel below CL10 for Priest, Paladin, Mage, Necromancer and Druid (light_detect_evil_spell_min_level 10) change deaths or progress against the C behaviour (0)?",
+  "description": "On borg-reborn-rs 3ed059b6 (PR #703), does casting no Detect Evil / Detect Monsters / Read Minds / Seek Battle by panel below CL10 for Priest, Paladin, Mage, Necromancer and Druid (light_detect_evil_spell_min_level 10) change deaths or progress against the C behaviour (0)? Generated from definitions/reborn-detect-min-level-pilot.yaml: 2 arms on 4.2.6-reborn-rust-pr703-3ed059b6, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles was read. Pilot (RULES 16).\nGate:\n- no config_error; one binary; ctl's five lines written;\n- the Warrior, Rogue, Ranger and Blackguard games identical in both arms (the switch does not touch them);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: deaths and causes, CL1-3 deaths, max CL and DL; paired rescued and newly killed;\nidentical plays. 18 starts show direction and safety only; the per-class reading needs classes-1800, and a RULES 18\nbin comes from those tiers.\nContext (borg-reborn-rs local check, 34 death-selected Priest and Paladin starts): Priest CL 4.72 -> 5.96, mana rest\n40% -> 18%, deaths 1 vs 1.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr703-3ed059b6"
+  ],
+  "profiles": [
+    "reborn-detectmin-ctl",
+    "reborn-detectmin-switch"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-pr703-3ed059b6",
+  "control_profile": "reborn-detectmin-ctl",
+  "owner_authorization": "2026-11-19: the owner set 10 for the casters (#443) and asked to look at the open issues and do the pilots they request. Pilot first (RULES 16), then classes-1800 with a per-class breakdown.",
+  "retain_evidence": true
+}

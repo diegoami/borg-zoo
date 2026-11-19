@@ -6958,6 +6958,61 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-killflow-ctl": {
+      "description": "borg-zoo#438 (reborn-kill-flow-mode-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_kill_flow_mode": 0
+      }
+    },
+    "reborn-killflow-targeted": {
+      "description": "borg-zoo#438 (reborn-kill-flow-mode-pilot.yaml): arm targeted.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_kill_flow_mode": 1
+      }
+    },
+    "reborn-killflow-inview": {
+      "description": "borg-zoo#438 (reborn-kill-flow-mode-pilot.yaml): arm inview.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_kill_flow_mode": 2
+      }
+    },
+    "reborn-killflow-nohunt": {
+      "description": "borg-zoo#438 (reborn-kill-flow-mode-pilot.yaml): arm nohunt.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_kill_flow_mode": 3
+      }
+    },
+    "reborn-detectmin-ctl": {
+      "description": "borg-zoo#443 (reborn-detect-min-level-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_light_detect_evil_spell_min_level@mage": 0,
+        "borg_param_light_detect_evil_spell_min_level@druid": 0,
+        "borg_param_light_detect_evil_spell_min_level@priest": 0,
+        "borg_param_light_detect_evil_spell_min_level@necromancer": 0,
+        "borg_param_light_detect_evil_spell_min_level@paladin": 0
+      }
+    },
+    "reborn-detectmin-switch": {
+      "description": "borg-zoo#443 (reborn-detect-min-level-pilot.yaml): arm switch.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
     }
   }
 }
