@@ -5531,6 +5531,29 @@
           "dread | 39-42"
         ]
       }
+    },
+    "reborn-errands38-none": {
+      "description": "borg-zoo#383 (reborn-errands-main-pilot.yaml): arm none.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-errands38-errands": {
+      "description": "borg-zoo#383 (reborn-errands-main-pilot.yaml): arm errands.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-errands38-ambitious": {
+      "description": "borg-zoo#383 (reborn-errands-main-pilot.yaml): arm ambitious.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_plan": "errands_plan_ambitious.txt"
+      }
     }
   }
 }

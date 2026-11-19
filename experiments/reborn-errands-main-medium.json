@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-errands-main-medium",
+  "issue": 383,
+  "definition": "definitions/reborn-errands-main-medium.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c (ships no plan), does running the errands plan or the ambitious errands plan change deaths, progress or town behaviour?",
+  "description": "On borg-reborn-rs main 3ba17e2c (ships no plan), does running the errands plan or the ambitious errands plan change deaths, progress or town behaviour? Generated from definitions/reborn-errands-main-medium.yaml: 3 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-19, before any result on 3ba17e2c was read. Same specimen and profiles as the pilot (RULES 16). #123 and #170 (older builds) are\ncontext only.\nGate:\n- no config_error; one binary; each arm's plan recorded per cell (plan name and sha256) and checked against the pin;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts and stalls classified, key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, pooled over the tiers (RULES 14): deaths and causes, CL1-3 deaths, final level,\ndeepest level; paired rescued and newly killed against none; identical plays; borg_stopped cells and plan-phase\nnotes; town visits. Each arm is reported as harmful, neutral (safe to adopt) or helpful (RULES 18).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-errands38-none",
+    "reborn-errands38-errands",
+    "reborn-errands38-ambitious"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-errands38-none",
+  "owner_authorization": "2026-11-19: the owner asked for the full experiments with the errands file on current main: pilot first (RULES 16), then small, medium, big and full, each after the previous gate (RULES 14)."
+}

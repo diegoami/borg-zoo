@@ -631,6 +631,17 @@
           "result": "36 games, no deaths; off CL 5.11 v 5.50"
         }
       ]
+    },
+    "reborn-errands-main": {
+      "issue": 383,
+      "status": "defined: pilot (dispatch first), small, medium, big, full on 3ba17e2c",
+      "what": "Errands plan vs no plan on main 3ba17e2c: none (shipped), errands_plan.txt, errands_plan_ambitious.txt; pilot to full.",
+      "profiles": [
+        "reborn-errands38-ambitious",
+        "reborn-errands38-errands",
+        "reborn-errands38-none"
+      ],
+      "runs": []
     }
   }
 }
