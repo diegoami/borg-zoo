@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-depth-plan-pilot",
+  "issue": 446,
+  "definition": "definitions/reborn-depth-plan-pilot.yaml",
+  "question": "On borg-reborn-rs 8ffee286 (PR",
+  "description": "On borg-reborn-rs 8ffee286 (PR Generated from definitions/reborn-depth-plan-pilot.yaml: 3 arms on 4.2.6-reborn-rust-t693-8ffee286, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#693, PR #701). Pilot (RULES 16); larger tiers\nonly after this gate and the owner. ctl is the shipped configuration (the cap off); errands is the plan file the\nzoo measured in #383.\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n  the errands arm's plan hash recorded;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class:\n- deaths and causes, final level, deepest level; paired rescued and newly killed against ctl and against errands;\n- \"No deeper N\" notes (\"heading up\", \"Climbing (too deep\") per game and by N;\n- character level at each first arrival on DL2, DL3 and DL5.\nThe depth cost was at 200k turns and CL7-14: a 200,000-turn tier (as reborn-errands-main-200k) is the next step\nafter the gate, with the owner.",
+  "specimens": [
+    "4.2.6-reborn-rust-t693-8ffee286"
+  ],
+  "profiles": [
+    "reborn-depthplan-ctl",
+    "reborn-depthplan-formula",
+    "reborn-depthplan-errands"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-t693-8ffee286",
+  "control_profile": "reborn-depthplan-ctl",
+  "owner_authorization": "2026-11-20: the owner said \"yeah do as suggested\": pilot (RULES 16); a 200,000-turn tier after the gate, on the owner's go.",
+  "retain_evidence": true
+}

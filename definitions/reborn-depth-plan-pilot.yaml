@@ -1,0 +1,48 @@
+# borg-zoo#446: pilot requested by borg-reborn-rs, definition as given in the issue.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-depth-plan-pilot.yaml
+name: reborn-depth-plan-pilot
+issue: 446
+question: On borg-reborn-rs 8ffee286 (PR #701), does the errands plan as a borg.txt depth cap (prepared_depth_plan) keep the errands plan's survival without its depth cost?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-t693-8ffee286
+  repository: diegoami/borg-reborn-rs
+  ref: 8ffee286627164a5a983656555288477b3d03d81
+  label: "borg-reborn-rs PR #701 head 8ffee286 on main a87b4c96 (prepared_depth_plan, shipped 0). Source-hash rust 0ae753c4...; harness/borg.txt 54eeefd0..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-depthplan
+arms:
+  ctl: {borg_param_prepared_depth_plan: 0}
+  formula: {borg_param_prepared_depth_plan: 1}
+  errands: {borg_param_prepared_depth_plan: 0, borg_plan: errands_plan.txt}
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: the owner said "yeah do as suggested": pilot (RULES 16); a 200,000-turn tier after the gate, on the owner's go.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#693, PR #701). Pilot (RULES 16); larger tiers
+  only after this gate and the owner. ctl is the shipped configuration (the cap off); errands is the plan file the
+  zoo measured in #383.
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+    the errands arm's plan hash recorded;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against ctl and against errands;
+  - "No deeper N" notes ("heading up", "Climbing (too deep") per game and by N;
+  - character level at each first arrival on DL2, DL3 and DL5.
+  The depth cost was at 200k turns and CL7-14: a 200,000-turn tier (as reborn-errands-main-200k) is the next step
+  after the gate, with the owner.
