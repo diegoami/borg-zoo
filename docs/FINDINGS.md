@@ -477,6 +477,10 @@ Lower values send the Borg back for unknown items more often. Each return brings
 
 **#361, the bundle of safe-to-adopt changes on 38858846 (pilot, run 44459401300, 54 games):** no deaths in any arm. scary all5 + Ranger divisor 1 + Recall gate 0 reaches CL 5.89 against 5.50; without all5 the pair plays ctl's keys in 16 of 18 games. **Bins:** both neutral on deaths. The bundle's progress comes from all5, whose early-death cost (above) argues for carrying the winning scary variant instead.
 
+**#369, the scary list cut with a level floor on 38858846 (pilots 44465218294 and 44465235895; ctl and all5 replay #350's pilots exactly):** at 100k no arm has a death. At 200k: ctl 3/18 deaths and CL 6.17; all5 1 and CL 8.22; all5-pal (Paladins keep the shipped levels) 2 and 7.83; floor3 3 and 7.06; floor4 3 and 6.61. The floors keep exactly the ctl's three early deaths (CL2-3 on DL1: a cave spider, a giant white centipede and Fang), which all5 avoids, and they give part of all5's progress gain. **Bins (direction only):** floor3, floor4 and all5-pal are neutral on deaths. The early-death cost all5 showed over 360 starts at 100k (18 against 13) needs a 360-start tier of ctl, all5 and floor3 to settle.
+
+**#244, kill_live_min_power re-piloted on main 38858846 (run 44465254082, 36 games):** no deaths in either arm. Turning it off changes 17 of 18 games and lowers the mean max CL (5.11 against 5.50). **Bin:** off is neutral on deaths and leans harmful on progress. On c9e58ca0 the shipped 1 had 22 deaths against 28 over 360 starts.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).

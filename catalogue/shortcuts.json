@@ -559,7 +559,7 @@
     },
     "reborn-scary-ends": {
       "issue": 350,
-      "status": "tiers and deep-cut pilots done (all5: more progress, more early deaths); floor pilots (#369) defined",
+      "status": "floor pilots done: floors neutral, smaller progress gain; a 360-start tier of ctl / all5 / floor3 proposed",
       "what": "Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846.",
       "profiles": [
         "reborn-scaryends-all5",
@@ -580,6 +580,12 @@
           "tier": "pilots (100k, 200k)",
           "specimen": "4.2.6-reborn-rust-main-38858846",
           "result": "100k: ctl 0, all5 0 deaths, CL 5.50 v 5.83; 200k: ctl 3, all5 1 deaths, CL 6.17 v 8.22"
+        },
+        {
+          "run": "44465218294 + 44465235895",
+          "tier": "floor pilots (100k, 200k)",
+          "specimen": "4.2.6-reborn-rust-main-38858846",
+          "result": "200k: ctl 3, all5 1, all5-pal 2, floor3 3, floor4 3 deaths; CL 6.17 / 8.22 / 7.83 / 7.06 / 6.61; 100k no deaths"
         }
       ]
     },
@@ -604,13 +610,20 @@
     },
     "reborn-kill-power-main": {
       "issue": 244,
-      "status": "defined (re-pilot on 38858846, not dispatched)",
+      "status": "pilot done: off neutral on deaths, leans harmful on progress",
       "what": "kill_live_min_power shipped 1 against 0 on main 38858846.",
       "profiles": [
         "reborn-killpow38-ctl",
         "reborn-killpow38-off0"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "44465254082",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-38858846",
+          "result": "36 games, no deaths; off CL 5.11 v 5.50"
+        }
+      ]
     }
   }
 }
