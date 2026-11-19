@@ -1,0 +1,46 @@
+# borg-zoo#404: small after the pilot reborn-breeder-settings-pilot (proposed 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-settings-small.yaml
+name: reborn-breeder-settings-small
+issue: 404
+question: On borg-reborn-rs main 3ba17e2c, do the breeder settings never varied before (the hunt's acid fear, standing next
+  to breeders, the easy-escape distance) change deaths or progress?
+tier: small
+specimen: 4.2.6-reborn-rust-main-3ba17e2c
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-breederset
+arms:
+  ctl:
+    borg_param_danger_hunt_breeder_no_acid_fear: 1
+    borg_param_caution_breeder_stand_radius: 5
+    borg_param_caution_breeder_easy_escape_steps: 5
+  acidfear:
+    borg_param_danger_hunt_breeder_no_acid_fear: 0
+    borg_param_caution_breeder_stand_radius: 5
+    borg_param_caution_breeder_easy_escape_steps: 5
+  nostand:
+    borg_param_danger_hunt_breeder_no_acid_fear: 1
+    borg_param_caution_breeder_stand_radius: 0
+    borg_param_caution_breeder_easy_escape_steps: 5
+  esc3:
+    borg_param_danger_hunt_breeder_no_acid_fear: 1
+    borg_param_caution_breeder_stand_radius: 5
+    borg_param_caution_breeder_easy_escape_steps: 3
+  esc10:
+    borg_param_danger_hunt_breeder_no_acid_fear: 1
+    borg_param_caution_breeder_stand_radius: 5
+    borg_param_caution_breeder_easy_escape_steps: 10
+control:
+- ctl
+prespecified: |
+  Small tier (starts 1-90); pilot gate passed, run 44547646378.
+  Same specimen and profiles as reborn-breeder-settings-pilot; no raw evidence at this size. Dispatched only on the owner's go-ahead.
+  Fixed 2026-11-19, before any zoo result of these settings was read (owner: "any other things to test, not tested
+  or not tested enough? do it"). Pilot (RULES 16); larger tiers only after this gate and the owner. ctl is shipped.
+  Gate:
+  - no config_error; one binary; each arm's values in its borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm and per class: deaths and causes, final level, deepest level, paired rescued and newly killed
+  against ctl, identical plays; RULES 18 bins. 18 starts per arm show direction only.
