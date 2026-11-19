@@ -6060,6 +6060,110 @@
         "borg_reborn_errand": "none",
         "borg_param_caution_flee_recall_chasers": 6
       }
+    },
+    "reborn-combo38-ctl": {
+      "description": "borg-zoo#405 (reborn-errands-floor3-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-combo38-errands": {
+      "description": "borg-zoo#405 (reborn-errands-floor3-pilot.yaml): arm errands.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_plan": "errands_plan.txt"
+      }
+    },
+    "reborn-combo38-floor3": {
+      "description": "borg-zoo#405 (reborn-errands-floor3-pilot.yaml): arm floor3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 3-3",
+          "Grip, Farmer Maggot's Dog | 3-3",
+          "Fang, Farmer Maggot's Dog | 3-3",
+          "small kobold | 3-3",
+          "soldier | 3-6",
+          "cutpurse | 3-6",
+          "acolyte | 3-6",
+          "apprentice | 3-6",
+          "kobold | 3-6",
+          "shrieker mushroom patch | 3-6",
+          "Farmer Maggot | 3-6",
+          "filthy street urchin | 3-6",
+          "battle-scarred veteran | 3-6",
+          "mean-looking mercenary | 3-6",
+          "Bullroarer the Hobbit | 10-13",
+          "giant white mouse | 10-13 |  | breeders",
+          "white worm mass | 10-13 |  | breeders",
+          "green worm mass | 10-13 |  | breeders",
+          "cave spider | 15-18",
+          "red naga | 15-18",
+          "giant red frog | 15-18",
+          "radiation eye | 15-18",
+          "yellow worm mass | 15-18 |  | breeders",
+          "gravity hound | 39-42",
+          "inertia hound | 39-42",
+          "base:ancient dragon | 39-42",
+          "Beorn, the Shape-Changer | 39-42",
+          "dread | 39-42",
+          "Farmer Maggot | 10-20 | | ignore",
+          "pitiful-looking beggar | 10-20 | | ignore",
+          "singing, happy drunk | 10-20 | | ignore",
+          "blubbering idiot | 10-20 | | ignore",
+          "village idiot | 10-20 | | ignore",
+          "mangy-looking leper | 10-20 | | ignore",
+          "boil-covered wretch | 10-20 | | ignore"
+        ]
+      }
+    },
+    "reborn-combo38-both": {
+      "description": "borg-zoo#405 (reborn-errands-floor3-pilot.yaml): arm both.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_plan": "errands_plan.txt",
+        "borg_scary_list_lines": [
+          "squint-eyed rogue | 3-3",
+          "Grip, Farmer Maggot's Dog | 3-3",
+          "Fang, Farmer Maggot's Dog | 3-3",
+          "small kobold | 3-3",
+          "soldier | 3-6",
+          "cutpurse | 3-6",
+          "acolyte | 3-6",
+          "apprentice | 3-6",
+          "kobold | 3-6",
+          "shrieker mushroom patch | 3-6",
+          "Farmer Maggot | 3-6",
+          "filthy street urchin | 3-6",
+          "battle-scarred veteran | 3-6",
+          "mean-looking mercenary | 3-6",
+          "Bullroarer the Hobbit | 10-13",
+          "giant white mouse | 10-13 |  | breeders",
+          "white worm mass | 10-13 |  | breeders",
+          "green worm mass | 10-13 |  | breeders",
+          "cave spider | 15-18",
+          "red naga | 15-18",
+          "giant red frog | 15-18",
+          "radiation eye | 15-18",
+          "yellow worm mass | 15-18 |  | breeders",
+          "gravity hound | 39-42",
+          "inertia hound | 39-42",
+          "base:ancient dragon | 39-42",
+          "Beorn, the Shape-Changer | 39-42",
+          "dread | 39-42",
+          "Farmer Maggot | 10-20 | | ignore",
+          "pitiful-looking beggar | 10-20 | | ignore",
+          "singing, happy drunk | 10-20 | | ignore",
+          "blubbering idiot | 10-20 | | ignore",
+          "village idiot | 10-20 | | ignore",
+          "mangy-looking leper | 10-20 | | ignore",
+          "boil-covered wretch | 10-20 | | ignore"
+        ]
+      }
     }
   }
 }
