@@ -1,0 +1,53 @@
+# borg-zoo#364: copied from the run request.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-avoid-pilot.yaml
+name: reborn-breeder-avoid-pilot
+issue: 364
+question: On borg-reborn-rs PR #632's head 985c772a, does #556's breeder-colony avoidance (with or without the fight-through fallback, and on top of #544's breeder exit) save or cost games against ctl?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-pr632-985c772a
+  repository: diegoami/borg-reborn-rs
+  ref: 985c772ade74ccfde6f9ff32f0f5e99138072e5c
+  label: "borg-reborn-rs 985c772a, head of PR #632 (#556, unmerged; contains main 4acf071f): breeder-colony avoidance behind caution_breeder_avoid (0) with the fight-through fallback (1), shipped off. Source-hash rust 261fa4f0...; harness/borg.txt b6afc53e..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only these parameters.
+profile_prefix: reborn-breederavoid
+arms:
+  ctl: {borg_param_caution_breeder_avoid: 0, borg_param_caution_breeder_avoid_fight_through: 1, borg_param_caution_breeder_exit: 0}
+  avoid: {borg_param_caution_breeder_avoid: 1, borg_param_caution_breeder_avoid_fight_through: 1, borg_param_caution_breeder_exit: 0}
+  avoid-nofight: {borg_param_caution_breeder_avoid: 1, borg_param_caution_breeder_avoid_fight_through: 0, borg_param_caution_breeder_exit: 0}
+  avoid-exit: {borg_param_caution_breeder_avoid: 1, borg_param_caution_breeder_avoid_fight_through: 1, borg_param_caution_breeder_exit: 1}
+control: [ctl]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of this definition was read (borg-reborn-rs#556, PR #632). Pilot (RULES 16);
+  small and medium (borg-zoo#240's tier, starts 1-360) only after this gate and the owner.
+  Gate:
+  - no config_error; one binary; each arm's values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - in ctl and avoid-nofight, no "# Fighting through the breeders to the stairs" note; in ctl, no game differs
+    from the specimen's shipped play.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level; breeder deaths (the killer has MULTIPLY);
+  - paired rescued and newly killed against ctl;
+  - "# Fighting through the breeders to the stairs" per game; "# Leaving the breeders' room" per game (avoid-exit);
+  - Phase Doors done ("# Phase (<site>): done") per game; "# Backing up to" and "# Retreating to" per game;
+  - deaths within 200 game turns of a fight-through note.
+  Context: a local run on the same tree (18 classes-18 starts, 100,000 turns; not a zoo run): ctl 1 death (a wild
+  cat, in every arm); avoid without the fight-through 2 (a Grip death after the only route out was refused); avoid
+  with it 2 (that game lives; a cave spider death 16,600 turns after the last fight-through). 18 starts per arm show
+  direction only.
