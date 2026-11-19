@@ -4646,6 +4646,22 @@
         "borg_reborn_errand": "none",
         "borg_plays_risky": true
       }
+    },
+    "reborn-town-never-scary-off": {
+      "description": "borg-zoo#328 (reborn-town-never-scary-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_never_scary": 0
+      }
+    },
+    "reborn-town-never-scary-on": {
+      "description": "borg-zoo#328 (reborn-town-never-scary-pilot.yaml): arm on.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_never_scary": 1
+      }
     }
   }
 }
