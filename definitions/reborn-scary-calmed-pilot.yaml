@@ -1,0 +1,48 @@
+# borg-zoo#357: copied from the run request.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-calmed-pilot.yaml
+name: reborn-scary-calmed-pilot
+issue: 357
+question: On borg-reborn-rs PR #595's head 49933db7, does clearing the scary flag once a scary monster is hurt or afraid (caution_scary_unlatch_calmed), alone and with the kill rule, save games or progress against the shipped latch?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-pr595-49933db7
+  repository: diegoami/borg-reborn-rs
+  ref: 49933db793bc433d8b0b04fa59b1efbaa1f469a5
+  label: "borg-reborn-rs 49933db7, the head of PR #595 (#593, not merged) on main 38858846: caution_scary_unlatch_calmed, compiled and shipped 0. Source-hash rust c054a630...; harness/borg.txt ba7a41b6..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt (caution_scary_stand 1, latch 1, hurt 50, afraid 1) and sets the two rules.
+profile_prefix: reborn-scarycalm
+arms:
+  latch: {borg_param_caution_scary_unlatch_kill: 0, borg_param_caution_scary_unlatch_calmed: 0}
+  calmed: {borg_param_caution_scary_unlatch_kill: 0, borg_param_caution_scary_unlatch_calmed: 1}
+  kill: {borg_param_caution_scary_unlatch_kill: 1, borg_param_caution_scary_unlatch_calmed: 0}
+  both: {borg_param_caution_scary_unlatch_kill: 1, borg_param_caution_scary_unlatch_calmed: 1}
+control: [latch]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#593, PR #595). Pilot (RULES 16); larger tiers
+  only after this gate and the owner. latch is the shipped configuration. With the calmed rule on a kill clears the
+  flag too, so calmed and both are expected to play alike; kill is #318's latchkill arm on this commit.
+  Gate:
+  - no config_error; one binary; each arm's two values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against latch;
+  - "Scary guy hurt or afraid", "Scary guy killed" and "Scary guy gone" notes per game; "Scary guy on level" notes;
+  - deaths within 2,000 game turns after the flag cleared, split by the note that cleared it;
+  - keys: calmed against both.
+  18 starts per arm show direction only.

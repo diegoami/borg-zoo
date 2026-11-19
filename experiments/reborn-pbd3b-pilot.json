@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-pbd3b-pilot",
+  "issue": 379,
+  "definition": "definitions/reborn-pbd3b-pilot.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, do Rangers do better with point-blank divisor 1 (main 2) and Rogues with 2 (main 3)?",
+  "description": "On borg-reborn-rs main 3ba17e2c, do Rangers do better with point-blank divisor 1 (main 2) and Rogues with 2 (main 3)? Generated from definitions/reborn-pbd3b-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-small-rangers, classes-1800-small-rogues.",
+  "prespecified": "Fixed 2026-11-19, before any result on this build was read. Pilot (RULES 16); the rest of the 200 + 200 starts\nfollows when this gate passes (owner's request).\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nRead per class (Rangers and Rogues separately), the rest pooled with the pilot as one study (RULES 14): deaths and\ncauses, final level, deepest level; paired rescued and newly killed against ctl (exact McNemar); identical plays;\nRULES 18 bins. #290 on f660aecc (Ranger 1: 11 against 18 of 200; Rogue 2: 8 against 6) is context only.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-pbd3b-ctl",
+    "reborn-pbd3b-lo"
+  ],
+  "suites": [
+    "classes-1800-small-rangers",
+    "classes-1800-small-rogues"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-pbd3b-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for a full experiment of Ranger 1 (main 2) and Rogue 2 (main 3). Pilot on the 10 + 10 small starts (RULES 16), then the remaining 190 + 190 starts.",
+  "retain_evidence": true
+}

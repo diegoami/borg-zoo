@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-ends-pilot",
+  "issue": 350,
+  "definition": "definitions/reborn-scary-ends-pilot.yaml",
+  "question": "On borg-reborn-rs main 38858846, does lowering the named scary monsters' fragile end together with the tough end (everything 5 lower, or a narrow spread 5 and 6 lower) let casters fight early monsters without more deaths?",
+  "description": "On borg-reborn-rs main 38858846, does lowering the named scary monsters' fragile end together with the tough end (everything 5 lower, or a narrow spread 5 and 6 lower) let casters fight early monsters without more deaths? Generated from definitions/reborn-scary-ends-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-38858846, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result was read. Pilot (RULES 16). #299 (f660aecc) is context: t5 57 deaths against 62\nof 900, higher tough-class progress; fragile + 3 / + 6 inert at 100,000 turns.\nGate:\n- no config_error; one binary; each arm's appended lines in the run's scary list (hash recorded per cell);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nRead per class: identical plays against ctl; deaths and causes, CL1-3 deaths, final level, deepest level; paired\nrescued and newly killed; per game \"Scary guy on level\" notes with the monster, and flights from named monsters.\nEach value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18). Direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-38858846"
+  ],
+  "profiles": [
+    "reborn-scaryends-ctl",
+    "reborn-scaryends-t5",
+    "reborn-scaryends-all5",
+    "reborn-scaryends-t5f6"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-38858846",
+  "control_profile": "reborn-scaryends-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for more experiments lowering the fragile end (\"a kobold should not scare a level 11 Mage\"), with the other scariness levers. Pilot first (RULES 16).",
+  "retain_evidence": true
+}

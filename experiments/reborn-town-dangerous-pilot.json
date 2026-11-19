@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-town-dangerous-pilot",
+  "issue": 390,
+  "definition": "definitions/reborn-town-dangerous-pilot.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, does attacking dangerous townspeople on sight (#619, shipped 0) change deaths or progress?",
+  "description": "On borg-reborn-rs main 3ba17e2c, does attacking dangerous townspeople on sight (#619, shipped 0) change deaths or progress? Generated from definitions/reborn-town-dangerous-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result was read. Pilot (RULES 16).\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: identical plays against ctl; deaths and causes, CL1-3 deaths, final level, deepest\nlevel; paired rescued and newly killed; town kills (by monster) and town deaths. Each arm is reported as harmful, neutral (safe to adopt) or helpful\n(RULES 18). Direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-towndanger-ctl",
+    "reborn-towndanger-onsight",
+    "reborn-towndanger-onsight-b600",
+    "reborn-towndanger-onsight-min3"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-towndanger-ctl",
+  "owner_authorization": "2026-11-19: the owner asked to pilot the recent parameters with no zoo coverage, biggest impact first. Pilot first (RULES 16).",
+  "retain_evidence": true
+}

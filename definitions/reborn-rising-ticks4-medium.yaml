@@ -1,0 +1,35 @@
+# borg-zoo#356: medium after the pilot reborn-rising-ticks4-pilot (owner, 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-rising-ticks4-medium.yaml
+name: reborn-rising-ticks4-medium
+issue: 356
+question: On borg-reborn-rs main 07844cf1, how long should a rising Borg explore for an up staircase before going down (caution_rising_explore_ticks
+  300 shipped, 500, 700, 900)?
+tier: medium
+specimen: 4.2.6-reborn-rust-main-07844cf1
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+profile_prefix: reborn-ticks4
+arms:
+  v300:
+    borg_param_caution_rising_explore_ticks: 300
+  v500:
+    borg_param_caution_rising_explore_ticks: 500
+  v700:
+    borg_param_caution_rising_explore_ticks: 700
+  v900:
+    borg_param_caution_rising_explore_ticks: 900
+control:
+- v300
+prespecified: |
+  Medium tier (starts 91-360) after the pilot gate passed with all arms neutral (RULES 18).
+  Same specimen and profiles as reborn-rising-ticks4-pilot; no raw evidence at this size. Owner, 2026-11-19: "go ahead with the tiers you propose".
+  Fixed 2026-11-19, before any zoo result was read (owner: "we need more experiments with" this setting; values chosen by the owner). Pilot
+  (RULES 16); larger tiers only after this gate and the owner. v300 is shipped and the control.
+  Gate:
+  - no config_error; one binary; each arm's value written;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against v300;
+  games with keys identical to v300; RULES 18 bins (harmful / neutral / helpful); deaths per class.

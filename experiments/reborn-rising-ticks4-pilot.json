@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-rising-ticks4-pilot",
+  "issue": 356,
+  "definition": "definitions/reborn-rising-ticks4-pilot.yaml",
+  "question": "On borg-reborn-rs main 07844cf1, how long should a rising Borg explore for an up staircase before going down (caution_rising_explore_ticks 300 shipped, 500, 700, 900)?",
+  "description": "On borg-reborn-rs main 07844cf1, how long should a rising Borg explore for an up staircase before going down (caution_rising_explore_ticks 300 shipped, 500, 700, 900)? Generated from definitions/reborn-rising-ticks4-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-07844cf1, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any zoo result was read (owner: \"we need more experiments with\" this setting; values chosen by the owner). Pilot\n(RULES 16); larger tiers only after this gate and the owner. v300 is shipped and the control.\nGate:\n- no config_error; one binary; each arm's value written;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against v300;\ngames with keys identical to v300; RULES 18 bins (harmful / neutral / helpful); deaths per class.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-07844cf1"
+  ],
+  "profiles": [
+    "reborn-ticks4-v300",
+    "reborn-ticks4-v500",
+    "reborn-ticks4-v700",
+    "reborn-ticks4-v900"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-07844cf1",
+  "control_profile": "reborn-ticks4-v300",
+  "retain_evidence": true
+}

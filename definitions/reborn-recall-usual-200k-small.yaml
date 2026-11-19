@@ -1,0 +1,37 @@
+# borg-zoo#358: classes-1800-200k-small after the pilot reborn-recall-usual-pilot (owner, 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-recall-usual-200k-small.yaml
+name: reborn-recall-usual-200k-small
+issue: 358
+question: 'On borg-reborn-rs PR #627''s head cdd065ca, does playing by the ordinary rules while Word of Recall counts down,
+  on DL2 and deeper (caution_recall_wait_as_usual), save games or progress against the Recall-only rules?'
+suites:
+- classes-1800-200k-small
+specimen: 4.2.6-reborn-rust-pr627-cdd065ca
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+profile_prefix: reborn-recallusual
+arms:
+  ctl:
+    borg_param_caution_recall_wait_as_usual: 0
+  usual:
+    borg_param_caution_recall_wait_as_usual: 1
+control:
+- ctl
+prespecified: |
+  200,000-turn small tier (starts 19-90 of classes-1800-200k) after the pilot: at 100,000 turns most flight Recalls are read on DL1, where the switch does not act; longer games reach DL2 and deeper.
+  Same specimen and profiles as reborn-recall-usual-pilot; no raw evidence at this size. Owner, 2026-11-19: "go ahead with the tiers you propose".
+  Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#603, PR #627). Pilot (RULES 16); larger tiers
+  only after this gate and the owner. ctl is the shipped configuration (the switch off).
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;
+  - per Recall read: its depth, the wait in game turns, whether it fired, the level changes during the wait, and
+    "Buying time waiting for Recall" / "Resting for Recall" notes; deaths during a wait;
+  - potions and scrolls used during waits.
+  Most flight Recalls in classes-18 are read on DL1, where the switch does not act: 18 starts show safety, and the
+  effect needs a larger tier.
