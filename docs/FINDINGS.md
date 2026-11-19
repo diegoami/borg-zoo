@@ -468,6 +468,14 @@ Lower values send the Borg back for unknown items more often. Each return brings
 - **200,000 turns (first 18 starts of classes-1800-200k):** ctl 3 deaths, CL 6.17, DL 2.28. all5 1 death, CL 8.22, DL 3.33 (rescued 3, newly killed 1). t5f6 2 deaths, CL 8.22, DL 3.33. f3 (fragile = tough) and fraghalf (class fragility halved) play ctl's keys in 10 and 16 of 18 games, with the same 3 deaths.
 - **Why the fragile end barely acts:** even at 200,000 turns no caster passes CL 8 in ctl (Mages 5 and 7), so the fragile end of most monsters is never reached.
 - **Bins (direction only):** all5 is helpful on progress at both lengths and neutral or helpful on deaths; t5f6 is helpful on progress at 200k and leans harmful at 100k; f3 and fraghalf are neutral.
+- **Tiers at 100,000 turns, starts 1-360 (small + medium, runs 44459418261 and 44459437284):** ctl 13 deaths, t5 18 (rescued 2, newly killed 7, p 0.18), all5 18 (4 / 9, p 0.27). Mean max CL 5.25 / 5.53 / 5.73. The extra deaths are mostly Paladins (5 against 1 in both arms) and soldiers (all5 4, t5 3, ctl 1).
+- **200,000 turns, starts 19-90 (run 44459456699):** ctl 4/72 deaths, CL 6.83; all5 6/72, CL 7.65 (0 / 2). Two all5 deaths are Druids at CL2, killed by an apprentice and by Grip.
+- **Deeper cuts (pilots 44459366821 and 44459384054; ctl and all5 replay the #350 pilots, 36 of 36 at each length):** all8 (both ends − 8) and early-none (the 14 early monsters removed) have 3 deaths of 18 at 100k against 0 (0 rescued; Fang, Grip, soldiers, a crow and a wild cat, at CL1-4). At 200k they have 0 and 1 against 3, with CL 8.4.
+- **Bins (RULES 18):** all5 and t5 are helpful on progress in every tier but **lean harmful on deaths** on this build: a trade-off whose cost sits at CL1-4. all8 and early-none are **harmful** at 100k. The floor pilots (#369) keep the early fear and cut it above.
+
+**#265 small tier on main 38858846 (run 44459475886, starts 1-90, 360 games): lowering the class healing values is harmful.** Deaths: shipped class files 2/90, common 6 (rescued 0, newly killed 4, p 0.12), curve-lo 8 (2 / 8, p 0.11), reserve-lo 7 (0 / 5, p 0.062). Every lowered arm also levels slower (CL 4.96-5.03 against 5.36), and Druids die most in each. The direction is the same in both pilots (4a482c58, 38858846) and here. **Bins:** curve-lo, reserve-lo and common are harmful; the shipped class values are the best tested.
+
+**#361, the bundle of safe-to-adopt changes on 38858846 (pilot, run 44459401300, 54 games):** no deaths in any arm. scary all5 + Ranger divisor 1 + Recall gate 0 reaches CL 5.89 against 5.50; without all5 the pair plays ctl's keys in 16 of 18 games. **Bins:** both neutral on deaths. The bundle's progress comes from all5, whose early-death cost (above) argues for carrying the winning scary variant instead.
 
 ## Open
 
