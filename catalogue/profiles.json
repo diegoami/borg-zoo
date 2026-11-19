@@ -5555,6 +5555,46 @@
         "borg_plan": "errands_plan_ambitious.txt"
       }
     },
+    "reborn-town-changes-shipped": {
+      "description": "borg-zoo#385 (reborn-town-changes-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-town-changes-town-off": {
+      "description": "borg-zoo#385 (reborn-town-changes-pilot.yaml): arm town-off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_scary_levels_less": 0,
+        "borg_scary_list_lines": [
+          "Farmer Maggot | none | | ignore",
+          "pitiful-looking beggar | none | | ignore",
+          "singing, happy drunk | none | | ignore",
+          "blubbering idiot | none | | ignore",
+          "village idiot | none | | ignore",
+          "mangy-looking leper | none | | ignore",
+          "boil-covered wretch | none | | ignore"
+        ]
+      }
+    },
+    "reborn-town-changes-kill-on-sight": {
+      "description": "borg-zoo#385 (reborn-town-changes-pilot.yaml): arm kill-on-sight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_town_dangerous_on_sight": 1
+      }
+    },
+    "reborn-town-changes-never-scary": {
+      "description": "borg-zoo#385 (reborn-town-changes-pilot.yaml): arm never-scary.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_never_scary": 1
+      }
+    },
     "reborn-phaseth-ctl": {
       "description": "borg-zoo#389 (reborn-phase-thresholds-pilot.yaml): arm ctl.",
       "settings": {

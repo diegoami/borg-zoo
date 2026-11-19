@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-town-changes-pilot",
+  "issue": 385,
+  "definition": "definitions/reborn-town-changes-pilot.yaml",
+  "question": "Do the town changes on main (fewer town scares, the ignore list) keep deaths and levels while cutting town time, and does killing the dangerous town monsters on sight help?",
+  "description": "Do the town changes on main (fewer town scares, the ignore list) keep deaths and levels while cutting town time, and does killing the dangerous town monsters on sight help? Generated from definitions/reborn-town-changes-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-0892ebd7, suite classes-18.",
+  "prespecified": "Gate: no config_error, one binary, every cell ends in death, turn_cap or borg_stopped; each arm writes its\nvalues as set; town-off cells record the base list hash 6ed44686... and the written file's hash\n(f93ce244e32ba2deef4aa7531ab496201e267943f08da6e45c5547d4b2840d7d); the sanity cells reproduce. List\nfrozen-turn stalls and key outliers.\nEndpoints, per arm and per class, paired against shipped: deaths and causes; rescued / newly killed;\ndeaths in town (depth 0) and on DL1; mean max CL and max DL; game turns at depth 0; town <-> DL1 level\nchanges; \"# Leaving (finish shopping)\" notes; \"# Scary guy on level.\" notes in town; town monsters\nkilled in town, by race (the four dangerous ones apart); thefts in town.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-0892ebd7"
+  ],
+  "profiles": [
+    "reborn-town-changes-shipped",
+    "reborn-town-changes-town-off",
+    "reborn-town-changes-kill-on-sight",
+    "reborn-town-changes-never-scary"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-0892ebd7",
+  "control_profile": "reborn-town-changes-shipped",
+  "retain_evidence": true
+}
