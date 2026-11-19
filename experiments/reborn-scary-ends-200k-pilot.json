@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-ends-200k-pilot",
+  "issue": 350,
+  "definition": "definitions/reborn-scary-ends-200k-pilot.yaml",
+  "question": "On borg-reborn-rs main 38858846 at 200,000 turns, does making casters fear the named monsters for fewer levels (fragile end lowered to the tough end, both ends 5 lower, a narrow spread, or class fragility halved) change deaths or progress?",
+  "description": "On borg-reborn-rs main 38858846 at 200,000 turns, does making casters fear the named monsters for fewer levels (fragile end lowered to the tough end, both ends 5 lower, a narrow spread, or class fragility halved) change deaths or progress? Generated from definitions/reborn-scary-ends-200k-pilot.yaml: 5 arms on 4.2.6-reborn-rust-main-38858846, suite classes-1800-200k-pilot.",
+  "prespecified": "Fixed 2026-11-19, before any result was read. Pilot (RULES 16), 200,000 turns.\nGate:\n- no config_error; one binary; each arm's appended lines in the run's scary list (hash recorded per cell);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nRead per class: identical plays against ctl; deaths and causes, CL1-3 deaths, final level, deepest level; paired\nrescued and newly killed; per game \"Scary guy on level\" notes with the monster, and flights from named monsters.\nEach value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18). Direction only.\nAlso per class: the highest CL reached, and whether any caster passes CL 8 (where the fragile end starts to act).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-38858846"
+  ],
+  "profiles": [
+    "reborn-scaryends-ctl",
+    "reborn-scaryends-f3",
+    "reborn-scaryends-all5",
+    "reborn-scaryends-t5f6",
+    "reborn-scaryends-fraghalf"
+  ],
+  "suites": [
+    "classes-1800-200k-pilot"
+  ],
+  "control": "4.2.6-reborn-rust-main-38858846",
+  "control_profile": "reborn-scaryends-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for more experiments lowering the fragile end, with the other scariness levers. Pilot first (RULES 16), on longer games so that casters outgrow the early monsters' levels.",
+  "retain_evidence": true
+}
