@@ -52,6 +52,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-bgphase` | [#415](https://github.com/diegoami/borg-zoo/issues/415) | 2 | defined (pilot on Blackguard starts, medium, big, full on 592c6984, not dispatched) | Blackguard exception to the Phase Door rule on main 592c6984: rule on (control, as main will ship) against rule off, calmed unlatch in both; Blackguard starts only. |
 | `reborn-casters` | [#415](https://github.com/diegoami/borg-zoo/issues/415) | 6 | defined (pilot on caster starts, medium, big, full on 592c6984, not dispatched) | Casters' early kit and fighting on main 592c6984, Mage, Priest, Necromancer and Druid starts only, the Phase Door rule and calmed in every arm: more oil, more Phase Door, thrown preference 1500, early animals on the scary list, heal reserve + 100. |
 | `reborn-rebase-main` | [#416](https://github.com/diegoami/borg-zoo/issues/416) | 5 | defined (pilot on 592c6984, not dispatched) | Re-baseline on main 592c6984 after #664: shipped, the Phase Door rule, calmed unlatch, both, and the errands plan. |
+| `reborn-death-bank38` | [#429](https://github.com/diegoami/borg-zoo/issues/429) | 5 | defined (replay of 3ba17e2c's 233 death starts, not dispatched) | The death-start bank of shipped main 3ba17e2c: ctl, the Phase Door rule, calmed unlatch, the errands plan, all three. |
+| `reborn-crow-escape` | [#408](https://github.com/diegoami/borg-zoo/issues/408) | 4 | defined (replay of the 55 crow/wild-cat death starts, not dispatched) | Crow/wild-cat death starts on 3ba17e2c: ctl, the Phase Door rule, the rule + throwing 1500, the rule + more oil. |
 
 ### `heal-attack-4`
 
@@ -775,13 +777,40 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-rebase59-rule-calmed` | 1 | 1 | 100 | 0 | – |
 | `reborn-rebase59-shipped` | – | – | – | – | – |
 
+### `reborn-death-bank38`
+
+The death-start bank of shipped main 3ba17e2c: ctl, the Phase Door rule, calmed unlatch, the errands plan, all three.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_scary_unlatch_calmed` | `borg_param_escape_phase_adjacent_rule` | `borg_param_escape_phase_lost_danger_percent` | `borg_param_escape_phase_lost_test` | `borg_plan` |
+| --- | --- | --- | --- | --- | --- |
+| `reborn-bank38-all3` | 1 | 1 | 100 | 0 | errands_plan.txt |
+| `reborn-bank38-calmed` | 1 | – | – | – | – |
+| `reborn-bank38-ctl` | – | – | – | – | – |
+| `reborn-bank38-errands` | – | – | – | – | errands_plan.txt |
+| `reborn-bank38-phase` | – | 1 | 100 | 0 | – |
+
+### `reborn-crow-escape`
+
+Crow/wild-cat death starts on 3ba17e2c: ctl, the Phase Door rule, the rule + throwing 1500, the rule + more oil.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_preference_thrown_permille` | `borg_param_escape_phase_adjacent_rule` | `borg_param_escape_phase_lost_danger_percent` | `borg_param_escape_phase_lost_test` | `borg_town_attack_turns` | `borg_town_w_attack` |
+| --- | --- | --- | --- | --- | --- | --- |
+| `reborn-crowesc38-ctl` | – | – | – | – | – | – |
+| `reborn-crowesc38-phase` | – | 1 | 100 | 0 | – | – |
+| `reborn-crowesc38-phase-oil` | – | 1 | 100 | 0 | 50 | 200 |
+| `reborn-crowesc38-phase-thrown` | 1500 | 1 | 100 | 0 | – | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
 
 | Setting | Values used | Shortcuts | What it does, and what we learned |
 | --- | --- | --- | --- |
-| `borg_plan` | errands_plan.txt, errands_plan_ambitious.txt, not set | `heal-pilot-12`, `maxdepth-2x5`, `reborn-5arm-town`, `reborn-3x3-trip`, `reborn-5arm-shop`, `reborn-bundle`, `reborn-errands-main`, `reborn-errands-floor3`, `reborn-rebase-main` | The errands plan the Borg follows. Loop-levels plans up to `d3ebe3c0`: the errands plan added caster deaths with the town planner (borg-cemetery#19). Max-depth caps from `6d1bca10` (#440): a cap is a preparation check, not a hard limit; 35 of 900 games died or ended below it (#147). |
+| `borg_plan` | errands_plan.txt, errands_plan_ambitious.txt, not set | `heal-pilot-12`, `maxdepth-2x5`, `reborn-5arm-town`, `reborn-3x3-trip`, `reborn-5arm-shop`, `reborn-bundle`, `reborn-errands-main`, `reborn-errands-floor3`, `reborn-rebase-main`, `reborn-death-bank38` | The errands plan the Borg follows. Loop-levels plans up to `d3ebe3c0`: the errands plan added caster deaths with the town planner (borg-cemetery#19). Max-depth caps from `6d1bca10` (#440): a cap is a preparation check, not a hard limit; 35 of 900 games died or ended below it (#147). |
 | `borg_town_plan` | 0, 1, not set | `reborn-5arm-town`, `reborn-3x3-trip`, `reborn-5arm-shop`, `rs-additive-6`, `reborn-bundle` | "New inventory": the live town planner. Alone it looked best in the #123 small tier (15 deaths v control 22 of 90). |
 | `borg_trip_policy` | 0, 1, not set | `heal-pilot-12`, `maxdepth-2x5`, `reborn-3x3-trip`, `reborn-5arm-shop`, `rs-additive-6`, `reborn-bundle` | Extra reasons to return to town. Barely changes play: 42 of 54 paired pilot games identical. Kept off in #123's development arms until it is shown to help (owner). From `8a0b57c8` it is borg-rs#88's additive policy. |
 | `borg_trip_unknown_stacks` | 0, 2, 3, 4, 5, not set | `maxdepth-2x5`, `rs-additive-6`, `reborn-bundle` | Return when this many carried stacks are unidentified (default 4). Changes play: (3,x) differs from return-off in about 40% of games; (5,1) played like return-off in 26-27 of 30 starts. |
@@ -845,7 +874,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_rogue_projectile_permille` | 1000, 1150, 1300, 1450, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_rogue_spell_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_rogue_thrown_permille` | 1000, 1300, 1600, 1900, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
-| `borg_param_attack_preference_thrown_permille` | 1500, not set | `reborn-casters` |  |
+| `borg_param_attack_preference_thrown_permille` | 1500, not set | `reborn-casters`, `reborn-crow-escape` |  |
 | `borg_param_attack_preference_warrior_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_warrior_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_warrior_melee_permille` | 1000, 1400, 1800, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
@@ -870,17 +899,17 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_latch` | 0, 1 | `reborn-scary-calm` |  |
 | `borg_param_caution_scary_named_monsters` | 0, 1 | `reborn-scary-named-damage` |  |
 | `borg_param_caution_scary_stand` | 0, not set | `reborn-stand-seeinv` |  |
-| `borg_param_caution_scary_unlatch_calmed` | 0, 1, not set | `reborn-neutral-main`, `reborn-rebase-main` |  |
+| `borg_param_caution_scary_unlatch_calmed` | 0, 1, not set | `reborn-neutral-main`, `reborn-rebase-main`, `reborn-death-bank38` |  |
 | `borg_param_caution_stair_parked_fallback` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_fail` | 0, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_max_danger_divisor` | 1, 4, not set | `reborn-bless` |  |
 | `borg_param_escape_fox_form` | 0, 1 | `reborn-neutral-main` |  |
-| `borg_param_escape_phase_adjacent_rule` | 0, 1, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main` |  |
+| `borg_param_escape_phase_adjacent_rule` | 0, 1, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
 | `borg_param_escape_phase_antisummon_delay` | 0, not set | `reborn-phase-thresholds` |  |
-| `borg_param_escape_phase_lost_danger_percent` | 100, not set | `reborn-rebase-main` |  |
-| `borg_param_escape_phase_lost_test` | 0, 1, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main` |  |
+| `borg_param_escape_phase_lost_danger_percent` | 100, not set | `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
+| `borg_param_escape_phase_lost_test` | 0, 1, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
 | `borg_param_escape_phase_ordinary_danger_tenths` | 5, 20, not set | `reborn-phase-thresholds` |  |
 | `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
@@ -908,12 +937,12 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
 | `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters` |  |
-| `borg_town_attack_turns` | 50, not set | `reborn-casters` |  |
+| `borg_town_attack_turns` | 50, not set | `reborn-casters`, `reborn-crow-escape` |  |
 | `borg_town_explore_turns` | 500, 2000, not set | `reborn-untested-caution` |  |
 | `borg_town_home_discount` | 250, 1000, not set | `reborn-untested-town` |  |
 | `borg_town_power_scale` | 20000, 80000, not set | `reborn-untested-town` |  |
 | `borg_town_risk` | 500, 2000, not set | `reborn-untested-town` |  |
-| `borg_town_w_attack` | 50, 200, not set | `reborn-untested-town`, `reborn-casters` |  |
+| `borg_town_w_attack` | 50, 200, not set | `reborn-untested-town`, `reborn-casters`, `reborn-crow-escape` |  |
 | `borg_town_w_escape` | 100, not set | `reborn-casters` |  |
 | `borg_town_w_space` | 12, 50, not set | `reborn-untested-town` |  |
 | `borg_town_w_support` | 25, 100, not set | `reborn-untested-town` |  |

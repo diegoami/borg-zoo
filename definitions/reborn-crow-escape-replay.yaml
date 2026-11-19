@@ -1,0 +1,54 @@
+# borg-zoo#408: escape and ranged levers on the starts where shipped main died to a crow or a wild cat; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-crow-escape-replay.yaml
+#
+# reborn-crow-deaths-replay showed the scary list is inert there: in 10 of 14 sampled deaths the Borg was already
+# fleeing a scary level and was caught by a fast animal, then meleed it at CL1 on low HP. These arms act at that moment:
+# Phase Door next to a monster (the rule), and throwing (oil) instead of meleeing, with more oil bought.
+name: reborn-crow-escape-replay
+issue: 408
+question: >-
+  On borg-reborn-rs main 3ba17e2c, on the starts where shipped main died to a crow or a wild cat, does the Phase Door
+  rule save them, and do throwing or more oil on top of it save more?
+suites: [classes-1800-crowcat-deaths, classes-1800-b-crowcat-deaths]
+pilot: true   # the study's first run on suites of its own (chosen starts)
+
+specimen: 4.2.6-reborn-rust-main-3ba17e2c
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-crowesc38
+arms:
+  ctl: {}   # shipped 3ba17e2c
+  phase:
+    borg_param_escape_phase_adjacent_rule: 1
+    borg_param_escape_phase_lost_test: 0
+    borg_param_escape_phase_lost_danger_percent: 100
+  phase-thrown:   # shipped common thrown preference 1000; the Warrior and Rogue class lines (1200, 1600) stay
+    borg_param_escape_phase_adjacent_rule: 1
+    borg_param_escape_phase_lost_test: 0
+    borg_param_escape_phase_lost_danger_percent: 100
+    borg_param_attack_preference_thrown_permille: 1500
+  phase-oil:   # the planner's attack demand is trip turns / attack_turns, so 50 buys more flasks (borg-zoo#415)
+    borg_param_escape_phase_adjacent_rule: 1
+    borg_param_escape_phase_lost_test: 0
+    borg_param_escape_phase_lost_danger_percent: 100
+    borg_town_w_attack: 200
+    borg_town_attack_turns: 50
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked for the proposed crow/wild-cat replay with the Phase Door rule and oil-throwing (item 2).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles on these starts was read. Mechanism check on chosen starts.
+  Gate:
+  - no config_error; one binary;
+  - ctl replays reborn-errands38-none's death on every start (as in reborn-crow-deaths-replay);
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class: rescued starts (ctl dies, the arm does not), separately for crow and wild-cat deaths;
+  phase-thrown and phase-oil against phase (rescued and newly killed); deaths to other monsters on the rescued starts;
+  flasks of oil bought and thrown; mean max CL and DL. No RULES 18 bin from this run (chosen starts).

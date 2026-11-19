@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-crow-escape-replay",
+  "issue": 408,
+  "definition": "definitions/reborn-crow-escape-replay.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, on the starts where shipped main died to a crow or a wild cat, does the Phase Door rule save them, and do throwing or more oil on top of it save more?",
+  "description": "On borg-reborn-rs main 3ba17e2c, on the starts where shipped main died to a crow or a wild cat, does the Phase Door rule save them, and do throwing or more oil on top of it save more? Generated from definitions/reborn-crow-escape-replay.yaml: 4 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-crowcat-deaths, classes-1800-b-crowcat-deaths.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles on these starts was read. Mechanism check on chosen starts.\nGate:\n- no config_error; one binary;\n- ctl replays reborn-errands38-none's death on every start (as in reborn-crow-deaths-replay);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: rescued starts (ctl dies, the arm does not), separately for crow and wild-cat deaths;\nphase-thrown and phase-oil against phase (rescued and newly killed); deaths to other monsters on the rescued starts;\nflasks of oil bought and thrown; mean max CL and DL. No RULES 18 bin from this run (chosen starts).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-crowesc38-ctl",
+    "reborn-crowesc38-phase",
+    "reborn-crowesc38-phase-thrown",
+    "reborn-crowesc38-phase-oil"
+  ],
+  "suites": [
+    "classes-1800-crowcat-deaths",
+    "classes-1800-b-crowcat-deaths"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-crowesc38-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for the proposed crow/wild-cat replay with the Phase Door rule and oil-throwing (item 2).",
+  "retain_evidence": true
+}

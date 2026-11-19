@@ -1,0 +1,52 @@
+# borg-zoo#429: the death-start bank of shipped main 3ba17e2c, replayed with each candidate change; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-death-bank38.yaml
+#
+# The starts are the 233 where reborn-errands38-none (the same settings as ctl here) died: 105 on classes-1800 and
+# 128 on classes-1800-b. Chosen starts: the run shows which deaths each change prevents and whether the rescues
+# overlap, not new deaths elsewhere (random starts measure those: #383, the Phase Door rule's and calmed's own studies).
+# Main e5cc5469 now ships the Phase Door rule and calmed unlatch; all3 is close to main + errands on the old build.
+name: reborn-death-bank38
+issue: 429
+question: >-
+  On borg-reborn-rs main 3ba17e2c, on the 233 starts where shipped main died, which deaths do the Phase Door rule,
+  calmed unlatch and the errands plan each prevent, and do their rescues add up when combined?
+suites: [classes-1800-deaths38, classes-1800-b-deaths38]
+pilot: true   # the study's first run on suites of its own (chosen starts)
+
+specimen: 4.2.6-reborn-rust-main-3ba17e2c
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-bank38
+arms:
+  ctl: {}   # shipped 3ba17e2c: no plan, Phase Door rule off, calmed 0
+  phase:    # borg-reborn-rs#662, confirmed in borg-zoo (reborn-phaserule38-thr-100)
+    borg_param_escape_phase_adjacent_rule: 1
+    borg_param_escape_phase_lost_test: 0
+    borg_param_escape_phase_lost_danger_percent: 100
+  calmed: {borg_param_caution_scary_unlatch_calmed: 1}   # borg-reborn-rs#672
+  errands: {borg_plan: errands_plan.txt}   # borg-zoo#383
+  all3:
+    borg_param_escape_phase_adjacent_rule: 1
+    borg_param_escape_phase_lost_test: 0
+    borg_param_escape_phase_lost_danger_percent: 100
+    borg_param_caution_scary_unlatch_calmed: 1
+    borg_plan: errands_plan.txt
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked for the proposed death-start bank (item 1 of the proposals): replay every death of
+  shipped main with each candidate change.
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles on these starts was read. Mechanism check on chosen starts.
+  Gate:
+  - no config_error; one binary; the errands arms' plan recorded per cell and checked against the pin;
+  - ctl replays reborn-errands38-none's death on every start (the same settings and build); a start where it does
+    not is listed and left out of the rescue counts;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts and stalls classified, key outliers listed.
+  Report per arm, per class and per killer (crow, wild cat, soldier, Grip/Fang, other): rescued starts (ctl dies,
+  the arm does not); deaths later on a rescued start's other killers; the overlap of the three single arms' rescues
+  (each alone, shared, all3 beyond the union); mean max CL and DL on the rescued starts. No RULES 18 bin from this run:
+  rescues on chosen starts are a mechanism reading, and harm needs random starts.
