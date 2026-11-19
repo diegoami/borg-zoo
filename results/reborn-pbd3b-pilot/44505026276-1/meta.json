@@ -1,0 +1,238 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-pbd3b-ctl": {
+        "description": "borg-zoo#379 (reborn-pbd3b-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_param_attack_arrow_point_blank_divisor_ranger": 2,
+          "borg_param_attack_arrow_point_blank_divisor_rogue": 3,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "7db00d1e2653c67336221a8ee3cefebd5f995cdd67d64e82ebd59495075e0e99"
+      },
+      "reborn-pbd3b-lo": {
+        "description": "borg-zoo#379 (reborn-pbd3b-pilot.yaml): arm lo.",
+        "settings": {
+          "borg_param_attack_arrow_point_blank_divisor_ranger": 1,
+          "borg_param_attack_arrow_point_blank_divisor_rogue": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "58107c6f0f7c54f9090d8926da8e71233bf3c62d5bfaeb67b4958d75bfc286b9"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-3ba17e2c": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 3ba17e2c, main at the merge of #633. Ships attack_arrow_point_blank_divisor Ranger 2 and Rogue 3 (class files). Tree 23632fb4; source-hash rust bc79f0a6...; harness/borg.txt 617cc79c...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "3ba17e2c21ae203d2dd45fa53f1dbada87acba75",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-small-rangers": {
+        "assigned_characters": {
+          "1071405808": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "1248006956": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "129607500": [
+            "Human",
+            "Ranger"
+          ],
+          "167240942": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1758620521": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1834235471": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "572215387": [
+            "Elf",
+            "Ranger"
+          ],
+          "60792140": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "807773433": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "99115049": [
+            "High-Elf",
+            "Ranger"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The Ranger starts of classes-1800-small (borg-zoo#198): each with its classes-1800 character, for class-specific studies.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          129607500,
+          1758620521,
+          572215387,
+          1248006956,
+          167240942,
+          807773433,
+          1071405808,
+          60792140,
+          1834235471,
+          99115049
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "class": "Ranger",
+          "suite": "classes-1800-small"
+        },
+        "wall_seconds": 900
+      },
+      "classes-1800-small-rogues": {
+        "assigned_characters": {
+          "102088710": [
+            "Elf",
+            "Rogue"
+          ],
+          "1042834709": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1269315224": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1277697136": [
+            "Human",
+            "Rogue"
+          ],
+          "1759555484": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "2041201968": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "710244031": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "826156836": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "926210318": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "979002123": [
+            "Dunadan",
+            "Rogue"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The Rogue starts of classes-1800-small (borg-zoo#198): each with its classes-1800 character, for class-specific studies.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          1277697136,
+          1759555484,
+          102088710,
+          826156836,
+          1042834709,
+          2041201968,
+          1269315224,
+          926210318,
+          979002123,
+          710244031
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "class": "Rogue",
+          "suite": "classes-1800-small"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-19 10:26 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-3ba17e2c",
+    "control_profile": "reborn-pbd3b-ctl",
+    "definition": "definitions/reborn-pbd3b-pilot.yaml",
+    "description": "On borg-reborn-rs main 3ba17e2c, do Rangers do better with point-blank divisor 1 (main 2) and Rogues with 2 (main 3)? Generated from definitions/reborn-pbd3b-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-small-rangers, classes-1800-small-rogues.",
+    "issue": 379,
+    "name": "reborn-pbd3b-pilot",
+    "owner_authorization": "2026-11-19: the owner asked for a full experiment of Ranger 1 (main 2) and Rogue 2 (main 3). Pilot on the 10 + 10 small starts (RULES 16), then the remaining 190 + 190 starts.",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-19, before any result on this build was read. Pilot (RULES 16); the rest of the 200 + 200 starts\nfollows when this gate passes (owner's request).\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nRead per class (Rangers and Rogues separately), the rest pooled with the pilot as one study (RULES 14): deaths and\ncauses, final level, deepest level; paired rescued and newly killed against ctl (exact McNemar); identical plays;\nRULES 18 bins. #290 on f660aecc (Ranger 1: 11 against 18 of 200; Rogue 2: 8 against 6) is context only.",
+    "profiles": [
+      "reborn-pbd3b-ctl",
+      "reborn-pbd3b-lo"
+    ],
+    "question": "On borg-reborn-rs main 3ba17e2c, do Rangers do better with point-blank divisor 1 (main 2) and Rogues with 2 (main 3)?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-3ba17e2c"
+    ],
+    "suites": [
+      "classes-1800-small-rangers",
+      "classes-1800-small-rogues"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44505026276-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44505026276",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "77ebb68b70f922ac8958ab19f2aa4f495bfa1a54"
+}
