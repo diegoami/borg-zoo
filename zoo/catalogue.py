@@ -25,6 +25,7 @@ MODE_CUTOFF_POST = {
     '39268ca8a470d1cbd44de27bf1fd1b3ee403bada',  # 4.2.6-bbc-m11
     '4e1b912cbf6d2b8a0243b19ebddfb2d26e7509f2',  # 4.2.6-bbc-m12
     '9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8',  # 4.2.6-bbc-m13
+    '646ebfc2a3a80a0caf87f1ab72fe4bcee0d94343',  # 4.2.6-bbc-m15
 }
 
 # The settings whose built-in default drifts across the cutoff, plus the
