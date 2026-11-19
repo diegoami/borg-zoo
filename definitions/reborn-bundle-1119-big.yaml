@@ -1,0 +1,43 @@
+# borg-zoo#396: big after the pilot reborn-bundle-1119-medium (owner, 2026-11-19: "go ahead").
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-bundle-1119-big.yaml
+name: reborn-bundle-1119-big
+issue: 396
+question: On borg-reborn-rs main 3ba17e2c, do the safe-to-adopt changes of 2026-11-19 together (unlatch when calmed, Recall
+  wait-as-usual, the Phase Door rule at 100 percent, Rogue point-blank divisor 2) keep deaths and progress against main?
+tier: big
+specimen: 4.2.6-reborn-rust-main-3ba17e2c
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-bundle1119
+arms:
+  ctl:
+    borg_param_caution_scary_unlatch_calmed: 0
+    borg_param_caution_recall_wait_as_usual: 0
+    borg_param_escape_phase_adjacent_rule: 0
+    borg_param_escape_phase_lost_test: 1
+    borg_param_escape_phase_lost_danger_percent: 100
+    borg_param_attack_arrow_point_blank_divisor_rogue: 3
+  bundle:
+    borg_param_caution_scary_unlatch_calmed: 1
+    borg_param_caution_recall_wait_as_usual: 1
+    borg_param_escape_phase_adjacent_rule: 1
+    borg_param_escape_phase_lost_test: 0
+    borg_param_escape_phase_lost_danger_percent: 100
+    borg_param_attack_arrow_point_blank_divisor_rogue: 2
+control:
+- ctl
+prespecified: |
+  Big tier (starts 361-900); medium leaning better (11 vs 20 deaths, 15 / 6, p 0.078), run 44553471958.
+  Same specimen and profiles as reborn-bundle-1119-medium; no raw evidence at this size. Owner, 2026-11-19: "go ahead".
+  Medium tier after the pilot reborn-bundle-1119-pilot; same specimen and profiles; no raw evidence at this size.
+  Fixed 2026-11-19, before any result of this bundle was read. Pilot (RULES 16); the medium tier follows if this gate
+  passes (owner: "do 1,2,3"). Each change alone was neutral or leaning better (#357 calmed 46 against 49 of 810;
+  #358 4 against 4 of 72 at 200k; #347 thr-100 77 against 93 of 1,728; #379 Rogue 2 7 against 11 of 200), each on its
+  own build. This tests that they do not interact badly on one build.
+  Gate:
+  - no config_error; one binary; each arm's six values in its borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm and per class: deaths and causes, final level, deepest level, paired rescued and newly killed
+  against ctl, identical plays; RULES 18 bins.

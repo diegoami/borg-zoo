@@ -1033,6 +1033,15 @@
       "stall_seconds": 120,
       "saves": false
     },
+    "classes-1800-200k-medium": {
+      "description": "Starts 91-360 of classes-1800-200k (30 per class), 200,000 engine turns: the medium tier after classes-1800-200k-pilot and -small (borg-zoo#383).",
+      "role": "development",
+      "subset": {"suite": "classes-1800-200k", "range": [90, 360]},
+      "cap": 200000,
+      "wall_seconds": 1800,
+      "stall_seconds": 120,
+      "saves": false
+    },
     "classes-1800-verysmall": {
       "description": "Tier verysmall of classes-1800 (RULES 14): starts 1-45 (5 per class), with each seed's classes-1800 character. Between the pilot and small: a study that ran it continues with small-rest (starts 46-90), so its tiers stay disjoint.",
       "role": "development",
@@ -1082,6 +1091,24 @@
       "description": "The Rogue starts of classes-1800-small (borg-zoo#198): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
       "subset": {"suite": "classes-1800-small", "class": "Rogue"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-mages": {
+      "description": "The Mage starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Mage"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-priests": {
+      "description": "The Priest starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Priest"},
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1302,6 +1329,15 @@
           "Kobold"
         ]
       },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-b-rogues": {
+      "description": "The 200 Rogue starts of classes-1800-b (borg-zoo#369): fresh seeds for confirming a Rogue lead from classes-1800. Prespecified tests only.",
+      "role": "confirmation",
+      "subset": {"suite": "classes-1800-b", "class": "Rogue"},
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,

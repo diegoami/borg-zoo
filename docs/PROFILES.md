@@ -35,7 +35,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-scary-ends` | [#350](https://github.com/diegoami/borg-zoo/issues/350) | 11 | floor3 starts 1-900 done (49 v 51 deaths, CL 5.50 v 5.13); full defined | Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846. |
 | `reborn-bundle` | [#361](https://github.com/diegoami/borg-zoo/issues/361) | 12 | all5 bundle pilot done; floor3 bundle pilot defined | The safe-to-adopt changes together on main 38858846: scary all5 + Ranger point-blank 1 + flight Recall on DL1 (gate 0), and the bundle without all5. |
 | `reborn-kill-power-main` | [#244](https://github.com/diegoami/borg-zoo/issues/244) | 2 | pilot done: off neutral on deaths, leans harmful on progress | kill_live_min_power shipped 1 against 0 on main 38858846. |
-| `reborn-errands-main` | [#383](https://github.com/diegoami/borg-zoo/issues/383) | 3 | all 1,800 starts done: errands 91 v 105 deaths (18 / 4, p 0.004); confirmation on classes-1800-b and 200k pilot + small defined, not dispatched | Errands plan vs no plan on main 3ba17e2c: none (shipped), errands_plan.txt, errands_plan_ambitious.txt; pilot to full. |
+| `reborn-errands-main` | [#383](https://github.com/diegoami/borg-zoo/issues/383) | 3 | all tiers done; confirmed on classes-1800-b (128 v 117, p 0.035); 200k medium defined | Errands plan vs no plan on main 3ba17e2c: none (shipped), errands_plan.txt, errands_plan_ambitious.txt; pilot to full. |
 | `reborn-bless` | [#388](https://github.com/diegoami/borg-zoo/issues/388) | 5 | defined (pilot on 3ba17e2c, not dispatched) | Bless rules (#560) on main 3ba17e2c: never cast, stop sooner (max_danger_divisor 4), bless longer (1), bless at lower danger (danger_divisor 6). |
 | `reborn-phase-thresholds` | [#389](https://github.com/diegoami/borg-zoo/issues/389) | 5 | defined (pilot on 3ba17e2c, not dispatched) | Phase Door thresholds on main 3ba17e2c: ordinary danger 5 / 20 tenths, unique 7, no anti-summon delay. |
 | `reborn-town-dangerous` | [#390](https://github.com/diegoami/borg-zoo/issues/390) | 4 | defined (pilot on 3ba17e2c, not dispatched) | Attacking dangerous townspeople on sight (#619) on main 3ba17e2c: on (bonus 300), bonus 600, min_damage 3. |
@@ -43,11 +43,12 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-stand-seeinv` | [#393](https://github.com/diegoami/borg-zoo/issues/393) | 3 | defined (pilot on 3ba17e2c, not dispatched) | caution_scary_stand 0 (always flee) and recover_rest_arms_see_invis 1 against shipped, on main 3ba17e2c. |
 | `reborn-phase-rule-main` | [#347](https://github.com/diegoami/borg-zoo/issues/347) | 2 | defined (pilot and classes-1800-b confirmation on 3ba17e2c, not dispatched) | #584's Phase Door rule on main 3ba17e2c: ctl (shipped off) against thr-100 (escape_phase_adjacent_rule 1, escape_phase_lost_test 0); pilot, then a confirmation on fresh seeds. |
 | `reborn-scary-floor-main` | [#369](https://github.com/diegoami/borg-zoo/issues/369) | 2 | defined (pilot, small, medium, big, full on 3ba17e2c, not dispatched) | The scary list's floor3 (every range - 5, floor CL 3) against the shipped list on main 3ba17e2c, with #621's ignore lines in both arms; pilot to full. |
-| `reborn-neutral-main` | [#400](https://github.com/diegoami/borg-zoo/issues/400) | 5 | all 1,800 starts done: calmed 93 v 105 deaths (p 0.096), CL and DL up; the others neutral. Calmed confirmation on classes-1800-b defined, not dispatched | Settings found neutral elsewhere, each alone on main 3ba17e2c: caution_scary_unlatch_calmed, caution_recall_wait_as_usual, attack_town_dangerous_on_sight, escape_fox_form (1 against shipped 0). |
+| `reborn-neutral-main` | [#400](https://github.com/diegoami/borg-zoo/issues/400) | 5 | defined (pilot, small, medium, big, full on 3ba17e2c, not dispatched) | Settings found neutral elsewhere, each alone on main 3ba17e2c: caution_scary_unlatch_calmed, caution_recall_wait_as_usual, attack_town_dangerous_on_sight, escape_fox_form (1 against shipped 0). |
 | `reborn-untested-town` | [#401](https://github.com/diegoami/borg-zoo/issues/401) | 13 | defined (pilot screen on 3ba17e2c, not dispatched) | Never-tested town planner settings halved and doubled on main 3ba17e2c: borg_town_risk, power_scale, w_attack, w_support, w_space, home_discount. |
 | `reborn-untested-caution` | [#401](https://github.com/diegoami/borg-zoo/issues/401) | 9 | defined (pilot screen on 3ba17e2c, not dispatched) | Never-tested trip, Recall and breeder settings lowered and raised on main 3ba17e2c: borg_town_explore_turns, caution_recall_rest_turns, caution_breeder_easy_escape_steps, caution_flee_recall_chasers. |
 | `reborn-errands-floor3` | [#405](https://github.com/diegoami/borg-zoo/issues/405) | 4 | defined (pilot on 3ba17e2c, not dispatched) | Errands plan × floor3 (2×2) on main 3ba17e2c: ctl, errands, floor3, both. |
 | `reborn-crow` | [#408](https://github.com/diegoami/borg-zoo/issues/408) | 4 | defined (pilot on 3ba17e2c, not dispatched) | Crows (and wild cats) scary for fragile classes at CL1-2/3 only, on main 3ba17e2c: crow 0-2, crow 0-3, crow + wild cat 0-2. |
+| `reborn-mage-priest` | [#415](https://github.com/diegoami/borg-zoo/issues/415) | 3 | defined (pilot on 592c6984, not dispatched) | Study 2 of #415 on main 592c6984, Mage and Priest starts, rule and calmed in every arm: healing x1.5, spell preference 1500. |
 | `reborn-bgphase` | [#415](https://github.com/diegoami/borg-zoo/issues/415) | 2 | defined (pilot on Blackguard starts, medium, big, full on 592c6984, not dispatched) | Blackguard exception to the Phase Door rule on main 592c6984: rule on (control, as main will ship) against rule off, calmed unlatch in both; Blackguard starts only. |
 | `reborn-casters` | [#415](https://github.com/diegoami/borg-zoo/issues/415) | 6 | defined (pilot on caster starts, medium, big, full on 592c6984, not dispatched) | Casters' early kit and fighting on main 592c6984, Mage, Priest, Necromancer and Druid starts only, the Phase Door rule and calmed in every arm: more oil, more Phase Door, thrown preference 1500, early animals on the scary list, heal reserve + 100. |
 | `reborn-rebase-main` | [#416](https://github.com/diegoami/borg-zoo/issues/416) | 5 | defined (pilot on 592c6984, not dispatched) | Re-baseline on main 592c6984 after #664: shipped, the Phase Door rule, calmed unlatch, both, and the errands plan. |
@@ -722,6 +723,18 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-crow38-crowcat2` | 2 lines |
 | `reborn-crow38-ctl` | – |
 
+### `reborn-mage-priest`
+
+Study 2 of #415 on main 592c6984, Mage and Priest starts, rule and calmed in every arm: healing x1.5, spell preference 1500.
+
+Every arm: `borg_param_caution_scary_unlatch_calmed = 1`, `borg_param_escape_phase_adjacent_rule = 1`, `borg_param_escape_phase_lost_test = 0`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_preference_mage_spell_permille` | `borg_param_attack_preference_priest_spell_permille` | `borg_param_town_heal_curve_scale_percent_mage` | `borg_param_town_heal_curve_scale_percent_priest` | `borg_param_town_heal_reserve_hp_percent_mage` | `borg_param_town_heal_reserve_hp_percent_priest` |
+| --- | --- | --- | --- | --- | --- | --- |
+| `reborn-magepriest-ctl` | – | – | – | – | – | – |
+| `reborn-magepriest-heal-hi` | – | – | 225 | 185 | 450 | 375 |
+| `reborn-magepriest-spell1500` | 1500 | 1500 | – | – | – | – |
+
 ### `reborn-bgphase`
 
 Blackguard exception to the Phase Door rule on main 592c6984: rule on (control, as main will ship) against rule off, calmed unlatch in both; Blackguard starts only.
@@ -800,7 +813,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_mage_device_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_mage_melee_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_mage_projectile_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_mage_spell_permille` | 1000, 1500, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
+| `borg_param_attack_preference_mage_spell_permille` | 1000, 1500, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle`, `reborn-mage-priest` |  |
 | `borg_param_attack_preference_mage_thrown_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_necromancer_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_necromancer_device_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
@@ -818,7 +831,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_priest_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_priest_melee_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_priest_projectile_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_priest_spell_permille` | 1000, 1350, 1700, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
+| `borg_param_attack_preference_priest_spell_permille` | 1000, 1350, 1500, 1700, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle`, `reborn-mage-priest` |  |
 | `borg_param_attack_preference_priest_thrown_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_ranger_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_ranger_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
@@ -876,19 +889,19 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_gold_reserve_percent` | 25, 50, not set | `reborn-gold-reserve` |  |
 | `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_druid` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
-| `borg_param_town_heal_curve_scale_percent_mage` | 0, 75, 225, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_curve_scale_percent_mage` | 0, 75, 225, not set | `reborn-heal-by-class`, `reborn-mage-priest` |  |
 | `borg_param_town_heal_curve_scale_percent_necromancer` | 0, 75, 225, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_paladin` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
-| `borg_param_town_heal_curve_scale_percent_priest` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_curve_scale_percent_priest` | 0, 60, 185, not set | `reborn-heal-by-class`, `reborn-mage-priest` |  |
 | `borg_param_town_heal_curve_scale_percent_ranger` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_rogue` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_warrior` | 0, 25, 75, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_blackguard` | -1, 75, 225, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_druid` | -1, 125, 350, 375, not set | `reborn-heal-by-class`, `reborn-casters` |  |
-| `borg_param_town_heal_reserve_hp_percent_mage` | -1, 150, 400, 450, not set | `reborn-heal-by-class`, `reborn-casters` |  |
+| `borg_param_town_heal_reserve_hp_percent_mage` | -1, 150, 400, 450, not set | `reborn-heal-by-class`, `reborn-mage-priest`, `reborn-casters` |  |
 | `borg_param_town_heal_reserve_hp_percent_necromancer` | -1, 150, 400, 450, not set | `reborn-heal-by-class`, `reborn-casters` |  |
 | `borg_param_town_heal_reserve_hp_percent_paladin` | -1, 75, 225, not set | `reborn-heal-by-class` |  |
-| `borg_param_town_heal_reserve_hp_percent_priest` | -1, 125, 350, 375, not set | `reborn-heal-by-class`, `reborn-casters` |  |
+| `borg_param_town_heal_reserve_hp_percent_priest` | -1, 125, 350, 375, not set | `reborn-heal-by-class`, `reborn-mage-priest`, `reborn-casters` |  |
 | `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |

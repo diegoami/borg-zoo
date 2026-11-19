@@ -1,0 +1,30 @@
+# borg-zoo#369: confirmation of floor3 for Rogues only, on the 200 Rogue starts of classes-1800-b; owner 2026-11-19 (#416).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-floor3-rogue-confirm.yaml
+#
+# Shipping floor3 for Rogues only would need per-monster class exceptions; this run measures floor3's effect on
+# Rogues, the only class where it lowered deaths on main.
+name: reborn-floor3-rogue-confirm
+issue: 369
+question: >-
+  On borg-reborn-rs main 3ba17e2c, do Rogues die less with the floor3 scary list than with the shipped list, on 200
+  fresh Rogue starts (classes-1800-b)?
+specimens: [4.2.6-reborn-rust-main-3ba17e2c]
+suites: [classes-1800-b-rogues]
+profiles: [reborn-scary38-ctl, reborn-scary38-floor3]
+control_specimen: 4.2.6-reborn-rust-main-3ba17e2c
+control_profile: reborn-scary38-ctl
+owner_authorization: >-
+  2026-11-19: #416's backlog (scary list per class); the owner asked to take up its experiments.
+
+prespecified: |
+  Fixed 2026-11-19, before any classes-1800-b result was read. Confirmation of one prespecified test (RULES 14).
+  Primary endpoint: Rogue deaths, floor3 against shipped, paired on the same start; two-sided exact McNemar at 0.05.
+  Secondary (descriptive): CL1-3 deaths, mean max CL and DL, identical plays.
+  Development (classes-1800, the same build, reborn-scary-floor-main-*): Rogue deaths 11 against 5 of 202, mean max
+  CL 5.55 against 5.93.
+  Gate:
+  - no config_error; one binary; each arm's settings (plan, scary lines) verified per cell;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Reported as harmful, neutral or helpful (RULES 18). A Rogue-only setting would need per-monster class exceptions in
+  the shipped list.

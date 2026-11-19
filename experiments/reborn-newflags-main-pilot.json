@@ -1,0 +1,31 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-newflags-main-pilot",
+  "issue": 413,
+  "definition": "definitions/reborn-newflags-main-pilot.yaml",
+  "question": "On borg-reborn-rs main 592c6984, are the new switches (#637 town wand, caster walk, whole bonus; #620 town Fox Form; #640 Recall rest near monsters) reached, and do the Phase Door rule and the errands plan still behave as on 3ba17e2c?",
+  "description": "On borg-reborn-rs main 592c6984, are the new switches (#637 town wand, caster walk, whole bonus; #620 town Fox Form; #640 Recall rest near monsters) reached, and do the Phase Door rule and the errands plan still behave as on 3ba17e2c? Generated from definitions/reborn-newflags-main-pilot.yaml: 10 arms on 4.2.6-reborn-rust-main-592c6984, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result on 592c6984 was read. Pilot (RULES 16). ctl is shipped main.\nGate:\n- no config_error; one binary; each arm's values in its borg.txt; errands' plan recorded per cell and checked against the pin;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm: deaths and causes, final level, deepest level, paired rescued and newly killed against ctl, identical\nplays (an arm identical to ctl in 18 of 18 games is not reached at this size). RULES 18 bins; 18 starts show\ndirection only. On 3ba17e2c, phase-rule (1,800 fresh starts: 128 to 89 deaths) and errands (128 to 117) were\nconfirmed; on_sight and escape_fox_form were neutral (#400).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-592c6984"
+  ],
+  "profiles": [
+    "reborn-newflags59-ctl",
+    "reborn-newflags59-onsight",
+    "reborn-newflags59-onsight-wand",
+    "reborn-newflags59-onsight-walk",
+    "reborn-newflags59-onsight-bonus",
+    "reborn-newflags59-onsight-all",
+    "reborn-newflags59-foxtown",
+    "reborn-newflags59-recall-rest",
+    "reborn-newflags59-phase-rule",
+    "reborn-newflags59-errands"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-592c6984",
+  "control_profile": "reborn-newflags59-ctl",
+  "owner_authorization": "2026-11-19: the owner asked to test the new-flags study proposed after the neutral-settings study (\"Test these\"), on the latest main HEAD (\"use the latest HEAD if possible\"). Pilot first (RULES 16); larger tiers on the owner's go.",
+  "retain_evidence": true
+}
