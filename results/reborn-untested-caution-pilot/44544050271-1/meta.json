@@ -1,0 +1,228 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-untested38-chasers-hi": {
+        "description": "borg-zoo#401 (reborn-untested-caution-pilot.yaml): arm chasers-hi.",
+        "settings": {
+          "borg_param_caution_flee_recall_chasers": 6,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "dc6a3f7ba1fc92eb9783e53a206e80d2db820b5f6eddb3f2d35d3573301e2a22"
+      },
+      "reborn-untested38-chasers-lo": {
+        "description": "borg-zoo#401 (reborn-untested-caution-pilot.yaml): arm chasers-lo.",
+        "settings": {
+          "borg_param_caution_flee_recall_chasers": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "12656cd84ae2e938f49b2ae8357c14540e0845a8eb3f996cc4c9747a97971096"
+      },
+      "reborn-untested38-ctl": {
+        "description": "borg-zoo#401 (reborn-untested-town-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "e2ebe26c6f2622d39fe9a34e05818caa8cd48462eb33ce40eeb16ef2d24760d5"
+      },
+      "reborn-untested38-easyesc-hi": {
+        "description": "borg-zoo#401 (reborn-untested-caution-pilot.yaml): arm easyesc-hi.",
+        "settings": {
+          "borg_param_caution_breeder_easy_escape_steps": 10,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "39c561a96be05d87ef9788d50d86f0ffced024dab3887c6a5db6f526d805d04d"
+      },
+      "reborn-untested38-easyesc-lo": {
+        "description": "borg-zoo#401 (reborn-untested-caution-pilot.yaml): arm easyesc-lo.",
+        "settings": {
+          "borg_param_caution_breeder_easy_escape_steps": 3,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "cb6c70228296b1f325e82adc76a38991b715c08daa48dacb833cee461e78e24e"
+      },
+      "reborn-untested38-explore-hi": {
+        "description": "borg-zoo#401 (reborn-untested-caution-pilot.yaml): arm explore-hi.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_explore_turns": 2000
+        },
+        "sha256": "b7190f33008c4d8985fcc84fa8e7ed8a2d24c08915664fc5539be3810667fcbb"
+      },
+      "reborn-untested38-explore-lo": {
+        "description": "borg-zoo#401 (reborn-untested-caution-pilot.yaml): arm explore-lo.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_explore_turns": 500
+        },
+        "sha256": "bdad1c655ce121ca1836873be4a2d30bdf0292c4ea0b93e3337f12217108c5b5"
+      },
+      "reborn-untested38-recallrest-hi": {
+        "description": "borg-zoo#401 (reborn-untested-caution-pilot.yaml): arm recallrest-hi.",
+        "settings": {
+          "borg_param_caution_recall_rest_turns": 1000,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "bd7626d3c3740abc50102b06df3b982fa4b86aa2d7fc6554396e2cf994174ef1"
+      },
+      "reborn-untested38-recallrest-lo": {
+        "description": "borg-zoo#401 (reborn-untested-caution-pilot.yaml): arm recallrest-lo.",
+        "settings": {
+          "borg_param_caution_recall_rest_turns": 250,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "058a10b9ea22df956106beb0ee1b3fb706a9d8396717e8f10b54f06d5c8d2e42"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-3ba17e2c": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 3ba17e2c, main at the merge of #633. Ships attack_arrow_point_blank_divisor Ranger 2 and Rogue 3 (class files). Tree 23632fb4; source-hash rust bc79f0a6...; harness/borg.txt 617cc79c...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "3ba17e2c21ae203d2dd45fa53f1dbada87acba75",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-19 14:37 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-3ba17e2c",
+    "control_profile": "reborn-untested38-ctl",
+    "definition": "definitions/reborn-untested-caution-pilot.yaml",
+    "description": "On borg-reborn-rs main 3ba17e2c, which of the never-tested trip, Recall and breeder settings (town_explore_turns, caution_recall_rest_turns, caution_breeder_easy_escape_steps, caution_flee_recall_chasers) change deaths or progress when lowered or raised? Generated from definitions/reborn-untested-caution-pilot.yaml: 9 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-18.",
+    "issue": 401,
+    "name": "reborn-untested-caution-pilot",
+    "owner_authorization": "2026-11-19: the owner asked for more runs, \"runs with untested parameters\" among them. A pilot screen (RULES 16); the arms worth following into tiers are chosen at the gate with the owner. Dispatch is the owner's call.",
+    "prespecified": "Fixed 2026-11-19, before any result of these profiles was read. Pilot screen (RULES 16): direction only, no claim.\nborg.txt's own impact (games of 6 that change): town_explore_turns 2000: 6; caution_recall_rest_turns 1000: 2;\ncaution_breeder_easy_escape_steps 10: 1 (it is also the free-staircase distance of caution_scary_stand's test);\ncaution_flee_recall_chasers 6: 1. None was ever changed on a borg-reborn-rs specimen. params.rs bounds:\nrecall_rest_turns 2-9999, easy_escape_steps 0-100, chasers 0-100.\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- ctl should replay reborn-errands-main-pilot's none arm (the same specimen and starts) in 18 of 18 games.\nReport per arm and per class: games identical to ctl; deaths and causes, CL1-3 deaths, mean max CL and DL; paired\nrescued and newly killed; for recallrest, the Recall waits and rests; for easyesc, the scary-level stands and\nflights; for chasers, the flight Recalls read. Each arm is reported as harmful, neutral or helpful (RULES 18),\ndirection only.\nFollow-up rule, fixed now: an arm goes to the small tier if it changes at least 3 of 18 games and is not behind ctl\non deaths by 2 or more, or if it is ahead of ctl on deaths or mean max CL; an arm that changes no game is inert and\ndropped. The owner decides which arms go on.",
+    "profiles": [
+      "reborn-untested38-ctl",
+      "reborn-untested38-explore-lo",
+      "reborn-untested38-explore-hi",
+      "reborn-untested38-recallrest-lo",
+      "reborn-untested38-recallrest-hi",
+      "reborn-untested38-easyesc-lo",
+      "reborn-untested38-easyesc-hi",
+      "reborn-untested38-chasers-lo",
+      "reborn-untested38-chasers-hi"
+    ],
+    "question": "On borg-reborn-rs main 3ba17e2c, which of the never-tested trip, Recall and breeder settings (town_explore_turns, caution_recall_rest_turns, caution_breeder_easy_escape_steps, caution_flee_recall_chasers) change deaths or progress when lowered or raised?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-3ba17e2c"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44544050271-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44544050271",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "a29b7d01de8b0a33239671ca96a099228f965cdc"
+}
