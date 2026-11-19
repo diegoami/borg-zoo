@@ -1,0 +1,37 @@
+# borg-zoo#383: confirmation of the errands plan's survival lead on fresh seeds (classes-1800-b), main 3ba17e2c.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-errands-main-confirm.yaml
+#
+# The pilot is reborn-errands-main-pilot (classes-18, the same specimen and profiles, gate passed, run 44511509828).
+# The ambitious plan is not confirmed: it was neutral in the development study (102 against 105, 6 / 3).
+name: reborn-errands-main-confirm
+issue: 383
+question: >-
+  On borg-reborn-rs main 3ba17e2c (ships no plan), does the errands plan (errands_plan.txt) die less than no plan, on
+  1,800 fresh starts (classes-1800-b)?
+specimens: [4.2.6-reborn-rust-main-3ba17e2c]
+suites: [classes-1800-b]   # confirmation: 1,800 fresh seeds, the classes-1800 class and race assignment, 100,000 turns
+profiles: [reborn-errands38-none, reborn-errands38-errands]
+control_specimen: 4.2.6-reborn-rust-main-3ba17e2c
+control_profile: reborn-errands38-none
+owner_authorization: >-
+  2026-11-19: after the development study (all 1,800 classes-1800 starts: errands 91 against 105 deaths, 18 rescued,
+  4 newly killed, p 0.0043), the owner asked to file the suggested runs. Dispatch is the owner's call.
+
+prespecified: |
+  Fixed 2026-11-19, before any classes-1800-b result of these profiles was read. Confirmation of one prespecified test
+  (RULES 8). Same specimen and profiles as the pilot reborn-errands-main-pilot (RULES 16).
+  Primary endpoint: death by the 100,000-turn cap among the 1,800 classes-1800-b starts, errands against none, paired
+  on the same start; two-sided exact McNemar test at alpha 0.05. Confirmed helpful only if p < 0.05 and errands has
+  fewer deaths. Pairs where either cell did not finish (stall, timeout, crash, harness or config error) are left out of
+  the test, listed and counted per arm (RULES 6), never relabelled as deaths or survivors.
+  Secondary endpoints (progress, non-inferiority): mean max CL and mean max DL, errands minus none, paired on the same
+  start. errands is non-inferior when the lower bound of the two-sided 95% paired interval (normal approximation) is
+  above -0.25 CL and above -0.10 DL. Development: -0.03 CL and -0.04 DL.
+  Descriptive only: CL1-3 deaths, deaths and causes per class, games identical to none, borg_stopped cells and
+  plan-phase notes, town visits.
+  Sizing: development discordance 22/1800 with a net 14/1800; the normal approximation gives about 85% power at 1,800
+  pairs if that effect holds. A development effect often shrinks on fresh seeds.
+  Gate (before the test is read):
+  - no config_error; one binary; each arm's plan recorded per cell (plan name and sha256) and checked against the pin;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts and stalls classified, key outliers listed.
+  The result is reported in a RULES 18 bin (harmful, neutral or helpful); shipping errands_plan.txt is the owner's call.

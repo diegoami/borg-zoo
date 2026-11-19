@@ -1,0 +1,40 @@
+# borg-zoo#347: confirmation of the Phase Door rule (thr-100) on fresh seeds (classes-1800-b), main 3ba17e2c.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-phase-rule-main-confirm.yaml
+#
+# Dispatched only after reborn-phase-rule-main-pilot's gate and the owner.
+name: reborn-phase-rule-main-confirm
+issue: 347
+question: >-
+  On borg-reborn-rs main 3ba17e2c (the rule shipped off), does #584's Phase Door rule at the 100 percent threshold
+  (thr-100) die less than ctl, on 1,800 fresh starts (classes-1800-b)?
+specimens: [4.2.6-reborn-rust-main-3ba17e2c]
+suites: [classes-1800-b]   # confirmation: 1,800 fresh seeds, the classes-1800 class and race assignment, 100,000 turns
+profiles: [reborn-phaserule38-ctl, reborn-phaserule38-thr-100]
+control_specimen: 4.2.6-reborn-rust-main-3ba17e2c
+control_profile: reborn-phaserule38-ctl
+owner_authorization: >-
+  2026-11-19: after the development study on 4acf071f, the owner asked to file the suggested runs, the confirmation of
+  thr-100 on current main among them. Dispatch is the owner's call.
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles was read. Confirmation of one prespecified test (RULES 8).
+  Same specimen and profiles as the pilot reborn-phase-rule-main-pilot (RULES 16). ctl is main's shipped rule (off);
+  borg-reborn-rs may ship the rule on later, and this run still measures it against off on 3ba17e2c.
+  Primary endpoint: death by the 100,000-turn cap among the 1,800 classes-1800-b starts, thr-100 against ctl, paired
+  on the same start; two-sided exact McNemar test at alpha 0.05. Confirmed helpful only if p < 0.05 and thr-100 has
+  fewer deaths. Pairs where either cell did not finish (stall, timeout, crash, harness or config error) are left out of
+  the test, listed and counted per arm (RULES 6), never relabelled as deaths or survivors.
+  Secondary endpoints (progress, non-inferiority): mean max CL and mean max DL, thr-100 minus ctl, paired on the same
+  start. thr-100 is non-inferior when the lower bound of the two-sided 95% paired interval (normal approximation) is
+  above -0.25 CL and above -0.10 DL. Development: +0.03 CL and -0.01 DL.
+  Descriptive only: CL1-3 deaths, deaths and causes per class (Druids and Mages named in advance: the development
+  study had Druids 19 against 12 and Mages 2 against 5 in its big tier), games identical to ctl, Phase Doors done and
+  "# Phase rule" verdicts.
+  Development study (classes-1800 on 4acf071f, 1,728 paired starts): ctl 93, thr-100 77 deaths (55 / 39, p 0.12).
+  Sizing: development discordance 94/1728 with a net 16/1728; the normal approximation gives about 40% power at 1,800
+  pairs if that effect holds. A result short of p < 0.05 does not show the rule has no effect.
+  Gate (before the test is read):
+  - no config_error; one binary; each arm's three #584 values in borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - in ctl, no "# Phase rule" note.
+  The result is reported in a RULES 18 bin (harmful, neutral or helpful); shipping the rule is the owner's call.

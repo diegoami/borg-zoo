@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-errands-main-confirm",
+  "issue": 383,
+  "definition": "definitions/reborn-errands-main-confirm.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c (ships no plan), does the errands plan (errands_plan.txt) die less than no plan, on 1,800 fresh starts (classes-1800-b)?",
+  "description": "On borg-reborn-rs main 3ba17e2c (ships no plan), does the errands plan (errands_plan.txt) die less than no plan, on 1,800 fresh starts (classes-1800-b)? Generated from definitions/reborn-errands-main-confirm.yaml: 2 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-b.",
+  "prespecified": "Fixed 2026-11-19, before any classes-1800-b result of these profiles was read. Confirmation of one prespecified test\n(RULES 8). Same specimen and profiles as the pilot reborn-errands-main-pilot (RULES 16).\nPrimary endpoint: death by the 100,000-turn cap among the 1,800 classes-1800-b starts, errands against none, paired\non the same start; two-sided exact McNemar test at alpha 0.05. Confirmed helpful only if p < 0.05 and errands has\nfewer deaths. Pairs where either cell did not finish (stall, timeout, crash, harness or config error) are left out of\nthe test, listed and counted per arm (RULES 6), never relabelled as deaths or survivors.\nSecondary endpoints (progress, non-inferiority): mean max CL and mean max DL, errands minus none, paired on the same\nstart. errands is non-inferior when the lower bound of the two-sided 95% paired interval (normal approximation) is\nabove -0.25 CL and above -0.10 DL. Development: -0.03 CL and -0.04 DL.\nDescriptive only: CL1-3 deaths, deaths and causes per class, games identical to none, borg_stopped cells and\nplan-phase notes, town visits.\nSizing: development discordance 22/1800 with a net 14/1800; the normal approximation gives about 85% power at 1,800\npairs if that effect holds. A development effect often shrinks on fresh seeds.\nGate (before the test is read):\n- no config_error; one binary; each arm's plan recorded per cell (plan name and sha256) and checked against the pin;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts and stalls classified, key outliers listed.\nThe result is reported in a RULES 18 bin (harmful, neutral or helpful); shipping errands_plan.txt is the owner's call.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-errands38-none",
+    "reborn-errands38-errands"
+  ],
+  "suites": [
+    "classes-1800-b"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-errands38-none",
+  "owner_authorization": "2026-11-19: after the development study (all 1,800 classes-1800 starts: errands 91 against 105 deaths, 18 rescued, 4 newly killed, p 0.0043), the owner asked to file the suggested runs. Dispatch is the owner's call."
+}

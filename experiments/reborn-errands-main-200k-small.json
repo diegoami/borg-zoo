@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-errands-main-200k-small",
+  "issue": 383,
+  "definition": "definitions/reborn-errands-main-200k-small.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c at 200,000 turns, where the errands plan's depth caps bind more, does the errands plan keep its survival lead without costing progress (starts 19-90)?",
+  "description": "On borg-reborn-rs main 3ba17e2c at 200,000 turns, where the errands plan's depth caps bind more, does the errands plan keep its survival lead without costing progress (starts 19-90)? Generated from definitions/reborn-errands-main-200k-small.yaml: 2 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-200k-small.",
+  "prespecified": "Fixed 2026-11-19, before any 200,000-turn result of these profiles was read. Same specimen and profiles as\nreborn-errands-main-pilot and reborn-errands-main-200k-pilot (RULES 16); no raw evidence at this size.\n100,000-turn study (classes-1800, all 1,800 starts): none 105, errands 91 deaths (18 / 4, p 0.0043); mean max CL\n5.15 / 5.12, DL 2.09 / 2.05.\nGate:\n- no config_error; one binary; each arm's plan recorded per cell (plan name and sha256) and checked against the pin;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts and stalls classified, key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, pooled with the 200k pilot (RULES 14): deaths and causes, CL1-3 deaths, mean max CL\nand DL; paired rescued and newly killed against none; identical plays; borg_stopped cells and plan-phase notes; the\ndeepest level against the plan's cap for the character's level (games held at a cap). RULES 18 bins. 90 starts per\narm show direction.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-errands38-none",
+    "reborn-errands38-errands"
+  ],
+  "suites": [
+    "classes-1800-200k-small"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-errands38-none",
+  "owner_authorization": "2026-11-19: after the 100,000-turn study, the owner asked to file the suggested runs, a 200,000-turn tier among them. Dispatched only after reborn-errands-main-200k-pilot's gate and the owner (RULES 14)."
+}
