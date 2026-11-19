@@ -4663,6 +4663,36 @@
         "borg_param_caution_town_never_scary": 1
       }
     },
+    "reborn-phaserule-ctl": {
+      "description": "borg-zoo#334 (reborn-phase-rule-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 0,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-phaserule-rule-100": {
+      "description": "borg-zoo#334 (reborn-phase-rule-pilot.yaml): arm rule-100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_danger_percent": 100
+      }
+    },
+    "reborn-phaserule-rule-150": {
+      "description": "borg-zoo#334 (reborn-phase-rule-pilot.yaml): arm rule-150.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_adjacent_rule": 1,
+        "borg_param_escape_phase_lost_danger_percent": 150
+      }
+    },
     "reborn-597-ctl": {
       "description": "borg-zoo#342 (reborn-lava-parked-pilot.yaml): arm ctl.",
       "settings": {
@@ -4966,6 +4996,59 @@
         "borg_reborn_errand": "none",
         "borg_param_attack_arrow_point_blank_divisor_ranger": 1,
         "borg_param_caution_flee_recall_gate_below_depth": 0
+      }
+    },
+    "reborn-reststairs-off": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 0,
+        "borg_param_caution_stairs_leave_on_monster": 0
+      }
+    },
+    "reborn-reststairs-reach": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm reach.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 20,
+        "borg_param_recover_rest_reach_stairs_memory": 10,
+        "borg_param_caution_stairs_leave_on_monster": 0
+      }
+    },
+    "reborn-reststairs-leave": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm leave.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 0,
+        "borg_param_caution_stairs_leave_on_monster": 1,
+        "borg_param_caution_stairs_leave_danger_percent": 10,
+        "borg_param_caution_stairs_leave_down": 1
+      }
+    },
+    "reborn-reststairs-leaveup": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm leaveup.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 0,
+        "borg_param_caution_stairs_leave_on_monster": 1,
+        "borg_param_caution_stairs_leave_danger_percent": 10,
+        "borg_param_caution_stairs_leave_down": 0
+      }
+    },
+    "reborn-reststairs-both": {
+      "description": "borg-zoo#365 (reborn-rest-stairs-pilot.yaml): arm both.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 20,
+        "borg_param_recover_rest_reach_stairs_memory": 10,
+        "borg_param_caution_stairs_leave_on_monster": 1,
+        "borg_param_caution_stairs_leave_danger_percent": 10,
+        "borg_param_caution_stairs_leave_down": 1
       }
     },
     "reborn-scaryends-floor3": {
