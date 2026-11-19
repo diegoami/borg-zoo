@@ -1,0 +1,79 @@
+# borg-zoo#450 section 1: settings that act in every shipped game and were never varied; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-untested-dbc-pilot.yaml
+name: reborn-untested-dbc-pilot
+issue: 450
+question: >-
+  On borg-reborn-rs main dbc92d18, do the never-varied town settings (device value by class, a shot reserve for any
+  class, the shot reserve with oil, town flee no-worse) change deaths or progress against shipped?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-dbc92d18
+  repository: diegoami/borg-reborn-rs
+  ref: dbc92d186e2708425314f9c21a1c32dfb27f4899
+  label: "borg-reborn-rs main dbc92d18, the merge of #703 (#685 detection min level 10 for the casters), after #686 (flask damage, 1514bde6) and #688 (class curves). Tree 794fb6fd; harness/borg.txt e876a25a..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-untested-dbc
+arms:
+  ctl: {}   # shipped: devices common 100, Warrior 75, Mage 150, Necromancer 150, Rogue 135, Priest 125, Ranger 115; missiles -1 / 100; flee no-worse 0
+  dev100:   # every class at the computed value
+    borg_param_town_devices_percent@warrior: 100
+    borg_param_town_devices_percent@mage: 100
+    borg_param_town_devices_percent@druid: 100
+    borg_param_town_devices_percent@priest: 100
+    borg_param_town_devices_percent@necromancer: 100
+    borg_param_town_devices_percent@paladin: 100
+    borg_param_town_devices_percent@rogue: 100
+    borg_param_town_devices_percent@ranger: 100
+    borg_param_town_devices_percent@blackguard: 100
+  dev50:
+    borg_param_town_devices_percent: 50
+    borg_param_town_devices_percent@warrior: 50
+    borg_param_town_devices_percent@mage: 50
+    borg_param_town_devices_percent@druid: 50
+    borg_param_town_devices_percent@priest: 50
+    borg_param_town_devices_percent@necromancer: 50
+    borg_param_town_devices_percent@paladin: 50
+    borg_param_town_devices_percent@rogue: 50
+    borg_param_town_devices_percent@ranger: 50
+    borg_param_town_devices_percent@blackguard: 50
+  dev200:
+    borg_param_town_devices_percent: 200
+    borg_param_town_devices_percent@warrior: 200
+    borg_param_town_devices_percent@mage: 200
+    borg_param_town_devices_percent@druid: 200
+    borg_param_town_devices_percent@priest: 200
+    borg_param_town_devices_percent@necromancer: 200
+    borg_param_town_devices_percent@paladin: 200
+    borg_param_town_devices_percent@rogue: 200
+    borg_param_town_devices_percent@ranger: 200
+    borg_param_town_devices_percent@blackguard: 200
+  miss50: {borg_param_town_missiles_percent: 50}
+  miss100: {borg_param_town_missiles_percent: 100}
+  miss100-or50: {borg_param_town_missiles_percent: 100, borg_param_town_missiles_other_ranged_percent: 50}   # other-ranged acts only with a reserve
+  townflee: {borg_param_caution_town_flee_no_worse: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner said "go ahead" to the proposals: #450's untested settings as one pilot on a new main specimen,
+  #433 and #443 restarted on main dbc92d18 (pilot, then small + medium after its gate).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles was read. Pilot (RULES 16) on a new specimen.
+  Gate:
+  - no config_error; one binary; each arm's lines written;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class: deaths and causes, max CL and DL, paired rescued and newly killed, identical plays;
+  wands, rods, staffs and shots bought (town-purchases). Arms that change games go on to small + medium (starts 1-360)
+  after the owner; inert arms are reported as not reached. Bins (RULES 18) only from those tiers.

@@ -1,0 +1,21 @@
+# borg-zoo#443 on main dbc92d18, small tier; dispatched only after reborn-detect-min-dbc-pilot's gate. Owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-detect-min-dbc-small.yaml
+name: reborn-detect-min-dbc-small
+issue: 443
+question: >-
+  On borg-reborn-rs main dbc92d18, does casting no detection prayer or spell by panel below CL10 for Priest, Paladin,
+  Mage, Necromancer and Druid (light_detect_evil_spell_min_level 10, shipped) change deaths or progress against C (0)?
+specimens: [4.2.6-reborn-rust-main-dbc92d18]
+tier: small          # classes-1800 starts 1-90
+profiles: [reborn-detectmin-dbc-ctl, reborn-detectmin-dbc-switch]
+control_specimen: 4.2.6-reborn-rust-main-dbc92d18
+control_profile: reborn-detectmin-dbc-ctl
+owner_authorization: >-
+  2026-11-19: the owner said "go ahead" to the proposals: #450's untested settings as one pilot on a new main specimen,
+  #433 and #443 restarted on main dbc92d18 (pilot, then small + medium after its gate).
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles on dbc92d18 was read. Same specimen and profiles as the pilot
+  (RULES 16). Gate as the pilot's. Report per arm and per class, pooled over the tiers (RULES 14): deaths and causes,
+  CL1-3 deaths, max CL and DL; paired rescued and newly killed (exact McNemar), overall and per class; identical
+  plays. Per-class bins (RULES 18) need about 200 starts per class (big + full); starts 1-360 give direction.

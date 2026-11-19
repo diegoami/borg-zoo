@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-detect-min-dbc-pilot",
+  "issue": 443,
+  "definition": "definitions/reborn-detect-min-dbc-pilot.yaml",
+  "question": "On borg-reborn-rs main dbc92d18, does casting no detection prayer or spell by panel below CL10 for Priest, Paladin, Mage, Necromancer and Druid (light_detect_evil_spell_min_level 10, shipped) change deaths or progress against C (0)?",
+  "description": "On borg-reborn-rs main dbc92d18, does casting no detection prayer or spell by panel below CL10 for Priest, Paladin, Mage, Necromancer and Druid (light_detect_evil_spell_min_level 10, shipped) change deaths or progress against C (0)? Generated from definitions/reborn-detect-min-dbc-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-dbc92d18, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles on dbc92d18 was read. Pilot (RULES 16) on the new build; the\n3ed059b6 pilot (0 against 0 deaths, CL +0.22) is context only.\nGate: no config_error; one binary; ctl's five lines written; the Warrior, Rogue, Ranger and Blackguard games\nidentical in both arms; every cell ends in death, turn_cap or borg_stopped; death bundles reproduced.\nReport per arm and per class: deaths and causes, max CL and DL, paired rescued and newly killed, identical plays.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-dbc92d18"
+  ],
+  "profiles": [
+    "reborn-detectmin-dbc-ctl",
+    "reborn-detectmin-dbc-switch"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-dbc92d18",
+  "control_profile": "reborn-detectmin-dbc-ctl",
+  "owner_authorization": "2026-11-19: the owner said \"go ahead\" to the proposals: #450's untested settings as one pilot on a new main specimen, #433 and #443 restarted on main dbc92d18 (pilot, then small + medium after its gate).",
+  "retain_evidence": true
+}
