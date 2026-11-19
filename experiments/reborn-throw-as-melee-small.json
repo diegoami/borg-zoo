@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-throw-as-melee-small",
+  "issue": 427,
+  "definition": "definitions/reborn-throw-as-melee-small.yaml",
+  "question": "On borg-reborn-rs 7c9b4cd1 (PR",
+  "description": "On borg-reborn-rs 7c9b4cd1 (PR Generated from definitions/reborn-throw-as-melee-small.yaml: 2 arms on 4.2.6-reborn-rust-t568-7c9b4cd1, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-19, after the pilot's gate (borg-zoo#427) and before any small-tier result was read. Small tier\n(RULES 14): starts 1-90, the same specimen and arms as the pilot; medium only after this gate and the owner.\nctl is shipped (the switch off; PR #687 has since merged into borg-reborn-rs main at 0).\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, on the pilot's and the small tier's starts together:\n- deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;\n- \"# Throwing painful object\" and \"# Attacking with weapon\" notes per game; flasks of oil thrown, and the share that hit;\n- throws at a unique and how the fight ended;\n- RULES 18 bin.",
+  "specimens": [
+    "4.2.6-reborn-rust-t568-7c9b4cd1"
+  ],
+  "profiles": [
+    "reborn-throwmelee-ctl",
+    "reborn-throwmelee-throw"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-t568-7c9b4cd1",
+  "control_profile": "reborn-throwmelee-ctl",
+  "owner_authorization": "2026-11-19: after the pilot (neutral, gate passed, run 44599308992), the owner said \"go ahead\" to the small tier.",
+  "retain_evidence": true
+}
