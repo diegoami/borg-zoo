@@ -1,0 +1,162 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-detectmin-ctl": {
+        "description": "borg-zoo#443 (reborn-detect-min-level-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_param_light_detect_evil_spell_min_level@druid": 0,
+          "borg_param_light_detect_evil_spell_min_level@mage": 0,
+          "borg_param_light_detect_evil_spell_min_level@necromancer": 0,
+          "borg_param_light_detect_evil_spell_min_level@paladin": 0,
+          "borg_param_light_detect_evil_spell_min_level@priest": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "8cf41c31983b4a0ba29db0d20ae3120f5f802a131d44ab726c12a2514763764a"
+      },
+      "reborn-detectmin-switch": {
+        "description": "borg-zoo#443 (reborn-detect-min-level-pilot.yaml): arm switch.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "9a60872c29d84103e185622b6f5335067472d58dce160843dd96894c5d47b454"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-pr703-3ed059b6": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs PR #703 head 3ed059b6 on main a87b4c96 (#685: light_detect_evil_spell_min_level, 10 for Priest, Paladin, Mage, Necromancer and Druid). Tree d59363ad; harness/borg.txt e876a25a...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "3ed059b6b309c1d2602c52575c9411920ae8be63",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-19 21:25 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-pr703-3ed059b6",
+    "control_profile": "reborn-detectmin-ctl",
+    "definition": "definitions/reborn-detect-min-level-pilot.yaml",
+    "description": "On borg-reborn-rs 3ed059b6 (PR #703), does casting no Detect Evil / Detect Monsters / Read Minds / Seek Battle by panel below CL10 for Priest, Paladin, Mage, Necromancer and Druid (light_detect_evil_spell_min_level 10) change deaths or progress against the C behaviour (0)? Generated from definitions/reborn-detect-min-level-pilot.yaml: 2 arms on 4.2.6-reborn-rust-pr703-3ed059b6, suite classes-18.",
+    "issue": 443,
+    "name": "reborn-detect-min-level-pilot",
+    "owner_authorization": "2026-11-19: the owner set 10 for the casters (#443) and asked to look at the open issues and do the pilots they request. Pilot first (RULES 16), then classes-1800 with a per-class breakdown.",
+    "prespecified": "Fixed 2026-11-19, before any result of these profiles was read. Pilot (RULES 16).\nGate:\n- no config_error; one binary; ctl's five lines written;\n- the Warrior, Rogue, Ranger and Blackguard games identical in both arms (the switch does not touch them);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: deaths and causes, CL1-3 deaths, max CL and DL; paired rescued and newly killed;\nidentical plays. 18 starts show direction and safety only; the per-class reading needs classes-1800, and a RULES 18\nbin comes from those tiers.\nContext (borg-reborn-rs local check, 34 death-selected Priest and Paladin starts): Priest CL 4.72 -> 5.96, mana rest\n40% -> 18%, deaths 1 vs 1.",
+    "profiles": [
+      "reborn-detectmin-ctl",
+      "reborn-detectmin-switch"
+    ],
+    "question": "On borg-reborn-rs 3ed059b6 (PR #703), does casting no Detect Evil / Detect Monsters / Read Minds / Seek Battle by panel below CL10 for Priest, Paladin, Mage, Necromancer and Druid (light_detect_evil_spell_min_level 10) change deaths or progress against the C behaviour (0)?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-pr703-3ed059b6"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44617007666-2",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44617007666",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "7302639982fa272900a0f4175a2f6c18b000a962"
+}
