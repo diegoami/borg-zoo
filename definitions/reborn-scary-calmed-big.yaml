@@ -1,0 +1,38 @@
+# borg-zoo#357: big after the pilot reborn-scary-calmed-pilot (owner, 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-calmed-big.yaml
+name: reborn-scary-calmed-big
+issue: 357
+question: 'On borg-reborn-rs PR #595''s head 49933db7, does clearing the scary flag once a scary monster is hurt or afraid
+  (caution_scary_unlatch_calmed), alone and with the kill rule, save games or progress against the shipped latch?'
+tier: big
+specimen: 4.2.6-reborn-rust-pr595-49933db7
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+profile_prefix: reborn-scarycalm
+arms:
+  latch:
+    borg_param_caution_scary_unlatch_kill: 0
+    borg_param_caution_scary_unlatch_calmed: 0
+  calmed:
+    borg_param_caution_scary_unlatch_kill: 0
+    borg_param_caution_scary_unlatch_calmed: 1
+control:
+- latch
+prespecified: |
+  Big tier (starts 361-900) after the medium tier, where the change led or was level (RULES 18); two arms only. Medium (run 44462208269): latch 11, calmed 14 of 270 (1 / 4).
+  Same specimen and profiles as reborn-scary-calmed-pilot; no raw evidence at this size. Owner, 2026-11-19: "go ahead with the tiers you propose".
+  Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#593, PR #595). Pilot (RULES 16); larger tiers
+  only after this gate and the owner. latch is the shipped configuration. With the calmed rule on a kill clears the
+  flag too, so calmed and both are expected to play alike; kill is #318's latchkill arm on this commit.
+  Gate:
+  - no config_error; one binary; each arm's two values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against latch;
+  - "Scary guy hurt or afraid", "Scary guy killed" and "Scary guy gone" notes per game; "Scary guy on level" notes;
+  - deaths within 2,000 game turns after the flag cleared, split by the note that cleared it;
+  - keys: calmed against both.
+  18 starts per arm show direction only.

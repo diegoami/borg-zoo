@@ -1,0 +1,21 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-calmed-big",
+  "issue": 357,
+  "definition": "definitions/reborn-scary-calmed-big.yaml",
+  "question": "On borg-reborn-rs PR #595's head 49933db7, does clearing the scary flag once a scary monster is hurt or afraid (caution_scary_unlatch_calmed), alone and with the kill rule, save games or progress against the shipped latch?",
+  "description": "On borg-reborn-rs PR #595's head 49933db7, does clearing the scary flag once a scary monster is hurt or afraid (caution_scary_unlatch_calmed), alone and with the kill rule, save games or progress against the shipped latch? Generated from definitions/reborn-scary-calmed-big.yaml: 2 arms on 4.2.6-reborn-rust-pr595-49933db7, suite classes-1800-big.",
+  "prespecified": "Big tier (starts 361-900) after the medium tier, where the change led or was level (RULES 18); two arms only. Medium (run 44462208269): latch 11, calmed 14 of 270 (1 / 4).\nSame specimen and profiles as reborn-scary-calmed-pilot; no raw evidence at this size. Owner, 2026-11-19: \"go ahead with the tiers you propose\".\nFixed 2026-11-19, before any zoo result was read (borg-reborn-rs#593, PR #595). Pilot (RULES 16); larger tiers\nonly after this gate and the owner. latch is the shipped configuration. With the calmed rule on a kill clears the\nflag too, so calmed and both are expected to play alike; kill is #318's latchkill arm on this commit.\nGate:\n- no config_error; one binary; each arm's two values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level; paired rescued and newly killed against latch;\n- \"Scary guy hurt or afraid\", \"Scary guy killed\" and \"Scary guy gone\" notes per game; \"Scary guy on level\" notes;\n- deaths within 2,000 game turns after the flag cleared, split by the note that cleared it;\n- keys: calmed against both.\n18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr595-49933db7"
+  ],
+  "profiles": [
+    "reborn-scarycalm-latch",
+    "reborn-scarycalm-calmed"
+  ],
+  "suites": [
+    "classes-1800-big"
+  ],
+  "control": "4.2.6-reborn-rust-pr595-49933db7",
+  "control_profile": "reborn-scarycalm-latch"
+}
