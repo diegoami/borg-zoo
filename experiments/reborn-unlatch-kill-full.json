@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-unlatch-kill-full",
+  "issue": 329,
+  "definition": "definitions/reborn-unlatch-kill-full.yaml",
+  "question": "On borg-reborn-rs main 6438e1cf, does clearing a level's scary flag only when its scary monster was killed (caution_scary_unlatch_kill 1) keep unlatching's progress without the deaths after a forgotten monster, with the latch on and off?",
+  "description": "On borg-reborn-rs main 6438e1cf, does clearing a level's scary flag only when its scary monster was killed (caution_scary_unlatch_kill 1) keep unlatching's progress without the deaths after a forgotten monster, with the latch on and off? Generated from definitions/reborn-unlatch-kill-full.yaml: 3 arms on 4.2.6-reborn-rust-main-6438e1cf, suite classes-1800-full.",
+  "prespecified": "Full tier (owner, 2026-11-19) after the big tier (run 44436189952: kill-unlatch 31 vs 38, plain unlatch 42;\nmedium + big: kill-unlatch 46 vs 49, plain unlatch 60).\nBig tier (owner, 2026-11-19) after the medium (run 44431942508: shipped latch 11, kill-unlatch 15, plain unlatch\n18 of 270, 1 rescued / 8 newly killed, p = 0.039).\nMedium tier after the pilot (run 44428541791: no deaths; l0-k1 played l1-k1's keys in all 18 games, so it is\nleft out). No raw evidence at this size.\nFixed 2026-11-19, before any zoo result was read (owner; borg-reborn-rs #590, after borg-zoo#256). Pilot (RULES\n16); a medium tier follows if this gate passes. l1-k0 is shipped and the control; l0-k0 is #256's unlatch.\nGate:\n- no config_error; one binary; both values written in every arm;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against l1-k0;\ngames with keys identical to l1-k0; \"Scary guy gone\" notes per game and how each scare ended (the scary monster\nslain, or only forgotten); deaths within 2,000 game turns of a \"Scary guy gone\" note.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-6438e1cf"
+  ],
+  "profiles": [
+    "reborn-unlkill-l1-k0",
+    "reborn-unlkill-l1-k1",
+    "reborn-unlkill-l0-k0"
+  ],
+  "suites": [
+    "classes-1800-full"
+  ],
+  "control": "4.2.6-reborn-rust-main-6438e1cf",
+  "control_profile": "reborn-unlkill-l1-k0"
+}
