@@ -482,6 +482,15 @@ Lower values send the Borg back for unknown items more often. Each return brings
 - **#357, caution_scary_unlatch_calmed on PR #595 head 49933db7 (run 44458706433):** no deaths in any arm; calmed, kill and both change 14 of 18 games, with calmed and both alike as expected. All neutral.
 - **#358, caution_recall_wait_as_usual on PR #627 head cdd065ca (run 44458734474):** no deaths; 1 of 18 games changes (most flight Recalls here are read on DL1, where the switch does not act). Neutral.
 
+**Next tiers of 2026-11-19 (every gate passed: one binary, no config_error, values written, every death bundle reproduced, no frozen-turn loops; deaths of 270 per arm unless stated):**
+- **#335 medium, flight Recall from danger on 38858846 (run 44462222798): holding back the flight Recall is harmful.** ctl (shipped) 11; g2 25 (6 rescued / 20 newly killed, p 0.009), g2d100 27 (4 / 20, p 0.002), r0 27 (6 / 22, p 0.004), r0d100 27 (4 / 20, p 0.002). Every class but Warriors and Rangers pays; the danger share does not win the cost back (g2d100 27 against g2 25, r0d100 27 against r0 27). **Bins:** all four **harmful**.
+- **#347 medium, #584's Phase Door rule on 4acf071f (run 44462174256):** ctl 11, thr-100 8 (6 / 3, p 0.51), thr-150 12, fight 15, fight-landing 14; mean max CL 5.08 / 5.11 / 5.09 / 5.02 / 5.01. **Bins:** thr-100 **neutral, leaning better** (safe to adopt); thr-150 neutral; fight and fight-landing neutral, leaning worse. A big tier of ctl against thr-100 is running (run 44497293750).
+- **#356 medium, caution_rising_explore_ticks on 07844cf1 (run 44462187014):** 300 (shipped) 9, 500 11, 700 10, 900 8; each longer value changes about 145 games and lowers mean max CL (5.17 against 5.08 / 5.10 / 5.01). **Bins:** all **neutral** on deaths with a small progress cost, as in #191.
+- **#357 medium, caution_scary_unlatch_calmed on PR #595 head 49933db7 (run 44462208269):** latch 11, calmed 14 (1 / 4, p 0.38), kill 15 (1 / 5, p 0.22). **Bins:** calmed neutral, kill leaning worse at this tier (level over #329's 1,800 starts). A big tier of latch against calmed is running (run 44497319223).
+- **#355 medium, caution_scary_damage_percent on 07844cf1 (run 44462257617):** 60 (shipped) 9, 50 10 (17 games change), 40 12 (0 / 3, p 0.25). **Bins:** 50 neutral, 40 neutral leaning worse.
+- **#364 small + medium, breeder-colony avoidance on PR #632 head 985c772a (run 44462234908, starts 1-360, 360 per arm):** ctl 14, avoid 14 (6 / 6), avoid-nofight 15, avoid-exit 15; about 330 of 360 games change, progress level. **Bins:** all **neutral, safe to adopt**.
+- **#358, caution_recall_wait_as_usual at 200,000 turns on PR #627 head cdd065ca (run 44462245391, classes-1800-200k starts 19-90, 72 per arm):** 4 deaths in each arm, the same characters; the switch changes 19 of 72 games. **Bin:** neutral, safe to adopt.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
