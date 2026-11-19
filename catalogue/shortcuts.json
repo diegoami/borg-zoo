@@ -680,6 +680,30 @@
         "reborn-towndanger-onsight-min3"
       ],
       "runs": []
+    },
+    "reborn-gold-reserve": {
+      "issue": 392,
+      "status": "defined (pilot on 3ba17e2c, not dispatched)",
+      "what": "Town gold reserve on main 3ba17e2c: fixed 300 / 1000, percent 25 / 50, against 0 (shipped).",
+      "profiles": [
+        "reborn-goldres-ctl",
+        "reborn-goldres-p25",
+        "reborn-goldres-p50",
+        "reborn-goldres-r1000",
+        "reborn-goldres-r300"
+      ],
+      "runs": []
+    },
+    "reborn-stand-seeinv": {
+      "issue": 393,
+      "status": "defined (pilot on 3ba17e2c, not dispatched)",
+      "what": "caution_scary_stand 0 (always flee) and recover_rest_arms_see_invis 1 against shipped, on main 3ba17e2c.",
+      "profiles": [
+        "reborn-standinv-ctl",
+        "reborn-standinv-seeinv1",
+        "reborn-standinv-stand0"
+      ],
+      "runs": []
     }
   }
 }

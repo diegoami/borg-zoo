@@ -1,0 +1,34 @@
+# borg-zoo#393: scary stand mode off and see-invisible arming after rest, pilot; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-stand-seeinv-pilot.yaml
+name: reborn-stand-seeinv-pilot
+issue: 393
+question: >-
+  On borg-reborn-rs main 3ba17e2c, does always fleeing a scary level (caution_scary_stand 0) or arming Detect Invisible after every rest (recover_rest_arms_see_invis 1) change deaths or progress?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-3ba17e2c
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-standinv
+arms:
+  ctl: {}   # shipped
+  stand0: {borg_param_caution_scary_stand: 0}
+  seeinv1: {borg_param_recover_rest_arms_see_invis: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked to find interesting untested parameters; this one's borg.txt impact note is large and it
+  has never run in the zoo. Pilot first (RULES 16).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result was read. Pilot (RULES 16).
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class: identical plays against ctl; deaths and causes, CL1-3 deaths, final level, deepest
+  level; paired rescued and newly killed; "Scary guy" notes and flights per game (stand0), Detect Invisible reads and their gold cost (seeinv1). Each arm is reported as harmful, neutral (safe to adopt) or helpful
+  (RULES 18). Direction only.
