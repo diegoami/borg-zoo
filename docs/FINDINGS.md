@@ -481,6 +481,19 @@ Lower values send the Borg back for unknown items more often. Each return brings
 
 **#244, kill_live_min_power re-piloted on main 38858846 (run 44465254082, 36 games):** no deaths in either arm. Turning it off changes 17 of 18 games and lowers the mean max CL (5.11 against 5.50). **Bin:** off is neutral on deaths and leans harmful on progress. On c9e58ca0 the shipped 1 had 22 deaths against 28 over 360 starts.
 
+**#329 / #318 complete, kill-unlatch x latch on 6438e1cf (adds big and full 44453041589; all 1,800 starts, 1,728 paired per arm): kill-unlatch costs nothing; plain unlatching leans worse.** Every tier's gate passed (156 of 156 death bundles reproduced in the full tier). Deaths: shipped latch 98 (5.7%), kill-unlatch 98 (rescued 20, newly killed 20, p 1.0; mean max CL 5.18 against 5.10, DL 2.10 against 2.06), plain unlatch 115 (29 / 46, p 0.064). **Bins (RULES 18):** kill-unlatch is **neutral, safe to adopt**, with a small progress gain; plain unlatch **leans worse**.
+
+**#334, #584's Phase Door rule on PR #612 head 2075f54e (pilot 44436156652, 54 games):** ctl 0 deaths, rule-100 1, rule-150 2; Phase Door reads fall from 30 to 12 and 4, and every game changes. **Bins (direction only):** rule-100 neutral, rule-150 leaning worse. Superseded by #347, which measures the version merged to main.
+
+**#335, flight Recall from danger on 38858846 (pilot 44453013990, 7 arms, 126 games):** one death (g2d200) in 126 games; every arm changes 12-16 of 18 games. **Bins:** all neutral at pilot size.
+
+**Pilots of 2026-11-19 (classes-18, 18 starts per arm, all gates passed, direction only):**
+- **#355, caution_scary_damage_percent 40/50/60 on main 07844cf1 (run 44456214066):** 60 (shipped) 0 deaths, 50 1, 40 1, the same Druid (seed 934061548, CL1, wild cat on DL1); 1-2 of 18 games change. All neutral.
+- **#356, caution_rising_explore_ticks 300/500/700/900 on 07844cf1 (run 44456243022):** 0, 0, 1 (a Warrior CL7 on DL2 under 700), 0 deaths; every longer value changes 9 of 18 games and ends slightly lower (CL 5.39-5.50 against 5.67). All neutral; consistent with #191 (longer holds cost progress).
+- **#347, #584's Phase Door rule as merged, on main 4acf071f (run 44458680428, 5 arms):** ctl 1 death, thr-100 2, thr-150 1, fight 2, fight-landing 1; the shared death is the same Druid; the rule changes 17-18 of 18 games. fight-landing is the only arm level with ctl on progress (CL 5.22, DL 2.11). All neutral.
+- **#357, caution_scary_unlatch_calmed on PR #595 head 49933db7 (run 44458706433):** no deaths in any arm; calmed, kill and both change 14 of 18 games, with calmed and both alike as expected. All neutral.
+- **#358, caution_recall_wait_as_usual on PR #627 head cdd065ca (run 44458734474):** no deaths; 1 of 18 games changes (most flight Recalls here are read on DL1, where the switch does not act). Neutral.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
