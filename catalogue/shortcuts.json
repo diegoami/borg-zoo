@@ -961,6 +961,17 @@
         "reborn-detectmin-dbc-switch"
       ],
       "runs": []
+    },
+    "reborn-breederstop-dbc": {
+      "issue": 411,
+      "status": "defined (pilot, small, medium on main dbc92d18)",
+      "what": "#411 on dbc92d18: kill breeders first (stoppable), alone and with avoidance, against both off.",
+      "profiles": [
+        "reborn-breederstop-dbc-ctl",
+        "reborn-breederstop-dbc-stop",
+        "reborn-breederstop-dbc-stop-avoid"
+      ],
+      "runs": []
     }
   }
 }

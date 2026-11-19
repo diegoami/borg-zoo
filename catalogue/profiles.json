@@ -7205,6 +7205,33 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-breederstop-dbc-ctl": {
+      "description": "borg-zoo#411 (reborn-breederstop-dbc-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_stoppable": 0,
+        "borg_param_caution_breeder_avoid": 0
+      }
+    },
+    "reborn-breederstop-dbc-stop": {
+      "description": "borg-zoo#411 (reborn-breederstop-dbc-pilot.yaml): arm stop.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_stoppable": 1,
+        "borg_param_caution_breeder_avoid": 0
+      }
+    },
+    "reborn-breederstop-dbc-stop-avoid": {
+      "description": "borg-zoo#411 (reborn-breederstop-dbc-pilot.yaml): arm stop-avoid.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_stoppable": 1,
+        "borg_param_caution_breeder_avoid": 1
+      }
     }
   }
 }

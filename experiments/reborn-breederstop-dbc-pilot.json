@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-breederstop-dbc-pilot",
+  "issue": 411,
+  "definition": "definitions/reborn-breederstop-dbc-pilot.yaml",
+  "question": "On borg-reborn-rs main dbc92d18, does \"kill breeders first, flee only what cannot be stopped\" (caution_breeder_stoppable), alone or with the flight's colony avoidance (caution_breeder_avoid), save or cost games against both off (shipped)?",
+  "description": "On borg-reborn-rs main dbc92d18, does \"kill breeders first, flee only what cannot be stopped\" (caution_breeder_stoppable), alone or with the flight's colony avoidance (caution_breeder_avoid), save or cost games against both off (shipped)? Generated from definitions/reborn-breederstop-dbc-pilot.yaml: 3 arms on 4.2.6-reborn-rust-main-dbc92d18, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles on dbc92d18 was read. Pilot (RULES 16) on the new build; the\ned8e270d pilot is context only. Gate and report as reborn-breeder-stoppable-pilot's (#411): no config_error; one\nbinary; values written; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified; death\nbundles reproduced; deaths and causes, breeder deaths, max CL and DL, paired rescued and newly killed, identical plays.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-dbc92d18"
+  ],
+  "profiles": [
+    "reborn-breederstop-dbc-ctl",
+    "reborn-breederstop-dbc-stop",
+    "reborn-breederstop-dbc-stop-avoid"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-dbc92d18",
+  "control_profile": "reborn-breederstop-dbc-ctl",
+  "owner_authorization": "2026-11-19: the owner asked to \"do 411\" (its next tiers). The switches are on main since d689168c and main changed play since the pilot's build, so the tiers run on main dbc92d18 behind a pilot there (RULES 16).",
+  "retain_evidence": true
+}
