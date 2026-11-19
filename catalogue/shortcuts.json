@@ -204,7 +204,7 @@
     },
     "reborn-heal-by-class": {
       "issue": 265,
-      "status": "re-pilot on 38858846 done: lower class values lean harmful on both builds",
+      "status": "re-pilot on 38858846 done; small tier (ctl, curve-lo, reserve-lo, common) defined",
       "what": "Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, and class files off (common 100/125); real-HP reserve and speed at shipped values; read per class.",
       "profiles": [
         "reborn-hbc-common",
@@ -559,11 +559,13 @@
     },
     "reborn-scary-ends": {
       "issue": 350,
-      "status": "pilots done: all5 helpful on progress; fragile end alone inert",
+      "status": "pilots done (all5 helpful on progress); 100k small+medium, 200k small and the deeper-cut pilots (all8, early-none) defined",
       "what": "Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846.",
       "profiles": [
         "reborn-scaryends-all5",
+        "reborn-scaryends-all8",
         "reborn-scaryends-ctl",
+        "reborn-scaryends-early-none",
         "reborn-scaryends-f3",
         "reborn-scaryends-fraghalf",
         "reborn-scaryends-t5",
@@ -577,6 +579,25 @@
           "result": "100k: ctl 0, all5 0 deaths, CL 5.50 v 5.83; 200k: ctl 3, all5 1 deaths, CL 6.17 v 8.22"
         }
       ]
+    },
+    "reborn-bundle": {
+      "issue": 361,
+      "status": "defined (pilot on 38858846, not dispatched)",
+      "what": "The safe-to-adopt changes together on main 38858846: scary all5 + Ranger point-blank 1 + flight Recall on DL1 (gate 0), and the bundle without all5.",
+      "profiles": [
+        "reborn-bundle-ambitious-speed30",
+        "reborn-bundle-bundle",
+        "reborn-bundle-bundle-noscary",
+        "reborn-bundle-ctl",
+        "reborn-bundle-none-speed30",
+        "reborn-bundle-none-speed30-unknown2",
+        "reborn-bundle-none-speed30-unknown3",
+        "reborn-bundle-none-speed30-unknown4",
+        "reborn-bundle-plan-speed0",
+        "reborn-bundle-plan-speed30",
+        "reborn-bundle-plan-speed60"
+      ],
+      "runs": []
     }
   }
 }
