@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-recall-danger-pilot",
+  "issue": 335,
+  "definition": "definitions/reborn-recall-danger-pilot.yaml",
+  "question": "On borg-reborn-rs main 38858846, with a flight's Word of Recall held back (the DL1 gate at 2, or caution_flee_recall 0), does allowing it from a danger share of the HP (caution_flee_recall_danger_percent 50, 100, 200) save games or progress?",
+  "description": "On borg-reborn-rs main 38858846, with a flight's Word of Recall held back (the DL1 gate at 2, or caution_flee_recall 0), does allowing it from a danger share of the HP (caution_flee_recall_danger_percent 50, 100, 200) save games or progress? Generated from definitions/reborn-recall-danger-pilot.yaml: 7 arms on 4.2.6-reborn-rust-main-38858846, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#587, #591). Pilot (RULES 16); larger tiers only\nafter this gate and the owner. ctl is the shipped configuration, where nothing holds a flight's Recall back and the\ndanger setting cannot fire. The danger arms compare against their gate's own 0 arm: g2d* against g2, r0d100 against r0.\nGate:\n- no config_error; one binary; each arm's three values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level; paired rescued and newly killed against ctl, against g2 (g2d*) and\n  against r0 (r0d100);\n- \"Fleeing the level (recall)\" notes per game and their depth; Word of Recall read in total and carried at the end;\n- deaths within 500 game turns of a Recall read, and deaths within 2,000 game turns of a flight that did not read one.\n18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-38858846"
+  ],
+  "profiles": [
+    "reborn-recalldanger-ctl",
+    "reborn-recalldanger-g2",
+    "reborn-recalldanger-g2d50",
+    "reborn-recalldanger-g2d100",
+    "reborn-recalldanger-g2d200",
+    "reborn-recalldanger-r0",
+    "reborn-recalldanger-r0d100"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-38858846",
+  "control_profile": "reborn-recalldanger-ctl",
+  "retain_evidence": true
+}
