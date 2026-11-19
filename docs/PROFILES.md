@@ -17,7 +17,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `rs-additive-6` | [#129](https://github.com/diegoami/borg-zoo/issues/129) | 6 | obsolete (#129 closed by the owner) | borg-rs: existing behaviour, shopping only, and four trip thresholds (0,0), (1,2), (1,4), (2,4) as (pack slack, unknown stacks). |
 | `neo-default` | [#137](https://github.com/diegoami/borg-zoo/issues/137) | 1 | small tier done | Neo Borg with its default recorded flags (no settings). |
 | `reborn-errand-ladder` | – | 2 | done (option-C pilot, borg-reborn-rs #207, #208) | Errands: borg-rs's core in the reborn shell with no errand against the class ladders (borg_reborn_errand = ladder). |
-| `reborn-heal-by-class` | [#265](https://github.com/diegoami/borg-zoo/issues/265) | 6 | re-pilot on 38858846 done: lower class values lean harmful on both builds | Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, and class files off (common 100/125); real-HP reserve and speed at shipped values; read per class. |
+| `reborn-heal-by-class` | [#265](https://github.com/diegoami/borg-zoo/issues/265) | 6 | re-pilot on 38858846 done; small tier (ctl, curve-lo, reserve-lo, common) defined | Healing by class on main 4a482c58: each class's curve and reserve at about 0.5x and 1.5x its shipped value, and class files off (common 100/125); real-HP reserve and speed at shipped values; read per class. |
 | `reborn-outmatched` | [#270](https://github.com/diegoami/borg-zoo/issues/270) | 4 | superseded by #275 (reborn-heal-outmatched on 92fafc61: off, min_loss 30-70); not dispatched | Outmatched healing on main 4a482c58: caution_heal_when_outmatched off against on (shipped), and its min_loss threshold at 25, 50 (compiled) and 75. |
 | `reborn-attack-by-class` | [#274](https://github.com/diegoami/borg-zoo/issues/274) | 4 | verysmall done: no lead; closing proposed | Attack preferences by class on main 4a482c58: shipped, every class preference neutral (1000), distance from 1000 halved, and x1.5 (capped at 2000); read per class. |
 | `reborn-worships` | [#279](https://github.com/diegoami/borg-zoo/issues/279) | 6 | pilot done (gate passed); damage, speed, hp, mana inert (18/18 identical), dropped; ac changes every game | The five equipment borg_worships_* switches (damage, speed, hp, mana, ac), each on alone against all FALSE (shipped), on main 92fafc61. Gold is left out: the live town planner bypasses its selling effect. |
@@ -32,7 +32,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-attack-focus` | [#319](https://github.com/diegoami/borg-zoo/issues/319) | 3 | done: small+medium+big, no outcome changed; closed (FINDINGS) | Attack focus by class on main f660aecc: shipped class preferences, with every family a class file does not raise at 750 or 500. |
 | `reborn-plays-risky` | [#330](https://github.com/diegoami/borg-zoo/issues/330) | 2 | pilot done: risky kills; closed (FINDINGS) | borg_plays_risky FALSE (shipped) against TRUE on main 6438e1cf. |
 | `reborn-597` | [#342](https://github.com/diegoami/borg-zoo/issues/342) | 3 | pilot done: both switches neutral (inert) | #597 switches on main 6438e1cf: caution_twitch_avoid_lava and caution_stair_parked_fallback each off against shipped 1. |
-| `reborn-scary-ends` | [#350](https://github.com/diegoami/borg-zoo/issues/350) | 6 | pilots done: all5 helpful on progress; fragile end alone inert | Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846. |
+| `reborn-scary-ends` | [#350](https://github.com/diegoami/borg-zoo/issues/350) | 11 | tiers and deep-cut pilots done (all5: more progress, more early deaths); floor pilots (#369) defined | Lowering the scary list's fragile end with the tough end (t5, all5, t5f6 at 100k; f3, all5, t5f6 and halved class fragility at 200k), on main 38858846. |
+| `reborn-bundle` | [#361](https://github.com/diegoami/borg-zoo/issues/361) | 11 | defined (pilot on 38858846, not dispatched) | The safe-to-adopt changes together on main 38858846: scary all5 + Ranger point-blank 1 + flight Recall on DL1 (gate 0), and the bundle without all5. |
+| `reborn-kill-power-main` | [#244](https://github.com/diegoami/borg-zoo/issues/244) | 2 | defined (re-pilot on 38858846, not dispatched) | kill_live_min_power shipped 1 against 0 on main 38858846. |
 
 ### `heal-attack-4`
 
@@ -470,8 +472,13 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | Profile | `borg_scary_list_lines` |
 | --- | --- |
 | `reborn-scaryends-all5` | 28 lines |
+| `reborn-scaryends-all5-pal` | 28 lines |
+| `reborn-scaryends-all8` | 28 lines |
 | `reborn-scaryends-ctl` | – |
+| `reborn-scaryends-early-none` | 14 lines |
 | `reborn-scaryends-f3` | 28 lines |
+| `reborn-scaryends-floor3` | 28 lines |
+| `reborn-scaryends-floor4` | 28 lines |
 | `reborn-scaryends-fraghalf` | 1 line |
 | `reborn-scaryends-t5` | 28 lines |
 | `reborn-scaryends-t5f6` | 28 lines |
@@ -480,84 +487,116 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | --- | --- | --- | --- |
 | [44446160367 + 44446177348](https://github.com/diegoami/borg-zoo/actions/runs/44446160367 + 44446177348) | pilots (100k, 200k) | `4.2.6-reborn-rust-main-38858846` | 100k: ctl 0, all5 0 deaths, CL 5.50 v 5.83; 200k: ctl 3, all5 1 deaths, CL 6.17 v 8.22 |
 
+### `reborn-bundle`
+
+The safe-to-adopt changes together on main 38858846: scary all5 + Ranger point-blank 1 + flight Recall on DL1 (gate 0), and the bundle without all5.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_arrow_point_blank_divisor_ranger` | `borg_param_attack_preference_blackguard_melee_permille` | `borg_param_attack_preference_blackguard_spell_permille` | `borg_param_attack_preference_druid_spell_permille` | `borg_param_attack_preference_mage_device_permille` | `borg_param_attack_preference_mage_spell_permille` | `borg_param_attack_preference_necromancer_device_permille` | `borg_param_attack_preference_necromancer_spell_permille` | `borg_param_attack_preference_paladin_melee_permille` | `borg_param_attack_preference_paladin_spell_permille` | `borg_param_attack_preference_priest_spell_permille` | `borg_param_attack_preference_ranger_projectile_permille` | `borg_param_attack_preference_rogue_projectile_permille` | `borg_param_attack_preference_rogue_thrown_permille` | `borg_param_attack_preference_warrior_melee_permille` | `borg_param_attack_preference_warrior_projectile_permille` | `borg_param_attack_preference_warrior_thrown_permille` | `borg_param_attack_speed_fight_danger_tenths` | `borg_param_caution_flee_recall_gate_below_depth` | `borg_param_caution_heal_when_outmatched` | `borg_plan` | `borg_scary_list_lines` | `borg_town_plan` | `borg_trip_pack_slack` | `borg_trip_policy` | `borg_trip_unknown_stacks` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-bundle-ambitious-speed30` | – | 1600 | 1400 | 1700 | 1200 | 2000 | 1200 | 1800 | 1800 | 1200 | 1700 | 2000 | 1300 | 1600 | 1800 | 1200 | 1200 | 30 | – | 1 | errands_plan_ambitious.txt | – | 1 | 1 | 1 | 5 |
+| `reborn-bundle-bundle` | 1 | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | 0 | – | – | 28 lines | – | – | – | – |
+| `reborn-bundle-bundle-noscary` | 1 | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | 0 | – | – | – | – | – | – | – |
+| `reborn-bundle-ctl` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-bundle-none-speed30` | – | 1600 | 1400 | 1700 | 1200 | 2000 | 1200 | 1800 | 1800 | 1200 | 1700 | 2000 | 1300 | 1600 | 1800 | 1200 | 1200 | 30 | – | 1 | – | – | 1 | 1 | 1 | 5 |
+| `reborn-bundle-none-speed30-unknown2` | – | 1600 | 1400 | 1700 | 1200 | 2000 | 1200 | 1800 | 1800 | 1200 | 1700 | 2000 | 1300 | 1600 | 1800 | 1200 | 1200 | 30 | – | 1 | – | – | 1 | 1 | 1 | 2 |
+| `reborn-bundle-none-speed30-unknown3` | – | 1600 | 1400 | 1700 | 1200 | 2000 | 1200 | 1800 | 1800 | 1200 | 1700 | 2000 | 1300 | 1600 | 1800 | 1200 | 1200 | 30 | – | 1 | – | – | 1 | 1 | 1 | 3 |
+| `reborn-bundle-none-speed30-unknown4` | – | 1600 | 1400 | 1700 | 1200 | 2000 | 1200 | 1800 | 1800 | 1200 | 1700 | 2000 | 1300 | 1600 | 1800 | 1200 | 1200 | 30 | – | 1 | – | – | 1 | 1 | 1 | 4 |
+| `reborn-bundle-plan-speed0` | – | 1600 | 1400 | 1700 | 1200 | 2000 | 1200 | 1800 | 1800 | 1200 | 1700 | 2000 | 1300 | 1600 | 1800 | 1200 | 1200 | – | – | 1 | errands_plan.txt | – | 1 | 1 | 1 | 5 |
+| `reborn-bundle-plan-speed30` | – | 1600 | 1400 | 1700 | 1200 | 2000 | 1200 | 1800 | 1800 | 1200 | 1700 | 2000 | 1300 | 1600 | 1800 | 1200 | 1200 | 30 | – | 1 | errands_plan.txt | – | 1 | 1 | 1 | 5 |
+| `reborn-bundle-plan-speed60` | – | 1600 | 1400 | 1700 | 1200 | 2000 | 1200 | 1800 | 1800 | 1200 | 1700 | 2000 | 1300 | 1600 | 1800 | 1200 | 1200 | 60 | – | 1 | errands_plan.txt | – | 1 | 1 | 1 | 5 |
+
+### `reborn-kill-power-main`
+
+kill_live_min_power shipped 1 against 0 on main 38858846.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_kill_live_min_power` |
+| --- | --- |
+| `reborn-killpow38-ctl` | 1 |
+| `reborn-killpow38-off0` | 0 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
 
 | Setting | Values used | Shortcuts | What it does, and what we learned |
 | --- | --- | --- | --- |
-| `borg_plan` | errands_plan.txt, errands_plan_ambitious.txt, not set | `heal-pilot-12`, `maxdepth-2x5`, `reborn-5arm-town`, `reborn-3x3-trip`, `reborn-5arm-shop` | The errands plan the Borg follows. Loop-levels plans up to `d3ebe3c0`: the errands plan added caster deaths with the town planner (borg-cemetery#19). Max-depth caps from `6d1bca10` (#440): a cap is a preparation check, not a hard limit; 35 of 900 games died or ended below it (#147). |
-| `borg_town_plan` | 0, 1 | `reborn-5arm-town`, `reborn-3x3-trip`, `reborn-5arm-shop`, `rs-additive-6` | "New inventory": the live town planner. Alone it looked best in the #123 small tier (15 deaths v control 22 of 90). |
-| `borg_trip_policy` | 0, 1 | `heal-pilot-12`, `maxdepth-2x5`, `reborn-3x3-trip`, `reborn-5arm-shop`, `rs-additive-6` | Extra reasons to return to town. Barely changes play: 42 of 54 paired pilot games identical. Kept off in #123's development arms until it is shown to help (owner). From `8a0b57c8` it is borg-rs#88's additive policy. |
-| `borg_trip_unknown_stacks` | 0, 2, 3, 4, not set | `maxdepth-2x5`, `rs-additive-6` | Return when this many carried stacks are unidentified (default 4). Changes play: (3,x) differs from return-off in about 40% of games; (5,1) played like return-off in 26-27 of 30 starts. |
-| `borg_trip_pack_slack` | 0, 1, 2, not set | `maxdepth-2x5`, `rs-additive-6` | Return when this few pack slots are free (default 2). Almost no effect: 1 and 2 played identical keys in 359 of 360 #147 games. |
+| `borg_plan` | errands_plan.txt, errands_plan_ambitious.txt, not set | `heal-pilot-12`, `maxdepth-2x5`, `reborn-5arm-town`, `reborn-3x3-trip`, `reborn-5arm-shop`, `reborn-bundle` | The errands plan the Borg follows. Loop-levels plans up to `d3ebe3c0`: the errands plan added caster deaths with the town planner (borg-cemetery#19). Max-depth caps from `6d1bca10` (#440): a cap is a preparation check, not a hard limit; 35 of 900 games died or ended below it (#147). |
+| `borg_town_plan` | 0, 1, not set | `reborn-5arm-town`, `reborn-3x3-trip`, `reborn-5arm-shop`, `rs-additive-6`, `reborn-bundle` | "New inventory": the live town planner. Alone it looked best in the #123 small tier (15 deaths v control 22 of 90). |
+| `borg_trip_policy` | 0, 1, not set | `heal-pilot-12`, `maxdepth-2x5`, `reborn-3x3-trip`, `reborn-5arm-shop`, `rs-additive-6`, `reborn-bundle` | Extra reasons to return to town. Barely changes play: 42 of 54 paired pilot games identical. Kept off in #123's development arms until it is shown to help (owner). From `8a0b57c8` it is borg-rs#88's additive policy. |
+| `borg_trip_unknown_stacks` | 0, 2, 3, 4, 5, not set | `maxdepth-2x5`, `rs-additive-6`, `reborn-bundle` | Return when this many carried stacks are unidentified (default 4). Changes play: (3,x) differs from return-off in about 40% of games; (5,1) played like return-off in 26-27 of 30 starts. |
+| `borg_trip_pack_slack` | 0, 1, 2, not set | `maxdepth-2x5`, `rs-additive-6`, `reborn-bundle` | Return when this few pack slots are free (default 2). Almost no effect: 1 and 2 played identical keys in 359 of 360 #147 games. |
 | `borg_reborn_errand` | ladder, none | `reborn-errand-ladder` | The errand over the core: `none`, or a command such as `ladder` (the class ladders). The ladder looked better in the option-C pilot (24.9% v 29.1% deaths, descriptive). |
-| `borg_param_caution_heal_when_outmatched` | 0, 1, not set | `heal-attack-4`, `heal-pilot-12`, `reborn-outmatched` | A hurt Borg in lethal danger with no escape drinks its best cure potion (#151). Waits for borg-reborn-rs #461. |
+| `borg_param_caution_heal_when_outmatched` | 0, 1, not set | `heal-attack-4`, `heal-pilot-12`, `reborn-outmatched`, `reborn-bundle` | A hurt Borg in lethal danger with no escape drinks its best cure potion (#151). Waits for borg-reborn-rs #461. |
 | `borg_param_attack_arrow_point_blank_divisor_blackguard` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_arrow_point_blank_divisor_druid` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_arrow_point_blank_divisor_mage` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_arrow_point_blank_divisor_necromancer` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_arrow_point_blank_divisor_paladin` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_arrow_point_blank_divisor_priest` | 2, 10, not set | `reborn-pbd-by-class` |  |
-| `borg_param_attack_arrow_point_blank_divisor_ranger` | 0, 1, 3, 4, not set | `reborn-pbd-by-class`, `reborn-pbd-rr` |  |
+| `borg_param_attack_arrow_point_blank_divisor_ranger` | 0, 1, 3, 4, not set | `reborn-pbd-by-class`, `reborn-pbd-rr`, `reborn-bundle` |  |
 | `borg_param_attack_arrow_point_blank_divisor_rogue` | 0, 2, 4, 6, not set | `reborn-pbd-by-class`, `reborn-pbd-rr` |  |
 | `borg_param_attack_arrow_point_blank_divisor_warrior` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_preference_blackguard_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_blackguard_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_blackguard_melee_permille` | 1000, 1300, 1600, 1900, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_blackguard_melee_permille` | 1000, 1300, 1600, 1900, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_blackguard_projectile_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_blackguard_spell_permille` | 1000, 1200, 1400, 1600, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_blackguard_spell_permille` | 1000, 1200, 1400, 1600, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_blackguard_thrown_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_druid_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_druid_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_druid_melee_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_druid_projectile_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_druid_spell_permille` | 1000, 1350, 1700, 2000, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_druid_spell_permille` | 1000, 1350, 1700, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_druid_thrown_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_mage_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_mage_device_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_mage_device_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_mage_melee_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_mage_projectile_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_mage_spell_permille` | 1000, 1500, 2000, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_mage_spell_permille` | 1000, 1500, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_mage_thrown_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_necromancer_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_necromancer_device_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_necromancer_device_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_necromancer_melee_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_necromancer_projectile_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_necromancer_spell_permille` | 1000, 1400, 1800, 2000, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_necromancer_spell_permille` | 1000, 1400, 1800, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_necromancer_thrown_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_paladin_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_paladin_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_paladin_melee_permille` | 1000, 1400, 1800, 2000, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_paladin_melee_permille` | 1000, 1400, 1800, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_paladin_projectile_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_paladin_spell_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_paladin_spell_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_paladin_thrown_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_priest_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_priest_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_priest_melee_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_priest_projectile_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_priest_spell_permille` | 1000, 1350, 1700, 2000, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_priest_spell_permille` | 1000, 1350, 1700, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_priest_thrown_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_ranger_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_ranger_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_ranger_melee_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_ranger_projectile_permille` | 1000, 1500, 2000, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_ranger_projectile_permille` | 1000, 1500, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_ranger_spell_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_ranger_thrown_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_rogue_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_rogue_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_rogue_melee_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_rogue_projectile_permille` | 1000, 1150, 1300, 1450, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_rogue_projectile_permille` | 1000, 1150, 1300, 1450, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_rogue_spell_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_rogue_thrown_permille` | 1000, 1300, 1600, 1900, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_rogue_thrown_permille` | 1000, 1300, 1600, 1900, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_warrior_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_warrior_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_warrior_melee_permille` | 1000, 1400, 1800, 2000, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
-| `borg_param_attack_preference_warrior_projectile_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_warrior_melee_permille` | 1000, 1400, 1800, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
+| `borg_param_attack_preference_warrior_projectile_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_warrior_spell_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class` |  |
+| `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
+| `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
-| `borg_param_caution_flee_recall_gate_below_depth` | 0, 2, 3, not set | `reborn-recall-settings` |  |
+| `borg_param_caution_flee_recall_gate_below_depth` | 0, 2, 3, not set | `reborn-recall-settings`, `reborn-bundle` |  |
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
 | `borg_param_caution_rising_explore_ticks` | 500, 1000, 1500, 2000, not set | `reborn-rising-ticks3` |  |
 | `borg_param_caution_scary_afraid` | 0, 1 | `reborn-scary-calm` |  |
@@ -567,6 +606,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_named_monsters` | 0, 1 | `reborn-scary-named-damage` |  |
 | `borg_param_caution_stair_parked_fallback` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
+| `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
 | `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 115, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_druid` | 0, 60, 185, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_mage` | 0, 75, 225, not set | `reborn-heal-by-class` |  |
@@ -587,7 +627,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
-| `borg_scary_list_lines` | 1 line, 28 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends` |  |
+| `borg_scary_list_lines` | 1 line, 14 lines, 28 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |
