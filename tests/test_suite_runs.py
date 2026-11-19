@@ -108,4 +108,20 @@ class ScaryListTest(unittest.TestCase):
                          'a = 1\nborg_scary_list = /x/s.txt\n')
 
 
+
+class ClassValueTest(unittest.TestCase):
+    def test_class_lines_resolve_to_their_class_value(self):
+        from zoo import suite_runs
+        params = {'attack_preference_melee_permille': {'value': 1000, 'origin': 'default',
+                                                       'class_values': {'warrior': {'value': 1800, 'origin': 'borg.txt'}}},
+                  'town_heal_reserve_hp_percent': {'value': 400, 'origin': 'borg.txt',
+                                                   'class_values': {'mage': {'value': 300, 'origin': 'borg.txt'}}}}
+        row = suite_runs.effective_row(params, 'attack_preference_warrior_melee_permille')
+        self.assertEqual((row['value'], row['origin'], row['class']), (1800, 'borg.txt', 'warrior'))
+        self.assertEqual(suite_runs.effective_row(params, 'town_heal_reserve_hp_percent_mage')['value'], 300)
+        self.assertEqual(suite_runs.effective_row(params, 'attack_preference_melee_permille@warrior')['value'], 1800)
+        self.assertEqual(suite_runs.effective_row(params, 'town_heal_reserve_hp_percent')['value'], 400)
+        self.assertEqual(suite_runs.effective_row(params, 'town_heal_reserve_hp_percent_rogue'), {})
+
+
 if __name__=='__main__':unittest.main()

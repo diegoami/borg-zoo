@@ -152,6 +152,26 @@ def template(plan,case):
     return text
 
 
+CLASSES=('warrior','mage','druid','priest','necromancer','paladin','rogue','ranger','blackguard')
+
+
+def effective_row(params,name):
+    """The receipt row for a borg.txt parameter name. borg-reborn-rs #520 keeps per-class values
+    (`<name>@<class>`, the legacy `<name>_<class>` and `attack_preference_<class>_<family>_permille`)
+    as class_values of the general parameter; those come back as {value, origin, class}."""
+    if name in params:return params[name]
+    base=cls=None
+    if '@' in name:base,cls=name.split('@',1)
+    else:
+        m=re.fullmatch(r'attack_preference_([a-z]+)_([a-z]+)_permille',name)
+        if m and m.group(1) in CLASSES:base,cls='attack_preference_'+m.group(2)+'_permille',m.group(1)
+        else:
+            cls=next((c for c in CLASSES if name.endswith('_'+c)),None)
+            base=name[:-len(cls)-1] if cls else None
+    entry=(params.get(base) or {}).get('class_values',{}).get(cls) if base else None
+    return dict(entry,**{'class':cls}) if entry else {}
+
+
 def validate(plan,case,receipts,streams):
     arm=plan['arm'];t=json.loads(receipts['trial.json']);s=case['scenario'];summary=json.loads(receipts['run/summary.json']);process=json.loads(receipts['run/process.json'])
     horizon=plan['manifest']['horizon_engine_turns']
@@ -183,8 +203,11 @@ def validate(plan,case,receipts,streams):
     if cfg.get('params_core_sha256')!=digest_text(receipts['run/params-core.json']):raise ValueError('parameter receipt changed')
     for name,value in wanted.items():
         if name.startswith('borg_param_'):
-            row=params.get(name.removeprefix('borg_param_'),{})
-            if str(row.get('value'))!=value or row.get('origin')!='borg.txt' or str(proof['named_parameters'].get(name))!=value:raise ValueError('parameter not effective: '+name)
+            row=effective_row(params,name.removeprefix('borg_param_'))
+            named=proof['named_parameters'].get(name)
+            # A class line (#520) is effective as a class value; a runner that predates
+            # class values does not list it among the named parameters.
+            if str(row.get('value'))!=value or row.get('origin')!='borg.txt' or (named is None and not row.get('class')) or (named is not None and str(named)!=value):raise ValueError('parameter not effective: '+name)
     if plan_sha:
         if proof.get('plan_sha256')!=plan_sha or proof.get('loaded_plan_sha256')!=plan_sha or digest_text(receipts['run/errands_plan.txt'])!=plan_sha or cfg.get('borg_errands_plan_sha256')!=plan_sha:raise ValueError('errands file not loaded')
     elif proof.get('plan_sha256') is not None or 'run/errands_plan.txt' in receipts:raise ValueError('a plan was loaded though none was frozen')
