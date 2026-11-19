@@ -6894,6 +6894,37 @@
         "borg_town_w_attack": 200,
         "borg_town_attack_turns": 50
       }
+    },
+    "reborn-bgphase-a87-rule-on": {
+      "description": "borg-zoo#437 (reborn-bgphase-a87-pilot.yaml): arm rule-on.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-bgphase-a87-rule-off": {
+      "description": "borg-zoo#437 (reborn-bgphase-a87-pilot.yaml): arm rule-off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_adjacent_rule": 0,
+        "borg_param_escape_phase_lost_test": 1
+      }
+    },
+    "reborn-casteroil-a87-ctl": {
+      "description": "borg-zoo#436 (reborn-casteroil-a87-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-casteroil-a87-w_attack-200": {
+      "description": "borg-zoo#436 (reborn-casteroil-a87-pilot.yaml): arm w_attack-200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_w_attack": 200
+      }
     }
   }
 }
