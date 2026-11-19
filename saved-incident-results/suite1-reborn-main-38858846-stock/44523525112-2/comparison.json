@@ -1,0 +1,3610 @@
+{
+  "arms": [
+    {
+      "build": {
+        "binary": "/home/runner/work/borg-zoo/borg-zoo/source/build/rust/game/angband",
+        "binary_sha256": "30da021c0acc174d1dc2b4538cff2ead38c5f37ae7c296a63be2515a6f12ecbd",
+        "built_utc": "2026-11-19T12:30:20Z",
+        "cc": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+        "engine_upstream": "42cd156ac9f95ddf4311e88dd7ad462292d6d1d6",
+        "git_dirty": "no",
+        "git_rev": "388588468bfe91b2a8f84b38599813f2acfed64e",
+        "impl": "rust",
+        "inputs_dirty": "no",
+        "rustc": "rustc 1.100.0 (0ef1bc386 2026-11-09)",
+        "source_sha256": "a64b288205947332ff2336efaaa29f5dd72ed6b72cea88dfcb711a3891b4b67f"
+      },
+      "core": "borg-rs",
+      "errands_plan_sha256": null,
+      "id": "suite1-reborn-main-38858846-stock",
+      "inputs": {
+        "files": {
+          "borg.txt": "3ce9ae4f0736aa94cc8ce440b2770fb6a1fd5d1013fdac10b87f73550c0d242b",
+          "provenance.json": "80ed056506409b0d2bf03ba424b23888afe7fe31fff7dcd710e46f96f8dd24e8",
+          "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+        },
+        "path": "scenario-inputs/suite1-reborn-main-38858846-stock"
+      },
+      "native_tools": {
+        "commit": "09225018dd5f2d4336a16b29478793d902c70dc3",
+        "repository": "diegoami/borg-cemetery"
+      },
+      "profile": "stock",
+      "settings": {},
+      "source": {
+        "commit": "388588468bfe91b2a8f84b38599813f2acfed64e",
+        "repository": "diegoami/borg-reborn-rs"
+      }
+    }
+  ],
+  "bank_artifact": {
+    "artifact": "balanced999-bank",
+    "artifact_id": 14289964111,
+    "file": "balanced999-bank.tgz",
+    "manifest": "synthetic/balanced-999-incidents/generated/bank.json",
+    "members": "synthetic/balanced-999-incidents/generated",
+    "repository": "diegoami/borg-zoo",
+    "run_id": 43979480269,
+    "sha256": "186066b039ccc8451642cbcbd77e714c6615c20d99d0de4b18963289c5748cbf"
+  },
+  "cases": [
+    {
+      "birth_seed": 1000005,
+      "class_idx": 0,
+      "coverage": {
+        "depth": 4,
+        "equipment": [
+          {
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (1733 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Soft Leather Armour [8,+0]",
+            "kind": 107,
+            "slot": 6
+          },
+          {
+            "description": "Cloak [1,+0]",
+            "kind": 123,
+            "slot": 7
+          },
+          {
+            "description": "Wicker Shield [2,+0]",
+            "kind": 132,
+            "slot": 8
+          }
+        ],
+        "equipment_kind_signature": "6e834cb9ba5872b305bff7313a071c08df4c65b8176f2cba81aa9b4905d149a3",
+        "hp": 89,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Necromantic Tome [Into the Shadows]",
+            "kind": 391
+          },
+          {
+            "count": 1,
+            "description": "Ration of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Potion of Berserk Strength",
+            "kind": 249
+          },
+          {
+            "count": 2,
+            "description": "Cloudy Potions",
+            "kind": 247
+          },
+          {
+            "count": 1,
+            "description": "Cerulean Potion",
+            "kind": 250
+          },
+          {
+            "count": 2,
+            "description": "Yellow Potions",
+            "kind": 237
+          },
+          {
+            "count": 1,
+            "description": "Misty Potion",
+            "kind": 248
+          },
+          {
+            "count": 1,
+            "description": "Light Pink Potion",
+            "kind": 256
+          },
+          {
+            "count": 5,
+            "description": "Scrolls titled \"mitacio mosum\"",
+            "kind": 189
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 8,
+        "mana_state": "full",
+        "max_hp": 89,
+        "max_sp": 0,
+        "sp": 0
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "c90b9b0dacae42152d754b5bf34f9d7c4d2c745d70ca5c449f0963f092aa97bb",
+          "elapsed_seconds": 0.5988401449999969,
+          "reason": null,
+          "status": "death",
+          "streams": {
+            "keys.log": "c67eed17e2a09caaf4d7f0eb862d8a97fbdb66a577dd6b17f8f94a1d474302fd",
+            "messages.log": "93e7e3b26b6f92cd5b34dd2c7d6bd81514e62c9a7ae535d43416fd76cc5a8d86",
+            "state.log": "4bbb0cfc672f03356bf0d54842e97bb94fd0fa630961aa872dd2a4385312e0aa"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Warrior",
+            "class_idx": 0,
+            "clevel": 8,
+            "dead": true,
+            "death_cause": "a gallant",
+            "depth": 4,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 907236861,
+              "rng": "057fe4a303f2ff36d44a3b1474f2f0975617fd00033b8ba94aa4216df171a72d7ae71482108f6dcc868e3cfa5703f729da16a13686ecb09d892be6d6318c8b971968148ecbc4fdd853db923ec4f61bdf51bdc7dc8815a6826725637fb8608ca157ebc04f98fefc4455604130ec67150deba236bc0f4bce7c7433c78f6c6f7242",
+              "rng_index": 15
+            },
+            "game_turns": 74172,
+            "hp": -2,
+            "keys": 104,
+            "loaded": true,
+            "loaded_turn": 73905,
+            "max_clevel": 8,
+            "max_depth": 4,
+            "max_hp": 89,
+            "menu_letters": true,
+            "player_energy": 740410,
+            "player_turns": 7404,
+            "race": "Human",
+            "race_idx": 0,
+            "resting_turns": 115,
+            "seed": 1000005,
+            "stop_reason": "death",
+            "wall_seconds": 0.095
+          }
+        }
+      },
+      "historical_type": "death",
+      "id": "c0-r0-s1000005-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-0bcff26ad83d6add0464db57188bd7b7965ca86d4f8b4802082871285ac673c4",
+        "parent_death_id": "D-4cd95412aa2b05e4c50df4bd50fe35a816016d2f86b8496d326f4101948a0c1d",
+        "program": "borg-reborn-rs",
+        "seed": 1000005,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "death"
+      },
+      "pair": null,
+      "race_idx": 0,
+      "save_sha256": "9c50f2d4421e5343a95d49dc47f8f34dfe32ba528b7c3d6b8ee50de40d5e826a",
+      "scenario_sha256": "8ae760ebe1e5c4e7a8fef04cfdaa286e1decc8c93ec5556b451210181716c609",
+      "selection": {
+        "first_visible_turn": 73985,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 80,
+        "monster_index": 39,
+        "monster_kind": "scout",
+        "no_omniscient_trigger": true,
+        "observation_line": 7283,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 73985
+      },
+      "start_turn": 73905,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1010000,
+      "class_idx": 1,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Rapier (1d6) (+0,+0)",
+            "kind": 35,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (4152 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "581551ca0bcdca9b672352c4f8216ed34c6ca525fdd287635612ab011afa74d6",
+        "hp": 12,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Magic Spells [First Spells]",
+            "kind": 376
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 3,
+            "description": "Potions of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 2,
+            "description": "Scrolls of Phase Door",
+            "kind": 185
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 1,
+            "description": "Scroll titled \"pharum vus pro\"",
+            "kind": 189
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 2,
+        "mana_state": "partial",
+        "max_hp": 12,
+        "max_sp": 4,
+        "sp": 3
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "a7d89036c172cd8f820d87c03651f80b377a6be70b97df529170bcf66c505e23",
+          "elapsed_seconds": 0.4998885170000449,
+          "reason": null,
+          "status": "survived_horizon",
+          "streams": {
+            "keys.log": "2144a4093cdd8dcdb48ec9b88db1e74d00a51715017a707814ca9b3b8a16e2fe",
+            "messages.log": "7f7fc792b32b662bf2386af5bfedac8e5456cf1da4ac6c9d95dd99da503558d9",
+            "state.log": "be2351fb1111485f2cb39f28fbccd5e22b99ee8860e79503f087c6d0a5454455"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Mage",
+            "class_idx": 1,
+            "clevel": 2,
+            "dead": false,
+            "death_cause": "",
+            "depth": 1,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 2135120755,
+              "rng": "aeb39eb219f51f322d9edd21aa3c48ef0925904b6228f5b3a96c66bac8240d1b3f39cf2ed0b0f9984ebb44129e45851555d74c3935e5b485035a1e8d16f5e3c46e2ee41afd7b782c5682c002b822d8f665f310c40288c9cf965ab71cf800e1d3e554c34ad6a78f525cf992753450f56b68cc713728d1a88cc65d0461bf0fbf94",
+              "rng_index": 9
+            },
+            "game_turns": 11002,
+            "hp": 12,
+            "keys": 140,
+            "loaded": true,
+            "loaded_turn": 9002,
+            "max_clevel": 2,
+            "max_depth": 1,
+            "max_hp": 12,
+            "menu_letters": true,
+            "player_energy": 110220,
+            "player_turns": 1102,
+            "race": "Elf",
+            "race_idx": 2,
+            "resting_turns": 155,
+            "seed": 1010000,
+            "stop_reason": "turns",
+            "wall_seconds": 0.1
+          }
+        }
+      },
+      "historical_type": "observed_critical_recovery",
+      "id": "c1-r2-s1010000-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-d112377d0e071ee634056fa5eb6655e8be6028886e8ddfc3a285d5b21e608ded",
+        "parent_death_id": "D-d0ab6c0b4bc155aa45ed889c9c5978797209f2e30ec3721cd2493921dc679550",
+        "program": "borg-reborn-rs",
+        "seed": 1010000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "survived_horizon"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "16a19cde50c5ece841babb770802afdc9f5b38632ad89aa13b717667d445007b",
+      "scenario_sha256": "4c33730da6ed65e8147ceaa2fdd574b70eeba5af887c9b76d3a42cad5c5591b2",
+      "selection": {
+        "first_visible_turn": 9082,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 80,
+        "monster_index": 24,
+        "monster_kind": "grey mushroom patch",
+        "no_omniscient_trigger": true,
+        "observation_line": 911,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 9082
+      },
+      "start_turn": 9002,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1020000,
+      "class_idx": 2,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Whip (1d3) (+0,+0)",
+            "kind": 47,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (4619 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "85c02c5b3eb730b04d3579f990b8978618d626962fe9be478576dff9a8201273",
+        "hp": 11,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Nature Magics [Lesser Charms]",
+            "kind": 381
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 3,
+            "description": "Potions of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 1,
+        "mana_state": "full",
+        "max_hp": 11,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "ba7fea2df94b6a701675fc81ab4c1d16af5abef1e772bace96c001e31f980356",
+          "elapsed_seconds": 0.7015972610000176,
+          "reason": null,
+          "status": "survived_horizon",
+          "streams": {
+            "keys.log": "8f2a556eaf3c6f4940bad807939d77747c83dbd36375336deec733c440a7af3b",
+            "messages.log": "968989e1e6332e550274c1be37f9695b5c4c55f6128982e634c81da1c1f00268",
+            "state.log": "209076e4c1e3dc04f08a502d34ce4963fe21105cb1a5fd0b25f7a2f029fa2625"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Druid",
+            "class_idx": 2,
+            "clevel": 1,
+            "dead": false,
+            "death_cause": "",
+            "depth": 0,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 2644201712,
+              "rng": "e0691657b8679b527d468e9b37bda5bf40ad2a1b13ce6a33ba40ceede989062b8607f969edaa5e49387073a28d8d9cb57ccdd7cd4c49e9e00adc933ea6d07488e0923a57e8f03efd4aa3a86591920b8610809afc65d765f421d9e444f0c7da95f5a77a3a308eb33c0f51f9d5d05c230a87cba72f465bff71864baf96ae0bf5f8",
+              "rng_index": 1
+            },
+            "game_turns": 6003,
+            "hp": 11,
+            "keys": 289,
+            "loaded": true,
+            "loaded_turn": 4003,
+            "max_clevel": 1,
+            "max_depth": 1,
+            "max_hp": 11,
+            "menu_letters": true,
+            "player_energy": 62620,
+            "player_turns": 626,
+            "race": "Elf",
+            "race_idx": 2,
+            "resting_turns": 56,
+            "seed": 1020000,
+            "stop_reason": "turns",
+            "wall_seconds": 0.272
+          }
+        }
+      },
+      "historical_type": "death",
+      "id": "c2-r2-s1020000-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-064dcc45245bbd45f62700cb8af628ec66e467cb3a872000ff3d872db4ccd071",
+        "parent_death_id": "D-8f76d2bb1d7ecd6c613b0be3729c3cb1e7e6690b2908c97e1909077c8cc6eb33",
+        "program": "borg-reborn-rs",
+        "seed": 1020000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "survived_horizon"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "ce8515fcecf4464cdd70b1b79d1a60a5a7194fdd8e871e092e8476cdb1cb0ed7",
+      "scenario_sha256": "e7049ae2aa3d4f03e9bb7f212994911b336587da6a6620ac24edd2609b2a1f60",
+      "selection": {
+        "first_visible_turn": 4083,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 80,
+        "monster_index": 4,
+        "monster_kind": "giant yellow centipede",
+        "no_omniscient_trigger": true,
+        "observation_line": 419,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 4083
+      },
+      "start_turn": 4003,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1030000,
+      "class_idx": 3,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Mace (2d4) (+0,+0)",
+            "kind": 52,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (4992 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "d9df93b11d86787f1bfe90ecf85c92b75d3c8975ae7e0c34c7cf1c118dc0e254",
+        "hp": 11,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Holy Book of Prayers [Novice's Handbook]",
+            "kind": 386
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 3,
+            "description": "Potions of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 2,
+            "description": "Potions of Cure Serious Wounds",
+            "kind": 232
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 1,
+        "mana_state": "full",
+        "max_hp": 11,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "e72aaba0f8375dbfb41a08e4c3f00cb9656a5ac24e3d2f2c8b2c84819d7f3d46",
+          "elapsed_seconds": 0.5565706309999996,
+          "reason": null,
+          "status": "death",
+          "streams": {
+            "keys.log": "029d9f1cbdc80a21d41dcc8458aba78f18b195aa5da04a1f04ca00ca7fdfca8e",
+            "messages.log": "e4febfbc5dd87c30c8160132c966a37b0fb2dfeaa5d93280fc24b8b143789a2d",
+            "state.log": "432b4369a92861ac1cdf89d8cde4f00c55f03e4fb0d2562fc65e709b2acdc1d7"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Priest",
+            "class_idx": 3,
+            "clevel": 1,
+            "dead": true,
+            "death_cause": "Grip, Farmer Maggot's Dog",
+            "depth": 1,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 4009611979,
+              "rng": "afbc8ea4d986c01246a0bfab4231efd907f5cf93d5f0045a4ee6bf53c2b18b3e8f0565c7ab89a21f69e9bdc3b260ee3b7aab2798f45c0cbc316b36513f4415d7a6a49d0d95583f957335b0a5831a81a1367941e7ba2a4ad2542655cba47fb6c8c6e90152664686151d612cbc7bdc2871eca409b08f150d4887336fcd492f1473",
+              "rng_index": 4
+            },
+            "game_turns": 551,
+            "hp": -3,
+            "keys": 68,
+            "loaded": true,
+            "loaded_turn": 401,
+            "max_clevel": 1,
+            "max_depth": 1,
+            "max_hp": 11,
+            "menu_letters": true,
+            "player_energy": 5600,
+            "player_turns": 56,
+            "race": "Elf",
+            "race_idx": 2,
+            "resting_turns": 0,
+            "seed": 1030000,
+            "stop_reason": "death",
+            "wall_seconds": 0.07
+          }
+        }
+      },
+      "historical_type": "death",
+      "id": "c3-r2-s1030000-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-25eb9facf978202e48694ee373cbb1897391d1ddddc96bc4d21775852ce9ee13",
+        "parent_death_id": "D-6a5cb6b72c6a92c23336e2dc6caa76bdbe9a93f4fec1ec5be9a75e8268e79188",
+        "program": "borg-reborn-rs",
+        "seed": 1030000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "death"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "fd96a683a8c1d1caad385d3ad7196b326580973c70525fc792114c1a38d4bd9c",
+      "scenario_sha256": "13a7c985a999416dea09817804ab095ed25c6558b6788edbc5dac3d3ba280e8a",
+      "selection": {
+        "first_visible_turn": 411,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 10,
+        "monster_index": 7,
+        "monster_kind": "Grip, Farmer Maggot's Dog",
+        "no_omniscient_trigger": true,
+        "observation_line": 48,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 411
+      },
+      "start_turn": 401,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1040000,
+      "class_idx": 4,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Main Gauche (1d5) (+0,+0)",
+            "kind": 34,
+            "slot": 1
+          }
+        ],
+        "equipment_kind_signature": "cb1d5ab23bfa7af3cc87d35f1c55db19f8488c3ed2a2a4e41f5dae982745bfea",
+        "hp": 11,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Necromantic Tome [Into the Shadows]",
+            "kind": 391
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 3,
+            "description": "Potions of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Phase Door",
+            "kind": 185
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 1,
+        "mana_state": "empty",
+        "max_hp": 11,
+        "max_sp": 2,
+        "sp": 0
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "22af03b4cea10f85f02e95334ca19aa7e683d6f1111a8be8e6cf12b6fd7e57ad",
+          "elapsed_seconds": 0.7039129830000093,
+          "reason": null,
+          "status": "survived_horizon",
+          "streams": {
+            "keys.log": "39e494670ea95399b3f6a23c6025520b70c6e4bc139846a4683c541bca3e736e",
+            "messages.log": "ffa75038404ead17188378250112bc0c2b4c8e0c4f20e14fb46c2dd2d0861c23",
+            "state.log": "2b274e5db0a9662f00b522cb6440d90b19f0bea42f08551afd988c05712caa54"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Necromancer",
+            "class_idx": 4,
+            "clevel": 1,
+            "dead": false,
+            "death_cause": "",
+            "depth": 0,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 2392918161,
+              "rng": "61bce1674521eb9582463e2820e49dd43aa83def366df77b2fb83146e22354057d7f7ced294c2b09fa3206194c5075f433e1d0b0cf7943be89f8e903bb16f3d78a94712d413c39ffbb50d65d1210ae077bc2ec8cd9430f7a56e87f985e98902c511c9384a3c6df450c22e1001f4c22a7f3133e694688aa8fe31ad89e676e28ae",
+              "rng_index": 30
+            },
+            "game_turns": 3301,
+            "hp": 11,
+            "keys": 168,
+            "loaded": true,
+            "loaded_turn": 1301,
+            "max_clevel": 1,
+            "max_depth": 1,
+            "max_hp": 11,
+            "menu_letters": true,
+            "player_energy": 33570,
+            "player_turns": 335,
+            "race": "Elf",
+            "race_idx": 2,
+            "resting_turns": 96,
+            "seed": 1040000,
+            "stop_reason": "turns",
+            "wall_seconds": 0.288
+          }
+        }
+      },
+      "historical_type": "death",
+      "id": "c4-r2-s1040000-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-1d2d28cc8861e22109c3458a565a05e90aec1f7c3799d4ee72061f5c272c2bb6",
+        "parent_death_id": "D-b80424f6ba029ba13ebbac088cf9a4f2d260ff692ff2a507d68083f6a71398a0",
+        "program": "borg-reborn-rs",
+        "seed": 1040000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "survived_horizon"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "5373a1e82c6c4576f80dbce5078e3160a8dabb8d28b3806e72153e9b81c2f233",
+      "scenario_sha256": "25ca771e428bbe3b4ecd467d654c27584af3d53dbebca1fd377ef12f9b428086",
+      "selection": {
+        "first_visible_turn": 1361,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 60,
+        "monster_index": 4,
+        "monster_kind": "Fang, Farmer Maggot's Dog",
+        "no_omniscient_trigger": true,
+        "observation_line": 149,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 1361
+      },
+      "start_turn": 1301,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1050000,
+      "class_idx": 5,
+      "coverage": {
+        "depth": 2,
+        "equipment": [
+          {
+            "description": "Main Gauche (1d5) (+0,+0)",
+            "kind": 34,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (2090 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "396d347da935b74a95cc2fe5c1d272f47bce7205858a75e4fdaae2e57e13a4d7",
+        "hp": 40,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Holy Book of Prayers [Novice's Handbook]",
+            "kind": 386
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 3,
+            "description": "Green Potions",
+            "kind": 258
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Protection from Evil",
+            "kind": 215
+          },
+          {
+            "count": 3,
+            "description": "Scrolls titled \"conoto noco\"",
+            "kind": 190
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          },
+          {
+            "count": 1,
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33
+          }
+        ],
+        "level": 4,
+        "mana_state": "full",
+        "max_hp": 46,
+        "max_sp": 4,
+        "sp": 4
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "14157244b2087116f1844254bcb716e267697bf2fb0eb129211c7c3329abd609",
+          "elapsed_seconds": 0.5037596330000156,
+          "reason": null,
+          "status": "death",
+          "streams": {
+            "keys.log": "6b41911b1d0ce5380d45e3f01496684a58dc589624da6c7cee82a99e79e3be98",
+            "messages.log": "b82dd18821c70f58f55fc61da1a0e98cb79c596b47b5b81869f7bfb015521ebf",
+            "state.log": "76bb61da94433e4603f622bab25dd110f0a0223e8757f0479cbabaca42ea5d4f"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Paladin",
+            "class_idx": 5,
+            "clevel": 4,
+            "dead": true,
+            "death_cause": "a kobold",
+            "depth": 2,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 3030559672,
+              "rng": "d01fed2751300af066817967e132f3a74ccbfc73bfdcbc33b0eebb9c87c9660486a6f8a33c46f9f185821d44f041d75623539e11b1b559fc2060898a555565b0373b6e4b836ddb48702c3f2f752fb05c913f66080772d04be3cd2f2e45fb9fb191a865e3ddac43a8364de9cfbca44af9296410d12ddef6a8313410cf543626d9",
+              "rng_index": 31
+            },
+            "game_turns": 29596,
+            "hp": -3,
+            "keys": 50,
+            "loaded": true,
+            "loaded_turn": 29508,
+            "max_clevel": 4,
+            "max_depth": 2,
+            "max_hp": 46,
+            "menu_letters": true,
+            "player_energy": 296260,
+            "player_turns": 2962,
+            "race": "Elf",
+            "race_idx": 2,
+            "resting_turns": 392,
+            "seed": 1050000,
+            "stop_reason": "death",
+            "wall_seconds": 0.046
+          }
+        }
+      },
+      "historical_type": "observed_critical_recovery",
+      "id": "c5-r2-s1050000-i001",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-7b9a658ded6a872a3eaf76285afe5c2d42a9d116cb716911ccefb244ba84be37",
+        "parent_death_id": "D-c06f34ab7b3932d44dd036294e482c8acd9629168389395ee7a8eebd8a994796",
+        "program": "borg-reborn-rs",
+        "seed": 1050000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "death"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "42268f1fd27394cb9a239584362a73acf2b725e220afde95f5c9b0777dcd7117",
+      "scenario_sha256": "842de0c94501971d2476dd1c64f68fe69569e7f82ed1837a6e30a7dc122d4b7a",
+      "selection": {
+        "first_visible_turn": 29590,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 82,
+        "monster_index": 16,
+        "monster_kind": "kobold",
+        "no_omniscient_trigger": true,
+        "observation_line": 2609,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 29590
+      },
+      "start_turn": 29508,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1060000,
+      "class_idx": 6,
+      "coverage": {
+        "depth": 2,
+        "equipment": [
+          {
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (4368 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Soft Leather Armour [8,+0]",
+            "kind": 107,
+            "slot": 6
+          }
+        ],
+        "equipment_kind_signature": "f03ed916dec37601d5333db03fdd7fc6ed5e41a7b5417e004e1834af5e79a906",
+        "hp": 41,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Magic Spells [First Spells]",
+            "kind": 376
+          },
+          {
+            "count": 11,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 5,
+        "mana_state": "full",
+        "max_hp": 54,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "e32dca68f10d27c9f22070977d5525ffc1c42aa7221c462f3c3de6ec2220e765",
+          "elapsed_seconds": 0.6507026439999777,
+          "reason": null,
+          "status": "survived_horizon",
+          "streams": {
+            "keys.log": "126e411d467742cf6d25b6c2633d7dcab30d4fbd2d616c4f749343e24a2636bd",
+            "messages.log": "d8f41a63de2755b0185e168fe2177aea47aa3830342308e829220188d2446634",
+            "state.log": "fc02a20f77a1c1c950fd1fdce03af5e78d5d2934ed8c0596cebc185bbc96f8f3"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Rogue",
+            "class_idx": 6,
+            "clevel": 5,
+            "dead": false,
+            "death_cause": "",
+            "depth": 0,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 2528666313,
+              "rng": "ddf366e29ee1e9c6ab3a33190219f1bdc3be9b6b1083fd1124820fbdca0ed0730f96d9b30bc9c2bd6461f3a9b2082a1e6dd2bdbd0e0f86b26d7f7ee5379c78cd7c8d0e128cb8254d1f8420d23b51dd453c341281e06b4af34ba1bc9b56f114910710d12bd9bd1784925f56714bbdb45ac3f46c7fa132419d8da56794d68299dc",
+              "rng_index": 27
+            },
+            "game_turns": 59003,
+            "hp": 54,
+            "keys": 311,
+            "loaded": true,
+            "loaded_turn": 57003,
+            "max_clevel": 5,
+            "max_depth": 2,
+            "max_hp": 54,
+            "menu_letters": true,
+            "player_energy": 591570,
+            "player_turns": 5915,
+            "race": "Elf",
+            "race_idx": 2,
+            "resting_turns": 369,
+            "seed": 1060000,
+            "stop_reason": "turns",
+            "wall_seconds": 0.237
+          }
+        }
+      },
+      "historical_type": "observed_critical_recovery",
+      "id": "c6-r2-s1060000-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-c293d4825f2bab996256b790a278be56650c77669f384b53324dc396b92ac3d3",
+        "parent_death_id": "D-fa2513a78fe8a1bbd44b6710a4ff552678ca0f6f2b8b044c27a9bcf7f4456ba4",
+        "program": "borg-reborn-rs",
+        "seed": 1060000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "survived_horizon"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "28971a711bfe962763b84c4e53786982c6cd7ff96a6fd5583a4af34c543d5481",
+      "scenario_sha256": "1b4a84cbbb32d7ce6909fe01a2c6ce9895eb0a012e571fefb95cec1d68d923e7",
+      "selection": {
+        "first_visible_turn": 57063,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 60,
+        "monster_index": 14,
+        "monster_kind": "cave spider",
+        "no_omniscient_trigger": true,
+        "observation_line": 5397,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 57063
+      },
+      "start_turn": 57003,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1070001,
+      "class_idx": 7,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Main Gauche (1d5) (+0,+0)",
+            "kind": 34,
+            "slot": 1
+          },
+          {
+            "description": "Short Bow (x2) (+0,+0)",
+            "kind": 77,
+            "slot": 2
+          },
+          {
+            "description": "Wooden Torch (2537 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "99164c726742ebb66e211fe5abd2c20e314869249d60f1ea2775efa8402b8c81",
+        "hp": 28,
+        "inventory": [
+          {
+            "count": 2,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Vermilion Potion",
+            "kind": 250
+          }
+        ],
+        "level": 3,
+        "mana_state": "full",
+        "max_hp": 32,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "f7a77ac4ed5aebba1899fcf30e574620e22d717ca2084b2ef020f1b380f368b0",
+          "elapsed_seconds": 0.5783944840000004,
+          "reason": null,
+          "status": "survived_horizon",
+          "streams": {
+            "keys.log": "3f644f65c13420ea77d053c01032b594f099be643479ebcec647e0e624228524",
+            "messages.log": "73512568d1da148a792f3f06dad9d0a1ba0208d58de406ca04d1c4c29cb75ce9",
+            "state.log": "0a9d6aabb7320294ad9b14551806a880a56f6836ec8f0bd8564c908e42e60e12"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Ranger",
+            "class_idx": 7,
+            "clevel": 3,
+            "dead": false,
+            "death_cause": "",
+            "depth": 1,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 2424387377,
+              "rng": "50cbbc4af20e656765202d3a3b0fb3c74faed324f3ac62b2ded3853a21a070770a9f6855c7128864fc7590a6c652e3362cf51455b69635e61920d98428362e13d4cff27d6a729d45fa16bec510448a606f8547831387ba4aa756f69aec7f0628006a3000a985097cf7a45b3e982254322da298465106c7b48a5403831d2ee2c9",
+              "rng_index": 16
+            },
+            "game_turns": 81907,
+            "hp": 24,
+            "keys": 195,
+            "loaded": true,
+            "loaded_turn": 79907,
+            "max_clevel": 3,
+            "max_depth": 1,
+            "max_hp": 32,
+            "menu_letters": true,
+            "player_energy": 821380,
+            "player_turns": 8213,
+            "race": "Hobbit",
+            "race_idx": 3,
+            "resting_turns": 398,
+            "seed": 1070001,
+            "stop_reason": "turns",
+            "wall_seconds": 0.162
+          }
+        }
+      },
+      "historical_type": "death",
+      "id": "c7-r3-s1070001-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-0fbb713cd47d0472a39a6bd978bad4f166a20c27d9fce1879dac9dd00d76cf84",
+        "parent_death_id": "D-7fde3daf585f459738813f2e9969905d05e224bb383cb5ac7b1ed9e30419e612",
+        "program": "borg-reborn-rs",
+        "seed": 1070001,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "survived_horizon"
+      },
+      "pair": null,
+      "race_idx": 3,
+      "save_sha256": "4671c9eaaf99ba2adb6871ff94c87e0514888dab2894bf8024b74c2010c61339",
+      "scenario_sha256": "077c79f3c60175ecdad8c4c819c57fbf7d321281079682dee6c2f3821cbbf401",
+      "selection": {
+        "first_visible_turn": 79927,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 20,
+        "monster_index": 1,
+        "monster_kind": "metallic red centipede",
+        "no_omniscient_trigger": true,
+        "observation_line": 7885,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 79927
+      },
+      "start_turn": 79907,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/000.json"
+    },
+    {
+      "birth_seed": 1080000,
+      "class_idx": 8,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Tulwar (2d4) (+0,+0)",
+            "kind": 38,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (1147 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Robe [2,+0]",
+            "kind": 106,
+            "slot": 6
+          },
+          {
+            "description": "Leather Shield [8,+0]",
+            "kind": 134,
+            "slot": 8
+          }
+        ],
+        "equipment_kind_signature": "322c16ca8cccaca5ee393c8938ef92739a9824960e80bd1a54dd84ad5b92fe31",
+        "hp": 1,
+        "inventory": [
+          {
+            "count": 2,
+            "description": "Necromantic Tomes [Into the Shadows]",
+            "kind": 391
+          },
+          {
+            "count": 1,
+            "description": "Book of Nature Magics [Lesser Charms]",
+            "kind": 381
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Light Brown Potion",
+            "kind": 248
+          },
+          {
+            "count": 2,
+            "description": "Scrolls titled \"plaus ariesis\"",
+            "kind": 190
+          },
+          {
+            "count": 1,
+            "description": "Scroll titled \"alentea lamuo\"",
+            "kind": 211
+          },
+          {
+            "count": 1,
+            "description": "Scroll titled \"minno infendam\"",
+            "kind": 199
+          },
+          {
+            "count": 3,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 5,
+        "mana_state": "partial",
+        "max_hp": 63,
+        "max_sp": 7,
+        "sp": 6
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "ca91eef89fe49c4f1a0d73fb574cc8e3fd76dba4d22dbfe11cdf9567818cdc0c",
+          "elapsed_seconds": 1.1545344540000428,
+          "reason": null,
+          "status": "survived_horizon",
+          "streams": {
+            "keys.log": "91dc38120adf8f914b2e9bd48d5b789494f32c267b02111b3d62dc845213b6bc",
+            "messages.log": "709ac23036f969a0b7d3ae2fefdaf3411a569f87b7ecf450448eede01811fc1b",
+            "state.log": "bed6ca831e1c276b39b257c5c1294e1e0fac0f386f0100821f7cbcd0c0a971fd"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Blackguard",
+            "class_idx": 8,
+            "clevel": 6,
+            "dead": false,
+            "death_cause": "",
+            "depth": 1,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 3601522145,
+              "rng": "83d105fdbe3e3b0a0bf1b5e4e742d9ba0b9ef5c0a71625d6fb9bca9416dc488ebeffc920d74ad99161f4edd299d49b318bf94b81b7b0cec89a74b978184833530315822360218761c7b52b36700268e4392c4f7c554c8e01c0919968653947a98510627fb708f1fb0982487de45306d211c82a3451fa21e0ac83261fcbaaba3c",
+              "rng_index": 4
+            },
+            "game_turns": 41108,
+            "hp": 68,
+            "keys": 236,
+            "loaded": true,
+            "loaded_turn": 39108,
+            "max_clevel": 6,
+            "max_depth": 1,
+            "max_hp": 74,
+            "menu_letters": true,
+            "player_energy": 411748,
+            "player_turns": 4117,
+            "race": "Elf",
+            "race_idx": 2,
+            "resting_turns": 185,
+            "seed": 1080000,
+            "stop_reason": "turns",
+            "wall_seconds": 0.736
+          }
+        }
+      },
+      "historical_type": "death",
+      "id": "c8-r2-s1080000-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-ee40c603dff990263bb82ccc2a122e422e33c9c542bbf7ee2499d73452fa3368",
+        "parent_death_id": "D-f1ed9b8cb132ce10e3e4529ab7a4a690799e28fdfed6d48a9f8a60a34fceadf3",
+        "program": "borg-reborn-rs",
+        "seed": 1080000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "survived_horizon"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "515e68dab14f282b4691c7b1f29975324b086b2aba5a6420036b8a51f81aeffa",
+      "scenario_sha256": "d370c7abd49c6a89ae8280d769481f3d2abd55e41d14653f05ca337632b6d24a",
+      "selection": {
+        "first_visible_turn": 39118,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 10,
+        "monster_index": 52,
+        "monster_kind": "giant white mouse",
+        "no_omniscient_trigger": true,
+        "observation_line": 3758,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 39118
+      },
+      "start_turn": 39108,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1000011,
+      "class_idx": 0,
+      "coverage": {
+        "depth": 4,
+        "equipment": [
+          {
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (2461 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Soft Leather Armour [8,-1]",
+            "kind": 107,
+            "slot": 6
+          },
+          {
+            "description": "Pair of Iron Shod Boots [4,+4]",
+            "kind": 95,
+            "slot": 11
+          }
+        ],
+        "equipment_kind_signature": "c3dc22ca7412bdd31090e8b22d4d87f15fa27926c003d6d0d158e26012c69943",
+        "hp": 85,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Magic Spells [First Spells]",
+            "kind": 376
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Potion of Berserk Strength",
+            "kind": 249
+          },
+          {
+            "count": 3,
+            "description": "Orange Speckled Potions",
+            "kind": 247
+          },
+          {
+            "count": 1,
+            "description": "Dark Green Potion",
+            "kind": 250
+          },
+          {
+            "count": 1,
+            "description": "Clear Potion",
+            "kind": 254
+          },
+          {
+            "count": 2,
+            "description": "Scrolls titled \"no posus spor\"",
+            "kind": 211
+          },
+          {
+            "count": 3,
+            "description": "Scrolls titled \"has lautor\"",
+            "kind": 190
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          },
+          {
+            "count": 1,
+            "description": "Pair of Leather Sandals [1,+4]",
+            "kind": 93
+          },
+          {
+            "count": 1,
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33
+          }
+        ],
+        "level": 8,
+        "mana_state": "full",
+        "max_hp": 85,
+        "max_sp": 0,
+        "sp": 0
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "076c31d6dc0741462c59115279400d89616251876e894792db2f2bc8b8eab151",
+          "elapsed_seconds": 0.5560510049999721,
+          "reason": null,
+          "status": "death",
+          "streams": {
+            "keys.log": "8bf5fef57abe4d9b19636a9cf074f60320f8c1928f0392fde5a14c9eccc5c843",
+            "messages.log": "0d961b1272b237cc4a2251c5735ae8783e5bcb7efdc58ea929a2332d1c77d394",
+            "state.log": "233c938c4b980bcc8ff6f8a5987d8326ba2737faef589b4a8bc11c9dd11bebaf"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Warrior",
+            "class_idx": 0,
+            "clevel": 8,
+            "dead": true,
+            "death_cause": "a scout",
+            "depth": 4,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 3427231954,
+              "rng": "a80a5b4495392159276b6009b26c0264d31c8c7b9b0047d3ec04af6cc9f5bc07fc4d137d766aff9f4a4101ff8f8c320bebf08c642673270ce0cfc2f4c30921e41e91b1295b7397188b947ffa1752fed0020cf9a690ceab30ef49121d0d714f639aaf9a6c1b2a6efa06366c5918b2e88002d339e8ee3d96ac8c68562bade5a092",
+              "rng_index": 28
+            },
+            "game_turns": 76242,
+            "hp": -2,
+            "keys": 117,
+            "loaded": true,
+            "loaded_turn": 76008,
+            "max_clevel": 8,
+            "max_depth": 4,
+            "max_hp": 85,
+            "menu_letters": true,
+            "player_energy": 762398,
+            "player_turns": 7623,
+            "race": "Elf",
+            "race_idx": 2,
+            "resting_turns": 227,
+            "seed": 1000011,
+            "stop_reason": "death",
+            "wall_seconds": 0.064
+          }
+        }
+      },
+      "historical_type": "death",
+      "id": "c0-r2-s1000011-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-7445bcc7bf41287c4f185c1ab8934ec0937a41c3233811a4ea19c02de4197194",
+        "parent_death_id": "D-416046f52341cb5660bcea3542c9999f7775a7672734b2846af2255a29d9daf5",
+        "program": "borg-reborn-rs",
+        "seed": 1000011,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "death"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "dfc041a9c0864ae51747ef65bd62de7b89a575fe6053ed6ae65205c8beaba25c",
+      "scenario_sha256": "bb9361a403231f9ae5317ef17e0ef8b7a50b38eda7a1481ee1740ee274af3aa9",
+      "selection": {
+        "first_visible_turn": 76078,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 70,
+        "monster_index": 33,
+        "monster_kind": "scout",
+        "no_omniscient_trigger": true,
+        "observation_line": 7481,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 76078
+      },
+      "start_turn": 76008,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1010000,
+      "class_idx": 1,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Rapier (1d6) (+0,+0)",
+            "kind": 35,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (3702 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "581551ca0bcdca9b672352c4f8216ed34c6ca525fdd287635612ab011afa74d6",
+        "hp": 12,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Magic Spells [First Spells]",
+            "kind": 376
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Phase Door",
+            "kind": 185
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 1,
+            "description": "Scroll titled \"pharum vus pro\"",
+            "kind": 189
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 2,
+        "mana_state": "full",
+        "max_hp": 12,
+        "max_sp": 4,
+        "sp": 4
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "00d3283914f2692eb87ce2e8420a01938d396c24f2e0fcf676dd8f6e6b2dffc9",
+          "elapsed_seconds": 0.6509697370000254,
+          "reason": null,
+          "status": "survived_horizon",
+          "streams": {
+            "keys.log": "5fe97d1a759680e5b9e04180c78e214c624f923dc630ae24b1b237f2a5450e0c",
+            "messages.log": "e97e6240a4a725cf07af3df7bbb4b4c9e0b79333cf9415b6f9da6096a812a468",
+            "state.log": "8ee98495bbde1f75da2640258d4f76eadc9971269dc4ff8d19a00abff868dfe1"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Mage",
+            "class_idx": 1,
+            "clevel": 2,
+            "dead": false,
+            "death_cause": "",
+            "depth": 1,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 2135120755,
+              "rng": "cb0b07f1e9caf4ce84dc43b9dd10245058b71402908cbbf0705e5b6d8de21b51148d9e4f9853f453b2510f417c8d009a2ff4feb7bc823f44e5e6f2227f03cd3c4dc88593c9dcaa11f1e9d1284830cd25b244dcad5b0a061812082991b88029d01c974219b1395f7aa65220c61fbb8ca805a9641adea6d79ac73843f72e54b65f",
+              "rng_index": 20
+            },
+            "game_turns": 15502,
+            "hp": 12,
+            "keys": 142,
+            "loaded": true,
+            "loaded_turn": 13502,
+            "max_clevel": 2,
+            "max_depth": 2,
+            "max_hp": 12,
+            "menu_letters": true,
+            "player_energy": 155610,
+            "player_turns": 1556,
+            "race": "Elf",
+            "race_idx": 2,
+            "resting_turns": 163,
+            "seed": 1010000,
+            "stop_reason": "turns",
+            "wall_seconds": 0.235
+          }
+        }
+      },
+      "historical_type": "observed_critical_recovery",
+      "id": "c1-r2-s1010000-i001",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-d112377d0e071ee634056fa5eb6655e8be6028886e8ddfc3a285d5b21e608ded",
+        "parent_death_id": "D-d0ab6c0b4bc155aa45ed889c9c5978797209f2e30ec3721cd2493921dc679550",
+        "program": "borg-reborn-rs",
+        "seed": 1010000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "survived_horizon"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "63e1fedf9da979c15274c14b96e34bbccb1e13d40f308bba73f9ecb78762ffff",
+      "scenario_sha256": "ede2000de7acfa0c94f72811949886c9c09de5eea30811edc4677eb66582a42e",
+      "selection": {
+        "first_visible_turn": 13572,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 70,
+        "monster_index": 12,
+        "monster_kind": "small kobold",
+        "no_omniscient_trigger": true,
+        "observation_line": 1360,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 13572
+      },
+      "start_turn": 13502,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1020001,
+      "class_idx": 2,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Whip (1d3) (+0,+0)",
+            "kind": 47,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (4874 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "85c02c5b3eb730b04d3579f990b8978618d626962fe9be478576dff9a8201273",
+        "hp": 10,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Nature Magics [Lesser Charms]",
+            "kind": 381
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Potion of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 1,
+        "mana_state": "full",
+        "max_hp": 10,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "8d803badf08499e4f963b50fdbef3825a64ed79421dc3faf4bb651da4414d8ad",
+          "elapsed_seconds": 0.7016518290000135,
+          "reason": null,
+          "status": "survived_horizon",
+          "streams": {
+            "keys.log": "de4a9c0ab91fbd961322cdee2cdaaaf6d5bfdcb05216bdab95dc76dbcce9d59b",
+            "messages.log": "b7e46064ef53ce60c31c3e7653c633607d93dd80022c41cab0142331d06b8fa6",
+            "state.log": "0a3a886d4796e7b23581789f88e5a518813fb14631b3b7b266840580ad15e0e8"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Druid",
+            "class_idx": 2,
+            "clevel": 1,
+            "dead": false,
+            "death_cause": "",
+            "depth": 1,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 3009740670,
+              "rng": "84b61c24d41725d950c69351ab49c98b095b8c2aab6cd36b2963d24b6d6c6fc7f7cecb421a60c9c7352460e0ef9c8d99083508fedc18b12bc4e35dcbad9b69fab090fa1543afe19dc52894bec88afcdc15fe86939fbadfc59685944e0101393fc801d3075cf89e90659296ecc5730100404bd237a94089b31bbb125a370ef484",
+              "rng_index": 3
+            },
+            "game_turns": 3508,
+            "hp": 10,
+            "keys": 374,
+            "loaded": true,
+            "loaded_turn": 1508,
+            "max_clevel": 1,
+            "max_depth": 2,
+            "max_hp": 10,
+            "menu_letters": true,
+            "player_energy": 35960,
+            "player_turns": 359,
+            "race": "Hobbit",
+            "race_idx": 3,
+            "resting_turns": 30,
+            "seed": 1020001,
+            "stop_reason": "turns",
+            "wall_seconds": 0.291
+          }
+        }
+      },
+      "historical_type": "death",
+      "id": "c2-r3-s1020001-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-bb0742cc012654a1d90a7e0ff66a1b7c9eee016397db25daf9bb66642faf69c6",
+        "parent_death_id": "D-245782fee8c5ac989480d680e5545f154178e08a3fb47fe08a8b8543ff213c54",
+        "program": "borg-reborn-rs",
+        "seed": 1020001,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "survived_horizon"
+      },
+      "pair": null,
+      "race_idx": 3,
+      "save_sha256": "cf6f2e418b663d035f1e08efc40a1fddfd42d2a0d671bd8704819f41d7696bf7",
+      "scenario_sha256": "2cd943833e68584247e1af08025ff4f5ab8c7e2852140216e5f96e5ca76e8777",
+      "selection": {
+        "first_visible_turn": 1578,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 70,
+        "monster_index": 8,
+        "monster_kind": "small kobold",
+        "no_omniscient_trigger": true,
+        "observation_line": 166,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 1578
+      },
+      "start_turn": 1508,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1030001,
+      "class_idx": 3,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Mace (2d4) (+0,+0)",
+            "kind": 52,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (4643 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "d9df93b11d86787f1bfe90ecf85c92b75d3c8975ae7e0c34c7cf1c118dc0e254",
+        "hp": 8,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Holy Book of Prayers [Novice's Handbook]",
+            "kind": 386
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 3,
+            "description": "Potions of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 2,
+            "description": "Potions of Cure Serious Wounds",
+            "kind": 232
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 1,
+        "mana_state": "full",
+        "max_hp": 10,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "d2c80d7b42b4aa5beef603be691d01f3e79cd1e4ddaa71b00e4dfa6e0efe947e",
+          "elapsed_seconds": 0.5043164309999497,
+          "reason": null,
+          "status": "death",
+          "streams": {
+            "keys.log": "fd5ed1734e2d3353d6caeacf327b53bde6a8c68ef5d2e6cf2c87cf64332f0e39",
+            "messages.log": "09946fc3a66ff571c21cd996836e9b6d4c04c4e0b99113e8869063560c4e649f",
+            "state.log": "2679c323146902df1adba5bef1f2abf1e3e106cf226dca27ceb5aabe528363d5"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Priest",
+            "class_idx": 3,
+            "clevel": 1,
+            "dead": true,
+            "death_cause": "a kobold shaman",
+            "depth": 1,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 1684964022,
+              "rng": "f0d896626375815e245095aa85a5c9702f941f5da65d2674a061902dd3e5e431ea5b5b4a1ea057ad4e4fe47a5db8d5708cc775516e329d0b87d95ea2a6821560e348771c24b3dfc983fa986bec20bbfbca4b77d9f8d92e431f1a2abf51f1e79402d8c92763a8ff448acadaec5186a050dfe093aac79d0101dc4720f3a5c20cbc",
+              "rng_index": 31
+            },
+            "game_turns": 3970,
+            "hp": -3,
+            "keys": 9,
+            "loaded": true,
+            "loaded_turn": 3951,
+            "max_clevel": 1,
+            "max_depth": 1,
+            "max_hp": 10,
+            "menu_letters": true,
+            "player_energy": 39800,
+            "player_turns": 398,
+            "race": "Hobbit",
+            "race_idx": 3,
+            "resting_turns": 21,
+            "seed": 1030001,
+            "stop_reason": "death",
+            "wall_seconds": 0.04
+          }
+        }
+      },
+      "historical_type": "death",
+      "id": "c3-r3-s1030001-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-657fc0c936a3129356663693828e487924edd27e8c4095b92746ce1a9f2207f9",
+        "parent_death_id": "D-261806667819a5c86f0b44b0f9c9d284598e36c4618f94ff4916044fb089440d",
+        "program": "borg-reborn-rs",
+        "seed": 1030001,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "death"
+      },
+      "pair": null,
+      "race_idx": 3,
+      "save_sha256": "8e1a1d921515e943ae03bf28f7f859219d63a39583da602b491485abd3ba5a4a",
+      "scenario_sha256": "8c4d37977af9f593af0b900d3654c6fb469c866daad0ada75333e046badca972",
+      "selection": {
+        "first_visible_turn": 3961,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 10,
+        "monster_index": 13,
+        "monster_kind": "kobold shaman",
+        "no_omniscient_trigger": true,
+        "observation_line": 386,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 3961
+      },
+      "start_turn": 3951,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1040001,
+      "class_idx": 4,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Main Gauche (1d5) (+0,+0)",
+            "kind": 34,
+            "slot": 1
+          }
+        ],
+        "equipment_kind_signature": "cb1d5ab23bfa7af3cc87d35f1c55db19f8488c3ed2a2a4e41f5dae982745bfea",
+        "hp": 9,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Necromantic Tome [Into the Shadows]",
+            "kind": 391
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Potion of Cure Light Wounds",
+            "kind": 231
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 1,
+        "mana_state": "partial",
+        "max_hp": 9,
+        "max_sp": 2,
+        "sp": 1
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "45c699f704490fedbe9b2b92f8d5ea9d949a5fc24d585192fc9382004a15ab0a",
+          "elapsed_seconds": 0.499895744000014,
+          "reason": null,
+          "status": "survived_horizon",
+          "streams": {
+            "keys.log": "3346bee6b266007fa3a127baa630b439817bbc46791488a78758e4466e10c3a4",
+            "messages.log": "893eff6fc757a99c3d31cce4e4f65e9db986c506e69321aa793bb4cbaa203b07",
+            "state.log": "27e08a5d645a93be656de55768b49ad37361526a1b9681b13e044aa906fa385a"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Necromancer",
+            "class_idx": 4,
+            "clevel": 2,
+            "dead": false,
+            "death_cause": "",
+            "depth": 1,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 1008827221,
+              "rng": "43165f42919131487128e553bafd752c968640972a1feeec453177894cc4903e6e08c94fafc98b878ae50278045c7e4a0c102a31f01f44619650ab6a9c4573fabad8006f9e3e0fde1f3abdd3e0512e569af0f09740e8dbc066c436aa1652ea3629c76ebf1a06d36a1ccbc23234d9a2cc03b0c79f3c61e5e4b867c2c61658ee92",
+              "rng_index": 5
+            },
+            "game_turns": 11108,
+            "hp": 13,
+            "keys": 34,
+            "loaded": true,
+            "loaded_turn": 9108,
+            "max_clevel": 2,
+            "max_depth": 1,
+            "max_hp": 13,
+            "menu_letters": true,
+            "player_energy": 111570,
+            "player_turns": 1115,
+            "race": "Hobbit",
+            "race_idx": 3,
+            "resting_turns": 270,
+            "seed": 1040001,
+            "stop_reason": "turns",
+            "wall_seconds": 0.108
+          }
+        }
+      },
+      "historical_type": "death",
+      "id": "c4-r3-s1040001-i001",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-bd06f7ed0701eca7676ce8fd0631251100901edb9acd36e07a3ba9ce4cc7fa90",
+        "parent_death_id": "D-a0a6fd0d838344650fbb55eb8cdae01c2a18a49cea088a6a56de4f8b5c6006a5",
+        "program": "borg-reborn-rs",
+        "seed": 1040001,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "survived_horizon"
+      },
+      "pair": null,
+      "race_idx": 3,
+      "save_sha256": "92245f1b815586817d0eddd88cd50dc5b9e3d87ea445cf846f13252786d903d4",
+      "scenario_sha256": "527485a2c5d0e663c11f5c0afcda48d9daf029cefbc623b77b46bf3897351df3",
+      "selection": {
+        "first_visible_turn": 9128,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 20,
+        "monster_index": 25,
+        "monster_kind": "grey mushroom patch",
+        "no_omniscient_trigger": true,
+        "observation_line": 859,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 9128
+      },
+      "start_turn": 9108,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1050001,
+      "class_idx": 5,
+      "coverage": {
+        "depth": 2,
+        "equipment": [
+          {
+            "description": "Main Gauche (1d5) (+0,+0)",
+            "kind": 34,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (1450 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Cloak [1,+4]",
+            "kind": 123,
+            "slot": 7
+          }
+        ],
+        "equipment_kind_signature": "b147dde72450507d7f77098335e8483e70b6a7184e6489ce7fead816158d3f2a",
+        "hp": 23,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Holy Book of Prayers [Novice's Handbook]",
+            "kind": 386
+          },
+          {
+            "count": 1,
+            "description": "Book of Nature Magics [Lesser Charms]",
+            "kind": 381
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Protection from Evil",
+            "kind": 215
+          },
+          {
+            "count": 3,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          },
+          {
+            "count": 1,
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33
+          }
+        ],
+        "level": 4,
+        "mana_state": "full",
+        "max_hp": 53,
+        "max_sp": 5,
+        "sp": 5
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "2e084ecb7749e02154eea03bbb23a8036860eca16fd782ae162ed0489305e12f",
+          "elapsed_seconds": 0.5519838820000018,
+          "reason": null,
+          "status": "survived_horizon",
+          "streams": {
+            "keys.log": "eadf04887fc94db07c3ff31c0dee5905e44b16a19eb33c845313a08dd7907ef9",
+            "messages.log": "790d9326bdf6f95904147335ceb93e7a9c0132f9552913c6ed1810c15c23b91b",
+            "state.log": "1f39eb0646c410544f6a5d9882cd3c1bb4d9f4104984f14537568a7525ed2f9c"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Paladin",
+            "class_idx": 5,
+            "clevel": 5,
+            "dead": false,
+            "death_cause": "",
+            "depth": 0,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 1834856962,
+              "rng": "70d7c45be376fc95808a7785d2b9c2539960f2660ee2ab62311c043badd0788ac0cc7024dd1619d8cd58ce82f906ac5604072048a3e54d281525800291912a330436a1523a53be382ef4a6ba707686b04680d49034ef028f1f505941568d748e8953e4c9a5141f617594e956c39b5fda3da4e736b11ed09696c0ec7140faa2d4",
+              "rng_index": 1
+            },
+            "game_turns": 88406,
+            "hp": 57,
+            "keys": 133,
+            "loaded": true,
+            "loaded_turn": 86406,
+            "max_clevel": 5,
+            "max_depth": 2,
+            "max_hp": 57,
+            "menu_letters": true,
+            "player_energy": 887040,
+            "player_turns": 8870,
+            "race": "Hobbit",
+            "race_idx": 3,
+            "resting_turns": 442,
+            "seed": 1050001,
+            "stop_reason": "turns",
+            "wall_seconds": 0.124
+          }
+        }
+      },
+      "historical_type": "observed_critical_recovery",
+      "id": "c5-r3-s1050001-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-7e9613c1dee1e5a6cb99450f44c1cb7803d4f4a516bcc29339a2a1b6a9c55742",
+        "parent_death_id": null,
+        "program": "borg-reborn-rs",
+        "seed": 1050001,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "survived_horizon"
+      },
+      "pair": null,
+      "race_idx": 3,
+      "save_sha256": "e87b12a38d7f315b27598f674c7f7f51c5b273e841f43e41bcf9b403356572cd",
+      "scenario_sha256": "044bec9218df7a3ed2ed8a890fb995cdba76ce03f32ce3da347c41f8687074c2",
+      "selection": {
+        "first_visible_turn": 86516,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 108,
+        "monster_index": 29,
+        "monster_kind": "crow",
+        "no_omniscient_trigger": true,
+        "observation_line": 8439,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 86514
+      },
+      "start_turn": 86406,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1060000,
+      "class_idx": 6,
+      "coverage": {
+        "depth": 3,
+        "equipment": [
+          {
+            "description": "Dagger (1d4) (+0,+0)",
+            "kind": 33,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (508 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Soft Leather Armour [8,+0]",
+            "kind": 107,
+            "slot": 6
+          },
+          {
+            "description": "Cloak [1,+0]",
+            "kind": 123,
+            "slot": 7
+          },
+          {
+            "description": "Wicker Shield [2,+0]",
+            "kind": 132,
+            "slot": 8
+          }
+        ],
+        "equipment_kind_signature": "6e834cb9ba5872b305bff7313a071c08df4c65b8176f2cba81aa9b4905d149a3",
+        "hp": 26,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Magic Spells [First Spells]",
+            "kind": 376
+          },
+          {
+            "count": 7,
+            "description": "Scrolls of Light",
+            "kind": 207
+          },
+          {
+            "count": 1,
+            "description": "Scroll of Word of Recall",
+            "kind": 208
+          },
+          {
+            "count": 2,
+            "description": "Scrolls of Blessing",
+            "kind": 212
+          },
+          {
+            "count": 3,
+            "description": "Wooden Torches (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 6,
+        "mana_state": "full",
+        "max_hp": 61,
+        "max_sp": 3,
+        "sp": 3
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "8d6b771857359c31b6131731445f6153c3c86583686312021c4474420952e6ee",
+          "elapsed_seconds": 0.7084922570000458,
+          "reason": null,
+          "status": "death",
+          "streams": {
+            "keys.log": "755b4b6a6ae14a9c8f61170a56d8df4175a9fea13210e53eec91a9eb2c669e63",
+            "messages.log": "d24e70a332d9ee823ac47b0f31edfbc30b92eaaeee80fef418275eb4c076ba9b",
+            "state.log": "62a1a3540819e66f96f440288fc7f66960c3df0e6c43267fbd7433ca626f5c1c"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Rogue",
+            "class_idx": 6,
+            "clevel": 6,
+            "dead": true,
+            "death_cause": "an acolyte",
+            "depth": 3,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 2528666313,
+              "rng": "62df037e4eb20234b31570c990c9c4d6cd46d6b60b99272075b58f472cb3b19d001eafaf76538618007fe057621a6f56a877172bab3d2c3d77f2b1fc08ca65bc87bd9c782b96dce02c030967649f2d1aef639c96bbb3e1e428594dcf24574ed02c9dff0fd4ee32c2c34b77c75591ac9d03b5b0031abccd6f1f5b76af200bfecc",
+              "rng_index": 13
+            },
+            "game_turns": 95649,
+            "hp": -4,
+            "keys": 24,
+            "loaded": true,
+            "loaded_turn": 95607,
+            "max_clevel": 6,
+            "max_depth": 3,
+            "max_hp": 61,
+            "menu_letters": true,
+            "player_energy": 957690,
+            "player_turns": 9576,
+            "race": "Elf",
+            "race_idx": 2,
+            "resting_turns": 457,
+            "seed": 1060000,
+            "stop_reason": "death",
+            "wall_seconds": 0.083
+          }
+        }
+      },
+      "historical_type": "death",
+      "id": "c6-r2-s1060000-i001",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-c293d4825f2bab996256b790a278be56650c77669f384b53324dc396b92ac3d3",
+        "parent_death_id": "D-fa2513a78fe8a1bbd44b6710a4ff552678ca0f6f2b8b044c27a9bcf7f4456ba4",
+        "program": "borg-reborn-rs",
+        "seed": 1060000,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "death"
+      },
+      "pair": null,
+      "race_idx": 2,
+      "save_sha256": "989bc706f54cfa97c0fa6749158ef3cee08f612807a855422746d85d3ead4279",
+      "scenario_sha256": "704375d7c611b3e9d5330c9e20e944c08342eb9db4ae8d3b41eca70833dc416b",
+      "selection": {
+        "first_visible_turn": 95647,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 40,
+        "monster_index": 13,
+        "monster_kind": "acolyte",
+        "no_omniscient_trigger": true,
+        "observation_line": 9164,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 95647
+      },
+      "start_turn": 95607,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/001.json"
+    },
+    {
+      "birth_seed": 1070003,
+      "class_idx": 7,
+      "coverage": {
+        "depth": 1,
+        "equipment": [
+          {
+            "description": "Main Gauche (1d5) (+0,+0)",
+            "kind": 34,
+            "slot": 1
+          },
+          {
+            "description": "Short Bow (x2) (+0,+0)",
+            "kind": 77,
+            "slot": 2
+          },
+          {
+            "description": "Wooden Torch (4641 turns)",
+            "kind": 4,
+            "slot": 5
+          }
+        ],
+        "equipment_kind_signature": "99164c726742ebb66e211fe5abd2c20e314869249d60f1ea2775efa8402b8c81",
+        "hp": 16,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Book of Nature Magics [Lesser Charms]",
+            "kind": 381
+          },
+          {
+            "count": 2,
+            "description": "Handfuls of Dried Fruits",
+            "kind": 9
+          },
+          {
+            "count": 5,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 2,
+            "description": "Misty Potions",
+            "kind": 247
+          },
+          {
+            "count": 1,
+            "description": "Scroll titled \"depropon ho so\"",
+            "kind": 211
+          },
+          {
+            "count": 2,
+            "description": "Scrolls titled \"in etis eque\"",
+            "kind": 190
+          },
+          {
+            "count": 1,
+            "description": "Wooden Torch (5000 turns)",
+            "kind": 4
+          }
+        ],
+        "level": 3,
+        "mana_state": "full",
+        "max_hp": 17,
+        "max_sp": 2,
+        "sp": 2
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "9b5f09443e40fb3d9b08278b6d455b29ff9d9998970b731fd10710dca8bec405",
+          "elapsed_seconds": 0.6096440470000175,
+          "reason": null,
+          "status": "death",
+          "streams": {
+            "keys.log": "2562e5df475e2a562651c389c351f8867a2bd7f9804e54576f4c7129b5f27b88",
+            "messages.log": "06a84e5adb2330824358da5793438d49f23b692e0afc505595817d1601189292",
+            "state.log": "48c9ede6f6312cd0769c71131f42756b55b80826704131c5560c593ae556e7e1"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Ranger",
+            "class_idx": 7,
+            "clevel": 3,
+            "dead": true,
+            "death_cause": "Grip, Farmer Maggot's Dog",
+            "depth": 1,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 3594059707,
+              "rng": "43ec19c18c470f7bc203145ed0924f0caa0d8fa3bfce98d88b558745cbf8bec9295104a8e3502745013ea1734dc070363016636731408ebeeab0a9e36e4043a88f210a3983dfe2a1fbd91d60203865445f11d87e00a2304ef8043d7c76dac3752c766d6a4e418a922275568422ff8e1f268ce4b1fc2ab99fdee488ac7171053e",
+              "rng_index": 3
+            },
+            "game_turns": 56224,
+            "hp": -4,
+            "keys": 101,
+            "loaded": true,
+            "loaded_turn": 56000,
+            "max_clevel": 3,
+            "max_depth": 1,
+            "max_hp": 17,
+            "menu_letters": true,
+            "player_energy": 563085,
+            "player_turns": 5630,
+            "race": "Kobold",
+            "race_idx": 10,
+            "resting_turns": 201,
+            "seed": 1070003,
+            "stop_reason": "death",
+            "wall_seconds": 0.062
+          }
+        }
+      },
+      "historical_type": "observed_critical_recovery",
+      "id": "c7-r10-s1070003-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-c7b22f260844d4d80011e9584b7d94033d1d52f3ec4016bf65fb83510babceaf",
+        "parent_death_id": "D-7ed3eeb87aaf4aa639b473ac160b79c5bce8982026c8f7823ee68ec9fd71da76",
+        "program": "borg-reborn-rs",
+        "seed": 1070003,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "death"
+      },
+      "pair": null,
+      "race_idx": 10,
+      "save_sha256": "5527355aadec86e2f6f37a50473f8ef93e37fd4b09ff0599c19de59e924ee54f",
+      "scenario_sha256": "ba98db847cfa92c27fe5c54a0840e50750238c96980e6207deb9425eb10ede47",
+      "selection": {
+        "first_visible_turn": 56057,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 57,
+        "monster_index": 26,
+        "monster_kind": "wild dog",
+        "no_omniscient_trigger": true,
+        "observation_line": 5494,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 56057
+      },
+      "start_turn": 56000,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/002.json"
+    },
+    {
+      "birth_seed": 1080003,
+      "class_idx": 8,
+      "coverage": {
+        "depth": 3,
+        "equipment": [
+          {
+            "description": "Tulwar (2d4) (+0,+0)",
+            "kind": 38,
+            "slot": 1
+          },
+          {
+            "description": "Wooden Torch (2330 turns)",
+            "kind": 4,
+            "slot": 5
+          },
+          {
+            "description": "Leather Shield [8,+0]",
+            "kind": 134,
+            "slot": 8
+          },
+          {
+            "description": "Pair of Leather Sandals [1,+3]",
+            "kind": 93,
+            "slot": 11
+          }
+        ],
+        "equipment_kind_signature": "7c3b257289de0b11a37e29f27b1a3dfc63fda23daf752b653db978d8edf74cbc",
+        "hp": 7,
+        "inventory": [
+          {
+            "count": 1,
+            "description": "Necromantic Tome [Into the Shadows]",
+            "kind": 391
+          },
+          {
+            "count": 1,
+            "description": "Holy Book of Prayers [Novice's Handbook]",
+            "kind": 386
+          },
+          {
+            "count": 3,
+            "description": "Rations of Food",
+            "kind": 11
+          },
+          {
+            "count": 1,
+            "description": "Potion of Neutralize Poison",
+            "kind": 237
+          },
+          {
+            "count": 4,
+            "description": "Potions of Slowness",
+            "kind": 261
+          },
+          {
+            "count": 1,
+            "description": "Metallic Green Potion",
+            "kind": 259
+          },
+          {
+            "count": 4,
+            "description": "Scrolls of Treasure Detection",
+            "kind": 189
+          },
+          {
+            "count": 2,
+            "description": "Scrolls titled \"deguor coler\"",
+            "kind": 211
+          },
+          {
+            "count": 1,
+            "description": "Scroll titled \"quo vo wizzy\"",
+            "kind": 190
+          },
+          {
+            "count": 3,
+            "description": "Scrolls titled \"quo scienus ca\"",
+            "kind": 199
+          },
+          {
+            "count": 1,
+            "description": "Wooden Torch (5000 turns)",
+            "kind": 4
+          },
+          {
+            "count": 1,
+            "description": "Dagger (1d4) (+6,+2)",
+            "kind": 33
+          }
+        ],
+        "level": 6,
+        "mana_state": "partial",
+        "max_hp": 57,
+        "max_sp": 6,
+        "sp": 5
+      },
+      "details": {
+        "suite1-reborn-main-38858846-stock": {
+          "cell_execution_hash": "ed8cdfb10d5695ff1918cb65e51d8a2a19fe90d593708fe76958537e5c104117",
+          "elapsed_seconds": 0.6134309789999861,
+          "reason": null,
+          "status": "death",
+          "streams": {
+            "keys.log": "4eef4d30db2833e66d37a166835f5a95847796cae7195cfb9d597308b9d2555e",
+            "messages.log": "1d221d0f3fb8b7cd0555ee844d2e9e68095da3c8894c7d09f83976e7a2c85157",
+            "state.log": "4d763386eb41475795192a1e639c79d7ac50e9df5a51b650566862bb37601251"
+          },
+          "summary": {
+            "borg_decisions": 0,
+            "borg_rng": 0,
+            "calendar": "fixed",
+            "class": "Blackguard",
+            "class_idx": 8,
+            "clevel": 7,
+            "dead": true,
+            "death_cause": "a metallic red centipede",
+            "depth": 3,
+            "effective_settings": {},
+            "exact_turns": true,
+            "game_options": {
+              "animate_flicker": false,
+              "auto_more": false,
+              "autoexplore_commands": false,
+              "birth_ai_learn": true,
+              "birth_connect_stairs": true,
+              "birth_feelings": true,
+              "birth_force_descend": false,
+              "birth_know_flavors": false,
+              "birth_know_runes": false,
+              "birth_levels_persist": false,
+              "birth_lose_arts": false,
+              "birth_no_artifacts": false,
+              "birth_no_recall": false,
+              "birth_no_selling": true,
+              "birth_percent_damage": false,
+              "birth_randarts": false,
+              "birth_stacking": true,
+              "birth_start_kit": true,
+              "center_player": false,
+              "cheat_hear": false,
+              "cheat_live": false,
+              "cheat_room": false,
+              "cheat_xtra": false,
+              "disturb_near": true,
+              "effective_speed": false,
+              "highlight_player": false,
+              "hp_changes_color": true,
+              "hybrid_walls": false,
+              "mouse_movement": true,
+              "notify_recharge": false,
+              "pickup_always": true,
+              "pickup_inven": true,
+              "purple_uniques": false,
+              "rogue_like_commands": false,
+              "score_hear": false,
+              "score_live": false,
+              "score_room": false,
+              "score_xtra": false,
+              "show_damage": false,
+              "show_flavors": false,
+              "show_target": true,
+              "solid_walls": false,
+              "use_old_target": false,
+              "use_sound": false,
+              "view_yellow_light": false
+            },
+            "game_rng": {
+              "quick": false,
+              "quick_rng": 4111386307,
+              "rng": "19d72aed7fe3b1a7a36948936b44841b4a4ac9391a8d9ab374cccc769436137c31b77b8be08aab7810fd819778dc0994c2c44592a0b900bfa93ad842dffc8cbf8701b3b089d74a3ec219f1a92234e1ff274fa4da8bc320d95300ef912f5ba1d6df215027c863886746e93ce90430962760034b7ba174c86ea247313c3ebf562a",
+              "rng_index": 19
+            },
+            "game_turns": 77251,
+            "hp": -1,
+            "keys": 31,
+            "loaded": true,
+            "loaded_turn": 77202,
+            "max_clevel": 7,
+            "max_depth": 3,
+            "max_hp": 62,
+            "menu_letters": true,
+            "player_energy": 773686,
+            "player_turns": 7736,
+            "race": "Kobold",
+            "race_idx": 10,
+            "resting_turns": 211,
+            "seed": 1080003,
+            "stop_reason": "death",
+            "wall_seconds": 0.06
+          }
+        }
+      },
+      "historical_type": "death",
+      "id": "c8-r10-s1080003-i000",
+      "origin": {
+        "binary_sha256": "8f11804fabf5c5b195f470b54e00978da404d0e1865b75b9390248c1de2ea5b0",
+        "encounter_family": "start-e22a99a1024c6d4dc9859d393ac8bceaada0c3ded2512ddb53ee0a1a02d96002",
+        "parent_death_id": "D-b07289f3cfabe6a9e7a066ac2267bdb5b3882b4d69ec7ef7e55c610d6e026685",
+        "program": "borg-reborn-rs",
+        "seed": 1080003,
+        "source_commit": "a83551378e22a4930b1a4d8d78d7d465465b0a25",
+        "source_sha256": "a03559030fc961b718b1bbcb510376954e90299a08c3cd70f79004d5f7ba974e"
+      },
+      "outcomes": {
+        "suite1-reborn-main-38858846-stock": "death"
+      },
+      "pair": null,
+      "race_idx": 10,
+      "save_sha256": "f605f9d48fb01310eba3010fa4b934fc95031eb82f0a093b3f342713cec8cc32",
+      "scenario_sha256": "1818b223787b66c415b7288535ed9d3b5cca15e55b9f30af2d8f258fdf86a826",
+      "selection": {
+        "first_visible_turn": 77267,
+        "kind": "first_visible_kind_in_incident_episode",
+        "lead_engine_turns": 65,
+        "monster_index": 37,
+        "monster_kind": "metallic red centipede",
+        "no_omniscient_trigger": true,
+        "observation_line": 7561,
+        "terminal_individual_identity": "unavailable; kind association only",
+        "trigger_turn": 77267
+      },
+      "start_turn": 77202,
+      "suite": "synthetic/balanced-999-incidents/generated/shards/002.json"
+    }
+  ],
+  "collected_cells": 18,
+  "comparison": {
+    "candidate": "suite1-reborn-main-38858846-stock",
+    "reference": null
+  },
+  "counted_arms": [
+    "suite1-reborn-main-38858846-stock"
+  ],
+  "definition": {
+    "definition": "definitions/suite1-reborn-main-38858846-stock.yaml",
+    "folder": "scenario-experiments",
+    "inputs": {
+      "files": {
+        "borg.txt": "3ce9ae4f0736aa94cc8ce440b2770fb6a1fd5d1013fdac10b87f73550c0d242b",
+        "provenance.json": "80ed056506409b0d2bf03ba424b23888afe7fe31fff7dcd710e46f96f8dd24e8",
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      },
+      "path": "scenario-inputs/suite1-reborn-main-38858846-stock"
+    },
+    "issue": 183,
+    "kind": "suite-run",
+    "name": "suite1-reborn-main-38858846-stock",
+    "native_tools": {
+      "commit": "09225018dd5f2d4336a16b29478793d902c70dc3",
+      "repository": "diegoami/borg-cemetery"
+    },
+    "owner_authorization": "2026-11-19: the owner agreed to a sanity rerun of Suite 1 on current main (borg-zoo#183), after borg-reborn-rs #600 (lava and staircase fixes, shipped on) and #607 (the harness plays the borg-rs core by default) changed main's defaults: Suite 1 on borg-reborn-rs main 38858846 with its own default settings, stage by stage to full.",
+    "prespecified": "Fixed 2026-11-19, before any result was read (borg-zoo#183). A sanity check of main: the 999 saves of\nSuite 1 with its protocol (exact 2,000-engine-turn horizon, the suite's 30-second native wall limit, fresh Borg\nmemory, saved engine RNG). Settings: the checkout's own harness/borg.txt (sha256 3ce9ae4f...), nothing\noverridden; the scary list it names (scary_monsters.txt d045111b...) is frozen with the inputs and read by\nabsolute path. The first smoke (run 44436640586) failed its gate because the runner did not stage that file\n(fixed in #346). Stages smoke 18, small 90, medium 360, big 900 and full 999 run in sequence, each after the previous\nstage's gate. Gate at every stage: no missing, invalid or stopped cell; one binary; every cell's native receipts\nshow the save, the RNG, the borg-rs core, every borg.txt setting written, every borg_param_* effective from\nborg.txt, and an initial pack/equipment/rune hash equal to the suite's. Reported alone: the death share, deaths\nper class and every scenario's outcome. Encounters from one life are correlated.\n",
+    "question": "How does borg-reborn-rs main 38858846, with its own default settings, play the 999 saved encounters of Suite 1?",
+    "schema": "borg-zoo/suite-run-definition@1",
+    "settings": "stock",
+    "source": {
+      "commit": "388588468bfe91b2a8f84b38599813f2acfed64e",
+      "repository": "diegoami/borg-reborn-rs"
+    },
+    "suite": "suite1-v1"
+  },
+  "evidence_url": "https://github.com/diegoami/borg-zoo/actions/runs/44523525112",
+  "expected_cells": 18,
+  "howto_url": "https://github.com/diegoami/borg-zoo/blob/main/docs/SUITE-RUNS.md",
+  "independent_life": false,
+  "invalid_count": 0,
+  "manifest": {
+    "engine_commit": "42cd156ac9f95ddf4311e88dd7ad462292d6d1d6",
+    "horizon_engine_turns": 2000,
+    "wall_seconds": 30
+  },
+  "name": "suite1-reborn-main-38858846-stock",
+  "pairs": {},
+  "parent_run": null,
+  "per_class": {
+    "Blackguard": {
+      "death": 1,
+      "survived_horizon": 1
+    },
+    "Druid": {
+      "survived_horizon": 2
+    },
+    "Mage": {
+      "survived_horizon": 2
+    },
+    "Necromancer": {
+      "survived_horizon": 2
+    },
+    "Paladin": {
+      "death": 1,
+      "survived_horizon": 1
+    },
+    "Priest": {
+      "death": 2
+    },
+    "Ranger": {
+      "death": 1,
+      "survived_horizon": 1
+    },
+    "Rogue": {
+      "death": 1,
+      "survived_horizon": 1
+    },
+    "Warrior": {
+      "death": 2
+    }
+  },
+  "plan_hash": "f1975b5186aff68d95bd8b4f42f63a5cc7b3ba5c0131cbaacecb12ae3e06702d",
+  "qualified_near_death": {
+    "count": null,
+    "coverage": "unavailable"
+  },
+  "raw_report_sha256": "5962cd0c249c13d19cfd2750d06337ce1098893d9de173d749b29098177fda57",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44523525112",
+  "schema": "borg-zoo/saved-incident-comparison@1",
+  "stopped_count": 0,
+  "suite": {
+    "id": "suite1-v1",
+    "name": "Suite 1"
+  },
+  "tier": "smoke",
+  "title": "suite1-reborn-main-38858846-stock on Suite 1"
+}
