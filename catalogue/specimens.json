@@ -2127,6 +2127,23 @@
       "worlds": {
         "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8"
       }
+    },
+    "4.2.6-reborn-rust-main-94032140": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "940321402e05c6955a2720c7de4c40c5afde5a53",
+      "label": "borg-reborn-rs 94032140, main at the merge of #735 (#693 class values), on upstream Angband 574b618c (#730). Source-hash rust fe44e638...; harness/borg.txt 4282aaeb... (borg_reborn_core = borg-rs, no errand, no plan, scary_monsters.txt).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
     }
   }
 }
