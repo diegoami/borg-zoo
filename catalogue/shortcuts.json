@@ -1226,6 +1226,23 @@
         "reborn-cleashnone-none"
       ],
       "runs": []
+    },
+    "reborn-prepared": {
+      "issue": 522,
+      "status": "defined (pilot; small tiers after its gate and the owner)",
+      "what": "The dive gates' thresholds on main a04e5471: character-level minimums +/-2, HP minimums -25%/+25%, Cure minimum 0 and 4, and loose and tight combinations.",
+      "profiles": [
+        "reborn-prepared-ctl",
+        "reborn-prepared-cl-lo",
+        "reborn-prepared-cl-hi",
+        "reborn-prepared-hp-lo",
+        "reborn-prepared-hp-hi",
+        "reborn-prepared-cure0",
+        "reborn-prepared-cure4",
+        "reborn-prepared-loose",
+        "reborn-prepared-tight"
+      ],
+      "runs": []
     }
   }
 }

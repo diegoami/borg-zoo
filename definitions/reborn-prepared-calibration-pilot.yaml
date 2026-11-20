@@ -1,0 +1,211 @@
+# borg-zoo (owner 2026-11-20, "we need calibrating for prepared_"): the dive gates' thresholds, both directions.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-prepared-calibration-pilot.yaml
+#
+# prepared_* decides when the Borg may go down: the minimum maximum HP and maximum character level to enter DL2, DL3-4
+# and DL5-9 (per class), and the Cure potions to carry from DL3. The pilots so far end at mean max DL 2.2 and CL 6 at
+# 100,000 turns, so these are the gates a character meets first. The mid and deep gates (DL10 and deeper) and the depth
+# margin are not varied here: #518 sweeps the margin and the mid offsets, and 100,000 turns rarely reach DL10.
+# Shipped per-class values (order warrior, mage, druid, priest, necromancer, paladin, rogue, ranger, blackguard):
+#   dl34_min_clevel 4 11 9 9 11 4 8 4 4;  dl59_min_clevel 6 15 15 15 15 6 10 6 6;
+#   dl34_min_hp 50 60 40 40 60 50 50 50 50;  dl59_min_hp 60 80 60 60 80 60 60 60 60;  dl2_min_hp 30;  cure_min 2.
+name: reborn-prepared-calibration-pilot
+issue: 522
+question: >-
+  On borg-reborn-rs main a04e5471, do the dive gates' character-level, HP and Cure-potion minimums (prepared_dl2/dl34/dl59
+  and prepared_cure_min) hold the Borg shallower than it needs to be, or let it down too early? Which direction saves
+  deaths or buys progress against the shipped values?
+tier: pilot            # classes-18, 100,000 turns; small tiers of the arms that lead, after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-main-a04e5471
+  repository: diegoami/borg-reborn-rs
+  ref: a04e54719cdd3e38312a55debae160fbe592952d
+  label: "borg-reborn-rs main a04e5471 (dive gates, flight switches shipped off, #755 leash, #754 Recall wait)."
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-prepared
+arms:
+  ctl: {}
+  cl-lo:   # every class's DL3-4 and DL5-9 minimum character level 2 lower
+    borg_param_prepared_dl34_min_clevel__warrior: 2
+    borg_param_prepared_dl34_min_clevel__mage: 9
+    borg_param_prepared_dl34_min_clevel__druid: 7
+    borg_param_prepared_dl34_min_clevel__priest: 7
+    borg_param_prepared_dl34_min_clevel__necromancer: 9
+    borg_param_prepared_dl34_min_clevel__paladin: 2
+    borg_param_prepared_dl34_min_clevel__rogue: 6
+    borg_param_prepared_dl34_min_clevel__ranger: 2
+    borg_param_prepared_dl34_min_clevel__blackguard: 2
+    borg_param_prepared_dl59_min_clevel__warrior: 4
+    borg_param_prepared_dl59_min_clevel__mage: 13
+    borg_param_prepared_dl59_min_clevel__druid: 13
+    borg_param_prepared_dl59_min_clevel__priest: 13
+    borg_param_prepared_dl59_min_clevel__necromancer: 13
+    borg_param_prepared_dl59_min_clevel__paladin: 4
+    borg_param_prepared_dl59_min_clevel__rogue: 8
+    borg_param_prepared_dl59_min_clevel__ranger: 4
+    borg_param_prepared_dl59_min_clevel__blackguard: 4
+  cl-hi:   # ... 2 higher
+    borg_param_prepared_dl34_min_clevel__warrior: 6
+    borg_param_prepared_dl34_min_clevel__mage: 13
+    borg_param_prepared_dl34_min_clevel__druid: 11
+    borg_param_prepared_dl34_min_clevel__priest: 11
+    borg_param_prepared_dl34_min_clevel__necromancer: 13
+    borg_param_prepared_dl34_min_clevel__paladin: 6
+    borg_param_prepared_dl34_min_clevel__rogue: 10
+    borg_param_prepared_dl34_min_clevel__ranger: 6
+    borg_param_prepared_dl34_min_clevel__blackguard: 6
+    borg_param_prepared_dl59_min_clevel__warrior: 8
+    borg_param_prepared_dl59_min_clevel__mage: 17
+    borg_param_prepared_dl59_min_clevel__druid: 17
+    borg_param_prepared_dl59_min_clevel__priest: 17
+    borg_param_prepared_dl59_min_clevel__necromancer: 17
+    borg_param_prepared_dl59_min_clevel__paladin: 8
+    borg_param_prepared_dl59_min_clevel__rogue: 12
+    borg_param_prepared_dl59_min_clevel__ranger: 8
+    borg_param_prepared_dl59_min_clevel__blackguard: 8
+  hp-lo:   # minimum maximum HP 25% lower at DL2, DL3-4 and DL5-9
+    borg_param_prepared_dl2_min_hp: 23
+    borg_param_prepared_dl34_min_hp__warrior: 38
+    borg_param_prepared_dl34_min_hp__mage: 45
+    borg_param_prepared_dl34_min_hp__druid: 30
+    borg_param_prepared_dl34_min_hp__priest: 30
+    borg_param_prepared_dl34_min_hp__necromancer: 45
+    borg_param_prepared_dl34_min_hp__paladin: 38
+    borg_param_prepared_dl34_min_hp__rogue: 38
+    borg_param_prepared_dl34_min_hp__ranger: 38
+    borg_param_prepared_dl34_min_hp__blackguard: 38
+    borg_param_prepared_dl59_min_hp__warrior: 45
+    borg_param_prepared_dl59_min_hp__mage: 60
+    borg_param_prepared_dl59_min_hp__druid: 45
+    borg_param_prepared_dl59_min_hp__priest: 45
+    borg_param_prepared_dl59_min_hp__necromancer: 60
+    borg_param_prepared_dl59_min_hp__paladin: 45
+    borg_param_prepared_dl59_min_hp__rogue: 45
+    borg_param_prepared_dl59_min_hp__ranger: 45
+    borg_param_prepared_dl59_min_hp__blackguard: 45
+  hp-hi:   # ... 25% higher
+    borg_param_prepared_dl2_min_hp: 38
+    borg_param_prepared_dl34_min_hp__warrior: 63
+    borg_param_prepared_dl34_min_hp__mage: 75
+    borg_param_prepared_dl34_min_hp__druid: 50
+    borg_param_prepared_dl34_min_hp__priest: 50
+    borg_param_prepared_dl34_min_hp__necromancer: 75
+    borg_param_prepared_dl34_min_hp__paladin: 63
+    borg_param_prepared_dl34_min_hp__rogue: 63
+    borg_param_prepared_dl34_min_hp__ranger: 63
+    borg_param_prepared_dl34_min_hp__blackguard: 63
+    borg_param_prepared_dl59_min_hp__warrior: 75
+    borg_param_prepared_dl59_min_hp__mage: 100
+    borg_param_prepared_dl59_min_hp__druid: 75
+    borg_param_prepared_dl59_min_hp__priest: 75
+    borg_param_prepared_dl59_min_hp__necromancer: 100
+    borg_param_prepared_dl59_min_hp__paladin: 75
+    borg_param_prepared_dl59_min_hp__rogue: 75
+    borg_param_prepared_dl59_min_hp__ranger: 75
+    borg_param_prepared_dl59_min_hp__blackguard: 75
+  cure0:   # no Cure potions required from DL3
+    borg_param_prepared_cure_min: 0
+  cure4:   # 4 required (shipped 2)
+    borg_param_prepared_cure_min: 4
+  loose:   # cl-lo + hp-lo + cure0
+    borg_param_prepared_dl34_min_clevel__warrior: 2
+    borg_param_prepared_dl34_min_clevel__mage: 9
+    borg_param_prepared_dl34_min_clevel__druid: 7
+    borg_param_prepared_dl34_min_clevel__priest: 7
+    borg_param_prepared_dl34_min_clevel__necromancer: 9
+    borg_param_prepared_dl34_min_clevel__paladin: 2
+    borg_param_prepared_dl34_min_clevel__rogue: 6
+    borg_param_prepared_dl34_min_clevel__ranger: 2
+    borg_param_prepared_dl34_min_clevel__blackguard: 2
+    borg_param_prepared_dl59_min_clevel__warrior: 4
+    borg_param_prepared_dl59_min_clevel__mage: 13
+    borg_param_prepared_dl59_min_clevel__druid: 13
+    borg_param_prepared_dl59_min_clevel__priest: 13
+    borg_param_prepared_dl59_min_clevel__necromancer: 13
+    borg_param_prepared_dl59_min_clevel__paladin: 4
+    borg_param_prepared_dl59_min_clevel__rogue: 8
+    borg_param_prepared_dl59_min_clevel__ranger: 4
+    borg_param_prepared_dl59_min_clevel__blackguard: 4
+    borg_param_prepared_dl2_min_hp: 23
+    borg_param_prepared_dl34_min_hp__warrior: 38
+    borg_param_prepared_dl34_min_hp__mage: 45
+    borg_param_prepared_dl34_min_hp__druid: 30
+    borg_param_prepared_dl34_min_hp__priest: 30
+    borg_param_prepared_dl34_min_hp__necromancer: 45
+    borg_param_prepared_dl34_min_hp__paladin: 38
+    borg_param_prepared_dl34_min_hp__rogue: 38
+    borg_param_prepared_dl34_min_hp__ranger: 38
+    borg_param_prepared_dl34_min_hp__blackguard: 38
+    borg_param_prepared_dl59_min_hp__warrior: 45
+    borg_param_prepared_dl59_min_hp__mage: 60
+    borg_param_prepared_dl59_min_hp__druid: 45
+    borg_param_prepared_dl59_min_hp__priest: 45
+    borg_param_prepared_dl59_min_hp__necromancer: 60
+    borg_param_prepared_dl59_min_hp__paladin: 45
+    borg_param_prepared_dl59_min_hp__rogue: 45
+    borg_param_prepared_dl59_min_hp__ranger: 45
+    borg_param_prepared_dl59_min_hp__blackguard: 45
+    borg_param_prepared_cure_min: 0
+  tight:   # cl-hi + hp-hi + cure4
+    borg_param_prepared_dl34_min_clevel__warrior: 6
+    borg_param_prepared_dl34_min_clevel__mage: 13
+    borg_param_prepared_dl34_min_clevel__druid: 11
+    borg_param_prepared_dl34_min_clevel__priest: 11
+    borg_param_prepared_dl34_min_clevel__necromancer: 13
+    borg_param_prepared_dl34_min_clevel__paladin: 6
+    borg_param_prepared_dl34_min_clevel__rogue: 10
+    borg_param_prepared_dl34_min_clevel__ranger: 6
+    borg_param_prepared_dl34_min_clevel__blackguard: 6
+    borg_param_prepared_dl59_min_clevel__warrior: 8
+    borg_param_prepared_dl59_min_clevel__mage: 17
+    borg_param_prepared_dl59_min_clevel__druid: 17
+    borg_param_prepared_dl59_min_clevel__priest: 17
+    borg_param_prepared_dl59_min_clevel__necromancer: 17
+    borg_param_prepared_dl59_min_clevel__paladin: 8
+    borg_param_prepared_dl59_min_clevel__rogue: 12
+    borg_param_prepared_dl59_min_clevel__ranger: 8
+    borg_param_prepared_dl59_min_clevel__blackguard: 8
+    borg_param_prepared_dl2_min_hp: 38
+    borg_param_prepared_dl34_min_hp__warrior: 63
+    borg_param_prepared_dl34_min_hp__mage: 75
+    borg_param_prepared_dl34_min_hp__druid: 50
+    borg_param_prepared_dl34_min_hp__priest: 50
+    borg_param_prepared_dl34_min_hp__necromancer: 75
+    borg_param_prepared_dl34_min_hp__paladin: 63
+    borg_param_prepared_dl34_min_hp__rogue: 63
+    borg_param_prepared_dl34_min_hp__ranger: 63
+    borg_param_prepared_dl34_min_hp__blackguard: 63
+    borg_param_prepared_dl59_min_hp__warrior: 75
+    borg_param_prepared_dl59_min_hp__mage: 100
+    borg_param_prepared_dl59_min_hp__druid: 75
+    borg_param_prepared_dl59_min_hp__priest: 75
+    borg_param_prepared_dl59_min_hp__necromancer: 100
+    borg_param_prepared_dl59_min_hp__paladin: 75
+    borg_param_prepared_dl59_min_hp__rogue: 75
+    borg_param_prepared_dl59_min_hp__ranger: 75
+    borg_param_prepared_dl59_min_hp__blackguard: 75
+    borg_param_prepared_cure_min: 4
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: zoo owner, "we need calibrating for prepared_" (a classes-18 pilot only; small tiers wait for the gate and
+  the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this build was read. Pilot (RULES 16); small tiers of arms that lead follow
+  after the gate and the owner. Eight arms against ctl, 18 starts each (162 games).
+  Gate: no config_error; one binary; each arm's values in params-core.json of the death replays (the per-class lines
+  override the shipped ones); ctl plays as main a04e5471's shipped settings; every cell ends in death, turn_cap or
+  borg_stopped (stalls, timeouts and crashes kept apart); frozen-turn bursts classified.
+  Report per arm and per class: deaths and causes, character level at death, final and maximum level, deepest level;
+  paired rescued / newly killed against ctl (exact McNemar), identical plays; turns to first DL2, DL3, DL5; for every
+  death the gate that was last passed (depth entered, CL and max HP at entry); how many starts were held at a depth by a
+  prepared_ gate and for how long, if the logs show it. A gate that never holds in ctl (identical plays) means "not
+  tested". Descriptive (RULES 14).
