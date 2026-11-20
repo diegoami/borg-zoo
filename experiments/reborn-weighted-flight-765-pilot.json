@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-weighted-flight-765-pilot",
+  "issue": 524,
+  "definition": "definitions/reborn-weighted-flight-765-pilot.yaml",
+  "question": "Does threat weight 5 change outcomes relative to mode 3 on the same build and starts?",
+  "description": "Does threat weight 5 change outcomes relative to mode 3 on the same build and starts? Generated from definitions/reborn-weighted-flight-765-pilot.yaml: 3 arms on reborn-weighted-flight-4a2eade9, suite classes-18.",
+  "prespecified": "Compare weighted5 with mode3, paired by start.\nVerify one binary, effective settings, and all 54 outcomes.\nReport deaths by arm and class, paired rescues and new deaths.\nReport stalls, timeouts and crashes separately from deaths.\nRetain death bundles with screens.",
+  "specimens": [
+    "reborn-weighted-flight-4a2eade9"
+  ],
+  "profiles": [
+    "reborn-weighted765-shipped",
+    "reborn-weighted765-mode3",
+    "reborn-weighted765-weighted5"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "reborn-weighted-flight-4a2eade9",
+  "control_profile": "reborn-weighted765-mode3",
+  "owner_authorization": "2026-11-20: borg-reborn-rs session request (#765); zoo owner, 2026-11-20: \"check your open issues\" after \"yes go ahead\" (pilots and small runs only).",
+  "retain_evidence": true
+}

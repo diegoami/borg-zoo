@@ -1226,6 +1226,84 @@
         "reborn-cleashnone-none"
       ],
       "runs": []
+    },
+    "reborn-dive-gates-768": {
+      "issue": 518,
+      "status": "defined (pilot)",
+      "what": "C Borg dive gates (#768, PR #772): the shipped depth cap against the merged gates, then the depth margin and class offsets on 4e9af99e.",
+      "profiles": [
+        "reborn-dive-gates-768-shipped",
+        "reborn-dive-gates-768-margin-minus2",
+        "reborn-dive-gates-768-margin-plus2",
+        "reborn-dive-gates-768-mid-looser",
+        "reborn-dive-gates-768-mid-tighter"
+      ],
+      "runs": []
+    },
+    "reborn-p6compat": {
+      "issue": 520,
+      "status": "defined (pilot)",
+      "what": "P6 compatibility check (borg-reborn-rs #774): main 4e9af99e against the synchronized d0657712, shipped defaults.",
+      "profiles": [
+        "reborn-p6compat-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-flight3main": {
+      "issue": 516,
+      "status": "defined (pilot)",
+      "what": "PR #757's flight switches on main 09a70906 (mode 3 fixed): flight3, flight3r, path3, fast, cure.",
+      "profiles": [
+        "reborn-flight3main-ctl",
+        "reborn-flight3main-flight3",
+        "reborn-flight3main-flight3r",
+        "reborn-flight3main-path3",
+        "reborn-flight3main-fast",
+        "reborn-flight3main-cure"
+      ],
+      "runs": []
+    },
+    "reborn-rangerphase": {
+      "issue": 517,
+      "status": "defined (pilot)",
+      "what": "#761 Phase Door first on 3c889f0f (PR #778): ranger, phase, oil, floor and all.",
+      "profiles": [
+        "reborn-rangerphase-ctl",
+        "reborn-rangerphase-ranger",
+        "reborn-rangerphase-phase",
+        "reborn-rangerphase-oil",
+        "reborn-rangerphase-floor",
+        "reborn-rangerphase-all"
+      ],
+      "runs": []
+    },
+    "reborn-prepared": {
+      "issue": 522,
+      "status": "defined (pilot; small tiers after its gate and the owner)",
+      "what": "The dive gates' thresholds on main a04e5471: character-level minimums +/-2, HP minimums -25%/+25%, Cure minimum 0 and 4, and loose and tight combinations.",
+      "profiles": [
+        "reborn-prepared-ctl",
+        "reborn-prepared-cl-lo",
+        "reborn-prepared-cl-hi",
+        "reborn-prepared-hp-lo",
+        "reborn-prepared-hp-hi",
+        "reborn-prepared-cure0",
+        "reborn-prepared-cure4",
+        "reborn-prepared-loose",
+        "reborn-prepared-tight"
+      ],
+      "runs": []
+    },
+    "reborn-weighted765": {
+      "issue": 524,
+      "status": "defined (pilot)",
+      "what": "Threat-weighted stair routing (#765, PR #769) on 4a2eade9: the shipped profile, mode 3, and mode 3 with threat weight 5.",
+      "profiles": [
+        "reborn-weighted765-shipped",
+        "reborn-weighted765-mode3",
+        "reborn-weighted765-weighted5"
+      ],
+      "runs": []
     }
   }
 }

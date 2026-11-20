@@ -1,0 +1,42 @@
+# borg-zoo#520: P6 compatibility pilot (borg-reborn-rs #774): main 4e9af99e against the synchronized d0657712, shipped defaults.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-p6-compat-pilot.yaml
+name: reborn-p6-compat-pilot
+issue: 520
+question: >-
+  Does borg-reborn-rs d0657712 (main 4e9af99e merged with reviewed P6 track-p, ten neutral enchant/decurse parameters)
+  play exactly as 4e9af99e on the shipped defaults? A compatibility check, not a tuning or survival study.
+tier: pilot            # classes-18, 100,000 turns; the native full45 follow-up only after this gate and the owner
+
+specimens:
+  - 4.2.6-reborn-rust-main-4e9af99e
+  - name: 4.2.6-reborn-rust-p6-d0657712
+    repository: diegoami/borg-reborn-rs
+    ref: d06577123a4260f36d825e422ff2e6609d47d89f
+    label: "borg-reborn-rs task/T774-p6-main-reconciliation d0657712: main 4e9af99e + reviewed P6 track-p e9670cab; ten neutral enchant/decurse parameters at compiled defaults (decurse_spell_fail 40, enchant_spell_fail 65, enchant_brand_spell_fail 65, enchant_plain_target 8, enchant_ammo_target 10, enchant_min_shooter_power 3, enchant_ammo_min_quantity 5, enchant_brand_min_quantity 20, enchant_dungeon_max_turns 5500, enchant_town_max_turns 3501). Final tree e36d16f0. Engine 574b618c, donor 8c5d000a."
+    scary_lists:
+      scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+control_specimen: 4.2.6-reborn-rust-main-4e9af99e
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-p6compat
+arms:
+  shipped: {}   # each build's shipped harness/borg.txt, no overrides; the new names are left at compiled defaults
+control: [shipped]
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs session request; zoo owner, 2026-11-20: "yes go ahead" (pilots and small runs only,
+  no heavy jobs).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20 from borg-zoo#520 (borg-reborn-rs #774), before any result was read. Pilot (RULES 16); the exact
+  native full45 manifest (harness/suites/full, sha256 7c81c28c...2d2eed, nine classes x five starts, explicit menu
+  births, 100,000 turns) follows only after this gate and the owner's agreement; no larger tier under this request.
+  Gate: both exact builds and all effective settings verified (params-core.json of each cell: the ten new names present
+  at their defaults in the candidate only); all 36 cells retained; no config_error, stall, timeout or crash; paired
+  key, message and state differences listed. A mismatch stops the study: report the exact start, the first differing
+  key, trace and source before any larger tier. No dropping or reclassifying failures, no weakening of caps.
+  Report per start: play_sha256 equal between the builds or the first differing key; deaths, CL and DL per arm.

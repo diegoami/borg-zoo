@@ -2300,6 +2300,84 @@
       "scary_lists": {
         "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
       }
+    },
+    "4.2.6-reborn-rust-main-09a70906": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "09a7090650bf837702d5ab3345a7401532114cf8",
+      "label": "Pre-merge main with the shipped errands depth cap enabled",
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-main-4e9af99e": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "4e9af99ea51b531bdcf8c916ee6a37be72bef047",
+      "label": "Main at PR 772 with C's dive gates at their shipped values",
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-p6-d0657712": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "d06577123a4260f36d825e422ff2e6609d47d89f",
+      "label": "borg-reborn-rs task/T774-p6-main-reconciliation d0657712: main 4e9af99e + reviewed P6 track-p e9670cab; ten neutral enchant/decurse parameters at compiled defaults (decurse_spell_fail 40, enchant_spell_fail 65, enchant_brand_spell_fail 65, enchant_plain_target 8, enchant_ammo_target 10, enchant_min_shooter_power 3, enchant_ammo_min_quantity 5, enchant_brand_min_quantity 20, enchant_dungeon_max_turns 5500, enchant_town_max_turns 3501). Final tree e36d16f0. Engine 574b618c, donor 8c5d000a.",
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-ranger-phase-3c889f0f": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "3c889f0f3f55787506bf2bfcf1135e5bc86f6717",
+      "label": "borg-reborn-rs task/T761-ranger-phase 3c889f0f (PR #778): #513's code 992e0351 merged with main 09a70906 (PR #757 flight switches, all shipped off). Smoke at shipped settings 3/3 identical.",
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-main-a04e5471": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "a04e54719cdd3e38312a55debae160fbe592952d",
+      "label": "borg-reborn-rs main a04e5471 (dive gates, flight switches shipped off, #755 leash, #754 Recall wait).",
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "reborn-weighted-flight-4a2eade9": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "4a2eade967712e25fb175652d69bbae9c08f291d",
+      "label": "borg-reborn-rs task/T765-flight-routing, PR #769",
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
     }
   }
 }

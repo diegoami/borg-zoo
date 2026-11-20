@@ -1,0 +1,46 @@
+# borg-zoo#516: PR #757's flight switches on main 09a70906 (mode 3 fixed). Pilot on the new build first (RULES 16).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-flight3-main-pilot.yaml
+name: reborn-flight3-main-pilot
+issue: 516
+question: >-
+  On borg-reborn-rs main 09a70906 (PR #757 merged, mode 3 fixed), do the tuned flight and its single switches
+  behave as on #510's build 50c23a5e, and save early deaths without new ones?
+tier: pilot            # classes-18, 100,000 turns; the 200 Rangers and small + medium wait for this gate and the owner
+
+specimen: 4.2.6-reborn-rust-main-09a70906
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-flight3main
+arms:
+  ctl: {}
+  flight3: &flight3
+    borg_param_caution_stairs_clean_path: 3
+    borg_param_caution_stairs_clean_path_flee: 1
+    borg_param_caution_desperate_fast_danger_percent: 50
+    borg_param_caution_recall_cure_min_loss_percent: 30
+    borg_param_caution_stairs_flight_ignore_danger: 1
+    borg_param_caution_rising_hold_min_hp_percent: 50
+  flight3r:
+    <<: *flight3
+    borg_param_caution_desperate_ranged_first_reach: 3
+  path3: {borg_param_caution_stairs_clean_path: 3}
+  fast: {borg_param_caution_desperate_fast_danger_percent: 50}
+  cure: {borg_param_caution_recall_cure_min_loss_percent: 30}
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs owner, "file the experiments" (issue filed as the tier after the pilot); zoo owner,
+  2026-11-20: "yes go ahead" (a classes-18 pilot on the new build only; the Ranger and medium tiers wait for the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this build was read (borg-zoo#516). Pilot (RULES 16) of the arms of #516 on
+  the exact build; nodanger waits for borg-reborn-rs #775; ranged, flee and hold never fired alone in #510.
+  Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or
+  borg_stopped (stalls, timeouts and crashes kept apart); frozen-turn bursts classified; ctl plays as main 09a70906's
+  shipped settings.
+  Report per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired
+  rescued and newly killed against ctl (exact McNemar), identical plays; RULES 18 bin. Descriptive (RULES 14).

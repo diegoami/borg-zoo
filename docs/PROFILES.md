@@ -81,6 +81,12 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-phase-first-761` | [#513](https://github.com/diegoami/borg-zoo/issues/513) | 10 | pilot done 2026-11-20 (oil led, phase rescued); small tier (ctl, oil, phase) defined | #761 on 992e0351: Phase Door reserve, less oil, Rangers' lighter kit, floor pickup, unseen flavours, food/light, and all. |
 | `reborn-recallwait` | [#507](https://github.com/diegoami/borg-zoo/issues/507) | 4 | defined (pilot; small + medium after its gate) | #754's Recall-wait switches on PR #762 head 613f1ba5: a pending Recall counts as an escape (esc), no exploring while it counts down (nox), both. |
 | `reborn-cleashnone` | [#506](https://github.com/diegoami/borg-zoo/issues/506) | 2 | defined (re-pilot of ctl against none; small tier after its gate) | C's leash switched off (flow_leash_pickup_max_level and flow_leash_stairs_max_level 0) against C's shipped values, on main ec0f3b28. |
+| `reborn-dive-gates-768` | [#518](https://github.com/diegoami/borg-zoo/issues/518) | 5 | defined (pilot) | C Borg dive gates (#768, PR #772): the shipped depth cap against the merged gates, then the depth margin and class offsets on 4e9af99e. |
+| `reborn-p6compat` | [#520](https://github.com/diegoami/borg-zoo/issues/520) | 1 | defined (pilot) | P6 compatibility check (borg-reborn-rs #774): main 4e9af99e against the synchronized d0657712, shipped defaults. |
+| `reborn-flight3main` | [#516](https://github.com/diegoami/borg-zoo/issues/516) | 6 | defined (pilot) | PR #757's flight switches on main 09a70906 (mode 3 fixed): flight3, flight3r, path3, fast, cure. |
+| `reborn-rangerphase` | [#517](https://github.com/diegoami/borg-zoo/issues/517) | 6 | defined (pilot) | #761 Phase Door first on 3c889f0f (PR #778): ranger, phase, oil, floor and all. |
+| `reborn-prepared` | [#522](https://github.com/diegoami/borg-zoo/issues/522) | 9 | defined (pilot; small tiers after its gate and the owner) | The dive gates' thresholds on main a04e5471: character-level minimums +/-2, HP minimums -25%/+25%, Cure minimum 0 and 4, and loose and tight combinations. |
+| `reborn-weighted765` | [#524](https://github.com/diegoami/borg-zoo/issues/524) | 3 | defined (pilot) | Threat-weighted stair routing (#765, PR #769) on 4a2eade9: the shipped profile, mode 3, and mode 3 with threat weight 5. |
 
 ### `heal-attack-4`
 
@@ -1201,6 +1207,88 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-cleashnone-ctl` | – | – |
 | `reborn-cleashnone-none` | 0 | 0 |
 
+### `reborn-dive-gates-768`
+
+C Borg dive gates (#768, PR #772): the shipped depth cap against the merged gates, then the depth margin and class offsets on 4e9af99e.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_prepared_clevel_depth_margin` | `borg_param_prepared_mid_clevel_offset__blackguard` | `borg_param_prepared_mid_clevel_offset__druid` | `borg_param_prepared_mid_clevel_offset__mage` | `borg_param_prepared_mid_clevel_offset__necromancer` | `borg_param_prepared_mid_clevel_offset__paladin` | `borg_param_prepared_mid_clevel_offset__priest` | `borg_param_prepared_mid_clevel_offset__ranger` | `borg_param_prepared_mid_clevel_offset__rogue` | `borg_param_prepared_mid_clevel_offset__warrior` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-dive-gates-768-shipped` | – | – | – | – | – | – | – | – | – | – |
+| `reborn-dive-gates-768-margin-minus2` | -2 | – | – | – | – | – | – | – | – | – |
+| `reborn-dive-gates-768-margin-plus2` | 2 | – | – | – | – | – | – | – | – | – |
+| `reborn-dive-gates-768-mid-looser` | 2 | -7 | -3 | 2 | 2 | -3 | -3 | -3 | -3 | -7 |
+| `reborn-dive-gates-768-mid-tighter` | 2 | -1 | 3 | 8 | 8 | 3 | 3 | 3 | 3 | -1 |
+
+### `reborn-p6compat`
+
+P6 compatibility check (borg-reborn-rs #774): main 4e9af99e against the synchronized d0657712, shipped defaults.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-p6compat-shipped`.
+
+### `reborn-flight3main`
+
+PR #757's flight switches on main 09a70906 (mode 3 fixed): flight3, flight3r, path3, fast, cure.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_desperate_fast_danger_percent` | `borg_param_caution_desperate_ranged_first_reach` | `borg_param_caution_recall_cure_min_loss_percent` | `borg_param_caution_rising_hold_min_hp_percent` | `borg_param_caution_stairs_clean_path` | `borg_param_caution_stairs_clean_path_flee` | `borg_param_caution_stairs_flight_ignore_danger` |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-flight3main-ctl` | – | – | – | – | – | – | – |
+| `reborn-flight3main-flight3` | 50 | – | 30 | 50 | 3 | 1 | 1 |
+| `reborn-flight3main-flight3r` | 50 | 3 | 30 | 50 | 3 | 1 | 1 |
+| `reborn-flight3main-path3` | – | – | – | – | 3 | – | – |
+| `reborn-flight3main-fast` | 50 | – | – | – | – | – | – |
+| `reborn-flight3main-cure` | – | – | 30 | – | – | – | – |
+
+### `reborn-rangerphase`
+
+#761 Phase Door first on 3c889f0f (PR #778): ranger, phase, oil, floor and all.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_flow_take_phase_short_below` | `borg_param_town_heal_reserve_hp_percent_ranger` | `borg_param_town_oil_curve_scale_percent` | `borg_param_town_oil_curve_scale_percent__blackguard` | `borg_param_town_oil_curve_scale_percent__druid` | `borg_param_town_oil_curve_scale_percent__mage` | `borg_param_town_oil_curve_scale_percent__necromancer` | `borg_param_town_oil_curve_scale_percent__paladin` | `borg_param_town_oil_curve_scale_percent__priest` | `borg_param_town_oil_curve_scale_percent__ranger` | `borg_param_town_oil_curve_scale_percent__rogue` | `borg_param_town_oil_curve_scale_percent__warrior` | `borg_param_town_phase_reserve` | `borg_param_town_phase_reserve_percent` | `borg_param_town_ranger_arrows_max__ranger` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-rangerphase-ctl` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-rangerphase-ranger` | – | 100 | – | – | – | – | – | – | – | 25 | – | – | – | – | 20 |
+| `reborn-rangerphase-phase` | – | – | – | – | – | – | – | – | – | – | – | – | 2 | 200 | – |
+| `reborn-rangerphase-oil` | – | – | 50 | 50 | 75 | 50 | 50 | 60 | 75 | 25 | 60 | 50 | – | – | – |
+| `reborn-rangerphase-floor` | 2 | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-rangerphase-all` | 2 | 100 | 50 | 50 | 75 | 50 | 50 | 60 | 75 | 25 | 60 | 50 | 2 | 200 | 20 |
+
+### `reborn-prepared`
+
+The dive gates' thresholds on main a04e5471: character-level minimums +/-2, HP minimums -25%/+25%, Cure minimum 0 and 4, and loose and tight combinations.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_prepared_cure_min` | `borg_param_prepared_dl2_min_hp` | `borg_param_prepared_dl34_min_clevel__blackguard` | `borg_param_prepared_dl34_min_clevel__druid` | `borg_param_prepared_dl34_min_clevel__mage` | `borg_param_prepared_dl34_min_clevel__necromancer` | `borg_param_prepared_dl34_min_clevel__paladin` | `borg_param_prepared_dl34_min_clevel__priest` | `borg_param_prepared_dl34_min_clevel__ranger` | `borg_param_prepared_dl34_min_clevel__rogue` | `borg_param_prepared_dl34_min_clevel__warrior` | `borg_param_prepared_dl34_min_hp__blackguard` | `borg_param_prepared_dl34_min_hp__druid` | `borg_param_prepared_dl34_min_hp__mage` | `borg_param_prepared_dl34_min_hp__necromancer` | `borg_param_prepared_dl34_min_hp__paladin` | `borg_param_prepared_dl34_min_hp__priest` | `borg_param_prepared_dl34_min_hp__ranger` | `borg_param_prepared_dl34_min_hp__rogue` | `borg_param_prepared_dl34_min_hp__warrior` | `borg_param_prepared_dl59_min_clevel__blackguard` | `borg_param_prepared_dl59_min_clevel__druid` | `borg_param_prepared_dl59_min_clevel__mage` | `borg_param_prepared_dl59_min_clevel__necromancer` | `borg_param_prepared_dl59_min_clevel__paladin` | `borg_param_prepared_dl59_min_clevel__priest` | `borg_param_prepared_dl59_min_clevel__ranger` | `borg_param_prepared_dl59_min_clevel__rogue` | `borg_param_prepared_dl59_min_clevel__warrior` | `borg_param_prepared_dl59_min_hp__blackguard` | `borg_param_prepared_dl59_min_hp__druid` | `borg_param_prepared_dl59_min_hp__mage` | `borg_param_prepared_dl59_min_hp__necromancer` | `borg_param_prepared_dl59_min_hp__paladin` | `borg_param_prepared_dl59_min_hp__priest` | `borg_param_prepared_dl59_min_hp__ranger` | `borg_param_prepared_dl59_min_hp__rogue` | `borg_param_prepared_dl59_min_hp__warrior` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-prepared-ctl` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-prepared-cl-lo` | – | – | 2 | 7 | 9 | 9 | 2 | 7 | 2 | 6 | 2 | – | – | – | – | – | – | – | – | – | 4 | 13 | 13 | 13 | 4 | 13 | 4 | 8 | 4 | – | – | – | – | – | – | – | – | – |
+| `reborn-prepared-cl-hi` | – | – | 6 | 11 | 13 | 13 | 6 | 11 | 6 | 10 | 6 | – | – | – | – | – | – | – | – | – | 8 | 17 | 17 | 17 | 8 | 17 | 8 | 12 | 8 | – | – | – | – | – | – | – | – | – |
+| `reborn-prepared-hp-lo` | – | 23 | – | – | – | – | – | – | – | – | – | 38 | 30 | 45 | 45 | 38 | 30 | 38 | 38 | 38 | – | – | – | – | – | – | – | – | – | 45 | 45 | 60 | 60 | 45 | 45 | 45 | 45 | 45 |
+| `reborn-prepared-hp-hi` | – | 38 | – | – | – | – | – | – | – | – | – | 63 | 50 | 75 | 75 | 63 | 50 | 63 | 63 | 63 | – | – | – | – | – | – | – | – | – | 75 | 75 | 100 | 100 | 75 | 75 | 75 | 75 | 75 |
+| `reborn-prepared-cure0` | 0 | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-prepared-cure4` | 4 | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-prepared-loose` | 0 | 23 | 2 | 7 | 9 | 9 | 2 | 7 | 2 | 6 | 2 | 38 | 30 | 45 | 45 | 38 | 30 | 38 | 38 | 38 | 4 | 13 | 13 | 13 | 4 | 13 | 4 | 8 | 4 | 45 | 45 | 60 | 60 | 45 | 45 | 45 | 45 | 45 |
+| `reborn-prepared-tight` | 4 | 38 | 6 | 11 | 13 | 13 | 6 | 11 | 6 | 10 | 6 | 63 | 50 | 75 | 75 | 63 | 50 | 63 | 63 | 63 | 8 | 17 | 17 | 17 | 8 | 17 | 8 | 12 | 8 | 75 | 75 | 100 | 100 | 75 | 75 | 75 | 75 | 75 |
+
+### `reborn-weighted765`
+
+Threat-weighted stair routing (#765, PR #769) on 4a2eade9: the shipped profile, mode 3, and mode 3 with threat weight 5.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_desperate_fast_danger_percent` | `borg_param_caution_recall_cure_min_loss_percent` | `borg_param_caution_stairs_clean_path` | `borg_param_caution_stairs_clean_path_flee` | `borg_param_caution_stairs_flight_ignore_danger` | `borg_param_caution_stairs_flight_threat_weight` |
+| --- | --- | --- | --- | --- | --- | --- |
+| `reborn-weighted765-shipped` | – | – | – | – | – | – |
+| `reborn-weighted765-mode3` | 50 | 30 | 3 | 1 | 1 | 0 |
+| `reborn-weighted765-weighted5` | 50 | 30 | 3 | 1 | 1 | 5 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1292,8 +1380,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_breeder_exit` | 1, not set | `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_policy` | 0, 1, 2, 3, 4, 5 | `reborn-breeder-policy-x4` |  |
 | `borg_param_caution_breeder_stoppable` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
-| `borg_param_caution_desperate_fast_danger_percent` | 50, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |
-| `borg_param_caution_desperate_ranged_first_reach` | 3, not set | `reborn-flight3-757` |  |
+| `borg_param_caution_desperate_fast_danger_percent` | 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
+| `borg_param_caution_desperate_ranged_first_reach` | 3, not set | `reborn-flight3-757`, `reborn-flight3main` |  |
 | `borg_param_caution_flee_known_down_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_flee_recall_chasers` | 2, 6, not set | `reborn-untested-caution` |  |
@@ -1301,7 +1389,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
 | `borg_param_caution_jumpstart_keep_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_ranged_vs_immobile` | 1, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895` |  |
-| `borg_param_caution_recall_cure_min_loss_percent` | 30, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |
+| `borg_param_caution_recall_cure_min_loss_percent` | 30, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
 | `borg_param_caution_recall_pending_escape` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_recall_survival` | 1, not set | `reborn-fight-recall` |  |
@@ -1309,7 +1397,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_recall_wait_no_explore` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_rising_explore_ticks` | 500, 1000, 1500, 2000, not set | `reborn-rising-ticks3` |  |
 | `borg_param_caution_rising_hold_flee_descent` | 1, not set | `reborn-dungeon-switch-screen` |  |
-| `borg_param_caution_rising_hold_min_hp_percent` | 50, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |
+| `borg_param_caution_rising_hold_min_hp_percent` | 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main` |  |
 | `borg_param_caution_scary_afraid` | 0, 1 | `reborn-scary-calm` |  |
 | `borg_param_caution_scary_damage_percent` | 40, 60 | `reborn-scary-named-damage` |  |
 | `borg_param_caution_scary_hurt_percent` | 0, 50 | `reborn-scary-calm` |  |
@@ -1320,9 +1408,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_unlatch_kill` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_slow_crowd_exit` | 0, 1 | `reborn-slow-crowd-exit` |  |
 | `borg_param_caution_stair_parked_fallback` | 0, 1, not set | `reborn-597` |  |
-| `borg_param_caution_stairs_clean_path` | 2, 3, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |
-| `borg_param_caution_stairs_clean_path_flee` | 1, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |
-| `borg_param_caution_stairs_flight_ignore_danger` | 1, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |
+| `borg_param_caution_stairs_clean_path` | 2, 3, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
+| `borg_param_caution_stairs_clean_path_flee` | 1, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
+| `borg_param_caution_stairs_flight_ignore_danger` | 1, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
+| `borg_param_caution_stairs_flight_threat_weight` | 0, 5, not set | `reborn-weighted765` |  |
 | `borg_param_caution_stairs_leave_on_monster` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_town_flee_no_worse` | 1, not set | `reborn-untested-dbc`, `reborn-town-switch-screen` |  |
 | `borg_param_caution_town_never_scary` | 1, not set | `reborn-town-switch-screen` |  |
@@ -1347,7 +1436,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_flow_leash_pickup_max_level` | 0, not set | `reborn-cleash`, `reborn-cleashnone` |  |
 | `borg_param_flow_leash_stairs_max_level` | 0, not set | `reborn-cleash`, `reborn-cleashnone` |  |
 | `borg_param_flow_take_phase_first` | 1, not set | `reborn-phase-first-761` |  |
-| `borg_param_flow_take_phase_short_below` | 2, not set | `reborn-phase-first-761` |  |
+| `borg_param_flow_take_phase_short_below` | 2, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_kill_flow_mode` | 0, 1, 2, 3 | `reborn-kill-flow-mode` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
 | `borg_param_light_detect_evil_spell_min_level` | 5, 10, not set | `reborn-low-level-detection`, `reborn-shipcheck-b895` |  |
@@ -1365,6 +1454,54 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_light_detect_evil_spell_min_level__ranger` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__rogue` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__warrior` | 5, 10, not set | `reborn-low-level-detection` |  |
+| `borg_param_prepared_clevel_depth_margin` | -2, 2, not set | `reborn-dive-gates-768` |  |
+| `borg_param_prepared_cure_min` | 0, 4, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl2_min_hp` | 23, 38, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__blackguard` | 2, 6, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__druid` | 7, 11, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__mage` | 9, 13, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__necromancer` | 9, 13, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__paladin` | 2, 6, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__priest` | 7, 11, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__ranger` | 2, 6, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__rogue` | 6, 10, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__warrior` | 2, 6, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__blackguard` | 38, 63, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__druid` | 30, 50, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__mage` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__necromancer` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__paladin` | 38, 63, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__priest` | 30, 50, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__ranger` | 38, 63, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__rogue` | 38, 63, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__warrior` | 38, 63, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__blackguard` | 4, 8, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__druid` | 13, 17, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__mage` | 13, 17, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__necromancer` | 13, 17, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__paladin` | 4, 8, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__priest` | 13, 17, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__ranger` | 4, 8, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__rogue` | 8, 12, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__warrior` | 4, 8, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__blackguard` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__druid` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__mage` | 60, 100, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__necromancer` | 60, 100, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__paladin` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__priest` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__ranger` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__rogue` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__warrior` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_mid_clevel_offset__blackguard` | -7, -1, not set | `reborn-dive-gates-768` |  |
+| `borg_param_prepared_mid_clevel_offset__druid` | -3, 3, not set | `reborn-dive-gates-768` |  |
+| `borg_param_prepared_mid_clevel_offset__mage` | 2, 8, not set | `reborn-dive-gates-768` |  |
+| `borg_param_prepared_mid_clevel_offset__necromancer` | 2, 8, not set | `reborn-dive-gates-768` |  |
+| `borg_param_prepared_mid_clevel_offset__paladin` | -3, 3, not set | `reborn-dive-gates-768` |  |
+| `borg_param_prepared_mid_clevel_offset__priest` | -3, 3, not set | `reborn-dive-gates-768` |  |
+| `borg_param_prepared_mid_clevel_offset__ranger` | -3, 3, not set | `reborn-dive-gates-768` |  |
+| `borg_param_prepared_mid_clevel_offset__rogue` | -3, 3, not set | `reborn-dive-gates-768` |  |
+| `borg_param_prepared_mid_clevel_offset__warrior` | -7, -1, not set | `reborn-dive-gates-768` |  |
 | `borg_param_recover_rest_arms_see_invis` | 1, not set | `reborn-stand-seeinv` |  |
 | `borg_param_recover_rest_breeders` | 0, not set | `reborn-breeder-world-x4` |  |
 | `borg_param_town_devices_percent` | 50, 200, not set | `reborn-untested-dbc` |  |
@@ -1395,13 +1532,13 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_necromancer` | -1, 150, 400, 450, not set | `reborn-heal-by-class`, `reborn-casters` |  |
 | `borg_param_town_heal_reserve_hp_percent_paladin` | -1, 75, 225, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_priest` | -1, 125, 350, 375, not set | `reborn-heal-by-class`, `reborn-mage-priest`, `reborn-casters` |  |
-| `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class`, `reborn-phase-first-761` |  |
+| `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class`, `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_light_percent` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_param_town_missiles_other_ranged_percent` | 50, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_missiles_percent` | 50, 100, not set | `reborn-untested-dbc` |  |
-| `borg_param_town_oil_curve_scale_percent` | 50, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_oil_curve_scale_percent` | 50, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_oil_curve_scale_percent@blackguard` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_oil_curve_scale_percent@druid` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_oil_curve_scale_percent@mage` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
@@ -1411,15 +1548,15 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_oil_curve_scale_percent@ranger` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_oil_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_oil_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
-| `borg_param_town_oil_curve_scale_percent__blackguard` | 50, not set | `reborn-phase-first-761` |  |
-| `borg_param_town_oil_curve_scale_percent__druid` | 75, not set | `reborn-phase-first-761` |  |
-| `borg_param_town_oil_curve_scale_percent__mage` | 50, not set | `reborn-phase-first-761` |  |
-| `borg_param_town_oil_curve_scale_percent__necromancer` | 50, not set | `reborn-phase-first-761` |  |
-| `borg_param_town_oil_curve_scale_percent__paladin` | 60, not set | `reborn-phase-first-761` |  |
-| `borg_param_town_oil_curve_scale_percent__priest` | 75, not set | `reborn-phase-first-761` |  |
-| `borg_param_town_oil_curve_scale_percent__ranger` | 25, not set | `reborn-phase-first-761` |  |
-| `borg_param_town_oil_curve_scale_percent__rogue` | 60, not set | `reborn-phase-first-761` |  |
-| `borg_param_town_oil_curve_scale_percent__warrior` | 50, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_oil_curve_scale_percent__blackguard` | 50, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
+| `borg_param_town_oil_curve_scale_percent__druid` | 75, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
+| `borg_param_town_oil_curve_scale_percent__mage` | 50, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
+| `borg_param_town_oil_curve_scale_percent__necromancer` | 50, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
+| `borg_param_town_oil_curve_scale_percent__paladin` | 60, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
+| `borg_param_town_oil_curve_scale_percent__priest` | 75, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
+| `borg_param_town_oil_curve_scale_percent__ranger` | 25, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
+| `borg_param_town_oil_curve_scale_percent__rogue` | 60, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
+| `borg_param_town_oil_curve_scale_percent__warrior` | 50, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_phase_curve_scale_percent@blackguard` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc`, `reborn-bgcurve-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@druid` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@mage` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
@@ -1429,9 +1566,9 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_curve_scale_percent@ranger` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
-| `borg_param_town_phase_reserve` | 2, not set | `reborn-phase-first-761` |  |
-| `borg_param_town_phase_reserve_percent` | 200, not set | `reborn-phase-first-761` |  |
-| `borg_param_town_ranger_arrows_max__ranger` | 20, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_phase_reserve` | 2, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
+| `borg_param_town_phase_reserve_percent` | 200, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
+| `borg_param_town_ranger_arrows_max__ranger` | 20, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_recall_reserve` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_param_town_store_only_overweight` | 0, 1, not set | `reborn-store-overweight`, `reborn-shipcheck-b895` |  |

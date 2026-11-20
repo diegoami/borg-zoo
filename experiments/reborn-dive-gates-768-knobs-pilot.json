@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-dive-gates-768-knobs-pilot",
+  "issue": 518,
+  "definition": "definitions/reborn-dive-gates-768-knobs-pilot.yaml",
+  "question": "How do the depth margin and class offsets affect deaths and depth on the merged C dive gates?",
+  "description": "How do the depth margin and class offsets affect deaths and depth on the merged C dive gates? Generated from definitions/reborn-dive-gates-768-knobs-pilot.yaml: 5 arms on 4.2.6-reborn-rust-main-4e9af99e, suite classes-18.",
+  "prespecified": "Use the same 18 starts and 100,000-turn cap as the shipped-build pilot.\nVerify one binary, all 90 cells and terminal outcomes, and the exact scalar\nand per-class overrides in the generated profiles. Check effective values in\nrun receipts and death replays where available. The shared shipped arm should\nreproduce the merged specimen's play hashes from the shipped-build pilot.\nReport the same survival and progress endpoints. Pair both margins against\nshipped and both mid offset arms against margin-plus2. Report how many starts\nreach DL10 and any observed activations of the mid gate, including by class.\nIf the pilot never exercises the mid gate, report exposure as insufficient.\nRetain natural death bundles and report technical failures separately.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-4e9af99e"
+  ],
+  "profiles": [
+    "reborn-dive-gates-768-shipped",
+    "reborn-dive-gates-768-margin-minus2",
+    "reborn-dive-gates-768-margin-plus2",
+    "reborn-dive-gates-768-mid-looser",
+    "reborn-dive-gates-768-mid-tighter"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-4e9af99e",
+  "control_profile": "reborn-dive-gates-768-shipped",
+  "owner_authorization": "2026-11-20: borg-reborn-rs owner (issue filed from borg-reborn-rs #768 / PR #772); zoo owner, 2026-11-20: \"yes go ahead\" (pilots and small runs only, no heavy jobs).",
+  "retain_evidence": true
+}

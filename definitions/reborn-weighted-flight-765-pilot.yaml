@@ -1,0 +1,44 @@
+# borg-zoo#524: threat-weighted stair routing (borg-reborn-rs #765, PR #769). Write the catalogue entries with: python3 -m zoo define definitions/reborn-weighted-flight-765-pilot.yaml
+name: reborn-weighted-flight-765-pilot
+question: Does threat weight 5 change outcomes relative to mode 3 on the same build and starts?
+issue: 524
+tier: pilot            # classes-18, 100,000 turns, 54 games
+
+specimen:
+  name: reborn-weighted-flight-4a2eade9
+  repository: diegoami/borg-reborn-rs
+  ref: 4a2eade967712e25fb175652d69bbae9c08f291d
+  label: "borg-reborn-rs task/T765-flight-routing, PR #769"
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-weighted765
+arms:
+  shipped: {}
+  mode3: &mode3
+    borg_param_caution_stairs_clean_path: 3
+    borg_param_caution_stairs_clean_path_flee: 1
+    borg_param_caution_desperate_fast_danger_percent: 50
+    borg_param_caution_recall_cure_min_loss_percent: 30
+    borg_param_caution_stairs_flight_ignore_danger: 1
+    borg_param_caution_stairs_flight_threat_weight: 0
+  weighted5:
+    <<: *mode3
+    borg_param_caution_stairs_flight_threat_weight: 5
+
+control: [mode3]
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs session request (#765); zoo owner, 2026-11-20: "check your open issues" after "yes go
+  ahead" (pilots and small runs only).
+extra:
+  retain_evidence: true
+prespecified: |
+  Compare weighted5 with mode3, paired by start.
+  Verify one binary, effective settings, and all 54 outcomes.
+  Report deaths by arm and class, paired rescues and new deaths.
+  Report stalls, timeouts and crashes separately from deaths.
+  Retain death bundles with screens.
