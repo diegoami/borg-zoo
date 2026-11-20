@@ -65,12 +65,13 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-breederstop-dbc` | [#411](https://github.com/diegoami/borg-zoo/issues/411) | 3 | defined (pilot, small, medium on main dbc92d18) | #411 on dbc92d18: kill breeders first (stoppable), alone and with avoidance, against both off. |
 | `reborn-store-overweight` | [#457](https://github.com/diegoami/borg-zoo/issues/457) | 2 | pilot done (1 -> 0 deaths); small + medium defined | Store at home only when overweight (town_store_only_overweight) against off. |
 | `reborn-bgcurve-dbc` | [#433](https://github.com/diegoami/borg-zoo/issues/433) | 3 | defined (pilot on dbc92d18; classes-1800-b Blackguards after its gate) | Blackguards: shipped (Phase Door 50, healing 100/200) against Phase Door 100, and against healing 75/150. |
-| `reborn-stairs-leash` | [#475](https://github.com/diegoami/borg-zoo/issues/475) | 3 | defined (pilot) | Stairs leash for CL1-4 (flow_leash 1 by level, 2 growing with XP) against C. |
+| `reborn-stairs-leash` | [#475](https://github.com/diegoami/borg-zoo/issues/475) | 3 | pilot done; small + medium (level only) defined | Stairs leash for CL1-4 (flow_leash 1 by level, 2 growing with XP) against C. |
 | `reborn-low-level-detection` | [#470](https://github.com/diegoami/borg-zoo/issues/470) | 4 | defined (pilot) | Detection min level: 0 (C) / casters 10 / all 10 / all 5. |
 | `reborn-town-switch-screen` | [#466](https://github.com/diegoami/borg-zoo/issues/466) | 7 | defined (pilot) | Screen of the town and Druid switches main ships off, one arm each. |
 | `reborn-dungeon-switch-screen` | [#465](https://github.com/diegoami/borg-zoo/issues/465) | 10 | defined (pilot) | Screen of the dungeon switches main ships off, one arm each. |
 | `reborn-shipcheck-b895` | [#480](https://github.com/diegoami/borg-zoo/issues/480) | 6 | defined (first stage on classes-1800-small; medium after its gate) | Main b895e352 (engine 574b618c): shipped against throw-as-melee 0, store-when-overweight 0, detection casters 10, all 10, ranged vs immobile 1. |
 | `reborn-main-fde8` | [#488](https://github.com/diegoami/borg-zoo/issues/488) | 1 | defined (pilot; all 1,800 starts after its gate) | borg-reborn-rs main fde8025a (engine 574b618c) with its shipped settings. |
+| `reborn-breeder-world-x4` | [#482](https://github.com/diegoami/borg-zoo/issues/482) | 6 | defined (pilot) | Breeder switches in the breeders-x4 world (all arms in the world): shipped against stoppable 0, rest 0, both 0, exit 1, avoid 1. |
 
 ### `heal-attack-4`
 
@@ -1036,6 +1037,21 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 Profiles: `reborn-main-fde8-shipped`.
 
+### `reborn-breeder-world-x4`
+
+Breeder switches in the breeders-x4 world (all arms in the world): shipped against stoppable 0, rest 0, both 0, exit 1, avoid 1.
+
+Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`, `borg_world = breeders-x4`.
+
+| Profile | `borg_param_caution_breeder_avoid` | `borg_param_caution_breeder_exit` | `borg_param_caution_breeder_stoppable` | `borg_param_recover_rest_breeders` |
+| --- | --- | --- | --- | --- |
+| `reborn-worldx4-avoid` | 1 | – | – | – |
+| `reborn-worldx4-both0` | – | – | 0 | 0 |
+| `reborn-worldx4-ctl` | – | – | – | – |
+| `reborn-worldx4-exit` | – | 1 | – | – |
+| `reborn-worldx4-rest0` | – | – | – | 0 |
+| `reborn-worldx4-stop0` | – | – | 0 | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1121,9 +1137,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_town_dangerous_min_damage` | 3, not set | `reborn-town-dangerous` |  |
 | `borg_param_attack_town_dangerous_on_sight` | 0, 1, not set | `reborn-town-dangerous`, `reborn-neutral-main`, `reborn-town-switch-screen` |  |
 | `borg_param_attack_town_dangerous_wand` | 1, not set | `reborn-town-switch-screen` |  |
-| `borg_param_caution_breeder_avoid` | 0, 1 | `reborn-breeder-stoppable`, `reborn-breederstop-dbc` |  |
+| `borg_param_caution_breeder_avoid` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_easy_escape_steps` | 3, 10, not set | `reborn-untested-caution` |  |
-| `borg_param_caution_breeder_stoppable` | 0, 1 | `reborn-breeder-stoppable`, `reborn-breederstop-dbc` |  |
+| `borg_param_caution_breeder_exit` | 1, not set | `reborn-breeder-world-x4` |  |
+| `borg_param_caution_breeder_stoppable` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
 | `borg_param_caution_flee_known_down_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_flee_recall_chasers` | 2, 6, not set | `reborn-untested-caution` |  |
@@ -1179,6 +1196,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_light_detect_evil_spell_min_level__rogue` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__warrior` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_recover_rest_arms_see_invis` | 1, not set | `reborn-stand-seeinv` |  |
+| `borg_param_recover_rest_breeders` | 0, not set | `reborn-breeder-world-x4` |  |
 | `borg_param_town_devices_percent` | 50, 200, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_devices_percent@blackguard` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_devices_percent@druid` | 50, 100, 200, not set | `reborn-untested-dbc` |  |

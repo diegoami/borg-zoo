@@ -92,6 +92,10 @@ def config_text(record, cell, spec, profile, race_i, cls_i, borg_txt, plan_sha, 
         lines += [f'borg_scary_list={scary}', f'scary_list_sha256={scary_sha}']
     elif profile['settings'].get('borg_scary_list') is not None:
         lines.append(f"borg_scary_list={profile['settings']['borg_scary_list']}")
+    if record.get('world'):
+        # The world the cell played (borg-zoo#482), as harness/run.sh records it.
+        w = record['world']
+        lines += [f"borg_world={w['name']}", f"borg_world_sha256={w['sha256']}", f"borg_world_data_sha256={w['data_sha256']}"]
     if streams:
         # Observation-only record paths the cell set (a retained-evidence or
         # town-shadow cell); a rerun sets them too, to be the cell exactly.
@@ -146,8 +150,12 @@ def replay_borgrs(record, cell, build_dir, cat, out, provenance, keep=False):
     scary, _ = borgrs.scary_name(profile, text)
     scary_sha = (borgrs.ship_scary_list(spec, manifest, build_dir, out, scary, borgrs.scary_lines(profile))
                  if scary is not None else None)
+    world = borgrs.world_name(profile, (build_dir / 'borg.txt').read_text())
+    world_record, data_root = borgrs.make_world(spec, manifest, build_dir, out, world) if world else (None, None)
+    if world_record and record.get('world') and world_record['data_sha256'] != record['world'].get('data_sha256'):
+        raise ValueError('world data differs from the one the cell played')
     game = build_dir / 'game'
-    argv = borgrs.command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=True)
+    argv = borgrs.command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=True, data_root=data_root)
     env = {k: v for k, v in os.environ.items() if not k.startswith(borgrs.AMBIENT_PREFIX)}
     env.update(TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8', BORG_RUN_DIR=str(out))
     # The cell's own record streams, if it had any: the replay is the cell's
@@ -162,6 +170,8 @@ def replay_borgrs(record, cell, build_dir, cat, out, provenance, keep=False):
                                 timeout=suite['wall_seconds']).returncode
     except subprocess.TimeoutExpired:
         rc = 'timeout'
+    if data_root is not None:
+        shutil.rmtree(data_root, ignore_errors=True)
     if plan is not None and plan != 'errands_plan.txt':
         # export-death.py keeps user/errands_plan.txt as the dossier's plan;
         # copied after play, so the replay's user/ is the cell's.
