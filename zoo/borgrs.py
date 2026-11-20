@@ -586,6 +586,8 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'error': error,
         'stall': stall_info,
         'source_sha256': (manifest.get('build_id') or {}).get('source_sha256'),
+        # The upstream Angband commit the build compiled (borg-zoo#473: borg-reborn-rs #730 moved it).
+        'engine_upstream': (manifest.get('build_id') or {}).get('engine_upstream'),
         'binary_sha256': manifest.get('binary_sha256'), 'compiler': manifest.get('compiler'),
         'rustc': manifest.get('rustc'), 'platform': manifest.get('platform'),
     }

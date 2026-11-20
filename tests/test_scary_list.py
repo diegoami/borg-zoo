@@ -31,7 +31,7 @@ class ScaryListTest(unittest.TestCase):
     def build(self, root, spec, shipped=''):
         (root / 'build.json').write_text(json.dumps({
             'source_commit': spec['ref'], 'impl': spec['impl'], 'binary_sha256': 'bin',
-            'build_id': {'git_rev': spec['ref'], 'source_sha256': 'src'},
+            'build_id': {'git_rev': spec['ref'], 'source_sha256': 'src', 'engine_upstream': 'e' * 40},
             'scary_lists': {'scary_monsters.txt': LIST_SHA}}))
         (root / 'borg.txt').write_text('borg_reborn_core = reborn\nborg_cheat_death = FALSE\n' + shipped)
         (root / 'scary_lists').mkdir()
@@ -72,6 +72,11 @@ class ScaryListTest(unittest.TestCase):
         self.assertEqual(record['scary_list'], {'name': 'scary_monsters.txt', 'source': 'profile',
                                                 'base_sha256': LIST_SHA, 'lines': [], 'sha256': LIST_SHA})
         self.assertEqual(record['outcome'], 'turn_cap')
+
+    def test_the_cell_records_the_builds_engine(self):
+        # borg-zoo#473: the upstream Angband commit from BUILD_ID, per cell.
+        record, _, _, _ = self.play(fixture_catalogue())
+        self.assertEqual(record['engine_upstream'], 'e' * 40)
 
     def test_a_cell_without_the_setting_gets_no_list(self):
         cat = fixture_catalogue()
