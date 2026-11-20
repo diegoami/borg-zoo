@@ -90,7 +90,7 @@ __FINDINGS__
 
 <section>
   <h2>The last screens</h2>
-  <p class="note" style="margin-top:4px">Pick a death, then step through its last 50 screens that changed. The log shows the game messages and the Borg's notes (lines starting with <code>#</code>) since the previous screen. Arrow keys step too.</p>
+  <p class="note" style="margin-top:4px">Pick a death, then step through its last <span id="nscr">50</span> screens that changed. The log shows the game messages and the Borg's notes (lines starting with <code>#</code>) since the previous screen. Arrow keys step too.</p>
   <div class="viewer" style="margin-top:12px">
     <nav class="list" id="list" aria-label="Deaths"></nav>
     <div class="main">
@@ -168,6 +168,7 @@ function render(){
   $('facts').innerHTML=[`${d.shots} shots`,`${d.melee} melee swings`,`${d.throws} throws`,`${d.cures} cures quaffed`,`${d.ammo} ammo left`].map(x=>`<span class="chip">${x}</span>`).join('')+`<span class="chip${d.last==='melee'?' bad':''}">last attack: ${d.last}</span>`+(d.cure_left?`<span class="chip bad">${d.cure_left} cure potions left</span>`:'');
   $('term').innerHTML=screen(f);
   $('slider').max=F.length-1;$('slider').value=fi;
+  $('nscr').textContent=F.length-1;
   $('stat').textContent=`${f.final?'After the last screen':'Screen '+(fi+1)+' of '+(F.length-1)} · game turn ${f.turn.toLocaleString()} · HP ${f.hp}/${f.mhp} · DL ${f.dl} · CL ${f.cl}`;
   $('hp').style.width=Math.max(0,Math.min(100,100*f.hp/Math.max(1,f.mhp)))+'%';
   $('log').innerHTML=f.msgs.length?f.msgs.map(m=>`<div class="${m.startsWith('#')?'n':(/You die/.test(m)?'x':'')}">${esc(m)}</div>`).join(''):'<div class="empty">No messages on this screen.</div>';
