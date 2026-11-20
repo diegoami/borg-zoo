@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Download a zoo run's death bundles and keep the ones asked for.
 
-    fetch_bundles.py RUN_ID --out DIR [--class Ranger] [--seeds 1,2,3] [--profile NAME]
+    fetch_bundles.py RUN_ID|EXPERIMENT --out DIR [--class Ranger] [--seeds 1,2,3] [--profile NAME]
+
+RUN may be the experiment's name (e.g. reborn-main-fde8-full): the latest run on the
+results branch is used, and its id printed. scripts/runs.py lists recent runs.
 
 Writes DIR/all (the run's deaths-* artifacts as downloaded) and DIR/selected (a copy
 with each shard's index.jsonl cut to the selected deaths and only their bundle
@@ -25,6 +28,15 @@ def main():
     ap.add_argument('--profile')
     ap.add_argument('--repo', default='diegoami/borg-zoo')
     a = ap.parse_args()
+    if not a.run.isdigit():
+        root = subprocess.run(['git', 'rev-parse', '--show-toplevel'], capture_output=True, text=True, check=True).stdout.strip()
+        subprocess.run(['git', '-C', root, 'fetch', '-q', 'origin', 'results'], check=True)
+        dirs = subprocess.run(['git', '-C', root, 'ls-tree', '--name-only', f'origin/results:results/{a.run}/'], capture_output=True, text=True).stdout.split()
+        if not dirs:
+            raise SystemExit(f'no runs of {a.run} on the results branch (scripts/runs.py lists them)')
+        latest = max(dirs, key=lambda d: int(d.split('-')[0]))
+        print(f'{a.run}: latest run {latest} (of {len(dirs)})')
+        a.run = latest.split('-')[0]
     seeds = {int(s) for s in a.seeds.split(',')} if a.seeds else None
     raw, sel = a.out / 'all', a.out / 'selected'
     if not raw.exists():

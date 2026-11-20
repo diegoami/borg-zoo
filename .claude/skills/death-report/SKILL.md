@@ -15,7 +15,8 @@ Everything here is reproduced, not reconstructed. Every recording and every save
 
 ## Inputs
 
-- **The run id**, from the run page link (`.../runs/EXPERIMENT/RUN-ATTEMPT/...`) or the issue.
+- **The run:** either an experiment name (e.g. `reborn-main-fde8-full`, which uses its latest run) or a run id. Run ids appear in the run page's address (`.../runs/EXPERIMENT/RUNID-ATTEMPT/index.html`) and in the issue comments.
+  - To pick one, `python3 scripts/runs.py [FILTER]` lists recent runs from the results branch with games, deaths and deaths per class, newest first. FILTER matches part of the experiment name, e.g. `full`, `fde8`, `leash`.
 - **The selection:** a class (`--class Ranger`), seeds (`--seeds 1,2`) or an arm (`--profile NAME`).
 - **A short pack name**, e.g. `fde8-rangers`.
 
@@ -26,7 +27,7 @@ Scripts are in `.claude/skills/death-report/scripts/`. Work in the session's scr
 ## Steps
 
 1. **Bundles.**
-   `python3 scripts/fetch_bundles.py RUN --out W --class Ranger`
+   `python3 scripts/fetch_bundles.py RUN_OR_EXPERIMENT --out W --class Ranger`
    Selected bundles go to `W/selected`, one line printed per death.
 
 2. **Source at the specimen's commit.** The bundles' `BUILD_ID` / specimen name the commit. Use a read-only clone in the scratchpad:
@@ -36,8 +37,9 @@ Scripts are in `.claude/skills/death-report/scripts/`. Work in the session's scr
 3. **Read the deaths before writing anything.** For each bundle, read `messages.log`: the last 300 lines, the killer's first appearance, attack choices (`# Performing attack type 1` melee / `3` shot / `2` throw), flight and healing notes. Compare with another main or arm if the owner asked why. Write findings only from what the logs and counts show, and recount every number you state against the table you build (counts per class, CL at death, last attack, ammo). Earlier reports had miscounts caught only on a second pass.
 
 4. **Recordings and screens.**
-   `python3 scripts/record.py W/selected --source W/src --work W`
-   This builds `W/src/build/recorder` (`SUPPORT_BORG_RECORDING=ON`; `harness/build.sh` pins it off), records every death from birth, checks the keys, and writes `W/frames.json`: the last 50 screens, the gear at death, and per-death counts (shots, melee, throws, cures quaffed, ammo left, cure potions left, last attack).
+   `python3 scripts/record.py W/selected --source W/src --work W [--frames 100]`
+   - `--frames` sets how many screens per death the report steps through. The default is 50; the page shows the real count, and the size grows about 100 KB per 50 screens per death.
+   - This builds `W/src/build/recorder` (`SUPPORT_BORG_RECORDING=ON`; `harness/build.sh` pins it off), records every death from birth, checks the keys, and writes `W/frames.json`: the last 50 screens, the gear at death, and per-death counts (shots, melee, throws, cures quaffed, ammo left, cure potions left, last attack).
 
 5. **Play pack.**
    `python3 scripts/play_pack.py W/selected --source W/src --pack ~/borg-play/NAME`
