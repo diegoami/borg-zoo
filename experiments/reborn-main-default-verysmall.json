@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-main-default-verysmall",
+  "issue": 543,
+  "definition": "definitions/reborn-main-default-verysmall.yaml",
+  "question": "What does borg-reborn-rs main d7e58cd, with its shipped settings and no overrides, die of in 45 starts (5 per class), and what do those deaths show? Material for death reports, not a comparison.",
+  "description": "What does borg-reborn-rs main d7e58cd, with its shipped settings and no overrides, die of in 45 starts (5 per class), and what do those deaths show? Material for death reports, not a comparison. Generated from definitions/reborn-main-default-verysmall.yaml: 1 arms on 4.2.6-reborn-rust-main-d7e58cdf, suite classes-1800-verysmall.",
+  "prespecified": "Fixed 2026-11-21, before any result was read. One arm (the shipped profile, no overrides), 45 starts, all classes.\nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped (stalls, timeouts and crashes\nkept apart); frozen-turn bursts classified; death bundles reproduced.\nReport: deaths and causes per class, CL at death, mean max CL and DL. Then /pilot-deaths for every death (last\nscreens, what was worn and carried, the Borg's notes, the decisions), and a published report. No comparison and no\nclaim about the rate: 45 starts show what kinds of deaths exist.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-d7e58cdf"
+  ],
+  "profiles": [
+    "reborn-ship3-allon"
+  ],
+  "suites": [
+    "classes-1800-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-main-d7e58cdf",
+  "control_profile": "reborn-ship3-allon",
+  "owner_authorization": "2026-11-21: zoo owner, \"when you get the chance make a verysmall run with default settings creating reports with deaths so we have something to analyze\" (a verysmall run, all classes; dispatched after the batch in flight).",
+  "retain_evidence": true
+}
