@@ -1,0 +1,35 @@
+# borg-zoo#482: the shipped breeder policy (p3) in breeders-x4, big tier, after the pilot, small and medium.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-policy-x4-big.yaml
+name: reborn-breeder-policy-x4-big
+issue: 482
+question: >-
+  In the breeders-x4 world (borg-reborn-rs PR #740 head e41eb758), which level of the breeder policy
+  (caution_breeder_policy 0-5, shipped 3) saves or costs games?
+specimens: [4.2.6-reborn-rust-pr740-e41eb758]
+tier: big             # classes-1800 starts 361-900
+profiles: [reborn-bpolicy-x4-p3]
+control_specimen: 4.2.6-reborn-rust-pr740-e41eb758
+control_profile: reborn-bpolicy-x4-p3
+owner_authorization: >-
+  2026-11-20: the owner asked for "a big experiment for 4.2.6-reborn-rust-pr740-e41eb758 · reborn-bpolicy-x4-p3": the
+  shipped policy alone on starts 361-900, after the pilot, small and medium of #482.
+
+prespecified: |
+  Big tier of the shipped policy alone (p3), descriptive: starts 361-900 in breeders-x4. Small + medium (#482) found p3
+  supported (no arm better on deaths; p0-p2 cost CL) and 7 Druid cells on DL1 that never finished (frozen-turn loops,
+  one in p3). This tier measures p3's deaths, breeder deaths and the rate of those loops at scale; with one arm there are
+  no paired counts.
+  Fixed 2026-11-20, before any result of these profiles was read (owner's redefinition of #482).
+  Gate:
+  - no config_error; one binary; every cell records world breeders-x4 with the same borg_world_data_sha256 in every arm;
+  - each arm's policy value in borg.txt and in params-core.json;
+  - the arms must play differently: at least p0 and p2 differ from p3 in some games. If an arm is identical to p3 in
+    all 18 pilot games, stop and report it before the larger tiers;
+  - every cell ends in death, turn_cap or borg_stopped (exit 2 means the world was not applied); frozen-turn bursts
+    classified; death bundles reproduced with the same world.
+  Report per arm and per class: deaths and causes, final and maximum level, deepest level; breeder deaths (the killer
+  has MULTIPLY); paired rescued and newly killed against p3 (exact McNemar) and games identical to p3; breeders created
+  and killed per game; per game "# Breeders cannot be stopped", "No rest: ... breeders known" and the flees from a lost
+  level; mean max CL and DL against p3 with non-inferiority at #347's margins (CL -0.25, DL -0.25); a RULES 18 bin for
+  each arm. A breeder world is a stress test: a level that wins here still needs normal play's measurement (#460)
+  before its shipped value changes.
