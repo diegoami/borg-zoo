@@ -1,0 +1,46 @@
+# borg-zoo#477: borg-reborn-rs#736 (PR #739), immobile monsters and blocked stairs; owner 2026-11-20.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-blocked-stairs-pilot.yaml
+name: reborn-blocked-stairs-pilot
+issue: 477
+question: >-
+  On borg-reborn-rs PR #739's head 7750b604, do the clean-path stairs test, the step toward the exit and the mobile
+  target first (#736, shipped on) save or cost games against all three off, and can the step-away
+  (caution_ranged_vs_immobile 2) come back with them?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-pr739-7750b604
+  repository: diegoami/borg-reborn-rs
+  ref: 7750b60431877a32002526d90cf7c1beef0ce22d
+  label: "borg-reborn-rs 7750b604, head of PR #739 (#736, unmerged; contains main 95fa8278, step-away off since #737): caution_stairs_clean_path, caution_immobile_step_to_exit and attack_mobile_threat_first, compiled 0 and shipped 1."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-blkstairs
+arms:
+  none: {borg_param_caution_stairs_clean_path: 0, borg_param_caution_immobile_step_to_exit: 0, borg_param_attack_mobile_threat_first: 0}
+  shipped: {}
+  stepaway: {borg_param_caution_ranged_vs_immobile: 2}
+control: [none]
+owner_authorization: >-
+  2026-11-20: the owner said "open 736, do the zoo, and I would put them already on" on borg-reborn-rs#736.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of these profiles was read. Pilot (RULES 16); named starts (borg-zoo#461's
+  Druids 718471242, 1896767101, 1508143544 and borg-cemetery#79's Paladin) and tiers only after this gate and the owner.
+  Gate: no config_error; one binary; each arm's lines written in borg.txt and read in params-core.json; every cell
+  ends in death, turn_cap or borg_stopped; frozen-turn bursts classified; death bundles reproduced.
+  Report per arm: deaths and causes, final and maximum level, deepest level; paired rescued and newly killed against
+  none (A, B and C off); per game the notes "# Stairs not reachable", "# Targeting the mobile threat", "# Stepping away from immobile"
+  and Phase Door reads.
+  Context: local classes-18 on main 95fa8278 with A and C on against off: deaths 0 / 0, sum of max CL 104 / 106, sum
+  of max DL 37 / 41, 11 of 18 identical.

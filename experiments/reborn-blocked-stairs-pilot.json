@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-blocked-stairs-pilot",
+  "issue": 477,
+  "definition": "definitions/reborn-blocked-stairs-pilot.yaml",
+  "question": "On borg-reborn-rs PR #739's head 7750b604, do the clean-path stairs test, the step toward the exit and the mobile target first (#736, shipped on) save or cost games against all three off, and can the step-away (caution_ranged_vs_immobile 2) come back with them?",
+  "description": "On borg-reborn-rs PR #739's head 7750b604, do the clean-path stairs test, the step toward the exit and the mobile target first (#736, shipped on) save or cost games against all three off, and can the step-away (caution_ranged_vs_immobile 2) come back with them? Generated from definitions/reborn-blocked-stairs-pilot.yaml: 3 arms on 4.2.6-reborn-rust-pr739-7750b604, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of these profiles was read. Pilot (RULES 16); named starts (borg-zoo#461's\nDruids 718471242, 1896767101, 1508143544 and borg-cemetery#79's Paladin) and tiers only after this gate and the owner.\nGate: no config_error; one binary; each arm's lines written in borg.txt and read in params-core.json; every cell\nends in death, turn_cap or borg_stopped; frozen-turn bursts classified; death bundles reproduced.\nReport per arm: deaths and causes, final and maximum level, deepest level; paired rescued and newly killed against\nnone (A, B and C off); per game the notes \"# Stairs not reachable\", \"# Targeting the mobile threat\", \"# Stepping away from immobile\"\nand Phase Door reads.\nContext: local classes-18 on main 95fa8278 with A and C on against off: deaths 0 / 0, sum of max CL 104 / 106, sum\nof max DL 37 / 41, 11 of 18 identical.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr739-7750b604"
+  ],
+  "profiles": [
+    "reborn-blkstairs-none",
+    "reborn-blkstairs-shipped",
+    "reborn-blkstairs-stepaway"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-pr739-7750b604",
+  "control_profile": "reborn-blkstairs-none",
+  "owner_authorization": "2026-11-20: the owner said \"open 736, do the zoo, and I would put them already on\" on borg-reborn-rs#736.",
+  "retain_evidence": true
+}

@@ -7474,6 +7474,31 @@
         "borg_reborn_errand": "none",
         "borg_param_town_ranger_arrows_curve_scale_percent__ranger": 100
       }
+    },
+    "reborn-blkstairs-none": {
+      "description": "borg-zoo#477 (reborn-blocked-stairs-pilot.yaml): arm none.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_clean_path": 0,
+        "borg_param_caution_immobile_step_to_exit": 0,
+        "borg_param_attack_mobile_threat_first": 0
+      }
+    },
+    "reborn-blkstairs-shipped": {
+      "description": "borg-zoo#477 (reborn-blocked-stairs-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-blkstairs-stepaway": {
+      "description": "borg-zoo#477 (reborn-blocked-stairs-pilot.yaml): arm stepaway.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_vs_immobile": 2
+      }
     }
   }
 }
