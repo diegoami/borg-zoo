@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-teleport-landing-either-pilot",
+  "issue": 495,
+  "definition": "definitions/reborn-teleport-landing-either-pilot.yaml",
+  "question": "On borg-reborn-rs main c74a8155, does checking a teleport's landing with either a scroll/spell or a staff/activation (escape_teleport_landing_either, upstream 95387b06) change games over 200,000 turns?",
+  "description": "On borg-reborn-rs main c74a8155, does checking a teleport's landing with either a scroll/spell or a staff/activation (escape_teleport_landing_either, upstream 95387b06) change games over 200,000 turns? Generated from definitions/reborn-teleport-landing-either-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-c74a8155, suite classes-1800-200k-pilot.",
+  "prespecified": "Fixed 2026-11-20, before any zoo result was read (borg-reborn-rs#733). Pilot (RULES 16) on the 200,000-turn pilot suite,\nbecause the rule acts later in a game; larger tiers only after this gate and the owner. ctl is shipped (0).\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class:\n- deaths and causes, final and maximum level, deepest level; paired rescued and newly killed against ctl;\n- games identical to ctl (the rule may never act at this size);\n- \"teleport\" decisions with a landing check per game (borg_caution_teleport notes), and the character level when the first one happens;\n- RULES 18 bin.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-main-c74a8155"
+  ],
+  "profiles": [
+    "reborn-tplanding-ctl",
+    "reborn-tplanding-either"
+  ],
+  "suites": [
+    "classes-1800-200k-pilot"
+  ],
+  "control": "4.2.6-reborn-rust-main-c74a8155",
+  "control_profile": "reborn-tplanding-ctl",
+  "owner_authorization": "2026-11-20: the owner asked to do borg-zoo#495 (escape_teleport_landing_either at 200,000 turns, main c74a8155).",
+  "retain_evidence": true
+}
