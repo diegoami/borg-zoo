@@ -1,0 +1,80 @@
+# borg-zoo#513: borg-reborn-rs #761 (with #746): Phase Door first, Rangers' kit, oil, unseen flavours, food and light.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-phase-first-761-pilot.yaml
+name: reborn-phase-first-761-pilot
+issue: 513
+question: >-
+  On borg-reborn-rs 992e0351 (#761), does buying and picking up Phase Door first, with less oil and the Rangers'
+  lighter kit, save early deaths without new ones?
+tier: pilot            # classes-18, 100,000 turns; the 200 Ranger starts and small + medium after its gate
+
+specimen:
+  name: 4.2.6-reborn-rust-phase-992e0351
+  repository: diegoami/borg-reborn-rs
+  ref: 992e0351c43e729b9cf6d7485bf7eaa25a6562b3
+  label: "borg-reborn-rs scratch/T761-phase 992e0351 (main ec0f3b28 + #761): Phase Door reserve, floor pickup, unseen, food/light percents; shipped off/100. harness/borg.txt 5f4d4af6..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-phasefirst
+arms:
+  ctl: {}
+  ranger:
+    borg_param_town_ranger_arrows_max__ranger: 20
+    borg_param_town_heal_reserve_hp_percent_ranger: 100
+    borg_param_town_oil_curve_scale_percent__ranger: 25
+  phase:
+    borg_param_town_phase_reserve: 2
+    borg_param_town_phase_reserve_percent: 200
+  oil: &oil
+    borg_param_town_oil_curve_scale_percent: 50
+    borg_param_town_oil_curve_scale_percent__warrior: 50
+    borg_param_town_oil_curve_scale_percent__mage: 50
+    borg_param_town_oil_curve_scale_percent__druid: 75
+    borg_param_town_oil_curve_scale_percent__priest: 75
+    borg_param_town_oil_curve_scale_percent__necromancer: 50
+    borg_param_town_oil_curve_scale_percent__paladin: 60
+    borg_param_town_oil_curve_scale_percent__rogue: 60
+    borg_param_town_oil_curve_scale_percent__ranger: 25
+    borg_param_town_oil_curve_scale_percent__blackguard: 50
+  phaseoil:
+    <<: *oil
+    borg_param_town_phase_reserve: 2
+    borg_param_town_phase_reserve_percent: 200
+  floor: {borg_param_flow_take_phase_short_below: 2}
+  floorfirst: {borg_param_flow_take_phase_short_below: 2, borg_param_flow_take_phase_first: 1}
+  unseen: {borg_param_town_unseen_percent: 50}
+  foodlight: {borg_param_town_food_percent: 50, borg_param_town_light_percent: 50}
+  all:
+    <<: *oil
+    borg_param_town_ranger_arrows_max__ranger: 20
+    borg_param_town_heal_reserve_hp_percent_ranger: 100
+    borg_param_town_phase_reserve: 2
+    borg_param_town_phase_reserve_percent: 200
+    borg_param_flow_take_phase_short_below: 2
+    borg_param_town_unseen_percent: 50
+    borg_param_town_food_percent: 50
+    borg_param_town_light_percent: 50
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs owner, "queue the zoo jobs you require"; zoo owner, 2026-11-20: "pick up the open
+  jobs" (pilots and small runs only, no heavy jobs).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this specimen was read (borg-zoo#513, borg-reborn-rs #761). Pilot (RULES 16);
+  the 200 Ranger starts of #488 and small + medium after this gate and the owner. ctl is the specimen's shipped
+  borg.txt, which should play as main ec0f3b28 (the new settings are off or 100). "all" is ranger + phaseoil + floor
+  + unseen + foodlight; its Ranger oil is 25 from both.
+  Gate: no config_error; one binary; each arm's values in borg.txt and params-core.json; every cell ends in death,
+  turn_cap or borg_stopped (stalls, timeouts and crashes kept apart from deaths); death bundles reproduced.
+  Report per arm and per class: deaths and causes, CL at death, deepest level; paired rescued / newly killed (exact
+  McNemar); identical plays; Phase Door bought and picked up per game, games leaving town with at least 2 Phase Door,
+  flasks of oil bought; RULES 18 bin. Deaths in all, phaseoil, ranger and ctl get a death report with screens.

@@ -1,0 +1,31 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-flight3-757-pilot",
+  "issue": 510,
+  "definition": "definitions/reborn-flight3-757-pilot.yaml",
+  "question": "On borg-reborn-rs 50c23a5e (PR #757 with #751 mode 3 and ranged-first), does the tuned flight with mode 3 save the early deaths without new ones, and which switch does what?",
+  "description": "On borg-reborn-rs 50c23a5e (PR #757 with #751 mode 3 and ranged-first), does the tuned flight with mode 3 save the early deaths without new ones, and which switch does what? Generated from definitions/reborn-flight3-757-pilot.yaml: 10 arms on 4.2.6-reborn-rust-flight3-50c23a5e, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this specimen was read (borg-zoo#510, borg-reborn-rs PR #757). Pilot (RULES 16);\nthe 200 Ranger starts of #488 and small + medium after this gate and the owner. ctl is the specimen's shipped borg.txt.\nGate: no config_error; one binary; each arm's values in borg.txt and params-core.json; every cell ends in death,\nturn_cap or borg_stopped (stalls, timeouts and crashes kept apart from deaths); death bundles reproduced.\nReport per arm and per class: deaths and causes, CL at death, deepest level; paired rescued / newly killed (exact\nMcNemar); identical plays; \"Stairs not reachable\" and \"Desperate for Stairs\" notes per game; RULES 18 bin.\nDeaths in ctl, flight3 and flight3r get a death report with screens.",
+  "specimens": [
+    "4.2.6-reborn-rust-flight3-50c23a5e"
+  ],
+  "profiles": [
+    "reborn-flight3m-ctl",
+    "reborn-flight3m-flight3",
+    "reborn-flight3m-flight3r",
+    "reborn-flight3m-path3",
+    "reborn-flight3m-ranged",
+    "reborn-flight3m-flee",
+    "reborn-flight3m-fast",
+    "reborn-flight3m-cure",
+    "reborn-flight3m-nodanger",
+    "reborn-flight3m-hold"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-flight3-50c23a5e",
+  "control_profile": "reborn-flight3m-ctl",
+  "owner_authorization": "2026-11-20: borg-reborn-rs owner, \"queue the zoo jobs you require\"; zoo owner, 2026-11-20: \"pick up the open jobs\" (pilots and small runs only, no heavy jobs).",
+  "retain_evidence": true
+}

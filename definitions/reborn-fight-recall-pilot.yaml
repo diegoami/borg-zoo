@@ -1,0 +1,50 @@
+# borg-zoo#511: borg-reborn-rs PRs #763/#764: attack-on-sight categories, winning fight, safe flight Recall.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-fight-recall-pilot.yaml
+name: reborn-fight-recall-pilot
+issue: 511
+question: >-
+  Do attack-on-sight categories, a winning-fight override and flight Recall survival checks change early survival
+  and progress without new losing fights?
+tier: pilot            # classes-18, 100,000 turns; a larger tier after the gate, on the owner's choice
+
+specimen:
+  name: 4.2.6-reborn-rust-fight-recall-78b8f297
+  repository: diegoami/borg-reborn-rs
+  ref: 78b8f2972e1fbf8dabfb55ba34d94873e791d0e2
+  label: "borg-reborn-rs task/T758-recall-survival 78b8f297 (#763/#764, unmerged): categories, winning fight, safe flight Recall; shipped off. Source-hash rust c04cd1fe...; harness/borg.txt 94539bc5..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-fightrecall
+arms:
+  ctl: {}
+  attack-sight:  {borg_param_attack_on_sight: 1}
+  winning-fight: {borg_param_caution_winning_fight: 1}
+  recall-safe:   {borg_param_caution_recall_survival: 1}
+  all:
+    borg_param_attack_on_sight: 1
+    borg_param_caution_winning_fight: 1
+    borg_param_caution_recall_survival: 1
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs owner, "queue the zoo jobs you require"; zoo owner, 2026-11-20: "pick up the open
+  jobs" (pilots and small runs only, no heavy jobs).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this specimen was read (borg-zoo#511). Pilot (RULES 16); the 600-start
+  manifest (borg-cemetery 5ed93e24 starts-600.tsv) or another tier after this gate, on the owner's choice. ctl is the
+  specimen's actual harness/borg.txt with the three switches 0.
+  Gate: no config_error; one binary; each arm's values in borg.txt and params-core.json; every cell ends in death,
+  turn_cap or borg_stopped (stalls, timeouts and crashes kept apart from deaths); death bundles reproduced.
+  Report per arm and per class: deaths and causes, paired saved and newly killed (exact McNemar), CL at death, mean
+  max CL and max DL, failures and identical key streams; "# Attack on sight:", "# Fight race:" and "# Refusing flight
+  Recall:" notes per game, and deaths while a Recall is pending; RULES 18 bin.

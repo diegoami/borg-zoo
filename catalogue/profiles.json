@@ -8057,6 +8057,258 @@
         "borg_param_flow_leash_stairs_max_level": 0,
         "borg_param_flow_leash_depth_margin": -100
       }
+    },
+    "reborn-flight3m-ctl": {
+      "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-flight3m-flight3": {
+      "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm flight3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_clean_path": 3,
+        "borg_param_caution_stairs_clean_path_flee": 1,
+        "borg_param_caution_desperate_fast_danger_percent": 50,
+        "borg_param_caution_recall_cure_min_loss_percent": 30,
+        "borg_param_caution_stairs_flight_ignore_danger": 1,
+        "borg_param_caution_rising_hold_min_hp_percent": 50
+      }
+    },
+    "reborn-flight3m-flight3r": {
+      "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm flight3r.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_clean_path": 3,
+        "borg_param_caution_stairs_clean_path_flee": 1,
+        "borg_param_caution_desperate_fast_danger_percent": 50,
+        "borg_param_caution_recall_cure_min_loss_percent": 30,
+        "borg_param_caution_stairs_flight_ignore_danger": 1,
+        "borg_param_caution_rising_hold_min_hp_percent": 50,
+        "borg_param_caution_desperate_ranged_first_reach": 3
+      }
+    },
+    "reborn-flight3m-path3": {
+      "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm path3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_clean_path": 3
+      }
+    },
+    "reborn-flight3m-ranged": {
+      "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm ranged.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_desperate_ranged_first_reach": 3
+      }
+    },
+    "reborn-flight3m-flee": {
+      "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm flee.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_clean_path_flee": 1
+      }
+    },
+    "reborn-flight3m-fast": {
+      "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm fast.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_desperate_fast_danger_percent": 50
+      }
+    },
+    "reborn-flight3m-cure": {
+      "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm cure.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_recall_cure_min_loss_percent": 30
+      }
+    },
+    "reborn-flight3m-nodanger": {
+      "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm nodanger.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_flight_ignore_danger": 1
+      }
+    },
+    "reborn-flight3m-hold": {
+      "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm hold.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_rising_hold_min_hp_percent": 50
+      }
+    },
+    "reborn-fightrecall-ctl": {
+      "description": "borg-zoo#511 (reborn-fight-recall-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-fightrecall-attack-sight": {
+      "description": "borg-zoo#511 (reborn-fight-recall-pilot.yaml): arm attack-sight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_on_sight": 1
+      }
+    },
+    "reborn-fightrecall-winning-fight": {
+      "description": "borg-zoo#511 (reborn-fight-recall-pilot.yaml): arm winning-fight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_winning_fight": 1
+      }
+    },
+    "reborn-fightrecall-recall-safe": {
+      "description": "borg-zoo#511 (reborn-fight-recall-pilot.yaml): arm recall-safe.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_recall_survival": 1
+      }
+    },
+    "reborn-fightrecall-all": {
+      "description": "borg-zoo#511 (reborn-fight-recall-pilot.yaml): arm all.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_on_sight": 1,
+        "borg_param_caution_winning_fight": 1,
+        "borg_param_caution_recall_survival": 1
+      }
+    },
+    "reborn-phasefirst-ctl": {
+      "description": "borg-zoo#513 (reborn-phase-first-761-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-phasefirst-ranger": {
+      "description": "borg-zoo#513 (reborn-phase-first-761-pilot.yaml): arm ranger.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_ranger_arrows_max__ranger": 20,
+        "borg_param_town_heal_reserve_hp_percent_ranger": 100,
+        "borg_param_town_oil_curve_scale_percent__ranger": 25
+      }
+    },
+    "reborn-phasefirst-phase": {
+      "description": "borg-zoo#513 (reborn-phase-first-761-pilot.yaml): arm phase.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_reserve": 2,
+        "borg_param_town_phase_reserve_percent": 200
+      }
+    },
+    "reborn-phasefirst-oil": {
+      "description": "borg-zoo#513 (reborn-phase-first-761-pilot.yaml): arm oil.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_oil_curve_scale_percent": 50,
+        "borg_param_town_oil_curve_scale_percent__warrior": 50,
+        "borg_param_town_oil_curve_scale_percent__mage": 50,
+        "borg_param_town_oil_curve_scale_percent__druid": 75,
+        "borg_param_town_oil_curve_scale_percent__priest": 75,
+        "borg_param_town_oil_curve_scale_percent__necromancer": 50,
+        "borg_param_town_oil_curve_scale_percent__paladin": 60,
+        "borg_param_town_oil_curve_scale_percent__rogue": 60,
+        "borg_param_town_oil_curve_scale_percent__ranger": 25,
+        "borg_param_town_oil_curve_scale_percent__blackguard": 50
+      }
+    },
+    "reborn-phasefirst-phaseoil": {
+      "description": "borg-zoo#513 (reborn-phase-first-761-pilot.yaml): arm phaseoil.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_oil_curve_scale_percent": 50,
+        "borg_param_town_oil_curve_scale_percent__warrior": 50,
+        "borg_param_town_oil_curve_scale_percent__mage": 50,
+        "borg_param_town_oil_curve_scale_percent__druid": 75,
+        "borg_param_town_oil_curve_scale_percent__priest": 75,
+        "borg_param_town_oil_curve_scale_percent__necromancer": 50,
+        "borg_param_town_oil_curve_scale_percent__paladin": 60,
+        "borg_param_town_oil_curve_scale_percent__rogue": 60,
+        "borg_param_town_oil_curve_scale_percent__ranger": 25,
+        "borg_param_town_oil_curve_scale_percent__blackguard": 50,
+        "borg_param_town_phase_reserve": 2,
+        "borg_param_town_phase_reserve_percent": 200
+      }
+    },
+    "reborn-phasefirst-floor": {
+      "description": "borg-zoo#513 (reborn-phase-first-761-pilot.yaml): arm floor.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_take_phase_short_below": 2
+      }
+    },
+    "reborn-phasefirst-floorfirst": {
+      "description": "borg-zoo#513 (reborn-phase-first-761-pilot.yaml): arm floorfirst.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_take_phase_short_below": 2,
+        "borg_param_flow_take_phase_first": 1
+      }
+    },
+    "reborn-phasefirst-unseen": {
+      "description": "borg-zoo#513 (reborn-phase-first-761-pilot.yaml): arm unseen.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_unseen_percent": 50
+      }
+    },
+    "reborn-phasefirst-foodlight": {
+      "description": "borg-zoo#513 (reborn-phase-first-761-pilot.yaml): arm foodlight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_food_percent": 50,
+        "borg_param_town_light_percent": 50
+      }
+    },
+    "reborn-phasefirst-all": {
+      "description": "borg-zoo#513 (reborn-phase-first-761-pilot.yaml): arm all.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_oil_curve_scale_percent": 50,
+        "borg_param_town_oil_curve_scale_percent__warrior": 50,
+        "borg_param_town_oil_curve_scale_percent__mage": 50,
+        "borg_param_town_oil_curve_scale_percent__druid": 75,
+        "borg_param_town_oil_curve_scale_percent__priest": 75,
+        "borg_param_town_oil_curve_scale_percent__necromancer": 50,
+        "borg_param_town_oil_curve_scale_percent__paladin": 60,
+        "borg_param_town_oil_curve_scale_percent__rogue": 60,
+        "borg_param_town_oil_curve_scale_percent__ranger": 25,
+        "borg_param_town_oil_curve_scale_percent__blackguard": 50,
+        "borg_param_town_ranger_arrows_max__ranger": 20,
+        "borg_param_town_heal_reserve_hp_percent_ranger": 100,
+        "borg_param_town_phase_reserve": 2,
+        "borg_param_town_phase_reserve_percent": 200,
+        "borg_param_flow_take_phase_short_below": 2,
+        "borg_param_town_unseen_percent": 50,
+        "borg_param_town_food_percent": 50,
+        "borg_param_town_light_percent": 50
+      }
     }
   }
 }
