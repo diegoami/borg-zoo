@@ -7791,6 +7791,66 @@
         "borg_reborn_errand": "none",
         "borg_param_caution_ranged_vs_immobile": 1
       }
+    },
+    "reborn-worldx4-ctl": {
+      "description": "borg-zoo#482 (reborn-breeder-world-x4.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_world": "breeders-x4"
+      }
+    },
+    "reborn-worldx4-stop0": {
+      "description": "borg-zoo#482 (reborn-breeder-world-x4.yaml): arm stop0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_stoppable": 0
+      }
+    },
+    "reborn-worldx4-rest0": {
+      "description": "borg-zoo#482 (reborn-breeder-world-x4.yaml): arm rest0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_world": "breeders-x4",
+        "borg_param_recover_rest_breeders": 0
+      }
+    },
+    "reborn-worldx4-both0": {
+      "description": "borg-zoo#482 (reborn-breeder-world-x4.yaml): arm both0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_stoppable": 0,
+        "borg_param_recover_rest_breeders": 0
+      }
+    },
+    "reborn-worldx4-exit": {
+      "description": "borg-zoo#482 (reborn-breeder-world-x4.yaml): arm exit.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_exit": 1
+      }
+    },
+    "reborn-worldx4-avoid": {
+      "description": "borg-zoo#482 (reborn-breeder-world-x4.yaml): arm avoid.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_avoid": 1
+      }
     }
   }
 }

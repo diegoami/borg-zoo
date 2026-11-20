@@ -996,7 +996,7 @@
     },
     "reborn-stairs-leash": {
       "issue": 475,
-      "status": "defined (pilot)",
+      "status": "pilot done; small + medium (level only) defined",
       "what": "Stairs leash for CL1-4 (flow_leash 1 by level, 2 growing with XP) against C.",
       "profiles": [
         "reborn-leash-ctl",
@@ -1061,6 +1061,20 @@
         "reborn-shipcheck-b895-shipped",
         "reborn-shipcheck-b895-store0",
         "reborn-shipcheck-b895-throw0"
+      ],
+      "runs": []
+    },
+    "reborn-breeder-world-x4": {
+      "issue": 482,
+      "status": "defined (pilot)",
+      "what": "Breeder switches in the breeders-x4 world (all arms in the world): shipped against stoppable 0, rest 0, both 0, exit 1, avoid 1.",
+      "profiles": [
+        "reborn-worldx4-avoid",
+        "reborn-worldx4-both0",
+        "reborn-worldx4-ctl",
+        "reborn-worldx4-exit",
+        "reborn-worldx4-rest0",
+        "reborn-worldx4-stop0"
       ],
       "runs": []
     }
