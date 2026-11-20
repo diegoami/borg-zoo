@@ -1,0 +1,31 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-dungeon-switch-screen",
+  "issue": 465,
+  "definition": "definitions/reborn-dungeon-switch-screen.yaml",
+  "question": "On borg-reborn-rs main 653f60ba, which of the dungeon switches main ships off (fleeing and stairs, the Recall wait, the scary unlatch, ranged against immobile monsters, the Phase Door fight test) saves or costs games against ctl?",
+  "description": "On borg-reborn-rs main 653f60ba, which of the dungeon switches main ships off (fleeing and stairs, the Recall wait, the scary unlatch, ranged against immobile monsters, the Phase Door fight test) saves or costs games against ctl? Generated from definitions/reborn-dungeon-switch-screen.yaml: 10 arms on 4.2.6-reborn-rust-main-653f60ba, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this definition was read (owner: \"file the experiments\"). A screen:\neach switch alone against ctl, to decide which to ship, which to tune and which to drop. classes-18 is the\ngate (RULES 16); small and medium (starts 1-360) follow right after it.\nGate:\n- no config_error; one binary; each arm's values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- in ctl, no \"# Phase rule: the fight:\" note (lost_test 0 notes nothing of the fight).\nReport per arm and per class:\n- deaths and causes, final and maximum level, deepest level;\n- paired rescued and newly killed against ctl (exact McNemar), and games identical to ctl (how often the\n  switch acts at all);\n- mean max CL and DL against ctl, with non-inferiority at the margins of borg-zoo#347 (CL -0.25, DL -0.25);\n- per arm, its own notes per game (\"# Phase rule: the fight:\" for phase-*, the flee and stair notes for the others),\n  and deaths within 500 game turns of one;\n- for phase-*: Phase Doors read and \"lost\" against \"not lost\" verdicts per game.\nBin each arm (RULES 18): ship, neutral, harmful, or too rare to tell.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-653f60ba"
+  ],
+  "profiles": [
+    "reborn-dunscreen-ctl",
+    "reborn-dunscreen-downstairs",
+    "reborn-dunscreen-down-jump",
+    "reborn-dunscreen-rising-hold",
+    "reborn-dunscreen-stairs-leave",
+    "reborn-dunscreen-recall-wait",
+    "reborn-dunscreen-unlatch-kill",
+    "reborn-dunscreen-ranged-immobile",
+    "reborn-dunscreen-phase-fight",
+    "reborn-dunscreen-phase-landing"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-653f60ba",
+  "control_profile": "reborn-dunscreen-ctl",
+  "owner_authorization": "2026-11-20: the owner asked to do the zoo pilots (\"and then the zoo pilots\"): the issue's pilot as filed.",
+  "retain_evidence": true
+}

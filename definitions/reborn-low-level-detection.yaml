@@ -1,0 +1,53 @@
+# borg-zoo#470: the issue's definition as filed; owner 2026-11-20.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-low-level-detection.yaml
+name: reborn-low-level-detection
+issue: 470
+question: On borg-reborn-rs PR #728's head fc181156, does detecting at low level (light_detect_evil_spell_min_level 0) save or cost games against no detection below CL10 for the casters (#685) or for every class (#723), or below CL5?
+tier: pilot            # classes-18 gate, then small + medium (starts 1-360), 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-pr728-fc181156
+  repository: diegoami/borg-reborn-rs
+  ref: fc181156f855ed785998cf6668c1d23b93c99ee9
+  label: "borg-reborn-rs fc181156, head of PR #728 (#685 reverted, unmerged; contains main 653f60ba). Source-hash rust 259512ad...; harness/borg.txt ce686d54..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt; the class lines (borg_param_<name>__<class>) are profile-writable (borg-reborn-rs #700).
+profile_prefix: reborn-lowdetect
+arms:
+  d0:        {}
+  casters10: {borg_param_light_detect_evil_spell_min_level__mage: 10, borg_param_light_detect_evil_spell_min_level__druid: 10, borg_param_light_detect_evil_spell_min_level__priest: 10, borg_param_light_detect_evil_spell_min_level__necromancer: 10, borg_param_light_detect_evil_spell_min_level__paladin: 10}
+  all10:     {borg_param_light_detect_evil_spell_min_level: 10, borg_param_light_detect_evil_spell_min_level__mage: 10, borg_param_light_detect_evil_spell_min_level__druid: 10, borg_param_light_detect_evil_spell_min_level__priest: 10, borg_param_light_detect_evil_spell_min_level__necromancer: 10, borg_param_light_detect_evil_spell_min_level__paladin: 10, borg_param_light_detect_evil_spell_min_level__warrior: 10, borg_param_light_detect_evil_spell_min_level__rogue: 10, borg_param_light_detect_evil_spell_min_level__ranger: 10, borg_param_light_detect_evil_spell_min_level__blackguard: 10}
+  all5:      {borg_param_light_detect_evil_spell_min_level: 5, borg_param_light_detect_evil_spell_min_level__mage: 5, borg_param_light_detect_evil_spell_min_level__druid: 5, borg_param_light_detect_evil_spell_min_level__priest: 5, borg_param_light_detect_evil_spell_min_level__necromancer: 5, borg_param_light_detect_evil_spell_min_level__paladin: 5, borg_param_light_detect_evil_spell_min_level__warrior: 5, borg_param_light_detect_evil_spell_min_level__rogue: 5, borg_param_light_detect_evil_spell_min_level__ranger: 5, borg_param_light_detect_evil_spell_min_level__blackguard: 5}
+control: [d0]
+owner_authorization: >-
+  2026-11-20: the owner asked to do the zoo pilots ("and then the zoo pilots"): the issue's pilot as filed.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this definition was read (owner, borg-reborn-rs PR #728). classes-18 is
+  the gate (RULES 16); small and medium (starts 1-360) follow right after it.
+  Gate:
+  - no config_error; one binary; each arm's values in borg.txt and in params-core.json of the death replays
+    (the class value the character's class resolves to);
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class:
+  - deaths and causes, final and maximum level, deepest level; paired rescued and newly killed against d0 (exact
+    McNemar), and games identical to d0;
+  - **floating eye deaths** (and other NEVER_MOVE killers), by character level;
+  - detection casts per game ("# Casting" Detect Evil, Detect Monsters, Read Minds, Seek Battle) below CL10;
+  - mana rests per game ("# Resting to recover HP/SP" with SP below max) and the share of game turns resting, for
+    Priests and Paladins (#685's measure);
+  - mean max CL and DL against d0, with non-inferiority at the margins of borg-zoo#347 (CL -0.25, DL -0.25).
+  Bin each arm (RULES 18).
