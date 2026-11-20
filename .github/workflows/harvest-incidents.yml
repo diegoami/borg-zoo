@@ -9,10 +9,13 @@ on:
         required: true
       stage:
         type: choice
-        options: [smoke, harvest, resume, inspect]
+        options: [smoke, harvest, resume, inspect, yield, sharded]
         default: smoke
       smoke_run:
-        description: Successful smoke run required before the full harvest
+        description: Successful smoke run required before the full harvest (for sharded, the successful yield run)
+        default: ''
+      shard_counts:
+        description: 'sharded stage: shards per class, JSON like {"0": 9, "1": 3} (borg-zoo#184)'
         default: ''
   workflow_call:
     inputs:
@@ -44,6 +47,7 @@ jobs:
       suite_id: ${{ steps.pins.outputs.suite_id }}
       source: ${{ steps.pins.outputs.source }}
       tools: ${{ steps.pins.outputs.tools }}
+      matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
         with: {persist-credentials: false}
@@ -63,7 +67,30 @@ jobs:
               previous=json.loads(subprocess.check_output(['gh','api',f'repos/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{run}']))
               assert previous['conclusion']=='success' and previous['head_sha']==os.environ['GITHUB_SHA'] and previous['path']=='.github/workflows/harvest-incidents.yml'
               assert previous['display_title']==str(path)+' smoke'
+          if os.environ['STAGE']=='sharded':
+              # borg-zoo#184: the sharded harvest follows a successful yield run of this definition and commit.
+              run=os.environ['SMOKE_RUN'];assert re.fullmatch('[0-9]+',run)
+              previous=json.loads(subprocess.check_output(['gh','api',f'repos/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{run}']))
+              assert previous['conclusion']=='success' and previous['head_sha']==os.environ['GITHUB_SHA'] and previous['path']=='.github/workflows/harvest-incidents.yml'
+              assert previous['display_title']==str(path)+' yield'
           assert d['expected_cells']==999 and d['per_class']==111 and d['classes']==list(range(9))
+          PY
+      - id: matrix
+        env: {STAGE: '${{ inputs.stage }}', SHARD_COUNTS: '${{ inputs.shard_counts }}'}
+        run: |
+          python3 - <<'PY'
+          import json,os
+          stage=os.environ['STAGE']
+          if stage=='yield':
+              cells=[{'class':c,'shard':0} for c in range(9)]
+          elif stage=='sharded':
+              counts={int(k):int(v) for k,v in json.loads(os.environ['SHARD_COUNTS']).items()}
+              assert set(counts)<=set(range(9)) and all(0<n<=12 for n in counts.values()),counts
+              cells=[{'class':c,'shard':s} for c in sorted(counts) for s in range(counts[c])]
+          else:
+              cells=[{'class':0,'shard':0}]
+          assert len(cells)<=256
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('matrix='+json.dumps({'include':cells})+'\n')
           PY
       - id: pins
         env: {DEFINITION: '${{ inputs.definition }}'}
@@ -98,6 +125,7 @@ jobs:
         with: {name: incident-preparation-build, path: preparation-build.tgz, retention-days: 90}
   harvest:
     needs: [pins, build]
+    if: inputs.stage == 'smoke' || inputs.stage == 'harvest' || inputs.stage == 'resume'
     runs-on: ubuntu-24.04
     timeout-minutes: 300
     strategy:
@@ -158,7 +186,7 @@ jobs:
           if-no-files-found: warn
   assemble:
     needs: [pins, harvest]
-    if: always() && needs.pins.result == 'success' && inputs.stage != 'inspect'
+    if: always() && needs.pins.result == 'success' && (inputs.stage == 'smoke' || inputs.stage == 'harvest' || inputs.stage == 'resume')
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -371,3 +399,175 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: success()
         with: {name: '${{ needs.pins.outputs.suite_id }}-harvest-bank', path: prepared-bank.tgz, retention-days: 90}
+
+  # borg-zoo#184 (2026-11-20): sharded harvest. Each job searches one block of
+  # one class's seed ordinals (harvest_incidents.py --shard, the spec's
+  # shard_size), with its own retained-evidence budget.
+  shard-harvest:
+    needs: [pins, build]
+    if: inputs.stage == 'yield' || inputs.stage == 'sharded'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: ${{ fromJSON(needs.pins.outputs.matrix) }}
+    env:
+      PYTHONUNBUFFERED: '1'
+      BORG_CEMETERY_DIR: ${{ github.workspace }}/native-tools
+    steps:
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.source }}', path: source, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.tools }}', path: native-tools, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: incident-preparation-build}
+      - run: tar -C source -xzf preparation-build.tgz
+      - name: Verify frozen preparation manifest
+        env: {SPEC: '${{ needs.pins.outputs.spec }}', SPEC_SHA256: '${{ needs.pins.outputs.spec_sha256 }}'}
+        run: |
+          python3 - <<'PY'
+          import os,hashlib,json
+          from pathlib import Path
+          spec=Path('cemetery',os.environ['SPEC'])
+          assert hashlib.sha256(spec.read_bytes()).hexdigest()==os.environ['SPEC_SHA256']
+          assert 'shard_size' in json.loads(spec.read_text()),'the sharded stages need a spec with shard_size'
+          PY
+      - name: Harvest one shard
+        id: harvest
+        run: >-
+          python3 cemetery/scripts/harvest_incidents.py
+          --spec "cemetery/${{ needs.pins.outputs.spec }}"
+          --source source --tools native-tools --out harvest
+          --class-index "${{ matrix.class }}" --shard "${{ matrix.shard }}"
+      - name: Pack the shard's selection
+        if: always() && hashFiles('harvest/harvest.json') != ''
+        run: python3 cemetery/scripts/pack_incident_selection.py --harvest harvest --out selection
+      - uses: actions/upload-artifact@v4
+        if: always() && hashFiles('selection/harvest.json') != ''
+        with:
+          name: incident-shard-selection-c${{ matrix.class }}-s${{ matrix.shard }}
+          path: selection/
+          retention-days: 90
+      - name: Pack the shard's raw evidence
+        if: always()
+        run: if [ -d harvest ]; then tar -czf "harvest-c${{ matrix.class }}-s${{ matrix.shard }}.tgz" harvest; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: incident-shard-raw-c${{ matrix.class }}-s${{ matrix.shard }}
+          path: harvest-c*.tgz
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: warn
+
+  yield-report:
+    needs: [pins, shard-harvest]
+    if: always() && inputs.stage == 'yield' && needs.pins.result == 'success'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {pattern: incident-shard-selection-*, path: shards}
+      - name: Usable starts per life, per class
+        run: |
+          python3 - <<'PY'
+          import json,math,os
+          from pathlib import Path
+          rows=[]
+          for c in range(9):
+              docs=[json.loads(p.read_text()) for p in Path('shards').glob(f'incident-shard-selection-c{c}-s*/harvest.json')]
+              lives=sum(len(d['attempts']) for d in docs);usable=sum(len(d['selected']) for d in docs)
+              rate=usable/lives if lives else 0.0
+              rows.append(dict(class_idx=c,lives=lives,usable=usable,yield_per_life=rate,
+                               stop=[d.get('stop_reason') for d in docs],
+                               shards_for_111=(math.ceil(111/rate/250) if rate else None)))
+          Path('yield.json').write_text(json.dumps(rows,indent=2)+'\n')
+          names=['Warrior','Mage','Druid','Priest','Necromancer','Paladin','Rogue','Ranger','Blackguard']
+          lines=['| class | lives | usable | yield | shards of 250 for 111 |','|---|---:|---:|---:|---:|']
+          lines+=[f"| {names[r['class_idx']]} | {r['lives']} | {r['usable']} | {100*r['yield_per_life']:.1f}% | {r['shards_for_111']} |" for r in rows]
+          Path(os.environ['GITHUB_STEP_SUMMARY']).write_text('\n'.join(lines)+'\n')
+          print('\n'.join(lines))
+          PY
+      - uses: actions/upload-artifact@v4
+        with: {name: suite-yield, path: yield.json, retention-days: 90}
+
+  sharded-assemble:
+    needs: [pins, shard-harvest]
+    if: always() && inputs.stage == 'sharded' && needs.pins.result == 'success'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.cemetery }}', path: cemetery, persist-credentials: false}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-cemetery, ref: '${{ needs.pins.outputs.tools }}', path: native-tools, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: {pattern: incident-shard-selection-*, path: shards}
+      - name: Join each class's shards in seed order
+        run: |
+          set -o pipefail
+          for c in 0 1 2 3 4 5 6 7 8; do
+            mkdir -p "shards-c$c"
+            for d in shards/incident-shard-selection-c$c-s*; do [ -d "$d" ] && mv "$d" "shards-c$c/"; done
+            python3 cemetery/scripts/merge_incident_shards.py --inputs "shards-c$c" --out "inputs/c$c" --class-index "$c" | tee -a merge.log || true
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: sharded-merge-log, path: merge.log, retention-days: 90, if-no-files-found: warn}
+      - uses: actions/checkout@v4
+        with: {repository: diegoami/borg-reborn-rs, ref: '${{ needs.pins.outputs.source }}', path: source, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: incident-preparation-build}
+      - run: tar -C source -xzf preparation-build.tgz
+      - name: Refuse a short or unbalanced bank
+        run: >-
+          python3 cemetery/scripts/materialize_incidents.py --inputs inputs
+          --out "cemetery/synthetic/${{ needs.pins.outputs.suite_id }}/generated" --tools native-tools
+          --baseline "${{ needs.pins.outputs.source }}"
+          --per-class 111
+          --suite-id "${{ needs.pins.outputs.suite_id }}"
+      - name: Validate all999 inputs and class balance
+        env: {SUITE_ID: '${{ needs.pins.outputs.suite_id }}'}
+        run: |
+          python3 - <<'PY'
+          import sys,json,os
+          from pathlib import Path
+          sys.path.insert(0,'cemetery/scripts')
+          from encounter_bank import prepare_bank
+          root=Path('cemetery').resolve();p=root/'synthetic'/os.environ['SUITE_ID']/'generated/bank.json'
+          bank,shards=prepare_bank(p,root)
+          assert bank['expected_cases']==999
+          c=json.load(open(p.parent/'coverage.json'));assert set(c['class_counts'].values())=={111}
+          PY
+      - name: Mixed-class native restart smoke on the assembled bank
+        env: {SUITE_ID: '${{ needs.pins.outputs.suite_id }}', SOURCE_SHA: '${{ needs.pins.outputs.source }}'}
+        run: |
+          python3 - <<'PYCODE'
+          import json,os,sys
+          from pathlib import Path
+          sys.path.insert(0,'cemetery/scripts')
+          from single_encounter import execute
+          root=Path('cemetery').resolve();generated=root/'synthetic'/os.environ['SUITE_ID']/'generated'
+          bank=json.loads((generated/'bank.json').read_text());rows=[]
+          for shard in bank['shards'][:3]:
+              path=root/shard['manifest'];manifest=json.loads(path.read_text())
+              for case in manifest['scenarios']:
+                  if len(rows)==18:break
+                  out=Path('restart-smoke',case['id']).resolve()
+                  rc=execute(path,case['id'],Path('source').resolve(),os.environ['SOURCE_SHA'],'borg-rs',Path('native-tools').resolve(),out,root/'synthetic'/os.environ['SUITE_ID']/'borg.txt')
+                  receipt=json.loads((out/'single-encounter.json').read_text())
+                  rows.append(dict(id=case['id'],status=receipt['status'],returncode=rc))
+                  Path('restart-smoke/summary.json').write_text(json.dumps(rows,indent=2)+'\n')
+                  assert rc==0 and receipt['status'] in ('death','survived_horizon'),rows[-1]
+          assert len(rows)==18
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: sharded-bank-restart-smoke, path: restart-smoke/, retention-days: 90, if-no-files-found: warn}
+      - run: tar -C cemetery -czf prepared-bank.tgz "synthetic/${{ needs.pins.outputs.suite_id }}/generated"
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with: {name: '${{ needs.pins.outputs.suite_id }}-sharded-bank', path: prepared-bank.tgz, retention-days: 90}

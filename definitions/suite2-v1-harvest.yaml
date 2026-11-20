@@ -2,19 +2,19 @@ kind: balanced-incident-harvest
 name: suite2-v1-harvest
 folder: scenario-experiments
 issue: 184
-question: 'Freeze Suite 2 with the current borg-reborn-rs default borg-core controller:
-  999 unique saved death/recovery starts, 111 per class.'
+question: 'Freeze Suite 2 with the current borg-reborn-rs default borg-core controller: 999 unique saved
+  death/recovery starts, 111 per class.'
 cemetery:
   repository: diegoami/borg-cemetery
-  commit: cb353610a072018032f90c10df826894a541f41d
-  spec: synthetic/suite2-v1/harvest-spec.json
-  spec_sha256: b223e8c96dfe76d08cc0020ac521fca6a072f226f75911aa40db2cfe4cc423fd
+  commit: 73b112f9d87c5d868d3407d7e1825a19c336c2e1
+  spec: synthetic/suite2-v1/harvest-spec-574b618c.json
+  spec_sha256: ac2c5616157179933cfe13e85f41a5e41a5c76d138c1d1f6df564cd9bda49e96
 preparation_source:
   repository: diegoami/borg-reborn-rs
-  commit: ba26c2abc378302c7d37d4337775d3bd5fe5ad30
+  commit: a2390a8c585b6189b1bb8aba751a3e048404702a
 native_tools:
   repository: diegoami/borg-cemetery
-  commit: 09225018dd5f2d4336a16b29478793d902c70dc3
+  commit: 03334dc2eaff44105e29b0a7a4566826f504bf79
 expected_cells: 999
 classes:
 - 0
@@ -28,21 +28,21 @@ classes:
 - 8
 per_class: 111
 parallel_jobs: 9
-owner_authorization: Owner instructed resumption with the default borg-rs / vendored
-  borg-core controller and rejected experimental reborn preparation. Use the exact
-  capture-enabled candidate pin and unchanged shipped settings; expanded all-class
-  smoke must pass before full harvest. No source PR merge or review acceptance is
-  implied.
-prespecified: Use only the default borg-rs / vendored borg-core controller at source
-  ba26c2ab with its unchanged shipped settings. Experimental reborn smoke is not an
-  acceptance gate or source bank. Smoke searches at most 256 lives/class for 2 starts/class,
-  on seeds 3000000 + class*10000 + ordinal. Full harvest searches at most 1024 lives/class
-  on separate seeds 2000000 + class*10000 + ordinal for exactly 111 unique starts/class.
-  Preserve all deaths, failures, rejection records and class shortages. A 3 GiB retained-evidence
-  bound/class leaves upload headroom; a bound exhaustion is a shortage, never duplicate
-  padding. Exclude Suite 1 save hashes/source seeds. Retain level-1 deaths. Start
-  at/before first observable relevant threat; incident within 2000 engine turns. Observed
-  recovery requires actual HP loss to <=25% and recovery >=50%, with no counterfactual
-  lethality claim. Native restart gate is 2000 turns / 5 seconds. Never freeze an
-  incomplete bank.
+owner_authorization: '2026-11-20 (borg-zoo#184/#473): the owner chose to re-save the saved-encounter suite
+  on engine 574b618c, this session to rebase borg-reborn-rs PR #508 (now a2390a8c), and to keep 111 per
+  class with a larger search; then "do 1-3": sharded harvest in borg-cemetery (PR #82), the zoo stages,
+  and a yield smoke before the full harvest. The full (sharded) harvest is the owner''s call after the
+  yield. No source PR merge or review acceptance is implied.'
+prespecified: 'Use only the default borg-rs / vendored borg-core controller at source a2390a8c (borg-reborn-rs
+  PR #508 rebased onto main c9049392, engine 574b618c) with its unchanged shipped settings (borg.txt fa33d0a9...).
+  The harvest spec (borg-cemetery synthetic/suite2-v1/harvest-spec-574b618c.json) searches at most 3000
+  lives/class on seeds 2000000 + class*10000 + ordinal, in shards of 250 ordinals, each with its own 3
+  GiB retained-evidence budget; a class''s shards are joined in seed order (merge_incident_shards.py),
+  so the selection is the first 111 unique starts one sequential search would take; a shard stopped early
+  or missing ends the class''s selection (a shortage, never padding). Stage yield runs shard 0 of every
+  class and reports usable starts per life; the sharded stage needs a successful yield run and the owner''s
+  go. Preserve all deaths, failures, rejection records and class shortages. Exclude Suite 1 save hashes/source
+  seeds (no seed overlaps). Retain level-1 deaths. Start at/before first observable relevant threat; incident
+  within 2000 engine turns. Observed recovery requires actual HP loss to <=25% and recovery >=50%, with
+  no counterfactual lethality claim. Never freeze an incomplete bank.'
 suite_id: suite2-v1
