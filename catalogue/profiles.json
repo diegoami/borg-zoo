@@ -7435,6 +7435,45 @@
         "borg_param_town_heal_curve_scale_percent_blackguard": 75,
         "borg_param_town_heal_reserve_hp_percent_blackguard": 150
       }
+    },
+    "reborn-rarrows-c": {
+      "description": "borg-zoo#468 (reborn-ranger-arrows-pilot.yaml): arm c.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_ranger_arrows_max__ranger": 0
+      }
+    },
+    "reborn-rarrows-s25": {
+      "description": "borg-zoo#468 (reborn-ranger-arrows-pilot.yaml): arm s25.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_ranger_arrows_curve_scale_percent__ranger": 25
+      }
+    },
+    "reborn-rarrows-s50": {
+      "description": "borg-zoo#468 (reborn-ranger-arrows-pilot.yaml): arm s50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-rarrows-s75": {
+      "description": "borg-zoo#468 (reborn-ranger-arrows-pilot.yaml): arm s75.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_ranger_arrows_curve_scale_percent__ranger": 75
+      }
+    },
+    "reborn-rarrows-s100": {
+      "description": "borg-zoo#468 (reborn-ranger-arrows-pilot.yaml): arm s100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_ranger_arrows_curve_scale_percent__ranger": 100
+      }
     }
   }
 }

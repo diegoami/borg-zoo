@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-ranger-arrows-pilot",
+  "issue": 468,
+  "definition": "definitions/reborn-ranger-arrows-pilot.yaml",
+  "question": "On borg-reborn-rs PR #725's head 9ffc7e8c, which scale of the Ranger's arrow curve past the soft cap of 50 (town_ranger_arrows_curve_scale_percent 25, 50, 75, 100) keeps fewer arrows without costing games, against C (no cap)?",
+  "description": "On borg-reborn-rs PR #725's head 9ffc7e8c, which scale of the Ranger's arrow curve past the soft cap of 50 (town_ranger_arrows_curve_scale_percent 25, 50, 75, 100) keeps fewer arrows without costing games, against C (no cap)? Generated from definitions/reborn-ranger-arrows-pilot.yaml: 5 arms on 4.2.6-reborn-rust-pr725-9ffc7e8c, suite classes-1800-small-rangers.",
+  "prespecified": "Fixed 2026-11-20, before any result of these profiles was read. Pilot (RULES 16); the Ranger tiers (medium, big,\nfull) only after this gate and the owner.\nGate: no config_error; one binary; each arm's lines written in borg.txt and read in params-core.json; every cell\nends in death, turn_cap or borg_stopped; frozen-turn bursts classified; death bundles reproduced.\nReport per arm, from every game's messages: deaths and causes, final and maximum level, deepest level; paired\nrescued and newly killed against c; arrows bought (\"You bought N Arrows\"), arrows carried (the \"You have N Arrows\"\nlines: median and maximum), arrows fired; Scrolls of Phase Door and cure potions sent to the Home (\"You drop\"\nafter \"# Town plan executing action 5\").\nContext: local, the two classes-18 Rangers on the same tree: C median 166 / 124 carried, 5 / 0 Phase Door to the\nHome; scale 25: 68 / 68, 0 / 0; scale 75: 104 / 145, 0 / 0.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-pr725-9ffc7e8c"
+  ],
+  "profiles": [
+    "reborn-rarrows-c",
+    "reborn-rarrows-s25",
+    "reborn-rarrows-s50",
+    "reborn-rarrows-s75",
+    "reborn-rarrows-s100"
+  ],
+  "suites": [
+    "classes-1800-small-rangers"
+  ],
+  "control": "4.2.6-reborn-rust-pr725-9ffc7e8c",
+  "control_profile": "reborn-rarrows-c",
+  "owner_authorization": "2026-11-20: the owner said \"let us do scale 50 then, and let us do experiment to calibrate it\" on borg-reborn-rs#716.",
+  "retain_evidence": true
+}
