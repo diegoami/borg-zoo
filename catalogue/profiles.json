@@ -7863,6 +7863,30 @@
       "description": "borg-zoo#484 (reborn-main-9403-defaults-pilot.yaml): arm shipped-defaults.",
       "settings": {}
     },
+    "reborn-depthplan9403-ctl": {
+      "description": "borg-zoo#446 (reborn-depth-plan-9403-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-depthplan9403-off": {
+      "description": "borg-zoo#446 (reborn-depth-plan-9403-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_prepared_depth_plan": 0
+      }
+    },
+    "reborn-depthplan9403-errands": {
+      "description": "borg-zoo#446 (reborn-depth-plan-9403-pilot.yaml): arm errands.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_prepared_depth_plan": 0,
+        "borg_plan": "errands_plan.txt"
+      }
+    },
     "reborn-leash806-ctl": {
       "description": "borg-zoo#475 (reborn-stairs-leash-806-pilot.yaml): arm ctl.",
       "settings": {
