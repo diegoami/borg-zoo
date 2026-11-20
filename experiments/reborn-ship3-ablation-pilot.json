@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-ship3-ablation-pilot",
+  "issue": 535,
+  "definition": "definitions/reborn-ship3-ablation-pilot.yaml",
+  "question": "On borg-reborn-rs main d7e58cd, which of the three shipped switches (attack_on_sight #760, caution_winning_fight #759, caution_recall_survival #758) saves lives, which newly kills, and how do they interact, against an explicit all-off control? caution_winning_fight also decides town attacks, so those are reported apart.",
+  "description": "On borg-reborn-rs main d7e58cd, which of the three shipped switches (attack_on_sight #760, caution_winning_fight #759, caution_recall_survival #758) saves lives, which newly kills, and how do they interact, against an explicit all-off control? caution_winning_fight also decides town attacks, so those are reported apart. Generated from definitions/reborn-ship3-ablation-pilot.yaml: 5 arms on 4.2.6-reborn-rust-main-d7e58cdf, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this build was read (borg-zoo#535; supersedes #511's open part, whose pilot\nran the older 78b8f297). Pilot (RULES 16); small + medium after the gate and the owner. Five arms, 18 starts each\n(90 games), all classes. An empty override is \"all on\" here, so alloff is written out and every single-switch arm\nsets the other two to 0.\nGate: no config_error; one binary; each arm's three values in params-core.json (allon: all 1); every cell ends in\ndeath, turn_cap or borg_stopped (stalls, timeouts and crashes kept apart); frozen-turn bursts classified.\nReport per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired\nrescued and newly killed against alloff (exact McNemar), identical plays, and for every discordant start the first\ndivergent action. caution_winning_fight is a parameter for town attacks too (owner, 2026-11-20): count its attack\nand refusal notes in town and in the dungeon separately, and say whether a town death or a town attack changed in\nthe fight and allon arms. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-d7e58cdf"
+  ],
+  "profiles": [
+    "reborn-ship3-alloff",
+    "reborn-ship3-sight",
+    "reborn-ship3-fight",
+    "reborn-ship3-recall",
+    "reborn-ship3-allon"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-d7e58cdf",
+  "control_profile": "reborn-ship3-alloff",
+  "owner_authorization": "2026-11-20: borg-reborn-rs owner (\"yes do all that\", filed as #535); zoo owner, 2026-11-20: \"do as advised\" (a pilot only, all classes; small and medium wait for the gate and the owner).",
+  "retain_evidence": true
+}

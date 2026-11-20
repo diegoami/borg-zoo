@@ -1351,7 +1351,7 @@
     },
     "reborn-adopted": {
       "issue": 511,
-      "status": "defined (pilot, prepared only; the owner decides dispatch)",
+      "status": "defined (pilot f827f844; superseded by reborn-ship3 on main d7e58cd, not dispatched)",
       "what": "The three adopted switches (attack_on_sight, caution_winning_fight, caution_recall_survival, shipped 1) isolated against an explicit all-off control on f827f844: off, category, winning, recall, shipped.",
       "profiles": [
         "reborn-adopted-f827f844-off",
@@ -1369,6 +1369,42 @@
       "profiles": [
         "reborn-adopted-f827f844-combined-off",
         "reborn-adopted-f827f844-combined-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-ship3": {
+      "issue": 535,
+      "status": "defined (pilot; supersedes #511's open part)",
+      "what": "The three shipped fight/Recall switches ablated on main d7e58cd: alloff, sight, fight, recall, allon.",
+      "profiles": [
+        "reborn-ship3-alloff",
+        "reborn-ship3-sight",
+        "reborn-ship3-fight",
+        "reborn-ship3-recall",
+        "reborn-ship3-allon"
+      ],
+      "runs": []
+    },
+    "reborn-townhunt": {
+      "issue": 538,
+      "status": "defined (pilot)",
+      "what": "town_ranged_reserve and town_hunt (borg-reborn-rs #789, PR #800) on 8e0f20af, with and without caution_winning_fight (which also decides town attacks).",
+      "profiles": [
+        "reborn-townhunt-ctl",
+        "reborn-townhunt-reserve",
+        "reborn-townhunt-hunt",
+        "reborn-townhunt-combined",
+        "reborn-townhunt-hunt-nofight",
+        "reborn-townhunt-combined-nofight"
+      ],
+      "runs": []
+    },
+    "reborn-deathrisk": {
+      "issue": 534,
+      "status": "defined (pilot; one arm, trace and pipeline check)",
+      "what": "borg-reborn-rs 5343532c (task/T790-death-risk): the shipped settings with per-think death_risk observations, evidence retained for calibration.",
+      "profiles": [
+        "reborn-deathrisk-shipped"
       ],
       "runs": []
     }

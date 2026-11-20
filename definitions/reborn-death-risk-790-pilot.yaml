@@ -1,0 +1,40 @@
+# borg-zoo#534: instrumented traces for death-risk calibration (borg-reborn-rs #790, draft PR #792): one arm, shipped.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-death-risk-790-pilot.yaml
+name: reborn-death-risk-790-pilot
+issue: 534
+question: >-
+  Does borg-reborn-rs 5343532c (task/T790-death-risk) write the per-think death_risk observations on every traced
+  think of every cell, so that the calibration tool (tools/calibrate-death-risk.py) has traces to score?
+tier: pilot            # classes-18, 100,000 turns; a larger tier only if the holdout lacks death-bearing starts
+
+specimen:
+  name: 4.2.6-reborn-rust-death-risk-5343532c
+  repository: diegoami/borg-reborn-rs
+  ref: 5343532cb9984953a80ffc183254d10f452d078d
+  label: "borg-reborn-rs task/T790-death-risk 5343532c (draft PR #792): main plus the per-think death_risk observations (F1-F3, fit features, stop_eligible); observation only, no gameplay change. /stopscared off."
+  scary_lists:
+    scary_monsters.txt: 94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-deathrisk
+arms:
+  shipped: {}
+control: [shipped]
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs session request (#790, #534); zoo owner, 2026-11-20: "do as advised" (a pilot only; one
+  arm, 18 games).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this build was read (borg-zoo#534). One arm, shipped harness/borg.txt, no
+  parameter overrides, /stopscared off; classes-18 at 100,000 turns (18 games). A trace and pipeline check.
+  Gate: one binary; every cell ends in death, turn_cap or borg_stopped; full raw trace-core.jsonl and summary.json
+  retained for every cell, survivors included, with seed, race and class; death_risk present on every traced think
+  with F1-F3, the fit features and stop_eligible; missing or failed cells reported explicitly; natural deaths kept as
+  ordinary Cemetery evidence. The calibration tool and its metrics (Brier, log loss, AUC, reliability by decile,
+  first-stop and final-window crossings) are the borg-reborn-rs session's, run on the retained shards. Report the
+  counts of distinct death-bearing starts per split so that a larger tier can be asked for.

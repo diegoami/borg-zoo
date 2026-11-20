@@ -9053,6 +9053,116 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-ship3-alloff": {
+      "description": "borg-zoo#535 (reborn-ship3-ablation-pilot.yaml): arm alloff.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_on_sight": 0,
+        "borg_param_caution_winning_fight": 0,
+        "borg_param_caution_recall_survival": 0
+      }
+    },
+    "reborn-ship3-sight": {
+      "description": "borg-zoo#535 (reborn-ship3-ablation-pilot.yaml): arm sight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_winning_fight": 0,
+        "borg_param_caution_recall_survival": 0
+      }
+    },
+    "reborn-ship3-fight": {
+      "description": "borg-zoo#535 (reborn-ship3-ablation-pilot.yaml): arm fight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_on_sight": 0,
+        "borg_param_caution_recall_survival": 0
+      }
+    },
+    "reborn-ship3-recall": {
+      "description": "borg-zoo#535 (reborn-ship3-ablation-pilot.yaml): arm recall.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_on_sight": 0,
+        "borg_param_caution_winning_fight": 0
+      }
+    },
+    "reborn-ship3-allon": {
+      "description": "borg-zoo#535 (reborn-ship3-ablation-pilot.yaml): arm allon.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-townhunt-ctl": {
+      "description": "borg-zoo#538 (reborn-town-hunt-789-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-townhunt-reserve": {
+      "description": "borg-zoo#538 (reborn-town-hunt-789-pilot.yaml): arm reserve.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_ranged_reserve": 6
+      }
+    },
+    "reborn-townhunt-hunt": {
+      "description": "borg-zoo#538 (reborn-town-hunt-789-pilot.yaml): arm hunt.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_hunt": 1,
+        "borg_param_town_hunt_ranged_bonus_percent": 50,
+        "borg_param_town_hunt_min_hp_percent": 50
+      }
+    },
+    "reborn-townhunt-combined": {
+      "description": "borg-zoo#538 (reborn-town-hunt-789-pilot.yaml): arm combined.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_hunt": 1,
+        "borg_param_town_hunt_ranged_bonus_percent": 50,
+        "borg_param_town_hunt_min_hp_percent": 50,
+        "borg_param_town_ranged_reserve": 6
+      }
+    },
+    "reborn-townhunt-hunt-nofight": {
+      "description": "borg-zoo#538 (reborn-town-hunt-789-pilot.yaml): arm hunt-nofight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_hunt": 1,
+        "borg_param_town_hunt_ranged_bonus_percent": 50,
+        "borg_param_town_hunt_min_hp_percent": 50,
+        "borg_param_caution_winning_fight": 0
+      }
+    },
+    "reborn-townhunt-combined-nofight": {
+      "description": "borg-zoo#538 (reborn-town-hunt-789-pilot.yaml): arm combined-nofight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_hunt": 1,
+        "borg_param_town_hunt_ranged_bonus_percent": 50,
+        "borg_param_town_hunt_min_hp_percent": 50,
+        "borg_param_town_ranged_reserve": 6,
+        "borg_param_caution_winning_fight": 0
+      }
+    },
+    "reborn-deathrisk-shipped": {
+      "description": "borg-zoo#534 (reborn-death-risk-790-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
     }
   }
 }

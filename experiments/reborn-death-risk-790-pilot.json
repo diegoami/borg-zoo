@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-death-risk-790-pilot",
+  "issue": 534,
+  "definition": "definitions/reborn-death-risk-790-pilot.yaml",
+  "question": "Does borg-reborn-rs 5343532c (task/T790-death-risk) write the per-think death_risk observations on every traced think of every cell, so that the calibration tool (tools/calibrate-death-risk.py) has traces to score?",
+  "description": "Does borg-reborn-rs 5343532c (task/T790-death-risk) write the per-think death_risk observations on every traced think of every cell, so that the calibration tool (tools/calibrate-death-risk.py) has traces to score? Generated from definitions/reborn-death-risk-790-pilot.yaml: 1 arms on 4.2.6-reborn-rust-death-risk-5343532c, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this build was read (borg-zoo#534). One arm, shipped harness/borg.txt, no\nparameter overrides, /stopscared off; classes-18 at 100,000 turns (18 games). A trace and pipeline check.\nGate: one binary; every cell ends in death, turn_cap or borg_stopped; full raw trace-core.jsonl and summary.json\nretained for every cell, survivors included, with seed, race and class; death_risk present on every traced think\nwith F1-F3, the fit features and stop_eligible; missing or failed cells reported explicitly; natural deaths kept as\nordinary Cemetery evidence. The calibration tool and its metrics (Brier, log loss, AUC, reliability by decile,\nfirst-stop and final-window crossings) are the borg-reborn-rs session's, run on the retained shards. Report the\ncounts of distinct death-bearing starts per split so that a larger tier can be asked for.",
+  "specimens": [
+    "4.2.6-reborn-rust-death-risk-5343532c"
+  ],
+  "profiles": [
+    "reborn-deathrisk-shipped"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-death-risk-5343532c",
+  "control_profile": "reborn-deathrisk-shipped",
+  "owner_authorization": "2026-11-20: borg-reborn-rs session request (#790, #534); zoo owner, 2026-11-20: \"do as advised\" (a pilot only; one arm, 18 games).",
+  "retain_evidence": true
+}
