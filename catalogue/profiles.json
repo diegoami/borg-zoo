@@ -8861,6 +8861,134 @@
         "borg_param_town_phase_reserve": 2,
         "borg_param_town_phase_reserve_percent": 400
       }
+    },
+    "reborn-attacksight-ctl": {
+      "description": "borg-zoo#529 (reborn-attack-sight-list-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-attacksight-both0": {
+      "description": "borg-zoo#529 (reborn-attack-sight-list-pilot.yaml): arm both0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_on_sight": 0,
+        "borg_param_caution_winning_fight": 0
+      }
+    },
+    "reborn-attacksight-sight0": {
+      "description": "borg-zoo#529 (reborn-attack-sight-list-pilot.yaml): arm sight0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_on_sight": 0
+      }
+    },
+    "reborn-attacksight-win0": {
+      "description": "borg-zoo#529 (reborn-attack-sight-list-pilot.yaml): arm win0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_winning_fight": 0
+      }
+    },
+    "reborn-attacksight-nobreed": {
+      "description": "borg-zoo#529 (reborn-attack-sight-list-pilot.yaml): arm nobreed.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "giant white mouse | none | | attack",
+          "giant white louse | none | | attack",
+          "giant fruit fly | none | | attack",
+          "white worm mass | none | | attack",
+          "green worm mass | none | | attack"
+        ]
+      }
+    },
+    "reborn-attacksight-nofast": {
+      "description": "borg-zoo#529 (reborn-attack-sight-list-pilot.yaml): arm nofast.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "wild cat | none | | attack",
+          "crow | none | | attack"
+        ]
+      }
+    },
+    "reborn-attacksight-cl10": {
+      "description": "borg-zoo#529 (reborn-attack-sight-list-pilot.yaml): arm cl10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "wild cat | 10 | | attack | fast-fragile",
+          "crow | 10 | | attack | fast-fragile",
+          "giant white mouse | 10 | | attack,breeders | breeder",
+          "giant white louse | 10 | | attack,breeders | breeder",
+          "giant fruit fly | 10 | | attack,breeders | breeder",
+          "white worm mass | 10 | | attack,breeders | breeder",
+          "green worm mass | 10 | | attack,breeders | breeder"
+        ]
+      }
+    },
+    "reborn-attacksight-cl20": {
+      "description": "borg-zoo#529 (reborn-attack-sight-list-pilot.yaml): arm cl20.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "wild cat | 20 | | attack | fast-fragile",
+          "crow | 20 | | attack | fast-fragile",
+          "giant white mouse | 20 | | attack,breeders | breeder",
+          "giant white louse | 20 | | attack,breeders | breeder",
+          "giant fruit fly | 20 | | attack,breeders | breeder",
+          "white worm mass | 20 | | attack,breeders | breeder",
+          "green worm mass | 20 | | attack,breeders | breeder"
+        ]
+      }
+    },
+    "reborn-breederpol-ctl": {
+      "description": "borg-zoo#530 (reborn-breeder-policy-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-breederpol-p0": {
+      "description": "borg-zoo#530 (reborn-breeder-policy-pilot.yaml): arm p0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_policy": 0
+      }
+    },
+    "reborn-breederpol-p2": {
+      "description": "borg-zoo#530 (reborn-breeder-policy-pilot.yaml): arm p2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_policy": 2
+      }
+    },
+    "reborn-breederpol-p4": {
+      "description": "borg-zoo#530 (reborn-breeder-policy-pilot.yaml): arm p4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_policy": 4
+      }
+    },
+    "reborn-breederpol-p5": {
+      "description": "borg-zoo#530 (reborn-breeder-policy-pilot.yaml): arm p5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_policy": 5
+      }
     }
   }
 }

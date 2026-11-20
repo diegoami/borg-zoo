@@ -1,0 +1,41 @@
+# borg-zoo#530: caution_breeder_policy in the normal world on main c4163095 (shipped 3; 0, 2, 4, 5).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-policy-pilot.yaml
+name: reborn-breeder-policy-pilot
+issue: 530
+question: >-
+  On borg-reborn-rs main c4163095, in the normal world, does the breeder policy (0 = C, 2 no rest while breeders are
+  known, 4 paths avoid colonies, 5 walk out of a breeder room) save deaths or buy progress against the shipped 3?
+tier: pilot            # classes-18, 100,000 turns; a small tier of what leads after the gate and the owner
+
+specimen: 4.2.6-reborn-rust-main-c4163095
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-breederpol
+arms:
+  ctl: {}                                       # policy 3 as shipped
+  p0: {borg_param_caution_breeder_policy: 0}
+  p2: {borg_param_caution_breeder_policy: 2}
+  p4: {borg_param_caution_breeder_policy: 4}
+  p5: {borg_param_caution_breeder_policy: 5}
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: zoo owner, "caution_breeder_policy is important too"; "yes go, define them" (pilots and small runs
+  only, all classes).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this build was read (borg-zoo#530). #482 measured policies 0-5 only in the
+  breeders-x4 world (p0, p1, p2 harmful on progress, p4 and p5 neutral, shipped 3 supported); this is the normal
+  world on a current main. Pilot (RULES 16); a small tier of what leads follows the gate and the owner. Five arms,
+  18 starts each (90 games), all classes.
+  Gate: no config_error; one binary; each arm's policy in params-core.json; ctl plays as main c4163095's shipped
+  settings; every cell ends in death, turn_cap or borg_stopped (stalls, timeouts and crashes kept apart);
+  frozen-turn bursts classified (the 7 Druid DL1 loops of #482 are watched for).
+  Report per arm and per class: deaths and causes (breeders named), CL at death, final and maximum level, deepest
+  level; paired rescued and newly killed against ctl (exact McNemar), identical plays; per game the breeder
+  encounters (levels with breeders known, "lost level" and Recall reads). An arm that plays ctl's keys in every
+  start is "not tested". Descriptive (RULES 14).

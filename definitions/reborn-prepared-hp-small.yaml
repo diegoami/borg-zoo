@@ -1,0 +1,75 @@
+# borg-zoo#522: small tier of the HP minimums of prepared_ (hp-lo, hp-hi) on main a04e5471; after the classes-18 pilot, run 44817311691.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-prepared-hp-small.yaml
+name: reborn-prepared-hp-small
+issue: 522
+question: >-
+  On borg-reborn-rs main a04e5471, do lower or higher HP minimums at the dive gates (DL2, DL3-4, DL5-9, 25 percent)
+  save deaths or buy progress over 90 starts, all classes?
+tier: small          # classes-1800 starts 1-90: 10 per class, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-a04e5471
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-prepared
+arms:
+  ctl: {}
+  hp-lo:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_param_prepared_dl2_min_hp: 23
+    borg_param_prepared_dl34_min_hp__warrior: 38
+    borg_param_prepared_dl34_min_hp__mage: 45
+    borg_param_prepared_dl34_min_hp__druid: 30
+    borg_param_prepared_dl34_min_hp__priest: 30
+    borg_param_prepared_dl34_min_hp__necromancer: 45
+    borg_param_prepared_dl34_min_hp__paladin: 38
+    borg_param_prepared_dl34_min_hp__rogue: 38
+    borg_param_prepared_dl34_min_hp__ranger: 38
+    borg_param_prepared_dl34_min_hp__blackguard: 38
+    borg_param_prepared_dl59_min_hp__warrior: 45
+    borg_param_prepared_dl59_min_hp__mage: 60
+    borg_param_prepared_dl59_min_hp__druid: 45
+    borg_param_prepared_dl59_min_hp__priest: 45
+    borg_param_prepared_dl59_min_hp__necromancer: 60
+    borg_param_prepared_dl59_min_hp__paladin: 45
+    borg_param_prepared_dl59_min_hp__rogue: 45
+    borg_param_prepared_dl59_min_hp__ranger: 45
+    borg_param_prepared_dl59_min_hp__blackguard: 45
+  hp-hi:
+    borg_reborn_core: borg-rs
+    borg_reborn_errand: none
+    borg_param_prepared_dl2_min_hp: 38
+    borg_param_prepared_dl34_min_hp__warrior: 63
+    borg_param_prepared_dl34_min_hp__mage: 75
+    borg_param_prepared_dl34_min_hp__druid: 50
+    borg_param_prepared_dl34_min_hp__priest: 50
+    borg_param_prepared_dl34_min_hp__necromancer: 75
+    borg_param_prepared_dl34_min_hp__paladin: 63
+    borg_param_prepared_dl34_min_hp__rogue: 63
+    borg_param_prepared_dl34_min_hp__ranger: 63
+    borg_param_prepared_dl34_min_hp__blackguard: 63
+    borg_param_prepared_dl59_min_hp__warrior: 75
+    borg_param_prepared_dl59_min_hp__mage: 100
+    borg_param_prepared_dl59_min_hp__druid: 75
+    borg_param_prepared_dl59_min_hp__priest: 75
+    borg_param_prepared_dl59_min_hp__necromancer: 100
+    borg_param_prepared_dl59_min_hp__paladin: 75
+    borg_param_prepared_dl59_min_hp__rogue: 75
+    borg_param_prepared_dl59_min_hp__ranger: 75
+    borg_param_prepared_dl59_min_hp__blackguard: 75
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: zoo owner, "yes go, define them" (small tier, all classes).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-20 after the classes-18 pilot of the same arms on the same build passed its gate (run 44817311691):
+  hp-hi (and tight) brought back the Druid death and cost CL (5.78 against 6.22), hp-lo (and loose) newly killed one
+  Warrior at CL6 and raised CL to 6.33; the level minimums and the Cure minimum played ctl's keys in 15-18 of 18
+  starts (not tested) and are dropped. Descriptive (RULES 14), a lead for a medium tier, not a result. Report per
+  arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and
+  newly killed against ctl (exact McNemar), identical plays; RULES 18 bin.

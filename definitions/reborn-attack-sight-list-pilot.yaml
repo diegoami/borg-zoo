@@ -1,0 +1,82 @@
+# borg-zoo#529: attack_on_sight (#760), caution_winning_fight (#759) and the kill-on-sight list, on main c4163095.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-attack-sight-list-pilot.yaml
+#
+# Main ships both switches at 1 (compiled 0, "shipped 1 by owner decision"). The kill-on-sight list is the attack
+# entries of harness/scary_monsters.txt: wild cat and crow (fast-fragile) and five breeders (giant white mouse, giant
+# white louse, giant fruit fly, white worm mass, green worm mass), each up to CL50 for every class (a hypothesis, no
+# measured cutoff). A later list line for the same monster and kind replaces the entry and `| none | | attack` removes it
+# (borg-core/src/scary_list.rs), so the arms edit the list with borg_scary_list_lines.
+name: reborn-attack-sight-list-pilot
+issue: 529
+question: >-
+  On borg-reborn-rs main c4163095, what do attack_on_sight and caution_winning_fight (both shipped 1) and the
+  kill-on-sight list (its breeder entries, its fast-fragile pair, its level cut of 50) do to deaths and progress,
+  against each switch off?
+tier: pilot            # classes-18, 100,000 turns; a small tier of what leads after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-main-c4163095
+  repository: diegoami/borg-reborn-rs
+  ref: c41630959942bf318b5de3dfe7d9555bdb78820c
+  label: "borg-reborn-rs main c4163095: attack_on_sight 1 and caution_winning_fight 1 shipped (owner decision), flight switches off, #761 phase reserve off."
+  scary_lists:
+    scary_monsters.txt: 94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-attacksight
+arms:
+  ctl: {}                                                         # both on, the list as shipped
+  both0:  {borg_param_attack_on_sight: 0, borg_param_caution_winning_fight: 0}   # today's play before #759 and #760
+  sight0: {borg_param_attack_on_sight: 0}
+  win0:   {borg_param_caution_winning_fight: 0}
+  nobreed:                                                        # the five breeders removed from the list
+    borg_scary_list_lines:
+      - "giant white mouse | none | | attack"
+      - "giant white louse | none | | attack"
+      - "giant fruit fly | none | | attack"
+      - "white worm mass | none | | attack"
+      - "green worm mass | none | | attack"
+  nofast:                                                         # wild cat and crow removed
+    borg_scary_list_lines:
+      - "wild cat | none | | attack"
+      - "crow | none | | attack"
+  cl10:                                                           # every entry cut from CL50 to CL10
+    borg_scary_list_lines:
+      - "wild cat | 10 | | attack | fast-fragile"
+      - "crow | 10 | | attack | fast-fragile"
+      - "giant white mouse | 10 | | attack,breeders | breeder"
+      - "giant white louse | 10 | | attack,breeders | breeder"
+      - "giant fruit fly | 10 | | attack,breeders | breeder"
+      - "white worm mass | 10 | | attack,breeders | breeder"
+      - "green worm mass | 10 | | attack,breeders | breeder"
+  cl20:                                                           # ... and to CL20
+    borg_scary_list_lines:
+      - "wild cat | 20 | | attack | fast-fragile"
+      - "crow | 20 | | attack | fast-fragile"
+      - "giant white mouse | 20 | | attack,breeders | breeder"
+      - "giant white louse | 20 | | attack,breeders | breeder"
+      - "giant fruit fly | 20 | | attack,breeders | breeder"
+      - "white worm mass | 20 | | attack,breeders | breeder"
+      - "green worm mass | 20 | | attack,breeders | breeder"
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: zoo owner, "this must be studied, including the list of kill on sight"; "yes go, define them" (pilots
+  and small runs only, all classes; the Rangers are set aside).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this build was read (borg-zoo#529; borg-reborn-rs #759, #760; #511's
+  pilot on 78b8f297 before they were shipped). Pilot (RULES 16); a small tier of what leads follows the gate and
+  the owner. Eight arms, 18 starts each (144 games). All classes.
+  Gate: no config_error; one binary; each arm's switch values in params-core.json and its list in the cell's user
+  copy (the borg_scary_list_lines applied); ctl plays as main c4163095's shipped settings; every cell ends in death,
+  turn_cap or borg_stopped (stalls, timeouts and crashes kept apart); frozen-turn bursts classified.
+  Report per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired
+  rescued and newly killed against ctl (exact McNemar), identical plays; per game the attack-on-sight reasons logged
+  (fast-fragile, breeder) and the winning-fight attacks and refusals; for every death the monster, its distance and
+  whether it was on the list. A switch or list entry that never fires (identical plays) is "not tested".
+  Descriptive (RULES 14).

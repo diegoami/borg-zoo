@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-prepared-hp-small",
+  "issue": 522,
+  "definition": "definitions/reborn-prepared-hp-small.yaml",
+  "question": "On borg-reborn-rs main a04e5471, do lower or higher HP minimums at the dive gates (DL2, DL3-4, DL5-9, 25 percent) save deaths or buy progress over 90 starts, all classes?",
+  "description": "On borg-reborn-rs main a04e5471, do lower or higher HP minimums at the dive gates (DL2, DL3-4, DL5-9, 25 percent) save deaths or buy progress over 90 starts, all classes? Generated from definitions/reborn-prepared-hp-small.yaml: 3 arms on 4.2.6-reborn-rust-main-a04e5471, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-20 after the classes-18 pilot of the same arms on the same build passed its gate (run 44817311691):\nhp-hi (and tight) brought back the Druid death and cost CL (5.78 against 6.22), hp-lo (and loose) newly killed one\nWarrior at CL6 and raised CL to 6.33; the level minimums and the Cure minimum played ctl's keys in 15-18 of 18\nstarts (not tested) and are dropped. Descriptive (RULES 14), a lead for a medium tier, not a result. Report per\narm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and\nnewly killed against ctl (exact McNemar), identical plays; RULES 18 bin.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-a04e5471"
+  ],
+  "profiles": [
+    "reborn-prepared-ctl",
+    "reborn-prepared-hp-lo",
+    "reborn-prepared-hp-hi"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-main-a04e5471",
+  "control_profile": "reborn-prepared-ctl",
+  "owner_authorization": "2026-11-20: zoo owner, \"yes go, define them\" (small tier, all classes).",
+  "retain_evidence": false
+}
