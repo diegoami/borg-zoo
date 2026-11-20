@@ -1049,6 +1049,20 @@
         "reborn-dunscreen-unlatch-kill"
       ],
       "runs": []
+    },
+    "reborn-shipcheck-b895": {
+      "issue": 480,
+      "status": "defined (first stage on classes-1800-small; medium after its gate)",
+      "what": "Main b895e352 (engine 574b618c): shipped against throw-as-melee 0, store-when-overweight 0, detection casters 10, all 10, ranged vs immobile 1.",
+      "profiles": [
+        "reborn-shipcheck-b895-all10",
+        "reborn-shipcheck-b895-casters10",
+        "reborn-shipcheck-b895-ranged",
+        "reborn-shipcheck-b895-shipped",
+        "reborn-shipcheck-b895-store0",
+        "reborn-shipcheck-b895-throw0"
+      ],
+      "runs": []
     }
   }
 }

@@ -1,0 +1,45 @@
+# borg-zoo#480: the shipped-switch check on main b895e352; owner 2026-11-20.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-shipcheck-b895-pilot.yaml
+name: reborn-shipcheck-b895-pilot
+issue: 480
+question: >-
+  On borg-reborn-rs main b895e352 (engine 574b618c), do the switches main ships on (throws rated as melee, storing at
+  home only when overweight) and off (no detection below CL10, ranged against immobile attackers) earn their shipped
+  values?
+suites: [classes-1800-small]
+pilot: true   # starts 1-90 (RULES 16, 2026-11-20: shipped main has no death on classes-18)
+
+specimen:
+  name: 4.2.6-reborn-rust-main-b895e352
+  repository: diegoami/borg-reborn-rs
+  ref: b895e3522118ebc43f179e28fd94f27729513a75
+  label: "borg-reborn-rs main b895e352 (#718 merge), on upstream Angband 574b618c (#730). Ships attack_throw_as_melee 1, town_store_only_overweight 1, detection min level 0 (#728), recall wait-as-usual 1. Tree 0ecad179; harness/borg.txt 315a4bd7..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-shipcheck-b895
+arms:
+  shipped: {}
+  throw0: {borg_param_attack_throw_as_melee: 0}
+  store0: {borg_param_town_store_only_overweight: 0}
+  casters10: {borg_param_light_detect_evil_spell_min_level__mage: 10, borg_param_light_detect_evil_spell_min_level__druid: 10, borg_param_light_detect_evil_spell_min_level__priest: 10, borg_param_light_detect_evil_spell_min_level__necromancer: 10, borg_param_light_detect_evil_spell_min_level__paladin: 10}
+  all10: {borg_param_light_detect_evil_spell_min_level: 10, borg_param_light_detect_evil_spell_min_level__mage: 10, borg_param_light_detect_evil_spell_min_level__druid: 10, borg_param_light_detect_evil_spell_min_level__priest: 10, borg_param_light_detect_evil_spell_min_level__necromancer: 10, borg_param_light_detect_evil_spell_min_level__paladin: 10}
+  ranged: {borg_param_caution_ranged_vs_immobile: 1}
+control: [shipped]
+owner_authorization: >-
+  2026-11-20: the owner said "yes do all of those": the shipped-switch check, #470's follow-up and #465's
+  ranged-immobile follow-up on current main, with the small set as the first stage (RULES 16 as amended).
+
+prespecified: |
+  Fixed 2026-11-20, before any result of these profiles was read. First stage (RULES 16 as amended), 90 starts per arm.
+  Gate: no config_error; one binary; each arm's lines written; engine 574b618c in every cell; every cell ends in death,
+  turn_cap or borg_stopped; frozen-turn bursts classified. Report per arm and per class: deaths and causes, CL1-3
+  deaths, max CL and DL, paired rescued and newly killed (exact McNemar), identical plays. Medium (starts 91-360)
+  follows the gate; bins (RULES 18) from starts 1-360 pooled.

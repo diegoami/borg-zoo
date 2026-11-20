@@ -7735,6 +7735,62 @@
         "borg_reborn_errand": "none",
         "borg_param_caution_ranged_vs_immobile": 2
       }
+    },
+    "reborn-shipcheck-b895-shipped": {
+      "description": "borg-zoo#480 (reborn-shipcheck-b895-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-shipcheck-b895-throw0": {
+      "description": "borg-zoo#480 (reborn-shipcheck-b895-pilot.yaml): arm throw0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_throw_as_melee": 0
+      }
+    },
+    "reborn-shipcheck-b895-store0": {
+      "description": "borg-zoo#480 (reborn-shipcheck-b895-pilot.yaml): arm store0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_store_only_overweight": 0
+      }
+    },
+    "reborn-shipcheck-b895-casters10": {
+      "description": "borg-zoo#480 (reborn-shipcheck-b895-pilot.yaml): arm casters10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_light_detect_evil_spell_min_level__mage": 10,
+        "borg_param_light_detect_evil_spell_min_level__druid": 10,
+        "borg_param_light_detect_evil_spell_min_level__priest": 10,
+        "borg_param_light_detect_evil_spell_min_level__necromancer": 10,
+        "borg_param_light_detect_evil_spell_min_level__paladin": 10
+      }
+    },
+    "reborn-shipcheck-b895-all10": {
+      "description": "borg-zoo#480 (reborn-shipcheck-b895-pilot.yaml): arm all10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_light_detect_evil_spell_min_level": 10,
+        "borg_param_light_detect_evil_spell_min_level__mage": 10,
+        "borg_param_light_detect_evil_spell_min_level__druid": 10,
+        "borg_param_light_detect_evil_spell_min_level__priest": 10,
+        "borg_param_light_detect_evil_spell_min_level__necromancer": 10,
+        "borg_param_light_detect_evil_spell_min_level__paladin": 10
+      }
+    },
+    "reborn-shipcheck-b895-ranged": {
+      "description": "borg-zoo#480 (reborn-shipcheck-b895-pilot.yaml): arm ranged.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_vs_immobile": 1
+      }
     }
   }
 }

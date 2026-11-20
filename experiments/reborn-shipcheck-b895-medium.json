@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-shipcheck-b895-medium",
+  "issue": 480,
+  "definition": "definitions/reborn-shipcheck-b895-medium.yaml",
+  "question": "On borg-reborn-rs main b895e352 (engine 574b618c), do the switches main ships on (throws rated as melee, storing at home only when overweight) and off (no detection below CL10, ranged against immobile attackers) earn their shipped values?",
+  "description": "On borg-reborn-rs main b895e352 (engine 574b618c), do the switches main ships on (throws rated as melee, storing at home only when overweight) and off (no detection below CL10, ranged against immobile attackers) earn their shipped values? Generated from definitions/reborn-shipcheck-b895-medium.yaml: 6 arms on 4.2.6-reborn-rust-main-b895e352, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-20, before any result of these profiles was read. Same specimen and profiles as the first stage\n(RULES 16). Gate as the first stage's. Report per arm and per class, pooled with the first stage (starts 1-360):\ndeaths and causes, max CL and DL, paired rescued and newly killed against shipped (exact McNemar, Holm over the five\narms), identical plays. Each arm is binned harmful, neutral or helpful (RULES 18).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-b895e352"
+  ],
+  "profiles": [
+    "reborn-shipcheck-b895-shipped",
+    "reborn-shipcheck-b895-throw0",
+    "reborn-shipcheck-b895-store0",
+    "reborn-shipcheck-b895-casters10",
+    "reborn-shipcheck-b895-all10",
+    "reborn-shipcheck-b895-ranged"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-b895e352",
+  "control_profile": "reborn-shipcheck-b895-shipped",
+  "owner_authorization": "2026-11-20: the owner said \"yes do all of those\": the shipped-switch check, #470's follow-up and #465's ranged-immobile follow-up on current main, with the small set as the first stage (RULES 16 as amended)."
+}
