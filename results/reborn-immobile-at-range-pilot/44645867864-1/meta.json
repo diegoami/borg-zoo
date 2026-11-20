@@ -1,0 +1,179 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-immobile-off": {
+        "description": "borg-zoo#461 (reborn-immobile-at-range-pilot.yaml): arm off.",
+        "settings": {
+          "borg_param_caution_ranged_vs_immobile": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "13497aa66041fa389539fa377263070c7f021b3bbcd3e37de950e40d1045a626"
+      },
+      "reborn-immobile-range": {
+        "description": "borg-zoo#461 (reborn-immobile-at-range-pilot.yaml): arm range.",
+        "settings": {
+          "borg_param_caution_ranged_vs_immobile": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "393034062143507ea6317079e1a6f84da689c51b03f2393c6fbbffad91665842"
+      },
+      "reborn-immobile-rangeall": {
+        "description": "borg-zoo#461 (reborn-immobile-at-range-pilot.yaml): arm rangeall.",
+        "settings": {
+          "borg_param_caution_ranged_vs_immobile": 3,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "14b3a0b1010f7689cd8b7330431e2bad4dc8ef29907089e53c25503f10ea5f5d"
+      },
+      "reborn-immobile-step646": {
+        "description": "borg-zoo#461 (reborn-immobile-at-range-pilot.yaml): arm step646.",
+        "settings": {
+          "borg_param_caution_ranged_vs_immobile": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "c51110a0e092e54a69c26eb050a156c17b9df8ddab467c3a814dc1119cf5ef7f"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-t713-5af2f79f": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs PR #717 head 5af2f79f on main dbc92d18 (caution_ranged_vs_immobile mode, shipped 2). Source-hash rust b06566e3...; harness/borg.txt 384911af...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "5af2f79fd3489b6dcb8d79372ade943447d6806f",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-20 00:31 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-t713-5af2f79f",
+    "control_profile": "reborn-immobile-off",
+    "definition": "definitions/reborn-immobile-at-range-pilot.yaml",
+    "description": "On borg-reborn-rs 5af2f79f (PR Generated from definitions/reborn-immobile-at-range-pilot.yaml: 4 arms on 4.2.6-reborn-rust-t713-5af2f79f, suite classes-18.",
+    "issue": 461,
+    "name": "reborn-immobile-at-range-pilot",
+    "owner_authorization": "2026-11-20: the owner said \"yes run pilots\" (classes-18, RULES 16). The larger tier named in the issue follows this gate on the owner's go.",
+    "prespecified": "Fixed 2026-11-20, before any zoo result was read (borg-reborn-rs#713, PR #717). Per RULES 16 the pilot (classes-18,\n100,000 turns) runs first with all four arms. Gate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified, key outliers listed;\n- death bundles reproduced.\nThen classes-1800-big (starts 361-900, 60 per class, 100,000 turns) with the same four arms, if the pilot passes.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final and maximum level, deepest level; paired rescued and newly killed against off;\n- deaths with an immobile monster (NEVER_MOVE) adjacent in the last 50 decisions, by monster;\n- \"# Stepping away from immobile\" notes (and \"kept at range\"), most per game, and any loop (many steps at one monster);\n- blows taken from immobile monsters (\"The <monster> touches/gazes/releases spores at you\"), per game;\n- throws and shots at immobile monsters, and immobile monsters killed;\n- games where a stair flow passed through a kept creature's reach (blows taken on the way to stairs).\nThe shipped value (2) is kept, changed or reverted from this result; no claim before it (RULES 14).",
+    "profiles": [
+      "reborn-immobile-off",
+      "reborn-immobile-step646",
+      "reborn-immobile-range",
+      "reborn-immobile-rangeall"
+    ],
+    "question": "On borg-reborn-rs 5af2f79f (PR",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-t713-5af2f79f"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44645867864-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44645867864",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "48d3f53d013cfb933f8edb649d13a760ea75191c"
+}
