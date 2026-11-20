@@ -1,0 +1,19 @@
+# borg-zoo#488: current main with its shipped settings on all 1,800 classes-1800 starts; after the pilot's gate.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-main-fde8-full.yaml
+name: reborn-main-fde8-full
+issue: 488
+question: What does borg-reborn-rs main fde8025a (engine 574b618c) play with its shipped settings?
+specimens: [4.2.6-reborn-rust-main-fde8025a]
+suites: [classes-1800]   # all 1,800 starts, 100,000 turns
+profiles: [reborn-main-fde8-shipped]
+control_specimen: 4.2.6-reborn-rust-main-fde8025a
+control_profile: reborn-main-fde8-shipped
+owner_authorization: >-
+  2026-11-20: the owner asked to "schedule another full run of the current status of main and settings": a
+  classes-18 pilot (RULES 16), then all 1,800 classes-1800 starts after its gate.
+
+prespecified: |
+  Fixed 2026-11-20, before any classes-1800 result of this build was read. Same specimen and profile as the pilot
+  (RULES 16). Gate as the pilot's. Descriptive (one arm): deaths and the death rate with its 95% interval, per class;
+  causes; CL1-3 deaths; max CL and DL; frozen-turn bursts and stalls. The last full shipped-main baseline
+  (3ba17e2c, reborn-errands38-none, 105 / 1,800) is another build and engine: outcomes only, never paired.
