@@ -1,0 +1,94 @@
+# The named scary monsters (borg-reborn-rs #518), read when borg.txt sets
+# borg_scary_list = <this file> and caution_scary_named_monsters = 1.
+#
+# A known monster on the level makes it scary (the Borg leaves and flees)
+# while the character's level is at most the monster's level for its class.
+#
+# Each monster has a range, tough - fragile: the level up to which the
+# toughest class (fragility 0) and the most fragile one (fragility 100) fear
+# it. A class in between fears it up to
+#     tough + (fragile - tough) x fragility / 100, rounded.
+# Fang at 5-8: Warrior, Paladin, Blackguard 5; Ranger, Rogue 6; Priest,
+# Druid 7; Mage, Necromancer 8 (owner, 2026-11-17).
+#
+# One line per monster:
+#   monster | scary up to clevel: tough - fragile | class exceptions | flags
+# - monster: the race name exactly as in monster.txt, or base:<start of a
+#   monster base name> (base:ancient dragon matches every ancient dragon).
+# - a single number instead of a range is the same level for every class.
+# - class exceptions: "class level" pairs, comma-separated, giving that
+#   class's level for this monster outright (0 = scary only at level 0,
+#   i.e. never in play).
+# - flags: "breeders" = only while at least as many breeders as the
+#   character's level are known, and not while the Borg stands and fights
+#   breeders (#503).
+#   "ignore" (#621) = not a scare: up to the level the Borg doesn't target or
+#   hunt the monster; it still attacks one standing in its way. A scare line
+#   and an ignore line for the same monster are separate entries. It takes
+#   no "breeders" flag. Ignore lines apply whenever this file is selected,
+#   whatever caution_scary_named_monsters says (that switch is for scares).
+#
+# A later line for the same monster and kind (scare or ignore) replaces the
+# earlier one, and "monster | none" removes it ("monster | none | | ignore"
+# the ignore line); a later fragility value replaces an earlier
+# one. An experiment can append its own lines to this file instead of
+# editing it (borg-zoo#228).
+#
+# An unknown monster, class or flag, a bad number or a backwards range stops
+# the run before play. To remove a monster, delete or comment out its line.
+
+# Class fragility, 0 (toughest) to 100 (most fragile).
+fragility: warrior 0, paladin 0, blackguard 0, ranger 33, rogue 33, priest 67, druid 67, mage 100, necromancer 100
+
+# The C Borg's hard-coded list (borg_near_monster_type, borg_flow_kill.rs):
+# tough = C's level, fragile = C's level + 3. C's only class exception (the
+# squint-eyed rogue scares Mages and Priests up to 6) is inside the range.
+
+# C: up to clevel 5 (squint-eyed rogue: Mages and Priests up to 6)
+squint-eyed rogue | 5-8
+Grip, Farmer Maggot's Dog | 5-8
+Fang, Farmer Maggot's Dog | 5-8
+small kobold | 5-8
+
+# C: up to clevel 8
+soldier | 8-11
+cutpurse | 8-11
+acolyte | 8-11
+apprentice | 8-11
+kobold | 8-11
+shrieker mushroom patch | 8-11
+Farmer Maggot | 8-11
+filthy street urchin | 8-11
+battle-scarred veteran | 8-11
+mean-looking mercenary | 8-11
+
+# C: up to clevel 15; the breeders only with breeders >= clevel
+Bullroarer the Hobbit | 15-18
+giant white mouse | 15-18 | | breeders
+white worm mass | 15-18 | | breeders
+green worm mass | 15-18 | | breeders
+
+# C: up to clevel 20
+cave spider | 20-23
+red naga | 20-23
+giant red frog | 20-23
+radiation eye | 20-23
+yellow worm mass | 20-23 | | breeders
+
+# C: below clevel 45
+gravity hound | 44-47
+inertia hound | 44-47
+base:ancient dragon | 44-47
+Beorn, the Shape-Changer | 44-47
+dread | 44-47
+
+# Ignored (#621, owner 2026-11-19): town residents that do no damage (BEG,
+# DROOL, MOAN in monster.txt). Up to the level the Borg doesn't spend turns
+# on them; one in its way is still attacked. Farmer Maggot also has 350 HP.
+Farmer Maggot | 10-20 | | ignore
+pitiful-looking beggar | 10-20 | | ignore
+singing, happy drunk | 10-20 | | ignore
+blubbering idiot | 10-20 | | ignore
+village idiot | 10-20 | | ignore
+mangy-looking leper | 10-20 | | ignore
+boil-covered wretch | 10-20 | | ignore

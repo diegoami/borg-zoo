@@ -91,6 +91,7 @@ for milestone in (11, 12, 13):
         f'How does Rust M{milestone} perform with the class-specific stair-climbing start on and off?')
 QUESTIONS['classes-v15'] = 'How does C M15 perform with the class-specific stair-climbing start on and off?'
 QUESTIONS['classes-rs-m15-medium'] = 'Does Rust M15 reproduce C M15 on the medium class starts, with the stair-climbing start on and off?'
+QUESTIONS['classes-rs-m15-big'] = 'Does Rust M15 reproduce C M15 on the big class starts with special modes off?'
 
 
 PROFILE_LABELS = {
