@@ -1,0 +1,19 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "classes-rs-m15-big",
+  "issue": 463,
+  "definition": "definitions/classes-rs-m15-big.yaml",
+  "description": "The Rust counterpart of classes-v15 on the medium starts: borg-rs v15R (tag 4.2.6-impact-v15, 137 carries, Angband 574b618c) on classes-1800-big (starts 361-900) under normal (modes off). borg-rs removed the munchkin and lunal modes (borg-rs#60): a profile that turns one on is refused at start-up, as rs-m15-smoke's munchkin-class arm showed (18 of 18 stopped at turn 1). Compare start by start with classes-v15 (better-borg-c M15, the same game commit): identical play hashes show the port reproduces C; differences are listed.",
+  "specimens": [
+    "4.2.6-rs-m15"
+  ],
+  "profiles": [
+    "normal"
+  ],
+  "suites": [
+    "classes-1800-big"
+  ],
+  "control": "4.2.6-rs-m15",
+  "control_profile": "normal",
+  "owner_authorization": "2026-11-20: the owner said \"do 1, 2 and 3\": the big tier after the medium's gate (run 44652186610: 264 of 270 endpoints identical to classes-v15, all 6 differences Necromancers)."
+}
