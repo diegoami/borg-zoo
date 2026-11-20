@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-fight-recall-pilot",
+  "issue": 511,
+  "definition": "definitions/reborn-fight-recall-pilot.yaml",
+  "question": "Do attack-on-sight categories, a winning-fight override and flight Recall survival checks change early survival and progress without new losing fights?",
+  "description": "Do attack-on-sight categories, a winning-fight override and flight Recall survival checks change early survival and progress without new losing fights? Generated from definitions/reborn-fight-recall-pilot.yaml: 5 arms on 4.2.6-reborn-rust-fight-recall-78b8f297, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this specimen was read (borg-zoo#511). Pilot (RULES 16); the 600-start\nmanifest (borg-cemetery 5ed93e24 starts-600.tsv) or another tier after this gate, on the owner's choice. ctl is the\nspecimen's actual harness/borg.txt with the three switches 0.\nGate: no config_error; one binary; each arm's values in borg.txt and params-core.json; every cell ends in death,\nturn_cap or borg_stopped (stalls, timeouts and crashes kept apart from deaths); death bundles reproduced.\nReport per arm and per class: deaths and causes, paired saved and newly killed (exact McNemar), CL at death, mean\nmax CL and max DL, failures and identical key streams; \"# Attack on sight:\", \"# Fight race:\" and \"# Refusing flight\nRecall:\" notes per game, and deaths while a Recall is pending; RULES 18 bin.",
+  "specimens": [
+    "4.2.6-reborn-rust-fight-recall-78b8f297"
+  ],
+  "profiles": [
+    "reborn-fightrecall-ctl",
+    "reborn-fightrecall-attack-sight",
+    "reborn-fightrecall-winning-fight",
+    "reborn-fightrecall-recall-safe",
+    "reborn-fightrecall-all"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-fight-recall-78b8f297",
+  "control_profile": "reborn-fightrecall-ctl",
+  "owner_authorization": "2026-11-20: borg-reborn-rs owner, \"queue the zoo jobs you require\"; zoo owner, 2026-11-20: \"pick up the open jobs\" (pilots and small runs only, no heavy jobs).",
+  "retain_evidence": true
+}

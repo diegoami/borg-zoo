@@ -1,0 +1,31 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-phase-first-761-pilot",
+  "issue": 513,
+  "definition": "definitions/reborn-phase-first-761-pilot.yaml",
+  "question": "On borg-reborn-rs 992e0351 (#761), does buying and picking up Phase Door first, with less oil and the Rangers' lighter kit, save early deaths without new ones?",
+  "description": "On borg-reborn-rs 992e0351 (#761), does buying and picking up Phase Door first, with less oil and the Rangers' lighter kit, save early deaths without new ones? Generated from definitions/reborn-phase-first-761-pilot.yaml: 10 arms on 4.2.6-reborn-rust-phase-992e0351, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this specimen was read (borg-zoo#513, borg-reborn-rs #761). Pilot (RULES 16);\nthe 200 Ranger starts of #488 and small + medium after this gate and the owner. ctl is the specimen's shipped\nborg.txt, which should play as main ec0f3b28 (the new settings are off or 100). \"all\" is ranger + phaseoil + floor\n+ unseen + foodlight; its Ranger oil is 25 from both.\nGate: no config_error; one binary; each arm's values in borg.txt and params-core.json; every cell ends in death,\nturn_cap or borg_stopped (stalls, timeouts and crashes kept apart from deaths); death bundles reproduced.\nReport per arm and per class: deaths and causes, CL at death, deepest level; paired rescued / newly killed (exact\nMcNemar); identical plays; Phase Door bought and picked up per game, games leaving town with at least 2 Phase Door,\nflasks of oil bought; RULES 18 bin. Deaths in all, phaseoil, ranger and ctl get a death report with screens.",
+  "specimens": [
+    "4.2.6-reborn-rust-phase-992e0351"
+  ],
+  "profiles": [
+    "reborn-phasefirst-ctl",
+    "reborn-phasefirst-ranger",
+    "reborn-phasefirst-phase",
+    "reborn-phasefirst-oil",
+    "reborn-phasefirst-phaseoil",
+    "reborn-phasefirst-floor",
+    "reborn-phasefirst-floorfirst",
+    "reborn-phasefirst-unseen",
+    "reborn-phasefirst-foodlight",
+    "reborn-phasefirst-all"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-phase-992e0351",
+  "control_profile": "reborn-phasefirst-ctl",
+  "owner_authorization": "2026-11-20: borg-reborn-rs owner, \"queue the zoo jobs you require\"; zoo owner, 2026-11-20: \"pick up the open jobs\" (pilots and small runs only, no heavy jobs).",
+  "retain_evidence": true
+}
