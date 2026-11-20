@@ -7710,6 +7710,31 @@
         "borg_param_caution_scary_named_monsters": 1,
         "borg_param_escape_phase_lost_test": 2
       }
+    },
+    "reborn-blkstairs-none": {
+      "description": "borg-zoo#477 (reborn-blocked-stairs-pilot.yaml): arm none.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_clean_path": 0,
+        "borg_param_caution_immobile_step_to_exit": 0,
+        "borg_param_attack_mobile_threat_first": 0
+      }
+    },
+    "reborn-blkstairs-shipped": {
+      "description": "borg-zoo#477 (reborn-blocked-stairs-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-blkstairs-stepaway": {
+      "description": "borg-zoo#477 (reborn-blocked-stairs-pilot.yaml): arm stepaway.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_vs_immobile": 2
+      }
     }
   }
 }
