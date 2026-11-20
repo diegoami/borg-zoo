@@ -7970,6 +7970,22 @@
         "borg_param_prepared_depth_plan": 0,
         "borg_plan": "errands_plan.txt"
       }
+    },
+    "reborn-tplanding-ctl": {
+      "description": "borg-zoo#495 (reborn-teleport-landing-either-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_teleport_landing_either": 0
+      }
+    },
+    "reborn-tplanding-either": {
+      "description": "borg-zoo#495 (reborn-teleport-landing-either-pilot.yaml): arm either.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_teleport_landing_either": 1
+      }
     }
   }
 }

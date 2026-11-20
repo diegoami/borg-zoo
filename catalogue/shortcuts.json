@@ -1100,6 +1100,16 @@
         "reborn-bpolicy-x4-p5"
       ],
       "runs": []
+    },
+    "reborn-teleport-landing-either": {
+      "issue": 495,
+      "status": "defined (pilot at 200k on main c74a8155)",
+      "what": "escape_teleport_landing_either (upstream 95387b06) 1 against shipped 0, at 200,000 turns.",
+      "profiles": [
+        "reborn-tplanding-ctl",
+        "reborn-tplanding-either"
+      ],
+      "runs": []
     }
   }
 }

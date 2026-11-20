@@ -1,0 +1,45 @@
+# borg-zoo#495: borg-reborn-rs #733's escape_teleport_landing_either at 200,000 turns, the issue's definition as filed.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-teleport-landing-either-pilot.yaml
+name: reborn-teleport-landing-either-pilot
+issue: 495
+question: On borg-reborn-rs main c74a8155, does checking a teleport's landing with either a scroll/spell or a staff/activation (escape_teleport_landing_either, upstream 95387b06) change games over 200,000 turns?
+suites: [classes-1800-200k-pilot]
+pilot: true   # 18 starts (2 per class), 200,000 engine turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-c74a8155
+  repository: diegoami/borg-reborn-rs
+  ref: c74a81556b97e1845612f585c71fa9070729f770
+  label: "borg-reborn-rs main c74a8155 (engine 574b618c; escape_teleport_landing_either shipped 0). Source-hash rust 2bdbd522...; harness/borg.txt df8a3537..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-tplanding
+arms:
+  ctl: {borg_param_escape_teleport_landing_either: 0}
+  either: {borg_param_escape_teleport_landing_either: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: the owner asked to do borg-zoo#495 (escape_teleport_landing_either at 200,000 turns, main c74a8155).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any zoo result was read (borg-reborn-rs#733). Pilot (RULES 16) on the 200,000-turn pilot suite,
+  because the rule acts later in a game; larger tiers only after this gate and the owner. ctl is shipped (0).
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class:
+  - deaths and causes, final and maximum level, deepest level; paired rescued and newly killed against ctl;
+  - games identical to ctl (the rule may never act at this size);
+  - "teleport" decisions with a landing check per game (borg_caution_teleport notes), and the character level when the first one happens;
+  - RULES 18 bin.
