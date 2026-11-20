@@ -3,13 +3,12 @@
   "name": "classes-rs-m15-medium",
   "issue": 463,
   "definition": "definitions/classes-rs-m15-medium.yaml",
-  "description": "The Rust counterpart of classes-v15 on the medium starts: borg-rs v15R (tag 4.2.6-impact-v15, 137 carries, Angband 574b618c) on classes-1800-medium (starts 91-360) under normal (modes off, control) and munchkin-class. Compare start by start with classes-v15 (better-borg-c M15, the same game commit): identical play hashes show the port reproduces C; differences are listed.",
+  "description": "The Rust counterpart of classes-v15 on the medium starts: borg-rs v15R (tag 4.2.6-impact-v15, 137 carries, Angband 574b618c) on classes-1800-medium (starts 91-360) under normal (modes off). borg-rs removed the munchkin and lunal modes (borg-rs#60): a profile that turns one on is refused at start-up, as rs-m15-smoke's munchkin-class arm showed (18 of 18 stopped at turn 1). Compare start by start with classes-v15 (better-borg-c M15, the same game commit): identical play hashes show the port reproduces C; differences are listed.",
   "specimens": [
     "4.2.6-rs-m15"
   ],
   "profiles": [
-    "normal",
-    "munchkin-class"
+    "normal"
   ],
   "suites": [
     "classes-1800-medium"
