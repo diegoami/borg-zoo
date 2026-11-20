@@ -8989,6 +8989,70 @@
         "borg_reborn_errand": "none",
         "borg_param_caution_breeder_policy": 5
       }
+    },
+    "reborn-adopted-f827f844-off": {
+      "description": "borg-zoo#511 (reborn-adopted-fight-recall-ablation.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_on_sight": 0,
+        "borg_param_caution_winning_fight": 0,
+        "borg_param_caution_recall_survival": 0
+      }
+    },
+    "reborn-adopted-f827f844-category": {
+      "description": "borg-zoo#511 (reborn-adopted-fight-recall-ablation.yaml): arm category.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_on_sight": 1,
+        "borg_param_caution_winning_fight": 0,
+        "borg_param_caution_recall_survival": 0
+      }
+    },
+    "reborn-adopted-f827f844-winning": {
+      "description": "borg-zoo#511 (reborn-adopted-fight-recall-ablation.yaml): arm winning.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_on_sight": 0,
+        "borg_param_caution_winning_fight": 1,
+        "borg_param_caution_recall_survival": 0
+      }
+    },
+    "reborn-adopted-f827f844-recall": {
+      "description": "borg-zoo#511 (reborn-adopted-fight-recall-ablation.yaml): arm recall.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_on_sight": 0,
+        "borg_param_caution_winning_fight": 0,
+        "borg_param_caution_recall_survival": 1
+      }
+    },
+    "reborn-adopted-f827f844-shipped": {
+      "description": "borg-zoo#511 (reborn-adopted-fight-recall-ablation.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-adopted-f827f844-combined-off": {
+      "description": "borg-zoo#528 (reborn-adopted-combined-original600-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_on_sight": 0,
+        "borg_param_caution_winning_fight": 0,
+        "borg_param_caution_recall_survival": 0
+      }
+    },
+    "reborn-adopted-f827f844-combined-shipped": {
+      "description": "borg-zoo#528 (reborn-adopted-combined-original600-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
     }
   }
 }

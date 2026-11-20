@@ -1123,7 +1123,7 @@
     },
     "reborn-cleash": {
       "issue": 506,
-      "status": "pilot done 2026-11-20 (none arm refused: config_error; re-piloted as reborn-cleashnone); small + medium after the gate",
+      "status": "pilots done (first pilot; re-pilot of none as reborn-cleashnone); small tiers ctl+loose and ctl+none defined",
       "what": "C's exploration leash values on main ec0f3b28: shipped (3/9/5), tight (2/5), loose (5/15), depth margin 0 and 10, and no leash.",
       "profiles": [
         "reborn-cleash-ctl",
@@ -1279,7 +1279,7 @@
     },
     "reborn-prepared": {
       "issue": 522,
-      "status": "pilot done 2026-11-20 (HP minimums act; level and Cure minimums not tested); small tier (ctl, hp-lo, hp-hi) defined",
+      "status": "pilot done 2026-11-20 (HP minimums act; level and Cure minimums not tested); small tier (ctl, hp-lo, hp-hi) defined; 200,000-turn pilot defined (reborn-prepared-200k-pilot)",
       "what": "The dive gates' thresholds on main a04e5471: character-level minimums +/-2, HP minimums -25%/+25%, Cure minimum 0 and 4, and loose and tight combinations.",
       "profiles": [
         "reborn-prepared-ctl",
@@ -1307,7 +1307,7 @@
     },
     "reborn-phasereserve": {
       "issue": 526,
-      "status": "defined (pilot; small tier and Rangers after its gate and the owner)",
+      "status": "defined (pilot; small tier and Rangers after its gate and the owner); 200,000-turn pilot defined (reborn-phase-reserve-200k-pilot)",
       "what": "town_phase_reserve (1, 2, 3 at 200 percent) and town_phase_reserve_percent (50, 100, 200, 400 at reserve 2) on main d745d9fc, against the shipped reserve 0.",
       "profiles": [
         "reborn-phasereserve-ctl",
@@ -1346,6 +1346,29 @@
         "reborn-breederpol-p2",
         "reborn-breederpol-p4",
         "reborn-breederpol-p5"
+      ],
+      "runs": []
+    },
+    "reborn-adopted": {
+      "issue": 511,
+      "status": "defined (pilot, prepared only; the owner decides dispatch)",
+      "what": "The three adopted switches (attack_on_sight, caution_winning_fight, caution_recall_survival, shipped 1) isolated against an explicit all-off control on f827f844: off, category, winning, recall, shipped.",
+      "profiles": [
+        "reborn-adopted-f827f844-off",
+        "reborn-adopted-f827f844-category",
+        "reborn-adopted-f827f844-winning",
+        "reborn-adopted-f827f844-recall",
+        "reborn-adopted-f827f844-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-adopted-600": {
+      "issue": 528,
+      "status": "defined (pilot18 of the retained 600; prepared only; the owner decides dispatch and every tier)",
+      "what": "The adopted combined policy (shipped) against explicit all-off on f827f844, on the first 2 starts per class of the owner's retained 600 (200 Rangers + 50 of each other class).",
+      "profiles": [
+        "reborn-adopted-f827f844-combined-off",
+        "reborn-adopted-f827f844-combined-shipped"
       ],
       "runs": []
     }

@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-adopted-combined-original600-pilot",
+  "issue": 528,
+  "definition": "definitions/reborn-adopted-combined-original600-pilot.yaml",
+  "question": "Does the adopted combined policy save more original starts than it newly kills, compared with explicit all-off on one binary?",
+  "description": "Does the adopted combined policy save more original starts than it newly kills, compared with explicit all-off on one binary? Generated from definitions/reborn-adopted-combined-original600-pilot.yaml: 2 arms on 4.2.6-reborn-rust-adopted-f827f844, suite reborn-flight-600-pilot18.",
+  "prespecified": "One exact binary, all nine classes, paired starts, 100000 engine turns.\nEmpty overrides must resolve to all three switches1 in params-core.json.\nPrimary endpoint: per-class paired saved versus newly killed natural-death\noutcomes by the cap, with discordant pairs and the net difference.\nReport every cell and all failures separately; a crash/stall/timeout is\nnever a survival and cannot establish improvement.\nSecondary: alive-at-cap, maxCL/maxDL, CL/cause at death, identical keys.\nRetain all natural deaths and first policy divergences in Cemetery.",
+  "specimens": [
+    "4.2.6-reborn-rust-adopted-f827f844"
+  ],
+  "profiles": [
+    "reborn-adopted-f827f844-combined-off",
+    "reborn-adopted-f827f844-combined-shipped"
+  ],
+  "suites": [
+    "reborn-flight-600-pilot18"
+  ],
+  "control": "4.2.6-reborn-rust-adopted-f827f844",
+  "control_profile": "reborn-adopted-f827f844-combined-off",
+  "owner_authorization": "2026-11-20: borg-reborn-rs owner (issue prepared from borg-reborn-rs, \"prepare only; the owner schedules every tier\"); zoo owner, 2026-11-20: \"yes, prepare 528's pilot\" (a pilot only; no dispatch before the zoo owner says so).",
+  "retain_evidence": true
+}

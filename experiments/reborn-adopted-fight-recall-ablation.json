@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-adopted-fight-recall-ablation",
+  "issue": 511,
+  "definition": "definitions/reborn-adopted-fight-recall-ablation.yaml",
+  "question": "What does each adopted switch change relative to an explicit all-off control, and how do they interact?",
+  "description": "What does each adopted switch change relative to an explicit all-off control, and how do they interact? Generated from definitions/reborn-adopted-fight-recall-ablation.yaml: 5 arms on 4.2.6-reborn-rust-adopted-f827f844, suite classes-18.",
+  "prespecified": "All nine classes, classes-18 pilot, 100000 engine turns per start.\n18 starts x5 arms =90 cells; paired identical starts and one binary.\nCheck build/configuration/smoke gate before running; no automatic tier growth.\nAccount for every cell; errors/timeouts/stalls/crashes are separate from deaths.\nReport paired saved/newly killed lives and alive-at-cap per class and arm,\nplus death causes, CL at death, maxCL/maxDL, identical keys and failures.\nRetain every natural death in Cemetery.",
+  "specimens": [
+    "4.2.6-reborn-rust-adopted-f827f844"
+  ],
+  "profiles": [
+    "reborn-adopted-f827f844-off",
+    "reborn-adopted-f827f844-category",
+    "reborn-adopted-f827f844-winning",
+    "reborn-adopted-f827f844-recall",
+    "reborn-adopted-f827f844-shipped"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-adopted-f827f844",
+  "control_profile": "reborn-adopted-f827f844-off",
+  "owner_authorization": "2026-11-20: borg-reborn-rs owner (issue prepared from borg-reborn-rs, \"prepare only; the owner schedules every tier\"); zoo owner, 2026-11-20: \"yes, prepare 528's pilot\" (a pilot only; no dispatch before the zoo owner says so).",
+  "retain_evidence": true
+}

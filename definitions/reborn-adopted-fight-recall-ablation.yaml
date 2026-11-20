@@ -1,0 +1,52 @@
+# borg-zoo#511: the three adopted switches (#759, #760, #758) isolated against an explicit all-off control, on f827f844 (replaces the 78b8f297 pilot).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-adopted-fight-recall-ablation.yaml
+name: reborn-adopted-fight-recall-ablation
+issue: 511
+question: What does each adopted switch change relative to an explicit all-off control, and how do they interact?
+tier: pilot
+specimen:
+  name: 4.2.6-reborn-rust-adopted-f827f844
+  repository: diegoami/borg-reborn-rs
+  ref: f827f844649feff1b0426466bc8ddcee31b924ae
+  label: "Owner-adopted categories/winning/Recall; compiled0 shipped1; population unconfirmed"
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-adopted-f827f844
+arms:
+  'off':
+    borg_param_attack_on_sight: 0
+    borg_param_caution_winning_fight: 0
+    borg_param_caution_recall_survival: 0
+  category:
+    borg_param_attack_on_sight: 1
+    borg_param_caution_winning_fight: 0
+    borg_param_caution_recall_survival: 0
+  winning:
+    borg_param_attack_on_sight: 0
+    borg_param_caution_winning_fight: 1
+    borg_param_caution_recall_survival: 0
+  recall:
+    borg_param_attack_on_sight: 0
+    borg_param_caution_winning_fight: 0
+    borg_param_caution_recall_survival: 1
+  shipped: {}
+control: ['off']
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs owner (issue prepared from borg-reborn-rs, "prepare only; the owner schedules every
+  tier"); zoo owner, 2026-11-20: "yes, prepare 528's pilot" (a pilot only; no dispatch before the zoo owner says so).
+extra:
+  retain_evidence: true
+prespecified: |
+  All nine classes, classes-18 pilot, 100000 engine turns per start.
+  18 starts x5 arms =90 cells; paired identical starts and one binary.
+  Check build/configuration/smoke gate before running; no automatic tier growth.
+  Account for every cell; errors/timeouts/stalls/crashes are separate from deaths.
+  Report paired saved/newly killed lives and alive-at-cap per class and arm,
+  plus death causes, CL at death, maxCL/maxDL, identical keys and failures.
+  Retain every natural death in Cemetery.

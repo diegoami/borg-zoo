@@ -1,0 +1,28 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-phase-reserve-200k-pilot",
+  "issue": 526,
+  "definition": "definitions/reborn-phase-reserve-200k-pilot.yaml",
+  "question": "On borg-reborn-rs main d745d9fc at 200,000 turns, where there is time for the Phase Door scrolls to be used and replaced, does the town reserve (1, 2, 3 scrolls; worth 50 to 400 percent) save deaths or buy progress?",
+  "description": "On borg-reborn-rs main d745d9fc at 200,000 turns, where there is time for the Phase Door scrolls to be used and replaced, does the town reserve (1, 2, 3 scrolls; worth 50 to 400 percent) save deaths or buy progress? Generated from definitions/reborn-phase-reserve-200k-pilot.yaml: 7 arms on 4.2.6-reborn-rust-main-d745d9fc, suite classes-1800-200k-pilot.",
+  "prespecified": "Fixed 2026-11-20, before any 200,000-turn result of these profiles was read; the arms are #526's seven at 100,000\nturns (run 44823206182, result pending when this was written). Pilot of the 200,000-turn tier (RULES 16), all\nclasses (the Rangers are set aside). At 100,000 turns ctl had 0 or 1 death in 18, so survival could not be ranked.\nGate: no config_error; one binary; each arm's reserve and percent in params-core.json; every cell ends in death,\nturn_cap or borg_stopped (stalls, timeouts and crashes kept apart); frozen-turn bursts classified.\nReport per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued\nand newly killed against ctl (exact McNemar), identical plays; Phase Door bought, carried leaving town and read per\ngame, and what the reserve displaced from town-transactions.jsonl. 18 starts show direction only (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-d745d9fc"
+  ],
+  "profiles": [
+    "reborn-phasereserve-ctl",
+    "reborn-phasereserve-r1p200",
+    "reborn-phasereserve-r2p200",
+    "reborn-phasereserve-r3p200",
+    "reborn-phasereserve-r2p50",
+    "reborn-phasereserve-r2p100",
+    "reborn-phasereserve-r2p400"
+  ],
+  "suites": [
+    "classes-1800-200k-pilot"
+  ],
+  "control": "4.2.6-reborn-rust-main-d745d9fc",
+  "control_profile": "reborn-phasereserve-ctl",
+  "owner_authorization": "2026-11-20: zoo owner, \"town_phase_reserve is important\" and \"do as you suggest\" (the calibrations as 200,000-turn pilots; pilots only; dispatched once the 100,000-turn batch has finished, all classes).",
+  "retain_evidence": true
+}
