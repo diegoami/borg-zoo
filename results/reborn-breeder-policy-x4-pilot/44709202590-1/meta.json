@@ -1,0 +1,214 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-bpolicy-x4-p0": {
+        "description": "borg-zoo#482 (reborn-breeder-policy-x4-pilot.yaml): arm p0.",
+        "settings": {
+          "borg_param_caution_breeder_policy": 0,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "breeders-x4"
+        },
+        "sha256": "3b2dfb1c0716b537c6b8453f90b2abec8c47d42e4f2b206557f626f8db0a8814"
+      },
+      "reborn-bpolicy-x4-p1": {
+        "description": "borg-zoo#482 (reborn-breeder-policy-x4-pilot.yaml): arm p1.",
+        "settings": {
+          "borg_param_caution_breeder_policy": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "breeders-x4"
+        },
+        "sha256": "1ead07cdfe3f4c905ed55578be87fc78e919f1055a884a698bfbd2e6c318467e"
+      },
+      "reborn-bpolicy-x4-p2": {
+        "description": "borg-zoo#482 (reborn-breeder-policy-x4-pilot.yaml): arm p2.",
+        "settings": {
+          "borg_param_caution_breeder_policy": 2,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "breeders-x4"
+        },
+        "sha256": "3b5cab638d53a81ff3dd65ca4237cebe2d0798761f1900ed14529f204ec46aab"
+      },
+      "reborn-bpolicy-x4-p3": {
+        "description": "borg-zoo#482 (reborn-breeder-policy-x4-pilot.yaml): arm p3.",
+        "settings": {
+          "borg_param_caution_breeder_policy": 3,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "breeders-x4"
+        },
+        "sha256": "f94e0f4b08fa180bc72256b98cf3be485ac19b3cf4bd8ebaf2dbe287f20f29db"
+      },
+      "reborn-bpolicy-x4-p4": {
+        "description": "borg-zoo#482 (reborn-breeder-policy-x4-pilot.yaml): arm p4.",
+        "settings": {
+          "borg_param_caution_breeder_policy": 4,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "breeders-x4"
+        },
+        "sha256": "a678c3b0989b742834e4b6e4e1dd8db9791f799102a57ebb6afaf30a96eecfbe"
+      },
+      "reborn-bpolicy-x4-p5": {
+        "description": "borg-zoo#482 (reborn-breeder-policy-x4-pilot.yaml): arm p5.",
+        "settings": {
+          "borg_param_caution_breeder_policy": 5,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "breeders-x4"
+        },
+        "sha256": "543a6215e74d348e1284eef0cc5f1465d032d1edd9f7c3a55cd5e9adcd1bf6e6"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-pr740-e41eb758": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs e41eb758, head of PR #740 (#704 breeder worlds, review fixes, unmerged); engine 574b618c. Tree 2de5e2b1; source-hash rust 7021f261...; harness/borg.txt 59336cb4... (borg_world = none, caution_breeder_policy = 3). An unconsumed borg_world stops the game with exit 2.",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "e41eb758a4540c9e967e0f260da9996b4c9c2d93",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        },
+        "worlds": {
+          "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-20 09:20 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-pr740-e41eb758",
+    "control_profile": "reborn-bpolicy-x4-p3",
+    "definition": "definitions/reborn-breeder-policy-x4-pilot.yaml",
+    "description": "In the breeders-x4 world (borg-reborn-rs PR #740 head e41eb758), which level of the breeder policy (caution_breeder_policy 0-5, shipped 3) saves or costs games? Generated from definitions/reborn-breeder-policy-x4-pilot.yaml: 6 arms on 4.2.6-reborn-rust-pr740-e41eb758, suite classes-18.",
+    "issue": 482,
+    "name": "reborn-breeder-policy-x4-pilot",
+    "owner_authorization": "2026-11-20: the owner redefined #482 as the breeder policy ladder in breeders-x4 (the switch arms were overridden by caution_breeder_policy 3): classes-18 gate, then small + medium (starts 1-360).",
+    "prespecified": "Fixed 2026-11-20, before any result of these profiles was read (owner's redefinition of #482).\nGate:\n- no config_error; one binary; every cell records world breeders-x4 with the same borg_world_data_sha256 in every arm;\n- each arm's policy value in borg.txt and in params-core.json;\n- the arms must play differently: at least p0 and p2 differ from p3 in some games. If an arm is identical to p3 in\n  all 18 pilot games, stop and report it before the larger tiers;\n- every cell ends in death, turn_cap or borg_stopped (exit 2 means the world was not applied); frozen-turn bursts\n  classified; death bundles reproduced with the same world.\nReport per arm and per class: deaths and causes, final and maximum level, deepest level; breeder deaths (the killer\nhas MULTIPLY); paired rescued and newly killed against p3 (exact McNemar) and games identical to p3; breeders created\nand killed per game; per game \"# Breeders cannot be stopped\", \"No rest: ... breeders known\" and the flees from a lost\nlevel; mean max CL and DL against p3 with non-inferiority at #347's margins (CL -0.25, DL -0.25); a RULES 18 bin for\neach arm. A breeder world is a stress test: a level that wins here still needs normal play's measurement (#460)\nbefore its shipped value changes.",
+    "profiles": [
+      "reborn-bpolicy-x4-p3",
+      "reborn-bpolicy-x4-p0",
+      "reborn-bpolicy-x4-p1",
+      "reborn-bpolicy-x4-p2",
+      "reborn-bpolicy-x4-p4",
+      "reborn-bpolicy-x4-p5"
+    ],
+    "question": "In the breeders-x4 world (borg-reborn-rs PR #740 head e41eb758), which level of the breeder policy (caution_breeder_policy 0-5, shipped 3) saves or costs games?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-pr740-e41eb758"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44709202590-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44709202590",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "aef735a7be7502302dc38a7b5d7ce6bb4045dcfe"
+}
