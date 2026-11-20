@@ -8,8 +8,9 @@
 header.html, findings.html and footer.html are HTML fragments the session writes from what
 it read in the deaths (see SKILL.md). classes.json, when given, is a list of
 {"cls", "before", "after"} rows for the per-class bar table; findings.html must then contain
-a <table id="cls"> with a <tbody></tbody>. cases.json maps seed -> cemetery dossier id
-(D-<sha>) for the per-death dossier link.
+a <table id="cls"> with a <tbody></tbody>. cases.json maps seed (or a death's dir, when one seed
+died twice) -> cemetery dossier id (D-<sha>) for the per-death dossier link. An optional
+`note` on a death in FRAMES_JSON (e.g. which arms played it) is shown with it.
 """
 import argparse
 import json
@@ -31,9 +32,9 @@ def main():
     ap.add_argument('--cases', type=Path)
     a = ap.parse_args()
     data = json.loads(a.frames.read_text())
-    cases = {int(k): v for k, v in json.loads(a.cases.read_text()).items()} if a.cases else {}
+    cases = json.loads(a.cases.read_text()) if a.cases else {}
     for d in data:
-        d['case'] = cases.get(d['seed'], '')
+        d['case'] = cases.get(d['dir']) or cases.get(str(d['seed']), '')
     classes = json.loads(a.classes.read_text()) if a.classes else []
     js = lambda o: json.dumps(o, separators=(',', ':')).replace('</', '<\\/')
     t = (HERE / 'template.html').read_text()

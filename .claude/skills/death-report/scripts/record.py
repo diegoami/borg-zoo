@@ -18,6 +18,7 @@ left, last attack, cure potions left in the pack).
 """
 import argparse
 import hashlib
+from collections import Counter
 import json
 import os
 import re
@@ -81,11 +82,14 @@ def main():
     game = build(a.source)
     env = {k: v for k, v in os.environ.items() if not k.startswith('BORG_')} | {'TZ': 'UTC', 'LANG': 'C.UTF-8', 'LC_ALL': 'C.UTF-8'}
     data = []
+    # One seed can die in two different games (two arms): name those by death turn too.
+    per_seed = Counter(json.loads((b / 'zoo-death.json').read_text())['seed'] for b in bundles)
     for b in bundles:
         z = json.loads((b / 'zoo-death.json').read_text())
         cfg = dict(l.split('=', 1) for l in (b / 'config.txt').read_text().split() if '=' in l)
         seed, race, cls = z['seed'], int(cfg['race_idx']), int(cfg['class_idx'])
-        w = a.work / 'rec' / str(seed)
+        name = f'{CLASSES[cls].lower()}-{seed}' + (f"-t{z['final']['turn']}" if per_seed[seed] > 1 else '')
+        w = a.work / 'rec' / name
         shutil.rmtree(w, ignore_errors=True)
         for d in ('user', 'save', 'archive', 'panic', 'scores', 'record'):
             (w / d).mkdir(parents=True)
@@ -121,7 +125,7 @@ def main():
         idx = [x['i'] for x in last]
         out = [x | {'msgs': [t for q in range(idx[k - 1] + 1 if k else x['i'], x['i'] + 1) for t in msgs.get(q, [])]} for k, x in enumerate(last)]
         fin = z.get('final') or {}
-        data.append(dict(dir=f"{CLASSES[cls].lower()}-{seed}", cls=CLASSES[cls], race=RACES[race], seed=seed, cause=z['cause'],
+        data.append(dict(dir=name, cls=CLASSES[cls], race=RACES[race], seed=seed, cause=z['cause'],
                          cl=fin.get('level'), dl=fin.get('depth'), turn=fin.get('turn'), keys=sum(1 for _ in open(w / 'keys.log')),
                          play=z['play_sha256'], replay_matches=True, specimen=z['specimen'], run=z.get('run_id'),
                          frames=out, after=[t for q in sorted(msgs) if q > idx[-1] for t in msgs[q]],
