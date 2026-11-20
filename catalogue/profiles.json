@@ -7986,6 +7986,26 @@
         "borg_reborn_errand": "none",
         "borg_param_escape_teleport_landing_either": 1
       }
+    },
+    "reborn-flight-ctl": {
+      "description": "borg-zoo#501 (reborn-flight-fixes-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-flight-flight": {
+      "description": "borg-zoo#501 (reborn-flight-fixes-pilot.yaml): arm flight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_clean_path": 2,
+        "borg_param_caution_stairs_clean_path_flee": 1,
+        "borg_param_caution_desperate_fast_danger_percent": 50,
+        "borg_param_caution_recall_cure_min_loss_percent": 30,
+        "borg_param_caution_stairs_flight_ignore_danger": 1,
+        "borg_param_caution_rising_hold_min_hp_percent": 50
+      }
     }
   }
 }
