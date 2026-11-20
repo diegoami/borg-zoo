@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-plays-risky-pilot",
+  "issue": 330,
+  "definition": "definitions/reborn-plays-risky-pilot.yaml",
+  "question": "On borg-reborn-rs main 6438e1cf, does borg_plays_risky (dive regardless of character level and stay in fights rather than teleport; shipped FALSE) change how the Borg survives and progresses?",
+  "description": "On borg-reborn-rs main 6438e1cf, does borg_plays_risky (dive regardless of character level and stay in fights rather than teleport; shipped FALSE) change how the Borg survives and progresses? Generated from definitions/reborn-plays-risky-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-6438e1cf, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result was read. Pilot (RULES 16). The C Borg's switches-early and dive-styles-early\n(early-50) are a different Borg and context only.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm, overall and per class: deaths and causes, CL1-3 deaths, final level, deepest level; paired rescued\nand newly killed against ctl; identical plays; per game, teleports and flights, and the deepest level reached by\ngame turn 25,000, 50,000 and 100,000. 18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-6438e1cf"
+  ],
+  "profiles": [
+    "reborn-risky-ctl",
+    "reborn-risky-risky"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-6438e1cf",
+  "control_profile": "reborn-risky-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for a test of borg_plays_risky. Pilot first (RULES 16); larger tiers only after its gate and the owner (RULES 14).",
+  "retain_evidence": true
+}

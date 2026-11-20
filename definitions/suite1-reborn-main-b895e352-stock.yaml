@@ -1,0 +1,36 @@
+# borg-zoo#183: Suite 1 (balanced999) on borg-reborn-rs main b895e352 with its own borg.txt, a sanity check of main.
+# Inputs frozen with: python3 -m zoo.suite_runs snapshot --source <borg-reborn-rs at b895e352> --name suite1-reborn-main-b895e352-stock
+# Write the generated definition with: python3 -m zoo define definitions/suite1-reborn-main-b895e352-stock.yaml
+kind: suite-run
+name: suite1-reborn-main-b895e352-stock
+folder: scenario-experiments
+issue: 183
+question: How does borg-reborn-rs main b895e352, with its own default settings, play the 999 saved encounters of Suite 1?
+suite: suite1-v1
+source:
+  repository: diegoami/borg-reborn-rs
+  commit: b895e3522118ebc43f179e28fd94f27729513a75
+settings: stock
+inputs:
+  path: scenario-inputs/suite1-reborn-main-b895e352-stock
+  files:
+    borg.txt: 315a4bd7d98fed28ef31e27e1f84350284991e39cc1285a2d589ee443fd2aac6
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+    provenance.json: adef505087d225a56d9bf43c7fddedeca7e70d073df5905dab1c663320aefdbb
+native_tools:
+  repository: diegoami/borg-cemetery
+  commit: a4c76ac57a3eea3357d6f0ade3709185eb2c43dc
+owner_authorization: >-
+  2026-11-20: the owner said "do 1, 2 and 3": a Suite 1 smoke on main b895e352, the first main on upstream Angband
+  574b618c (borg-reborn-rs #730), to learn whether the saved encounters still load on the new engine. Later
+  stages on the owner's go.
+prespecified: |
+  Fixed 2026-11-19, before any result was read (borg-zoo#183). A sanity check of main: the 999 saves of
+  Suite 1 with its protocol (exact 2,000-engine-turn horizon, the suite's 30-second native wall limit, fresh Borg
+  memory, saved engine RNG). Settings: the checkout's own harness/borg.txt (sha256 315a4bd7...), nothing
+  overridden; the scary list it names (scary_monsters.txt 6ed44686...) is frozen with the inputs. Stages smoke 18,
+  then small 90, medium 360, big 900 and full 999, each after the previous stage's gate and proposed to the owner.
+  Gate at every stage: no missing, invalid or stopped cell; one binary; every cell's native receipts show the save,
+  the RNG, the borg-rs core, every borg.txt setting written, every borg_param_* effective from borg.txt, and an
+  initial pack/equipment/rune hash equal to the suite's. Reported alone: the death share, deaths per class and every
+  scenario's outcome. Encounters from one life are correlated.

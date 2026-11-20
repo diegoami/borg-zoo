@@ -22,7 +22,8 @@ from . import catalogue as cat_mod
 ROOT = Path(__file__).resolve().parents[1]
 
 # The development suite each tier plays (RULES 14).
-TIERS = {'pilot': 'classes-18', 'small': 'classes-1800-small', 'medium': 'classes-1800-medium',
+TIERS = {'pilot': 'classes-18', 'verysmall': 'classes-1800-verysmall', 'small-rest': 'classes-1800-small-rest',
+         'small': 'classes-1800-small', 'medium': 'classes-1800-medium',
          'big': 'classes-1800-big', 'full': 'classes-1800-full'}
 
 # Specimen defaults per repository; a definition can override any of them.
@@ -34,7 +35,42 @@ SPECIMEN_DEFAULTS = {
 
 KEYS = {'name', 'file', 'issue', 'question', 'folder', 'description', 'prespecified', 'owner_authorization',
         'tier', 'suite', 'suites', 'specimen', 'specimens', 'settings', 'vary', 'arms', 'profiles',
-        'profile_prefix', 'control', 'control_specimen', 'control_profile', 'extra'}
+        'profile_prefix', 'control', 'control_specimen', 'control_profile', 'extra', 'pilot'}
+
+
+def pilot_suites(root=ROOT):
+    """Suites that make an experiment a pilot: classes-18 and any suite whose role is pilot."""
+    names = {TIERS['pilot']}
+    path = Path(root) / 'catalogue/suites.json'
+    if path.exists():
+        data = json.loads(path.read_text())
+        names |= {n for n, s in data.get('suites', data).items() if isinstance(s, dict) and s.get('role') == 'pilot'}
+    return names
+
+
+def is_pilot(exp, root=ROOT):
+    """An experiment is a pilot when every suite is a pilot suite, or it says so ("pilot": true, for
+    a study's first and smallest run on a suite of its own, such as one class's starts)."""
+    return bool(exp.get('pilot')) or set(exp.get('suites') or []) <= pilot_suites(root)
+
+
+def pilot_problem(exp, root=ROOT):
+    """RULES 16: a new experiment that is not a pilot needs a pilot of the same arms on the same
+    specimens already in the catalogue; None when it has one or is a pilot itself."""
+    if is_pilot(exp, root):
+        return None
+    root = Path(root)
+    want_specs, want_profiles = set(exp['specimens']), set(exp['profiles'])
+    for f in sorted(list(root.glob('experiments/*.json')) + list(root.glob('smoke/*.json'))):
+        try:
+            other = json.loads(f.read_text())
+        except ValueError:
+            continue
+        if (other.get('name') != exp['name'] and is_pilot(other, root)
+                and want_specs <= set(other.get('specimens') or []) and want_profiles <= set(other.get('profiles') or [])):
+            return None
+    return (f"RULES 16: no pilot of these arms on {', '.join(sorted(want_specs))} is in the catalogue; "
+            f"define and run the pilot first (tier: pilot, or pilot: true for a study on its own suite)")
 
 
 def load(path):
@@ -155,6 +191,8 @@ def experiment(d, path, profiles, root=ROOT):
         f"{len(names)} arms on {', '.join(spec_names)}, suite {', '.join(suites(d))}.")
     if d.get('prespecified'):
         exp['prespecified'] = d['prespecified'].strip()
+    if d.get('pilot'):
+        exp['pilot'] = True
     exp.update({'specimens': spec_names, 'profiles': names, 'suites': suites(d),
                 'control': d.get('control_specimen') or spec_names[0], 'control_profile': control_profile})
     if d.get('owner_authorization'):
@@ -209,6 +247,10 @@ def plan(path, root=ROOT):
     exp = experiment(d, path, profiles, root)
     file = target(d, root)
     if not file.exists():
+        if d.get('folder') != 'smoke':
+            problem = pilot_problem(exp, root)
+            if problem:
+                problems.append(problem)
         changes.append(('experiment', relative(file, root), exp))
     elif json.loads(file.read_text()) != exp:
         changes.append(('experiment-update', relative(file, root), exp))

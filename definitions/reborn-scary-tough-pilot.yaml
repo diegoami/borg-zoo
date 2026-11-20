@@ -1,0 +1,97 @@
+# borg-zoo#299: the scary list's tough end, pilot; owner 2026-11-18 (option 1 after the class-spread pilot).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-tough-pilot.yaml
+#
+# Each arm appends one line per monster (flags kept) lowering tough (the level up to which Warrior, Paladin and
+# Blackguard fear it) and keeping fragile (Mage, Necromancer). Ranger/Rogue (33) and Priest/Druid (67) move by 2/3
+# and 1/3 of the change. Shipped: fragile = tough + 3.
+name: reborn-scary-tough-pilot
+issue: 299
+question: >-
+  On borg-reborn-rs main f660aecc, does letting the tough classes stop fearing the named monsters sooner (tough - 3 or
+  tough - 5, fragile unchanged) save games or progress, and in which classes?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-f660aecc
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-scarytough
+arms:
+  ctl: {}   # shipped
+  t3:   # tough - 3, fragile unchanged
+    borg_scary_list_lines:
+      - "squint-eyed rogue | 2-8"
+      - "Grip, Farmer Maggot's Dog | 2-8"
+      - "Fang, Farmer Maggot's Dog | 2-8"
+      - "small kobold | 2-8"
+      - "soldier | 5-11"
+      - "cutpurse | 5-11"
+      - "acolyte | 5-11"
+      - "apprentice | 5-11"
+      - "kobold | 5-11"
+      - "shrieker mushroom patch | 5-11"
+      - "Farmer Maggot | 5-11"
+      - "filthy street urchin | 5-11"
+      - "battle-scarred veteran | 5-11"
+      - "mean-looking mercenary | 5-11"
+      - "Bullroarer the Hobbit | 12-18"
+      - "giant white mouse | 12-18 |  | breeders"
+      - "white worm mass | 12-18 |  | breeders"
+      - "green worm mass | 12-18 |  | breeders"
+      - "cave spider | 17-23"
+      - "red naga | 17-23"
+      - "giant red frog | 17-23"
+      - "radiation eye | 17-23"
+      - "yellow worm mass | 17-23 |  | breeders"
+      - "gravity hound | 41-47"
+      - "inertia hound | 41-47"
+      - "base:ancient dragon | 41-47"
+      - "Beorn, the Shape-Changer | 41-47"
+      - "dread | 41-47"
+  t5:   # tough - 5, fragile unchanged
+    borg_scary_list_lines:
+      - "squint-eyed rogue | 0-8"
+      - "Grip, Farmer Maggot's Dog | 0-8"
+      - "Fang, Farmer Maggot's Dog | 0-8"
+      - "small kobold | 0-8"
+      - "soldier | 3-11"
+      - "cutpurse | 3-11"
+      - "acolyte | 3-11"
+      - "apprentice | 3-11"
+      - "kobold | 3-11"
+      - "shrieker mushroom patch | 3-11"
+      - "Farmer Maggot | 3-11"
+      - "filthy street urchin | 3-11"
+      - "battle-scarred veteran | 3-11"
+      - "mean-looking mercenary | 3-11"
+      - "Bullroarer the Hobbit | 10-18"
+      - "giant white mouse | 10-18 |  | breeders"
+      - "white worm mass | 10-18 |  | breeders"
+      - "green worm mass | 10-18 |  | breeders"
+      - "cave spider | 15-23"
+      - "red naga | 15-23"
+      - "giant red frog | 15-23"
+      - "radiation eye | 15-23"
+      - "yellow worm mass | 15-23 |  | breeders"
+      - "gravity hound | 39-47"
+      - "inertia hound | 39-47"
+      - "base:ancient dragon | 39-47"
+      - "Beorn, the Shape-Changer | 39-47"
+      - "dread | 39-47"
+control: [ctl]
+owner_authorization: >-
+  2026-11-18: after the class-spread pilot (run 44346946815: raising fragile changed nothing at 100,000 turns, lowering
+  tough changed every tough-class game), the owner chose to test the low end. Pilot first (RULES 16).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any result of these arms was read. Pilot (RULES 16).
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Read per class: identical plays against ctl (Mage and Necromancer expected identical); deaths and causes, final
+  level, deepest level; paired rescued and newly killed; "Scary guy" notes and flights per game. Direction only.

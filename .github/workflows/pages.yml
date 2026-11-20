@@ -8,7 +8,12 @@ on:
     types: [completed]
   push:
     branches: [main]
-    paths: ['zoo/**', '.github/workflows/pages.yml']
+    paths: ['zoo/**', 'catalogue/**', '.github/workflows/pages.yml']
+  # RULES 19 (owner, 2026-11-19): the site is rebuilt at least hourly, so its
+  # pages (e.g. settings/changes.html) are never more than about an hour behind
+  # the results branch and main, even when no run finishes.
+  schedule:
+    - cron: '23 * * * *'
 
 permissions:
   contents: read

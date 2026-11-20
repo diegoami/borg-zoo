@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-worships-pilot",
+  "issue": 279,
+  "definition": "definitions/reborn-worships-pilot.yaml",
+  "question": "On borg-reborn-rs main 92fafc61, does turning on any one of the equipment borg_worships_* switches (damage, speed, hp, mana, ac; all shipped FALSE), which add bonuses to borg_power's equipment score, change how the Borg plays and survives?",
+  "description": "On borg-reborn-rs main 92fafc61, does turning on any one of the equipment borg_worships_* switches (damage, speed, hp, mana, ac; all shipped FALSE), which add bonuses to borg_power's equipment score, change how the Borg plays and survives? Generated from definitions/reborn-worships-pilot.yaml: 6 arms on 4.2.6-reborn-rust-main-92fafc61, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any result on 92fafc61 was read. Pilot (RULES 16). The C Borg's switches-early (early-50,\nbetter-borg-c e473720e and M4) is a different Borg and context only.\nGate:\n- no config_error; one binary; each arm's switch in its borg.txt and in the Borg's logged settings of the death\n  replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm, overall and per class:\n- identical plays against ctl first: an arm that plays ctl's keys in (nearly) every start did nothing at this cap\n  and is dropped, not grown;\n- deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;\n- the first game turn where the worn equipment differs from\n  ctl, and the items worn at the end;\n18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-92fafc61"
+  ],
+  "profiles": [
+    "reborn-worship-ctl",
+    "reborn-worship-damage",
+    "reborn-worship-speed",
+    "reborn-worship-hp",
+    "reborn-worship-mana",
+    "reborn-worship-ac"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-92fafc61",
+  "control_profile": "reborn-worship-ctl",
+  "owner_authorization": "2026-11-18: the owner asked whether the borg_worships_* switches make a difference. This is the pilot that RULES 16 requires first; larger tiers only after its gate and the owner (RULES 14), and only for arms that changed play.",
+  "retain_evidence": true
+}

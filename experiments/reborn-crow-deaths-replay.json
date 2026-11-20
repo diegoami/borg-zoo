@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-crow-deaths-replay",
+  "issue": 408,
+  "definition": "definitions/reborn-crow-deaths-replay.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, on the starts where shipped main died to a crow or a wild cat, does making crows (and wild cats) scary for the fragile classes up to CL2 or CL3 save them?",
+  "description": "On borg-reborn-rs main 3ba17e2c, on the starts where shipped main died to a crow or a wild cat, does making crows (and wild cats) scary for the fragile classes up to CL2 or CL3 save them? Generated from definitions/reborn-crow-deaths-replay.yaml: 4 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-crowcat-deaths, classes-1800-b-crowcat-deaths.",
+  "prespecified": "Fixed 2026-11-19, before any result on these starts was read. Mechanism check on chosen starts.\nGate:\n- no config_error; one binary; each arm's lines in the run's scary list;\n- ctl replays reborn-errands38-none's deaths on every start (the same settings and build);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: rescued starts (ctl dies, the arm does not), separately for crow and wild-cat deaths;\ndeaths to other monsters on the rescued starts; mean max CL and DL; \"Scary guy on level\" notes naming a crow or wild\ncat. Each arm is reported as harmful, neutral or helpful only after a follow-up on random starts (RULES 18).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-crow38-ctl",
+    "reborn-crow38-crow2",
+    "reborn-crow38-crow3",
+    "reborn-crow38-crowcat2"
+  ],
+  "suites": [
+    "classes-1800-crowcat-deaths",
+    "classes-1800-b-crowcat-deaths"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-crow38-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for the proposals: replay the crow-death starts with the crow arms (the zoo's new seed-list suites).",
+  "retain_evidence": true
+}

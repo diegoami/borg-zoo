@@ -1,0 +1,50 @@
+# borg-zoo#468: borg-reborn-rs#716 (PR #725), the Ranger's arrows past the soft cap; owner 2026-11-20.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-ranger-arrows-pilot.yaml
+# Only Rangers are played. Every arm keeps the soft cap of 50 but c (C, no cap) and varies the curve scale past it.
+name: reborn-ranger-arrows-pilot
+issue: 468
+question: >-
+  On borg-reborn-rs PR #725's head 9ffc7e8c, which scale of the Ranger's arrow curve past the soft cap of 50
+  (town_ranger_arrows_curve_scale_percent 25, 50, 75, 100) keeps fewer arrows without costing games, against C (no cap)?
+suites: [classes-1800-small-rangers]
+pilot: true   # the 10 Ranger starts of classes-1800-small
+
+specimen:
+  name: 4.2.6-reborn-rust-pr725-9ffc7e8c
+  repository: diegoami/borg-reborn-rs
+  ref: 9ffc7e8ca53f3507563a366c44c898d5a8f3707b
+  label: "borg-reborn-rs 9ffc7e8c, head of PR #725 (#716 with #712, unmerged; contains main 653f60ba): the Ranger's arrow reserve as a soft cap (town_ranger_arrows_max 50) then C's curve scaled by town_ranger_arrows_curve_scale_percent (50), both for the Ranger only; #712's thrown oil, off for the Ranger."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-rarrows
+arms:
+  c: {borg_param_town_ranger_arrows_max__ranger: 0}
+  s25: {borg_param_town_ranger_arrows_curve_scale_percent__ranger: 25}
+  s50: {}   # shipped: cap 50, scale 50
+  s75: {borg_param_town_ranger_arrows_curve_scale_percent__ranger: 75}
+  s100: {borg_param_town_ranger_arrows_curve_scale_percent__ranger: 100}
+control: [c]
+owner_authorization: >-
+  2026-11-20: the owner said "let us do scale 50 then, and let us do experiment to calibrate it" on borg-reborn-rs#716.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of these profiles was read. Pilot (RULES 16); the Ranger tiers (medium, big,
+  full) only after this gate and the owner.
+  Gate: no config_error; one binary; each arm's lines written in borg.txt and read in params-core.json; every cell
+  ends in death, turn_cap or borg_stopped; frozen-turn bursts classified; death bundles reproduced.
+  Report per arm, from every game's messages: deaths and causes, final and maximum level, deepest level; paired
+  rescued and newly killed against c; arrows bought ("You bought N Arrows"), arrows carried (the "You have N Arrows"
+  lines: median and maximum), arrows fired; Scrolls of Phase Door and cure potions sent to the Home ("You drop"
+  after "# Town plan executing action 5").
+  Context: local, the two classes-18 Rangers on the same tree: C median 166 / 124 carried, 5 / 0 Phase Door to the
+  Home; scale 25: 68 / 68, 0 / 0; scale 75: 104 / 145, 0 / 0.

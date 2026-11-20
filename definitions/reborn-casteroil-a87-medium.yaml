@@ -1,0 +1,40 @@
+# borg-zoo#436: classes-1800-medium-mages,classes-1800-medium-priests,classes-1800-medium-necromancers,classes-1800-medium-druids after the pilot reborn-casteroil-a87-pilot (owner, 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-casteroil-a87-medium.yaml
+name: reborn-casteroil-a87-medium
+issue: 436
+question: 'On borg-reborn-rs main a87b4c96 (per-class oil curves: Druid and Priest 150, Mage and Necromancer 100), does a
+  higher town attack weight (borg_town_w_attack 200, more Flasks of oil) save Mages, Priests, Necromancers and Druids?'
+suites:
+- classes-1800-medium-mages
+- classes-1800-medium-priests
+- classes-1800-medium-necromancers
+- classes-1800-medium-druids
+specimen: 4.2.6-reborn-rust-main-a87b4c96
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-casteroil-a87
+arms:
+  ctl: {}
+  w_attack-200:
+    borg_town_w_attack: 200
+control:
+- ctl
+prespecified: |
+  Medium after the pilot's gate (run 44607268031: 3 deaths against 3, 3 / 3, CL +0.25). The oil-curve arms still wait for borg-reborn-rs#696 (PR #700, open).
+  Same specimen and profiles as reborn-casteroil-a87-pilot; no raw evidence at this size. Owner, 2026-11-19: "Yes go" (to the proposed mediums).
+  Fixed 2026-11-19, before any result on a87b4c96 was read. Pilot (RULES 16), 40 caster starts per arm.
+  Evidence that disagrees: on the 55 crow / wild-cat death starts (3ba17e2c) the Phase Door rule plus
+  borg_town_w_attack 200 rescued 45 against the rule alone's 25; on 40 unselected caster starts (592c6984) an oil arm
+  (w_attack 200 with attack_turns 50) had 6 deaths against 2. Main now ships per-class oil curves.
+  Gate:
+  - no config_error; one binary; each arm's values in borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced;
+  - the arm is reached: games identical to ctl are counted.
+  Report per arm and per class: deaths and causes (monster, CL, turn), CL1-3 deaths, mean max CL and DL, paired
+  rescued and newly killed, Flasks of oil bought per town visit. RULES 18 bins; Holm over the comparisons at the
+  larger tiers.
+owner_authorization: '2026-11-19: the owner pointed this session at the filed studies ("Issue 436 and 437"). Pilot first (RULES
+  16); the oil-curve arms join when borg-reborn-rs makes the class lines profile-writable; medium, big and full on the owner''s
+  go.'

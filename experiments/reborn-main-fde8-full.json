@@ -1,0 +1,21 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-main-fde8-full",
+  "issue": 488,
+  "definition": "definitions/reborn-main-fde8-full.yaml",
+  "question": "What does borg-reborn-rs main fde8025a (engine 574b618c) play with its shipped settings?",
+  "description": "What does borg-reborn-rs main fde8025a (engine 574b618c) play with its shipped settings? Generated from definitions/reborn-main-fde8-full.yaml: 1 arms on 4.2.6-reborn-rust-main-fde8025a, suite classes-1800.",
+  "prespecified": "Fixed 2026-11-20, before any classes-1800 result of this build was read. Same specimen and profile as the pilot\n(RULES 16). Gate as the pilot's. Descriptive (one arm): deaths and the death rate with its 95% interval, per class;\ncauses; CL1-3 deaths; max CL and DL; frozen-turn bursts and stalls. The last full shipped-main baseline\n(3ba17e2c, reborn-errands38-none, 105 / 1,800) is another build and engine: outcomes only, never paired.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-fde8025a"
+  ],
+  "profiles": [
+    "reborn-main-fde8-shipped"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-reborn-rust-main-fde8025a",
+  "control_profile": "reborn-main-fde8-shipped",
+  "owner_authorization": "2026-11-20: the owner asked to \"schedule another full run of the current status of main and settings\": a classes-18 pilot (RULES 16), then all 1,800 classes-1800 starts after its gate."
+}

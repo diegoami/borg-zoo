@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-low-level-detection",
+  "issue": 470,
+  "definition": "definitions/reborn-low-level-detection.yaml",
+  "question": "On borg-reborn-rs PR",
+  "description": "On borg-reborn-rs PR Generated from definitions/reborn-low-level-detection.yaml: 4 arms on 4.2.6-reborn-rust-pr728-fc181156, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this definition was read (owner, borg-reborn-rs PR #728). classes-18 is\nthe gate (RULES 16); small and medium (starts 1-360) follow right after it.\nGate:\n- no config_error; one binary; each arm's values in borg.txt and in params-core.json of the death replays\n  (the class value the character's class resolves to);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class:\n- deaths and causes, final and maximum level, deepest level; paired rescued and newly killed against d0 (exact\n  McNemar), and games identical to d0;\n- **floating eye deaths** (and other NEVER_MOVE killers), by character level;\n- detection casts per game (\"# Casting\" Detect Evil, Detect Monsters, Read Minds, Seek Battle) below CL10;\n- mana rests per game (\"# Resting to recover HP/SP\" with SP below max) and the share of game turns resting, for\n  Priests and Paladins (#685's measure);\n- mean max CL and DL against d0, with non-inferiority at the margins of borg-zoo#347 (CL -0.25, DL -0.25).\nBin each arm (RULES 18).",
+  "specimens": [
+    "4.2.6-reborn-rust-pr728-fc181156"
+  ],
+  "profiles": [
+    "reborn-lowdetect-d0",
+    "reborn-lowdetect-casters10",
+    "reborn-lowdetect-all10",
+    "reborn-lowdetect-all5"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-pr728-fc181156",
+  "control_profile": "reborn-lowdetect-d0",
+  "owner_authorization": "2026-11-20: the owner asked to do the zoo pilots (\"and then the zoo pilots\"): the issue's pilot as filed.",
+  "retain_evidence": true
+}

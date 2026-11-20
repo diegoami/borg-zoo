@@ -1,0 +1,21 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-main-9403-defaults-1800",
+  "issue": 484,
+  "definition": "definitions/reborn-main-9403-defaults-1800.yaml",
+  "question": "What does borg-reborn-rs main 94032140, on the new engine, play with its shipped default settings?",
+  "description": "What does borg-reborn-rs main 94032140, on the new engine, play with its shipped default settings? Generated from definitions/reborn-main-9403-defaults-1800.yaml: 1 arms on 4.2.6-reborn-rust-main-94032140, suite classes-1800.",
+  "prespecified": "Fixed 2026-11-20, before any result was read (borg-zoo#484). Full run after the pilot reborn-main-9403-defaults-pilot passed its gate.\nGate: no config_error; one binary; the written borg.txt is the shipped harness/borg.txt (sha256 4282aaeb...) with\nonly the adapter's lines; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\ndeath bundles reproduced.\nDescriptive only: deaths, causes, CL and DL per class; set beside earlier full baselines on classes-1800\n(different builds: outcomes, not paired effects).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-94032140"
+  ],
+  "profiles": [
+    "reborn-main9403-shipped-defaults"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "4.2.6-reborn-rust-main-94032140",
+  "control_profile": "reborn-main9403-shipped-defaults",
+  "owner_authorization": "2026-11-20: the owner asked to \"add a full run with the current default settings in borg reborn\" (borg-zoo#484)."
+}

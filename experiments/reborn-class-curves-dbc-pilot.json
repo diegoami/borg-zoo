@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-class-curves-dbc-pilot",
+  "issue": 433,
+  "definition": "definitions/reborn-class-curves-dbc-pilot.yaml",
+  "question": "On borg-reborn-rs main dbc92d18, do the owner's per-class Phase Door and flask-of-oil curve scales (and the Blackguard's healing 100 / 200) change deaths or progress, per class, against the same build with them set to 100?",
+  "description": "On borg-reborn-rs main dbc92d18, do the owner's per-class Phase Door and flask-of-oil curve scales (and the Blackguard's healing 100 / 200) change deaths or progress, per class, against the same build with them set to 100? Generated from definitions/reborn-class-curves-dbc-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-dbc92d18, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles on dbc92d18 was read. Pilot (RULES 16) on the new build; the\na87b4c96 tiers (13 against 9 deaths of 360, p 0.39) are context only.\nGate: no config_error; one binary; ctl's 20 lines written; every cell ends in death, turn_cap or borg_stopped;\nfrozen-turn bursts classified; death bundles reproduced.\nReport per arm and per class: deaths and causes, max CL and DL, paired rescued and newly killed, identical plays,\nPhase Door and flasks of oil bought.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-dbc92d18"
+  ],
+  "profiles": [
+    "reborn-curves-dbc-ctl",
+    "reborn-curves-dbc-owner"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-dbc92d18",
+  "control_profile": "reborn-curves-dbc-ctl",
+  "owner_authorization": "2026-11-19: the owner said \"go ahead\" to the proposals: #450's untested settings as one pilot on a new main specimen, #433 and #443 restarted on main dbc92d18 (pilot, then small + medium after its gate).",
+  "retain_evidence": true
+}

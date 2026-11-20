@@ -1,0 +1,40 @@
+# borg-zoo#312: Fox Form for a fleeing Druid (escape_fox_form 0 vs 1), pilot; copied from the run request.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-fox-form-medium.yaml
+name: reborn-fox-form-medium
+issue: 312
+question: On borg-reborn-rs main dbe99509, does a fleeing Druid that takes Fox Form (escape_fox_form 1) survive more often without costing anything?
+tier: medium           # classes-1800-medium: starts 91-360, 30 per class
+
+specimen: 4.2.6-reborn-rust-main-dbe99509
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# Every arm reads the shipped harness/borg.txt and writes only the switch.
+profile_prefix: reborn-fox
+arms:
+  'off': {borg_param_escape_fox_form: 0}
+  fox: {borg_param_escape_fox_form: 1}
+control: ['off']
+owner_authorization: >-
+  2026-11-18: the owner asked for a test of escape_fox_form = (0, 1). Pilot first (RULES 16); the Druid tiers follow
+  only after its gate and the owner.
+
+prespecified: |
+  Medium tier (owner, 2026-11-19: promote the finished pilots) after the pilot gate (run 44365539348: no deaths).
+  No raw evidence at this size.
+  Fixed 2026-11-18, before any zoo result was read (borg-reborn-rs#551, #594). Pilot (RULES 16).
+  Gate:
+  - no config_error; one binary; each arm's switch in its borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - the 16 non-Druid games play identical keys in both arms (only a Druid knows Fox Form); any difference is a defect.
+  Report per arm and per class:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against off;
+  - per Druid game: "# Fox Form: fleeing" casts, "# Fox Form: reverting for an item or a spell" and
+    "# Fox Form: reverting to fight" notes, "You fail to concentrate" right after a cast, and blows struck as a fox
+    ("You bite" / "You claw");
+  - Druid deaths: was the Druid a fox, fleeing, or changing back to fight in the last 100 messages?
+  Context: a local run on 29 Druid starts gave the same 3 deaths in both arms (CL1-2, before any flight), sum of CL
+  161 against 156, max depth 54 against 56. 2 Druids in classes-18 show safety only; survival needs the Druid tiers.

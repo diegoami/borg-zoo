@@ -681,7 +681,7 @@ def build_used(meta, cells):
         repo, ref = spec.get('repository', ''), spec.get('ref', '')
         commit = (f'<a href="https://github.com/{esc(repo)}/commit/{esc(ref)}"><code>{esc(ref)}</code></a>'
                   if repo and ref else f'<code>{esc(ref or "–")}</code>')
-        rows.append([esc(name), esc(repo or '–'), commit, seen('source_sha256'), seen('binary_sha256'),
+        rows.append([esc(name), esc(repo or '–'), commit, seen('engine_upstream'), seen('source_sha256'), seen('binary_sha256'),
                      seen('compiler'), seen('rustc'), seen('platform')])
     zoo = meta.get('zoo_commit')
     zoo_link = (f'<a href="https://github.com/diegoami/borg-zoo/commit/{esc(zoo)}"><code>{esc(zoo[:12])}</code></a>'
@@ -689,10 +689,10 @@ def build_used(meta, cells):
     run = (f'<a href="{esc(meta["run_url"])}">Actions run {esc(meta.get("run_id", ""))}</a>'
            if meta.get('run_url') else esc(meta.get('run_id', '–')))
     return ('<details class="build-used" open><summary>Build used to run it</summary>'
-            + table(['Specimen', 'Repository', 'Commit', 'Source hash', 'Binary SHA-256', 'Compiler', 'rustc', 'Platform'],
+            + table(['Specimen', 'Repository', 'Commit', 'Engine (upstream Angband)', 'Source hash', 'Binary SHA-256', 'Compiler', 'rustc', 'Platform'],
                     rows)
             + f'<p class="muted">Zoo {zoo_link} · {run}. The values are what the game records report; a source '
-              'hash is recorded for borg-rs builds from 2026-11-16 on.</p></details>')
+              'hash is recorded for borg-rs builds from 2026-11-16 on, the engine from 2026-11-20 on (borg-zoo#473).</p></details>')
 
 
 def run_page(meta, cells):
@@ -1019,6 +1019,8 @@ def build_site(results, out):
     (out / 'overview.html').write_text(page('Borg comparisons · borg-zoo', landing.overview_page(runs), charts=True))
     from . import scenarios
     scenarios.build_site(results, out)
+    from . import settings_page
+    settings_page.build(runs, out, page)
     # The /runs/ directory contains per-run report folders, not a page of its
     # own. Publish an index there so the directory URL is useful instead of
     # returning 404/503, and point it at the Detailed experiment catalogue.

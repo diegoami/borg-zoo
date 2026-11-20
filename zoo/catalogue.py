@@ -25,6 +25,7 @@ MODE_CUTOFF_POST = {
     '39268ca8a470d1cbd44de27bf1fd1b3ee403bada',  # 4.2.6-bbc-m11
     '4e1b912cbf6d2b8a0243b19ebddfb2d26e7509f2',  # 4.2.6-bbc-m12
     '9ccb2aaeebc56ad6aeb35b668f112f0f58b142f8',  # 4.2.6-bbc-m13
+    '646ebfc2a3a80a0caf87f1ab72fe4bcee0d94343',  # 4.2.6-bbc-m15
 }
 
 # The settings whose built-in default drifts across the cutoff, plus the
@@ -54,7 +55,8 @@ def character(suite, seed):
     birth "fixed" is Human Warrior; "random" lets the seeded game choose (None);
     "assigned" deals classes in turn over the seed list and cycles races once
     per round of classes, so every class meets every race. A subset suite
-    carries its parent's assignment per seed.
+    carries its parent's assignment per seed; it selects its seeds by
+    "range" (a tier), "class", or "seeds" (an explicit list of chosen starts).
     """
     if 'assigned_characters' in suite:
         race, cls = suite['assigned_characters'][str(seed)]
@@ -110,6 +112,17 @@ def expand_suites(suites):
                 if not 0 <= start < end <= len(parent['seeds']):
                     raise ValueError(f'{name}: range {start}..{end} outside the parent suite')
                 suite['seeds'] = parent['seeds'][start:end]
+            elif 'seeds' in suite['subset']:
+                # Chosen starts (e.g. the starts where a control died to one
+                # monster), in parent order, each keeping its parent's character.
+                wanted = suite['subset']['seeds']
+                missing = sorted(set(wanted) - set(parent['seeds']))
+                if missing:
+                    raise ValueError(f'{name}: seeds not in the parent suite: {missing[:5]}')
+                if len(set(wanted)) != len(wanted):
+                    raise ValueError(f'{name}: repeated seeds')
+                keep = set(wanted)
+                suite['seeds'] = [seed for seed in parent['seeds'] if seed in keep]
             else:
                 wanted = suite['subset']['class']
                 suite['seeds'] = [seed for seed in parent['seeds'] if chars[seed][1] == wanted]
@@ -283,6 +296,31 @@ def experiment(path, cat=None):
             if plan not in (specimens[name].get('plans') or {}):
                 raise ValueError(f'{prof}: borg_plan {plan!r} is not a plan specimen {name} pins '
                                  '("plans": {name: sha256}, borg-zoo#123)')
+    for prof in sorted({p for name in exp['profiles'] for p in profile_parts(cat, name)}):
+        scary = cat['profiles'][prof].get('settings', {}).get('borg_scary_list')
+        lines = cat['profiles'][prof].get('settings', {}).get('borg_scary_list_lines')
+        if lines is not None:
+            if scary == 'none':
+                raise ValueError(f'{prof}: borg_scary_list_lines with borg_scary_list: none (the compiled C list takes no lines)')
+            if not isinstance(lines, list) or not all(
+                    isinstance(l, str) and '\n' not in l and ('|' in l or l.strip().lower().startswith('fragility:'))
+                    for l in lines):
+                raise ValueError(f'{prof}: borg_scary_list_lines must be lines like "monster | level" or '
+                                 '"fragility: class N" (borg-zoo#228)')
+        if scary is None or scary == 'none':
+            continue  # the specimen's own borg.txt decides; the build checks its pin
+        for name in exp['specimens']:
+            if scary not in (specimens[name].get('scary_lists') or {}):
+                raise ValueError(f'{prof}: borg_scary_list {scary!r} is not a list specimen {name} pins '
+                                 '("scary_lists": {name: sha256}, borg-zoo#228)')
+    for prof in sorted({p for name in exp['profiles'] for p in profile_parts(cat, name)}):
+        world = cat['profiles'][prof].get('settings', {}).get('borg_world')
+        if world is None or world == 'none':
+            continue
+        for name in exp['specimens']:
+            if world not in (specimens[name].get('worlds') or {}):
+                raise ValueError(f'{prof}: borg_world {world!r} is not a world specimen {name} pins '
+                                 '("worlds": {name: sha256}, borg-zoo#482)')
     words = sorted({n for p in (q for name in exp['profiles'] for q in profile_parts(cat, name))
                     for n, v in cat['profiles'][p].get('settings', {}).items() if isinstance(v, str)})
     if words:

@@ -1,0 +1,90 @@
+# borg-zoo#225: borg-reborn-rs#487's healing by class, real-HP reserve and Shovel gate (5 arms), pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-class-pilot.yaml
+name: reborn-heal-class-pilot
+issue: 225
+question: Do class healing ladders, a real-HP healing reserve and a gold gate on diggers change what the Borg buys and how it survives?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen:
+  name: 4.2.6-reborn-rust-main-a8ac685a
+  repository: diegoami/borg-reborn-rs
+  ref: a8ac685a2c90b412971fedd90d98b783b7f70380
+  source: https://github.com/diegoami/borg-zoo/issues/225
+  label: >-
+    borg-reborn-rs a8ac685a, main at the merge of #513 (#487): healing curve scale and reserve per class, the reserve
+    counted in real HP, and town_digger_min_gold. Also has #511 (cornered mode) and #514 (scary by damage) at their
+    shipped values. Source-hash rust 197da47f2d80...; harness/borg.txt 3d70d60a... (borg-rs core, no plan).
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# Every arm reads the shipped harness/borg.txt and sets only the lines below.
+profile_prefix: reborn-487
+arms:
+  ctl:   # old healing (#491 as first shipped), no digger gate: main before #513
+    borg_param_town_heal_reserve_hp_percent: 400
+    borg_param_town_heal_curve_scale_percent: 100
+    borg_param_town_heal_reserve_real_hp: 0
+    borg_param_town_heal_curve_scale_percent_warrior: 0
+    borg_param_town_heal_curve_scale_percent_mage: 0
+    borg_param_town_heal_curve_scale_percent_druid: 0
+    borg_param_town_heal_curve_scale_percent_priest: 0
+    borg_param_town_heal_curve_scale_percent_necromancer: 0
+    borg_param_town_heal_curve_scale_percent_paladin: 0
+    borg_param_town_heal_curve_scale_percent_rogue: 0
+    borg_param_town_heal_curve_scale_percent_ranger: 0
+    borg_param_town_heal_curve_scale_percent_blackguard: 0
+    borg_param_town_heal_reserve_hp_percent_warrior: -1
+    borg_param_town_heal_reserve_hp_percent_mage: -1
+    borg_param_town_heal_reserve_hp_percent_druid: -1
+    borg_param_town_heal_reserve_hp_percent_priest: -1
+    borg_param_town_heal_reserve_hp_percent_necromancer: -1
+    borg_param_town_heal_reserve_hp_percent_paladin: -1
+    borg_param_town_heal_reserve_hp_percent_rogue: -1
+    borg_param_town_heal_reserve_hp_percent_ranger: -1
+    borg_param_town_heal_reserve_hp_percent_blackguard: -1
+    borg_param_town_digger_min_gold: 0
+  digger:   # old healing, digger gate
+    borg_param_town_heal_reserve_hp_percent: 400
+    borg_param_town_heal_curve_scale_percent: 100
+    borg_param_town_heal_reserve_real_hp: 0
+    borg_param_town_heal_curve_scale_percent_warrior: 0
+    borg_param_town_heal_curve_scale_percent_mage: 0
+    borg_param_town_heal_curve_scale_percent_druid: 0
+    borg_param_town_heal_curve_scale_percent_priest: 0
+    borg_param_town_heal_curve_scale_percent_necromancer: 0
+    borg_param_town_heal_curve_scale_percent_paladin: 0
+    borg_param_town_heal_curve_scale_percent_rogue: 0
+    borg_param_town_heal_curve_scale_percent_ranger: 0
+    borg_param_town_heal_curve_scale_percent_blackguard: 0
+    borg_param_town_heal_reserve_hp_percent_warrior: -1
+    borg_param_town_heal_reserve_hp_percent_mage: -1
+    borg_param_town_heal_reserve_hp_percent_druid: -1
+    borg_param_town_heal_reserve_hp_percent_priest: -1
+    borg_param_town_heal_reserve_hp_percent_necromancer: -1
+    borg_param_town_heal_reserve_hp_percent_paladin: -1
+    borg_param_town_heal_reserve_hp_percent_rogue: -1
+    borg_param_town_heal_reserve_hp_percent_ranger: -1
+    borg_param_town_heal_reserve_hp_percent_blackguard: -1
+    borg_param_town_digger_min_gold: 500
+  heal:   # shipped healing, no digger gate
+    borg_param_town_digger_min_gold: 0
+  both:   # shipped healing and digger gate: the shipped default
+    borg_param_town_digger_min_gold: 500
+  speedres:   # shipped, reserve speed-weighted: isolates the real-HP fix
+    borg_param_town_heal_reserve_real_hp: 0
+    borg_param_town_digger_min_gold: 500
+
+control: [ctl]
+owner_authorization: >-
+  2026-11-17: requested from borg-reborn-rs by the owner (borg-zoo#225): a pilot of #487's healing-by-class, real-HP
+  reserve and Shovel settings, 5 arms on classes-18. Small and larger only after the gate and the owner (RULES 14, 16).
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#225). Pilot only. Gate: no config_error; one binary; each
+  arm's lines written in its borg.txt; every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls, purchase
+  bursts and key outliers listed. Descriptive, per arm and per class: deaths and causes, final level, deepest level;
+  gold spent per category per game (healing, escape, oil, ammunition, armour, weapons, diggers, unknown kinds) from the
+  town records where kept, else from 'You bought' messages in replays; healing potions carried at death; Shovels
+  bought, and rubble dug with and without a digger. Paired against ctl on the same start: rescued, newly killed,
+  identical play. 18 starts per arm cannot show which setup is better.

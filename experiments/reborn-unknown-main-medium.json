@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-unknown-main-medium",
+  "issue": 170,
+  "definition": "definitions/reborn-unknown-main-medium.yaml",
+  "question": "On current main, how many unknown stacks should trigger a trip back to town to learn them?",
+  "description": "On current main, how many unknown stacks should trigger a trip back to town to learn them? Generated from definitions/reborn-unknown-main-medium.yaml: 4 arms on 4.2.6-reborn-rust-main-d9ff9808, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-18, before any result was read (borg-zoo#170). Medium tier: starts 91-360 (270 per arm), four arms:\nborg_trip_unknown_stacks 2, 3, 4 and 5 (shipped, the control). Gate: no config_error; one binary; each arm's value\nwritten; every cell ends in death, turn_cap or borg_stopped; stalls, purchase bursts and key outliers listed.\nEndpoints, per arm and per class: death share (95% interval), deaths at CL1-3, mean max level and depth, reached\nDL5; each of 2, 3 and 4 paired against 5 on the same start (rescued, newly killed, exact McNemar, identical play).\nDescriptive only: one development suite.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-d9ff9808"
+  ],
+  "profiles": [
+    "reborn-unknown-s2",
+    "reborn-unknown-s3",
+    "reborn-unknown-s4",
+    "reborn-unknown-s5"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-d9ff9808",
+  "control_profile": "reborn-unknown-s5",
+  "owner_authorization": "2026-11-18: after the pilot (run 44236318055: no deaths in any arm), the owner asked for the medium tier of the same four arms (borg-zoo#170)."
+}

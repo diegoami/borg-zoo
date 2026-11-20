@@ -1,0 +1,45 @@
+# borg-zoo#475: the stairs leash re-pinned to PR #734's reviewed head 80646820 (new engine); pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-stairs-leash-806-pilot.yaml
+name: reborn-stairs-leash-806-pilot
+issue: 475
+question: On borg-reborn-rs 80646820 (PR #734 after review, engine 574b618c, depth plan shipped on), does the stairs leash for CL1-4 (flow_leash 1, by level; 2, growing with XP) still save the early deaths it saved on 769132df?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-t732-80646820
+  repository: diegoami/borg-reborn-rs
+  ref: 806468200358e42974289bb6d192dc663094564c
+  label: "borg-reborn-rs PR #734 head 80646820 after review (flow_leash, shipped 0; methods 4 and 5 and the walk to items keep to the leash), on engine 574b618c with the depth plan shipped on. Source-hash rust 87501ba7...; harness/borg.txt 641eecec..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-leash806
+arms:
+  ctl: {borg_param_flow_leash: 0}
+  level: {borg_param_flow_leash: 1}
+  grow: {borg_param_flow_leash: 2}
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: the owner said "do 475": the pilot on the re-pinned head (RULES 16, the leash changed). Larger tiers
+  after this gate, on the owner's go.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result on 80646820 was read (borg-reborn-rs#732, PR #734 re-pin). Pilot (RULES 16):
+  the leash now limits methods 4 and 5 and the walk to items, and the base has the new engine and the depth plan on.
+  ctl is shipped (C's leash). On 769132df, starts 1-900: level 16 against ctl 29 deaths (26 / 13, p 0.053), progress
+  neutral; grow leaned harmful in its pilot. The re-pin's local preview (108 starts): off 2, level 4, grow 3 deaths.
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class: deaths and causes, character level at death, final level, deepest level; paired rescued
+  and newly killed against ctl; RULES 18 bin per arm. The question is the early deaths (CL1-4) on the reviewed leash.

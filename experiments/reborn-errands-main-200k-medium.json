@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-errands-main-200k-medium",
+  "issue": 383,
+  "definition": "definitions/reborn-errands-main-200k-medium.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c at 200,000 turns, what does the errands plan cost or save on starts 91-360: the same deaths and about 0.18 less depth, as on starts 1-90?",
+  "description": "On borg-reborn-rs main 3ba17e2c at 200,000 turns, what does the errands plan cost or save on starts 91-360: the same deaths and about 0.18 less depth, as on starts 1-90? Generated from definitions/reborn-errands-main-200k-medium.yaml: 2 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-1800-200k-medium.",
+  "prespecified": "Fixed 2026-11-19, before any result of this tier was read. Same specimen and profiles as the 200k pilot (RULES 16).\n200k pilot + small (starts 1-90): none 8, errands 8 deaths; CL 6.57 / 6.56; DL 2.66 / 2.48.\nGate:\n- no config_error; one binary; each arm's settings (plan, scary lines) verified per cell;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, pooled with starts 1-90 (RULES 14): deaths and causes, CL1-3 deaths, mean max CL and\nDL; paired rescued and newly killed; identical plays. Reported as harmful, neutral or helpful (RULES 18).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-errands38-none",
+    "reborn-errands38-errands"
+  ],
+  "suites": [
+    "classes-1800-200k-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-errands38-none",
+  "owner_authorization": "2026-11-19: #416's backlog (errands plan at 200k: medium tier); the owner asked to take up its experiments."
+}

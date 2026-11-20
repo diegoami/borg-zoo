@@ -1,0 +1,30 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-town-forecast-pilot",
+  "issue": 403,
+  "definition": "definitions/reborn-town-forecast-pilot.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, does the live planner's trip forecast (depth gain, explore, stair, attack and support turns) change deaths or progress when halved or doubled?",
+  "description": "On borg-reborn-rs main 3ba17e2c, does the live planner's trip forecast (depth gain, explore, stair, attack and support turns) change deaths or progress when halved or doubled? Generated from definitions/reborn-town-forecast-pilot.yaml: 10 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any zoo result of these settings was read (owner: \"any other things to test, not tested\nor not tested enough? do it\"). Pilot (RULES 16); larger tiers only after this gate and the owner. ctl is shipped.\nGate:\n- no config_error; one binary; each arm's values in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm and per class: deaths and causes, final level, deepest level, paired rescued and newly killed\nagainst ctl, identical plays; RULES 18 bins. 18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-forecast-ctl",
+    "reborn-forecast-gain2",
+    "reborn-forecast-explore500",
+    "reborn-forecast-explore2000",
+    "reborn-forecast-stair25",
+    "reborn-forecast-stair100",
+    "reborn-forecast-attack50",
+    "reborn-forecast-attack200",
+    "reborn-forecast-support500",
+    "reborn-forecast-support2000"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-forecast-ctl",
+  "retain_evidence": true
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-phase-rule-full",
+  "issue": 347,
+  "definition": "definitions/reborn-phase-rule-full.yaml",
+  "question": "On borg-reborn-rs #612's head 4acf071f, does #584's Phase Door rule save or cost games against ctl, and which 'cannot win' test (threshold at 100 or 150 percent of the HP, the fight compared, the fight and the landing compared) works best?",
+  "description": "On borg-reborn-rs #612's head 4acf071f, does #584's Phase Door rule save or cost games against ctl, and which 'cannot win' test (threshold at 100 or 150 percent of the HP, the fight compared, the fight and the landing compared) works best? Generated from definitions/reborn-phase-rule-full.yaml: 2 arms on 4.2.6-reborn-rust-main-4acf071f, suite classes-1800-full.",
+  "prespecified": "Full tier (starts 901-1800), owner 2026-11-19 (\"do 1\"), after the big tier: ctl 35, thr-100 20 of 540 (23 / 8, p 0.011); medium + big 46 against 28 (p 0.006).\nSame specimen and profiles as reborn-phase-rule-pilot-2; no raw evidence at this size. Owner, 2026-11-19: \"do 1\".\nFixed 2026-11-19, before any result of this definition was read (borg-reborn-rs#584, PR #612; replaces\nborg-zoo#334, whose run measured an earlier version). Pilot (RULES 16); small and larger only after this gate and\nthe owner.\nGate:\n- no config_error; one binary; each arm's three #584 values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- in ctl, no \"# Phase rule\" note.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level;\n- paired rescued and newly killed against ctl;\n- Phase Doors done (\"# Phase (<site>): done\"), per site; \"# Phase rule (from <site>)\" verdicts per game, \"# Phase\n  rule: attacked instead of a Phase Door\", \"# Phase rule boost\"; for fight and fight-landing, the \"# Phase rule: the\n  fight: ... lost / not lost\" counts;\n- deaths with no Phase Door left, and deaths within 200 game turns of a \"no Phase Door\" verdict.\nContext: a local run on the same tree (18 classes-18 starts, 100,000 turns; not a zoo run): ctl 150 Phase Doors,\n0 deaths; threshold 100: 63 and 1 death; fight: 17 and 1 death; fight-landing: 21 and 1 death; sum of max CL 99 /\n96 / 93 / 93. 18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-4acf071f"
+  ],
+  "profiles": [
+    "reborn-phaserule2-ctl",
+    "reborn-phaserule2-thr-100"
+  ],
+  "suites": [
+    "classes-1800-full"
+  ],
+  "control": "4.2.6-reborn-rust-main-4acf071f",
+  "control_profile": "reborn-phaserule2-ctl"
+}

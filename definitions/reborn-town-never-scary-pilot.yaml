@@ -1,0 +1,24 @@
+# borg-zoo#328: copied from the run request (arm names quoted for YAML; the specimen, already catalogued, referred to by name).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-town-never-scary-pilot.yaml
+name: reborn-town-never-scary-pilot
+issue: 328
+question: Does making the town never scary (caution_town_never_scary) change deaths or levels, and does it end the town <-> DL1 loop?
+tier: pilot
+specimen: 4.2.6-reborn-rust-main-6438e1cf
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-town-never-scary
+arms:
+  'off': {borg_param_caution_town_never_scary: 0}
+  'on': {borg_param_caution_town_never_scary: 1}
+control: ['off']
+extra:
+  retain_evidence: true
+prespecified: |
+  Gate: no config_error, one binary, every cell ends in death, turn_cap or borg_stopped; both arms write
+  borg_param_caution_town_never_scary as set; off plays the same keys as the shipped file (the sanity
+  cells). List frozen-turn stalls and key outliers.
+  Endpoints, per arm and per class, paired against off: deaths and causes; rescued / newly killed; deaths
+  in town (depth 0) and on DL1; mean max CL and max DL; "# Scary guy on level." notes in town; town <-> DL1
+  level changes; "# Leaving (finish shopping)" notes; game turns spent at depth 0.

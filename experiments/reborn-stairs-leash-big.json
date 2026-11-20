@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-stairs-leash-big",
+  "issue": 475,
+  "definition": "definitions/reborn-stairs-leash-big.yaml",
+  "question": "On borg-reborn-rs 769132df (PR #734), does a stairs leash for CL1-4 by level (flow_leash 1) save the early deaths, and at what progress cost?",
+  "description": "On borg-reborn-rs 769132df (PR #734), does a stairs leash for CL1-4 by level (flow_leash 1) save the early deaths, and at what progress cost? Generated from definitions/reborn-stairs-leash-big.yaml: 2 arms on 4.2.6-reborn-rust-t732-769132df, suite classes-1800-big.",
+  "prespecified": "Fixed 2026-11-20, before any classes-1800 result of these profiles was read. Same specimen and profiles as the pilot\n(RULES 16). Gate as the pilot's. Report per arm and per class, pooled over the tiers (RULES 14): deaths and causes,\nCL1-3 deaths (the leash's target), max CL and DL; paired rescued and newly killed (exact McNemar); identical plays.\nReported in a RULES 18 bin.",
+  "specimens": [
+    "4.2.6-reborn-rust-t732-769132df"
+  ],
+  "profiles": [
+    "reborn-leash-ctl",
+    "reborn-leash-level"
+  ],
+  "suites": [
+    "classes-1800-big"
+  ],
+  "control": "4.2.6-reborn-rust-t732-769132df",
+  "control_profile": "reborn-leash-ctl",
+  "owner_authorization": "2026-11-20: the owner said \"run 475 big\", after small + medium (11 against 4 deaths, p 0.12)."
+}

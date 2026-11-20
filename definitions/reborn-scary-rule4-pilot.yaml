@@ -1,0 +1,28 @@
+# borg-zoo#227: no scary rule vs C's named list vs the damage rule at 40% and 60%, on borg-reborn-rs main a8ac685a, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-rule4-pilot.yaml
+name: reborn-scary-rule4-pilot
+issue: 227
+question: On main, how does play change with no scary-monster rule, with C's named list, or with the damage rule at 40% or 60%?
+tier: pilot            # classes-18: 9 classes x 2 seeds
+
+specimen: 4.2.6-reborn-rust-main-a8ac685a
+
+# Every arm reads the shipped harness/borg.txt and sets only the two scary settings.
+profile_prefix: reborn-scary
+arms:
+  ctl: {borg_param_caution_scary_named_monsters: 0, borg_param_caution_scary_damage_percent: 0}        # no scary rule
+  named: {borg_param_caution_scary_named_monsters: 1, borg_param_caution_scary_damage_percent: 0}      # C's compiled named list
+  damage40: {borg_param_caution_scary_named_monsters: 0, borg_param_caution_scary_damage_percent: 40}  # the damage rule, lower threshold
+  damage60: {borg_param_caution_scary_named_monsters: 0, borg_param_caution_scary_damage_percent: 60}  # the damage rule, as shipped
+
+control: [ctl]
+owner_authorization: >-
+  2026-11-17: after the three-arm pilot (run 44178676657: the damage rule at 60% rarely fired), the owner asked for the
+  full tier with a damage-40% arm added. This is the pilot of the four arms that RULES 16 requires first.
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read (borg-zoo#227). Pilot of the four arms. Gate: no config_error; one
+  binary; both settings written in every arm; every cell ends in death, turn_cap or borg_stopped; stalls, purchase
+  bursts and key outliers listed. ctl, named and damage60 are the same specimen and profiles as run 44178676657 and
+  should replay it exactly. Descriptive: deaths and causes per class, CL1-3 deaths, mean max level and depth; paired
+  against ctl; from replays, 'Scary guy on level.' notes and down-then-up bounces.

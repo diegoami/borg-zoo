@@ -1,0 +1,70 @@
+# borg-zoo#415: the casters' early kit and fighting, on Mage, Priest, Necromancer and Druid starts only, main 592c6984; pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-casters-pilot.yaml
+#
+# Every arm, ctl included, sets the Phase Door rule and calmed unlatch (what main is about to ship, borg-reborn-rs#662
+# and #672). Each other arm changes one lever. On these starts a common line only acts for the four casters.
+# Changes from #415's list, checked at 592c6984:
+# - oil: borg_town_attack_turns is lowered to 50, not raised: the planner's attack demand is the trip's turns divided by
+#   it (borg_town_capability.rs:617), so 200 would buy fewer Flasks of oil, not more.
+# - scary-animals: there is no "jackal" in 4.2's monster.txt; "wild dog" (depth 1) is its pack-animal counterpart.
+#   "cave spider" is left out: it is already on the shipped list at 20-23, and a 1-4 line would replace that entry and
+#   lower it. "grey mold" never moves, and with caution_scary_stand = 1 a monster that never moves is never scary in
+#   the dungeon (#530); it does not live in town, so its line is expected to be inert. It is kept as asked.
+name: reborn-casters-pilot
+issue: 415
+question: >-
+  On borg-reborn-rs main 592c6984, with the Phase Door rule and calmed unlatch, which early-game lever (more oil, more
+  Phase Door, throwing, early animals on the scary list, a larger heal reserve) saves Mages, Priests, Necromancers and
+  Druids?
+suites: [classes-1800-small-mages, classes-1800-small-priests, classes-1800-small-necromancers, classes-1800-small-druids]
+pilot: true   # the study's first run: the 10 starts of each caster class in classes-1800-small
+
+specimen: 4.2.6-reborn-rust-main-592c6984
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_escape_phase_adjacent_rule: 1
+  borg_param_escape_phase_lost_test: 0
+  borg_param_escape_phase_lost_danger_percent: 100
+  borg_param_caution_scary_unlatch_calmed: 1
+
+profile_prefix: reborn-casters59
+arms:
+  ctl: {}   # shipped town weights, attack preferences, scary list and heal reserves
+  oil: {borg_town_w_attack: 200, borg_town_attack_turns: 50}   # shipped 100 and 100
+  escape: {borg_town_w_escape: 100}   # shipped 50
+  thrown: {borg_param_attack_preference_thrown_permille: 1500}   # shipped 1000; no caster class file sets thrown
+  scary-animals:   # scary up to CL 1-4 by fragility: Mage and Necromancer 4, Priest and Druid 3
+    borg_scary_list_lines:
+      - "crow | 1-4"
+      - "wild cat | 1-4"
+      - "grey mold | 1-4"
+      - "wild dog | 1-4"
+  heal:   # the class files' heal reserve + 100 (the folded legacy alias lines)
+    borg_param_town_heal_reserve_hp_percent_mage: 400
+    borg_param_town_heal_reserve_hp_percent_priest: 350
+    borg_param_town_heal_reserve_hp_percent_druid: 350
+    borg_param_town_heal_reserve_hp_percent_necromancer: 400
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked for definitions of the proposed changes, focused on the weakest classes (#415 study 1).
+  Pilot first (RULES 16), then medium, big and full, each after the previous gate (RULES 14). Dispatch is the
+  owner's call.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles was read. Pilot (RULES 16), 40 starts per arm.
+  Evidence (#415, 3ba17e2c, 400 games per class): deaths Druid 47, Priest 37, Necromancer 35, Mage 34; about 85% at
+  CL1-3 on DL1 before turn 25k, mostly crows, wild cats, Grip and Fang, soldiers and grey molds; casters buy little
+  oil and few Cure Light Wounds potions.
+  Gate:
+  - no config_error; one binary; each arm's values in borg.txt (and the scary list lines in its list);
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - each arm is reached: games identical to ctl are counted, and an arm identical in 40 of 40 is inert.
+  Report per arm and per class: deaths and causes (by monster, CL and turn at death), CL1-3 deaths, mean max CL and
+  DL; paired rescued and newly killed against ctl; identical plays; for oil and escape, the Flasks of oil and Phase
+  Door bought per town visit; for thrown, the throws made; for heal, the healing potions bought. RULES 18 bins,
+  direction only.

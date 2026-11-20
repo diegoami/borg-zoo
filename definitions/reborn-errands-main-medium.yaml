@@ -1,0 +1,26 @@
+# borg-zoo#383: errands plan vs no plan on current main, medium; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-errands-main-medium.yaml
+name: reborn-errands-main-medium
+issue: 383
+question: >-
+  On borg-reborn-rs main 3ba17e2c (ships no plan), does running the errands plan or the ambitious errands plan change
+  deaths, progress or town behaviour?
+specimens: [4.2.6-reborn-rust-main-3ba17e2c]
+tier: medium         # classes-1800 starts 91-360
+profiles: [reborn-errands38-none, reborn-errands38-errands, reborn-errands38-ambitious]
+control_specimen: 4.2.6-reborn-rust-main-3ba17e2c
+control_profile: reborn-errands38-none
+owner_authorization: >-
+  2026-11-19: the owner asked for the full experiments with the errands file on current main: pilot first (RULES 16),
+  then small, medium, big and full, each after the previous gate (RULES 14).
+
+prespecified: |
+  Fixed 2026-11-19, before any result on 3ba17e2c was read. Same specimen and profiles as the pilot (RULES 16). #123 and #170 (older builds) are
+  context only.
+  Gate:
+  - no config_error; one binary; each arm's plan recorded per cell (plan name and sha256) and checked against the pin;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts and stalls classified, key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, pooled over the tiers (RULES 14): deaths and causes, CL1-3 deaths, final level,
+  deepest level; paired rescued and newly killed against none; identical plays; borg_stopped cells and plan-phase
+  notes; town visits. Each arm is reported as harmful, neutral (safe to adopt) or helpful (RULES 18).

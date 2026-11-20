@@ -1,0 +1,30 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "original-c-574b618-classes-1800",
+  "issue": 432,
+  "definition": "definitions/original-c-574b618-classes-1800.yaml",
+  "description": "The original C Borg at angband master 574b618c (upstream's head of 2026-11-17, the base of better-borg-c impact v15) on classes-1800, the same suite as original-c-42cd156-classes-1800 and classes-v15. Descriptive only; its results are not paired with 42cd156's by the dashboard, because the game changed.",
+  "specimens": [
+    "angband-574b618-original"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "classes-1800"
+  ],
+  "control": "angband-574b618-original",
+  "owner_authorization": "2026-11-19: the owner asked for \"a full test on the new Angband head and on the latest release / milestone of bbc\" (borg-zoo#432). Dispatched after originals-20261119-smoke passes its gate.",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "angband-574b618-original": 60
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 12,
+    "native_wall_seconds": 900,
+    "max_cells_per_native_shard": 30,
+    "worst_case_play_minutes_per_shard": 225,
+    "job_timeout_minutes": 300
+  }
+}

@@ -1,0 +1,47 @@
+# borg-zoo#415, study 2: Mage and Priest progress (healing higher, spell preference lower), pilot; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-mage-priest-pilot.yaml
+#
+# Played on Mage and Priest starts only; every arm (ctl included) has the Phase Door rule and calmed unlatch on, as
+# #415's studies do. "Lower healing" is left out: #265 found it harmful on three tiers and two builds.
+name: reborn-mage-priest-pilot
+issue: 415
+question: >-
+  On borg-reborn-rs main 592c6984, do Mages and Priests, the slowest-levelling classes, level faster or die less with
+  more healing (reserve and curve x1.5) or a lower spell preference (1500)?
+suites: [classes-1800-small-mages, classes-1800-small-priests]
+pilot: true   # the study's first run, on the 10 Mage and 10 Priest starts of small
+
+specimen: 4.2.6-reborn-rust-main-592c6984
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_escape_phase_adjacent_rule: 1
+  borg_param_escape_phase_lost_test: 0
+  borg_param_caution_scary_unlatch_calmed: 1
+
+profile_prefix: reborn-magepriest
+arms:
+  ctl: {}   # shipped class values (Mage spell 2000, curve 150, reserve 300; Priest spell 1700, curve 125, reserve 250)
+  heal-hi:
+    borg_param_town_heal_reserve_hp_percent_mage: 450
+    borg_param_town_heal_curve_scale_percent_mage: 225
+    borg_param_town_heal_reserve_hp_percent_priest: 375
+    borg_param_town_heal_curve_scale_percent_priest: 185
+  spell1500:
+    borg_param_attack_preference_mage_spell_permille: 1500
+    borg_param_attack_preference_priest_spell_permille: 1500
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked to do #415's proposals; study 2 was undefined. Pilot first (RULES 16).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result was read. Pilot (RULES 16) on 20 starts per arm.
+  Gate:
+  - no config_error; one binary; each arm's class lines in its borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm, Mages and Priests separately: deaths and causes, CL1-3 deaths, mean max CL and DL, reaching DL2;
+  paired rescued and newly killed; identical plays; healing potions bought and carried at death; spells against
+  other attacks from the messages. Each arm is reported as harmful, neutral (safe to adopt) or helpful (RULES 18).

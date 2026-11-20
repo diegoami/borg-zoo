@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-mage-priest-pilot",
+  "issue": 415,
+  "definition": "definitions/reborn-mage-priest-pilot.yaml",
+  "question": "On borg-reborn-rs main 592c6984, do Mages and Priests, the slowest-levelling classes, level faster or die less with more healing (reserve and curve x1.5) or a lower spell preference (1500)?",
+  "description": "On borg-reborn-rs main 592c6984, do Mages and Priests, the slowest-levelling classes, level faster or die less with more healing (reserve and curve x1.5) or a lower spell preference (1500)? Generated from definitions/reborn-mage-priest-pilot.yaml: 3 arms on 4.2.6-reborn-rust-main-592c6984, suite classes-1800-small-mages, classes-1800-small-priests.",
+  "prespecified": "Fixed 2026-11-19, before any result was read. Pilot (RULES 16) on 20 starts per arm.\nGate:\n- no config_error; one binary; each arm's class lines in its borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm, Mages and Priests separately: deaths and causes, CL1-3 deaths, mean max CL and DL, reaching DL2;\npaired rescued and newly killed; identical plays; healing potions bought and carried at death; spells against\nother attacks from the messages. Each arm is reported as harmful, neutral (safe to adopt) or helpful (RULES 18).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-main-592c6984"
+  ],
+  "profiles": [
+    "reborn-magepriest-ctl",
+    "reborn-magepriest-heal-hi",
+    "reborn-magepriest-spell1500"
+  ],
+  "suites": [
+    "classes-1800-small-mages",
+    "classes-1800-small-priests"
+  ],
+  "control": "4.2.6-reborn-rust-main-592c6984",
+  "control_profile": "reborn-magepriest-ctl",
+  "owner_authorization": "2026-11-19: the owner asked to do #415's proposals; study 2 was undefined. Pilot first (RULES 16).",
+  "retain_evidence": true
+}

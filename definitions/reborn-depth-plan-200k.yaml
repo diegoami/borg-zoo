@@ -1,0 +1,41 @@
+# borg-zoo#446: classes-1800-200k-pilot,classes-1800-200k-small after the pilot reborn-depth-plan-pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-depth-plan-200k.yaml
+name: reborn-depth-plan-200k
+issue: 446
+question: On borg-reborn-rs 8ffee286 (PR
+suites:
+- classes-1800-200k-pilot
+- classes-1800-200k-small
+specimen: 4.2.6-reborn-rust-t693-8ffee286
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-depthplan
+arms:
+  ctl:
+    borg_param_prepared_depth_plan: 0
+  formula:
+    borg_param_prepared_depth_plan: 1
+  errands:
+    borg_param_prepared_depth_plan: 0
+    borg_plan: errands_plan.txt
+control:
+- ctl
+owner_authorization: '2026-11-20: the owner said "go" to the proposed tiers after the pilot gate.'
+prespecified: |
+  200,000-turn tier, starts 1-90, after the 100,000-turn pilot's gate (run 44639042890: no deaths; formula changed 4 of 18 games, errands 7). The plan's depth cost was measured at 200k (#383).
+  Same specimen and profiles as reborn-depth-plan-pilot; no raw evidence at this size.
+  Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#693, PR #701). Pilot (RULES 16); larger tiers
+  only after this gate and the owner. ctl is the shipped configuration (the cap off); errands is the plan file the
+  zoo measured in #383.
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+    the errands arm's plan hash recorded;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against ctl and against errands;
+  - "No deeper N" notes ("heading up", "Climbing (too deep") per game and by N;
+  - character level at each first arrival on DL2, DL3 and DL5.
+  The depth cost was at 200k turns and CL7-14: a 200,000-turn tier (as reborn-errands-main-200k) is the next step
+  after the gate, with the owner.

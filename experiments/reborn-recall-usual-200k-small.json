@@ -1,0 +1,21 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-recall-usual-200k-small",
+  "issue": 358,
+  "definition": "definitions/reborn-recall-usual-200k-small.yaml",
+  "question": "On borg-reborn-rs PR #627's head cdd065ca, does playing by the ordinary rules while Word of Recall counts down, on DL2 and deeper (caution_recall_wait_as_usual), save games or progress against the Recall-only rules?",
+  "description": "On borg-reborn-rs PR #627's head cdd065ca, does playing by the ordinary rules while Word of Recall counts down, on DL2 and deeper (caution_recall_wait_as_usual), save games or progress against the Recall-only rules? Generated from definitions/reborn-recall-usual-200k-small.yaml: 2 arms on 4.2.6-reborn-rust-pr627-cdd065ca, suite classes-1800-200k-small.",
+  "prespecified": "200,000-turn small tier (starts 19-90 of classes-1800-200k) after the pilot: at 100,000 turns most flight Recalls are read on DL1, where the switch does not act; longer games reach DL2 and deeper.\nSame specimen and profiles as reborn-recall-usual-pilot; no raw evidence at this size. Owner, 2026-11-19: \"go ahead with the tiers you propose\".\nFixed 2026-11-19, before any zoo result was read (borg-reborn-rs#603, PR #627). Pilot (RULES 16); larger tiers\nonly after this gate and the owner. ctl is the shipped configuration (the switch off).\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;\n- per Recall read: its depth, the wait in game turns, whether it fired, the level changes during the wait, and\n  \"Buying time waiting for Recall\" / \"Resting for Recall\" notes; deaths during a wait;\n- potions and scrolls used during waits.\nMost flight Recalls in classes-18 are read on DL1, where the switch does not act: 18 starts show safety, and the\neffect needs a larger tier.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr627-cdd065ca"
+  ],
+  "profiles": [
+    "reborn-recallusual-ctl",
+    "reborn-recallusual-usual"
+  ],
+  "suites": [
+    "classes-1800-200k-small"
+  ],
+  "control": "4.2.6-reborn-rust-pr627-cdd065ca",
+  "control_profile": "reborn-recallusual-ctl"
+}

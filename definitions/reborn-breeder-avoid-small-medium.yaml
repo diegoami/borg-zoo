@@ -1,0 +1,55 @@
+# borg-zoo#364: classes-1800-small,classes-1800-medium after the pilot reborn-breeder-avoid-pilot (owner, 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-avoid-small-medium.yaml
+name: reborn-breeder-avoid-small-medium
+issue: 364
+question: 'On borg-reborn-rs PR #632''s head 985c772a, does #556''s breeder-colony avoidance (with or without the fight-through
+  fallback, and on top of #544''s breeder exit) save or cost games against ctl?'
+suites:
+- classes-1800-small
+- classes-1800-medium
+specimen: 4.2.6-reborn-rust-pr632-985c772a
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+profile_prefix: reborn-breederavoid
+arms:
+  ctl:
+    borg_param_caution_breeder_avoid: 0
+    borg_param_caution_breeder_avoid_fight_through: 1
+    borg_param_caution_breeder_exit: 0
+  avoid:
+    borg_param_caution_breeder_avoid: 1
+    borg_param_caution_breeder_avoid_fight_through: 1
+    borg_param_caution_breeder_exit: 0
+  avoid-nofight:
+    borg_param_caution_breeder_avoid: 1
+    borg_param_caution_breeder_avoid_fight_through: 0
+    borg_param_caution_breeder_exit: 0
+  avoid-exit:
+    borg_param_caution_breeder_avoid: 1
+    borg_param_caution_breeder_avoid_fight_through: 1
+    borg_param_caution_breeder_exit: 1
+control:
+- ctl
+prespecified: |
+  Small and medium tiers (starts 1-360, as borg-zoo#240) after the pilot gate passed with all arms neutral (RULES 18).
+  Same specimen and profiles as reborn-breeder-avoid-pilot; no raw evidence at this size. Owner, 2026-11-19: "go ahead with the tiers you propose".
+  Fixed 2026-11-19, before any result of this definition was read (borg-reborn-rs#556, PR #632). Pilot (RULES 16);
+  small and medium (borg-zoo#240's tier, starts 1-360) only after this gate and the owner.
+  Gate:
+  - no config_error; one binary; each arm's values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - in ctl and avoid-nofight, no "# Fighting through the breeders to the stairs" note; in ctl, no game differs
+    from the specimen's shipped play.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level; breeder deaths (the killer has MULTIPLY);
+  - paired rescued and newly killed against ctl;
+  - "# Fighting through the breeders to the stairs" per game; "# Leaving the breeders' room" per game (avoid-exit);
+  - Phase Doors done ("# Phase (<site>): done") per game; "# Backing up to" and "# Retreating to" per game;
+  - deaths within 200 game turns of a fight-through note.
+  Context: a local run on the same tree (18 classes-18 starts, 100,000 turns; not a zoo run): ctl 1 death (a wild
+  cat, in every arm); avoid without the fight-through 2 (a Grip death after the only route out was refused); avoid
+  with it 2 (that game lives; a cave spider death 16,600 turns after the last fight-through). 18 starts per arm show
+  direction only.

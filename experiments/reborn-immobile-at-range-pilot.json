@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-immobile-at-range-pilot",
+  "issue": 461,
+  "definition": "definitions/reborn-immobile-at-range-pilot.yaml",
+  "question": "On borg-reborn-rs 5af2f79f (PR",
+  "description": "On borg-reborn-rs 5af2f79f (PR Generated from definitions/reborn-immobile-at-range-pilot.yaml: 4 arms on 4.2.6-reborn-rust-t713-5af2f79f, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any zoo result was read (borg-reborn-rs#713, PR #717). Per RULES 16 the pilot (classes-18,\n100,000 turns) runs first with all four arms. Gate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified, key outliers listed;\n- death bundles reproduced.\nThen classes-1800-big (starts 361-900, 60 per class, 100,000 turns) with the same four arms, if the pilot passes.\nReport per arm and per class, from every game's messages:\n- deaths and causes, final and maximum level, deepest level; paired rescued and newly killed against off;\n- deaths with an immobile monster (NEVER_MOVE) adjacent in the last 50 decisions, by monster;\n- \"# Stepping away from immobile\" notes (and \"kept at range\"), most per game, and any loop (many steps at one monster);\n- blows taken from immobile monsters (\"The <monster> touches/gazes/releases spores at you\"), per game;\n- throws and shots at immobile monsters, and immobile monsters killed;\n- games where a stair flow passed through a kept creature's reach (blows taken on the way to stairs).\nThe shipped value (2) is kept, changed or reverted from this result; no claim before it (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-t713-5af2f79f"
+  ],
+  "profiles": [
+    "reborn-immobile-off",
+    "reborn-immobile-step646",
+    "reborn-immobile-range",
+    "reborn-immobile-rangeall"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-t713-5af2f79f",
+  "control_profile": "reborn-immobile-off",
+  "owner_authorization": "2026-11-20: the owner said \"yes run pilots\" (classes-18, RULES 16). The larger tier named in the issue follows this gate on the owner's go.",
+  "retain_evidence": true
+}

@@ -73,8 +73,9 @@ def sha256(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def config_text(record, cell, spec, profile, race_i, cls_i, borg_txt, plan_sha, provenance, streams=()):
+def config_text(record, cell, spec, profile, race_i, cls_i, borg_txt, plan_sha, provenance, streams=(), scary_sha=None, scary=None):
     """config.txt in the zoo-dossier format (borg-cemetery rerun-death.py)."""
+    from . import borgrs
     lines = [f"seed={cell['seed']}", f'race_idx={race_i}', f'class_idx={cls_i}',
              f"turns={record['cap']}", f"exact_turns={1 if spec.get('exact_turns') else 0}",
              f'borg_txt_sha256={hashlib.sha256(borg_txt.encode()).hexdigest()}',
@@ -82,11 +83,24 @@ def config_text(record, cell, spec, profile, race_i, cls_i, borg_txt, plan_sha, 
              f"zoo_run={provenance.get('run_id') or ''}",
              f"zoo_profile={cell['profile']}", f"zoo_specimen={cell['specimen']}",
              f"zoo_suite={cell['suite']}"]
+    if scary:
+        # The list the cell read, from its profile or its shipped borg.txt,
+        # and the hash of the file written (base plus the arm's lines,
+        # borg-zoo#228). The bundle keeps that file as user/NAME, so the
+        # lines need no key; rewriting the line the borg.txt already has
+        # leaves it unchanged for rerun-death.py's sha check.
+        lines += [f'borg_scary_list={scary}', f'scary_list_sha256={scary_sha}']
+    elif profile['settings'].get('borg_scary_list') is not None:
+        lines.append(f"borg_scary_list={profile['settings']['borg_scary_list']}")
+    if record.get('world'):
+        # The world the cell played (borg-zoo#482), as harness/run.sh records it.
+        w = record['world']
+        lines += [f"borg_world={w['name']}", f"borg_world_sha256={w['sha256']}", f"borg_world_data_sha256={w['data_sha256']}"]
     if streams:
         # Observation-only record paths the cell set (a retained-evidence or
         # town-shadow cell); a rerun sets them too, to be the cell exactly.
         lines.append('zoo_record_streams=' + ','.join(streams))
-    for name, value in sorted(profile['settings'].items()):
+    for name, value in sorted(borgrs.borg_txt_settings(profile).items()):
         if name == 'borg_plan':
             # The format of the zoo dossiers already in the cemetery. Its
             # rerun-death.py (borg-cemetery#59, zoo_plan) maps this back to
@@ -94,6 +108,8 @@ def config_text(record, cell, spec, profile, race_i, cls_i, borg_txt, plan_sha, 
             # against errands_plan_sha256; the older harness path of that
             # tool reads borg_errands_plan_sha256 and cannot rerun zoo cells.
             lines += [f'borg_errands_plan=user/{value}', f'errands_plan_sha256={plan_sha}']
+        elif name == 'borg_scary_list':
+            continue  # written below, whatever chose the list
         else:
             lines.append(f'{name}={cat_mod.setting_value(value)}')
     return '\n'.join(lines) + '\n'
@@ -131,8 +147,15 @@ def replay_borgrs(record, cell, build_dir, cat, out, provenance, keep=False):
     (out / 'user/borg.txt').write_text(text)
     plan = profile['settings'].get('borg_plan')
     plan_sha = borgrs.ship_plan(spec, manifest, build_dir, out, plan) if plan is not None else None
+    scary, _ = borgrs.scary_name(profile, text)
+    scary_sha = (borgrs.ship_scary_list(spec, manifest, build_dir, out, scary, borgrs.scary_lines(profile))
+                 if scary is not None else None)
+    world = borgrs.world_name(profile, (build_dir / 'borg.txt').read_text())
+    world_record, data_root = borgrs.make_world(spec, manifest, build_dir, out, world) if world else (None, None)
+    if world_record and record.get('world') and world_record['data_sha256'] != record['world'].get('data_sha256'):
+        raise ValueError('world data differs from the one the cell played')
     game = build_dir / 'game'
-    argv = borgrs.command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=True)
+    argv = borgrs.command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=True, data_root=data_root)
     env = {k: v for k, v in os.environ.items() if not k.startswith(borgrs.AMBIENT_PREFIX)}
     env.update(TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8', BORG_RUN_DIR=str(out))
     # The cell's own record streams, if it had any: the replay is the cell's
@@ -147,6 +170,8 @@ def replay_borgrs(record, cell, build_dir, cat, out, provenance, keep=False):
                                 timeout=suite['wall_seconds']).returncode
     except subprocess.TimeoutExpired:
         rc = 'timeout'
+    if data_root is not None:
+        shutil.rmtree(data_root, ignore_errors=True)
     if plan is not None and plan != 'errands_plan.txt':
         # export-death.py keeps user/errands_plan.txt as the dossier's plan;
         # copied after play, so the replay's user/ is the cell's.
@@ -160,7 +185,7 @@ def replay_borgrs(record, cell, build_dir, cat, out, provenance, keep=False):
         status = 'not_reproduced'
         why = (f'replay keys {str(keys_sha)[:12]}, cell played {str(record.get("play_sha256"))[:12]}'
                f'; exit {rc}; dead {summary.get("dead")}')
-    (out / 'config.txt').write_text(config_text(record, cell, spec, profile, race_i, cls_i, text, plan_sha, provenance, sorted(streams)))
+    (out / 'config.txt').write_text(config_text(record, cell, spec, profile, race_i, cls_i, text, plan_sha, provenance, sorted(streams), scary_sha, scary))
     (out / 'BUILD_ID').write_text(''.join(f'{k}={v}\n' for k, v in sorted((manifest.get('build_id') or {}).items())))
     for d in ('save', 'archive', 'panic', 'scores'):
         shutil.rmtree(out / d, ignore_errors=True)

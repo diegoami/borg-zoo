@@ -1,0 +1,86 @@
+# borg-zoo#274: attack preferences by class (#520's class files), verysmall tier; owner request 2026-11-18.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-attack-by-class-verysmall.yaml
+#
+# Each attack_preference_<class>_<family>_permille acts on that class only, so one arm moves every class one step
+# and each class is read on its own starts. Neutral is 1000 (range 500-2000); half scales each shipped
+# value's distance from 1000 by 0.5. (The pilot's strong arm, x1.5, is dropped.)
+name: reborn-attack-by-class-verysmall
+issue: 274
+question: >-
+  On borg-reborn-rs main 4a482c58, does each class do better with its shipped attack preferences than with neutral
+  preferences (1000), or with their distance from neutral halved?
+tier: verysmall        # classes-1800 starts 1-45: 5 per class, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-4a482c58
+  repository: diegoami/borg-reborn-rs
+  ref: 4a482c58ab9ab86a663ed6549ef41d62046cf033
+  label: >-
+    borg-reborn-rs 4a482c58, main after #539 (caution_scary_hurt_percent 50, caution_scary_afraid 1) and fba1c6e0
+    (borg_trip_unknown_stacks 2, caution_stair_scum_threat 1). Shipped healing: common reserve 100, curve 125, real HP
+    1, speed 66; class files curve/reserve Warrior 50/100, Mage 150/300, Druid 125/250, Priest 125/250, Necromancer
+    150/300, Paladin 75/150, Rogue 100/200, Ranger 100/200, Blackguard 75/150.
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# Every arm reads the shipped harness/borg.txt and sets only the lines below. Every class line the shipped class
+# files set is written in every non-control arm.
+profile_prefix: reborn-abc
+arms:
+  ctl: {}   # shipped
+  flat:     # every class preference neutral (1000)
+    borg_param_attack_preference_warrior_melee_permille: 1000
+    borg_param_attack_preference_warrior_projectile_permille: 1000
+    borg_param_attack_preference_warrior_thrown_permille: 1000
+    borg_param_attack_preference_mage_spell_permille: 1000
+    borg_param_attack_preference_mage_device_permille: 1000
+    borg_param_attack_preference_druid_spell_permille: 1000
+    borg_param_attack_preference_priest_spell_permille: 1000
+    borg_param_attack_preference_necromancer_spell_permille: 1000
+    borg_param_attack_preference_necromancer_device_permille: 1000
+    borg_param_attack_preference_paladin_melee_permille: 1000
+    borg_param_attack_preference_paladin_spell_permille: 1000
+    borg_param_attack_preference_rogue_projectile_permille: 1000
+    borg_param_attack_preference_rogue_thrown_permille: 1000
+    borg_param_attack_preference_ranger_projectile_permille: 1000
+    borg_param_attack_preference_blackguard_melee_permille: 1000
+    borg_param_attack_preference_blackguard_spell_permille: 1000
+  half:     # distance from 1000 halved
+    borg_param_attack_preference_warrior_melee_permille: 1400
+    borg_param_attack_preference_warrior_projectile_permille: 1100
+    borg_param_attack_preference_warrior_thrown_permille: 1100
+    borg_param_attack_preference_mage_spell_permille: 1500
+    borg_param_attack_preference_mage_device_permille: 1100
+    borg_param_attack_preference_druid_spell_permille: 1350
+    borg_param_attack_preference_priest_spell_permille: 1350
+    borg_param_attack_preference_necromancer_spell_permille: 1400
+    borg_param_attack_preference_necromancer_device_permille: 1100
+    borg_param_attack_preference_paladin_melee_permille: 1400
+    borg_param_attack_preference_paladin_spell_permille: 1100
+    borg_param_attack_preference_rogue_projectile_permille: 1150
+    borg_param_attack_preference_rogue_thrown_permille: 1300
+    borg_param_attack_preference_ranger_projectile_permille: 1500
+    borg_param_attack_preference_blackguard_melee_permille: 1300
+    borg_param_attack_preference_blackguard_spell_permille: 1200
+control: [ctl]
+owner_authorization: >-
+  2026-11-18: the owner asked for the next tier of #274 after the pilot (run 44308236915, gate passed). strong is
+  dropped: it played the shipped keys in 15 of 18 pilot games, and Mage spell and Ranger projectile are at the cap.
+prespecified: |
+  Fixed 2026-11-18, after the pilot (run 44308236915) and before any verysmall result was read. Same specimen and the
+  pilot's ctl, flat and half arms (RULES 16); strong dropped. The pilot showed play changes but no death difference:
+  deaths 1/1/2 of 18, games identical to ctl flat 8 and half 11; Priests and Blackguards played ctl's keys in every arm.
+  Gate:
+  - no config_error; one binary; each arm's 16 class lines in its borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Read per class (5 starts each), not pooled: deaths and causes, final level, deepest level; paired rescued and newly
+  killed against ctl; identical plays per class. Descriptive only: a class whose arm leads goes to small-rest (starts
+  46-90) on the owner's word; a class that plays ctl's keys again is dropped from the study.

@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-floor-full",
+  "issue": 369,
+  "definition": "definitions/reborn-scary-floor-full.yaml",
+  "question": "On borg-reborn-rs main 38858846, does floor3 keep the same deaths as the shipped list with more progress on starts 901-1800 (100,000 turns)?",
+  "description": "On borg-reborn-rs main 38858846, does floor3 keep the same deaths as the shipped list with more progress on starts 901-1800 (100,000 turns)? Generated from definitions/reborn-scary-floor-full.yaml: 2 arms on 4.2.6-reborn-rust-main-38858846, suite classes-1800-full.",
+  "prespecified": "Fixed 2026-11-19, before any result of this tier was read. Same specimen and profiles as the pilot (RULES 16).\nStarts 1-900: ctl 51, floor3 49 deaths (rescued 9, newly killed 7); mean max CL 5.13 / 5.50.\nGate:\n- no config_error; one binary; each arm's lines in its borg.txt and scary list;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class, pooled with the earlier tiers (RULES 14): deaths and causes, CL1-4 deaths, mean max CL\nand DL; paired rescued and newly killed. Each value is reported as harmful, neutral (safe to adopt) or helpful\n(RULES 18).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-38858846"
+  ],
+  "profiles": [
+    "reborn-scaryends-ctl",
+    "reborn-scaryends-floor3"
+  ],
+  "suites": [
+    "classes-1800-full"
+  ],
+  "control": "4.2.6-reborn-rust-main-38858846",
+  "control_profile": "reborn-scaryends-ctl",
+  "owner_authorization": "2026-11-19: after floor3's small + medium (13 against 13 deaths, CL 5.60 against 5.25), the owner asked for the big tier, the 200k tier and the bundle; after big (starts 1-900: ctl 51, floor3 49 deaths; CL 5.13 / 5.50), the full tier."
+}

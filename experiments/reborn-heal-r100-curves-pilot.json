@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-heal-r100-curves-pilot",
+  "issue": 192,
+  "definition": "definitions/reborn-heal-r100-curves-pilot.yaml",
+  "question": "With the healing reserve fixed at 100, which curve scale (50, 75, 100, 125, 150) should the town planner use at speed 66, on main dd5f026e?",
+  "description": "With the healing reserve fixed at 100, which curve scale (50, 75, 100, 125, 150) should the town planner use at speed 66, on main dd5f026e? Generated from definitions/reborn-heal-r100-curves-pilot.yaml: 5 arms on 4.2.6-reborn-rust-main-dd5f026e, suite classes-18.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#192). Pilot (RULES 16) on main dd5f026e; more starts\nonly after this gate and the owner. Gate: no config_error; one binary; the three borg_param_town_heal_*\nlines (reserve 100, the arm's curve, speed 66) in every borg.txt and in params-core.json of the death\nreplays; no plan loaded; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\ndeath bundles reproduced. Consistency: r100-c100, r100-c125 and r100-c150 are reborn-heal-light-pilot's arms\nof the same names (borg-zoo#219, same specimen and starts) and must replay its key hashes. Report per arm:\ndeaths, final level, deepest level, paired rescued and newly killed against r100-c50. Context, not pooled:\non e0aa2e0a (a different build), r100-c50 had 44 deaths of 540 on starts 361-900. 18 starts per arm show\ndirection only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-dd5f026e"
+  ],
+  "profiles": [
+    "reborn-heal-r100-c50",
+    "reborn-heal-r100-c75",
+    "reborn-heal-r100-c100",
+    "reborn-heal-r100-c125",
+    "reborn-heal-r100-c150"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-dd5f026e",
+  "control_profile": "reborn-heal-r100-c50",
+  "owner_authorization": "2026-11-17: after the big tier of reserve {0, 100, 200} x curve {50, 75} on e0aa2e0a (run 44148205941, where r100-c50 had the fewest deaths), the owner asked to keep reserve 100 fixed and run curve 50, 75, 100, 125, 150 as a pilot, on the current build (main dd5f026e)."
+}

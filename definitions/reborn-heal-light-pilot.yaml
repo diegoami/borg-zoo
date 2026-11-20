@@ -1,0 +1,63 @@
+# borg-zoo run request from borg-reborn-rs (owner, 2026-11-17): a light healing reserve {0, 50, 100} x curve scale {100, 125, 150} at speed 66, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-light-pilot.yaml
+name: reborn-heal-light-pilot
+issue: 219
+question: On borg-reborn-rs main dd5f026e with healing speed 66, does a light healing reserve (0, 50, 100 percent of max HP) with a slower-fading healing curve (scale 100, 125, 150) keep healing without crowding out Phase Door?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-dd5f026e
+  repository: diegoami/borg-reborn-rs
+  ref: dd5f026e30c9380d494932df5fc5e439be7892c0
+  source: https://github.com/diegoami/borg-zoo/issues/219
+  label: >-
+    borg-reborn-rs dd5f026e, main at the merge of #509 (#507: a planned purchase buys its copies in one
+    transaction). Over e0aa2e0a (the #192 specimen) it adds #494 (#493: explicit gold reserve 0,
+    borg_town_w_gold 0), #510 (#503: stand and fight breeders, named scary monsters off) and #509; #497,
+    #500 and #501 change no play. Source-hash rust 18606b3e...; harness/borg.txt feb38834... (speed30 bundle,
+    no plan; healing 400 / 100 / 66; point-blank divisor 5, Ranger 2, Rogue 3).
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+
+# The shipped harness/borg.txt (speed30 bundle, no plan, no errand) with the three #491 lines written;
+# speed fixed at 66, reserve and curve varied.
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_town_heal_speed_percent: 66
+
+profile_prefix: reborn-heal
+vary:
+  reserve:
+    r0: {borg_param_town_heal_reserve_hp_percent: 0}
+    r50: {borg_param_town_heal_reserve_hp_percent: 50}
+    r100: {borg_param_town_heal_reserve_hp_percent: 100}
+  curve:
+    c100: {borg_param_town_heal_curve_scale_percent: 100}
+    c125: {borg_param_town_heal_curve_scale_percent: 125}
+    c150: {borg_param_town_heal_curve_scale_percent: 150}
+
+control: [r0, c100]
+extra:
+  retain_evidence: true
+
+owner_authorization: >-
+  2026-11-17: after the #192 curve-scale pilot (run 44125061301), the owner asked for reserve {0, 50, 100} x
+  speed 66 x curve {100, 125, 150}: a light reserve, with the curve deciding how much healing beyond it is
+  bought. Not a Phase Door floor (owner: Phase Door is not in the same league as healing).
+
+prespecified: |
+  Fixed 2026-11-17, before any result was read. Pilot (RULES 14, zoo RULES 16); small and medium of the same
+  arms only after this gate and the owner. Gate: no config_error; one binary; the three
+  borg_param_town_heal_* lines with the arm's values (reserve 0/50/100, curve 100/125/150, speed 66) in every
+  arm's borg.txt and in params-core.json of the death replays; no plan loaded; every cell ends in death,
+  turn_cap or borg_stopped; stalls, purchase bursts and key outliers listed; death bundles reproduced.
+  Evidence retained for every game (retain_evidence), because the main endpoint needs the surviving games'
+  purchases, not only the deaths'. Report per arm: deaths, final level, deepest level; paired rescued and
+  newly killed against r0-c100 on the same start; from every game's messages: healing potions bought (Cure
+  Light/Serious/Critical Wounds, Healing) and gold on them, Phase Door bought and gold on it, against all
+  gold spent; and town departures with no Phase Door carried (the crowding endpoint: a local simulation on
+  borg-reborn-rs found 38 such departures without a reserve against 114 at the shipped reserve 400, on 18
+  starts), by class. For reference the shipped values are 400 / 100 / 66; none of these arms is the
+  shipped value. 18 starts per arm show direction only.

@@ -1,0 +1,45 @@
+# borg-zoo#330: borg_plays_risky on borg-reborn-rs, pilot; owner request 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-plays-risky-pilot.yaml
+name: reborn-plays-risky-pilot
+issue: 330
+question: >-
+  On borg-reborn-rs main 6438e1cf, does borg_plays_risky (dive regardless of character level and stay in fights rather
+  than teleport; shipped FALSE) change how the Borg survives and progresses?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-6438e1cf
+  repository: diegoami/borg-reborn-rs
+  ref: 6438e1cf080fa774a4657e7192eb814d7818395a
+  label: "borg-reborn-rs 6438e1cf, main at the merge of #605 (#604 town loop). Ships borg_plays_risky FALSE. harness/borg.txt c6afd905..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-risky
+arms:
+  ctl: {borg_plays_risky: false}   # shipped
+  risky: {borg_plays_risky: true}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked for a test of borg_plays_risky. Pilot first (RULES 16); larger tiers only after its gate
+  and the owner (RULES 14).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result was read. Pilot (RULES 16). The C Borg's switches-early and dive-styles-early
+  (early-50) are a different Borg and context only.
+  Gate:
+  - no config_error; one binary; each arm's lines in its borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm, overall and per class: deaths and causes, CL1-3 deaths, final level, deepest level; paired rescued
+  and newly killed against ctl; identical plays; per game, teleports and flights, and the deepest level reached by
+  game turn 25,000, 50,000 and 100,000. 18 starts per arm show direction only.

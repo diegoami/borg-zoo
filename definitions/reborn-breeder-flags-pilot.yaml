@@ -1,0 +1,62 @@
+# borg-zoo#460: the issue's definition, run as its classes-18 pilot first.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-flags-pilot.yaml
+name: reborn-breeder-flags-pilot
+issue: 460
+question: On borg-reborn-rs PR #702's head 0a76dc19, do the five breeder switches (#544 exit, #556 stoppable and avoid, #644 no rest with breeders, #690 slower-crowd exit), alone or combined, save or cost games against ctl?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-pr702-0a76dc19
+  repository: diegoami/borg-reborn-rs
+  ref: 0a76dc19d72128cee071840cf846323c9492bdb6
+  label: "borg-reborn-rs 0a76dc19, head of PR #702 (#690, unmerged; contains main dbc92d18): the five breeder switches, all shipped 0. Source-hash rust 8d3d089c...; harness/borg.txt 447831ae..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only these five parameters.
+profile_prefix: reborn-breederflags
+arms:
+  ctl:         {borg_param_caution_breeder_exit: 0, borg_param_caution_breeder_stoppable: 0, borg_param_caution_breeder_avoid: 0, borg_param_recover_rest_breeders: 0, borg_param_caution_slow_crowd_exit: 0}
+  exit:        {borg_param_caution_breeder_exit: 1, borg_param_caution_breeder_stoppable: 0, borg_param_caution_breeder_avoid: 0, borg_param_recover_rest_breeders: 0, borg_param_caution_slow_crowd_exit: 0}
+  stop:        {borg_param_caution_breeder_exit: 0, borg_param_caution_breeder_stoppable: 1, borg_param_caution_breeder_avoid: 0, borg_param_recover_rest_breeders: 0, borg_param_caution_slow_crowd_exit: 0}
+  stop-avoid:  {borg_param_caution_breeder_exit: 0, borg_param_caution_breeder_stoppable: 1, borg_param_caution_breeder_avoid: 1, borg_param_recover_rest_breeders: 0, borg_param_caution_slow_crowd_exit: 0}
+  rest:        {borg_param_caution_breeder_exit: 0, borg_param_caution_breeder_stoppable: 0, borg_param_caution_breeder_avoid: 0, borg_param_recover_rest_breeders: 1, borg_param_caution_slow_crowd_exit: 0}
+  crowd:       {borg_param_caution_breeder_exit: 0, borg_param_caution_breeder_stoppable: 0, borg_param_caution_breeder_avoid: 0, borg_param_recover_rest_breeders: 0, borg_param_caution_slow_crowd_exit: 1}
+  kill-first:  {borg_param_caution_breeder_exit: 0, borg_param_caution_breeder_stoppable: 1, borg_param_caution_breeder_avoid: 0, borg_param_recover_rest_breeders: 1, borg_param_caution_slow_crowd_exit: 1}
+  all:         {borg_param_caution_breeder_exit: 1, borg_param_caution_breeder_stoppable: 1, borg_param_caution_breeder_avoid: 1, borg_param_recover_rest_breeders: 1, borg_param_caution_slow_crowd_exit: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: the owner said "yes run pilots" (classes-18, RULES 16). The larger tier named in the issue follows this gate on the owner's go.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this definition was read (owner: "start experiments with the breeder
+  flags in the zoo, make a few arms"). classes-18 is the gate (RULES 16); small and medium (starts 1-360) follow
+  right after it: breeder cases are rare, and 18 starts show safety only.
+  kill-first is the owner's #556 rule with its companions: kill first (stoppable), never rest with breeders
+  known (rest), and walk out of a slow crowd that cannot be fought (crowd); all adds the exit and the avoidance.
+  Gate:
+  - no config_error; one binary; each arm's five values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - in ctl, none of the switches' notes: "# Breeders cannot be stopped", "# Fighting through the breeders",
+    "# Leaving the breeders' room", "# Walking out of a slower crowd", and #644's "# Not resting: breeders to hunt."
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final and maximum level, deepest level; breeder deaths (the killer has MULTIPLY) and deaths
+    to a slower or never-moving killer;
+  - paired rescued and newly killed against ctl (exact McNemar), and games identical to ctl;
+  - each switch's notes per game (the five above), and deaths within 500 game turns of one;
+  - breeder kills per game ("You have slain" a MULTIPLY race) and breeders created ("# Creating a monster" of a
+    MULTIPLY race);
+  - breeder flees per game ("Fleeing (breeder level)", "Ignoring breeders (no recall)").
+  Context: borg-zoo#411 (stop and stop-avoid, 18 starts on ed8e270d): 1 / 3 / 2 deaths, none to breeders.
+  borg-zoo#448 (crowd, 360 starts on c3747cc9): 9 / 7 deaths, 2 rescued, 0 newly killed, 352 of 360 identical.

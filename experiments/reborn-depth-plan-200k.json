@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-depth-plan-200k",
+  "issue": 446,
+  "definition": "definitions/reborn-depth-plan-200k.yaml",
+  "question": "On borg-reborn-rs 8ffee286 (PR",
+  "description": "On borg-reborn-rs 8ffee286 (PR Generated from definitions/reborn-depth-plan-200k.yaml: 3 arms on 4.2.6-reborn-rust-t693-8ffee286, suite classes-1800-200k-pilot, classes-1800-200k-small.",
+  "prespecified": "200,000-turn tier, starts 1-90, after the 100,000-turn pilot's gate (run 44639042890: no deaths; formula changed 4 of 18 games, errands 7). The plan's depth cost was measured at 200k (#383).\nSame specimen and profiles as reborn-depth-plan-pilot; no raw evidence at this size.\nFixed 2026-11-19, before any zoo result was read (borg-reborn-rs#693, PR #701). Pilot (RULES 16); larger tiers\nonly after this gate and the owner. ctl is the shipped configuration (the cap off); errands is the plan file the\nzoo measured in #383.\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n  the errands arm's plan hash recorded;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class:\n- deaths and causes, final level, deepest level; paired rescued and newly killed against ctl and against errands;\n- \"No deeper N\" notes (\"heading up\", \"Climbing (too deep\") per game and by N;\n- character level at each first arrival on DL2, DL3 and DL5.\nThe depth cost was at 200k turns and CL7-14: a 200,000-turn tier (as reborn-errands-main-200k) is the next step\nafter the gate, with the owner.",
+  "specimens": [
+    "4.2.6-reborn-rust-t693-8ffee286"
+  ],
+  "profiles": [
+    "reborn-depthplan-ctl",
+    "reborn-depthplan-formula",
+    "reborn-depthplan-errands"
+  ],
+  "suites": [
+    "classes-1800-200k-pilot",
+    "classes-1800-200k-small"
+  ],
+  "control": "4.2.6-reborn-rust-t693-8ffee286",
+  "control_profile": "reborn-depthplan-ctl",
+  "owner_authorization": "2026-11-20: the owner said \"go\" to the proposed tiers after the pilot gate."
+}

@@ -1,0 +1,56 @@
+# borg-zoo#401: screen of untested town-planner settings on main 3ba17e2c, lower and higher; pilot only.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-untested-town-pilot.yaml
+#
+# Settings no experiment on a borg-reborn-rs specimen has changed, with borg.txt's "Impact" comment above 0;
+# the companion screen is reborn-untested-caution-pilot. Values: half and double the shipped value.
+name: reborn-untested-town-pilot
+issue: 401
+question: >-
+  On borg-reborn-rs main 3ba17e2c, which of the never-tested town planner settings (risk, power_scale, w_attack,
+  w_support, w_space, home_discount) change deaths or progress when halved or doubled?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-3ba17e2c
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-untested38
+arms:
+  ctl: {}   # shipped: risk 1000, power_scale 40000, w_attack 100, w_support 50, w_space 25, home_discount 500
+  risk-lo: {borg_town_risk: 500}
+  risk-hi: {borg_town_risk: 2000}
+  power-lo: {borg_town_power_scale: 20000}
+  power-hi: {borg_town_power_scale: 80000}
+  attack-lo: {borg_town_w_attack: 50}
+  attack-hi: {borg_town_w_attack: 200}
+  support-lo: {borg_town_w_support: 25}
+  support-hi: {borg_town_w_support: 100}
+  space-lo: {borg_town_w_space: 12}
+  space-hi: {borg_town_w_space: 50}
+  home-lo: {borg_town_home_discount: 250}
+  home-hi: {borg_town_home_discount: 1000}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked for more runs, "runs with untested parameters" among them. A pilot screen (RULES 16);
+  the arms worth following into tiers are chosen at the gate with the owner. Dispatch is the owner's call.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles was read. Pilot screen (RULES 16): direction only, no claim.
+  borg.txt's own impact (games of 6 that change): risk 2000: 6; power_scale 80000: 5; w_attack 200: 6;
+  w_support 100: 6; w_space 50: 6; home_discount 1000: 6. None was ever changed on a borg-reborn-rs specimen.
+  Gate:
+  - no config_error; one binary; each arm's value in its written borg.txt (and in the effective settings the cell records);
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - ctl writes nothing, so it should replay reborn-errands-main-pilot's none arm (the same specimen and starts) in
+    18 of 18 games.
+  Report per arm and per class: games identical to ctl; deaths and causes, CL1-3 deaths, mean max CL and DL; paired
+  rescued and newly killed; town purchases that change (the planner's bought items per visit). Each arm is reported
+  as harmful, neutral or helpful (RULES 18), direction only.
+  Follow-up rule, fixed now: an arm goes to the small tier if it changes at least 3 of 18 games and is not behind ctl
+  on deaths by 2 or more, or if it is ahead of ctl on deaths or mean max CL; an arm that changes no game is inert and
+  dropped. The owner decides which arms go on.

@@ -1,0 +1,34 @@
+# borg-zoo#433 Blackguard follow-up on main dbc92d18; owner 2026-11-20.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-bgcurve-dbc-pilot.yaml
+# Only Blackguards are played. #433 changed the Blackguard's Phase Door curve (50) and healing (100 / 200) in one arm;
+# these arms change one each back to its pre-#688 value.
+name: reborn-bgcurve-dbc-pilot
+issue: 433
+question: >-
+  On borg-reborn-rs main dbc92d18, is the Blackguard's lean toward more deaths under the owner's class values (1 -> 5
+  of 200 on classes-1800) from its Phase Door curve 50 or its healing 100 / 200?
+suites: [classes-1800-small-blackguards]
+pilot: true   # the 10 Blackguard starts of classes-1800-small
+specimen: 4.2.6-reborn-rust-main-dbc92d18
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-bgcurve-dbc
+arms:
+  shipped: {}   # Phase Door curve 50, healing curve 100 / reserve 200
+  pd100: {borg_param_town_phase_curve_scale_percent@blackguard: 100}
+  heal-old: {borg_param_town_heal_curve_scale_percent_blackguard: 75, borg_param_town_heal_reserve_hp_percent_blackguard: 150}
+control: [shipped]
+owner_authorization: >-
+  2026-11-20: the owner said "yes do it" to the Blackguard follow-up of #433: pilot first (RULES 16), then the 200
+  classes-1800-b Blackguard starts after its gate.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of these profiles was read. Pilot (RULES 16).
+  Gate: no config_error; one binary; each arm's lines written; every cell ends in death, turn_cap or borg_stopped;
+  frozen-turn bursts classified; death bundles reproduced. Report per arm: deaths and causes, max CL and DL, paired
+  rescued and newly killed, identical plays, Phase Door and healing potions bought.

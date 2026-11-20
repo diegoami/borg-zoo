@@ -1,0 +1,52 @@
+# borg-zoo#448: borg-reborn-rs#690, walk out of a slower crowd (caution_slow_crowd_exit), the issue's definition as filed.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-slow-crowd-exit-pilot.yaml
+name: reborn-slow-crowd-exit-pilot
+issue: 448
+question: On borg-reborn-rs PR #702's head c3747cc9, does walking out of a crowd of slower or immobile monsters (caution_slow_crowd_exit) save or cost games against ctl?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-pr702-c3747cc9
+  repository: diegoami/borg-reborn-rs
+  ref: c3747cc93796ddb03598765617daa199f82d14b5
+  label: "borg-reborn-rs c3747cc9, head of PR #702 (#690, unmerged; contains main 18d2094f): walk out of a slower crowd behind caution_slow_crowd_exit (0). Source-hash rust e86fb19a...; harness/borg.txt fc46fc4e..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only this parameter.
+profile_prefix: reborn-slowcrowd
+arms:
+  ctl: {borg_param_caution_slow_crowd_exit: 0}
+  exit: {borg_param_caution_slow_crowd_exit: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked to "do 448": the pilot, then small and medium (starts 1-360) right after its gate.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of this definition was read (borg-reborn-rs#690, PR #702). Pilot (RULES 16);
+  small and medium (starts 1-360) after this gate: locally the rule never fires on classes-18, so the pilot shows
+  safety only, and the owner asked for the measurement.
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - in ctl, no "# Walking out of a slower crowd" note.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final and maximum level, deepest level; deaths to a slower or never-moving killer
+    (monster.txt speed below 110, or NEVER_MOVE);
+  - paired rescued and newly killed against ctl;
+  - "# Walking out of a slower crowd" notes per game, by kind (exit grids or open grids) and distance;
+  - deaths within 500 game turns of such a note;
+  - games with "Possibility of being surrounded" at danger at or above the HP for 20 or more thinks on one grid.
+  Context: local classes-18 (100,000 turns), the two arms play identical keys (18/18); on the case's own build the
+  rule turns borg-cemetery#78's death into a survival.

@@ -1066,6 +1066,36 @@
       "label": "Pinned synthetic P1 runtime. Scenario dispatch only; its capability is verified at execution.",
       "source": "https://github.com/diegoami/borg-reborn-rs/tree/99473510940b8a7bd6e77ad61e3a2b00c72a6e6d"
     },
+    "4.2.6-reborn-rust-main-fdaf18e5": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "fdaf18e52b402d9952f432109806b210cd2074ff",
+      "source": "https://github.com/diegoami/borg-zoo/issues/181",
+      "label": "borg-reborn-rs fdaf18e5, main at the merge of #480 (the speed30 bundle made the shipped default), with #473 (never use unidentified items; discard Deep Descent). Source-hash rust 258ccc77107e...; harness/borg.txt 1b062d8b... sets borg_reborn_core = borg-rs, borg_town_plan = 1, the trip policy (unknown_stacks 5, pack_slack 1), heal when outmatched, attack_speed_fight_danger_tenths = 30 and the 16 attack preferences; no plan, errand none.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-speed-fight": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "193d9076747cd5c52e1fe1f6ea314570d8f3873a",
+      "source": "https://github.com/diegoami/borg-zoo/issues/170",
+      "label": "borg-reborn-rs 193d9076, main at the merge of #471 (borg-zoo#170). Adds, over f02cd294 (4.2.6-reborn-rust-heal): #469 attack_speed_fight_danger_tenths (default 0 = off), #452 Potions of Speed hoarded, #464 a game's start leaves out borg.txt and flags. Source-hash rust 6448d51d3fa5...; harness/borg.txt 88296dd1... and both max-depth plans unchanged since f02cd294.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
     "4.2.6-reborn-rust-main-4d83dd26": {
       "kind": "borg-rs",
       "impl": "rust",
@@ -1124,6 +1154,1032 @@
       "plans": {
         "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
         "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-28360152": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "control",
+      "loop_checks": true,
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "283601528c85a29c1da60e63aeac9dec45d30de8",
+      "source": "https://github.com/diegoami/borg-zoo/issues/205",
+      "label": "borg-reborn-rs 28360152, main at the merge of #494 (#493: explicit gold reserve, shipped 0 with borg_town_w_gold 0). Over e0aa2e0a: #494, #497 (rules), #501 (#496 review fixes, no play change). Source-hash rust b34c8615...; harness/borg.txt 386be998... (speed30 bundle, no plan; healing 400 / 100 / 66; point-blank divisor 5, Ranger 2, Rogue 3).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-buyqty-729a94ee": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "loop_checks": true,
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "729a94ee9481c82ba67befc16a382605d64ccc15",
+      "source": "https://github.com/diegoami/borg-zoo/issues/205",
+      "label": "borg-reborn-rs 729a94ee, head of PR #509 (#507, not merged) over main 28360152: a planned BUY keeps the plan's copies, capped by stack, pack room and gold, and the Borg types them at the quantity prompt; sales and Home takes stay one copy per action. Source-hash rust 4b00fd95...; harness/borg.txt 386be998... (unchanged from 28360152).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "neo-fork-books-509-seeded-v2": {
+      "kind": "neo-original",
+      "repository": "diegoami/neo-angband-borg-mod-tracker",
+      "ref": "d6215a8e63d101e0c6d392120fb8eacef9544480",
+      "engine_repository": "diegoami/neo-angband-tracker",
+      "engine_ref": "b4af703493d314aa35cb719604f06103aa4918f4",
+      "toolkit_repository": "diegoami/neo-angband-borg-mod-tracker",
+      "toolkit_ref": "967b28f5fe12c4974a6a793040f73246eb7d1200",
+      "toolkit_path": "tools/zoo",
+      "birth_profile": "c-seeded-point-buy-v2",
+      "wall_factor": 1,
+      "role": "candidate",
+      "source": "https://github.com/neostryder/neo-angband-mod-borg/pull/113",
+      "label": "Previous truth-corrected Neo baseline967b28f plus ONLY carried-book counts/value correction509, measured atd6215a8. Engineb4af703 and toolkit967b28f unchanged. Explicit seeded-v2 profile; unresolved clock640. Descriptive development repeat; no confirmed survival claim."
+    },
+    "4.2.6-reborn-rust-main-dd5f026e": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "dd5f026e30c9380d494932df5fc5e439be7892c0",
+      "source": "https://github.com/diegoami/borg-zoo/issues/219",
+      "label": "borg-reborn-rs dd5f026e, main at the merge of #509 (#507: a planned purchase buys its copies in one transaction). Over e0aa2e0a (the #192 specimen) it adds #494 (#493: explicit gold reserve 0, borg_town_w_gold 0), #510 (#503: stand and fight breeders, named scary monsters off) and #509; #497, #500 and #501 change no play. Source-hash rust 18606b3e...; harness/borg.txt feb38834... (speed30 bundle, no plan; healing 400 / 100 / 66; point-blank divisor 5, Ranger 2, Rogue 3).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-6101ca01": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "6101ca010213f59a7f36d99ade3a4f27122d8ec9",
+      "source": "https://github.com/diegoami/borg-zoo/issues/224",
+      "label": "borg-reborn-rs 6101ca01, main at the merge of #525, after #527 (the named list as data) and the owner's switch of caution_scary_named_monsters back to 1 (#533). harness/borg.txt 77be6709... ships cornered mode on (#504), breeder boost 5, the named list on with the damage rule at 60, the borg-rs core and no plan or scary-list file.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-a8ac685a": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "a8ac685a2c90b412971fedd90d98b783b7f70380",
+      "source": "https://github.com/diegoami/borg-zoo/issues/225",
+      "label": "borg-reborn-rs a8ac685a, main at the merge of #513 (#487): healing curve scale and reserve per class, the reserve counted in real HP, and town_digger_min_gold. Also has #511 (cornered mode) and #514 (scary by damage) at their shipped values. Source-hash rust 197da47f2d80...; harness/borg.txt 3d70d60a... (borg-rs core, no plan).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-233ef23e": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "233ef23ebbbbebdbc75c8cc94b74edc5682606c5",
+      "source": "https://github.com/diegoami/borg-zoo/issues/216",
+      "label": "borg-reborn-rs 233ef23e, main at the merge of #510 (#503): caution_breeder_fight (stand and fight breeders when there is no easy escape; compiled 0, shipped 1) and caution_scary_named_monsters (C's hard-coded scary list by character level; compiled 1, shipped 0). Source-hash rust cb2b78ce7459...; harness/borg.txt feb38834... ships the speed30 bundle, the borg-rs core and no plan.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-9ecbfd1e": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "9ecbfd1ed3a623f09a4283699b106d95bb41e1f8",
+      "source": "https://github.com/diegoami/borg-zoo/issues/235",
+      "label": "borg-reborn-rs 9ecbfd1e, main at the merge of #543 (#539): three fleeing switches, each compiled 0 and shipped 1 (caution_flee_stairs_before_recall, escape_phase_adjacent_only, caution_scary_ranged_no_stairs). Source-hash rust 396938c8...; harness/borg.txt 31dda2eb..., otherwise as main before #543.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      }
+    },
+    "4.2.6-reborn-rust-main-156c8e52": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "156c8e52897a6aa8110ceffc896ffa0b2ca43ad7",
+      "source": "https://github.com/diegoami/borg-zoo/issues/240",
+      "label": "borg-reborn-rs 156c8e52, main at the merge of #545 (#544): two breeder-room escape flags, compiled 0 and shipped 0 (caution_breeder_exit, caution_flee_known_down_stairs). Source-hash rust f28bd39c...; harness/borg.txt bb948342...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-c9e58ca0": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "c9e58ca0fd2bdeff246c065655e331d494f9e7c4",
+      "label": "borg-reborn-rs main at the merge of",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-d9ff9808": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "d9ff9808236e466b42ee9966abf807aed2738107",
+      "source": "https://github.com/diegoami/borg-zoo/issues/248",
+      "label": "borg-reborn-rs d9ff9808, main at the merge of #550 (#549: no stair scum while threatened, off by default); over c9e58ca0 also #531 (stand and fight a scary monster when the escape is not real) and #553 (borg.txt layout, settings unchanged). Ships the scary list on, trip policy 1 with unknown_stacks 5. Source-hash rust 3832a3b5...; harness/borg.txt 9860fba9...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-0fa5c34d": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "0fa5c34d858dfb30829ddaaeebab36dcadc93c19",
+      "label": "borg-reborn-rs 0fa5c34d, main at the merge of #559 (#557): caution_flee_recall compiled 1, shipped 0; town_recall_reserve and caution_rising_hold_flee_descent shipped 0. Source-hash rust 05387b2f...; harness/borg.txt b48d4ce3...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-4a482c58": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "4a482c58ab9ab86a663ed6549ef41d62046cf033",
+      "label": "borg-reborn-rs 4a482c58, main after #539 (caution_scary_hurt_percent 50, caution_scary_afraid 1) and fba1c6e0 (borg_trip_unknown_stacks 2, caution_stair_scum_threat 1). Shipped healing: common reserve 100, curve 125, real HP 1, speed 66; class files curve/reserve Warrior 50/100, Mage 150/300, Druid 125/250, Priest 125/250, Necromancer 150/300, Paladin 75/150, Rogue 100/200, Ranger 100/200, Blackguard 75/150.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-92fafc61": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "92fafc610ddfbddaf3fc361a5637e41b4a548916",
+      "label": "borg-reborn-rs 92fafc61, main at the merge of #561 (#558 breeder hunt by class). Ships caution_heal_when_outmatched 1 (min_loss compiled 50). Source-hash rust 42252512...; harness/borg.txt 552454b6...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-68cf9eb5": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "68cf9eb5430802e1dd80f2ea32b10b0975cdfb87",
+      "label": "borg-reborn-rs 68cf9eb5, main at the merge of #565 (#557): caution_flee_recall_gate_below_depth compiled 0, shipped 2; caution_flee_recall shipped 1. Source-hash rust 1845648a...; harness/borg.txt f04fbcb6...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-bb4e5d1c": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "bb4e5d1c1131a4d8f9f134c1a4dee267aa71dfc4",
+      "label": "borg-reborn-rs bb4e5d1c, main at the merge of #575 (#574 no breeder class values). Ships town_fear_cure_count 2. Source-hash rust 42252512...; harness/borg.txt cfc33a28...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-f660aecc": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "f660aeccb45392d47893c824c49194d9e966e129",
+      "label": "borg-reborn-rs f660aecc, main at the merge of #571 (#557: town_recall_value_percent, prepared_recall_depth, one Word of Recall section in borg.txt), after #561 and #575. Ships caution_flee_recall 1, gate_below_depth 2, recall value 100, reserve 0, prepared_recall_depth 5; scary named list 1, damage 60, latch 1, hurt 50, afraid 1; point-blank divisor 5 (Rogue 3, Ranger 2). harness/borg.txt 05b7ca00...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-162f96af": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "162f96af1d269de5ad6faaa54345a28365ef5c73",
+      "label": "borg-reborn-rs 162f96af, main at the merge of #562 (#515): caution_scary_latch, compiled 1 and shipped 1. Source-hash rust 78d26360...; harness/borg.txt eecb3266...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-pr566-b054287b": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "b054287bf2929f901c0e104db01ab5a57609ae5c",
+      "label": "borg-reborn-rs b054287b, head of PR #566 (#548, unmerged; contains main 8da9be99): #544's down-staircase flight narrowed to cornered flights within 40 steps of flow, and the jumpstart's stair-keeping as its own flag; all shipped off. Source-hash rust 22fe0344...; harness/borg.txt 9e5f4ffc...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-8e7dbad4": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "8e7dbad4b43291a95328c1b90c7d4ae4778dcc4c",
+      "label": "borg-reborn-rs 8e7dbad4, main at the merge of #573 (#569 scary calm review). Ships the live town planner (borg_town_plan 1) with w_light 100, food 100, bleeding 100, poison 100, escape 50, knowledge 25, power 50, trip 50, share 10. Source-hash rust 1a6a0b9d...; harness/borg.txt dcd81f01...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-dbe99509": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "dbe99509b0f3c549fbdb276e54591f510bc44925",
+      "label": "borg-reborn-rs dbe99509, main at the merge of #594 (#551): escape_fox_form, compiled 0 and shipped 0. Source-hash rust ca07b243...; harness/borg.txt 2e51e5b9...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-6438e1cf": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "6438e1cf080fa774a4657e7192eb814d7818395a",
+      "label": "borg-reborn-rs 6438e1cf, main at the merge of #605 (#604 town loop). Ships borg_plays_risky FALSE. harness/borg.txt c6afd905...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-pr612-2075f54e": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "2075f54e69f91ce9356de796c2810a23d6b9029c",
+      "label": "borg-reborn-rs 2075f54e, head of PR #612 (#584 step 2, unmerged; contains #602): the owner's Phase Door rule behind escape_phase_adjacent_rule, compiled and shipped 0. Source-hash rust 94678b69...; harness/borg.txt 2f846d25...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-38858846": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "388588468bfe91b2a8f84b38599813f2acfed64e",
+      "label": "borg-reborn-rs 38858846, main at the merge of #607 (#606: borg-rs is the default core). Ships the same healing class values as 4a482c58 (curve/reserve Warrior 50/100, Mage 150/300, Druid 125/250, Priest 125/250, Necromancer 150/300, Paladin 75/150, Rogue 100/200, Ranger 100/200, Blackguard 75/150; common reserve 100, curve 125). harness/borg.txt 3ce9ae4f...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-07844cf1": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "07844cf13c335c020df17f976d9c5e0ab16fe294",
+      "label": "borg-reborn-rs 07844cf1, main at the merge of #623 (#622 town less scary, shipped caution_town_scary_levels_less 3). Ships caution_scary_damage_percent 60 with the named list, caution_rising_explore_ticks 300. Source-hash rust 589907f0...; harness/borg.txt b5835b13...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-4acf071f": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "4acf071fbea098fd6d1d189032d1dd2298b90a8a",
+      "label": "borg-reborn-rs 4acf071f, main at the merge of #612 (#584 step 2): the owner's Phase Door rule behind escape_phase_adjacent_rule (0) with escape_phase_lost_test (1), all shipped off; also #622's caution_town_scary_levels_less = 3. Source-hash rust aacb842d...; harness/borg.txt 09170d73...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-pr627-cdd065ca": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "cdd065cafe65b4a23883d35c9fdffb7c808da293",
+      "label": "borg-reborn-rs cdd065ca, the head of PR #627 (#603, not merged) on main 38858846: caution_recall_wait_as_usual, compiled and shipped 0; only on DL2 and deeper. Source-hash rust 457ccf2e...; harness/borg.txt 3c5fab54...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-pr595-49933db7": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "49933db793bc433d8b0b04fa59b1efbaa1f469a5",
+      "label": "borg-reborn-rs 49933db7, the head of PR #595 (#593, not merged) on main 38858846: caution_scary_unlatch_calmed, compiled and shipped 0. Source-hash rust c054a630...; harness/borg.txt ba7a41b6...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-pr632-985c772a": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "985c772ade74ccfde6f9ff32f0f5e99138072e5c",
+      "label": "borg-reborn-rs 985c772a, head of PR #632 (#556, unmerged; contains main 4acf071f): breeder-colony avoidance behind caution_breeder_avoid (0) with the fight-through fallback (1), shipped off. Source-hash rust 261fa4f0...; harness/borg.txt b6afc53e...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-pr616-8a427494": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "8a427494fa3cf16cefabe24cd1681b287b0137d2",
+      "label": "borg-reborn-rs 8a427494, head of PR #616 (#614, unmerged; contains main 38858846): rest at the stairs (recover_rest_reach_stairs, _memory) and leaving by the stairs when a monster comes while recovering (caution_stairs_leave_on_monster, _danger_percent, _down); all shipped off. harness/borg.txt fc64c28a...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342"
+      }
+    },
+    "4.2.6-reborn-rust-main-3ba17e2c": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "3ba17e2c21ae203d2dd45fa53f1dbada87acba75",
+      "label": "borg-reborn-rs 3ba17e2c, main at the merge of #633. Ships attack_arrow_point_blank_divisor Ranger 2 and Rogue 3 (class files). Tree 23632fb4; source-hash rust bc79f0a6...; harness/borg.txt 617cc79c...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-main-0892ebd7": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "0892ebd7cd775bdd5265611540394fcf7e0097c8",
+      "label": "borg-reborn-rs main at the merge of",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-main-592c6984": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "592c69842d070108b05314b1e871a47e2f26f52a",
+      "label": "borg-reborn-rs 592c6984, main at the merge of #640 (after #664 low-value support, #653 town-kill follow-ups, #648 town Fox Form). harness/borg.txt 6e68ea22...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-pr645-348de3f7": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "348de3f7127a8143f3fc914af4c5f42dca6ed046",
+      "label": "borg-reborn-rs 348de3f7, head of PR #645 (#615 rule a, unmerged; contains main 592c6984): no rod, HP/SP or mana rest while an awake monster that can move was on screen recently (recover_rest_monster_turns, _distance); shipped off. harness/borg.txt 74ff4c27...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-pr656-e2df04bd": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "e2df04bdfc5db90aef3365ddf0757ac294da7d2a",
+      "label": "borg-reborn-rs e2df04bd, head of PR #656 (#644, unmerged; contains main 592c6984): no rod, HP/SP or mana rest while breeders are known on the level, hunt them or leave (recover_rest_breeders); shipped off. harness/borg.txt 05ac2aaf...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "angband-574b618-original": {
+      "repository": "angband/angband",
+      "ref": "574b618c3bfec595f3503a58f8e488b1c4ae3a46",
+      "mode_side": "pre",
+      "carries": 0,
+      "label": "Angband master 574b618c, C Borg: upstream's head on 2026-11-17, the base of better-borg-c impact v15. The vanilla C Borg to set beside angband-42cd156-original; its results are not paired with 42cd156's, because the game changed.",
+      "source": "https://github.com/angband/angband/commit/574b618c3bfec595f3503a58f8e488b1c4ae3a46"
+    },
+    "4.2.6-bbc-m15": {
+      "repository": "diegoami/better-borg-c",
+      "ref": "646ebfc2a3a80a0caf87f1ab72fe4bcee0d94343",
+      "mode_side": "post",
+      "carries": 137,
+      "label": "better-borg-c milestone 15 (tag 4.2.6-impact-v15, 2026-11-19): official angband master 574b618c with 137 carried C Borg fixes (review issue better-borg-c#547). Same game commit as angband-574b618-original.",
+      "source": "https://github.com/diegoami/better-borg-c/blob/646ebfc2a3a80a0caf87f1ab72fe4bcee0d94343/docs/measurement/IMPACT-MILESTONE15.md",
+      "tag": "4.2.6-impact-v15"
+    },
+    "4.2.6-reborn-rust-main-0d8b61d7": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "0d8b61d77992f2b4fc690d5eba0296b97d92b491",
+      "label": "borg-reborn-rs main 0d8b61d7 (#659 merged: caution_ranged_vs_immobile, shipped 0; #664, #654, #668). Source-hash rust 3498b38b...; harness/borg.txt 5b3ea486...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-t568-7c9b4cd1": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "7c9b4cd190fe20abe6916e587d38c93eb3d62da6",
+      "label": "borg-reborn-rs PR #687 head 7c9b4cd1 on main e5cc5469 (attack_throw_as_melee, shipped 0). Source-hash rust f246741d...; harness/borg.txt af3bf827...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-main-e5cc5469": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "e5cc54697cf58338536ee34959d6d6780ccdddbc",
+      "label": "borg-reborn-rs e5cc5469, main at the merge of #662 (Phase Door rule shipped), after #672 (calmed shipped), #632 and #656 (breeder rules, shipped 0). harness/borg.txt 6bf515d3...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-pr632-ed8e270d": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "ed8e270d64ac04a13205012a86b33194fc69e286",
+      "label": "borg-reborn-rs ed8e270d, head of PR #632 (#556 redesigned, unmerged; contains main 3ba17e2c): kill breeders first behind caution_breeder_stoppable (0), the flight's colony avoidance behind caution_breeder_avoid (0). Source-hash rust b48a199a...; harness/borg.txt f69f7655...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-main-a87b4c96": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "a87b4c96cff9cf636f95cbb9818526f22a025625",
+      "label": "borg-reborn-rs main a87b4c96, the merge of #688 (#682: town_phase_curve_scale_percent and town_oil_curve_scale_percent per class, the owner's values; Blackguard healing 100/200). Tree 9f0cda19; harness/borg.txt 63a4d1be...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-t691-f9c44b35": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "f9c44b35f80539e26e992dea9f2b81dcd4c0a611",
+      "label": "borg-reborn-rs PR #695 head f9c44b35 on main a87b4c96 (kill_flow_mode, shipped 0). Source-hash rust 35346afd...; harness/borg.txt 1d38c4a4...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-pr703-3ed059b6": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "3ed059b6b309c1d2602c52575c9411920ae8be63",
+      "label": "borg-reborn-rs PR #703 head 3ed059b6 on main a87b4c96 (#685: light_detect_evil_spell_min_level, 10 for Priest, Paladin, Mage, Necromancer and Druid). Tree d59363ad; harness/borg.txt e876a25a...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-pr702-c3747cc9": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "c3747cc93796ddb03598765617daa199f82d14b5",
+      "label": "borg-reborn-rs c3747cc9, head of PR #702 (#690, unmerged; contains main 18d2094f): walk out of a slower crowd behind caution_slow_crowd_exit (0). Source-hash rust e86fb19a...; harness/borg.txt fc46fc4e...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-main-dbc92d18": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "dbc92d186e2708425314f9c21a1c32dfb27f4899",
+      "label": "borg-reborn-rs main dbc92d18, the merge of #703 (#685 detection min level 10 for the casters), after #686 (flask damage, 1514bde6) and #688 (class curves). Tree 794fb6fd; harness/borg.txt e876a25a...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-pr714-d9e5a37e": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "d9e5a37e188a3b79e2334250276a22a98809008f",
+      "label": "borg-reborn-rs d9e5a37e, head of PR #714 (#711, unmerged; contains main dbc92d18): store at home only when overweight behind town_store_only_overweight (0). Source-hash rust 0c78d55f...; harness/borg.txt b27e638b...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-t693-8ffee286": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "8ffee286627164a5a983656555288477b3d03d81",
+      "label": "borg-reborn-rs PR #701 head 8ffee286 on main a87b4c96 (prepared_depth_plan, shipped 0). Source-hash rust 0ae753c4...; harness/borg.txt 54eeefd0...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-pr702-0a76dc19": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "0a76dc19d72128cee071840cf846323c9492bdb6",
+      "label": "borg-reborn-rs 0a76dc19, head of PR #702 (#690, unmerged; contains main dbc92d18): the five breeder switches, all shipped 0. Source-hash rust 8d3d089c...; harness/borg.txt 447831ae...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-t713-5af2f79f": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "5af2f79fd3489b6dcb8d79372ade943447d6806f",
+      "label": "borg-reborn-rs PR #717 head 5af2f79f on main dbc92d18 (caution_ranged_vs_immobile mode, shipped 2). Source-hash rust b06566e3...; harness/borg.txt 384911af...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-rs-m15": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "exact_turns": true,
+      "depth_stream": true,
+      "ref": "007e3a1b3bcce4efc10cfd9ac38bd8cd4820f406",
+      "tag": "4.2.6-impact-v15",
+      "carries": 137,
+      "source": "https://github.com/diegoami/borg-rs/releases/tag/4.2.6-impact-v15",
+      "label": "borg-rs Impact v15R (tag 4.2.6-impact-v15, 2026-11-20): the Rust Borg carrying better-borg-c v14 and v15 (137 carries, as 4.2.6-bbc-m15), on the vendored Angband 574b618c3, the same game commit as 4.2.6-bbc-m15. Release validation: Rust and C matched keys, messages and state in 45 full-suite and 3 smoke scenarios (borg-rs PR #109)."
+    },
+    "4.2.6-reborn-rust-pr725-9ffc7e8c": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "9ffc7e8ca53f3507563a366c44c898d5a8f3707b",
+      "label": "borg-reborn-rs 9ffc7e8c, head of PR #725 (#716 with #712, unmerged; contains main 653f60ba): the Ranger's arrow reserve as a soft cap (town_ranger_arrows_max 50) then C's curve scaled by town_ranger_arrows_curve_scale_percent (50), both for the Ranger only; #712's thrown oil, off for the Ranger.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-t732-769132df": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "769132df7b44dea1d448d728974b8db45d754f81",
+      "label": "borg-reborn-rs PR #734 head 769132df (flow_leash, shipped 0). Source-hash rust bd0fbb94...; harness/borg.txt a72b51e6...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-pr728-fc181156": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "fc181156f855ed785998cf6668c1d23b93c99ee9",
+      "label": "borg-reborn-rs fc181156, head of PR #728 (#685 reverted, unmerged; contains main 653f60ba). Source-hash rust 259512ad...; harness/borg.txt ce686d54...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-main-653f60ba": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "653f60ba4394a186c8a64ce7583cd71e1563dfb8",
+      "label": "borg-reborn-rs main 653f60ba. Source-hash rust 259512ad...; harness/borg.txt 6262fc55...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-pr739-7750b604": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "7750b60431877a32002526d90cf7c1beef0ce22d",
+      "label": "borg-reborn-rs 7750b604, head of PR #739 (#736, unmerged; contains main 95fa8278, step-away off since #737): caution_stairs_clean_path, caution_immobile_step_to_exit and attack_mobile_threat_first, compiled 0 and shipped 1.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-main-b895e352": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "b895e3522118ebc43f179e28fd94f27729513a75",
+      "label": "borg-reborn-rs main b895e352 (#718 merge), on upstream Angband 574b618c (#730). Ships attack_throw_as_melee 1, town_store_only_overweight 1, detection min level 0 (#728), recall wait-as-usual 1. Tree 0ecad179; harness/borg.txt 315a4bd7...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-main-fde8025a": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "fde8025a6dfa97fd5cd7eff817187c550a72f8f9",
+      "label": "borg-reborn-rs main fde8025a (merge of #739), on upstream Angband 574b618c (#730). Ships throw-as-melee 1, store-when-overweight 1, detection min level 0 (#728), recall wait-as-usual 1, #725 and #736. Tree dc66f457; harness/borg.txt 22e77be4...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-pr740-743ee46a": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "743ee46aae699140d4241a2606ed2829f959361b",
+      "label": "borg-reborn-rs 743ee46a, head of PR #740 (#704 breeder worlds, unmerged). Source-hash rust fe44e638...; harness/borg.txt 9b39c3e1...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      },
+      "worlds": {
+        "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8"
+      }
+    },
+    "4.2.6-reborn-rust-main-94032140": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "940321402e05c6955a2720c7de4c40c5afde5a53",
+      "label": "borg-reborn-rs 94032140, main at the merge of #735 (#693 class values), on upstream Angband 574b618c (#730). Source-hash rust fe44e638...; harness/borg.txt 4282aaeb... (borg_reborn_core = borg-rs, no errand, no plan, scary_monsters.txt).",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      }
+    },
+    "4.2.6-reborn-rust-pr740-e41eb758": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "e41eb758a4540c9e967e0f260da9996b4c9c2d93",
+      "label": "borg-reborn-rs e41eb758, head of PR #740 (#704 breeder worlds, review fixes, unmerged); engine 574b618c. Tree 2de5e2b1; source-hash rust 7021f261...; harness/borg.txt 59336cb4... (borg_world = none, caution_breeder_policy = 3). An unconsumed borg_world stops the game with exit 2.",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+      },
+      "worlds": {
+        "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8"
+      }
+    },
+    "4.2.6-reborn-rust-t732-80646820": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "806468200358e42974289bb6d192dc663094564c",
+      "label": "borg-reborn-rs PR #734 head 80646820 after review (flow_leash, shipped 0; methods 4 and 5 and the walk to items keep to the leash), on engine 574b618c with the depth plan shipped on. Source-hash rust 87501ba7...; harness/borg.txt 641eecec...",
+      "plans": {
+        "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+        "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+      },
+      "scary_lists": {
+        "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
       }
     }
   }

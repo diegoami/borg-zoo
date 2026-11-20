@@ -1,0 +1,41 @@
+# borg-zoo#438: classes-1800-200k-small,classes-1800-200k-medium after the pilot reborn-kill-flow-mode-pilot (owner, 2026-11-19: "go ahead").
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-kill-flow-mode-200k-small-medium.yaml
+name: reborn-kill-flow-mode-200k-small-medium
+issue: 438
+question: On borg-reborn-rs f9c44b35 (PR #695), do the two modes that led the pilot (kill_flow_mode 1, targeted only; 3, never hunt) save games or progress against the C hunt, on starts 1-360 at 200,000 turns?
+suites:
+- classes-1800-200k-small
+- classes-1800-200k-medium
+specimen: 4.2.6-reborn-rust-t691-f9c44b35
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+profile_prefix: reborn-killflow
+arms:
+  ctl: {borg_param_kill_flow_mode: 0}
+  targeted: {borg_param_kill_flow_mode: 1}
+  nohunt: {borg_param_kill_flow_mode: 3}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: after the pilot (modes 1 and 3 led, mode 2 neutral; gate passed, run 44616997493), the owner said "go ahead"
+  to small + medium at 200k. Mode 2 is left out to save runners.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, after the pilot's gate (borg-zoo#438) and before any result of these tiers was read. Small + medium
+  (RULES 14) at 200,000 turns: starts 1-360, the pilot's specimen, arms ctl (mode 0, shipped), targeted (1) and nohunt (3).
+  Mode 2 (no out-of-view hunt) was neutral in the pilot and is not run here. Big only after this gate and the owner.
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, on the pilot's and these tiers' starts together:
+  - deaths and causes, final and maximum level, deepest level; paired rescued and newly killed against ctl;
+  - "# Flowing toward kill" per game, split by character level band (CL1-9, 10-15, 16-25, 26+);
+  - kills per game and experience at the end;
+  - for every death in any arm: was the Borg walking to a fight (a "Flowing toward kill" in the 20 decisions before it),
+    and in which level band;
+  - how many games pass CL10 (the pilot had none): the open question is CL10 and above;
+  - RULES 18 bin per mode.

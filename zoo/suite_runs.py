@@ -59,6 +59,12 @@ def snapshot(source,name,profile=None,root=ROOT):
     plan=merged.get('borg_plan')
     if plan:
         (out/'errands_plan.txt').write_bytes((source/'harness/plans'/plan).read_bytes());files['errands_plan.txt']=n.sha(out/'errands_plan.txt')
+    scary=merged.get('borg_scary_list')
+    if scary:
+        # The saved-state runner stages only borg.txt and the plan in user/; the frozen
+        # scary list is read by absolute path instead (see template).
+        if '/' in scary:raise ValueError('borg_scary_list must name a file in harness/')
+        (out/scary).write_bytes((source/'harness'/scary).read_bytes());files[scary]=n.sha(out/scary)
     tools=(source/'death-tools-pin.txt').read_text().strip()
     settings=dict(stock=True) if not profile else dict(profile=profile,values=chosen)
     n.write(out/'provenance.json',dict(source=dict(repository='diegoami/borg-reborn-rs',commit=commit),settings=settings,native_tools=tools,files_sha256=files,
@@ -109,9 +115,10 @@ def prepare(definition,cemetery,source,build,archive,out):
     profile={} if d['settings']=='stock' else json.loads((ROOT/'catalogue/profiles.json').read_text())['profiles'][d['settings']['profile']]['settings']
     plan_file=inputs/'errands_plan.txt'
     arm=dict(id=d['name'],source=d['source'],source_sha256=source_sha,core='borg-rs',native_tools=d['native_tools'],build=built,settings=profile,
-             settings_label='stock' if d['settings']=='stock' else d['settings']['profile'],inputs=d['inputs'],errands_plan_sha256=n.sha(plan_file) if plan_file.exists() else None)
+             settings_label='stock' if d['settings']=='stock' else d['settings']['profile'],inputs=d['inputs'],errands_plan_sha256=n.sha(plan_file) if plan_file.exists() else None,
+             scary_list=scary_list_of(inputs,d['inputs']['files']))
     plan=dict(schema=SCHEMA,definition=d,definition_sha256=n.sha(definition),runner_sha256=n.sha(Path(__file__)),zoo_commit=n.git(ROOT,'rev-parse','HEAD'),
-              suite=m,cases=base['cases'],batches=base['batches'],manifest=base['manifest'],gear=gear,arm=arm,expected_cells=len(base['cases']),exact_turns=True)
+              suite=m,cases=base['cases'],batches=base['batches'],manifest=dict(base['manifest'],wall_seconds=m['protocol']['wall_seconds']),gear=gear,arm=arm,expected_cells=len(base['cases']),exact_turns=True)
     plan['plan_hash']=n.digest(plan);n.write(out,plan);return plan
 
 
@@ -124,8 +131,45 @@ def load(path):
     return p
 
 
+SCARY_SETTING=re.compile(r'^[ \t]*borg_scary_list[ \t]*=.*$',re.M)
+
+
+def scary_list_of(inputs,files):
+    """{name, sha256} of the frozen scary list the inputs' borg.txt names, or None."""
+    name=settings_of((inputs/'borg.txt').read_text()).get('borg_scary_list')
+    if not name:return None
+    if name not in files:raise ValueError('borg.txt names a scary list the inputs did not freeze: '+name)
+    return dict(name=name,sha256=files[name])
+
+
 def template(plan,case):
-    return config_text(ROOT/plan['arm']['inputs']['path'],dict(settings=plan['arm']['settings']),case['scenario']['race_idx'],case['scenario']['class_idx'])
+    text=config_text(ROOT/plan['arm']['inputs']['path'],dict(settings=plan['arm']['settings']),case['scenario']['race_idx'],case['scenario']['class_idx'])
+    scary=plan['arm'].get('scary_list')
+    if scary:
+        # borg-reborn-rs resolves an absolute borg_scary_list as it is (scary_list.rs).
+        path=n.local(ROOT/plan['arm']['inputs']['path'],scary['name'],scary['sha256'])
+        text=SCARY_SETTING.sub('borg_scary_list = '+str(path.resolve()),text)
+    return text
+
+
+CLASSES=('warrior','mage','druid','priest','necromancer','paladin','rogue','ranger','blackguard')
+
+
+def effective_row(params,name):
+    """The receipt row for a borg.txt parameter name. borg-reborn-rs #520 keeps per-class values
+    (`<name>@<class>`, the legacy `<name>_<class>` and `attack_preference_<class>_<family>_permille`)
+    as class_values of the general parameter; those come back as {value, origin, class}."""
+    if name in params:return params[name]
+    base=cls=None
+    if '@' in name:base,cls=name.split('@',1)
+    else:
+        m=re.fullmatch(r'attack_preference_([a-z]+)_([a-z]+)_permille',name)
+        if m and m.group(1) in CLASSES:base,cls='attack_preference_'+m.group(2)+'_permille',m.group(1)
+        else:
+            cls=next((c for c in CLASSES if name.endswith('_'+c)),None)
+            base=name[:-len(cls)-1] if cls else None
+    entry=(params.get(base) or {}).get('class_values',{}).get(cls) if base else None
+    return dict(entry,**{'class':cls}) if entry else {}
 
 
 def validate(plan,case,receipts,streams):
@@ -159,8 +203,11 @@ def validate(plan,case,receipts,streams):
     if cfg.get('params_core_sha256')!=digest_text(receipts['run/params-core.json']):raise ValueError('parameter receipt changed')
     for name,value in wanted.items():
         if name.startswith('borg_param_'):
-            row=params.get(name.removeprefix('borg_param_'),{})
-            if str(row.get('value'))!=value or row.get('origin')!='borg.txt' or str(proof['named_parameters'].get(name))!=value:raise ValueError('parameter not effective: '+name)
+            row=effective_row(params,name.removeprefix('borg_param_'))
+            named=proof['named_parameters'].get(name)
+            # A class line (#520) is effective as a class value; a runner that predates
+            # class values does not list it among the named parameters.
+            if str(row.get('value'))!=value or row.get('origin')!='borg.txt' or (named is None and not row.get('class')) or (named is not None and str(named)!=value):raise ValueError('parameter not effective: '+name)
     if plan_sha:
         if proof.get('plan_sha256')!=plan_sha or proof.get('loaded_plan_sha256')!=plan_sha or digest_text(receipts['run/errands_plan.txt'])!=plan_sha or cfg.get('borg_errands_plan_sha256')!=plan_sha:raise ValueError('errands file not loaded')
     elif proof.get('plan_sha256') is not None or 'run/errands_plan.txt' in receipts:raise ValueError('a plan was loaded though none was frozen')

@@ -1,0 +1,47 @@
+# borg-zoo#275: outmatched-healing threshold (caution_heal_outmatched_min_loss 30-70, and off: arm noheal), pilot (owner, 2026-11-18).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-outmatched-pilot.yaml
+name: reborn-heal-outmatched-pilot
+issue: 275
+question: On borg-reborn-rs main 92fafc61, how much HP should a hurt, outmatched Borg have lost before it drinks a cure potion instead of attacking (caution_heal_outmatched_min_loss 30, 40, 50 shipped, 60, 70), and does the rule help at all (off)?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-92fafc61
+  repository: diegoami/borg-reborn-rs
+  ref: 92fafc610ddfbddaf3fc361a5637e41b4a548916
+  label: "borg-reborn-rs 92fafc61, main at the merge of #561 (#558 breeder hunt by class). Ships caution_heal_when_outmatched 1 (min_loss compiled 50). Source-hash rust 42252512...; harness/borg.txt 552454b6..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only these two settings.
+profile_prefix: reborn-healout
+arms:
+  noheal: {borg_param_caution_heal_when_outmatched: 0, borg_param_caution_heal_outmatched_min_loss: 50}
+  l30: {borg_param_caution_heal_when_outmatched: 1, borg_param_caution_heal_outmatched_min_loss: 30}
+  l40: {borg_param_caution_heal_when_outmatched: 1, borg_param_caution_heal_outmatched_min_loss: 40}
+  l50: {borg_param_caution_heal_when_outmatched: 1, borg_param_caution_heal_outmatched_min_loss: 50}
+  l60: {borg_param_caution_heal_when_outmatched: 1, borg_param_caution_heal_outmatched_min_loss: 60}
+  l70: {borg_param_caution_heal_when_outmatched: 1, borg_param_caution_heal_outmatched_min_loss: 70}
+control: [l50]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any zoo result was read (owner: "a common test first, then see which classes are
+  better one way or the other"). Pilot (RULES 16); larger tiers only after this gate and the owner. l50 is the
+  shipped behaviour (rule on, compiled threshold 50) and the control; noheal is the rule disabled.
+  Gate:
+  - no config_error; one binary; both values written in every arm;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against l50
+  (exact McNemar); outmatched-heal potions drunk per game (from the messages); per class, deaths per arm, as
+  direction for a later per-class study (borg_param_caution_heal_outmatched_min_loss@<class>, #520).

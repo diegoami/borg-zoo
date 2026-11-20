@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-breeder-world-x4",
+  "issue": 482,
+  "definition": "definitions/reborn-breeder-world-x4.yaml",
+  "question": "In the breeders-x4 world (borg-reborn-rs PR",
+  "description": "In the breeders-x4 world (borg-reborn-rs PR Generated from definitions/reborn-breeder-world-x4.yaml: 6 arms on 4.2.6-reborn-rust-pr740-743ee46a, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this definition was read (borg-reborn-rs #704, PR #740). classes-18 is\nthe gate (RULES 16); small and medium (starts 1-360) follow right after it.\nGate:\n- no config_error; one binary; every cell's config.txt has borg_world=breeders-x4 and\n  borg_world_data_sha256 the same in every arm; each arm's values in borg.txt and params-core.json;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced (in the world: the rerun needs the same borg.txt, so the same world).\nReport per arm and per class:\n- deaths and causes, final and maximum level, deepest level; breeder deaths (the killer has MULTIPLY);\n- paired rescued and newly killed against ctl (exact McNemar), and games identical to ctl;\n- breeders created (\"# Creating a monster\" of a MULTIPLY race) and killed per game; \"# Breeders cannot be\n  stopped\" and \"# Not resting: breeders to hunt\" per game;\n- mean max CL and DL against ctl.\nA breeder world is a stress test: a switch that helps here still needs normal play's measurement (borg-zoo#460)\nbefore its shipped value changes.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr740-743ee46a"
+  ],
+  "profiles": [
+    "reborn-worldx4-ctl",
+    "reborn-worldx4-stop0",
+    "reborn-worldx4-rest0",
+    "reborn-worldx4-both0",
+    "reborn-worldx4-exit",
+    "reborn-worldx4-avoid"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-pr740-743ee46a",
+  "control_profile": "reborn-worldx4-ctl",
+  "owner_authorization": "2026-11-20: the owner said \"yes take 482\": the issue's pilot as filed, after zoo adapter support for worlds.",
+  "retain_evidence": true
+}

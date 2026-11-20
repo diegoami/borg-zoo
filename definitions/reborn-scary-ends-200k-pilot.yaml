@@ -1,0 +1,132 @@
+# borg-zoo#350: the scary list's fragile end and class fragility at 200,000 turns, pilot; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-ends-200k-pilot.yaml
+#
+# At 100,000 turns no Mage, Necromancer or Priest reaches CL 8, so the fragile end of most monsters cannot act; this
+# pilot plays the first 18 starts of classes-1800-200k. Kobold (shipped 8-11) shown per arm.
+name: reborn-scary-ends-200k-pilot
+issue: 350
+question: >-
+  On borg-reborn-rs main 38858846 at 200,000 turns, does making casters fear the named monsters for fewer levels
+  (fragile end lowered to the tough end, both ends 5 lower, a narrow spread, or class fragility halved) change deaths
+  or progress?
+suites: [classes-1800-200k-pilot]   # 2 per class, 200,000 turns
+
+specimen: 4.2.6-reborn-rust-main-38858846
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-scaryends
+arms:
+  ctl: {}   # shipped: kobold 8-11
+  f3:   # fragile = tough (spread 0): kobold 8-8
+    borg_scary_list_lines:
+      - "squint-eyed rogue | 5-5"
+      - "Grip, Farmer Maggot's Dog | 5-5"
+      - "Fang, Farmer Maggot's Dog | 5-5"
+      - "small kobold | 5-5"
+      - "soldier | 8-8"
+      - "cutpurse | 8-8"
+      - "acolyte | 8-8"
+      - "apprentice | 8-8"
+      - "kobold | 8-8"
+      - "shrieker mushroom patch | 8-8"
+      - "Farmer Maggot | 8-8"
+      - "filthy street urchin | 8-8"
+      - "battle-scarred veteran | 8-8"
+      - "mean-looking mercenary | 8-8"
+      - "Bullroarer the Hobbit | 15-15"
+      - "giant white mouse | 15-15 |  | breeders"
+      - "white worm mass | 15-15 |  | breeders"
+      - "green worm mass | 15-15 |  | breeders"
+      - "cave spider | 20-20"
+      - "red naga | 20-20"
+      - "giant red frog | 20-20"
+      - "radiation eye | 20-20"
+      - "yellow worm mass | 20-20 |  | breeders"
+      - "gravity hound | 44-44"
+      - "inertia hound | 44-44"
+      - "base:ancient dragon | 44-44"
+      - "Beorn, the Shape-Changer | 44-44"
+      - "dread | 44-44"
+  all5:   # both ends - 5: kobold 3-6
+    borg_scary_list_lines:
+      - "squint-eyed rogue | 0-3"
+      - "Grip, Farmer Maggot's Dog | 0-3"
+      - "Fang, Farmer Maggot's Dog | 0-3"
+      - "small kobold | 0-3"
+      - "soldier | 3-6"
+      - "cutpurse | 3-6"
+      - "acolyte | 3-6"
+      - "apprentice | 3-6"
+      - "kobold | 3-6"
+      - "shrieker mushroom patch | 3-6"
+      - "Farmer Maggot | 3-6"
+      - "filthy street urchin | 3-6"
+      - "battle-scarred veteran | 3-6"
+      - "mean-looking mercenary | 3-6"
+      - "Bullroarer the Hobbit | 10-13"
+      - "giant white mouse | 10-13 |  | breeders"
+      - "white worm mass | 10-13 |  | breeders"
+      - "green worm mass | 10-13 |  | breeders"
+      - "cave spider | 15-18"
+      - "red naga | 15-18"
+      - "giant red frog | 15-18"
+      - "radiation eye | 15-18"
+      - "yellow worm mass | 15-18 |  | breeders"
+      - "gravity hound | 39-42"
+      - "inertia hound | 39-42"
+      - "base:ancient dragon | 39-42"
+      - "Beorn, the Shape-Changer | 39-42"
+      - "dread | 39-42"
+  t5f6:   # tough - 5, fragile - 6: kobold 3-5
+    borg_scary_list_lines:
+      - "squint-eyed rogue | 0-2"
+      - "Grip, Farmer Maggot's Dog | 0-2"
+      - "Fang, Farmer Maggot's Dog | 0-2"
+      - "small kobold | 0-2"
+      - "soldier | 3-5"
+      - "cutpurse | 3-5"
+      - "acolyte | 3-5"
+      - "apprentice | 3-5"
+      - "kobold | 3-5"
+      - "shrieker mushroom patch | 3-5"
+      - "Farmer Maggot | 3-5"
+      - "filthy street urchin | 3-5"
+      - "battle-scarred veteran | 3-5"
+      - "mean-looking mercenary | 3-5"
+      - "Bullroarer the Hobbit | 10-12"
+      - "giant white mouse | 10-12 |  | breeders"
+      - "white worm mass | 10-12 |  | breeders"
+      - "green worm mass | 10-12 |  | breeders"
+      - "cave spider | 15-17"
+      - "red naga | 15-17"
+      - "giant red frog | 15-17"
+      - "radiation eye | 15-17"
+      - "yellow worm mass | 15-17 |  | breeders"
+      - "gravity hound | 39-41"
+      - "inertia hound | 39-41"
+      - "base:ancient dragon | 39-41"
+      - "Beorn, the Shape-Changer | 39-41"
+      - "dread | 39-41"
+  fraghalf:   # shipped ranges, class fragility halved
+    borg_scary_list_lines:
+      - "fragility: warrior 0, paladin 0, blackguard 0, ranger 17, rogue 17, priest 33, druid 33, mage 50, necromancer 50"
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked for more experiments lowering the fragile end, with the other scariness levers. Pilot
+  first (RULES 16), on longer games so that casters outgrow the early monsters' levels.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result was read. Pilot (RULES 16), 200,000 turns.
+  Gate:
+  - no config_error; one binary; each arm's appended lines in the run's scary list (hash recorded per cell);
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Read per class: identical plays against ctl; deaths and causes, CL1-3 deaths, final level, deepest level; paired
+  rescued and newly killed; per game "Scary guy on level" notes with the monster, and flights from named monsters.
+  Each value is reported as harmful, neutral (safe to adopt) or helpful (RULES 18). Direction only.
+  Also per class: the highest CL reached, and whether any caster passes CL 8 (where the fragile end starts to act).

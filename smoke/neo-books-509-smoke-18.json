@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "neo-books-509-smoke-18",
+  "definition": "definitions/neo-books-509-smoke-18.yaml",
+  "description": "Sequential acceptance before the owner-authorized book509 repeat.18new cases/two per class,5000ticks,600-second watchdog. Inspect every cell, applied settings, truth receipt, source pins and caster book/cast traces before dispatching the full experiment. Not survival evidence.",
+  "specimens": [
+    "neo-fork-books-509-seeded-v2"
+  ],
+  "profiles": [
+    "default"
+  ],
+  "suites": [
+    "neo-books-509-smoke-18"
+  ],
+  "control": "neo-fork-books-509-seeded-v2",
+  "retain_evidence": true,
+  "shards_by_specimen": {
+    "neo-fork-books-509-seeded-v2": 2
+  },
+  "resource_budget": {
+    "processes_per_job": 2,
+    "max_parallel_jobs": 4,
+    "native_wall_seconds": 600,
+    "neo_wall_seconds": 600,
+    "job_timeout_minutes": 300
+  }
+}

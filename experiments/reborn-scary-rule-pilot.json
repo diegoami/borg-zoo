@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scary-rule-pilot",
+  "issue": 227,
+  "definition": "definitions/reborn-scary-rule-pilot.yaml",
+  "question": "On main, how does play change with no scary-monster rule, with C's named list, or with the damage rule at 60%?",
+  "description": "On main, how does play change with no scary-monster rule, with C's named list, or with the damage rule at 60%? Generated from definitions/reborn-scary-rule-pilot.yaml: 3 arms on 4.2.6-reborn-rust-main-a8ac685a, suite classes-18.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#227). Pilot only. Gate: no config_error; one binary; both\nsettings written in every arm; every cell ends in death, turn_cap or borg_stopped; stalls, purchase bursts and key\noutliers listed. Descriptive: deaths and causes per class, CL1-3 deaths counted, mean max level and depth; paired\nrescued and newly killed for named and damage60 against ctl; from replays, 'Scary guy on level.' notes and down-then-up\nbounces. 18 starts per arm cannot show which rule is better.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-a8ac685a"
+  ],
+  "profiles": [
+    "reborn-scary-ctl",
+    "reborn-scary-named",
+    "reborn-scary-damage60"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-a8ac685a",
+  "control_profile": "reborn-scary-ctl",
+  "owner_authorization": "2026-11-17: the owner asked for a test of control vs the old flag (C's named list) vs the damage rule at 60% on current main (borg-zoo#227). The named list's data-file version (borg-reborn-rs#518/#527, borg-zoo#228) is not merged yet, so this uses the compiled flag. Pilot first (RULES 16); small only on the owner's go."
+}

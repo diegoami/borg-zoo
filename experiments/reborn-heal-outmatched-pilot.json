@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-heal-outmatched-pilot",
+  "issue": 275,
+  "definition": "definitions/reborn-heal-outmatched-pilot.yaml",
+  "question": "On borg-reborn-rs main 92fafc61, how much HP should a hurt, outmatched Borg have lost before it drinks a cure potion instead of attacking (caution_heal_outmatched_min_loss 30, 40, 50 shipped, 60, 70), and does the rule help at all (off)?",
+  "description": "On borg-reborn-rs main 92fafc61, how much HP should a hurt, outmatched Borg have lost before it drinks a cure potion instead of attacking (caution_heal_outmatched_min_loss 30, 40, 50 shipped, 60, 70), and does the rule help at all (off)? Generated from definitions/reborn-heal-outmatched-pilot.yaml: 6 arms on 4.2.6-reborn-rust-main-92fafc61, suite classes-18.",
+  "prespecified": "Fixed 2026-11-18, before any zoo result was read (owner: \"a common test first, then see which classes are\nbetter one way or the other\"). Pilot (RULES 16); larger tiers only after this gate and the owner. l50 is the\nshipped behaviour (rule on, compiled threshold 50) and the control; noheal is the rule disabled.\nGate:\n- no config_error; one binary; both values written in every arm;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;\n- death bundles reproduced.\nReport per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against l50\n(exact McNemar); outmatched-heal potions drunk per game (from the messages); per class, deaths per arm, as\ndirection for a later per-class study (borg_param_caution_heal_outmatched_min_loss@<class>, #520).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-92fafc61"
+  ],
+  "profiles": [
+    "reborn-healout-noheal",
+    "reborn-healout-l30",
+    "reborn-healout-l40",
+    "reborn-healout-l50",
+    "reborn-healout-l60",
+    "reborn-healout-l70"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-92fafc61",
+  "control_profile": "reborn-healout-l50",
+  "retain_evidence": true
+}

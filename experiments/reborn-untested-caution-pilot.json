@@ -1,0 +1,30 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-untested-caution-pilot",
+  "issue": 401,
+  "definition": "definitions/reborn-untested-caution-pilot.yaml",
+  "question": "On borg-reborn-rs main 3ba17e2c, which of the never-tested trip, Recall and breeder settings (town_explore_turns, caution_recall_rest_turns, caution_breeder_easy_escape_steps, caution_flee_recall_chasers) change deaths or progress when lowered or raised?",
+  "description": "On borg-reborn-rs main 3ba17e2c, which of the never-tested trip, Recall and breeder settings (town_explore_turns, caution_recall_rest_turns, caution_breeder_easy_escape_steps, caution_flee_recall_chasers) change deaths or progress when lowered or raised? Generated from definitions/reborn-untested-caution-pilot.yaml: 9 arms on 4.2.6-reborn-rust-main-3ba17e2c, suite classes-18.",
+  "prespecified": "Fixed 2026-11-19, before any result of these profiles was read. Pilot screen (RULES 16): direction only, no claim.\nborg.txt's own impact (games of 6 that change): town_explore_turns 2000: 6; caution_recall_rest_turns 1000: 2;\ncaution_breeder_easy_escape_steps 10: 1 (it is also the free-staircase distance of caution_scary_stand's test);\ncaution_flee_recall_chasers 6: 1. None was ever changed on a borg-reborn-rs specimen. params.rs bounds:\nrecall_rest_turns 2-9999, easy_escape_steps 0-100, chasers 0-100.\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- ctl should replay reborn-errands-main-pilot's none arm (the same specimen and starts) in 18 of 18 games.\nReport per arm and per class: games identical to ctl; deaths and causes, CL1-3 deaths, mean max CL and DL; paired\nrescued and newly killed; for recallrest, the Recall waits and rests; for easyesc, the scary-level stands and\nflights; for chasers, the flight Recalls read. Each arm is reported as harmful, neutral or helpful (RULES 18),\ndirection only.\nFollow-up rule, fixed now: an arm goes to the small tier if it changes at least 3 of 18 games and is not behind ctl\non deaths by 2 or more, or if it is ahead of ctl on deaths or mean max CL; an arm that changes no game is inert and\ndropped. The owner decides which arms go on.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3ba17e2c"
+  ],
+  "profiles": [
+    "reborn-untested38-ctl",
+    "reborn-untested38-explore-lo",
+    "reborn-untested38-explore-hi",
+    "reborn-untested38-recallrest-lo",
+    "reborn-untested38-recallrest-hi",
+    "reborn-untested38-easyesc-lo",
+    "reborn-untested38-easyesc-hi",
+    "reborn-untested38-chasers-lo",
+    "reborn-untested38-chasers-hi"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-3ba17e2c",
+  "control_profile": "reborn-untested38-ctl",
+  "owner_authorization": "2026-11-19: the owner asked for more runs, \"runs with untested parameters\" among them. A pilot screen (RULES 16); the arms worth following into tiers are chosen at the gate with the owner. Dispatch is the owner's call.",
+  "retain_evidence": true
+}

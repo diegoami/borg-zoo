@@ -132,6 +132,19 @@ both on `classes-1800-200k`:
 unchanged from M9: its units are two local-only improvements never proposed upstream and a
 crash correction to the already-carried patch 0099. No death-rate comparison yet - see "Open".
 
+**Milestone 15 and the new upstream head (#432, 2026-11-19; runs 44604305970 and 44604334824, classes-1800).**
+- **The new upstream head:** the original C Borg at Angband master 574b618c (10 commits past 42cd156) has 618 deaths, against 617 on 42cd156 (15 / 16). It is unchanged.
+- **better-borg-c v15** (tag 4.2.6-impact-v15, 137 carries on that same game commit):
+  - normal (modes off): 482 deaths, 26.8%;
+  - munchkin-class: 452, 25.1%.
+  These are the fewest of any milestone (v13: 526 and 469).
+- **Depth under normal:** v15 reaches less depth than v13 (mean max DL 2.10 against 2.40) at the same CL.
+- **Against the original on the same game:**
+  - v15 normal has 136 fewer deaths (417 / 281, descriptive across the mode cutoff, #54);
+  - Warriors, Rogues, Blackguards, Rangers and Druids gain most;
+  - Necromancers (73 against 64) and Priests (54 against 50) die more.
+- **Munchkin-class against normal:** fewer deaths (111 / 81, p 0.036). Warriors gain (26 → 10) and Druids gain (111 → 84), but Rangers die more (59 → 72).
+
 ## Rust Borg: borg-rs
 
 **The port is exact at M4, M5 and M6.** The Rust Borg and the C Borg of the same borg-rs tree play identically on 1,800 of 1,800 seeds at each milestone:
@@ -227,6 +240,12 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
       down stairs when it finds no up stairs, and by plain stair descents.
   - Descriptive only, at 10 starts per class.
 
+**borg-rs Impact v15R against better-borg-c v15 (#463, 2026-11-20; tag 4.2.6-impact-v15, 007e3a1b, Angband 574b618c).**
+- **The munchkin and lunal modes are gone:** borg-rs removed them (borg-rs#60), and a profile that turns one on is refused at start-up. The munchkin-class smoke arm stopped at turn 1 in 18 of 18 games. Runs of v15R use `normal` only.
+- **Smoke, classes-18 `normal`** (run 44649268974): final turn, level, depth and cause are identical to bbc v15 in **18 of 18** games.
+- **Medium, classes-1800-medium `normal`** (run 44652186610, 270 games): the endpoints are identical to classes-v15 in **264 of 270**. Deaths: Rust 69, C 70. **All 6 differing games are Necromancers** (6 of 30). The port reproduces C for the other eight classes on these starts. The release's 45-scenario check didn't catch the Necromancer difference.
+- The play hashes differ in every game, while the endpoints match. The two harnesses record keys differently, so endpoint comparison is the test here.
+
 ## Neo Borg: Mandos lanes
 
 **The port repairs never change play.**
@@ -256,10 +275,381 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 - **Primary endpoint (reach DL5 by 100,000 turns):** 0/1,800 for A and for B, 6.9% (124/1,800) for the control. B - control = -6.9 points (95% -8.1 to -5.7): not non-inferior at 5 points, non-inferior overall at 10 (the margin stored with the run); Warrior, Rogue and Ranger fail both.
 - **#183:** B dies in 503 of 1,800 games against 245 for A (McNemar p < 0.0001), mostly Mage, Necromancer, Druid, Ranger and Priest, at level 2 on DL1 (median turn 10,807). The caveat is that both arms play almost entirely on DL1; the guard's effect on a Borg that dives was not measured.
 
+**#181, borg-reborn-rs main fdaf18e5 with its shipped defaults (pilot, run 44071581589, 18 games): 3 deaths, no unknown-item use.** Specimen `4.2.6-reborn-rust-main-fdaf18e5` (main at #480's merge, with #473; binary 3d0d6d93, source hash 258ccc77), one arm `reborn-shipped-defaults` with no settings: the shipped borg.txt sets the speed30 bundle, no plan. Gate passed: no config_error, one binary, the 18 `borg_param_*` lines and the trip settings in the written borg.txt with no `borg_plan`, no stalls, every cell death or turn_cap. The four sanity starts of the request match their local play hashes. Replayed (18/18 hashes match): no `unknown` quaff/read/eat notes and no Deep Descent read. There are 31 trip returns and 210 `no up stairs found, going down` notes (82 in Rogue 1502695781).
+- **Outcomes:** 3/18 deaths (Blackguard 888896726 to a crow on DL2, Druid 102023799 to a rock lizard, Necromancer 300036923 to a wild cat), mean deepest DL 2.06, mean max level 4.61. The control of run 44054277431 on 193d9076 had 3/18, 2.22 and 4.94, but those are different games from the first turns, so this compares outcomes only.
+- **Death report:** [reports/reborn-main-defaults-pilot-deaths/README.md](../reports/reborn-main-defaults-pilot-deaths/README.md). The cornered Borgs fought in melee with oil, a sling or spell points unused.
+
+**#181, main fdaf18e5 shipped defaults (medium tier, run 44072424588, 270 games, starts 91-360; small skipped by the owner): fewer deaths than the 193d9076 control, and no game goes below DL4.** Gate passed: no config_error, one binary (3d0d6d93), the shipped settings and no `borg_plan` in all 99 distinct borg.txt files. One cell is `stalled`: Ranger 745617169, a frozen-turn loop of 1,084 keys at game turn 60,106 (as borg-reborn-rs#421); its observed outcome is turn_cap at max DL3. 22 games exceed twice the median of 10,195 keys.
+
+| Build (same starts and settings) | Deaths | Mean deepest DL | Reached DL5 | Deepest | Mean max level |
+|---|---|---|---|---|---|
+| main fdaf18e5 (#473, #480) | 22/270 (8.1%) | 2.05 | 0 | 4 | 4.83 |
+| 193d9076, control of run 44065025814 | 34/270 (12.6%) | 2.37 | 14 | 22 | 4.92 |
+
+- **Paired on the same start** (different games; only 1 identical): 30 starts died on 193d9076 and live on main, and 18 the reverse, McNemar p = 0.11. Fewer deaths on main for Blackguards (2 against 5), Priests (3 against 6) and Rogues (2 against 5); Mages 6 against 5.
+- **Causes:** main's commonest is poison (4); 193d9076's were a soldier (5), a crow (4), lava (3) and a giant white mouse (3).
+- **Depth:** the 14 dives to DL5-22 on 193d9076 are gone on main. That fits #473 discarding Deep Descent and never reading unknown scrolls, but it was not checked: the 193d9076 medium run kept no logs.
+- **The 22 deaths** (all 270 games replayed, hashes match CI): [reports/reborn-main-defaults-medium-deaths/README.md](../reports/reborn-main-defaults-medium-deaths/README.md). 19 had run out of Cure Light Wounds. 9 ended in melee at low HP. 10 carried 9-23 Flasks of oil. 5 were killed by Farmer Maggot's dogs at character level 1-2, and 4 by poison. Two Mages fainted casting Phase Door with 0 SP and died paralysed. A poisoned level-1 Rogue died in town walking to the Alchemist, and a Paladin at full HP stepped into town lava (`Twitchy!`).
+
+**#170, speed30 with each plan (pilot, run 44045223515, 54 games): the plans did not differ at 18 starts.** Every setting of `reborn-bundle-plan-speed30` on `4.2.6-reborn-rust-speed-fight` (binary cdfee89a), with no plan, errands_plan.txt and errands_plan_ambitious.txt. Gate passed: no config_error, one binary, every setting written to borg.txt in all arms, plan pins matched (and no plan in the no-plan arm), no stalls or frozen-turn bursts, every cell death or turn_cap.
+- **Deaths:** 3/18 in each arm. With the errands plan, Ranger 1739161339 survives and Warrior 1085222502 dies instead (on DL18 at level 8, to Nár). Blackguard 888896726 and Druid 934061548 die in all three arms. The ambitious plan dies on the same three starts as no plan, and 16 of its 18 games play identically to no plan.
+- **Depth:** mean deepest level 2.22 with no plan, 3.22 with the errands plan (the Warrior's DL18 dive alone accounts for most of the gap) and 2.17 with the ambitious plan.
+- **Repeat:** the errands-plan arm replays the #170 pilot's speed30 arm (run 43994684018) identically in 18/18 games.
+
+**#170, speed30 with each plan (small tier, run 44050742897, 270 games, starts 1-90): still no detectable difference between the plans.** Same three arms as the pilot. Gate passed: no config_error, one binary (cdfee89a), every setting written in all 270 borg.txt files, plan pins matched (none in the no-plan arm), no stalls or frozen-turn bursts, every cell death or turn_cap. Key outliers (over 20,000 keys, about twice the median of 9,914) are 14 Ranger games that reach the turn cap, the same four starts in every arm.
+
+| Plan | Deaths | Mean deepest DL | Reached DL5 | Mean max level |
+|---|---|---|---|---|
+| None (control) | 6/90 | 2.24 | 4 | 5.06 |
+| errands_plan.txt | 4/90 | 2.26 | 5 | 5.10 |
+| errands_plan_ambitious.txt | 7/90 | 2.28 | 5 | 5.01 |
+
+- **Paired against no plan:** the errands plan rescued 3 (Blackguard 446353753, Ranger 129607500, Warrior 740860644) and newly killed 1 (Druid 507571350), McNemar p = 0.63, with 45/90 games identical. The ambitious plan rescued none and newly killed the same Druid, p = 1.0, with 70/90 identical.
+- Without speed30, the #164 small tier had 5/90 deaths with no plan and 4/90 with the errands plan. That is a different specimen and run, so it is not a paired comparison.
+
+**#170, borg_trip_unknown_stacks 2-5 on the speed30 bundle with no plan (pilot, run 44054277431, 72 games): no difference in deaths.** `reborn-bundle-none-speed30` on `4.2.6-reborn-rust-speed-fight` with unknown_stacks 2, 3, 4 and 5 (5 = control). Gate passed: no config_error, one binary (cdfee89a), every setting and the arm's `borg_trip_unknown_stacks = N` written in every borg.txt, no plan loaded, no stalls or frozen-turn bursts, every cell death or turn_cap.
+
+| unknown_stacks | Deaths | Mean deepest DL | Mean max level | Identical to 5 |
+|---|---|---|---|---|
+| 2 | 3/18 | 2.89 | 4.61 | 7/18 |
+| 3 | 3/18 | 2.50 | 5.28 | 12/18 |
+| 4 | 3/18 | 2.17 | 5.11 | 14/18 |
+| 5 (control) | 3/18 | 2.22 | 4.94 | - |
+
+- Only 2 changes who dies: Ranger 1739161339 survives and Rogue 1502695781 dies (DL2, level 3). Blackguard 888896726 and Druid 934061548 die in every arm.
+- The control replays the speed30 x plan pilot's no-plan arm (run 44045223515) identically in 18/18 games.
+- **Deaths in the pilot** (local replay, 54/54 play hashes match CI): [reports/reborn-unknown-stacks-pilot-deaths/README.md](../reports/reborn-unknown-stacks-pilot-deaths/README.md). Where 2 or 3 split from 5, the split is a trip `return` for unknown items. With no up stair known, the Borg goes down instead (`no up stairs found, going down`). The unknown3 Ranger did this 16 times without reaching town.
+
+**#170, borg_trip_unknown_stacks 2-5 (small tier, run 44055270651, 360 games, starts 1-90): no value is distinguishable from 5.** Gate passed: no config_error, one binary (cdfee89a), every setting written (`borg_trip_unknown_stacks = N`) in all 360 borg.txt files, no plan loaded. One cell is flagged `stalled`: Ranger Half-Orc 1071405808 with unknown3, a frozen-turn loop of 1,085 keys at game turn 75,918 (as in borg-rs#90 / borg-reborn-rs#421). Its observed outcome is turn_cap at DL6, level 8. 17 games exceed twice the median of 9,956 keys.
+
+| unknown_stacks | Deaths | Mean deepest DL | Reached DL5 | Mean max level | Identical to 5 |
+|---|---|---|---|---|---|
+| 2 | 8/90 | 2.54 | 5 | 5.26 | 25/90 |
+| 3 | 6/90 (+1 stalled) | 2.46 | 7 | 5.08 | 48/90 |
+| 4 | 3/90 | 2.13 | 2 | 5.04 | 68/90 |
+| 5 (control) | 6/90 | 2.24 | 4 | 5.06 | - |
+
+- **Paired against 5:** 2 rescued 4 and newly killed 6 (3 of them Druids), McNemar p = 0.75; 3 rescued 3 and killed 3, p = 1.0; 4 rescued 3 and killed none, p = 0.25. The 3 rescued by 4 (Blackguard 446353753, Ranger 129607500, Warrior 740860644) are also rescued by 2 and 3.
+- Lower values go somewhat deeper (more DL5 games with 2 and 3) and play differently more often. 4 has the fewest deaths, but 3 against 0 is far from significant.
+- The control replays the speed30 x plan small tier's no-plan arm (run 44050742897) identically in 90/90 games.
+
+**#170, borg_trip_unknown_stacks 3-5 (medium tier, run 44065025814, 810 games, starts 91-360; value 2 dropped by the owner): no value differs from 5 on 360 starts.** Gate passed: no config_error, one binary (cdfee89a), every setting written in all 810 borg.txt files, no plan loaded, no stalls or frozen-turn bursts. 71 games exceed twice the median of 9,441 keys (max 26,827), all at the turn cap.
+
+| unknown_stacks | Medium deaths | Small + medium deaths (360) | Mean deepest DL (360) | Reached DL5 (360) | Mean max level (360) | Identical to 5 (360) |
+|---|---|---|---|---|---|---|
+| 3 | 32/270 | 38 (+1 stalled) | 2.48 | 23 | 4.96 | 197 |
+| 4 | 36/270 | 39 | 2.39 | 19 | 4.99 | 276 |
+| 5 (control) | 34/270 | 40 | 2.34 | 18 | 4.96 | - |
+
+- **Paired against 5 on 360 starts:** 3 rescued 12 and newly killed 10 (McNemar p = 0.83); 4 rescued 4 and killed 3 (p = 1.0). The small tier's lead for 4 (3 against 6 deaths) did not hold in medium (36 against 34).
+- **Per class:** deaths are within one or two of each other in every class, except Warriors with 3 (8 against 4).
+- Lower values go slightly deeper (DL5 in 23, 19 and 18 games) without fewer deaths. The records hold no message logs, so trip returns that became descents are not counted here; that needs a replay (`python3 -m zoo.death_report`).
+
+**The heal + trip policy + attack preference bundle, with and without `errands_plan.txt` (#164).** borg-reborn-rs `f02cd294`, specimen `4.2.6-reborn-rust-heal`. Pilot (`classes-18`, run 43973026635, 72 cells) and small tier (`classes-1800-small`, 90 starts per arm, run 43977574813, 180 cells). Both passed their gates: no `config_error`, one binary, settings written, plan pins matching, no stalls.
+- **Pilot, 4 arms of 18 starts:** deaths 4 (control, no plan), 3 (control, plan), 4 (bundle, no plan), 2 (bundle, plan). The two deaths of the last arm are in all four arms with the same keys. Saved in borg-cemetery#52.
+- **Small, bundle without and with the plan:** deaths 5/90 and 4/90 (95% ranges 2-12% and 2-11%), median max level 5 in both. Paired on the same start, the plan rescued 3 starts, newly killed 2 and both died in 2; play was identical in 46 of 90 starts. The mean deepest level was 2.42 without the plan and 2.21 with it.
+- **Reading:** the plan makes no detectable difference to the bundle at this size. This run has no neutral control arm, so it does not measure the bundle against the unchanged build (RULES 8); the only such comparison is the pilot's 18 starts (4 deaths each).
+
 **#183, Suite 1 on borg-reborn-rs main 7e08c920 with its own defaults (full, 999 saved encounters; runs 44107809205, 44108466606, 44108889978, 44109534305, 44110967531): 281 deaths, and one scenario cut off by the 5 s wall limit.** A sanity check of main: the commit's own `harness/borg.txt` (04dd52f7...), nothing overridden, reported alone. Every stage up to big passed its gate. The full stage collected all 999 cells, with no stopped cell.
 - **Outcomes:** 281 deaths (28.1%), 717 survived the 2,000-turn horizon, 1 not finished.
 - **Deaths per class (of 111):** Warrior 23, Mage 25, Druid 46, Priest 26, Necromancer 35, Paladin 33, Rogue 33, Ranger 35, Blackguard 25.
 - **The unfinished scenario:** Rogue c6-r7-s1060140-i000 hit the 5 s wall at game turn 96,481 of 97,007. The game was fighting a breeding swarm of giant white lice (8,172 `Tracking a monster` notes). Replayed locally, it times out at 5 s every time; with a 60 s wall it reaches the horizon alive in 6.9 s. On the same save, speed30 (193d9076) needed 3.6 s and the reborn baseline 1.3 s. No other scenario took more than 1.7 s on 7e08c920. The archived record labels the cell `invalid_receipt`; the runner now labels such a cell `wall_timeout`.
+
+**#224, cornered mode 2×2×2 on main 6101ca01 (pilot, run 44196757011, 144 games): only the on/off switch matters; radius and big-level margin change nothing.** The gate passed: one binary (259eb8a5), no config_error, all three settings written, nothing flagged. The four cornered-off arms play identically (18/18 each), and so do the four cornered-on arms: radius 2 or 3 and margin 0 or 1 changed no game. Cornered on against off: 3 deaths against 4. It changes 4 of 18 games and saves a CL2 Warrior killed by Sméagol. Mean max level is 4.94 against 4.61. The remaining deaths (two Druids, one by poison at CL6; a Ranger by poison at CL7) are the same in both arms.
+
+**#224, cornered mode off vs on, all 1,800 starts of main 6101ca01 (run 44198028729, 3,600 games): a small effect, not significant.** The gate passed: one binary (259eb8a5), no config_error, the settings written in all 198 borg.txt files, nothing flagged. Deaths are 151 (8.4%, 7.2-9.8) off and 142 (7.9%, 6.7-9.2) on. On the same start, on rescues 21 and newly kills 12 (McNemar p = 0.16); 1,418 of 1,800 games are identical. Mean max level 4.91 / 4.93, DL5 reached 22 / 26, CL1-3 deaths 96 / 96. Melee classes gain most: Rogues 11 → 5, Warriors 5 → 1. Casters are unchanged or slightly worse (Priests 19 → 21, Blackguards 11 → 14). Both arms have the named list on; their deaths are close to the #227 named arm (148).
+
+**#225, borg-reborn-rs#487 healing by class and the digger gate (pilot, run 44173139346, 90 games on main a8ac685a).** The gate passed: one binary (012a06ed), no config_error, every line written, nothing flagged, and the four sanity hashes reproduced. Deaths: ctl 4, digger 4, heal 3, both (shipped) 2, speedres 2, of 18. The shipped healing cuts healing gold from 166-227 to 113-133 per game and moves it to ammunition and armour. The digger gate cuts Shovels from 12-17 to 5 per arm. No arm with the shipped healing bought a weapon. Unknown kinds are the largest spend everywhere (260-325 gold per game). Report: [reports/reborn-heal-class-pilot-deaths/README.md](../reports/reborn-heal-class-pilot-deaths/README.md).
+
+**#227, scary rule on main a8ac685a: none vs C's named list vs damage 60% (pilot, run 44178676657, 54 games).** The gate passed: one binary (012a06ed), no config_error, both settings written, nothing flagged, and all 54 replays match CI. Deaths: no rule 4 (all at CL1-3); named list 3 (none at CL1-3, all at CL4-7); damage60 2 (both at CL2: a Necromancer to a small kobold and a Priest to Fang). The damage rule fires rarely (10 `Scary guy` notes in 18 games against 11,804 for the list) and plays like no rule in 15 of 18 games. The list costs about 0.6-0.9 character levels and triples the level bouncing. Report: [reports/reborn-scary-rule-pilot-deaths/README.md](../reports/reborn-scary-rule-pilot-deaths/README.md).
+
+**#227, the scary rule on all 1,800 starts of main a8ac685a (run 44183532358, 7,200 games): C's named list halves deaths. The damage rule at 60% does almost nothing; at 40% it helps a little.** The gate passed: one binary (012a06ed), no config_error, both settings written in all 396 distinct borg.txt files, no stalls, loops or purchase bursts, and every cell ended in death or turn cap.
+
+| arm | deaths | 95% interval | deaths at CL1-3 | mean max CL | mean max DL | reached DL5 | vs no rule: rescued / newly killed (McNemar p) | same play as no rule |
+|---|---|---|---|---|---|---|---|---|
+| no rule | 297 (16.5%) | 14.9-18.3 | 194 | 5.83 | 2.43 | 75 | - | - |
+| named list | 148 (8.2%) | 7.0-9.6 | 102 | 4.92 | 2.13 | 26 | 255 / 106 (< 0.0001) | 2 |
+| damage 40% | 256 (14.2%) | 12.7-15.9 | 167 | 5.85 | 2.44 | 78 | 162 / 121 (0.017) | 665 |
+| damage 60% (shipped) | 286 (15.9%) | 14.3-17.7 | 187 | 5.85 | 2.44 | 74 | 46 / 35 (0.27) | 1,504 |
+
+- **The named list lowers deaths in every class.** Against damage 60% it rescues 244 and newly kills 106 (p < 0.0001).
+  - Warriors 15 → 1, Rogues 14 → 5, Mages 48 → 23, Druids 51 → 26, Priests 46 → 22, Necromancers 39 → 21.
+  - It costs about 0.9 character levels, 0.3 dungeon levels, and two thirds of the DL5 games (75 → 26).
+- **The damage rule plays like no rule.** At 60% it does in 1,504 of 1,800 games. At 40% it changes 1,135 games and lowers deaths by 2.3 points (p = 0.017). Against 60%, 40% rescues 149 and newly kills 119 (p = 0.08). Necromancers don't benefit from either threshold (39 / 37 / 43 deaths).
+- One development suite, so this is descriptive. The data-file list (#228, borg-reborn-rs#527) is the planned successor to the compiled list.
+
+**#216, borg-reborn-rs#503's two flags, 2×2 on main 233ef23e (pilot, run 44147930313, 72 games): turning off C's named scary list is what changes play.** The gate passed: no config_error, one binary (3f122aed), both flags written in every arm, no stalls or purchase bursts, and the request's four sanity hashes reproduced. Deaths: ctl (breeder_fight 0, scary_named 1) 1/18; fight (1,1) 1; nolist (0,0) 5; both (1,0, the shipped default) 4. With the list off, the `Scary guy on level.` notes vanish, down-then-up bounces fall from about 1,450 to 450, and mean max level rises from 5.0 to 5.7-5.8. Four starts die in both list-off arms, two of them at character level 1 against monsters on the old list. The breeder stand alone changes 10 of 18 games but no outcome. Report: [reports/reborn-breeder-scary-pilot-deaths/README.md](../reports/reborn-breeder-scary-pilot-deaths/README.md).
+
+**#216 small tier (run 44157865502, 360 games, starts 1-90): the pilot's pattern holds.** The gate passed: one binary, no config_error, both flags written, nothing flagged, and all 360 replays match CI. Deaths: ctl 9, fight 9, nolist 14, both (shipped) 11, of 90 each. Against ctl: nolist rescues 7 and newly kills 12 (p = 0.36); both rescues 7 and newly kills 9 (p = 0.80). With the named list off, mean max level rises from 4.8 to 5.6-5.7, down-then-up bounces fall to a third, and the `Scary guy` notes vanish. Necromancers die 0 times in ctl and 4 times with the list off, all at CL1 (Grip three times, a battle-scarred veteran once), and Priests die 1 time against 3. The breeder stand alone changes 38 games but no outcome. Report: [reports/reborn-breeder-scary-small-deaths/README.md](../reports/reborn-breeder-scary-small-deaths/README.md).
+
+**#216, named list off with and without `errands_plan.txt` (pilot, run 44163377539, 36 games on main 233ef23e): the plan changes 8 of 18 games but no outcome.** The gate passed: one binary, no config_error, both flags written, the plan loaded (pin matches) in the plan arm only, nothing flagged. The control replays the #503 pilot's `both` arm exactly (18/18). Deaths are 4 in each arm, on the same four starts: Druid 934061548, Rogue 1381972077, and the CL1 Priest 1569794094 and Necromancer 1574344917. With the plan the Druid dies earlier, to Fang at CL4 instead of a kobold shaman at CL6. Mean max level is 5.78 without the plan and 5.83 with it. The plan does not protect the level-1 casters that the named list protected.
+
+**#216, named list × errands plan, 2×2 with the breeder stand on (pilot, run 44165070793, 72 games on main 233ef23e): the list decides deaths, the plan does not.** The gate passed: one binary, no config_error, flags written, the plan loaded (pin matches) in the plan arms only, nothing flagged. `both`, `both-plan` and `fight` replay their earlier pilots exactly (18/18 each). Deaths: list off 4 (no plan) and 4 (plan), two of them at CL1; list on 1 and 1, none at CL3 or below (the same Mage, at CL4, to a giant white mouse). Turning the list on rescues 4 and newly kills 1, with and without the plan. The plan changes 8 of 18 games and no outcome, with the list either on or off. Mean max level is 5.8 with the list off and 5.0 with it on.
+
+**#255, Word of Recall in flight: ctl (flight Recall) vs gate (shipped) vs reserve vs hold on main 0fa5c34d (pilot 44243556206, small 44244730818, medium 44246229174, big 44248148439, full 44250411032; all 1,800 starts, 7,200 games): the gate neither saves nor clearly costs lives.** Every tier's gate passed: one binary, no config_error, settings written, no frozen-turn loops, every death bundle reproduced (6, 112, 179, 247). Deaths over 1,800 starts: ctl 127 (7.1%), gate 141 (7.8%), reserve 140 (7.8%), hold 136 (7.6%). Gate vs ctl: ctl alone dies 84, gate alone 98 (p = 0.34); the gate changes 1,580 of 1,800 games and goes slightly deeper (mean max DL 2.20 vs 2.12, CL 5.04 vs 5.02). Reserve vs gate: 1,480 games identical, outcomes differ in 3 starts. Hold vs gate: gate alone dies 10, hold alone 5 (p = 0.30). Discordant deaths split evenly by class. The pilot (18 starts, 0 vs 2 deaths) was direction only, and the larger tiers did not confirm a cost.
+
+**#191, caution_rising_explore_ticks 0/150/300/450 on main d9ff9808 (pilot, run 44230664898, 72 games): no deaths in any arm.** The gate passed: one binary (44b1d2f3), no config_error, the setting written in every arm, the shipped scary list loaded and recorded in all 72 cells, nothing flagged. All 72 replays match CI. Every game reached the turn cap. Mean max level is 5.28-5.39 and mean max DL 2.11-2.17 in every arm. 14 of 18 games play identically to the off arm.
+
+| ticks | `exploring for them (rising)` notes | `no up stairs found, going down` | down-then-up bounces | town visits |
+|---|---|---|---|---|
+| 0 (off) | 0 | 84 | 1,408 | 1,268 |
+| 150 | 59 | 70 | 1,368 | 1,235 |
+| 300 (default) | 111 | 63 | 1,387 | 1,259 |
+| 450 | 122 | 72 | 1,364 | 1,235 |
+
+The hold fires more as the budget grows, and the going-down notes fall from 84 to 63-72. The level bouncing and town visits hardly change. A first run of this pilot (44230015413) failed at the build, before any game, because the specimen did not yet pin the shipped scary list.
+
+**#170, borg_trip_unknown_stacks 2/3/4/5 on main d9ff9808 (pilot, run 44236318055, 72 games): no deaths in any arm; lower values make the Borg pendulum.** The gate passed: one binary (44b1d2f3), no config_error, the value written in every arm, nothing flagged. s5 replays the rising-ticks pilot's t300 arm exactly (18/18). All 72 replays match CI. Every game reached the turn cap. Mean max level is 5.17-5.28 and mean max DL 2.11-2.22 in every arm. Games identical to s5: 5 (s2), 10 (s3) and 13 (s4) of 18.
+
+| unknown_stacks | unknown-item trip returns | `no up stairs found, going down` | rising holds (`exploring for them`) | town visits |
+|---|---|---|---|---|
+| 2 | 109 | 198 | 2,380 | 1,375 |
+| 3 | 48 | 107 | 460 | 1,294 |
+| 4 | 50 | 100 | 403 | 1,234 |
+| 5 (shipped) | 18 | 63 | 111 | 1,259 |
+
+Lower values send the Borg back for unknown items more often. Each return brings more `going down` notes and far more rising holds, the pattern the 193d9076 death report found, now partly held by the rising hold. With no deaths, the pilot cannot rank the values on survival.
+
+**#170, borg_trip_unknown_stacks 2/3/4/5 on main d9ff9808 (medium tier, run 44238139015, 1,080 games, starts 91-360): no value differs from 5.** The gate passed: one binary (44b1d2f3), no config_error, values written, no stalls, loops or purchase bursts. Deaths: s2 24 (8.9%), s3 26 (9.6%), s4 26 (9.6%), s5 25 (9.3%) of 270, with 18-19 of them at CL1-3 in every arm. Against s5: s2 rescues 7 and newly kills 6, s3 1 and 2, s4 0 and 1 (p = 1.0 for each). Games identical to s5: 44, 108 and 176 of 270. Mean max level is 4.85-4.99 and mean max DL 2.02-2.11. The top killers over all arms are wild cats (27), soldiers (17), crows (9), grey mushroom patches (7), small kobolds (5) and Grip (5). The zero-death pilots of main d9ff9808 were 18 easy starts: on 270 per arm main dies in about 9% of games, close to 6101ca01's 7.9-8.4%.
+
+**#170, borg_trip_unknown_stacks 2/3/4/5 on main d9ff9808 (all 1,800 starts, run 44241978132, 7,200 games): the value does not change deaths.** The gate passed: one binary (44b1d2f3), no config_error, values written, no frozen-turn loops, 506 of 506 death bundles reproduced. Its starts 91-360 replay the medium run exactly (1,080 of 1,080 key logs). Deaths: s2 125 (6.9%), s3 128 (7.1%), s4 126 (7.0%), s5 127 (7.1%) of 1,800. Every pair differs in at most 83 starts, split evenly (s2 vs s5: 40 and 42; all p >= 0.8). Higher values go slightly further: mean max level 4.91, 4.95, 4.98, 5.02 and mean max DL 2.05, 2.09, 2.09, 2.12. The shipped 5 stays.
+
+**#224, cornered danger threshold (5, 10) × radius (2, 4) on main d9ff9808 (pilot, run 44237508546, 72 games): no deaths in any arm.** The gate passed: one binary (44b1d2f3), no config_error, settings written, nothing flagged. d10-r2 (the shipped values) replays the shipped arm of the unknown_stacks pilot exactly (18/18). Games identical to d10-r2: 16 (d10-r4), 13 (d5-r2) and 13 (d5-r4) of 18. Mean max level is 5.28 at threshold 10 and 5.11 at 5. Triggering earlier changes more games than a wider radius; neither can be ranked on deaths at this size.
+
+**#224, cornered danger threshold (5, 10) × radius (2, 4) on main d9ff9808 (medium tier, run 44241753524, 1,080 games, starts 91-360): no setting differs from the shipped one.** The gate passed: one binary, no config_error, settings written, no frozen-turn loops, 100 of 100 death bundles reproduced. Deaths: d10-r2 (shipped) 25 (9.3%), d10-r4 26 (9.6%), d5-r2 25 (9.3%), d5-r4 24 (8.9%) of 270. Against d10-r2 the others differ in at most 7 starts (0/1, 3/3, 3/2; p >= 0.6). Mean max level is 4.93-4.99 and mean max DL 2.10-2.11. The shipped threshold 10 and radius 2 stay.
+
+**Four switches with no measurable effect at their largest tier (2026-11-18): every tested value is neutral (RULES 18).** Their issues were closed on the owner's word (tidy-up, 2026-11-18). No tested value has a measurable cost, so each is safe to adopt if preferred:
+- **#235, the #539 flight switches at full (run 44216738125, 7,200 games on 9ecbfd1e):** control 142/1,800 deaths; phase+ranged 133/1,799 (rescued 68, newly killed 60, p 0.54), stairs+ranged 133/1,799 (74/66, p 0.55), all three 147/1,799 (83/89, p 0.70). One unfinished cell per switch arm. No combination differs from the control.
+- **#240, the #544 breeder exit at distance 4/6/10 (small + medium, runs 44220465377 and 44220469487, starts 1-360 on 156c8e52):** control 28/360; d4 27, d6 29, d10 28, with 4-6 rescued and 4-6 newly killed per arm (p 1) and 265-277 of 360 games identical to the control. The exit rarely changes a game.
+- **#246, the #549 stair-scum threat flag (small + medium + big, runs 44238199598, 44238075961 and 44245072671, starts 1-900 on d9ff9808):** 68/900 against 67/900 with the flag, 4 rescued and 3 newly killed (p 1), 763 of 900 games identical. Main ships the flag on (fba1c6e0); the evidence does not distinguish on from off.
+- **#248 / #170, borg_trip_unknown_stacks:** see the entries above. 2-5 do not differ in deaths over 1,800 starts. Main ships 2 (fba1c6e0); borg-reborn-rs's notes trace one Blackguard death to that value, a single game.
+
+**#279, the borg_worships_* equipment switches on main 92fafc61 (pilot, run 44308259323, 108 games): damage, speed, hp and mana never change a game; ac changes every game.** The gate passed: no config_error, each switch written TRUE in its arm's borg.txt, every game at the turn cap (no deaths in any arm). Damage, speed, hp and mana worship play the control's keys in 18 of 18 games, as the C Borg's switches-early found for speed, hp and damage. Their bonuses never change an equipment choice at this cap: the four are **neutral** (inert at 100,000 turns, safe to adopt, nothing more to measure at this length). AC worship changes all 18 games, with no deaths and a lower mean max level (5.17 against 5.44). borg_worships_gold was left out (owner): with borg_town_plan = 1 the live planner replaces the C seller, so the unidentified-item selling it allows never runs.
+
+**#274, attack preferences by class on main 4a482c58 (pilot, run 44308236915, 72 games): the class preferences change play in most classes, not deaths.** The gate passed: no config_error, the 16 class lines written in every non-control arm, every game ended in death or at the turn cap. Deaths: 1/18 in ctl, flat and strong (the same Blackguard 1472012981 to a cave spider in all four arms), 2/18 in half (that Blackguard and Ranger 226104090 to an apprentice at CL7 on DL3). Games identical to the shipped preferences: flat 8, half 11, strong 15 of 18. By class, Priests and Blackguards played the control's keys in every arm, and Necromancers differed in every arm with the same outcome. Two starts per class show only where the preferences act; ranking a class's values needs the next tiers.
+
+**#256, borg-reborn-rs#515 scary latch (caution_scary_latch 1 shipped vs 0) on main 162f96af (pilot 44277668188, small 44279232439, medium 44282955475, big 44312919382, full 44315227824; 1,818 paired starts): unlatching does not change survival.** Every tier's gate passed (medium needed one shard rerun after the runner hung in apt-get before any game). Deaths: latched 128 (7.0%), unlatched 138 (7.6%); rescued 43 / newly killed 53 (p = 0.36). Unlatching changes 82% of games and goes slightly further (mean CL 5.35 vs 5.22, max DL 2.25 vs 2.17). In the medium tier's messages (473 of 540 games; one shard's raw evidence hit GitHub's egress limit) the flag cleared in 207 of 270 unlatched games, and 4 unlatched deaths came within 2,000 game turns of a clear, all survived by the latched arm; 3 of those scares ended when the scary monster was only forgotten (a Priest died of poison 9 turns after forgetting a white worm mass). The shipped latch stays; clearing only on a known kill is borg-reborn-rs's call.
+
+**#267, borg-reborn-rs#557/#565 flight-Recall depth gate (caution_flee_recall_gate_below_depth) on main 68cf9eb5.** First pilot (run 44293222019, 0/1/2): 1 is the no-op the code says, identical keys to 0 in all 18 cells. Then 1 (C, control), 2 (shipped) and 3 up to the big tier (pilot 44295931569, small 44297937576, medium 44299647679, big 44301742234; 918 paired starts): **neither gate is shown to save or cost lives.** Deaths 56 (6.1%), 66 (7.2%; 32 rescued / 42 newly killed, p = 0.30), 65 (7.1%; 32 / 41, p = 0.35). The medium tier alone had 2 against 1 at 5 / 15 (p = 0.041); big did not repeat it (22 / 24). In the small tier's messages, 2 moves flight Recalls off DL1 (77 to 13, the rest the breeder/chaser exception) and 3 cuts them to a quarter, at the price of far more stand-and-fight notes on DL1-2 (796 against 259). The lean against the gate matches #255.
+
+**#275, outmatched healing (caution_heal_when_outmatched, caution_heal_outmatched_min_loss) on main 92fafc61 (pilot 44299561765, medium 44302992227): the rule helps, and the shipped threshold 50 is the best tested.** Medium, 270 starts per arm: off 25 deaths (9.3%; 0 rescued / 9 newly killed against 50, p = 0.004, 0.02 after correcting for five arms); 30: 20, 40: 19, **50: 16 (5.9%)**, 60: 18, 70: 20, each only adding deaths against 50 (none significant alone). The rule fires rarely (2-4 of 18 pilot games per arm), so arms differ in 13-46 of 270 games. No class prefers another threshold, so per-class values (`@<class>`) have nothing to aim at.
+
+**#285, fear-cure stock (town_fear_cure_count 2 shipped vs 0) on main bb4e5d1c (pilot 44309646816, medium 44328278095): the shipped cap leans better.** Pilot: no deaths; Boldness bought 5 at 2 against 29 at 0. Medium: 17 deaths (6.3%) at 2 against 24 (8.9%) at 0; 7 rescued / 14 newly killed by 0 (p = 0.19), mostly early DL1 deaths, Necromancers 1 against 6. Not significant; a big tier would firm it up.
+
+**#277, borg-reborn-rs#558 breeder hunt (count 2/4/6, no-rest gate 0/50) on main bb4e5d1c (pilot 44313296425): no difference on 18 starts.** No deaths; 17 of 18 games identical in every arm (only the Mage 801785300 changes, as the request's sanity cells predicted).
+
+**#267 complete, flight-Recall depth gate 1/2/3 on main 68cf9eb5, all 1,800 starts (adds full 44361568858 to the tiers above; 1,818 paired starts): neither gate saves lives.** Deaths: 1 (C) 109 (6.0%), 2 (shipped) 122 (6.7%; 66 rescued / 79 newly killed, p = 0.32), 3 125 (6.9%; 68 / 84, p = 0.22). Like #255's flight gate, keeping the flight Recall off the shallow levels never helped survival; it only changes the Recall economy.
+
+**#277 medium, breeder hunt (run 44346827787, 1,080 games): no difference.** Deaths 16, 17, 16, 17 of 270 for count 4 / gate 0 (control), 4 / 50, 2 / 50, 6 / 50; one Priest is the only death that moves. Closed.
+
+**#286, #548 down-staircase flight on PR #566 head b054287b (pilot 44345853505), and #307 cornered 0/1 on main 8e7dbad4 (pilot 44354583363, medium 44367258196): no survival effect.** #286 pilot: no deaths; the narrowed flight changes 1 of 18 games, keeping stairs through the jumpstart 6. #307 medium: flight off 17/270, cornered 1 17 (changes 18 games), cornered 0 19 (changes 193 games, 2 rescued / 4 newly killed, p = 0.69).
+
+**#303, town planner weights on main 8e7dbad4 (pilot 44349934443, medium 44352270059, big 44367212173, full 44376882104): the shipped weights stay.** In the live planner, borg_town_w_knowledge is forced to 0 and light_depth / food_trip are read only by the old v4 model; they were dropped. Pilot: w_poison played ctl's keys in all 18 games at half and double. Medium (11 arms): nothing significant; share 5 (11 vs 17) and w_food 50 (12) led, bleeding either way and power or trip halved leaned worse. Big: share 5 reversed (42 vs 39). Full: w_food 50 was worse (71 vs 57, p = 0.038); over medium + big + full it is level (119 vs 113 of 1,710).
+
+**#309, Word of Recall value x prepared depth x stairs before Recall on main 8e7dbad4 (pilot 44355657179, medium 44367307516, value-alone pilot 44369247745): stairs first is the setting that matters; the value is a progress knob.** Pilot: every Recall-first arm lost the same Blackguard, every stairs-first arm kept it. Medium (six stairs-first arms): 16-18 deaths of 270 in every arm whatever the value (100/300/1000) or prepared depth (5/3); higher values change more games and go slightly further. Value alone at 75/100/125/150: 1-2 of 18 games change, the same 2 scrolls bought from 100 up.
+
+**#224 expanded, cornered (0,1) x radius (2,3) x big-level margin (0,1) on main 8e7dbad4 (pilot 44376837291, medium 44379732219): the margin is dead, the radius nearly so, cornered mode neutral.** Medium: margin 0 and 1 play identical keys in all 270 games; radius 3 changes 5 games and adds 1 death; cornered on vs off 17 vs 16 deaths (2 / 3). With the 6101ca01 run on all 1,800 starts (142 vs 151, p = 0.16), cornered mode does not measurably change survival on either build.
+
+**#319, attack focus by class on main f660aecc (pilot, then small + medium + big, runs 44423205315, 44423223366 and 44423242333, starts 1-900, 2,700 games): lowering the families a class file does not raise changes no outcome.** Each class kept its shipped class-file preferences, and every other attack family (melee, projectile, thrown, spell, device, activation) went from the neutral 1000 to 750 or 500. The gate passed: one binary, no config_error, lines verified, no frozen-turn loops, every cell ended in death or at the turn cap; the death bundles were not replayed locally. Deaths: ctl 62/900, low750 60 (rescued 6, newly killed 4, p 0.75), low500 61 (8/7, p 1). Mean max CL 5.05-5.08 and DL 2.05 in every arm. Every class is within two deaths of ctl. Rangers play differently in 97 of 100 starts, Rogues in 45-66, Necromancers in 31-33 and Druids in 21-36; Warriors, Mages, Priests and Paladins play ctl's keys in 88-98. **Bins (RULES 18):** low750 and low500 are **neutral**: no measurable cost, safe to adopt if preferred. #274 (the same preferences scaled toward or away from 1000, on 4a482c58) is a separate study.
+
+**#191, caution_rising_explore_ticks 300-2000 on main f660aecc (pilot, then small + medium + big, runs 44377398372, 44377423630 and 44430005739, starts 1-900, 4,500 games): holding a descent longer costs progress and buys no survival.** The gate passed (one binary, no config_error, values verified, no frozen-turn loops; the death bundles were not replayed locally). Deaths: 300 (shipped) 62/900, 500 56 (rescued 12, newly killed 6, p 0.24), 1000 58, 1500 60, 2000 59 (all p ≥ 0.5). Mean max CL falls with the hold, from 5.08 at 300 to 5.03, 4.92, 4.80 and 4.76, in nearly every class. In the pilot's retained messages the Borg held the descent ("exploring for them") 1,101 times at 300 and 3,202-3,904 times at 1,000-2,000, with fewer trip returns (104 against 63-74). **Bins (RULES 18):** 500 is **neutral** (56 deaths against 62, the same progress; safe to adopt). 1000 is **neutral** on deaths with a small progress cost (CL 4.92 against 5.08). 1500 and 2000 are **harmful** on progress (CL 4.80 and 4.76, falling in every tier) and neutral on deaths. With the earlier pilots (0-600 on e85b80e1 and d9ff9808), no value of this setting has changed deaths.
+
+**#299, the scary list's class spread on main f660aecc: raising the fragile end does nothing at 100,000 turns; lowering the tough end by 5 raises tough-class progress (open).**
+- **Spread pilot (run 44346946815, 72 games):** fragile + 3 and + 6 played the shipped keys in 18 of 18 games, with the lines verified in the run's list. No character outgrows the shipped fragile limit in 100,000 turns: Mages reach CL 4-5 and Necromancers CL 5, against a limit of 8 for the earliest monsters.
+- **Tough end, pilot then small + medium + big (runs 44359605720, 44377349082, 44377372817 and 44429988454; starts 1-900, 2,700 games):** tough − 3 and − 5 with the fragile end unchanged. The gate passed. Deaths: ctl 62/900, t3 69 (rescued 4, newly killed 11, p 0.12), t5 57 (13/8, p 0.38). Mean max CL 5.08 / 5.26 / 5.45; DL 2.05 / 2.11 / 2.19. With t5, Warriors reach CL 7.0 against 6.3, Paladins 5.2 against 4.2 and Blackguards 6.5 against 5.1; Paladin deaths fall from 9 to 4 of 100. Mages and Necromancers play ctl's keys in every start. The dose is not monotone. **Bins (RULES 18):** t5 is **helpful** on progress and neutral on deaths; t3 **leans harmful** (69 against 62, rescued 4 against newly killed 11, p 0.12); fragile + 3 / + 6 are **neutral** (inert).
+- **Full (run 44440277055, starts 901-1800, ctl and t5): over all 1,800 starts,** ctl 119 deaths and t5 115 (rescued 24, newly killed 20, p 0.65). Mean max CL 5.08 against 5.42, DL 2.08 against 2.19; the full tier alone gave 57 against 58 and CL 5.08 against 5.39. Paladins 14 against 9 of 200. **Bin:** t5 is helpful on progress in every tier and neutral on deaths, so it is safe to adopt. #350 tests lowering both ends.
+
+**#330, borg_plays_risky on main 6438e1cf (pilot, run 44429970417, 36 games): risky play kills.** The gate passed. With TRUE, 7 of 18 characters die against 0 with the shipped FALSE (rescued 0, newly killed 7, McNemar p 0.016): Druid ×2, Necromancer ×2, Paladin, Rogue and Mage, all at CL2-4 on DL1-2. Every game plays differently, and mean max CL falls from 5.50 to 4.61. **Bin (RULES 18): TRUE is harmful** (p 0.016 at pilot size). The C Borg's switches-early (15 against 16 and 13 against 13 of 50) does not carry over to borg-reborn-rs.
+
+**#290, point-blank divisor for Rangers and Rogues on main f660aecc (pilot, then medium, big and full on their own starts, runs 44359581333, 44360811472, 44360836868 and 44367279069; all 200 Ranger and 200 Rogue starts of classes-1800, 1,200 games): Rangers do better with no point-blank penalty (lead).** The gate passed. Rangers: divisor 2 (shipped) 18/200 deaths, 1 11/200 (rescued 11, newly killed 4, p 0.12), 3 17/200; mean max CL 5.51 / 5.56 / 5.59. Rogues: 3 (shipped) 6/200, 2 8/200, 4 5/200 (4 plays the shipped keys in 151 starts). The earlier all-class tiers (starts 1-360, common 5 / lo / hi) had 23 deaths in every arm. **Bins (RULES 18):** Ranger 1 is **helpful** (a lead, p 0.12); Ranger 3 is **neutral**; Rogue 2 and 4 are **neutral** (8 and 5 deaths against 6); and the all-class common / lo / hi arms are **neutral**. Ranger divisor 1 goes to confirmation on fresh seeds (classes-1800-b Rangers).
+- **Confirmation (run 44440258841, the 200 Ranger starts of classes-1800-b, prespecified exact McNemar at 0.05): not confirmed.** Ranger divisor 1: 12 deaths against 15 (rescued 8, newly killed 5, p 0.58), mean max CL 5.55 against 5.67. Over both suites, 23 against 33 of 400. **Bin:** neutral, leaning helpful on deaths; safe to adopt, but it cannot be claimed to save Rangers.
+
+**#274, attack preferences by class (verysmall, run 44329289001, 135 games on 4a482c58):** shipped 3/45 deaths, flat 3/45, half 5/45 (0 rescued, 2 newly killed). Neither alternative leads. With #319 (lowering the unfavoured families over 900 starts changed no outcome), the class attack preferences show no effect on survival in either direction. **Bins (RULES 18):** flat is **neutral**; half **leans harmful** (2 deaths against 1 in the pilot and 5 against 3 here, with a lower level), not significant.
+
+**#291 medium, scary latch x calm on f660aecc (pilot 44317626468, medium 44425156291): the calm settings do nothing; unlatching is level.** Medium, 270 per arm: shipped 17, calm off 17 (259 games identical), unlatch 15, unlatch + calm off 15 (8 rescued / 6 newly killed); unlatching goes slightly further (CL +0.11, depth +0.14).
+
+**#279 medium, borg_worships_* switches on 92fafc61 (pilot 44308259323, medium 44425189094): hp, mana and speed are inert; none helps.** hp, mana and speed play ctl's keys in all 270 games (gold was dropped from the pilot for the same reason: the live planner bypasses it); damage changes 21 games and ac 245, each 17 deaths against 16.
+
+**#312 medium, Fox Form for a fleeing Druid on dbe99509 (pilot 44365539348, medium 44425221666): no effect.** 12 deaths in each arm of 270; 26 games change.
+
+**#329 / #318, the scary flag clears only after a kill (caution_scary_unlatch_kill) x latch on 6438e1cf (pilot 44428541791, medium 44431942508): the shipped latch is best.** Pilot: kill-unlatch clears the flag only after a kill (46 times in 15 games) and never on a forgotten monster; plain unlatching cleared 56 times, 38 right after a "Forgetting a monster" note; with kill-unlatch on, the latch makes no difference (identical keys). Medium: shipped latch 11 deaths of 270; kill-unlatch 15 (1 rescued / 5 newly killed, p = 0.22); plain unlatch 18 (1 / 8, p = 0.039, early DL1 deaths to Grip, small kobolds and poison).
+
+**#328, caution_town_never_scary on 6438e1cf (pilot 44431977979): changes every game; 2 new deaths, both on DL1.** Off 0, on 2 of 18 (a Druid CL2 and a Mage CL4 to wild cats on DL1); none in town. Direction only.
+
+**#280, flight Recall on DL1 again (dl1off) on f660aecc, big tier (run 44440293820), pooled with starts 1-360: the lead did not hold.** Starts 1-900: ctl 62 deaths, dl1off 59 (rescued 36, newly killed 33, p 0.81). The big tier alone gave 39 against 42. Mages 13 against 8 and Paladins 9 against 4 lean helpful; Rangers 7 against 10 and Blackguards 2 against 5 lean harmful. **Bins (RULES 18):** dl1off and the other four Recall arms are neutral, safe to adopt if preferred.
+
+**#342, #597's switches (caution_twitch_avoid_lava, caution_stair_parked_fallback; compiled 0, shipped 1) on 6438e1cf (pilot, run 44440312372, 54 games):** both play the shipped keys in 18 of 18 games with each switch off, and no deaths. **Bins:** neutral (inert at this size).
+
+**#265, healing by class re-piloted on main 38858846 (run 44445305823, 108 games): two builds agree.** Deaths: ctl 0, curve-lo 3, curve-hi 0, reserve-lo 2, reserve-hi 1, common 2 of 18. On 4a482c58: 1, 2, 1, 3, 1 and 2. On both builds no alternative has fewer deaths than the shipped class files, every alternative ends lower in level, and Druids die with common, curve-lo and reserve-lo but never with the shipped values. **Bins (descriptive, 2 starts per class):** curve-lo, reserve-lo and common lean harmful; curve-hi and reserve-hi are neutral on deaths with a lower level.
+
+**#350, lowering the scary list's fragile end together with the tough end on 38858846 (pilots, runs 44446160367 and 44446177348): lowering the whole range raises progress; the fragile end alone barely acts.**
+- **100,000 turns (classes-18):** ctl 0 deaths, mean max CL 5.50. t5 (tough − 5) 0 deaths, CL 5.67. all5 (both ends − 5) 0, CL 5.83. t5f6 (tough − 5, fragile − 6) 2, CL 5.50: a Druid to a kobold and a Priest to Fang.
+- **200,000 turns (first 18 starts of classes-1800-200k):** ctl 3 deaths, CL 6.17, DL 2.28. all5 1 death, CL 8.22, DL 3.33 (rescued 3, newly killed 1). t5f6 2 deaths, CL 8.22, DL 3.33. f3 (fragile = tough) and fraghalf (class fragility halved) play ctl's keys in 10 and 16 of 18 games, with the same 3 deaths.
+- **Why the fragile end barely acts:** even at 200,000 turns no caster passes CL 8 in ctl (Mages 5 and 7), so the fragile end of most monsters is never reached.
+- **Bins (direction only):** all5 is helpful on progress at both lengths and neutral or helpful on deaths; t5f6 is helpful on progress at 200k and leans harmful at 100k; f3 and fraghalf are neutral.
+- **Tiers at 100,000 turns, starts 1-360 (small + medium, runs 44459418261 and 44459437284):** ctl 13 deaths, t5 18 (rescued 2, newly killed 7, p 0.18), all5 18 (4 / 9, p 0.27). Mean max CL 5.25 / 5.53 / 5.73. The extra deaths are mostly Paladins (5 against 1 in both arms) and soldiers (all5 4, t5 3, ctl 1).
+- **200,000 turns, starts 19-90 (run 44459456699):** ctl 4/72 deaths, CL 6.83; all5 6/72, CL 7.65 (0 / 2). Two all5 deaths are Druids at CL2, killed by an apprentice and by Grip.
+- **Deeper cuts (pilots 44459366821 and 44459384054; ctl and all5 replay the #350 pilots, 36 of 36 at each length):** all8 (both ends − 8) and early-none (the 14 early monsters removed) have 3 deaths of 18 at 100k against 0 (0 rescued; Fang, Grip, soldiers, a crow and a wild cat, at CL1-4). At 200k they have 0 and 1 against 3, with CL 8.4.
+- **Bins (RULES 18):** all5 and t5 are helpful on progress in every tier but **lean harmful on deaths** on this build: a trade-off whose cost sits at CL1-4. all8 and early-none are **harmful** at 100k. The floor pilots (#369) keep the early fear and cut it above.
+
+**#265 small tier on main 38858846 (run 44459475886, starts 1-90, 360 games): lowering the class healing values is harmful.** Deaths: shipped class files 2/90, common 6 (rescued 0, newly killed 4, p 0.12), curve-lo 8 (2 / 8, p 0.11), reserve-lo 7 (0 / 5, p 0.062). Every lowered arm also levels slower (CL 4.96-5.03 against 5.36), and Druids die most in each. The direction is the same in both pilots (4a482c58, 38858846) and here. **Bins:** curve-lo, reserve-lo and common are harmful; the shipped class values are the best tested.
+
+**#361, the bundle of safe-to-adopt changes on 38858846 (pilot, run 44459401300, 54 games):** no deaths in any arm. scary all5 + Ranger divisor 1 + Recall gate 0 reaches CL 5.89 against 5.50; without all5 the pair plays ctl's keys in 16 of 18 games. **Bins:** both neutral on deaths. The bundle's progress comes from all5, whose early-death cost (above) argues for carrying the winning scary variant instead.
+
+**#369, the scary list cut with a level floor on 38858846 (pilots 44465218294 and 44465235895; ctl and all5 replay #350's pilots exactly):** at 100k no arm has a death. At 200k: ctl 3/18 deaths and CL 6.17; all5 1 and CL 8.22; all5-pal (Paladins keep the shipped levels) 2 and 7.83; floor3 3 and 7.06; floor4 3 and 6.61. The floors keep exactly the ctl's three early deaths (CL2-3 on DL1: a cave spider, a giant white centipede and Fang), which all5 avoids, and they give part of all5's progress gain. **Bins (direction only):** floor3, floor4 and all5-pal are neutral on deaths. The early-death cost all5 showed over 360 starts at 100k (18 against 13) needs a 360-start tier of ctl, all5 and floor3 to settle.
+- **floor3 at 100,000 turns, starts 1-360 (runs 44498103824 and 44498131613; ctl replays #350's ctl in 360 of 360; all5 and t5 paired from #350's runs on the same starts):** ctl 13 deaths and mean max CL 5.25; **floor3 13 deaths (rescued 2, newly killed 2) and CL 5.60**; all5 18 and 5.73; t5 18 and 5.53. floor3 against all5: 9 rescued, 4 newly killed. floor3 keeps ctl's causes of death (wild cats, poison, a crow, Fang) without all5's soldier and Paladin deaths (Paladins 0, against 1 for ctl and 5 for all5), and every class levels at least as well as ctl. **Bin:** floor3 is helpful on progress and neutral on deaths. It is the best scary variant tested and safe to adopt.
+- **floor3 over all 1,800 starts (big 44507514816, full 44519974488; 200k small 44507490759):** ctl 100 deaths, floor3 103 (rescued 16, newly killed 19, p 0.74). Mean max CL 5.11 against 5.49, DL 2.06 against 2.18: the progress gain holds in every tier, while the 1-900 death lead (49 against 51) evened out (full alone 54 against 49). At 200k, starts 19-90: 5 deaths against 4, CL 7.47 against 6.83. **Final bin:** floor3 is helpful on progress and neutral on deaths.
+- **floor3 bundle (#361, pilot 44507465460) and floor3 × errands (#405, pilot 44551470526):** no visible gain at pilot size. The bundle plays ctl's outcome; floor3 + errands has 3 deaths against 1 (a Warrior to a kobold, a Paladin in lava). Both are neutral, and a 360-start tier is needed to see whether the two gains add up.
+
+**#244, kill_live_min_power re-piloted on main 38858846 (run 44465254082, 36 games):** no deaths in either arm. Turning it off changes 17 of 18 games and lowers the mean max CL (5.11 against 5.50). **Bin:** off is neutral on deaths and leans harmful on progress. On c9e58ca0 the shipped 1 had 22 deaths against 28 over 360 starts.
+
+**#329 / #318 complete, kill-unlatch x latch on 6438e1cf (adds big and full 44453041589; all 1,800 starts, 1,728 paired per arm): kill-unlatch costs nothing; plain unlatching leans worse.** Every tier's gate passed (156 of 156 death bundles reproduced in the full tier). Deaths: shipped latch 98 (5.7%), kill-unlatch 98 (rescued 20, newly killed 20, p 1.0; mean max CL 5.18 against 5.10, DL 2.10 against 2.06), plain unlatch 115 (29 / 46, p 0.064). **Bins (RULES 18):** kill-unlatch is **neutral, safe to adopt**, with a small progress gain; plain unlatch **leans worse**.
+
+**#334, #584's Phase Door rule on PR #612 head 2075f54e (pilot 44436156652, 54 games):** ctl 0 deaths, rule-100 1, rule-150 2; Phase Door reads fall from 30 to 12 and 4, and every game changes. **Bins (direction only):** rule-100 neutral, rule-150 leaning worse. Superseded by #347, which measures the version merged to main.
+
+**#335, flight Recall from danger on 38858846 (pilot 44453013990, 7 arms, 126 games):** one death (g2d200) in 126 games; every arm changes 12-16 of 18 games. **Bins:** all neutral at pilot size.
+
+**Pilots of 2026-11-19 (classes-18, 18 starts per arm, all gates passed, direction only):**
+- **#355, caution_scary_damage_percent 40/50/60 on main 07844cf1 (run 44456214066):** 60 (shipped) 0 deaths, 50 1, 40 1, the same Druid (seed 934061548, CL1, wild cat on DL1); 1-2 of 18 games change. All neutral.
+- **#356, caution_rising_explore_ticks 300/500/700/900 on 07844cf1 (run 44456243022):** 0, 0, 1 (a Warrior CL7 on DL2 under 700), 0 deaths; every longer value changes 9 of 18 games and ends slightly lower (CL 5.39-5.50 against 5.67). All neutral; consistent with #191 (longer holds cost progress).
+- **#347, #584's Phase Door rule as merged, on main 4acf071f (run 44458680428, 5 arms):** ctl 1 death, thr-100 2, thr-150 1, fight 2, fight-landing 1; the shared death is the same Druid; the rule changes 17-18 of 18 games. fight-landing is the only arm level with ctl on progress (CL 5.22, DL 2.11). All neutral.
+- **#357, caution_scary_unlatch_calmed on PR #595 head 49933db7 (run 44458706433):** no deaths in any arm; calmed, kill and both change 14 of 18 games, with calmed and both alike as expected. All neutral.
+- **#358, caution_recall_wait_as_usual on PR #627 head cdd065ca (run 44458734474):** no deaths; 1 of 18 games changes (most flight Recalls here are read on DL1, where the switch does not act). Neutral.
+
+**Next tiers of 2026-11-19 (every gate passed: one binary, no config_error, values written, every death bundle reproduced, no frozen-turn loops; deaths of 270 per arm unless stated):**
+- **#335 medium, flight Recall from danger on 38858846 (run 44462222798): holding back the flight Recall is harmful.** ctl (shipped) 11; g2 25 (6 rescued / 20 newly killed, p 0.009), g2d100 27 (4 / 20, p 0.002), r0 27 (6 / 22, p 0.004), r0d100 27 (4 / 20, p 0.002). Every class but Warriors and Rangers pays; the danger share does not win the cost back (g2d100 27 against g2 25, r0d100 27 against r0 27). **Bins:** all four **harmful**.
+- **#347 medium, #584's Phase Door rule on 4acf071f (run 44462174256):** ctl 11, thr-100 8 (6 / 3, p 0.51), thr-150 12, fight 15, fight-landing 14; mean max CL 5.08 / 5.11 / 5.09 / 5.02 / 5.01. **Bins:** thr-100 **neutral, leaning better** (safe to adopt); thr-150 neutral; fight and fight-landing neutral, leaning worse. **Big tier (run 44497293750, starts 361-900):** ctl 35, thr-100 20 of 540 (23 / 8, p 0.011). **Full tier (run 44518290845, starts 901-1800): the lead did not repeat,** 46 against 47 of 900 (26 / 27). **Whole study (1,728 paired starts):** ctl 93, thr-100 77 (55 / 39, p 0.12), mean max CL 5.10 against 5.13; Druids 19 against 12. **Bin: thr-100 is neutral, leaning better,** safe to adopt (no cost on any tier).
+- **#356 medium, caution_rising_explore_ticks on 07844cf1 (run 44462187014):** 300 (shipped) 9, 500 11, 700 10, 900 8; each longer value changes about 145 games and lowers mean max CL (5.17 against 5.08 / 5.10 / 5.01). **Bins:** all **neutral** on deaths with a small progress cost, as in #191.
+- **#357 medium, caution_scary_unlatch_calmed on PR #595 head 49933db7 (run 44462208269):** latch 11, calmed 14 (1 / 4, p 0.38), kill 15 (1 / 5, p 0.22). **Bins:** calmed neutral, kill leaning worse at this tier (level over #329's 1,800 starts). **Big tier (run 44497319223):** latch 38, calmed 32 of 540 (10 / 4, p 0.18); over medium + big 49 against 46 (11 / 8, p 0.65), CL 5.21 against 5.10. **Bin: calmed is neutral, safe to adopt, with a progress gain.**
+- **#355 medium, caution_scary_damage_percent on 07844cf1 (run 44462257617):** 60 (shipped) 9, 50 10 (17 games change), 40 12 (0 / 3, p 0.25). **Bins:** 50 neutral, 40 neutral leaning worse.
+- **#364 small + medium, breeder-colony avoidance on PR #632 head 985c772a (run 44462234908, starts 1-360, 360 per arm):** ctl 14, avoid 14 (6 / 6), avoid-nofight 15, avoid-exit 15; about 330 of 360 games change, progress level. **Bins:** all **neutral, safe to adopt**.
+- **#358, caution_recall_wait_as_usual at 200,000 turns on PR #627 head cdd065ca (run 44462245391, classes-1800-200k starts 19-90, 72 per arm):** 4 deaths in each arm, the same characters; the switch changes 19 of 72 games. **Bin:** neutral, safe to adopt.
+
+**#379, point-blank divisor Ranger 1 / Rogue 2 on main 3ba17e2c (pilot 44505026276, rest 44505764140; all 200 Ranger and 200 Rogue starts of classes-1800, 800 games): the Ranger lead of #290 reverses; Rogue 2 leads.** The gate passed (50 of 50 death bundles reproduced). Rangers: main's 2 12 deaths, 1 21 (rescued 6, newly killed 15, p 0.078), mean max CL 5.71 against 5.54. Rogues: main's 3 11, 2 7 (4 / 0, p 0.125), CL 5.56 against 5.49; 69 of 200 games identical. **Bins (RULES 18):** Ranger 1 **leaning worse** (main's 2 stays better on this build); Rogue 2 **leaning better**, safe to adopt.
+
+**#385, the town changes on main 0892ebd7 (pilot 44518308077, 72 games):** shipped 1 death (CL 5.61), town-off (#622 and #621 undone) 2 (CL 5.00), kill-on-sight 1 (3 of 18 games change), never-scary 3, all CL1-2 on DL1 (CL 4.78). The deaths match the request's local sanity cells. **Bins (direction only):** the shipped town changes look right; kill-on-sight neutral; never-scary leaning worse, as in #328.
+
+**#383, the errands plan on main 3ba17e2c (pilot, then small, medium, big and full: all 1,800 starts, 5,400 games): errands_plan.txt lowers deaths.** The gate passed, with each cell's plan recorded and pinned and no stalled or borg_stopped cells. Deaths: none (shipped) 105, **errands 91 (rescued 18, newly killed 4, exact McNemar p 0.004)**, ambitious 102 (6 / 3, p 0.51). errands is lower or equal in every tier (small 3 / 3, medium 18 / 20, big 32 / 37, full 38 / 45) and saves Warriors (0 against 4) and Blackguards (2 against 7). Mean max CL is unchanged in every class. **Bins:** errands is helpful on deaths and neutral on progress; ambitious is neutral. This is a development-suite result: the confirmation on classes-1800-b (another session, `reborn-errands-main-confirm`) decides the claim. Shipped main's deaths are early: 62% at CL1-2, almost all on DL1-2. The top killers are crows (21 of 105), soldiers (13), wild cats (11) and Farmer Maggot's dogs (16).
+
+**Pilots of untested settings on main 3ba17e2c (2026-11-19, 18 starts each; the one ctl death is the same Priest to a rock lizard in every pilot):**
+- **Town gold reserve (#392):** every reserve arm (300, 1000, 25%, 50%) changes all 18 games, with 13 deaths in total against 4 and a lower level (CL 4.50-5.39 against 5.61). **Lean harmful**; the shipped 0 / 0 is best tested.
+- **Bless (#388):** never casting, or stopping sooner, changes 3 games with no outcome change; the other two arms are inert. **Neutral.**
+- **Phase Door thresholds (#389):** unique and anti-summon arms are inert; ordinary danger 20 is neutral; **ordinary danger 5 leans harmful on progress** (CL 5.11).
+- **Town attack on dangerous townspeople (#390):** changes 3-4 games, no outcome change. **Neutral.**
+- **Scary stand off (#393):** 2 deaths against 1, **neutral**. **Detect Invisible after every rest (#393):** changes 16 games and **leans harmful on progress** (CL 5.00).
+- **Crows scary at CL1-2 (#408):** every arm plays ctl's keys in 18 of 18 games. The lines are in the list and crows appear, but the scare never fires on these starts, which have no crow death. **Not tested:** it needs the crow-death starts themselves.
+
+**Suite 1 smoke on borg-cemetery 3d1d0374 and borg-reborn-rs main 38858846 (run 44523525112, #183):** 18 of 18 encounters ran, none invalid or stopped; 9 deaths and 9 survivals. The class-value check that failed runs 44442676041 and 44446442326 passes on this pin.
+
+**#379, Rogue point-blank divisor 2: the fresh-seed confirmation does not hold (run 44524153538, the 200 Rogue starts of classes-1800-b, main 3ba17e2c).** Main's 3 8 deaths, 2 9 (0 / 1, p 1.0), CL 5.59 against 5.55. With the development starts: 16 against 19 (4 / 1). **Final bin:** Rogue 2 is neutral, safe to adopt but with no measured benefit.
+
+**#347, thr-100 at 200,000 turns (run 44524189120, classes-1800-200k starts 19-90, main 4acf071f):** 5 deaths against 5 (3 / 3), CL 6.68 against 6.86. **Bin:** neutral; no extra deaths after turn 100,000.
+
+**#396, the safe-to-adopt bundle on main 3ba17e2c (calmed 1, Recall wait-as-usual 1, Phase Door thr-100, Rogue divisor 2; pilot 44524209558, medium 44553471958, big 44570626345): helpful.** Medium: ctl 20, bundle 11 of 270 (15 / 6, p 0.078). Big (starts 361-900): 37 against 22 of 540 (22 / 7, **p 0.008**). Medium + big: 57 against 33 of 810 (37 / 13, p 0.001). Mean max CL +0.13 (95% CI +0.04 to +0.22) and DL +0.03 over 828 paired starts; no class is worse. **Bin: helpful.** The parts were each developed on classes-1800, so a classes-1800-b confirmation would settle it.
+
+**Untested settings on main 3ba17e2c, small tiers (starts 1-90, with the pilot 108 per arm; every gate passed):**
+- **Trip gold return (#402, small 44570213189):** g0 (shipped, never) 4 deaths, g50 4, g150 6, g400 4. g50 costs 0.30 CL and 0.36 DL, and g150 0.14 CL and 0.19 DL. **Bins:** neutral on deaths with a progress cost; shipped 0 stays.
+- **Town trip forecast (#403, small 44570316850):** ctl 4; gain2 8, explore500 9, explore2000 6, stair25 9, stair100 8, attack50 7, attack200 7, **support2000 12 (1 / 9, p 0.021)**, support500 3. **Bins:** support2000 harmful (uncorrected for nine arms; 0.19 corrected); explore500, stair25 and stair100 leaning worse; the rest neutral. Nine of ten changes die more than shipped. support500 is the only candidate.
+- **Breeder settings (#404, small 44570413639):** ctl 4, acidfear 5, nostand 5, esc3 6, esc10 5; 6-32 of 90 games change, and no arm saves a game. **Bins:** all neutral, rarely reached.
+
+**#413, new flags on main HEAD 592c6984 (pilot 44560354236, small 44570516913; 108 starts per arm):** the three #637 flags (town wand, caster walk, whole bonus) play byte-identical games to on_sight alone in 18 of 18 pilot starts, so they are **not reached** in early games. ctl 4 deaths; onsight 4, foxtown 4 (12 of 108 games change), recall-rest (#640, 200 turns) 6 (1 / 3), phase-rule 5 (3 / 4, CL +0.21), errands 5 (0 / 1). **Bins:** onsight and foxtown neutral, as on 3ba17e2c; recall-rest neutral leaning worse; the Phase Door rule and errands re-checks run normally on the new main, but 108 starts cannot see their 3ba17e2c effects.
+
+**#383, the errands plan: confirmation and 200,000 turns (main 3ba17e2c).** Confirmation on classes-1800-b (1,800 fresh starts): none 128 deaths, **errands 117 (p 0.035)**, CL −0.09 and DL −0.08. Survival is confirmed, and DL just misses the prespecified −0.10 non-inferiority margin. At 200,000 turns (starts 1-360, pilot + small + medium): 23 against 22 (4 / 3), CL −0.07, **DL −0.23**. All of the depth cost is at CL7-14: mean ΔDL −0.29 at control CL7-9 and −1.60 at CL10-14, against +0.04 to +0.12 below CL7, where the caps are 1-2 and the survival lead is. **Bins:** helpful on deaths at 100k, with a depth cost that grows with game length. A variant that keeps the caps of 1-2 and takes the ambitious plan's caps after (`errands_plan_early.txt`) is proposed on borg-reborn-rs#674. It needs the file in a main commit before a pilot.
+
+**#369, floor3 Rogue confirmation (the 200 Rogue starts of classes-1800-b, main 3ba17e2c):** ctl 8 deaths, floor3 7 (7 / 6, p 1.0), CL +0.46. **Bin:** neutral on deaths, helpful on progress for Rogues. On main, floor3 is on #416's "not to ship" list for its all-class deaths (105 to 127).
+
+**#415 study 2, Mage and Priest on main 592c6984 (pilot, 20 starts per arm):** ctl 1 death; heal-hi (Mage 225 / 450, Priest 185 / 375) 2 (1 / 2); spell preference 1500 1, with 17 of 20 games identical. **Bins:** heal-hi neutral; spell 1500 neutral and mostly inert.
+
+**Death-start replays on main 3ba17e2c (#408, #429): they measure reach, not effect.** These runs replay only the starts where shipped main died: 55 crow / wild-cat deaths, and all 233 deaths of the development and confirmation suites. ctl replays every death exactly.
+- **Scary-list crow arms** (crow2, crow3, crowcat2): they change 0-1 of the 55 games. **Not reached:** the Borg is already fleeing when the crow catches it.
+- **The death bank** (233 starts): the Phase Door rule 86 deaths (changes 163 games), calmed 178 (66), errands 198 (37), all three 80 (169).
+- **The crow escape replay** (55 starts): the rule 30 deaths, rule + throwing 1500 30 (53 of 55 identical to the rule: inert), rule + more oil (`borg_town_w_attack` 200, `attack_turns` 50) 10 (changes 50).
+- **Caveat:** a game that changes dies only 5-17% of the time, whatever the change, close to the 6% random-start death rate. A start's death is mostly the bad luck of one path. So rescue counts measure how often an arm changes the game, not whether its mechanism saves.
+- **No bin from these runs.** Only "not reached" is a reading.
+- **Oil on random starts:** in the #415 casters pilot (40 starts, 592c6984), oil has 6 deaths against 2 (1 / 5, p 0.22). It buys 190 more flasks in total, and 27 fewer Cure Light Wounds and 11 fewer Phase Door. The extra deaths were not to oil-related situations. The per-class oil curves of #433 test it on random starts.
+
+**Studies on borg-reborn-rs main e5cc5469 and a87b4c96 (2026-11-19 evening; every gate passed):**
+- **The new base has a new death:** a CL3 Paladin (seed 766958386, classes-18) dies of poison in town at turn 5,100 in every arm on e5cc5469. The same start reached the cap on 0d8b61d7 and 592c6984.
+- **#426, ranged first against immobile attackers** (pilot 44599279288, 0d8b61d7):
+  - deaths 0 → 1, a Blackguard to a yellow worm mass (the local run's case);
+  - 13 of 18 games change;
+  - CL +0.28.
+  - **Bin:** neutral.
+- **#427, throws rated like melee** (pilot 44599308992, PR #687 head 7c9b4cd1):
+  - 1 death against 1, the shared Paladin;
+  - 16 of 18 games change;
+  - CL −0.06.
+  - **Bin:** neutral.
+- **#428, the rest of the bundle on e5cc5469** (pilot 44599338458, small 44602792133; 108 starts per arm). ctl 2 deaths.
+  - **Recall wait-as-usual:** 2 deaths; changes 3 of 108 games. **Bin:** neutral, barely reached.
+  - **Errands:** 3 deaths (0 / 1), **mean max DL −0.18** (2.24 → 2.06). **Bin:** leaning worse.
+  - **Both:** the same as errands.
+  - With calmed and the Phase Door rule shipped, the plan's 3ba17e2c survival gain is gone at this size, and its depth cost stays.
+- **#403, support500 at medium** (44599368117, 3ba17e2c):
+  - medium: 17 against 20 (6 / 9);
+  - with pilot and small (378 per arm): 20 against 24 (7 / 11, p 0.48), with CL and DL unchanged.
+  - **Bin:** neutral. Shipped 1000 stays.
+- **Suite 1 on e5cc5469** (smoke 44599396105, #183): 8 deaths of 18. Per class, it matches the 38858846 smoke.
+- **#437, Blackguards and the Phase Door rule on a87b4c96** (pilot 44607237940, the 10 Blackguard starts of classes-1800-small):
+  - no deaths in either arm;
+  - rule-off changes all 10 games, CL +0.7 and DL +0.6.
+  - **Bin:** neutral on deaths, leaning better on progress. Medium is proposed.
+- **#436, caster oil on a87b4c96** (pilot 44607268031, 40 caster starts):
+  - `borg_town_w_attack` 200: 3 deaths against 3 (3 / 3), CL +0.25;
+  - it rescues the two CL1-2 deaths and adds three later ones.
+  - **Bin:** neutral.
+  - The oil-curve arms wait for profile-writable class lines (borg-reborn-rs#696).
+
+**Studies on borg-reborn-rs main dbc92d18 and PR builds (2026-11-19/20).** Every gate passed: one binary, no config_error, every cell finished, no stalls or frozen-turn bursts.
+- **#443, no detection prayer by panel below CL10 for the casters (`light_detect_evil_spell_min_level` 10, shipped by #703), small + medium (runs 44634350382, 44634363516; pilots on PR head 3ed059b6 and on dbc92d18):** 12 deaths in each arm, the same 12 characters. **CL +0.49 (±0.10)**, DL +0.14. Mage +1.50, Priest +1.25, Paladin +1.02, Necromancer +0.68, each interval above 0. Every Warrior, Rogue, Ranger, Blackguard and Druid game is identical. **Bin: helpful on progress, neutral on deaths**: the clearest progress effect of the day, supporting the shipped value.
+- **#433, the owner's per-class Phase Door and oil curves (#688) against all scales 100:**
+  - On a87b4c96, starts 1-360: 13 against 9 deaths (8 / 4, p 0.39).
+  - Restarted on dbc92d18 after #686 changed flask damage, all 1,800 starts (3,600 games): **67 against 66 (47 / 46, p 1.0)**, CL −0.01 ±0.06. No class differs (Holm p = 1). Mage's lead on starts 1-360 (5 → 1) reversed to 10 → 13.
+  - Blackguard 1 → 5 (p 0.22), with the Phase Door curve and the healing changed together. On the 200 classes-1800-b Blackguard starts (run 44652435342), shipped has 4 deaths. Phase Door 100 and healing 75 / 150 each have 2 (4 / 2, p 0.69).
+  - **Bins:** neutral overall and for every class; the Blackguard values are neutral and safe to keep.
+- **#411, kill breeders first (`caution_breeder_stoppable`, with `caution_breeder_avoid`):**
+  - Pilots: ed8e270d 1 / 3 / 2 deaths; dbc92d18 1 / 2 / 2. On dbc92d18, stop rescues the shipped Necromancer's blue-worm-mass death.
+  - Small + medium on dbc92d18 (runs 44634375920, 44634389746): ctl 12, stop 11, stop-avoid 11 (7 / 6 each, p 1.0), CL −0.06 and −0.09 ±0.13. stop has 4 poison deaths against 0.
+  - **Bins:** neutral, safe to adopt with no measured benefit.
+- **#448, walk out of a slower crowd (`caution_slow_crowd_exit`, PR #702 head c3747cc9), small + medium (runs 44619277864, 44619292193):** 9 against 7 (2 / 0, p 0.50). 352 of 360 games are identical. The rescues include a Priest lost to a blue worm mass, the rule's own case (CL 5 → 11). **Bin: neutral, safe to adopt**; it fires too rarely to measure.
+- **#457, store at home only when overweight (`town_store_only_overweight`, PR #714 head d9e5a37e):** pilot 1 → 0 deaths, CL sum 103 → 109. Small + medium (runs 44650547561, 44650559030): 12 against 10 (9 / 7, p 0.80), CL +0.04, and 358 of 360 games change. **Bin: neutral, safe to adopt.**
+- **#438, the hunt removed in steps (`kill_flow_mode`, PR #695 head f9c44b35), 200,000-turn pilot:** deaths 2 / 1 / 2 / 1 for modes 0-3, CL 6.72 / 7.06 / 6.56 / 7.17. No game passes CL10, so the question (CL10 and above) is not reached. **Direction only:** modes 1 and 3 lead.
+- **#450, never-varied town settings, pilot on dbc92d18 (run 44632887493):**
+  - The device value at 50 / 100 / 200 is **not reached** (17-18 of 18 games identical).
+  - The missile reserve 50 / 100 changes 8-10 games with no outcome change (CL +0.06 to +0.17). Other-ranged 50 plays like reserve 100 alone.
+  - Town flee no-worse changes 2 games.
+
+**Later tiers and new pilots (2026-11-20; every gate passed unless noted):**
+- **#436, caster oil, medium** (44616509514, 120 caster starts, a87b4c96): `borg_town_w_attack` 200 has 4 deaths against 5 (5 / 4). With the pilot: 7 against 8 (8 / 7), DL −0.10. **Bin:** neutral.
+  - The cause is upstream: the pack stashes the oil the planner buys (borg-reborn-rs#712, below), so a higher buying weight can't work yet.
+- **#437, Blackguards and the Phase Door rule, medium** (44616480589, 30 Blackguard starts, a87b4c96): rule-off has 3 deaths against 0 (0 / 3). With the pilot, 3 against 0 on 40. **Bin:** leaning worse for rule-off. It doesn't support the Blackguard exception (borg-reborn-rs#673). Stopped here.
+- **#428, errands on e5cc5469, medium** (44616539032, starts 91-360): 12 against 12 (2 / 2). Over 378 starts: errands 15 against 14 (2 / 3), CL −0.13, **DL −0.11**. **Bin:** neutral on deaths, leaning worse on progress. The 3ba17e2c survival gain is gone, because main's own deaths fell to 3.7%.
+- **#446, the errands plan as a depth cap (`prepared_depth_plan`, PR #701 head 8ffee286):**
+  - pilot (44639042890, 100k): no deaths; the cap changes 4 of 18 games.
+  - 200,000 turns, starts 1-90 (44649264554): ctl 6, formula 8 (0 / 2), errands 6 (2 / 2).
+  - Depth: formula −0.12 DL, errands −0.19 (−0.11 and −0.24 for CL7+ characters).
+  - **Bin:** neither saves games. The formula costs about half the plan's depth. Ship neither.
+- **#461, immobile creatures kept at range (`caution_ranged_vs_immobile` 0-3, PR #717 head 5af2f79f):**
+  - pilot (44645867864): 1 death in every arm, the same worm mass.
+  - Big, starts 361-900 (44649259904): mode 0: 22 deaths, mode 1: 22 (6 / 6), mode 2 (the PR's default): 24 (9 / 11), mode 3: 27 (10 / 15). **Druids 5 → 6 / 9 / 10.**
+  - **The gate fails on one cell:** mode 3 seed 1350297981 crashed with SIGABRT, "race 624 has no blow array" in `immobile_kept_at_range`, reproduced locally (borg-reborn-rs#726). Mode 2 runs the same code.
+  - **Bins:** mode 1 neutral; modes 2 and 3 leaning worse. The default of 2 isn't supported.
+- **#460, the five breeder switches (PR #702 head 0a76dc19):**
+  - pilot (44645872606, 8 arms): exit and crowd 0 deaths against 1; the four arms with `stoppable` each have 2, including the same CL1 floating-eye death.
+  - small + medium (44651947475, 5 arms): ctl 12, rest 9 (5 / 2), crowd 11 (1 / 0), kill-first 10 (8 / 6, 25 of 360 identical), exit 14 (1 / 3).
+  - big (44655845685, 3 arms): ctl 22, rest 21 (2 / 1), crowd 22 (0 / 0, 535 of 540 identical).
+  - **Over 918 starts:** rest 31 against 35 (7 / 3, p 0.34); crowd 33 (2 / 0; with #448, 4 / 0).
+  - **Bins:** rest leaning better, crowd neutral and safe, kill-first neutral, exit leaning worse. Breeders killed 2 of ctl's 13 deaths over pilot, small and medium.
+- **Suite 1 on main e5cc5469** (#183): small 26 of 90 (7e08c920: 26), medium 80 of 360 (85), big **228 of 900 (250)**.
+  - In big, Priests −8, Rangers −5, Warriors −4, Mages −3. Necromancers are the only class up (+2).
+- **Cures and oil, from the retained logs (borg-reborn-rs#710):**
+  - **Cures quaffed fell** from 5.4 to 2.4-2.8 per game between 9ecbfd1e and e5cc5469. That's because there are fewer fights (melee notes 92 → 53; cures per melee note 0.059 → 0.053); the healing settings didn't change.
+  - **Bought, then stashed at home:** in 11-15 of 18 games on every recent main, and 36 of 40 caster games, the Borg buys Cure Serious Wounds and stashes them. Pack power rewards CSW only after max CL 10 (borg-reborn-rs#711, tested by #457).
+  - **Oil:** Flasks of oil count with launcher ammunition under a cap of 20 for non-Ranger/Warrior classes, so casters with a sling stash their oil (borg-reborn-rs#712). Two poisoned Druid deaths had their cures and oil in the home.
+  - The Rust Borg throws 17-29 flasks per game; the C Borgs throw 4-5.
+- **Paladin 766958386, the yellow jelly** (borg-cemetery#79, dossier D-540138fafac2, borg-reborn-rs#713):
+  - It meleed an adjacent yellow jelly for 120 game turns with 24 Flasks of oil unused, then died of poison in town.
+  - #461's rule is the fix under test.
 
 ## Open
 
@@ -434,6 +824,24 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
   diagnostics belong to the linked report; a subsequent fresh-seed,
   prespecified confirmation is required for an improvement claim.
 
+- **Neo truth-corrected cohort and book omission (2026-11-15):**
+  [Run43702732056](https://github.com/diegoami/borg-zoo/actions/runs/43702732056)
+  completed all1800cells:989deaths,732caps,75stalls,4wall timeouts. Deaths are
+  57.47%of death/cap endpoints,54.94%of assigned lives. Raw caster traces show
+  early starting-book stashing across several classes, including109/200Priests
+  and200/200Mages/Necromancers. [The report and repeat protocol](../reports/neo-books-509/README.md)
+  separates later potentially legitimate stashes from the confirmed missing
+  carried-book count/value (central Neo509, mod PR113). Owner authorized a
+  repeat on the previous967b28fbaseline with only that correction, after
+  separate smoke acceptance. No new survival result or improvement claim yet.
+
+  Book-fix smoke [43759325350](https://github.com/diegoami/borg-zoo/actions/runs/43759325350)
+  passed18cases at5000ticks:15caps/3deaths, all16casters kept their starting
+  book and none stashed it. Actual settings/options/truth and raw hashes pass.
+  These are acceptance controls, not a survival estimate. The authorized full
+  repeat [43759670685](https://github.com/diegoami/borg-zoo/actions/runs/43759670685)
+  is now dispatched; its1800-game results remain pending.
+
 - **The M12/M13 explicit-mode grid produced no usable cells.**
   Run 43703176769 collected all 7,200 cells as `harness_failure` with
   `error: no record collected (job failed or was cancelled)`. The plan and
@@ -591,3 +999,57 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
     - no `config_error`; one binary; every loaded plan matched its pin.
   - Ambitious-town fell from 23 deaths to 17.
   - Descriptive only, at 10 starts per class. Medium waits for the owner.
+
+## Correction: purchase bursts were counted as stalls (borg-zoo#205, 2026-11-17)
+
+Until #205 the frozen-turn check called any game turn with 1,000+ keys a
+stall, and named borg-rs#90 and borg-reborn-rs#421 (fixed by #428) whatever
+the cause. A Ranger buying a stack of ammunition one copy per transaction
+also passes 1,000 keys: shop transactions take no game time. The check now
+reads the state log at the burst turn. When gold falls at least once per 25
+keys, the burst is shopping: it is flagged `purchase_burst` and the outcome
+is kept. Only a burst with no purchases is a stall.
+
+These published cells are `stalled` on the results branch, which is
+append-only, but were purchase bursts. Each was replayed with the fix and
+its keys were identical to CI:
+
+| Run | Experiment | Cell | Burst | Actual outcome |
+| --- | --- | --- | --- | --- |
+| 44117547473 | reborn-pb-class-pilot (#198) | pb1, Dwarf Ranger 807773433 | 1,085 keys, 120 purchases, turn 86,658 | turn_cap |
+| 44117547473 | reborn-pb-class-pilot (#198) | pb3, Half-Troll Ranger 60792140 | 1,083 keys, 120 purchases, turn 92,602 | turn_cap |
+| 44117547473 | reborn-pb-class-pilot (#198) | pb4, Half-Troll Ranger 60792140 | 1,083 keys, 120 purchases, turn 92,602 | turn_cap |
+| 44072424588 | reborn-main-defaults-medium (#181) | Dwarf Ranger 745617169 | 1,084 keys, 120 purchases, turn 60,106 | turn_cap |
+| 44055270651 | reborn-unknown-stacks-small (#170) | unknown3, Half-Orc Ranger 1071405808 | 1,085 keys, 120 purchases, turn 75,918, gold 167 → 42 (replayed, keys identical to CI) | turn_cap |
+
+These cells of reborn-heal-curve-medium (run 44131024789, dispatched before
+#207 merged) are purchase bursts too, replayed with the fix, keys identical
+to CI, all reaching the turn cap: r0-c100 Ranger 801109004 (1,094 keys, 121
+purchases), r0-c200 Ranger 154156985 (1,094, 121), r200-c50 Ranger 810310797
+(1,085, 120), r200-c100 Ranger 1024472395 (1,004, 111), r200-c200 Ranger
+956258985 (1,094, 121), r400-c50 Ranger 810310797 (1,049, 116), r400-c200
+Rangers 1222599014 (1,093, 121) and 1256116424 (1,121, 124).
+
+
+## Town planner healing curve scale × reserve, speed 66 (borg-zoo#192, 2026-11-17)
+
+borg-reborn-rs e0aa2e0a (shipped defaults, no plan), healing speed 66, reserve
+0/200/400 × curve scale 50/100/200; pilot (run 44125061301), then small and
+medium together (runs 44131018812, 44131024789): starts 1-360, 3,240 games,
+no config_error, 284 deaths, all reproduced in the cemetery. The c100 arms
+replay the speed-66 small tier's keys on all 270 shared games.
+
+| reserve \ curve | 50 | 100 | 200 |
+|---|---|---|---|
+| 0 | 28 | 36 (control) | 31 |
+| 200 | 32 | 35 | 31 |
+| 400 | 28 | 38 (shipped) | 25 |
+
+Deaths of 360. The shipped r400-c100 has the most deaths; curve 100 is the
+worst curve at every reserve. Best: r400-c200, against r400-c100 +29 rescued
+/ -16 newly killed, exact McNemar p = 0.07; nothing reaches p < 0.05 over 16
+comparisons. Mean level and depth are flat across arms. A lead for a
+prespecified confirmation (RULES 8), not a result.
+
+The borg-reborn-rs side, buying a planned purchase's copies in one
+transaction, is borg-reborn-rs#507 (PR #509).

@@ -4,6 +4,7 @@ These describe the comparison, never its result. New experiments without an
 editorial question get a factual summary of the dimensions they vary.
 """
 QUESTIONS = {
+    'neo-books-509-seeded-v2-1800': 'Do casters retain usable spellbooks and cast after restoring C book value on the previous Neo baseline?',
     'neo-b4-parity-books-v1-small': 'Small tier: how does the Neo parity-and-books candidate play on the first 90 development starts?',
     'neo-b4-parity-books-v1-1800': 'How does the Neo beta.4-engine candidate with six parity repairs and retained spellbook value survive and progress?',
     'rs-additive-returns': 'Do the four added return-trigger settings change survival and town visits when legacy returns stay active and shopping, combat and depth rules are fixed?',
@@ -48,6 +49,7 @@ QUESTIONS = {
     'originals-20261108-classes-1800': 'How do the official C and Neo Borgs perform in their own games?',
     'original-c-20261111-classes-1800': 'What is the original C Borg baseline when rerun alongside the Rust M11 study?',
     'original-c-42cd156-classes-1800': 'How does the newer official C Borg perform on the standard class suite?',
+    'original-c-574b618-classes-1800': 'How does the official C Borg at upstream\'s 2026-11-17 head perform on the standard class suite?',
     'classes-munchkin': 'Does starting with repeated stair-climbing to depth 6 help the original Borg across all classes?',
     'classes-m5-munchkin': 'Does the depth-6 stair-climbing start help the original Borg and M5?',
     'classes-m8-munchkin': 'How do C M8 and Rust M8 perform with the same class-specific stair-climbing start?',
@@ -87,6 +89,9 @@ for milestone in (11, 12, 13):
         f'How does C M{milestone} perform with the class-specific stair-climbing start on and off?')
     QUESTIONS[f'classes-rs-m{milestone}'] = (
         f'How does Rust M{milestone} perform with the class-specific stair-climbing start on and off?')
+QUESTIONS['classes-v15'] = 'How does C M15 perform with the class-specific stair-climbing start on and off?'
+QUESTIONS['classes-rs-m15-medium'] = 'Does Rust M15 reproduce C M15 on the medium class starts, with the stair-climbing start on and off?'
+QUESTIONS['classes-rs-m15-big'] = 'Does Rust M15 reproduce C M15 on the big class starts with special modes off?'
 
 
 PROFILE_LABELS = {

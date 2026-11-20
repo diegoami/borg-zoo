@@ -1,0 +1,55 @@
+# borg-zoo#401: screen of untested trip, Recall and breeder settings on main 3ba17e2c, lower and higher; pilot only.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-untested-caution-pilot.yaml
+#
+# Settings no experiment on a borg-reborn-rs specimen has changed, with borg.txt's "Impact" comment above 0;
+# the companion screen is reborn-untested-town-pilot (the same ctl profile).
+name: reborn-untested-caution-pilot
+issue: 401
+question: >-
+  On borg-reborn-rs main 3ba17e2c, which of the never-tested trip, Recall and breeder settings (town_explore_turns,
+  caution_recall_rest_turns, caution_breeder_easy_escape_steps, caution_flee_recall_chasers) change deaths or
+  progress when lowered or raised?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-3ba17e2c
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-untested38
+arms:
+  ctl: {}   # shipped: explore_turns 1000, recall_rest_turns 500, breeder_easy_escape_steps 5, flee_recall_chasers 3
+  explore-lo: {borg_town_explore_turns: 500}
+  explore-hi: {borg_town_explore_turns: 2000}
+  recallrest-lo: {borg_param_caution_recall_rest_turns: 250}
+  recallrest-hi: {borg_param_caution_recall_rest_turns: 1000}
+  easyesc-lo: {borg_param_caution_breeder_easy_escape_steps: 3}
+  easyesc-hi: {borg_param_caution_breeder_easy_escape_steps: 10}
+  chasers-lo: {borg_param_caution_flee_recall_chasers: 2}
+  chasers-hi: {borg_param_caution_flee_recall_chasers: 6}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked for more runs, "runs with untested parameters" among them. A pilot screen (RULES 16);
+  the arms worth following into tiers are chosen at the gate with the owner. Dispatch is the owner's call.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of these profiles was read. Pilot screen (RULES 16): direction only, no claim.
+  borg.txt's own impact (games of 6 that change): town_explore_turns 2000: 6; caution_recall_rest_turns 1000: 2;
+  caution_breeder_easy_escape_steps 10: 1 (it is also the free-staircase distance of caution_scary_stand's test);
+  caution_flee_recall_chasers 6: 1. None was ever changed on a borg-reborn-rs specimen. params.rs bounds:
+  recall_rest_turns 2-9999, easy_escape_steps 0-100, chasers 0-100.
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - ctl should replay reborn-errands-main-pilot's none arm (the same specimen and starts) in 18 of 18 games.
+  Report per arm and per class: games identical to ctl; deaths and causes, CL1-3 deaths, mean max CL and DL; paired
+  rescued and newly killed; for recallrest, the Recall waits and rests; for easyesc, the scary-level stands and
+  flights; for chasers, the flight Recalls read. Each arm is reported as harmful, neutral or helpful (RULES 18),
+  direction only.
+  Follow-up rule, fixed now: an arm goes to the small tier if it changes at least 3 of 18 games and is not behind ctl
+  on deaths by 2 or more, or if it is ahead of ctl on deaths or mean max CL; an arm that changes no game is inert and
+  dropped. The owner decides which arms go on.

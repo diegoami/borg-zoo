@@ -1,0 +1,49 @@
+# borg-zoo#427: pilot requested by borg-reborn-rs, definition as given in the issue.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-throw-as-melee-pilot.yaml
+name: reborn-throw-as-melee-pilot
+issue: 427
+question: On borg-reborn-rs 7c9b4cd1 (PR #687), does rating throws on melee's footing (attack_throw_as_melee) save games or progress?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-t568-7c9b4cd1
+  repository: diegoami/borg-reborn-rs
+  ref: 7c9b4cd190fe20abe6916e587d38c93eb3d62da6
+  label: "borg-reborn-rs PR #687 head 7c9b4cd1 on main e5cc5469 (attack_throw_as_melee, shipped 0). Source-hash rust f246741d...; harness/borg.txt af3bf827..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+profile_prefix: reborn-throwmelee
+arms:
+  ctl: {borg_param_attack_throw_as_melee: 0}
+  throw: {borg_param_attack_throw_as_melee: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: requested by the borg-reborn-rs owner in this issue; the owner of the zoo said "do all them" to the proposed pilots. Pilot first (RULES 16).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#568, PR #687). Pilot (RULES 16); larger tiers
+  only after this gate and the owner. ctl is the shipped configuration (the switch off).
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;
+  - "# Throwing painful object" and "# Attacking with weapon" notes per game; flasks of oil thrown, and the share that hit
+    ("Your Flask of oil hits");
+  - throws at a unique ("Targeting <unique>" followed by a throw), and how the fight ended (the unique fled, died, or the Borg
+    left or died);
+  - flasks left in the pack at death or at the cap, and games that ran out of flasks with a monster in view.
+  Flasks count as missiles only below CL15 and missile conservation applies above CL20; most of the effect is at DL1-3.
+  #686 (flasks valued in the town plan) is not in this specimen; the two together need a later run.

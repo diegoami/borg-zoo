@@ -87,4 +87,41 @@ class SuiteRecordTest(unittest.TestCase):
         with self.assertRaises((ValueError,KeyError)):saved.validate(r)
 
 
+
+
+class ScaryListTest(unittest.TestCase):
+    def test_the_frozen_scary_list_is_named_and_required(self):
+        import tempfile
+        from pathlib import Path
+        from zoo import suite_runs
+        with tempfile.TemporaryDirectory() as tmp:
+            inputs = Path(tmp)
+            (inputs / 'borg.txt').write_text('borg_reborn_core = borg-rs\nborg_scary_list = scary_monsters.txt\n')
+            self.assertEqual(suite_runs.scary_list_of(inputs, {'scary_monsters.txt': 'ab' * 32}),
+                             {'name': 'scary_monsters.txt', 'sha256': 'ab' * 32})
+            with self.assertRaises(ValueError):
+                suite_runs.scary_list_of(inputs, {})
+            (inputs / 'borg.txt').write_text('borg_reborn_core = borg-rs\n')
+            self.assertIsNone(suite_runs.scary_list_of(inputs, {}))
+        text = 'a = 1\nborg_scary_list = scary_monsters.txt\n'
+        self.assertEqual(suite_runs.SCARY_SETTING.sub('borg_scary_list = /x/s.txt', text),
+                         'a = 1\nborg_scary_list = /x/s.txt\n')
+
+
+
+class ClassValueTest(unittest.TestCase):
+    def test_class_lines_resolve_to_their_class_value(self):
+        from zoo import suite_runs
+        params = {'attack_preference_melee_permille': {'value': 1000, 'origin': 'default',
+                                                       'class_values': {'warrior': {'value': 1800, 'origin': 'borg.txt'}}},
+                  'town_heal_reserve_hp_percent': {'value': 400, 'origin': 'borg.txt',
+                                                   'class_values': {'mage': {'value': 300, 'origin': 'borg.txt'}}}}
+        row = suite_runs.effective_row(params, 'attack_preference_warrior_melee_permille')
+        self.assertEqual((row['value'], row['origin'], row['class']), (1800, 'borg.txt', 'warrior'))
+        self.assertEqual(suite_runs.effective_row(params, 'town_heal_reserve_hp_percent_mage')['value'], 300)
+        self.assertEqual(suite_runs.effective_row(params, 'attack_preference_melee_permille@warrior')['value'], 1800)
+        self.assertEqual(suite_runs.effective_row(params, 'town_heal_reserve_hp_percent')['value'], 400)
+        self.assertEqual(suite_runs.effective_row(params, 'town_heal_reserve_hp_percent_rogue'), {})
+
+
 if __name__=='__main__':unittest.main()

@@ -1015,6 +1015,57 @@
       "stall_seconds": 120,
       "saves": false
     },
+    "classes-1800-200k-pilot": {
+      "description": "The first 18 starts of classes-1800-200k (2 per class), 200,000 engine turns: a pilot for questions that need longer games, e.g. casters past CL 8 (borg-zoo#350).",
+      "role": "pilot",
+      "subset": {"suite": "classes-1800-200k", "range": [0, 18]},
+      "cap": 200000,
+      "wall_seconds": 1800,
+      "stall_seconds": 120,
+      "saves": false
+    },
+    "classes-1800-200k-small": {
+      "description": "Starts 19-90 of classes-1800-200k (8 per class), 200,000 engine turns: the small tier after classes-1800-200k-pilot (starts 1-18), disjoint from it (borg-zoo#350).",
+      "role": "development",
+      "subset": {"suite": "classes-1800-200k", "range": [18, 90]},
+      "cap": 200000,
+      "wall_seconds": 1800,
+      "stall_seconds": 120,
+      "saves": false
+    },
+    "classes-1800-200k-medium": {
+      "description": "Starts 91-360 of classes-1800-200k (30 per class), 200,000 engine turns: the medium tier after classes-1800-200k-pilot and -small (borg-zoo#383).",
+      "role": "development",
+      "subset": {"suite": "classes-1800-200k", "range": [90, 360]},
+      "cap": 200000,
+      "wall_seconds": 1800,
+      "stall_seconds": 120,
+      "saves": false
+    },
+    "classes-1800-verysmall": {
+      "description": "Tier verysmall of classes-1800 (RULES 14): starts 1-45 (5 per class), with each seed's classes-1800 character. Between the pilot and small: a study that ran it continues with small-rest (starts 46-90), so its tiers stay disjoint.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "range": [0, 45]
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-rest": {
+      "description": "Tier small after verysmall (RULES 14): starts 46-90 (5 more per class; with verysmall, exactly the starts of small), with each seed's classes-1800 character.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "range": [45, 90]
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
     "classes-1800-small": {
       "description": "Tier small of classes-1800 (RULES 14): starts 1-90 (10 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
       "role": "development",
@@ -1045,6 +1096,33 @@
       "stall_seconds": 90,
       "saves": false
     },
+    "classes-1800-small-mages": {
+      "description": "The Mage starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Mage"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-priests": {
+      "description": "The Priest starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Priest"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-druids": {
+      "description": "The Druid starts of classes-1800-small (borg-zoo#312): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Druid"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
     "classes-1800-medium": {
       "description": "Tier medium of classes-1800 (RULES 14): starts 91-360 (30 more per class; with small, 40 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
       "role": "development",
@@ -1069,6 +1147,42 @@
       "stall_seconds": 90,
       "saves": false
     },
+    "classes-1800-medium-rangers": {
+      "description": "The Ranger starts of classes-1800-medium (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Ranger"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-medium-rogues": {
+      "description": "The Rogue starts of classes-1800-medium (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Rogue"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-rangers": {
+      "description": "The Ranger starts of classes-1800-big (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Ranger"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-rogues": {
+      "description": "The Rogue starts of classes-1800-big (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Rogue"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
     "classes-1800-full": {
       "description": "Tier full of classes-1800 (RULES 14): starts 901-1800 (100 more per class; with the other three tiers, all 200 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
       "role": "development",
@@ -1076,6 +1190,42 @@
         "suite": "classes-1800",
         "range": [900, 1800]
       },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-crowcat-deaths": {
+      "description": "The 32 starts of classes-1800 where shipped borg-reborn-rs main 3ba17e2c (reborn-errands38-none) died to a crow or a wild cat (borg-zoo#408): chosen starts for a mechanism check, not a random sample.",
+      "role": "development",
+      "subset": {"suite": "classes-1800", "seeds": [46720842, 121466703, 213995942, 238601369, 256351365, 300461652, 440347779, 458006127, 504233000, 518606877, 520757110, 773106230, 810310797, 861292696, 1005268769, 1082949996, 1209439220, 1244628290, 1267936921, 1290636548, 1311784001, 1330341082, 1447548027, 1532260360, 1612359658, 1643476647, 1808419225, 1838309752, 1935672562, 1960118704, 1996566312, 2128748366]},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-deaths38": {
+      "description": "The 105 starts of classes-1800 where shipped borg-reborn-rs main 3ba17e2c (reborn-errands38-none) died (borg-zoo#429): a death-start bank for mechanism checks, chosen starts, not a random sample.",
+      "role": "development",
+      "subset": {"suite": "classes-1800", "seeds": [39054154, 46720842, 96984284, 114942676, 121466703, 151918505, 156402779, 179371675, 210261444, 213995942, 218907419, 235160511, 238601369, 256351365, 300461652, 309417622, 312789942, 396224391, 419740901, 425904011, 440347779, 458006127, 464296083, 502470827, 504233000, 518606877, 520757110, 538736164, 559636045, 589244119, 627922983, 662032265, 681096527, 704416868, 729362605, 729986776, 738597549, 747660823, 759132654, 773106230, 801645919, 810310797, 842068151, 842485384, 857532386, 861292696, 912444426, 914815160, 917392404, 949813766, 973038018, 1005268769, 1071535077, 1082949996, 1086202728, 1088421828, 1162917119, 1177168947, 1199401383, 1209439220, 1244628290, 1261438670, 1267936921, 1282398708, 1290636548, 1311784001, 1315192163, 1330341082, 1350161869, 1395192011, 1419263331, 1447548027, 1455373684, 1516096046, 1532260360, 1543403783, 1558339483, 1575381233, 1575424768, 1581451064, 1611798330, 1612359658, 1643476647, 1663840412, 1718908179, 1721349795, 1740231339, 1783532644, 1808419225, 1838309752, 1847306706, 1867842701, 1894253281, 1935672562, 1946087915, 1950270029, 1954874415, 1960118704, 1974870982, 1976035382, 1996566312, 2021869738, 2128748366, 2133904684, 2146549397]},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full-rangers": {
+      "description": "The Ranger starts of classes-1800-full (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Ranger"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full-rogues": {
+      "description": "The Rogue starts of classes-1800-full (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Rogue"},
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1197,6 +1347,60 @@
           "Kobold"
         ]
       },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-b-crowcat-deaths": {
+      "description": "The 23 starts of classes-1800-b where shipped borg-reborn-rs main 3ba17e2c (reborn-errands38-none) died to a crow or a wild cat (borg-zoo#408): chosen starts for a mechanism check, not a random sample.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-b", "seeds": [9976609, 83189782, 453812472, 461333610, 473090660, 499926828, 662456967, 688038640, 926161511, 960896019, 1064906563, 1161859855, 1198994146, 1254893248, 1358440192, 1364225192, 1365836524, 1579321526, 1625381930, 1637197562, 1723335135, 1840832686, 1944217924]},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-b-deaths38": {
+      "description": "The 128 starts of classes-1800-b where shipped borg-reborn-rs main 3ba17e2c (reborn-errands38-none) died (borg-zoo#429): a death-start bank for mechanism checks, chosen starts, not a random sample.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-b", "seeds": [9976609, 21731285, 62144603, 83189782, 131564537, 135920339, 136785264, 148470249, 156091991, 162752946, 168666865, 191295128, 239652864, 258063704, 274124089, 276875510, 288984063, 326436605, 331498833, 331715392, 360080812, 365789550, 381657601, 382970074, 418269067, 453812472, 461333610, 465409546, 473090660, 479395818, 499926828, 502879390, 521581839, 564172173, 594952458, 600939196, 657331994, 662456967, 663869430, 688038640, 696586416, 705136760, 737917900, 756430473, 785191085, 789693885, 798765472, 817676495, 835585970, 837162623, 843884188, 845723538, 874993142, 904970668, 926161511, 945588897, 960896019, 966427527, 974069559, 987746661, 990156004, 1033180565, 1064906563, 1074369736, 1109771545, 1128877839, 1133492796, 1141162517, 1150668985, 1156126810, 1161859855, 1178772142, 1190503952, 1198994146, 1242209657, 1243627814, 1254893248, 1279165744, 1290032980, 1328803522, 1334170293, 1343094539, 1345296809, 1353230862, 1354010556, 1354389580, 1358440192, 1361109760, 1364225192, 1365836524, 1378849733, 1402621423, 1423966963, 1480802338, 1500532180, 1567660469, 1579321526, 1581318542, 1588325287, 1625381930, 1637197562, 1669035154, 1676374870, 1681351646, 1708053750, 1723335135, 1769025050, 1771023558, 1791541691, 1799832606, 1806245857, 1840832686, 1859278104, 1865346681, 1894415266, 1944217924, 1944450986, 1987195964, 1987704522, 1991185818, 1999736507, 2019909989, 2090276175, 2106487868, 2109728711, 2112064818, 2133116148, 2138133000]},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-b-rogues": {
+      "description": "The 200 Rogue starts of classes-1800-b (borg-zoo#369): fresh seeds for confirming a Rogue lead from classes-1800. Prespecified tests only.",
+      "role": "confirmation",
+      "subset": {"suite": "classes-1800-b", "class": "Rogue"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-b-blackguards": {
+      "description": "The 200 Blackguard starts of classes-1800-b (borg-zoo#433): fresh seeds for the Blackguard follow-up of the class curves. Prespecified tests only.",
+      "role": "confirmation",
+      "subset": {"suite": "classes-1800-b", "class": "Blackguard"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-b-rogues": {
+      "description": "The 200 Rogue starts of classes-1800-b (borg-zoo#379): fresh seeds for confirming a Rogue lead from classes-1800. Prespecified tests only.",
+      "role": "confirmation",
+      "subset": {"suite": "classes-1800-b", "class": "Rogue"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-b-rangers": {
+      "description": "The 200 Ranger starts of classes-1800-b (borg-zoo#290): fresh seeds for confirming a Ranger lead from classes-1800. Prespecified tests only.",
+      "role": "confirmation",
+      "subset": {"suite": "classes-1800-b", "class": "Ranger"},
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1556,6 +1760,217 @@
       "stall_seconds": 90,
       "saves": false,
       "measurement_profile": "c-seeded-point-buy-v2"
+    },
+    "neo-books-509-smoke-18": {
+      "description": "New18-case acceptance suite for book correction509, two starts per class,5000 engine ticks. Distinct seed namespace; not part of the1800-game denominator.",
+      "role": "pilot",
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 18
+      },
+      "birth": "assigned",
+      "characters": {
+        "classes": [
+          "Warrior",
+          "Mage",
+          "Druid",
+          "Priest",
+          "Necromancer",
+          "Paladin",
+          "Rogue",
+          "Ranger",
+          "Blackguard"
+        ],
+        "races": [
+          "Human",
+          "Half-Elf",
+          "Elf",
+          "Hobbit",
+          "Gnome",
+          "Dwarf",
+          "Half-Orc",
+          "Half-Troll",
+          "Dunadan",
+          "High-Elf",
+          "Kobold"
+        ]
+      },
+      "cap": 5000,
+      "wall_seconds": 600,
+      "stall_seconds": 90,
+      "saves": false,
+      "measurement_profile": "c-seeded-point-buy-v2"
+    },
+    "classes-1800-small-blackguards": {
+      "description": "The Blackguard starts of classes-1800-small (borg-zoo#415, the Blackguard exception to the Phase Door rule): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Blackguard"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-medium-blackguards": {
+      "description": "The Blackguard starts of classes-1800-medium (borg-zoo#415, the Blackguard exception to the Phase Door rule): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Blackguard"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-blackguards": {
+      "description": "The Blackguard starts of classes-1800-big (borg-zoo#415, the Blackguard exception to the Phase Door rule): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Blackguard"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full-blackguards": {
+      "description": "The Blackguard starts of classes-1800-full (borg-zoo#415, the Blackguard exception to the Phase Door rule): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Blackguard"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-mages": {
+      "description": "The Mage starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Mage"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-medium-mages": {
+      "description": "The Mage starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Mage"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-mages": {
+      "description": "The Mage starts of classes-1800-big (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Mage"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full-mages": {
+      "description": "The Mage starts of classes-1800-full (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Mage"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-priests": {
+      "description": "The Priest starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Priest"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-medium-priests": {
+      "description": "The Priest starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Priest"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-priests": {
+      "description": "The Priest starts of classes-1800-big (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Priest"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full-priests": {
+      "description": "The Priest starts of classes-1800-full (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Priest"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-necromancers": {
+      "description": "The Necromancer starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Necromancer"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-medium-necromancers": {
+      "description": "The Necromancer starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Necromancer"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-necromancers": {
+      "description": "The Necromancer starts of classes-1800-big (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Necromancer"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full-necromancers": {
+      "description": "The Necromancer starts of classes-1800-full (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Necromancer"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-medium-druids": {
+      "description": "The Druid starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-medium", "class": "Druid"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-big-druids": {
+      "description": "The Druid starts of classes-1800-big (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-big", "class": "Druid"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-full-druids": {
+      "description": "The Druid starts of classes-1800-full (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-full", "class": "Druid"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
     }
   }
 }

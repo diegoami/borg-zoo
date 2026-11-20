@@ -1,0 +1,29 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-heal-curve-pilot",
+  "issue": 192,
+  "definition": "definitions/reborn-heal-curve-pilot.yaml",
+  "question": "On borg-reborn-rs main e0aa2e0a with healing speed 66, which healing curve scale (50, 100, 200 percent) and healing reserve (0, 200, 400 percent of max HP) should the town planner use?",
+  "description": "On borg-reborn-rs main e0aa2e0a with healing speed 66, which healing curve scale (50, 100, 200 percent) and healing reserve (0, 200, 400 percent of max HP) should the town planner use? Generated from definitions/reborn-heal-curve-pilot.yaml: 9 arms on 4.2.6-reborn-rust-main-e0aa2e0a, suite classes-18.",
+  "prespecified": "Fixed 2026-11-17, before any result was read (borg-zoo#192). Pilot, as the owner asked (the request was\nfor small); small only after this gate and the owner (RULES 14). The curve scale stretches the town planner's diminishing healing curve: weight and\ndemand scale together, so the first HP keeps its value and the half-value point moves to the scale's\npercent of today's (50 = stops buying healing sooner, 200 = keeps buying). Gate: no config_error; one\nbinary; the three borg_param_town_heal_* lines with the arm's values (reserve 0/200/400, curve\n50/100/200, speed 66) in every arm's borg.txt and in params-core.json of the death replays; no plan\nloaded; every cell ends in death, turn_cap or borg_stopped; frozen-turn stalls and key outliers listed;\ndeath bundles reproduced. Consistency check (pilot): the requested comparison with reborn-heal-reserve-s66-small\nneeds the same starts, and that run played classes-1800, not classes-18, so it applies to the small\ntier, not here. Checked locally before dispatch instead: two r400-c100 games on that run's starts\nreproduce its CI key hashes on this specimen. Report per arm: deaths, final level,\ndeepest level, keys; deaths by class, with low-max-HP casters (Mage, Necromancer) called out; paired\nrescued and newly killed against r0-c100 on the same start, with an exact McNemar p; per reserve, the\nsame against its own c100 arm; healing potions bought (Cure Light/Serious/Critical Wounds, Healing),\nPhase Door bought, and gold on each against all gold spent, from all games where the run records\npurchases, else from the death replays (say which). Watch the Phase Door crowding a local simulation\nfound (borg-reborn-rs, 18 starts: departures with no Phase Door 38 at r0 against 114 at r400-c100,\nconcentrated in Warrior 1019921749 and Ranger 1739161339): does c50 reduce it? r400-c100 is the shipped\nvalue. 18 starts per arm show direction only.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-e0aa2e0a"
+  ],
+  "profiles": [
+    "reborn-heal-r0-c50",
+    "reborn-heal-r0-c100",
+    "reborn-heal-r0-c200",
+    "reborn-heal-r200-c50",
+    "reborn-heal-r200-c100",
+    "reborn-heal-r200-c200",
+    "reborn-heal-r400-c50",
+    "reborn-heal-r400-c100",
+    "reborn-heal-r400-c200"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-e0aa2e0a",
+  "control_profile": "reborn-heal-r0-c100",
+  "owner_authorization": "2026-11-17: after the #192 small tier (run 44116104222) and the reserve x speed pilot (run 44119472667), the owner noted the healing curve scale had never been varied and asked to propose reserve {0, 200, 400} x curve {50, 100, 200} at speed 66, on the small tier's specimen so its arms can be compared. The owner then asked for the pilot first (RULES 14); the small tier follows only after this gate and the owner."
+}

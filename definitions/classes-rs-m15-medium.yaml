@@ -1,0 +1,20 @@
+# borg-zoo#463: borg-rs Impact v15R on classes-1800-medium.
+name: classes-rs-m15-medium
+issue: 463
+description: |-
+  The Rust counterpart of classes-v15 on the medium starts: borg-rs v15R (tag 4.2.6-impact-v15, 137 carries, Angband 574b618c) on classes-1800-medium (starts 91-360) under normal (modes off). borg-rs removed the munchkin and lunal modes (borg-rs#60): a profile that turns one on is refused at start-up, as rs-m15-smoke's munchkin-class arm showed (18 of 18 stopped at turn 1). Compare start by start with classes-v15 (better-borg-c M15, the same game commit): identical play hashes show the port reproduces C; differences are listed.
+owner_authorization: |-
+  2026-11-20: the owner asked to "file a medium suite for borg-rs last milestone / relase" (borg-zoo#463). Dispatched after rs-m15-smoke passes its gate.
+specimens:
+- 4.2.6-rs-m15
+suites:
+- classes-1800-medium
+profile_prefix: ''
+arms:
+  normal:
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+control_specimen: 4.2.6-rs-m15
+control_profile: normal

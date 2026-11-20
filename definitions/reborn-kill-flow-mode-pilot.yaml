@@ -1,0 +1,50 @@
+# borg-zoo#438: borg-reborn-rs#691's kill_flow_mode (the hunt removed in steps), the issue's definition as filed; owner 2026-11-19.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-kill-flow-mode-pilot.yaml
+# The pin f9c44b35 is the head the request named; PR #695 has since merged (head b863f736).
+name: reborn-kill-flow-mode-pilot
+issue: 438
+question: On borg-reborn-rs f9c44b35 (PR #695), what is the hunt (borg_flow_kill) worth, removed in steps (kill_flow_mode 0-3), over games long enough to pass CL10?
+suites: [classes-1800-200k-pilot]
+pilot: true   # 18 starts (2 per class), 200,000 engine turns
+
+specimen:
+  name: 4.2.6-reborn-rust-t691-f9c44b35
+  repository: diegoami/borg-reborn-rs
+  ref: f9c44b35f80539e26e992dea9f2b81dcd4c0a611
+  label: "borg-reborn-rs PR #695 head f9c44b35 on main a87b4c96 (kill_flow_mode, shipped 0). Source-hash rust 35346afd...; harness/borg.txt 1d38c4a4..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+profile_prefix: reborn-killflow
+arms:
+  ctl: {borg_param_kill_flow_mode: 0}
+  targeted: {borg_param_kill_flow_mode: 1}
+  inview: {borg_param_kill_flow_mode: 2}
+  nohunt: {borg_param_kill_flow_mode: 3}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: the owner asked to look at the open issues and do the experiments and pilots they request.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any zoo result was read (borg-reborn-rs#691, PR #695). Pilot (RULES 16) on the 200,000-turn
+  pilot suite, because the question is CL10 and above; larger tiers only after this gate and the owner. ctl is shipped.
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final and maximum level, deepest level; paired rescued and newly killed against ctl;
+  - "# Flowing toward kill" per game, split by character level band (CL1-9, 10-15, 16-25, 26+);
+  - kills per game ("# DIED:" with "(+)") and experience at the end;
+  - for every death in any arm: was the Borg walking to a fight (a "Flowing toward kill" in the 20 decisions before it), and
+    in which level band; ctl deaths of that kind are the hunt's cost, arm 3's missing kills its value.

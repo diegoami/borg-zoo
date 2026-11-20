@@ -1,0 +1,39 @@
+# borg-zoo#312: Fox Form for a fleeing Druid (escape_fox_form 0 vs 1), the Druid starts of the small tier.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-fox-form-small.yaml
+name: reborn-fox-form-small
+issue: 312
+question: On borg-reborn-rs main dbe99509, does a fleeing Druid that takes Fox Form (escape_fox_form 1) survive more often without costing anything?
+suites: [classes-1800-small-druids]   # the 10 Druid starts of classes-1800-small, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-dbe99509
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+# The pilot's arms, unchanged (reborn-fox-form-pilot): every arm reads the shipped harness/borg.txt and writes only the switch.
+profile_prefix: reborn-fox
+arms:
+  'off': {borg_param_escape_fox_form: 0}
+  fox: {borg_param_escape_fox_form: 1}
+control: ['off']
+owner_authorization: >-
+  2026-11-19: after the pilot (runs 44365539348 and 44369243023, identical: 36 games, no deaths, 16/16 non-Druid
+  games identical), the owner asked to start a run in the zoo. RULES 14: the smallest Druid tier first; medium only
+  after its gate and the owner.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, before any result of this tier was read; the pilot's results were read (gate passed: no
+  config_error, one binary, every cell turn_cap, no stall or frozen-turn burst, 16/16 non-Druid games identical; the
+  two Druids alive in both arms, CL 7/7 against 7/5, max depth 3/2 against 2/2).
+  Gate:
+  - no config_error; one binary; each arm's switch in its borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against off; per
+  game the "# Fox Form: fleeing" casts, "# Fox Form: reverting for an item or a spell" and "# Fox Form: reverting to
+  fight" notes, failed casts, and blows struck as a fox ("You bite" / "You claw"); for each Druid death, whether the
+  Druid was a fox, fleeing or changing back to fight in its last 100 messages.
+  10 Druids show direction only; a survival claim needs the medium tier (40 Druids with small) or more.

@@ -1,0 +1,43 @@
+# borg-zoo#309: Word of Recall value x prepared depth x stairs before Recall, pilot (owner, 2026-11-18).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-recall-combo-pilot.yaml
+name: reborn-recall-combo-pilot
+issue: 309
+question: On borg-reborn-rs main 8e7dbad4, how do the Word of Recall purchase value (100/300/1000), the depth from which a descent needs a Recall (5/3) and walking to stairs before reading Recall in a flight (1/0) combine on deaths and progress?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-8e7dbad4
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes the three settings; ctl is the shipped 100 / 5 / 1.
+profile_prefix: reborn-recallcombo
+arms:
+  ctl: {borg_param_town_recall_value_percent: 100, borg_param_prepared_recall_depth: 5, borg_param_caution_flee_stairs_before_recall: 1}
+  v100-d5-s0: {borg_param_town_recall_value_percent: 100, borg_param_prepared_recall_depth: 5, borg_param_caution_flee_stairs_before_recall: 0}
+  v100-d3-s1: {borg_param_town_recall_value_percent: 100, borg_param_prepared_recall_depth: 3, borg_param_caution_flee_stairs_before_recall: 1}
+  v100-d3-s0: {borg_param_town_recall_value_percent: 100, borg_param_prepared_recall_depth: 3, borg_param_caution_flee_stairs_before_recall: 0}
+  v300-d5-s1: {borg_param_town_recall_value_percent: 300, borg_param_prepared_recall_depth: 5, borg_param_caution_flee_stairs_before_recall: 1}
+  v300-d5-s0: {borg_param_town_recall_value_percent: 300, borg_param_prepared_recall_depth: 5, borg_param_caution_flee_stairs_before_recall: 0}
+  v300-d3-s1: {borg_param_town_recall_value_percent: 300, borg_param_prepared_recall_depth: 3, borg_param_caution_flee_stairs_before_recall: 1}
+  v300-d3-s0: {borg_param_town_recall_value_percent: 300, borg_param_prepared_recall_depth: 3, borg_param_caution_flee_stairs_before_recall: 0}
+  v1000-d5-s1: {borg_param_town_recall_value_percent: 1000, borg_param_prepared_recall_depth: 5, borg_param_caution_flee_stairs_before_recall: 1}
+  v1000-d5-s0: {borg_param_town_recall_value_percent: 1000, borg_param_prepared_recall_depth: 5, borg_param_caution_flee_stairs_before_recall: 0}
+  v1000-d3-s1: {borg_param_town_recall_value_percent: 1000, borg_param_prepared_recall_depth: 3, borg_param_caution_flee_stairs_before_recall: 1}
+  v1000-d3-s0: {borg_param_town_recall_value_percent: 1000, borg_param_prepared_recall_depth: 3, borg_param_caution_flee_stairs_before_recall: 0}
+control: [ctl]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-18, before any zoo result was read (owner request). Pilot (RULES 16); larger tiers only after this
+  gate and the owner. Full 3x2x2 factorial; ctl is the shipped configuration.
+  Gate:
+  - no config_error; one binary; each arm's three values written;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  - death bundles reproduced.
+  Report per arm: deaths and causes, final level, deepest level; paired rescued and newly killed against ctl; main
+  effects and interactions (direction only at this size); Word of Recall bought, read in flight ("Fleeing the level
+  (recall)") and in total, carried at the end; games with keys identical to ctl.

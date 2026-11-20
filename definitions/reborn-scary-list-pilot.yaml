@@ -1,0 +1,32 @@
+# borg-zoo#241: copied from the run request (zoo session angband-35).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-scary-list-pilot.yaml
+name: reborn-scary-list-pilot
+issue: 241
+question: Does the shipped data-file scary list beat the compiled C list, and does adding five unlisted early killers save low-level characters?
+tier: pilot
+specimen:
+  name: 4.2.6-reborn-rust-main-156c8e52
+  repository: diegoami/borg-reborn-rs
+  ref: 156c8e52897a6aa8110ceffc896ffa0b2ca43ad7
+  label: borg-reborn-rs main after #535 (data-file scary list shipped on) and #545
+  plans: {errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87, errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9}
+  scary_lists: {scary_monsters.txt: d045111ba9ac6b491f6ffd46aefe722ce08477851c47f4065f10c660a5dc9342}
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+profile_prefix: reborn-scary
+arms:
+  shipped: {}
+  compiled: {borg_scary_list: none}
+  plus-early: {borg_scary_list_lines: ["wild cat | 2-4", "crow | 2-4", "giant yellow centipede | 2-4", "wild dog | 2-4", "kobold shaman | 3-6"]}
+control: [shipped]
+extra:
+  retain_evidence: true
+prespecified: |
+  Gate: no config_error, one binary, every cell ends in death, turn_cap or borg_stopped; shipped and
+  plus-early cells record the base list hash d045111b... and the written file's hash (plus-early:
+  39200941...); compiled cells have no list file. List frozen-turn stalls and key outliers.
+  Endpoints, per arm and per class, paired against shipped: deaths and causes; deaths by the five added
+  monsters; deaths at CL1-3; rescued / newly killed; mean max CL and max DL; "# Scary guy on level."
+  notes per game; level changes (down-up bounces) per game; deaths on a scary level.

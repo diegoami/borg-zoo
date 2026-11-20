@@ -33,6 +33,20 @@ Limits compared with the better-borg-c observer, recorded per cell:
   level-50 handover or a plan's handback) is the borg_stopped outcome, not
   a stall. The cell also checks the core's copy of the loaded plan in the
   output directory, and records a frozen-turn loop (borg-rs#90) as a stall.
+- a specimen with "scary_lists": {NAME: sha256} ships those named scary
+  monster lists (borg-reborn-rs harness/NAME, #518, borg-zoo#228) the same
+  way: the build copies each, hash-checked, into the build's scary_lists/;
+  a profile setting borg_scary_list = NAME gets it as the cell's user/NAME
+  and the cell records {name, sha256}. A missing or invalid list stops the
+  binary with exit 2 before play, a config_error.
+- a specimen with "worlds": {NAME: sha256} ships those world configs
+  (borg-reborn-rs harness/worlds/NAME.txt, #704, borg-zoo#482): the build
+  copies each, hash-checked, with scripts/make-world.py into the build. A
+  profile setting borg_world = NAME gets, per cell, the game data that tool
+  makes from the build's lib/ in the cell's world/, passed with -dgamedata,
+  -dpref, -dhelp and -dscreens as harness/run.sh does. The borg_world line
+  never reaches the Borg; the cell records {name, sha256, data_sha256}, and
+  world/ is removed after play (the pinned config and tool remake it).
 - a specimen with "loop_checks": true (and every plan specimen) gets the
   frozen-turn stall and the key-outlier flag without carrying plans.
 - every inherited BORG_* environment variable is cleared before a cell.
@@ -125,6 +139,13 @@ LOADED_PLAN = 'errands_plan.txt'
 # cap; it is a stall all the same.
 LOOP_KEYS = 1000
 
+# A burst is shopping, not a loop, when gold falls at least once per this many
+# keys at the burst turn (borg-zoo#205): shop transactions take no game time,
+# so a Ranger buying 120 Arrows one at a time spent 1,083 keys at one turn
+# with 120 gold drops (one per ~9 keys), while borg-rs#90's oil store/take
+# cycle gains nothing and leaves gold unchanged.
+PURCHASE_KEYS = 25
+
 
 def loop_checks(spec):
     """Whether cells of this specimen get the frozen-turn and key-outlier
@@ -144,8 +165,35 @@ def frozen_turn_loop(keys_text):
         return {'turn': None, 'max_keys': 0, 'bursts': 0, 'burst_keys': 0}
     turn = max(counts, key=counts.get)
     bursts = [n for n in counts.values() if n >= LOOP_KEYS]
-    return {'turn': int(turn) if turn.isdigit() else turn, 'max_keys': counts[turn],
-            'bursts': len(bursts), 'burst_keys': sum(bursts)}
+    out = {'turn': int(turn) if turn.isdigit() else turn, 'max_keys': counts[turn],
+           'bursts': len(bursts), 'burst_keys': sum(bursts)}
+    if bursts:
+        out['burst_turns'] = [[int(t) if t.isdigit() else t, n] for t, n in counts.items() if n >= LOOP_KEYS]
+    return out
+
+
+def burst_purchases(state_text, turns):
+    """{turn: times gold fell} over the -statelog lines of each burst turn."""
+    wanted, drops, last = set(turns), {t: 0 for t in turns}, {}
+    for s in parse_state_log(state_text):
+        t = s['turn']
+        if t in wanted:
+            if t in last and s['gold'] < last[t]:
+                drops[t] += 1
+            last[t] = s['gold']
+    return drops
+
+
+def classify_bursts(loop, state_text):
+    """(loop turns, purchase-burst turns) of a frozen_turn_loop result. Without
+    a state log every burst counts as a loop, as before."""
+    turns = loop.get('burst_turns') or []
+    if state_text is None:
+        return turns, []
+    drops = burst_purchases(state_text, [t for t, _ in turns])
+    shopping = [[t, n, drops[t]] for t, n in turns if drops[t] * PURCHASE_KEYS >= n]
+    loops = [[t, n] for t, n in turns if drops[t] * PURCHASE_KEYS < n]
+    return loops, shopping
 
 
 # A cell with more keys than this many times its arm's median (over the
@@ -205,6 +253,70 @@ def copy_plans(spec, source, out):
     return plans
 
 
+def copy_scary_lists(spec, source, out):
+    """Copy the specimen's pinned scary lists (harness/NAME) into the build; {name: sha256}."""
+    lists = {}
+    for name, digest in sorted((spec.get('scary_lists') or {}).items()):
+        src = Path(source) / 'harness' / plan_name(name)
+        if not src.is_file():
+            raise ValueError(f'specimen scary list {name} is not in harness/ at {spec["ref"]}')
+        if sha256(src) != digest:
+            raise ValueError(f'specimen scary list {name} has sha256 {sha256(src)}, catalogue pins {digest}')
+        (out / 'scary_lists').mkdir(exist_ok=True)
+        shutil.copy(src, out / 'scary_lists' / name)
+        lists[name] = digest
+    return lists
+
+
+def ship_scary_list(spec, manifest, build_dir, out, name, lines=None):
+    """Write the build's scary list NAME as the cell's user/NAME, with the arm's LINES
+    appended (borg-zoo#228: the list is an overlay, a later line for a monster
+    replaces an earlier one and `monster | none` removes it); the sha256 of the
+    file written."""
+    name = plan_name(name)
+    digest = (spec.get('scary_lists') or {}).get(name)
+    if digest is None:
+        raise ValueError(f'specimen ships no scary list {name}')
+    src = Path(build_dir) / 'scary_lists' / name
+    if (manifest.get('scary_lists') or {}).get(name) != digest or not src.is_file() or sha256(src) != digest:
+        raise ValueError(f'build {build_dir} does not carry scary list {name} at sha256 {digest}')
+    data = src.read_bytes()
+    if lines:
+        data = data + (b'' if data.endswith(b'\n') or not data else b'\n') + \
+            ''.join(f'{line}\n' for line in lines).encode()
+    (out / 'user' / name).write_bytes(data)
+    return hashlib.sha256(data).hexdigest()
+
+
+SCARY_NONE = 'none'
+SCARY_LINE = re.compile(r'^[ \t]*borg_scary_list[ \t]*=[ \t]*(\S*)[ \t]*$', re.M)
+
+
+def scary_name(profile, borg_txt):
+    """(the scary list a cell reads, where it came from): the profile's
+    borg_scary_list, else the written borg.txt's own line (a specimen that
+    ships the list on, borg-zoo#228); (None, None) for the compiled C list,
+    which an arm asks for with borg_scary_list: none."""
+    name = profile['settings'].get('borg_scary_list')
+    source = 'profile'
+    if name is None:
+        m = SCARY_LINE.findall(borg_txt)
+        name, source = (m[-1] if m else None), 'shipped borg.txt'
+    if not name or name == SCARY_NONE:
+        return None, None
+    return name, source
+
+
+def scary_lines(profile):
+    """An arm's scary list lines, checked: strings, one line each."""
+    lines = profile['settings'].get('borg_scary_list_lines')
+    if lines is None:
+        return None
+    if not isinstance(lines, list) or not all(isinstance(l, str) and l.strip() and '\n' not in l for l in lines):
+        raise ValueError('borg_scary_list_lines must be a list of one-line strings')
+    return lines
+
+
 def ship_plan(spec, manifest, build_dir, out, name):
     """Write the build's plan NAME as the cell's user/NAME; its sha256."""
     name = plan_name(name)
@@ -236,9 +348,19 @@ def build(spec, source, out):
         shutil.rmtree(out / 'game')
     shutil.copytree(game, out / 'game', symlinks=False)
     shutil.copy(source / 'harness/borg.txt', out / 'borg.txt')
+    shipped = SCARY_LINE.findall((out / 'borg.txt').read_text())
+    if shipped and shipped[-1] not in ('', SCARY_NONE) and shipped[-1] not in (spec.get('scary_lists') or {}):
+        raise ValueError(f"harness/borg.txt at {spec['ref']} sets borg_scary_list = {shipped[-1]}, which the specimen "
+                         'does not pin ("scary_lists": {name: sha256}, borg-zoo#228)')
     if (out / 'plans').exists():
         shutil.rmtree(out / 'plans')
     plans = copy_plans(spec, source, out)
+    if (out / 'scary_lists').exists():
+        shutil.rmtree(out / 'scary_lists')
+    scary = copy_scary_lists(spec, source, out)
+    if (out / 'worlds').exists():
+        shutil.rmtree(out / 'worlds')
+    worlds, world_tool = copy_worlds(spec, source, out)
     build_id = dict(line.split('=', 1) for line in (source / 'build' / impl / 'BUILD_ID').read_text().splitlines()
                     if '=' in line)
     manifest = {'kind': 'borg-rs', 'impl': impl, 'source_commit': head,
@@ -249,10 +371,27 @@ def build(spec, source, out):
                 'platform': f'{platform.system()} {platform.machine()}', 'complete': True}
     if plans:
         manifest['plans'] = plans
+    if scary:
+        manifest['scary_lists'] = scary
+    if worlds:
+        manifest['worlds'] = worlds
+        manifest['world_tool_sha256'] = world_tool
     if build_id.get('binary_sha256') != manifest['binary_sha256']:
         raise ValueError('copied binary does not match BUILD_ID')
     (out / 'build.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
     return manifest
+
+
+# Profile settings the adapter consumes itself instead of writing to borg.txt:
+# an arm's lines appended to its scary list (borg-zoo#228).
+ADAPTER_SETTINGS = ('borg_scary_list_lines', 'borg_world')
+WORLD_LINE = re.compile(r'^[ \t]*borg_world[ \t]*=[ \t]*(\S*)[ \t]*\n?', re.M)
+WORLD_TOOL = 'make-world.py'
+
+
+def borg_txt_settings(profile):
+    """The profile settings that go into the run's borg.txt."""
+    return {k: v for k, v in profile['settings'].items() if k not in ADAPTER_SETTINGS}
 
 
 def config_text(build_dir, profile, race=0, cls=0):
@@ -261,14 +400,71 @@ def config_text(build_dir, profile, race=0, cls=0):
     text = cat_mod._override(text, 'borg_respawn_class', str(cls))
     text = cat_mod._override(text, 'borg_cheat_death', 'FALSE')
     text = cat_mod._override(text, 'borg_respawn_winners', 'FALSE')
-    for name, value in sorted(profile['settings'].items()):
+    for name, value in sorted(borg_txt_settings(profile).items()):
         text = cat_mod._override(text, name, cat_mod.setting_value(value))
-    return text
+    # harness/run.sh (#704) removes the world key before the core reads borg.txt.
+    return WORLD_LINE.sub('', text)
+
+
+def copy_worlds(spec, source, out):
+    """Copy the specimen's pinned world configs (harness/worlds/NAME.txt) and
+    scripts/make-world.py into the build; ({name: sha256}, tool sha256)."""
+    worlds = {}
+    pins = spec.get('worlds') or {}
+    if not pins:
+        return worlds, None
+    for name, digest in sorted(pins.items()):
+        src = Path(source) / 'harness/worlds' / f'{plan_name(name)}.txt'
+        if not src.is_file():
+            raise ValueError(f'specimen world {name} is not in harness/worlds at {spec["ref"]}')
+        if sha256(src) != digest:
+            raise ValueError(f'specimen world {name} has sha256 {sha256(src)}, catalogue pins {digest}')
+        (out / 'worlds').mkdir(exist_ok=True)
+        shutil.copy(src, out / 'worlds' / f'{name}.txt')
+        worlds[name] = digest
+    tool = Path(source) / 'scripts' / WORLD_TOOL
+    if not tool.is_file():
+        raise ValueError(f'specimen pins worlds but scripts/{WORLD_TOOL} is not at {spec["ref"]}')
+    (out / 'tools').mkdir(exist_ok=True)
+    shutil.copy(tool, out / 'tools' / WORLD_TOOL)
+    return worlds, sha256(tool)
+
+
+def world_name(profile, base_text):
+    """The world a cell plays: the profile's borg_world, else the shipped
+    borg.txt's line; None for upstream's data ('none' or no key)."""
+    name = profile['settings'].get('borg_world')
+    if name is None:
+        m = WORLD_LINE.findall(base_text)
+        name = m[-1] if m else None
+    return None if not name or name == 'none' else plan_name(name)
+
+
+def make_world(spec, manifest, build_dir, out, name):
+    """Make world NAME's game data in the cell's world/; its record and the
+    data root to pass to the game."""
+    digest = (spec.get('worlds') or {}).get(name)
+    if digest is None:
+        raise ValueError(f'specimen ships no world {name}')
+    config = Path(build_dir) / 'worlds' / f'{name}.txt'
+    tool = Path(build_dir) / 'tools' / WORLD_TOOL
+    if ((manifest.get('worlds') or {}).get(name) != digest or not config.is_file() or sha256(config) != digest
+            or not tool.is_file() or sha256(tool) != manifest.get('world_tool_sha256')):
+        raise ValueError(f'build {build_dir} does not carry world {name} at sha256 {digest}')
+    root = out / 'world'
+    if root.exists():
+        shutil.rmtree(root)
+    done = subprocess.run(['python3', str(tool), '--config', str(config), '--lib', str(Path(build_dir) / 'game/lib'),
+                           '--out', str(root)], capture_output=True, text=True)
+    data_sha = done.stdout.strip().splitlines()[-1] if done.returncode == 0 and done.stdout.strip() else None
+    if not data_sha or not re.fullmatch(r'[0-9a-f]{64}', data_sha):
+        raise ValueError(f'world {name}: {WORLD_TOOL} failed: {(done.stderr or done.stdout).strip()[-300:]}')
+    return {'name': name, 'sha256': digest, 'data_sha256': data_sha}, root
 
 
 def check_config(text, profile):
     wrong = []
-    for name, value in profile['settings'].items():
+    for name, value in borg_txt_settings(profile).items():
         if f'\n{name} = {cat_mod.setting_value(value)}\n' not in '\n' + text:
             wrong.append(name)
     return ('settings not written: ' + ', '.join(sorted(wrong))) if wrong else None
@@ -279,14 +475,16 @@ def check_effective(summary, profile):
     actual = summary.get('effective_settings')
     if not isinstance(actual, dict):
         return 'native summary has no effective_settings'
-    wrong = [name for name, value in profile['settings'].items()
+    wrong = [name for name, value in borg_txt_settings(profile).items()
              if name not in actual or actual[name] != value]
     return ('settings not effective: ' + ', '.join(sorted(wrong))) if wrong else None
 
 
-def command(game_bin, out, cell, race_i, cls_i, suite, spec, keep=False):
+def command(game_bin, out, cell, race_i, cls_i, suite, spec, keep=False, data_root=None):
+    data = ([f'-dgamedata={data_root / "gamedata"}', f'-dpref={data_root / "customize"}',
+             f'-dhelp={data_root / "help"}', f'-dscreens={data_root / "screens"}'] if data_root else [])
     argv = [str(game_bin), '-mborgh', '-n', '-uBorg'] + \
-        [f'-d{d}={out / d}' for d in ('user', 'save', 'archive', 'panic', 'scores')] + \
+        [f'-d{d}={out / d}' for d in ('user', 'save', 'archive', 'panic', 'scores')] + data + \
         ['--', '-seed', str(cell['seed']), '-race', str(race_i), '-class', str(cls_i), '-turns', str(suite['cap']),
          '-keylog', str(out / 'keys.log'), '-summary', str(out / 'summary.json'), '-menu-letters']
     if spec.get('exact_turns'):
@@ -321,8 +519,15 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     mismatch = check_config(text, profile)
     plan = profile['settings'].get('borg_plan')
     plan_sha = ship_plan(spec, manifest, build_dir, out, plan) if plan is not None else None
+    scary, scary_source = scary_name(profile, text)
+    lines = scary_lines(profile)
+    if lines and scary is None:
+        raise ValueError('borg_scary_list_lines with no scary list (the compiled C list takes no lines)')
+    scary_sha = ship_scary_list(spec, manifest, build_dir, out, scary, lines) if scary is not None else None
+    world = world_name(profile, (build_dir / 'borg.txt').read_text())
+    world_record, data_root = make_world(spec, manifest, build_dir, out, world) if world else (None, None)
     game = build_dir / 'game'
-    argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=keep)
+    argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=keep, data_root=data_root)
     env = dict(os.environ, TZ='UTC', LANG='C.UTF-8', LC_ALL='C.UTF-8')
     # This also keeps parallel cells from writing to an inherited
     # process-global record path (BORG_TOWN_PLAN_RECORD, BORG_TRIP_RECORD).
@@ -352,6 +557,8 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     except subprocess.TimeoutExpired:
         outcome, error = 'wall_timeout', f"no stop within {suite['wall_seconds']} s"
     wall = time.monotonic() - start
+    if data_root is not None:
+        shutil.rmtree(data_root, ignore_errors=True)
     summary = {}
     if (out / 'summary.json').exists():
         try:
@@ -359,7 +566,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         except ValueError as exc:
             error = f'unreadable summary: {exc}'
     if outcome is None:
-        if rc == 2 and not summary and spec.get('plans'):
+        if rc == 2 and not summary and (spec.get('plans') or spec.get('scary_lists')):
             # The binary refused its configuration (a plan it could not load,
             # a conflicting errand, an invalid setting) before playing.
             outcome, error = 'config_error', 'exit code 2: the binary rejected its configuration'
@@ -401,12 +608,24 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     keys_sha = sha256(keys) if keys.exists() else None
     stall_info = None
     loop = None
+    purchase_burst = None
     if loop_checks(spec) and keys.exists():
         loop = frozen_turn_loop(keys.read_text(errors='replace'))
+        has_state = (out / 'state.log').exists()
+        if loop['bursts']:
+            loops, shopping = classify_bursts(
+                loop, (out / 'state.log').read_text(errors='replace') if has_state else None)
+            loop.update(loop_turns=loops, purchase_turns=shopping, bursts=len(loops))
+            if shopping:
+                # Shopping is progress, not a stall (borg-zoo#205): flagged, outcome kept.
+                purchase_burst = {'turns': shopping, 'keys': sum(n for _, n, _ in shopping),
+                                  'purchases': sum(p for _, _, p in shopping)}
         if loop['bursts'] and outcome in ('death', 'turn_cap', 'borg_stopped'):
             observed_outcome, outcome = outcome, 'stalled'
-            error = (f"frozen-turn loop: {loop['bursts']} game turns with {LOOP_KEYS}+ keys, "
-                     f"{loop['max_keys']} at turn {loop['turn']} (as in borg-rs#90 and borg-reborn-rs#421)")
+            turn, keys_at = max(loop['loop_turns'], key=lambda tn: tn[1])
+            why = 'and gold unchanged (no purchases)' if has_state else '(no state log to rule out shopping)'
+            error = (f"frozen-turn loop: {loop['bursts']} game turns with {LOOP_KEYS}+ keys {why}, "
+                     f"{keys_at} at turn {turn}")
     if outcome not in ('death', 'turn_cap', 'completion'):
         stall_info = stall.borgh(keys.read_text(errors='replace') if keys.exists() else '', summary)
         if loop and loop['bursts']:
@@ -421,6 +640,10 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'profile_sha256': cat_mod.profile_sha256(profile),
         'config_sha256': hashlib.sha256(text.encode()).hexdigest(),
         'plan': {'name': plan, 'sha256': plan_sha, 'loaded_sha256': loaded_sha} if plan is not None else None,
+        'world': world_record,
+        'scary_list': ({'name': scary, 'source': scary_source,
+                        'base_sha256': (spec.get('scary_lists') or {}).get(scary),
+                        'lines': lines or [], 'sha256': scary_sha} if scary is not None else None),
         'cap': suite['cap'], 'birth': suite['birth'],
         'boundary': 'exact' if spec.get('exact_turns') else 'after-key',
         'outcome': outcome, 'runner_outcome': summary.get('stop_reason'),
@@ -443,11 +666,15 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'error': error,
         'stall': stall_info,
         'source_sha256': (manifest.get('build_id') or {}).get('source_sha256'),
+        # The upstream Angband commit the build compiled (borg-zoo#473: borg-reborn-rs #730 moved it).
+        'engine_upstream': (manifest.get('build_id') or {}).get('engine_upstream'),
         'binary_sha256': manifest.get('binary_sha256'), 'compiler': manifest.get('compiler'),
         'rustc': manifest.get('rustc'), 'platform': manifest.get('platform'),
     }
     if loop_checks(spec):
         record['frozen_turn_loop'] = loop
+        if purchase_burst:
+            record['purchase_burst'] = purchase_burst
         record['observed_outcome'] = observed_outcome if observed_outcome != outcome else None
     if shadow is not None:
         record['town_shadow'] = shadow

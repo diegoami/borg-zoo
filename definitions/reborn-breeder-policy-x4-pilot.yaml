@@ -1,0 +1,58 @@
+# borg-zoo#482 redefined (owner 2026-11-20): the breeder policy ladder in the breeders-x4 world; pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-policy-x4-pilot.yaml
+name: reborn-breeder-policy-x4-pilot
+issue: 482
+question: >-
+  In the breeders-x4 world (borg-reborn-rs PR #740 head e41eb758), which level of the breeder policy
+  (caution_breeder_policy 0-5, shipped 3) saves or costs games?
+tier: pilot            # classes-18
+
+specimen:
+  name: 4.2.6-reborn-rust-pr740-e41eb758
+  repository: diegoami/borg-reborn-rs
+  ref: e41eb758a4540c9e967e0f260da9996b4c9c2d93
+  label: "borg-reborn-rs e41eb758, head of PR #740 (#704 breeder worlds, review fixes, unmerged); engine 574b618c. Tree 2de5e2b1; source-hash rust 7021f261...; harness/borg.txt 59336cb4... (borg_world = none, caution_breeder_policy = 3). An unconsumed borg_world stops the game with exit 2."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+  worlds:
+    breeders-x4: a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+  borg_world: breeders-x4
+
+profile_prefix: reborn-bpolicy-x4
+arms:
+  p3: {borg_param_caution_breeder_policy: 3}   # shipped
+  p0: {borg_param_caution_breeder_policy: 0}   # C: every breeder switch off
+  p1: {borg_param_caution_breeder_policy: 1}
+  p2: {borg_param_caution_breeder_policy: 2}
+  p4: {borg_param_caution_breeder_policy: 4}
+  p5: {borg_param_caution_breeder_policy: 5}
+control: [p3]
+owner_authorization: >-
+  2026-11-20: the owner redefined #482 as the breeder policy ladder in breeders-x4 (the switch arms were overridden by
+  caution_breeder_policy 3): classes-18 gate, then small + medium (starts 1-360).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of these profiles was read (owner's redefinition of #482).
+  Gate:
+  - no config_error; one binary; every cell records world breeders-x4 with the same borg_world_data_sha256 in every arm;
+  - each arm's policy value in borg.txt and in params-core.json;
+  - the arms must play differently: at least p0 and p2 differ from p3 in some games. If an arm is identical to p3 in
+    all 18 pilot games, stop and report it before the larger tiers;
+  - every cell ends in death, turn_cap or borg_stopped (exit 2 means the world was not applied); frozen-turn bursts
+    classified; death bundles reproduced with the same world.
+  Report per arm and per class: deaths and causes, final and maximum level, deepest level; breeder deaths (the killer
+  has MULTIPLY); paired rescued and newly killed against p3 (exact McNemar) and games identical to p3; breeders created
+  and killed per game; per game "# Breeders cannot be stopped", "No rest: ... breeders known" and the flees from a lost
+  level; mean max CL and DL against p3 with non-inferiority at #347's margins (CL -0.25, DL -0.25); a RULES 18 bin for
+  each arm. A breeder world is a stress test: a level that wins here still needs normal play's measurement (#460)
+  before its shipped value changes.

@@ -1,0 +1,34 @@
+# borg-zoo#427: classes-1800-small after the pilot reborn-throw-as-melee-pilot (owner, 2026-11-19: "go ahead").
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-throw-as-melee-small.yaml
+name: reborn-throw-as-melee-small
+issue: 427
+question: On borg-reborn-rs 7c9b4cd1 (PR #687), does rating throws on melee's footing (attack_throw_as_melee) save games or progress, on starts 1-90?
+suites: [classes-1800-small]
+specimen: 4.2.6-reborn-rust-t568-7c9b4cd1
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+profile_prefix: reborn-throwmelee
+arms:
+  ctl: {borg_param_attack_throw_as_melee: 0}
+  throw: {borg_param_attack_throw_as_melee: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-19: after the pilot (neutral, gate passed, run 44599308992), the owner said "go ahead" to the small tier.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-19, after the pilot's gate (borg-zoo#427) and before any small-tier result was read. Small tier
+  (RULES 14): starts 1-90, the same specimen and arms as the pilot; medium only after this gate and the owner.
+  ctl is shipped (the switch off; PR #687 has since merged into borg-reborn-rs main at 0).
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class, on the pilot's and the small tier's starts together:
+  - deaths and causes, final level, deepest level; paired rescued and newly killed against ctl;
+  - "# Throwing painful object" and "# Attacking with weapon" notes per game; flasks of oil thrown, and the share that hit;
+  - throws at a unique and how the fight ended;
+  - RULES 18 bin.

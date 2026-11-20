@@ -1,0 +1,46 @@
+# borg-zoo#347: full after the pilot reborn-phase-rule-pilot-2 (owner, 2026-11-19).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-phase-rule-full.yaml
+name: reborn-phase-rule-full
+issue: 347
+question: 'On borg-reborn-rs #612''s head 4acf071f, does #584''s Phase Door rule save or cost games against ctl, and which
+  ''cannot win'' test (threshold at 100 or 150 percent of the HP, the fight compared, the fight and the landing compared)
+  works best?'
+tier: full
+specimen: 4.2.6-reborn-rust-main-4acf071f
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+profile_prefix: reborn-phaserule2
+arms:
+  ctl:
+    borg_param_escape_phase_adjacent_rule: 0
+    borg_param_escape_phase_lost_test: 1
+    borg_param_escape_phase_lost_danger_percent: 100
+  thr-100:
+    borg_param_escape_phase_adjacent_rule: 1
+    borg_param_escape_phase_lost_test: 0
+    borg_param_escape_phase_lost_danger_percent: 100
+control:
+- ctl
+prespecified: |
+  Full tier (starts 901-1800), owner 2026-11-19 ("do 1"), after the big tier: ctl 35, thr-100 20 of 540 (23 / 8, p 0.011); medium + big 46 against 28 (p 0.006).
+  Same specimen and profiles as reborn-phase-rule-pilot-2; no raw evidence at this size. Owner, 2026-11-19: "do 1".
+  Fixed 2026-11-19, before any result of this definition was read (borg-reborn-rs#584, PR #612; replaces
+  borg-zoo#334, whose run measured an earlier version). Pilot (RULES 16); small and larger only after this gate and
+  the owner.
+  Gate:
+  - no config_error; one binary; each arm's three #584 values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - in ctl, no "# Phase rule" note.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final level, deepest level;
+  - paired rescued and newly killed against ctl;
+  - Phase Doors done ("# Phase (<site>): done"), per site; "# Phase rule (from <site>)" verdicts per game, "# Phase
+    rule: attacked instead of a Phase Door", "# Phase rule boost"; for fight and fight-landing, the "# Phase rule: the
+    fight: ... lost / not lost" counts;
+  - deaths with no Phase Door left, and deaths within 200 game turns of a "no Phase Door" verdict.
+  Context: a local run on the same tree (18 classes-18 starts, 100,000 turns; not a zoo run): ctl 150 Phase Doors,
+  0 deaths; threshold 100: 63 and 1 death; fight: 17 and 1 death; fight-landing: 21 and 1 death; sum of max CL 99 /
+  96 / 93 / 93. 18 starts per arm show direction only.
