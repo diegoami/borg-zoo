@@ -1,8 +1,9 @@
 # Open work and handover state
 
 What is open in this repository, why, and what the next session should read
-first. Updated 2026-11-17. The sections from "## Open issues (2026-11-16)" on
-are the previous session's handover and are kept as written. The repository's
+first. Updated 2026-11-20 ("State on 2026-11-20" below). The sections from
+"Open issues (2026-11-16)" on are older handovers, kept as written; check any
+status in them against the issue before acting on it. The repository's
 own rules still apply:
 - results are append-only;
 - a specimen, profile, suite or experiment is a catalogue change with a pull request;
@@ -44,31 +45,66 @@ for catalogue JSON and FINDINGS prose. Merge only when
   from the zoo's evidence, one graded proposal per setting, and a borg-reborn-rs issue
   draft for the owner to file (the zoo never edits that repository, RULES 2).
 
-## State on 2026-11-17
+## State on 2026-11-20
 
-- **Suite 1 on main.** The latest run is `suite1-reborn-main-7e08c920-stock`, all
-  999 scenarios: 281 deaths (28.1%). One scenario, c6-r7-s1060140-i000, was cut
-  off by the 5 s wall; it is filed as borg-reborn-rs#512. Run it again with
-  `/rerun-suite` after borg-reborn-rs's calibration lands. Main is now
-  `1a128607`, but #500 only changed CI.
-- **#181, main fdaf18e5 with its shipped defaults.** The pilot (3/18 deaths) and
-  medium tier (22/270) are done, with death reports. The 25 deaths are handed to
-  borg-reborn-rs#490, for after calibration.
-- **#170, the speed30 bundle studies.** The speed30 × plan small tier and the
-  `unknown_stacks` medium tier are done. No value differed from the default. The
-  pilot death report found that a trip return to identify unknown items becomes
-  a descent when no up stair is known.
-- **#205, purchase bursts.** These are no longer counted as stalls. FINDINGS
-  lists the cells that were mislabelled `stalled`. The purchases themselves are
-  borg-reborn-rs#507.
-- **Waiting for the owner's go:** #191 (rising-ticks medium), #192 (heal curve ×
-  reserve; results in PR #213), #198 (point-blank divisor and buy quantity),
-  #184 (Suite 2, PR #202, needs a review).
-- **Owner decisions today:**
-  - pilot first, always (RULES 16);
-  - a scenario run is a plain sanity check of main with its own defaults, and its baseline is always current main;
-  - the Scenarios tab lists one row per run, and only the newest main run of each suite;
-  - the first table of a run's page is its death share per build.
+**Owner's limit for now (2026-11-20):** dispatch pilots and small tiers only; no
+heavy jobs (medium, big, full, 200-Ranger runs) without asking. Requests come
+from borg-reborn-rs as zoo issues with a definition; pick them up, define them
+(`definitions/NAME-pilot.yaml`, `zoo define`, a shortcut, `zoo.profiles_page`),
+merge after checks, dispatch the pilot, comment the run on the issue.
+
+**Pilots in flight** (gate, then post per arm and class; a small tier after the gate is
+within the limit, starts 1-90):
+
+| Issue | Experiment | Specimen | Arms |
+|---|---|---|---|
+| #506 | `reborn-c-leash-values-pilot` (run 44769379993, **done**, result on the issue) | main ec0f3b28 | C's leash: ctl, tight, loose, margin0, margin10, none |
+| #507 | `reborn-recall-wait-754-pilot` (PR #512) | PR #762 613f1ba5 (since merged to main) | ctl, esc, nox, both |
+| #510 | `reborn-flight3-757-pilot` (PR #514) | scratch/T751-mode3 50c23a5e (without main's #755) | ctl, flight3, flight3r, seven switches alone |
+| #511 | `reborn-fight-recall-pilot` (PR #514) | task/T758-recall-survival 78b8f297, its own scary list 94631dec | ctl, attack-sight, winning-fight, recall-safe, all |
+| #513 | `reborn-phase-first-761-pilot` (PR #514) | scratch/T761-phase 992e0351 | ctl, ranger, phase, oil, phaseoil, floor, floorfirst, unseen, foodlight, all |
+
+**#506 next:** the pilot's `none` arm was config_error in 18 of 18 (`flow_leash_depth_margin -100`;
+params.rs bounds it 0-127). Re-pilot `ctl` + `none` = `{flow_leash_pickup_max_level: 0, flow_leash_stairs_max_level: 0}`
+(the margin is redundant once stairs_max_level is 0), then the small tier of the arms that ran
+(loose led on progress, CL +0.17).
+
+Each issue's comments carry the run link once dispatched. #510 and #513 ask, after
+the pilot, for the 200 Ranger starts of #488 and small + medium; #511 for the
+600-start manifest (borg-cemetery 5ed93e24 `starts-600.tsv`). Those are over the
+limit: ask first. #510 and #513 also want death reports with screens (/death-report).
+
+**Traps found this session:**
+- `compare.yml`'s `experiment` input is the path `experiments/NAME.json`. The bare name
+  fails at preflight (run 44769002674).
+- `zoo preflight` does not check that a `borg_param_*` name exists in the specimen;
+  `git grep` each name at the specimen's commit before dispatch.
+- The `test` workflow takes about 22 minutes (the per-arm plan step alone about 13).
+  A unit job at 25 minutes is not stuck.
+- The death-report play pack: two deaths of one seed in different arms used to share a
+  folder (fixed in PR #505, open).
+
+**Results posted and written to FINDINGS on 2026-11-20:** #480 (filed as
+borg-reborn-rs#744: re-ship detection min level 10 for casters), #484, #488, #475,
+#477, #482 (small, medium, big), #495 (not tested), #501 (death report
+https://claude.ai/artifact/SnqujSa3vHiJUebG9hLu87), #463 big.
+
+**Waiting for the owner:**
+- **Closing finished issues.** A bulk close was refused by the permission check, so
+  it needs the owner's explicit go. Finished (results posted, superseded or done):
+  #500 (PR #752 closed unmerged; its switch was measured in #501's flight arm), #484,
+  #488, #463, #457, #448, #443, #438, #433, #411, #396, #379, #369, #357, #356, #355,
+  #335, #329, #482, #475, #477, #446, #470, #465, #466, #468, #429, #408, #405, #401,
+  #400, #393, #392, #390, #389, #388, #385, #365, #361, #358, #347, #334, #330, #328,
+  #319, #487, #473, #450, #436, #419; #342 duplicates #336. Older ones (#318 and below)
+  were not reviewed this session.
+- **#495:** the landing check was not reached at 200k (17 of 18 identical); it needs
+  saved encounters (#184) or longer games.
+- **#184 Suite 2** (draft PRs #497, #202; borg-cemetery #82, borg-reborn-rs #508): on hold.
+  Suite 1 refuses builds on engine 574b618c (#473), so no Suite 1 rerun on current main.
+- **Open PR #505** (death-report same-seed fix): review.
+- **Cleanup:** worktrees `.worktrees/zoo-418`, `blocked-stairs`, `ranger-arrows`;
+  `~/borg-play/flight-501` duplicates `~/borg-play/flight-fixes` except the pilot Druid.
 
 ## Open issues (2026-11-16)
 
