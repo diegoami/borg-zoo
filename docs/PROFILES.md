@@ -75,6 +75,10 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-breeder-policy-x4` | [#482](https://github.com/diegoami/borg-zoo/issues/482) | 6 | defined (pilot; small + medium after its gate) | The breeder policy ladder (caution_breeder_policy 0-5, shipped 3) in the breeders-x4 world. |
 | `reborn-teleport-landing-either` | [#495](https://github.com/diegoami/borg-zoo/issues/495) | 2 | defined (pilot at 200k on main c74a8155) | escape_teleport_landing_either (upstream 95387b06) 1 against shipped 0, at 200,000 turns. |
 | `reborn-flight-fixes` | [#501](https://github.com/diegoami/borg-zoo/issues/501) | 2 | defined (pilot; Rangers and small + medium after its gate) | The flight fixes (#743/#747/#749/#750/#751/#753) all on against shipped, on e8b3acfd. |
+| `reborn-cleash` | [#506](https://github.com/diegoami/borg-zoo/issues/506) | 6 | defined (pilot; small + medium after its gate) | C's exploration leash values on main ec0f3b28: shipped (3/9/5), tight (2/5), loose (5/15), depth margin 0 and 10, and no leash. |
+| `reborn-flight3-757` | [#510](https://github.com/diegoami/borg-zoo/issues/510) | 10 | defined (pilot; larger tiers after its gate and the owner) | PR #757 on 50c23a5e: #501's flight arm with #751 mode 3 (flight3), plus ranged-first (flight3r), and each switch alone. |
+| `reborn-fight-recall` | [#511](https://github.com/diegoami/borg-zoo/issues/511) | 5 | defined (pilot; larger tiers after its gate and the owner) | #763/#764 on 78b8f297: attack-on-sight categories, winning-fight override, safe flight Recall, and all three. |
+| `reborn-phase-first-761` | [#513](https://github.com/diegoami/borg-zoo/issues/513) | 10 | defined (pilot; larger tiers after its gate and the owner) | #761 on 992e0351: Phase Door reserve, less oil, Rangers' lighter kit, floor pickup, unseen flavours, food/light, and all. |
 | `reborn-recallwait` | [#507](https://github.com/diegoami/borg-zoo/issues/507) | 4 | defined (pilot; small + medium after its gate) | #754's Recall-wait switches on PR #762 head 613f1ba5: a pending Recall counts as an escape (esc), no exploring while it counts down (nox), both. |
 
 ### `heal-attack-4`
@@ -1093,6 +1097,73 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-flight-ctl` | – | – | – | – | – | – |
 | `reborn-flight-flight` | 50 | 30 | 50 | 2 | 1 | 1 |
 
+### `reborn-cleash`
+
+C's exploration leash values on main ec0f3b28: shipped (3/9/5), tight (2/5), loose (5/15), depth margin 0 and 10, and no leash.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_flow_leash_base` | `borg_param_flow_leash_depth_margin` | `borg_param_flow_leash_per_level` | `borg_param_flow_leash_pickup_max_level` | `borg_param_flow_leash_stairs_max_level` |
+| --- | --- | --- | --- | --- | --- |
+| `reborn-cleash-ctl` | – | – | – | – | – |
+| `reborn-cleash-tight` | 5 | – | 2 | – | – |
+| `reborn-cleash-loose` | 15 | – | 5 | – | – |
+| `reborn-cleash-margin0` | – | 0 | – | – | – |
+| `reborn-cleash-margin10` | – | 10 | – | – | – |
+| `reborn-cleash-none` | – | -100 | – | 0 | 0 |
+
+### `reborn-flight3-757`
+
+PR #757 on 50c23a5e: #501's flight arm with #751 mode 3 (flight3), plus ranged-first (flight3r), and each switch alone.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_desperate_fast_danger_percent` | `borg_param_caution_desperate_ranged_first_reach` | `borg_param_caution_recall_cure_min_loss_percent` | `borg_param_caution_rising_hold_min_hp_percent` | `borg_param_caution_stairs_clean_path` | `borg_param_caution_stairs_clean_path_flee` | `borg_param_caution_stairs_flight_ignore_danger` |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-flight3m-ctl` | – | – | – | – | – | – | – |
+| `reborn-flight3m-flight3` | 50 | – | 30 | 50 | 3 | 1 | 1 |
+| `reborn-flight3m-flight3r` | 50 | 3 | 30 | 50 | 3 | 1 | 1 |
+| `reborn-flight3m-path3` | – | – | – | – | 3 | – | – |
+| `reborn-flight3m-ranged` | – | 3 | – | – | – | – | – |
+| `reborn-flight3m-flee` | – | – | – | – | – | 1 | – |
+| `reborn-flight3m-fast` | 50 | – | – | – | – | – | – |
+| `reborn-flight3m-cure` | – | – | 30 | – | – | – | – |
+| `reborn-flight3m-nodanger` | – | – | – | – | – | – | 1 |
+| `reborn-flight3m-hold` | – | – | – | 50 | – | – | – |
+
+### `reborn-fight-recall`
+
+#763/#764 on 78b8f297: attack-on-sight categories, winning-fight override, safe flight Recall, and all three.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_on_sight` | `borg_param_caution_recall_survival` | `borg_param_caution_winning_fight` |
+| --- | --- | --- | --- |
+| `reborn-fightrecall-ctl` | – | – | – |
+| `reborn-fightrecall-attack-sight` | 1 | – | – |
+| `reborn-fightrecall-winning-fight` | – | – | 1 |
+| `reborn-fightrecall-recall-safe` | – | 1 | – |
+| `reborn-fightrecall-all` | 1 | 1 | 1 |
+
+### `reborn-phase-first-761`
+
+#761 on 992e0351: Phase Door reserve, less oil, Rangers' lighter kit, floor pickup, unseen flavours, food/light, and all.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_flow_take_phase_first` | `borg_param_flow_take_phase_short_below` | `borg_param_town_food_percent` | `borg_param_town_heal_reserve_hp_percent_ranger` | `borg_param_town_light_percent` | `borg_param_town_oil_curve_scale_percent` | `borg_param_town_oil_curve_scale_percent__blackguard` | `borg_param_town_oil_curve_scale_percent__druid` | `borg_param_town_oil_curve_scale_percent__mage` | `borg_param_town_oil_curve_scale_percent__necromancer` | `borg_param_town_oil_curve_scale_percent__paladin` | `borg_param_town_oil_curve_scale_percent__priest` | `borg_param_town_oil_curve_scale_percent__ranger` | `borg_param_town_oil_curve_scale_percent__rogue` | `borg_param_town_oil_curve_scale_percent__warrior` | `borg_param_town_phase_reserve` | `borg_param_town_phase_reserve_percent` | `borg_param_town_ranger_arrows_max__ranger` | `borg_param_town_unseen_percent` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-phasefirst-ctl` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-phasefirst-ranger` | – | – | – | 100 | – | – | – | – | – | – | – | – | 25 | – | – | – | – | 20 | – |
+| `reborn-phasefirst-phase` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | 2 | 200 | – | – |
+| `reborn-phasefirst-oil` | – | – | – | – | – | 50 | 50 | 75 | 50 | 50 | 60 | 75 | 25 | 60 | 50 | – | – | – | – |
+| `reborn-phasefirst-phaseoil` | – | – | – | – | – | 50 | 50 | 75 | 50 | 50 | 60 | 75 | 25 | 60 | 50 | 2 | 200 | – | – |
+| `reborn-phasefirst-floor` | – | 2 | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-phasefirst-floorfirst` | 1 | 2 | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-phasefirst-unseen` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | 50 |
+| `reborn-phasefirst-foodlight` | – | – | 50 | – | 50 | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-phasefirst-all` | – | 2 | 50 | 100 | 50 | 50 | 50 | 75 | 50 | 50 | 60 | 75 | 25 | 60 | 50 | 2 | 200 | 20 | 50 |
+
 ### `reborn-recallwait`
 
 #754's Recall-wait switches on PR #762 head 613f1ba5: a pending Recall counts as an escape (esc), no exploring while it counts down (nox), both.
@@ -1128,6 +1199,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_arrow_point_blank_divisor_ranger` | 0, 1, 3, 4, not set | `reborn-pbd-by-class`, `reborn-pbd-rr`, `reborn-bundle` |  |
 | `borg_param_attack_arrow_point_blank_divisor_rogue` | 0, 2, 4, 6, not set | `reborn-pbd-by-class`, `reborn-pbd-rr` |  |
 | `borg_param_attack_arrow_point_blank_divisor_warrior` | 2, 10, not set | `reborn-pbd-by-class` |  |
+| `borg_param_attack_on_sight` | 1, not set | `reborn-fight-recall` |  |
 | `borg_param_attack_preference_blackguard_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_blackguard_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_blackguard_melee_permille` | 1000, 1300, 1600, 1900, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
@@ -1196,7 +1268,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_breeder_exit` | 1, not set | `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_policy` | 0, 1, 2, 3, 4, 5 | `reborn-breeder-policy-x4` |  |
 | `borg_param_caution_breeder_stoppable` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
-| `borg_param_caution_desperate_fast_danger_percent` | 50, not set | `reborn-flight-fixes` |  |
+| `borg_param_caution_desperate_fast_danger_percent` | 50, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |
+| `borg_param_caution_desperate_ranged_first_reach` | 3, not set | `reborn-flight3-757` |  |
 | `borg_param_caution_flee_known_down_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_flee_recall_chasers` | 2, 6, not set | `reborn-untested-caution` |  |
@@ -1204,14 +1277,15 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
 | `borg_param_caution_jumpstart_keep_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_ranged_vs_immobile` | 1, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895` |  |
-| `borg_param_caution_recall_cure_min_loss_percent` | 30, not set | `reborn-flight-fixes` |  |
+| `borg_param_caution_recall_cure_min_loss_percent` | 30, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |
 | `borg_param_caution_recall_pending_escape` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
+| `borg_param_caution_recall_survival` | 1, not set | `reborn-fight-recall` |  |
 | `borg_param_caution_recall_wait_as_usual` | 0, 1, not set | `reborn-neutral-main`, `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_recall_wait_no_explore` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_rising_explore_ticks` | 500, 1000, 1500, 2000, not set | `reborn-rising-ticks3` |  |
 | `borg_param_caution_rising_hold_flee_descent` | 1, not set | `reborn-dungeon-switch-screen` |  |
-| `borg_param_caution_rising_hold_min_hp_percent` | 50, not set | `reborn-flight-fixes` |  |
+| `borg_param_caution_rising_hold_min_hp_percent` | 50, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |
 | `borg_param_caution_scary_afraid` | 0, 1 | `reborn-scary-calm` |  |
 | `borg_param_caution_scary_damage_percent` | 40, 60 | `reborn-scary-named-damage` |  |
 | `borg_param_caution_scary_hurt_percent` | 0, 50 | `reborn-scary-calm` |  |
@@ -1222,13 +1296,14 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_unlatch_kill` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_slow_crowd_exit` | 0, 1 | `reborn-slow-crowd-exit` |  |
 | `borg_param_caution_stair_parked_fallback` | 0, 1, not set | `reborn-597` |  |
-| `borg_param_caution_stairs_clean_path` | 2, not set | `reborn-flight-fixes` |  |
-| `borg_param_caution_stairs_clean_path_flee` | 1, not set | `reborn-flight-fixes` |  |
-| `borg_param_caution_stairs_flight_ignore_danger` | 1, not set | `reborn-flight-fixes` |  |
+| `borg_param_caution_stairs_clean_path` | 2, 3, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |
+| `borg_param_caution_stairs_clean_path_flee` | 1, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |
+| `borg_param_caution_stairs_flight_ignore_danger` | 1, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |
 | `borg_param_caution_stairs_leave_on_monster` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_town_flee_no_worse` | 1, not set | `reborn-untested-dbc`, `reborn-town-switch-screen` |  |
 | `borg_param_caution_town_never_scary` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
+| `borg_param_caution_winning_fight` | 1, not set | `reborn-fight-recall` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_fail` | 0, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_max_danger_divisor` | 1, 4, not set | `reborn-bless` |  |
@@ -1242,6 +1317,13 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
 | `borg_param_flow_leash` | 0, 1, 2 | `reborn-stairs-leash` |  |
+| `borg_param_flow_leash_base` | 5, 15, not set | `reborn-cleash` |  |
+| `borg_param_flow_leash_depth_margin` | -100, 0, 10, not set | `reborn-cleash` |  |
+| `borg_param_flow_leash_per_level` | 2, 5, not set | `reborn-cleash` |  |
+| `borg_param_flow_leash_pickup_max_level` | 0, not set | `reborn-cleash` |  |
+| `borg_param_flow_leash_stairs_max_level` | 0, not set | `reborn-cleash` |  |
+| `borg_param_flow_take_phase_first` | 1, not set | `reborn-phase-first-761` |  |
+| `borg_param_flow_take_phase_short_below` | 2, not set | `reborn-phase-first-761` |  |
 | `borg_param_kill_flow_mode` | 0, 1, 2, 3 | `reborn-kill-flow-mode` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
 | `borg_param_light_detect_evil_spell_min_level` | 5, 10, not set | `reborn-low-level-detection`, `reborn-shipcheck-b895` |  |
@@ -1271,6 +1353,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_devices_percent@ranger` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_devices_percent@rogue` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_devices_percent@warrior` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_food_percent` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_param_town_gold_reserve` | 300, 1000, not set | `reborn-gold-reserve` |  |
 | `borg_param_town_gold_reserve_percent` | 25, 50, not set | `reborn-gold-reserve` |  |
 | `borg_param_town_heal_curve_scale_percent_blackguard` | 0, 40, 75, 115, not set | `reborn-heal-by-class`, `reborn-class-curves`, `reborn-class-curves-dbc`, `reborn-bgcurve-dbc` |  |
@@ -1288,11 +1371,13 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_necromancer` | -1, 150, 400, 450, not set | `reborn-heal-by-class`, `reborn-casters` |  |
 | `borg_param_town_heal_reserve_hp_percent_paladin` | -1, 75, 225, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_priest` | -1, 125, 350, 375, not set | `reborn-heal-by-class`, `reborn-mage-priest`, `reborn-casters` |  |
-| `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class`, `reborn-phase-first-761` |  |
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_light_percent` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_param_town_missiles_other_ranged_percent` | 50, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_missiles_percent` | 50, 100, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_oil_curve_scale_percent` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_param_town_oil_curve_scale_percent@blackguard` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_oil_curve_scale_percent@druid` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_oil_curve_scale_percent@mage` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
@@ -1302,6 +1387,15 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_oil_curve_scale_percent@ranger` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_oil_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_oil_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_oil_curve_scale_percent__blackguard` | 50, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_oil_curve_scale_percent__druid` | 75, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_oil_curve_scale_percent__mage` | 50, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_oil_curve_scale_percent__necromancer` | 50, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_oil_curve_scale_percent__paladin` | 60, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_oil_curve_scale_percent__priest` | 75, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_oil_curve_scale_percent__ranger` | 25, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_oil_curve_scale_percent__rogue` | 60, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_oil_curve_scale_percent__warrior` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_param_town_phase_curve_scale_percent@blackguard` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc`, `reborn-bgcurve-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@druid` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@mage` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
@@ -1311,9 +1405,13 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_curve_scale_percent@ranger` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_phase_reserve` | 2, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_phase_reserve_percent` | 200, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_ranger_arrows_max__ranger` | 20, not set | `reborn-phase-first-761` |  |
 | `borg_param_town_recall_reserve` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_param_town_store_only_overweight` | 0, 1, not set | `reborn-store-overweight`, `reborn-shipcheck-b895` |  |
+| `borg_param_town_unseen_percent` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
 | `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters` |  |
 | `borg_town_attack_turns` | 50, not set | `reborn-casters`, `reborn-crow-escape` |  |

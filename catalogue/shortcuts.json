@@ -1121,6 +1121,69 @@
       ],
       "runs": []
     },
+    "reborn-cleash": {
+      "issue": 506,
+      "status": "defined (pilot; small + medium after its gate)",
+      "what": "C's exploration leash values on main ec0f3b28: shipped (3/9/5), tight (2/5), loose (5/15), depth margin 0 and 10, and no leash.",
+      "profiles": [
+        "reborn-cleash-ctl",
+        "reborn-cleash-tight",
+        "reborn-cleash-loose",
+        "reborn-cleash-margin0",
+        "reborn-cleash-margin10",
+        "reborn-cleash-none"
+      ],
+      "runs": []
+    },
+    "reborn-flight3-757": {
+      "issue": 510,
+      "status": "defined (pilot; larger tiers after its gate and the owner)",
+      "what": "PR #757 on 50c23a5e: #501's flight arm with #751 mode 3 (flight3), plus ranged-first (flight3r), and each switch alone.",
+      "profiles": [
+        "reborn-flight3m-ctl",
+        "reborn-flight3m-flight3",
+        "reborn-flight3m-flight3r",
+        "reborn-flight3m-path3",
+        "reborn-flight3m-ranged",
+        "reborn-flight3m-flee",
+        "reborn-flight3m-fast",
+        "reborn-flight3m-cure",
+        "reborn-flight3m-nodanger",
+        "reborn-flight3m-hold"
+      ],
+      "runs": []
+    },
+    "reborn-fight-recall": {
+      "issue": 511,
+      "status": "defined (pilot; larger tiers after its gate and the owner)",
+      "what": "#763/#764 on 78b8f297: attack-on-sight categories, winning-fight override, safe flight Recall, and all three.",
+      "profiles": [
+        "reborn-fightrecall-ctl",
+        "reborn-fightrecall-attack-sight",
+        "reborn-fightrecall-winning-fight",
+        "reborn-fightrecall-recall-safe",
+        "reborn-fightrecall-all"
+      ],
+      "runs": []
+    },
+    "reborn-phase-first-761": {
+      "issue": 513,
+      "status": "defined (pilot; larger tiers after its gate and the owner)",
+      "what": "#761 on 992e0351: Phase Door reserve, less oil, Rangers' lighter kit, floor pickup, unseen flavours, food/light, and all.",
+      "profiles": [
+        "reborn-phasefirst-ctl",
+        "reborn-phasefirst-ranger",
+        "reborn-phasefirst-phase",
+        "reborn-phasefirst-oil",
+        "reborn-phasefirst-phaseoil",
+        "reborn-phasefirst-floor",
+        "reborn-phasefirst-floorfirst",
+        "reborn-phasefirst-unseen",
+        "reborn-phasefirst-foodlight",
+        "reborn-phasefirst-all"
+      ],
+      "runs": []
+    },
     "reborn-recallwait": {
       "issue": 507,
       "status": "defined (pilot; small + medium after its gate)",

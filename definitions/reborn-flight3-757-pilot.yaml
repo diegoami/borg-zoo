@@ -1,0 +1,64 @@
+# borg-zoo#510: borg-reborn-rs PR #757, flight mode 3 and ranged-first, with #501's flight switches one at a time.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-flight3-757-pilot.yaml
+name: reborn-flight3-757-pilot
+issue: 510
+question: >-
+  On borg-reborn-rs 50c23a5e (PR #757 with #751 mode 3 and ranged-first), does the tuned flight with mode 3 save the
+  early deaths without new ones, and which switch does what?
+tier: pilot            # classes-18, 100,000 turns; the 200 Ranger starts and small + medium after its gate
+
+specimen:
+  name: 4.2.6-reborn-rust-flight3-50c23a5e
+  repository: diegoami/borg-reborn-rs
+  ref: 50c23a5eefde1a7838dcdb868c3d64afca309e4c
+  label: "borg-reborn-rs scratch/T751-mode3 50c23a5e: PR #757's switches, #751 mode 3, caution_desperate_ranged_first_reach; all shipped 0; not merged with main's #755. harness/borg.txt d71b7f24..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-flight3m
+arms:
+  ctl: {}
+  flight3:
+    borg_param_caution_stairs_clean_path: 3
+    borg_param_caution_stairs_clean_path_flee: 1
+    borg_param_caution_desperate_fast_danger_percent: 50
+    borg_param_caution_recall_cure_min_loss_percent: 30
+    borg_param_caution_stairs_flight_ignore_danger: 1
+    borg_param_caution_rising_hold_min_hp_percent: 50
+  flight3r:
+    borg_param_caution_stairs_clean_path: 3
+    borg_param_caution_stairs_clean_path_flee: 1
+    borg_param_caution_desperate_fast_danger_percent: 50
+    borg_param_caution_recall_cure_min_loss_percent: 30
+    borg_param_caution_stairs_flight_ignore_danger: 1
+    borg_param_caution_rising_hold_min_hp_percent: 50
+    borg_param_caution_desperate_ranged_first_reach: 3
+  path3:    {borg_param_caution_stairs_clean_path: 3}
+  ranged:   {borg_param_caution_desperate_ranged_first_reach: 3}
+  flee:     {borg_param_caution_stairs_clean_path_flee: 1}
+  fast:     {borg_param_caution_desperate_fast_danger_percent: 50}
+  cure:     {borg_param_caution_recall_cure_min_loss_percent: 30}
+  nodanger: {borg_param_caution_stairs_flight_ignore_danger: 1}
+  hold:     {borg_param_caution_rising_hold_min_hp_percent: 50}
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs owner, "queue the zoo jobs you require"; zoo owner, 2026-11-20: "pick up the open
+  jobs" (pilots and small runs only, no heavy jobs).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this specimen was read (borg-zoo#510, borg-reborn-rs PR #757). Pilot (RULES 16);
+  the 200 Ranger starts of #488 and small + medium after this gate and the owner. ctl is the specimen's shipped borg.txt.
+  Gate: no config_error; one binary; each arm's values in borg.txt and params-core.json; every cell ends in death,
+  turn_cap or borg_stopped (stalls, timeouts and crashes kept apart from deaths); death bundles reproduced.
+  Report per arm and per class: deaths and causes, CL at death, deepest level; paired rescued / newly killed (exact
+  McNemar); identical plays; "Stairs not reachable" and "Desperate for Stairs" notes per game; RULES 18 bin.
+  Deaths in ctl, flight3 and flight3r get a death report with screens.
