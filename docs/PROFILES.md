@@ -69,6 +69,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-low-level-detection` | [#470](https://github.com/diegoami/borg-zoo/issues/470) | 4 | defined (pilot) | Detection min level: 0 (C) / casters 10 / all 10 / all 5. |
 | `reborn-town-switch-screen` | [#466](https://github.com/diegoami/borg-zoo/issues/466) | 7 | defined (pilot) | Screen of the town and Druid switches main ships off, one arm each. |
 | `reborn-dungeon-switch-screen` | [#465](https://github.com/diegoami/borg-zoo/issues/465) | 10 | defined (pilot) | Screen of the dungeon switches main ships off, one arm each. |
+| `reborn-shipcheck-b895` | [#480](https://github.com/diegoami/borg-zoo/issues/480) | 6 | defined (first stage on classes-1800-small; medium after its gate) | Main b895e352 (engine 574b618c): shipped against throw-as-melee 0, store-when-overweight 0, detection casters 10, all 10, ranged vs immobile 1. |
 
 ### `heal-attack-4`
 
@@ -1011,6 +1012,21 @@ Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = bo
 | `reborn-dunscreen-stairs-leave` | – | – | – | – | – | – | 1 | – |
 | `reborn-dunscreen-unlatch-kill` | – | – | – | – | – | 1 | – | – |
 
+### `reborn-shipcheck-b895`
+
+Main b895e352 (engine 574b618c): shipped against throw-as-melee 0, store-when-overweight 0, detection casters 10, all 10, ranged vs immobile 1.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_throw_as_melee` | `borg_param_caution_ranged_vs_immobile` | `borg_param_light_detect_evil_spell_min_level` | `borg_param_light_detect_evil_spell_min_level__druid` | `borg_param_light_detect_evil_spell_min_level__mage` | `borg_param_light_detect_evil_spell_min_level__necromancer` | `borg_param_light_detect_evil_spell_min_level__paladin` | `borg_param_light_detect_evil_spell_min_level__priest` | `borg_param_town_store_only_overweight` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-shipcheck-b895-all10` | – | – | 10 | 10 | 10 | 10 | 10 | 10 | – |
+| `reborn-shipcheck-b895-casters10` | – | – | – | 10 | 10 | 10 | 10 | 10 | – |
+| `reborn-shipcheck-b895-ranged` | – | 1 | – | – | – | – | – | – | – |
+| `reborn-shipcheck-b895-shipped` | – | – | – | – | – | – | – | – | – |
+| `reborn-shipcheck-b895-store0` | – | – | – | – | – | – | – | – | 0 |
+| `reborn-shipcheck-b895-throw0` | 0 | – | – | – | – | – | – | – | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1089,6 +1105,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_spell_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |
+| `borg_param_attack_throw_as_melee` | 0, not set | `reborn-shipcheck-b895` |  |
 | `borg_param_attack_town_dangerous_bonus_percent` | 600, not set | `reborn-town-dangerous` |  |
 | `borg_param_attack_town_dangerous_bonus_whole` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_attack_town_dangerous_caster_walk` | 1, not set | `reborn-town-switch-screen` |  |
@@ -1104,7 +1121,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_flee_recall_gate_below_depth` | 0, 2, 3, not set | `reborn-recall-settings`, `reborn-bundle` |  |
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
 | `borg_param_caution_jumpstart_keep_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
-| `borg_param_caution_ranged_vs_immobile` | 1, not set | `reborn-dungeon-switch-screen` |  |
+| `borg_param_caution_ranged_vs_immobile` | 1, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_recall_wait_as_usual` | 0, 1, not set | `reborn-neutral-main`, `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_rising_explore_ticks` | 500, 1000, 1500, 2000, not set | `reborn-rising-ticks3` |  |
@@ -1137,18 +1154,18 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_flow_leash` | 0, 1, 2 | `reborn-stairs-leash` |  |
 | `borg_param_kill_flow_mode` | 0, 1, 2, 3 | `reborn-kill-flow-mode` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
-| `borg_param_light_detect_evil_spell_min_level` | 5, 10, not set | `reborn-low-level-detection` |  |
+| `borg_param_light_detect_evil_spell_min_level` | 5, 10, not set | `reborn-low-level-detection`, `reborn-shipcheck-b895` |  |
 | `borg_param_light_detect_evil_spell_min_level@druid` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
 | `borg_param_light_detect_evil_spell_min_level@mage` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
 | `borg_param_light_detect_evil_spell_min_level@necromancer` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
 | `borg_param_light_detect_evil_spell_min_level@paladin` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
 | `borg_param_light_detect_evil_spell_min_level@priest` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
 | `borg_param_light_detect_evil_spell_min_level__blackguard` | 5, 10, not set | `reborn-low-level-detection` |  |
-| `borg_param_light_detect_evil_spell_min_level__druid` | 5, 10, not set | `reborn-low-level-detection` |  |
-| `borg_param_light_detect_evil_spell_min_level__mage` | 5, 10, not set | `reborn-low-level-detection` |  |
-| `borg_param_light_detect_evil_spell_min_level__necromancer` | 5, 10, not set | `reborn-low-level-detection` |  |
-| `borg_param_light_detect_evil_spell_min_level__paladin` | 5, 10, not set | `reborn-low-level-detection` |  |
-| `borg_param_light_detect_evil_spell_min_level__priest` | 5, 10, not set | `reborn-low-level-detection` |  |
+| `borg_param_light_detect_evil_spell_min_level__druid` | 5, 10, not set | `reborn-low-level-detection`, `reborn-shipcheck-b895` |  |
+| `borg_param_light_detect_evil_spell_min_level__mage` | 5, 10, not set | `reborn-low-level-detection`, `reborn-shipcheck-b895` |  |
+| `borg_param_light_detect_evil_spell_min_level__necromancer` | 5, 10, not set | `reborn-low-level-detection`, `reborn-shipcheck-b895` |  |
+| `borg_param_light_detect_evil_spell_min_level__paladin` | 5, 10, not set | `reborn-low-level-detection`, `reborn-shipcheck-b895` |  |
+| `borg_param_light_detect_evil_spell_min_level__priest` | 5, 10, not set | `reborn-low-level-detection`, `reborn-shipcheck-b895` |  |
 | `borg_param_light_detect_evil_spell_min_level__ranger` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__rogue` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__warrior` | 5, 10, not set | `reborn-low-level-detection` |  |
@@ -1205,7 +1222,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_recall_reserve` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
-| `borg_param_town_store_only_overweight` | 0, 1 | `reborn-store-overweight` |  |
+| `borg_param_town_store_only_overweight` | 0, 1, not set | `reborn-store-overweight`, `reborn-shipcheck-b895` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
 | `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters` |  |
 | `borg_town_attack_turns` | 50, not set | `reborn-casters`, `reborn-crow-escape` |  |

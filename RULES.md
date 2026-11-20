@@ -70,6 +70,10 @@
     (RULES 14). `python3 -m zoo define` refuses a new experiment above pilot
     size when the catalogue has no such pilot. Experiments generated before
     this rule are not rechecked.
+    A screen or check of several switches on a main whose shipped arm has
+    no death on `classes-18` may use `classes-1800-small` (starts 1-90,
+    `pilot: true`) as its pilot, so that survival can show (owner,
+    2026-11-20). Its next tier is then medium (starts 91-360).
 17. **Several sessions work on this repository at once; claim before you
     act** (owner, 2026-11-19). Any session may work on any issue: a study
     "belonging" to another session only means another session may be

@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-shipcheck-b895-pilot",
+  "issue": 480,
+  "definition": "definitions/reborn-shipcheck-b895-pilot.yaml",
+  "question": "On borg-reborn-rs main b895e352 (engine 574b618c), do the switches main ships on (throws rated as melee, storing at home only when overweight) and off (no detection below CL10, ranged against immobile attackers) earn their shipped values?",
+  "description": "On borg-reborn-rs main b895e352 (engine 574b618c), do the switches main ships on (throws rated as melee, storing at home only when overweight) and off (no detection below CL10, ranged against immobile attackers) earn their shipped values? Generated from definitions/reborn-shipcheck-b895-pilot.yaml: 6 arms on 4.2.6-reborn-rust-main-b895e352, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-20, before any result of these profiles was read. First stage (RULES 16 as amended), 90 starts per arm.\nGate: no config_error; one binary; each arm's lines written; engine 574b618c in every cell; every cell ends in death,\nturn_cap or borg_stopped; frozen-turn bursts classified. Report per arm and per class: deaths and causes, CL1-3\ndeaths, max CL and DL, paired rescued and newly killed (exact McNemar), identical plays. Medium (starts 91-360)\nfollows the gate; bins (RULES 18) from starts 1-360 pooled.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-main-b895e352"
+  ],
+  "profiles": [
+    "reborn-shipcheck-b895-shipped",
+    "reborn-shipcheck-b895-throw0",
+    "reborn-shipcheck-b895-store0",
+    "reborn-shipcheck-b895-casters10",
+    "reborn-shipcheck-b895-all10",
+    "reborn-shipcheck-b895-ranged"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-main-b895e352",
+  "control_profile": "reborn-shipcheck-b895-shipped",
+  "owner_authorization": "2026-11-20: the owner said \"yes do all of those\": the shipped-switch check, #470's follow-up and #465's ranged-immobile follow-up on current main, with the small set as the first stage (RULES 16 as amended)."
+}
