@@ -1,0 +1,184 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-breederpol-ctl": {
+        "description": "borg-zoo#530 (reborn-breeder-policy-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "d6f904cc46c61027330495731c31895d38659fc277aca2c1b3e1a493d53fa1bd"
+      },
+      "reborn-breederpol-p0": {
+        "description": "borg-zoo#530 (reborn-breeder-policy-pilot.yaml): arm p0.",
+        "settings": {
+          "borg_param_caution_breeder_policy": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "ed34ab67f0cbe30d9ca8a1068fee1362d1e2f158edfdb3bced90c220c7e2f154"
+      },
+      "reborn-breederpol-p2": {
+        "description": "borg-zoo#530 (reborn-breeder-policy-pilot.yaml): arm p2.",
+        "settings": {
+          "borg_param_caution_breeder_policy": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "c3ec02ac3ddd62169e5ba4997ef960d64190af6ccef5475f2a819de03ecd72a3"
+      },
+      "reborn-breederpol-p4": {
+        "description": "borg-zoo#530 (reborn-breeder-policy-pilot.yaml): arm p4.",
+        "settings": {
+          "borg_param_caution_breeder_policy": 4,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "c5b325eaab94bde6592ccd64bb0297c1830f482dcc7f1776615db2565bdb6b3f"
+      },
+      "reborn-breederpol-p5": {
+        "description": "borg-zoo#530 (reborn-breeder-policy-pilot.yaml): arm p5.",
+        "settings": {
+          "borg_param_caution_breeder_policy": 5,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "b1371c59a73f28f02bc996deffc79fbd64fffced4b6620ccc9b205d06bd9656f"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-c4163095": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs main c4163095: attack_on_sight 1 and caution_winning_fight 1 shipped (owner decision), flight switches off, #761 phase reserve off.",
+        "ref": "c41630959942bf318b5de3dfe7d9555bdb78820c",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-20 22:13 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-c4163095",
+    "control_profile": "reborn-breederpol-ctl",
+    "definition": "definitions/reborn-breeder-policy-pilot.yaml",
+    "description": "On borg-reborn-rs main c4163095, in the normal world, does the breeder policy (0 = C, 2 no rest while breeders are known, 4 paths avoid colonies, 5 walk out of a breeder room) save deaths or buy progress against the shipped 3? Generated from definitions/reborn-breeder-policy-pilot.yaml: 5 arms on 4.2.6-reborn-rust-main-c4163095, suite classes-18.",
+    "issue": 530,
+    "name": "reborn-breeder-policy-pilot",
+    "owner_authorization": "2026-11-20: zoo owner, \"caution_breeder_policy is important too\"; \"yes go, define them\" (pilots and small runs only, all classes).",
+    "prespecified": "Fixed 2026-11-20, before any result of this build was read (borg-zoo#530). #482 measured policies 0-5 only in the\nbreeders-x4 world (p0, p1, p2 harmful on progress, p4 and p5 neutral, shipped 3 supported); this is the normal\nworld on a current main. Pilot (RULES 16); a small tier of what leads follows the gate and the owner. Five arms,\n18 starts each (90 games), all classes.\nGate: no config_error; one binary; each arm's policy in params-core.json; ctl plays as main c4163095's shipped\nsettings; every cell ends in death, turn_cap or borg_stopped (stalls, timeouts and crashes kept apart);\nfrozen-turn bursts classified (the 7 Druid DL1 loops of #482 are watched for).\nReport per arm and per class: deaths and causes (breeders named), CL at death, final and maximum level, deepest\nlevel; paired rescued and newly killed against ctl (exact McNemar), identical plays; per game the breeder\nencounters (levels with breeders known, \"lost level\" and Recall reads). An arm that plays ctl's keys in every\nstart is \"not tested\". Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-breederpol-ctl",
+      "reborn-breederpol-p0",
+      "reborn-breederpol-p2",
+      "reborn-breederpol-p4",
+      "reborn-breederpol-p5"
+    ],
+    "question": "On borg-reborn-rs main c4163095, in the normal world, does the breeder policy (0 = C, 2 no rest while breeders are known, 4 paths avoid colonies, 5 walk out of a breeder room) save deaths or buy progress against the shipped 3?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-c4163095"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44826461232-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44826461232",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "b1a01c54aba17c7f57165c93f3b4ae17bf61c94b"
+}
