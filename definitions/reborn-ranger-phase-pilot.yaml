@@ -1,0 +1,61 @@
+# borg-zoo#517: #761 Phase Door first (borg-reborn-rs PR #778) merged with main 09a70906. Pilot on the new build first (RULES 16).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-ranger-phase-pilot.yaml
+name: reborn-ranger-phase-pilot
+issue: 517
+question: >-
+  On borg-reborn-rs task/T761-ranger-phase 3c889f0f (#761 on main 09a70906), do the Ranger kit, Phase Door first, the
+  oil curve and floor pickup behave as on #513's build 992e0351, without new deaths?
+tier: pilot            # classes-18, 100,000 turns; the 200 Rangers and small + medium wait for this gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-ranger-phase-3c889f0f
+  repository: diegoami/borg-reborn-rs
+  ref: 3c889f0f3f55787506bf2bfcf1135e5bc86f6717
+  label: "borg-reborn-rs task/T761-ranger-phase 3c889f0f (PR #778): #513's code 992e0351 merged with main 09a70906 (PR #757 flight switches, all shipped off). Smoke at shipped settings 3/3 identical."
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-rangerphase
+arms:
+  ctl: {}
+  ranger: &ranger
+    borg_param_town_ranger_arrows_max__ranger: 20
+    borg_param_town_heal_reserve_hp_percent_ranger: 100
+    borg_param_town_oil_curve_scale_percent__ranger: 25
+  phase: &phase
+    borg_param_town_phase_reserve: 2
+    borg_param_town_phase_reserve_percent: 200
+  oil: &oil
+    borg_param_town_oil_curve_scale_percent: 50
+    borg_param_town_oil_curve_scale_percent__warrior: 50
+    borg_param_town_oil_curve_scale_percent__mage: 50
+    borg_param_town_oil_curve_scale_percent__druid: 75
+    borg_param_town_oil_curve_scale_percent__priest: 75
+    borg_param_town_oil_curve_scale_percent__necromancer: 50
+    borg_param_town_oil_curve_scale_percent__paladin: 60
+    borg_param_town_oil_curve_scale_percent__rogue: 60
+    borg_param_town_oil_curve_scale_percent__ranger: 25
+    borg_param_town_oil_curve_scale_percent__blackguard: 50
+  floor: &floor {borg_param_flow_take_phase_short_below: 2}
+  all:
+    <<: [*ranger, *phase, *oil, *floor]
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs owner, "file the experiments" (issue filed as the tier after the pilot); zoo owner,
+  2026-11-20: "yes go ahead" (a classes-18 pilot on the new build only; the Ranger and medium tiers wait for the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this build was read (borg-zoo#517). Pilot (RULES 16) of the arms of #517 on
+  the exact build. all = ranger + phase + oil + floor (not #513's all, which also had unseen, food and light).
+  Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or
+  borg_stopped (stalls, timeouts and crashes kept apart); ctl plays as the build's shipped settings.
+  Report per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired
+  rescued and newly killed against ctl (exact McNemar), identical plays; Phase Door bought and picked up per game;
+  RULES 18 bin. Descriptive (RULES 14). #513's small tier (run 44791749875) found oil level with ctl and phase
+  newly killing two; read this pilot in that light.

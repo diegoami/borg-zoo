@@ -1195,6 +1195,56 @@
         "reborn-recallwait-both"
       ],
       "runs": []
+    },
+    "reborn-dive-gates-768": {
+      "issue": 518,
+      "status": "defined (pilot)",
+      "what": "C Borg dive gates (#768, PR #772): the shipped depth cap against the merged gates, then the depth margin and class offsets on 4e9af99e.",
+      "profiles": [
+        "reborn-dive-gates-768-shipped",
+        "reborn-dive-gates-768-margin-minus2",
+        "reborn-dive-gates-768-margin-plus2",
+        "reborn-dive-gates-768-mid-looser",
+        "reborn-dive-gates-768-mid-tighter"
+      ],
+      "runs": []
+    },
+    "reborn-p6compat": {
+      "issue": 520,
+      "status": "defined (pilot)",
+      "what": "P6 compatibility check (borg-reborn-rs #774): main 4e9af99e against the synchronized d0657712, shipped defaults.",
+      "profiles": [
+        "reborn-p6compat-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-flight3main": {
+      "issue": 516,
+      "status": "defined (pilot)",
+      "what": "PR #757's flight switches on main 09a70906 (mode 3 fixed): flight3, flight3r, path3, fast, cure.",
+      "profiles": [
+        "reborn-flight3main-ctl",
+        "reborn-flight3main-flight3",
+        "reborn-flight3main-flight3r",
+        "reborn-flight3main-path3",
+        "reborn-flight3main-fast",
+        "reborn-flight3main-cure"
+      ],
+      "runs": []
+    },
+    "reborn-rangerphase": {
+      "issue": 517,
+      "status": "defined (pilot)",
+      "what": "#761 Phase Door first on 3c889f0f (PR #778): ranger, phase, oil, floor and all.",
+      "profiles": [
+        "reborn-rangerphase-ctl",
+        "reborn-rangerphase-ranger",
+        "reborn-rangerphase-phase",
+        "reborn-rangerphase-oil",
+        "reborn-rangerphase-floor",
+        "reborn-rangerphase-all"
+      ],
+      "runs": []
     }
   }
 }

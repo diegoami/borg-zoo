@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-p6-compat-pilot",
+  "issue": 520,
+  "definition": "definitions/reborn-p6-compat-pilot.yaml",
+  "question": "Does borg-reborn-rs d0657712 (main 4e9af99e merged with reviewed P6 track-p, ten neutral enchant/decurse parameters) play exactly as 4e9af99e on the shipped defaults? A compatibility check, not a tuning or survival study.",
+  "description": "Does borg-reborn-rs d0657712 (main 4e9af99e merged with reviewed P6 track-p, ten neutral enchant/decurse parameters) play exactly as 4e9af99e on the shipped defaults? A compatibility check, not a tuning or survival study. Generated from definitions/reborn-p6-compat-pilot.yaml: 1 arms on 4.2.6-reborn-rust-main-4e9af99e, 4.2.6-reborn-rust-p6-d0657712, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20 from borg-zoo#520 (borg-reborn-rs #774), before any result was read. Pilot (RULES 16); the exact\nnative full45 manifest (harness/suites/full, sha256 7c81c28c...2d2eed, nine classes x five starts, explicit menu\nbirths, 100,000 turns) follows only after this gate and the owner's agreement; no larger tier under this request.\nGate: both exact builds and all effective settings verified (params-core.json of each cell: the ten new names present\nat their defaults in the candidate only); all 36 cells retained; no config_error, stall, timeout or crash; paired\nkey, message and state differences listed. A mismatch stops the study: report the exact start, the first differing\nkey, trace and source before any larger tier. No dropping or reclassifying failures, no weakening of caps.\nReport per start: play_sha256 equal between the builds or the first differing key; deaths, CL and DL per arm.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-4e9af99e",
+    "4.2.6-reborn-rust-p6-d0657712"
+  ],
+  "profiles": [
+    "reborn-p6compat-shipped"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-4e9af99e",
+  "control_profile": "reborn-p6compat-shipped",
+  "owner_authorization": "2026-11-20: borg-reborn-rs session request; zoo owner, 2026-11-20: \"yes go ahead\" (pilots and small runs only, no heavy jobs).",
+  "retain_evidence": true
+}

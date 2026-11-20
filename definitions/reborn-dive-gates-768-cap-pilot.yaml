@@ -1,0 +1,38 @@
+# borg-zoo#518: C Borg dive gates (borg-reborn-rs #768, PR #772). Write the catalogue entries with: python3 -m zoo define definitions/reborn-dive-gates-768-cap-pilot.yaml
+name: reborn-dive-gates-768-cap-pilot
+question: What changes when the shipped errands depth cap is replaced by C's dive gates?
+issue: 518
+tier: pilot
+specimens:
+  - name: 4.2.6-reborn-rust-main-09a70906
+    repository: diegoami/borg-reborn-rs
+    ref: 09a7090650bf837702d5ab3345a7401532114cf8
+    label: Pre-merge main with the shipped errands depth cap enabled
+    scary_lists:
+      scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+  - name: 4.2.6-reborn-rust-main-4e9af99e
+    repository: diegoami/borg-reborn-rs
+    ref: 4e9af99ea51b531bdcf8c916ee6a37be72bef047
+    label: Main at PR 772 with C's dive gates at their shipped values
+    scary_lists:
+      scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-dive-gates-768
+arms:
+  shipped: {}
+control_specimen: 4.2.6-reborn-rust-main-09a70906
+control: [shipped]
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs owner (issue filed from borg-reborn-rs #768 / PR #772); zoo owner, 2026-11-20: "yes go
+  ahead" (pilots and small runs only, no heavy jobs).
+extra:
+  retain_evidence: true
+prespecified: |
+  Pair the same classes-18 starts at 100,000 turns. Verify both build pins, clean
+  shipped profiles, all 36 cells and terminal outcomes. Report configuration
+  errors, stalls and other failures separately. Reproduce and retain natural deaths.
+  Report paired rescued and newly killed, deaths at CL1–3, deaths by class and cause,
+  maximum CL and DL, and turns to first DL2, DL3, DL5 and DL10 where reached.
+  Treat the pilot as a configuration and execution gate.

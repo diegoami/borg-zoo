@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-dive-gates-768-cap-pilot",
+  "issue": 518,
+  "definition": "definitions/reborn-dive-gates-768-cap-pilot.yaml",
+  "question": "What changes when the shipped errands depth cap is replaced by C's dive gates?",
+  "description": "What changes when the shipped errands depth cap is replaced by C's dive gates? Generated from definitions/reborn-dive-gates-768-cap-pilot.yaml: 1 arms on 4.2.6-reborn-rust-main-09a70906, 4.2.6-reborn-rust-main-4e9af99e, suite classes-18.",
+  "prespecified": "Pair the same classes-18 starts at 100,000 turns. Verify both build pins, clean\nshipped profiles, all 36 cells and terminal outcomes. Report configuration\nerrors, stalls and other failures separately. Reproduce and retain natural deaths.\nReport paired rescued and newly killed, deaths at CL1\u20133, deaths by class and cause,\nmaximum CL and DL, and turns to first DL2, DL3, DL5 and DL10 where reached.\nTreat the pilot as a configuration and execution gate.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-09a70906",
+    "4.2.6-reborn-rust-main-4e9af99e"
+  ],
+  "profiles": [
+    "reborn-dive-gates-768-shipped"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-09a70906",
+  "control_profile": "reborn-dive-gates-768-shipped",
+  "owner_authorization": "2026-11-20: borg-reborn-rs owner (issue filed from borg-reborn-rs #768 / PR #772); zoo owner, 2026-11-20: \"yes go ahead\" (pilots and small runs only, no heavy jobs).",
+  "retain_evidence": true
+}

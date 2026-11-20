@@ -1,0 +1,55 @@
+# borg-zoo#518: C Borg dive gates (borg-reborn-rs #768, PR #772). Write the catalogue entries with: python3 -m zoo define definitions/reborn-dive-gates-768-knobs-pilot.yaml
+name: reborn-dive-gates-768-knobs-pilot
+question: How do the depth margin and class offsets affect deaths and depth on the merged C dive gates?
+issue: 518
+tier: pilot
+specimen: 4.2.6-reborn-rust-main-4e9af99e
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-dive-gates-768
+arms:
+  shipped: {}
+  margin-minus2:
+    borg_param_prepared_clevel_depth_margin: -2
+  margin-plus2:
+    borg_param_prepared_clevel_depth_margin: 2
+  mid-looser:
+    borg_param_prepared_clevel_depth_margin: 2
+    borg_param_prepared_mid_clevel_offset__warrior: -7
+    borg_param_prepared_mid_clevel_offset__mage: 2
+    borg_param_prepared_mid_clevel_offset__druid: -3
+    borg_param_prepared_mid_clevel_offset__priest: -3
+    borg_param_prepared_mid_clevel_offset__necromancer: 2
+    borg_param_prepared_mid_clevel_offset__paladin: -3
+    borg_param_prepared_mid_clevel_offset__rogue: -3
+    borg_param_prepared_mid_clevel_offset__ranger: -3
+    borg_param_prepared_mid_clevel_offset__blackguard: -7
+  mid-tighter:
+    borg_param_prepared_clevel_depth_margin: 2
+    borg_param_prepared_mid_clevel_offset__warrior: -1
+    borg_param_prepared_mid_clevel_offset__mage: 8
+    borg_param_prepared_mid_clevel_offset__druid: 3
+    borg_param_prepared_mid_clevel_offset__priest: 3
+    borg_param_prepared_mid_clevel_offset__necromancer: 8
+    borg_param_prepared_mid_clevel_offset__paladin: 3
+    borg_param_prepared_mid_clevel_offset__rogue: 3
+    borg_param_prepared_mid_clevel_offset__ranger: 3
+    borg_param_prepared_mid_clevel_offset__blackguard: -1
+control: [shipped]
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs owner (issue filed from borg-reborn-rs #768 / PR #772); zoo owner, 2026-11-20: "yes go
+  ahead" (pilots and small runs only, no heavy jobs).
+extra:
+  retain_evidence: true
+prespecified: |
+  Use the same 18 starts and 100,000-turn cap as the shipped-build pilot.
+  Verify one binary, all 90 cells and terminal outcomes, and the exact scalar
+  and per-class overrides in the generated profiles. Check effective values in
+  run receipts and death replays where available. The shared shipped arm should
+  reproduce the merged specimen's play hashes from the shipped-build pilot.
+  Report the same survival and progress endpoints. Pair both margins against
+  shipped and both mid offset arms against margin-plus2. Report how many starts
+  reach DL10 and any observed activations of the mid gate, including by class.
+  If the pilot never exercises the mid gate, report exposure as insufficient.
+  Retain natural death bundles and report technical failures separately.
