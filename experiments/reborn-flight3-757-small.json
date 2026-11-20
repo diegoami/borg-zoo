@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-flight3-757-small",
+  "issue": 510,
+  "definition": "definitions/reborn-flight3-757-small.yaml",
+  "question": "On borg-reborn-rs 50c23a5e (PR #757 with #751 mode 3), does the tuned flight with mode 3 save deaths or buy progress over 90 starts?",
+  "description": "On borg-reborn-rs 50c23a5e (PR #757 with #751 mode 3), does the tuned flight with mode 3 save deaths or buy progress over 90 starts? Generated from definitions/reborn-flight3-757-small.yaml: 2 arms on 4.2.6-reborn-rust-flight3-50c23a5e, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-20 after the classes-18 pilot of the same arms on the same build passed its gate except for nodanger's\nstall (run 44774313553): flight3 rescued the one dead start and killed none. flight3r (identical to flight3 in the\npilot), ranged, flee and hold (identical to ctl in 18 of 18), path3, fast and cure are dropped; nodanger stalled\n(Druid 934061548, frozen-turn loop) and waits for a fix. Descriptive (RULES 14), a lead for a medium tier, not a result.\nReport per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued\nand newly killed against ctl (exact McNemar), identical plays; RULES 18 bin.",
+  "specimens": [
+    "4.2.6-reborn-rust-flight3-50c23a5e"
+  ],
+  "profiles": [
+    "reborn-flight3m-ctl",
+    "reborn-flight3m-flight3"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-flight3-50c23a5e",
+  "control_profile": "reborn-flight3m-ctl",
+  "owner_authorization": "2026-11-20: zoo owner, \"do as you suggest\" (small tier for flight3 after the pilot gate; no Ranger tier, no medium).",
+  "retain_evidence": false
+}
