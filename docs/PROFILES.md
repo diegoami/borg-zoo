@@ -70,6 +70,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-town-switch-screen` | [#466](https://github.com/diegoami/borg-zoo/issues/466) | 7 | defined (pilot) | Screen of the town and Druid switches main ships off, one arm each. |
 | `reborn-dungeon-switch-screen` | [#465](https://github.com/diegoami/borg-zoo/issues/465) | 10 | defined (pilot) | Screen of the dungeon switches main ships off, one arm each. |
 | `reborn-shipcheck-b895` | [#480](https://github.com/diegoami/borg-zoo/issues/480) | 6 | defined (first stage on classes-1800-small; medium after its gate) | Main b895e352 (engine 574b618c): shipped against throw-as-melee 0, store-when-overweight 0, detection casters 10, all 10, ranged vs immobile 1. |
+| `reborn-main-fde8` | [#488](https://github.com/diegoami/borg-zoo/issues/488) | 1 | defined (pilot; all 1,800 starts after its gate) | borg-reborn-rs main fde8025a (engine 574b618c) with its shipped settings. |
 | `reborn-breeder-world-x4` | [#482](https://github.com/diegoami/borg-zoo/issues/482) | 6 | defined (pilot) | Breeder switches in the breeders-x4 world (all arms in the world): shipped against stoppable 0, rest 0, both 0, exit 1, avoid 1. |
 
 ### `heal-attack-4`
@@ -1027,6 +1028,14 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-shipcheck-b895-shipped` | – | – | – | – | – | – | – | – | – |
 | `reborn-shipcheck-b895-store0` | – | – | – | – | – | – | – | – | 0 |
 | `reborn-shipcheck-b895-throw0` | 0 | – | – | – | – | – | – | – | – |
+
+### `reborn-main-fde8`
+
+borg-reborn-rs main fde8025a (engine 574b618c) with its shipped settings.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-main-fde8-shipped`.
 
 ### `reborn-breeder-world-x4`
 
