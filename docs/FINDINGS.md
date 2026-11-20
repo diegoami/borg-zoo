@@ -245,6 +245,7 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
 - **Smoke, classes-18 `normal`** (run 44649268974): final turn, level, depth and cause are identical to bbc v15 in **18 of 18** games.
 - **Medium, classes-1800-medium `normal`** (run 44652186610, 270 games): the endpoints are identical to classes-v15 in **264 of 270**. Deaths: Rust 69, C 70. **All 6 differing games are Necromancers** (6 of 30). The port reproduces C for the other eight classes on these starts. The release's 45-scenario check didn't catch the Necromancer difference.
 - The play hashes differ in every game, while the endpoints match. The two harnesses record keys differently, so endpoint comparison is the test here.
+- **Big, classes-1800-big `normal`** (run 44677153452, 540 games): identical endpoints in **532 of 540**; deaths Rust 144, C 141. All 8 differences are Necromancers. Medium + big: 796 of 810 identical; Necromancers differ in 14 of 90, the other eight classes in 0 of 720. Tracked in borg-rs#111.
 
 ## Neo Borg: Mandos lanes
 
@@ -650,6 +651,23 @@ Lower values send the Borg back for unknown items more often. Each return brings
 - **Paladin 766958386, the yellow jelly** (borg-cemetery#79, dossier D-540138fafac2, borg-reborn-rs#713):
   - It meleed an adjacent yellow jelly for 120 game turns with 24 Flasks of oil unused, then died of poison in town.
   - #461's rule is the fix under test.
+
+**Results of 2026-11-20, afternoon (borg-reborn-rs on engine 574b618c; every gate passed unless noted):**
+- **Shipped main, full classes-1800 runs:**
+  - **94032140** (#484, run 44679955697): **42 deaths of 1,800 (2.3%)**, CL 5.39, DL 2.00. Main now ships the depth cap (`prepared_depth_plan` 1, class values from #735). Against main dbc92d18 (66 deaths; different engine, so outcomes only), the falls are in the capped classes (Priest 10 → 3, Mage 13 → 9, Paladin 3 → 1), and those classes lose about 1.1-1.4 CL and 0.5 DL. A paired cap 1 against 0 check on this specimen has not been run.
+  - **fde8025a** (#488, run 44681930409): **33 deaths of 1,800 (1.8%)**, CL 5.41, DL 1.98; all 33 on DL1-2, 24 at CL1-3. Against 3ba17e2c (105) deaths fell about threefold in every class except **Rangers: 12**, against 5 on 94032140 half an hour earlier (11 of the 12 survive there). The only Ranger-specific change between them is #725 (#716, arrows capped at 50). 10 of the 12 last attacks were melee with 24-86 arrows in the pack.
+- **#480, the shipped switches on main b895e352** (runs 44676098130, 44677651675; starts 1-360): `attack_throw_as_melee` off 20 deaths against 11 (6 / 15, p 0.078, Holm 0.39): **keep it on (leaning helpful)**. `town_store_only_overweight` off 8 (neutral). **Detection min level 10 for the casters: CL +0.53 ±0.09**, deaths 11 against 11 (Mage +1.62, Priest +1.27, Paladin +1.10, Necromancer +0.72); for every class +0.59. `caution_ranged_vs_immobile` 1: neutral. The fourth measurement with the same detection result; filed as borg-reborn-rs#744 (re-ship 10, undo #728).
+- **#475, our stairs leash for CL1-4 (`flow_leash` 1) on the re-pinned head 80646820** (run 44710808541, starts 1-360): 7 deaths against 6 (6 / 7, p 1.0), CL −0.14, 0 of 360 games identical. The earlier lead on 769132df (29 → 16 on starts 1-900) did not hold. **Bin: neutral.** The leash was dropped (borg-reborn-rs PR #734 closed); C's leash is now parameters on main (PR #755), screened in #506.
+- **#477, #736's three parts (stairs on a clean path, step-away, mobile threat) on 7750b604, pilot** (run 44676442008): no deaths in any arm; CL +0.11 shipped and +0.33 with step-away. Superseded by fde8025a (#488); step-away has no pilot on current main.
+- **#482, the breeder policy in the breeders-x4 world** (PR #740 e41eb758; small + medium 44709994372, 44710005901; big 44716984886):
+  - Starts 1-360 against shipped p3 (8 deaths): p0 (C) 11, p1 12, p2 10, each with **CL −0.15 to −0.23 (interval below 0)**: harmful on progress. p4 8 and p5 6: neutral. **Shipped policy 3 is supported.**
+  - 7 Druid cells on DL1 did not finish (frozen-turn loops in every arm, p3 included).
+  - Big, p3 alone (starts 361-900): 19 of 540 deaths (3.5%), CL 5.51, at least 5 to breeders; **no frozen-turn bursts in 540 cells**, all 60 Druids included, so the loop is rare.
+- **#495, `escape_teleport_landing_either` at 200,000 turns, pilot on c74a8155** (run 44726418111): 1 death in each arm, the same Mage; 17 of 18 games identical; no game passes CL9. **Bin: not tested.** It needs characters that carry Destruction or Teleport Level (saved-encounter suites, #184).
+- **#501, the six flight fixes together on e8b3acfd** (pilot 44737523620; the 200 Ranger starts 44738419997; starts 1-360 44738432656, 44738444831):
+  - Rangers 9 against 10 (1 / 2); all classes 5 against 6 (3 / 4), CL −0.09 ±0.09. **Bin: neutral on deaths, leaning slightly worse on progress.** As in #429, rescues on chosen death starts did not carry over to fresh starts.
+  - Every death was re-recorded with its last screens ([report](https://claude.ai/artifact/SnqujSa3vHiJUebG9hLu87), borg-cemetery#86 and #87): 31 deaths in 22 games, 7 games byte-identical in both arms. 8 Rangers die at CL1 on DL1 with 58-80 arrows, the last attack melee in 6. The fixes don't reach this pattern, the largest group of early deaths.
+- **Zoo infrastructure:** cells record their engine (#476); saved-encounter suites refuse builds on another engine, so Suite 1 can't run on main from 14ad671a on (#473). borg-reborn-rs worlds (`borg_world`) are generated per cell and recorded (#486).
 
 ## Open
 
