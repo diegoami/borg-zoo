@@ -85,9 +85,11 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-p6compat` | [#520](https://github.com/diegoami/borg-zoo/issues/520) | 1 | defined (pilot) | P6 compatibility check (borg-reborn-rs #774): main 4e9af99e against the synchronized d0657712, shipped defaults. |
 | `reborn-flight3main` | [#516](https://github.com/diegoami/borg-zoo/issues/516) | 6 | defined (pilot) | PR #757's flight switches on main 09a70906 (mode 3 fixed): flight3, flight3r, path3, fast, cure. |
 | `reborn-rangerphase` | [#517](https://github.com/diegoami/borg-zoo/issues/517) | 6 | defined (pilot) | #761 Phase Door first on 3c889f0f (PR #778): ranger, phase, oil, floor and all. |
-| `reborn-prepared` | [#522](https://github.com/diegoami/borg-zoo/issues/522) | 9 | defined (pilot; small tiers after its gate and the owner) | The dive gates' thresholds on main a04e5471: character-level minimums +/-2, HP minimums -25%/+25%, Cure minimum 0 and 4, and loose and tight combinations. |
-| `reborn-weighted765` | [#524](https://github.com/diegoami/borg-zoo/issues/524) | 3 | defined (pilot) | Threat-weighted stair routing (#765, PR #769) on 4a2eade9: the shipped profile, mode 3, and mode 3 with threat weight 5. |
+| `reborn-prepared` | [#522](https://github.com/diegoami/borg-zoo/issues/522) | 9 | pilot done 2026-11-20 (HP minimums act; level and Cure minimums not tested); small tier (ctl, hp-lo, hp-hi) defined | The dive gates' thresholds on main a04e5471: character-level minimums +/-2, HP minimums -25%/+25%, Cure minimum 0 and 4, and loose and tight combinations. |
+| `reborn-weighted765` | [#524](https://github.com/diegoami/borg-zoo/issues/524) | 3 | pilot done 2026-11-20 (weighted5 newly killed one Ranger, 0 of 18 identical); small tier (mode3, weighted5) defined | Threat-weighted stair routing (#765, PR #769) on 4a2eade9: the shipped profile, mode 3, and mode 3 with threat weight 5. |
 | `reborn-phasereserve` | [#526](https://github.com/diegoami/borg-zoo/issues/526) | 7 | defined (pilot; small tier and Rangers after its gate and the owner) | town_phase_reserve (1, 2, 3 at 200 percent) and town_phase_reserve_percent (50, 100, 200, 400 at reserve 2) on main d745d9fc, against the shipped reserve 0. |
+| `reborn-attacksight` | [#529](https://github.com/diegoami/borg-zoo/issues/529) | 8 | defined (pilot; small tier after its gate and the owner) | attack_on_sight (#760), caution_winning_fight (#759) and the kill-on-sight list on main c4163095: each switch off, both off, the list without its breeders, without its fast-fragile pair, and cut to CL10 and CL20. |
+| `reborn-breederpol` | [#530](https://github.com/diegoami/borg-zoo/issues/530) | 5 | defined (pilot; small tier after its gate and the owner) | caution_breeder_policy in the normal world on main c4163095: shipped 3 and 0, 2, 4, 5. |
 | `reborn-adopted` | [#511](https://github.com/diegoami/borg-zoo/issues/511) | 5 | defined (pilot, prepared only; the owner decides dispatch) | The three adopted switches (attack_on_sight, caution_winning_fight, caution_recall_survival, shipped 1) isolated against an explicit all-off control on f827f844: off, category, winning, recall, shipped. |
 | `reborn-adopted-600` | [#528](https://github.com/diegoami/borg-zoo/issues/528) | 2 | defined (pilot18 of the retained 600; prepared only; the owner decides dispatch and every tier) | The adopted combined policy (shipped) against explicit all-off on f827f844, on the first 2 starts per class of the owner's retained 600 (200 Rangers + 50 of each other class). |
 
@@ -1308,6 +1310,37 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-phasereserve-r2p100` | 2 | 100 |
 | `reborn-phasereserve-r2p400` | 2 | 400 |
 
+### `reborn-attacksight`
+
+attack_on_sight (#760), caution_winning_fight (#759) and the kill-on-sight list on main c4163095: each switch off, both off, the list without its breeders, without its fast-fragile pair, and cut to CL10 and CL20.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_on_sight` | `borg_param_caution_winning_fight` | `borg_scary_list_lines` |
+| --- | --- | --- | --- |
+| `reborn-attacksight-ctl` | – | – | – |
+| `reborn-attacksight-both0` | 0 | 0 | – |
+| `reborn-attacksight-sight0` | 0 | – | – |
+| `reborn-attacksight-win0` | – | 0 | – |
+| `reborn-attacksight-nobreed` | – | – | 5 lines |
+| `reborn-attacksight-nofast` | – | – | 2 lines |
+| `reborn-attacksight-cl10` | – | – | 7 lines |
+| `reborn-attacksight-cl20` | – | – | 7 lines |
+
+### `reborn-breederpol`
+
+caution_breeder_policy in the normal world on main c4163095: shipped 3 and 0, 2, 4, 5.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_breeder_policy` |
+| --- | --- |
+| `reborn-breederpol-ctl` | – |
+| `reborn-breederpol-p0` | 0 |
+| `reborn-breederpol-p2` | 2 |
+| `reborn-breederpol-p4` | 4 |
+| `reborn-breederpol-p5` | 5 |
+
 ### `reborn-adopted`
 
 The three adopted switches (attack_on_sight, caution_winning_fight, caution_recall_survival, shipped 1) isolated against an explicit all-off control on f827f844: off, category, winning, recall, shipped.
@@ -1355,7 +1388,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_arrow_point_blank_divisor_ranger` | 0, 1, 3, 4, not set | `reborn-pbd-by-class`, `reborn-pbd-rr`, `reborn-bundle` |  |
 | `borg_param_attack_arrow_point_blank_divisor_rogue` | 0, 2, 4, 6, not set | `reborn-pbd-by-class`, `reborn-pbd-rr` |  |
 | `borg_param_attack_arrow_point_blank_divisor_warrior` | 2, 10, not set | `reborn-pbd-by-class` |  |
-| `borg_param_attack_on_sight` | 0, 1, not set | `reborn-fight-recall`, `reborn-adopted`, `reborn-adopted-600` |  |
+| `borg_param_attack_on_sight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600` |  |
 | `borg_param_attack_preference_blackguard_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_blackguard_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_blackguard_melee_permille` | 1000, 1300, 1600, 1900, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
@@ -1422,7 +1455,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_breeder_avoid` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_easy_escape_steps` | 3, 10, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_breeder_exit` | 1, not set | `reborn-breeder-world-x4` |  |
-| `borg_param_caution_breeder_policy` | 0, 1, 2, 3, 4, 5 | `reborn-breeder-policy-x4` |  |
+| `borg_param_caution_breeder_policy` | 0, 1, 2, 3, 4, 5, not set | `reborn-breeder-policy-x4`, `reborn-breederpol` |  |
 | `borg_param_caution_breeder_stoppable` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
 | `borg_param_caution_desperate_fast_danger_percent` | 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
 | `borg_param_caution_desperate_ranged_first_reach` | 3, not set | `reborn-flight3-757`, `reborn-flight3main` |  |
@@ -1460,7 +1493,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_town_flee_no_worse` | 1, not set | `reborn-untested-dbc`, `reborn-town-switch-screen` |  |
 | `borg_param_caution_town_never_scary` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
-| `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-adopted`, `reborn-adopted-600` |  |
+| `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_fail` | 0, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_max_danger_divisor` | 1, 4, not set | `reborn-bless` |  |
@@ -1618,7 +1651,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_store_only_overweight` | 0, 1, not set | `reborn-store-overweight`, `reborn-shipcheck-b895` |  |
 | `borg_param_town_unseen_percent` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
-| `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters` |  |
+| `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, 5 lines, 7 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters`, `reborn-attacksight` |  |
 | `borg_town_attack_turns` | 50, not set | `reborn-casters`, `reborn-crow-escape` |  |
 | `borg_town_explore_turns` | 500, 2000, not set | `reborn-untested-caution` |  |
 | `borg_town_home_discount` | 250, 1000, not set | `reborn-untested-town` |  |

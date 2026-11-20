@@ -1279,7 +1279,7 @@
     },
     "reborn-prepared": {
       "issue": 522,
-      "status": "defined (pilot; small tiers after its gate and the owner)",
+      "status": "pilot done 2026-11-20 (HP minimums act; level and Cure minimums not tested); small tier (ctl, hp-lo, hp-hi) defined",
       "what": "The dive gates' thresholds on main a04e5471: character-level minimums +/-2, HP minimums -25%/+25%, Cure minimum 0 and 4, and loose and tight combinations.",
       "profiles": [
         "reborn-prepared-ctl",
@@ -1296,7 +1296,7 @@
     },
     "reborn-weighted765": {
       "issue": 524,
-      "status": "defined (pilot)",
+      "status": "pilot done 2026-11-20 (weighted5 newly killed one Ranger, 0 of 18 identical); small tier (mode3, weighted5) defined",
       "what": "Threat-weighted stair routing (#765, PR #769) on 4a2eade9: the shipped profile, mode 3, and mode 3 with threat weight 5.",
       "profiles": [
         "reborn-weighted765-shipped",
@@ -1317,6 +1317,35 @@
         "reborn-phasereserve-r2p50",
         "reborn-phasereserve-r2p100",
         "reborn-phasereserve-r2p400"
+      ],
+      "runs": []
+    },
+    "reborn-attacksight": {
+      "issue": 529,
+      "status": "defined (pilot; small tier after its gate and the owner)",
+      "what": "attack_on_sight (#760), caution_winning_fight (#759) and the kill-on-sight list on main c4163095: each switch off, both off, the list without its breeders, without its fast-fragile pair, and cut to CL10 and CL20.",
+      "profiles": [
+        "reborn-attacksight-ctl",
+        "reborn-attacksight-both0",
+        "reborn-attacksight-sight0",
+        "reborn-attacksight-win0",
+        "reborn-attacksight-nobreed",
+        "reborn-attacksight-nofast",
+        "reborn-attacksight-cl10",
+        "reborn-attacksight-cl20"
+      ],
+      "runs": []
+    },
+    "reborn-breederpol": {
+      "issue": 530,
+      "status": "defined (pilot; small tier after its gate and the owner)",
+      "what": "caution_breeder_policy in the normal world on main c4163095: shipped 3 and 0, 2, 4, 5.",
+      "profiles": [
+        "reborn-breederpol-ctl",
+        "reborn-breederpol-p0",
+        "reborn-breederpol-p2",
+        "reborn-breederpol-p4",
+        "reborn-breederpol-p5"
       ],
       "runs": []
     },

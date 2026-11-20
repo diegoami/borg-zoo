@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-breeder-policy-pilot",
+  "issue": 530,
+  "definition": "definitions/reborn-breeder-policy-pilot.yaml",
+  "question": "On borg-reborn-rs main c4163095, in the normal world, does the breeder policy (0 = C, 2 no rest while breeders are known, 4 paths avoid colonies, 5 walk out of a breeder room) save deaths or buy progress against the shipped 3?",
+  "description": "On borg-reborn-rs main c4163095, in the normal world, does the breeder policy (0 = C, 2 no rest while breeders are known, 4 paths avoid colonies, 5 walk out of a breeder room) save deaths or buy progress against the shipped 3? Generated from definitions/reborn-breeder-policy-pilot.yaml: 5 arms on 4.2.6-reborn-rust-main-c4163095, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this build was read (borg-zoo#530). #482 measured policies 0-5 only in the\nbreeders-x4 world (p0, p1, p2 harmful on progress, p4 and p5 neutral, shipped 3 supported); this is the normal\nworld on a current main. Pilot (RULES 16); a small tier of what leads follows the gate and the owner. Five arms,\n18 starts each (90 games), all classes.\nGate: no config_error; one binary; each arm's policy in params-core.json; ctl plays as main c4163095's shipped\nsettings; every cell ends in death, turn_cap or borg_stopped (stalls, timeouts and crashes kept apart);\nfrozen-turn bursts classified (the 7 Druid DL1 loops of #482 are watched for).\nReport per arm and per class: deaths and causes (breeders named), CL at death, final and maximum level, deepest\nlevel; paired rescued and newly killed against ctl (exact McNemar), identical plays; per game the breeder\nencounters (levels with breeders known, \"lost level\" and Recall reads). An arm that plays ctl's keys in every\nstart is \"not tested\". Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-c4163095"
+  ],
+  "profiles": [
+    "reborn-breederpol-ctl",
+    "reborn-breederpol-p0",
+    "reborn-breederpol-p2",
+    "reborn-breederpol-p4",
+    "reborn-breederpol-p5"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-c4163095",
+  "control_profile": "reborn-breederpol-ctl",
+  "owner_authorization": "2026-11-20: zoo owner, \"caution_breeder_policy is important too\"; \"yes go, define them\" (pilots and small runs only, all classes).",
+  "retain_evidence": true
+}
