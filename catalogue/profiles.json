@@ -7275,6 +7275,142 @@
         "borg_param_prepared_depth_plan": 0,
         "borg_plan": "errands_plan.txt"
       }
+    },
+    "reborn-breederflags-ctl": {
+      "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 0,
+        "borg_param_caution_breeder_stoppable": 0,
+        "borg_param_caution_breeder_avoid": 0,
+        "borg_param_recover_rest_breeders": 0,
+        "borg_param_caution_slow_crowd_exit": 0
+      }
+    },
+    "reborn-breederflags-exit": {
+      "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm exit.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 1,
+        "borg_param_caution_breeder_stoppable": 0,
+        "borg_param_caution_breeder_avoid": 0,
+        "borg_param_recover_rest_breeders": 0,
+        "borg_param_caution_slow_crowd_exit": 0
+      }
+    },
+    "reborn-breederflags-stop": {
+      "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm stop.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 0,
+        "borg_param_caution_breeder_stoppable": 1,
+        "borg_param_caution_breeder_avoid": 0,
+        "borg_param_recover_rest_breeders": 0,
+        "borg_param_caution_slow_crowd_exit": 0
+      }
+    },
+    "reborn-breederflags-stop-avoid": {
+      "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm stop-avoid.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 0,
+        "borg_param_caution_breeder_stoppable": 1,
+        "borg_param_caution_breeder_avoid": 1,
+        "borg_param_recover_rest_breeders": 0,
+        "borg_param_caution_slow_crowd_exit": 0
+      }
+    },
+    "reborn-breederflags-rest": {
+      "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm rest.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 0,
+        "borg_param_caution_breeder_stoppable": 0,
+        "borg_param_caution_breeder_avoid": 0,
+        "borg_param_recover_rest_breeders": 1,
+        "borg_param_caution_slow_crowd_exit": 0
+      }
+    },
+    "reborn-breederflags-crowd": {
+      "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm crowd.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 0,
+        "borg_param_caution_breeder_stoppable": 0,
+        "borg_param_caution_breeder_avoid": 0,
+        "borg_param_recover_rest_breeders": 0,
+        "borg_param_caution_slow_crowd_exit": 1
+      }
+    },
+    "reborn-breederflags-kill-first": {
+      "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm kill-first.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 0,
+        "borg_param_caution_breeder_stoppable": 1,
+        "borg_param_caution_breeder_avoid": 0,
+        "borg_param_recover_rest_breeders": 1,
+        "borg_param_caution_slow_crowd_exit": 1
+      }
+    },
+    "reborn-breederflags-all": {
+      "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm all.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_breeder_exit": 1,
+        "borg_param_caution_breeder_stoppable": 1,
+        "borg_param_caution_breeder_avoid": 1,
+        "borg_param_recover_rest_breeders": 1,
+        "borg_param_caution_slow_crowd_exit": 1
+      }
+    },
+    "reborn-immobile-off": {
+      "description": "borg-zoo#461 (reborn-immobile-at-range-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_vs_immobile": 0
+      }
+    },
+    "reborn-immobile-step646": {
+      "description": "borg-zoo#461 (reborn-immobile-at-range-pilot.yaml): arm step646.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_vs_immobile": 1
+      }
+    },
+    "reborn-immobile-range": {
+      "description": "borg-zoo#461 (reborn-immobile-at-range-pilot.yaml): arm range.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_vs_immobile": 2
+      }
+    },
+    "reborn-immobile-rangeall": {
+      "description": "borg-zoo#461 (reborn-immobile-at-range-pilot.yaml): arm rangeall.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_vs_immobile": 3
+      }
     }
   }
 }

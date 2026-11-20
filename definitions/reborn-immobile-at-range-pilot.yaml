@@ -1,0 +1,49 @@
+# borg-zoo#461: the issue's definition, run as its classes-18 pilot first.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-immobile-at-range-pilot.yaml
+name: reborn-immobile-at-range-pilot
+issue: 461
+question: On borg-reborn-rs 5af2f79f (PR #717), does keeping immobile creatures at range (caution_ranged_vs_immobile 0-3, shipped 2) save games or progress, at scale?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-t713-5af2f79f
+  repository: diegoami/borg-reborn-rs
+  ref: 5af2f79fd3489b6dcb8d79372ade943447d6806f
+  label: "borg-reborn-rs PR #717 head 5af2f79f on main dbc92d18 (caution_ranged_vs_immobile mode, shipped 2). Source-hash rust b06566e3...; harness/borg.txt 384911af..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-immobile
+arms:
+  "off": {borg_param_caution_ranged_vs_immobile: 0}
+  step646: {borg_param_caution_ranged_vs_immobile: 1}
+  range: {borg_param_caution_ranged_vs_immobile: 2}     # shipped
+  rangeall: {borg_param_caution_ranged_vs_immobile: 3}
+control: ["off"]
+owner_authorization: >-
+  2026-11-20: the owner said "yes run pilots" (classes-18, RULES 16). The larger tier named in the issue follows this gate on the owner's go.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any zoo result was read (borg-reborn-rs#713, PR #717). Per RULES 16 the pilot (classes-18,
+  100,000 turns) runs first with all four arms. Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified, key outliers listed;
+  - death bundles reproduced.
+  Then classes-1800-big (starts 361-900, 60 per class, 100,000 turns) with the same four arms, if the pilot passes.
+  Report per arm and per class, from every game's messages:
+  - deaths and causes, final and maximum level, deepest level; paired rescued and newly killed against off;
+  - deaths with an immobile monster (NEVER_MOVE) adjacent in the last 50 decisions, by monster;
+  - "# Stepping away from immobile" notes (and "kept at range"), most per game, and any loop (many steps at one monster);
+  - blows taken from immobile monsters ("The <monster> touches/gazes/releases spores at you"), per game;
+  - throws and shots at immobile monsters, and immobile monsters killed;
+  - games where a stair flow passed through a kept creature's reach (blows taken on the way to stairs).
+  The shipped value (2) is kept, changed or reverted from this result; no claim before it (RULES 14).
