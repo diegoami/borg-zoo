@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-stairs-leash-806-pilot",
+  "issue": 475,
+  "definition": "definitions/reborn-stairs-leash-806-pilot.yaml",
+  "question": "On borg-reborn-rs 80646820 (PR",
+  "description": "On borg-reborn-rs 80646820 (PR Generated from definitions/reborn-stairs-leash-806-pilot.yaml: 3 arms on 4.2.6-reborn-rust-t732-80646820, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result on 80646820 was read (borg-reborn-rs#732, PR #734 re-pin). Pilot (RULES 16):\nthe leash now limits methods 4 and 5 and the walk to items, and the base has the new engine and the depth plan on.\nctl is shipped (C's leash). On 769132df, starts 1-900: level 16 against ctl 29 deaths (26 / 13, p 0.053), progress\nneutral; grow leaned harmful in its pilot. The re-pin's local preview (108 starts): off 2, level 4, grow 3 deaths.\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class: deaths and causes, character level at death, final level, deepest level; paired rescued\nand newly killed against ctl; RULES 18 bin per arm. The question is the early deaths (CL1-4) on the reviewed leash.",
+  "specimens": [
+    "4.2.6-reborn-rust-t732-80646820"
+  ],
+  "profiles": [
+    "reborn-leash806-ctl",
+    "reborn-leash806-level",
+    "reborn-leash806-grow"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-t732-80646820",
+  "control_profile": "reborn-leash806-ctl",
+  "owner_authorization": "2026-11-20: the owner said \"do 475\": the pilot on the re-pinned head (RULES 16, the leash changed). Larger tiers after this gate, on the owner's go.",
+  "retain_evidence": true
+}

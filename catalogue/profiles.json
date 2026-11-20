@@ -7862,6 +7862,30 @@
     "reborn-main9403-shipped-defaults": {
       "description": "borg-zoo#484 (reborn-main-9403-defaults-pilot.yaml): arm shipped-defaults.",
       "settings": {}
+    },
+    "reborn-leash806-ctl": {
+      "description": "borg-zoo#475 (reborn-stairs-leash-806-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash": 0
+      }
+    },
+    "reborn-leash806-level": {
+      "description": "borg-zoo#475 (reborn-stairs-leash-806-pilot.yaml): arm level.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash": 1
+      }
+    },
+    "reborn-leash806-grow": {
+      "description": "borg-zoo#475 (reborn-stairs-leash-806-pilot.yaml): arm grow.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash": 2
+      }
     }
   }
 }
