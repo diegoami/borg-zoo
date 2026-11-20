@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-flight-fixes-pilot",
+  "issue": 501,
+  "definition": "definitions/reborn-flight-fixes-pilot.yaml",
+  "question": "On borg-reborn-rs e8b3acfd (the flight fixes and",
+  "description": "On borg-reborn-rs e8b3acfd (the flight fixes and Generated from definitions/reborn-flight-fixes-pilot.yaml: 2 arms on 4.2.6-reborn-rust-flight-e8b3acfd, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any zoo result was read (borg-reborn-rs#743, #747, #749, #750, #751, #753). Pilot (RULES 16);\nlarger tiers after this gate and the owner. ctl is the specimen's shipped configuration (every switch 0).\nGate: no config_error; one binary; each arm's values in borg.txt and params-core.json; every cell ends; death bundles reproduced.\nReport per arm and per class: deaths and causes, CL at death, deepest level; paired rescued / newly killed;\n\"Stairs not reachable\" and \"Desperate for Stairs\" notes per game; RULES 18 bin.",
+  "specimens": [
+    "4.2.6-reborn-rust-flight-e8b3acfd"
+  ],
+  "profiles": [
+    "reborn-flight-ctl",
+    "reborn-flight-flight"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-flight-e8b3acfd",
+  "control_profile": "reborn-flight-ctl",
+  "owner_authorization": "2026-11-20: the owner asked to do borg-zoo#501: the pilot, then the 200 classes-1800 Ranger starts and classes-1800-small + medium after its gate, with death reports with screens.",
+  "retain_evidence": true
+}

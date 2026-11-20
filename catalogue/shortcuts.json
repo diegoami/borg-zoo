@@ -1110,6 +1110,16 @@
         "reborn-tplanding-either"
       ],
       "runs": []
+    },
+    "reborn-flight-fixes": {
+      "issue": 501,
+      "status": "defined (pilot; Rangers and small + medium after its gate)",
+      "what": "The flight fixes (#743/#747/#749/#750/#751/#753) all on against shipped, on e8b3acfd.",
+      "profiles": [
+        "reborn-flight-ctl",
+        "reborn-flight-flight"
+      ],
+      "runs": []
     }
   }
 }

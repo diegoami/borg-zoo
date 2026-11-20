@@ -74,6 +74,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-breeder-world-x4` | [#482](https://github.com/diegoami/borg-zoo/issues/482) | 6 | not tested: the switch arms were overridden by caution_breeder_policy 3 (identical plays); superseded by reborn-breeder-policy-x4 | Breeder switches in the breeders-x4 world (all arms in the world): shipped against stoppable 0, rest 0, both 0, exit 1, avoid 1. |
 | `reborn-breeder-policy-x4` | [#482](https://github.com/diegoami/borg-zoo/issues/482) | 6 | defined (pilot; small + medium after its gate) | The breeder policy ladder (caution_breeder_policy 0-5, shipped 3) in the breeders-x4 world. |
 | `reborn-teleport-landing-either` | [#495](https://github.com/diegoami/borg-zoo/issues/495) | 2 | defined (pilot at 200k on main c74a8155) | escape_teleport_landing_either (upstream 95387b06) 1 against shipped 0, at 200,000 turns. |
+| `reborn-flight-fixes` | [#501](https://github.com/diegoami/borg-zoo/issues/501) | 2 | defined (pilot; Rangers and small + medium after its gate) | The flight fixes (#743/#747/#749/#750/#751/#753) all on against shipped, on e8b3acfd. |
 
 ### `heal-attack-4`
 
@@ -1080,6 +1081,17 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-tplanding-ctl` | 0 |
 | `reborn-tplanding-either` | 1 |
 
+### `reborn-flight-fixes`
+
+The flight fixes (#743/#747/#749/#750/#751/#753) all on against shipped, on e8b3acfd.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_desperate_fast_danger_percent` | `borg_param_caution_recall_cure_min_loss_percent` | `borg_param_caution_rising_hold_min_hp_percent` | `borg_param_caution_stairs_clean_path` | `borg_param_caution_stairs_clean_path_flee` | `borg_param_caution_stairs_flight_ignore_danger` |
+| --- | --- | --- | --- | --- | --- | --- |
+| `reborn-flight-ctl` | – | – | – | – | – | – |
+| `reborn-flight-flight` | 50 | 30 | 50 | 2 | 1 | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1170,6 +1182,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_breeder_exit` | 1, not set | `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_policy` | 0, 1, 2, 3, 4, 5 | `reborn-breeder-policy-x4` |  |
 | `borg_param_caution_breeder_stoppable` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
+| `borg_param_caution_desperate_fast_danger_percent` | 50, not set | `reborn-flight-fixes` |  |
 | `borg_param_caution_flee_known_down_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_flee_recall_chasers` | 2, 6, not set | `reborn-untested-caution` |  |
@@ -1177,10 +1190,12 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
 | `borg_param_caution_jumpstart_keep_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_ranged_vs_immobile` | 1, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895` |  |
+| `borg_param_caution_recall_cure_min_loss_percent` | 30, not set | `reborn-flight-fixes` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_recall_wait_as_usual` | 0, 1, not set | `reborn-neutral-main`, `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_rising_explore_ticks` | 500, 1000, 1500, 2000, not set | `reborn-rising-ticks3` |  |
 | `borg_param_caution_rising_hold_flee_descent` | 1, not set | `reborn-dungeon-switch-screen` |  |
+| `borg_param_caution_rising_hold_min_hp_percent` | 50, not set | `reborn-flight-fixes` |  |
 | `borg_param_caution_scary_afraid` | 0, 1 | `reborn-scary-calm` |  |
 | `borg_param_caution_scary_damage_percent` | 40, 60 | `reborn-scary-named-damage` |  |
 | `borg_param_caution_scary_hurt_percent` | 0, 50 | `reborn-scary-calm` |  |
@@ -1191,6 +1206,9 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_unlatch_kill` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_slow_crowd_exit` | 0, 1 | `reborn-slow-crowd-exit` |  |
 | `borg_param_caution_stair_parked_fallback` | 0, 1, not set | `reborn-597` |  |
+| `borg_param_caution_stairs_clean_path` | 2, not set | `reborn-flight-fixes` |  |
+| `borg_param_caution_stairs_clean_path_flee` | 1, not set | `reborn-flight-fixes` |  |
+| `borg_param_caution_stairs_flight_ignore_danger` | 1, not set | `reborn-flight-fixes` |  |
 | `borg_param_caution_stairs_leave_on_monster` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_town_flee_no_worse` | 1, not set | `reborn-untested-dbc`, `reborn-town-switch-screen` |  |
 | `borg_param_caution_town_never_scary` | 1, not set | `reborn-town-switch-screen` |  |

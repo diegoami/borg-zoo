@@ -1,0 +1,45 @@
+# borg-zoo#501: the flight fixes from #488's Ranger analysis (borg-reborn-rs #743/#747/#749/#750/#751/#753, with #755), as filed.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-flight-fixes-pilot.yaml
+name: reborn-flight-fixes-pilot
+issue: 501
+question: On borg-reborn-rs e8b3acfd (the flight fixes and #755), does the tuned flight (six switches) save the early deaths without new ones?
+tier: pilot            # classes-18, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-flight-e8b3acfd
+  repository: diegoami/borg-reborn-rs
+  ref: e8b3acfdcfa5059f0e88b47e5c9a8c9fd1e229fa
+  label: "borg-reborn-rs scratch/T751-with-755 e8b3acfd: flight fixes #743/#747/#749/#750/#751/#753 + #755, all shipped 0. Source-hash rust 00cb51bb...; harness/borg.txt fa9f542e..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-flight
+arms:
+  ctl: {}   # the specimen as shipped: caution_stairs_clean_path 1 (#736), the other five 0
+  flight:
+    borg_param_caution_stairs_clean_path: 2
+    borg_param_caution_stairs_clean_path_flee: 1
+    borg_param_caution_desperate_fast_danger_percent: 50
+    borg_param_caution_recall_cure_min_loss_percent: 30
+    borg_param_caution_stairs_flight_ignore_danger: 1
+    borg_param_caution_rising_hold_min_hp_percent: 50
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: the owner asked to do borg-zoo#501: the pilot, then the 200 classes-1800 Ranger starts and
+  classes-1800-small + medium after its gate, with death reports with screens.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any zoo result was read (borg-reborn-rs#743, #747, #749, #750, #751, #753). Pilot (RULES 16);
+  larger tiers after this gate and the owner. ctl is the specimen's shipped configuration (every switch 0).
+  Gate: no config_error; one binary; each arm's values in borg.txt and params-core.json; every cell ends; death bundles reproduced.
+  Report per arm and per class: deaths and causes, CL at death, deepest level; paired rescued / newly killed;
+  "Stairs not reachable" and "Desperate for Stairs" notes per game; RULES 18 bin.
