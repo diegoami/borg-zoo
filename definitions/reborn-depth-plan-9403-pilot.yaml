@@ -1,0 +1,39 @@
+# borg-zoo#446: the depth plan as shipped on borg-reborn-rs main 94032140 (#735) against it off and the plan file; pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-depth-plan-9403-pilot.yaml
+name: reborn-depth-plan-9403-pilot
+issue: 446
+question: On borg-reborn-rs main 94032140, which ships prepared_depth_plan = 1 with per-class values (#735), does the shipped cap save games against the cap off and against the errands plan file, and at what depth cost?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-94032140
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-depthplan9403
+arms:
+  ctl: {}
+  "off": {borg_param_prepared_depth_plan: 0}
+  errands: {borg_param_prepared_depth_plan: 0, borg_plan: errands_plan.txt}
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: the owner said "merge and dispatch 446 and 475": the re-pin of #446 to main 94032140 (posted by the
+  borg-reborn-rs session). Pilot first (RULES 16); larger tiers on the owner's go.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of these arms on 94032140 was read (borg-zoo#446 re-pin). The full run of #484
+  (ctl's configuration, all 1,800 starts) was read: 42 deaths, against 66 for main's shipped configuration on dbc92d18,
+  with lower CL and DL for the capped classes; it is not a controlled test of the cap, which this is.
+  ctl is shipped (cap on, class values); off and errands as in the earlier pins, with off taking the old ctl's role in
+  the paired counts.
+  Gate:
+  - no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays; the
+    errands arm's plan hash recorded;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class: deaths and causes, final level, deepest level; paired rescued and newly killed (ctl and
+  errands against off); CL at each first arrival on DL2, DL3 and DL5. RULES 18 bins. The local preview (200k, old
+  engine) had off 4 against shipped 2 deaths, CL -2.5%, DL -9%, the cost mostly on Paladins, Rangers and Blackguards.
