@@ -1123,7 +1123,7 @@
     },
     "reborn-cleash": {
       "issue": 506,
-      "status": "defined (pilot; small + medium after its gate)",
+      "status": "pilot done 2026-11-20 (none arm refused: config_error; re-piloted as reborn-cleashnone); small + medium after the gate",
       "what": "C's exploration leash values on main ec0f3b28: shipped (3/9/5), tight (2/5), loose (5/15), depth margin 0 and 10, and no leash.",
       "profiles": [
         "reborn-cleash-ctl",
@@ -1133,11 +1133,18 @@
         "reborn-cleash-margin10",
         "reborn-cleash-none"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "44769379993",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-main-ec0f3b28",
+          "result": "none arm config_error (depth margin -100); loose 0 deaths CL 6.17, margin0 CL 5.72, margin10 = ctl in 14 of 18"
+        }
+      ]
     },
     "reborn-flight3-757": {
       "issue": 510,
-      "status": "defined (pilot; larger tiers after its gate and the owner)",
+      "status": "pilot done 2026-11-20 (nodanger stalled; flight3 rescued); small tier (ctl, flight3) defined",
       "what": "PR #757 on 50c23a5e: #501's flight arm with #751 mode 3 (flight3), plus ranged-first (flight3r), and each switch alone.",
       "profiles": [
         "reborn-flight3m-ctl",
@@ -1151,7 +1158,14 @@
         "reborn-flight3m-nodanger",
         "reborn-flight3m-hold"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "44774313553",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-flight3-50c23a5e",
+          "result": "nodanger stalled (1 frozen-turn loop); flight3 and flight3r rescued the one dead start, 0 newly killed; ranged, flee, hold identical to ctl in 18 of 18"
+        }
+      ]
     },
     "reborn-fight-recall": {
       "issue": 511,
@@ -1168,7 +1182,7 @@
     },
     "reborn-phase-first-761": {
       "issue": 513,
-      "status": "defined (pilot; larger tiers after its gate and the owner)",
+      "status": "pilot done 2026-11-20 (oil led, phase rescued); small tier (ctl, oil, phase) defined",
       "what": "#761 on 992e0351: Phase Door reserve, less oil, Rangers' lighter kit, floor pickup, unseen flavours, food/light, and all.",
       "profiles": [
         "reborn-phasefirst-ctl",
@@ -1182,7 +1196,14 @@
         "reborn-phasefirst-foodlight",
         "reborn-phasefirst-all"
       ],
-      "runs": []
+      "runs": [
+        {
+          "run": "44774388022",
+          "tier": "pilot",
+          "specimen": "4.2.6-reborn-rust-phase-992e0351",
+          "result": "clean; oil CL 6.67 (0 newly killed), phase/unseen/foodlight/all rescued the one dead start; ranger/floor/floorfirst identical to ctl in 15-16 of 18"
+        }
+      ]
     },
     "reborn-recallwait": {
       "issue": 507,
@@ -1193,6 +1214,16 @@
         "reborn-recallwait-esc",
         "reborn-recallwait-nox",
         "reborn-recallwait-both"
+      ],
+      "runs": []
+    },
+    "reborn-cleashnone": {
+      "issue": 506,
+      "status": "defined (re-pilot of ctl against none; small tier after its gate)",
+      "what": "C's leash switched off (flow_leash_pickup_max_level and flow_leash_stairs_max_level 0) against C's shipped values, on main ec0f3b28.",
+      "profiles": [
+        "reborn-cleashnone-ctl",
+        "reborn-cleashnone-none"
       ],
       "runs": []
     },

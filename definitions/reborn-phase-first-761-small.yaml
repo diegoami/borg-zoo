@@ -1,0 +1,55 @@
+# borg-zoo#513: small tier of the arms that led or rescued in the classes-18 pilot (run 44774388022); owner 2026-11-20.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-phase-first-761-small.yaml
+name: reborn-phase-first-761-small
+issue: 513
+question: >-
+  On borg-reborn-rs 992e0351 (#761), do the oil curve and Phase Door first, which led or rescued in the pilot, save
+  deaths or buy progress over 90 starts?
+tier: small          # classes-1800 starts 1-90: 10 per class, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-phase-992e0351
+  repository: diegoami/borg-reborn-rs
+  ref: 992e0351c43e729b9cf6d7485bf7eaa25a6562b3
+  label: "borg-reborn-rs scratch/T761-phase 992e0351 (main ec0f3b28 + #761): Phase Door reserve, floor pickup, unseen, food/light percents; shipped off/100. harness/borg.txt 5f4d4af6..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-phasefirst
+arms:
+  ctl: {}
+  oil:
+    borg_param_town_oil_curve_scale_percent: 50
+    borg_param_town_oil_curve_scale_percent__warrior: 50
+    borg_param_town_oil_curve_scale_percent__mage: 50
+    borg_param_town_oil_curve_scale_percent__druid: 75
+    borg_param_town_oil_curve_scale_percent__priest: 75
+    borg_param_town_oil_curve_scale_percent__necromancer: 50
+    borg_param_town_oil_curve_scale_percent__paladin: 60
+    borg_param_town_oil_curve_scale_percent__rogue: 60
+    borg_param_town_oil_curve_scale_percent__ranger: 25
+    borg_param_town_oil_curve_scale_percent__blackguard: 50
+  phase:
+    borg_param_town_phase_reserve: 2
+    borg_param_town_phase_reserve_percent: 200
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: zoo owner, "do as you suggest" (small tier for oil and phase after the pilot gate; no Ranger tier, no
+  medium).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-20 after the classes-18 pilot of the same arms on the same build passed its gate (run 44774388022):
+  oil led on CL (+0.67, 0 newly killed); phase rescued the one dead start. The other arms were dropped (ranger, floor,
+  floorfirst fired in 2 of 18 starts; phaseoil, all showed nothing beyond oil). Descriptive (RULES 14), a lead for a
+  medium tier, not a result.
+  Report per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued
+  and newly killed against ctl (exact McNemar), identical plays; RULES 18 bin.

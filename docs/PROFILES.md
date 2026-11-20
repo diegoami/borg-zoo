@@ -75,11 +75,12 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-breeder-policy-x4` | [#482](https://github.com/diegoami/borg-zoo/issues/482) | 6 | defined (pilot; small + medium after its gate) | The breeder policy ladder (caution_breeder_policy 0-5, shipped 3) in the breeders-x4 world. |
 | `reborn-teleport-landing-either` | [#495](https://github.com/diegoami/borg-zoo/issues/495) | 2 | defined (pilot at 200k on main c74a8155) | escape_teleport_landing_either (upstream 95387b06) 1 against shipped 0, at 200,000 turns. |
 | `reborn-flight-fixes` | [#501](https://github.com/diegoami/borg-zoo/issues/501) | 2 | defined (pilot; Rangers and small + medium after its gate) | The flight fixes (#743/#747/#749/#750/#751/#753) all on against shipped, on e8b3acfd. |
-| `reborn-cleash` | [#506](https://github.com/diegoami/borg-zoo/issues/506) | 6 | defined (pilot; small + medium after its gate) | C's exploration leash values on main ec0f3b28: shipped (3/9/5), tight (2/5), loose (5/15), depth margin 0 and 10, and no leash. |
-| `reborn-flight3-757` | [#510](https://github.com/diegoami/borg-zoo/issues/510) | 10 | defined (pilot; larger tiers after its gate and the owner) | PR #757 on 50c23a5e: #501's flight arm with #751 mode 3 (flight3), plus ranged-first (flight3r), and each switch alone. |
+| `reborn-cleash` | [#506](https://github.com/diegoami/borg-zoo/issues/506) | 6 | pilot done 2026-11-20 (none arm refused: config_error; re-piloted as reborn-cleashnone); small + medium after the gate | C's exploration leash values on main ec0f3b28: shipped (3/9/5), tight (2/5), loose (5/15), depth margin 0 and 10, and no leash. |
+| `reborn-flight3-757` | [#510](https://github.com/diegoami/borg-zoo/issues/510) | 10 | pilot done 2026-11-20 (nodanger stalled; flight3 rescued); small tier (ctl, flight3) defined | PR #757 on 50c23a5e: #501's flight arm with #751 mode 3 (flight3), plus ranged-first (flight3r), and each switch alone. |
 | `reborn-fight-recall` | [#511](https://github.com/diegoami/borg-zoo/issues/511) | 5 | defined (pilot; larger tiers after its gate and the owner) | #763/#764 on 78b8f297: attack-on-sight categories, winning-fight override, safe flight Recall, and all three. |
-| `reborn-phase-first-761` | [#513](https://github.com/diegoami/borg-zoo/issues/513) | 10 | defined (pilot; larger tiers after its gate and the owner) | #761 on 992e0351: Phase Door reserve, less oil, Rangers' lighter kit, floor pickup, unseen flavours, food/light, and all. |
+| `reborn-phase-first-761` | [#513](https://github.com/diegoami/borg-zoo/issues/513) | 10 | pilot done 2026-11-20 (oil led, phase rescued); small tier (ctl, oil, phase) defined | #761 on 992e0351: Phase Door reserve, less oil, Rangers' lighter kit, floor pickup, unseen flavours, food/light, and all. |
 | `reborn-recallwait` | [#507](https://github.com/diegoami/borg-zoo/issues/507) | 4 | defined (pilot; small + medium after its gate) | #754's Recall-wait switches on PR #762 head 613f1ba5: a pending Recall counts as an escape (esc), no exploring while it counts down (nox), both. |
+| `reborn-cleashnone` | [#506](https://github.com/diegoami/borg-zoo/issues/506) | 2 | defined (re-pilot of ctl against none; small tier after its gate) | C's leash switched off (flow_leash_pickup_max_level and flow_leash_stairs_max_level 0) against C's shipped values, on main ec0f3b28. |
 | `reborn-dive-gates-768` | [#518](https://github.com/diegoami/borg-zoo/issues/518) | 5 | defined (pilot) | C Borg dive gates (#768, PR #772): the shipped depth cap against the merged gates, then the depth margin and class offsets on 4e9af99e. |
 | `reborn-p6compat` | [#520](https://github.com/diegoami/borg-zoo/issues/520) | 1 | defined (pilot) | P6 compatibility check (borg-reborn-rs #774): main 4e9af99e against the synchronized d0657712, shipped defaults. |
 | `reborn-flight3main` | [#516](https://github.com/diegoami/borg-zoo/issues/516) | 6 | defined (pilot) | PR #757's flight switches on main 09a70906 (mode 3 fixed): flight3, flight3r, path3, fast, cure. |
@@ -1116,6 +1117,10 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-cleash-margin10` | – | 10 | – | – | – |
 | `reborn-cleash-none` | – | -100 | – | 0 | 0 |
 
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44769379993](https://github.com/diegoami/borg-zoo/actions/runs/44769379993) | pilot | `4.2.6-reborn-rust-main-ec0f3b28` | none arm config_error (depth margin -100); loose 0 deaths CL 6.17, margin0 CL 5.72, margin10 = ctl in 14 of 18 |
+
 ### `reborn-flight3-757`
 
 PR #757 on 50c23a5e: #501's flight arm with #751 mode 3 (flight3), plus ranged-first (flight3r), and each switch alone.
@@ -1134,6 +1139,10 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-flight3m-cure` | – | – | 30 | – | – | – | – |
 | `reborn-flight3m-nodanger` | – | – | – | – | – | – | 1 |
 | `reborn-flight3m-hold` | – | – | – | 50 | – | – | – |
+
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44774313553](https://github.com/diegoami/borg-zoo/actions/runs/44774313553) | pilot | `4.2.6-reborn-rust-flight3-50c23a5e` | nodanger stalled (1 frozen-turn loop); flight3 and flight3r rescued the one dead start, 0 newly killed; ranged, flee, hold identical to ctl in 18 of 18 |
 
 ### `reborn-fight-recall`
 
@@ -1168,6 +1177,10 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-phasefirst-foodlight` | – | – | 50 | – | 50 | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
 | `reborn-phasefirst-all` | – | 2 | 50 | 100 | 50 | 50 | 50 | 75 | 50 | 50 | 60 | 75 | 25 | 60 | 50 | 2 | 200 | 20 | 50 |
 
+| Run | Tier | Specimen | Result |
+| --- | --- | --- | --- |
+| [44774388022](https://github.com/diegoami/borg-zoo/actions/runs/44774388022) | pilot | `4.2.6-reborn-rust-phase-992e0351` | clean; oil CL 6.67 (0 newly killed), phase/unseen/foodlight/all rescued the one dead start; ranger/floor/floorfirst identical to ctl in 15-16 of 18 |
+
 ### `reborn-recallwait`
 
 #754's Recall-wait switches on PR #762 head 613f1ba5: a pending Recall counts as an escape (esc), no exploring while it counts down (nox), both.
@@ -1180,6 +1193,17 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-recallwait-esc` | 1 | – |
 | `reborn-recallwait-nox` | – | 1 |
 | `reborn-recallwait-both` | 1 | 1 |
+
+### `reborn-cleashnone`
+
+C's leash switched off (flow_leash_pickup_max_level and flow_leash_stairs_max_level 0) against C's shipped values, on main ec0f3b28.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_flow_leash_pickup_max_level` | `borg_param_flow_leash_stairs_max_level` |
+| --- | --- | --- |
+| `reborn-cleashnone-ctl` | – | – |
+| `reborn-cleashnone-none` | 0 | 0 |
 
 ### `reborn-dive-gates-768`
 
@@ -1376,8 +1400,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_flow_leash_base` | 5, 15, not set | `reborn-cleash` |  |
 | `borg_param_flow_leash_depth_margin` | -100, 0, 10, not set | `reborn-cleash` |  |
 | `borg_param_flow_leash_per_level` | 2, 5, not set | `reborn-cleash` |  |
-| `borg_param_flow_leash_pickup_max_level` | 0, not set | `reborn-cleash` |  |
-| `borg_param_flow_leash_stairs_max_level` | 0, not set | `reborn-cleash` |  |
+| `borg_param_flow_leash_pickup_max_level` | 0, not set | `reborn-cleash`, `reborn-cleashnone` |  |
+| `borg_param_flow_leash_stairs_max_level` | 0, not set | `reborn-cleash`, `reborn-cleashnone` |  |
 | `borg_param_flow_take_phase_first` | 1, not set | `reborn-phase-first-761` |  |
 | `borg_param_flow_take_phase_short_below` | 2, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_kill_flow_mode` | 0, 1, 2, 3 | `reborn-kill-flow-mode` |  |
@@ -1524,3 +1548,6 @@ Exposed by borg-reborn-rs `main` but not yet used to build arms. A profile sets 
 | `4.2.6-reborn-rust-main-92fafc61` | diegoami/borg-reborn-rs | `92fafc61` | borg-reborn-rs 92fafc61, main at the merge of #561 (#558 breeder hunt by class). |
 | `4.2.6-reborn-rust-main-f660aecc` | diegoami/borg-reborn-rs | `f660aecc` | borg-reborn-rs f660aecc, main at the merge of #571 (#557: town_recall_value_percent, prepared_recall_depth, one Word of Recall section in borg.txt), after #561 and #575. |
 | `4.2.6-reborn-rust-main-6438e1cf` | diegoami/borg-reborn-rs | `6438e1cf` | borg-reborn-rs 6438e1cf, main at the merge of #605 (#604 town loop). |
+| `4.2.6-reborn-rust-main-ec0f3b28` | diegoami/borg-reborn-rs | `ec0f3b28` | borg-reborn-rs main ec0f3b28 (PR #755, C's leash as flow_leash_* settings). |
+| `4.2.6-reborn-rust-flight3-50c23a5e` | diegoami/borg-reborn-rs | `50c23a5e` | borg-reborn-rs scratch/T751-mode3 50c23a5e: PR #757's switches, #751 mode 3, caution_desperate_ranged_first_reach; all shipped 0; not merged with main's #755. |
+| `4.2.6-reborn-rust-phase-992e0351` | diegoami/borg-reborn-rs | `992e0351` | borg-reborn-rs scratch/T761-phase 992e0351 (main ec0f3b28 + #761): Phase Door reserve, floor pickup, unseen, food/light percents; shipped off/100. |

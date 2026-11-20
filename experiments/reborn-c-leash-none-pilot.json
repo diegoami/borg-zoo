@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-c-leash-none-pilot",
+  "issue": 506,
+  "definition": "definitions/reborn-c-leash-none-pilot.yaml",
+  "question": "On borg-reborn-rs main ec0f3b28, does switching C's exploration leash off (flow_leash_pickup_max_level and flow_leash_stairs_max_level 0) save deaths or buy progress against C's values?",
+  "description": "On borg-reborn-rs main ec0f3b28, does switching C's exploration leash off (flow_leash_pickup_max_level and flow_leash_stairs_max_level 0) save deaths or buy progress against C's values? Generated from definitions/reborn-c-leash-none-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-ec0f3b28, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of `none` was read (the first none arm was refused: config_error in all 18).\nGate: no config_error; one binary; both max levels 0 in borg.txt and params-core.json of the death replays; ctl\nidentical to ctl of run 44769379993; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified.\nReport per arm and per class: deaths and causes, CL/DL, paired rescued / newly killed against ctl, identical plays,\n\"# Flowing toward dark\" notes per game. Small tier after this gate and the owner.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-ec0f3b28"
+  ],
+  "profiles": [
+    "reborn-cleashnone-ctl",
+    "reborn-cleashnone-none"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-ec0f3b28",
+  "control_profile": "reborn-cleashnone-ctl",
+  "owner_authorization": "2026-11-20: borg-reborn-rs owner, \"yes start experiment trying other values for the leash settings\"; zoo owner, 2026-11-20: \"do as you suggest\" (re-pilot of ctl against none; pilots and small runs only).",
+  "retain_evidence": true
+}
