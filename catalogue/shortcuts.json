@@ -1293,6 +1293,17 @@
         "reborn-prepared-tight"
       ],
       "runs": []
+    },
+    "reborn-weighted765": {
+      "issue": 524,
+      "status": "defined (pilot)",
+      "what": "Threat-weighted stair routing (#765, PR #769) on 4a2eade9: the shipped profile, mode 3, and mode 3 with threat weight 5.",
+      "profiles": [
+        "reborn-weighted765-shipped",
+        "reborn-weighted765-mode3",
+        "reborn-weighted765-weighted5"
+      ],
+      "runs": []
     }
   }
 }

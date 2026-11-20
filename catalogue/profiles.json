@@ -8767,6 +8767,39 @@
         "borg_param_prepared_dl59_min_hp__blackguard": 75,
         "borg_param_prepared_cure_min": 4
       }
+    },
+    "reborn-weighted765-shipped": {
+      "description": "borg-zoo#524 (reborn-weighted-flight-765-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-weighted765-mode3": {
+      "description": "borg-zoo#524 (reborn-weighted-flight-765-pilot.yaml): arm mode3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_clean_path": 3,
+        "borg_param_caution_stairs_clean_path_flee": 1,
+        "borg_param_caution_desperate_fast_danger_percent": 50,
+        "borg_param_caution_recall_cure_min_loss_percent": 30,
+        "borg_param_caution_stairs_flight_ignore_danger": 1,
+        "borg_param_caution_stairs_flight_threat_weight": 0
+      }
+    },
+    "reborn-weighted765-weighted5": {
+      "description": "borg-zoo#524 (reborn-weighted-flight-765-pilot.yaml): arm weighted5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_clean_path": 3,
+        "borg_param_caution_stairs_clean_path_flee": 1,
+        "borg_param_caution_desperate_fast_danger_percent": 50,
+        "borg_param_caution_recall_cure_min_loss_percent": 30,
+        "borg_param_caution_stairs_flight_ignore_danger": 1,
+        "borg_param_caution_stairs_flight_threat_weight": 5
+      }
     }
   }
 }

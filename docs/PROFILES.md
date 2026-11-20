@@ -86,6 +86,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-flight3main` | [#516](https://github.com/diegoami/borg-zoo/issues/516) | 6 | defined (pilot) | PR #757's flight switches on main 09a70906 (mode 3 fixed): flight3, flight3r, path3, fast, cure. |
 | `reborn-rangerphase` | [#517](https://github.com/diegoami/borg-zoo/issues/517) | 6 | defined (pilot) | #761 Phase Door first on 3c889f0f (PR #778): ranger, phase, oil, floor and all. |
 | `reborn-prepared` | [#522](https://github.com/diegoami/borg-zoo/issues/522) | 9 | defined (pilot; small tiers after its gate and the owner) | The dive gates' thresholds on main a04e5471: character-level minimums +/-2, HP minimums -25%/+25%, Cure minimum 0 and 4, and loose and tight combinations. |
+| `reborn-weighted765` | [#524](https://github.com/diegoami/borg-zoo/issues/524) | 3 | defined (pilot) | Threat-weighted stair routing (#765, PR #769) on 4a2eade9: the shipped profile, mode 3, and mode 3 with threat weight 5. |
 
 ### `heal-attack-4`
 
@@ -1276,6 +1277,18 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-prepared-loose` | 0 | 23 | 2 | 7 | 9 | 9 | 2 | 7 | 2 | 6 | 2 | 38 | 30 | 45 | 45 | 38 | 30 | 38 | 38 | 38 | 4 | 13 | 13 | 13 | 4 | 13 | 4 | 8 | 4 | 45 | 45 | 60 | 60 | 45 | 45 | 45 | 45 | 45 |
 | `reborn-prepared-tight` | 4 | 38 | 6 | 11 | 13 | 13 | 6 | 11 | 6 | 10 | 6 | 63 | 50 | 75 | 75 | 63 | 50 | 63 | 63 | 63 | 8 | 17 | 17 | 17 | 8 | 17 | 8 | 12 | 8 | 75 | 75 | 100 | 100 | 75 | 75 | 75 | 75 | 75 |
 
+### `reborn-weighted765`
+
+Threat-weighted stair routing (#765, PR #769) on 4a2eade9: the shipped profile, mode 3, and mode 3 with threat weight 5.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_desperate_fast_danger_percent` | `borg_param_caution_recall_cure_min_loss_percent` | `borg_param_caution_stairs_clean_path` | `borg_param_caution_stairs_clean_path_flee` | `borg_param_caution_stairs_flight_ignore_danger` | `borg_param_caution_stairs_flight_threat_weight` |
+| --- | --- | --- | --- | --- | --- | --- |
+| `reborn-weighted765-shipped` | – | – | – | – | – | – |
+| `reborn-weighted765-mode3` | 50 | 30 | 3 | 1 | 1 | 0 |
+| `reborn-weighted765-weighted5` | 50 | 30 | 3 | 1 | 1 | 5 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1367,7 +1380,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_breeder_exit` | 1, not set | `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_policy` | 0, 1, 2, 3, 4, 5 | `reborn-breeder-policy-x4` |  |
 | `borg_param_caution_breeder_stoppable` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
-| `borg_param_caution_desperate_fast_danger_percent` | 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main` |  |
+| `borg_param_caution_desperate_fast_danger_percent` | 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
 | `borg_param_caution_desperate_ranged_first_reach` | 3, not set | `reborn-flight3-757`, `reborn-flight3main` |  |
 | `borg_param_caution_flee_known_down_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
@@ -1376,7 +1389,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
 | `borg_param_caution_jumpstart_keep_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_ranged_vs_immobile` | 1, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895` |  |
-| `borg_param_caution_recall_cure_min_loss_percent` | 30, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main` |  |
+| `borg_param_caution_recall_cure_min_loss_percent` | 30, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
 | `borg_param_caution_recall_pending_escape` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_recall_survival` | 1, not set | `reborn-fight-recall` |  |
@@ -1395,9 +1408,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_unlatch_kill` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_slow_crowd_exit` | 0, 1 | `reborn-slow-crowd-exit` |  |
 | `borg_param_caution_stair_parked_fallback` | 0, 1, not set | `reborn-597` |  |
-| `borg_param_caution_stairs_clean_path` | 2, 3, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main` |  |
-| `borg_param_caution_stairs_clean_path_flee` | 1, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main` |  |
-| `borg_param_caution_stairs_flight_ignore_danger` | 1, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main` |  |
+| `borg_param_caution_stairs_clean_path` | 2, 3, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
+| `borg_param_caution_stairs_clean_path_flee` | 1, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
+| `borg_param_caution_stairs_flight_ignore_danger` | 1, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
+| `borg_param_caution_stairs_flight_threat_weight` | 0, 5, not set | `reborn-weighted765` |  |
 | `borg_param_caution_stairs_leave_on_monster` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_town_flee_no_worse` | 1, not set | `reborn-untested-dbc`, `reborn-town-switch-screen` |  |
 | `borg_param_caution_town_never_scary` | 1, not set | `reborn-town-switch-screen` |  |
