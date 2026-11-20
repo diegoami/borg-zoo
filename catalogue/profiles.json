@@ -7863,28 +7863,64 @@
       "description": "borg-zoo#484 (reborn-main-9403-defaults-pilot.yaml): arm shipped-defaults.",
       "settings": {}
     },
-    "reborn-depthplan9403-ctl": {
-      "description": "borg-zoo#446 (reborn-depth-plan-9403-pilot.yaml): arm ctl.",
-      "settings": {
-        "borg_reborn_core": "borg-rs",
-        "borg_reborn_errand": "none"
-      }
-    },
-    "reborn-depthplan9403-off": {
-      "description": "borg-zoo#446 (reborn-depth-plan-9403-pilot.yaml): arm off.",
+    "reborn-bpolicy-x4-p3": {
+      "description": "borg-zoo#482 (reborn-breeder-policy-x4-pilot.yaml): arm p3.",
       "settings": {
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none",
-        "borg_param_prepared_depth_plan": 0
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_policy": 3
       }
     },
-    "reborn-depthplan9403-errands": {
-      "description": "borg-zoo#446 (reborn-depth-plan-9403-pilot.yaml): arm errands.",
+    "reborn-bpolicy-x4-p0": {
+      "description": "borg-zoo#482 (reborn-breeder-policy-x4-pilot.yaml): arm p0.",
       "settings": {
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none",
-        "borg_param_prepared_depth_plan": 0,
-        "borg_plan": "errands_plan.txt"
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_policy": 0
+      }
+    },
+    "reborn-bpolicy-x4-p1": {
+      "description": "borg-zoo#482 (reborn-breeder-policy-x4-pilot.yaml): arm p1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_policy": 1
+      }
+    },
+    "reborn-bpolicy-x4-p2": {
+      "description": "borg-zoo#482 (reborn-breeder-policy-x4-pilot.yaml): arm p2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_policy": 2
+      }
+    },
+    "reborn-bpolicy-x4-p4": {
+      "description": "borg-zoo#482 (reborn-breeder-policy-x4-pilot.yaml): arm p4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_policy": 4
+      }
+    },
+    "reborn-bpolicy-x4-p5": {
+      "description": "borg-zoo#482 (reborn-breeder-policy-x4-pilot.yaml): arm p5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_policy": 5
       }
     },
     "reborn-leash806-ctl": {
@@ -7909,6 +7945,30 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none",
         "borg_param_flow_leash": 2
+      }
+    },
+    "reborn-depthplan9403-ctl": {
+      "description": "borg-zoo#446 (reborn-depth-plan-9403-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-depthplan9403-off": {
+      "description": "borg-zoo#446 (reborn-depth-plan-9403-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_prepared_depth_plan": 0
+      }
+    },
+    "reborn-depthplan9403-errands": {
+      "description": "borg-zoo#446 (reborn-depth-plan-9403-pilot.yaml): arm errands.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_prepared_depth_plan": 0,
+        "borg_plan": "errands_plan.txt"
       }
     }
   }

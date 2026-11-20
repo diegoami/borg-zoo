@@ -71,7 +71,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-dungeon-switch-screen` | [#465](https://github.com/diegoami/borg-zoo/issues/465) | 10 | defined (pilot) | Screen of the dungeon switches main ships off, one arm each. |
 | `reborn-shipcheck-b895` | [#480](https://github.com/diegoami/borg-zoo/issues/480) | 6 | defined (first stage on classes-1800-small; medium after its gate) | Main b895e352 (engine 574b618c): shipped against throw-as-melee 0, store-when-overweight 0, detection casters 10, all 10, ranged vs immobile 1. |
 | `reborn-main-fde8` | [#488](https://github.com/diegoami/borg-zoo/issues/488) | 1 | defined (pilot; all 1,800 starts after its gate) | borg-reborn-rs main fde8025a (engine 574b618c) with its shipped settings. |
-| `reborn-breeder-world-x4` | [#482](https://github.com/diegoami/borg-zoo/issues/482) | 6 | defined (pilot) | Breeder switches in the breeders-x4 world (all arms in the world): shipped against stoppable 0, rest 0, both 0, exit 1, avoid 1. |
+| `reborn-breeder-world-x4` | [#482](https://github.com/diegoami/borg-zoo/issues/482) | 6 | not tested: the switch arms were overridden by caution_breeder_policy 3 (identical plays); superseded by reborn-breeder-policy-x4 | Breeder switches in the breeders-x4 world (all arms in the world): shipped against stoppable 0, rest 0, both 0, exit 1, avoid 1. |
+| `reborn-breeder-policy-x4` | [#482](https://github.com/diegoami/borg-zoo/issues/482) | 6 | defined (pilot; small + medium after its gate) | The breeder policy ladder (caution_breeder_policy 0-5, shipped 3) in the breeders-x4 world. |
 
 ### `heal-attack-4`
 
@@ -1052,6 +1053,21 @@ Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = bo
 | `reborn-worldx4-rest0` | – | – | – | 0 |
 | `reborn-worldx4-stop0` | – | – | 0 | – |
 
+### `reborn-breeder-policy-x4`
+
+The breeder policy ladder (caution_breeder_policy 0-5, shipped 3) in the breeders-x4 world.
+
+Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`, `borg_world = breeders-x4`.
+
+| Profile | `borg_param_caution_breeder_policy` |
+| --- | --- |
+| `reborn-bpolicy-x4-p0` | 0 |
+| `reborn-bpolicy-x4-p1` | 1 |
+| `reborn-bpolicy-x4-p2` | 2 |
+| `reborn-bpolicy-x4-p3` | 3 |
+| `reborn-bpolicy-x4-p4` | 4 |
+| `reborn-bpolicy-x4-p5` | 5 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1140,6 +1156,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_breeder_avoid` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_easy_escape_steps` | 3, 10, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_breeder_exit` | 1, not set | `reborn-breeder-world-x4` |  |
+| `borg_param_caution_breeder_policy` | 0, 1, 2, 3, 4, 5 | `reborn-breeder-policy-x4` |  |
 | `borg_param_caution_breeder_stoppable` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
 | `borg_param_caution_flee_known_down_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
