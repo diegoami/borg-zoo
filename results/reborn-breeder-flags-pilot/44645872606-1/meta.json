@@ -1,0 +1,259 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-breederflags-all": {
+        "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm all.",
+        "settings": {
+          "borg_param_caution_breeder_avoid": 1,
+          "borg_param_caution_breeder_exit": 1,
+          "borg_param_caution_breeder_stoppable": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_caution_slow_crowd_exit": 1,
+          "borg_param_recover_rest_breeders": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "510f32905c9e988362f4617e04576d76813f2b9661bf6ced63908ac3203bcb1b"
+      },
+      "reborn-breederflags-crowd": {
+        "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm crowd.",
+        "settings": {
+          "borg_param_caution_breeder_avoid": 0,
+          "borg_param_caution_breeder_exit": 0,
+          "borg_param_caution_breeder_stoppable": 0,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_caution_slow_crowd_exit": 1,
+          "borg_param_recover_rest_breeders": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "230297c2826f838c2488d9f868d19a74ba09e1efba542133843a41e69b64319e"
+      },
+      "reborn-breederflags-ctl": {
+        "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_param_caution_breeder_avoid": 0,
+          "borg_param_caution_breeder_exit": 0,
+          "borg_param_caution_breeder_stoppable": 0,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_caution_slow_crowd_exit": 0,
+          "borg_param_recover_rest_breeders": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "b72c7f991fddb82687d0f8bcbc0640c2006ce38ea114e5c045abff0140d89d60"
+      },
+      "reborn-breederflags-exit": {
+        "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm exit.",
+        "settings": {
+          "borg_param_caution_breeder_avoid": 0,
+          "borg_param_caution_breeder_exit": 1,
+          "borg_param_caution_breeder_stoppable": 0,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_caution_slow_crowd_exit": 0,
+          "borg_param_recover_rest_breeders": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "b154808dcf8f55e3c8a7b1d5f20f36eb0f60beff019557ebe4809fbff637254b"
+      },
+      "reborn-breederflags-kill-first": {
+        "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm kill-first.",
+        "settings": {
+          "borg_param_caution_breeder_avoid": 0,
+          "borg_param_caution_breeder_exit": 0,
+          "borg_param_caution_breeder_stoppable": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_caution_slow_crowd_exit": 1,
+          "borg_param_recover_rest_breeders": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "69c30680331f75f18d9f3c8b54508fc4af10703a73fe18f81844ff697d683f77"
+      },
+      "reborn-breederflags-rest": {
+        "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm rest.",
+        "settings": {
+          "borg_param_caution_breeder_avoid": 0,
+          "borg_param_caution_breeder_exit": 0,
+          "borg_param_caution_breeder_stoppable": 0,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_caution_slow_crowd_exit": 0,
+          "borg_param_recover_rest_breeders": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "bd0260fa6d79dc398ce3aabdadb20585462b22f3d0375e1021f419eb19291998"
+      },
+      "reborn-breederflags-stop": {
+        "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm stop.",
+        "settings": {
+          "borg_param_caution_breeder_avoid": 0,
+          "borg_param_caution_breeder_exit": 0,
+          "borg_param_caution_breeder_stoppable": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_caution_slow_crowd_exit": 0,
+          "borg_param_recover_rest_breeders": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "bb33ff1e8b3b9cf0cee1112f46ff0072a22d0211f5ffcf99fff185d229b301ec"
+      },
+      "reborn-breederflags-stop-avoid": {
+        "description": "borg-zoo#460 (reborn-breeder-flags-pilot.yaml): arm stop-avoid.",
+        "settings": {
+          "borg_param_caution_breeder_avoid": 1,
+          "borg_param_caution_breeder_exit": 0,
+          "borg_param_caution_breeder_stoppable": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_caution_slow_crowd_exit": 0,
+          "borg_param_recover_rest_breeders": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "0f5251739d51bc44dc388c9d4b4c0882a8129968b06018c5a75cbb65ab48f409"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-pr702-0a76dc19": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 0a76dc19, head of PR #702 (#690, unmerged; contains main dbc92d18): the five breeder switches, all shipped 0. Source-hash rust 8d3d089c...; harness/borg.txt 447831ae...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "0a76dc19d72128cee071840cf846323c9492bdb6",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-20 00:30 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-pr702-0a76dc19",
+    "control_profile": "reborn-breederflags-ctl",
+    "definition": "definitions/reborn-breeder-flags-pilot.yaml",
+    "description": "On borg-reborn-rs PR Generated from definitions/reborn-breeder-flags-pilot.yaml: 8 arms on 4.2.6-reborn-rust-pr702-0a76dc19, suite classes-18.",
+    "issue": 460,
+    "name": "reborn-breeder-flags-pilot",
+    "owner_authorization": "2026-11-20: the owner said \"yes run pilots\" (classes-18, RULES 16). The larger tier named in the issue follows this gate on the owner's go.",
+    "prespecified": "Fixed 2026-11-20, before any result of this definition was read (owner: \"start experiments with the breeder\nflags in the zoo, make a few arms\"). classes-18 is the gate (RULES 16); small and medium (starts 1-360) follow\nright after it: breeder cases are rare, and 18 starts show safety only.\nkill-first is the owner's #556 rule with its companions: kill first (stoppable), never rest with breeders\nknown (rest), and walk out of a slow crowd that cannot be fought (crowd); all adds the exit and the avoidance.\nGate:\n- no config_error; one binary; each arm's five values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- in ctl, none of the switches' notes: \"# Breeders cannot be stopped\", \"# Fighting through the breeders\",\n  \"# Leaving the breeders' room\", \"# Walking out of a slower crowd\", and #644's \"# Not resting: breeders to hunt.\"\nReport per arm and per class, from every game's messages:\n- deaths and causes, final and maximum level, deepest level; breeder deaths (the killer has MULTIPLY) and deaths\n  to a slower or never-moving killer;\n- paired rescued and newly killed against ctl (exact McNemar), and games identical to ctl;\n- each switch's notes per game (the five above), and deaths within 500 game turns of one;\n- breeder kills per game (\"You have slain\" a MULTIPLY race) and breeders created (\"# Creating a monster\" of a\n  MULTIPLY race);\n- breeder flees per game (\"Fleeing (breeder level)\", \"Ignoring breeders (no recall)\").\nContext: borg-zoo#411 (stop and stop-avoid, 18 starts on ed8e270d): 1 / 3 / 2 deaths, none to breeders.\nborg-zoo#448 (crowd, 360 starts on c3747cc9): 9 / 7 deaths, 2 rescued, 0 newly killed, 352 of 360 identical.",
+    "profiles": [
+      "reborn-breederflags-ctl",
+      "reborn-breederflags-exit",
+      "reborn-breederflags-stop",
+      "reborn-breederflags-stop-avoid",
+      "reborn-breederflags-rest",
+      "reborn-breederflags-crowd",
+      "reborn-breederflags-kill-first",
+      "reborn-breederflags-all"
+    ],
+    "question": "On borg-reborn-rs PR",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-pr702-0a76dc19"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44645872606-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44645872606",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "48d3f53d013cfb933f8edb649d13a760ea75191c"
+}
