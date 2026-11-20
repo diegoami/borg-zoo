@@ -639,7 +639,7 @@ Lower values send the Borg back for unknown items more often. Each return brings
   - small + medium (44651947475, 5 arms): ctl 12, rest 9 (5 / 2), crowd 11 (1 / 0), kill-first 10 (8 / 6, 25 of 360 identical), exit 14 (1 / 3).
   - big (44655845685, 3 arms): ctl 22, rest 21 (2 / 1), crowd 22 (0 / 0, 535 of 540 identical).
   - **Over 918 starts:** rest 31 against 35 (7 / 3, p 0.34); crowd 33 (2 / 0; with #448, 4 / 0).
-  - **Bins:** rest leaning better, crowd neutral and safe, kill-first neutral, exit leaning worse. Breeders killed 1 of ctl's 13 small + medium deaths.
+  - **Bins:** rest leaning better, crowd neutral and safe, kill-first neutral, exit leaning worse. Breeders killed 2 of ctl's 13 deaths over pilot, small and medium.
 - **Suite 1 on main e5cc5469** (#183): small 26 of 90 (7e08c920: 26), medium 80 of 360 (85), big **228 of 900 (250)**.
   - In big, Priests −8, Rangers −5, Warriors −4, Mages −3. Necromancers are the only class up (+2).
 - **Cures and oil, from the retained logs (borg-reborn-rs#710):**
