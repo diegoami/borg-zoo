@@ -1075,7 +1075,7 @@
     },
     "reborn-breeder-world-x4": {
       "issue": 482,
-      "status": "defined (pilot)",
+      "status": "not tested: the switch arms were overridden by caution_breeder_policy 3 (identical plays); superseded by reborn-breeder-policy-x4",
       "what": "Breeder switches in the breeders-x4 world (all arms in the world): shipped against stoppable 0, rest 0, both 0, exit 1, avoid 1.",
       "profiles": [
         "reborn-worldx4-avoid",
@@ -1084,6 +1084,20 @@
         "reborn-worldx4-exit",
         "reborn-worldx4-rest0",
         "reborn-worldx4-stop0"
+      ],
+      "runs": []
+    },
+    "reborn-breeder-policy-x4": {
+      "issue": 482,
+      "status": "defined (pilot; small + medium after its gate)",
+      "what": "The breeder policy ladder (caution_breeder_policy 0-5, shipped 3) in the breeders-x4 world.",
+      "profiles": [
+        "reborn-bpolicy-x4-p0",
+        "reborn-bpolicy-x4-p1",
+        "reborn-bpolicy-x4-p2",
+        "reborn-bpolicy-x4-p3",
+        "reborn-bpolicy-x4-p4",
+        "reborn-bpolicy-x4-p5"
       ],
       "runs": []
     }
