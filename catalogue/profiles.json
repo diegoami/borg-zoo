@@ -7474,6 +7474,242 @@
         "borg_reborn_errand": "none",
         "borg_param_town_ranger_arrows_curve_scale_percent__ranger": 100
       }
+    },
+    "reborn-leash-ctl": {
+      "description": "borg-zoo#475 (reborn-stairs-leash-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash": 0
+      }
+    },
+    "reborn-leash-level": {
+      "description": "borg-zoo#475 (reborn-stairs-leash-pilot.yaml): arm level.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash": 1
+      }
+    },
+    "reborn-leash-grow": {
+      "description": "borg-zoo#475 (reborn-stairs-leash-pilot.yaml): arm grow.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash": 2
+      }
+    },
+    "reborn-lowdetect-d0": {
+      "description": "borg-zoo#470 (reborn-low-level-detection.yaml): arm d0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1
+      }
+    },
+    "reborn-lowdetect-casters10": {
+      "description": "borg-zoo#470 (reborn-low-level-detection.yaml): arm casters10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_light_detect_evil_spell_min_level__mage": 10,
+        "borg_param_light_detect_evil_spell_min_level__druid": 10,
+        "borg_param_light_detect_evil_spell_min_level__priest": 10,
+        "borg_param_light_detect_evil_spell_min_level__necromancer": 10,
+        "borg_param_light_detect_evil_spell_min_level__paladin": 10
+      }
+    },
+    "reborn-lowdetect-all10": {
+      "description": "borg-zoo#470 (reborn-low-level-detection.yaml): arm all10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_light_detect_evil_spell_min_level": 10,
+        "borg_param_light_detect_evil_spell_min_level__mage": 10,
+        "borg_param_light_detect_evil_spell_min_level__druid": 10,
+        "borg_param_light_detect_evil_spell_min_level__priest": 10,
+        "borg_param_light_detect_evil_spell_min_level__necromancer": 10,
+        "borg_param_light_detect_evil_spell_min_level__paladin": 10,
+        "borg_param_light_detect_evil_spell_min_level__warrior": 10,
+        "borg_param_light_detect_evil_spell_min_level__rogue": 10,
+        "borg_param_light_detect_evil_spell_min_level__ranger": 10,
+        "borg_param_light_detect_evil_spell_min_level__blackguard": 10
+      }
+    },
+    "reborn-lowdetect-all5": {
+      "description": "borg-zoo#470 (reborn-low-level-detection.yaml): arm all5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_light_detect_evil_spell_min_level": 5,
+        "borg_param_light_detect_evil_spell_min_level__mage": 5,
+        "borg_param_light_detect_evil_spell_min_level__druid": 5,
+        "borg_param_light_detect_evil_spell_min_level__priest": 5,
+        "borg_param_light_detect_evil_spell_min_level__necromancer": 5,
+        "borg_param_light_detect_evil_spell_min_level__paladin": 5,
+        "borg_param_light_detect_evil_spell_min_level__warrior": 5,
+        "borg_param_light_detect_evil_spell_min_level__rogue": 5,
+        "borg_param_light_detect_evil_spell_min_level__ranger": 5,
+        "borg_param_light_detect_evil_spell_min_level__blackguard": 5
+      }
+    },
+    "reborn-townscreen-ctl": {
+      "description": "borg-zoo#466 (reborn-town-switch-screen.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1
+      }
+    },
+    "reborn-townscreen-town-not-scary": {
+      "description": "borg-zoo#466 (reborn-town-switch-screen.yaml): arm town-not-scary.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_town_never_scary": 1
+      }
+    },
+    "reborn-townscreen-town-flee": {
+      "description": "borg-zoo#466 (reborn-town-switch-screen.yaml): arm town-flee.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_town_flee_no_worse": 1
+      }
+    },
+    "reborn-townscreen-town-fight": {
+      "description": "borg-zoo#466 (reborn-town-switch-screen.yaml): arm town-fight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_attack_town_dangerous_on_sight": 1,
+        "borg_param_attack_town_dangerous_caster_walk": 1,
+        "borg_param_attack_town_dangerous_wand": 1,
+        "borg_param_attack_town_dangerous_bonus_whole": 1
+      }
+    },
+    "reborn-townscreen-fox": {
+      "description": "borg-zoo#466 (reborn-town-switch-screen.yaml): arm fox.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_fox_form": 1
+      }
+    },
+    "reborn-townscreen-fox-town": {
+      "description": "borg-zoo#466 (reborn-town-switch-screen.yaml): arm fox-town.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_fox_form_town": 1
+      }
+    },
+    "reborn-townscreen-recall-reserve": {
+      "description": "borg-zoo#466 (reborn-town-switch-screen.yaml): arm recall-reserve.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_town_recall_reserve": 1
+      }
+    },
+    "reborn-dunscreen-ctl": {
+      "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1
+      }
+    },
+    "reborn-dunscreen-downstairs": {
+      "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm downstairs.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_known_down_stairs": 1
+      }
+    },
+    "reborn-dunscreen-down-jump": {
+      "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm down-jump.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_flee_known_down_stairs": 1,
+        "borg_param_caution_jumpstart_keep_stairs": 1
+      }
+    },
+    "reborn-dunscreen-rising-hold": {
+      "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm rising-hold.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_rising_hold_flee_descent": 1
+      }
+    },
+    "reborn-dunscreen-stairs-leave": {
+      "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm stairs-leave.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_stairs_leave_on_monster": 1
+      }
+    },
+    "reborn-dunscreen-recall-wait": {
+      "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm recall-wait.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_recall_wait_as_usual": 1
+      }
+    },
+    "reborn-dunscreen-unlatch-kill": {
+      "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm unlatch-kill.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_scary_unlatch_kill": 1
+      }
+    },
+    "reborn-dunscreen-ranged-immobile": {
+      "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm ranged-immobile.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_caution_ranged_vs_immobile": 1
+      }
+    },
+    "reborn-dunscreen-phase-fight": {
+      "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm phase-fight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_lost_test": 1
+      }
+    },
+    "reborn-dunscreen-phase-landing": {
+      "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm phase-landing.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_named_monsters": 1,
+        "borg_param_escape_phase_lost_test": 2
+      }
     }
   }
 }

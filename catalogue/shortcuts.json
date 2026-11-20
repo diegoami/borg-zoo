@@ -993,6 +993,62 @@
         "reborn-bgcurve-dbc-shipped"
       ],
       "runs": []
+    },
+    "reborn-stairs-leash": {
+      "issue": 475,
+      "status": "defined (pilot)",
+      "what": "Stairs leash for CL1-4 (flow_leash 1 by level, 2 growing with XP) against C.",
+      "profiles": [
+        "reborn-leash-ctl",
+        "reborn-leash-grow",
+        "reborn-leash-level"
+      ],
+      "runs": []
+    },
+    "reborn-low-level-detection": {
+      "issue": 470,
+      "status": "defined (pilot)",
+      "what": "Detection min level: 0 (C) / casters 10 / all 10 / all 5.",
+      "profiles": [
+        "reborn-lowdetect-all10",
+        "reborn-lowdetect-all5",
+        "reborn-lowdetect-casters10",
+        "reborn-lowdetect-d0"
+      ],
+      "runs": []
+    },
+    "reborn-town-switch-screen": {
+      "issue": 466,
+      "status": "defined (pilot)",
+      "what": "Screen of the town and Druid switches main ships off, one arm each.",
+      "profiles": [
+        "reborn-townscreen-ctl",
+        "reborn-townscreen-fox",
+        "reborn-townscreen-fox-town",
+        "reborn-townscreen-recall-reserve",
+        "reborn-townscreen-town-fight",
+        "reborn-townscreen-town-flee",
+        "reborn-townscreen-town-not-scary"
+      ],
+      "runs": []
+    },
+    "reborn-dungeon-switch-screen": {
+      "issue": 465,
+      "status": "defined (pilot)",
+      "what": "Screen of the dungeon switches main ships off, one arm each.",
+      "profiles": [
+        "reborn-dunscreen-ctl",
+        "reborn-dunscreen-down-jump",
+        "reborn-dunscreen-downstairs",
+        "reborn-dunscreen-phase-fight",
+        "reborn-dunscreen-phase-landing",
+        "reborn-dunscreen-ranged-immobile",
+        "reborn-dunscreen-recall-wait",
+        "reborn-dunscreen-rising-hold",
+        "reborn-dunscreen-stairs-leave",
+        "reborn-dunscreen-unlatch-kill"
+      ],
+      "runs": []
     }
   }
 }

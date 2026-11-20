@@ -1,0 +1,57 @@
+# borg-zoo#466: the issue's definition as filed; owner 2026-11-20.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-town-switch-screen.yaml
+name: reborn-town-switch-screen
+issue: 466
+question: On borg-reborn-rs main 653f60ba, which of the town and Druid switches main ships off (town scares, the town flight, fighting dangerous town monsters, Fox Form, a Recall reserve) saves or costs games against ctl?
+tier: pilot            # classes-18 gate, then small + medium (starts 1-360), 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-653f60ba
+  repository: diegoami/borg-reborn-rs
+  ref: 653f60ba4394a186c8a64ce7583cd71e1563dfb8
+  label: "borg-reborn-rs main 653f60ba. Source-hash rust 259512ad...; harness/borg.txt 6262fc55..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only its own switches; ctl writes none.
+profile_prefix: reborn-townscreen
+arms:
+  ctl:            {}
+  town-not-scary: {borg_param_caution_town_never_scary: 1}
+  town-flee:      {borg_param_caution_town_flee_no_worse: 1}
+  town-fight:     {borg_param_attack_town_dangerous_on_sight: 1, borg_param_attack_town_dangerous_caster_walk: 1, borg_param_attack_town_dangerous_wand: 1, borg_param_attack_town_dangerous_bonus_whole: 1}
+  fox:            {borg_param_escape_fox_form: 1}
+  fox-town:       {borg_param_escape_fox_form_town: 1}
+  recall-reserve: {borg_param_town_recall_reserve: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: the owner asked to do the zoo pilots ("and then the zoo pilots"): the issue's pilot as filed.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this definition was read (owner: "file the experiments"). A screen:
+  each switch alone against ctl, to decide which to ship, which to tune and which to drop. classes-18 is the
+  gate (RULES 16); small and medium (starts 1-360) follow right after it.
+  Gate:
+  - no config_error; one binary; each arm's values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - town-fight, fox and fox-town each change some games against ctl (their switches act at all).
+  Report per arm and per class:
+  - deaths and causes, final and maximum level, deepest level;
+  - paired rescued and newly killed against ctl (exact McNemar), and games identical to ctl (how often the
+    switch acts at all);
+  - mean max CL and DL against ctl, with non-inferiority at the margins of borg-zoo#347 (CL -0.25, DL -0.25);
+  - town deaths separately (depth 0), and deaths in the first 5,000 game turns;
+  - for fox and fox-town: Druid games only, Fox Form casts per game; for recall-reserve: Recall scrolls carried at
+    each descent.
+  Bin each arm (RULES 18): ship, neutral, harmful, or too rare to tell.

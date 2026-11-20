@@ -65,6 +65,10 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-breederstop-dbc` | [#411](https://github.com/diegoami/borg-zoo/issues/411) | 3 | defined (pilot, small, medium on main dbc92d18) | #411 on dbc92d18: kill breeders first (stoppable), alone and with avoidance, against both off. |
 | `reborn-store-overweight` | [#457](https://github.com/diegoami/borg-zoo/issues/457) | 2 | pilot done (1 -> 0 deaths); small + medium defined | Store at home only when overweight (town_store_only_overweight) against off. |
 | `reborn-bgcurve-dbc` | [#433](https://github.com/diegoami/borg-zoo/issues/433) | 3 | defined (pilot on dbc92d18; classes-1800-b Blackguards after its gate) | Blackguards: shipped (Phase Door 50, healing 100/200) against Phase Door 100, and against healing 75/150. |
+| `reborn-stairs-leash` | [#475](https://github.com/diegoami/borg-zoo/issues/475) | 3 | defined (pilot) | Stairs leash for CL1-4 (flow_leash 1 by level, 2 growing with XP) against C. |
+| `reborn-low-level-detection` | [#470](https://github.com/diegoami/borg-zoo/issues/470) | 4 | defined (pilot) | Detection min level: 0 (C) / casters 10 / all 10 / all 5. |
+| `reborn-town-switch-screen` | [#466](https://github.com/diegoami/borg-zoo/issues/466) | 7 | defined (pilot) | Screen of the town and Druid switches main ships off, one arm each. |
+| `reborn-dungeon-switch-screen` | [#465](https://github.com/diegoami/borg-zoo/issues/465) | 10 | defined (pilot) | Screen of the dungeon switches main ships off, one arm each. |
 
 ### `heal-attack-4`
 
@@ -947,6 +951,66 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-bgcurve-dbc-pd100` | – | – | 100 |
 | `reborn-bgcurve-dbc-shipped` | – | – | – |
 
+### `reborn-stairs-leash`
+
+Stairs leash for CL1-4 (flow_leash 1 by level, 2 growing with XP) against C.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_flow_leash` |
+| --- | --- |
+| `reborn-leash-ctl` | 0 |
+| `reborn-leash-grow` | 2 |
+| `reborn-leash-level` | 1 |
+
+### `reborn-low-level-detection`
+
+Detection min level: 0 (C) / casters 10 / all 10 / all 5.
+
+Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_light_detect_evil_spell_min_level` | `borg_param_light_detect_evil_spell_min_level__blackguard` | `borg_param_light_detect_evil_spell_min_level__druid` | `borg_param_light_detect_evil_spell_min_level__mage` | `borg_param_light_detect_evil_spell_min_level__necromancer` | `borg_param_light_detect_evil_spell_min_level__paladin` | `borg_param_light_detect_evil_spell_min_level__priest` | `borg_param_light_detect_evil_spell_min_level__ranger` | `borg_param_light_detect_evil_spell_min_level__rogue` | `borg_param_light_detect_evil_spell_min_level__warrior` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-lowdetect-all10` | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10 |
+| `reborn-lowdetect-all5` | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 | 5 |
+| `reborn-lowdetect-casters10` | – | – | 10 | 10 | 10 | 10 | 10 | – | – | – |
+| `reborn-lowdetect-d0` | – | – | – | – | – | – | – | – | – | – |
+
+### `reborn-town-switch-screen`
+
+Screen of the town and Druid switches main ships off, one arm each.
+
+Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_town_dangerous_bonus_whole` | `borg_param_attack_town_dangerous_caster_walk` | `borg_param_attack_town_dangerous_on_sight` | `borg_param_attack_town_dangerous_wand` | `borg_param_caution_town_flee_no_worse` | `borg_param_caution_town_never_scary` | `borg_param_escape_fox_form` | `borg_param_escape_fox_form_town` | `borg_param_town_recall_reserve` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-townscreen-ctl` | – | – | – | – | – | – | – | – | – |
+| `reborn-townscreen-fox` | – | – | – | – | – | – | 1 | – | – |
+| `reborn-townscreen-fox-town` | – | – | – | – | – | – | – | 1 | – |
+| `reborn-townscreen-recall-reserve` | – | – | – | – | – | – | – | – | 1 |
+| `reborn-townscreen-town-fight` | 1 | 1 | 1 | 1 | – | – | – | – | – |
+| `reborn-townscreen-town-flee` | – | – | – | – | 1 | – | – | – | – |
+| `reborn-townscreen-town-not-scary` | – | – | – | – | – | 1 | – | – | – |
+
+### `reborn-dungeon-switch-screen`
+
+Screen of the dungeon switches main ships off, one arm each.
+
+Every arm: `borg_param_caution_scary_named_monsters = 1`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_flee_known_down_stairs` | `borg_param_caution_jumpstart_keep_stairs` | `borg_param_caution_ranged_vs_immobile` | `borg_param_caution_recall_wait_as_usual` | `borg_param_caution_rising_hold_flee_descent` | `borg_param_caution_scary_unlatch_kill` | `borg_param_caution_stairs_leave_on_monster` | `borg_param_escape_phase_lost_test` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-dunscreen-ctl` | – | – | – | – | – | – | – | – |
+| `reborn-dunscreen-down-jump` | 1 | 1 | – | – | – | – | – | – |
+| `reborn-dunscreen-downstairs` | 1 | – | – | – | – | – | – | – |
+| `reborn-dunscreen-phase-fight` | – | – | – | – | – | – | – | 1 |
+| `reborn-dunscreen-phase-landing` | – | – | – | – | – | – | – | 2 |
+| `reborn-dunscreen-ranged-immobile` | – | – | 1 | – | – | – | – | – |
+| `reborn-dunscreen-recall-wait` | – | – | – | 1 | – | – | – | – |
+| `reborn-dunscreen-rising-hold` | – | – | – | – | 1 | – | – | – |
+| `reborn-dunscreen-stairs-leave` | – | – | – | – | – | – | 1 | – |
+| `reborn-dunscreen-unlatch-kill` | – | – | – | – | – | 1 | – | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1026,18 +1090,25 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |
 | `borg_param_attack_town_dangerous_bonus_percent` | 600, not set | `reborn-town-dangerous` |  |
+| `borg_param_attack_town_dangerous_bonus_whole` | 1, not set | `reborn-town-switch-screen` |  |
+| `borg_param_attack_town_dangerous_caster_walk` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_attack_town_dangerous_min_damage` | 3, not set | `reborn-town-dangerous` |  |
-| `borg_param_attack_town_dangerous_on_sight` | 0, 1, not set | `reborn-town-dangerous`, `reborn-neutral-main` |  |
+| `borg_param_attack_town_dangerous_on_sight` | 0, 1, not set | `reborn-town-dangerous`, `reborn-neutral-main`, `reborn-town-switch-screen` |  |
+| `borg_param_attack_town_dangerous_wand` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_caution_breeder_avoid` | 0, 1 | `reborn-breeder-stoppable`, `reborn-breederstop-dbc` |  |
 | `borg_param_caution_breeder_easy_escape_steps` | 3, 10, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_breeder_stoppable` | 0, 1 | `reborn-breeder-stoppable`, `reborn-breederstop-dbc` |  |
+| `borg_param_caution_flee_known_down_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_flee_recall_chasers` | 2, 6, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_flee_recall_gate_below_depth` | 0, 2, 3, not set | `reborn-recall-settings`, `reborn-bundle` |  |
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
+| `borg_param_caution_jumpstart_keep_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
+| `borg_param_caution_ranged_vs_immobile` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
-| `borg_param_caution_recall_wait_as_usual` | 0, 1 | `reborn-neutral-main` |  |
+| `borg_param_caution_recall_wait_as_usual` | 0, 1, not set | `reborn-neutral-main`, `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_rising_explore_ticks` | 500, 1000, 1500, 2000, not set | `reborn-rising-ticks3` |  |
+| `borg_param_caution_rising_hold_flee_descent` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_scary_afraid` | 0, 1 | `reborn-scary-calm` |  |
 | `borg_param_caution_scary_damage_percent` | 40, 60 | `reborn-scary-named-damage` |  |
 | `borg_param_caution_scary_hurt_percent` | 0, 50 | `reborn-scary-calm` |  |
@@ -1045,27 +1116,42 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_named_monsters` | 0, 1 | `reborn-scary-named-damage` |  |
 | `borg_param_caution_scary_stand` | 0, not set | `reborn-stand-seeinv` |  |
 | `borg_param_caution_scary_unlatch_calmed` | 0, 1, not set | `reborn-neutral-main`, `reborn-rebase-main`, `reborn-death-bank38` |  |
+| `borg_param_caution_scary_unlatch_kill` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_slow_crowd_exit` | 0, 1 | `reborn-slow-crowd-exit` |  |
 | `borg_param_caution_stair_parked_fallback` | 0, 1, not set | `reborn-597` |  |
-| `borg_param_caution_town_flee_no_worse` | 1, not set | `reborn-untested-dbc` |  |
+| `borg_param_caution_stairs_leave_on_monster` | 1, not set | `reborn-dungeon-switch-screen` |  |
+| `borg_param_caution_town_flee_no_worse` | 1, not set | `reborn-untested-dbc`, `reborn-town-switch-screen` |  |
+| `borg_param_caution_town_never_scary` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_fail` | 0, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_max_danger_divisor` | 1, 4, not set | `reborn-bless` |  |
-| `borg_param_escape_fox_form` | 0, 1 | `reborn-neutral-main` |  |
+| `borg_param_escape_fox_form` | 0, 1, not set | `reborn-neutral-main`, `reborn-town-switch-screen` |  |
+| `borg_param_escape_fox_form_town` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_escape_phase_adjacent_rule` | 0, 1, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
 | `borg_param_escape_phase_antisummon_delay` | 0, not set | `reborn-phase-thresholds` |  |
 | `borg_param_escape_phase_lost_danger_percent` | 100, not set | `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
-| `borg_param_escape_phase_lost_test` | 0, 1, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
+| `borg_param_escape_phase_lost_test` | 0, 1, 2, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape`, `reborn-dungeon-switch-screen` |  |
 | `borg_param_escape_phase_ordinary_danger_tenths` | 5, 20, not set | `reborn-phase-thresholds` |  |
 | `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
+| `borg_param_flow_leash` | 0, 1, 2 | `reborn-stairs-leash` |  |
 | `borg_param_kill_flow_mode` | 0, 1, 2, 3 | `reborn-kill-flow-mode` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
+| `borg_param_light_detect_evil_spell_min_level` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level@druid` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
 | `borg_param_light_detect_evil_spell_min_level@mage` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
 | `borg_param_light_detect_evil_spell_min_level@necromancer` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
 | `borg_param_light_detect_evil_spell_min_level@paladin` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
 | `borg_param_light_detect_evil_spell_min_level@priest` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
+| `borg_param_light_detect_evil_spell_min_level__blackguard` | 5, 10, not set | `reborn-low-level-detection` |  |
+| `borg_param_light_detect_evil_spell_min_level__druid` | 5, 10, not set | `reborn-low-level-detection` |  |
+| `borg_param_light_detect_evil_spell_min_level__mage` | 5, 10, not set | `reborn-low-level-detection` |  |
+| `borg_param_light_detect_evil_spell_min_level__necromancer` | 5, 10, not set | `reborn-low-level-detection` |  |
+| `borg_param_light_detect_evil_spell_min_level__paladin` | 5, 10, not set | `reborn-low-level-detection` |  |
+| `borg_param_light_detect_evil_spell_min_level__priest` | 5, 10, not set | `reborn-low-level-detection` |  |
+| `borg_param_light_detect_evil_spell_min_level__ranger` | 5, 10, not set | `reborn-low-level-detection` |  |
+| `borg_param_light_detect_evil_spell_min_level__rogue` | 5, 10, not set | `reborn-low-level-detection` |  |
+| `borg_param_light_detect_evil_spell_min_level__warrior` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_recover_rest_arms_see_invis` | 1, not set | `reborn-stand-seeinv` |  |
 | `borg_param_town_devices_percent` | 50, 200, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_devices_percent@blackguard` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
@@ -1117,6 +1203,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_curve_scale_percent@ranger` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_recall_reserve` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_param_town_store_only_overweight` | 0, 1 | `reborn-store-overweight` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |

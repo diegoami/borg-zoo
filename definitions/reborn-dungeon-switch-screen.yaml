@@ -1,0 +1,60 @@
+# borg-zoo#465: the issue's definition as filed; owner 2026-11-20.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-dungeon-switch-screen.yaml
+name: reborn-dungeon-switch-screen
+issue: 465
+question: On borg-reborn-rs main 653f60ba, which of the dungeon switches main ships off (fleeing and stairs, the Recall wait, the scary unlatch, ranged against immobile monsters, the Phase Door fight test) saves or costs games against ctl?
+tier: pilot            # classes-18 gate, then small + medium (starts 1-360), 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-653f60ba
+  repository: diegoami/borg-reborn-rs
+  ref: 653f60ba4394a186c8a64ce7583cd71e1563dfb8
+  label: "borg-reborn-rs main 653f60ba. Source-hash rust 259512ad...; harness/borg.txt 6262fc55..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_param_caution_scary_named_monsters: 1
+
+# Every arm reads the shipped harness/borg.txt and writes only its own switches; ctl writes none.
+profile_prefix: reborn-dunscreen
+arms:
+  ctl:            {}
+  downstairs:     {borg_param_caution_flee_known_down_stairs: 1}
+  down-jump:      {borg_param_caution_flee_known_down_stairs: 1, borg_param_caution_jumpstart_keep_stairs: 1}
+  rising-hold:    {borg_param_caution_rising_hold_flee_descent: 1}
+  stairs-leave:   {borg_param_caution_stairs_leave_on_monster: 1}
+  recall-wait:    {borg_param_caution_recall_wait_as_usual: 1}
+  unlatch-kill:   {borg_param_caution_scary_unlatch_kill: 1}
+  ranged-immobile: {borg_param_caution_ranged_vs_immobile: 1}
+  phase-fight:    {borg_param_escape_phase_lost_test: 1}
+  phase-landing:  {borg_param_escape_phase_lost_test: 2}
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: the owner asked to do the zoo pilots ("and then the zoo pilots"): the issue's pilot as filed.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this definition was read (owner: "file the experiments"). A screen:
+  each switch alone against ctl, to decide which to ship, which to tune and which to drop. classes-18 is the
+  gate (RULES 16); small and medium (starts 1-360) follow right after it.
+  Gate:
+  - no config_error; one binary; each arm's values in borg.txt and in params-core.json of the death replays;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced;
+  - in ctl, no "# Phase rule: the fight:" note (lost_test 0 notes nothing of the fight).
+  Report per arm and per class:
+  - deaths and causes, final and maximum level, deepest level;
+  - paired rescued and newly killed against ctl (exact McNemar), and games identical to ctl (how often the
+    switch acts at all);
+  - mean max CL and DL against ctl, with non-inferiority at the margins of borg-zoo#347 (CL -0.25, DL -0.25);
+  - per arm, its own notes per game ("# Phase rule: the fight:" for phase-*, the flee and stair notes for the others),
+    and deaths within 500 game turns of one;
+  - for phase-*: Phase Doors read and "lost" against "not lost" verdicts per game.
+  Bin each arm (RULES 18): ship, neutral, harmful, or too rare to tell.
