@@ -1319,6 +1319,29 @@
         "reborn-phasereserve-r2p400"
       ],
       "runs": []
+    },
+    "reborn-adopted": {
+      "issue": 511,
+      "status": "defined (pilot, prepared only; the owner decides dispatch)",
+      "what": "The three adopted switches (attack_on_sight, caution_winning_fight, caution_recall_survival, shipped 1) isolated against an explicit all-off control on f827f844: off, category, winning, recall, shipped.",
+      "profiles": [
+        "reborn-adopted-f827f844-off",
+        "reborn-adopted-f827f844-category",
+        "reborn-adopted-f827f844-winning",
+        "reborn-adopted-f827f844-recall",
+        "reborn-adopted-f827f844-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-adopted-600": {
+      "issue": 528,
+      "status": "defined (pilot18 of the retained 600; prepared only; the owner decides dispatch and every tier)",
+      "what": "The adopted combined policy (shipped) against explicit all-off on f827f844, on the first 2 starts per class of the owner's retained 600 (200 Rangers + 50 of each other class).",
+      "profiles": [
+        "reborn-adopted-f827f844-combined-off",
+        "reborn-adopted-f827f844-combined-shipped"
+      ],
+      "runs": []
     }
   }
 }

@@ -1971,6 +1971,18 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "saves": false
+    },
+    "reborn-flight-600-pilot18": {
+      "description": "The first 2 starts per class of the owner's retained 600 (200 Rangers, 50 of each other class; borg-cemetery 5ed93e24 studies/reborn-flight-fights-20261120/starts-600.tsv, sha256 6ffdd8d6...), in the TSV's global order: 18 starts, 100,000 engine turns, explicit race and class per seed (borg-zoo#528). Pilot tier; its TSV sha256 is aa4f44d56c203c39b41e2928447c15fd740a9a9fc2bfb7eb9bfbaa2fdd48fc69. Development evidence, not an independent confirmation suite.",
+      "role": "pilot",
+      "seeds": [1992500, 4020641, 28999353, 35001376, 4971587, 13040847, 1915072, 12875881, 2613747, 17626119, 4160641, 6939003, 6809624, 14366282, 5773879, 21863389, 803642, 1324266],
+      "birth": "assigned",
+      "characters": {"classes": ["Warrior", "Mage", "Druid", "Priest", "Necromancer", "Paladin", "Rogue", "Ranger", "Blackguard"], "races": ["Human", "Half-Elf", "Elf", "Hobbit", "Gnome", "Dwarf", "Half-Orc", "Half-Troll", "Dunadan", "High-Elf", "Kobold"]},
+      "assigned_characters": {"1992500": ["Kobold", "Ranger"], "4020641": ["Elf", "Ranger"], "28999353": ["Half-Orc", "Warrior"], "35001376": ["Kobold", "Warrior"], "4971587": ["Half-Orc", "Mage"], "13040847": ["Dunadan", "Mage"], "1915072": ["Hobbit", "Druid"], "12875881": ["Elf", "Druid"], "2613747": ["Half-Troll", "Priest"], "17626119": ["Gnome", "Priest"], "4160641": ["Gnome", "Necromancer"], "6939003": ["Hobbit", "Necromancer"], "6809624": ["Half-Elf", "Paladin"], "14366282": ["Half-Troll", "Paladin"], "5773879": ["Dwarf", "Rogue"], "21863389": ["Elf", "Rogue"], "803642": ["Half-Troll", "Blackguard"], "1324266": ["Elf", "Blackguard"]},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
     }
   }
 }
