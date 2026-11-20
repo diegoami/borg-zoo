@@ -92,9 +92,10 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-breederpol` | [#530](https://github.com/diegoami/borg-zoo/issues/530) | 5 | defined (pilot; small tier after its gate and the owner) | caution_breeder_policy in the normal world on main c4163095: shipped 3 and 0, 2, 4, 5. |
 | `reborn-adopted` | [#511](https://github.com/diegoami/borg-zoo/issues/511) | 5 | defined (pilot f827f844; superseded by reborn-ship3 on main d7e58cd, not dispatched) | The three adopted switches (attack_on_sight, caution_winning_fight, caution_recall_survival, shipped 1) isolated against an explicit all-off control on f827f844: off, category, winning, recall, shipped. |
 | `reborn-adopted-600` | [#528](https://github.com/diegoami/borg-zoo/issues/528) | 2 | defined (pilot18 of the retained 600; prepared only; the owner decides dispatch and every tier) | The adopted combined policy (shipped) against explicit all-off on f827f844, on the first 2 starts per class of the owner's retained 600 (200 Rangers + 50 of each other class). |
-| `reborn-ship3` | [#535](https://github.com/diegoami/borg-zoo/issues/535) | 5 | defined (pilot); a verysmall run of its allon profile (reborn-main-default-verysmall, #543) is the death-report material | The three shipped fight/Recall switches ablated on main d7e58cd: alloff, sight, fight, recall, allon. |
+| `reborn-ship3` | [#535](https://github.com/diegoami/borg-zoo/issues/535) | 5 | defined (pilot) | The three shipped fight/Recall switches ablated on main d7e58cd: alloff, sight, fight, recall, allon. |
 | `reborn-townhunt` | [#538](https://github.com/diegoami/borg-zoo/issues/538) | 6 | defined (pilot) | town_ranged_reserve and town_hunt (borg-reborn-rs #789, PR #800) on 8e0f20af, with and without caution_winning_fight (which also decides town attacks). |
 | `reborn-deathrisk` | [#534](https://github.com/diegoami/borg-zoo/issues/534) | 1 | defined (pilot; one arm, trace and pipeline check) | borg-reborn-rs 5343532c (task/T790-death-risk): the shipped settings with per-think death_risk observations, evidence retained for calibration. |
+| `reborn-maindefault` | [#543](https://github.com/diegoami/borg-zoo/issues/543) | 1 | defined (verysmall, its own pilot; death-report material) | borg-reborn-rs main 2801ba18 with its shipped settings and no overrides, on classes-1800-verysmall (45 starts), for death reports. |
 
 ### `heal-attack-4`
 
@@ -1405,6 +1406,14 @@ borg-reborn-rs 5343532c (task/T790-death-risk): the shipped settings with per-th
 Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 Profiles: `reborn-deathrisk-shipped`.
+
+### `reborn-maindefault`
+
+borg-reborn-rs main 2801ba18 with its shipped settings and no overrides, on classes-1800-verysmall (45 starts), for death reports.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-maindefault-shipped`.
 
 ## Settings you have built arms with
 
