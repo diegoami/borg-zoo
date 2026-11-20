@@ -8341,6 +8341,22 @@
         "borg_param_caution_recall_pending_escape": 1,
         "borg_param_caution_recall_wait_no_explore": 1
       }
+    },
+    "reborn-cleashnone-ctl": {
+      "description": "borg-zoo#506 (reborn-c-leash-none-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-cleashnone-none": {
+      "description": "borg-zoo#506 (reborn-c-leash-none-pilot.yaml): arm none.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_pickup_max_level": 0,
+        "borg_param_flow_leash_stairs_max_level": 0
+      }
     }
   }
 }

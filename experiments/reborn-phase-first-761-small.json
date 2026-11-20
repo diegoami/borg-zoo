@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-phase-first-761-small",
+  "issue": 513,
+  "definition": "definitions/reborn-phase-first-761-small.yaml",
+  "question": "On borg-reborn-rs 992e0351 (#761), do the oil curve and Phase Door first, which led or rescued in the pilot, save deaths or buy progress over 90 starts?",
+  "description": "On borg-reborn-rs 992e0351 (#761), do the oil curve and Phase Door first, which led or rescued in the pilot, save deaths or buy progress over 90 starts? Generated from definitions/reborn-phase-first-761-small.yaml: 3 arms on 4.2.6-reborn-rust-phase-992e0351, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-20 after the classes-18 pilot of the same arms on the same build passed its gate (run 44774388022):\noil led on CL (+0.67, 0 newly killed); phase rescued the one dead start. The other arms were dropped (ranger, floor,\nfloorfirst fired in 2 of 18 starts; phaseoil, all showed nothing beyond oil). Descriptive (RULES 14), a lead for a\nmedium tier, not a result.\nReport per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued\nand newly killed against ctl (exact McNemar), identical plays; RULES 18 bin.",
+  "specimens": [
+    "4.2.6-reborn-rust-phase-992e0351"
+  ],
+  "profiles": [
+    "reborn-phasefirst-ctl",
+    "reborn-phasefirst-oil",
+    "reborn-phasefirst-phase"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-phase-992e0351",
+  "control_profile": "reborn-phasefirst-ctl",
+  "owner_authorization": "2026-11-20: zoo owner, \"do as you suggest\" (small tier for oil and phase after the pilot gate; no Ranger tier, no medium).",
+  "retain_evidence": false
+}

@@ -1,0 +1,42 @@
+# borg-zoo#506: re-pilot of the arm that failed the first gate: C's leash switched off (both max levels 0), against ctl.
+# The first pilot's `none` also set depth_margin -100 (bounds 0-127): 18 of 18 config_error. Not repeated here.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-c-leash-none-pilot.yaml
+name: reborn-c-leash-none-pilot
+issue: 506
+question: >-
+  On borg-reborn-rs main ec0f3b28, does switching C's exploration leash off (flow_leash_pickup_max_level and
+  flow_leash_stairs_max_level 0) save deaths or buy progress against C's values?
+tier: pilot            # classes-18 gate; the other five arms of #506 already ran (run 44769379993)
+
+specimen:
+  name: 4.2.6-reborn-rust-main-ec0f3b28
+  repository: diegoami/borg-reborn-rs
+  ref: ec0f3b28ec168f69f19f1852fd0083d0e28cb510
+  label: "borg-reborn-rs main ec0f3b28 (PR #755, C's leash as flow_leash_* settings). Source-hash rust f06d660f...; harness/borg.txt 211451a4..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-cleashnone
+arms:
+  ctl:  {}   # C's values as shipped; same games as ctl of run 44769379993
+  none: {borg_param_flow_leash_pickup_max_level: 0, borg_param_flow_leash_stairs_max_level: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs owner, "yes start experiment trying other values for the leash settings"; zoo owner,
+  2026-11-20: "do as you suggest" (re-pilot of ctl against none; pilots and small runs only).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of `none` was read (the first none arm was refused: config_error in all 18).
+  Gate: no config_error; one binary; both max levels 0 in borg.txt and params-core.json of the death replays; ctl
+  identical to ctl of run 44769379993; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified.
+  Report per arm and per class: deaths and causes, CL/DL, paired rescued / newly killed against ctl, identical plays,
+  "# Flowing toward dark" notes per game. Small tier after this gate and the owner.
