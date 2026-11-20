@@ -594,6 +594,25 @@ Lower values send the Borg back for unknown items more often. Each return brings
   - **Bin:** neutral.
   - The oil-curve arms wait for profile-writable class lines (borg-reborn-rs#696).
 
+**Studies on borg-reborn-rs main dbc92d18 and PR builds (2026-11-19/20).** Every gate passed: one binary, no config_error, every cell finished, no stalls or frozen-turn bursts.
+- **#443, no detection prayer by panel below CL10 for the casters (`light_detect_evil_spell_min_level` 10, shipped by #703), small + medium (runs 44634350382, 44634363516; pilots on PR head 3ed059b6 and on dbc92d18):** 12 deaths in each arm, the same 12 characters. **CL +0.49 (±0.10)**, DL +0.14. Mage +1.50, Priest +1.25, Paladin +1.02, Necromancer +0.68, each interval above 0. Every Warrior, Rogue, Ranger, Blackguard and Druid game is identical. **Bin: helpful on progress, neutral on deaths**: the clearest progress effect of the day, supporting the shipped value.
+- **#433, the owner's per-class Phase Door and oil curves (#688) against all scales 100:**
+  - On a87b4c96, starts 1-360: 13 against 9 deaths (8 / 4, p 0.39).
+  - Restarted on dbc92d18 after #686 changed flask damage, all 1,800 starts (3,600 games): **67 against 66 (47 / 46, p 1.0)**, CL −0.01 ±0.06. No class differs (Holm p = 1). Mage's lead on starts 1-360 (5 → 1) reversed to 10 → 13.
+  - Blackguard 1 → 5 (p 0.22), with the Phase Door curve and the healing changed together. On the 200 classes-1800-b Blackguard starts (run 44652435342), shipped has 4 deaths. Phase Door 100 and healing 75 / 150 each have 2 (4 / 2, p 0.69).
+  - **Bins:** neutral overall and for every class; the Blackguard values are neutral and safe to keep.
+- **#411, kill breeders first (`caution_breeder_stoppable`, with `caution_breeder_avoid`):**
+  - Pilots: ed8e270d 1 / 3 / 2 deaths; dbc92d18 1 / 2 / 2. On dbc92d18, stop rescues the shipped Necromancer's blue-worm-mass death.
+  - Small + medium on dbc92d18 (runs 44634375920, 44634389746): ctl 12, stop 11, stop-avoid 11 (7 / 6 each, p 1.0), CL −0.06 and −0.09 ±0.13. stop has 4 poison deaths against 0.
+  - **Bins:** neutral, safe to adopt with no measured benefit.
+- **#448, walk out of a slower crowd (`caution_slow_crowd_exit`, PR #702 head c3747cc9), small + medium (runs 44619277864, 44619292193):** 9 against 7 (2 / 0, p 0.50). 352 of 360 games are identical. The rescues include a Priest lost to a blue worm mass, the rule's own case (CL 5 → 11). **Bin: neutral, safe to adopt**; it fires too rarely to measure.
+- **#457, store at home only when overweight (`town_store_only_overweight`, PR #714 head d9e5a37e):** pilot 1 → 0 deaths, CL sum 103 → 109. Small + medium (runs 44650547561, 44650559030): 12 against 10 (9 / 7, p 0.80), CL +0.04, and 358 of 360 games change. **Bin: neutral, safe to adopt.**
+- **#438, the hunt removed in steps (`kill_flow_mode`, PR #695 head f9c44b35), 200,000-turn pilot:** deaths 2 / 1 / 2 / 1 for modes 0-3, CL 6.72 / 7.06 / 6.56 / 7.17. No game passes CL10, so the question (CL10 and above) is not reached. **Direction only:** modes 1 and 3 lead.
+- **#450, never-varied town settings, pilot on dbc92d18 (run 44632887493):**
+  - The device value at 50 / 100 / 200 is **not reached** (17-18 of 18 games identical).
+  - The missile reserve 50 / 100 changes 8-10 games with no outcome change (CL +0.06 to +0.17). Other-ranged 50 plays like reserve 100 alone.
+  - Town flee no-worse changes 2 games.
+
 ## Open
 
 - **Pinned elsewhere:** borg-agent still pins better-borg-c M6 for its bridge (diegoami/borg-agent `pins.json`).
@@ -964,6 +983,35 @@ its keys were identical to CI:
 | 44117547473 | reborn-pb-class-pilot (#198) | pb4, Half-Troll Ranger 60792140 | 1,083 keys, 120 purchases, turn 92,602 | turn_cap |
 | 44072424588 | reborn-main-defaults-medium (#181) | Dwarf Ranger 745617169 | 1,084 keys, 120 purchases, turn 60,106 | turn_cap |
 | 44055270651 | reborn-unknown-stacks-small (#170) | unknown3, Half-Orc Ranger 1071405808 | 1,085 keys, 120 purchases, turn 75,918, gold 167 → 42 (replayed, keys identical to CI) | turn_cap |
+
+These cells of reborn-heal-curve-medium (run 44131024789, dispatched before
+#207 merged) are purchase bursts too, replayed with the fix, keys identical
+to CI, all reaching the turn cap: r0-c100 Ranger 801109004 (1,094 keys, 121
+purchases), r0-c200 Ranger 154156985 (1,094, 121), r200-c50 Ranger 810310797
+(1,085, 120), r200-c100 Ranger 1024472395 (1,004, 111), r200-c200 Ranger
+956258985 (1,094, 121), r400-c50 Ranger 810310797 (1,049, 116), r400-c200
+Rangers 1222599014 (1,093, 121) and 1256116424 (1,121, 124).
+
+
+## Town planner healing curve scale × reserve, speed 66 (borg-zoo#192, 2026-11-17)
+
+borg-reborn-rs e0aa2e0a (shipped defaults, no plan), healing speed 66, reserve
+0/200/400 × curve scale 50/100/200; pilot (run 44125061301), then small and
+medium together (runs 44131018812, 44131024789): starts 1-360, 3,240 games,
+no config_error, 284 deaths, all reproduced in the cemetery. The c100 arms
+replay the speed-66 small tier's keys on all 270 shared games.
+
+| reserve \ curve | 50 | 100 | 200 |
+|---|---|---|---|
+| 0 | 28 | 36 (control) | 31 |
+| 200 | 32 | 35 | 31 |
+| 400 | 28 | 38 (shipped) | 25 |
+
+Deaths of 360. The shipped r400-c100 has the most deaths; curve 100 is the
+worst curve at every reserve. Best: r400-c200, against r400-c100 +29 rescued
+/ -16 newly killed, exact McNemar p = 0.07; nothing reaches p < 0.05 over 16
+comparisons. Mean level and depth are flat across arms. A lead for a
+prespecified confirmation (RULES 8), not a result.
 
 The borg-reborn-rs side, buying a planned purchase's copies in one
 transaction, is borg-reborn-rs#507 (PR #509).
