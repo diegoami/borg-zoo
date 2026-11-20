@@ -85,6 +85,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-p6compat` | [#520](https://github.com/diegoami/borg-zoo/issues/520) | 1 | defined (pilot) | P6 compatibility check (borg-reborn-rs #774): main 4e9af99e against the synchronized d0657712, shipped defaults. |
 | `reborn-flight3main` | [#516](https://github.com/diegoami/borg-zoo/issues/516) | 6 | defined (pilot) | PR #757's flight switches on main 09a70906 (mode 3 fixed): flight3, flight3r, path3, fast, cure. |
 | `reborn-rangerphase` | [#517](https://github.com/diegoami/borg-zoo/issues/517) | 6 | defined (pilot) | #761 Phase Door first on 3c889f0f (PR #778): ranger, phase, oil, floor and all. |
+| `reborn-prepared` | [#522](https://github.com/diegoami/borg-zoo/issues/522) | 9 | defined (pilot; small tiers after its gate and the owner) | The dive gates' thresholds on main a04e5471: character-level minimums +/-2, HP minimums -25%/+25%, Cure minimum 0 and 4, and loose and tight combinations. |
 
 ### `heal-attack-4`
 
@@ -1257,6 +1258,24 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-rangerphase-floor` | 2 | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
 | `reborn-rangerphase-all` | 2 | 100 | 50 | 50 | 75 | 50 | 50 | 60 | 75 | 25 | 60 | 50 | 2 | 200 | 20 |
 
+### `reborn-prepared`
+
+The dive gates' thresholds on main a04e5471: character-level minimums +/-2, HP minimums -25%/+25%, Cure minimum 0 and 4, and loose and tight combinations.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_prepared_cure_min` | `borg_param_prepared_dl2_min_hp` | `borg_param_prepared_dl34_min_clevel__blackguard` | `borg_param_prepared_dl34_min_clevel__druid` | `borg_param_prepared_dl34_min_clevel__mage` | `borg_param_prepared_dl34_min_clevel__necromancer` | `borg_param_prepared_dl34_min_clevel__paladin` | `borg_param_prepared_dl34_min_clevel__priest` | `borg_param_prepared_dl34_min_clevel__ranger` | `borg_param_prepared_dl34_min_clevel__rogue` | `borg_param_prepared_dl34_min_clevel__warrior` | `borg_param_prepared_dl34_min_hp__blackguard` | `borg_param_prepared_dl34_min_hp__druid` | `borg_param_prepared_dl34_min_hp__mage` | `borg_param_prepared_dl34_min_hp__necromancer` | `borg_param_prepared_dl34_min_hp__paladin` | `borg_param_prepared_dl34_min_hp__priest` | `borg_param_prepared_dl34_min_hp__ranger` | `borg_param_prepared_dl34_min_hp__rogue` | `borg_param_prepared_dl34_min_hp__warrior` | `borg_param_prepared_dl59_min_clevel__blackguard` | `borg_param_prepared_dl59_min_clevel__druid` | `borg_param_prepared_dl59_min_clevel__mage` | `borg_param_prepared_dl59_min_clevel__necromancer` | `borg_param_prepared_dl59_min_clevel__paladin` | `borg_param_prepared_dl59_min_clevel__priest` | `borg_param_prepared_dl59_min_clevel__ranger` | `borg_param_prepared_dl59_min_clevel__rogue` | `borg_param_prepared_dl59_min_clevel__warrior` | `borg_param_prepared_dl59_min_hp__blackguard` | `borg_param_prepared_dl59_min_hp__druid` | `borg_param_prepared_dl59_min_hp__mage` | `borg_param_prepared_dl59_min_hp__necromancer` | `borg_param_prepared_dl59_min_hp__paladin` | `borg_param_prepared_dl59_min_hp__priest` | `borg_param_prepared_dl59_min_hp__ranger` | `borg_param_prepared_dl59_min_hp__rogue` | `borg_param_prepared_dl59_min_hp__warrior` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-prepared-ctl` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-prepared-cl-lo` | – | – | 2 | 7 | 9 | 9 | 2 | 7 | 2 | 6 | 2 | – | – | – | – | – | – | – | – | – | 4 | 13 | 13 | 13 | 4 | 13 | 4 | 8 | 4 | – | – | – | – | – | – | – | – | – |
+| `reborn-prepared-cl-hi` | – | – | 6 | 11 | 13 | 13 | 6 | 11 | 6 | 10 | 6 | – | – | – | – | – | – | – | – | – | 8 | 17 | 17 | 17 | 8 | 17 | 8 | 12 | 8 | – | – | – | – | – | – | – | – | – |
+| `reborn-prepared-hp-lo` | – | 23 | – | – | – | – | – | – | – | – | – | 38 | 30 | 45 | 45 | 38 | 30 | 38 | 38 | 38 | – | – | – | – | – | – | – | – | – | 45 | 45 | 60 | 60 | 45 | 45 | 45 | 45 | 45 |
+| `reborn-prepared-hp-hi` | – | 38 | – | – | – | – | – | – | – | – | – | 63 | 50 | 75 | 75 | 63 | 50 | 63 | 63 | 63 | – | – | – | – | – | – | – | – | – | 75 | 75 | 100 | 100 | 75 | 75 | 75 | 75 | 75 |
+| `reborn-prepared-cure0` | 0 | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-prepared-cure4` | 4 | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-prepared-loose` | 0 | 23 | 2 | 7 | 9 | 9 | 2 | 7 | 2 | 6 | 2 | 38 | 30 | 45 | 45 | 38 | 30 | 38 | 38 | 38 | 4 | 13 | 13 | 13 | 4 | 13 | 4 | 8 | 4 | 45 | 45 | 60 | 60 | 45 | 45 | 45 | 45 | 45 |
+| `reborn-prepared-tight` | 4 | 38 | 6 | 11 | 13 | 13 | 6 | 11 | 6 | 10 | 6 | 63 | 50 | 75 | 75 | 63 | 50 | 63 | 63 | 63 | 8 | 17 | 17 | 17 | 8 | 17 | 8 | 12 | 8 | 75 | 75 | 100 | 100 | 75 | 75 | 75 | 75 | 75 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1422,6 +1441,44 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_light_detect_evil_spell_min_level__rogue` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__warrior` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_prepared_clevel_depth_margin` | -2, 2, not set | `reborn-dive-gates-768` |  |
+| `borg_param_prepared_cure_min` | 0, 4, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl2_min_hp` | 23, 38, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__blackguard` | 2, 6, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__druid` | 7, 11, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__mage` | 9, 13, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__necromancer` | 9, 13, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__paladin` | 2, 6, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__priest` | 7, 11, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__ranger` | 2, 6, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__rogue` | 6, 10, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_clevel__warrior` | 2, 6, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__blackguard` | 38, 63, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__druid` | 30, 50, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__mage` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__necromancer` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__paladin` | 38, 63, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__priest` | 30, 50, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__ranger` | 38, 63, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__rogue` | 38, 63, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl34_min_hp__warrior` | 38, 63, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__blackguard` | 4, 8, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__druid` | 13, 17, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__mage` | 13, 17, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__necromancer` | 13, 17, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__paladin` | 4, 8, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__priest` | 13, 17, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__ranger` | 4, 8, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__rogue` | 8, 12, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_clevel__warrior` | 4, 8, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__blackguard` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__druid` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__mage` | 60, 100, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__necromancer` | 60, 100, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__paladin` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__priest` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__ranger` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__rogue` | 45, 75, not set | `reborn-prepared` |  |
+| `borg_param_prepared_dl59_min_hp__warrior` | 45, 75, not set | `reborn-prepared` |  |
 | `borg_param_prepared_mid_clevel_offset__blackguard` | -7, -1, not set | `reborn-dive-gates-768` |  |
 | `borg_param_prepared_mid_clevel_offset__druid` | -3, 3, not set | `reborn-dive-gates-768` |  |
 | `borg_param_prepared_mid_clevel_offset__mage` | 2, 8, not set | `reborn-dive-gates-768` |  |

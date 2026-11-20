@@ -1,0 +1,30 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-prepared-calibration-pilot",
+  "issue": 522,
+  "definition": "definitions/reborn-prepared-calibration-pilot.yaml",
+  "question": "On borg-reborn-rs main a04e5471, do the dive gates' character-level, HP and Cure-potion minimums (prepared_dl2/dl34/dl59 and prepared_cure_min) hold the Borg shallower than it needs to be, or let it down too early? Which direction saves deaths or buys progress against the shipped values?",
+  "description": "On borg-reborn-rs main a04e5471, do the dive gates' character-level, HP and Cure-potion minimums (prepared_dl2/dl34/dl59 and prepared_cure_min) hold the Borg shallower than it needs to be, or let it down too early? Which direction saves deaths or buys progress against the shipped values? Generated from definitions/reborn-prepared-calibration-pilot.yaml: 9 arms on 4.2.6-reborn-rust-main-a04e5471, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this build was read. Pilot (RULES 16); small tiers of arms that lead follow\nafter the gate and the owner. Eight arms against ctl, 18 starts each (162 games).\nGate: no config_error; one binary; each arm's values in params-core.json of the death replays (the per-class lines\noverride the shipped ones); ctl plays as main a04e5471's shipped settings; every cell ends in death, turn_cap or\nborg_stopped (stalls, timeouts and crashes kept apart); frozen-turn bursts classified.\nReport per arm and per class: deaths and causes, character level at death, final and maximum level, deepest level;\npaired rescued / newly killed against ctl (exact McNemar), identical plays; turns to first DL2, DL3, DL5; for every\ndeath the gate that was last passed (depth entered, CL and max HP at entry); how many starts were held at a depth by a\nprepared_ gate and for how long, if the logs show it. A gate that never holds in ctl (identical plays) means \"not\ntested\". Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-a04e5471"
+  ],
+  "profiles": [
+    "reborn-prepared-ctl",
+    "reborn-prepared-cl-lo",
+    "reborn-prepared-cl-hi",
+    "reborn-prepared-hp-lo",
+    "reborn-prepared-hp-hi",
+    "reborn-prepared-cure0",
+    "reborn-prepared-cure4",
+    "reborn-prepared-loose",
+    "reborn-prepared-tight"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-a04e5471",
+  "control_profile": "reborn-prepared-ctl",
+  "owner_authorization": "2026-11-20: zoo owner, \"we need calibrating for prepared_\" (a classes-18 pilot only; small tiers wait for the gate and the owner).",
+  "retain_evidence": true
+}
