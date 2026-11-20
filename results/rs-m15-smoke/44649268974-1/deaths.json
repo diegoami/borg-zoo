@@ -1,0 +1,762 @@
+[
+  {
+    "cause": "a white jelly",
+    "cell": "classes-18/4.2.6-rs-m15/normal/102023799",
+    "class": "Druid",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/4.2.6-rs-m15/normal/102023799",
+      "complete": true,
+      "files": {
+        "archive/Borg.map": {
+          "bytes": 34518,
+          "sha256": "7ce161ff67267faeeb9b585f387be6707beb6c5df89d80e5833e482976948fdd"
+        },
+        "archive/borg-log.txt": {
+          "bytes": 170,
+          "sha256": "b56f768d7ba73b09aefa40ee14e228709fe5fe6aff51b670a4e15c8c3f1b405a"
+        },
+        "archive/borg.dat": {
+          "bytes": 47,
+          "sha256": "31ac7342acccf869f1fe66ab554a9a65eaa88cdbc775961c9dec79f520f5edbc"
+        },
+        "keys.log": {
+          "bytes": 30667,
+          "sha256": "f763c3259a7f5cf68d14099e656f3f51fee857136b4c1d8c18dd238d80a23e6b"
+        },
+        "messages.log": {
+          "bytes": 169534,
+          "sha256": "395703a24921bd3423cd4bbd3796157759fbfc16aa76153bf921ff9f9a924ebe"
+        },
+        "return-events.jsonl": {
+          "bytes": 9172,
+          "sha256": "b011f36ebc035709b81b95999a4e456d36056b49badfc26302eee5aece3feb4d"
+        },
+        "save/Borg": {
+          "bytes": 58748,
+          "sha256": "97add4556597a959ac98f219a473a94bd3377759b385bc483e2b269c246159da"
+        },
+        "state.log": {
+          "bytes": 298754,
+          "sha256": "95b45b1be49597fff599a19ab60e4434fc1d585171590c6223348ad58ff16d45"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "summary.json": {
+          "bytes": 2793,
+          "sha256": "8c0c1772356d039391bc3719b3a743f49246e0d86b2fb23cc5a9b66702881930"
+        },
+        "town-recording.json": {
+          "bytes": 1403,
+          "sha256": "48640a3e01eb2c5b1eb12545e3319937dd99c938d379dc8f211ff08daa718668"
+        },
+        "town-transactions.jsonl": {
+          "bytes": 7100,
+          "sha256": "04d5194b4cb79a04d0a723a0d2581fe55420e4d69ec94eba4e376d319de9148f"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 109,
+          "sha256": "32ea6a5478d729ae9b3bcb74c1f60b3b0bfe195eb0f8446c4e41b4e196ff440f"
+        },
+        "user/borg.txt": {
+          "bytes": 76477,
+          "sha256": "918542bc556198e51d8ee9b9942ee9a1e71d3ad81301d88f67290ff0f944abe2"
+        },
+        "user/lore.txt": {
+          "bytes": 8034,
+          "sha256": "c375137c77fcc040915b7f83147fb8e4b7d9af4814c4157311a441e9aee2bb5e"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": null,
+      "depth": 1,
+      "hp": null,
+      "keys": 2478,
+      "kind": "death",
+      "level": 1,
+      "max_depth": 2,
+      "max_level": 1,
+      "turn": 17791
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 102023799,
+    "specimen": "4.2.6-rs-m15"
+  },
+  {
+    "cause": "a soldier",
+    "cell": "classes-18/4.2.6-rs-m15/normal/1085222502",
+    "class": "Warrior",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/4.2.6-rs-m15/normal/1085222502",
+      "complete": true,
+      "files": {
+        "archive/Borg.map": {
+          "bytes": 32097,
+          "sha256": "49fbc77c695926c3ea5e29c09d775e7cfcafcdfb1c831d6af9ff2f15cdf74062"
+        },
+        "archive/borg-log.txt": {
+          "bytes": 168,
+          "sha256": "d3ea003f61468a8dcae51418f42a1ed3b2e356f2057229d4e023177e146b0081"
+        },
+        "archive/borg.dat": {
+          "bytes": 45,
+          "sha256": "c68b7ae6b8075347b5fc40aeeedc9de0e52750b6b388ba7663c09f67a389ace4"
+        },
+        "keys.log": {
+          "bytes": 31392,
+          "sha256": "d9bafc3c6710a24466b241cd6b1f4ddb788153d57f0b311ec57e7c23a1bb3c1c"
+        },
+        "messages.log": {
+          "bytes": 211552,
+          "sha256": "c4825a3b2b5fde85efddc8a2b17639f6592a7a963962c1441b2faaa11b45e578"
+        },
+        "return-events.jsonl": {
+          "bytes": 7205,
+          "sha256": "b16518ecdcd8f9f8efe016089f716a2d0e438cb072c829dfda9382105be2e248"
+        },
+        "save/Borg": {
+          "bytes": 66596,
+          "sha256": "0f4d8ce5d157964aa959bc43fa836f2632aecc1bf1cb9943ec987bc3a49d5b6d"
+        },
+        "state.log": {
+          "bytes": 307729,
+          "sha256": "3db2ee647d5c5a8a61526b8314ea699b10674718b0db59be115c988083718ffd"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "summary.json": {
+          "bytes": 2793,
+          "sha256": "76fc1cb116397ec05cc7389e99d531ab02216229fa3dd9e2e3d1741f1f2e9ed2"
+        },
+        "town-recording.json": {
+          "bytes": 1413,
+          "sha256": "91bac86a6ddfa6fdc057af5144a3e3d819c310cc7b0fae1a8c56622c1bcddcdc"
+        },
+        "town-transactions.jsonl": {
+          "bytes": 5563,
+          "sha256": "a5475866aecaee45b750f5932298e8d36ca32d25d93c37d7749da08f1bb1a9a6"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 111,
+          "sha256": "8b5857ffe98a49d5afd11a61e821d8879d0d7e4f213a15c07c710282ddb69c80"
+        },
+        "user/borg.txt": {
+          "bytes": 76477,
+          "sha256": "1d34570d623b2f816995401c6a43d8ecb43fe178fe6faac72c9adcb199d2da6e"
+        },
+        "user/lore.txt": {
+          "bytes": 8999,
+          "sha256": "3c3ca3af6f1889c2430347ba1a1701c92013b0158c1c1b5f9c28d3c23d5838f7"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": null,
+      "depth": 2,
+      "hp": null,
+      "keys": 2528,
+      "kind": "death",
+      "level": 3,
+      "max_depth": 2,
+      "max_level": 3,
+      "turn": 18741
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 1085222502,
+    "specimen": "4.2.6-rs-m15"
+  },
+  {
+    "cause": "Fang, Farmer Maggot's Dog",
+    "cell": "classes-18/4.2.6-rs-m15/normal/1502695781",
+    "class": "Rogue",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/4.2.6-rs-m15/normal/1502695781",
+      "complete": true,
+      "files": {
+        "archive/Borg.map": {
+          "bytes": 33407,
+          "sha256": "9efd2e5a2e3dd4abd1ada885519e9d967974bd7415f03103df67ef292aceb13a"
+        },
+        "archive/borg-log.txt": {
+          "bytes": 181,
+          "sha256": "ec3c1607f4f3b3cd3fc9acb6cc89dd9fd4b956e813df0b5f84150c17ceeb25a6"
+        },
+        "archive/borg.dat": {
+          "bytes": 59,
+          "sha256": "a5f48bdfe3d09eca24209bf7d08d5cd91eccaa9ead29642160ed1ff139cad64f"
+        },
+        "keys.log": {
+          "bytes": 12457,
+          "sha256": "21ecf49b93e5023fe7752c4949318a1fbf1188e1a8cb3b535bd13bb33e49f821"
+        },
+        "messages.log": {
+          "bytes": 50214,
+          "sha256": "3b977fb2d8397da0e574478b5000e1c47bcf5894728f8136fa64af20c667d62c"
+        },
+        "return-events.jsonl": {
+          "bytes": 251,
+          "sha256": "fa033b9bf169de4215d080e068e378cd626c41fee65b5f4742a626922a7b2e42"
+        },
+        "save/Borg": {
+          "bytes": 52440,
+          "sha256": "b4a7a7b0038fce0a7c1b661a1c2908ae69911baa247475f240112df9594d8bc7"
+        },
+        "state.log": {
+          "bytes": 127493,
+          "sha256": "993876cfbaac1e2c5c15798a8cd35d04da4665a3f4dd771455878f686a831e2e"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "summary.json": {
+          "bytes": 2802,
+          "sha256": "3b2efa80ffa985903941807d5f6259cc3dffcb3a5cb676cc4eb70f9ec6beb2af"
+        },
+        "town-recording.json": {
+          "bytes": 1413,
+          "sha256": "355ffaaf91e6f69e46ace9a67e7acd1ca90714b7beb4a802f78ec20ab21bcad0"
+        },
+        "town-transactions.jsonl": {
+          "bytes": 4293,
+          "sha256": "c1a67a128c48cf01c58c6807fd88fceb49f2f9412d8853288ad51fb143e468e5"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 109,
+          "sha256": "578b4bd0622fdac9a5f72c8bd15b60c136f8c33ce84d1eb0ffc9208704be1230"
+        },
+        "user/borg.txt": {
+          "bytes": 76477,
+          "sha256": "ac4e6952e30b6969112a68078b4d340a0496c22bcfa5a97de28289a7c93980ee"
+        },
+        "user/lore.txt": {
+          "bytes": 3219,
+          "sha256": "cabc77c5187530adb30642fc4dcbc9ea53ccd891446457dafe00ed78efa804f4"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": null,
+      "depth": 1,
+      "hp": null,
+      "keys": 1048,
+      "kind": "death",
+      "level": 2,
+      "max_depth": 2,
+      "max_level": 2,
+      "turn": 8021
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 1502695781,
+    "specimen": "4.2.6-rs-m15"
+  },
+  {
+    "cause": "a cutpurse",
+    "cell": "classes-18/4.2.6-rs-m15/normal/1739161339",
+    "class": "Ranger",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/4.2.6-rs-m15/normal/1739161339",
+      "complete": true,
+      "files": {
+        "archive/Borg.map": {
+          "bytes": 33785,
+          "sha256": "eb579bcee681cbd488a256d9d90e01dde8d30a9956a169a88685192dd1e2a487"
+        },
+        "archive/borg-log.txt": {
+          "bytes": 168,
+          "sha256": "8374a0ace7bed571fa72a5ce188b51a722e393f1187458eb4c40d9eff9987265"
+        },
+        "archive/borg.dat": {
+          "bytes": 48,
+          "sha256": "5d390318ccde1e09841454f8a0af1bad12d34018fbffec48f3673f62b67a7052"
+        },
+        "keys.log": {
+          "bytes": 3139,
+          "sha256": "02dc327240f6833d1d4cf1a17c065f5937eb64ccbad82daaaa7ea6ae1bce11da"
+        },
+        "messages.log": {
+          "bytes": 15321,
+          "sha256": "ffcddf175f2b0c4b5bce643c2767a6c59d212a594ae1a9278c047d8a55566001"
+        },
+        "return-events.jsonl": {
+          "bytes": 726,
+          "sha256": "5ad082c39dae10ccfca4476a983227f969d37c935f3109ec0622751590130042"
+        },
+        "save/Borg": {
+          "bytes": 65344,
+          "sha256": "6d40eb9f58a526ffcf236d3d89585c84378652789ec6dc71af354ecade2b74b1"
+        },
+        "state.log": {
+          "bytes": 33221,
+          "sha256": "ccfe27fb325ea7ebb3231825cbdbd3df3ad967ddc45cb9d8b9e0f068eea05b72"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "summary.json": {
+          "bytes": 2787,
+          "sha256": "88f66086274bd26664363b6629c613b7b5ea31d5569a2ef64a3e637e0ef595d4"
+        },
+        "town-recording.json": {
+          "bytes": 1413,
+          "sha256": "b35955843f7bd715fd8a012e3f3c45ac5a57a8989a82ac2c40a49c55b408f447"
+        },
+        "town-transactions.jsonl": {
+          "bytes": 2999,
+          "sha256": "f539e56717f1a190be0e2844fb5904e30aea858e3bf5ed08e0c09ccc9997f6fb"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 113,
+          "sha256": "1ec235f13e19df4cc089e2014cbd2692f7cd6a830f2167fd62d76293becdb3de"
+        },
+        "user/borg.txt": {
+          "bytes": 76477,
+          "sha256": "9f8a8aa5d8eff4ce0c9bce0e80aeb64f36b70f0f774a327a6409bd65c3cf77a3"
+        },
+        "user/lore.txt": {
+          "bytes": 1692,
+          "sha256": "c88a202102af16cd808b8d101960ecf8d6e444c0a1bcb7a7c50e7b0675e30b3c"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": null,
+      "depth": 1,
+      "hp": null,
+      "keys": 277,
+      "kind": "death",
+      "level": 1,
+      "max_depth": 1,
+      "max_level": 1,
+      "turn": 1345
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Half-Elf",
+    "seed": 1739161339,
+    "specimen": "4.2.6-rs-m15"
+  },
+  {
+    "cause": "a grey mushroom patch",
+    "cell": "classes-18/4.2.6-rs-m15/normal/300036923",
+    "class": "Necromancer",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/4.2.6-rs-m15/normal/300036923",
+      "complete": true,
+      "files": {
+        "archive/Borg.map": {
+          "bytes": 35336,
+          "sha256": "cdb7a47291794d2b5bd9233a077a059dd63fa66efc1968438b207308077b16ba"
+        },
+        "archive/borg-log.txt": {
+          "bytes": 183,
+          "sha256": "174fc7bda392e496c5e1f95c533eaf40858f7ef94c1a740e98f6aaf1a1d312fa"
+        },
+        "archive/borg.dat": {
+          "bytes": 61,
+          "sha256": "13e2fdd13899abf312915bea794e43069649a81c0b73ba504f59f11fbbe09f90"
+        },
+        "keys.log": {
+          "bytes": 44464,
+          "sha256": "62f329ad9110551cceeed3c382678d4a26a96dc4994be01aee281f5a32086691"
+        },
+        "messages.log": {
+          "bytes": 279938,
+          "sha256": "215a81ef182e9b5211e3dd4cb622c081cde4ea292e973e6c5546baf2deba6ed7"
+        },
+        "return-events.jsonl": {
+          "bytes": 16492,
+          "sha256": "096d74bf9ce43ad03b3940cfa6ea9fdb14ad8084d0348f55b8bbb13e59339512"
+        },
+        "save/Borg": {
+          "bytes": 57668,
+          "sha256": "c1f06c838165368158194c608809b717ed475c321df5dbe6b7ad37a23eaef9aa"
+        },
+        "state.log": {
+          "bytes": 385536,
+          "sha256": "a271425cedce23f05911d3dd9738c6ddb9b988f1aa1edb633387dd29259a8334"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "summary.json": {
+          "bytes": 2808,
+          "sha256": "81d81962014a988701867fa120a7041a3e5e3e16ad167af0f823e24b6bb2c927"
+        },
+        "town-recording.json": {
+          "bytes": 1403,
+          "sha256": "8b21ed6ce80d8af45c8571aad267d47ae0eb6330b29bf7ec38029c00380625b6"
+        },
+        "town-transactions.jsonl": {
+          "bytes": 10411,
+          "sha256": "a7429bdc9565197687ce6418d5c80622d7488760d0ad8830af7656c78f2945df"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 115,
+          "sha256": "b5abd2049834c4430b71b33cd83bbc2dfb4389fe78e05aba899362321f7b08dd"
+        },
+        "user/borg.txt": {
+          "bytes": 76477,
+          "sha256": "0ecbca0502c23b56b5e4b0cc5b157a844d771d0661f1a1506e1faa2a2458f57e"
+        },
+        "user/lore.txt": {
+          "bytes": 8044,
+          "sha256": "626266c3cbf04989e62310c9f0599dc4d9c7be098f9506b4f5d62a5249204d0d"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": null,
+      "depth": 1,
+      "hp": null,
+      "keys": 3494,
+      "kind": "death",
+      "level": 1,
+      "max_depth": 1,
+      "max_level": 1,
+      "turn": 25589
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 300036923,
+    "specimen": "4.2.6-rs-m15"
+  },
+  {
+    "cause": "Fang, Farmer Maggot's Dog",
+    "cell": "classes-18/4.2.6-rs-m15/normal/766958386",
+    "class": "Paladin",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/4.2.6-rs-m15/normal/766958386",
+      "complete": true,
+      "files": {
+        "archive/Borg.map": {
+          "bytes": 33538,
+          "sha256": "a1a9022b1a54039a3fa2de0110043f8896a6b179021617b9d7210f96dcec74a8"
+        },
+        "archive/borg-log.txt": {
+          "bytes": 182,
+          "sha256": "8d986af02eaf274a286763db8b6c3847db9478c3f8448f88126e08fef4b716af"
+        },
+        "archive/borg.dat": {
+          "bytes": 61,
+          "sha256": "48021e450eceb393a59c082f59ef7abe9573e41f647d3d3e39cbea14125a24ec"
+        },
+        "keys.log": {
+          "bytes": 21729,
+          "sha256": "dd2ca04d3eb0dceffa8b87086b587a61ab6c09076bf709897cf5b29a9f6f5985"
+        },
+        "messages.log": {
+          "bytes": 115146,
+          "sha256": "7a5b408205d414b0c0b22c0ae91ef06b941c016a17429983b134583d87128eb4"
+        },
+        "return-events.jsonl": {
+          "bytes": 6682,
+          "sha256": "4cf611fa2c3c268ee400214f79122768da735cfa6dbd7a32ac7bf1ed41854df4"
+        },
+        "save/Borg": {
+          "bytes": 67104,
+          "sha256": "07ba294919d92ce47a6915c2444819bfba4bb853d3cf4bfbb9d3f28b62e27ce0"
+        },
+        "state.log": {
+          "bytes": 215461,
+          "sha256": "00596e300166bef72152104095fac39afde3a4e756b2296ad9c5a5fbddeed589"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "summary.json": {
+          "bytes": 2807,
+          "sha256": "57d459d337213adee3b07552c3f041fd1874241825196fadf43b5f6112291ce1"
+        },
+        "town-recording.json": {
+          "bytes": 1403,
+          "sha256": "8a5b695d7887c95fbe42639ff291bfdd9db8cceb0e444c0e1da90f7215ed64e1"
+        },
+        "town-transactions.jsonl": {
+          "bytes": 3808,
+          "sha256": "95557ac23f7719656ac59799c2420a83840492687b13c13cd384ba2064ce13d4"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 111,
+          "sha256": "a9f63b0c7c7dbd45687705950812080f0e7647323ecfd406ef3e53a973a7d537"
+        },
+        "user/borg.txt": {
+          "bytes": 76477,
+          "sha256": "9be41d449b4d1c2be9039e5e57c3ae38711a51b87842bc8c98d1a36c913f03c5"
+        },
+        "user/lore.txt": {
+          "bytes": 6874,
+          "sha256": "ee132540366318f7cae1d909fc5271dfcc957a0823e28b3a24e59dbd67519173"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": null,
+      "depth": 2,
+      "hp": null,
+      "keys": 1782,
+      "kind": "death",
+      "level": 2,
+      "max_depth": 2,
+      "max_level": 2,
+      "turn": 19111
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 766958386,
+    "specimen": "4.2.6-rs-m15"
+  },
+  {
+    "cause": "a kobold shaman",
+    "cell": "classes-18/4.2.6-rs-m15/normal/801785300",
+    "class": "Mage",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/4.2.6-rs-m15/normal/801785300",
+      "complete": true,
+      "files": {
+        "archive/Borg.map": {
+          "bytes": 35068,
+          "sha256": "13b27525464324e5c35450e072823cbe0635f07e5450563a30f8f6c58bfed4df"
+        },
+        "archive/borg-log.txt": {
+          "bytes": 173,
+          "sha256": "e7a4380631b8c3e3664105cc4bb8da89a9c301ba78face1e4a004e577b078a96"
+        },
+        "archive/borg.dat": {
+          "bytes": 51,
+          "sha256": "cb8f4cb2640bc94491259476bbc5e32099e0aac4ca8f9f94648a25d62545616e"
+        },
+        "keys.log": {
+          "bytes": 15560,
+          "sha256": "71e0c1cea1b54372e366ba7e793fa5671415d4de2cd777538ba46c9b2a09f3b3"
+        },
+        "messages.log": {
+          "bytes": 71189,
+          "sha256": "760d2aae5cc8e3917b4b8a22bd744cf6873cc70014cc785f2275bfb7614e07af"
+        },
+        "return-events.jsonl": {
+          "bytes": 3697,
+          "sha256": "d2728d302b4f143129bd3b542529289c724ce93845e316a221a24ddae1934e76"
+        },
+        "save/Borg": {
+          "bytes": 54956,
+          "sha256": "2ffc924f60f8dc5a3624eef0650911cddfad5ce23d4e61a5f68b11544f6f9627"
+        },
+        "state.log": {
+          "bytes": 156271,
+          "sha256": "c0ed01c98117968fe24cff4b9dd41d4742bd381b3ced5205b9ef54ee6aecd447"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "summary.json": {
+          "bytes": 2795,
+          "sha256": "b5a24787d01606540a1a6cb35ef7ec73035da084ca1e79568f9cce363d1634d8"
+        },
+        "town-recording.json": {
+          "bytes": 1403,
+          "sha256": "0c55b9d11d0bfb3fe89284f307107b7d54b6c548dc0836a6fdf1963a762bf17d"
+        },
+        "town-transactions.jsonl": {
+          "bytes": 3292,
+          "sha256": "c9d37e34a4159d8e3fe940c13cf2e5fede6a6cba1987faf0d4312462e4c44419"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 111,
+          "sha256": "c5b5c939e961895cc57dbaf74a1d6f641e9ed25b14ac9721c246b1909a8377ae"
+        },
+        "user/borg.txt": {
+          "bytes": 76477,
+          "sha256": "1adbdc410139c8e3723a3e698dff5ff1f8bdc45d7d9c7d8b4710e9ca541d29bd"
+        },
+        "user/lore.txt": {
+          "bytes": 5269,
+          "sha256": "f5d414e56d9701e384e7a40e74de3c1a91c922f4fe1034f7eb67e9044a4236c4"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": null,
+      "depth": 1,
+      "hp": null,
+      "keys": 1297,
+      "kind": "death",
+      "level": 2,
+      "max_depth": 1,
+      "max_level": 2,
+      "turn": 12215
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Half-Elf",
+    "seed": 801785300,
+    "specimen": "4.2.6-rs-m15"
+  },
+  {
+    "cause": "Grip, Farmer Maggot's Dog",
+    "cell": "classes-18/4.2.6-rs-m15/normal/934061548",
+    "class": "Druid",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/4.2.6-rs-m15/normal/934061548",
+      "complete": true,
+      "files": {
+        "archive/Borg.map": {
+          "bytes": 34799,
+          "sha256": "5f7a2887b8d5cdd63dad9f60d2506fa7bb077ac5bb79d22e471f875b19936ece"
+        },
+        "archive/borg-log.txt": {
+          "bytes": 183,
+          "sha256": "068aee14820b3e76f5a79810768853dff1d174a22db872d1d43c02d53f6ee384"
+        },
+        "archive/borg.dat": {
+          "bytes": 62,
+          "sha256": "61f5f74d2c05049df19d6630279fdf96818e5b4f5809479bbb1041dc5723b5eb"
+        },
+        "keys.log": {
+          "bytes": 32989,
+          "sha256": "c0fdfaea64196f68e3f157f7d91aa5aa00dcc2d279a9cd096836e0e6fbb642e2"
+        },
+        "messages.log": {
+          "bytes": 265619,
+          "sha256": "ea86c8c0ad269e2e187ebd18837f1dd1de87410e86e4b3187781ba0e7e8a7b1d"
+        },
+        "return-events.jsonl": {
+          "bytes": 5463,
+          "sha256": "c08081ff04a3e1a959b1b22030979d45f246e327413a9c9f5c9ec349eae175a7"
+        },
+        "save/Borg": {
+          "bytes": 58356,
+          "sha256": "8b5d3094b804341117592b677f1ee2a6564e90c7339ce8c13a838ba00036e956"
+        },
+        "state.log": {
+          "bytes": 320263,
+          "sha256": "765c4f17a5efda74eba59d81e5a8a3e19619c502ea4a720be61353e3f0d0a51c"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "summary.json": {
+          "bytes": 2809,
+          "sha256": "85d589be61abc903e6e68d1fec705fbb23e714889dece43188e58d633fb180f3"
+        },
+        "town-recording.json": {
+          "bytes": 1403,
+          "sha256": "121f92c51a62ea484d240dca6144a6c9c9a324c362ed48ebc1d33b1525c5e1b1"
+        },
+        "town-transactions.jsonl": {
+          "bytes": 8422,
+          "sha256": "ae32c39d16b6ba914b5d0937af524937c94caeac428606be874705a15a2114ee"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 112,
+          "sha256": "ec76916bd5a207c23660a86274ef7c9161e6c8b801328391bbeea9178fa91414"
+        },
+        "user/borg.txt": {
+          "bytes": 76477,
+          "sha256": "7c8ead15fce31061b67436353239c92ecd694e878f28adc975b1624b3961cee4"
+        },
+        "user/lore.txt": {
+          "bytes": 8068,
+          "sha256": "f6a93fee9fd1242072e86b826df63a77b3f270cf0a24c0dd7689b68d49c26214"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": null,
+      "depth": 1,
+      "hp": null,
+      "keys": 2644,
+      "kind": "death",
+      "level": 2,
+      "max_depth": 1,
+      "max_level": 2,
+      "turn": 20032
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Half-Elf",
+    "seed": 934061548,
+    "specimen": "4.2.6-rs-m15"
+  }
+]

@@ -1,0 +1,151 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "munchkin-class": {
+        "description": "Munchkin start by class: today's product default for Warrior, Druid and Ranger (stair-scumming at depth 6), every other class ordinary. The arm that replaces implicit default in class grids. Names only borg_munchkin_by_class: for WDR classes the rule then forces the munchkin start itself, so borg_munchkin_start must stay unnamed (naming it FALSE contradicts the rule and reads as a config_error). Runs only on builds that know borg_munchkin_by_class (better-borg-c fd683ced and later).",
+        "settings": {
+          "borg_munchkin_by_class": true
+        },
+        "sha256": "a4cc28b87ff4f8e0cd3ec59e94cb002fbc8776467289a454440d014fe031569f"
+      },
+      "normal": {
+        "description": "Ordinary play with every mode flag pinned off: no munchkin start, no munchkin by class, no Lunal. The arm every change can be checked against. Only builds that know borg_munchkin_by_class (better-borg-c fd683ced and later) can run it; older builds ignore the unknown setting, the observer cannot verify it, and the run is a config_error.",
+        "settings": {
+          "borg_lunal_mode": false,
+          "borg_munchkin_by_class": false,
+          "borg_munchkin_start": false,
+          "borg_self_lunal": false
+        },
+        "sha256": "b67c601bb7ce659bfef67b5aca175f7656c1423e8f5d68d79bbe6c20d1c40d20"
+      }
+    },
+    "specimens": {
+      "4.2.6-rs-m15": {
+        "carries": 137,
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-rs Impact v15R (tag 4.2.6-impact-v15, 2026-11-20): the Rust Borg carrying better-borg-c v14 and v15 (137 carries, as 4.2.6-bbc-m15), on the vendored Angband 574b618c3, the same game commit as 4.2.6-bbc-m15. Release validation: Rust and C matched keys, messages and state in 45 full-suite and 3 smoke scenarios (borg-rs PR #109).",
+        "ref": "007e3a1b3bcce4efc10cfd9ac38bd8cd4820f406",
+        "repository": "diegoami/borg-rs",
+        "source": "https://github.com/diegoami/borg-rs/releases/tag/4.2.6-impact-v15",
+        "tag": "4.2.6-impact-v15"
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-20 00:55 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-rs-m15",
+    "control_profile": "normal",
+    "definition": "definitions/rs-m15-smoke.yaml",
+    "description": "Build and play check of borg-rs Impact v15R (tag 4.2.6-impact-v15, 007e3a1b, on Angband 574b618c) before classes-rs-m15-medium: classes-18, normal and munchkin-class. Says only that it builds and plays; not a comparison.",
+    "issue": 463,
+    "name": "rs-m15-smoke",
+    "owner_authorization": "2026-11-20: the owner asked to \"file a medium suite for borg-rs last milestone / relase\" (borg-zoo#463).",
+    "profiles": [
+      "normal",
+      "munchkin-class"
+    ],
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-rs-m15"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44649268974-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44649268974",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "aa6f28104ee8cf6694ef44c0a0c296c72e35c42c"
+}
