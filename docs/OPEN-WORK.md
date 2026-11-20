@@ -45,7 +45,7 @@ for catalogue JSON and FINDINGS prose. Merge only when
   from the zoo's evidence, one graded proposal per setting, and a borg-reborn-rs issue
   draft for the owner to file (the zoo never edits that repository, RULES 2).
 
-## State on 2026-11-20
+## State on 2026-11-20 (evening)
 
 **Owner's limit for now (2026-11-20):** dispatch pilots and small tiers only; no
 heavy jobs (medium, big, full, 200-Ranger runs) without asking. Requests come
@@ -53,26 +53,25 @@ from borg-reborn-rs as zoo issues with a definition; pick them up, define them
 (`definitions/NAME-pilot.yaml`, `zoo define`, a shortcut, `zoo.profiles_page`),
 merge after checks, dispatch the pilot, comment the run on the issue.
 
-**Pilots in flight** (gate, then post per arm and class; a small tier after the gate is
-within the limit, starts 1-90):
+**Pilots done 2026-11-20** (results on each issue and in docs/FINDINGS.md "Results of 2026-11-20, evening"):
 
-| Issue | Experiment | Specimen | Arms |
-|---|---|---|---|
-| #506 | `reborn-c-leash-values-pilot` (run 44769379993, **done**, result on the issue) | main ec0f3b28 | C's leash: ctl, tight, loose, margin0, margin10, none |
-| #507 | `reborn-recall-wait-754-pilot` (PR #512) | PR #762 613f1ba5 (since merged to main) | ctl, esc, nox, both |
-| #510 | `reborn-flight3-757-pilot` (PR #514) | scratch/T751-mode3 50c23a5e (without main's #755) | ctl, flight3, flight3r, seven switches alone |
-| #511 | `reborn-fight-recall-pilot` (PR #514) | task/T758-recall-survival 78b8f297, its own scary list 94631dec | ctl, attack-sight, winning-fight, recall-safe, all |
-| #513 | `reborn-phase-first-761-pilot` (PR #514) | scratch/T761-phase 992e0351 | ctl, ranger, phase, oil, phaseoil, floor, floorfirst, unseen, foodlight, all |
+| Issue | Experiment | State |
+|---|---|---|
+| #506 | `reborn-c-leash-values-pilot` (44769379993), re-pilot `reborn-c-leash-none-pilot` (44791716325) | done; a wash; small tier of ctl, loose, none is the owner's call |
+| #507 | `reborn-recall-wait-754-pilot` (44779354512) | done; nothing separates; stop |
+| #510 | `reborn-flight3-757-pilot` (44774313553), `reborn-flight3-757-small` (44791789114) | pilot gate failed on `nodanger`'s stall (borg-reborn-rs #775); flight3's rescue did not carry over |
+| #511 | `reborn-fight-recall-pilot` (44774352123) | done; no lead; **death report waits for a new build** |
+| #513 | `reborn-phase-first-761-pilot` (44774388022), `reborn-phase-first-761-small` (44791749875) | `oil`'s lead did not carry over; `phase` newly killed two |
 
-**#506 next:** the pilot's `none` arm was config_error in 18 of 18 (`flow_leash_depth_margin -100`;
-params.rs bounds it 0-127). Re-pilot `ctl` + `none` = `{flow_leash_pickup_max_level: 0, flow_leash_stairs_max_level: 0}`
-(the margin is redundant once stairs_max_level is 0), then the small tier of the arms that ran
-(loose led on progress, CL +0.17).
+**Queued behind PR #521** (a watcher merges it after its checks and dispatches; if the session
+ends, merge it and dispatch each with `-f experiment=experiments/NAME.json`; shards in brackets):
+`reborn-dive-gates-768-cap-pilot` (2) and `reborn-p6-compat-pilot` (2), `reborn-dive-gates-768-knobs-pilot`
+(4; #518), `reborn-flight3-main-pilot` (4; #516), `reborn-ranger-phase-pilot` (4; #517),
+`reborn-prepared-calibration-pilot` (6; #522), `reborn-weighted-flight-765-pilot` (3; #524).
+#520's gate comes first: its two builds must play the same keys; a mismatch stops the study.
 
-Each issue's comments carry the run link once dispatched. #510 and #513 ask, after
-the pilot, for the 200 Ranger starts of #488 and small + medium; #511 for the
-600-start manifest (borg-cemetery 5ed93e24 `starts-600.tsv`). Those are over the
-limit: ask first. #510 and #513 also want death reports with screens (/death-report).
+The Ranger tiers (200 starts) and medium tiers asked for in #510, #511, #513, #516 and #517 are over the
+limit: ask first. #516 and #517 rest partly on leads that did not carry over (see FINDINGS).
 
 **Traps found this session:**
 - `compare.yml`'s `experiment` input is the path `experiments/NAME.json`. The bare name
@@ -83,6 +82,11 @@ limit: ask first. #510 and #513 also want death reports with screens (/death-rep
   A unit job at 25 minutes is not stuck.
 - The death-report play pack: two deaths of one seed in different arms used to share a
   folder (fixed in PR #505, open).
+- The results job can lose its push race when runs finish together: `gh run rerun RUN --failed`.
+- A merge-then-dispatch script must stop if the merge fails (PR #521 conflicted with main and three
+  dispatches of experiments not yet on main failed).
+- A PR that adds catalogue entries conflicts with every other one that does: take main's
+  `catalogue/*.json` and `docs/PROFILES.md`, re-run `zoo define` and `zoo.profiles_page`.
 
 **Results posted and written to FINDINGS on 2026-11-20:** #480 (filed as
 borg-reborn-rs#744: re-ship detection min level 10 for casters), #484, #488, #475,
@@ -90,10 +94,9 @@ borg-reborn-rs#744: re-ship detection min level 10 for casters), #484, #488, #47
 https://claude.ai/artifact/SnqujSa3vHiJUebG9hLu87), #463 big.
 
 **Waiting for the owner:**
-- **Closing finished issues.** A bulk close was refused by the permission check, so
+- **Closing finished issues** (#500 and #488 were closed on 2026-11-20 on the owner's relayed go). A bulk close was refused by the permission check, so
   it needs the owner's explicit go. Finished (results posted, superseded or done):
-  #500 (PR #752 closed unmerged; its switch was measured in #501's flight arm), #484,
-  #488, #463, #457, #448, #443, #438, #433, #411, #396, #379, #369, #357, #356, #355,
+  #484, #463, #457, #448, #443, #438, #433, #411, #396, #379, #369, #357, #356, #355,
   #335, #329, #482, #475, #477, #446, #470, #465, #466, #468, #429, #408, #405, #401,
   #400, #393, #392, #390, #389, #388, #385, #365, #361, #358, #347, #334, #330, #328,
   #319, #487, #473, #450, #436, #419; #342 duplicates #336. Older ones (#318 and below)
