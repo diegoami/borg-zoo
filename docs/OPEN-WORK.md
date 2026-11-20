@@ -70,8 +70,8 @@ ends, merge it and dispatch each with `-f experiment=experiments/NAME.json`; sha
 `reborn-prepared-calibration-pilot` (6; #522), `reborn-weighted-flight-765-pilot` (3; #524).
 #520's gate comes first: its two builds must play the same keys; a mismatch stops the study.
 
-The Ranger tiers (200 starts) and medium tiers asked for in #510, #511, #513, #516 and #517 are over the
-limit: ask first. #516 and #517 rest partly on leads that did not carry over (see FINDINGS).
+The Ranger tiers (200 starts) asked for in #510, #511, #513, #516 and #517 are set aside by the owner
+(2026-11-20: "all classes, forget the Rangers for a while"); medium tiers are over the limit: ask first. #516 and #517 rest partly on leads that did not carry over (see FINDINGS).
 
 **Traps found this session:**
 - `compare.yml`'s `experiment` input is the path `experiments/NAME.json`. The bare name
