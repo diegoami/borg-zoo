@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-bgcurve-dbc-pilot",
+  "issue": 433,
+  "definition": "definitions/reborn-bgcurve-dbc-pilot.yaml",
+  "question": "On borg-reborn-rs main dbc92d18, is the Blackguard's lean toward more deaths under the owner's class values (1 -> 5 of 200 on classes-1800) from its Phase Door curve 50 or its healing 100 / 200?",
+  "description": "On borg-reborn-rs main dbc92d18, is the Blackguard's lean toward more deaths under the owner's class values (1 -> 5 of 200 on classes-1800) from its Phase Door curve 50 or its healing 100 / 200? Generated from definitions/reborn-bgcurve-dbc-pilot.yaml: 3 arms on 4.2.6-reborn-rust-main-dbc92d18, suite classes-1800-small-blackguards.",
+  "prespecified": "Fixed 2026-11-20, before any result of these profiles was read. Pilot (RULES 16).\nGate: no config_error; one binary; each arm's lines written; every cell ends in death, turn_cap or borg_stopped;\nfrozen-turn bursts classified; death bundles reproduced. Report per arm: deaths and causes, max CL and DL, paired\nrescued and newly killed, identical plays, Phase Door and healing potions bought.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-main-dbc92d18"
+  ],
+  "profiles": [
+    "reborn-bgcurve-dbc-shipped",
+    "reborn-bgcurve-dbc-pd100",
+    "reborn-bgcurve-dbc-heal-old"
+  ],
+  "suites": [
+    "classes-1800-small-blackguards"
+  ],
+  "control": "4.2.6-reborn-rust-main-dbc92d18",
+  "control_profile": "reborn-bgcurve-dbc-shipped",
+  "owner_authorization": "2026-11-20: the owner said \"yes do it\" to the Blackguard follow-up of #433: pilot first (RULES 16), then the 200 classes-1800-b Blackguard starts after its gate.",
+  "retain_evidence": true
+}
