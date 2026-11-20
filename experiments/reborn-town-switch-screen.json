@@ -1,0 +1,28 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-town-switch-screen",
+  "issue": 466,
+  "definition": "definitions/reborn-town-switch-screen.yaml",
+  "question": "On borg-reborn-rs main 653f60ba, which of the town and Druid switches main ships off (town scares, the town flight, fighting dangerous town monsters, Fox Form, a Recall reserve) saves or costs games against ctl?",
+  "description": "On borg-reborn-rs main 653f60ba, which of the town and Druid switches main ships off (town scares, the town flight, fighting dangerous town monsters, Fox Form, a Recall reserve) saves or costs games against ctl? Generated from definitions/reborn-town-switch-screen.yaml: 7 arms on 4.2.6-reborn-rust-main-653f60ba, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this definition was read (owner: \"file the experiments\"). A screen:\neach switch alone against ctl, to decide which to ship, which to tune and which to drop. classes-18 is the\ngate (RULES 16); small and medium (starts 1-360) follow right after it.\nGate:\n- no config_error; one binary; each arm's values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- town-fight, fox and fox-town each change some games against ctl (their switches act at all).\nReport per arm and per class:\n- deaths and causes, final and maximum level, deepest level;\n- paired rescued and newly killed against ctl (exact McNemar), and games identical to ctl (how often the\n  switch acts at all);\n- mean max CL and DL against ctl, with non-inferiority at the margins of borg-zoo#347 (CL -0.25, DL -0.25);\n- town deaths separately (depth 0), and deaths in the first 5,000 game turns;\n- for fox and fox-town: Druid games only, Fox Form casts per game; for recall-reserve: Recall scrolls carried at\n  each descent.\nBin each arm (RULES 18): ship, neutral, harmful, or too rare to tell.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-653f60ba"
+  ],
+  "profiles": [
+    "reborn-townscreen-ctl",
+    "reborn-townscreen-town-not-scary",
+    "reborn-townscreen-town-flee",
+    "reborn-townscreen-town-fight",
+    "reborn-townscreen-fox",
+    "reborn-townscreen-fox-town",
+    "reborn-townscreen-recall-reserve"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-653f60ba",
+  "control_profile": "reborn-townscreen-ctl",
+  "owner_authorization": "2026-11-20: the owner asked to do the zoo pilots (\"and then the zoo pilots\"): the issue's pilot as filed.",
+  "retain_evidence": true
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-stairs-leash-pilot",
+  "issue": 475,
+  "definition": "definitions/reborn-stairs-leash-pilot.yaml",
+  "question": "On borg-reborn-rs 769132df (PR",
+  "description": "On borg-reborn-rs 769132df (PR Generated from definitions/reborn-stairs-leash-pilot.yaml: 3 arms on 4.2.6-reborn-rust-t732-769132df, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any zoo result was read (borg-reborn-rs#732, PR #734). Pilot (RULES 16); larger tiers\nonly after this gate and the owner. ctl is shipped (C's leash).\nGate:\n- no config_error; one binary; each arm's value in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class:\n- deaths and causes, final level, deepest level, character level at death; paired rescued and newly killed against ctl;\n- for every death: the flow distance to the nearest known staircase when the killer was first seen, if the logs allow;\n- \"# Flowing toward dark\" notes per game (exploration), and turns to CL2, CL3, CL5;\n- RULES 18 bin per arm. The question is the early deaths (CL1-4): a progress cost is expected and is part of the answer.",
+  "specimens": [
+    "4.2.6-reborn-rust-t732-769132df"
+  ],
+  "profiles": [
+    "reborn-leash-ctl",
+    "reborn-leash-level",
+    "reborn-leash-grow"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-t732-769132df",
+  "control_profile": "reborn-leash-ctl",
+  "owner_authorization": "2026-11-20: the owner asked to do the zoo pilots (\"and then the zoo pilots\"): the issue's pilot as filed.",
+  "retain_evidence": true
+}
