@@ -240,6 +240,12 @@ A fresh Rogue confirmation still needs the owner's endpoint and sizing.
       down stairs when it finds no up stairs, and by plain stair descents.
   - Descriptive only, at 10 starts per class.
 
+**borg-rs Impact v15R against better-borg-c v15 (#463, 2026-11-20; tag 4.2.6-impact-v15, 007e3a1b, Angband 574b618c).**
+- **The munchkin and lunal modes are gone:** borg-rs removed them (borg-rs#60), and a profile that turns one on is refused at start-up. The munchkin-class smoke arm stopped at turn 1 in 18 of 18 games. Runs of v15R use `normal` only.
+- **Smoke, classes-18 `normal`** (run 44649268974): final turn, level, depth and cause are identical to bbc v15 in **18 of 18** games.
+- **Medium, classes-1800-medium `normal`** (run 44652186610, 270 games): the endpoints are identical to classes-v15 in **264 of 270**. Deaths: Rust 69, C 70. **All 6 differing games are Necromancers** (6 of 30). The port reproduces C for the other eight classes on these starts. The release's 45-scenario check didn't catch the Necromancer difference.
+- The play hashes differ in every game, while the endpoints match. The two harnesses record keys differently, so endpoint comparison is the test here.
+
 ## Neo Borg: Mandos lanes
 
 **The port repairs never change play.**
@@ -612,6 +618,38 @@ Lower values send the Borg back for unknown items more often. Each return brings
   - The device value at 50 / 100 / 200 is **not reached** (17-18 of 18 games identical).
   - The missile reserve 50 / 100 changes 8-10 games with no outcome change (CL +0.06 to +0.17). Other-ranged 50 plays like reserve 100 alone.
   - Town flee no-worse changes 2 games.
+
+**Later tiers and new pilots (2026-11-20; every gate passed unless noted):**
+- **#436, caster oil, medium** (44616509514, 120 caster starts, a87b4c96): `borg_town_w_attack` 200 has 4 deaths against 5 (5 / 4). With the pilot: 7 against 8 (8 / 7), DL −0.10. **Bin:** neutral.
+  - The cause is upstream: the pack stashes the oil the planner buys (borg-reborn-rs#712, below), so a higher buying weight can't work yet.
+- **#437, Blackguards and the Phase Door rule, medium** (44616480589, 30 Blackguard starts, a87b4c96): rule-off has 3 deaths against 0 (0 / 3). With the pilot, 3 against 0 on 40. **Bin:** leaning worse for rule-off. It doesn't support the Blackguard exception (borg-reborn-rs#673). Stopped here.
+- **#428, errands on e5cc5469, medium** (44616539032, starts 91-360): 12 against 12 (2 / 2). Over 378 starts: errands 15 against 14 (2 / 3), CL −0.13, **DL −0.11**. **Bin:** neutral on deaths, leaning worse on progress. The 3ba17e2c survival gain is gone, because main's own deaths fell to 3.7%.
+- **#446, the errands plan as a depth cap (`prepared_depth_plan`, PR #701 head 8ffee286):**
+  - pilot (44639042890, 100k): no deaths; the cap changes 4 of 18 games.
+  - 200,000 turns, starts 1-90 (44649264554): ctl 6, formula 8 (0 / 2), errands 6 (2 / 2).
+  - Depth: formula −0.12 DL, errands −0.19 (−0.11 and −0.24 for CL7+ characters).
+  - **Bin:** neither saves games. The formula costs about half the plan's depth. Ship neither.
+- **#461, immobile creatures kept at range (`caution_ranged_vs_immobile` 0-3, PR #717 head 5af2f79f):**
+  - pilot (44645867864): 1 death in every arm, the same worm mass.
+  - Big, starts 361-900 (44649259904): mode 0: 22 deaths, mode 1: 22 (6 / 6), mode 2 (the PR's default): 24 (9 / 11), mode 3: 27 (10 / 15). **Druids 5 → 6 / 9 / 10.**
+  - **The gate fails on one cell:** mode 3 seed 1350297981 crashed with SIGABRT, "race 624 has no blow array" in `immobile_kept_at_range`, reproduced locally (borg-reborn-rs#726). Mode 2 runs the same code.
+  - **Bins:** mode 1 neutral; modes 2 and 3 leaning worse. The default of 2 isn't supported.
+- **#460, the five breeder switches (PR #702 head 0a76dc19):**
+  - pilot (44645872606, 8 arms): exit and crowd 0 deaths against 1; the four arms with `stoppable` each have 2, including the same CL1 floating-eye death.
+  - small + medium (44651947475, 5 arms): ctl 12, rest 9 (5 / 2), crowd 11 (1 / 0), kill-first 10 (8 / 6, 25 of 360 identical), exit 14 (1 / 3).
+  - big (44655845685, 3 arms): ctl 22, rest 21 (2 / 1), crowd 22 (0 / 0, 535 of 540 identical).
+  - **Over 918 starts:** rest 31 against 35 (7 / 3, p 0.34); crowd 33 (2 / 0; with #448, 4 / 0).
+  - **Bins:** rest leaning better, crowd neutral and safe, kill-first neutral, exit leaning worse. Breeders killed 1 of ctl's 13 small + medium deaths.
+- **Suite 1 on main e5cc5469** (#183): small 26 of 90 (7e08c920: 26), medium 80 of 360 (85), big **228 of 900 (250)**.
+  - In big, Priests −8, Rangers −5, Warriors −4, Mages −3. Necromancers are the only class up (+2).
+- **Cures and oil, from the retained logs (borg-reborn-rs#710):**
+  - **Cures quaffed fell** from 5.4 to 2.4-2.8 per game between 9ecbfd1e and e5cc5469. That's because there are fewer fights (melee notes 92 → 53; cures per melee note 0.059 → 0.053); the healing settings didn't change.
+  - **Bought, then stashed at home:** in 11-15 of 18 games on every recent main, and 36 of 40 caster games, the Borg buys Cure Serious Wounds and stashes them. Pack power rewards CSW only after max CL 10 (borg-reborn-rs#711, tested by #457).
+  - **Oil:** Flasks of oil count with launcher ammunition under a cap of 20 for non-Ranger/Warrior classes, so casters with a sling stash their oil (borg-reborn-rs#712). Two poisoned Druid deaths had their cures and oil in the home.
+  - The Rust Borg throws 17-29 flasks per game; the C Borgs throw 4-5.
+- **Paladin 766958386, the yellow jelly** (borg-cemetery#79, dossier D-540138fafac2, borg-reborn-rs#713):
+  - It meleed an adjacent yellow jelly for 120 game turns with 24 Flasks of oil unused, then died of poison in town.
+  - #461's rule is the fix under test.
 
 ## Open
 
