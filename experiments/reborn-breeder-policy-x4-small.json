@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-breeder-policy-x4-small",
+  "issue": 482,
+  "definition": "definitions/reborn-breeder-policy-x4-small.yaml",
+  "question": "In the breeders-x4 world (borg-reborn-rs PR #740 head e41eb758), which level of the breeder policy (caution_breeder_policy 0-5, shipped 3) saves or costs games?",
+  "description": "In the breeders-x4 world (borg-reborn-rs PR #740 head e41eb758), which level of the breeder policy (caution_breeder_policy 0-5, shipped 3) saves or costs games? Generated from definitions/reborn-breeder-policy-x4-small.yaml: 6 arms on 4.2.6-reborn-rust-pr740-e41eb758, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-20, before any result of these profiles was read (owner's redefinition of #482).\nGate:\n- no config_error; one binary; every cell records world breeders-x4 with the same borg_world_data_sha256 in every arm;\n- each arm's policy value in borg.txt and in params-core.json;\n- the arms must play differently: at least p0 and p2 differ from p3 in some games. If an arm is identical to p3 in\n  all 18 pilot games, stop and report it before the larger tiers;\n- every cell ends in death, turn_cap or borg_stopped (exit 2 means the world was not applied); frozen-turn bursts\n  classified; death bundles reproduced with the same world.\nReport per arm and per class: deaths and causes, final and maximum level, deepest level; breeder deaths (the killer\nhas MULTIPLY); paired rescued and newly killed against p3 (exact McNemar) and games identical to p3; breeders created\nand killed per game; per game \"# Breeders cannot be stopped\", \"No rest: ... breeders known\" and the flees from a lost\nlevel; mean max CL and DL against p3 with non-inferiority at #347's margins (CL -0.25, DL -0.25); a RULES 18 bin for\neach arm. A breeder world is a stress test: a level that wins here still needs normal play's measurement (#460)\nbefore its shipped value changes.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr740-e41eb758"
+  ],
+  "profiles": [
+    "reborn-bpolicy-x4-p3",
+    "reborn-bpolicy-x4-p0",
+    "reborn-bpolicy-x4-p1",
+    "reborn-bpolicy-x4-p2",
+    "reborn-bpolicy-x4-p4",
+    "reborn-bpolicy-x4-p5"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-pr740-e41eb758",
+  "control_profile": "reborn-bpolicy-x4-p3",
+  "owner_authorization": "2026-11-20: the owner redefined #482 as the breeder policy ladder in breeders-x4 (the switch arms were overridden by caution_breeder_policy 3): classes-18 gate, then small + medium (starts 1-360)."
+}
