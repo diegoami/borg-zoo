@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-town-hunt-789-pilot",
+  "issue": 538,
+  "definition": "definitions/reborn-town-hunt-789-pilot.yaml",
+  "question": "Do the opt-in ranged reserve and the advantage-based town hunt reduce the town <-> DL1 shopping loop (borg-reborn-rs #604, #385's earlier pilot) without new deaths, and does caution_winning_fight (which also decides town attacks, shipped 1) change what the town hunt does?",
+  "description": "Do the opt-in ranged reserve and the advantage-based town hunt reduce the town <-> DL1 shopping loop (borg-reborn-rs #604, #385's earlier pilot) without new deaths, and does caution_winning_fight (which also decides town attacks, shipped 1) change what the town hunt does? Generated from definitions/reborn-town-hunt-789-pilot.yaml: 6 arms on 4.2.6-reborn-rust-town-hunt-8e0f20af, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this build was read (borg-zoo#538). Pilot (RULES 16); larger tiers after the\ngate and the owner. Six arms, 18 starts each (108 games), all classes. The issue's four arms plus hunt-nofight and\ncombined-nofight (the same with caution_winning_fight 0; it ships 1, and decides town attacks too).\nGate: no config_error; one binary; each arm's values in params-core.json; ctl plays as the build's shipped settings;\nevery cell ends in death, turn_cap or borg_stopped (stalls, timeouts and crashes kept apart); frozen-turn bursts\nclassified.\nReport per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired\nrescued and newly killed against ctl (exact McNemar), identical plays; the shopping loop per game (town <-> DL1\ntrips, turns in town, transactions from town-transactions.jsonl, trips that buy nothing new); town hunt kills and\ntown attack notes with winning_fight accepting or refusing; deaths in town. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-town-hunt-8e0f20af"
+  ],
+  "profiles": [
+    "reborn-townhunt-ctl",
+    "reborn-townhunt-reserve",
+    "reborn-townhunt-hunt",
+    "reborn-townhunt-combined",
+    "reborn-townhunt-hunt-nofight",
+    "reborn-townhunt-combined-nofight"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-town-hunt-8e0f20af",
+  "control_profile": "reborn-townhunt-ctl",
+  "owner_authorization": "2026-11-20: borg-reborn-rs session request (#789, PR #800); zoo owner, 2026-11-20: \"do as advised\" and \"we have parameter caution_winning_fight for town attacks\" (a pilot only, all classes).",
+  "retain_evidence": true
+}

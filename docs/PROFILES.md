@@ -90,8 +90,11 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-phasereserve` | [#526](https://github.com/diegoami/borg-zoo/issues/526) | 7 | defined (pilot; small tier and Rangers after its gate and the owner); 200,000-turn pilot defined (reborn-phase-reserve-200k-pilot) | town_phase_reserve (1, 2, 3 at 200 percent) and town_phase_reserve_percent (50, 100, 200, 400 at reserve 2) on main d745d9fc, against the shipped reserve 0. |
 | `reborn-attacksight` | [#529](https://github.com/diegoami/borg-zoo/issues/529) | 8 | defined (pilot; small tier after its gate and the owner) | attack_on_sight (#760), caution_winning_fight (#759) and the kill-on-sight list on main c4163095: each switch off, both off, the list without its breeders, without its fast-fragile pair, and cut to CL10 and CL20. |
 | `reborn-breederpol` | [#530](https://github.com/diegoami/borg-zoo/issues/530) | 5 | defined (pilot; small tier after its gate and the owner) | caution_breeder_policy in the normal world on main c4163095: shipped 3 and 0, 2, 4, 5. |
-| `reborn-adopted` | [#511](https://github.com/diegoami/borg-zoo/issues/511) | 5 | defined (pilot, prepared only; the owner decides dispatch) | The three adopted switches (attack_on_sight, caution_winning_fight, caution_recall_survival, shipped 1) isolated against an explicit all-off control on f827f844: off, category, winning, recall, shipped. |
+| `reborn-adopted` | [#511](https://github.com/diegoami/borg-zoo/issues/511) | 5 | defined (pilot f827f844; superseded by reborn-ship3 on main d7e58cd, not dispatched) | The three adopted switches (attack_on_sight, caution_winning_fight, caution_recall_survival, shipped 1) isolated against an explicit all-off control on f827f844: off, category, winning, recall, shipped. |
 | `reborn-adopted-600` | [#528](https://github.com/diegoami/borg-zoo/issues/528) | 2 | defined (pilot18 of the retained 600; prepared only; the owner decides dispatch and every tier) | The adopted combined policy (shipped) against explicit all-off on f827f844, on the first 2 starts per class of the owner's retained 600 (200 Rangers + 50 of each other class). |
+| `reborn-ship3` | [#535](https://github.com/diegoami/borg-zoo/issues/535) | 5 | defined (pilot; supersedes #511's open part) | The three shipped fight/Recall switches ablated on main d7e58cd: alloff, sight, fight, recall, allon. |
+| `reborn-townhunt` | [#538](https://github.com/diegoami/borg-zoo/issues/538) | 6 | defined (pilot) | town_ranged_reserve and town_hunt (borg-reborn-rs #789, PR #800) on 8e0f20af, with and without caution_winning_fight (which also decides town attacks). |
+| `reborn-deathrisk` | [#534](https://github.com/diegoami/borg-zoo/issues/534) | 1 | defined (pilot; one arm, trace and pipeline check) | borg-reborn-rs 5343532c (task/T790-death-risk): the shipped settings with per-think death_risk observations, evidence retained for calibration. |
 
 ### `heal-attack-4`
 
@@ -1366,6 +1369,43 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-adopted-f827f844-combined-off` | 0 | 0 | 0 |
 | `reborn-adopted-f827f844-combined-shipped` | – | – | – |
 
+### `reborn-ship3`
+
+The three shipped fight/Recall switches ablated on main d7e58cd: alloff, sight, fight, recall, allon.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_on_sight` | `borg_param_caution_recall_survival` | `borg_param_caution_winning_fight` |
+| --- | --- | --- | --- |
+| `reborn-ship3-alloff` | 0 | 0 | 0 |
+| `reborn-ship3-sight` | – | 0 | 0 |
+| `reborn-ship3-fight` | 0 | 0 | – |
+| `reborn-ship3-recall` | 0 | – | 0 |
+| `reborn-ship3-allon` | – | – | – |
+
+### `reborn-townhunt`
+
+town_ranged_reserve and town_hunt (borg-reborn-rs #789, PR #800) on 8e0f20af, with and without caution_winning_fight (which also decides town attacks).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_winning_fight` | `borg_param_town_hunt` | `borg_param_town_hunt_min_hp_percent` | `borg_param_town_hunt_ranged_bonus_percent` | `borg_param_town_ranged_reserve` |
+| --- | --- | --- | --- | --- | --- |
+| `reborn-townhunt-ctl` | – | – | – | – | – |
+| `reborn-townhunt-reserve` | – | – | – | – | 6 |
+| `reborn-townhunt-hunt` | – | 1 | 50 | 50 | – |
+| `reborn-townhunt-combined` | – | 1 | 50 | 50 | 6 |
+| `reborn-townhunt-hunt-nofight` | 0 | 1 | 50 | 50 | – |
+| `reborn-townhunt-combined-nofight` | 0 | 1 | 50 | 50 | 6 |
+
+### `reborn-deathrisk`
+
+borg-reborn-rs 5343532c (task/T790-death-risk): the shipped settings with per-think death_risk observations, evidence retained for calibration.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-deathrisk-shipped`.
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1388,7 +1428,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_arrow_point_blank_divisor_ranger` | 0, 1, 3, 4, not set | `reborn-pbd-by-class`, `reborn-pbd-rr`, `reborn-bundle` |  |
 | `borg_param_attack_arrow_point_blank_divisor_rogue` | 0, 2, 4, 6, not set | `reborn-pbd-by-class`, `reborn-pbd-rr` |  |
 | `borg_param_attack_arrow_point_blank_divisor_warrior` | 2, 10, not set | `reborn-pbd-by-class` |  |
-| `borg_param_attack_on_sight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600` |  |
+| `borg_param_attack_on_sight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3` |  |
 | `borg_param_attack_preference_blackguard_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_blackguard_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_blackguard_melee_permille` | 1000, 1300, 1600, 1900, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
@@ -1469,7 +1509,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_recall_cure_min_loss_percent` | 30, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
 | `borg_param_caution_recall_pending_escape` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
-| `borg_param_caution_recall_survival` | 0, 1, not set | `reborn-fight-recall`, `reborn-adopted`, `reborn-adopted-600` |  |
+| `borg_param_caution_recall_survival` | 0, 1, not set | `reborn-fight-recall`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3` |  |
 | `borg_param_caution_recall_wait_as_usual` | 0, 1, not set | `reborn-neutral-main`, `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_recall_wait_no_explore` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_rising_explore_ticks` | 500, 1000, 1500, 2000, not set | `reborn-rising-ticks3` |  |
@@ -1493,7 +1533,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_town_flee_no_worse` | 1, not set | `reborn-untested-dbc`, `reborn-town-switch-screen` |  |
 | `borg_param_caution_town_never_scary` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
-| `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600` |  |
+| `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3`, `reborn-townhunt` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_fail` | 0, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_max_danger_divisor` | 1, 4, not set | `reborn-bless` |  |
@@ -1612,6 +1652,9 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class`, `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_hunt` | 1, not set | `reborn-townhunt` |  |
+| `borg_param_town_hunt_min_hp_percent` | 50, not set | `reborn-townhunt` |  |
+| `borg_param_town_hunt_ranged_bonus_percent` | 50, not set | `reborn-townhunt` |  |
 | `borg_param_town_light_percent` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_param_town_missiles_other_ranged_percent` | 50, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_missiles_percent` | 50, 100, not set | `reborn-untested-dbc` |  |
@@ -1645,6 +1688,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_reserve` | 1, 2, 3, not set | `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve` |  |
 | `borg_param_town_phase_reserve_percent` | 50, 100, 200, 400, not set | `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve` |  |
+| `borg_param_town_ranged_reserve` | 6, not set | `reborn-townhunt` |  |
 | `borg_param_town_ranger_arrows_max__ranger` | 20, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_recall_reserve` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |

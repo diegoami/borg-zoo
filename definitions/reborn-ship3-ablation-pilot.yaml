@@ -1,0 +1,48 @@
+# borg-zoo#535: the three shipped fight/Recall switches ablated on main d7e58cd (supersedes #511's open part).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-ship3-ablation-pilot.yaml
+name: reborn-ship3-ablation-pilot
+issue: 535
+question: >-
+  On borg-reborn-rs main d7e58cd, which of the three shipped switches (attack_on_sight #760, caution_winning_fight
+  #759, caution_recall_survival #758) saves lives, which newly kills, and how do they interact, against an explicit
+  all-off control? caution_winning_fight also decides town attacks, so those are reported apart.
+tier: pilot            # classes-18, 100,000 turns; small + medium after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-main-d7e58cdf
+  repository: diegoami/borg-reborn-rs
+  ref: d7e58cdf1d9bc47655d4e476ab452816ff418935
+  label: "borg-reborn-rs main d7e58cd: attack_on_sight, caution_winning_fight and caution_recall_survival shipped 1 (PRs #763, #764), #757 and #761 as shipped. harness/borg.txt 251521f0..."
+  scary_lists:
+    scary_monsters.txt: 94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-ship3
+arms:
+  alloff:   {borg_param_attack_on_sight: 0, borg_param_caution_winning_fight: 0, borg_param_caution_recall_survival: 0}
+  sight:    {borg_param_caution_winning_fight: 0, borg_param_caution_recall_survival: 0}
+  fight:    {borg_param_attack_on_sight: 0, borg_param_caution_recall_survival: 0}
+  recall:   {borg_param_attack_on_sight: 0, borg_param_caution_winning_fight: 0}
+  allon: {}
+control: [alloff]
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs owner ("yes do all that", filed as #535); zoo owner, 2026-11-20: "do as advised" (a
+  pilot only, all classes; small and medium wait for the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this build was read (borg-zoo#535; supersedes #511's open part, whose pilot
+  ran the older 78b8f297). Pilot (RULES 16); small + medium after the gate and the owner. Five arms, 18 starts each
+  (90 games), all classes. An empty override is "all on" here, so alloff is written out and every single-switch arm
+  sets the other two to 0.
+  Gate: no config_error; one binary; each arm's three values in params-core.json (allon: all 1); every cell ends in
+  death, turn_cap or borg_stopped (stalls, timeouts and crashes kept apart); frozen-turn bursts classified.
+  Report per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired
+  rescued and newly killed against alloff (exact McNemar), identical plays, and for every discordant start the first
+  divergent action. caution_winning_fight is a parameter for town attacks too (owner, 2026-11-20): count its attack
+  and refusal notes in town and in the dungeon separately, and say whether a town death or a town attack changed in
+  the fight and allon arms. Descriptive (RULES 14).
