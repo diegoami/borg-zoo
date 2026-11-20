@@ -1,0 +1,35 @@
+# borg-zoo#484: borg-reborn-rs main 94032140 with its shipped default settings (pilot).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-main-9403-defaults-pilot.yaml
+name: reborn-main-9403-defaults-pilot
+issue: 484
+question: What does borg-reborn-rs main 94032140, on the new engine, play with its shipped default settings?
+tier: pilot            # classes-18: 9 classes x 2 seeds, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-main-94032140
+  repository: diegoami/borg-reborn-rs
+  ref: 940321402e05c6955a2720c7de4c40c5afde5a53
+  label: "borg-reborn-rs 94032140, main at the merge of #735 (#693 class values), on upstream Angband 574b618c (#730). Source-hash rust fe44e638...; harness/borg.txt 4282aaeb... (borg_reborn_core = borg-rs, no errand, no plan, scary_monsters.txt)."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+# One arm with no settings: every game reads the specimen's harness/borg.txt as shipped.
+profile_prefix: reborn-main9403
+arms:
+  shipped-defaults: {}
+control: [shipped-defaults]
+owner_authorization: >-
+  2026-11-20: the owner asked to "add a full run with the current default settings in borg reborn" (borg-zoo#484).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result was read (borg-zoo#484). Pilot (RULES 16); the full run follows its gate.
+  Gate: no config_error; one binary; the written borg.txt is the shipped harness/borg.txt (sha256 4282aaeb...) with
+  only the adapter's lines; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  death bundles reproduced.
+  Descriptive only: deaths, causes, CL and DL per class; set beside earlier full baselines on classes-1800
+  (different builds: outcomes, not paired effects).

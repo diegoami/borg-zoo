@@ -1,0 +1,25 @@
+# borg-zoo#484: borg-reborn-rs main 94032140 with its shipped default settings (1800).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-main-9403-defaults-1800.yaml
+name: reborn-main-9403-defaults-1800
+issue: 484
+question: What does borg-reborn-rs main 94032140, on the new engine, play with its shipped default settings?
+suites: [classes-1800]   # all 1,800 starts, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-94032140
+
+# One arm with no settings: every game reads the specimen's harness/borg.txt as shipped.
+profile_prefix: reborn-main9403
+arms:
+  shipped-defaults: {}
+control: [shipped-defaults]
+owner_authorization: >-
+  2026-11-20: the owner asked to "add a full run with the current default settings in borg reborn" (borg-zoo#484).
+
+
+prespecified: |
+  Fixed 2026-11-20, before any result was read (borg-zoo#484). Full run after the pilot reborn-main-9403-defaults-pilot passed its gate.
+  Gate: no config_error; one binary; the written borg.txt is the shipped harness/borg.txt (sha256 4282aaeb...) with
+  only the adapter's lines; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified;
+  death bundles reproduced.
+  Descriptive only: deaths, causes, CL and DL per class; set beside earlier full baselines on classes-1800
+  (different builds: outcomes, not paired effects).
