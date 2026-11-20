@@ -1,0 +1,53 @@
+# borg-zoo#507: the two #754 Recall-wait switches (borg-reborn-rs PR #762), as filed.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-recall-wait-754-pilot.yaml
+name: reborn-recall-wait-754-pilot
+issue: 507
+question: >-
+  On borg-reborn-rs PR #762 head 613f1ba5, does counting a pending Recall as an escape, or waiting in place instead
+  of exploring while it counts down, save deaths or cost progress against the shipped settings?
+tier: pilot            # classes-18 gate, then small + medium (starts 1-360), 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-pr762-613f1ba5
+  repository: diegoami/borg-reborn-rs
+  ref: 613f1ba52e264b6ea124721db1c6c9f9399bdc4e
+  label: "borg-reborn-rs 613f1ba5, head of PR #762 (#754 Recall wait, unmerged; both switches shipped 0). Source-hash rust 743a913e...; harness/borg.txt 3103dfb8..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-recallwait
+arms:
+  ctl:  {}
+  esc:  {borg_param_caution_recall_pending_escape: 1}
+  nox:  {borg_param_caution_recall_wait_no_explore: 1}
+  both: {borg_param_caution_recall_pending_escape: 1, borg_param_caution_recall_wait_no_explore: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: borg-reborn-rs owner, "file a zoo screen"; zoo owner, 2026-11-20: dispatch pilots and small runs,
+  no heavy jobs.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this definition was read (borg-reborn-rs #754, PR #762). classes-18 is
+  the gate (RULES 16); small and medium (starts 1-360) follow after it.
+  Gate:
+  - no config_error; one binary; each arm's values in borg.txt and in params-core.json of the death replays;
+  - ctl plays as main's shipped settings (the switches are 0);
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Report per arm and per class:
+  - deaths and causes, character level and depth at death; deaths within 50 game turns x 10 of a Word of Recall read;
+  - paired rescued and newly killed against ctl (exact McNemar), and games identical to ctl;
+  - mean max CL and max DL against ctl;
+  - per game: Recall reads, "no escape: standing and fighting" notes, "(not exploring)" notes, and level changes by
+    up staircase while Recall was pending on DL1 (the known risk of esc);
+  - RULES 18 bin per arm.
+  Exploratory deaths (owner, 2026-11-20) do not count toward the gate.

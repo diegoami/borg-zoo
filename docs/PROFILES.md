@@ -75,6 +75,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-breeder-policy-x4` | [#482](https://github.com/diegoami/borg-zoo/issues/482) | 6 | defined (pilot; small + medium after its gate) | The breeder policy ladder (caution_breeder_policy 0-5, shipped 3) in the breeders-x4 world. |
 | `reborn-teleport-landing-either` | [#495](https://github.com/diegoami/borg-zoo/issues/495) | 2 | defined (pilot at 200k on main c74a8155) | escape_teleport_landing_either (upstream 95387b06) 1 against shipped 0, at 200,000 turns. |
 | `reborn-flight-fixes` | [#501](https://github.com/diegoami/borg-zoo/issues/501) | 2 | defined (pilot; Rangers and small + medium after its gate) | The flight fixes (#743/#747/#749/#750/#751/#753) all on against shipped, on e8b3acfd. |
+| `reborn-recallwait` | [#507](https://github.com/diegoami/borg-zoo/issues/507) | 4 | defined (pilot; small + medium after its gate) | #754's Recall-wait switches on PR #762 head 613f1ba5: a pending Recall counts as an escape (esc), no exploring while it counts down (nox), both. |
 
 ### `heal-attack-4`
 
@@ -1092,6 +1093,19 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-flight-ctl` | – | – | – | – | – | – |
 | `reborn-flight-flight` | 50 | 30 | 50 | 2 | 1 | 1 |
 
+### `reborn-recallwait`
+
+#754's Recall-wait switches on PR #762 head 613f1ba5: a pending Recall counts as an escape (esc), no exploring while it counts down (nox), both.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_recall_pending_escape` | `borg_param_caution_recall_wait_no_explore` |
+| --- | --- | --- |
+| `reborn-recallwait-ctl` | – | – |
+| `reborn-recallwait-esc` | 1 | – |
+| `reborn-recallwait-nox` | – | 1 |
+| `reborn-recallwait-both` | 1 | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1191,8 +1205,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_jumpstart_keep_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_ranged_vs_immobile` | 1, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895` |  |
 | `borg_param_caution_recall_cure_min_loss_percent` | 30, not set | `reborn-flight-fixes` |  |
+| `borg_param_caution_recall_pending_escape` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_recall_wait_as_usual` | 0, 1, not set | `reborn-neutral-main`, `reborn-dungeon-switch-screen` |  |
+| `borg_param_caution_recall_wait_no_explore` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_rising_explore_ticks` | 500, 1000, 1500, 2000, not set | `reborn-rising-ticks3` |  |
 | `borg_param_caution_rising_hold_flee_descent` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_rising_hold_min_hp_percent` | 50, not set | `reborn-flight-fixes` |  |
