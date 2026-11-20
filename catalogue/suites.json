@@ -1379,6 +1379,15 @@
       "stall_seconds": 90,
       "saves": false
     },
+    "classes-1800-b-blackguards": {
+      "description": "The 200 Blackguard starts of classes-1800-b (borg-zoo#433): fresh seeds for the Blackguard follow-up of the class curves. Prespecified tests only.",
+      "role": "confirmation",
+      "subset": {"suite": "classes-1800-b", "class": "Blackguard"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
     "classes-1800-b-rogues": {
       "description": "The 200 Rogue starts of classes-1800-b (borg-zoo#379): fresh seeds for confirming a Rogue lead from classes-1800. Prespecified tests only.",
       "role": "confirmation",

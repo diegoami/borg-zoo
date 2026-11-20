@@ -975,11 +975,22 @@
     },
     "reborn-store-overweight": {
       "issue": 457,
-      "status": "defined (pilot on PR #714 head d9e5a37e)",
+      "status": "pilot done (1 -> 0 deaths); small + medium defined",
       "what": "Store at home only when overweight (town_store_only_overweight) against off.",
       "profiles": [
         "reborn-storeow-ctl",
         "reborn-storeow-overweight"
+      ],
+      "runs": []
+    },
+    "reborn-bgcurve-dbc": {
+      "issue": 433,
+      "status": "defined (pilot on dbc92d18; classes-1800-b Blackguards after its gate)",
+      "what": "Blackguards: shipped (Phase Door 50, healing 100/200) against Phase Door 100, and against healing 75/150.",
+      "profiles": [
+        "reborn-bgcurve-dbc-heal-old",
+        "reborn-bgcurve-dbc-pd100",
+        "reborn-bgcurve-dbc-shipped"
       ],
       "runs": []
     }

@@ -7411,6 +7411,30 @@
         "borg_reborn_errand": "none",
         "borg_param_caution_ranged_vs_immobile": 3
       }
+    },
+    "reborn-bgcurve-dbc-shipped": {
+      "description": "borg-zoo#433 (reborn-bgcurve-dbc-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-bgcurve-dbc-pd100": {
+      "description": "borg-zoo#433 (reborn-bgcurve-dbc-pilot.yaml): arm pd100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_curve_scale_percent@blackguard": 100
+      }
+    },
+    "reborn-bgcurve-dbc-heal-old": {
+      "description": "borg-zoo#433 (reborn-bgcurve-dbc-pilot.yaml): arm heal-old.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_curve_scale_percent_blackguard": 75,
+        "borg_param_town_heal_reserve_hp_percent_blackguard": 150
+      }
     }
   }
 }

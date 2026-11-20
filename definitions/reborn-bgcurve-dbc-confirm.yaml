@@ -1,0 +1,22 @@
+# borg-zoo#433 Blackguard follow-up on main dbc92d18, on fresh seeds; dispatched only after the pilot's gate.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-bgcurve-dbc-confirm.yaml
+name: reborn-bgcurve-dbc-confirm
+issue: 433
+question: >-
+  On borg-reborn-rs main dbc92d18, is the Blackguard's lean toward more deaths under the owner's class values (1 -> 5
+  of 200 on classes-1800) from its Phase Door curve 50 or its healing 100 / 200?
+specimens: [4.2.6-reborn-rust-main-dbc92d18]
+suites: [classes-1800-b-blackguards]   # the 200 Blackguard starts of classes-1800-b
+profiles: [reborn-bgcurve-dbc-shipped, reborn-bgcurve-dbc-pd100, reborn-bgcurve-dbc-heal-old]
+control_specimen: 4.2.6-reborn-rust-main-dbc92d18
+control_profile: reborn-bgcurve-dbc-shipped
+owner_authorization: >-
+  2026-11-20: the owner said "yes do it" to the Blackguard follow-up of #433: pilot first (RULES 16), then the 200
+  classes-1800-b Blackguard starts after its gate.
+
+prespecified: |
+  Fixed 2026-11-20, before any classes-1800-b result of these profiles was read. Same specimen and profiles as the
+  pilot (RULES 16). Primary endpoint: Blackguard death by 100,000 turns, each of pd100 and heal-old against shipped,
+  paired on the start; two-sided exact McNemar, Holm over the two comparisons, alpha 0.05. Secondary: mean max CL and
+  DL, paired. Pairs where either cell did not finish are left out and listed. Development evidence: #433 on
+  classes-1800, owner's values 5 Blackguard deaths against 1 (1 / 5, p 0.22). Reported in a RULES 18 bin.

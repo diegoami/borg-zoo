@@ -1,0 +1,21 @@
+# borg-zoo#457: store at home only when overweight, medium tier; owner 2026-11-20.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-store-overweight-medium.yaml
+# The pilot is reborn-store-overweight-pilot (gate passed, run 44637561953: 1 -> 0 deaths, CL 103 -> 109).
+name: reborn-store-overweight-medium
+issue: 457
+question: >-
+  On borg-reborn-rs PR #714's head d9e5a37e, does storing at home only when overweight (town_store_only_overweight)
+  save or cost games against ctl?
+specimens: [4.2.6-reborn-rust-pr714-d9e5a37e]
+tier: medium          # classes-1800 starts 91-360
+profiles: [reborn-storeow-ctl, reborn-storeow-overweight]
+control_specimen: 4.2.6-reborn-rust-pr714-d9e5a37e
+control_profile: reborn-storeow-ctl
+owner_authorization: >-
+  2026-11-20: after the pilot's gate, the owner said "yes do it" to small + medium (starts 1-360).
+
+prespecified: |
+  Fixed 2026-11-20, before any classes-1800 result of these profiles was read. Same specimen and profiles as the pilot
+  (RULES 16). Gate as the pilot's. Report per arm and per class, pooled over the tiers (RULES 14): deaths and causes,
+  CL1-3 deaths, max CL and DL; paired rescued and newly killed against ctl (exact McNemar); identical plays.
+  Reported in a RULES 18 bin (harmful, neutral or helpful).
