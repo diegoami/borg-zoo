@@ -1,0 +1,249 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-flight3m-ctl": {
+        "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "fbf210a0492eb2188328d50dadc8d9eceb046d928fbe1377ab522a1551ee4491"
+      },
+      "reborn-flight3m-cure": {
+        "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm cure.",
+        "settings": {
+          "borg_param_caution_recall_cure_min_loss_percent": 30,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "f1434270ed26a984c94da6b3b398f93c6275aaace061717a7208431f75df864a"
+      },
+      "reborn-flight3m-fast": {
+        "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm fast.",
+        "settings": {
+          "borg_param_caution_desperate_fast_danger_percent": 50,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "37003725019ad4f3f5a9adfa23c25ef2feb992442c5f3a978efa33893c56f4dc"
+      },
+      "reborn-flight3m-flee": {
+        "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm flee.",
+        "settings": {
+          "borg_param_caution_stairs_clean_path_flee": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "27e75b6a71aed274f7267fea51b9af1e3c40986111385abdc5c6ef24334b34e8"
+      },
+      "reborn-flight3m-flight3": {
+        "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm flight3.",
+        "settings": {
+          "borg_param_caution_desperate_fast_danger_percent": 50,
+          "borg_param_caution_recall_cure_min_loss_percent": 30,
+          "borg_param_caution_rising_hold_min_hp_percent": 50,
+          "borg_param_caution_stairs_clean_path": 3,
+          "borg_param_caution_stairs_clean_path_flee": 1,
+          "borg_param_caution_stairs_flight_ignore_danger": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "1ecb7dce267b0a76f950154b7a7c55e42d7e915075a6d78361dad37121842eed"
+      },
+      "reborn-flight3m-flight3r": {
+        "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm flight3r.",
+        "settings": {
+          "borg_param_caution_desperate_fast_danger_percent": 50,
+          "borg_param_caution_desperate_ranged_first_reach": 3,
+          "borg_param_caution_recall_cure_min_loss_percent": 30,
+          "borg_param_caution_rising_hold_min_hp_percent": 50,
+          "borg_param_caution_stairs_clean_path": 3,
+          "borg_param_caution_stairs_clean_path_flee": 1,
+          "borg_param_caution_stairs_flight_ignore_danger": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "b70ecaccb2b94b6f220f56449a1310876d545c8f4213f8bec203f72a4b36df13"
+      },
+      "reborn-flight3m-hold": {
+        "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm hold.",
+        "settings": {
+          "borg_param_caution_rising_hold_min_hp_percent": 50,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "595de87bc5543ed1c0b34357aba185492a1b92c71183e6f5d97f4e08acf4f719"
+      },
+      "reborn-flight3m-nodanger": {
+        "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm nodanger.",
+        "settings": {
+          "borg_param_caution_stairs_flight_ignore_danger": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "ce6a3a264168b1bc072e305cd0eb5e47caa86e23308c4d3704c46d9c2ed012e0"
+      },
+      "reborn-flight3m-path3": {
+        "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm path3.",
+        "settings": {
+          "borg_param_caution_stairs_clean_path": 3,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "698ed6e639e2974987613eccf4ce2e6b285f468d4d64dc174363fbdee36e7c46"
+      },
+      "reborn-flight3m-ranged": {
+        "description": "borg-zoo#510 (reborn-flight3-757-pilot.yaml): arm ranged.",
+        "settings": {
+          "borg_param_caution_desperate_ranged_first_reach": 3,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "47244669636818cfc2eac98865d766d762e1aaa51934314d61e245b928c49e4e"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-flight3-50c23a5e": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs scratch/T751-mode3 50c23a5e: PR #757's switches, #751 mode 3, caution_desperate_ranged_first_reach; all shipped 0; not merged with main's #755. harness/borg.txt d71b7f24...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "50c23a5eefde1a7838dcdb868c3d64afca309e4c",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-20 16:39 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-flight3-50c23a5e",
+    "control_profile": "reborn-flight3m-ctl",
+    "definition": "definitions/reborn-flight3-757-pilot.yaml",
+    "description": "On borg-reborn-rs 50c23a5e (PR #757 with #751 mode 3 and ranged-first), does the tuned flight with mode 3 save the early deaths without new ones, and which switch does what? Generated from definitions/reborn-flight3-757-pilot.yaml: 10 arms on 4.2.6-reborn-rust-flight3-50c23a5e, suite classes-18.",
+    "issue": 510,
+    "name": "reborn-flight3-757-pilot",
+    "owner_authorization": "2026-11-20: borg-reborn-rs owner, \"queue the zoo jobs you require\"; zoo owner, 2026-11-20: \"pick up the open jobs\" (pilots and small runs only, no heavy jobs).",
+    "prespecified": "Fixed 2026-11-20, before any result of this specimen was read (borg-zoo#510, borg-reborn-rs PR #757). Pilot (RULES 16);\nthe 200 Ranger starts of #488 and small + medium after this gate and the owner. ctl is the specimen's shipped borg.txt.\nGate: no config_error; one binary; each arm's values in borg.txt and params-core.json; every cell ends in death,\nturn_cap or borg_stopped (stalls, timeouts and crashes kept apart from deaths); death bundles reproduced.\nReport per arm and per class: deaths and causes, CL at death, deepest level; paired rescued / newly killed (exact\nMcNemar); identical plays; \"Stairs not reachable\" and \"Desperate for Stairs\" notes per game; RULES 18 bin.\nDeaths in ctl, flight3 and flight3r get a death report with screens.",
+    "profiles": [
+      "reborn-flight3m-ctl",
+      "reborn-flight3m-flight3",
+      "reborn-flight3m-flight3r",
+      "reborn-flight3m-path3",
+      "reborn-flight3m-ranged",
+      "reborn-flight3m-flee",
+      "reborn-flight3m-fast",
+      "reborn-flight3m-cure",
+      "reborn-flight3m-nodanger",
+      "reborn-flight3m-hold"
+    ],
+    "question": "On borg-reborn-rs 50c23a5e (PR #757 with #751 mode 3 and ranged-first), does the tuned flight with mode 3 save the early deaths without new ones, and which switch does what?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-flight3-50c23a5e"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44774313553-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44774313553",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "a3a741deec7cebc8d0df151e2abd36991e44d84c"
+}
