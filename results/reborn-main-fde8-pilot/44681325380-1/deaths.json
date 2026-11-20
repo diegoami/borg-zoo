@@ -1,0 +1,109 @@
+[
+  {
+    "cause": "a clear icky thing",
+    "cell": "classes-18/4.2.6-reborn-rust-main-fde8025a/reborn-main-fde8-shipped/102023799",
+    "class": "Druid",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/4.2.6-reborn-rust-main-fde8025a/reborn-main-fde8-shipped/102023799",
+      "complete": true,
+      "files": {
+        "archive/Borg.map": {
+          "bytes": 33395,
+          "sha256": "e5b304716af120e54a4be1f845ad4e55a9d5e95b5a84889698ef5c7b8c492b7e"
+        },
+        "archive/borg-log.txt": {
+          "bytes": 173,
+          "sha256": "1a42a954f765bff85005bb8014803cd21cbf11d756c7e29c14693905b7f5c1f2"
+        },
+        "archive/borg.dat": {
+          "bytes": 52,
+          "sha256": "2b31be352a449ee3a3c6e9bc56719a10911d5e362a07787360fa410a855e3e21"
+        },
+        "keys.log": {
+          "bytes": 55243,
+          "sha256": "8b21c6b94e80e9692c45c4dcf88352d351c3f88db19bc11c189a2330cf613124"
+        },
+        "messages.log": {
+          "bytes": 314484,
+          "sha256": "5b32f0ebcfd49c8f548a86f203f838fd7914446bcd36085b8a069f976c52b859"
+        },
+        "params-core.json": {
+          "bytes": 677410,
+          "sha256": "2fa2555b4a237d94791fad352dc0cc55440b3ff0ee9085bc2e8573439f9deadd"
+        },
+        "return-events.jsonl": {
+          "bytes": 16149,
+          "sha256": "8e84654423690d77c91cf12af8da0ca8687e77d3d688f386e6caeda5a056546b"
+        },
+        "save/Borg": {
+          "bytes": 56280,
+          "sha256": "2f24f83ad947893a69690cb36a3cfc9437c4994d21998a34fba5ad7aba18e1f6"
+        },
+        "state.log": {
+          "bytes": 545353,
+          "sha256": "986fc900f7693e908dafaa56f137db25a68882bffdfa539ce59d6913475e8660"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "summary.json": {
+          "bytes": 1999,
+          "sha256": "0f08b79a4c868b47317bf734d92ea3b08bdd41fb09a760401ae96ad1083f05ee"
+        },
+        "town-recording.json": {
+          "bytes": 1773,
+          "sha256": "c77c53e591c63a66e761f7bd811e7298d02448b7c35a82dacb4e2fed4637666a"
+        },
+        "town-transactions.jsonl": {
+          "bytes": 4546,
+          "sha256": "172d5822f246181e4073fb75d4487a035589755e681e1bf1b5abf6c9c3ac5e57"
+        },
+        "trace-core.jsonl": {
+          "bytes": 18420598,
+          "sha256": "b2d70794a20a0259eb2f94b046a1e8c2f713c93c5b702a0c7025dbdf1a822567"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 109,
+          "sha256": "0f370dd51967befea8c322cc161be96277c3f03e56abcf997f4113cb4fe3a0d7"
+        },
+        "user/borg.txt": {
+          "bytes": 66200,
+          "sha256": "196f26abfed90e64c022f9597a13ef473452d93a6597c34ca0965c1d187e0a8e"
+        },
+        "user/lore.txt": {
+          "bytes": 10126,
+          "sha256": "36d742103489dbc1dd2b7f6530dbc2215424c1e0d1e2a7b8d832747ea30bd053"
+        },
+        "user/scary_monsters.txt": {
+          "bytes": 3975,
+          "sha256": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": null,
+      "depth": 1,
+      "hp": null,
+      "keys": 4360,
+      "kind": "death",
+      "level": 4,
+      "max_depth": 1,
+      "max_level": 4,
+      "turn": 37759
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 102023799,
+    "specimen": "4.2.6-reborn-rust-main-fde8025a"
+  }
+]
