@@ -1,0 +1,29 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-attack-sight-list-pilot",
+  "issue": 529,
+  "definition": "definitions/reborn-attack-sight-list-pilot.yaml",
+  "question": "On borg-reborn-rs main c4163095, what do attack_on_sight and caution_winning_fight (both shipped 1) and the kill-on-sight list (its breeder entries, its fast-fragile pair, its level cut of 50) do to deaths and progress, against each switch off?",
+  "description": "On borg-reborn-rs main c4163095, what do attack_on_sight and caution_winning_fight (both shipped 1) and the kill-on-sight list (its breeder entries, its fast-fragile pair, its level cut of 50) do to deaths and progress, against each switch off? Generated from definitions/reborn-attack-sight-list-pilot.yaml: 8 arms on 4.2.6-reborn-rust-main-c4163095, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this build was read (borg-zoo#529; borg-reborn-rs #759, #760; #511's\npilot on 78b8f297 before they were shipped). Pilot (RULES 16); a small tier of what leads follows the gate and\nthe owner. Eight arms, 18 starts each (144 games). All classes.\nGate: no config_error; one binary; each arm's switch values in params-core.json and its list in the cell's user\ncopy (the borg_scary_list_lines applied); ctl plays as main c4163095's shipped settings; every cell ends in death,\nturn_cap or borg_stopped (stalls, timeouts and crashes kept apart); frozen-turn bursts classified.\nReport per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired\nrescued and newly killed against ctl (exact McNemar), identical plays; per game the attack-on-sight reasons logged\n(fast-fragile, breeder) and the winning-fight attacks and refusals; for every death the monster, its distance and\nwhether it was on the list. A switch or list entry that never fires (identical plays) is \"not tested\".\nDescriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-c4163095"
+  ],
+  "profiles": [
+    "reborn-attacksight-ctl",
+    "reborn-attacksight-both0",
+    "reborn-attacksight-sight0",
+    "reborn-attacksight-win0",
+    "reborn-attacksight-nobreed",
+    "reborn-attacksight-nofast",
+    "reborn-attacksight-cl10",
+    "reborn-attacksight-cl20"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-c4163095",
+  "control_profile": "reborn-attacksight-ctl",
+  "owner_authorization": "2026-11-20: zoo owner, \"this must be studied, including the list of kill on sight\"; \"yes go, define them\" (pilots and small runs only, all classes; the Rangers are set aside).",
+  "retain_evidence": true
+}
