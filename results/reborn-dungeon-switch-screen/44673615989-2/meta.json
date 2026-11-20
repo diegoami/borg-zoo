@@ -1,0 +1,249 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-dunscreen-ctl": {
+        "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm ctl.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "1426e7cd9425086dd5605167c35ed48d18af392ee009f989d435f7d04d00f8ec"
+      },
+      "reborn-dunscreen-down-jump": {
+        "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm down-jump.",
+        "settings": {
+          "borg_param_caution_flee_known_down_stairs": 1,
+          "borg_param_caution_jumpstart_keep_stairs": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "2892a01319bdb5fc8f6713a67247e523a2613cb7c232ee7dc99616496ad9135c"
+      },
+      "reborn-dunscreen-downstairs": {
+        "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm downstairs.",
+        "settings": {
+          "borg_param_caution_flee_known_down_stairs": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "651cefb031b579886b59e8bc3791f8ab8cdd761c5bd921290b24ccc61ce77afe"
+      },
+      "reborn-dunscreen-phase-fight": {
+        "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm phase-fight.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_escape_phase_lost_test": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "17c5aad7964389d720911dabfeb3fc750e0044a1e7ad7cc73e911b2648cdbf74"
+      },
+      "reborn-dunscreen-phase-landing": {
+        "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm phase-landing.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_escape_phase_lost_test": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "976e883cd5656b52a44d3485738d7db66ec099ae201cf7c0def3deeee67d9772"
+      },
+      "reborn-dunscreen-ranged-immobile": {
+        "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm ranged-immobile.",
+        "settings": {
+          "borg_param_caution_ranged_vs_immobile": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "1fe769786f5b46adaf759baa2c6e7da74331981c67435b1717b3a07d42212623"
+      },
+      "reborn-dunscreen-recall-wait": {
+        "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm recall-wait.",
+        "settings": {
+          "borg_param_caution_recall_wait_as_usual": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "a6eea4250f3a1a70f415da3a83c03c095fcd31748b6fd32e59e711e45144a3a6"
+      },
+      "reborn-dunscreen-rising-hold": {
+        "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm rising-hold.",
+        "settings": {
+          "borg_param_caution_rising_hold_flee_descent": 1,
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "e58e266965aada774909d29e0e48ba0fe5cee871b382c03bb0080e29a7347cd8"
+      },
+      "reborn-dunscreen-stairs-leave": {
+        "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm stairs-leave.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_caution_stairs_leave_on_monster": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "de69cb808cd528e22b6150c20ed3019b3ce13b00424a21a8458e23442691f3e7"
+      },
+      "reborn-dunscreen-unlatch-kill": {
+        "description": "borg-zoo#465 (reborn-dungeon-switch-screen.yaml): arm unlatch-kill.",
+        "settings": {
+          "borg_param_caution_scary_named_monsters": 1,
+          "borg_param_caution_scary_unlatch_kill": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "19308d87b3a443607bb113019e25fddae4c4f2dd62108579fbd269ad3bced2b6"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-653f60ba": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs main 653f60ba. Source-hash rust 259512ad...; harness/borg.txt 6262fc55...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "653f60ba4394a186c8a64ce7583cd71e1563dfb8",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-20 04:29 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-653f60ba",
+    "control_profile": "reborn-dunscreen-ctl",
+    "definition": "definitions/reborn-dungeon-switch-screen.yaml",
+    "description": "On borg-reborn-rs main 653f60ba, which of the dungeon switches main ships off (fleeing and stairs, the Recall wait, the scary unlatch, ranged against immobile monsters, the Phase Door fight test) saves or costs games against ctl? Generated from definitions/reborn-dungeon-switch-screen.yaml: 10 arms on 4.2.6-reborn-rust-main-653f60ba, suite classes-18.",
+    "issue": 465,
+    "name": "reborn-dungeon-switch-screen",
+    "owner_authorization": "2026-11-20: the owner asked to do the zoo pilots (\"and then the zoo pilots\"): the issue's pilot as filed.",
+    "prespecified": "Fixed 2026-11-20, before any result of this definition was read (owner: \"file the experiments\"). A screen:\neach switch alone against ctl, to decide which to ship, which to tune and which to drop. classes-18 is the\ngate (RULES 16); small and medium (starts 1-360) follow right after it.\nGate:\n- no config_error; one binary; each arm's values in borg.txt and in params-core.json of the death replays;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced;\n- in ctl, no \"# Phase rule: the fight:\" note (lost_test 0 notes nothing of the fight).\nReport per arm and per class:\n- deaths and causes, final and maximum level, deepest level;\n- paired rescued and newly killed against ctl (exact McNemar), and games identical to ctl (how often the\n  switch acts at all);\n- mean max CL and DL against ctl, with non-inferiority at the margins of borg-zoo#347 (CL -0.25, DL -0.25);\n- per arm, its own notes per game (\"# Phase rule: the fight:\" for phase-*, the flee and stair notes for the others),\n  and deaths within 500 game turns of one;\n- for phase-*: Phase Doors read and \"lost\" against \"not lost\" verdicts per game.\nBin each arm (RULES 18): ship, neutral, harmful, or too rare to tell.",
+    "profiles": [
+      "reborn-dunscreen-ctl",
+      "reborn-dunscreen-downstairs",
+      "reborn-dunscreen-down-jump",
+      "reborn-dunscreen-rising-hold",
+      "reborn-dunscreen-stairs-leave",
+      "reborn-dunscreen-recall-wait",
+      "reborn-dunscreen-unlatch-kill",
+      "reborn-dunscreen-ranged-immobile",
+      "reborn-dunscreen-phase-fight",
+      "reborn-dunscreen-phase-landing"
+    ],
+    "question": "On borg-reborn-rs main 653f60ba, which of the dungeon switches main ships off (fleeing and stairs, the Recall wait, the scary unlatch, ranged against immobile monsters, the Phase Door fight test) saves or costs games against ctl?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-653f60ba"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44673615989-2",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44673615989",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "e3f568dd32eaabef3590ed932fffd1d5a45bf2d4"
+}
