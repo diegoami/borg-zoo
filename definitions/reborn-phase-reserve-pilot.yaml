@@ -1,0 +1,53 @@
+# borg-zoo#526: calibrate town_phase_reserve (borg-reborn-rs #761, PR #778 merged); owner 2026-11-20: important.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-phase-reserve-pilot.yaml
+#
+# town_phase_reserve = how many Phase Door scrolls the town planner values as a requirement on top of the curve, each
+# worth town_phase_reserve_percent of the trip's escape weight, so the first ones are bought before arrows and
+# potions. Shipped 0 (off) and 100. #513's `phase` arm (2 at 200) rescued the pilot's one dead start and newly killed
+# two CL1 starts in the small tier; this varies the count and the value separately.
+name: reborn-phase-reserve-pilot
+issue: 526
+question: >-
+  On borg-reborn-rs main d745d9fc, how many Phase Door scrolls should the town buy first (town_phase_reserve 1, 2, 3)
+  and how much should each be worth (town_phase_reserve_percent 50, 100, 200, 400), against the shipped reserve 0?
+tier: pilot            # classes-18, 100,000 turns; a small tier of the arms that lead, and the Rangers, after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-main-d745d9fc
+  repository: diegoami/borg-reborn-rs
+  ref: d745d9fcb213ad6a0af3690caef61066d64384af
+  label: "borg-reborn-rs main d745d9fc (PR #778 merged: town_phase_reserve, floor pickup, unseen/food/light percents; all shipped off or 100)."
+  scary_lists:
+    scary_monsters.txt: 6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-phasereserve
+arms:
+  ctl: {}                                                              # reserve 0, percent 100 as shipped
+  r1p200: {borg_param_town_phase_reserve: 1, borg_param_town_phase_reserve_percent: 200}
+  r2p200: {borg_param_town_phase_reserve: 2, borg_param_town_phase_reserve_percent: 200}   # #513's phase arm
+  r3p200: {borg_param_town_phase_reserve: 3, borg_param_town_phase_reserve_percent: 200}
+  r2p50:  {borg_param_town_phase_reserve: 2, borg_param_town_phase_reserve_percent: 50}
+  r2p100: {borg_param_town_phase_reserve: 2, borg_param_town_phase_reserve_percent: 100}
+  r2p400: {borg_param_town_phase_reserve: 2, borg_param_town_phase_reserve_percent: 400}
+control: [ctl]
+owner_authorization: >-
+  2026-11-20: zoo owner, "these are important" (town_phase_reserve); pilots and small runs only, no heavy jobs; the
+  Rangers (200 starts) and medium wait for the owner.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-20, before any result of this build was read (borg-zoo#526). Pilot (RULES 16); a small tier of the arms
+  that lead, and the 200 Ranger starts, follow after the gate and the owner. Seven arms, 18 starts each (126 games).
+  Gate: no config_error; one binary; each arm's reserve and percent in params-core.json; ctl plays as main d745d9fc's
+  shipped settings (reserve 0); every cell ends in death, turn_cap or borg_stopped (stalls, timeouts and crashes kept
+  apart); frozen-turn bursts classified.
+  Report per arm and per class (Rangers, Mages and Priests separately): deaths and causes, CL at death, final and
+  maximum level, deepest level; paired rescued and newly killed against ctl (exact McNemar), identical plays; per game
+  the Phase Door scrolls bought and carried when leaving town, and what the reserve displaced (arrows, Cure potions,
+  flasks of oil) from town-transactions.jsonl; Phase Door read per game. #513's small tier found phase (2 at 200)
+  newly killing two CL1 characters, so deaths at CL1-3 are listed one by one. Descriptive (RULES 14).

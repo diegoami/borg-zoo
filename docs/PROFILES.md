@@ -87,6 +87,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-rangerphase` | [#517](https://github.com/diegoami/borg-zoo/issues/517) | 6 | defined (pilot) | #761 Phase Door first on 3c889f0f (PR #778): ranger, phase, oil, floor and all. |
 | `reborn-prepared` | [#522](https://github.com/diegoami/borg-zoo/issues/522) | 9 | defined (pilot; small tiers after its gate and the owner) | The dive gates' thresholds on main a04e5471: character-level minimums +/-2, HP minimums -25%/+25%, Cure minimum 0 and 4, and loose and tight combinations. |
 | `reborn-weighted765` | [#524](https://github.com/diegoami/borg-zoo/issues/524) | 3 | defined (pilot) | Threat-weighted stair routing (#765, PR #769) on 4a2eade9: the shipped profile, mode 3, and mode 3 with threat weight 5. |
+| `reborn-phasereserve` | [#526](https://github.com/diegoami/borg-zoo/issues/526) | 7 | defined (pilot; small tier and Rangers after its gate and the owner) | town_phase_reserve (1, 2, 3 at 200 percent) and town_phase_reserve_percent (50, 100, 200, 400 at reserve 2) on main d745d9fc, against the shipped reserve 0. |
 
 ### `heal-attack-4`
 
@@ -1289,6 +1290,22 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-weighted765-mode3` | 50 | 30 | 3 | 1 | 1 | 0 |
 | `reborn-weighted765-weighted5` | 50 | 30 | 3 | 1 | 1 | 5 |
 
+### `reborn-phasereserve`
+
+town_phase_reserve (1, 2, 3 at 200 percent) and town_phase_reserve_percent (50, 100, 200, 400 at reserve 2) on main d745d9fc, against the shipped reserve 0.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_phase_reserve` | `borg_param_town_phase_reserve_percent` |
+| --- | --- | --- |
+| `reborn-phasereserve-ctl` | – | – |
+| `reborn-phasereserve-r1p200` | 1 | 200 |
+| `reborn-phasereserve-r2p200` | 2 | 200 |
+| `reborn-phasereserve-r3p200` | 3 | 200 |
+| `reborn-phasereserve-r2p50` | 2 | 50 |
+| `reborn-phasereserve-r2p100` | 2 | 100 |
+| `reborn-phasereserve-r2p400` | 2 | 400 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1566,8 +1583,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_curve_scale_percent@ranger` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
-| `borg_param_town_phase_reserve` | 2, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
-| `borg_param_town_phase_reserve_percent` | 200, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
+| `borg_param_town_phase_reserve` | 1, 2, 3, not set | `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve` |  |
+| `borg_param_town_phase_reserve_percent` | 50, 100, 200, 400, not set | `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve` |  |
 | `borg_param_town_ranger_arrows_max__ranger` | 20, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_recall_reserve` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |

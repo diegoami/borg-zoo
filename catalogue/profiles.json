@@ -8800,6 +8800,67 @@
         "borg_param_caution_stairs_flight_ignore_danger": 1,
         "borg_param_caution_stairs_flight_threat_weight": 5
       }
+    },
+    "reborn-phasereserve-ctl": {
+      "description": "borg-zoo#526 (reborn-phase-reserve-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-phasereserve-r1p200": {
+      "description": "borg-zoo#526 (reborn-phase-reserve-pilot.yaml): arm r1p200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_reserve": 1,
+        "borg_param_town_phase_reserve_percent": 200
+      }
+    },
+    "reborn-phasereserve-r2p200": {
+      "description": "borg-zoo#526 (reborn-phase-reserve-pilot.yaml): arm r2p200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_reserve": 2,
+        "borg_param_town_phase_reserve_percent": 200
+      }
+    },
+    "reborn-phasereserve-r3p200": {
+      "description": "borg-zoo#526 (reborn-phase-reserve-pilot.yaml): arm r3p200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_reserve": 3,
+        "borg_param_town_phase_reserve_percent": 200
+      }
+    },
+    "reborn-phasereserve-r2p50": {
+      "description": "borg-zoo#526 (reborn-phase-reserve-pilot.yaml): arm r2p50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_reserve": 2,
+        "borg_param_town_phase_reserve_percent": 50
+      }
+    },
+    "reborn-phasereserve-r2p100": {
+      "description": "borg-zoo#526 (reborn-phase-reserve-pilot.yaml): arm r2p100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_reserve": 2,
+        "borg_param_town_phase_reserve_percent": 100
+      }
+    },
+    "reborn-phasereserve-r2p400": {
+      "description": "borg-zoo#526 (reborn-phase-reserve-pilot.yaml): arm r2p400.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_reserve": 2,
+        "borg_param_town_phase_reserve_percent": 400
+      }
     }
   }
 }
