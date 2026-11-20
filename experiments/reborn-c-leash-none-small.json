@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-c-leash-none-small",
+  "issue": 506,
+  "definition": "definitions/reborn-c-leash-none-small.yaml",
+  "question": "On borg-reborn-rs main ec0f3b28, does no leash at all (both max levels 0) save deaths or buy progress against C's values over 90 starts, all classes?",
+  "description": "On borg-reborn-rs main ec0f3b28, does no leash at all (both max levels 0) save deaths or buy progress against C's values over 90 starts, all classes? Generated from definitions/reborn-c-leash-none-small.yaml: 2 arms on 4.2.6-reborn-rust-main-ec0f3b28, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-20 after both classes-18 pilots of these arms on the same build passed their gates (runs 44769379993,\n44791716325): loose 0 deaths and CL 6.17 against ctl's 1 and 6.00; none a wash (1 rescued, 1 newly killed, DL +0.22,\n0 of 18 identical, a CL1 Mage dead on DL2). tight, margin0 and margin10 are dropped (tight and margin0 not better,\nmargin10 14 of 18 identical to ctl). Descriptive (RULES 14), a lead for a medium tier, not a result. Report per arm\nand per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly\nkilled against ctl (exact McNemar), identical plays; \"# Flowing toward dark\" notes per game; RULES 18 bin.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-ec0f3b28"
+  ],
+  "profiles": [
+    "reborn-cleashnone-ctl",
+    "reborn-cleashnone-none"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-main-ec0f3b28",
+  "control_profile": "reborn-cleashnone-ctl",
+  "owner_authorization": "2026-11-20: zoo owner, \"do 2\" (a small tier for #506; all classes). Two experiments, because RULES 16 needs a pilot of exactly the arms: the first pilot (44769379993) holds ctl and loose, the re-pilot (44791716325) ctl and none.",
+  "retain_evidence": false
+}

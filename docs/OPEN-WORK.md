@@ -94,13 +94,9 @@ borg-reborn-rs#744: re-ship detection min level 10 for casters), #484, #488, #47
 https://claude.ai/artifact/SnqujSa3vHiJUebG9hLu87), #463 big.
 
 **Waiting for the owner:**
-- **Closing finished issues** (#500 and #488 were closed on 2026-11-20 on the owner's relayed go). A bulk close was refused by the permission check, so
-  it needs the owner's explicit go. Finished (results posted, superseded or done):
-  #484, #463, #457, #448, #443, #438, #433, #411, #396, #379, #369, #357, #356, #355,
-  #335, #329, #482, #475, #477, #446, #470, #465, #466, #468, #429, #408, #405, #401,
-  #400, #393, #392, #390, #389, #388, #385, #365, #361, #358, #347, #334, #330, #328,
-  #319, #487, #473, #450, #436, #419; #342 duplicates #336. Older ones (#318 and below)
-  were not reviewed this session.
+- **Closed 2026-11-20 on the owner's go:** 50 finished issues (every one with results posted, superseded or done, listed in the
+  earlier version of this file: #484, #463, #457 ... #319, #487, #473, #450, #436, #419, with #342 as a duplicate of #336), each with a
+  comment; #500 and #488 earlier. Older ones (#318 and below) were not reviewed.
 - **#495:** the landing check was not reached at 200k (17 of 18 identical); it needs
   saved encounters (#184) or longer games.
 - **#184 Suite 2** (draft PRs #497, #202; borg-cemetery #82, borg-reborn-rs #508): on hold.

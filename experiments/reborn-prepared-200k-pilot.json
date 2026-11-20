@@ -1,0 +1,28 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-prepared-200k-pilot",
+  "issue": 522,
+  "definition": "definitions/reborn-prepared-200k-pilot.yaml",
+  "question": "On borg-reborn-rs main a04e5471 at 200,000 turns, where characters reach the level and Cure-potion gates that 100,000 turns rarely reach, do the dive gates' minimums (level, HP, Cure potions) hold the Borg back or let it down too early?",
+  "description": "On borg-reborn-rs main a04e5471 at 200,000 turns, where characters reach the level and Cure-potion gates that 100,000 turns rarely reach, do the dive gates' minimums (level, HP, Cure potions) hold the Borg back or let it down too early? Generated from definitions/reborn-prepared-200k-pilot.yaml: 7 arms on 4.2.6-reborn-rust-main-a04e5471, suite classes-1800-200k-pilot.",
+  "prespecified": "Fixed 2026-11-20, before any 200,000-turn result of these profiles was read. The classes-18 pilot at 100,000 turns\n(run 44817311691) found the level and Cure minimums identical to ctl in 15-18 of 18 starts (not tested) and the HP\nminimums acting (hp-hi brought a Druid death back, hp-lo killed a Warrior); the 100,000-turn small tier is in flight.\nCtl had 0 deaths in 18, so survival could not be ranked. Pilot of the 200,000-turn tier (RULES 16), all classes.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or\nborg_stopped (stalls, timeouts and crashes kept apart); frozen-turn bursts classified.\nReport per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued\nand newly killed against ctl (exact McNemar), identical plays; turns to first DL2, DL3, DL5; how many starts were held\nby a prepared_ gate and for how long, if the logs show it. A setting that plays ctl's keys in every start is \"not\ntested\". 18 starts show direction only (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-a04e5471"
+  ],
+  "profiles": [
+    "reborn-prepared-ctl",
+    "reborn-prepared-cl-lo",
+    "reborn-prepared-cl-hi",
+    "reborn-prepared-hp-lo",
+    "reborn-prepared-hp-hi",
+    "reborn-prepared-cure0",
+    "reborn-prepared-cure4"
+  ],
+  "suites": [
+    "classes-1800-200k-pilot"
+  ],
+  "control": "4.2.6-reborn-rust-main-a04e5471",
+  "control_profile": "reborn-prepared-ctl",
+  "owner_authorization": "2026-11-20: zoo owner, \"do as you suggest\" (the calibrations as 200,000-turn pilots; pilots only; dispatched once the 100,000-turn batch has finished, all classes).",
+  "retain_evidence": true
+}
