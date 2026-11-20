@@ -1,0 +1,202 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-cleash-ctl": {
+        "description": "borg-zoo#506 (reborn-c-leash-values-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "16496b2003f12e6976a9610afb52fe3206b0b4c118d4a594421f1e2df7650527"
+      },
+      "reborn-cleash-loose": {
+        "description": "borg-zoo#506 (reborn-c-leash-values-pilot.yaml): arm loose.",
+        "settings": {
+          "borg_param_flow_leash_base": 15,
+          "borg_param_flow_leash_per_level": 5,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "7a82d2dd03928e8e5b3b232fafedda7b6f4cc3bf9daeda710871afc6927b885f"
+      },
+      "reborn-cleash-margin0": {
+        "description": "borg-zoo#506 (reborn-c-leash-values-pilot.yaml): arm margin0.",
+        "settings": {
+          "borg_param_flow_leash_depth_margin": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "0b759c2d85868a733211ca0b2250ccb89029d25ac4ac6698ff3425696ce6b0fb"
+      },
+      "reborn-cleash-margin10": {
+        "description": "borg-zoo#506 (reborn-c-leash-values-pilot.yaml): arm margin10.",
+        "settings": {
+          "borg_param_flow_leash_depth_margin": 10,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "c9f706dced6be9e78a5c538849c3b1b2aef812c61dc586e7743cc2717a4cad2e"
+      },
+      "reborn-cleash-none": {
+        "description": "borg-zoo#506 (reborn-c-leash-values-pilot.yaml): arm none.",
+        "settings": {
+          "borg_param_flow_leash_depth_margin": -100,
+          "borg_param_flow_leash_pickup_max_level": 0,
+          "borg_param_flow_leash_stairs_max_level": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "385171367fa1b0bb151fbb2aaf04f07f78ba33953e0f7c3e7262002f9f22a5b6"
+      },
+      "reborn-cleash-tight": {
+        "description": "borg-zoo#506 (reborn-c-leash-values-pilot.yaml): arm tight.",
+        "settings": {
+          "borg_param_flow_leash_base": 5,
+          "borg_param_flow_leash_per_level": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "29824c5df416e3e247c15d9f3f4d2a8fde38a0811a3814015417ba239140ebf5"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-ec0f3b28": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs main ec0f3b28 (PR #755, C's leash as flow_leash_* settings). Source-hash rust f06d660f...; harness/borg.txt 211451a4...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "ec0f3b28ec168f69f19f1852fd0083d0e28cb510",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-20 16:08 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-ec0f3b28",
+    "control_profile": "reborn-cleash-ctl",
+    "definition": "definitions/reborn-c-leash-values-pilot.yaml",
+    "description": "On borg-reborn-rs main ec0f3b28, do other values of C's exploration leash (size, depth margin, none) save deaths or buy progress against C's values? Generated from definitions/reborn-c-leash-values-pilot.yaml: 6 arms on 4.2.6-reborn-rust-main-ec0f3b28, suite classes-18.",
+    "issue": 506,
+    "name": "reborn-c-leash-values-pilot",
+    "owner_authorization": "2026-11-20: borg-reborn-rs owner, \"yes start experiment trying other values for the leash settings\"; zoo owner, 2026-11-20: dispatch pilots and small runs, no heavy jobs.",
+    "prespecified": "Fixed 2026-11-20, before any result of this definition was read (borg-reborn-rs #732, PR #755). classes-18 is\nthe gate (RULES 16); small and medium (starts 1-360) follow after it.\nGate:\n- no config_error; one binary; each arm's values in borg.txt and in params-core.json of the death replays;\n- ctl plays as main's shipped settings (same games as a main ec0f3b28 run with no overrides);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class:\n- deaths and causes, character level at death (CL1-4 / 5-19 / 20+), final and maximum level, deepest level;\n- paired rescued and newly killed against ctl (exact McNemar), and games identical to ctl;\n- mean max CL and max DL against ctl, and turns to CL5 / CL10;\n- \"# Flowing toward dark\" notes per game (exploration), and, for every death, the flow distance to the nearest\n  known staircase when the killer was first seen, if the logs allow;\n- RULES 18 bin per arm.\nExploratory deaths (owner, 2026-11-20) do not count toward the gate.",
+    "profiles": [
+      "reborn-cleash-ctl",
+      "reborn-cleash-tight",
+      "reborn-cleash-loose",
+      "reborn-cleash-margin0",
+      "reborn-cleash-margin10",
+      "reborn-cleash-none"
+    ],
+    "question": "On borg-reborn-rs main ec0f3b28, do other values of C's exploration leash (size, depth margin, none) save deaths or buy progress against C's values?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-ec0f3b28"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44769379993-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44769379993",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "5d081ae02ce2c420a78be902b1869e58f9d0fcd5"
+}
