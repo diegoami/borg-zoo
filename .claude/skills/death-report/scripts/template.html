@@ -1,0 +1,190 @@
+<title>__TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=Public+Sans:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a report column (findings, class table, observations) above a two-pane viewer: deaths ledger left, recorded screen right. */
+:root{
+  --bg:#eef0ee; --panel:#f8f9f7; --ink:#1d2321; --muted:#5d6763; --line:#cfd5d1;
+  --accent:#2f6b4f; --death:#a8322a; --bar:#9fb8aa; --bar-hi:#a8322a;
+  --term-bg:#0c0f0e; --term-fg:#cdd3cf; --term-line:#26302b; --note:#8fb1c9;
+  --f-display:"Spectral", Georgia, serif; --f-body:"Public Sans", system-ui, sans-serif; --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141816;--panel:#1b201e;--ink:#e3e8e5;--muted:#9aa6a0;--line:#2f3833;--accent:#7cc39d;--death:#ef7b6f;--bar:#3f5a4c;--bar-hi:#ef7b6f;--note:#9dbcd4;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141816;--panel:#1b201e;--ink:#e3e8e5;--muted:#9aa6a0;--line:#2f3833;--accent:#7cc39d;--death:#ef7b6f;--bar:#3f5a4c;--bar-hi:#ef7b6f;--note:#9dbcd4;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:30px}
+h1,h2{font-family:var(--f-display);font-weight:600;text-wrap:balance;margin:0}
+h1{font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.15}
+h2{font-size:1.3rem}
+.eyebrow{font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:600}
+.lede{max-width:72ch;margin:8px 0 0;color:var(--ink)}
+.lede b{color:var(--death)}
+code{font-family:var(--f-mono);font-size:.86em}
+a{color:var(--accent)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+@media (max-width:860px){.two{grid-template-columns:minmax(0,1fr)}}
+section{min-width:0}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600}
+td.n{text-align:right;width:3.5em}
+tr.hl td{font-weight:600}
+tr.hl td:first-child{color:var(--death)}
+.barcell{width:42%}
+.bars{display:grid;gap:3px}
+.bars i{display:block;height:7px;border-radius:2px;background:var(--bar)}
+.bars i.now{background:var(--accent)}
+tr.hl .bars i.now{background:var(--bar-hi)}
+.legend{display:flex;gap:14px;font-size:.8rem;color:var(--muted);margin-top:6px}
+.legend span::before{content:"";display:inline-block;width:12px;height:7px;border-radius:2px;margin-right:5px;vertical-align:middle;background:var(--bar)}
+.legend span.now::before{background:var(--accent)}
+ul.find{margin:8px 0 0;padding-left:1.1em;max-width:70ch}
+ul.find li{margin:6px 0}
+.note{color:var(--muted);font-size:.86rem;max-width:72ch;margin-top:8px}
+.viewer{display:grid;grid-template-columns:minmax(0,290px) minmax(0,1fr);gap:20px}
+@media (max-width:900px){.viewer{grid-template-columns:minmax(0,1fr)}}
+.list{display:flex;flex-direction:column;gap:6px;min-width:0}
+.d{all:unset;box-sizing:border-box;display:grid;gap:1px;padding:8px 11px;border:1px solid var(--line);border-radius:5px;background:var(--panel);cursor:pointer}
+.d:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.d[aria-current="true"]{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+.d .top{display:flex;justify-content:space-between;gap:8px;font-weight:600;font-size:.92rem}
+.d .k{color:var(--death);font-size:.88rem}
+.d .meta{color:var(--muted);font-size:.78rem;font-variant-numeric:tabular-nums}
+.main{min-width:0;display:flex;flex-direction:column;gap:12px}
+.title .sub{color:var(--muted);font-size:.86rem;font-variant-numeric:tabular-nums}
+.facts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-family:var(--f-mono);font-size:.76rem;padding:2px 8px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
+.chip.bad{border-color:var(--death);color:var(--death)}
+.termbox{overflow-x:auto;border-radius:6px;background:var(--term-bg);border:1px solid var(--term-line)}
+pre.term{margin:0;padding:10px 12px;font-family:var(--f-mono);font-size:12.5px;line-height:1.2;color:var(--term-fg);background:var(--term-bg);white-space:pre;width:max-content}
+.ctl{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ctl button{font:inherit;font-size:.88rem;padding:5px 12px;border:1px solid var(--line);border-radius:5px;background:var(--panel);color:var(--ink);cursor:pointer}
+.ctl button:focus-visible,.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ctl input[type=range]{flex:1 1 200px;min-width:0;accent-color:var(--accent)}
+.stat{font-family:var(--f-mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.hpbar{height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.hpbar i{display:block;height:100%;background:var(--accent)}
+.cols{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:16px}
+@media (max-width:700px){.cols{grid-template-columns:minmax(0,1fr)}}
+.log{font-family:var(--f-mono);font-size:12px;line-height:1.45;background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:9px 11px;max-height:320px;overflow:auto;min-width:0}
+.log div{white-space:pre-wrap;word-break:break-word}
+.log .n{color:var(--note)}
+.log .x{color:var(--death);font-weight:600}
+.log .empty{color:var(--muted);font-style:italic}
+h3{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 6px;font-weight:600}
+.kit ul{margin:0;padding-left:1.1em;font-size:.86rem}
+.kit p{margin:6px 0 2px;font-weight:600;font-size:.82rem}
+.play{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.cmd{display:flex;gap:8px;align-items:center;min-width:0}
+.cmd pre{margin:0;flex:1;min-width:0;overflow-x:auto;font-family:var(--f-mono);font-size:.84rem;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:6px 9px}
+.copy{font:inherit;font-size:.8rem;padding:4px 10px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--ink);cursor:pointer}
+footer{color:var(--muted);font-size:.84rem;max-width:80ch}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}}
+</style>
+<div class="wrap">
+__HEADER__
+
+__FINDINGS__
+
+<section>
+  <h2>The last screens</h2>
+  <p class="note" style="margin-top:4px">Pick a death, then step through its last 50 screens that changed. The log shows the game messages and the Borg's notes (lines starting with <code>#</code>) since the previous screen. Arrow keys step too.</p>
+  <div class="viewer" style="margin-top:12px">
+    <nav class="list" id="list" aria-label="Deaths"></nav>
+    <div class="main">
+      <div class="title"><h2 id="t"></h2><div class="sub" id="ts"></div><div class="facts" id="facts"></div></div>
+      <div class="termbox"><pre class="term" id="term" aria-label="Game screen"></pre></div>
+      <div class="ctl">
+        <button id="first" type="button">First</button>
+        <button id="prev" type="button">◀ Prev</button>
+        <input id="slider" type="range" min="0" max="50" value="50" aria-label="Screen">
+        <button id="next" type="button">Next ▶</button>
+        <button id="last" type="button">Last</button>
+      </div>
+      <div class="stat" id="stat"></div>
+      <div class="hpbar" aria-hidden="true"><i id="hp"></i></div>
+      <div class="cols">
+        <div><h3>Messages since the previous screen</h3><div class="log" id="log"></div></div>
+        <div class="kit"><h3>Carried at death</h3><div id="kit"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Play one yourself</h2>
+  <div class="play" style="margin-top:10px">
+    <p style="margin:0">On your machine, <code>~/borg-play/__PACK__</code> has an X11 build of the same commit and four saves per death. Each death has an exact replay, <code>--to</code>,: the Borg replays from birth (checked against the zoo's keys) and hands you the window. Loading a save and pressing Ctrl-Z starts a new Borg with empty memory, so it plays a different game.</p>
+    <div class="cmd"><pre id="c1">cd ~/borg-play/__PACK__ && ./play.sh __FIRSTDIR__ --to 1400</pre><button class="copy" type="button" data-for="c1">Copy</button></div>
+    <div class="cmd"><pre id="c2">cd ~/borg-play/__PACK__ && ./play.sh __FIRSTDIR__</pre><button class="copy" type="button" data-for="c2">Copy</button></div>
+    <p class="note" style="margin:0">The commands follow the death selected above. Each death is also a borg-cemetery dossier (link in the header of each death).</p>
+  </div>
+</section>
+
+<footer>__FOOTER__</footer>
+</div>
+
+<script type="application/json" id="data">__DATA__</script>
+<script type="application/json" id="classes">__CLASSES__</script>
+<script>
+const D=JSON.parse(document.getElementById('data').textContent);
+const C=JSON.parse(document.getElementById('classes').textContent);
+const PAL=['#000000','#ffffff','#808080','#ff8000','#c00000','#008040','#0040ff','#804000','#606060','#c0c0c0','#ff00ff','#ffff00','#ff4040','#00ff00','#00ffff','#c08040','#900090','#9020ff','#00a0a0','#6c6c30','#ffff90','#ff00a0','#20ffdc','#b8a8ff','#ff8080','#b4b400','#a0c0d0','#00b0ff'];
+const A='0123456789abcdefghijklmnopqrstuvwxyz';
+let cur=0,fi=0;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+(function(){
+  if(!$('cls')||!C.length)return;
+  const max=Math.max(...C.map(r=>Math.max(r.before,r.after)));
+  $('cls').querySelector('tbody').innerHTML=C.map(r=>`<tr class="${r.cls==='Ranger'?'hl':''}"><td>${r.cls}</td><td class="n">${r.before}</td><td class="n">${r.after}</td><td class="barcell"><div class="bars"><i style="width:${100*r.before/max}%"></i><i class="now" style="width:${100*r.after/max}%"></i></div></td></tr>`).join('');
+})();
+function screen(f){
+  let out='';
+  f.rows.forEach((row,y)=>{
+    let run='',col=-1;
+    for(let x=0;x<row.length;x++){
+      const c=A.indexOf(f.attr[y*80+x]);const k=c===1?-1:c;
+      if(k!==col){if(run)out+=col<0?esc(run):`<span style="color:${PAL[col]||'#c8c8c8'}">${esc(run)}</span>`;run='';col=k}
+      run+=row[x];
+    }
+    if(run)out+=col<0?esc(run):`<span style="color:${PAL[col]||'#c8c8c8'}">${esc(run)}</span>`;
+    out+='\n';
+  });
+  return out;
+}
+function frames(d){return d.frames.concat([{...d.frames[d.frames.length-1],msgs:d.after,final:true}]);}
+function list(){
+  $('list').innerHTML=D.map((d,i)=>`<button class="d" type="button" data-i="${i}" aria-current="${i===cur}"><span class="top"><span>${d.race} ${d.cls}</span><span>CL ${d.cl}</span></span><span class="k">${esc(d.cause)}</span><span class="meta">game turn ${d.turn.toLocaleString()} · seed ${d.seed}</span></button>`).join('');
+  $('list').querySelectorAll('.d').forEach(b=>b.onclick=()=>{cur=+b.dataset.i;fi=frames(D[cur]).length-1;render()});
+}
+function render(){
+  const d=D[cur],F=frames(d),f=F[fi];
+  $('list').querySelectorAll('.d').forEach(b=>b.setAttribute('aria-current',+b.dataset.i===cur));
+  $('t').textContent=`${d.race} ${d.cls}, killed by ${d.cause}`;
+  $('ts').innerHTML=`Seed ${d.seed} · CL ${d.cl} · DL ${d.dl} · game turn ${d.turn.toLocaleString()} · ${d.keys.toLocaleString()} keys · replay ${d.replay_matches?'matches the zoo run':'differs from the zoo run'} · <a href="https://github.com/diegoami/borg-cemetery/tree/main/deaths/${d.case}" target="_blank" rel="noopener">cemetery dossier</a>`;
+  $('facts').innerHTML=[`${d.shots} shots`,`${d.melee} melee swings`,`${d.throws} throws`,`${d.cures} cures quaffed`,`${d.ammo} ammo left`].map(x=>`<span class="chip">${x}</span>`).join('')+`<span class="chip${d.last==='melee'?' bad':''}">last attack: ${d.last}</span>`+(d.cure_left?`<span class="chip bad">${d.cure_left} cure potions left</span>`:'');
+  $('term').innerHTML=screen(f);
+  $('slider').max=F.length-1;$('slider').value=fi;
+  $('stat').textContent=`${f.final?'After the last screen':'Screen '+(fi+1)+' of '+(F.length-1)} · game turn ${f.turn.toLocaleString()} · HP ${f.hp}/${f.mhp} · DL ${f.dl} · CL ${f.cl}`;
+  $('hp').style.width=Math.max(0,Math.min(100,100*f.hp/Math.max(1,f.mhp)))+'%';
+  $('log').innerHTML=f.msgs.length?f.msgs.map(m=>`<div class="${m.startsWith('#')?'n':(/You die/.test(m)?'x':'')}">${esc(m)}</div>`).join(''):'<div class="empty">No messages on this screen.</div>';
+  $('log').scrollTop=$('log').scrollHeight;
+  const sec=(h,a)=>a&&a.length?`<p>${h}</p><ul>${a.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'';
+  $('kit').innerHTML=sec('Equipment',d.equip)+sec('Quiver',d.quiver)+sec('Gear, equipped and carried',d.inv)||'<p class="note">No death dump.</p>';
+  $('c1').textContent=`cd ~/borg-play/__PACK__ && ./play.sh ${d.dir} --to ${Math.max(1,d.turn-300)}`;
+  $('c2').textContent=`cd ~/borg-play/__PACK__ && ./play.sh ${d.dir}`;
+}
+$('slider').oninput=e=>{fi=+e.target.value;render()};
+$('prev').onclick=()=>{fi=Math.max(0,fi-1);render()};
+$('next').onclick=()=>{fi=Math.min(frames(D[cur]).length-1,fi+1);render()};
+$('first').onclick=()=>{fi=0;render()};
+$('last').onclick=()=>{fi=frames(D[cur]).length-1;render()};
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowLeft'){$('prev').click()}if(e.key==='ArrowRight'){$('next').click()}});
+document.querySelectorAll('.copy').forEach(b=>b.onclick=()=>{const el=$(b.dataset.for);const txt=el.textContent;
+  const done=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)};
+  try{navigator.clipboard.writeText(txt).then(done,()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)})}catch(e){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}});
+fi=frames(D[0]).length-1;list();render();
+</script>
