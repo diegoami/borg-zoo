@@ -1977,6 +1977,18 @@
         "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
       }
     },
+    "4.2.6-rs-m15": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "repository": "diegoami/borg-rs",
+      "exact_turns": true,
+      "depth_stream": true,
+      "ref": "007e3a1b3bcce4efc10cfd9ac38bd8cd4820f406",
+      "tag": "4.2.6-impact-v15",
+      "carries": 137,
+      "source": "https://github.com/diegoami/borg-rs/releases/tag/4.2.6-impact-v15",
+      "label": "borg-rs Impact v15R (tag 4.2.6-impact-v15, 2026-11-20): the Rust Borg carrying better-borg-c v14 and v15 (137 carries, as 4.2.6-bbc-m15), on the vendored Angband 574b618c3, the same game commit as 4.2.6-bbc-m15. Release validation: Rust and C matched keys, messages and state in 45 full-suite and 3 smoke scenarios (borg-rs PR #109)."
+    },
     "4.2.6-reborn-rust-pr725-9ffc7e8c": {
       "kind": "borg-rs",
       "impl": "rust",
