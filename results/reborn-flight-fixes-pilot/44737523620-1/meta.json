@@ -1,0 +1,163 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-flight-ctl": {
+        "description": "borg-zoo#501 (reborn-flight-fixes-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "53d2c08ebdcb4f2a7bba7a2f321bade1426443250c35f8c502cc283e9e0e0bb4"
+      },
+      "reborn-flight-flight": {
+        "description": "borg-zoo#501 (reborn-flight-fixes-pilot.yaml): arm flight.",
+        "settings": {
+          "borg_param_caution_desperate_fast_danger_percent": 50,
+          "borg_param_caution_recall_cure_min_loss_percent": 30,
+          "borg_param_caution_rising_hold_min_hp_percent": 50,
+          "borg_param_caution_stairs_clean_path": 2,
+          "borg_param_caution_stairs_clean_path_flee": 1,
+          "borg_param_caution_stairs_flight_ignore_danger": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "2af88e09e872131d126d2a3878e92287ebf89a00620ecd10fa6a07af41bb3d0e"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-flight-e8b3acfd": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs scratch/T751-with-755 e8b3acfd: flight fixes #743/#747/#749/#750/#751/#753 + #755, all shipped 0. Source-hash rust 00cb51bb...; harness/borg.txt fa9f542e...",
+        "plans": {
+          "errands_plan.txt": "084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87",
+          "errands_plan_ambitious.txt": "c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9"
+        },
+        "ref": "e8b3acfdcfa5059f0e88b47e5c9a8c9fd1e229fa",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "6ed446867c02c7dda00cfd79147e433a8810212eeb8dc129e608c4f3211c666d"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-20 12:44 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-flight-e8b3acfd",
+    "control_profile": "reborn-flight-ctl",
+    "definition": "definitions/reborn-flight-fixes-pilot.yaml",
+    "description": "On borg-reborn-rs e8b3acfd (the flight fixes and Generated from definitions/reborn-flight-fixes-pilot.yaml: 2 arms on 4.2.6-reborn-rust-flight-e8b3acfd, suite classes-18.",
+    "issue": 501,
+    "name": "reborn-flight-fixes-pilot",
+    "owner_authorization": "2026-11-20: the owner asked to do borg-zoo#501: the pilot, then the 200 classes-1800 Ranger starts and classes-1800-small + medium after its gate, with death reports with screens.",
+    "prespecified": "Fixed 2026-11-20, before any zoo result was read (borg-reborn-rs#743, #747, #749, #750, #751, #753). Pilot (RULES 16);\nlarger tiers after this gate and the owner. ctl is the specimen's shipped configuration (every switch 0).\nGate: no config_error; one binary; each arm's values in borg.txt and params-core.json; every cell ends; death bundles reproduced.\nReport per arm and per class: deaths and causes, CL at death, deepest level; paired rescued / newly killed;\n\"Stairs not reachable\" and \"Desperate for Stairs\" notes per game; RULES 18 bin.",
+    "profiles": [
+      "reborn-flight-ctl",
+      "reborn-flight-flight"
+    ],
+    "question": "On borg-reborn-rs e8b3acfd (the flight fixes and",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-flight-e8b3acfd"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44737523620-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44737523620",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "1fada90d744b223f64f868cc5208520695926427"
+}
