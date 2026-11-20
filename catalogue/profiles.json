@@ -8006,6 +8006,57 @@
         "borg_param_caution_stairs_flight_ignore_danger": 1,
         "borg_param_caution_rising_hold_min_hp_percent": 50
       }
+    },
+    "reborn-cleash-ctl": {
+      "description": "borg-zoo#506 (reborn-c-leash-values-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-cleash-tight": {
+      "description": "borg-zoo#506 (reborn-c-leash-values-pilot.yaml): arm tight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_per_level": 2,
+        "borg_param_flow_leash_base": 5
+      }
+    },
+    "reborn-cleash-loose": {
+      "description": "borg-zoo#506 (reborn-c-leash-values-pilot.yaml): arm loose.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_per_level": 5,
+        "borg_param_flow_leash_base": 15
+      }
+    },
+    "reborn-cleash-margin0": {
+      "description": "borg-zoo#506 (reborn-c-leash-values-pilot.yaml): arm margin0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_depth_margin": 0
+      }
+    },
+    "reborn-cleash-margin10": {
+      "description": "borg-zoo#506 (reborn-c-leash-values-pilot.yaml): arm margin10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_depth_margin": 10
+      }
+    },
+    "reborn-cleash-none": {
+      "description": "borg-zoo#506 (reborn-c-leash-values-pilot.yaml): arm none.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_pickup_max_level": 0,
+        "borg_param_flow_leash_stairs_max_level": 0,
+        "borg_param_flow_leash_depth_margin": -100
+      }
     }
   }
 }

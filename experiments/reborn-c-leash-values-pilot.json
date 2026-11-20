@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-c-leash-values-pilot",
+  "issue": 506,
+  "definition": "definitions/reborn-c-leash-values-pilot.yaml",
+  "question": "On borg-reborn-rs main ec0f3b28, do other values of C's exploration leash (size, depth margin, none) save deaths or buy progress against C's values?",
+  "description": "On borg-reborn-rs main ec0f3b28, do other values of C's exploration leash (size, depth margin, none) save deaths or buy progress against C's values? Generated from definitions/reborn-c-leash-values-pilot.yaml: 6 arms on 4.2.6-reborn-rust-main-ec0f3b28, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this definition was read (borg-reborn-rs #732, PR #755). classes-18 is\nthe gate (RULES 16); small and medium (starts 1-360) follow after it.\nGate:\n- no config_error; one binary; each arm's values in borg.txt and in params-core.json of the death replays;\n- ctl plays as main's shipped settings (same games as a main ec0f3b28 run with no overrides);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class:\n- deaths and causes, character level at death (CL1-4 / 5-19 / 20+), final and maximum level, deepest level;\n- paired rescued and newly killed against ctl (exact McNemar), and games identical to ctl;\n- mean max CL and max DL against ctl, and turns to CL5 / CL10;\n- \"# Flowing toward dark\" notes per game (exploration), and, for every death, the flow distance to the nearest\n  known staircase when the killer was first seen, if the logs allow;\n- RULES 18 bin per arm.\nExploratory deaths (owner, 2026-11-20) do not count toward the gate.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-ec0f3b28"
+  ],
+  "profiles": [
+    "reborn-cleash-ctl",
+    "reborn-cleash-tight",
+    "reborn-cleash-loose",
+    "reborn-cleash-margin0",
+    "reborn-cleash-margin10",
+    "reborn-cleash-none"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-ec0f3b28",
+  "control_profile": "reborn-cleash-ctl",
+  "owner_authorization": "2026-11-20: borg-reborn-rs owner, \"yes start experiment trying other values for the leash settings\"; zoo owner, 2026-11-20: dispatch pilots and small runs, no heavy jobs.",
+  "retain_evidence": true
+}

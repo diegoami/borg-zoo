@@ -1120,6 +1120,20 @@
         "reborn-flight-flight"
       ],
       "runs": []
+    },
+    "reborn-cleash": {
+      "issue": 506,
+      "status": "defined (pilot; small + medium after its gate)",
+      "what": "C's exploration leash values on main ec0f3b28: shipped (3/9/5), tight (2/5), loose (5/15), depth margin 0 and 10, and no leash.",
+      "profiles": [
+        "reborn-cleash-ctl",
+        "reborn-cleash-tight",
+        "reborn-cleash-loose",
+        "reborn-cleash-margin0",
+        "reborn-cleash-margin10",
+        "reborn-cleash-none"
+      ],
+      "runs": []
     }
   }
 }
