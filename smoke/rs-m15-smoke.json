@@ -1,0 +1,21 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "rs-m15-smoke",
+  "issue": 463,
+  "definition": "definitions/rs-m15-smoke.yaml",
+  "description": "Build and play check of borg-rs Impact v15R (tag 4.2.6-impact-v15, 007e3a1b, on Angband 574b618c) before classes-rs-m15-medium: classes-18, normal and munchkin-class. Says only that it builds and plays; not a comparison.",
+  "specimens": [
+    "4.2.6-rs-m15"
+  ],
+  "profiles": [
+    "normal",
+    "munchkin-class"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-rs-m15",
+  "control_profile": "normal",
+  "owner_authorization": "2026-11-20: the owner asked to \"file a medium suite for borg-rs last milestone / relase\" (borg-zoo#463).",
+  "retain_evidence": true
+}

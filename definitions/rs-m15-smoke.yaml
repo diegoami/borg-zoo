@@ -1,0 +1,25 @@
+# borg-zoo#463: build and play check of borg-rs Impact v15R before its medium tier.
+name: rs-m15-smoke
+folder: smoke
+issue: 463
+description: |-
+  Build and play check of borg-rs Impact v15R (tag 4.2.6-impact-v15, 007e3a1b, on Angband 574b618c) before classes-rs-m15-medium: classes-18, normal and munchkin-class. Says only that it builds and plays; not a comparison.
+owner_authorization: |-
+  2026-11-20: the owner asked to "file a medium suite for borg-rs last milestone / relase" (borg-zoo#463).
+specimens:
+- 4.2.6-rs-m15
+suites:
+- classes-18
+profile_prefix: ''
+arms:
+  normal:
+    borg_munchkin_start: false
+    borg_munchkin_by_class: false
+    borg_self_lunal: false
+    borg_lunal_mode: false
+  munchkin-class:
+    borg_munchkin_by_class: true
+control_specimen: 4.2.6-rs-m15
+control_profile: normal
+extra:
+  retain_evidence: true
