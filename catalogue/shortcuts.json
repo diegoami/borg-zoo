@@ -1183,6 +1183,18 @@
         "reborn-phasefirst-all"
       ],
       "runs": []
+    },
+    "reborn-recallwait": {
+      "issue": 507,
+      "status": "defined (pilot; small + medium after its gate)",
+      "what": "#754's Recall-wait switches on PR #762 head 613f1ba5: a pending Recall counts as an escape (esc), no exploring while it counts down (nox), both.",
+      "profiles": [
+        "reborn-recallwait-ctl",
+        "reborn-recallwait-esc",
+        "reborn-recallwait-nox",
+        "reborn-recallwait-both"
+      ],
+      "runs": []
     }
   }
 }

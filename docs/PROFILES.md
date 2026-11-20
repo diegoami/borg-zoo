@@ -79,6 +79,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-flight3-757` | [#510](https://github.com/diegoami/borg-zoo/issues/510) | 10 | defined (pilot; larger tiers after its gate and the owner) | PR #757 on 50c23a5e: #501's flight arm with #751 mode 3 (flight3), plus ranged-first (flight3r), and each switch alone. |
 | `reborn-fight-recall` | [#511](https://github.com/diegoami/borg-zoo/issues/511) | 5 | defined (pilot; larger tiers after its gate and the owner) | #763/#764 on 78b8f297: attack-on-sight categories, winning-fight override, safe flight Recall, and all three. |
 | `reborn-phase-first-761` | [#513](https://github.com/diegoami/borg-zoo/issues/513) | 10 | defined (pilot; larger tiers after its gate and the owner) | #761 on 992e0351: Phase Door reserve, less oil, Rangers' lighter kit, floor pickup, unseen flavours, food/light, and all. |
+| `reborn-recallwait` | [#507](https://github.com/diegoami/borg-zoo/issues/507) | 4 | defined (pilot; small + medium after its gate) | #754's Recall-wait switches on PR #762 head 613f1ba5: a pending Recall counts as an escape (esc), no exploring while it counts down (nox), both. |
 
 ### `heal-attack-4`
 
@@ -1163,6 +1164,19 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-phasefirst-foodlight` | – | – | 50 | – | 50 | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
 | `reborn-phasefirst-all` | – | 2 | 50 | 100 | 50 | 50 | 50 | 75 | 50 | 50 | 60 | 75 | 25 | 60 | 50 | 2 | 200 | 20 | 50 |
 
+### `reborn-recallwait`
+
+#754's Recall-wait switches on PR #762 head 613f1ba5: a pending Recall counts as an escape (esc), no exploring while it counts down (nox), both.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_recall_pending_escape` | `borg_param_caution_recall_wait_no_explore` |
+| --- | --- | --- |
+| `reborn-recallwait-ctl` | – | – |
+| `reborn-recallwait-esc` | 1 | – |
+| `reborn-recallwait-nox` | – | 1 |
+| `reborn-recallwait-both` | 1 | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1264,9 +1278,11 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_jumpstart_keep_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_ranged_vs_immobile` | 1, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895` |  |
 | `borg_param_caution_recall_cure_min_loss_percent` | 30, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |
+| `borg_param_caution_recall_pending_escape` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_recall_survival` | 1, not set | `reborn-fight-recall` |  |
 | `borg_param_caution_recall_wait_as_usual` | 0, 1, not set | `reborn-neutral-main`, `reborn-dungeon-switch-screen` |  |
+| `borg_param_caution_recall_wait_no_explore` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_rising_explore_ticks` | 500, 1000, 1500, 2000, not set | `reborn-rising-ticks3` |  |
 | `borg_param_caution_rising_hold_flee_descent` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_rising_hold_min_hp_percent` | 50, not set | `reborn-flight-fixes`, `reborn-flight3-757` |  |

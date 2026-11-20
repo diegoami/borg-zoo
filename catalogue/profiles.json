@@ -8309,6 +8309,38 @@
         "borg_param_town_food_percent": 50,
         "borg_param_town_light_percent": 50
       }
+    },
+    "reborn-recallwait-ctl": {
+      "description": "borg-zoo#507 (reborn-recall-wait-754-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-recallwait-esc": {
+      "description": "borg-zoo#507 (reborn-recall-wait-754-pilot.yaml): arm esc.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_recall_pending_escape": 1
+      }
+    },
+    "reborn-recallwait-nox": {
+      "description": "borg-zoo#507 (reborn-recall-wait-754-pilot.yaml): arm nox.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_recall_wait_no_explore": 1
+      }
+    },
+    "reborn-recallwait-both": {
+      "description": "borg-zoo#507 (reborn-recall-wait-754-pilot.yaml): arm both.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_recall_pending_escape": 1,
+        "borg_param_caution_recall_wait_no_explore": 1
+      }
     }
   }
 }

@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-recall-wait-754-pilot",
+  "issue": 507,
+  "definition": "definitions/reborn-recall-wait-754-pilot.yaml",
+  "question": "On borg-reborn-rs PR #762 head 613f1ba5, does counting a pending Recall as an escape, or waiting in place instead of exploring while it counts down, save deaths or cost progress against the shipped settings?",
+  "description": "On borg-reborn-rs PR #762 head 613f1ba5, does counting a pending Recall as an escape, or waiting in place instead of exploring while it counts down, save deaths or cost progress against the shipped settings? Generated from definitions/reborn-recall-wait-754-pilot.yaml: 4 arms on 4.2.6-reborn-rust-pr762-613f1ba5, suite classes-18.",
+  "prespecified": "Fixed 2026-11-20, before any result of this definition was read (borg-reborn-rs #754, PR #762). classes-18 is\nthe gate (RULES 16); small and medium (starts 1-360) follow after it.\nGate:\n- no config_error; one binary; each arm's values in borg.txt and in params-core.json of the death replays;\n- ctl plays as main's shipped settings (the switches are 0);\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nReport per arm and per class:\n- deaths and causes, character level and depth at death; deaths within 50 game turns x 10 of a Word of Recall read;\n- paired rescued and newly killed against ctl (exact McNemar), and games identical to ctl;\n- mean max CL and max DL against ctl;\n- per game: Recall reads, \"no escape: standing and fighting\" notes, \"(not exploring)\" notes, and level changes by\n  up staircase while Recall was pending on DL1 (the known risk of esc);\n- RULES 18 bin per arm.\nExploratory deaths (owner, 2026-11-20) do not count toward the gate.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr762-613f1ba5"
+  ],
+  "profiles": [
+    "reborn-recallwait-ctl",
+    "reborn-recallwait-esc",
+    "reborn-recallwait-nox",
+    "reborn-recallwait-both"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-pr762-613f1ba5",
+  "control_profile": "reborn-recallwait-ctl",
+  "owner_authorization": "2026-11-20: borg-reborn-rs owner, \"file a zoo screen\"; zoo owner, 2026-11-20: dispatch pilots and small runs, no heavy jobs.",
+  "retain_evidence": true
+}
