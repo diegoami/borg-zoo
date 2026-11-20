@@ -75,6 +75,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-breeder-policy-x4` | [#482](https://github.com/diegoami/borg-zoo/issues/482) | 6 | defined (pilot; small + medium after its gate) | The breeder policy ladder (caution_breeder_policy 0-5, shipped 3) in the breeders-x4 world. |
 | `reborn-teleport-landing-either` | [#495](https://github.com/diegoami/borg-zoo/issues/495) | 2 | defined (pilot at 200k on main c74a8155) | escape_teleport_landing_either (upstream 95387b06) 1 against shipped 0, at 200,000 turns. |
 | `reborn-flight-fixes` | [#501](https://github.com/diegoami/borg-zoo/issues/501) | 2 | defined (pilot; Rangers and small + medium after its gate) | The flight fixes (#743/#747/#749/#750/#751/#753) all on against shipped, on e8b3acfd. |
+| `reborn-cleash` | [#506](https://github.com/diegoami/borg-zoo/issues/506) | 6 | defined (pilot; small + medium after its gate) | C's exploration leash values on main ec0f3b28: shipped (3/9/5), tight (2/5), loose (5/15), depth margin 0 and 10, and no leash. |
 
 ### `heal-attack-4`
 
@@ -1092,6 +1093,21 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-flight-ctl` | – | – | – | – | – | – |
 | `reborn-flight-flight` | 50 | 30 | 50 | 2 | 1 | 1 |
 
+### `reborn-cleash`
+
+C's exploration leash values on main ec0f3b28: shipped (3/9/5), tight (2/5), loose (5/15), depth margin 0 and 10, and no leash.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_flow_leash_base` | `borg_param_flow_leash_depth_margin` | `borg_param_flow_leash_per_level` | `borg_param_flow_leash_pickup_max_level` | `borg_param_flow_leash_stairs_max_level` |
+| --- | --- | --- | --- | --- | --- |
+| `reborn-cleash-ctl` | – | – | – | – | – |
+| `reborn-cleash-tight` | 5 | – | 2 | – | – |
+| `reborn-cleash-loose` | 15 | – | 5 | – | – |
+| `reborn-cleash-margin0` | – | 0 | – | – | – |
+| `reborn-cleash-margin10` | – | 10 | – | – | – |
+| `reborn-cleash-none` | – | -100 | – | 0 | 0 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1226,6 +1242,11 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
 | `borg_param_flow_leash` | 0, 1, 2 | `reborn-stairs-leash` |  |
+| `borg_param_flow_leash_base` | 5, 15, not set | `reborn-cleash` |  |
+| `borg_param_flow_leash_depth_margin` | -100, 0, 10, not set | `reborn-cleash` |  |
+| `borg_param_flow_leash_per_level` | 2, 5, not set | `reborn-cleash` |  |
+| `borg_param_flow_leash_pickup_max_level` | 0, not set | `reborn-cleash` |  |
+| `borg_param_flow_leash_stairs_max_level` | 0, not set | `reborn-cleash` |  |
 | `borg_param_kill_flow_mode` | 0, 1, 2, 3 | `reborn-kill-flow-mode` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
 | `borg_param_light_detect_evil_spell_min_level` | 5, 10, not set | `reborn-low-level-detection`, `reborn-shipcheck-b895` |  |
