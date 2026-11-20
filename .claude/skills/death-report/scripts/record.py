@@ -35,6 +35,7 @@ def build(source):
     binary = b / 'game/angband'
     if binary.exists():
         return b / 'game'
+    b.parent.mkdir(parents=True, exist_ok=True)
     with open(f'{b}.cmake.log', 'w') as log:
         subprocess.run(['cmake', '-S', str(source / 'engine'), '-B', str(b), '-DCMAKE_BUILD_TYPE=Release',
                         '-DSUPPORT_BORG_RECORDING=ON', '-DBORG_FEATURES=', '-DSUPPORT_X11=OFF'], check=True, stdout=log, stderr=log)
