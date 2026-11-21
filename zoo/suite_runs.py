@@ -339,10 +339,10 @@ def compact(report,evidence_url,howto_url,parent_run=None):
         details={arm['id']:dict(status=row['status'],summary=summary,streams=cell.get('streams',{}),cell_execution_hash=cell.get('execution_hash'),elapsed_seconds=cell.get('elapsed_seconds'),reason=cell.get('validation_error',cell.get('reason')))}
         cases.append(dict(id=case['id'],class_idx=s['class_idx'],race_idx=s['race_idx'],birth_seed=s['birth_seed'],start_turn=s['start_turn'],
             historical_type=s['event_kind'],selection=s['selection'],coverage=s['coverage'],origin=s['origin'],scenario_sha256=case['scenario_sha256'],save_sha256=s['save_sha256'],
-            suite=f'synthetic/balanced-999-incidents/generated/shards/{index//8:03d}.json',outcomes={arm['id']:row['status']},details=details,pair=None))
+            suite=f'{p["suite"]["bank"]["members"]}/shards/{index//8:03d}.json',outcomes={arm['id']:row['status']},details=details,pair=None))
     run_arm=dict(id=arm['id'],core=arm['core'],source=arm['source'],build=arm['build'],native_tools=arm['native_tools'],profile=arm['settings_label'],
                  settings=arm['settings'],errands_plan_sha256=arm['errands_plan_sha256'],inputs=arm['inputs'])
-    result=dict(schema=saved.SCHEMA,name=p['definition']['name'],title=arm['id']+' on '+p['suite']['name'],suite=dict(id=p['suite']['id'],name=p['suite']['name']),
+    result=dict(schema=saved.SCHEMA,name=p['definition']['name'],title=arm['id']+' on '+p['suite']['name'],suite=dict(id=p['suite']['id'],name=p['suite']['name'],version=p['suite']['version'],bank_sha256=p['suite']['bank']['sha256']),
         tier=report['tier'],run_url=report['run_url'],parent_run=parent_run,plan_hash=p['plan_hash'],definition=p['definition'],arms=[run_arm],
         comparison=dict(reference=None,candidate=arm['id']),counted_arms=[arm['id']],manifest=p['manifest'],expected_cells=report['expected_cells'],
         collected_cells=sum(r.get('cell') is not None for r in report['cells']),invalid_count=report['invalid_count'],stopped_count=report['stopped_count'],

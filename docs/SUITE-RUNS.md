@@ -102,3 +102,123 @@ python3 scripts/single_encounter.py --suite <shard> --case <case id> --source ..
 ```
 
 Each case's page on the dashboard prints this command with the right values filled in.
+
+## Prepare the next independent suite
+
+A new preparation bank is a new suite number; a different executable or settings
+file on existing saves is another run of that suite. Do not regenerate Suite 1.
+
+Suite 2 is tracked by #184. Its preparation definition is
+`definitions/suite2-v1-harvest.yaml`; the pinned Cemetery
+`synthetic/suite2-v1/harvest-spec.json` freezes the source, controller,
+configuration hashes, full and smoke seed allocations, checkpoint cadence,
+incident definition, time limits, and Suite 1 exclusion inventory **before** play.
+The first failed smoke used `50ae902a`; the capture-enabled continuation uses
+exact candidate `ba26c2abc378302c7d37d4337775d3bd5fe5ad30` from source PR #508,
+based on main `28360152`, with its own shipped borg-rs defaults. Source PR merge
+still waits for owner review completion.
+
+The supported preparation dispatch is separate from a suite execution:
+
+```sh
+gh workflow run harvest-incidents.yml -R diegoami/borg-zoo --ref BRANCH \
+  -f definition=scenario-experiments/suite2-v1-harvest.json -f stage=smoke
+# Inspect the completed all-class harvest and the 18 native restart receipts.
+# The full requested harvest requires that successful smoke on the exact same head.
+gh workflow run harvest-incidents.yml -R diegoami/borg-zoo --ref BRANCH \
+  -f definition=scenario-experiments/suite2-v1-harvest.json -f stage=harvest \
+  -f smoke_run=SMOKE_RUN_ID
+```
+
+This is **preparation**, not a population study or an execution of all 999 cases.
+The smoke uses separate seeds, two saved starts per class; the full harvest must
+produce 111 per class. Every natural death and failed/rejected attempt remains in
+its class's `incident-raw-N` artifact, not only the lives whose starts were
+selected. These raw artifacts last 90 days; copy them to canonical permanent
+Cemetery storage when freezing the bank. A short class fails assembly rather
+than borrowing a different class or duplicating a start.
+
+To add Suite 3, first freeze a new Cemetery `synthetic/suite3-v1/` preparation
+manifest and its source/configuration snapshots. Allocate disjoint source seeds
+and an exclusion inventory covering **every** earlier suite's initial save
+hashes and source seeds. Keep the same incident witnesses, level-1 collection,
+class quotas, and bounded native validation. Add a harvest YAML using the new
+`suite_id` and exact Cemetery/source/tools commits; generate its JSON. Dispatch
+and inspect its own smoke before the owner-authorized full harvest. Never reuse
+an existing archive path or frozen suite ID for changed inputs.
+
+Only after all 999 starts are validated, the mixed-class restart smoke passes,
+and the native archive/checksum/provenance are published in Cemetery, add
+`scenario-suites/suite3-v1/suite.json` with its exact archive location, digest,
+case plan, initial gear reference and execution protocol. Registered suites
+appear automatically in Scenarios. Use `suite: suite3-v1` in a `suite-run` YAML
+to select it, pinning the tested Borg/settings separately as described above.
+Differences between separate banks are coverage differences, never paired
+rescues or newly killed cases.
+
+### Initial Suite 2 capture blocker and continuation
+
+The first preparation smoke, [44121110906](https://github.com/diegoami/borg-zoo/actions/runs/44121110906),
+built and played the pinned HEAD, but its completed attempts emitted no
+`encounters.jsonl`. `BORG_ENCOUNTER_LOG` is absent from this source. The
+`BORG_OBSERVATION_LOG` / `BORG_KNOWLEDGE_LOG` hooks live inside the separate
+reborn controller; the shipped borg-rs controller does not produce them.
+A saved checkpoint plus an HP log cannot establish the required first
+observable threat or full initial equipment coverage. Do not substitute a
+terminal death frame or fabricate that information.
+
+Suite 2 is **not frozen and not selectable for execution**. Scenarios shows its
+preparation status, while the execution catalogue continues to accept only
+validated `suite.json` entries. The requested full harvest was not dispatched.
+A source-compatible capture interface must be added and validated on borg-rs,
+then preparation must be pinned again and its all-class smoke must pass.
+The source preflight now rejects this known unsupported interface before
+scheduling more natural lives. The original failed evidence remains retained
+in Cemetery; no Suite 1 input or historical report is replaced.
+
+
+The owner subsequently authorized capture support in borg-reborn-rs and the
+continued harvest. [Source PR #508](https://github.com/diegoami/borg-reborn-rs/pull/508)
+adds optional core-independent native capture. Its clean candidate
+`ba26c2abc378302c7d37d4337775d3bd5fe5ad30` passes native logging-on/off stream/RNG
+identity checks, compact/full channel checks and exact saved-start capture.
+The new preparation snapshot uses this candidate and its stock settings,
+with separate smoke seeds starting at 3,000,000. The failed preparation remains
+preserved; Suite 2 becomes runnable only after the requested bank is actually
+harvested, validated and frozen.
+
+
+After the capture-enabled stock-controller smoke (44129811981) produced two
+qualified starts in eight classes but zero Blackguard starts in 32 lives,
+preparation selects Suite 1's **reborn** collection controller on the same new
+source HEAD, with its default parameter profile. This explicit preparation
+controller override is frozen in the Cemetery manifest and native receipts;
+it is not presented as the stock borg-rs configuration. Later suite runs select
+their own Borg/controller/settings on the identical saved starts. Natural-life
+bounds, equal quotas, true death/recovery definitions and 2,000-turn restart
+bounds are preserved, and another all-class smoke must pass before collection.
+
+
+### Resumed default-controller collection
+
+The owner rejected experimental reborn preparation and resumed Suite 2 with
+borg-reborn-rs's default `borg-rs` / vendored borg-core controller. This is the
+current recipe; the earlier reborn smoke remains historical evidence only.
+The expanded smoke searches up to 256 lives/class for two qualified starts
+per class. It retains all class quotas, incident definitions and native bounds.
+
+To resume the whole gated preparation without another manual dispatch:
+
+```sh
+gh workflow run harvest-incidents.yml -R diegoami/borg-zoo --ref BRANCH \
+  -f definition=scenario-experiments/suite2-v1-harvest.json -f stage=resume
+```
+
+`resume` builds once, runs the expanded all-class smoke and native restart
+checks, then starts full collection automatically only after that gate passes.
+The full stage uses the separately recorded full seed allocation and exact
+111/class quota. Failed gates stop the chain. Seed-search, time and retained
+evidence bounds produce visible shortages; they never authorize padding,
+changing controllers or weakening the incident definition. A 3 GiB retained
+source-evidence bound/class leaves space for compression/upload on hosted
+runners. A short bank is not frozen or registered as runnable.

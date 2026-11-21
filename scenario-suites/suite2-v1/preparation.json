@@ -1,0 +1,21 @@
+{
+  "evidence": {
+    "commit": "dce7520ff35d04cb9149832d05f8bdad4712350f",
+    "path": "synthetic/suite2-v1/preparation-44121110906",
+    "repository": "diegoami/borg-cemetery"
+  },
+  "expected_cases": 999,
+  "harvest_definition": "definitions/suite2-v1-harvest.yaml",
+  "id": "suite2-v1",
+  "issue": 184,
+  "name": "Suite 2",
+  "per_class": 111,
+  "preparation_controller": "borg-rs",
+  "reason": "Owner resumed collection with the default vendored borg-core controller. Expanded stock-controller smoke must pass before automatic full harvest; experimental reborn data is excluded.",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44121110906",
+  "schema": "borg-zoo/saved-suite-preparation@1",
+  "source_commit": "ba26c2abc378302c7d37d4337775d3bd5fe5ad30",
+  "status": "preparing",
+  "usable_cases": 0,
+  "version": 1
+}
