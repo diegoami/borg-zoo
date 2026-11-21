@@ -115,6 +115,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-immfix` | [#586](https://github.com/diegoami/borg-zoo/issues/586) | 3 | defined (pilot, then big at starts 361-900) | caution_ranged_vs_immobile 2 with the confusion and no-return switches on 8eadb21f: shipped, immobile2, immobile2_fix (borg-reborn-rs #837). |
 | `reborn-townkos` | [#569](https://github.com/diegoami/borg-zoo/issues/569) | 6 | defined (pilot) | Kill on sight in town with the town scare lowered (N 6, 11) and the three #637 switches on main 12c4ce7c (borg-reborn-rs #667). |
 | `reborn-townscum` | [#594](https://github.com/diegoami/borg-zoo/issues/594) | 4 | defined (pilot) | Town scumming (borg_money_scum_amount 500, 1000, 2000) on main 12c4ce7c, against the shipped 0. |
+| `reborn-rangedonly` | [#593](https://github.com/diegoami/borg-zoo/issues/593) | 4 | defined (pilot) | caution_ranged_only (borg-reborn-rs #838) on 5887c29b: shipped, ranged, immobile2, ranged_clw, classes-18 pilot. |
 
 ### `heal-attack-4`
 
@@ -1660,6 +1661,19 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-townscum-scum1000` | 1000 |
 | `reborn-townscum-scum2000` | 2000 |
 
+### `reborn-rangedonly`
+
+caution_ranged_only (borg-reborn-rs #838) on 5887c29b: shipped, ranged, immobile2, ranged_clw, classes-18 pilot.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_confused_clw_cure` | `borg_param_caution_confused_cure_before_walk` | `borg_param_caution_ranged_only` | `borg_param_caution_ranged_vs_immobile` |
+| --- | --- | --- | --- | --- |
+| `reborn-rangedonly-shipped` | – | – | – | – |
+| `reborn-rangedonly-ranged` | – | – | 1 | – |
+| `reborn-rangedonly-immobile2` | – | – | – | 2 |
+| `reborn-rangedonly-ranged_clw` | 1 | 2 | 1 | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1753,8 +1767,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_breeder_exit` | 1, not set | `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_policy` | 0, 1, 2, 3, 4, 5, not set | `reborn-breeder-policy-x4`, `reborn-breederpol` |  |
 | `borg_param_caution_breeder_stoppable` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
-| `borg_param_caution_confused_clw_cure` | 1, not set | `reborn-confusion`, `reborn-immfix` |  |
-| `borg_param_caution_confused_cure_before_walk` | 1, 2, not set | `reborn-confusion`, `reborn-immfix` |  |
+| `borg_param_caution_confused_clw_cure` | 1, not set | `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly` |  |
+| `borg_param_caution_confused_cure_before_walk` | 1, 2, not set | `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly` |  |
 | `borg_param_caution_confusion_cure_when_stuck` | 1, not set | `reborn-confusion`, `reborn-immfix` |  |
 | `borg_param_caution_cornered_throw_first` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_desperate_fast_danger_percent` | 0, 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
@@ -1767,7 +1781,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_immobile_no_return` | 1, not set | `reborn-immfix` |  |
 | `borg_param_caution_immobile_step_mobile_first` | 1, not set | `reborn-confusion`, `reborn-immfix` |  |
 | `borg_param_caution_jumpstart_keep_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
-| `borg_param_caution_ranged_vs_immobile` | 1, 2, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895`, `reborn-confusion`, `reborn-immfix` |  |
+| `borg_param_caution_ranged_only` | 1, not set | `reborn-rangedonly` |  |
+| `borg_param_caution_ranged_vs_immobile` | 1, 2, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895`, `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly` |  |
 | `borg_param_caution_recall_cure_min_loss_percent` | 0, 30, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
 | `borg_param_caution_recall_pending_escape` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |

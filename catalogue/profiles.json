@@ -9816,6 +9816,39 @@
         "borg_reborn_errand": "none",
         "borg_money_scum_amount": 2000
       }
+    },
+    "reborn-rangedonly-shipped": {
+      "description": "borg-zoo#593 (reborn-ranged-only-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-rangedonly-ranged": {
+      "description": "borg-zoo#593 (reborn-ranged-only-pilot.yaml): arm ranged.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_only": 1
+      }
+    },
+    "reborn-rangedonly-immobile2": {
+      "description": "borg-zoo#593 (reborn-ranged-only-pilot.yaml): arm immobile2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_vs_immobile": 2
+      }
+    },
+    "reborn-rangedonly-ranged_clw": {
+      "description": "borg-zoo#593 (reborn-ranged-only-pilot.yaml): arm ranged_clw.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_only": 1,
+        "borg_param_caution_confused_clw_cure": 1,
+        "borg_param_caution_confused_cure_before_walk": 2
+      }
     }
   }
 }
