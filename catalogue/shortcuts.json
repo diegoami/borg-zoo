@@ -1413,7 +1413,7 @@
     },
     "reborn-maindefault": {
       "issue": 543,
-      "status": "verysmall done (run 44841145368, 1 death); defined: 300,000-turn verysmall (#543), the death bank (#550), and the planned full ladder small-rest, medium, big, full (#551, not dispatched)",
+      "status": "verysmall done (run 44841145368, 1 death); defined: 300,000-turn verysmall (#543), the death bank (#550), and the planned full ladder small-rest, medium, big, full (#551, not dispatched); the planned ladder of #551 on 2801ba18 is superseded by reborn-head (#566), not dispatched",
       "what": "borg-reborn-rs main 2801ba18 with its shipped settings and no overrides, on classes-1800-verysmall (45 starts), for death reports.",
       "profiles": [
         "reborn-maindefault-shipped"
@@ -1519,6 +1519,15 @@
         "reborn-recallres-ctl",
         "reborn-recallres-res2",
         "reborn-recallres-res3"
+      ],
+      "runs": []
+    },
+    "reborn-head": {
+      "issue": 566,
+      "status": "defined (the full classes-1800 ladder: verysmall pilot, small-rest, medium, big, full; dispatched in order at the owner's request)",
+      "what": "borg-reborn-rs main 3b4924ba (head on 2026-11-21) with its shipped settings and no overrides over all 1,800 classes-1800 starts.",
+      "profiles": [
+        "reborn-head-shipped"
       ],
       "runs": []
     }
