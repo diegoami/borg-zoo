@@ -65,6 +65,8 @@ for catalogue JSON and FINDINGS prose. Merge only when
 - #563 (Recall reserve) and the verysmall start of #566 ran their cells but
   failed collection. Check the Actions attempt and results branch before
   using either as a gate. #566's other four slices are archived.
+- #495's landing check seldom changed play at 200k. The next attempt needs
+  a saved encounter that reaches the check or longer games.
 - Owner decisions remain on the study issues. Open decisions include a
   saved suite for the newer engine (#184), whether to pursue a saved-character
   workflow, and whether to continue any pilot whose mechanism was not

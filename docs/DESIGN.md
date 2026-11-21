@@ -483,6 +483,11 @@ classes-1800 with `shards=4`, `classes-m7` (7,200 C games) took 2 h 44 min
 and `classes-rs-m6` (9,000 games, borg-rs) took 38 min. The figures depend
 on what else holds the queue.
 
+The 2026-11-21 [settings receipt pilot](https://github.com/diegoami/borg-zoo/actions/runs/44858664482)
+recorded a median cell wall time of 29.04 s and a maximum of 52.76 s over
+36 games on borg-reborn-rs `78fb330f` at 100,000 turns. Use measurements
+from the intended build and cap when sizing its shards.
+
 Public repositories have no Actions minute charge on standard runners. The owner's
 account budgets 20 concurrent jobs across workflows. GitHub allows up to
 256 jobs in a workflow matrix and 6 hours per hosted job. See
