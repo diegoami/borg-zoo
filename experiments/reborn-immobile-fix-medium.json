@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-immobile-fix-medium",
+  "issue": 586,
+  "definition": "definitions/reborn-immobile-fix-medium.yaml",
+  "question": "On borg-reborn-rs 8eadb21f (main 12c4ce7c plus the change), does caution_ranged_vs_immobile 2 together with the confusion and no-return switches (immobile2_fix) close the gaps that cost #576's immobile2 arm 10 deaths against shipped's 6, and does it help against shipped and against immobile2?",
+  "description": "On borg-reborn-rs 8eadb21f (main 12c4ce7c plus the change), does caution_ranged_vs_immobile 2 together with the confusion and no-return switches (immobile2_fix) close the gaps that cost #576's immobile2 arm 10 deaths against shipped's 6, and does it help against shipped and against immobile2? Generated from definitions/reborn-immobile-fix-medium.yaml: 3 arms on 4.2.6-reborn-rust-immobile-fix-8eadb21f, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-21 after the pilot gate (pilot gate posted on #586; big tier run 44932502876) and before any result of this tier was read. Medium tier (RULES 14) of\nthe arms below on the same build: classes-1800 starts 91-360 (270 starts per arm), all classes, 100,000 turns, one binary, disjoint from the other tiers of\nthe study (pool them as one study, RULES 14). \nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start; frozen-turn\nbursts classified. Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired\nrescued and newly killed against the control (exact McNemar), identical plays; a RULES 18 bin. Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-immobile-fix-8eadb21f"
+  ],
+  "profiles": [
+    "reborn-immfix-shipped",
+    "reborn-immfix-immobile2",
+    "reborn-immfix-immobile2_fix"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-immobile-fix-8eadb21f",
+  "control_profile": "reborn-immfix-shipped",
+  "owner_authorization": "2026-11-21: zoo owner, \"dispatch all the waiting follow-ups\" (the medium tier; the pilot (and earlier tiers) gate is read and posted on the issue).",
+  "retain_evidence": false
+}

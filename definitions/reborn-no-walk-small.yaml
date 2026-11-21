@@ -1,0 +1,34 @@
+# borg-zoo#604: small tier follow-up of reborn-no-walk-pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-no-walk-small.yaml
+name: reborn-no-walk-small
+issue: 604
+question: >-
+  On borg-reborn-rs d9ebf4c9 (main 5987e1fe, with the fast-fragile policy and ban shipped on, plus PR #853), does refusing
+  the desperate walk to the stairs while a faster fast-fragile monster is awake next to the Borg (fast_fragile_no_walk),
+  alone and with the stats rule (fast_fragile_by_stats), save early deaths without adding new ones?
+tier: small            # classes-1800 starts 1-90, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-no-walk-d9ebf4c9
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-nowalk
+arms:
+  ctl: {}
+  nowalk: {borg_param_fast_fragile_no_walk: 1}
+  nowalk-stats: {borg_param_fast_fragile_no_walk: 1, borg_param_fast_fragile_by_stats: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: zoo owner, "dispatch all the waiting follow-ups" (the small tier; the pilot gate is read and posted on the issue).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-21 after the pilot gate (run 44936423074: 0 deaths, 18 of 18 identical plays in both arms) and before any result of this tier was read. Small tier (RULES 14) on the same
+  build: classes-1800 starts 1-90 (90 starts per arm), all classes, 100,000 turns, one binary, disjoint from the other tiers
+  of the study (pool them as one study, RULES 14). 
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start; frozen-turn
+  bursts classified. Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired
+  rescued and newly killed against the control (exact McNemar), identical plays; a RULES 18 bin. Descriptive.
