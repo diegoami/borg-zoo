@@ -1,0 +1,41 @@
+# borg-zoo#578: teleport block under an anti-teleportation curse (borg-reborn-rs #829, PR #833), small: ctl (escape_teleport_block 0) against block (shipped 1).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-teleport-block-833-small.yaml
+name: reborn-teleport-block-833-small
+issue: 578
+question: >-
+  On borg-reborn-rs 6fe184ea (PR #833), among games where the control read "Teleportation forbidden!" at least once, does
+  refusing every teleport of the player while an anti-teleportation curse holds (escape_teleport_block 1) stop the Phase
+  Door reads under the curse, and does it change deaths, progress or add stalls?
+tier: small            # classes-1800 starts 1-90
+specimen: 4.2.6-reborn-rust-teleport-block-6fe184ea
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-tpblock
+arms:
+  ctl: {borg_param_escape_teleport_block: 0}
+  block: {}        # shipped 1
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: borg-reborn-rs request (#829, PR #833; owner there: "obviously we should stop phase door when cursed";
+  RULES 20), filed as borg-zoo#578; zoo owner, 2026-11-21: "continue with your issues and tasks" (the pilot first; small and
+  medium after its gate).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#578; borg-reborn-rs #829, PR #833). Pilot (RULES 16)
+  on classes-18, then classes-1800-small and classes-1800-medium (a development set: the three named dossiers, Priest
+  354395849, Ranger 1088421828 and Warrior 1653223723, come from the medium tier; no sealed suite; a confirmation on a fresh
+  block is the owner's to open), 100,000 turns, one binary, two arms paired on the same starts. The arms play identically
+  until the first teleport after a curse is learned: report how many pairs are identical.
+  Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or
+  borg_stopped; stalls, timeouts and crashes kept apart, counted, never dropped; frozen-turn bursts classified.
+  Primary: among games where ctl read "Teleportation forbidden!" at least once, the number of "Teleportation forbidden!" in
+  block while the block holds must be 0 (notes "# Teleport blocked (anti-teleportation on ...)" and "# Teleport block
+  lifted"); any further "forbidden" in block is a defect to report (a no-teleport grid explains some: say which).
+  Secondary: all games, deaths and causes per arm, CL at death, deepest level, identical plays; the list of curse games
+  (seed, class, item named in the note, game turn of the block, outcome in each arm); a RULES 18 bin; death reports for
+  every death among the curse games.

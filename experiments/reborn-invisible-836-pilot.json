@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-invisible-836-pilot",
+  "issue": 580,
+  "definition": "definitions/reborn-invisible-836-pilot.yaml",
+  "question": "On borg-reborn-rs b3f32a9a (PR #836: main 12c4ce7c plus the \"invisible attacker near\" mode and the Detect Invisible town value), does the shipped behaviour (B) save the deaths whose killing blow comes from an unseen attacker, without adding deaths or stalls, against the old behaviour (A)? C raises town_invisible_percent to 40.",
+  "description": "On borg-reborn-rs b3f32a9a (PR #836: main 12c4ce7c plus the \"invisible attacker near\" mode and the Detect Invisible town value), does the shipped behaviour (B) save the deaths whose killing blow comes from an unseen attacker, without adding deaths or stalls, against the old behaviour (A)? C raises town_invisible_percent to 40. Generated from definitions/reborn-invisible-836-pilot.yaml: 3 arms on 4.2.6-reborn-rust-invisible-b3f32a9a, suite classes-18.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#580; borg-reborn-rs #831, PR #836; the requester's\nproposal adopted as written). Pilot (RULES 16) of the three arms; classes-1800 as in #566 (the two Human Blackguard\ndeaths, seeds 2078477958 and 2037495442, are in it; Blackguards and Warriors above all, plus a caster class) follows\nafter the gate and the owner. Three arms, 18 starts each (54 games), all classes.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or\nborg_stopped; stalls, timeouts and crashes kept apart: any B or C stall that A does not have is reported start by\nstart (resting stalls are the risk of the mode); frozen-turn bursts classified.\nPrimary at the classes-1800 tier: deaths whose killing blow came from an unseen attacker (the last messages\n\"Something ...\"; clear icky thing, poltergeist, ghosts), B against A, paired by start; at 2 such deaths in #566's 1,800\nthe difference is reported as a count, not tested, and no benefit is claimed. Guard (non-inferiority): total deaths,\nB minus A, margin 1 percentage point of starts. Descriptive: deaths by cause; resting stalls and timeouts; gold spent\non Detect Invisible and what it displaced (Cure Light Wounds, Phase Door, flasks) per class; CL and max depth; per arm\nthe counts of the notes \"# Mode: invisible attacker near\", \"# Striking at\", \"# Detecting the invisible attacker.\",\n\"# Leaving (an unseen attacker, not found)\". A death report with screens for any death in B.",
+  "specimens": [
+    "4.2.6-reborn-rust-invisible-b3f32a9a"
+  ],
+  "profiles": [
+    "reborn-invis-A",
+    "reborn-invis-B",
+    "reborn-invis-C"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-invisible-b3f32a9a",
+  "control_profile": "reborn-invis-A",
+  "owner_authorization": "2026-11-21: borg-reborn-rs owner (#831: \"switch mode and deal with it ... buy Detect Invisible if you have the spare money\"; measuring belongs to the zoo, RULES 20), filed as borg-zoo#580; zoo owner, 2026-11-21: \"continue with your issues and tasks\" (a classes-18 pilot only; classes-1800 after the gate and the owner).",
+  "retain_evidence": true
+}

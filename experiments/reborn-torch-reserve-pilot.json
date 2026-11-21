@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-torch-reserve-pilot",
+  "issue": 577,
+  "definition": "definitions/reborn-torch-reserve-pilot.yaml",
+  "question": "How many spare torches should the Borg buy and keep (two, three or four, town_light_reserve_turns 15000, 20000, 25000), and do they reduce lightless episodes without crowding out food, healing, Phase Door or Recall? An exposure pilot.",
+  "description": "How many spare torches should the Borg buy and keep (two, three or four, town_light_reserve_turns 15000, 20000, 25000), and do they reduce lightless episodes without crowding out food, healing, Phase Door or Recall? An exposure pilot. Generated from definitions/reborn-torch-reserve-pilot.yaml: 4 arms on 4.2.6-reborn-rust-torch-reserve-e4d64f08, suite classes-18-300k.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#577; borg-reborn-rs #810, PR #835). Exposure\npilot on the 18 fixed starts of classes-18 at 300,000 engine turns (suite classes-18-300k; the regular classes-18 is\nuntouched), four arms, 72 cells, one binary, evidence retained for all. Every arm sets borg_town_plan 1 and\ntown_lantern_upgrade_power 0 explicitly and keeps the pinned settings otherwise.\nGate: one binary; each arm's values in params-core.json; no config_error; every cell ends in death, turn_cap or\nborg_stopped; stalls, timeouts and crashes kept apart; frozen-turn bursts classified; usable receipts (town-plan.jsonl,\ntown-departure-fuel.jsonl, messages, transactions, resolved settings, terminal) for every cell.\nReport per arm and class: departures with zero usable spare fuel, with no active light and below each fixed fuel\nthreshold, with equipped light, usable spare torches and remaining fuel; lanterns, permanent lights and characters who\nsee without fuel apart; naturally found lanterns that change the equipped light counted separately. Restocking\nopportunities (fuel deficit, General Store stock and price, usable Home stock, gold after immediate needs, pack room;\ncached stock apart from an observed offer), confirmed purchases and spend, Home withdrawals, floor pickups, town deposits,\ndungeon disposals, and the reasons affordable stocked deficits remained. Expiry and recovery, lightless episodes or\nstops, paired deaths, stalls, level and maximum depth; gold and the early food, Cure Light Wounds, Phase Door and Recall\npurchases. How often the arms actually exercised purchasing or retention. Descriptive (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-torch-reserve-e4d64f08"
+  ],
+  "profiles": [
+    "reborn-torch-shipped",
+    "reborn-torch-two",
+    "reborn-torch-three",
+    "reborn-torch-four"
+  ],
+  "suites": [
+    "classes-18-300k"
+  ],
+  "control": "4.2.6-reborn-rust-torch-reserve-e4d64f08",
+  "control_profile": "reborn-torch-shipped",
+  "owner_authorization": "2026-11-21: borg-reborn-rs session request (#810, PR #835) filed as borg-zoo#577; zoo owner, 2026-11-21: \"continue with your issues and tasks\" (a pilot only; a larger run and any change of the default wait for the owner's review).",
+  "retain_evidence": true
+}

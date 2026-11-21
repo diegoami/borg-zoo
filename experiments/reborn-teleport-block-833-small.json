@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-teleport-block-833-small",
+  "issue": 578,
+  "definition": "definitions/reborn-teleport-block-833-small.yaml",
+  "question": "On borg-reborn-rs 6fe184ea (PR #833), among games where the control read \"Teleportation forbidden!\" at least once, does refusing every teleport of the player while an anti-teleportation curse holds (escape_teleport_block 1) stop the Phase Door reads under the curse, and does it change deaths, progress or add stalls?",
+  "description": "On borg-reborn-rs 6fe184ea (PR #833), among games where the control read \"Teleportation forbidden!\" at least once, does refusing every teleport of the player while an anti-teleportation curse holds (escape_teleport_block 1) stop the Phase Door reads under the curse, and does it change deaths, progress or add stalls? Generated from definitions/reborn-teleport-block-833-small.yaml: 2 arms on 4.2.6-reborn-rust-teleport-block-6fe184ea, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#578; borg-reborn-rs #829, PR #833). Pilot (RULES 16)\non classes-18, then classes-1800-small and classes-1800-medium (a development set: the three named dossiers, Priest\n354395849, Ranger 1088421828 and Warrior 1653223723, come from the medium tier; no sealed suite; a confirmation on a fresh\nblock is the owner's to open), 100,000 turns, one binary, two arms paired on the same starts. The arms play identically\nuntil the first teleport after a curse is learned: report how many pairs are identical.\nGate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or\nborg_stopped; stalls, timeouts and crashes kept apart, counted, never dropped; frozen-turn bursts classified.\nPrimary: among games where ctl read \"Teleportation forbidden!\" at least once, the number of \"Teleportation forbidden!\" in\nblock while the block holds must be 0 (notes \"# Teleport blocked (anti-teleportation on ...)\" and \"# Teleport block\nlifted\"); any further \"forbidden\" in block is a defect to report (a no-teleport grid explains some: say which).\nSecondary: all games, deaths and causes per arm, CL at death, deepest level, identical plays; the list of curse games\n(seed, class, item named in the note, game turn of the block, outcome in each arm); a RULES 18 bin; death reports for\nevery death among the curse games.",
+  "specimens": [
+    "4.2.6-reborn-rust-teleport-block-6fe184ea"
+  ],
+  "profiles": [
+    "reborn-tpblock-ctl",
+    "reborn-tpblock-block"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-teleport-block-6fe184ea",
+  "control_profile": "reborn-tpblock-ctl",
+  "owner_authorization": "2026-11-21: borg-reborn-rs request (#829, PR #833; owner there: \"obviously we should stop phase door when cursed\"; RULES 20), filed as borg-zoo#578; zoo owner, 2026-11-21: \"continue with your issues and tasks\" (the pilot first; small and medium after its gate).",
+  "retain_evidence": false
+}
