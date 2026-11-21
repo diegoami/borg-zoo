@@ -1,0 +1,163 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-paladingate-ctl": {
+        "description": "borg-zoo#544 (reborn-paladin-gate-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "ab6708c4b0dcbeed9846e813d082e96c1139f378d447b1a893cae6caee3a3eec"
+      },
+      "reborn-paladingate-hp45": {
+        "description": "borg-zoo#544 (reborn-paladin-gate-pilot.yaml): arm hp45.",
+        "settings": {
+          "borg_param_prepared_dl34_min_hp__paladin": 45,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "91ce5ead7bb21df5eaf17aa24fbba5e0f034ec1eb1adeceecfd1083eddbd4762"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-paladin-gate-2fdfd41c": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs 2fdfd41c (borg-reborn-rs #795): shipped settings, prepared_dl34_min_hp__paladin 50.",
+        "ref": "2fdfd41cf38fc8bfd3f875608fb0e5d9a065c3f5",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-small-paladins": {
+        "assigned_characters": {
+          "1149332291": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "1285833235": [
+            "Gnome",
+            "Paladin"
+          ],
+          "1584060551": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "1956591784": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "352388688": [
+            "Human",
+            "Paladin"
+          ],
+          "674811104": [
+            "Half-Orc",
+            "Paladin"
+          ],
+          "765432699": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "797610775": [
+            "Dwarf",
+            "Paladin"
+          ],
+          "818961361": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "920137153": [
+            "Elf",
+            "Paladin"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The Paladin starts of classes-1800-small (borg-zoo#544): each with its classes-1800 character, for class-specific studies.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          352388688,
+          1584060551,
+          920137153,
+          765432699,
+          1285833235,
+          797610775,
+          674811104,
+          1956591784,
+          818961361,
+          1149332291
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "class": "Paladin",
+          "suite": "classes-1800-small"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-21 02:41 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-paladin-gate-2fdfd41c",
+    "control_profile": "reborn-paladingate-ctl",
+    "definition": "definitions/reborn-paladin-gate-pilot.yaml",
+    "description": "Does lowering the Paladin's DL3-4 maximum-HP gate from 50 to 45 let Paladins reach DL3 and DL5 sooner without new deaths? Generated from definitions/reborn-paladin-gate-pilot.yaml: 2 arms on 4.2.6-reborn-rust-paladin-gate-2fdfd41c, suite classes-1800-small-paladins.",
+    "issue": 544,
+    "name": "reborn-paladin-gate-pilot",
+    "owner_authorization": "2026-11-21: zoo owner, \"do all of those\" (the ideas offered) and the borg-reborn-rs request #795 (proposal for owner review). Pilots and small runs, all classes; the Rangers are set aside.",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#544). Pilot on the 10 Paladin starts, already\nread in #522, so the mechanism check, not confirmation (a fresh Paladin block is the owner's to open).\nGate: no config_error; one binary; the value in params-core.json; every cell ends in death, turn_cap or borg_stopped.\nReport: alive at the cap having reached DL5 (primary); time to first DL3 and DL5 with dead or unfinished starts\nvisible; all deaths; rescued and newly killed pairs; mean CL and max depth; refusals at 45-49 observed max HP (does hp45\nchange them?) from the retained traces. Proposed guardrail: no more than 2 points of survival lost at the cap.",
+    "profiles": [
+      "reborn-paladingate-ctl",
+      "reborn-paladingate-hp45"
+    ],
+    "question": "Does lowering the Paladin's DL3-4 maximum-HP gate from 50 to 45 let Paladins reach DL3 and DL5 sooner without new deaths?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-paladin-gate-2fdfd41c"
+    ],
+    "suites": [
+      "classes-1800-small-paladins"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44850766991-2",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44850766991",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "75768a97fc73072eb3895e39d2b828f45d05ff75"
+}
