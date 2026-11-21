@@ -1,0 +1,28 @@
+# borg-zoo#581: medium tier of the confusion settings (borg-reborn-rs #837): ctl, clw_walk, stuck, csw (the issue's capacity order); owner 2026-11-21 "go".
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-confusion-837-medium.yaml
+name: reborn-confusion-837-medium
+issue: 581
+question: >-
+  On borg-reborn-rs da097a76, over 270 starts (classes-1800 starts 91-360, all classes), do the Cure Light Wounds as a
+  confusion cure with no walk before the cure (clw_walk), the cure held only while a step out of reach is possible
+  (stuck), and a confusion-cure reserve in town (csw) save deaths or add new ones against the shipped play?
+suites: [classes-1800-medium]
+specimens: [4.2.6-reborn-rust-confusion-da097a76]
+profiles: [reborn-confusion-ctl, reborn-confusion-clw_walk, reborn-confusion-stuck, reborn-confusion-csw]
+control_specimen: 4.2.6-reborn-rust-confusion-da097a76
+control_profile: reborn-confusion-ctl
+owner_authorization: >-
+  2026-11-21: zoo owner, "start all open pilots and followups" (the medium tier of the four arms of the small tier, run
+  44924461733; read its gate before this one).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-21 after the small tier (run 44924461733: ctl 1/90 deaths, clw_walk 2, stuck 2, csw 3 and one stalled Ranger;
+  0 rescued, 1, 1, 2 newly killed) and the classes-18 pilot (run 44916061503). Medium tier (RULES 14): the same four arms,
+  270 starts each (1,080 games), classes-1800 starts 91-360, disjoint from the small tier.
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start
+  (lightless aborts counted, not dropped); frozen-turn bursts classified.
+  Report per arm and class: deaths and causes (with a confuser or an immobile monster adjacent apart), CL at death, final
+  and maximum level, deepest level; paired rescued and newly killed against ctl (exact McNemar), identical plays; the
+  small tier pooled with this one as one study of 360 starts (RULES 14); a RULES 18 bin. Deaths decide each arm. Descriptive.

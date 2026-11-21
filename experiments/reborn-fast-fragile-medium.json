@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-fast-fragile-medium",
+  "issue": 596,
+  "definition": "definitions/reborn-fast-fragile-medium.yaml",
+  "question": "On borg-reborn-rs 7f8c6b80 (PR #847), does attacking a fast-fragile monster (crow, wild cat, by name or by stats) with the best attack every turn, with and without a ban on healing next to it and with the Phase Door or stairs alternative at 100, 75 or 0 percent, save the early deaths (a crow killed 8 of #566's 29) without adding new ones?",
+  "description": "On borg-reborn-rs 7f8c6b80 (PR #847), does attacking a fast-fragile monster (crow, wild cat, by name or by stats) with the best attack every turn, with and without a ban on healing next to it and with the Phase Door or stairs alternative at 100, 75 or 0 percent, save the early deaths (a crow killed 8 of #566's 29) without adding new ones? Generated from definitions/reborn-fast-fragile-medium.yaml: 5 arms on 4.2.6-reborn-rust-fast-fragile-7f8c6b80, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-21 after the classes-18 pilot (run 44926451797: 0 deaths in all eight arms, 18/18 identical plays for the\nname arms, 17/18 for the stats arms: the arms were mostly not exercised there). Medium tier (RULES 14): the five arms the\nowner asked for (ctl, named, named-ban, stats, stats-ban), 270 starts each, classes-1800 starts 91-360, all classes, one\nbinary, 100,000 turns. The three variants that added nothing over named in the pilot (esc75, attack-only, ban-exc) are\ndropped.\nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start\n(lightless aborts apart); frozen-turn bursts classified.\nReport per arm and class: deaths and causes (crow and wild cat apart), CL at death, final and maximum level; paired\nrescued and newly killed against ctl (exact McNemar), identical plays; the other fast-fragile deaths (cave spiders,\ncentipedes, bats); small and medium pooled as one study of 360 starts (RULES 14); a RULES 18 bin. Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-fast-fragile-7f8c6b80"
+  ],
+  "profiles": [
+    "reborn-fastfrag-ctl",
+    "reborn-fastfrag-named",
+    "reborn-fastfrag-named-ban",
+    "reborn-fastfrag-stats",
+    "reborn-fastfrag-stats-ban"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-fast-fragile-7f8c6b80",
+  "control_profile": "reborn-fastfrag-ctl",
+  "owner_authorization": "2026-11-21: borg-reborn-rs owner (#842: \"ask for zoo runs ... before the PR merges\"), filed as borg-zoo#596, \"pilot then small + medium\"; zoo owner, 2026-11-21: \"start all open pilots and followups\" (the pilot, run 44926451797, is its gate).",
+  "retain_evidence": false
+}
