@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-immobile-fix-pilot",
+  "issue": 586,
+  "definition": "definitions/reborn-immobile-fix-pilot.yaml",
+  "question": "On borg-reborn-rs 8eadb21f (main 12c4ce7c plus the change), does caution_ranged_vs_immobile 2 together with the confusion and no-return switches (immobile2_fix) close the gaps that cost #576's immobile2 arm 10 deaths against shipped's 6, and does it help against shipped and against immobile2?",
+  "description": "On borg-reborn-rs 8eadb21f (main 12c4ce7c plus the change), does caution_ranged_vs_immobile 2 together with the confusion and no-return switches (immobile2_fix) close the gaps that cost #576's immobile2 arm 10 deaths against shipped's 6, and does it help against shipped and against immobile2? Generated from definitions/reborn-immobile-fix-pilot.yaml: 3 arms on 4.2.6-reborn-rust-immobile-fix-8eadb21f, suite classes-18.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#586; borg-reborn-rs #837; follow-up of #576, whose\nbig run on 3b4924ba had immobile2 at 10 deaths of 540 against shipped's 6, 3 rescued / 7 newly killed). Pilot (RULES 16),\nthen big (classes-1800 starts 361-900, the same 540 starts as #576; start with big after the gate: shipped and immobile2\nshould reproduce #576's games except where main moved since 3b4924ba), then small + medium (starts 1-360) on the owner's\ngo. Three arms, 100,000 turns, all classes, one binary.\nGate: no config_error; one binary; each arm's values in params-core.json (all shipped 0 in shipped); every cell ends in\ndeath, turn_cap or borg_stopped; stalls, timeouts and crashes kept apart; frozen-turn bursts classified. Deaths decide each\narm, never the cases alone.\nReport: deaths per class and arm; rescued and newly killed paired by start against shipped and against immobile2; CL and\nDL; deaths with an immobile monster adjacent; whether the four #576 deaths (all Dunadan) change; per arm \"# Stepping away\nfrom immobile\" notes and how many leave the Borg still adjacent, \"# Not fixing Confusion next to an immobile attacker\"\nfollowed by a melee or a death, \"# No step out of reach ... curing confusion anyway\", \"# Confused: no walk to the stairs\",\nand \"Flowing toward\" into the reach of an attacker stepped away from; a RULES 18 bin. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-immobile-fix-8eadb21f"
+  ],
+  "profiles": [
+    "reborn-immfix-shipped",
+    "reborn-immfix-immobile2",
+    "reborn-immfix-immobile2_fix"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-immobile-fix-8eadb21f",
+  "control_profile": "reborn-immfix-shipped",
+  "owner_authorization": "2026-11-21: borg-reborn-rs owner (\"Check in the zoo before merging\", #837), filed as borg-zoo#586; zoo owner, 2026-11-21: \"continue\" (the pilot first; the big tier after its gate).",
+  "retain_evidence": true
+}
