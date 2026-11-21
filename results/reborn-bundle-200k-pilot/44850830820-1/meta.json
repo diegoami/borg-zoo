@@ -1,0 +1,264 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-bundle-both": {
+        "description": "borg-zoo#549 (reborn-bundle-200k-pilot.yaml): arm both.",
+        "settings": {
+          "borg_param_prepared_dl2_min_hp": 23,
+          "borg_param_prepared_dl34_min_hp__blackguard": 38,
+          "borg_param_prepared_dl34_min_hp__druid": 30,
+          "borg_param_prepared_dl34_min_hp__mage": 45,
+          "borg_param_prepared_dl34_min_hp__necromancer": 45,
+          "borg_param_prepared_dl34_min_hp__paladin": 38,
+          "borg_param_prepared_dl34_min_hp__priest": 30,
+          "borg_param_prepared_dl34_min_hp__ranger": 38,
+          "borg_param_prepared_dl34_min_hp__rogue": 38,
+          "borg_param_prepared_dl34_min_hp__warrior": 38,
+          "borg_param_prepared_dl59_min_hp__blackguard": 45,
+          "borg_param_prepared_dl59_min_hp__druid": 45,
+          "borg_param_prepared_dl59_min_hp__mage": 60,
+          "borg_param_prepared_dl59_min_hp__necromancer": 60,
+          "borg_param_prepared_dl59_min_hp__paladin": 45,
+          "borg_param_prepared_dl59_min_hp__priest": 45,
+          "borg_param_prepared_dl59_min_hp__ranger": 45,
+          "borg_param_prepared_dl59_min_hp__rogue": 45,
+          "borg_param_prepared_dl59_min_hp__warrior": 45,
+          "borg_param_town_phase_reserve": 1,
+          "borg_param_town_phase_reserve_percent": 200,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "6e8f08e00487c16564d0916e2e5a6cf758ac68abc29bb2b5b3c732e0bd7e1baf"
+      },
+      "reborn-bundle-ctl": {
+        "description": "borg-zoo#361 (reborn-bundle-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "31aed678ae3e54cbd103e23bcd1d800046b7267ff8efb8eee2a423f377728f84"
+      },
+      "reborn-bundle-hplo": {
+        "description": "borg-zoo#549 (reborn-bundle-200k-pilot.yaml): arm hplo.",
+        "settings": {
+          "borg_param_prepared_dl2_min_hp": 23,
+          "borg_param_prepared_dl34_min_hp__blackguard": 38,
+          "borg_param_prepared_dl34_min_hp__druid": 30,
+          "borg_param_prepared_dl34_min_hp__mage": 45,
+          "borg_param_prepared_dl34_min_hp__necromancer": 45,
+          "borg_param_prepared_dl34_min_hp__paladin": 38,
+          "borg_param_prepared_dl34_min_hp__priest": 30,
+          "borg_param_prepared_dl34_min_hp__ranger": 38,
+          "borg_param_prepared_dl34_min_hp__rogue": 38,
+          "borg_param_prepared_dl34_min_hp__warrior": 38,
+          "borg_param_prepared_dl59_min_hp__blackguard": 45,
+          "borg_param_prepared_dl59_min_hp__druid": 45,
+          "borg_param_prepared_dl59_min_hp__mage": 60,
+          "borg_param_prepared_dl59_min_hp__necromancer": 60,
+          "borg_param_prepared_dl59_min_hp__paladin": 45,
+          "borg_param_prepared_dl59_min_hp__priest": 45,
+          "borg_param_prepared_dl59_min_hp__ranger": 45,
+          "borg_param_prepared_dl59_min_hp__rogue": 45,
+          "borg_param_prepared_dl59_min_hp__warrior": 45,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "1b8fbb2711825805bb2260c17a0697f9f34daa5d2460111113d0de460ef0a92f"
+      },
+      "reborn-bundle-r1p200": {
+        "description": "borg-zoo#549 (reborn-bundle-200k-pilot.yaml): arm r1p200.",
+        "settings": {
+          "borg_param_town_phase_reserve": 1,
+          "borg_param_town_phase_reserve_percent": 200,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "b5f3395d74f5e1f0f41ae161f6c9f318d9e7fdba22a0c17d7b89e7fa93bae534"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-2801ba18": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs main 2801ba18 (head on 2026-11-21, PR #803 merged): shipped harness/borg.txt dc5bba3c..., attack_on_sight, caution_winning_fight and caution_recall_survival shipped 1.",
+        "ref": "2801ba188b1f46ddfdd32eeb7ae7c58330b0fd30",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-200k-pilot": {
+        "assigned_characters": {
+          "1014921445": [
+            "Human",
+            "Paladin"
+          ],
+          "1081932283": [
+            "Human",
+            "Druid"
+          ],
+          "1099358304": [
+            "Human",
+            "Necromancer"
+          ],
+          "1210117398": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1495840531": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1752703907": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "1787011608": [
+            "Human",
+            "Blackguard"
+          ],
+          "1857963368": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "24260605": [
+            "Human",
+            "Mage"
+          ],
+          "269700826": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "276305624": [
+            "Human",
+            "Rogue"
+          ],
+          "484985523": [
+            "Human",
+            "Warrior"
+          ],
+          "515721089": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "536792942": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "680357177": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "701310502": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "715959297": [
+            "Human",
+            "Priest"
+          ],
+          "960560576": [
+            "Human",
+            "Ranger"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 200000,
+        "description": "The first 18 starts of classes-1800-200k (2 per class), 200,000 engine turns: a pilot for questions that need longer games, e.g. casters past CL 8 (borg-zoo#350).",
+        "role": "pilot",
+        "saves": false,
+        "seeds": [
+          484985523,
+          24260605,
+          1081932283,
+          715959297,
+          1099358304,
+          1014921445,
+          276305624,
+          960560576,
+          1787011608,
+          269700826,
+          680357177,
+          701310502,
+          515721089,
+          1210117398,
+          1857963368,
+          536792942,
+          1495840531,
+          1752703907
+        ],
+        "stall_seconds": 120,
+        "subset": {
+          "range": [
+            0,
+            18
+          ],
+          "suite": "classes-1800-200k"
+        },
+        "wall_seconds": 1800
+      }
+    }
+  },
+  "completed": "2026-11-21 01:41 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-2801ba18",
+    "control_profile": "reborn-bundle-ctl",
+    "definition": "definitions/reborn-bundle-200k-pilot.yaml",
+    "description": "On borg-reborn-rs main 2801ba18 at 200,000 turns, do lower HP minimums at the dive gates (hp-lo) and a one-scroll Phase Door reserve at 200 percent (r1p200) add up when run together, or interfere? Generated from definitions/reborn-bundle-200k-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-2801ba18, suite classes-1800-200k-pilot.",
+    "issue": 549,
+    "name": "reborn-bundle-200k-pilot",
+    "owner_authorization": "2026-11-21: zoo owner, \"do all of those\" (the ideas offered). Pilots and small runs, all classes; the Rangers are set aside.",
+    "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#549). hp-lo is #522's HP minimums -25% (small\ntier: CL +0.11, 0 deaths in 90; 200,000-turn pilot level with ctl); r1p200 is #526's reserve 1 at 200 percent\n(200,000-turn pilot: 0 deaths, CL +0.22, the Mage rescued). Pilot (RULES 16) of the four arms on this build; a small\ntier at 200,000 turns follows only if the gate passes and the owner agrees. 72 games, all classes.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or\nborg_stopped; frozen-turn bursts classified.\nReport per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued\nand newly killed against ctl (exact McNemar), identical plays; for both against hplo and against r1p200 whether the\neffects add (CL and DL differences) or cancel. Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-bundle-ctl",
+      "reborn-bundle-hplo",
+      "reborn-bundle-r1p200",
+      "reborn-bundle-both"
+    ],
+    "question": "On borg-reborn-rs main 2801ba18 at 200,000 turns, do lower HP minimums at the dive gates (hp-lo) and a one-scroll Phase Door reserve at 200 percent (r1p200) add up when run together, or interfere?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-2801ba18"
+    ],
+    "suites": [
+      "classes-1800-200k-pilot"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44850830820-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44850830820",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "75768a97fc73072eb3895e39d2b828f45d05ff75"
+}
