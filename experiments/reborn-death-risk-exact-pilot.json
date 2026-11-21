@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-death-risk-exact-pilot",
+  "issue": 534,
+  "definition": "definitions/reborn-death-risk-exact-pilot.yaml",
+  "question": "Does borg-reborn-rs 0eb48328 (PR #792, green CI) write core-trace@3 with the F1-F3 scores, the F4 fit features and stop_eligible on every traced think of every cell, with full trace-core.jsonl and summary.json retained, so that the 270-start calibration tier can be run on this exact build?",
+  "description": "Does borg-reborn-rs 0eb48328 (PR #792, green CI) write core-trace@3 with the F1-F3 scores, the F4 fit features and stop_eligible on every traced think of every cell, with full trace-core.jsonl and summary.json retained, so that the 270-start calibration tier can be run on this exact build? Generated from definitions/reborn-death-risk-exact-pilot.yaml: 1 arms on 4.2.6-reborn-rust-death-risk-0eb48328, suite classes-18.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#534; supersedes the 5343532c pilot, run 44838098884,\nwhose draft trace format it verified). One arm, shipped harness/borg.txt (sha256 19e65a96a5d9...752e), the borg-rs core,\nerrand none, /stopscared off, no overrides; classes-18 at 100,000 turns (18 games). Zero deaths is acceptable.\nGate: one binary; every cell accounted for with its terminal outcome (death, turn_cap or borg_stopped); full\ntrace-core.jsonl and summary.json retained for all 18 cells, survivors included, each with seed, race and class; every\ntraced think uses core-trace@3 and carries death_risk with the F1-F3 scores, the F4 fit features and stop_eligible\n(checked cell by cell from the retained raw traces); missing or failed cells reported explicitly.\nReport: the workflow and artifact links; the number of distinct death-bearing starts in the fixed training and holdout\nsplits (the split of tools/calibrate-death-risk.py at this commit), so the source session can judge F1-F4; natural\ndeaths kept as ordinary evidence. No tier advances under this pilot. Next, in order after the gate: classes-1800-small\n(starts 1-90), then classes-1800-medium (starts 91-360, the approved 270).",
+  "specimens": [
+    "4.2.6-reborn-rust-death-risk-0eb48328"
+  ],
+  "profiles": [
+    "reborn-deathrisk0eb-shipped"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-death-risk-0eb48328",
+  "control_profile": "reborn-deathrisk0eb-shipped",
+  "owner_authorization": "2026-11-21: borg-reborn-rs owner approved the 270-start calibration tier; borg-reborn-rs session request on borg-zoo#534 (\"Please run the owner-approved exact-build calibration pilot\", comment 7056450291). Limited to the pilot: the gate is reported before any tier advances.",
+  "retain_evidence": true
+}
