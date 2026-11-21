@@ -84,6 +84,21 @@ Scripts are in `.claude/skills/death-report/scripts/`. Work in the session's scr
 
 ## Notes
 
+- **Source clone recovery.** An incomplete reference can fail with
+  `pack has unresolved deltas`. Use the independent clone in step 2.
+- **Surviving cells.** When `retain_evidence` is enabled, use the run's
+  `raw-*` artifacts and check the cell's evidence inventory for available
+  files such as `keys.log`, `messages.log`, `state.log` and
+  `trace-core.jsonl`. For a paired replay, use the run's `build-*`
+  artifact and the surviving arm's exact archived configuration. Compare
+  `keys.log` to locate the first differing key, then use messages and traces
+  to interpret it.
+- **Viewer without a play pack.** Pass a placeholder to the required
+  `--pack` argument. Before publishing, remove the entire “Play one
+  yourself” section and the two JavaScript assignments to
+  `$('c1').textContent` and `$('c2').textContent` from the generated HTML.
+  Open the page and switch between deaths to check the viewer.
+
 - **Kit at death:** the zoo bundles carry no death dump (`CharOutput.txt` is a stub). The gear comes from the recorder's final frame (`details.gear`).
 - **Screens:** the recorder writes `frames.jsonl` as deltas (`cells` = `[index, char, attr]` on an 80×24 grid). `record.py` replays them in order.
 - **Cost:** recording runs at about game speed. A 60,000-turn death takes a few minutes; run long batches in the background.
