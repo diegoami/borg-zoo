@@ -1,0 +1,204 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-floo-curefull": {
+        "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm curefull.",
+        "settings": {
+          "borg_param_caution_recall_cure_min_loss_percent": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "09f749eea5b5daa250aa40bc9631830297dc77a80d81ad11e8d6c30b20a921bd"
+      },
+      "reborn-floo-danger": {
+        "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm danger.",
+        "settings": {
+          "borg_param_caution_stairs_flight_ignore_danger": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "730ae02fb31abc326cb4657a5a632d472cc3ba85a65d39c87cfb0f664f40c404"
+      },
+      "reborn-floo-fastany": {
+        "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm fastany.",
+        "settings": {
+          "borg_param_caution_desperate_fast_danger_percent": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "00c26e31ee682f63dc30f5704d2eab00674c9e66acc9188c73efa0c9ab49e071"
+      },
+      "reborn-floo-noflee": {
+        "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm noflee.",
+        "settings": {
+          "borg_param_caution_stairs_clean_path_flee": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "fdcf750283d304335a19c30bf8867614c03eb298c29bb4efd92287640fe92256"
+      },
+      "reborn-floo-path1": {
+        "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm path1.",
+        "settings": {
+          "borg_param_caution_stairs_clean_path": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "8872d16034939268c42331b22c8d461a6fbf7d69ab7cf9d4c7557923dc53a4a3"
+      },
+      "reborn-floo-shipped": {
+        "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm shipped.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "a7f86fa306fb547c97164102260839504170d8f0796945db14f74a4e08998d40"
+      },
+      "reborn-floo-weight0": {
+        "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm weight0.",
+        "settings": {
+          "borg_param_caution_stairs_flight_threat_weight": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "94b4209770ec4ff9693da4d9bff145989a4d08c3981e5fdd0635c052722a1e5b"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-d7e58cdf": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs main d7e58cd: attack_on_sight, caution_winning_fight and caution_recall_survival shipped 1 (PRs #763, #764), #757 and #761 as shipped. harness/borg.txt 251521f0...",
+        "ref": "d7e58cdf1d9bc47655d4e476ab452816ff418935",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-21 03:44 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-d7e58cdf",
+    "control_profile": "reborn-floo-shipped",
+    "definition": "definitions/reborn-ship-flight-loo-pilot.yaml",
+    "description": "On borg-reborn-rs main d7e58cd, which part of the shipped flight cluster (clean path 3, clean-path flee, danger-free flow, threat weight 5, the fast and cure thresholds) carries its weight: what changes when each is reverted alone? Generated from definitions/reborn-ship-flight-loo-pilot.yaml: 7 arms on 4.2.6-reborn-rust-main-d7e58cdf, suite classes-18.",
+    "issue": 558,
+    "name": "reborn-ship-flight-loo-pilot",
+    "owner_authorization": "2026-11-21: borg-reborn-rs owner (\"file them all\", filed as borg-zoo#558); zoo owner, 2026-11-21: \"you have new issues\" (a classes-18 pilot only, all classes; larger tiers wait for the gate and the owner).",
+    "prespecified": "Fixed 2026-11-21, before any result of this build with these arms was read (borg-zoo#558). Pilot (RULES 16); small and medium\nafter the gate and the owner; the 200 Ranger starts the issue asks for are set aside (owner, 2026-11-20). Seven arms, 18\nstarts each (126 games), all classes.\nGate: no config_error; one binary; each arm's value in params-core.json; shipped plays as main d7e58cd; every cell ends in\ndeath, turn_cap or borg_stopped; frozen-turn bursts classified.\nReport per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly\nkilled against shipped (exact McNemar), identical-game counts, and for each discordant start the first divergent action (the same\nreading as #535). An arm that plays shipped's keys everywhere is \"not exercised\". Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-floo-shipped",
+      "reborn-floo-path1",
+      "reborn-floo-noflee",
+      "reborn-floo-danger",
+      "reborn-floo-weight0",
+      "reborn-floo-fastany",
+      "reborn-floo-curefull"
+    ],
+    "question": "On borg-reborn-rs main d7e58cd, which part of the shipped flight cluster (clean path 3, clean-path flee, danger-free flow, threat weight 5, the fast and cure thresholds) carries its weight: what changes when each is reverted alone?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-d7e58cdf"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44862143363-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44862143363",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "80fa5edcd7274931f1305f50ac81d8b4c2fe4020"
+}
