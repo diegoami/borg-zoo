@@ -9816,6 +9816,100 @@
         "borg_reborn_errand": "none",
         "borg_money_scum_amount": 2000
       }
+    },
+    "reborn-fastfrag-ctl": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-fastfrag-named": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm named.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1
+      }
+    },
+    "reborn-fastfrag-named-ban": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm named-ban.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1,
+        "borg_param_fast_fragile_no_heal": 1
+      }
+    },
+    "reborn-fastfrag-stats": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm stats.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1,
+        "borg_param_fast_fragile_by_stats": 1
+      }
+    },
+    "reborn-fastfrag-stats-ban": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm stats-ban.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1,
+        "borg_param_fast_fragile_by_stats": 1,
+        "borg_param_fast_fragile_no_heal": 1
+      }
+    },
+    "reborn-fastfrag-named-esc75": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm named-esc75.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1,
+        "borg_param_fast_fragile_no_heal": 1,
+        "borg_param_fast_fragile_escape_percent": 75
+      }
+    },
+    "reborn-fastfrag-attack-only": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm attack-only.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1,
+        "borg_param_fast_fragile_escape_percent": 0
+      }
+    },
+    "reborn-fastfrag-named-ban-exc": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm named-ban-exc.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1,
+        "borg_param_fast_fragile_no_heal": 2
+      }
+    },
+    "reborn-healtiers-ctl": {
+      "description": "borg-zoo#597 (reborn-heal-tiers-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-healtiers-speed100": {
+      "description": "borg-zoo#597 (reborn-heal-tiers-pilot.yaml): arm speed100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_speed_percent": 100
+      }
+    },
+    "reborn-healtiers-quaff200": {
+      "description": "borg-zoo#597 (reborn-heal-tiers-pilot.yaml): arm quaff200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_quaff_bonus_percent": 200
+      }
     }
   }
 }

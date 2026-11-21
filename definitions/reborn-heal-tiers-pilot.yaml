@@ -1,0 +1,47 @@
+# borg-zoo#597: town healing tiers at higher max HP (borg-reborn-rs #845): a bonus per HP restored per quaff.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-tiers-pilot.yaml
+name: reborn-heal-tiers-pilot
+issue: 597
+question: >-
+  Does a town-planner bonus for the HP restored per quaff (town_heal_quaff_bonus_percent) shift spending toward Cure
+  Critical Wounds at higher max HP while preserving affordable early healing and escape supplies, against the shipped speed
+  adjustment (66) and the existing speed adjustment (100)?
+suites: [classes-18-300k]   # the 18 starts of classes-18, 300,000 engine turns
+pilot: true
+
+specimen:
+  name: 4.2.6-reborn-rust-heal-tiers-bba5e4be
+  repository: diegoami/borg-reborn-rs
+  ref: bba5e4be071b620fdd8ce8fc475a7acb0c92b125
+  label: "borg-reborn-rs task/T845-healing-tiers bba5e4be (track-p based, #813's per-kind departure cap; predates main's #835 fuel change): town_heal_speed_percent 66, town_heal_quaff_bonus_percent 0 shipped; harness/borg.txt 02e24e59..., scary_monsters.txt 9766d882..."
+  scary_lists:
+    scary_monsters.txt: 9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-healtiers
+arms:
+  ctl:    {}                                              # speed 66, quaff bonus 0 (shipped)
+  speed100: {borg_param_town_heal_speed_percent: 100}
+  quaff200: {borg_param_town_heal_quaff_bonus_percent: 200}
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: borg-reborn-rs request #845, filed as borg-zoo#597; zoo owner, 2026-11-21: "go, what else" (the paired
+  classes-18 pilot at 300,000 turns; the named Ranger diagnostic at 530,000 turns is not run: the Rangers are set aside).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#597; borg-reborn-rs #845). One build, three arms,
+  the same 18 classes-18 starts at 300,000 engine turns (suite classes-18-300k), 54 games, evidence retained for all; stalls
+  and failures retained. The named race 9 / class 7 Ranger seed 1318064166 at 530,000 turns (an X11-startup seed, which a
+  headless birth does not establish) is a separate diagnostic that is not run here (Rangers are set aside by the owner).
+  Gate: one binary; each arm's values in params-core.json; no config_error; every cell ends in death, turn_cap or
+  borg_stopped; stalls, timeouts and crashes kept apart; frozen-turn bursts classified; usable town-plan, inventory and
+  resolved-settings receipts for every cell.
+  Report per tier (the healing potions Cure Light, Serious and Critical Wounds): actual shops and offers, known or unknown
+  stock, unit price, spendable gold, CL and max HP, pack and Home counts, purchases and spend, and what the quaff bonus
+  displaced (Phase Door, food, light, Recall); paired deaths, CL and maximum DL; early healing and escape supplies kept.
+  Descriptive (RULES 14).

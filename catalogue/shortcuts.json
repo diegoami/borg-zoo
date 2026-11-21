@@ -1542,8 +1542,8 @@
     },
     "reborn-cursed": {
       "issue": 583,
-      "status": "defined (pilot)",
-      "what": "Cursed equipment (borg-reborn-rs #830, PR #832): the base 88d98537 against the change 9cbe0348, shipped settings.",
+      "status": "defined (pilot, two experiments: #583, #598)",
+      "what": "Cursed equipment (borg-reborn-rs #830, PR #832): the base 88d98537 against the change 9cbe0348, shipped settings. Second pilot (#598) on 88d98537 vs cursed af70b9e9, 36 cells.",
       "profiles": [
         "reborn-cursed-shipped"
       ],
@@ -1633,6 +1633,33 @@
         "reborn-townscum-scum500",
         "reborn-townscum-scum1000",
         "reborn-townscum-scum2000"
+      ],
+      "runs": []
+    },
+    "reborn-fastfrag": {
+      "issue": 596,
+      "status": "defined (pilot)",
+      "what": "Fast-fragile monsters (borg-reborn-rs 7f8c6b80): scary-list entries, bans and escape variants against the control, 8 arms.",
+      "profiles": [
+        "reborn-fastfrag-ctl",
+        "reborn-fastfrag-named",
+        "reborn-fastfrag-named-ban",
+        "reborn-fastfrag-stats",
+        "reborn-fastfrag-stats-ban",
+        "reborn-fastfrag-named-esc75",
+        "reborn-fastfrag-attack-only",
+        "reborn-fastfrag-named-ban-exc"
+      ],
+      "runs": []
+    },
+    "reborn-healtiers": {
+      "issue": 597,
+      "status": "defined (pilot)",
+      "what": "Heal tiers (bba5e4be): speed100 and quaff200 against the control at 300k turns on classes-18-300k.",
+      "profiles": [
+        "reborn-healtiers-ctl",
+        "reborn-healtiers-speed100",
+        "reborn-healtiers-quaff200"
       ],
       "runs": []
     }

@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-heal-tiers-pilot",
+  "issue": 597,
+  "definition": "definitions/reborn-heal-tiers-pilot.yaml",
+  "question": "Does a town-planner bonus for the HP restored per quaff (town_heal_quaff_bonus_percent) shift spending toward Cure Critical Wounds at higher max HP while preserving affordable early healing and escape supplies, against the shipped speed adjustment (66) and the existing speed adjustment (100)?",
+  "description": "Does a town-planner bonus for the HP restored per quaff (town_heal_quaff_bonus_percent) shift spending toward Cure Critical Wounds at higher max HP while preserving affordable early healing and escape supplies, against the shipped speed adjustment (66) and the existing speed adjustment (100)? Generated from definitions/reborn-heal-tiers-pilot.yaml: 3 arms on 4.2.6-reborn-rust-heal-tiers-bba5e4be, suite classes-18-300k.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#597; borg-reborn-rs #845). One build, three arms,\nthe same 18 classes-18 starts at 300,000 engine turns (suite classes-18-300k), 54 games, evidence retained for all; stalls\nand failures retained. The named race 9 / class 7 Ranger seed 1318064166 at 530,000 turns (an X11-startup seed, which a\nheadless birth does not establish) is a separate diagnostic that is not run here (Rangers are set aside by the owner).\nGate: one binary; each arm's values in params-core.json; no config_error; every cell ends in death, turn_cap or\nborg_stopped; stalls, timeouts and crashes kept apart; frozen-turn bursts classified; usable town-plan, inventory and\nresolved-settings receipts for every cell.\nReport per tier (the healing potions Cure Light, Serious and Critical Wounds): actual shops and offers, known or unknown\nstock, unit price, spendable gold, CL and max HP, pack and Home counts, purchases and spend, and what the quaff bonus\ndisplaced (Phase Door, food, light, Recall); paired deaths, CL and maximum DL; early healing and escape supplies kept.\nDescriptive (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-heal-tiers-bba5e4be"
+  ],
+  "profiles": [
+    "reborn-healtiers-ctl",
+    "reborn-healtiers-speed100",
+    "reborn-healtiers-quaff200"
+  ],
+  "suites": [
+    "classes-18-300k"
+  ],
+  "control": "4.2.6-reborn-rust-heal-tiers-bba5e4be",
+  "control_profile": "reborn-healtiers-ctl",
+  "owner_authorization": "2026-11-21: borg-reborn-rs request #845, filed as borg-zoo#597; zoo owner, 2026-11-21: \"go, what else\" (the paired classes-18 pilot at 300,000 turns; the named Ranger diagnostic at 530,000 turns is not run: the Rangers are set aside).",
+  "retain_evidence": true
+}

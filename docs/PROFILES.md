@@ -107,7 +107,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-recallres` | [#563](https://github.com/diegoami/borg-zoo/issues/563) | 3 | defined (pilot) | Word of Recall replenishment with a reserve of 1 (shipped), 2 and 3 scrolls on ae904090 (borg-reborn-rs #810, PR #813). |
 | `reborn-head` | [#566](https://github.com/diegoami/borg-zoo/issues/566) | 1 | defined (the full classes-1800 ladder: verysmall pilot, small-rest, medium, big, full; dispatched in order at the owner's request) | borg-reborn-rs main 3b4924ba (head on 2026-11-21) with its shipped settings and no overrides over all 1,800 classes-1800 starts. |
 | `reborn-p6final` | [#571](https://github.com/diegoami/borg-zoo/issues/571) | 1 | defined (pilot; the gate is returned before anything else) | P6 final candidate compatibility (borg-reborn-rs #814): main 07aa4b1e against a3635ad8, shipped defaults. |
-| `reborn-cursed` | [#583](https://github.com/diegoami/borg-zoo/issues/583) | 1 | defined (pilot) | Cursed equipment (borg-reborn-rs #830, PR #832): the base 88d98537 against the change 9cbe0348, shipped settings. |
+| `reborn-cursed` | [#583](https://github.com/diegoami/borg-zoo/issues/583) | 1 | defined (pilot, two experiments: #583, #598) | Cursed equipment (borg-reborn-rs #830, PR #832): the base 88d98537 against the change 9cbe0348, shipped settings. Second pilot (#598) on 88d98537 vs cursed af70b9e9, 36 cells. |
 | `reborn-torch` | [#577](https://github.com/diegoami/borg-zoo/issues/577) | 4 | defined (exposure pilot at 300,000 turns) | Spare torches to buy and keep (borg-reborn-rs #810, PR #835): town_light_reserve_turns 0, 15000, 20000, 25000 on e4d64f08. |
 | `reborn-confusion` | [#581](https://github.com/diegoami/borg-zoo/issues/581) | 9 | defined (pilot; small + medium after the gate) | The six confusion settings of borg-reborn-rs #837 on da097a76: CLW cure, no walk before the cure, stuck, CSW reserve, kobold shaman attack or leave. |
 | `reborn-invis` | [#580](https://github.com/diegoami/borg-zoo/issues/580) | 3 | defined (pilot; classes-1800 after the gate) | Invisible attacker mode and Detect Invisible (borg-reborn-rs #831, PR #836) on b3f32a9a: A old behaviour, B shipped, C higher Detect Invisible value. |
@@ -115,6 +115,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-immfix` | [#586](https://github.com/diegoami/borg-zoo/issues/586) | 3 | defined (pilot, then big at starts 361-900) | caution_ranged_vs_immobile 2 with the confusion and no-return switches on 8eadb21f: shipped, immobile2, immobile2_fix (borg-reborn-rs #837). |
 | `reborn-townkos` | [#569](https://github.com/diegoami/borg-zoo/issues/569) | 6 | defined (pilot) | Kill on sight in town with the town scare lowered (N 6, 11) and the three #637 switches on main 12c4ce7c (borg-reborn-rs #667). |
 | `reborn-townscum` | [#594](https://github.com/diegoami/borg-zoo/issues/594) | 4 | defined (pilot) | Town scumming (borg_money_scum_amount 500, 1000, 2000) on main 12c4ce7c, against the shipped 0. |
+| `reborn-fastfrag` | [#596](https://github.com/diegoami/borg-zoo/issues/596) | 8 | defined (pilot) | Fast-fragile monsters (borg-reborn-rs 7f8c6b80): scary-list entries, bans and escape variants against the control, 8 arms. |
+| `reborn-healtiers` | [#597](https://github.com/diegoami/borg-zoo/issues/597) | 3 | defined (pilot) | Heal tiers (bba5e4be): speed100 and quaff200 against the control at 300k turns on classes-18-300k. |
 
 ### `heal-attack-4`
 
@@ -1560,7 +1562,7 @@ Profiles: `reborn-p6final-shipped`.
 
 ### `reborn-cursed`
 
-Cursed equipment (borg-reborn-rs #830, PR #832): the base 88d98537 against the change 9cbe0348, shipped settings.
+Cursed equipment (borg-reborn-rs #830, PR #832): the base 88d98537 against the change 9cbe0348, shipped settings. Second pilot (#598) on 88d98537 vs cursed af70b9e9, 36 cells.
 
 Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
@@ -1659,6 +1661,35 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-townscum-scum500` | 500 |
 | `reborn-townscum-scum1000` | 1000 |
 | `reborn-townscum-scum2000` | 2000 |
+
+### `reborn-fastfrag`
+
+Fast-fragile monsters (borg-reborn-rs 7f8c6b80): scary-list entries, bans and escape variants against the control, 8 arms.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_fast_fragile_by_stats` | `borg_param_fast_fragile_escape_percent` | `borg_param_fast_fragile_no_heal` | `borg_param_fast_fragile_policy` |
+| --- | --- | --- | --- | --- |
+| `reborn-fastfrag-ctl` | – | – | – | – |
+| `reborn-fastfrag-named` | – | – | – | 1 |
+| `reborn-fastfrag-named-ban` | – | – | 1 | 1 |
+| `reborn-fastfrag-stats` | 1 | – | – | 1 |
+| `reborn-fastfrag-stats-ban` | 1 | – | 1 | 1 |
+| `reborn-fastfrag-named-esc75` | – | 75 | 1 | 1 |
+| `reborn-fastfrag-attack-only` | – | 0 | – | 1 |
+| `reborn-fastfrag-named-ban-exc` | – | – | 2 | 1 |
+
+### `reborn-healtiers`
+
+Heal tiers (bba5e4be): speed100 and quaff200 against the control at 300k turns on classes-18-300k.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_heal_quaff_bonus_percent` | `borg_param_town_heal_speed_percent` |
+| --- | --- | --- |
+| `reborn-healtiers-ctl` | – | – |
+| `reborn-healtiers-speed100` | – | 100 |
+| `reborn-healtiers-quaff200` | 200 | – |
 
 ## Settings you have built arms with
 
@@ -1813,6 +1844,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
 | `borg_param_escape_teleport_block` | 0, not set | `reborn-tpblock` |  |
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
+| `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag` |  |
+| `borg_param_fast_fragile_escape_percent` | 0, 75, not set | `reborn-fastfrag` |  |
+| `borg_param_fast_fragile_no_heal` | 1, 2, not set | `reborn-fastfrag` |  |
+| `borg_param_fast_fragile_policy` | 1, not set | `reborn-fastfrag` |  |
 | `borg_param_flow_leash` | 0, 1, 2 | `reborn-stairs-leash` |  |
 | `borg_param_flow_leash_base` | 5, 15, not set | `reborn-cleash` |  |
 | `borg_param_flow_leash_depth_margin` | -100, 0, 10, not set | `reborn-cleash` |  |
@@ -1916,6 +1951,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_curve_scale_percent_ranger` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_rogue` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_warrior` | 0, 25, 75, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_quaff_bonus_percent` | 200, not set | `reborn-healtiers` |  |
 | `borg_param_town_heal_reserve_hp_percent_blackguard` | -1, 75, 150, 225, not set | `reborn-heal-by-class`, `reborn-class-curves`, `reborn-class-curves-dbc`, `reborn-bgcurve-dbc` |  |
 | `borg_param_town_heal_reserve_hp_percent_druid` | -1, 125, 350, 375, not set | `reborn-heal-by-class`, `reborn-casters` |  |
 | `borg_param_town_heal_reserve_hp_percent_mage` | -1, 150, 400, 450, not set | `reborn-heal-by-class`, `reborn-mage-priest`, `reborn-casters` |  |
@@ -1925,6 +1961,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class`, `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_speed_percent` | 100, not set | `reborn-healtiers` |  |
 | `borg_param_town_hunt` | 1, not set | `reborn-townhunt` |  |
 | `borg_param_town_hunt_min_hp_percent` | 50, not set | `reborn-townhunt` |  |
 | `borg_param_town_hunt_ranged_bonus_percent` | 50, not set | `reborn-townhunt` |  |

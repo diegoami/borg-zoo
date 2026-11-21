@@ -1,0 +1,51 @@
+# borg-zoo#598: cursed equipment, second pilot at the final head af70b9e9 (borg-reborn-rs #830, PR #832).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-cursed-830-pilot2.yaml
+name: reborn-cursed-830-pilot2
+issue: 598
+question: >-
+  Does borg-reborn-rs#832 at its final head af70b9e9 (the five harmful curses come off at once, per slot, per item and
+  per level; a trip to town for Remove Curse when a removable curse stays worn; no Remove Curse scroll for a pack item
+  worth less than the scroll) play as the first pilot's 9cbe0348 did, without stalls or deaths?
+tier: pilot            # classes-18, 100,000 turns
+
+specimens:
+- 4.2.6-reborn-rust-main-88d98537
+- name: 4.2.6-reborn-rust-cursed-af70b9e9
+  repository: diegoami/borg-reborn-rs
+  ref: af70b9e9de453f182d34b76cc34e19133015ca9c
+  label: "borg-reborn-rs PR #832 head af70b9e9 (claude/gracious-feynman-3fxecr): cursed equipment (#830), shipped settings. Source-hash rust be77aae1...; harness/borg.txt 02e24e59... (same as the base)"
+  plans: {}
+  scary_lists:
+    scary_monsters.txt: 9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-cursed
+arms:
+  shipped: {}          # the same profile as reborn-cursed-830-pilot: the change is in the code, not behind a setting
+control_specimen: 4.2.6-reborn-rust-main-88d98537
+control: [shipped]
+owner_authorization: >-
+  2026-11-21: the owner, on the first pilot of borg-zoo#583 having been dispatched at 9cbe0348 before its pin could be
+  moved: "let the first pilot finish, then run a second at af70b9e9".
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, after the gate of run 44916022689 (borg-zoo#583: 36 of 36 cells finished, 0 deaths, 14 of 18 games
+  identical, change arm at 9cbe0348) and before any result of this build was read. A second pilot (RULES 16) of the same
+  definition with the change arm at the final head af70b9e9. Two differences from 9cbe0348: the take-off guard is kept per
+  slot, per item and per level (it matters only when a take-off is refused), and slowness is no longer one of the curses
+  taken off at once (owner's decision). The control cells are the same build as in run 44916022689 and are expected to
+  play identically.
+  Gate: as #583's: no config_error; one binary per specimen; every cell ends in death, turn_cap or borg_stopped; no stall
+  (no frozen game clock, no wall timeout the control does not have); the sanity cells reproduce.
+  Report: per arm and per class deaths and causes, CL at death, deepest level; paired rescued / newly killed; the number
+  of games identical in both arms; and, new here, the change arm against the change arm of run 44916022689 (9cbe0348 against
+  af70b9e9) start by start: expected identical in all 18 (no start of classes-18 is known to meet a slowness curse or a
+  refused take-off), and every start that differs is to be named with the first message where the two games part. Per
+  game, from messages.log and trace-core: "# Removing cursed" notes by curse, "prevents you teleporting" and "aggravating
+  things" messages, Remove Curse scrolls bought and read, and any "restock remove curse" trip reason (not seen in the first
+  pilot). Descriptive: 18 starts; no improvement is claimed.
