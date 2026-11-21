@@ -2551,6 +2551,32 @@
       "scary_lists": {
         "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
       }
+    },
+    "4.2.6-reborn-rust-main-07aa4b1e": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "07aa4b1e92642b615e162773800979a97baf0dd6",
+      "label": "borg-reborn-rs main 07aa4b1e (accepted main): shipped harness/borg.txt, no overrides; writes settings-resolved.json; scary_monsters.txt 9766d882...",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-p6-final-a3635ad8": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "a3635ad80ceb04165aa1d465acd908c158e50478",
+      "label": "borg-reborn-rs task/T814-p6-final-reconciliation a3635ad8 (tree c960c16f; parents track-p 221a2504 and main 07aa4b1e): the ten enchant/decurse parameters (decurse_spell_fail 40, enchant_spell_fail 65, enchant_brand_spell_fail 65, enchant_plain_target 8, enchant_ammo_target 10, enchant_min_shooter_power 3, enchant_ammo_min_quantity 5, enchant_brand_min_quantity 20, enchant_dungeon_max_turns 5500, enchant_town_max_turns 3501) at their neutral defaults; engine 574b618c, donor 8c5d000a, native tool pin 46978936.",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
     }
   }
 }
