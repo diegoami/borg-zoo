@@ -1,0 +1,35 @@
+# borg-zoo#576: caution_ranged_vs_immobile 2 against the shipped 0 on main 3b4924ba: reborn-immobile2-head-big.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-immobile2-head-big.yaml
+name: reborn-immobile2-head-big
+issue: 576
+question: >-
+  On borg-reborn-rs main 3b4924ba, does caution_ranged_vs_immobile 2 (never melee an immobile monster with harmful blows,
+  keep it at range, step away toward the exit) save the confusion and paralysis deaths of #566 without new deaths elsewhere?
+tier: big
+
+specimen: 4.2.6-reborn-rust-main-3b4924ba
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-imm2
+arms:
+  shipped: {}
+  immobile2:
+    borg_param_caution_ranged_vs_immobile: 2
+control: [shipped]
+owner_authorization: >-
+  2026-11-21: zoo owner, "we need to turn caution_ranged_vs_immobile and file a big run in the zoo to see that it does not
+  have side effects ... and if it does help" (pilot first, RULES 16, then big).
+extra:
+  retain_evidence: False
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this arm on 3b4924ba was read (#566's shipped deaths were read; they motivate it).
+  Pilot (classes-18) first, then big (classes-1800 starts 361-900, 60 per class, 100,000 turns) after the pilot's gate.
+  Gate: no config_error; one binary; immobile2's value in borg.txt and params-core.json; every cell ends in death, turn_cap or
+  borg_stopped; frozen-turn bursts classified; death bundles reproduced; the shipped arm plays as #566's run of the same starts.
+  Report per arm and per class: deaths and causes, paired rescued / newly killed against shipped, mean max CL and DL;
+  deaths with an immobile (NEVER_MOVE) monster adjacent in the last 50 decisions; "# Stepping away" notes per game and loops;
+  blows taken from immobile monsters; throws and shots at them; the RULES 18 bin. #461 (5af2f79f) found mode 2 leaning worse
+  (22 -> 24, Druids 5 -> 9); the shipped value stays 0 unless this result supports 2.

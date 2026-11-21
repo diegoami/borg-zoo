@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-immobile2-head-big",
+  "issue": 576,
+  "definition": "definitions/reborn-immobile2-head-big.yaml",
+  "question": "On borg-reborn-rs main 3b4924ba, does caution_ranged_vs_immobile 2 (never melee an immobile monster with harmful blows, keep it at range, step away toward the exit) save the confusion and paralysis deaths of #566 without new deaths elsewhere?",
+  "description": "On borg-reborn-rs main 3b4924ba, does caution_ranged_vs_immobile 2 (never melee an immobile monster with harmful blows, keep it at range, step away toward the exit) save the confusion and paralysis deaths of #566 without new deaths elsewhere? Generated from definitions/reborn-immobile2-head-big.yaml: 2 arms on 4.2.6-reborn-rust-main-3b4924ba, suite classes-1800-big.",
+  "prespecified": "Fixed 2026-11-21, before any result of this arm on 3b4924ba was read (#566's shipped deaths were read; they motivate it).\nPilot (classes-18) first, then big (classes-1800 starts 361-900, 60 per class, 100,000 turns) after the pilot's gate.\nGate: no config_error; one binary; immobile2's value in borg.txt and params-core.json; every cell ends in death, turn_cap or\nborg_stopped; frozen-turn bursts classified; death bundles reproduced; the shipped arm plays as #566's run of the same starts.\nReport per arm and per class: deaths and causes, paired rescued / newly killed against shipped, mean max CL and DL;\ndeaths with an immobile (NEVER_MOVE) monster adjacent in the last 50 decisions; \"# Stepping away\" notes per game and loops;\nblows taken from immobile monsters; throws and shots at them; the RULES 18 bin. #461 (5af2f79f) found mode 2 leaning worse\n(22 -> 24, Druids 5 -> 9); the shipped value stays 0 unless this result supports 2.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3b4924ba"
+  ],
+  "profiles": [
+    "reborn-imm2-shipped",
+    "reborn-imm2-immobile2"
+  ],
+  "suites": [
+    "classes-1800-big"
+  ],
+  "control": "4.2.6-reborn-rust-main-3b4924ba",
+  "control_profile": "reborn-imm2-shipped",
+  "owner_authorization": "2026-11-21: zoo owner, \"we need to turn caution_ranged_vs_immobile and file a big run in the zoo to see that it does not have side effects ... and if it does help\" (pilot first, RULES 16, then big).",
+  "retain_evidence": false
+}
