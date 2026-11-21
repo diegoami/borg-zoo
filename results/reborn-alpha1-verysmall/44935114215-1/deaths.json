@@ -1,0 +1,117 @@
+[
+  {
+    "cause": "a clear icky thing",
+    "cell": "classes-1800-verysmall/4.2.6-reborn-rust-main-ed52fec1/reborn-alpha1-shipped/2097768768",
+    "class": "Mage",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-1800-verysmall/4.2.6-reborn-rust-main-ed52fec1/reborn-alpha1-shipped/2097768768",
+      "complete": true,
+      "files": {
+        "archive/Borg.map": {
+          "bytes": 29655,
+          "sha256": "53118525e77cd221fb53d21e157a1820ce656700b3bcf4f542a24b26f228f6d0"
+        },
+        "archive/borg-log.txt": {
+          "bytes": 172,
+          "sha256": "91978fe077ae78f6cbc928d9464641bc2929af7991c6be4372eb8f0b2392172f"
+        },
+        "archive/borg.dat": {
+          "bytes": 51,
+          "sha256": "9d1087c10b5255e8ca0bda64707a02ebd582704a32022f5cae5368eeed776789"
+        },
+        "keys.log": {
+          "bytes": 13918,
+          "sha256": "d48eb314eb5412548c437dad387345cd5dfe1d7cbe8ed9bfb8228dc9650a1ca2"
+        },
+        "messages.log": {
+          "bytes": 91230,
+          "sha256": "6ed575898ff941d191c8496fbcdc2e2d48fc83b0a9fec7e5c4daf42bb3ef7b16"
+        },
+        "params-core.json": {
+          "bytes": 709902,
+          "sha256": "8805153af8afbbc6824246377f8738d6627a63b9d1cef5e6a2c77af19a0597fc"
+        },
+        "phase-observations.jsonl": {
+          "bytes": 2151,
+          "sha256": "de10e673ce8de70d15056ec973aa3e6d47117c8250245c908491d90f55c15cc6"
+        },
+        "return-events.jsonl": {
+          "bytes": 3453,
+          "sha256": "daf9b75e208fb063b1a3a871f6befbeee360e0a77c5c4571983079ee1095292b"
+        },
+        "save/Borg": {
+          "bytes": 65060,
+          "sha256": "0681f23c84159b7f7782755d983ec63acca729ef901456ed42631b4f11721dff"
+        },
+        "settings-resolved.json": {
+          "bytes": 2499,
+          "sha256": "0b3ac6bff8f2954e9e5649393e045ae77528f92d6d870ced18c3ee7179fefba5"
+        },
+        "state.log": {
+          "bytes": 144125,
+          "sha256": "bc2bc3e879e638baf912d7ac782d3d34cb3a2109f0dcb61b95467af836815f22"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "summary.json": {
+          "bytes": 1997,
+          "sha256": "cbefa0cf2411ba320989366fc424b526f0e87d393d51affb8392ff8878d2fdac"
+        },
+        "town-recording.json": {
+          "bytes": 1861,
+          "sha256": "3404b48ad30afc496d13af5ca0bf4d200d0238c6085e3d81dde17a3794a520b9"
+        },
+        "town-transactions.jsonl": {
+          "bytes": 1269,
+          "sha256": "b99d1494dbf18b7d74117653c3742c91e2af6f414b81781c75fe0e88fbf1c50b"
+        },
+        "trace-core.jsonl": {
+          "bytes": 6384929,
+          "sha256": "8ca43c05ea25f6163c73c04fca345a7a647144cdff289cbb8076b6274f1d8907"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 108,
+          "sha256": "6b327c2913cc53bae878cc6da96491b4a99b74747ed523c7fdff260706d5b658"
+        },
+        "user/borg.txt": {
+          "bytes": 77047,
+          "sha256": "bc8c80ace61b12aefe4bf467151ac2621af3b0b75cfe63f8dc462022c7815b62"
+        },
+        "user/lore.txt": {
+          "bytes": 5086,
+          "sha256": "6d48243da59311f848a293fa27097c69263063ca832c13e24e6effa31e8c0004"
+        },
+        "user/scary_monsters.txt": {
+          "bytes": 5318,
+          "sha256": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": null,
+      "depth": 1,
+      "hp": null,
+      "keys": 1164,
+      "kind": "death",
+      "level": 3,
+      "max_depth": 1,
+      "max_level": 3,
+      "turn": 11024
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 2097768768,
+    "specimen": "4.2.6-reborn-rust-main-ed52fec1"
+  }
+]

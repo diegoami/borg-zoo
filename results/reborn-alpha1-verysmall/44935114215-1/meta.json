@@ -1,0 +1,331 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-alpha1-shipped": {
+        "description": "borg-zoo#601 (reborn-alpha1-verysmall.yaml): arm shipped.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "5c954a0787b20129a2349dae2af61e4a5aef6c059d5a0ccf666a760ce5a6155a"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-main-ed52fec1": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs main ed52fec1 (the v0.1.0-alpha.1 release commit, PR #827 merged): shipped harness/borg.txt a121173b..., borg-rs core.",
+        "ref": "ed52fec125068728955175171cc531230faad6e3",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-verysmall": {
+        "assigned_characters": {
+          "102088710": [
+            "Elf",
+            "Rogue"
+          ],
+          "1042834709": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1199401383": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1217781050": [
+            "Human",
+            "Priest"
+          ],
+          "1236782037": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1248006956": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "1277697136": [
+            "Human",
+            "Rogue"
+          ],
+          "1285833235": [
+            "Gnome",
+            "Paladin"
+          ],
+          "129607500": [
+            "Human",
+            "Ranger"
+          ],
+          "1326666591": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1356248624": [
+            "Elf",
+            "Warrior"
+          ],
+          "1478804878": [
+            "Elf",
+            "Priest"
+          ],
+          "1515505937": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1516096046": [
+            "Gnome",
+            "Druid"
+          ],
+          "1552244183": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "1584060551": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "167240942": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1678765969": [
+            "Elf",
+            "Druid"
+          ],
+          "1751715076": [
+            "Human",
+            "Blackguard"
+          ],
+          "1758620521": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1759555484": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "176707408": [
+            "Human",
+            "Necromancer"
+          ],
+          "1859521195": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "2002578196": [
+            "Hobbit",
+            "Druid"
+          ],
+          "2022908874": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "2093434235": [
+            "Gnome",
+            "Mage"
+          ],
+          "2097768768": [
+            "Human",
+            "Mage"
+          ],
+          "2109297965": [
+            "Human",
+            "Druid"
+          ],
+          "234773070": [
+            "Elf",
+            "Mage"
+          ],
+          "247597266": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "300461652": [
+            "Hobbit",
+            "Mage"
+          ],
+          "352388688": [
+            "Human",
+            "Paladin"
+          ],
+          "384988836": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "412975293": [
+            "Elf",
+            "Necromancer"
+          ],
+          "446353753": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "507571350": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "572215387": [
+            "Elf",
+            "Ranger"
+          ],
+          "584077430": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "652511567": [
+            "Gnome",
+            "Priest"
+          ],
+          "765432699": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "826156836": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "884072154": [
+            "Human",
+            "Warrior"
+          ],
+          "892923114": [
+            "Hobbit",
+            "Priest"
+          ],
+          "920137153": [
+            "Elf",
+            "Paladin"
+          ],
+          "957287853": [
+            "Elf",
+            "Blackguard"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "Tier verysmall of classes-1800 (RULES 14): starts 1-45 (5 per class), with each seed's classes-1800 character. Between the pilot and small: a study that ran it continues with small-rest (starts 46-90), so its tiers stay disjoint.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          884072154,
+          2097768768,
+          2109297965,
+          1217781050,
+          176707408,
+          352388688,
+          1277697136,
+          129607500,
+          1751715076,
+          1859521195,
+          247597266,
+          507571350,
+          584077430,
+          1199401383,
+          1584060551,
+          1759555484,
+          1758620521,
+          446353753,
+          1356248624,
+          234773070,
+          1678765969,
+          1478804878,
+          412975293,
+          920137153,
+          102088710,
+          572215387,
+          957287853,
+          1515505937,
+          300461652,
+          2002578196,
+          892923114,
+          384988836,
+          765432699,
+          826156836,
+          1248006956,
+          2022908874,
+          1326666591,
+          2093434235,
+          1516096046,
+          652511567,
+          1236782037,
+          1285833235,
+          1042834709,
+          167240942,
+          1552244183
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "range": [
+            0,
+            45
+          ],
+          "suite": "classes-1800"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-21 18:27 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-main-ed52fec1",
+    "control_profile": "reborn-alpha1-shipped",
+    "definition": "definitions/reborn-alpha1-verysmall.yaml",
+    "description": "What do the borg-rs core and shipped settings of borg-reborn-rs v0.1.0-alpha.1 (ed52fec1) do over classes-1800's verysmall slice (45 starts, 100,000 turns)? Release measurement: a description, not a comparison. Generated from definitions/reborn-alpha1-verysmall.yaml: 1 arms on 4.2.6-reborn-rust-main-ed52fec1, suite classes-1800-verysmall.",
+    "issue": 601,
+    "name": "reborn-alpha1-verysmall",
+    "owner_authorization": "2026-11-21: borg-reborn-rs release request (#819, filed here as #601), forwarded by the zoo owner. The pilot is a pilot-size run and may be dispatched; the larger tiers are planned only, the owner decides each dispatch.",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-21, before any result was read. Release measurement of borg-reborn-rs v0.1.0-alpha.1 (S0) at ed52fec1: one arm (shipped, no overrides), classes-1800, 100,000 turns, ladder verysmall (45, pilot), small-rest (45), medium (270), big (540), full (900) = 1,800 starts. Descriptive: the release notes state these numbers and make no claim with them (RULES 14).\nGate: no config_error; one binary (BUILD_ID source_sha256, binary_sha256, borg_txt_sha256 reported); every cell ends in death, turn_cap or borg_stopped; stalls, timeouts and harness failures counted apart from deaths and survivors.\nReport, overall and per class: deaths by the cap (count, share, depth and CL at death, top killers); survivors at the cap (count, mean CL, mean max depth); alive at the cap having reached DL5 (count, share); unfinished games; run id, suite and seed block.",
+    "profiles": [
+      "reborn-alpha1-shipped"
+    ],
+    "question": "What do the borg-rs core and shipped settings of borg-reborn-rs v0.1.0-alpha.1 (ed52fec1) do over classes-1800's verysmall slice (45 starts, 100,000 turns)? Release measurement: a description, not a comparison.",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-main-ed52fec1"
+    ],
+    "suites": [
+      "classes-1800-verysmall"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44935114215-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44935114215",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "fe645812950eb9899ebcccfc44087d9dc2d5671d"
+}
