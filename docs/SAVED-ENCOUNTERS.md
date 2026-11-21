@@ -12,6 +12,16 @@ requires `loaded:true`, fresh private Borg memory and saved engine RNG. It
 makes no paired-impact, population or improvement claim. The generated-birth
 `loaded:false`/one-way restrictions are not changed. No large Zoo tier starts.
 
+## Reusing saved characters from population runs
+
+A 2026-11-21 trial showed that a save from a retained population run can be
+used as a starting character. This is an exploratory route. The zoo has
+no supported command to harvest and dispatch a bank of those characters.
+Before building one, agree on the harvest rule, the pinned engine and
+saved RNG contract, what to carry over from the saved game, and how to
+identify the source cell and save. Existing saved-encounter execution uses
+explicit case manifests and fresh Borg memory. See [SUITE-RUNS](SUITE-RUNS.md).
+
 ## Frozen definition and run
 
 The source is `definitions/cemetery-mixed-caster-encounters-smoke.yaml`.

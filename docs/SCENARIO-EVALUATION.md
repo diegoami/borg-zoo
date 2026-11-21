@@ -1,5 +1,7 @@
 # Evaluation plan: identity, synthetic scenarios and population evidence
 
+The phased plan below records the design discussion. See [SCENARIO-DISPATCH](SCENARIO-DISPATCH.md) and [SUITE-RUNS](SUITE-RUNS.md) for execution paths.
+
 Proposed plan change, 2026-11-16. This adds the generated-dungeon scenarios
 in [borg-cemetery#5](https://github.com/diegoami/borg-cemetery/issues/5)
 to the evaluation path discussed around

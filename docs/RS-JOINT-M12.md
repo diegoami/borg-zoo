@@ -1,5 +1,7 @@
 # Joint trip and improved-shopping zoo studies
 
+Historical study design. For collected runs and the confirmation outcome, see [FINDINGS](FINDINGS.md#rust-borg-borg-rs).
+
 Owner request: run the locally selected settings and nearby variations at
 full zoo scale. All arms use borg-rs commit
 `d9a56f48bac8675c91f551619492af36b698b4cf`, on its milestone-12 engine.

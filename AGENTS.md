@@ -5,9 +5,7 @@ specimens and profiles, storing every run, and publishing comparisons. Read
 [README](README.md), [RULES](RULES.md) and [docs/DESIGN.md](docs/DESIGN.md)
 first. What the finished experiments showed, and what is still open, is in
 [docs/FINDINGS.md](docs/FINDINGS.md). Update it when an experiment finishes.
-[docs/OPEN-WORK.md](docs/OPEN-WORK.md) holds the open issues, the failed run
-that needs attention, and the owner's stated decisions from the latest
-session.
+[docs/OPEN-WORK.md](docs/OPEN-WORK.md) lists dispatch and replay traps, owner decisions and dated handovers.
 
 ```sh
 git status --short
@@ -24,13 +22,13 @@ Related repositories, read only:
   C Borg specification (`docs/c-borg/BORG_SPEC.md`), the tunable-Borg plan
   (`docs/c-borg/TUNABLE-BORG-PLAN.md`), findings and enhancement issues
   (#368–#371 quick gains, #376 experiment toolkit).
-- [borg-rs](https://github.com/diegoami/borg-rs): a later specimen, once it can
-  run the same suites.
+- [borg-rs](https://github.com/diegoami/borg-rs) and
+  [borg-reborn-rs](https://github.com/diegoami/borg-reborn-rs): native
+  headless specimens, including pinned source and engine identities in modern runs.
 
 Adding a specimen, profile, suite or experiment is a catalogue change with a
 pull request. Experiments are written as YAML in `definitions/` and generated
 with `python3 -m zoo define` (RULES 15, `docs/DEFINE.md`); what can be asked
 for is in `docs/PROFILES.md` (`/profiles`). Starting a large experiment is the owner's call. It costs no
-money (standard runners are free for this public repository), but it holds
-the account's 20 concurrent Actions jobs for hours, delays every other
-workflow of the owner's, and publishes its results.
+money (standard runners are free for this public repository), but its shards share the owner's 20 concurrent Actions job slots with other
+workflows and publish to the append-only results branch.

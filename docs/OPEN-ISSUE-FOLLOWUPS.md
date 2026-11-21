@@ -1,5 +1,7 @@
 # Older issue follow-ups (2026-11-15)
 
+Historical snapshot. The remaining-work column records the state on 2026-11-15. Check the issue for current status.
+
 | Issue | Verified state | Remaining work |
 | --- | --- | --- |
 | #30, reborn adapter | Three original specimens, arbitrary implementation names, opt-in exact cap, boundary records and depth streams landed in #32; the optional endpoint is supplied by the measured repository | One exception-path gap was found: generated failure records lacked the intended boundary. This PR fills it and tests exact/after-key missing attempts; no experiment needed |

@@ -6,6 +6,8 @@ name: compare
 # them) only that arm runs, tagged with the experiment's name; the site
 # consolidates the arm runs of one tag. smoke.yml calls this workflow for the
 # files in smoke/, whose runs the site shows under its Smoke tab.
+# Dispatch from the merged definition using a repository-relative JSON path.
+# A non-fast-forward results push is recoverable by rerunning failed jobs.
 on:
   workflow_dispatch:
     inputs:
@@ -201,9 +203,9 @@ jobs:
           name: cells-${{ matrix.specimen }}-${{ matrix.shard }}
           path: cells/
           retention-days: 30
-      # Every natural death, replayed with full logs and checked against the
-      # cell's keys, for borg-cemetery's scripts/import_zoo_deaths.py
-      # (borg-zoo#176). Kept whatever retain_evidence says.
+      # Reproduced borg-rs deaths can be imported with borg-cemetery's
+      # scripts/import_zoo_deaths.py (#176). Other replay statuses stay in
+      # the index. Bundle retention is independent of retain_evidence.
       - name: Keep the death bundles for the cemetery
         if: always()
         uses: actions/upload-artifact@v4
