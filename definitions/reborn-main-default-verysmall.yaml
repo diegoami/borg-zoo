@@ -1,0 +1,40 @@
+# borg-zoo#543: the shipped settings of borg-reborn-rs main 2801ba18 on classes-1800-verysmall, material for death reports.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-main-default-verysmall.yaml
+name: reborn-main-default-verysmall
+issue: 543
+question: >-
+  What does borg-reborn-rs main 2801ba18, with its shipped settings and no overrides, die of in 45 starts (5 per class),
+  and what do those deaths show? Material for death reports, not a comparison.
+tier: verysmall        # classes-1800 starts 1-45: 5 per class, 100,000 turns
+pilot: true            # the first run of these arms on this specimen: it is their pilot (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-main-2801ba18
+  repository: diegoami/borg-reborn-rs
+  ref: 2801ba188b1f46ddfdd32eeb7ae7c58330b0fd30
+  label: "borg-reborn-rs main 2801ba18 (head on 2026-11-21, PR #803 merged): shipped harness/borg.txt dc5bba3c..., attack_on_sight, caution_winning_fight and caution_recall_survival shipped 1."
+  scary_lists:
+    scary_monsters.txt: 94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-maindefault
+arms:
+  shipped: {}      # no overrides
+control: [shipped]
+owner_authorization: >-
+  2026-11-21: zoo owner, "when you get the chance make a verysmall run with default settings creating reports with
+  deaths so we have something to analyze" and "use the latest head for the verysmall main run" (a verysmall run, all
+  classes; dispatched after the batch in flight).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result was read. One arm (the shipped profile, no overrides), 45 starts, all classes.
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped (stalls, timeouts and crashes
+  kept apart); frozen-turn bursts classified; death bundles reproduced.
+  Report: deaths and causes per class, CL at death, mean max CL and DL. Then /pilot-deaths for every death (last
+  screens, what was worn and carried, the Borg's notes, the decisions), and a published report. No comparison and no
+  claim about the rate: 45 starts show what kinds of deaths exist.

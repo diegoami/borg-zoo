@@ -1374,7 +1374,7 @@
     },
     "reborn-ship3": {
       "issue": 535,
-      "status": "defined (pilot; supersedes #511's open part)",
+      "status": "defined (pilot)",
       "what": "The three shipped fight/Recall switches ablated on main d7e58cd: alloff, sight, fight, recall, allon.",
       "profiles": [
         "reborn-ship3-alloff",
@@ -1405,6 +1405,15 @@
       "what": "borg-reborn-rs 5343532c (task/T790-death-risk): the shipped settings with per-think death_risk observations, evidence retained for calibration.",
       "profiles": [
         "reborn-deathrisk-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-maindefault": {
+      "issue": 543,
+      "status": "defined (verysmall, its own pilot; death-report material)",
+      "what": "borg-reborn-rs main 2801ba18 with its shipped settings and no overrides, on classes-1800-verysmall (45 starts), for death reports.",
+      "profiles": [
+        "reborn-maindefault-shipped"
       ],
       "runs": []
     }
