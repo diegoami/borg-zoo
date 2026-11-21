@@ -521,7 +521,7 @@ def build_site(results, out):
             rows.append([f'<a href="{name}/{run}/index.html">{html.escape(name)}</a><br><span class="muted">{html.escape(run)}</span>',
                          versions, len(plan['cases']), f'{report["collected_cells"]}/{report["expected_cells"]}',
                          html.escape(outcomes) or 'No paired outcomes'])
-    from . import saved_incidents
+    from . import saved_incidents, saved_suites
     saved_rows, saved_unavailable = saved_incidents.build_site(results, out)
     rows.extend(saved_rows)
     unavailable.extend(saved_unavailable)
@@ -532,7 +532,8 @@ def build_site(results, out):
                ('Collected / expected cells', 'Completed records collected, including failures, out of all requested version × scenario cells.'),
                ('Outcomes', 'Scenario pairs by outcome for a comparison (missing, invalid and inconclusive included); the death share for a suite run of one build.')]
     body = (f'<h1>Borg zoo</h1>{landing.nav("scenarios/index.html", "../")}'
-            '<h2>Scenario runs</h2>'
+            + saved_suites.build_site(out)
+            + '<h2>Scenario runs</h2>'
             + site.explain('Saved encounters and synthetic starts from pinned Cemetery banks, compared across exact Borg setups. '
                            'These runs stay separate from natural games and population statistics. '
                            'Missing and invalid cells remain visible; these comparisons alone do not establish improvement.', columns)

@@ -8,7 +8,9 @@ def definition_plan(d, path, root):
     if d.get('kind')=='balanced-incident-execution':
         return execution_definition_plan(d,path,root)
     keys={'kind','name','folder','issue','question','cemetery','preparation_source','native_tools','baseline_specimen','expected_cells','classes','per_class','parallel_jobs','owner_authorization','prespecified'}
-    if set(d)!=keys or d['kind']!='balanced-incident-harvest' or d['folder']!='scenario-experiments':
+    expected = keys if 'suite_id' not in d else keys - {'baseline_specimen'} | {'suite_id'}
+    if 'suite_id' in d and not re.fullmatch(r'suite[1-9][0-9]*-v[1-9][0-9]*',d['suite_id']):raise ValueError('stable suite ID required')
+    if set(d)!=expected or d['kind']!='balanced-incident-harvest' or d['folder']!='scenario-experiments':
         raise ValueError('unsupported balanced harvest definition')
     if d['expected_cells']!=999 or d['classes']!=list(range(9)) or d['per_class']!=111 or not 1<=d['parallel_jobs']<=9:
         raise ValueError('equal111-per-class contract required')
@@ -16,8 +18,12 @@ def definition_plan(d, path, root):
         if d[key]['repository']!=repo or not re.fullmatch('[0-9a-f]{40}',d[key]['commit']):raise ValueError('immutable repository pins required')
     if not re.fullmatch('[0-9a-f]{64}',d['cemetery']['spec_sha256']) or not isinstance(d['issue'],int) or d['issue']<=0:
         raise ValueError('spec digest and tracking issue required')
-    specimen=json.loads((root/'catalogue/specimens.json').read_text())['specimens'][d['baseline_specimen']]
-    body=dict(d,schema='borg-zoo/balanced-incident-harvest@1',definition=Path(path).resolve().relative_to(root.resolve()).as_posix(),baseline=dict(repository=specimen['repository'],commit=specimen['ref'],specimen=d['baseline_specimen']))
+    if 'baseline_specimen' in d:
+        specimen=json.loads((root/'catalogue/specimens.json').read_text())['specimens'][d['baseline_specimen']]
+        baseline=dict(repository=specimen['repository'],commit=specimen['ref'],specimen=d['baseline_specimen'])
+    else:
+        baseline=d['preparation_source']
+    body=dict(d,schema='borg-zoo/balanced-incident-harvest@1',definition=Path(path).resolve().relative_to(root.resolve()).as_posix(),baseline=baseline)
     target=root/d['folder']/(d['name']+'.json');changes=[]
     if not target.exists() or json.loads(target.read_text())!=body:changes.append(('experiment-update' if target.exists() else 'experiment',target.relative_to(root).as_posix(),body))
     return d,[],changes
@@ -76,6 +82,7 @@ def prepare_execution(definition_path, bank, source, output, archive):
     manifest=bank/definition['bank_manifest']
     bank_info,shards=prepare_bank(manifest,bank)
     cases=[]
+    bank_core=native.read(shards[0][0])['core']
     for path,_ in shards:
         leaf=native.read(path)
         for entry in leaf['scenarios']:
@@ -100,12 +107,12 @@ def prepare_execution(definition_path, bank, source, output, archive):
     for name,group in groups:
         refs=[]
         for offset in range(0,len(group),8):
-            path=bank/'synthetic/balanced-999-incidents/generated/execution'/name/f'{offset//8}.json'
-            body=dict(schema='borg-cemetery/saved-encounter-suite@1',suite_id=name+f'-{offset//8}',core='reborn',baseline_source_commit=definition['source']['commit'],
+            path=manifest.parent/'execution'/name/f'{offset//8}.json'
+            body=dict(schema='borg-cemetery/saved-encounter-suite@1',suite_id=name+f'-{offset//8}',core=bank_core,baseline_source_commit=definition['source']['commit'],
                       **plan['manifest'],scenarios=[dict(id=c['id'],scenario=c['scenario_path'],sha256=c['scenario_sha256']) for c in group[offset:offset+8]])
             native.write(path,body);refs.append(dict(manifest=path.relative_to(bank).as_posix(),sha256=native.sha(path)))
             for c in group[offset:offset+8]:c['native_relative']=f'shard-{offset//8+1}/'+c['id']
-        path=bank/'synthetic/balanced-999-incidents/generated/execution'/name/'bank.json'
+        path=manifest.parent/'execution'/name/'bank.json'
         native.write(path,dict(schema='borg-cemetery/encounter-bank@1',id=name,expected_cases=len(group),shards=refs))
         plan['batches'].append(dict(id=name,cases=[c['id'] for c in group],manifest=path.relative_to(bank).as_posix(),manifest_sha256=native.sha(path)))
     plan['plan_hash']=native.digest(plan)
