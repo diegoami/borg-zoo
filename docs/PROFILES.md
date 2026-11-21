@@ -114,6 +114,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-tpblock` | [#578](https://github.com/diegoami/borg-zoo/issues/578) | 2 | defined (pilot, small, medium) | Teleport block under an anti-teleportation curse (borg-reborn-rs #829, PR #833) on 6fe184ea: escape_teleport_block 0 against shipped 1. |
 | `reborn-immfix` | [#586](https://github.com/diegoami/borg-zoo/issues/586) | 3 | defined (pilot, then big at starts 361-900) | caution_ranged_vs_immobile 2 with the confusion and no-return switches on 8eadb21f: shipped, immobile2, immobile2_fix (borg-reborn-rs #837). |
 | `reborn-townkos` | [#569](https://github.com/diegoami/borg-zoo/issues/569) | 6 | defined (pilot) | Kill on sight in town with the town scare lowered (N 6, 11) and the three #637 switches on main 12c4ce7c (borg-reborn-rs #667). |
+| `reborn-townscum` | [#594](https://github.com/diegoami/borg-zoo/issues/594) | 4 | defined (pilot) | Town scumming (borg_money_scum_amount 500, 1000, 2000) on main 12c4ce7c, against the shipped 0. |
 
 ### `heal-attack-4`
 
@@ -1646,6 +1647,19 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-townkos-n11_on` | – | – | 1 | – | 11 |
 | `reborn-townkos-n11_sw` | 1 | 1 | 1 | 1 | 11 |
 
+### `reborn-townscum`
+
+Town scumming (borg_money_scum_amount 500, 1000, 2000) on main 12c4ce7c, against the shipped 0.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_money_scum_amount` |
+| --- | --- |
+| `reborn-townscum-ctl` | – |
+| `reborn-townscum-scum500` | 500 |
+| `reborn-townscum-scum1000` | 1000 |
+| `reborn-townscum-scum2000` | 2000 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1659,6 +1673,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_trip_pack_slack` | 0, 1, 2, not set | `maxdepth-2x5`, `rs-additive-6`, `reborn-bundle` | Return when this few pack slots are free (default 2). Almost no effect: 1 and 2 played identical keys in 359 of 360 #147 games. |
 | `borg_reborn_errand` | ladder, none | `reborn-errand-ladder` | The errand over the core: `none`, or a command such as `ladder` (the class ladders). The ladder looked better in the option-C pilot (24.9% v 29.1% deaths, descriptive). |
 | `borg_param_caution_heal_when_outmatched` | 0, 1, not set | `heal-attack-4`, `heal-pilot-12`, `reborn-outmatched`, `reborn-bundle` | A hurt Borg in lethal danger with no escape drinks its best cure potion (#151). Waits for borg-reborn-rs #461. |
+| `borg_money_scum_amount` | 500, 1000, 2000, not set | `reborn-townscum` |  |
 | `borg_param_attack_arrow_point_blank_divisor_blackguard` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_arrow_point_blank_divisor_druid` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_arrow_point_blank_divisor_mage` | 2, 10, not set | `reborn-pbd-by-class` |  |

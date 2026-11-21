@@ -1,0 +1,43 @@
+# borg-zoo#594: town scumming (borg_money_scum_amount 500, 1000, 2000) on main 12c4ce7c; owner 2026-11-21.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-town-scum-pilot.yaml
+name: reborn-town-scum-pilot
+issue: 594
+question: >-
+  On borg-reborn-rs main 12c4ce7c, does staying in town killing townspeople until the purse reaches 500, 1,000 or 2,000
+  gold (borg_money_scum_amount) buy a safer first kit and an earlier start, or does it just keep the Borg in town (as 5,000
+  and 20,000 did on the C Borg: 0 deaths, CL 1.0)?
+tier: pilot            # classes-18, 100,000 turns; a small tier of an arm that leaves town and leads, after the gate and the owner
+
+specimen: 4.2.6-reborn-rust-main-12c4ce7c
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-townscum
+arms:
+  ctl: {}                                  # borg_money_scum_amount 0 (shipped)
+  scum500:  {borg_money_scum_amount: 500}
+  scum1000: {borg_money_scum_amount: 1000}
+  scum2000: {borg_money_scum_amount: 2000}
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: zoo owner, "add experiment with town scumming" (a classes-18 pilot only; a small tier after the gate and the
+  owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#594). Pilot (RULES 16) on classes-18, four arms,
+  18 starts each (72 games), all classes. The earlier zoo evidence (switches-early-2, C Borg and better-borg-c m4, 5,000 and
+  20,000 gold): 0 deaths, mean CL 1.00 to 1.16, because the character never left town; a survival without progress must
+  not be read as a lead.
+  Gate: no config_error (the legacy key borg_money_scum_amount must be read: check the applied value in the cell's
+  user/borg.txt and the resolved-settings receipt; if the build does not apply it, the arm is "not tested"); one binary;
+  every cell ends in death, turn_cap or borg_stopped; stalls, timeouts and crashes kept apart; frozen-turn bursts classified
+  (a Borg that stays in town for 100,000 turns is a turn_cap, not a stall: check the gold-unchanged rule).
+  Report per arm and class: whether the Borg ever left town and when (first game turn on DL1), purse at departure, turns in
+  town, townspeople killed and drops sold, thefts, the first-trip purchases (flasks, Cure Light Wounds, Phase Door, ranged),
+  deaths in town and in the dungeon with CL at death, final and maximum level, deepest level, identical plays; the Borg
+  needs a permanent light for the mode: count the starts that never meet it (the arm is then identical to ctl). Progress and
+  survival read together: an arm that stays in town is not a lead. Descriptive (RULES 14).

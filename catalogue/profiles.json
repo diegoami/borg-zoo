@@ -9785,6 +9785,37 @@
         "borg_param_attack_town_dangerous_wand": 1,
         "borg_param_attack_town_dangerous_bonus_whole": 1
       }
+    },
+    "reborn-townscum-ctl": {
+      "description": "borg-zoo#594 (reborn-town-scum-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-townscum-scum500": {
+      "description": "borg-zoo#594 (reborn-town-scum-pilot.yaml): arm scum500.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_money_scum_amount": 500
+      }
+    },
+    "reborn-townscum-scum1000": {
+      "description": "borg-zoo#594 (reborn-town-scum-pilot.yaml): arm scum1000.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_money_scum_amount": 1000
+      }
+    },
+    "reborn-townscum-scum2000": {
+      "description": "borg-zoo#594 (reborn-town-scum-pilot.yaml): arm scum2000.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_money_scum_amount": 2000
+      }
     }
   }
 }
