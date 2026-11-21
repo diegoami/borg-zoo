@@ -1,0 +1,46 @@
+# borg-zoo#604: fast_fragile_no_walk of borg-reborn-rs PR #853 (#849): ctl, nowalk, nowalk-stats.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-no-walk-pilot.yaml
+name: reborn-no-walk-pilot
+issue: 604
+question: >-
+  On borg-reborn-rs d9ebf4c9 (main 5987e1fe, with the fast-fragile policy and ban shipped on, plus PR #853), does refusing
+  the desperate walk to the stairs while a faster fast-fragile monster is awake next to the Borg (fast_fragile_no_walk),
+  alone and with the stats rule (fast_fragile_by_stats), save early deaths without adding new ones?
+tier: pilot            # classes-18, 100,000 turns; small + medium (classes-1800 starts 1-360) after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-no-walk-d9ebf4c9
+  repository: diegoami/borg-reborn-rs
+  ref: d9ebf4c9749f24bb1bbaafd8e529f177f7333226
+  label: "borg-reborn-rs claude/youthful-brahmagupta-j7a2y1 d9ebf4c9 (main 5987e1fe, #847 merged, plus PR #853): fast_fragile_policy 1 and fast_fragile_no_heal 1 shipped, fast_fragile_no_walk shipped 0; scary_monsters.txt 9766d882..."
+  scary_lists:
+    scary_monsters.txt: 9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-nowalk
+arms:
+  ctl: {}
+  nowalk: {borg_param_fast_fragile_no_walk: 1}
+  nowalk-stats: {borg_param_fast_fragile_no_walk: 1, borg_param_fast_fragile_by_stats: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: borg-reborn-rs owner ("after this do 849"), filed as borg-zoo#604; zoo owner, 2026-11-21: "any new tickets"
+  (a classes-18 pilot only; small and medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#604; borg-reborn-rs #849, PR #853). Pilot (RULES 16)
+  on classes-18, three arms, 18 starts each (54 games), all classes, one binary; small + medium (classes-1800 starts 1-360)
+  after the gate and the owner.
+  Gate: no config_error; one binary; each arm's values in params-core.json; ctl plays as the build's shipped settings;
+  every cell ends in death, turn_cap or borg_stopped; stalls reported start by start (the lightless abort is a separate
+  family); frozen-turn bursts classified.
+  Report per arm and class: deaths and causes (crow and wild cat apart), CL at death, final and maximum level; paired rescued
+  and newly killed against ctl, identical plays (the shipped policy attacks before the walk's code, so little change is
+  expected); how often "# No walk to the stairs from a faster fast-fragile attacker" appears and for which monsters; the
+  8 cases of #842 (Necromancer 1705507033, Half-Elf Druid 733550937). Descriptive (RULES 14); nowalk-stats compares with
+  #596's stats arm only as a lead, on another build.

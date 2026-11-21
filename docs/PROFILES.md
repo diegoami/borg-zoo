@@ -119,6 +119,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-healtiers` | [#597](https://github.com/diegoami/borg-zoo/issues/597) | 3 | defined (pilot) | Heal tiers (bba5e4be): speed100 and quaff200 against the control at 300k turns on classes-18-300k. |
 | `reborn-alpha1` | [#601](https://github.com/diegoami/borg-zoo/issues/601) | 1 | defined (pilot; small-rest, medium, big, full planned, not dispatched) | Release measurement of borg-reborn-rs v0.1.0-alpha.1 (ed52fec1): shipped settings, one arm, classes-1800 ladder (45+45+270+540+900), 100,000 turns. |
 | `reborn-rangedonly` | [#593](https://github.com/diegoami/borg-zoo/issues/593) | 4 | defined (pilot) | caution_ranged_only (borg-reborn-rs #838) on 5887c29b: shipped, ranged, immobile2, ranged_clw, classes-18 pilot. |
+| `reborn-nowalk` | [#604](https://github.com/diegoami/borg-zoo/issues/604) | 3 | defined (pilot) | fast_fragile_no_walk (borg-reborn-rs #849, PR #853) on d9ebf4c9: ctl, nowalk, nowalk-stats, classes-18 pilot. |
 
 ### `heal-attack-4`
 
@@ -1714,6 +1715,18 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-rangedonly-immobile2` | – | – | – | 2 |
 | `reborn-rangedonly-ranged_clw` | 1 | 2 | 1 | – |
 
+### `reborn-nowalk`
+
+fast_fragile_no_walk (borg-reborn-rs #849, PR #853) on d9ebf4c9: ctl, nowalk, nowalk-stats, classes-18 pilot.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_fast_fragile_by_stats` | `borg_param_fast_fragile_no_walk` |
+| --- | --- | --- |
+| `reborn-nowalk-ctl` | – | – |
+| `reborn-nowalk-nowalk` | – | 1 |
+| `reborn-nowalk-nowalk-stats` | 1 | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1868,9 +1881,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
 | `borg_param_escape_teleport_block` | 0, not set | `reborn-tpblock` |  |
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
-| `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag` |  |
+| `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag`, `reborn-nowalk` |  |
 | `borg_param_fast_fragile_escape_percent` | 0, 75, not set | `reborn-fastfrag` |  |
 | `borg_param_fast_fragile_no_heal` | 1, 2, not set | `reborn-fastfrag` |  |
+| `borg_param_fast_fragile_no_walk` | 1, not set | `reborn-nowalk` |  |
 | `borg_param_fast_fragile_policy` | 1, not set | `reborn-fastfrag` |  |
 | `borg_param_flow_leash` | 0, 1, 2 | `reborn-stairs-leash` |  |
 | `borg_param_flow_leash_base` | 5, 15, not set | `reborn-cleash` |  |

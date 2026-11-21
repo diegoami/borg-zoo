@@ -1683,6 +1683,17 @@
         "reborn-rangedonly-ranged_clw"
       ],
       "runs": []
+    },
+    "reborn-nowalk": {
+      "issue": 604,
+      "status": "defined (pilot)",
+      "what": "fast_fragile_no_walk (borg-reborn-rs #849, PR #853) on d9ebf4c9: ctl, nowalk, nowalk-stats, classes-18 pilot.",
+      "profiles": [
+        "reborn-nowalk-ctl",
+        "reborn-nowalk-nowalk",
+        "reborn-nowalk-nowalk-stats"
+      ],
+      "runs": []
     }
   }
 }
