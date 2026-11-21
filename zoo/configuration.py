@@ -3,6 +3,8 @@ import gzip
 import hashlib
 import html
 import json
+import os
+import threading
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,12 +31,20 @@ def capture(record, work, blobs):
     blobs = Path(blobs)
     blobs.mkdir(parents=True, exist_ok=True)
     target = blobs / f'{digest}.txt'
+    # Cells that share a borg.txt share its blob and run side by side: write the whole blob under a private name and
+    # link it into place, so a second cell never finds a half-written file (borg-zoo#548: a dogs10 cell failed with
+    # "configuration evidence hash mismatch" when it opened the blob while another cell was still writing it).
+    tmp = blobs / f'.{digest}.{os.getpid()}.{threading.get_ident()}.tmp'
     try:
-        with target.open('xb') as stream:
-            stream.write(data)
-    except FileExistsError:
-        if verified_bytes(target, digest) is None:
-            raise ValueError(f'configuration evidence hash mismatch: {digest}')
+        tmp.write_bytes(data)
+        try:
+            os.link(tmp, target)
+        except FileExistsError:
+            pass
+    finally:
+        tmp.unlink(missing_ok=True)
+    if verified_bytes(target, digest) is None:
+        raise ValueError(f'configuration evidence hash mismatch: {digest}')
     record['configuration_file'] = {'status': 'verified', 'sha256': digest,
         'path': f'configurations/{digest}.txt', 'source': 'Written user/borg.txt from this attempt'}
 
