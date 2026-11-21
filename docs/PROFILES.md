@@ -99,6 +99,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-paladingate` | [#544](https://github.com/diegoami/borg-zoo/issues/544) | 2 | defined (pilot on the 10 Paladin starts) | The Paladin DL3-4 max-HP preparedness gate, 45 against 50, on 2fdfd41c (borg-reborn-rs #795). |
 | `reborn-darkentry` | [#546](https://github.com/diegoami/borg-zoo/issues/546) | 2 | defined (pilot on the 20 Mage and Necromancer starts) | Low-level dark-entry detection (light_detect_dark_entry 1) for Mages and Necromancers on cd0ed207 (borg-reborn-rs #796). |
 | `reborn-killers` | [#548](https://github.com/diegoami/borg-zoo/issues/548) | 6 | defined (200,000-turn pilot) | Fang and Grip scary to CL8-10 and 10-12, the dogs as kill-on-sight, soldiers and acolytes scary to CL12-16 and 16-20, on main 2801ba18. |
+| `reborn-receipt` | [#539](https://github.com/diegoami/borg-zoo/issues/539) | 2 | defined (pilot; adapter contract check of settings-resolved.json) | The resolved-settings receipt on main 78fb330f: a class override, a legacy alias, a scalar and a default-equal value, against the shipped profile. |
 
 ### `heal-attack-4`
 
@@ -1458,6 +1459,17 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-killers-fighters12` | 2 lines |
 | `reborn-killers-fighters16` | 2 lines |
 
+### `reborn-receipt`
+
+The resolved-settings receipt on main 78fb330f: a class override, a legacy alias, a scalar and a default-equal value, against the shipped profile.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_preference_mage_spell_permille` | `borg_param_town_phase_reserve__mage` | `borg_param_town_phase_reserve__ranger` | `borg_param_town_phase_reserve__warrior` | `borg_param_town_phase_reserve_percent` |
+| --- | --- | --- | --- | --- | --- |
+| `reborn-receipt-ctl` | – | – | – | – | – |
+| `reborn-receipt-override` | 1600 | 1 | 3 | 0 | 150 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1497,7 +1509,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_mage_device_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_mage_melee_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_mage_projectile_permille` | 500, 750, not set | `reborn-attack-focus` |  |
-| `borg_param_attack_preference_mage_spell_permille` | 1000, 1500, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle`, `reborn-mage-priest` |  |
+| `borg_param_attack_preference_mage_spell_permille` | 1000, 1500, 1600, 2000, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle`, `reborn-mage-priest`, `reborn-receipt` |  |
 | `borg_param_attack_preference_mage_thrown_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_necromancer_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_necromancer_device_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
@@ -1740,7 +1752,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_reserve` | 1, 2, 3, not set | `reborn-bundle`, `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve` |  |
-| `borg_param_town_phase_reserve_percent` | 50, 100, 200, 400, not set | `reborn-bundle`, `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve` |  |
+| `borg_param_town_phase_reserve__mage` | 1, not set | `reborn-receipt` |  |
+| `borg_param_town_phase_reserve__ranger` | 3, not set | `reborn-receipt` |  |
+| `borg_param_town_phase_reserve__warrior` | 0, not set | `reborn-receipt` |  |
+| `borg_param_town_phase_reserve_percent` | 50, 100, 150, 200, 400, not set | `reborn-bundle`, `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve`, `reborn-receipt` |  |
 | `borg_param_town_ranged_reserve` | 6, not set | `reborn-townhunt` |  |
 | `borg_param_town_ranger_arrows_max__ranger` | 20, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_recall_reserve` | 1, not set | `reborn-town-switch-screen` |  |

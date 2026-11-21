@@ -1,0 +1,49 @@
+# borg-zoo#539: adapter contract check of the settings-resolved.json receipt on borg-reborn-rs main 78fb330f (the producer is 62a7aae2).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-settings-receipt-pilot.yaml
+name: reborn-settings-receipt-pilot
+issue: 539
+question: >-
+  Does a borg-rs cell on borg-reborn-rs main 78fb330f write settings-resolved.json, and does the zoo retain it, validate
+  it and project each written borg_param_* key (class suffixes, a legacy attack_preference alias, a scalar, a value equal to
+  the compiled default) onto the canonical name for the played class? A contract check, not a comparison.
+tier: pilot            # classes-18, 100,000 turns: 2 starts per class, 36 games
+
+specimen:
+  name: 4.2.6-reborn-rust-main-78fb330f
+  repository: diegoami/borg-reborn-rs
+  ref: 78fb330f05cf8c55abebd6e38c2620be258ede91
+  label: "borg-reborn-rs main 78fb330f (head on 2026-11-21): writes settings-resolved.json (62a7aae2); shipped settings."
+  scary_lists:
+    scary_monsters.txt: 94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-receipt
+arms:
+  ctl: {}
+  override:
+    borg_param_town_phase_reserve__ranger: 3           # shipped 2: a class override for Rangers (the issue's example)
+    borg_param_town_phase_reserve__mage: 1             # a class override that applies to Mages only
+    borg_param_attack_preference_mage_spell_permille: 1600   # the legacy per-class name (shipped 2000): alias of the Mage class value
+    borg_param_town_phase_reserve_percent: 150         # a scalar for every class (shipped 100)
+    borg_param_town_phase_reserve__warrior: 0          # equal to the compiled default: omitted from the receipt
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: zoo owner, "yes define it" (the contract check of #539's receipt; a pilot, 36 games, all classes).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#539; borg-reborn-rs #798). A contract check of the
+  adapter in PR #554, with the first build that writes the receipt; the games themselves are not the question.
+  Gate: one binary; no config_error; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified.
+  Contract: every cell has settings_resolved with status ok (36 of 36), its sha256 equal to the retained
+  settings-resolved.json, class_name equal to the played class; for the override arm and each class the projection
+  verdicts are as follows. Rangers: town_phase_reserve__ranger match (3), the Mage key not applicable, the scalar
+  town_phase_reserve_percent match (150), the alias not applicable. Mages: town_phase_reserve__mage match (1),
+  attack_preference_mage_spell_permille (the alias) match (1600), the scalar match. Warriors: town_phase_reserve__warrior
+  omitted (equal to the default 0). Any other class: the class keys not applicable, the scalar match. ctl cells: receipt
+  ok; the map holds the shipped values that differ from the compiled defaults (the shipped borg.txt sets many); no projection. Report any cell with another verdict, a malformed receipt, or a
+  receipt that disagrees with params-core.json for the same name.

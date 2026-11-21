@@ -9325,6 +9325,25 @@
         "borg_reborn_errand": "none",
         "borg_param_prepared_dl34_min_hp__paladin": 45
       }
+    },
+    "reborn-receipt-ctl": {
+      "description": "borg-zoo#539 (reborn-settings-receipt-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-receipt-override": {
+      "description": "borg-zoo#539 (reborn-settings-receipt-pilot.yaml): arm override.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_reserve__ranger": 3,
+        "borg_param_town_phase_reserve__mage": 1,
+        "borg_param_attack_preference_mage_spell_permille": 1600,
+        "borg_param_town_phase_reserve_percent": 150,
+        "borg_param_town_phase_reserve__warrior": 0
+      }
     }
   }
 }
