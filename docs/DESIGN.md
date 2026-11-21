@@ -13,7 +13,7 @@ dependencies and staged acceptance gates; it is not an execution capability.
 ## Pieces
 
 **Specimen.** Repository, full commit SHA, carried-fix count and label. The
-original C Borg and better-borg-c's milestones:
+table shows the original C Borg and the first seven better-borg-c milestones:
 
 | Specimen | Commit | Carries |
 | --- | --- | --- |
@@ -70,8 +70,11 @@ own equivalence oracle, so identical play between `4.2.6-rs-m0-c` and `4.2.6-rs-
 the port's identity check at zoo scale.
 
 Limits compared with the better-borg-c observer:
-- no effective-settings line, so only the written `borg.txt` is checked;
-- fixed birth only;
+- legacy specimens check the written `borg.txt`. Specimens with
+  `verify_effective_settings` additionally check the native summary. Core
+  resolution receipts, when present, are captured independently;
+- the adapter supports fixed and assigned births, including explicit race
+  and class per seed;
 - the run stops after the first key at or past the cap (cell `"boundary":
   "after-key"`), unless the specimen declares `"exact_turns": true`, which
   passes `-exact-turns` and stops the run at the cap itself (`"boundary":
@@ -101,8 +104,7 @@ for M0.
 **borg-reborn-rs specimens** (borg-zoo#30; also kind `borg-rs`, `zoo/borgrs.py`).
 `4.2.6-reborn-rust`, `4.2.6-reborn-c-pristine` and `4.2.6-reborn-c-bbc-m7` are
 borg-reborn-rs commits of the three arms its own GOALS plan compares: the
-reborn Borg (a placeholder strategy until its M3; its results mean nothing
-yet) and two C controls (the original Borg and better-borg-c M7's Borg)
+early reborn strategy (historical M1 pin) and two C controls (the original Borg and better-borg-c M7's Borg)
 built on borg-reborn-rs's own engine tree. `impl` selects `BORG_IMPL` as
 usual; the two controls use borg-reborn-rs's own control overlay (`c-pristine`,
 `c-bbc-m7`), opaque to the zoo. All three declare `exact_turns` and
@@ -115,11 +117,16 @@ match (checked directly, #39's milestone review on #32). `ref` is tag `m1`
 (`fab7155`), 24 commits past the review merge this was first pinned to,
 including Borg behaviour changes (e.g. never holding on a shop entrance).
 
-Death evidence: the adapter keeps `keys.log` (and `summary.json`, never
-deleted) for a `death` cell instead of discarding it, so a natural death
-found by a zoo run can be recorded and verified against `play_sha256` in the
-measured repository, per its own rules. Every other outcome's keys are
-discarded as before.
+Newer specimens pin `worlds` by name and SHA-256 when required. The build
+includes those `harness/worlds/NAME.txt` files and `scripts/make-world.py`.
+The adapter uses the profile's `borg_world` or the shipped setting to
+generate per-cell game data and records `world` provenance. The build's
+`BUILD_ID` supplies `engine_upstream`. A seed comparison can measure a new
+engine, while a saved suite requires the exact engine in its protocol.
+See [SUITE-RUNS](SUITE-RUNS.md).
+
+Natural-death bundles are outlined in [CEMETERY-DEATHS](CEMETERY-DEATHS.md).
+Raw evidence can also be retained for every cell, including survivors.
 
 **Mandos specimens** (`zoo/mandos.py`, kind `mandos`). A diegoami/mandos
 commit that has the headless entry point `tools/zoo-run.mjs`
@@ -254,8 +261,9 @@ checkpoint saves are kept. The birth rules:
   cohorts;
 - `random`: race and class chosen by the seeded game; observer only;
 - `assigned`: each seed gets a race and class from the suite's
-  `characters`. Classes are dealt in turn, and races cycle once per round of
-  classes, so every class meets every race.
+  `characters`. Classes are dealt in turn, and races cycle once per round.
+  An explicit `assigned_characters` map takes precedence, as for the native
+  full45 and the retained-600 pilot.
 
 On the observer, the zoo gives the runner birth keys for the chosen race and
 class. The birth menus select on a double tap: an item's letter moves the
@@ -265,8 +273,10 @@ character actually played; a mismatch is a `config_error`.
 
 **Seed sets.** Early suites list consecutive seeds. Later suites use a
 `seed_rule` (`sha256-v1`): each seed is drawn deterministically from a hash of
-the suite name and an index, spread over 1 to 2³¹−1. A rule suite skips any
-seed that another suite already uses, so suites never overlap. Each suite
+the suite name and an index, spread over 1 to 2³¹−1. The generator avoids
+collisions with ordinary listed and generated suites. Tier slices deliberately
+reuse their parent seeds. Imported lists must set `"external": true` to
+leave generated suites frozen even when a seed appears in both. Each suite
 declares a role:
 - `pilot`: sizing and exploration;
 - `development`: screening, and choosing what to confirm;
@@ -275,8 +285,11 @@ declares a role:
   catalogue refuses an experiment on a sealed suite unless the experiment
   names that decision in `unsealed_by_owner`.
 
-The current sets are `dev-2000`, `confirm-2000`, `deep-1000` (400,000 turns),
-`random-1000` (race and class chosen by the seed) and `sealed-2000`.
+The [suite catalogue](../catalogue/suites.json) includes `classes-18` and
+the `classes-1800` ladder. At 100,000 turns the development slices contain
+90, 270, 540 and 900 new starts, for 1,800 total. When verysmall plays the
+first 45, small-rest plays the other 45 of small. The 200k variants and
+imported cohorts have their own catalogue entries.
 
 **Cell.** (suite, specimen, profile, seed) → one JSON line (`borg-zoo/cell@1`).
 The record holds:
@@ -299,7 +312,18 @@ The record holds:
 - the wall time;
 - the trace hash, and a play hash that leaves out the configuration lines, so
   identical play is detectable across profiles;
-- the effective settings;
+- configuration provenance: `profile_applied`, `profile_sha256`,
+  `config_sha256`, `configuration_file` and, where supported,
+  `native_reported_settings`, `effective_settings` and validation status;
+- on recent borg-reborn-rs builds, `settings_resolved` captures the core's
+  original `settings-resolved.json` text and SHA-256, class, canonical non-default
+  map and a projection of written `borg_param_*` keys with per-key verdicts.
+  A missing receipt is null. A malformed receipt has status `malformed`
+  and leaves the game outcome unchanged;
+- on the Rust adapter, `specimen_ref`, `source_sha256`, `engine_upstream`, actual
+  birth, and `plan`, `world` and `scary_list` provenance as applicable.
+  Optional diagnostics include `frozen_turn_loop`, `purchase_burst` and
+  `observed_outcome`; retained attempts include an `evidence` inventory;
 - the build identity: binary hash, compiler and platform;
 - the calendar;
 - for a run that did not finish, a `stall` block: the last engine turn, how
@@ -311,16 +335,37 @@ The record holds:
   `no_decisions`). The observer records no player position, so position
   changes are not available.
 
+## Evidence and collection
+
+The run captures the exact written `user/borg.txt` when it matches the
+recorded hash. Cells sharing a configuration share
+`configurations/SHA256.txt`. The writer publishes a complete private
+temporary file with an atomic hard link and verifies the shared file.
+Collection copies verified blobs with the durable cells and run metadata.
+
+With `retain_evidence: true`, each `raw-SPECIMEN-SHARD` artifact contains
+a tarball of the shard work directory plus its SHA-256 sidecar (90 days).
+Inside it, look under `SUITE/SPECIMEN/PROFILE/SEED/` and use
+`evidence.json` for the per-file inventory. For borg-rs this includes
+summary, keys, state and messages and, where applicable, the town and trip
+streams. Verify the archive hash and the files you use. The results
+branch's `evidence-status.json` describes the local inventory before upload.
+Build artifacts last 90 days with retention enabled and 7 days otherwise.
+Death bundles have their own 90-day retention.
+
 ## Workflow (`.github/workflows/compare.yml`)
 
-1. **plan**: expands the experiment into build and run matrices.
+1. **plan**: preflights the JSON path and expands the experiment into build
+   and run matrices. Dispatch from the merged definition as in [README](../README.md#running-an-experiment).
 2. **build**: one job per specimen. It checks out the pinned harness with
    full history, builds, and tars the build so the binary stays executable.
 3. **run**: one job per specimen shard, cells in parallel on the runner's
    cores.
 4. **collect**: merges every shard. A missing cell is recorded as a harness
-   failure, never dropped. The job writes `results/<experiment>/<run>/` to
-   the `results` branch and dispatches the site build.
+   failure, never dropped. The job writes `results/EXPERIMENT/RUN_ID-ATTEMPT/` to
+   the `results` branch and dispatches the site build. A failed plan or build
+   skips collection. For a rejected non-fast-forward results push, rerun
+   the failed jobs and check the new attempt.
 5. **pages** (`.github/workflows/pages.yml`): generates the static site
    from the results branch and deploys it. Deploys queue rather than cancel
    (`cancel-in-progress: false`): every collect dispatches one, so a
@@ -438,10 +483,12 @@ classes-1800 with `shards=4`, `classes-m7` (7,200 C games) took 2 h 44 min
 and `classes-rs-m6` (9,000 games, borg-rs) took 38 min. The figures depend
 on what else holds the queue.
 
-Public repositories have no Actions minute charge on standard runners. The
-limits that matter are 20 concurrent jobs, 256 matrix jobs and 6 hours per
-job - but `compare.yml`'s own `run` job sets `timeout-minutes: 300` (5
-hours), tighter than that ceiling. At a 200,000-turn cap (`classes-1800-200k`),
+Public repositories have no Actions minute charge on standard runners. The owner's
+account budgets 20 concurrent jobs across workflows. GitHub allows up to
+256 jobs in a workflow matrix and 6 hours per hosted job. See
+[GitHub Actions limits](https://docs.github.com/en/actions/reference/limits).
+`compare.yml`'s own `run` job sets `timeout-minutes: 300` (5 hours).
+At a 200,000-turn cap (`classes-1800-200k`),
 8 shards was not enough: 2 of 8 shards for one specimen ran out the clock and
 came back as `harness_failure` for every cell they hadn't finished (run
 42647082970, 2026-11-09). 16 shards on a same-sized rerun finished clean. **A

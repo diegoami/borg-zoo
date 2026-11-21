@@ -10,7 +10,7 @@ dispatch, and never write a definition into `definitions/` until the owner picks
 
 ## 1. Gather what was tried
 
-1. Results: `git fetch origin results` and check the branch out somewhere outside
+1. Results: `git fetch origin results:refs/remotes/origin/results` and check the branch out somewhere outside
    this tree (for example `git worktree add ../zoo-results origin/results`), then
    `python3 -m zoo.history --results ../zoo-results/results --pool --json /tmp/history.json`.
    `--pool` reads the tiers of one study (same specimens, profiles and control, disjoint
@@ -22,7 +22,7 @@ dispatch, and never write a definition into `definitions/` until the owner picks
    killed, McNemar p, identical plays). Narrow with `--match SETTING_OR_ISSUE`
    and `--since YYYY-MM-DD` when the owner gave a focus.
 2. Conclusions and constraints, in this order:
-   - `docs/OPEN-WORK.md` "Owner decisions and preferences": these override any
+   - `docs/OPEN-WORK.md` and the study issue: current owner decisions override any
      proposal (for example: plan-town is measured only with a plan and the return
      dimension; no arm a decision has ruled out).
    - `docs/FINDINGS.md`: what each finished experiment showed, and what it overturned.
@@ -34,8 +34,8 @@ dispatch, and never write a definition into `definitions/` until the owner picks
      comments: a "Picked up by a zoo session" comment means another session owns it, and
      run requests from borg-reborn-rs (issues titled "Pilot: …" with a definition) are
      work waiting, not proposals to make again.
-   - Death evidence: each run's deaths are dossiers in borg-cemetery (`runs/zoo-*`), and
-     every death bundle has the full messages; `/pilot-deaths` and the cemetery's
+   - Death evidence: check the run's `deaths-*` artifacts and any imported dossiers
+     in borg-cemetery (`runs/zoo-*`); reproduced bundles carry the messages; `/pilot-deaths` and the cemetery's
      `/animate-death` show what happened. A death cause the arms did not touch is a
      candidate for a new switch in the Borg, not for another zoo run.
 3. New knobs in the Borgs: settings a specimen's repository added since its last
@@ -69,8 +69,7 @@ Consider, and keep the ones the evidence supports:
 - **Next tier** of a lead: a pilot or small run whose arm leads its control with
   rescued > newly killed and few identical plays. Tiers grow one at a time:
   pilot → small → medium → big → full (RULES 14). Drop the arms that showed nothing.
-  When the owner asks for medium right after a pilot, the precedent (2026-11-18) is
-  small and medium together (starts 1–360), defined as two tier experiments.
+  Read each tier gate and get the owner's go before dispatching the next.
 - **Always a pilot first** (RULES 16): any new arm, and any arm on a new specimen, starts
   with a pilot of exactly those arms on exactly that build. `zoo define` refuses a bigger
   tier without one. Never propose small or larger for arms that have no pilot on the

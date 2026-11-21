@@ -1,5 +1,7 @@
 # Expanded inventory and all-item returns: scheduled studies
 
+Historical study design and scheduling snapshot. See [FINDINGS](FINDINGS.md#rust-borg-borg-rs) for the measured results.
+
 Both studies pin the integrated inventory branch at
 `dd3eeac646e097bcdd7c289c092e91400896a713` (milestone-12 Rust Borg).
 This includes the inventory object-capability repair and the trip-return fix.

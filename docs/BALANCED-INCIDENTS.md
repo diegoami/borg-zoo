@@ -68,7 +68,9 @@ paired cells ran in the nested stages. The last was run
 baseline 528 deaths and 471 survived the horizon; speed30 291 and 708; 315
 rescued and 78 newly killed. The paragraphs above are the planning-time
 record. Results are in `docs/FINDINGS.md`, the report under
-`reports/saved-encounters/`, and the Scenarios dashboard.
+`reports/saved-encounters/`, and the Scenarios dashboard. The bank is now
+frozen as `suite1-v1`. See [SUITE-RUNS](SUITE-RUNS.md) for its single-build
+rerun workflow and engine requirement.
 Cemetery owns the canonical bank/native evidence; Zoo owns aggregate reports
 under `reports/saved-encounters/`. No main branch or accepted milestone changes
 are part of creating or running this suite. Improvement/configuration comparison

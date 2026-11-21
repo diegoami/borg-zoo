@@ -29,7 +29,8 @@ body for borg-reborn-rs that the owner files (or asks a borg-reborn-rs session t
 
 ## 2. The evidence for each setting
 
-1. Digest every run, with tiers pooled: `git worktree add ../zoo-results origin/results`, then
+1. Fetch with `git fetch origin results:refs/remotes/origin/results`, then check out
+   `git worktree add --detach ../zoo-results origin/results` and run
    `python3 -m zoo.history --results ../zoo-results/results --pool --json /tmp/history.json`.
    Narrow with `--match SETTING_NAME` for each shipped setting you examine.
 2. For a setting, collect every entry where an arm differs from its control in that
@@ -61,6 +62,10 @@ Use these grades, strongest first, and never upgrade one:
 | **Neutral: fixes a known failure** | no difference overall, but the targeted failure (a named death, a loop) is fixed with no cost in level or depth | propose shipping it, saying plainly that it fixes a case and does not lower deaths overall |
 | **Shipped value is harmful** | the shipped arm is worse than an alternative at ≥ 360 starts (same bar as strong lead), or it causes stalls or loops | propose reverting, with the evidence |
 | **Not enough evidence** | pilot only, or only on an older game | no change; say what run would answer it |
+
+Alongside the evidence grade, label tested values harmful, neutral or helpful
+when the evidence supports it (RULES 18). Flag pilots with unexercised
+settings separately. Leave the choice of a neutral value to the owner.
 
 Rules that keep the grades honest:
 - **One game per ref.** Never pool or compare across specimens; a lead on an older specimen

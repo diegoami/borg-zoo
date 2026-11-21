@@ -1,14 +1,26 @@
 # Open work and handover state
 
-What is open in this repository, why, and what the next session should read
-first. Updated 2026-11-20 ("State on 2026-11-20" below). The sections from
-"Open issues (2026-11-16)" on are older handovers, kept as written; check any
-status in them against the issue before acting on it. The repository's
-own rules still apply:
-- results are append-only;
-- a specimen, profile, suite or experiment is a catalogue change with a pull request;
-- every measurement starts with its pilot (RULES 16) and grows one tier at a time on the owner's go (RULES 14);
-- starting a large experiment is the owner's call.
+## Traps for a new session
+
+- Claim the study after checking issue comments, branches, PRs and active
+  runs (RULES 17). Use your own worktree.
+- Merge first. If the merge fails, stop. Dispatch `compare.yml` using
+  `experiment=experiments/NAME.json`, not the experiment's bare name.
+  Check each named parameter at the pinned specimen ref. Preflight checks
+  the plan, not the upstream parameter inventory.
+- Start with a pilot and inspect its published gate before proposing the
+  next tier. The owner's standing 2026-11-20 guidance allows pilots and
+  small tiers. Ask before heavy tiers or 200-Ranger runs unless specifically
+  authorized for that study.
+- A rejected `results -> results (fetch first)` push is a collect failure.
+  Use `gh run rerun RUN_ID --failed`, then verify the new
+  `RUN_ID-ATTEMPT` directory. Do not redispatch games that already finished.
+- Set `"external": true` on imported explicit seed lists to keep generated
+  suite seeds frozen. On catalogue conflicts, regenerate from the merged
+  catalogue and definitions, then regenerate `docs/PROFILES.md`.
+- Preserve the replay build while it is available (7 days normally, 90
+  with retained evidence). Suite 1's saved engine is `42cd156ac`. Builds
+  on `574b618c` are rejected by the saved-suite identity check.
 
 ## Read these first
 
@@ -33,9 +45,9 @@ for catalogue JSON and FINDINGS prose. Merge only when
   build and write `reports/NAME-deaths/` (`python3 -m zoo.death_report`). Each
   report ends with a handover section for borg-reborn-rs. Offer it after every
   pilot gate.
-- `/rerun-suite`: a sanity check of borg-reborn-rs `main` at HEAD, with its own
-  `harness/borg.txt` and nothing overridden, on Suite 1 (`suite-run.yml`). It is
-  reported alone, with no other arm, unless the owner asks for one.
+- `/rerun-suite`: a sanity check of one compatible borg-reborn-rs build on
+  Suite 1 (`suite-run.yml`), using that commit's shipped `harness/borg.txt`
+  by default. See [SUITE-RUNS](SUITE-RUNS.md#engine-compatibility).
 - `/profiles`: the named arm sets and the settings tried so far.
 - `/next-experiments`: go through every run (`python3 -m zoo.history --pool`, tiers of
   one study read as one) and propose the best next experiments, each with a draft
@@ -45,73 +57,24 @@ for catalogue JSON and FINDINGS prose. Merge only when
   from the zoo's evidence, one graded proposal per setting, and a borg-reborn-rs issue
   draft for the owner to file (the zoo never edits that repository, RULES 2).
 
-## State on 2026-11-20 (evening)
+## Status checked 2026-11-21
 
-**Owner's limit for now (2026-11-20):** dispatch pilots and small tiers only; no
-heavy jobs (medium, big, full, 200-Ranger runs) without asking. Requests come
-from borg-reborn-rs as zoo issues with a definition; pick them up, define them
-(`definitions/NAME-pilot.yaml`, `zoo define`, a shortcut, `zoo.profiles_page`),
-merge after checks, dispatch the pilot, comment the run on the issue.
+- The pilots queued behind #521 finished. See the results on #516, #517,
+  #518, #520, #522 and #524. #516 and #517 were superseded. #520's native
+  full45 finished with identical play in all 45 pairs.
+- #563 (Recall reserve) and the verysmall start of #566 ran their cells but
+  failed collection. Check the Actions attempt and results branch before
+  using either as a gate. #566's other four slices are archived.
+- Owner decisions remain on the study issues. Open decisions include a
+  saved suite for the newer engine (#184), whether to pursue a saved-character
+  workflow, and whether to continue any pilot whose mechanism was not
+  exercised. See [FINDINGS](FINDINGS.md) for the measurements.
 
-**Pilots done 2026-11-20** (results on each issue and in docs/FINDINGS.md "Results of 2026-11-20, evening"):
+## Historical handovers
 
-| Issue | Experiment | State |
-|---|---|---|
-| #506 | `reborn-c-leash-values-pilot` (44769379993), re-pilot `reborn-c-leash-none-pilot` (44791716325) | done; a wash; small tier of ctl, loose, none is the owner's call |
-| #507 | `reborn-recall-wait-754-pilot` (44779354512) | done; nothing separates; stop |
-| #510 | `reborn-flight3-757-pilot` (44774313553), `reborn-flight3-757-small` (44791789114) | pilot gate failed on `nodanger`'s stall (borg-reborn-rs #775); flight3's rescue did not carry over |
-| #511 | `reborn-fight-recall-pilot` (44774352123) | done; no lead; **death report waits for a new build** |
-| #513 | `reborn-phase-first-761-pilot` (44774388022), `reborn-phase-first-761-small` (44791749875) | `oil`'s lead did not carry over; `phase` newly killed two |
-
-**Queued behind PR #521** (a watcher merges it after its checks and dispatches; if the session
-ends, merge it and dispatch each with `-f experiment=experiments/NAME.json`; shards in brackets):
-`reborn-dive-gates-768-cap-pilot` (2) and `reborn-p6-compat-pilot` (2), `reborn-dive-gates-768-knobs-pilot`
-(4; #518), `reborn-flight3-main-pilot` (4; #516), `reborn-ranger-phase-pilot` (4; #517),
-`reborn-prepared-calibration-pilot` (6; #522), `reborn-weighted-flight-765-pilot` (3; #524).
-#520's gate comes first: its two builds must play the same keys; a mismatch stops the study.
-
-The Ranger tiers (200 starts) asked for in #510, #511, #513, #516 and #517 are set aside by the owner
-(2026-11-20: "all classes, forget the Rangers for a while"); medium tiers are over the limit: ask first. #516 and #517 rest partly on leads that did not carry over (see FINDINGS).
-
-**Traps found this session:**
-- `compare.yml`'s `experiment` input is the path `experiments/NAME.json`. The bare name
-  fails at preflight (run 44769002674).
-- `zoo preflight` does not check that a `borg_param_*` name exists in the specimen;
-  `git grep` each name at the specimen's commit before dispatch.
-- The `test` workflow takes about 22 minutes (the per-arm plan step alone about 13).
-  A unit job at 25 minutes is not stuck.
-- The death-report play pack: two deaths of one seed in different arms used to share a
-  folder (fixed in PR #505, open).
-- The results job can lose its push race when runs finish together: `gh run rerun RUN --failed`.
-- A merge-then-dispatch script must stop if the merge fails (PR #521 conflicted with main and three
-  dispatches of experiments not yet on main failed).
-- A custom suite that lists seeds (a manifest from outside the catalogue) must carry `"external": true`. Without it the rule
-  generator skips any seed it shares with classes-1800, which shifted classes-1800 from its start 119 on (and the medium, big
-  and full tiers) from the merge of PR #532 until PR #546's fix; no run used the shifted starts (small and verysmall are the first
-  90 and 45). tests/test_zoo.py now pins the frozen seeds of classes-1800, classes-1800-200k and classes-18.
-- Cells now carry `settings_resolved` (borg-zoo#539): the core's `settings-resolved.json` (borg-reborn-rs 62a7aae2 and later), the
-  original text and sha256, its class, the canonical non-default map, and a projection of the profile's written `borg_param_*` keys
-  (class suffixes and the `attack_preference_<class>_<family>_permille` aliases mapped for the played class; verdicts match, differs,
-  omitted, not applicable). Absent receipt: null. Malformed: status `malformed`, the outcome unchanged. Older builds write none.
-- A PR that adds catalogue entries conflicts with every other one that does: take main's
-  `catalogue/*.json` and `docs/PROFILES.md`, re-run `zoo define` and `zoo.profiles_page`.
-
-**Results posted and written to FINDINGS on 2026-11-20:** #480 (filed as
-borg-reborn-rs#744: re-ship detection min level 10 for casters), #484, #488, #475,
-#477, #482 (small, medium, big), #495 (not tested), #501 (death report
-https://claude.ai/artifact/SnqujSa3vHiJUebG9hLu87), #463 big.
-
-**Waiting for the owner:**
-- **Closed 2026-11-20 on the owner's go:** 50 finished issues (every one with results posted, superseded or done, listed in the
-  earlier version of this file: #484, #463, #457 ... #319, #487, #473, #450, #436, #419, with #342 as a duplicate of #336), each with a
-  comment; #500 and #488 earlier. Older ones (#318 and below) were not reviewed.
-- **#495:** the landing check was not reached at 200k (17 of 18 identical); it needs
-  saved encounters (#184) or longer games.
-- **#184 Suite 2** (draft PRs #497, #202; borg-cemetery #82, borg-reborn-rs #508): on hold.
-  Suite 1 refuses builds on engine 574b618c (#473), so no Suite 1 rerun on current main.
-- **Open PR #505** (death-report same-seed fix): review.
-- **Cleanup:** worktrees `.worktrees/zoo-418`, `blocked-stairs`, `ranger-arrows`;
-  `~/borg-play/flight-501` duplicates `~/borg-play/flight-fixes` except the pilot Druid.
+The dated handovers below preserve decisions and observations at the time.
+Verify each issue, PR and run against GitHub before acting on its status.
+The 2026-11-20 closure batch and cleanup notes remain in this file's history.
 
 ## Open issues (2026-11-16)
 

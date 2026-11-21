@@ -1,5 +1,7 @@
 # M13 measurement preparation (#87)
 
+Historical retry plan. The owner closed #87 on 2026-11-16 and retired the `m12-m13-explicit` redispatch. The remaining per-fix rows record measurement debt at the time. See [OPEN-WORK](OPEN-WORK.md#historical-handovers).
+
 **Question:** do M13's nineteen additional fixes change survival and progress
 when the starting policy stays the same?
 

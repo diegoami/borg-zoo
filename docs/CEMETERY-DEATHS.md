@@ -1,14 +1,15 @@
 # Zoo deaths in the cemetery (#176)
 
-Every experiment leaves its natural deaths in
-[borg-cemetery](https://github.com/diegoami/borg-cemetery) as dossiers that can
-be replayed and analysed. Nothing has to be prepared by hand.
+By default `compare.yml` attempts replay bundles for natural deaths.
+The borg-rs adapter supports replay. The operator imports verified bundles
+into [borg-cemetery](https://github.com/diegoami/borg-cemetery) with its
+importer.
 
 ## In the run job
 
-`zoo run --deaths DIR` (always passed by `compare.yml`) writes each cell's
-record first, as before. Then every cell whose `outcome` is `death` is replayed
-once in the same job:
+`compare.yml` passes `zoo run --deaths DIR` and the experiment can opt out.
+The run writes each cell record first. For supported harnesses it then
+replays each cell whose `outcome` is `death` once in the same job:
 
 - The replay uses the same argv, `borg.txt` and plan, with `-msglog`,
   `-statelog` and `BORG_RUN_DIR` added (the core's decision trace and
@@ -54,6 +55,10 @@ A plan is `borg_errands_plan=user/NAME` with its hash in
 
 `compare.yml` uploads `DIR` as `deaths-<specimen>-<shard>`, kept 90 days,
 whether or not `retain_evidence` is set. A death costs about 250 KB compressed.
+
+This archive is separate from the raw attempt tarballs and the build
+artifact used by `zoo.death_report`. See [DESIGN](DESIGN.md#evidence-and-collection)
+for their paths and retention.
 
 An experiment opts out with `cemetery_deaths: false` under `extra:` in its
 definition.

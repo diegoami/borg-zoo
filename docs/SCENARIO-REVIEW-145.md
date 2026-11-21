@@ -1,5 +1,7 @@
 # PR #145 review response
 
+Historical PR review and retained cloud receipts. See [SCENARIO-DISPATCH](SCENARIO-DISPATCH.md) for workflow instructions.
+
 Response to the owner-supplied review of implementation head
 `32beb4f1bd8cd1a9efcffedd4a0890da23314aef`. This updates the implementation
 without accepting a milestone, merging another repository, or expanding tiers.
