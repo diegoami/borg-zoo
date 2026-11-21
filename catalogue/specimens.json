@@ -2683,6 +2683,46 @@
       "scary_lists": {
         "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
       }
+    },
+    "4.2.6-reborn-rust-cursed-af70b9e9": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "af70b9e9de453f182d34b76cc34e19133015ca9c",
+      "label": "borg-reborn-rs PR #832 head af70b9e9 (claude/gracious-feynman-3fxecr): cursed equipment (#830), shipped settings. Source-hash rust be77aae1...; harness/borg.txt 02e24e59... (same as the base)",
+      "plans": {},
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-fast-fragile-7f8c6b80": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "7f8c6b80a617eba3a6f2b83e4ba9d45b7b552b73",
+      "label": "borg-reborn-rs claude/youthful-brahmagupta-j7a2y1 7f8c6b80 (PR #847, main ed52fec1 merged): fast_fragile_policy, _by_stats, _no_heal, _escape_percent all shipped 0; attack_on_sight 1; harness/borg.txt c35104bb..., scary_monsters.txt 9766d882...",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-heal-tiers-bba5e4be": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "bba5e4be071b620fdd8ce8fc475a7acb0c92b125",
+      "label": "borg-reborn-rs task/T845-healing-tiers bba5e4be (track-p based, #813's per-kind departure cap; predates main's #835 fuel change): town_heal_speed_percent 66, town_heal_quaff_bonus_percent 0 shipped; harness/borg.txt 02e24e59..., scary_monsters.txt 9766d882...",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
     }
   }
 }

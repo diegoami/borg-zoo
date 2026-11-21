@@ -1,0 +1,29 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-fast-fragile-pilot",
+  "issue": 596,
+  "definition": "definitions/reborn-fast-fragile-pilot.yaml",
+  "question": "On borg-reborn-rs 7f8c6b80 (PR #847), does attacking a fast-fragile monster (crow, wild cat, by name or by stats) with the best attack every turn, with and without a ban on healing next to it and with the Phase Door or stairs alternative at 100, 75 or 0 percent, save the early deaths (a crow killed 8 of #566's 29) without adding new ones?",
+  "description": "On borg-reborn-rs 7f8c6b80 (PR #847), does attacking a fast-fragile monster (crow, wild cat, by name or by stats) with the best attack every turn, with and without a ban on healing next to it and with the Phase Door or stairs alternative at 100, 75 or 0 percent, save the early deaths (a crow killed 8 of #566's 29) without adding new ones? Generated from definitions/reborn-fast-fragile-pilot.yaml: 8 arms on 4.2.6-reborn-rust-fast-fragile-7f8c6b80, suite classes-18.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#596; borg-reborn-rs #842, PR #847). Pilot (RULES 16)\non classes-18, eight arms (the five the owner asked for and the three the local replays raised), 18 starts each (144\ngames), all classes, one binary; small + medium (classes-1800 starts 1-360) after the gate and the owner.\nGate: no config_error; one binary; each arm's values in params-core.json; ctl plays as the build's shipped settings (the\neight crow deaths of 3b4924ba replay key for key in the requester's smoke); every cell ends in death, turn_cap or\nborg_stopped; stalls reported start by start (the lightless abort seen in #581 and #586 is a separate family); frozen-turn\nbursts classified.\nReport per arm and class: deaths and causes (crow and wild cat deaths apart), CL at death, final and maximum level,\ndeepest level; paired rescued and newly killed against ctl (exact McNemar), identical plays; cure potions used per crow\nfight; the other fast-fragile deaths (cave spiders, centipedes, bats: fde8025a had 16 of 33 deaths in this family) and\nwhat the \"# Fast-fragile (stats)\" notes mark (the monsters and the numbers); whether the 8 cases of #842 change. The\nnumbers (2 turns, 25%, 2 others, +5 speed) and escape_percent are hypotheses. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-fast-fragile-7f8c6b80"
+  ],
+  "profiles": [
+    "reborn-fastfrag-ctl",
+    "reborn-fastfrag-named",
+    "reborn-fastfrag-named-ban",
+    "reborn-fastfrag-stats",
+    "reborn-fastfrag-stats-ban",
+    "reborn-fastfrag-named-esc75",
+    "reborn-fastfrag-attack-only",
+    "reborn-fastfrag-named-ban-exc"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-fast-fragile-7f8c6b80",
+  "control_profile": "reborn-fastfrag-ctl",
+  "owner_authorization": "2026-11-21: borg-reborn-rs owner (#842: \"ask for zoo runs ... before the PR merges\"), filed as borg-zoo#596; zoo owner, 2026-11-21: \"go, what else\" (a classes-18 pilot with all eight arms; small and medium after the gate and the owner).",
+  "retain_evidence": true
+}
