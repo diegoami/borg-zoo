@@ -1,0 +1,28 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-ship-flight-loo-pilot",
+  "issue": 558,
+  "definition": "definitions/reborn-ship-flight-loo-pilot.yaml",
+  "question": "On borg-reborn-rs main d7e58cd, which part of the shipped flight cluster (clean path 3, clean-path flee, danger-free flow, threat weight 5, the fast and cure thresholds) carries its weight: what changes when each is reverted alone?",
+  "description": "On borg-reborn-rs main d7e58cd, which part of the shipped flight cluster (clean path 3, clean-path flee, danger-free flow, threat weight 5, the fast and cure thresholds) carries its weight: what changes when each is reverted alone? Generated from definitions/reborn-ship-flight-loo-pilot.yaml: 7 arms on 4.2.6-reborn-rust-main-d7e58cdf, suite classes-18.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build with these arms was read (borg-zoo#558). Pilot (RULES 16); small and medium\nafter the gate and the owner; the 200 Ranger starts the issue asks for are set aside (owner, 2026-11-20). Seven arms, 18\nstarts each (126 games), all classes.\nGate: no config_error; one binary; each arm's value in params-core.json; shipped plays as main d7e58cd; every cell ends in\ndeath, turn_cap or borg_stopped; frozen-turn bursts classified.\nReport per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly\nkilled against shipped (exact McNemar), identical-game counts, and for each discordant start the first divergent action (the same\nreading as #535). An arm that plays shipped's keys everywhere is \"not exercised\". Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-d7e58cdf"
+  ],
+  "profiles": [
+    "reborn-floo-shipped",
+    "reborn-floo-path1",
+    "reborn-floo-noflee",
+    "reborn-floo-danger",
+    "reborn-floo-weight0",
+    "reborn-floo-fastany",
+    "reborn-floo-curefull"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-d7e58cdf",
+  "control_profile": "reborn-floo-shipped",
+  "owner_authorization": "2026-11-21: borg-reborn-rs owner (\"file them all\", filed as borg-zoo#558); zoo owner, 2026-11-21: \"you have new issues\" (a classes-18 pilot only, all classes; larger tiers wait for the gate and the owner).",
+  "retain_evidence": true
+}

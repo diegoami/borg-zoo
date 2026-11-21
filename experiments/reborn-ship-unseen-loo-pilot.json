@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-ship-unseen-loo-pilot",
+  "issue": 557,
+  "definition": "definitions/reborn-ship-unseen-loo-pilot.yaml",
+  "question": "On borg-reborn-rs main 2801ba18, what does each shipped setting that no zoo arm has measured do when it is reverted to its compiled default (the unseen-bump response, throwing first when cornered, the breeder boost, oil apart, the Phase Door curve per class)?",
+  "description": "On borg-reborn-rs main 2801ba18, what does each shipped setting that no zoo arm has measured do when it is reverted to its compiled default (the unseen-bump response, throwing first when cornered, the breeder boost, oil apart, the Phase Door curve per class)? Generated from definitions/reborn-ship-unseen-loo-pilot.yaml: 6 arms on 4.2.6-reborn-rust-main-2801ba18, suite classes-18.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build with these arms was read (borg-zoo#557). Pilot (RULES 16); small and medium\nafter the gate and the owner. Six arms, 18 starts each (108 games), all classes; the Druid start 102023799, the case PR #782 was\nbuilt from, is in classes-18, so nobump runs on it.\nGate: no config_error; one binary; each arm's values in params-core.json; shipped plays as main 2801ba18; every cell ends in\ndeath, turn_cap or borg_stopped; frozen-turn bursts classified.\nReport per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly\nkilled against shipped (exact McNemar), identical-game counts. An arm that plays identically to shipped everywhere is \"not\nexercised\", not \"no effect\". Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-2801ba18"
+  ],
+  "profiles": [
+    "reborn-sloo-shipped",
+    "reborn-sloo-nobump",
+    "reborn-sloo-nothrowfirst",
+    "reborn-sloo-nobreederboost",
+    "reborn-sloo-nooilapart",
+    "reborn-sloo-phasecurve100"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-2801ba18",
+  "control_profile": "reborn-sloo-shipped",
+  "owner_authorization": "2026-11-21: borg-reborn-rs owner (\"file them all\", filed as borg-zoo#557); zoo owner, 2026-11-21: \"you have new issues\" (a classes-18 pilot only, all classes; larger tiers wait for the gate and the owner).",
+  "retain_evidence": true
+}

@@ -2042,6 +2042,26 @@
       "wall_seconds": 1800,
       "stall_seconds": 120,
       "saves": false
+    },
+    "classes-1800-fresh": {
+      "description": "A fresh block of 1800 starts, unread for any decision (borg-zoo#556): the classes-1800 rule (assigned births, 100,000 turns) with seeds drawn under this suite's own name, so it shares no start with classes-1800, -b or any earlier suite. The reference block for P7 and later confirmations.",
+      "role": "development",
+      "seed_rule": {"generator": "sha256-v1", "count": 1800},
+      "birth": "assigned",
+      "characters": {"classes": ["Warrior", "Mage", "Druid", "Priest", "Necromancer", "Paladin", "Rogue", "Ranger", "Blackguard"], "races": ["Human", "Half-Elf", "Elf", "Hobbit", "Gnome", "Dwarf", "Half-Orc", "Half-Troll", "Dunadan", "High-Elf", "Kobold"]},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-fresh-pilot": {
+      "description": "The first 18 starts of classes-1800-fresh (2 per class): the pilot tier of the fresh block (borg-zoo#556).",
+      "role": "pilot",
+      "subset": {"suite": "classes-1800-fresh", "range": [0, 18]},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
     }
   }
 }
