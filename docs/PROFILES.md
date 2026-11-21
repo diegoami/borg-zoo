@@ -95,7 +95,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-ship3` | [#535](https://github.com/diegoami/borg-zoo/issues/535) | 5 | pilot done 2026-11-21; small tier at 200,000 turns (alloff, fight, allon) defined | The three shipped fight/Recall switches ablated on main d7e58cd: alloff, sight, fight, recall, allon. |
 | `reborn-townhunt` | [#538](https://github.com/diegoami/borg-zoo/issues/538) | 6 | defined (pilot) | town_ranged_reserve and town_hunt (borg-reborn-rs #789, PR #800) on 8e0f20af, with and without caution_winning_fight (which also decides town attacks). |
 | `reborn-deathrisk` | [#534](https://github.com/diegoami/borg-zoo/issues/534) | 1 | pilot on 5343532c done (run 44838098884); exact-build pilot on 0eb48328 (core-trace@3) defined | borg-reborn-rs 5343532c (task/T790-death-risk): the shipped settings with per-think death_risk observations, evidence retained for calibration. |
-| `reborn-maindefault` | [#543](https://github.com/diegoami/borg-zoo/issues/543) | 1 | verysmall done (run 44841145368, 1 death); defined: 300,000-turn verysmall (#543), the death bank (#550), and the planned full ladder small-rest, medium, big, full (#551, not dispatched) | borg-reborn-rs main 2801ba18 with its shipped settings and no overrides, on classes-1800-verysmall (45 starts), for death reports. |
+| `reborn-maindefault` | [#543](https://github.com/diegoami/borg-zoo/issues/543) | 1 | verysmall done (run 44841145368, 1 death); defined: 300,000-turn verysmall (#543), the death bank (#550), and the planned full ladder small-rest, medium, big, full (#551, not dispatched); the planned ladder of #551 on 2801ba18 is superseded by reborn-head (#566), not dispatched | borg-reborn-rs main 2801ba18 with its shipped settings and no overrides, on classes-1800-verysmall (45 starts), for death reports. |
 | `reborn-paladingate` | [#544](https://github.com/diegoami/borg-zoo/issues/544) | 2 | defined (pilot on the 10 Paladin starts) | The Paladin DL3-4 max-HP preparedness gate, 45 against 50, on 2fdfd41c (borg-reborn-rs #795). |
 | `reborn-darkentry` | [#546](https://github.com/diegoami/borg-zoo/issues/546) | 2 | defined (pilot on the 20 Mage and Necromancer starts) | Low-level dark-entry detection (light_detect_dark_entry 1) for Mages and Necromancers on cd0ed207 (borg-reborn-rs #796). |
 | `reborn-killers` | [#548](https://github.com/diegoami/borg-zoo/issues/548) | 6 | defined (200,000-turn pilot) | Fang and Grip scary to CL8-10 and 10-12, the dogs as kill-on-sight, soldiers and acolytes scary to CL12-16 and 16-20, on main 2801ba18. |
@@ -105,6 +105,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-sloo` | [#557](https://github.com/diegoami/borg-zoo/issues/557) | 6 | defined (pilot) | Leave-one-out of shipped settings no zoo arm has measured on main 2801ba18: nobump, nothrowfirst, nobreederboost, nooilapart, phasecurve100. |
 | `reborn-deathrisk0eb` | [#534](https://github.com/diegoami/borg-zoo/issues/534) | 1 | defined (exact-build calibration pilot; small and medium follow in order after the gate) | borg-reborn-rs PR #792 at 0eb48328 (core-trace@3): the shipped settings with per-think death_risk observations, evidence retained. |
 | `reborn-recallres` | [#563](https://github.com/diegoami/borg-zoo/issues/563) | 3 | defined (pilot) | Word of Recall replenishment with a reserve of 1 (shipped), 2 and 3 scrolls on ae904090 (borg-reborn-rs #810, PR #813). |
+| `reborn-head` | [#566](https://github.com/diegoami/borg-zoo/issues/566) | 1 | defined (the full classes-1800 ladder: verysmall pilot, small-rest, medium, big, full; dispatched in order at the owner's request) | borg-reborn-rs main 3b4924ba (head on 2026-11-21) with its shipped settings and no overrides over all 1,800 classes-1800 starts. |
 
 ### `heal-attack-4`
 
@@ -1531,6 +1532,14 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`, `borg_town
 | `reborn-recallres-ctl` | – |
 | `reborn-recallres-res2` | 2 |
 | `reborn-recallres-res3` | 3 |
+
+### `reborn-head`
+
+borg-reborn-rs main 3b4924ba (head on 2026-11-21) with its shipped settings and no overrides over all 1,800 classes-1800 starts.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-head-shipped`.
 
 ## Settings you have built arms with
 

@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-head-medium",
+  "issue": 566,
+  "definition": "definitions/reborn-head-medium.yaml",
+  "question": "What does borg-reborn-rs main 3b4924ba, with its shipped settings and no overrides, die of over classes-1800's medium slice (270 starts, 100,000 turns)? One tier of the full ladder (45 + 45 + 270 + 540 + 900 = 1,800 starts).",
+  "description": "What does borg-reborn-rs main 3b4924ba, with its shipped settings and no overrides, die of over classes-1800's medium slice (270 starts, 100,000 turns)? One tier of the full ladder (45 + 45 + 270 + 540 + 900 = 1,800 starts). Generated from definitions/reborn-head-medium.yaml: 1 arms on 4.2.6-reborn-rust-main-3b4924ba, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read. The full classes-1800 ladder of RULES 14 for main 3b4924ba's\nshipped settings: verysmall (45, its pilot), small-rest (46-90), medium (270), big (540), full (900); no overrides, one\nbinary, one arm. The owner asked for the full run explicitly, so the tiers are dispatched in order without waiting for each\ngate; each gate is still read and a failure stops the later reading.\nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped (stalls, timeouts and crashes kept\napart); frozen-turn bursts classified. Report per tier and pooled: deaths and causes per class, CL at death (CL1-3, 4-19,\n20+), mean max CL and DL, alive at the cap having reached DL5, the RULES 18 bin; against #488's full runs (fde8025a,\n94032140: 33 and 42 deaths of 1,800). Descriptive; the starts are classes-1800 as frozen at b258d945 (the seed fix of #547\nkeeps them).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-3b4924ba"
+  ],
+  "profiles": [
+    "reborn-head-shipped"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-3b4924ba",
+  "control_profile": "reborn-head-shipped",
+  "owner_authorization": "2026-11-21: zoo owner, \"deliver a full run with the current main\" (the full classes-1800 ladder of main 3b4924ba with its shipped settings, dispatched in order; the owner asked for it explicitly).",
+  "retain_evidence": false
+}
