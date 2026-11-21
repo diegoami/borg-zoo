@@ -684,7 +684,7 @@ Lower values send the Borg back for unknown items more often. Each return brings
     - Phase Door read again and again under a known no-teleport curse (borg-reborn-rs#829, #830);
     - resting next to an invisible attacker (#831);
     - staying next to a confusing attacker (#837).
-  - **The kit (7 there):** the restock rules require no cures or Phase Door at DL1–5. Over all 29, 16 die with no cures or no Phase Door, 14 of them with 10 gold or less (#840).
+  - **The kit (7 there):** the restock rules require no cures or Phase Door at DL1–5. Over all 29, 15 die with no cures or no Phase Door (8 with neither), 13 of them with 10 gold or less, and 20 are short of cures, Phase Door, a ranged option or light (#840).
   - **Matchup or luck (15):** crows at CL1, floating eyes, paralysis traps.
   - The Borg's confusion cures leave out Cure Light Wounds (#837).
 - **#576, `caution_ranged_vs_immobile` 2 against shipped 0 on 3b4924ba** (pilot 44908965838; big, starts 361–900, 44909591817):
