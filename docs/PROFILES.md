@@ -121,6 +121,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-rangedonly` | [#593](https://github.com/diegoami/borg-zoo/issues/593) | 4 | pilot done (run 44935138551); small, medium, big defined and dispatched | caution_ranged_only (borg-reborn-rs #838) on 5887c29b: shipped, ranged, immobile2, ranged_clw, classes-18 pilot. |
 | `reborn-nowalk` | [#604](https://github.com/diegoami/borg-zoo/issues/604) | 3 | pilot done (run 44936423074); small, medium defined and dispatched | fast_fragile_no_walk (borg-reborn-rs #849, PR #853) on d9ebf4c9: ctl, nowalk, nowalk-stats, classes-18 pilot. |
 | `reborn-tonight` | [#609](https://github.com/diegoami/borg-zoo/issues/609) | 1 | defined (ladder: pilot, small-rest, medium, big, full), dispatched 2026-11-21 | Tonight's test: borg-reborn-rs main ab775d48, shipped settings, one arm, classes-1800 ladder (45+45+270+540+900), 100,000 turns. |
+| `reborn-p6rf` | [#611](https://github.com/diegoami/borg-zoo/issues/611) | 1 | defined (pilot) | P6 review-fix compatibility (borg-reborn-rs #860): main ab775d48 against 038250d6, shipped settings, classes-18. |
+| `reborn-room` | [#612](https://github.com/diegoami/borg-zoo/issues/612) | 4 | defined (pilot) | Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k. |
 
 ### `heal-attack-4`
 
@@ -1736,6 +1738,27 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 Profiles: `reborn-tonight-shipped`.
 
+### `reborn-p6rf`
+
+P6 review-fix compatibility (borg-reborn-rs #860): main ab775d48 against 038250d6, shipped settings, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-p6rf-shipped`.
+
+### `reborn-room`
+
+Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_departure_free_slots` | `borg_param_town_departure_free_weight` | `borg_param_town_recall_curve_scale_percent` | `borg_param_town_store_keep_min` |
+| --- | --- | --- | --- | --- |
+| `reborn-room-ctl` | 0 | 0 | 0 | 0 |
+| `reborn-room-shipped` | – | – | – | – |
+| `reborn-room-room` | 2 | 50 | 0 | 0 |
+| `reborn-room-recall` | 0 | 0 | 110 | 0 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1976,6 +1999,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_recover_unseen_heal_hp_percent` | 0, not set | `reborn-invis` |  |
 | `borg_param_recover_unseen_probe_tries` | 0, not set | `reborn-invis` |  |
 | `borg_param_town_confusion_cure_reserve` | 1, not set | `reborn-confusion` |  |
+| `borg_param_town_departure_free_slots` | 0, 2, not set | `reborn-room` |  |
+| `borg_param_town_departure_free_weight` | 0, 50, not set | `reborn-room` |  |
 | `borg_param_town_devices_percent` | 50, 200, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_devices_percent@blackguard` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_devices_percent@druid` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
@@ -2062,8 +2087,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_reserve_percent` | 50, 100, 150, 200, 400, not set | `reborn-bundle`, `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve`, `reborn-receipt` |  |
 | `borg_param_town_ranged_reserve` | 6, not set | `reborn-townhunt` |  |
 | `borg_param_town_ranger_arrows_max__ranger` | 20, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
+| `borg_param_town_recall_curve_scale_percent` | 0, 110, not set | `reborn-room` |  |
 | `borg_param_town_recall_reserve` | 1, 2, 3, not set | `reborn-town-switch-screen`, `reborn-recallres` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
+| `borg_param_town_store_keep_min` | 0, not set | `reborn-room` |  |
 | `borg_param_town_store_only_overweight` | 0, 1, not set | `reborn-store-overweight`, `reborn-shipcheck-b895` |  |
 | `borg_param_town_unseen_percent` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |

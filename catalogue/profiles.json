@@ -9981,6 +9981,53 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-p6rf-shipped": {
+      "description": "borg-zoo#611 (reborn-p6-review-fix-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-room-ctl": {
+      "description": "borg-zoo#612 (reborn-departure-room-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_departure_free_weight": 0,
+        "borg_param_town_departure_free_slots": 0,
+        "borg_param_town_store_keep_min": 0,
+        "borg_param_town_recall_curve_scale_percent": 0
+      }
+    },
+    "reborn-room-shipped": {
+      "description": "borg-zoo#612 (reborn-departure-room-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-room-room": {
+      "description": "borg-zoo#612 (reborn-departure-room-pilot.yaml): arm room.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_departure_free_weight": 50,
+        "borg_param_town_departure_free_slots": 2,
+        "borg_param_town_store_keep_min": 0,
+        "borg_param_town_recall_curve_scale_percent": 0
+      }
+    },
+    "reborn-room-recall": {
+      "description": "borg-zoo#612 (reborn-departure-room-pilot.yaml): arm recall.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_departure_free_weight": 0,
+        "borg_param_town_departure_free_slots": 0,
+        "borg_param_town_store_keep_min": 0,
+        "borg_param_town_recall_curve_scale_percent": 110
+      }
     }
   }
 }

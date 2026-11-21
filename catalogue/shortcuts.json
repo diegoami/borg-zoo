@@ -1703,6 +1703,27 @@
         "reborn-tonight-shipped"
       ],
       "runs": []
+    },
+    "reborn-p6rf": {
+      "issue": 611,
+      "status": "defined (pilot)",
+      "what": "P6 review-fix compatibility (borg-reborn-rs #860): main ab775d48 against 038250d6, shipped settings, classes-18.",
+      "profiles": [
+        "reborn-p6rf-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-room": {
+      "issue": 612,
+      "status": "defined (pilot)",
+      "what": "Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k.",
+      "profiles": [
+        "reborn-room-ctl",
+        "reborn-room-shipped",
+        "reborn-room-room",
+        "reborn-room-recall"
+      ],
+      "runs": []
     }
   }
 }

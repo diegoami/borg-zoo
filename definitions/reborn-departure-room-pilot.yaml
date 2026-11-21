@@ -1,0 +1,60 @@
+# borg-zoo#612: departure room, Recall curve 110 and surplus-first storing (borg-reborn-rs #859, PR #864), c7ea18df.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-departure-room-pilot.yaml
+name: reborn-departure-room-pilot
+issue: 612
+question: >-
+  On borg-reborn-rs c7ea18df (task/T859-town-room), do leaving town with room in the pack (departure free weight and slots),
+  keeping stock at the stores (store_keep_min 3) and a Recall curve scaled to 110 percent get the Borg that is held at DL4 with
+  500 gold and no Recall carried to Recall and past the DL5 gate, against the build's own off settings?
+tier: pilot            # classes-18 at 300,000 turns; a small tier on the same starts after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-town-room-c7ea18df
+  repository: diegoami/borg-reborn-rs
+  ref: c7ea18dff9f1865bddfebbd5651ca2ad1a533107
+  label: "borg-reborn-rs task/T859-town-room c7ea18df (PR #864, based on track-p 562979d3): shipped harness/borg.txt and class overrides, live town planner, scary_monsters.txt 9766d882..."
+  scary_lists:
+    scary_monsters.txt: 9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f
+
+suites: [classes-18-300k]
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-room
+arms:
+  ctl:
+    borg_param_town_departure_free_weight: 0
+    borg_param_town_departure_free_slots: 0
+    borg_param_town_store_keep_min: 0
+    borg_param_town_recall_curve_scale_percent: 0
+  shipped: {}
+  room:
+    borg_param_town_departure_free_weight: 50
+    borg_param_town_departure_free_slots: 2
+    borg_param_town_store_keep_min: 0
+    borg_param_town_recall_curve_scale_percent: 0
+  recall:
+    borg_param_town_departure_free_weight: 0
+    borg_param_town_departure_free_slots: 0
+    borg_param_town_store_keep_min: 0
+    borg_param_town_recall_curve_scale_percent: 110
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: borg-reborn-rs #859 (PR #864, RULES 20), filed as borg-zoo#612; zoo owner, 2026-11-21: "start all open pilots
+  and followups" (the classes-18-300k pilot; the small tier after its gate, if exposure is enough, and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#612; borg-reborn-rs #859, PR #864). One build, four
+  arms (ctl: the four settings 0, the state before #859; shipped: the PR's defaults, 50/2/3/110; room: room only; recall:
+  curve only), classes-18 at 300,000 engine turns, 18 starts each (72 cells). Evidence retained, stalls included.
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start.
+  Exposure: Recall purchases in ctl below the DL5 gate; if too few, say so and do not expand without the owner.
+  Primary, per arm: the starts held at DL4 or deeper with gold of 500 or more and no Recall carried at the cap, and the share
+  that reached DL5 or deeper. Also: Recall purchases and scrolls carried at departure by visit; the "# Town departure room:"
+  notes (free weight and slots at departure; departures short of the room); stacks stored at the Home per visit and the kinds
+  carried at departure (variety, #863); deaths with rescued and newly killed pairs; mean max CL and depth, by class.
+  Directional only: confirmation needs a fresh seed block (#556).
