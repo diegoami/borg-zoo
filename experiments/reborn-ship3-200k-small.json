@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-ship3-200k-small",
+  "issue": 535,
+  "definition": "definitions/reborn-ship3-200k-small.yaml",
+  "question": "On borg-reborn-rs main d7e58cd at 200,000 turns, do the shipped switches (all on) and caution_winning_fight alone save deaths or buy progress against all three off, over 72 starts, all classes?",
+  "description": "On borg-reborn-rs main d7e58cd at 200,000 turns, do the shipped switches (all on) and caution_winning_fight alone save deaths or buy progress against all three off, over 72 starts, all classes? Generated from definitions/reborn-ship3-200k-small.yaml: 3 arms on 4.2.6-reborn-rust-main-d7e58cdf, suite classes-1800-200k-small.",
+  "prespecified": "Fixed 2026-11-21 after the classes-18 pilot of the same arms on the same build passed its gate (run 44838047758): all on\nCL +0.33 and DL +0.22 with nobody newly killed; fight alone CL +0.33. At 100,000 turns alloff had no deaths. Small tier at\n200,000 turns (RULES 14), 216 games; descriptive. Report per arm and per class: deaths and causes, CL at death, final and\nmaximum level, deepest level; paired rescued and newly killed against alloff (exact McNemar), identical plays; and\ncaution_winning_fight's town attacks and refusals apart from the dungeon's (it decides town attacks too, owner 2026-11-20).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-d7e58cdf"
+  ],
+  "profiles": [
+    "reborn-ship3-alloff",
+    "reborn-ship3-fight",
+    "reborn-ship3-allon"
+  ],
+  "suites": [
+    "classes-1800-200k-small"
+  ],
+  "control": "4.2.6-reborn-rust-main-d7e58cdf",
+  "control_profile": "reborn-ship3-alloff",
+  "owner_authorization": "2026-11-21: zoo owner, \"do all of those\" (the ideas offered). Pilots and small runs, all classes; the Rangers are set aside.",
+  "retain_evidence": false
+}

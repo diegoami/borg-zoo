@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-killers-200k-pilot",
+  "issue": 548,
+  "definition": "definitions/reborn-killers-200k-pilot.yaml",
+  "question": "On borg-reborn-rs main 2801ba18 at 200,000 turns, do a higher scary level for Fang and Grip, the dogs as kill-on-sight, and a higher scary level for soldiers and acolytes save the deaths they cause, without new ones?",
+  "description": "On borg-reborn-rs main 2801ba18 at 200,000 turns, do a higher scary level for Fang and Grip, the dogs as kill-on-sight, and a higher scary level for soldiers and acolytes save the deaths they cause, without new ones? Generated from definitions/reborn-killers-200k-pilot.yaml: 6 arms on 4.2.6-reborn-rust-main-2801ba18, suite classes-1800-200k-pilot.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build at 200,000 turns was read (borg-zoo#548). Pilot (RULES 16) at\n200,000 turns, because at 100,000 turns ctl has no deaths to improve on. Six arms, 18 starts each (108 games), all\nclasses. Evidence: of 73 deaths in the evening's 3,384 games, Fang and Grip 13 (nine are one Mage at CL8), wild cat 5,\nsoldier 3.\nGate: no config_error; one binary; each arm's list lines applied (the cell's user copy of scary_monsters.txt); ctl\nplays as main 2801ba18's shipped settings; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts\nclassified.\nReport per arm and per class: deaths and causes (Fang, Grip, soldier, acolyte named), CL at death, final and maximum\nlevel, deepest level; paired rescued and newly killed against ctl (exact McNemar), identical plays; for each arm the\nstarts where the changed monster was met (scare or attack notes), so an arm that never meets it is \"not tested\".\nDescriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-2801ba18"
+  ],
+  "profiles": [
+    "reborn-killers-ctl",
+    "reborn-killers-dogs10",
+    "reborn-killers-dogs12",
+    "reborn-killers-doghunt",
+    "reborn-killers-fighters12",
+    "reborn-killers-fighters16"
+  ],
+  "suites": [
+    "classes-1800-200k-pilot"
+  ],
+  "control": "4.2.6-reborn-rust-main-2801ba18",
+  "control_profile": "reborn-killers-ctl",
+  "owner_authorization": "2026-11-21: zoo owner, \"do all of those\" (the ideas offered). Pilots and small runs, all classes; the Rangers are set aside.",
+  "retain_evidence": true
+}

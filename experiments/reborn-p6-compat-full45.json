@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-p6-compat-full45",
+  "issue": 520,
+  "definition": "definitions/reborn-p6-compat-full45.yaml",
+  "question": "On the native full45 manifest (nine classes by five starts, explicit menu births, 100,000 turns), do borg-reborn-rs 4e9af99e and the synchronized d0657712 play the same games on their shipped defaults?",
+  "description": "On the native full45 manifest (nine classes by five starts, explicit menu births, 100,000 turns), do borg-reborn-rs 4e9af99e and the synchronized d0657712 play the same games on their shipped defaults? Generated from definitions/reborn-p6-compat-full45.yaml: 1 arms on 4.2.6-reborn-rust-main-4e9af99e, 4.2.6-reborn-rust-p6-d0657712, suite reborn-native-full45.",
+  "prespecified": "Fixed 2026-11-21, after the classes-18 pilot (run 44817182201) played identically in 18 of 18 starts. Suite\nreborn-native-full45 is borg-reborn-rs harness/suites/full at d0657712 (sha256 7c81c28c...2d2eed): seeds 1000-1044, race\n(class + k) % 11, menu births. Not classes-1800's starts (the adapter keeps its identity: the seeds, races and classes\nare the manifest's).\nGate: both exact builds; all 90 cells retained; no unexplained build/config/harness/timeout; paired key, message and\nstate differences. Report per start: play_sha256 equal between the builds, or the first differing key; deaths, CL, DL.\nA mismatch stops: report the exact start, first differing key, trace and source.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-4e9af99e",
+    "4.2.6-reborn-rust-p6-d0657712"
+  ],
+  "profiles": [
+    "reborn-p6compat-shipped"
+  ],
+  "suites": [
+    "reborn-native-full45"
+  ],
+  "control": "4.2.6-reborn-rust-main-4e9af99e",
+  "control_profile": "reborn-p6compat-shipped",
+  "owner_authorization": "2026-11-21: zoo owner, \"yes, prepare and run it\" (the full45 follow-up requested in #520 after the pilot's pass).",
+  "retain_evidence": true
+}

@@ -1,0 +1,24 @@
+# borg-zoo#526: small tier at 200,000 turns of the two phase reserve arms that led (r1p200, r2p400); owner 2026-11-21.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-phase-reserve-200k-small.yaml
+name: reborn-phase-reserve-200k-small
+issue: 526
+question: >-
+  On borg-reborn-rs main d745d9fc at 200,000 turns, do a one-scroll reserve at 200 percent and a two-scroll reserve at 400
+  percent save deaths or buy progress against reserve 0 over 72 further starts, all classes?
+suites: [classes-1800-200k-small]   # classes-1800-200k starts 19-90, 200,000 turns
+specimens: [4.2.6-reborn-rust-main-d745d9fc]
+profiles: [reborn-phasereserve-ctl, reborn-phasereserve-r1p200, reborn-phasereserve-r2p400]
+control_specimen: 4.2.6-reborn-rust-main-d745d9fc
+control_profile: reborn-phasereserve-ctl
+owner_authorization: >-
+  2026-11-21: zoo owner, "do all of those" (the ideas offered). Pilots and small runs, all classes; the Rangers are set aside.
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-21 after the 200,000-turn pilot of the same arms on the same build passed its gate (run 44834778142):
+  r1p200 0 deaths and CL 8.50 against ctl's 1 and 8.28; r2p400 0 deaths and DL 3.33; the Mage's Fang death rescued in
+  five of six arms, one new death in the others. The 100,000-turn pilot (run 44823206182) had the opposite sign (every 200
+  percent arm newly killed one start): the length decides. Small tier (RULES 14); descriptive. Report per arm and per
+  class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly killed against
+  ctl (exact McNemar), identical plays; RULES 18 bin.

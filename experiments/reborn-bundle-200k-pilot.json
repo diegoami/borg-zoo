@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-bundle-200k-pilot",
+  "issue": 549,
+  "definition": "definitions/reborn-bundle-200k-pilot.yaml",
+  "question": "On borg-reborn-rs main 2801ba18 at 200,000 turns, do lower HP minimums at the dive gates (hp-lo) and a one-scroll Phase Door reserve at 200 percent (r1p200) add up when run together, or interfere?",
+  "description": "On borg-reborn-rs main 2801ba18 at 200,000 turns, do lower HP minimums at the dive gates (hp-lo) and a one-scroll Phase Door reserve at 200 percent (r1p200) add up when run together, or interfere? Generated from definitions/reborn-bundle-200k-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-2801ba18, suite classes-1800-200k-pilot.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#549). hp-lo is #522's HP minimums -25% (small\ntier: CL +0.11, 0 deaths in 90; 200,000-turn pilot level with ctl); r1p200 is #526's reserve 1 at 200 percent\n(200,000-turn pilot: 0 deaths, CL +0.22, the Mage rescued). Pilot (RULES 16) of the four arms on this build; a small\ntier at 200,000 turns follows only if the gate passes and the owner agrees. 72 games, all classes.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or\nborg_stopped; frozen-turn bursts classified.\nReport per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued\nand newly killed against ctl (exact McNemar), identical plays; for both against hplo and against r1p200 whether the\neffects add (CL and DL differences) or cancel. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-2801ba18"
+  ],
+  "profiles": [
+    "reborn-bundle-ctl",
+    "reborn-bundle-hplo",
+    "reborn-bundle-r1p200",
+    "reborn-bundle-both"
+  ],
+  "suites": [
+    "classes-1800-200k-pilot"
+  ],
+  "control": "4.2.6-reborn-rust-main-2801ba18",
+  "control_profile": "reborn-bundle-ctl",
+  "owner_authorization": "2026-11-21: zoo owner, \"do all of those\" (the ideas offered). Pilots and small runs, all classes; the Rangers are set aside.",
+  "retain_evidence": true
+}

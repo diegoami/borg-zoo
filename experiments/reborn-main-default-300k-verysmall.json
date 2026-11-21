@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-main-default-300k-verysmall",
+  "issue": 543,
+  "definition": "definitions/reborn-main-default-300k-verysmall.yaml",
+  "question": "What does borg-reborn-rs main 2801ba18 with its shipped settings die of in 45 starts at 300,000 turns, where it can reach character levels the 100,000-turn games never see?",
+  "description": "What does borg-reborn-rs main 2801ba18 with its shipped settings die of in 45 starts at 300,000 turns, where it can reach character levels the 100,000-turn games never see? Generated from definitions/reborn-main-default-300k-verysmall.yaml: 1 arms on 4.2.6-reborn-rust-main-2801ba18, suite classes-1800-300k-verysmall.",
+  "prespecified": "Fixed 2026-11-21 (borg-zoo#543). One arm (the shipped profile, no overrides), the same 45 starts as the 100,000-turn\nverysmall run, 300,000 turns, evidence retained. Descriptive, no comparison. Gate: no config_error; one binary; every cell\nends in death, turn_cap or borg_stopped (wall time per cell watched: the cap is three times as long). Report: deaths\nand causes per class, CL at death, mean max CL and DL, the highest CL and depth reached, and what the survivors were\ndoing at the cap; the new deaths against the 100,000-turn run (same starts).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-2801ba18"
+  ],
+  "profiles": [
+    "reborn-maindefault-shipped"
+  ],
+  "suites": [
+    "classes-1800-300k-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-main-2801ba18",
+  "control_profile": "reborn-maindefault-shipped",
+  "owner_authorization": "2026-11-21: zoo owner, \"do all of those\" (the ideas offered) (\"300,000 turns\"). Pilots and small runs, all classes; the Rangers are set aside.",
+  "retain_evidence": true
+}

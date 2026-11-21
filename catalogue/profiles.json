@@ -9170,6 +9170,161 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-bundle-hplo": {
+      "description": "borg-zoo#549 (reborn-bundle-200k-pilot.yaml): arm hplo.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_prepared_dl2_min_hp": 23,
+        "borg_param_prepared_dl34_min_hp__warrior": 38,
+        "borg_param_prepared_dl34_min_hp__mage": 45,
+        "borg_param_prepared_dl34_min_hp__druid": 30,
+        "borg_param_prepared_dl34_min_hp__priest": 30,
+        "borg_param_prepared_dl34_min_hp__necromancer": 45,
+        "borg_param_prepared_dl34_min_hp__paladin": 38,
+        "borg_param_prepared_dl34_min_hp__rogue": 38,
+        "borg_param_prepared_dl34_min_hp__ranger": 38,
+        "borg_param_prepared_dl34_min_hp__blackguard": 38,
+        "borg_param_prepared_dl59_min_hp__warrior": 45,
+        "borg_param_prepared_dl59_min_hp__mage": 60,
+        "borg_param_prepared_dl59_min_hp__druid": 45,
+        "borg_param_prepared_dl59_min_hp__priest": 45,
+        "borg_param_prepared_dl59_min_hp__necromancer": 60,
+        "borg_param_prepared_dl59_min_hp__paladin": 45,
+        "borg_param_prepared_dl59_min_hp__rogue": 45,
+        "borg_param_prepared_dl59_min_hp__ranger": 45,
+        "borg_param_prepared_dl59_min_hp__blackguard": 45
+      }
+    },
+    "reborn-bundle-r1p200": {
+      "description": "borg-zoo#549 (reborn-bundle-200k-pilot.yaml): arm r1p200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_reserve": 1,
+        "borg_param_town_phase_reserve_percent": 200
+      }
+    },
+    "reborn-bundle-both": {
+      "description": "borg-zoo#549 (reborn-bundle-200k-pilot.yaml): arm both.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_reserve": 1,
+        "borg_param_town_phase_reserve_percent": 200,
+        "borg_param_prepared_dl2_min_hp": 23,
+        "borg_param_prepared_dl34_min_hp__warrior": 38,
+        "borg_param_prepared_dl34_min_hp__mage": 45,
+        "borg_param_prepared_dl34_min_hp__druid": 30,
+        "borg_param_prepared_dl34_min_hp__priest": 30,
+        "borg_param_prepared_dl34_min_hp__necromancer": 45,
+        "borg_param_prepared_dl34_min_hp__paladin": 38,
+        "borg_param_prepared_dl34_min_hp__rogue": 38,
+        "borg_param_prepared_dl34_min_hp__ranger": 38,
+        "borg_param_prepared_dl34_min_hp__blackguard": 38,
+        "borg_param_prepared_dl59_min_hp__warrior": 45,
+        "borg_param_prepared_dl59_min_hp__mage": 60,
+        "borg_param_prepared_dl59_min_hp__druid": 45,
+        "borg_param_prepared_dl59_min_hp__priest": 45,
+        "borg_param_prepared_dl59_min_hp__necromancer": 60,
+        "borg_param_prepared_dl59_min_hp__paladin": 45,
+        "borg_param_prepared_dl59_min_hp__rogue": 45,
+        "borg_param_prepared_dl59_min_hp__ranger": 45,
+        "borg_param_prepared_dl59_min_hp__blackguard": 45
+      }
+    },
+    "reborn-darkentry-ctl": {
+      "description": "borg-zoo#546 (reborn-dark-entry-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-darkentry-dark1": {
+      "description": "borg-zoo#546 (reborn-dark-entry-pilot.yaml): arm dark1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_light_detect_dark_entry": 1
+      }
+    },
+    "reborn-killers-ctl": {
+      "description": "borg-zoo#548 (reborn-killers-200k-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-killers-dogs10": {
+      "description": "borg-zoo#548 (reborn-killers-200k-pilot.yaml): arm dogs10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "Fang, Farmer Maggot's Dog | 8-10",
+          "Grip, Farmer Maggot's Dog | 8-10"
+        ]
+      }
+    },
+    "reborn-killers-dogs12": {
+      "description": "borg-zoo#548 (reborn-killers-200k-pilot.yaml): arm dogs12.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "Fang, Farmer Maggot's Dog | 10-12",
+          "Grip, Farmer Maggot's Dog | 10-12"
+        ]
+      }
+    },
+    "reborn-killers-doghunt": {
+      "description": "borg-zoo#548 (reborn-killers-200k-pilot.yaml): arm doghunt.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "Fang, Farmer Maggot's Dog | 30 | | attack | fast-dog",
+          "Grip, Farmer Maggot's Dog | 30 | | attack | fast-dog"
+        ]
+      }
+    },
+    "reborn-killers-fighters12": {
+      "description": "borg-zoo#548 (reborn-killers-200k-pilot.yaml): arm fighters12.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "soldier | 12-16",
+          "acolyte | 12-16"
+        ]
+      }
+    },
+    "reborn-killers-fighters16": {
+      "description": "borg-zoo#548 (reborn-killers-200k-pilot.yaml): arm fighters16.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_scary_list_lines": [
+          "soldier | 16-20",
+          "acolyte | 16-20"
+        ]
+      }
+    },
+    "reborn-paladingate-ctl": {
+      "description": "borg-zoo#544 (reborn-paladin-gate-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-paladingate-hp45": {
+      "description": "borg-zoo#544 (reborn-paladin-gate-pilot.yaml): arm hp45.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_prepared_dl34_min_hp__paladin": 45
+      }
     }
   }
 }
