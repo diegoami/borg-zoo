@@ -1,0 +1,231 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-darkentry-ctl": {
+        "description": "borg-zoo#546 (reborn-dark-entry-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "2ede3efed09e3c7cdee46428930c6230cc7abb7439121372f232ac9711b9da9e"
+      },
+      "reborn-darkentry-dark1": {
+        "description": "borg-zoo#546 (reborn-dark-entry-pilot.yaml): arm dark1.",
+        "settings": {
+          "borg_param_light_detect_dark_entry": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "a9da94da1086a5a2d5d93e65d0bcdf8d9657001a51b815a2d25ed761a39da13e"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-dark-entry-cd0ed207": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs cd0ed207 (borg-reborn-rs #796): light_detect_dark_entry 0 and reserve_sp 2 as shipped.",
+        "ref": "cd0ed20714c8cef623a9cd96ae25b819b4999d27",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-small-mages": {
+        "assigned_characters": {
+          "1370868461": [
+            "Dwarf",
+            "Mage"
+          ],
+          "1429594888": [
+            "Dunadan",
+            "Mage"
+          ],
+          "1545553111": [
+            "High-Elf",
+            "Mage"
+          ],
+          "200986077": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "2093434235": [
+            "Gnome",
+            "Mage"
+          ],
+          "2097768768": [
+            "Human",
+            "Mage"
+          ],
+          "234773070": [
+            "Elf",
+            "Mage"
+          ],
+          "247597266": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "300461652": [
+            "Hobbit",
+            "Mage"
+          ],
+          "63257248": [
+            "Half-Troll",
+            "Mage"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The Mage starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          2097768768,
+          247597266,
+          234773070,
+          300461652,
+          2093434235,
+          1370868461,
+          200986077,
+          63257248,
+          1429594888,
+          1545553111
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "class": "Mage",
+          "suite": "classes-1800-small"
+        },
+        "wall_seconds": 900
+      },
+      "classes-1800-small-necromancers": {
+        "assigned_characters": {
+          "10488336": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "1112777834": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "1199401383": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1236782037": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1272553636": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "1417651640": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "176707408": [
+            "Human",
+            "Necromancer"
+          ],
+          "384988836": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "412975293": [
+            "Elf",
+            "Necromancer"
+          ],
+          "904568879": [
+            "Dunadan",
+            "Necromancer"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The Necromancer starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          176707408,
+          1199401383,
+          412975293,
+          384988836,
+          1236782037,
+          10488336,
+          1417651640,
+          1112777834,
+          904568879,
+          1272553636
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "class": "Necromancer",
+          "suite": "classes-1800-small"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-21 02:42 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-dark-entry-cd0ed207",
+    "control_profile": "reborn-darkentry-ctl",
+    "definition": "definitions/reborn-dark-entry-pilot.yaml",
+    "description": "Does a detection cast on entering an unexamined dark area before the CL10 gate (light_detect_dark_entry 1, reserve 2 SP) save Mages and Necromancers from what is waiting, without costing progress? Generated from definitions/reborn-dark-entry-pilot.yaml: 2 arms on 4.2.6-reborn-rust-dark-entry-cd0ed207, suite classes-1800-small-mages, classes-1800-small-necromancers.",
+    "issue": 546,
+    "name": "reborn-dark-entry-pilot",
+    "owner_authorization": "2026-11-21: zoo owner, \"do all of those\" (the ideas offered) and the borg-reborn-rs request #796. Pilots and small runs, all classes; the Rangers are set aside.",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#546). Initial screen on starts already read in\n#480 and #522, so a mechanism check; confirmation needs a fresh owner-opened block.\nGate: no config_error; one binary; the value in params-core.json; every cell ends in death, turn_cap or borg_stopped.\nReport by class: death by the cap (primary), rescued and newly killed pairs, unfinished runs by type, mean CL and max\ndepth, alive at cap after DL5; per cast the outcome, SP spent and remaining, first-sighted monster and turns resting;\njoin the \"# Dark entry detection:\" notes to the next core trace state; rests directly after casts apart from total\nresting turns. Proposed margins for a later confirmation: 0.25 CL and 0.20 max depth.",
+    "profiles": [
+      "reborn-darkentry-ctl",
+      "reborn-darkentry-dark1"
+    ],
+    "question": "Does a detection cast on entering an unexamined dark area before the CL10 gate (light_detect_dark_entry 1, reserve 2 SP) save Mages and Necromancers from what is waiting, without costing progress?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-dark-entry-cd0ed207"
+    ],
+    "suites": [
+      "classes-1800-small-mages",
+      "classes-1800-small-necromancers"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44850786481-2",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44850786481",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "75768a97fc73072eb3895e39d2b828f45d05ff75"
+}
