@@ -1,0 +1,167 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-recallres-ctl": {
+        "description": "borg-zoo#563 (reborn-recall-reserve-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1
+        },
+        "sha256": "9052fe417558c8a5208072ae06db08cc2993af87b4b82e75630d686ae076a903"
+      },
+      "reborn-recallres-res2": {
+        "description": "borg-zoo#563 (reborn-recall-reserve-pilot.yaml): arm res2.",
+        "settings": {
+          "borg_param_town_recall_reserve": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1
+        },
+        "sha256": "8d2b5ce3883343392d4814c5d3ae2ce149fda0c533a23d3c1fb86def163d4008"
+      },
+      "reborn-recallres-res3": {
+        "description": "borg-zoo#563 (reborn-recall-reserve-pilot.yaml): arm res3.",
+        "settings": {
+          "borg_param_town_recall_reserve": 3,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1
+        },
+        "sha256": "0e2b4263d61ee461b5591e29a47e6ea5eccf7011be5df6e58e2e0c218f9a8580"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-recall-reserve-ae904090": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs ae904090 (the merge of PR #813, #810): town_recall_reserve, buy_recall_from_gold 400, shipped reserve 1. harness/borg.txt 27e54c5e..., scary_monsters.txt 94631dec...",
+        "ref": "ae90409091687360a5975a8b9e53c2ce466ecea5",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-21 11:48 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-recall-reserve-ae904090",
+    "control_profile": "reborn-recallres-ctl",
+    "definition": "definitions/reborn-recall-reserve-pilot.yaml",
+    "description": "After the Borg spends a Word of Recall, how often does its next town visit refill a carried reserve of one, two or three scrolls (town_recall_reserve 1, 2, 3), and does a larger reserve crowd out early healing, Phase Door or usable light? Generated from definitions/reborn-recall-reserve-pilot.yaml: 3 arms on 4.2.6-reborn-rust-recall-reserve-ae904090, suite classes-18.",
+    "issue": 563,
+    "name": "reborn-recall-reserve-pilot",
+    "owner_authorization": "2026-11-21: borg-reborn-rs owner's replenishment target (#810) on the borg-reborn-rs session's request (borg-zoo#563); zoo owner, 2026-11-21: \"check your issues\" (a classes-18 pilot only, all classes; larger tiers after the gate and the owner).",
+    "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#563; borg-reborn-rs #810, PR #813). Paired classes-18\npilot, the same two starts per class in all three arms, 100,000 turns, one binary, 54 games. The floor applies to gold\nremaining after the purchase: at 125 gold per scroll a character with none needs 525, 650 or 775 gold for the three targets.\nGate: one binary; each arm's settings in params-core.json; usable receipts (town-plan.jsonl, town-transactions.jsonl,\nmessages.log, state.log, terminal receipts) for every cell; every cell ends in death, turn_cap or borg_stopped; frozen-turn\nbursts classified. Report how many town visits actually exercised the refill policy; if exposure is sparse or departure\ninventory is missing, say so and scope the next observation pass.\nPrimary: for the first completed town visit after a Recall scroll was used, the fraction of departures that meet the arm's\nphysical scroll target, numerator and denominator per arm and per class; visits that could have filled the deficit with\nobserved stock and spendable gold broken out; starts that never had such a visit counted; later eligible visits secondary.\nPer refill opportunity: carried count on arrival, quote and quantity at each decision, purse and spendable gold, confirmed\npurchases and spend, carried count at the exit, Recall-triggered and stair departures, the last inventory-changing action;\nmissing inventory or unobserved stock is unknown; cached stock apart from a directly observed offer; physical scrolls apart\nfrom spells, rods and activations. Shortfalls explained when the evidence supports it (stock, affordability with the floor,\nroom or weight, another purchase first, departure before shopping ended). Compare gold spent, early purchases and departure\nstock of Cure Light Wounds, Phase Door and usable light or fuel; paired deaths, CL and maximum DL, including deaths before\nthe first refill opportunity. Keep the torch and lantern policy experiment separate. Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-recallres-ctl",
+      "reborn-recallres-res2",
+      "reborn-recallres-res3"
+    ],
+    "question": "After the Borg spends a Word of Recall, how often does its next town visit refill a carried reserve of one, two or three scrolls (town_recall_reserve 1, 2, 3), and does a larger reserve crowd out early healing, Phase Door or usable light?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-recall-reserve-ae904090"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44894144699-2",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44894144699",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "54ad40bb63bab4cc1a23ba308952d97cbe75a5c2"
+}
