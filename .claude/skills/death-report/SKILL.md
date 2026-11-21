@@ -84,6 +84,11 @@ Scripts are in `.claude/skills/death-report/scripts/`. Work in the session's scr
 
 ## Notes
 
+- **The source clone (step 2) needs the owner's clone as the reference** (`~/projects/borg-reborn-rs`): a reference to any other clone with missing objects fails with "pack has unresolved deltas". Check out the specimen's commit; never branch in the owner's own checkout.
+- **Survivors' evidence is not in the death bundles** (`deaths-*` hold the deaths only); it is in the run's `raw-*` artifacts (`trace-core.jsonl`, `keys.log`, `messages.log`, `state.log` per cell). To compare a death with the other arm's game, replay that arm from birth with its own `user/borg.txt` (the bundle's, with the arm's lines changed) and the run's `build-*` artifact, and compare `keys.log`. The first differing **message** is not the first differing **action**: use the keys.
+- **A page without a play pack:** `page.py` writes the "Play one yourself" section and JavaScript that fills its commands; if no pack was built, delete the section and the two lines `$('c1').textContent=` and `$('c2').textContent=`, or the viewer breaks.
+- **Selecting deaths:** `fetch_bundles.py RUN --seeds 1,2` or `--class NAME`.
+
 - **Kit at death:** the zoo bundles carry no death dump (`CharOutput.txt` is a stub). The gear comes from the recorder's final frame (`details.gear`).
 - **Screens:** the recorder writes `frames.jsonl` as deltas (`cells` = `[index, char, attr]` on an 80×24 grid). `record.py` replays them in order.
 - **Cost:** recording runs at about game speed. A 60,000-turn death takes a few minutes; run long batches in the background.
