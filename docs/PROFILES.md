@@ -104,6 +104,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-floo` | [#558](https://github.com/diegoami/borg-zoo/issues/558) | 7 | defined (pilot) | Leave-one-out of the shipped flight cluster on main d7e58cd: path1, noflee, danger, weight0, fastany, curefull. |
 | `reborn-sloo` | [#557](https://github.com/diegoami/borg-zoo/issues/557) | 6 | defined (pilot) | Leave-one-out of shipped settings no zoo arm has measured on main 2801ba18: nobump, nothrowfirst, nobreederboost, nooilapart, phasecurve100. |
 | `reborn-deathrisk0eb` | [#534](https://github.com/diegoami/borg-zoo/issues/534) | 1 | defined (exact-build calibration pilot; small and medium follow in order after the gate) | borg-reborn-rs PR #792 at 0eb48328 (core-trace@3): the shipped settings with per-think death_risk observations, evidence retained. |
+| `reborn-recallres` | [#563](https://github.com/diegoami/borg-zoo/issues/563) | 3 | defined (pilot) | Word of Recall replenishment with a reserve of 1 (shipped), 2 and 3 scrolls on ae904090 (borg-reborn-rs #810, PR #813). |
 
 ### `heal-attack-4`
 
@@ -1519,6 +1520,18 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 Profiles: `reborn-deathrisk0eb-shipped`.
 
+### `reborn-recallres`
+
+Word of Recall replenishment with a reserve of 1 (shipped), 2 and 3 scrolls on ae904090 (borg-reborn-rs #810, PR #813).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`, `borg_town_plan = 1`.
+
+| Profile | `borg_param_town_recall_reserve` |
+| --- | --- |
+| `reborn-recallres-ctl` | – |
+| `reborn-recallres-res2` | 2 |
+| `reborn-recallres-res3` | 3 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1821,7 +1834,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_reserve_percent` | 50, 100, 150, 200, 400, not set | `reborn-bundle`, `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve`, `reborn-receipt` |  |
 | `borg_param_town_ranged_reserve` | 6, not set | `reborn-townhunt` |  |
 | `borg_param_town_ranger_arrows_max__ranger` | 20, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
-| `borg_param_town_recall_reserve` | 1, not set | `reborn-town-switch-screen` |  |
+| `borg_param_town_recall_reserve` | 1, 2, 3, not set | `reborn-town-switch-screen`, `reborn-recallres` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_param_town_store_only_overweight` | 0, 1, not set | `reborn-store-overweight`, `reborn-shipcheck-b895` |  |
 | `borg_param_town_unseen_percent` | 50, not set | `reborn-phase-first-761` |  |

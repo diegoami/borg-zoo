@@ -9466,6 +9466,32 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-recallres-ctl": {
+      "description": "borg-zoo#563 (reborn-recall-reserve-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1
+      }
+    },
+    "reborn-recallres-res2": {
+      "description": "borg-zoo#563 (reborn-recall-reserve-pilot.yaml): arm res2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_param_town_recall_reserve": 2
+      }
+    },
+    "reborn-recallres-res3": {
+      "description": "borg-zoo#563 (reborn-recall-reserve-pilot.yaml): arm res3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_param_town_recall_reserve": 3
+      }
     }
   }
 }
