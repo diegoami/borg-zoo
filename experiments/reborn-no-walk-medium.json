@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-no-walk-medium",
+  "issue": 604,
+  "definition": "definitions/reborn-no-walk-medium.yaml",
+  "question": "On borg-reborn-rs d9ebf4c9 (main 5987e1fe, with the fast-fragile policy and ban shipped on, plus PR #853), does refusing the desperate walk to the stairs while a faster fast-fragile monster is awake next to the Borg (fast_fragile_no_walk), alone and with the stats rule (fast_fragile_by_stats), save early deaths without adding new ones?",
+  "description": "On borg-reborn-rs d9ebf4c9 (main 5987e1fe, with the fast-fragile policy and ban shipped on, plus PR #853), does refusing the desperate walk to the stairs while a faster fast-fragile monster is awake next to the Borg (fast_fragile_no_walk), alone and with the stats rule (fast_fragile_by_stats), save early deaths without adding new ones? Generated from definitions/reborn-no-walk-medium.yaml: 3 arms on 4.2.6-reborn-rust-no-walk-d9ebf4c9, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-21 after the pilot gate (run 44936423074: 0 deaths, 18 of 18 identical plays in both arms) and before any result of this tier was read. Medium tier (RULES 14) on the same\nbuild: classes-1800 starts 91-360 (270 starts per arm), all classes, 100,000 turns, one binary, disjoint from the other tiers\nof the study (pool them as one study, RULES 14). \nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start; frozen-turn\nbursts classified. Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired\nrescued and newly killed against the control (exact McNemar), identical plays; a RULES 18 bin. Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-no-walk-d9ebf4c9"
+  ],
+  "profiles": [
+    "reborn-nowalk-ctl",
+    "reborn-nowalk-nowalk",
+    "reborn-nowalk-nowalk-stats"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-no-walk-d9ebf4c9",
+  "control_profile": "reborn-nowalk-ctl",
+  "owner_authorization": "2026-11-21: zoo owner, \"dispatch all the waiting follow-ups\" (the medium tier; the pilot gate is read and posted on the issue).",
+  "retain_evidence": false
+}

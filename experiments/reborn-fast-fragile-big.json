@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-fast-fragile-big",
+  "issue": 596,
+  "definition": "definitions/reborn-fast-fragile-big.yaml",
+  "question": "On borg-reborn-rs 7f8c6b80 (PR #847), does attacking a fast-fragile monster (crow, wild cat, by name or by stats) with the best attack every turn, with and without a ban on healing next to it and with the Phase Door or stairs alternative at 100, 75 or 0 percent, save the early deaths (a crow killed 8 of #566's 29) without adding new ones?",
+  "description": "On borg-reborn-rs 7f8c6b80 (PR #847), does attacking a fast-fragile monster (crow, wild cat, by name or by stats) with the best attack every turn, with and without a ban on healing next to it and with the Phase Door or stairs alternative at 100, 75 or 0 percent, save the early deaths (a crow killed 8 of #566's 29) without adding new ones? Generated from definitions/reborn-fast-fragile-big.yaml: 2 arms on 4.2.6-reborn-rust-fast-fragile-7f8c6b80, suite classes-1800-big.",
+  "prespecified": "Fixed 2026-11-21 after the pilot gate (runs 44936517438 and 44936539730: stats-ban 6 deaths against 8 for ctl over 360 starts (2 rescued, 0 newly killed)) and before any result of this tier was read. Big tier (RULES 14) on the same\nbuild: classes-1800 starts 361-900 (540 starts per arm), all classes, 100,000 turns, one binary, disjoint from the other tiers\nof the study (pool them as one study, RULES 14). Two arms only: ctl against stats-ban, the lead of the small and medium tiers.\nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start; frozen-turn\nbursts classified. Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired\nrescued and newly killed against the control (exact McNemar), identical plays; a RULES 18 bin. Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-fast-fragile-7f8c6b80"
+  ],
+  "profiles": [
+    "reborn-fastfrag-ctl",
+    "reborn-fastfrag-stats-ban"
+  ],
+  "suites": [
+    "classes-1800-big"
+  ],
+  "control": "4.2.6-reborn-rust-fast-fragile-7f8c6b80",
+  "control_profile": "reborn-fastfrag-ctl",
+  "owner_authorization": "2026-11-21: zoo owner, \"dispatch all the waiting follow-ups\" (the big tier; the pilot gate is read and posted on the issue).",
+  "retain_evidence": false
+}
