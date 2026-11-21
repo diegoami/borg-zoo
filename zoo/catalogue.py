@@ -92,9 +92,13 @@ def expand_suites(suites):
     """Expand rule suites into seed lists, in catalogue order.
 
     Listed seeds are reserved first, so a rule suite never reuses a seed of
-    any other suite.
+    any other suite. A listed suite with "external": true (a manifest that
+    comes from outside the catalogue, e.g. the owner's retained 600) reserves
+    nothing: a rule suite's seeds are frozen, and a collision there would skip
+    a seed and shift every later start of every frozen suite (borg-zoo#532
+    changed classes-1800 from its start 119 on that way, until this fix).
     """
-    used = {seed for s in suites.values() for seed in s.get('seeds', [])}
+    used = {seed for s in suites.values() if not s.get('external') for seed in s.get('seeds', [])}
     out = {}
     for name, suite in suites.items():
         suite = dict(suite)

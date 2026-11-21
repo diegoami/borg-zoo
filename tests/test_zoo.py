@@ -1191,6 +1191,29 @@ class SubsetSuiteTest(unittest.TestCase):
         self.assertEqual(len(mine), 600)
         self.assertFalse(mine & others)
 
+    def test_rule_suites_keep_their_frozen_seeds(self):
+        # borg-zoo#532 listed a custom suite whose seeds collided with classes-1800's; the rule generator skipped them
+        # and every later classes-1800 start (and the big and full tiers) changed class. Frozen at b258d945.
+        import hashlib
+        import json
+        cat = cat_mod.catalogue()
+        for name, digest in (
+                ('classes-1800', '490cc72f165721710cfc1dbf2170314c999b3be005caee544158dea0971f1a78'),
+                ('classes-1800-200k', 'f356979ba868866b342ccbff71f94c8276693a2069eabe06fce9408c38c5a9d5'),
+                ('classes-18', 'debebef2f4fde5a74af95f64fe98affeb2e6a69c1f6cd4c4fb2a9ef2751ba347')):
+            self.assertEqual(hashlib.sha256(json.dumps(cat['suites'][name]['seeds']).encode()).hexdigest(), digest, name)
+
+    def test_external_suite_reserves_no_seeds(self):
+        rule = {'description': 't', 'role': 'development', 'birth': 'assigned', 'cap': 1,
+                'seed_rule': {'generator': 'sha256-v1', 'count': 5},
+                'characters': {'classes': ['Warrior'], 'races': ['Human']}}
+        alone = cat_mod.expand_suites({'rule': dict(rule)})['rule']['seeds']
+        ext = {'description': 't', 'role': 'pilot', 'birth': 'assigned', 'cap': 1, 'seeds': [alone[0]],
+               'characters': {'classes': ['Warrior'], 'races': ['Human']}}
+        self.assertNotEqual(cat_mod.expand_suites({'ext': dict(ext), 'rule': dict(rule)})['rule']['seeds'], alone)
+        ext['external'] = True
+        self.assertEqual(cat_mod.expand_suites({'ext': dict(ext), 'rule': dict(rule)})['rule']['seeds'], alone)
+
 
 class StatsTest(unittest.TestCase):
     def test_progress_score_is_the_median_of_the_combined_figure_not_two_medians(self):
