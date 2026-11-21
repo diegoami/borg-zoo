@@ -120,6 +120,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-alpha1` | [#601](https://github.com/diegoami/borg-zoo/issues/601) | 1 | defined (pilot; small-rest, medium, big, full planned, not dispatched) | Release measurement of borg-reborn-rs v0.1.0-alpha.1 (ed52fec1): shipped settings, one arm, classes-1800 ladder (45+45+270+540+900), 100,000 turns. |
 | `reborn-rangedonly` | [#593](https://github.com/diegoami/borg-zoo/issues/593) | 4 | defined (pilot) | caution_ranged_only (borg-reborn-rs #838) on 5887c29b: shipped, ranged, immobile2, ranged_clw, classes-18 pilot. |
 | `reborn-nowalk` | [#604](https://github.com/diegoami/borg-zoo/issues/604) | 3 | defined (pilot) | fast_fragile_no_walk (borg-reborn-rs #849, PR #853) on d9ebf4c9: ctl, nowalk, nowalk-stats, classes-18 pilot. |
+| `reborn-tonight` | [#609](https://github.com/diegoami/borg-zoo/issues/609) | 1 | defined (ladder: pilot, small-rest, medium, big, full), dispatched 2026-11-21 | Tonight's test: borg-reborn-rs main ab775d48, shipped settings, one arm, classes-1800 ladder (45+45+270+540+900), 100,000 turns. |
 
 ### `heal-attack-4`
 
@@ -1726,6 +1727,14 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-nowalk-ctl` | – | – |
 | `reborn-nowalk-nowalk` | – | 1 |
 | `reborn-nowalk-nowalk-stats` | 1 | 1 |
+
+### `reborn-tonight`
+
+Tonight's test: borg-reborn-rs main ab775d48, shipped settings, one arm, classes-1800 ladder (45+45+270+540+900), 100,000 turns.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-tonight-shipped`.
 
 ## Settings you have built arms with
 
