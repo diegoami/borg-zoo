@@ -677,6 +677,23 @@ Lower values send the Borg back for unknown items more often. Each return brings
 - **#513, Phase Door first (#761) on 992e0351:** pilot 44774388022 (10 arms): nobody newly killed; `oil` CL 6.67 against 6.00, six arms rescued the one dead start, `ranger`, `floor` and `floorfirst` played ctl's keys in 15-16 of 18. **Small tier** (ctl, oil, phase; starts 1-90; 44791749875): ctl 0 deaths, `oil` 0 (CL 6.00, 9 of 90 identical), `phase` 2 (Ranger 129607500 and Priest 652511567, both CL1; CL 5.70, Ranger mean 4.9 against 5.8). **The pilot's `oil` lead did not carry over**, and `phase` newly killed two.
 - **What the pilots and small tiers say together:** at 18 starts one dead start (Druid 102023799 in every arm of every pilot of this build family) carries every "rescued"; at 90 starts ctl had no deaths, so nothing could be rescued and the new arms can only add deaths. A pilot lead on CL (oil +0.67, flight3 rescue) was not reproduced. The pilot is a gate, not a result.
 - **Parameters tested:** of the 2,229 `borg_param_*` settings in borg-reborn-rs main a04e5471, 102 have been varied in any zoo experiment and 37 in only one. Never: `power_` (774), `danger_` (256 of 257), `home_` (237), `sell_`, `wear_`, `item_`, `buy_`, `shopping_` (96), 209 of 258 `caution_`, 111 of 120 `escape_`, 38 of 42 `recover_`, 16 of 19 `prepared_`. The per-class `attack_preference_*` count is understated (the class sits in the name). The `prepared_` dive gates are the first calibration (#522).
+
+**Results of 2026-11-21 (main 3b4924ba, engine 574b618c):**
+- **#566, the deaths of the full classes-1800 run on 3b4924ba,** read one by one ([report](https://claude.ai/artifact/SPjLaJ4Z8BeBQp2qQr4BwF); borg-cemetery#98, #100, every death replayable from `runs/2026-11-21-reborn-head-3b4924ba/replay/`). 29 of 1,800, against 33 on fde8025a; none of the starts dies on both builds.
+  - **Fixable play (7):**
+    - Phase Door read again and again under a known no-teleport curse (borg-reborn-rs#829, #830);
+    - resting next to an invisible attacker (#831);
+    - staying next to a confusing attacker (#837).
+  - **The kit (7 there):** the restock rules require no cures or Phase Door at DL1–5. Over all 29, 16 die with no cures or no Phase Door, 14 of them with 10 gold or less (#840).
+  - **Matchup or luck (15):** crows at CL1, floating eyes, paralysis traps.
+  - The Borg's confusion cures leave out Cure Light Wounds (#837).
+- **#576, `caution_ranged_vs_immobile` 2 against shipped 0 on 3b4924ba** (pilot 44908965838; big, starts 361–900, 44909591817):
+  - **Pilot:** no deaths, CL +0.17.
+  - **Big:** shipped 6 deaths, immobile2 10 (3 / 7, p 0.34), ΔCL −0.05 ±0.08. The shipped arm replays #566's big run game for game.
+  - **5 of the 7 new deaths are to immobile monsters:**
+    - grey molds and grey mushroom patches: a cure held while confused and adjacent, then a confused walk to the stairs; or a step away undone by the next flow;
+    - an unseen floating eye.
+  - **Bin: leaning worse,** as on 5af2f79f (#461). Keep 0 until the gaps in borg-reborn-rs#837 are fixed. The list approach is #838.
 - **In flight (pilots, queued behind PR #521):** #518 (dive gates: shipped cap, then margin and class offsets), #520 (P6 compatibility, d0657712 against 4e9af99e), #516 (flight on main 09a70906), #517 (Phase Door first on 3c889f0f), #522 (`prepared_` calibration on a04e5471), #524 (threat-weighted stair routing, 4a2eade9).
 - **Zoo infrastructure:** `compare.yml`'s results job can lose its push when several runs finish together (`results -> results (fetch first)`); `gh run rerun --failed` re-runs only that step and the results land under `RUNID-2`. A merge-then-dispatch helper must stop when the merge fails: after PR #521 conflicted with main it dispatched experiments that were not on main yet (runs 44808965870, 44809000599, 44809037298, failed at once, harmless).
 
