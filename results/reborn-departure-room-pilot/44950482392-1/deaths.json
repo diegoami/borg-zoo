@@ -1,0 +1,117 @@
+[
+  {
+    "cause": "a green worm mass",
+    "cell": "classes-18-300k/4.2.6-reborn-rust-town-room-c7ea18df/reborn-room-shipped/1569794094",
+    "class": "Priest",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18-300k/4.2.6-reborn-rust-town-room-c7ea18df/reborn-room-shipped/1569794094",
+      "complete": true,
+      "files": {
+        "archive/Borg.map": {
+          "bytes": 33592,
+          "sha256": "4627db9354bee09492f24d0cbf07be3f19aa7196eccc77d9d77844e4c7e7cbe6"
+        },
+        "archive/borg-log.txt": {
+          "bytes": 177,
+          "sha256": "805dec7c7369b6852fb0d6a66717bf0dc723748afaaa9279c2742eaeb2c1344a"
+        },
+        "archive/borg.dat": {
+          "bytes": 52,
+          "sha256": "941c48d62c1a2d171158b3f6fb43d1c0d7bccd2f5e5400647eb657fd4e0b53b1"
+        },
+        "keys.log": {
+          "bytes": 279734,
+          "sha256": "e8da27937dc7dc81d0952d44dcf05b2601ae0bd82614cf35f0459ec8c8cb5d67"
+        },
+        "messages.log": {
+          "bytes": 1224374,
+          "sha256": "6ece2725c41eec59b0f9d2e872758584e051ed05dd502f924ca5026e800afaf3"
+        },
+        "params-core.json": {
+          "bytes": 714796,
+          "sha256": "f0425edbdcd3359b871e6273cae446b4181d55a571643ecc6059ac3ce0f5d792"
+        },
+        "phase-observations.jsonl": {
+          "bytes": 17149,
+          "sha256": "25b58e8dbc11caeb51433e67ffce5d487bba0fd0a50107d34e424718b4672e6e"
+        },
+        "return-events.jsonl": {
+          "bytes": 24068,
+          "sha256": "0db65553ac7d83ad397ee08a8f5f9acf7440e9cb6d6f1fbfb26ca2c0a23a3cfa"
+        },
+        "save/Borg": {
+          "bytes": 79644,
+          "sha256": "998b954df50913332775c119513ee4f2b1898b3fc42c7e62348bdda5692c0d1a"
+        },
+        "settings-resolved.json": {
+          "bytes": 2604,
+          "sha256": "79c06f00bd7e6ce9fd1d0ae4f4bae9b41385f62f3e6f348aa532304c462e8adb"
+        },
+        "state.log": {
+          "bytes": 2796107,
+          "sha256": "49032c309d9694aecd34c3dda52dd20d383da54d1c6dae3f63b58ccbc18ca2e3"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "summary.json": {
+          "bytes": 2004,
+          "sha256": "362bd97680aa986a84dd7620591ffc07c674479676369755e5a5b9168d587947"
+        },
+        "town-recording.json": {
+          "bytes": 1828,
+          "sha256": "3f279e4a9f92e14862dc66410132519f38c565a8fd27c7f030ddb37f805711a9"
+        },
+        "town-transactions.jsonl": {
+          "bytes": 8235,
+          "sha256": "0bd25eafb18c33b636d1104ff5ecd62e87883c45a61d2c65d66cc4296005f70a"
+        },
+        "trace-core.jsonl": {
+          "bytes": 58665285,
+          "sha256": "3388a8689baf6cd330568623161c8eff60d088f0c08decbc9ea43a59452f1bd1"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 110,
+          "sha256": "8095ab95f2993ecc1f5791933c4035e1084d6e75247bd23759ba88e161cc3fa3"
+        },
+        "user/borg.txt": {
+          "bytes": 78002,
+          "sha256": "358aeba0d39dc72a0d86737ff2812ed8f2d1f74b5e77eda34d51e3d930cd87c8"
+        },
+        "user/lore.txt": {
+          "bytes": 24360,
+          "sha256": "689e8774a2c8913f9ec7bb0bc8f8ff4b567d929ea11037974f36284b26798f03"
+        },
+        "user/scary_monsters.txt": {
+          "bytes": 5318,
+          "sha256": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": null,
+      "depth": 2,
+      "hp": null,
+      "keys": 20708,
+      "kind": "death",
+      "level": 7,
+      "max_depth": 3,
+      "max_level": 7,
+      "turn": 174601
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Human",
+    "seed": 1569794094,
+    "specimen": "4.2.6-reborn-rust-town-room-c7ea18df"
+  }
+]
