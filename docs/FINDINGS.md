@@ -709,7 +709,7 @@ run links, arm counts, gates and provenance.
 | [#556](https://github.com/diegoami/borg-zoo/issues/556) Fresh baseline | Both `fde8025a` and `d7e58cd` survived all 18 fresh starts. The newer build changed every game and reached DL5 in one. | Further tiers on this fresh block require the owner's gate. |
 | [#557](https://github.com/diegoami/borg-zoo/issues/557) Unseen settings, `2801ba18` | All 108 cells survived. Reverting throw-first left all 18 keys streams identical. Removing unseen bump or separate oil, or flattening the Phase curve, reduced mean CL. | The requested `d7e58cd` lacked the unseen-bump settings. |
 | [#558](https://github.com/diegoami/borg-zoo/issues/558) Flight ablation, `d7e58cd` | All 126 cells survived. Reverting threat weight or the fast-danger threshold changed play and raised mean CL in this pilot. The four other reversions matched shipped in 17–18 of 18 starts each. | The pilot could not rank survival. |
-| [#563](https://github.com/diegoami/borg-zoo/issues/563) Recall reserve, `ae904090` | The three run shards succeeded, but the [collect job](https://github.com/diegoami/borg-zoo/actions/runs/44894144699) lost its results push. The audited results branch had no published attempt. | Recover collection and inspect the gate before reporting results. |
+| [#563](https://github.com/diegoami/borg-zoo/issues/563) Recall reserve, `ae904090` | The [collection retry](https://github.com/diegoami/borg-zoo/actions/runs/44894144699/attempts/2) archived all 54 cells with zero missing and no deaths. Each higher reserve changed play in 6 of 18 starts. The pilot report found only 2, 3 and 4 Recall reads followed by a purchase before the next read in the three arms. | The pilot gate passed. Exposure to the refill policy was sparse. |
 | [#566](https://github.com/diegoami/borg-zoo/issues/566) The deaths of shipped head `3b4924ba`, all 1,800 starts | 29 deaths against 33 on `fde8025a`; no start dies on both builds. Read one by one ([report](https://claude.ai/artifact/SPjLaJ4Z8BeBQp2qQr4BwF)): 7 fixable play (Phase Door under a no-teleport curse, resting by an invisible attacker, staying by a confuser), 7 kit (the restock rules ask for no cures or Phase Door at DL1–5; 15 of 29 die with no cures or no Phase Door, 13 of them with 10 gold or less), 15 matchup or luck (crows at CL1, floating eyes, paralysis traps). | borg-reborn-rs #829–#831, #837, #838, #840, #842; every death replays from borg-cemetery (#98, #100) |
 | [#576](https://github.com/diegoami/borg-zoo/issues/576) `caution_ranged_vs_immobile` 2, `3b4924ba` | Pilot: no deaths. Big (starts 361–900): shipped 6, immobile2 10 (3 rescued / 7 newly killed, p 0.34), ΔCL −0.05 ±0.08; the shipped arm replays #566's big run game for game. 5 of the 7 new deaths are to immobile monsters (a cure held while confused, then a confused stairs walk; a step away undone by the next flow; an unseen floating eye). **Leaning worse, as on 5af2f79f (#461): keep 0.** | borg-reborn-rs #837 (the gaps), #838 (a ranged-only list); borg-cemetery #101 |
 
@@ -719,10 +719,11 @@ matched the exact native full45 builds in all 45 paired games.
 settings receipt in a 36-cell pilot. [#545](https://github.com/diegoami/borg-zoo/pull/545)
 defined the #543 run, and [#547](https://github.com/diegoami/borg-zoo/pull/547)
 kept imported manifests from shifting generated suites.
-[#566](https://github.com/diegoami/borg-zoo/issues/566) has four of its five
-shipped-head slices archived (1,755 starts). The verysmall shard jobs
-completed but collection failed; its 45 cells were read from the run's
-`cells-*` artifacts (44894181893) for the 1,800-start reading above.
+All five [#566](https://github.com/diegoami/borg-zoo/issues/566) shipped-head
+slices are archived. The [collection retry](https://github.com/diegoami/borg-zoo/actions/runs/44894181893/attempts/2)
+published the 45 verysmall starts under `44894181893-2`. The five archives
+contain 1,800 distinct starts, 29 deaths and 1,771 turn caps, with zero missing
+cells in each attempt.
 
 
 ## Historical findings and open questions

@@ -62,9 +62,10 @@ for catalogue JSON and FINDINGS prose. Merge only when
 - The pilots queued behind #521 finished. See the results on #516, #517,
   #518, #520, #522 and #524. #516 and #517 were superseded. #520's native
   full45 finished with identical play in all 45 pairs.
-- #563 (Recall reserve) and the verysmall start of #566 ran their cells but
-  failed collection. Check the Actions attempt and results branch before
-  using either as a gate. #566's other four slices are archived.
+- Collection retries recovered #563's 54-cell Recall reserve pilot
+  (`44894144699-2`) and #566's 45-start verysmall slice
+  (`44894181893-2`). All five #566 slices are archived, with 29 deaths
+  in 1,800 distinct starts. See [FINDINGS](FINDINGS.md) for both gates.
 - #495's landing check seldom changed play at 200k. The next attempt needs
   a saved encounter that reaches the check or longer games.
 - Owner decisions remain on the study issues. Open decisions include a

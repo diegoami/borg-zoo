@@ -47,9 +47,9 @@ native-receipt report supplied by #92.
 Acceptance still needs a native run showing identical gameplay for matched
 reference/probe starts. Unit tests cover the capture path, class routing,
 parsed/vector mismatches, corrupt streams, retention and failure reporting;
-they do not establish policy fitness or a live executor. Source-native
-validation is documented at the pinned commit in
-`docs/validation/2026-11-14-town-class-profiles/README.md`.
+they do not establish policy fitness or a live executor. The pinned
+[borg-rs class-profile validation](https://github.com/diegoami/borg-rs/blob/2439dd4ad6e1e629f99d0c2449dc975c91a68a7a/docs/validation/2026-11-14-town-class-profiles/README.md)
+records the source-native checks.
 
 This work integrates #92's evidence-retention support. A later live outcome
 study requires accepted upstream execution support and an owner-started
