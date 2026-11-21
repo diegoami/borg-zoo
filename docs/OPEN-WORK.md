@@ -89,6 +89,10 @@ The Ranger tiers (200 starts) asked for in #510, #511, #513, #516 and #517 are s
   generator skips any seed it shares with classes-1800, which shifted classes-1800 from its start 119 on (and the medium, big
   and full tiers) from the merge of PR #532 until PR #546's fix; no run used the shifted starts (small and verysmall are the first
   90 and 45). tests/test_zoo.py now pins the frozen seeds of classes-1800, classes-1800-200k and classes-18.
+- Cells now carry `settings_resolved` (borg-zoo#539): the core's `settings-resolved.json` (borg-reborn-rs 62a7aae2 and later), the
+  original text and sha256, its class, the canonical non-default map, and a projection of the profile's written `borg_param_*` keys
+  (class suffixes and the `attack_preference_<class>_<family>_permille` aliases mapped for the played class; verdicts match, differs,
+  omitted, not applicable). Absent receipt: null. Malformed: status `malformed`, the outcome unchanged. Older builds write none.
 - A PR that adds catalogue entries conflicts with every other one that does: take main's
   `catalogue/*.json` and `docs/PROFILES.md`, re-run `zoo define` and `zoo.profiles_page`.
 
