@@ -288,6 +288,7 @@ The record holds:
   boundary at or after the cap). A survivor's final turn and depth are only
   comparable at an exact boundary (borg-reborn-rs#30's `tools/endpoint.py`
   refuses after-key survivors unless told otherwise);
+- `settings_resolved` (borg-reborn-rs builds from `62a7aae2`, borg-zoo#539): the core's `settings-resolved.json` kept as text with its sha256, its class, its canonical non-default map, and a projection of the profile's written `borg_param_*` keys onto canonical names for the played class (verdicts match, differs, omitted, not applicable); null when the build writes no receipt, status `malformed` when it is invalid (the outcome is not changed);
 - the first turn at each depth mark, and, from the same sampled states, a
   `milestones` list: character level and max depth at 25/50/75/100% of the
   cap (the last sampled state at or before that turn), so progress can be

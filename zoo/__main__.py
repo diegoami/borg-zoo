@@ -1,4 +1,6 @@
-"""borg-zoo command line: plan, arms, build, run, collect, site."""
+"""borg-zoo command line: define, plan, arms, preflight, build, run, collect, site.
+
+`define` (YAML definitions to experiments, docs/DEFINE.md) is handled before the parser: python3 -m zoo define --help."""
 import argparse
 import datetime
 import json

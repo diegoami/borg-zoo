@@ -46,8 +46,9 @@ Acceptance still needs a native run showing identical gameplay for matched
 reference/probe starts. Unit tests cover the capture path, class routing,
 parsed/vector mismatches, corrupt streams, retention and failure reporting;
 they do not establish policy fitness or a live executor. Source-native
-validation is documented at the pinned commit in
-`docs/validation/2026-11-14-town-class-profiles/README.md`.
+validation is documented in the borg-reborn-rs repository at the pinned commit
+(`docs/validation/2026-11-14-town-class-profiles/README.md` there; it is not in this repository, whose
+`docs/validation/town-evidence-20261114/` holds the canary receipt).
 
 This work integrates #92's evidence-retention support. A later live outcome
 study requires accepted upstream execution support and an owner-started

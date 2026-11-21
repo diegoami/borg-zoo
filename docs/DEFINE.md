@@ -82,6 +82,18 @@ prespecified: |
 
 YAML reads unquoted `on`, `off`, `yes` and `no` as true and false. Quote them when they are option names (`'on'`).
 
+## Suites
+
+A definition names a suite (`tier`, `suite`, `suites`); the suites are in `catalogue/suites.json`. Three kinds:
+
+- **Rule suites** (`seed_rule`: `{"generator": "sha256-v1", "count": N}`): the seeds come from the suite's own name, so a new name is a fresh block (`classes-1800-fresh`). **Their seeds are frozen**: `classes-1800`, `classes-1800-200k` and `classes-18` must never change, and a new rule suite goes at the end of the file. Tests pin their hashes (`test_rule_suites_keep_their_frozen_seeds`).
+- **Subset suites** (`subset`: a parent and a `range` (a tier), a `class` or a list of `seeds`): the parent's starts, each with its parent's character; their own cap (for example `classes-1800-300k-verysmall`, 300,000 turns, or the death banks, 200,000).
+- **Listed suites** (`seeds`, `birth: assigned`, `assigned_characters` mapping seed to race and class): starts that come from outside, such as borg-reborn-rs's `harness/suites/full` (`reborn-native-full45`) or the owner's retained 600 (`reborn-flight-600-pilot18`). **Set `"external": true`.** Listed seeds are reserved for the rule suites, so a listed seed that a rule suite already holds shifts every later start of that rule suite (PR #532 did this to `classes-1800` from its start 119 until PR #547).
+
+## Reusing a pilot (RULES 16)
+
+A tier above pilot is refused until a pilot of the same arms on the same specimen exists in the catalogue. Ways to satisfy it: the first run is a pilot (`tier: pilot`, a pilot-role suite, or `pilot: true` on a study's first run, for example a verysmall run of a new specimen); or list the pilot's profiles (`specimens:`, `profiles:`, `control_specimen`, `control_profile`) so the new experiment is covered by it. An experiment that mixes arms from two pilots needs a pilot of exactly those arms, or two experiments.
+
 ## Asking for a run
 
 Open a **Run request** issue. Its main field is a definition like the one above.

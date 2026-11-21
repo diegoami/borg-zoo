@@ -1,7 +1,7 @@
 # Open work and handover state
 
 What is open in this repository, why, and what the next session should read
-first. Updated 2026-11-20 ("State on 2026-11-20" below). The sections from
+first. Audited 2026-11-21 (borg-zoo#568): the routine is in the README, the traps in "What a new session must know" below, the results in docs/FINDINGS.md. The sections from
 "Open issues (2026-11-16)" on are older handovers, kept as written; check any
 status in them against the issue before acting on it. The repository's
 own rules still apply:
@@ -26,6 +26,19 @@ latest comments and `git log origin/main` for commits naming it. Work in your
 own worktree. Resolve code conflicts by hand: merging both sides is only safe
 for catalogue JSON and FINDINGS prose. Merge only when
 `python3 -m unittest discover -s tests` passes.
+
+## What a new session must know (traps found in practice, 2026-11-20 and 21)
+
+- **Dispatch takes a path:** `-f experiment=experiments/NAME.json -f shards=N`. The experiment must already be on main. A script that merges and then dispatches must stop when the merge fails (one did not: three runs of files not on main failed at once).
+- **`zoo preflight` does not check that a `borg_param_*` name exists in the specimen**; `git grep NAME COMMIT -- borg-core harness`. A pin can predate a parameter (#557: `caution_unseen_bump_*` is not in d7e58cd).
+- **The `test` workflow takes about 22 minutes** and queues behind the compare runs (20 concurrent jobs). A PR that adds catalogue entries conflicts with every other: take main's `catalogue/*.json` and `docs/PROFILES.md`, re-run `zoo define` and `zoo.profiles_page`. Pushing to a PR while a watcher polls its checks cancels them and the watcher fails.
+- **Suite seeds are frozen** (docs/DEFINE.md): a listed suite needs `"external": true`.
+- **Results push race:** `gh run rerun RUN --failed`, one at a time.
+- **A pilot is a gate, not a result.** At 100,000 turns the control dies in about 2% of games (29 in 1,800 on 3b4924ba; 33 and 42 on fde8025a and 94032140), so a pilot lead has not once carried over to a small tier. Survival questions need 200,000 turns or a death-rich suite.
+- **`/death-report` needs the owner's borg-reborn-rs clone as `--reference`** (`~/projects/borg-reborn-rs`): a reference clone with missing objects fails with "unresolved deltas". The build artifact of the run is what replays the games.
+- **The shipped scary list differs by build** (94631dec until main 2801ba18, 9766d882 from 3b4924ba); every specimen pins the hash it ships.
+- **`yaml` reads `off` and `on` as booleans:** quote them as arm names.
+- **The settings receipt** (`settings_resolved`) exists only for builds from borg-reborn-rs 62a7aae2 on.
 
 ## Skills
 
@@ -63,12 +76,7 @@ merge after checks, dispatch the pilot, comment the run on the issue.
 | #511 | `reborn-fight-recall-pilot` (44774352123) | done; no lead; **death report waits for a new build** |
 | #513 | `reborn-phase-first-761-pilot` (44774388022), `reborn-phase-first-761-small` (44791749875) | `oil`'s lead did not carry over; `phase` newly killed two |
 
-**Queued behind PR #521** (a watcher merges it after its checks and dispatches; if the session
-ends, merge it and dispatch each with `-f experiment=experiments/NAME.json`; shards in brackets):
-`reborn-dive-gates-768-cap-pilot` (2) and `reborn-p6-compat-pilot` (2), `reborn-dive-gates-768-knobs-pilot`
-(4; #518), `reborn-flight3-main-pilot` (4; #516), `reborn-ranger-phase-pilot` (4; #517),
-`reborn-prepared-calibration-pilot` (6; #522), `reborn-weighted-flight-765-pilot` (3; #524).
-#520's gate comes first: its two builds must play the same keys; a mismatch stops the study.
+**Everything queued on 2026-11-20 was dispatched and read** (the seven pilots of PR #521, the #526 and #522 follow-ups, the small tiers, the 200,000-turn pilots, the full ladder of #566 on main 3b4924ba: 29 deaths in 1,800). The results are in docs/FINDINGS.md and on the issues. What is open now is on the issues: #571 (P6 final pilot), #575 (waits on borg-reborn-rs #828), #559 (parked), #560 (list posted, owner to choose), #568 (this audit), #573 (design decisions for the owner), #569 and #570 (blocked on borg-reborn-rs).
 
 The Ranger tiers (200 starts) asked for in #510, #511, #513, #516 and #517 are set aside by the owner
 (2026-11-20: "all classes, forget the Rangers for a while"); medium tiers are over the limit: ask first. #516 and #517 rest partly on leads that did not carry over (see FINDINGS).
@@ -113,7 +121,7 @@ https://claude.ai/artifact/SnqujSa3vHiJUebG9hLu87), #463 big.
 - **Cleanup:** worktrees `.worktrees/zoo-418`, `blocked-stairs`, `ranger-arrows`;
   `~/borg-play/flight-501` duplicates `~/borg-play/flight-fixes` except the pilot Druid.
 
-## Open issues (2026-11-16)
+## Open issues (2026-11-16, historical)
 
 - **#144:** implementation adds pinned Cemetery dispatch, immutable pushid
   resolution, durable per-cell collection and paired impact reports separate
@@ -164,8 +172,8 @@ second push rejected as non-fast-forward, which fails the whole workflow even
 though the gameplay succeeded. This happened to run 43703201583 attempt 1
 (the reviewed-E reborn smoke): 6/6 cells, no missing cells, but the push was
 rejected because the town-negative collect had landed first. Rerunning the
-failed job fixed it. If several collects are in flight, expect some push
-failures and rerun them rather than re-dispatching the experiments.
+failed job fixed it: `gh run rerun RUN --failed` re-runs only the collect step (the results land under `RUNID-2`); do it one run at a time. If several collects are in flight, expect some push
+failures and rerun them rather than re-dispatching the experiments. (It happened to most batches of 2026-11-20 and 21; a retry with fetch and rebase in the workflow's push step would remove it.)
 
 ## Owner decisions and preferences stated in this session
 
