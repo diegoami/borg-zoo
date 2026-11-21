@@ -1,0 +1,28 @@
+# borg-zoo#612: the small tier of the departure room study (borg-reborn-rs #859, PR #864): classes-1800 starts 1-45 at 300,000 turns.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-departure-room-small.yaml
+name: reborn-departure-room-small
+issue: 612
+question: >-
+  On borg-reborn-rs c7ea18df, over 45 starts of classes-1800 at 300,000 turns (5 per class), do the departure room, the store
+  keep and the Recall curve 110 (shipped), the room alone, or the curve alone get more starts past the DL5 gate, and with
+  what deaths, against the build's own off settings?
+suites: [classes-1800-300k-verysmall]   # classes-1800 starts 1-45, 300,000 turns
+specimens: [4.2.6-reborn-rust-town-room-c7ea18df]
+profiles: [reborn-room-ctl, reborn-room-shipped, reborn-room-room, reborn-room-recall]
+control_specimen: 4.2.6-reborn-rust-town-room-c7ea18df
+control_profile: reborn-room-ctl
+owner_authorization: >-
+  2026-11-21: zoo owner, "yes do all that" (the small tier after the evidence analysis posted on #612: exposure enough,
+  16 of 18 ctl starts bought Recall).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22 after the pilot (run 44950482392) and its evidence analysis, before any result of this tier was read.
+  Small tier (RULES 14; the verysmall slice of classes-1800 at 300,000 turns: 45 starts, 5 per class, all classes, 180
+  cells), four arms of the pilot on one build. Evidence is not retained (130 MB per cell in the pilot).
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start.
+  Report per arm and class: starts with max depth >= 5, max depth exactly 4 with 500 gold or more at the end (the #859 problem
+  as far as the cell summary shows; "no Recall carried" is not available without evidence), mean CL, mean depth, deaths and
+  causes, paired rescued and newly killed against ctl, identical plays. Directional only; confirmation needs a fresh seed
+  block (#556). Descriptive.

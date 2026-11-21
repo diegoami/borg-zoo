@@ -122,7 +122,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-nowalk` | [#604](https://github.com/diegoami/borg-zoo/issues/604) | 3 | pilot done (run 44936423074); small, medium defined and dispatched | fast_fragile_no_walk (borg-reborn-rs #849, PR #853) on d9ebf4c9: ctl, nowalk, nowalk-stats, classes-18 pilot. |
 | `reborn-tonight` | [#609](https://github.com/diegoami/borg-zoo/issues/609) | 1 | defined (ladder: pilot, small-rest, medium, big, full), dispatched 2026-11-21 | Tonight's test: borg-reborn-rs main ab775d48, shipped settings, one arm, classes-1800 ladder (45+45+270+540+900), 100,000 turns. |
 | `reborn-p6rf` | [#611](https://github.com/diegoami/borg-zoo/issues/611) | 1 | defined (pilot) | P6 review-fix compatibility (borg-reborn-rs #860): main ab775d48 against 038250d6, shipped settings, classes-18. |
-| `reborn-room` | [#612](https://github.com/diegoami/borg-zoo/issues/612) | 4 | defined (pilot) | Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k. |
+| `reborn-room` | [#612](https://github.com/diegoami/borg-zoo/issues/612) | 4 | pilot done (run 44950482392); small (classes-1800-300k-verysmall) defined and dispatched | Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k. |
 
 ### `heal-attack-4`
 
