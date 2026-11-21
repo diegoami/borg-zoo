@@ -1510,6 +1510,17 @@
         "reborn-deathrisk0eb-shipped"
       ],
       "runs": []
+    },
+    "reborn-recallres": {
+      "issue": 563,
+      "status": "defined (pilot)",
+      "what": "Word of Recall replenishment with a reserve of 1 (shipped), 2 and 3 scrolls on ae904090 (borg-reborn-rs #810, PR #813).",
+      "profiles": [
+        "reborn-recallres-ctl",
+        "reborn-recallres-res2",
+        "reborn-recallres-res3"
+      ],
+      "runs": []
     }
   }
 }
