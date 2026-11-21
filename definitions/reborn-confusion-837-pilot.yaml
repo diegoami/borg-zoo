@@ -1,0 +1,75 @@
+# borg-zoo#581: confusion settings (borg-reborn-rs #837): CLW cure, no walk before the cure, stuck next to a confuser, CSW reserve, kobold shaman.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-confusion-837-pilot.yaml
+name: reborn-confusion-837-pilot
+issue: 581
+question: >-
+  On borg-reborn-rs da097a76 (main 12c4ce7c plus the confusion change, #837), do the six confusion settings (a Cure Light
+  Wounds as a confusion cure, no walk to the stairs before the cure, the cure held only while a step out of reach is possible,
+  the step ranked by mobile danger, a confusion-cure reserve in town, the kobold shaman as attack or scare) save deaths
+  against the shipped play, and do they add new ones?
+tier: pilot            # classes-18, 100,000 turns; small + medium (classes-1800 starts 1-360) after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-confusion-da097a76
+  repository: diegoami/borg-reborn-rs
+  ref: da097a764239c64cdcdd0fb469d5a05577a6823e
+  label: "borg-reborn-rs claude/ecstatic-hawking-bcbxof da097a76 (main 12c4ce7c plus the confusion settings of #837, all shipped 0): shipped harness/borg.txt, scary_monsters.txt 9766d882..."
+  scary_lists:
+    scary_monsters.txt: 9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-confusion
+arms:
+  ctl: {}
+  clw: &clw {borg_param_caution_confused_clw_cure: 1}
+  clw_walk: &clwwalk
+    <<: *clw
+    borg_param_caution_confused_cure_before_walk: 1
+  csw: {borg_param_town_confusion_cure_reserve: 1, borg_param_caution_confused_clw_cure: 1}
+  stuck: &stuck
+    <<: *clwwalk
+    borg_param_caution_ranged_vs_immobile: 1
+    borg_param_caution_confusion_cure_when_stuck: 1
+    borg_param_caution_immobile_step_mobile_first: 1
+  r2:
+    <<: *clwwalk
+    borg_param_caution_ranged_vs_immobile: 2
+    borg_param_caution_confusion_cure_when_stuck: 1
+    borg_param_caution_immobile_step_mobile_first: 1
+  all:
+    <<: *clwwalk
+    borg_param_caution_ranged_vs_immobile: 2
+    borg_param_caution_confusion_cure_when_stuck: 1
+    borg_param_caution_immobile_step_mobile_first: 1
+    borg_param_town_confusion_cure_reserve: 1
+  shaman_attack:
+    <<: *clwwalk
+    borg_scary_list_lines:
+      - "kobold shaman | 50 | | attack | confusing-caster"
+  shaman_leave:
+    <<: *clwwalk
+    borg_scary_list_lines:
+      - "kobold shaman | 6-9"
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: borg-reborn-rs owner ("Check in the zoo before merging", #837), filed as borg-zoo#581; zoo owner, 2026-11-21:
+  "continue with your issues and tasks" (a classes-18 pilot only; small and medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#581; borg-reborn-rs #837; companion of #576, whose
+  big result on caution_ranged_vs_immobile 2 on 3b4924ba, 10 deaths against 6, is read first: stuck and r2 build on that
+  flag). Pilot (RULES 16); small and medium (classes-1800 starts 1-360) after the gate and the owner; if capacity is short,
+  ctl, clw_walk, stuck and csw first. Nine arms, 18 starts each (162 games), all classes.
+  Gate: no config_error; one binary; each arm's values in params-core.json (all shipped 0 in ctl); ctl plays as the build's
+  shipped settings; every cell ends in death, turn_cap or borg_stopped (stalls, timeouts and crashes kept apart);
+  frozen-turn bursts classified. Deaths decide each arm, never the three #837 cases alone.
+  Report: deaths per arm and class, paired rescued and newly killed against ctl, CL and DL, identical games, whether the
+  three cases (Necromancer 2074919561, Dwarf Mage 470098014, Human Mage 834355294) change; per arm the notes "# Fixing
+  Confusion" by level, "# Confused: no walk to the stairs before the cure", "# No step out of reach ... curing confusion
+  anyway", "# Not fixing Confusion next to an immobile attacker" followed by a melee or a death, steps that land next to a
+  mobile monster, and the purchases of Cure Serious Wounds in the first town trip (csw, all). Descriptive (RULES 14).

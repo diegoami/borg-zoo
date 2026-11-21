@@ -2577,6 +2577,152 @@
       "scary_lists": {
         "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
       }
+    },
+    "4.2.6-reborn-rust-main-88d98537": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "88d985377fc7ac3d50a426888477d55adbb4d003",
+      "label": "borg-reborn-rs main 88d98537, the base of PR #832, shipped settings. Source-hash rust 2e6d90b9...; harness/borg.txt 02e24e59...",
+      "plans": {},
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-cursed-9cbe0348": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "9cbe034884ccd0f67ba3c44be2902cb708d3117f",
+      "label": "borg-reborn-rs PR #832 head 9cbe0348 (claude/gracious-feynman-3fxecr): cursed equipment (#830), shipped settings. Source-hash rust 907f7c22...; harness/borg.txt 02e24e59... (same as the base)",
+      "plans": {},
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-torch-reserve-e4d64f08": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "e4d64f08cc70d928d4c558097088b4e39756c40f",
+      "label": "borg-reborn-rs e4d64f08 (PR #835, #810): town_light_reserve_turns (shipped 0), lantern upgrade power 0; harness/borg.txt with borg_town_plan 1; scary_monsters.txt 9766d882...",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-confusion-da097a76": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "da097a764239c64cdcdd0fb469d5a05577a6823e",
+      "label": "borg-reborn-rs claude/ecstatic-hawking-bcbxof da097a76 (main 12c4ce7c plus the confusion settings of #837, all shipped 0): shipped harness/borg.txt, scary_monsters.txt 9766d882...",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-invisible-b3f32a9a": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "b3f32a9ac5615ab105a62066590efbdde32376ba",
+      "label": "borg-reborn-rs claude/loving-knuth-y3cjl8 b3f32a9a (PR #836, main 12c4ce7c merged): invisible attacker mode (recover_unseen_attack_turns 500, heal 50, detect reads 2, probe tries 10) and town_invisible_count/percent shipped; scary_monsters.txt 9766d882...",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-teleport-block-6fe184ea": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "6fe184eaa95d56af8b67796725d27663de576540",
+      "label": "borg-reborn-rs PR #833 head 6fe184ea (#829): escape_teleport_block (shipped 1) refuses every teleport of the player while an anti-teleportation curse holds; scary_monsters.txt 9766d882...",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-immobile-fix-8eadb21f": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "8eadb21f259f3248776c08acf5f83ec5f9021c56",
+      "label": "borg-reborn-rs claude/epic-allen-2f3atk 8eadb21f (main 12c4ce7c plus the confusion and no-return switches, all shipped 0): shipped harness/borg.txt, scary_monsters.txt 9766d882...",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-main-12c4ce7c": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "12c4ce7c308c872dc5c2e754e3d97402ac5a0683",
+      "label": "borg-reborn-rs main 12c4ce7c (head on 2026-11-21): attack_on_sight 1, attack_town_dangerous_on_sight 0, caution_town_scary_levels_less 3 as shipped; scary_monsters.txt 9766d882...",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-cursed-af70b9e9": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "af70b9e9de453f182d34b76cc34e19133015ca9c",
+      "label": "borg-reborn-rs PR #832 head af70b9e9 (claude/gracious-feynman-3fxecr): cursed equipment (#830), shipped settings. Source-hash rust be77aae1...; harness/borg.txt 02e24e59... (same as the base)",
+      "plans": {},
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-fast-fragile-7f8c6b80": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "7f8c6b80a617eba3a6f2b83e4ba9d45b7b552b73",
+      "label": "borg-reborn-rs claude/youthful-brahmagupta-j7a2y1 7f8c6b80 (PR #847, main ed52fec1 merged): fast_fragile_policy, _by_stats, _no_heal, _escape_percent all shipped 0; attack_on_sight 1; harness/borg.txt c35104bb..., scary_monsters.txt 9766d882...",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-heal-tiers-bba5e4be": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "bba5e4be071b620fdd8ce8fc475a7acb0c92b125",
+      "label": "borg-reborn-rs task/T845-healing-tiers bba5e4be (track-p based, #813's per-kind departure cap; predates main's #835 fuel change): town_heal_speed_percent 66, town_heal_quaff_bonus_percent 0 shipped; harness/borg.txt 02e24e59..., scary_monsters.txt 9766d882...",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
     }
   }
 }

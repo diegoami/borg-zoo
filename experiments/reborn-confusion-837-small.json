@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-confusion-837-small",
+  "issue": 581,
+  "definition": "definitions/reborn-confusion-837-small.yaml",
+  "question": "On borg-reborn-rs da097a76, over 90 starts (classes-1800 starts 1-90, all classes), do the Cure Light Wounds as a confusion cure with no walk before the cure (clw_walk), the cure held only while a step out of reach is possible (stuck), and a confusion-cure reserve in town (csw) save deaths or add new ones against the shipped play?",
+  "description": "On borg-reborn-rs da097a76, over 90 starts (classes-1800 starts 1-90, all classes), do the Cure Light Wounds as a confusion cure with no walk before the cure (clw_walk), the cure held only while a step out of reach is possible (stuck), and a confusion-cure reserve in town (csw) save deaths or add new ones against the shipped play? Generated from definitions/reborn-confusion-837-small.yaml: 4 arms on 4.2.6-reborn-rust-confusion-da097a76, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-21 after the classes-18 pilot of these arms on this build (run 44916061503): no deaths in any arm, six\nstalled cells of one Mage start (lightless abort) in the arms with the Cure Light Wounds cure on, `stuck` and `r2` building\non caution_ranged_vs_immobile, whose big run on 3b4924ba (#576) had 10 deaths against 6. Small tier (RULES 14), four\narms, 90 starts each (360 games). Read with #576 and #586.\nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start (the\nlightless abort of the pilot is expected to recur: count it, do not drop it); frozen-turn bursts classified.\nReport per arm and class: deaths and causes (with an immobile monster adjacent apart), CL at death, final and maximum\nlevel, deepest level; paired rescued and newly killed against ctl (exact McNemar), identical plays; whether the three\n#837 cases (Necromancer 2074919561, Dwarf Mage 470098014, Human Mage 834355294), which are classes-1800 starts, change\n(read from the starts' arms); a RULES 18 bin. Deaths decide each arm, never the cases alone. Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-confusion-da097a76"
+  ],
+  "profiles": [
+    "reborn-confusion-ctl",
+    "reborn-confusion-clw_walk",
+    "reborn-confusion-stuck",
+    "reborn-confusion-csw"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-confusion-da097a76",
+  "control_profile": "reborn-confusion-ctl",
+  "owner_authorization": "2026-11-21: zoo owner, \"go\" (the small tier of the confusion arms named in #581's capacity order: ctl, clw_walk, stuck, csw; the medium tier and the other arms wait).",
+  "retain_evidence": false
+}

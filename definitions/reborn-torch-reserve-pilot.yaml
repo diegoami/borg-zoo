@@ -1,0 +1,53 @@
+# borg-zoo#577: how many spare torches to buy and keep (borg-reborn-rs #810, PR #835): town_light_reserve_turns 0, 15000, 20000, 25000.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-torch-reserve-pilot.yaml
+name: reborn-torch-reserve-pilot
+issue: 577
+question: >-
+  How many spare torches should the Borg buy and keep (two, three or four, town_light_reserve_turns 15000, 20000, 25000),
+  and do they reduce lightless episodes without crowding out food, healing, Phase Door or Recall? An exposure pilot.
+suites: [classes-18-300k]   # the 18 starts of classes-18, 300,000 engine turns
+pilot: true
+
+specimen:
+  name: 4.2.6-reborn-rust-torch-reserve-e4d64f08
+  repository: diegoami/borg-reborn-rs
+  ref: e4d64f08cc70d928d4c558097088b4e39756c40f
+  label: "borg-reborn-rs e4d64f08 (PR #835, #810): town_light_reserve_turns (shipped 0), lantern upgrade power 0; harness/borg.txt with borg_town_plan 1; scary_monsters.txt 9766d882..."
+  scary_lists:
+    scary_monsters.txt: 9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_town_plan: 1                          # town recording
+  borg_param_town_lantern_upgrade_power: 0   # explicit in every arm, as the issue asks
+
+profile_prefix: reborn-torch
+arms:
+  shipped: {borg_param_town_light_reserve_turns: 0}
+  two:     {borg_param_town_light_reserve_turns: 15000}
+  three:   {borg_param_town_light_reserve_turns: 20000}
+  four:    {borg_param_town_light_reserve_turns: 25000}
+control: [shipped]
+owner_authorization: >-
+  2026-11-21: borg-reborn-rs session request (#810, PR #835) filed as borg-zoo#577; zoo owner, 2026-11-21: "continue with
+  your issues and tasks" (a pilot only; a larger run and any change of the default wait for the owner's review).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#577; borg-reborn-rs #810, PR #835). Exposure
+  pilot on the 18 fixed starts of classes-18 at 300,000 engine turns (suite classes-18-300k; the regular classes-18 is
+  untouched), four arms, 72 cells, one binary, evidence retained for all. Every arm sets borg_town_plan 1 and
+  town_lantern_upgrade_power 0 explicitly and keeps the pinned settings otherwise.
+  Gate: one binary; each arm's values in params-core.json; no config_error; every cell ends in death, turn_cap or
+  borg_stopped; stalls, timeouts and crashes kept apart; frozen-turn bursts classified; usable receipts (town-plan.jsonl,
+  town-departure-fuel.jsonl, messages, transactions, resolved settings, terminal) for every cell.
+  Report per arm and class: departures with zero usable spare fuel, with no active light and below each fixed fuel
+  threshold, with equipped light, usable spare torches and remaining fuel; lanterns, permanent lights and characters who
+  see without fuel apart; naturally found lanterns that change the equipped light counted separately. Restocking
+  opportunities (fuel deficit, General Store stock and price, usable Home stock, gold after immediate needs, pack room;
+  cached stock apart from an observed offer), confirmed purchases and spend, Home withdrawals, floor pickups, town deposits,
+  dungeon disposals, and the reasons affordable stocked deficits remained. Expiry and recovery, lightless episodes or
+  stops, paired deaths, stalls, level and maximum depth; gold and the early food, Cure Light Wounds, Phase Door and Recall
+  purchases. How often the arms actually exercised purchasing or retention. Descriptive (RULES 14).

@@ -1,0 +1,52 @@
+# borg-zoo#596: the fast-fragile policy of borg-reborn-rs PR #847 (#842): ctl, named, named-ban, stats, stats-ban and three more.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-fast-fragile-pilot.yaml
+name: reborn-fast-fragile-pilot
+issue: 596
+question: >-
+  On borg-reborn-rs 7f8c6b80 (PR #847), does attacking a fast-fragile monster (crow, wild cat, by name or by stats) with the
+  best attack every turn, with and without a ban on healing next to it and with the Phase Door or stairs alternative at
+  100, 75 or 0 percent, save the early deaths (a crow killed 8 of #566's 29) without adding new ones?
+tier: pilot            # classes-18, 100,000 turns; small + medium (classes-1800 starts 1-360) after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-fast-fragile-7f8c6b80
+  repository: diegoami/borg-reborn-rs
+  ref: 7f8c6b80a617eba3a6f2b83e4ba9d45b7b552b73
+  label: "borg-reborn-rs claude/youthful-brahmagupta-j7a2y1 7f8c6b80 (PR #847, main ed52fec1 merged): fast_fragile_policy, _by_stats, _no_heal, _escape_percent all shipped 0; attack_on_sight 1; harness/borg.txt c35104bb..., scary_monsters.txt 9766d882..."
+  scary_lists:
+    scary_monsters.txt: 9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-fastfrag
+arms:
+  ctl: {}
+  named:      {borg_param_fast_fragile_policy: 1}
+  named-ban:  {borg_param_fast_fragile_policy: 1, borg_param_fast_fragile_no_heal: 1}
+  stats:      {borg_param_fast_fragile_policy: 1, borg_param_fast_fragile_by_stats: 1}
+  stats-ban:  {borg_param_fast_fragile_policy: 1, borg_param_fast_fragile_by_stats: 1, borg_param_fast_fragile_no_heal: 1}
+  named-esc75:    {borg_param_fast_fragile_policy: 1, borg_param_fast_fragile_no_heal: 1, borg_param_fast_fragile_escape_percent: 75}
+  attack-only:    {borg_param_fast_fragile_policy: 1, borg_param_fast_fragile_escape_percent: 0}
+  named-ban-exc:  {borg_param_fast_fragile_policy: 1, borg_param_fast_fragile_no_heal: 2}
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: borg-reborn-rs owner (#842: "ask for zoo runs ... before the PR merges"), filed as borg-zoo#596; zoo owner,
+  2026-11-21: "go, what else" (a classes-18 pilot with all eight arms; small and medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#596; borg-reborn-rs #842, PR #847). Pilot (RULES 16)
+  on classes-18, eight arms (the five the owner asked for and the three the local replays raised), 18 starts each (144
+  games), all classes, one binary; small + medium (classes-1800 starts 1-360) after the gate and the owner.
+  Gate: no config_error; one binary; each arm's values in params-core.json; ctl plays as the build's shipped settings (the
+  eight crow deaths of 3b4924ba replay key for key in the requester's smoke); every cell ends in death, turn_cap or
+  borg_stopped; stalls reported start by start (the lightless abort seen in #581 and #586 is a separate family); frozen-turn
+  bursts classified.
+  Report per arm and class: deaths and causes (crow and wild cat deaths apart), CL at death, final and maximum level,
+  deepest level; paired rescued and newly killed against ctl (exact McNemar), identical plays; cure potions used per crow
+  fight; the other fast-fragile deaths (cave spiders, centipedes, bats: fde8025a had 16 of 33 deaths in this family) and
+  what the "# Fast-fragile (stats)" notes mark (the monsters and the numbers); whether the 8 cases of #842 change. The
+  numbers (2 turns, 25%, 2 others, +5 speed) and escape_percent are hypotheses. Descriptive (RULES 14).

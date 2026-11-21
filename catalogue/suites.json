@@ -2062,6 +2062,15 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "saves": false
+    },
+    "classes-18-300k": {
+      "description": "The 18 starts of classes-18 (2 per class) at 300,000 engine turns: a longer-game pilot for questions about fuel, light and late purchases (borg-zoo#577).",
+      "role": "pilot",
+      "subset": {"suite": "classes-18", "range": [0, 18]},
+      "cap": 300000,
+      "wall_seconds": 5400,
+      "stall_seconds": 180,
+      "saves": false
     }
   }
 }

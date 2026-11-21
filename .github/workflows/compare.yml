@@ -281,7 +281,16 @@ jobs:
           git config user.email "borg-zoo@users.noreply.github.com"
           git add results
           git commit -q -m "Results: ${{ needs.plan.outputs.name }}${{ inputs.arm && format(' [{0}]', inputs.arm) || '' }} run ${{ github.run_id }}-${{ github.run_attempt }}"
-          git push origin results
+          # Several runs of one batch end together and race for the branch: on a rejected push fetch, rebase the new
+          # directory on top of the other runs' commits and push again (it only adds files, so a rebase cannot conflict).
+          pushed=0
+          for attempt in 1 2 3 4 5 6 7 8; do
+            if git push origin results; then pushed=1; break; fi
+            echo "push rejected (attempt $attempt): rebasing onto the new results branch"
+            git pull --rebase --quiet origin results || { git rebase --abort 2>/dev/null; true; }
+            sleep $(( (RANDOM % 8) + 2 ))
+          done
+          [ "$pushed" = 1 ] || { echo "results push failed after 8 attempts"; exit 1; }
       - name: Rebuild the site
         env:
           GH_TOKEN: ${{ github.token }}

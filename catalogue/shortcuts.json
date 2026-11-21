@@ -1539,6 +1539,129 @@
         "reborn-p6final-shipped"
       ],
       "runs": []
+    },
+    "reborn-cursed": {
+      "issue": 583,
+      "status": "defined (pilot, two experiments: #583, #598)",
+      "what": "Cursed equipment (borg-reborn-rs #830, PR #832): the base 88d98537 against the change 9cbe0348, shipped settings. Second pilot (#598) on 88d98537 vs cursed af70b9e9, 36 cells.",
+      "profiles": [
+        "reborn-cursed-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-torch": {
+      "issue": 577,
+      "status": "defined (exposure pilot at 300,000 turns)",
+      "what": "Spare torches to buy and keep (borg-reborn-rs #810, PR #835): town_light_reserve_turns 0, 15000, 20000, 25000 on e4d64f08.",
+      "profiles": [
+        "reborn-torch-shipped",
+        "reborn-torch-two",
+        "reborn-torch-three",
+        "reborn-torch-four"
+      ],
+      "runs": []
+    },
+    "reborn-confusion": {
+      "issue": 581,
+      "status": "pilot done 2026-11-21 (no deaths; one Mage start stalls in six arms: lightless abort); small tier of ctl, clw_walk, stuck, csw defined (reborn-confusion-837-small)",
+      "what": "The six confusion settings of borg-reborn-rs #837 on da097a76: CLW cure, no walk before the cure, stuck, CSW reserve, kobold shaman attack or leave.",
+      "profiles": [
+        "reborn-confusion-ctl",
+        "reborn-confusion-clw",
+        "reborn-confusion-clw_walk",
+        "reborn-confusion-csw",
+        "reborn-confusion-stuck",
+        "reborn-confusion-r2",
+        "reborn-confusion-all",
+        "reborn-confusion-shaman_attack",
+        "reborn-confusion-shaman_leave"
+      ],
+      "runs": []
+    },
+    "reborn-invis": {
+      "issue": 580,
+      "status": "defined (pilot; classes-1800 after the gate)",
+      "what": "Invisible attacker mode and Detect Invisible (borg-reborn-rs #831, PR #836) on b3f32a9a: A old behaviour, B shipped, C higher Detect Invisible value.",
+      "profiles": [
+        "reborn-invis-A",
+        "reborn-invis-B",
+        "reborn-invis-C"
+      ],
+      "runs": []
+    },
+    "reborn-tpblock": {
+      "issue": 578,
+      "status": "defined (pilot, small, medium)",
+      "what": "Teleport block under an anti-teleportation curse (borg-reborn-rs #829, PR #833) on 6fe184ea: escape_teleport_block 0 against shipped 1.",
+      "profiles": [
+        "reborn-tpblock-ctl",
+        "reborn-tpblock-block"
+      ],
+      "runs": []
+    },
+    "reborn-immfix": {
+      "issue": 586,
+      "status": "defined (pilot, then big at starts 361-900)",
+      "what": "caution_ranged_vs_immobile 2 with the confusion and no-return switches on 8eadb21f: shipped, immobile2, immobile2_fix (borg-reborn-rs #837).",
+      "profiles": [
+        "reborn-immfix-shipped",
+        "reborn-immfix-immobile2",
+        "reborn-immfix-immobile2_fix"
+      ],
+      "runs": []
+    },
+    "reborn-townkos": {
+      "issue": 569,
+      "status": "defined (pilot)",
+      "what": "Kill on sight in town with the town scare lowered (N 6, 11) and the three #637 switches on main 12c4ce7c (borg-reborn-rs #667).",
+      "profiles": [
+        "reborn-townkos-shipped",
+        "reborn-townkos-n6_off",
+        "reborn-townkos-n6_on",
+        "reborn-townkos-n11_off",
+        "reborn-townkos-n11_on",
+        "reborn-townkos-n11_sw"
+      ],
+      "runs": []
+    },
+    "reborn-townscum": {
+      "issue": 594,
+      "status": "defined (pilot)",
+      "what": "Town scumming (borg_money_scum_amount 500, 1000, 2000) on main 12c4ce7c, against the shipped 0.",
+      "profiles": [
+        "reborn-townscum-ctl",
+        "reborn-townscum-scum500",
+        "reborn-townscum-scum1000",
+        "reborn-townscum-scum2000"
+      ],
+      "runs": []
+    },
+    "reborn-fastfrag": {
+      "issue": 596,
+      "status": "defined (pilot)",
+      "what": "Fast-fragile monsters (borg-reborn-rs 7f8c6b80): scary-list entries, bans and escape variants against the control, 8 arms.",
+      "profiles": [
+        "reborn-fastfrag-ctl",
+        "reborn-fastfrag-named",
+        "reborn-fastfrag-named-ban",
+        "reborn-fastfrag-stats",
+        "reborn-fastfrag-stats-ban",
+        "reborn-fastfrag-named-esc75",
+        "reborn-fastfrag-attack-only",
+        "reborn-fastfrag-named-ban-exc"
+      ],
+      "runs": []
+    },
+    "reborn-healtiers": {
+      "issue": 597,
+      "status": "defined (pilot)",
+      "what": "Heal tiers (bba5e4be): speed100 and quaff200 against the control at 300k turns on classes-18-300k.",
+      "profiles": [
+        "reborn-healtiers-ctl",
+        "reborn-healtiers-speed100",
+        "reborn-healtiers-quaff200"
+      ],
+      "runs": []
     }
   }
 }

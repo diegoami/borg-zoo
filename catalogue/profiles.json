@@ -9521,6 +9521,395 @@
         "borg_reborn_errand": "none",
         "borg_param_caution_ranged_vs_immobile": 2
       }
+    },
+    "reborn-cursed-shipped": {
+      "description": "borg-zoo#583 (reborn-cursed-830-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-torch-shipped": {
+      "description": "borg-zoo#577 (reborn-torch-reserve-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_param_town_lantern_upgrade_power": 0,
+        "borg_param_town_light_reserve_turns": 0
+      }
+    },
+    "reborn-torch-two": {
+      "description": "borg-zoo#577 (reborn-torch-reserve-pilot.yaml): arm two.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_param_town_lantern_upgrade_power": 0,
+        "borg_param_town_light_reserve_turns": 15000
+      }
+    },
+    "reborn-torch-three": {
+      "description": "borg-zoo#577 (reborn-torch-reserve-pilot.yaml): arm three.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_param_town_lantern_upgrade_power": 0,
+        "borg_param_town_light_reserve_turns": 20000
+      }
+    },
+    "reborn-torch-four": {
+      "description": "borg-zoo#577 (reborn-torch-reserve-pilot.yaml): arm four.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_param_town_lantern_upgrade_power": 0,
+        "borg_param_town_light_reserve_turns": 25000
+      }
+    },
+    "reborn-confusion-ctl": {
+      "description": "borg-zoo#581 (reborn-confusion-837-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-confusion-clw": {
+      "description": "borg-zoo#581 (reborn-confusion-837-pilot.yaml): arm clw.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_confused_clw_cure": 1
+      }
+    },
+    "reborn-confusion-clw_walk": {
+      "description": "borg-zoo#581 (reborn-confusion-837-pilot.yaml): arm clw_walk.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_confused_clw_cure": 1,
+        "borg_param_caution_confused_cure_before_walk": 1
+      }
+    },
+    "reborn-confusion-csw": {
+      "description": "borg-zoo#581 (reborn-confusion-837-pilot.yaml): arm csw.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_confusion_cure_reserve": 1,
+        "borg_param_caution_confused_clw_cure": 1
+      }
+    },
+    "reborn-confusion-stuck": {
+      "description": "borg-zoo#581 (reborn-confusion-837-pilot.yaml): arm stuck.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_confused_clw_cure": 1,
+        "borg_param_caution_confused_cure_before_walk": 1,
+        "borg_param_caution_ranged_vs_immobile": 1,
+        "borg_param_caution_confusion_cure_when_stuck": 1,
+        "borg_param_caution_immobile_step_mobile_first": 1
+      }
+    },
+    "reborn-confusion-r2": {
+      "description": "borg-zoo#581 (reborn-confusion-837-pilot.yaml): arm r2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_confused_clw_cure": 1,
+        "borg_param_caution_confused_cure_before_walk": 1,
+        "borg_param_caution_ranged_vs_immobile": 2,
+        "borg_param_caution_confusion_cure_when_stuck": 1,
+        "borg_param_caution_immobile_step_mobile_first": 1
+      }
+    },
+    "reborn-confusion-all": {
+      "description": "borg-zoo#581 (reborn-confusion-837-pilot.yaml): arm all.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_confused_clw_cure": 1,
+        "borg_param_caution_confused_cure_before_walk": 1,
+        "borg_param_caution_ranged_vs_immobile": 2,
+        "borg_param_caution_confusion_cure_when_stuck": 1,
+        "borg_param_caution_immobile_step_mobile_first": 1,
+        "borg_param_town_confusion_cure_reserve": 1
+      }
+    },
+    "reborn-confusion-shaman_attack": {
+      "description": "borg-zoo#581 (reborn-confusion-837-pilot.yaml): arm shaman_attack.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_confused_clw_cure": 1,
+        "borg_param_caution_confused_cure_before_walk": 1,
+        "borg_scary_list_lines": [
+          "kobold shaman | 50 | | attack | confusing-caster"
+        ]
+      }
+    },
+    "reborn-confusion-shaman_leave": {
+      "description": "borg-zoo#581 (reborn-confusion-837-pilot.yaml): arm shaman_leave.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_confused_clw_cure": 1,
+        "borg_param_caution_confused_cure_before_walk": 1,
+        "borg_scary_list_lines": [
+          "kobold shaman | 6-9"
+        ]
+      }
+    },
+    "reborn-invis-A": {
+      "description": "borg-zoo#580 (reborn-invisible-836-pilot.yaml): arm A.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_unseen_attack_turns": 0,
+        "borg_param_recover_unseen_heal_hp_percent": 0,
+        "borg_param_recover_unseen_detect_reads": 0,
+        "borg_param_recover_unseen_probe_tries": 0,
+        "borg_param_town_invisible_count": 0
+      }
+    },
+    "reborn-invis-B": {
+      "description": "borg-zoo#580 (reborn-invisible-836-pilot.yaml): arm B.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-invis-C": {
+      "description": "borg-zoo#580 (reborn-invisible-836-pilot.yaml): arm C.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_invisible_percent": 40
+      }
+    },
+    "reborn-tpblock-ctl": {
+      "description": "borg-zoo#578 (reborn-teleport-block-833-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_teleport_block": 0
+      }
+    },
+    "reborn-tpblock-block": {
+      "description": "borg-zoo#578 (reborn-teleport-block-833-pilot.yaml): arm block.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-immfix-shipped": {
+      "description": "borg-zoo#586 (reborn-immobile-fix-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-immfix-immobile2": {
+      "description": "borg-zoo#586 (reborn-immobile-fix-pilot.yaml): arm immobile2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_vs_immobile": 2
+      }
+    },
+    "reborn-immfix-immobile2_fix": {
+      "description": "borg-zoo#586 (reborn-immobile-fix-pilot.yaml): arm immobile2_fix.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_vs_immobile": 2,
+        "borg_param_caution_confused_clw_cure": 1,
+        "borg_param_caution_confused_cure_before_walk": 2,
+        "borg_param_caution_confusion_cure_when_stuck": 1,
+        "borg_param_caution_immobile_step_mobile_first": 1,
+        "borg_param_caution_immobile_no_return": 1
+      }
+    },
+    "reborn-townkos-shipped": {
+      "description": "borg-zoo#569 (reborn-town-kos-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-townkos-n6_off": {
+      "description": "borg-zoo#569 (reborn-town-kos-pilot.yaml): arm n6_off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_scary_levels_less": 6
+      }
+    },
+    "reborn-townkos-n6_on": {
+      "description": "borg-zoo#569 (reborn-town-kos-pilot.yaml): arm n6_on.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_scary_levels_less": 6,
+        "borg_param_attack_town_dangerous_on_sight": 1
+      }
+    },
+    "reborn-townkos-n11_off": {
+      "description": "borg-zoo#569 (reborn-town-kos-pilot.yaml): arm n11_off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_scary_levels_less": 11
+      }
+    },
+    "reborn-townkos-n11_on": {
+      "description": "borg-zoo#569 (reborn-town-kos-pilot.yaml): arm n11_on.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_scary_levels_less": 11,
+        "borg_param_attack_town_dangerous_on_sight": 1
+      }
+    },
+    "reborn-townkos-n11_sw": {
+      "description": "borg-zoo#569 (reborn-town-kos-pilot.yaml): arm n11_sw.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_scary_levels_less": 11,
+        "borg_param_attack_town_dangerous_on_sight": 1,
+        "borg_param_attack_town_dangerous_caster_walk": 1,
+        "borg_param_attack_town_dangerous_wand": 1,
+        "borg_param_attack_town_dangerous_bonus_whole": 1
+      }
+    },
+    "reborn-townscum-ctl": {
+      "description": "borg-zoo#594 (reborn-town-scum-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-townscum-scum500": {
+      "description": "borg-zoo#594 (reborn-town-scum-pilot.yaml): arm scum500.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_money_scum_amount": 500
+      }
+    },
+    "reborn-townscum-scum1000": {
+      "description": "borg-zoo#594 (reborn-town-scum-pilot.yaml): arm scum1000.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_money_scum_amount": 1000
+      }
+    },
+    "reborn-townscum-scum2000": {
+      "description": "borg-zoo#594 (reborn-town-scum-pilot.yaml): arm scum2000.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_money_scum_amount": 2000
+      }
+    },
+    "reborn-fastfrag-ctl": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-fastfrag-named": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm named.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1
+      }
+    },
+    "reborn-fastfrag-named-ban": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm named-ban.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1,
+        "borg_param_fast_fragile_no_heal": 1
+      }
+    },
+    "reborn-fastfrag-stats": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm stats.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1,
+        "borg_param_fast_fragile_by_stats": 1
+      }
+    },
+    "reborn-fastfrag-stats-ban": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm stats-ban.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1,
+        "borg_param_fast_fragile_by_stats": 1,
+        "borg_param_fast_fragile_no_heal": 1
+      }
+    },
+    "reborn-fastfrag-named-esc75": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm named-esc75.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1,
+        "borg_param_fast_fragile_no_heal": 1,
+        "borg_param_fast_fragile_escape_percent": 75
+      }
+    },
+    "reborn-fastfrag-attack-only": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm attack-only.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1,
+        "borg_param_fast_fragile_escape_percent": 0
+      }
+    },
+    "reborn-fastfrag-named-ban-exc": {
+      "description": "borg-zoo#596 (reborn-fast-fragile-pilot.yaml): arm named-ban-exc.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 1,
+        "borg_param_fast_fragile_no_heal": 2
+      }
+    },
+    "reborn-healtiers-ctl": {
+      "description": "borg-zoo#597 (reborn-heal-tiers-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-healtiers-speed100": {
+      "description": "borg-zoo#597 (reborn-heal-tiers-pilot.yaml): arm speed100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_speed_percent": 100
+      }
+    },
+    "reborn-healtiers-quaff200": {
+      "description": "borg-zoo#597 (reborn-heal-tiers-pilot.yaml): arm quaff200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_quaff_bonus_percent": 200
+      }
     }
   }
 }

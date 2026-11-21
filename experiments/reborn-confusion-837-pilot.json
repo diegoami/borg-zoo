@@ -1,0 +1,30 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-confusion-837-pilot",
+  "issue": 581,
+  "definition": "definitions/reborn-confusion-837-pilot.yaml",
+  "question": "On borg-reborn-rs da097a76 (main 12c4ce7c plus the confusion change, #837), do the six confusion settings (a Cure Light Wounds as a confusion cure, no walk to the stairs before the cure, the cure held only while a step out of reach is possible, the step ranked by mobile danger, a confusion-cure reserve in town, the kobold shaman as attack or scare) save deaths against the shipped play, and do they add new ones?",
+  "description": "On borg-reborn-rs da097a76 (main 12c4ce7c plus the confusion change, #837), do the six confusion settings (a Cure Light Wounds as a confusion cure, no walk to the stairs before the cure, the cure held only while a step out of reach is possible, the step ranked by mobile danger, a confusion-cure reserve in town, the kobold shaman as attack or scare) save deaths against the shipped play, and do they add new ones? Generated from definitions/reborn-confusion-837-pilot.yaml: 9 arms on 4.2.6-reborn-rust-confusion-da097a76, suite classes-18.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#581; borg-reborn-rs #837; companion of #576, whose\nbig result on caution_ranged_vs_immobile 2 on 3b4924ba, 10 deaths against 6, is read first: stuck and r2 build on that\nflag). Pilot (RULES 16); small and medium (classes-1800 starts 1-360) after the gate and the owner; if capacity is short,\nctl, clw_walk, stuck and csw first. Nine arms, 18 starts each (162 games), all classes.\nGate: no config_error; one binary; each arm's values in params-core.json (all shipped 0 in ctl); ctl plays as the build's\nshipped settings; every cell ends in death, turn_cap or borg_stopped (stalls, timeouts and crashes kept apart);\nfrozen-turn bursts classified. Deaths decide each arm, never the three #837 cases alone.\nReport: deaths per arm and class, paired rescued and newly killed against ctl, CL and DL, identical games, whether the\nthree cases (Necromancer 2074919561, Dwarf Mage 470098014, Human Mage 834355294) change; per arm the notes \"# Fixing\nConfusion\" by level, \"# Confused: no walk to the stairs before the cure\", \"# No step out of reach ... curing confusion\nanyway\", \"# Not fixing Confusion next to an immobile attacker\" followed by a melee or a death, steps that land next to a\nmobile monster, and the purchases of Cure Serious Wounds in the first town trip (csw, all). Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-confusion-da097a76"
+  ],
+  "profiles": [
+    "reborn-confusion-ctl",
+    "reborn-confusion-clw",
+    "reborn-confusion-clw_walk",
+    "reborn-confusion-csw",
+    "reborn-confusion-stuck",
+    "reborn-confusion-r2",
+    "reborn-confusion-all",
+    "reborn-confusion-shaman_attack",
+    "reborn-confusion-shaman_leave"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-confusion-da097a76",
+  "control_profile": "reborn-confusion-ctl",
+  "owner_authorization": "2026-11-21: borg-reborn-rs owner (\"Check in the zoo before merging\", #837), filed as borg-zoo#581; zoo owner, 2026-11-21: \"continue with your issues and tasks\" (a classes-18 pilot only; small and medium after the gate and the owner).",
+  "retain_evidence": true
+}

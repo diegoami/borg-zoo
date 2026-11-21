@@ -1,0 +1,55 @@
+# borg-zoo#580: invisible attacker mode and Detect Invisible (borg-reborn-rs #831, PR #836): arms A (the old behaviour), B (shipped), C (higher value).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-invisible-836-pilot.yaml
+name: reborn-invisible-836-pilot
+issue: 580
+question: >-
+  On borg-reborn-rs b3f32a9a (PR #836: main 12c4ce7c plus the "invisible attacker near" mode and the Detect Invisible town
+  value), does the shipped behaviour (B) save the deaths whose killing blow comes from an unseen attacker, without adding
+  deaths or stalls, against the old behaviour (A)? C raises town_invisible_percent to 40.
+tier: pilot            # classes-18, 100,000 turns; classes-1800 (the starts of #566) after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-invisible-b3f32a9a
+  repository: diegoami/borg-reborn-rs
+  ref: b3f32a9ac5615ab105a62066590efbdde32376ba
+  label: "borg-reborn-rs claude/loving-knuth-y3cjl8 b3f32a9a (PR #836, main 12c4ce7c merged): invisible attacker mode (recover_unseen_attack_turns 500, heal 50, detect reads 2, probe tries 10) and town_invisible_count/percent shipped; scary_monsters.txt 9766d882..."
+  scary_lists:
+    scary_monsters.txt: 9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-invis
+arms:
+  A:      # the old behaviour: the mode, its switches and the Detect Invisible purchase off
+    borg_param_recover_unseen_attack_turns: 0
+    borg_param_recover_unseen_heal_hp_percent: 0
+    borg_param_recover_unseen_detect_reads: 0
+    borg_param_recover_unseen_probe_tries: 0
+    borg_param_town_invisible_count: 0
+  B: {}   # shipped
+  C: {borg_param_town_invisible_percent: 40}   # B with a higher Detect Invisible value
+control: [A]
+owner_authorization: >-
+  2026-11-21: borg-reborn-rs owner (#831: "switch mode and deal with it ... buy Detect Invisible if you have the spare
+  money"; measuring belongs to the zoo, RULES 20), filed as borg-zoo#580; zoo owner, 2026-11-21: "continue with your issues
+  and tasks" (a classes-18 pilot only; classes-1800 after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#580; borg-reborn-rs #831, PR #836; the requester's
+  proposal adopted as written). Pilot (RULES 16) of the three arms; classes-1800 as in #566 (the two Human Blackguard
+  deaths, seeds 2078477958 and 2037495442, are in it; Blackguards and Warriors above all, plus a caster class) follows
+  after the gate and the owner. Three arms, 18 starts each (54 games), all classes.
+  Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or
+  borg_stopped; stalls, timeouts and crashes kept apart: any B or C stall that A does not have is reported start by
+  start (resting stalls are the risk of the mode); frozen-turn bursts classified.
+  Primary at the classes-1800 tier: deaths whose killing blow came from an unseen attacker (the last messages
+  "Something ..."; clear icky thing, poltergeist, ghosts), B against A, paired by start; at 2 such deaths in #566's 1,800
+  the difference is reported as a count, not tested, and no benefit is claimed. Guard (non-inferiority): total deaths,
+  B minus A, margin 1 percentage point of starts. Descriptive: deaths by cause; resting stalls and timeouts; gold spent
+  on Detect Invisible and what it displaced (Cure Light Wounds, Phase Door, flasks) per class; CL and max depth; per arm
+  the counts of the notes "# Mode: invisible attacker near", "# Striking at", "# Detecting the invisible attacker.",
+  "# Leaving (an unseen attacker, not found)". A death report with screens for any death in B.

@@ -107,6 +107,16 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-recallres` | [#563](https://github.com/diegoami/borg-zoo/issues/563) | 3 | defined (pilot) | Word of Recall replenishment with a reserve of 1 (shipped), 2 and 3 scrolls on ae904090 (borg-reborn-rs #810, PR #813). |
 | `reborn-head` | [#566](https://github.com/diegoami/borg-zoo/issues/566) | 1 | defined (the full classes-1800 ladder: verysmall pilot, small-rest, medium, big, full; dispatched in order at the owner's request) | borg-reborn-rs main 3b4924ba (head on 2026-11-21) with its shipped settings and no overrides over all 1,800 classes-1800 starts. |
 | `reborn-p6final` | [#571](https://github.com/diegoami/borg-zoo/issues/571) | 1 | defined (pilot; the gate is returned before anything else) | P6 final candidate compatibility (borg-reborn-rs #814): main 07aa4b1e against a3635ad8, shipped defaults. |
+| `reborn-cursed` | [#583](https://github.com/diegoami/borg-zoo/issues/583) | 1 | defined (pilot, two experiments: #583, #598) | Cursed equipment (borg-reborn-rs #830, PR #832): the base 88d98537 against the change 9cbe0348, shipped settings. Second pilot (#598) on 88d98537 vs cursed af70b9e9, 36 cells. |
+| `reborn-torch` | [#577](https://github.com/diegoami/borg-zoo/issues/577) | 4 | defined (exposure pilot at 300,000 turns) | Spare torches to buy and keep (borg-reborn-rs #810, PR #835): town_light_reserve_turns 0, 15000, 20000, 25000 on e4d64f08. |
+| `reborn-confusion` | [#581](https://github.com/diegoami/borg-zoo/issues/581) | 9 | pilot done 2026-11-21 (no deaths; one Mage start stalls in six arms: lightless abort); small tier of ctl, clw_walk, stuck, csw defined (reborn-confusion-837-small) | The six confusion settings of borg-reborn-rs #837 on da097a76: CLW cure, no walk before the cure, stuck, CSW reserve, kobold shaman attack or leave. |
+| `reborn-invis` | [#580](https://github.com/diegoami/borg-zoo/issues/580) | 3 | defined (pilot; classes-1800 after the gate) | Invisible attacker mode and Detect Invisible (borg-reborn-rs #831, PR #836) on b3f32a9a: A old behaviour, B shipped, C higher Detect Invisible value. |
+| `reborn-tpblock` | [#578](https://github.com/diegoami/borg-zoo/issues/578) | 2 | defined (pilot, small, medium) | Teleport block under an anti-teleportation curse (borg-reborn-rs #829, PR #833) on 6fe184ea: escape_teleport_block 0 against shipped 1. |
+| `reborn-immfix` | [#586](https://github.com/diegoami/borg-zoo/issues/586) | 3 | defined (pilot, then big at starts 361-900) | caution_ranged_vs_immobile 2 with the confusion and no-return switches on 8eadb21f: shipped, immobile2, immobile2_fix (borg-reborn-rs #837). |
+| `reborn-townkos` | [#569](https://github.com/diegoami/borg-zoo/issues/569) | 6 | defined (pilot) | Kill on sight in town with the town scare lowered (N 6, 11) and the three #637 switches on main 12c4ce7c (borg-reborn-rs #667). |
+| `reborn-townscum` | [#594](https://github.com/diegoami/borg-zoo/issues/594) | 4 | defined (pilot) | Town scumming (borg_money_scum_amount 500, 1000, 2000) on main 12c4ce7c, against the shipped 0. |
+| `reborn-fastfrag` | [#596](https://github.com/diegoami/borg-zoo/issues/596) | 8 | defined (pilot) | Fast-fragile monsters (borg-reborn-rs 7f8c6b80): scary-list entries, bans and escape variants against the control, 8 arms. |
+| `reborn-healtiers` | [#597](https://github.com/diegoami/borg-zoo/issues/597) | 3 | defined (pilot) | Heal tiers (bba5e4be): speed100 and quaff200 against the control at 300k turns on classes-18-300k. |
 
 ### `heal-attack-4`
 
@@ -1550,6 +1560,137 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 Profiles: `reborn-p6final-shipped`.
 
+### `reborn-cursed`
+
+Cursed equipment (borg-reborn-rs #830, PR #832): the base 88d98537 against the change 9cbe0348, shipped settings. Second pilot (#598) on 88d98537 vs cursed af70b9e9, 36 cells.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-cursed-shipped`.
+
+### `reborn-torch`
+
+Spare torches to buy and keep (borg-reborn-rs #810, PR #835): town_light_reserve_turns 0, 15000, 20000, 25000 on e4d64f08.
+
+Every arm: `borg_param_town_lantern_upgrade_power = 0`, `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`, `borg_town_plan = 1`.
+
+| Profile | `borg_param_town_light_reserve_turns` |
+| --- | --- |
+| `reborn-torch-shipped` | 0 |
+| `reborn-torch-two` | 15000 |
+| `reborn-torch-three` | 20000 |
+| `reborn-torch-four` | 25000 |
+
+### `reborn-confusion`
+
+The six confusion settings of borg-reborn-rs #837 on da097a76: CLW cure, no walk before the cure, stuck, CSW reserve, kobold shaman attack or leave.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_confused_clw_cure` | `borg_param_caution_confused_cure_before_walk` | `borg_param_caution_confusion_cure_when_stuck` | `borg_param_caution_immobile_step_mobile_first` | `borg_param_caution_ranged_vs_immobile` | `borg_param_town_confusion_cure_reserve` | `borg_scary_list_lines` |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-confusion-ctl` | – | – | – | – | – | – | – |
+| `reborn-confusion-clw` | 1 | – | – | – | – | – | – |
+| `reborn-confusion-clw_walk` | 1 | 1 | – | – | – | – | – |
+| `reborn-confusion-csw` | 1 | – | – | – | – | 1 | – |
+| `reborn-confusion-stuck` | 1 | 1 | 1 | 1 | 1 | – | – |
+| `reborn-confusion-r2` | 1 | 1 | 1 | 1 | 2 | – | – |
+| `reborn-confusion-all` | 1 | 1 | 1 | 1 | 2 | 1 | – |
+| `reborn-confusion-shaman_attack` | 1 | 1 | – | – | – | – | 1 line |
+| `reborn-confusion-shaman_leave` | 1 | 1 | – | – | – | – | 1 line |
+
+### `reborn-invis`
+
+Invisible attacker mode and Detect Invisible (borg-reborn-rs #831, PR #836) on b3f32a9a: A old behaviour, B shipped, C higher Detect Invisible value.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_recover_unseen_attack_turns` | `borg_param_recover_unseen_detect_reads` | `borg_param_recover_unseen_heal_hp_percent` | `borg_param_recover_unseen_probe_tries` | `borg_param_town_invisible_count` | `borg_param_town_invisible_percent` |
+| --- | --- | --- | --- | --- | --- | --- |
+| `reborn-invis-A` | 0 | 0 | 0 | 0 | 0 | – |
+| `reborn-invis-B` | – | – | – | – | – | – |
+| `reborn-invis-C` | – | – | – | – | – | 40 |
+
+### `reborn-tpblock`
+
+Teleport block under an anti-teleportation curse (borg-reborn-rs #829, PR #833) on 6fe184ea: escape_teleport_block 0 against shipped 1.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_escape_teleport_block` |
+| --- | --- |
+| `reborn-tpblock-ctl` | 0 |
+| `reborn-tpblock-block` | – |
+
+### `reborn-immfix`
+
+caution_ranged_vs_immobile 2 with the confusion and no-return switches on 8eadb21f: shipped, immobile2, immobile2_fix (borg-reborn-rs #837).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_confused_clw_cure` | `borg_param_caution_confused_cure_before_walk` | `borg_param_caution_confusion_cure_when_stuck` | `borg_param_caution_immobile_no_return` | `borg_param_caution_immobile_step_mobile_first` | `borg_param_caution_ranged_vs_immobile` |
+| --- | --- | --- | --- | --- | --- | --- |
+| `reborn-immfix-shipped` | – | – | – | – | – | – |
+| `reborn-immfix-immobile2` | – | – | – | – | – | 2 |
+| `reborn-immfix-immobile2_fix` | 1 | 2 | 1 | 1 | 1 | 2 |
+
+### `reborn-townkos`
+
+Kill on sight in town with the town scare lowered (N 6, 11) and the three #637 switches on main 12c4ce7c (borg-reborn-rs #667).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_town_dangerous_bonus_whole` | `borg_param_attack_town_dangerous_caster_walk` | `borg_param_attack_town_dangerous_on_sight` | `borg_param_attack_town_dangerous_wand` | `borg_param_caution_town_scary_levels_less` |
+| --- | --- | --- | --- | --- | --- |
+| `reborn-townkos-shipped` | – | – | – | – | – |
+| `reborn-townkos-n6_off` | – | – | – | – | 6 |
+| `reborn-townkos-n6_on` | – | – | 1 | – | 6 |
+| `reborn-townkos-n11_off` | – | – | – | – | 11 |
+| `reborn-townkos-n11_on` | – | – | 1 | – | 11 |
+| `reborn-townkos-n11_sw` | 1 | 1 | 1 | 1 | 11 |
+
+### `reborn-townscum`
+
+Town scumming (borg_money_scum_amount 500, 1000, 2000) on main 12c4ce7c, against the shipped 0.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_money_scum_amount` |
+| --- | --- |
+| `reborn-townscum-ctl` | – |
+| `reborn-townscum-scum500` | 500 |
+| `reborn-townscum-scum1000` | 1000 |
+| `reborn-townscum-scum2000` | 2000 |
+
+### `reborn-fastfrag`
+
+Fast-fragile monsters (borg-reborn-rs 7f8c6b80): scary-list entries, bans and escape variants against the control, 8 arms.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_fast_fragile_by_stats` | `borg_param_fast_fragile_escape_percent` | `borg_param_fast_fragile_no_heal` | `borg_param_fast_fragile_policy` |
+| --- | --- | --- | --- | --- |
+| `reborn-fastfrag-ctl` | – | – | – | – |
+| `reborn-fastfrag-named` | – | – | – | 1 |
+| `reborn-fastfrag-named-ban` | – | – | 1 | 1 |
+| `reborn-fastfrag-stats` | 1 | – | – | 1 |
+| `reborn-fastfrag-stats-ban` | 1 | – | 1 | 1 |
+| `reborn-fastfrag-named-esc75` | – | 75 | 1 | 1 |
+| `reborn-fastfrag-attack-only` | – | 0 | – | 1 |
+| `reborn-fastfrag-named-ban-exc` | – | – | 2 | 1 |
+
+### `reborn-healtiers`
+
+Heal tiers (bba5e4be): speed100 and quaff200 against the control at 300k turns on classes-18-300k.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_heal_quaff_bonus_percent` | `borg_param_town_heal_speed_percent` |
+| --- | --- | --- |
+| `reborn-healtiers-ctl` | – | – |
+| `reborn-healtiers-speed100` | – | 100 |
+| `reborn-healtiers-quaff200` | 200 | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1563,6 +1704,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_trip_pack_slack` | 0, 1, 2, not set | `maxdepth-2x5`, `rs-additive-6`, `reborn-bundle` | Return when this few pack slots are free (default 2). Almost no effect: 1 and 2 played identical keys in 359 of 360 #147 games. |
 | `borg_reborn_errand` | ladder, none | `reborn-errand-ladder` | The errand over the core: `none`, or a command such as `ladder` (the class ladders). The ladder looked better in the option-C pilot (24.9% v 29.1% deaths, descriptive). |
 | `borg_param_caution_heal_when_outmatched` | 0, 1, not set | `heal-attack-4`, `heal-pilot-12`, `reborn-outmatched`, `reborn-bundle` | A hurt Borg in lethal danger with no escape drinks its best cure potion (#151). Waits for borg-reborn-rs #461. |
+| `borg_money_scum_amount` | 500, 1000, 2000, not set | `reborn-townscum` |  |
 | `borg_param_attack_arrow_point_blank_divisor_blackguard` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_arrow_point_blank_divisor_druid` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_arrow_point_blank_divisor_mage` | 2, 10, not set | `reborn-pbd-by-class` |  |
@@ -1631,17 +1773,20 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |
 | `borg_param_attack_throw_as_melee` | 0, not set | `reborn-shipcheck-b895` |  |
 | `borg_param_attack_town_dangerous_bonus_percent` | 600, not set | `reborn-town-dangerous` |  |
-| `borg_param_attack_town_dangerous_bonus_whole` | 1, not set | `reborn-town-switch-screen` |  |
-| `borg_param_attack_town_dangerous_caster_walk` | 1, not set | `reborn-town-switch-screen` |  |
+| `borg_param_attack_town_dangerous_bonus_whole` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
+| `borg_param_attack_town_dangerous_caster_walk` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
 | `borg_param_attack_town_dangerous_min_damage` | 3, not set | `reborn-town-dangerous` |  |
-| `borg_param_attack_town_dangerous_on_sight` | 0, 1, not set | `reborn-town-dangerous`, `reborn-neutral-main`, `reborn-town-switch-screen` |  |
-| `borg_param_attack_town_dangerous_wand` | 1, not set | `reborn-town-switch-screen` |  |
+| `borg_param_attack_town_dangerous_on_sight` | 0, 1, not set | `reborn-town-dangerous`, `reborn-neutral-main`, `reborn-town-switch-screen`, `reborn-townkos` |  |
+| `borg_param_attack_town_dangerous_wand` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
 | `borg_param_caution_breeder_avoid` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_boost_danger_tenths` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_breeder_easy_escape_steps` | 3, 10, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_breeder_exit` | 1, not set | `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_policy` | 0, 1, 2, 3, 4, 5, not set | `reborn-breeder-policy-x4`, `reborn-breederpol` |  |
 | `borg_param_caution_breeder_stoppable` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
+| `borg_param_caution_confused_clw_cure` | 1, not set | `reborn-confusion`, `reborn-immfix` |  |
+| `borg_param_caution_confused_cure_before_walk` | 1, 2, not set | `reborn-confusion`, `reborn-immfix` |  |
+| `borg_param_caution_confusion_cure_when_stuck` | 1, not set | `reborn-confusion`, `reborn-immfix` |  |
 | `borg_param_caution_cornered_throw_first` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_desperate_fast_danger_percent` | 0, 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
 | `borg_param_caution_desperate_ranged_first_reach` | 3, not set | `reborn-flight3-757`, `reborn-flight3main` |  |
@@ -1650,8 +1795,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_flee_recall_chasers` | 2, 6, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_flee_recall_gate_below_depth` | 0, 2, 3, not set | `reborn-recall-settings`, `reborn-bundle` |  |
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
+| `borg_param_caution_immobile_no_return` | 1, not set | `reborn-immfix` |  |
+| `borg_param_caution_immobile_step_mobile_first` | 1, not set | `reborn-confusion`, `reborn-immfix` |  |
 | `borg_param_caution_jumpstart_keep_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
-| `borg_param_caution_ranged_vs_immobile` | 1, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895` |  |
+| `borg_param_caution_ranged_vs_immobile` | 1, 2, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895`, `reborn-confusion`, `reborn-immfix` |  |
 | `borg_param_caution_recall_cure_min_loss_percent` | 0, 30, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
 | `borg_param_caution_recall_pending_escape` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
@@ -1678,6 +1825,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_stairs_leave_on_monster` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_town_flee_no_worse` | 1, not set | `reborn-untested-dbc`, `reborn-town-switch-screen` |  |
 | `borg_param_caution_town_never_scary` | 1, not set | `reborn-town-switch-screen` |  |
+| `borg_param_caution_town_scary_levels_less` | 6, 11, not set | `reborn-townkos` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_caution_unseen_bump_heal_hp_percent` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_unseen_bump_response` | 0, not set | `reborn-sloo` |  |
@@ -1694,7 +1842,12 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_phase_lost_test` | 0, 1, 2, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape`, `reborn-dungeon-switch-screen` |  |
 | `borg_param_escape_phase_ordinary_danger_tenths` | 5, 20, not set | `reborn-phase-thresholds` |  |
 | `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
+| `borg_param_escape_teleport_block` | 0, not set | `reborn-tpblock` |  |
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
+| `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag` |  |
+| `borg_param_fast_fragile_escape_percent` | 0, 75, not set | `reborn-fastfrag` |  |
+| `borg_param_fast_fragile_no_heal` | 1, 2, not set | `reborn-fastfrag` |  |
+| `borg_param_fast_fragile_policy` | 1, not set | `reborn-fastfrag` |  |
 | `borg_param_flow_leash` | 0, 1, 2 | `reborn-stairs-leash` |  |
 | `borg_param_flow_leash_base` | 5, 15, not set | `reborn-cleash` |  |
 | `borg_param_flow_leash_depth_margin` | -100, 0, 10, not set | `reborn-cleash` |  |
@@ -1771,6 +1924,11 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_prepared_mid_clevel_offset__warrior` | -7, -1, not set | `reborn-dive-gates-768` |  |
 | `borg_param_recover_rest_arms_see_invis` | 1, not set | `reborn-stand-seeinv` |  |
 | `borg_param_recover_rest_breeders` | 0, not set | `reborn-breeder-world-x4` |  |
+| `borg_param_recover_unseen_attack_turns` | 0, not set | `reborn-invis` |  |
+| `borg_param_recover_unseen_detect_reads` | 0, not set | `reborn-invis` |  |
+| `borg_param_recover_unseen_heal_hp_percent` | 0, not set | `reborn-invis` |  |
+| `borg_param_recover_unseen_probe_tries` | 0, not set | `reborn-invis` |  |
+| `borg_param_town_confusion_cure_reserve` | 1, not set | `reborn-confusion` |  |
 | `borg_param_town_devices_percent` | 50, 200, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_devices_percent@blackguard` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_devices_percent@druid` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
@@ -1793,6 +1951,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_curve_scale_percent_ranger` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_rogue` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_warrior` | 0, 25, 75, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_quaff_bonus_percent` | 200, not set | `reborn-healtiers` |  |
 | `borg_param_town_heal_reserve_hp_percent_blackguard` | -1, 75, 150, 225, not set | `reborn-heal-by-class`, `reborn-class-curves`, `reborn-class-curves-dbc`, `reborn-bgcurve-dbc` |  |
 | `borg_param_town_heal_reserve_hp_percent_druid` | -1, 125, 350, 375, not set | `reborn-heal-by-class`, `reborn-casters` |  |
 | `borg_param_town_heal_reserve_hp_percent_mage` | -1, 150, 400, 450, not set | `reborn-heal-by-class`, `reborn-mage-priest`, `reborn-casters` |  |
@@ -1802,10 +1961,14 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class`, `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
+| `borg_param_town_heal_speed_percent` | 100, not set | `reborn-healtiers` |  |
 | `borg_param_town_hunt` | 1, not set | `reborn-townhunt` |  |
 | `borg_param_town_hunt_min_hp_percent` | 50, not set | `reborn-townhunt` |  |
 | `borg_param_town_hunt_ranged_bonus_percent` | 50, not set | `reborn-townhunt` |  |
+| `borg_param_town_invisible_count` | 0, not set | `reborn-invis` |  |
+| `borg_param_town_invisible_percent` | 40, not set | `reborn-invis` |  |
 | `borg_param_town_light_percent` | 50, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_light_reserve_turns` | 0, 15000, 20000, 25000 | `reborn-torch` |  |
 | `borg_param_town_missiles_other_ranged_percent` | 50, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_missiles_percent` | 50, 100, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_oil_apart` | 0, not set | `reborn-sloo` |  |
@@ -1857,7 +2020,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_store_only_overweight` | 0, 1, not set | `reborn-store-overweight`, `reborn-shipcheck-b895` |  |
 | `borg_param_town_unseen_percent` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
-| `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, 5 lines, 7 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters`, `reborn-attacksight`, `reborn-killers` |  |
+| `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, 5 lines, 7 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters`, `reborn-attacksight`, `reborn-killers`, `reborn-confusion` |  |
 | `borg_town_attack_turns` | 50, not set | `reborn-casters`, `reborn-crow-escape` |  |
 | `borg_town_explore_turns` | 500, 2000, not set | `reborn-untested-caution` |  |
 | `borg_town_home_discount` | 250, 1000, not set | `reborn-untested-town` |  |
