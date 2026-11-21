@@ -115,6 +115,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-immfix` | [#586](https://github.com/diegoami/borg-zoo/issues/586) | 3 | defined (pilot, then big at starts 361-900) | caution_ranged_vs_immobile 2 with the confusion and no-return switches on 8eadb21f: shipped, immobile2, immobile2_fix (borg-reborn-rs #837). |
 | `reborn-townkos` | [#569](https://github.com/diegoami/borg-zoo/issues/569) | 6 | defined (pilot) | Kill on sight in town with the town scare lowered (N 6, 11) and the three #637 switches on main 12c4ce7c (borg-reborn-rs #667). |
 | `reborn-townscum` | [#594](https://github.com/diegoami/borg-zoo/issues/594) | 4 | defined (pilot) | Town scumming (borg_money_scum_amount 500, 1000, 2000) on main 12c4ce7c, against the shipped 0. |
+| `reborn-alpha1` | [#601](https://github.com/diegoami/borg-zoo/issues/601) | 1 | defined (pilot; small-rest, medium, big, full planned, not dispatched) | Release measurement of borg-reborn-rs v0.1.0-alpha.1 (ed52fec1): shipped settings, one arm, classes-1800 ladder (45+45+270+540+900), 100,000 turns. |
 
 ### `heal-attack-4`
 
@@ -1659,6 +1660,14 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-townscum-scum500` | 500 |
 | `reborn-townscum-scum1000` | 1000 |
 | `reborn-townscum-scum2000` | 2000 |
+
+### `reborn-alpha1`
+
+Release measurement of borg-reborn-rs v0.1.0-alpha.1 (ed52fec1): shipped settings, one arm, classes-1800 ladder (45+45+270+540+900), 100,000 turns.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-alpha1-shipped`.
 
 ## Settings you have built arms with
 
