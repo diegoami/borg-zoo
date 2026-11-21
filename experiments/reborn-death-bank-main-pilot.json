@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-death-bank-main-pilot",
+  "issue": 550,
+  "definition": "definitions/reborn-death-bank-main-pilot.yaml",
+  "question": "Which of the starts that killed any arm in the last day's zoo runs still die on borg-reborn-rs main 2801ba18 with its shipped settings, at 200,000 turns?",
+  "description": "Which of the starts that killed any arm in the last day's zoo runs still die on borg-reborn-rs main 2801ba18 with its shipped settings, at 200,000 turns? Generated from definitions/reborn-death-bank-main-pilot.yaml: 1 arms on 4.2.6-reborn-rust-main-2801ba18, suite deaths-bank-classes-1800, deaths-bank-classes-18, deaths-bank-classes-1800-200k.",
+  "prespecified": "Fixed 2026-11-21 (borg-zoo#550). One arm (the shipped profile, no overrides), 30 starts (16 + 11 + 3; Rangers left out),\n200,000 turns, evidence retained. A regression bank: not a sample, no rate, no comparison; rescues on chosen death\nstarts did not carry over to fresh starts in #429 and #501. Gate: no config_error; one binary; every cell ends in\ndeath, turn_cap or borg_stopped. Report per start: outcome, cause, CL, DL, and the killer where it dies; which of the 30\nnow die, and of what. Used as a quick filter for later candidates.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-2801ba18"
+  ],
+  "profiles": [
+    "reborn-maindefault-shipped"
+  ],
+  "suites": [
+    "deaths-bank-classes-1800",
+    "deaths-bank-classes-18",
+    "deaths-bank-classes-1800-200k"
+  ],
+  "control": "4.2.6-reborn-rust-main-2801ba18",
+  "control_profile": "reborn-maindefault-shipped",
+  "owner_authorization": "2026-11-21: zoo owner, \"do all of those\" (the ideas offered). Pilots and small runs, all classes; the Rangers are set aside.",
+  "retain_evidence": true
+}

@@ -596,22 +596,25 @@
       ]
     },
     "reborn-bundle": {
-      "issue": 361,
-      "status": "all5 bundle pilot done; floor3 bundle pilot defined",
-      "what": "The safe-to-adopt changes together on main 38858846: scary all5 + Ranger point-blank 1 + flight Recall on DL1 (gate 0), and the bundle without all5.",
+      "issue": 549,
+      "status": "defined (200,000-turn pilot)",
+      "what": "HP minimums -25% (hp-lo) and phase reserve 1 at 200 percent (r1p200), alone and together, on main 2801ba18.",
       "profiles": [
-        "reborn-bundle-ambitious-speed30",
-        "reborn-bundle-bundle",
-        "reborn-bundle-bundle-noscary",
-        "reborn-bundle-ctl",
-        "reborn-bundle-floor3",
+        "reborn-bundle-plan-speed0",
+        "reborn-bundle-plan-speed30",
+        "reborn-bundle-plan-speed60",
         "reborn-bundle-none-speed30",
+        "reborn-bundle-ambitious-speed30",
         "reborn-bundle-none-speed30-unknown2",
         "reborn-bundle-none-speed30-unknown3",
         "reborn-bundle-none-speed30-unknown4",
-        "reborn-bundle-plan-speed0",
-        "reborn-bundle-plan-speed30",
-        "reborn-bundle-plan-speed60"
+        "reborn-bundle-ctl",
+        "reborn-bundle-bundle",
+        "reborn-bundle-bundle-noscary",
+        "reborn-bundle-floor3",
+        "reborn-bundle-hplo",
+        "reborn-bundle-r1p200",
+        "reborn-bundle-both"
       ],
       "runs": []
     },
@@ -1307,7 +1310,7 @@
     },
     "reborn-phasereserve": {
       "issue": 526,
-      "status": "defined (pilot; small tier and Rangers after its gate and the owner); 200,000-turn pilot defined (reborn-phase-reserve-200k-pilot)",
+      "status": "defined (pilot; small tier and Rangers after its gate and the owner); 200,000-turn pilot defined (reborn-phase-reserve-200k-pilot); small tier at 200,000 turns (r1p200, r2p400) defined",
       "what": "town_phase_reserve (1, 2, 3 at 200 percent) and town_phase_reserve_percent (50, 100, 200, 400 at reserve 2) on main d745d9fc, against the shipped reserve 0.",
       "profiles": [
         "reborn-phasereserve-ctl",
@@ -1374,7 +1377,7 @@
     },
     "reborn-ship3": {
       "issue": 535,
-      "status": "defined (pilot)",
+      "status": "pilot done 2026-11-21; small tier at 200,000 turns (alloff, fight, allon) defined",
       "what": "The three shipped fight/Recall switches ablated on main d7e58cd: alloff, sight, fight, recall, allon.",
       "profiles": [
         "reborn-ship3-alloff",
@@ -1410,10 +1413,44 @@
     },
     "reborn-maindefault": {
       "issue": 543,
-      "status": "defined (verysmall, its own pilot; death-report material)",
+      "status": "verysmall done (run 44841145368, 1 death); defined: 300,000-turn verysmall (#543), the death bank (#550), and the planned full ladder small-rest, medium, big, full (#551, not dispatched)",
       "what": "borg-reborn-rs main 2801ba18 with its shipped settings and no overrides, on classes-1800-verysmall (45 starts), for death reports.",
       "profiles": [
         "reborn-maindefault-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-paladingate": {
+      "issue": 544,
+      "status": "defined (pilot on the 10 Paladin starts)",
+      "what": "The Paladin DL3-4 max-HP preparedness gate, 45 against 50, on 2fdfd41c (borg-reborn-rs #795).",
+      "profiles": [
+        "reborn-paladingate-ctl",
+        "reborn-paladingate-hp45"
+      ],
+      "runs": []
+    },
+    "reborn-darkentry": {
+      "issue": 546,
+      "status": "defined (pilot on the 20 Mage and Necromancer starts)",
+      "what": "Low-level dark-entry detection (light_detect_dark_entry 1) for Mages and Necromancers on cd0ed207 (borg-reborn-rs #796).",
+      "profiles": [
+        "reborn-darkentry-ctl",
+        "reborn-darkentry-dark1"
+      ],
+      "runs": []
+    },
+    "reborn-killers": {
+      "issue": 548,
+      "status": "defined (200,000-turn pilot)",
+      "what": "Fang and Grip scary to CL8-10 and 10-12, the dogs as kill-on-sight, soldiers and acolytes scary to CL12-16 and 16-20, on main 2801ba18.",
+      "profiles": [
+        "reborn-killers-ctl",
+        "reborn-killers-dogs10",
+        "reborn-killers-dogs12",
+        "reborn-killers-doghunt",
+        "reborn-killers-fighters12",
+        "reborn-killers-fighters16"
       ],
       "runs": []
     }

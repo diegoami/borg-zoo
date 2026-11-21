@@ -1,0 +1,56 @@
+# borg-zoo#549: the leading arms of #522 and #526 together at 200,000 turns (owner, "do all of those", idea 3).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-bundle-200k-pilot.yaml
+name: reborn-bundle-200k-pilot
+issue: 549
+question: >-
+  On borg-reborn-rs main 2801ba18 at 200,000 turns, do lower HP minimums at the dive gates (hp-lo) and a one-scroll Phase
+  Door reserve at 200 percent (r1p200) add up when run together, or interfere?
+suites: [classes-1800-200k-pilot]   # 2 per class, 200,000 turns
+specimens: [4.2.6-reborn-rust-main-2801ba18]
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-bundle
+arms:
+  ctl: {}
+  hplo: &hplo
+    borg_param_prepared_dl2_min_hp: 23
+    borg_param_prepared_dl34_min_hp__warrior: 38
+    borg_param_prepared_dl34_min_hp__mage: 45
+    borg_param_prepared_dl34_min_hp__druid: 30
+    borg_param_prepared_dl34_min_hp__priest: 30
+    borg_param_prepared_dl34_min_hp__necromancer: 45
+    borg_param_prepared_dl34_min_hp__paladin: 38
+    borg_param_prepared_dl34_min_hp__rogue: 38
+    borg_param_prepared_dl34_min_hp__ranger: 38
+    borg_param_prepared_dl34_min_hp__blackguard: 38
+    borg_param_prepared_dl59_min_hp__warrior: 45
+    borg_param_prepared_dl59_min_hp__mage: 60
+    borg_param_prepared_dl59_min_hp__druid: 45
+    borg_param_prepared_dl59_min_hp__priest: 45
+    borg_param_prepared_dl59_min_hp__necromancer: 60
+    borg_param_prepared_dl59_min_hp__paladin: 45
+    borg_param_prepared_dl59_min_hp__rogue: 45
+    borg_param_prepared_dl59_min_hp__ranger: 45
+    borg_param_prepared_dl59_min_hp__blackguard: 45
+  r1p200: &r1 {borg_param_town_phase_reserve: 1, borg_param_town_phase_reserve_percent: 200}
+  both:
+    <<: [*hplo, *r1]
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: zoo owner, "do all of those" (the ideas offered). Pilots and small runs, all classes; the Rangers are set aside.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#549). hp-lo is #522's HP minimums -25% (small
+  tier: CL +0.11, 0 deaths in 90; 200,000-turn pilot level with ctl); r1p200 is #526's reserve 1 at 200 percent
+  (200,000-turn pilot: 0 deaths, CL +0.22, the Mage rescued). Pilot (RULES 16) of the four arms on this build; a small
+  tier at 200,000 turns follows only if the gate passes and the owner agrees. 72 games, all classes.
+  Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or
+  borg_stopped; frozen-turn bursts classified.
+  Report per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued
+  and newly killed against ctl (exact McNemar), identical plays; for both against hplo and against r1p200 whether the
+  effects add (CL and DL differences) or cancel. Descriptive (RULES 14).

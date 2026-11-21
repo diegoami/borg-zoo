@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-paladin-gate-pilot",
+  "issue": 544,
+  "definition": "definitions/reborn-paladin-gate-pilot.yaml",
+  "question": "Does lowering the Paladin's DL3-4 maximum-HP gate from 50 to 45 let Paladins reach DL3 and DL5 sooner without new deaths?",
+  "description": "Does lowering the Paladin's DL3-4 maximum-HP gate from 50 to 45 let Paladins reach DL3 and DL5 sooner without new deaths? Generated from definitions/reborn-paladin-gate-pilot.yaml: 2 arms on 4.2.6-reborn-rust-paladin-gate-2fdfd41c, suite classes-1800-small-paladins.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#544). Pilot on the 10 Paladin starts, already\nread in #522, so the mechanism check, not confirmation (a fresh Paladin block is the owner's to open).\nGate: no config_error; one binary; the value in params-core.json; every cell ends in death, turn_cap or borg_stopped.\nReport: alive at the cap having reached DL5 (primary); time to first DL3 and DL5 with dead or unfinished starts\nvisible; all deaths; rescued and newly killed pairs; mean CL and max depth; refusals at 45-49 observed max HP (does hp45\nchange them?) from the retained traces. Proposed guardrail: no more than 2 points of survival lost at the cap.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-paladin-gate-2fdfd41c"
+  ],
+  "profiles": [
+    "reborn-paladingate-ctl",
+    "reborn-paladingate-hp45"
+  ],
+  "suites": [
+    "classes-1800-small-paladins"
+  ],
+  "control": "4.2.6-reborn-rust-paladin-gate-2fdfd41c",
+  "control_profile": "reborn-paladingate-ctl",
+  "owner_authorization": "2026-11-21: zoo owner, \"do all of those\" (the ideas offered) and the borg-reborn-rs request #795 (proposal for owner review). Pilots and small runs, all classes; the Rangers are set aside.",
+  "retain_evidence": true
+}

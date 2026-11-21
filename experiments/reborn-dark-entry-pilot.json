@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-dark-entry-pilot",
+  "issue": 546,
+  "definition": "definitions/reborn-dark-entry-pilot.yaml",
+  "question": "Does a detection cast on entering an unexamined dark area before the CL10 gate (light_detect_dark_entry 1, reserve 2 SP) save Mages and Necromancers from what is waiting, without costing progress?",
+  "description": "Does a detection cast on entering an unexamined dark area before the CL10 gate (light_detect_dark_entry 1, reserve 2 SP) save Mages and Necromancers from what is waiting, without costing progress? Generated from definitions/reborn-dark-entry-pilot.yaml: 2 arms on 4.2.6-reborn-rust-dark-entry-cd0ed207, suite classes-1800-small-mages, classes-1800-small-necromancers.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#546). Initial screen on starts already read in\n#480 and #522, so a mechanism check; confirmation needs a fresh owner-opened block.\nGate: no config_error; one binary; the value in params-core.json; every cell ends in death, turn_cap or borg_stopped.\nReport by class: death by the cap (primary), rescued and newly killed pairs, unfinished runs by type, mean CL and max\ndepth, alive at cap after DL5; per cast the outcome, SP spent and remaining, first-sighted monster and turns resting;\njoin the \"# Dark entry detection:\" notes to the next core trace state; rests directly after casts apart from total\nresting turns. Proposed margins for a later confirmation: 0.25 CL and 0.20 max depth.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-dark-entry-cd0ed207"
+  ],
+  "profiles": [
+    "reborn-darkentry-ctl",
+    "reborn-darkentry-dark1"
+  ],
+  "suites": [
+    "classes-1800-small-mages",
+    "classes-1800-small-necromancers"
+  ],
+  "control": "4.2.6-reborn-rust-dark-entry-cd0ed207",
+  "control_profile": "reborn-darkentry-ctl",
+  "owner_authorization": "2026-11-21: zoo owner, \"do all of those\" (the ideas offered) and the borg-reborn-rs request #796. Pilots and small runs, all classes; the Rangers are set aside.",
+  "retain_evidence": true
+}

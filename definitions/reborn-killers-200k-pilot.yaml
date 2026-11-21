@@ -1,0 +1,57 @@
+# borg-zoo#548: Fang and Grip, soldiers and acolytes, at 200,000 turns (owner, "do all of those", ideas 1 and 5).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-killers-200k-pilot.yaml
+# The scary list reads "Fang, Farmer Maggot's Dog | 5-8" (Mage 8), "Grip ... | 5-8", "soldier | 8-11", "acolyte | 8-11".
+# A later line for the same monster and kind replaces the entry; an "attack" line is a separate kind (scary_list.rs).
+name: reborn-killers-200k-pilot
+issue: 548
+question: >-
+  On borg-reborn-rs main 2801ba18 at 200,000 turns, do a higher scary level for Fang and Grip, the dogs as kill-on-sight,
+  and a higher scary level for soldiers and acolytes save the deaths they cause, without new ones?
+suites: [classes-1800-200k-pilot]   # 2 per class, 200,000 turns
+specimens: [4.2.6-reborn-rust-main-2801ba18]
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-killers
+arms:
+  ctl: {}
+  dogs10:                                   # Fang and Grip scary to CL8-10 (casters 10)
+    borg_scary_list_lines:
+      - "Fang, Farmer Maggot's Dog | 8-10"
+      - "Grip, Farmer Maggot's Dog | 8-10"
+  dogs12:                                   # ... to CL10-12
+    borg_scary_list_lines:
+      - "Fang, Farmer Maggot's Dog | 10-12"
+      - "Grip, Farmer Maggot's Dog | 10-12"
+  doghunt:                                  # the dogs as kill-on-sight up to CL30, every class
+    borg_scary_list_lines:
+      - "Fang, Farmer Maggot's Dog | 30 | | attack | fast-dog"
+      - "Grip, Farmer Maggot's Dog | 30 | | attack | fast-dog"
+  fighters12:                               # soldier and acolyte scary to CL12-16
+    borg_scary_list_lines:
+      - "soldier | 12-16"
+      - "acolyte | 12-16"
+  fighters16:                               # ... to CL16-20
+    borg_scary_list_lines:
+      - "soldier | 16-20"
+      - "acolyte | 16-20"
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: zoo owner, "do all of those" (the ideas offered). Pilots and small runs, all classes; the Rangers are set aside.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build at 200,000 turns was read (borg-zoo#548). Pilot (RULES 16) at
+  200,000 turns, because at 100,000 turns ctl has no deaths to improve on. Six arms, 18 starts each (108 games), all
+  classes. Evidence: of 73 deaths in the evening's 3,384 games, Fang and Grip 13 (nine are one Mage at CL8), wild cat 5,
+  soldier 3.
+  Gate: no config_error; one binary; each arm's list lines applied (the cell's user copy of scary_monsters.txt); ctl
+  plays as main 2801ba18's shipped settings; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts
+  classified.
+  Report per arm and per class: deaths and causes (Fang, Grip, soldier, acolyte named), CL at death, final and maximum
+  level, deepest level; paired rescued and newly killed against ctl (exact McNemar), identical plays; for each arm the
+  starts where the changed monster was met (scare or attack notes), so an arm that never meets it is "not tested".
+  Descriptive (RULES 14).

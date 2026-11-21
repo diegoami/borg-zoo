@@ -1,0 +1,38 @@
+# borg-zoo#544: the Paladin DL3-4 max-HP preparedness gate, 45 against 50 (borg-reborn-rs #795).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-paladin-gate-pilot.yaml
+name: reborn-paladin-gate-pilot
+issue: 544
+question: >-
+  Does lowering the Paladin's DL3-4 maximum-HP gate from 50 to 45 let Paladins reach DL3 and DL5 sooner without new deaths?
+suites: [classes-1800-small-paladins]   # the 10 Paladin starts of classes-1800-small, 100,000 turns
+pilot: true
+
+specimen:
+  name: 4.2.6-reborn-rust-paladin-gate-2fdfd41c
+  repository: diegoami/borg-reborn-rs
+  ref: 2fdfd41cf38fc8bfd3f875608fb0e5d9a065c3f5
+  label: "borg-reborn-rs 2fdfd41c (borg-reborn-rs #795): shipped settings, prepared_dl34_min_hp__paladin 50."
+  scary_lists:
+    scary_monsters.txt: 94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-paladingate
+arms:
+  ctl: {}
+  hp45: {borg_param_prepared_dl34_min_hp__paladin: 45}
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: zoo owner, "do all of those" (the ideas offered) and the borg-reborn-rs request #795 (proposal for owner review). Pilots and small runs, all classes; the Rangers are set aside.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#544). Pilot on the 10 Paladin starts, already
+  read in #522, so the mechanism check, not confirmation (a fresh Paladin block is the owner's to open).
+  Gate: no config_error; one binary; the value in params-core.json; every cell ends in death, turn_cap or borg_stopped.
+  Report: alive at the cap having reached DL5 (primary); time to first DL3 and DL5 with dead or unfinished starts
+  visible; all deaths; rescued and newly killed pairs; mean CL and max depth; refusals at 45-49 observed max HP (does hp45
+  change them?) from the retained traces. Proposed guardrail: no more than 2 points of survival lost at the cap.

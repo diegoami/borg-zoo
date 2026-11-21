@@ -1,0 +1,40 @@
+# borg-zoo#546: low-level dark-entry detection for Mages and Necromancers (borg-reborn-rs #796).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-dark-entry-pilot.yaml
+name: reborn-dark-entry-pilot
+issue: 546
+question: >-
+  Does a detection cast on entering an unexamined dark area before the CL10 gate (light_detect_dark_entry 1, reserve 2 SP)
+  save Mages and Necromancers from what is waiting, without costing progress?
+suites: [classes-1800-small-mages, classes-1800-small-necromancers]   # 10 starts each, 100,000 turns
+pilot: true
+
+specimen:
+  name: 4.2.6-reborn-rust-dark-entry-cd0ed207
+  repository: diegoami/borg-reborn-rs
+  ref: cd0ed20714c8cef623a9cd96ae25b819b4999d27
+  label: "borg-reborn-rs cd0ed207 (borg-reborn-rs #796): light_detect_dark_entry 0 and reserve_sp 2 as shipped."
+  scary_lists:
+    scary_monsters.txt: 94631decb1f1a5d030aff6cca293dbb2a8402518ab811772b8caa7d903f2f049
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-darkentry
+arms:
+  ctl: {}
+  dark1: {borg_param_light_detect_dark_entry: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: zoo owner, "do all of those" (the ideas offered) and the borg-reborn-rs request #796. Pilots and small runs, all classes; the Rangers are set aside.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#546). Initial screen on starts already read in
+  #480 and #522, so a mechanism check; confirmation needs a fresh owner-opened block.
+  Gate: no config_error; one binary; the value in params-core.json; every cell ends in death, turn_cap or borg_stopped.
+  Report by class: death by the cap (primary), rescued and newly killed pairs, unfinished runs by type, mean CL and max
+  depth, alive at cap after DL5; per cast the outcome, SP spent and remaining, first-sighted monster and turns resting;
+  join the "# Dark entry detection:" notes to the next core trace state; rests directly after casts apart from total
+  resting turns. Proposed margins for a later confirmation: 0.25 CL and 0.20 max depth.

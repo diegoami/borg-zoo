@@ -1984,6 +1984,64 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "saves": false
+    },
+    "reborn-native-full45": {
+      "description": "The native full45 manifest of borg-reborn-rs (harness/suites/full at d0657712, sha256 7c81c28c03be3e6c188cb555fa8c917402bae0819d0791a1a810e031214d2eed): nine classes by five starts, seeds 1000-1044, race (class + k) % 11, explicit menu births, 100,000 game turns (borg-zoo#520). Not classes-1800's starts.",
+      "role": "pilot",
+      "external": true,
+      "seeds": [1000, 1001, 1002, 1003, 1004, 1010, 1011, 1012, 1013, 1014, 1020, 1021, 1022, 1023, 1024, 1030, 1031, 1032, 1033, 1034, 1040, 1041, 1042, 1043, 1044, 1050, 1051, 1052, 1053, 1054, 1060, 1061, 1062, 1063, 1064, 1070, 1071, 1072, 1073, 1074, 1080, 1081, 1082, 1083, 1084],
+      "birth": "assigned",
+      "characters": {"classes": ["Warrior", "Mage", "Druid", "Priest", "Necromancer", "Paladin", "Rogue", "Ranger", "Blackguard"], "races": ["Human", "Half-Elf", "Elf", "Hobbit", "Gnome", "Dwarf", "Half-Orc", "Half-Troll", "Dunadan", "High-Elf", "Kobold"]},
+      "assigned_characters": {"1000": ["Human", "Warrior"], "1001": ["Half-Elf", "Warrior"], "1002": ["Elf", "Warrior"], "1003": ["Hobbit", "Warrior"], "1004": ["Gnome", "Warrior"], "1010": ["Half-Elf", "Mage"], "1011": ["Elf", "Mage"], "1012": ["Hobbit", "Mage"], "1013": ["Gnome", "Mage"], "1014": ["Dwarf", "Mage"], "1020": ["Elf", "Druid"], "1021": ["Hobbit", "Druid"], "1022": ["Gnome", "Druid"], "1023": ["Dwarf", "Druid"], "1024": ["Half-Orc", "Druid"], "1030": ["Hobbit", "Priest"], "1031": ["Gnome", "Priest"], "1032": ["Dwarf", "Priest"], "1033": ["Half-Orc", "Priest"], "1034": ["Half-Troll", "Priest"], "1040": ["Gnome", "Necromancer"], "1041": ["Dwarf", "Necromancer"], "1042": ["Half-Orc", "Necromancer"], "1043": ["Half-Troll", "Necromancer"], "1044": ["Dunadan", "Necromancer"], "1050": ["Dwarf", "Paladin"], "1051": ["Half-Orc", "Paladin"], "1052": ["Half-Troll", "Paladin"], "1053": ["Dunadan", "Paladin"], "1054": ["High-Elf", "Paladin"], "1060": ["Half-Orc", "Rogue"], "1061": ["Half-Troll", "Rogue"], "1062": ["Dunadan", "Rogue"], "1063": ["High-Elf", "Rogue"], "1064": ["Kobold", "Rogue"], "1070": ["Half-Troll", "Ranger"], "1071": ["Dunadan", "Ranger"], "1072": ["High-Elf", "Ranger"], "1073": ["Kobold", "Ranger"], "1074": ["Human", "Ranger"], "1080": ["Dunadan", "Blackguard"], "1081": ["High-Elf", "Blackguard"], "1082": ["Kobold", "Blackguard"], "1083": ["Human", "Blackguard"], "1084": ["Half-Elf", "Blackguard"]},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-small-paladins": {
+      "description": "The Paladin starts of classes-1800-small (borg-zoo#544): each with its classes-1800 character, for class-specific studies.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-small", "class": "Paladin"},
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-300k-verysmall": {
+      "description": "The first 45 starts of classes-1800 (5 per class) at 300,000 engine turns: a late-game look at the shipped Borg (owner, 2026-11-21).",
+      "role": "development",
+      "subset": {"suite": "classes-1800", "range": [0, 45]},
+      "cap": 300000,
+      "wall_seconds": 5400,
+      "stall_seconds": 180,
+      "saves": false
+    },
+    "deaths-bank-classes-1800": {
+      "description": "Starts (Rangers left out: set aside by the owner) that killed any arm of a zoo run from 2026-11-20 (runs 44737523620 to 44841145368), from classes-1800 (small and medium), each with its own character, at 200,000 engine turns. A quick regression bank, not a sample: rescues on chosen death starts did not carry over to fresh starts in #429 and #501.",
+      "role": "development",
+      "subset": {"suite": "classes-1800", "seeds": [93034700, 809881907, 912444426, 1653223723, 1777269782, 1870400446, 247227001, 247597266, 352388688, 652511567, 920137153, 979002123, 1304510506, 1584060551, 1751715076, 2093434235]},
+      "cap": 200000,
+      "wall_seconds": 1800,
+      "stall_seconds": 120,
+      "saves": false
+    },
+    "deaths-bank-classes-18": {
+      "description": "Starts (Rangers left out: set aside by the owner) that killed any arm of a zoo run from 2026-11-20 (runs 44737523620 to 44841145368), from classes-18, each with its own character, at 200,000 engine turns. A quick regression bank, not a sample: rescues on chosen death starts did not carry over to fresh starts in #429 and #501.",
+      "role": "development",
+      "subset": {"suite": "classes-18", "seeds": [102023799, 300036923, 766958386, 801785300, 888896726, 934061548, 1085222502, 1381972077, 1502695781, 1548306106, 1569794094]},
+      "cap": 200000,
+      "wall_seconds": 1800,
+      "stall_seconds": 120,
+      "saves": false
+    },
+    "deaths-bank-classes-1800-200k": {
+      "description": "Starts (Rangers left out: set aside by the owner) that killed any arm of a zoo run from 2026-11-20 (runs 44737523620 to 44841145368), from classes-1800-200k, each with its own character, at 200,000 engine turns. A quick regression bank, not a sample: rescues on chosen death starts did not carry over to fresh starts in #429 and #501.",
+      "role": "development",
+      "subset": {"suite": "classes-1800-200k", "seeds": [24260605, 701310502, 715959297]},
+      "cap": 200000,
+      "wall_seconds": 1800,
+      "stall_seconds": 120,
+      "saves": false
     }
   }
 }
