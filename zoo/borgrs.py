@@ -62,7 +62,7 @@ import time
 from pathlib import Path
 
 from . import catalogue as cat_mod
-from . import stall
+from . import settings_receipt, stall
 
 # borgh writes `clevel` for a level stop; older builds wrote `clev` (borg-zoo#48).
 STOP = {'turns': 'turn_cap', 'death': 'death', 'clevel': 'turn_cap', 'clev': 'turn_cap',
@@ -650,6 +650,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'config_error': mismatch,
         'config_checked': 'native effective_settings and written file' if spec.get('verify_effective_settings') else 'written file (effective settings not required for this specimen)',
         'native_reported_settings': native_settings or None,
+        'settings_resolved': settings_receipt.collect(out, summary.get('class'), profile['settings']),
         'effective_settings': {name: native_settings.get(name)
                                for name in profile['settings']} if spec.get('verify_effective_settings') else None,
         'cause': summary.get('death_cause') or ('(alive and well)' if summary and not summary.get('dead') else None),
