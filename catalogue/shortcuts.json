@@ -1463,6 +1463,44 @@
         "reborn-receipt-override"
       ],
       "runs": []
+    },
+    "reborn-fresh": {
+      "issue": 556,
+      "status": "defined (pilot on the first 18 starts of the fresh block classes-1800-fresh; the full block is the owner's call)",
+      "what": "Fresh baseline: main d7e58cd (everything shipped this week) against fde8025a (#488), each with its own shipped settings, for P7's two endpoints.",
+      "profiles": [
+        "reborn-fresh-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-floo": {
+      "issue": 558,
+      "status": "defined (pilot)",
+      "what": "Leave-one-out of the shipped flight cluster on main d7e58cd: path1, noflee, danger, weight0, fastany, curefull.",
+      "profiles": [
+        "reborn-floo-shipped",
+        "reborn-floo-path1",
+        "reborn-floo-noflee",
+        "reborn-floo-danger",
+        "reborn-floo-weight0",
+        "reborn-floo-fastany",
+        "reborn-floo-curefull"
+      ],
+      "runs": []
+    },
+    "reborn-sloo": {
+      "issue": 557,
+      "status": "defined (pilot)",
+      "what": "Leave-one-out of shipped settings no zoo arm has measured on main 2801ba18: nobump, nothrowfirst, nobreederboost, nooilapart, phasecurve100.",
+      "profiles": [
+        "reborn-sloo-shipped",
+        "reborn-sloo-nobump",
+        "reborn-sloo-nothrowfirst",
+        "reborn-sloo-nobreederboost",
+        "reborn-sloo-nooilapart",
+        "reborn-sloo-phasecurve100"
+      ],
+      "runs": []
     }
   }
 }

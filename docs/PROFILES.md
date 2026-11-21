@@ -100,6 +100,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-darkentry` | [#546](https://github.com/diegoami/borg-zoo/issues/546) | 2 | defined (pilot on the 20 Mage and Necromancer starts) | Low-level dark-entry detection (light_detect_dark_entry 1) for Mages and Necromancers on cd0ed207 (borg-reborn-rs #796). |
 | `reborn-killers` | [#548](https://github.com/diegoami/borg-zoo/issues/548) | 6 | defined (200,000-turn pilot) | Fang and Grip scary to CL8-10 and 10-12, the dogs as kill-on-sight, soldiers and acolytes scary to CL12-16 and 16-20, on main 2801ba18. |
 | `reborn-receipt` | [#539](https://github.com/diegoami/borg-zoo/issues/539) | 2 | defined (pilot; adapter contract check of settings-resolved.json) | The resolved-settings receipt on main 78fb330f: a class override, a legacy alias, a scalar and a default-equal value, against the shipped profile. |
+| `reborn-fresh` | [#556](https://github.com/diegoami/borg-zoo/issues/556) | 1 | defined (pilot on the first 18 starts of the fresh block classes-1800-fresh; the full block is the owner's call) | Fresh baseline: main d7e58cd (everything shipped this week) against fde8025a (#488), each with its own shipped settings, for P7's two endpoints. |
+| `reborn-floo` | [#558](https://github.com/diegoami/borg-zoo/issues/558) | 7 | defined (pilot) | Leave-one-out of the shipped flight cluster on main d7e58cd: path1, noflee, danger, weight0, fastany, curefull. |
+| `reborn-sloo` | [#557](https://github.com/diegoami/borg-zoo/issues/557) | 6 | defined (pilot) | Leave-one-out of shipped settings no zoo arm has measured on main 2801ba18: nobump, nothrowfirst, nobreederboost, nooilapart, phasecurve100. |
 
 ### `heal-attack-4`
 
@@ -1470,6 +1473,43 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-receipt-ctl` | – | – | – | – | – |
 | `reborn-receipt-override` | 1600 | 1 | 3 | 0 | 150 |
 
+### `reborn-fresh`
+
+Fresh baseline: main d7e58cd (everything shipped this week) against fde8025a (#488), each with its own shipped settings, for P7's two endpoints.
+
+Profiles: `reborn-fresh-shipped`.
+
+### `reborn-floo`
+
+Leave-one-out of the shipped flight cluster on main d7e58cd: path1, noflee, danger, weight0, fastany, curefull.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_desperate_fast_danger_percent` | `borg_param_caution_recall_cure_min_loss_percent` | `borg_param_caution_stairs_clean_path` | `borg_param_caution_stairs_clean_path_flee` | `borg_param_caution_stairs_flight_ignore_danger` | `borg_param_caution_stairs_flight_threat_weight` |
+| --- | --- | --- | --- | --- | --- | --- |
+| `reborn-floo-shipped` | – | – | – | – | – | – |
+| `reborn-floo-path1` | – | – | 1 | – | – | – |
+| `reborn-floo-noflee` | – | – | – | 0 | – | – |
+| `reborn-floo-danger` | – | – | – | – | 0 | – |
+| `reborn-floo-weight0` | – | – | – | – | – | 0 |
+| `reborn-floo-fastany` | 0 | – | – | – | – | – |
+| `reborn-floo-curefull` | – | 0 | – | – | – | – |
+
+### `reborn-sloo`
+
+Leave-one-out of shipped settings no zoo arm has measured on main 2801ba18: nobump, nothrowfirst, nobreederboost, nooilapart, phasecurve100.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_breeder_boost_danger_tenths` | `borg_param_caution_cornered_throw_first` | `borg_param_caution_unseen_bump_heal_hp_percent` | `borg_param_caution_unseen_bump_response` | `borg_param_caution_unseen_bump_turns` | `borg_param_town_oil_apart` | `borg_param_town_phase_curve_scale_percent__blackguard` | `borg_param_town_phase_curve_scale_percent__druid` | `borg_param_town_phase_curve_scale_percent__mage` | `borg_param_town_phase_curve_scale_percent__necromancer` | `borg_param_town_phase_curve_scale_percent__priest` | `borg_param_town_phase_curve_scale_percent__ranger` | `borg_param_town_phase_curve_scale_percent__rogue` | `borg_param_town_phase_curve_scale_percent__warrior` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-sloo-shipped` | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-sloo-nobump` | – | – | 0 | 0 | 0 | – | – | – | – | – | – | – | – | – |
+| `reborn-sloo-nothrowfirst` | – | 0 | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-sloo-nobreederboost` | 0 | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-sloo-nooilapart` | – | – | – | – | – | 0 | – | – | – | – | – | – | – | – |
+| `reborn-sloo-phasecurve100` | – | – | – | – | – | – | 100 | 100 | 100 | 100 | 100 | 100 | 100 | 100 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1557,11 +1597,13 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_town_dangerous_on_sight` | 0, 1, not set | `reborn-town-dangerous`, `reborn-neutral-main`, `reborn-town-switch-screen` |  |
 | `borg_param_attack_town_dangerous_wand` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_caution_breeder_avoid` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
+| `borg_param_caution_breeder_boost_danger_tenths` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_breeder_easy_escape_steps` | 3, 10, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_breeder_exit` | 1, not set | `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_policy` | 0, 1, 2, 3, 4, 5, not set | `reborn-breeder-policy-x4`, `reborn-breederpol` |  |
 | `borg_param_caution_breeder_stoppable` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
-| `borg_param_caution_desperate_fast_danger_percent` | 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
+| `borg_param_caution_cornered_throw_first` | 0, not set | `reborn-sloo` |  |
+| `borg_param_caution_desperate_fast_danger_percent` | 0, 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
 | `borg_param_caution_desperate_ranged_first_reach` | 3, not set | `reborn-flight3-757`, `reborn-flight3main` |  |
 | `borg_param_caution_flee_known_down_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
@@ -1570,7 +1612,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
 | `borg_param_caution_jumpstart_keep_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_ranged_vs_immobile` | 1, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895` |  |
-| `borg_param_caution_recall_cure_min_loss_percent` | 30, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
+| `borg_param_caution_recall_cure_min_loss_percent` | 0, 30, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
 | `borg_param_caution_recall_pending_escape` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_recall_survival` | 0, 1, not set | `reborn-fight-recall`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3` |  |
@@ -1589,14 +1631,17 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_unlatch_kill` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_slow_crowd_exit` | 0, 1 | `reborn-slow-crowd-exit` |  |
 | `borg_param_caution_stair_parked_fallback` | 0, 1, not set | `reborn-597` |  |
-| `borg_param_caution_stairs_clean_path` | 2, 3, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
-| `borg_param_caution_stairs_clean_path_flee` | 1, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
-| `borg_param_caution_stairs_flight_ignore_danger` | 1, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765` |  |
-| `borg_param_caution_stairs_flight_threat_weight` | 0, 5, not set | `reborn-weighted765` |  |
+| `borg_param_caution_stairs_clean_path` | 1, 2, 3, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
+| `borg_param_caution_stairs_clean_path_flee` | 0, 1, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
+| `borg_param_caution_stairs_flight_ignore_danger` | 0, 1, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
+| `borg_param_caution_stairs_flight_threat_weight` | 0, 5, not set | `reborn-weighted765`, `reborn-floo` |  |
 | `borg_param_caution_stairs_leave_on_monster` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_town_flee_no_worse` | 1, not set | `reborn-untested-dbc`, `reborn-town-switch-screen` |  |
 | `borg_param_caution_town_never_scary` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
+| `borg_param_caution_unseen_bump_heal_hp_percent` | 0, not set | `reborn-sloo` |  |
+| `borg_param_caution_unseen_bump_response` | 0, not set | `reborn-sloo` |  |
+| `borg_param_caution_unseen_bump_turns` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3`, `reborn-townhunt` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_fail` | 0, not set | `reborn-bless` |  |
@@ -1723,6 +1768,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_light_percent` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_param_town_missiles_other_ranged_percent` | 50, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_missiles_percent` | 50, 100, not set | `reborn-untested-dbc` |  |
+| `borg_param_town_oil_apart` | 0, not set | `reborn-sloo` |  |
 | `borg_param_town_oil_curve_scale_percent` | 50, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_oil_curve_scale_percent@blackguard` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_oil_curve_scale_percent@druid` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
@@ -1751,6 +1797,14 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_curve_scale_percent@ranger` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@rogue` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
 | `borg_param_town_phase_curve_scale_percent@warrior` | 100, not set | `reborn-class-curves`, `reborn-class-curves-dbc` |  |
+| `borg_param_town_phase_curve_scale_percent__blackguard` | 100, not set | `reborn-sloo` |  |
+| `borg_param_town_phase_curve_scale_percent__druid` | 100, not set | `reborn-sloo` |  |
+| `borg_param_town_phase_curve_scale_percent__mage` | 100, not set | `reborn-sloo` |  |
+| `borg_param_town_phase_curve_scale_percent__necromancer` | 100, not set | `reborn-sloo` |  |
+| `borg_param_town_phase_curve_scale_percent__priest` | 100, not set | `reborn-sloo` |  |
+| `borg_param_town_phase_curve_scale_percent__ranger` | 100, not set | `reborn-sloo` |  |
+| `borg_param_town_phase_curve_scale_percent__rogue` | 100, not set | `reborn-sloo` |  |
+| `borg_param_town_phase_curve_scale_percent__warrior` | 100, not set | `reborn-sloo` |  |
 | `borg_param_town_phase_reserve` | 1, 2, 3, not set | `reborn-bundle`, `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve` |  |
 | `borg_param_town_phase_reserve__mage` | 1, not set | `reborn-receipt` |  |
 | `borg_param_town_phase_reserve__ranger` | 3, not set | `reborn-receipt` |  |

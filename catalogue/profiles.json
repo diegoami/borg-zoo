@@ -9344,6 +9344,121 @@
         "borg_param_town_phase_reserve_percent": 150,
         "borg_param_town_phase_reserve__warrior": 0
       }
+    },
+    "reborn-fresh-shipped": {
+      "description": "borg-zoo#556 (reborn-fresh-baseline-pilot.yaml): arm shipped.",
+      "settings": {}
+    },
+    "reborn-floo-shipped": {
+      "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-floo-path1": {
+      "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm path1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_clean_path": 1
+      }
+    },
+    "reborn-floo-noflee": {
+      "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm noflee.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_clean_path_flee": 0
+      }
+    },
+    "reborn-floo-danger": {
+      "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm danger.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_flight_ignore_danger": 0
+      }
+    },
+    "reborn-floo-weight0": {
+      "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm weight0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_stairs_flight_threat_weight": 0
+      }
+    },
+    "reborn-floo-fastany": {
+      "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm fastany.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_desperate_fast_danger_percent": 0
+      }
+    },
+    "reborn-floo-curefull": {
+      "description": "borg-zoo#558 (reborn-ship-flight-loo-pilot.yaml): arm curefull.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_recall_cure_min_loss_percent": 0
+      }
+    },
+    "reborn-sloo-shipped": {
+      "description": "borg-zoo#557 (reborn-ship-unseen-loo-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-sloo-nobump": {
+      "description": "borg-zoo#557 (reborn-ship-unseen-loo-pilot.yaml): arm nobump.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_unseen_bump_response": 0,
+        "borg_param_caution_unseen_bump_turns": 0,
+        "borg_param_caution_unseen_bump_heal_hp_percent": 0
+      }
+    },
+    "reborn-sloo-nothrowfirst": {
+      "description": "borg-zoo#557 (reborn-ship-unseen-loo-pilot.yaml): arm nothrowfirst.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_cornered_throw_first": 0
+      }
+    },
+    "reborn-sloo-nobreederboost": {
+      "description": "borg-zoo#557 (reborn-ship-unseen-loo-pilot.yaml): arm nobreederboost.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_boost_danger_tenths": 0
+      }
+    },
+    "reborn-sloo-nooilapart": {
+      "description": "borg-zoo#557 (reborn-ship-unseen-loo-pilot.yaml): arm nooilapart.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_oil_apart": 0
+      }
+    },
+    "reborn-sloo-phasecurve100": {
+      "description": "borg-zoo#557 (reborn-ship-unseen-loo-pilot.yaml): arm phasecurve100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_curve_scale_percent__warrior": 100,
+        "borg_param_town_phase_curve_scale_percent__mage": 100,
+        "borg_param_town_phase_curve_scale_percent__druid": 100,
+        "borg_param_town_phase_curve_scale_percent__priest": 100,
+        "borg_param_town_phase_curve_scale_percent__necromancer": 100,
+        "borg_param_town_phase_curve_scale_percent__rogue": 100,
+        "borg_param_town_phase_curve_scale_percent__ranger": 100,
+        "borg_param_town_phase_curve_scale_percent__blackguard": 100
+      }
     }
   }
 }

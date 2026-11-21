@@ -1,0 +1,50 @@
+# borg-zoo#557: leave-one-out screen of the shipped settings no zoo arm has measured, on main 2801ba18 (the issue says d7e58cd, which predates the unseen-bump parameters of #781).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-ship-unseen-loo-pilot.yaml
+name: reborn-ship-unseen-loo-pilot
+issue: 557
+question: >-
+  On borg-reborn-rs main 2801ba18, what does each shipped setting that no zoo arm has measured do when it is reverted to its
+  compiled default (the unseen-bump response, throwing first when cornered, the breeder boost, oil apart, the Phase Door curve per class)?
+tier: pilot            # classes-18, 100,000 turns; small + medium after the gate and the owner
+
+specimen: 4.2.6-reborn-rust-main-2801ba18
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-sloo
+arms:
+  shipped: {}
+  nobump:
+    borg_param_caution_unseen_bump_response: 0
+    borg_param_caution_unseen_bump_turns: 0
+    borg_param_caution_unseen_bump_heal_hp_percent: 0
+  nothrowfirst: {borg_param_caution_cornered_throw_first: 0}
+  nobreederboost: {borg_param_caution_breeder_boost_danger_tenths: 0}
+  nooilapart: {borg_param_town_oil_apart: 0}
+  phasecurve100:
+    borg_param_town_phase_curve_scale_percent__warrior: 100
+    borg_param_town_phase_curve_scale_percent__mage: 100
+    borg_param_town_phase_curve_scale_percent__druid: 100
+    borg_param_town_phase_curve_scale_percent__priest: 100
+    borg_param_town_phase_curve_scale_percent__necromancer: 100
+    borg_param_town_phase_curve_scale_percent__rogue: 100
+    borg_param_town_phase_curve_scale_percent__ranger: 100
+    borg_param_town_phase_curve_scale_percent__blackguard: 100
+control: [shipped]
+owner_authorization: >-
+  2026-11-21: borg-reborn-rs owner ("file them all", filed as borg-zoo#557); zoo owner, 2026-11-21: "you have new issues"
+  (a classes-18 pilot only, all classes; larger tiers wait for the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build with these arms was read (borg-zoo#557). Pilot (RULES 16); small and medium
+  after the gate and the owner. Six arms, 18 starts each (108 games), all classes; the Druid start 102023799, the case PR #782 was
+  built from, is in classes-18, so nobump runs on it.
+  Gate: no config_error; one binary; each arm's values in params-core.json; shipped plays as main 2801ba18; every cell ends in
+  death, turn_cap or borg_stopped; frozen-turn bursts classified.
+  Report per arm and per class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly
+  killed against shipped (exact McNemar), identical-game counts. An arm that plays identically to shipped everywhere is "not
+  exercised", not "no effect". Descriptive (RULES 14).
