@@ -1,0 +1,42 @@
+# borg-zoo#609: tonight's test of borg-reborn-rs main at ab775d48, verysmall tier (45 starts).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-tonight-verysmall.yaml
+name: reborn-tonight-verysmall
+issue: 609
+question: >-
+  What do the borg-rs core and shipped settings of borg-reborn-rs main ab775d48 do over classes-1800's verysmall
+  slice (45 starts, 100,000 turns)? Tonight's test of the current main: a description, not a comparison.
+tier: verysmall
+
+pilot: true            # first run of this arm on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-main-ab775d48
+  repository: diegoami/borg-reborn-rs
+  ref: ab775d488a979bd11ed68079d28132bc046b8c0d
+  label: "borg-reborn-rs main ab775d48 (head on 2026-11-21, PR #833 merged): shipped harness/borg.txt dd21cc3e..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: e0e293814e8ed9c2f3a5f0af809f479e854878e5d0eaedea37b671dd1b20f5a8
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-tonight
+arms:
+  shipped: {}      # no overrides
+control: [shipped]
+owner_authorization: >-
+  2026-11-21: zoo owner, "We need a test with the current build on main for tonight" and "dispatch them all": the whole
+  ladder, dispatched together.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result was read. Tonight's test of borg-reborn-rs main ab775d48 (shipped settings, borg-rs
+  core, no overrides): one arm, classes-1800, 100,000 turns, ladder verysmall (45, pilot), small-rest (45), medium (270),
+  big (540), full (900) = 1,800 starts, dispatched together on the owner's go. Descriptive (RULES 14).
+  Gate: no config_error; one binary (BUILD_ID source_sha256, binary_sha256, borg_txt_sha256 reported); every cell ends in
+  death, turn_cap or borg_stopped; stalls, timeouts and harness failures counted apart.
+  Report, overall and per class: deaths and causes, CL and depth at death, survivors (mean CL, max depth), alive at the cap
+  having reached DL5, unfinished games, a RULES 18 bin; paired by start against #566 (3b4924ba) and #601 (ed52fec1) as a
+  description, not a comparison of settings (the builds differ).

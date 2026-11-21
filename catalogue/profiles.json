@@ -9974,6 +9974,13 @@
         "borg_param_fast_fragile_no_walk": 1,
         "borg_param_fast_fragile_by_stats": 1
       }
+    },
+    "reborn-tonight-shipped": {
+      "description": "borg-zoo#609 (reborn-tonight-verysmall.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
     }
   }
 }
