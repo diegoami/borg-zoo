@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-no-walk-pilot",
+  "issue": 604,
+  "definition": "definitions/reborn-no-walk-pilot.yaml",
+  "question": "On borg-reborn-rs d9ebf4c9 (main 5987e1fe, with the fast-fragile policy and ban shipped on, plus PR #853), does refusing the desperate walk to the stairs while a faster fast-fragile monster is awake next to the Borg (fast_fragile_no_walk), alone and with the stats rule (fast_fragile_by_stats), save early deaths without adding new ones?",
+  "description": "On borg-reborn-rs d9ebf4c9 (main 5987e1fe, with the fast-fragile policy and ban shipped on, plus PR #853), does refusing the desperate walk to the stairs while a faster fast-fragile monster is awake next to the Borg (fast_fragile_no_walk), alone and with the stats rule (fast_fragile_by_stats), save early deaths without adding new ones? Generated from definitions/reborn-no-walk-pilot.yaml: 3 arms on 4.2.6-reborn-rust-no-walk-d9ebf4c9, suite classes-18.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#604; borg-reborn-rs #849, PR #853). Pilot (RULES 16)\non classes-18, three arms, 18 starts each (54 games), all classes, one binary; small + medium (classes-1800 starts 1-360)\nafter the gate and the owner.\nGate: no config_error; one binary; each arm's values in params-core.json; ctl plays as the build's shipped settings;\nevery cell ends in death, turn_cap or borg_stopped; stalls reported start by start (the lightless abort is a separate\nfamily); frozen-turn bursts classified.\nReport per arm and class: deaths and causes (crow and wild cat apart), CL at death, final and maximum level; paired rescued\nand newly killed against ctl, identical plays (the shipped policy attacks before the walk's code, so little change is\nexpected); how often \"# No walk to the stairs from a faster fast-fragile attacker\" appears and for which monsters; the\n8 cases of #842 (Necromancer 1705507033, Half-Elf Druid 733550937). Descriptive (RULES 14); nowalk-stats compares with\n#596's stats arm only as a lead, on another build.",
+  "specimens": [
+    "4.2.6-reborn-rust-no-walk-d9ebf4c9"
+  ],
+  "profiles": [
+    "reborn-nowalk-ctl",
+    "reborn-nowalk-nowalk",
+    "reborn-nowalk-nowalk-stats"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-no-walk-d9ebf4c9",
+  "control_profile": "reborn-nowalk-ctl",
+  "owner_authorization": "2026-11-21: borg-reborn-rs owner (\"after this do 849\"), filed as borg-zoo#604; zoo owner, 2026-11-21: \"any new tickets\" (a classes-18 pilot only; small and medium after the gate and the owner).",
+  "retain_evidence": true
+}

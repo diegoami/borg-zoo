@@ -9950,6 +9950,30 @@
         "borg_param_caution_confused_clw_cure": 1,
         "borg_param_caution_confused_cure_before_walk": 2
       }
+    },
+    "reborn-nowalk-ctl": {
+      "description": "borg-zoo#604 (reborn-no-walk-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-nowalk-nowalk": {
+      "description": "borg-zoo#604 (reborn-no-walk-pilot.yaml): arm nowalk.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_no_walk": 1
+      }
+    },
+    "reborn-nowalk-nowalk-stats": {
+      "description": "borg-zoo#604 (reborn-no-walk-pilot.yaml): arm nowalk-stats.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_no_walk": 1,
+        "borg_param_fast_fragile_by_stats": 1
+      }
     }
   }
 }
