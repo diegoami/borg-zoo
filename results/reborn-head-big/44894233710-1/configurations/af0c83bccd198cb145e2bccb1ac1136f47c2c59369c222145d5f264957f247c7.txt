@@ -1,0 +1,1541 @@
+# The Borg's settings (harness/borg.txt). The zoo and ~/borg-play copy this
+# file as the run's user/borg.txt; the vendored borg-rs core reads it.
+#
+# How to read the comments:
+# - What the setting does, then what raising or lowering it does.
+# - "Change together": settings that only make sense as a set.
+# - "Impact": how many of 6 test games (Warrior, Mage, Druid, Priest,
+#   Ranger, Blackguard; 50,000 game turns each) play differently when this
+#   one value is changed as stated, everything else as shipped (#576). It
+#   shows whether the setting is reached early in a game, not whether the
+#   change is better or worse: only a zoo run says that. 0 means not reached
+#   in these short games (deeper levels, rare monsters, later purchases), not
+#   that the setting does nothing.
+# - These are the shipped values, not the core's compiled defaults: the
+#   compiled core keeps neutral values (docs/CALIBRATION.md), and these
+#   lines change them for every game that reads this file (#479). For a
+#   switch, 0 turns the feature off.
+# - A zoo profile rewrites a line in place; BORG_PARAM_<NAME> in the
+#   environment overrides a borg_param_ line, and BORG_PARAM_<NAME>__<CLASS>
+#   one class's value (a shell cannot export a name with @). A class's own
+#   value lives in harness/borg_<class>.txt, folded into the CLASS FILES
+#   block at the end (#520), and wins over the common line here.
+#
+# Sections: the core, the errand and when to stop; run control; Town; Word
+# of Recall; descending and the trip policy; Combat; Healing; Fleeing;
+# Cornered; Breeders; Scary monsters; the C Borg's own settings.
+
+
+### The core, the errand and when to stop ###
+
+# The decision core: "borg-rs" (borg-rs's core, vendored in borg-core/,
+# shipped since #479) or "reborn" (this repository's own Borg, not ready
+# yet). BORG_CORE in the environment overrides it. harness/run.sh plays the
+# core named here when BORG_CORE is unset (#606); BORG_CORE=reborn selects
+# the reborn core, which reads its profile, not this file.
+
+borg_reborn_core = borg-rs
+
+# An errand over the core (borg-core/src/shell.rs): "none", "/town",
+# "/walk-back", "/explore-back", "/dive N", "/dive-exploring N",
+# "/explore-level", "/ladder" (the class's ladder in borg-core/ladders.txt)
+# or a plan ("/trips 1*/1,2,1*@3/..."). BORG_ERRAND overrides it; in the
+# game, ^Z / types one. "none" lets the core play as itself.
+
+borg_reborn_errand = none
+
+# Hand control back to the player when the danger where the Borg stands
+# reaches this percent of its current HP: "off", N (1-1000), or "flee"
+# (100: one turn could kill it). Lower stops it earlier. BORG_STOPSCARED
+# overrides it.
+
+borg_reborn_stopscared = off
+
+# Stop at this dungeon level or character level (out of range = never), go
+# no deeper than borg_no_deeper, and stop after killing Morgoth
+# (borg_stop_king). Lowering borg_no_deeper caps the dive: the Borg stays at
+# or above that level and gains less experience.
+
+borg_stop_dlevel = 128
+borg_stop_clevel = 51
+borg_no_deeper = 127
+borg_stop_king = TRUE
+
+# Stop when the game rings the bell, which generally means an error; the
+# message log then lists the last 50 keypresses. For debugging only.
+
+borg_stop_on_bell = FALSE
+
+
+### Run control ###
+
+# Dumps, saves, logging, speed and what happens at death. None of these
+# changes how the Borg plays a game.
+
+# Write a character dump at death from this character level, and save the
+# game in the archive directory (borg_save_death = 1) so the death can be
+# examined.
+
+borg_dump_level = 1
+borg_save_death = 1
+
+# Save at the start of every level and copy that save to the archive.
+
+borg_autosave = FALSE
+
+# TRUE makes the Borg note far more of its actions and thoughts.
+
+borg_verbose = FALSE
+
+# Slow the Borg down to watch it: the delay is base_game_delay_factor^2 +
+# borg_delay_factor^2. 0 = full speed.
+
+borg_delay_factor = 0
+
+# TRUE sets the game's cheat-death option: the Borg dies and keeps going.
+# FALSE: with the game's cheat-death option it respawns a new character
+# (below); without it, it stops at death. The harness and the zoo force
+# FALSE.
+
+borg_cheat_death = FALSE
+
+# The character it respawns as: race and class (-1 = random), and whether it
+# starts a new character after killing Morgoth. The harness and the zoo set
+# race and class per game.
+#
+# RACE:-1 Random Race          CLASS:  -1 Random Class
+#       0 Human                         0 Warrior
+#       1 Half Elf                      1 Mage
+#       2 Elf                           2 Druid
+#       3 Hobbit                        3 Priest
+#       4 Gnome                         4 Necromancer
+#       5 Dwarf                         5 Paladin
+#       6 Half Orc                      6 Rogue
+#       7 Half Troll                    7 Ranger
+#       8 Dunadan                       8 Blackguard
+#       9 High Elf
+#      10 Kobold
+
+borg_respawn_race = 6
+borg_respawn_class = 4
+borg_respawn_winners = FALSE
+
+
+### Town ###
+
+# Shopping, selling and the town planner. With borg_town_plan = 1 (shipped)
+# the live planner decides every purchase and sale, by the value of what a
+# purchase covers on the next trip. The C Borg's chooser (0) is kept for
+# comparison.
+
+# 1 = the live town planner (#479); 0 = the C Borg's historical chooser.
+# Impact: set to 0, 6 of 6 test games play differently.
+
+borg_town_plan = 1
+
+# The next trip, as the planner forecasts it. It goes borg_town_depth_gain
+# levels below the deepest so far (or to borg_town_target_depth, if not 0)
+# and lasts borg_town_explore_turns per level gained plus
+# 2 x borg_town_stair_turns x depth (or borg_town_trip_turns, if not 0). The
+# longer and deeper the forecast trip, the more light, food, healing and
+# escapes the planner buys.
+# Change together: depth_gain, explore_turns and stair_turns set the trip's
+# length; target_depth and trip_turns replace them with fixed values.
+# Impact (games of 6 that play differently with the value changed to):
+# town_depth_gain 2: 6; town_explore_turns 2000: 6; town_stair_turns 100: 5;
+# town_target_depth 1: 6; town_trip_turns 1: 6.
+
+borg_town_depth_gain = 1
+borg_town_explore_turns = 1000
+borg_town_stair_turns = 50
+borg_town_target_depth = 0
+borg_town_trip_turns = 0
+
+# Supplies per trip: one light source lasts borg_town_light_turns turns and
+# one ration borg_town_food_turns. Lower buys more light and food.
+# Impact (games of 6 that play differently with the value changed to):
+# town_light_turns 10000: 0; town_food_turns 6000: 0.
+
+borg_town_light_turns = 5000
+borg_town_food_turns = 3000
+
+# Exposure: the trip's turns x depth x borg_town_risk / 1000 / character
+# level sizes the healing and escapes wanted (1000 = one max-HP of healing
+# per 1000 actions at equal depth and level). Higher buys more healing and
+# escapes and less of everything else. borg_town_power_scale is how much
+# better gear is worth per level gained; higher spends more on gear.
+# Impact (games of 6 that play differently with the value changed to):
+# town_risk 2000: 6; town_power_scale 80000: 5.
+
+borg_town_risk = 1000
+borg_town_power_scale = 40000
+
+# The weight of each need, against light at 100. Each weight scales how much
+# covering that need is worth; raising one makes the planner buy more of it
+# and less of the others. Change together: only their ratios matter.
+# - light, food: light sources and fuel, food;
+# - bleeding, poison: cures for cuts and poison;
+# - escape: Phase Door, teleport and similar;
+# - knowledge: buying one of each unknown flavour to learn it; forced to 0
+#   with the shipped borg_trip_policy = 1 (the trip goes back to town to
+#   sell unknown items instead), so this line applies only with the policy
+#   off;
+# - power: better gear;
+# - trip: Word of Recall (the walk it saves);
+# - attack, magic, support, restore: missiles and attack devices, magic
+#   devices, buff potions and scrolls, stat restoration;
+# - ranger_missiles: arrows kept for a Ranger (0 = none).
+# borg_town_attack_turns, support_turns and ranger_missile_turns are the
+# forecast turns per use: lower means more uses per trip, so more bought.
+# Impact (games of 6 that play differently with the value changed to):
+# town_w_light 200: 6; town_w_food 200: 2; town_w_bleeding 200: 6;
+# town_w_poison 200: 0; town_w_escape 100: 6; town_w_knowledge 50: 0;
+# town_w_power 100: 6; town_w_trip 100: 0; town_w_attack 200: 6;
+# town_w_magic 200: 0; town_w_support 100: 6; town_w_restore 200: 0;
+# town_attack_turns 200: 6; town_support_turns 2000: 5;
+# town_w_ranger_missiles 500: 1; town_ranger_missile_turns 100: 1.
+
+borg_town_w_light = 100
+borg_town_w_food = 100
+borg_town_w_bleeding = 100
+borg_town_w_poison = 100
+borg_town_w_escape = 50
+borg_town_w_knowledge = 25
+borg_town_w_power = 50
+borg_town_w_trip = 50
+borg_town_w_attack = 100
+borg_town_w_magic = 100
+borg_town_w_support = 50
+borg_town_w_restore = 100
+borg_town_attack_turns = 100
+borg_town_support_turns = 1000
+borg_town_w_ranger_missiles = 250
+borg_town_ranger_missile_turns = 50
+
+# Black Market purchases may spend this percentage (0 to 100) of the
+# shopping budget above the excluded gold. Zero closes the Black Market.
+# Omit the percentage to use the legacy borg_town_share divisor. Regular
+# shops use the ordinary shopping budget.
+# Limit copies per non-missile item kind when leaving town. Zero disables
+# the limit. Excess goes to Home first, then to shops.
+# borg_town_w_space: the value of a free pack slot; higher keeps the pack
+# emptier. borg_town_home_discount: what an item kept at home is worth, in
+# thousandths of one carried; higher stores more at home.
+# borg_town_w_gold: the value of leaving gold unspent, 0 since #493 (the
+# reserve below replaces it).
+# borg_town_light_depth: from this descent target on, a second light
+# source is required; lower asks for it sooner. borg_town_food_trip: the
+# food rations to carry per trip; higher buys more food. Both feed the live
+# planner's light and food needs (borg_town_usefulness.rs, Trip).
+# Impact (games of 6 that play differently with the value changed to):
+# town_share 20: 0; town_w_space 50: 6; town_home_discount 1000: 6;
+# town_w_gold 1: 6; town_light_depth 30: 0; town_food_trip 20: 0.
+
+borg_black_market_max_percentage = 60
+borg_sum_excluded_from_black_market = 500
+borg_town_max_non_missile_copies = 35
+borg_town_w_space = 25
+borg_town_home_discount = 500
+borg_town_w_gold = 0
+borg_town_light_depth = 15
+borg_town_food_trip = 10
+
+# Store at home only when overweight (#711, owner): 1 = the town planner
+# moves a pack stack to the Home only while the pack is over its weight
+# allowance, the least valuable per weight first, until it is under. 0 = also
+# when its value kept for later (borg_town_home_discount) beats its value
+# carried now: cures, oil and Phase Door went home with the pack light.
+
+borg_param_town_store_only_overweight = 1
+
+# Gold kept back from shopping: the larger of a fixed amount and a percent of
+# the purse (#493). Higher leaves more gold unspent, so less gear and fewer
+# supplies. 0 and 0 = spend freely.
+# Impact (games of 6 that play differently with the value changed to):
+# town_gold_reserve 1000: 6; town_gold_reserve_percent 50: 6.
+
+borg_param_town_gold_reserve = 0
+borg_param_town_gold_reserve_percent = 0
+
+# Buy no digger below this much gold (#487): a Shovel only clears rubble,
+# and early visits spent half their gold on one. Lower allows it earlier;
+# 0 = no limit.
+# Impact: set to 1000, 1 of 6 test games play differently.
+
+borg_param_town_digger_min_gold = 500
+
+# Projectiles and devices by class (#666, owner). town_missiles_percent: the
+# reserve of shots for the class's launcher, in percent of
+# borg_town_w_ranger_missiles, for any class; -1 = only the Ranger's (C).
+# town_devices_percent: what a wand, rod or staff is worth, in percent of
+# what it supplies. The class files set both, from class.txt's shooting and
+# device skills; town_missiles_percent stays -1 until a zoo pilot (#676;
+owner: flasks, always in the General Store, come first).
+# town_missiles_other_ranged_percent: with 5 or more flasks
+# of oil and attack-wand charges in the pack the shots weigh this percent
+# (owner: buy projectiles mostly when there are no flasks; the General
+# Store always stocks them); 100 = no change.
+# Change together: the shots' weight is borg_town_w_ranger_missiles x these.
+
+borg_param_town_missiles_percent = -1
+borg_param_town_missiles_other_ranged_percent = 100
+borg_param_town_devices_percent = 100
+
+# Fear cures to keep while not afraid (#516): beyond this many Potions of
+# Boldness the planner buys no more (it bought 35 and drank 7 on 18 games).
+# Higher keeps more; 0 = value them on the diminishing curve.
+# Impact: set to 4, 5 of 6 test games play differently.
+
+borg_param_town_fear_cure_count = 0
+
+# TRUE: no store visits at all, no buying, selling or home (a baseline arm,
+# borg-rs#36).
+# Impact: set to TRUE, 6 of 6 test games play differently.
+
+borg_town_no_stores = FALSE
+
+# Money scumming: stay on the town level killing townspeople and selling
+# their drops until the purse reaches this amount (0 = off). The Borg needs a
+# permanent light and flees town from scary monsters.
+# Impact: set to 1, 6 of 6 test games play differently.
+
+borg_money_scum_amount = 0
+
+# TRUE: from character level 10, with a permanent light, a 65% chance to
+# avoid pickpockets and plenty of food, stay in town until the purse buys an
+# item it wants (a stat potion in the Black Market, for one). It can take a
+# very long time.
+# Impact: set to TRUE, 0 of 6 test games play differently.
+
+borg_self_scum = FALSE
+
+
+### Word of Recall ###
+
+# Buying, with the live planner. What a Word of Recall is worth, in percent
+# of the walk it saves (#557). Shallow, that walk is worth little, so a
+# low-level Borg never buys one; raise it to buy and keep one earlier.
+# Change together: borg_param_town_recall_reserve.
+# Impact: set to 200, 0 of 6 test games play differently.
+
+borg_param_town_recall_value_percent = 100
+
+# Aim to keep one Word of Recall when the purse after urgent shopping
+# reaches 400 gold. Buying a scroll must leave at least 400 gold after
+# paying its price. A reserve of 0 disables the target.
+
+borg_param_town_recall_reserve = 1
+borg_param_buy_recall_from_gold = 400
+
+# Buying, C chooser only (borg_town_plan = 0): the C power scorer values
+# Recall only above this character level. The live planner does not read it.
+# Impact: set to 14, 0 of 6 test games play differently.
+
+borg_param_power_inventory_clevel_threshold_3 = 7
+
+# Descending: going to this depth or deeper needs a Word of Recall in the
+# pack (C: from DL5). It only stops descents, it buys nothing (#557). Higher
+# lets the Borg go deeper without one; 0 = never required.
+# Impact: set to 10, 0 of 6 test games play differently.
+
+borg_param_prepared_recall_depth = 5
+# #768: C Borg dive gates. A positive margin allows a deeper level before
+# CL50. Class HP and CL gates are in the folded class files below.
+# The mid depth limit applies to classes other than Mage and Necromancer.
+# Those two use the mid character-level limit and the deep ramp.
+borg_param_prepared_clevel_depth_margin = 0
+borg_param_prepared_dl2_min_hp = 30
+borg_param_prepared_cure_min = 2
+borg_param_prepared_cure_until_clevel = 30
+borg_param_prepared_mid_max_depth = 19
+borg_param_prepared_mid_caster_max_clevel = 28
+borg_param_prepared_deep_caster_ramp_max_clevel = 44
+borg_param_prepared_deep_caster_ramp_base_depth = 30
+borg_param_prepared_deep_caster_ramp_depth_per_level = 2
+borg_param_prepared_dl34_plus_min_clevel = 40
+
+# Fleeing: walk to a reachable staircase first, and read Recall only when
+# none is reachable (#539). 0 = the C order, Recall first.
+# Impact: set to 0, 2 of 6 test games play differently.
+
+borg_param_caution_flee_stairs_before_recall = 1
+
+# Fleeing: 1 = read Word of Recall as the escape (C). 0 = only on a level with
+# at least borg_param_caution_flee_recall_breeders known breeders, or when at
+# least _chasers awake monsters that can move are within _chase_distance;
+# otherwise walk. At 0 Recall is no easy escape in the stand tests either
+# (#557). Lower breeders/chasers or a larger distance read Recall more often.
+# Change together: the four.
+# Impact (games of 6 that play differently with the value changed to):
+# caution_flee_recall 0: 2; caution_flee_recall_breeders 10: 0;
+# caution_flee_recall_chasers 6: 1; caution_flee_recall_chase_distance 12:
+# 0.
+
+borg_param_caution_flee_recall = 1
+borg_param_caution_flee_recall_breeders = 5
+borg_param_caution_flee_recall_chasers = 3
+borg_param_caution_flee_recall_chase_distance = 6
+
+# Fleeing: shallower than this depth (2 = DL1 only) a flight reads Recall
+# only with the breeder or chaser exception above, even with
+# caution_flee_recall = 1: on DL1 the stairs are a short walk, and the scroll
+# is kept for the trip home (#557). Higher extends it deeper; 0 or 1 = off.
+# Impact: set to 4, 2 of 6 test games play differently.
+
+borg_param_caution_flee_recall_gate_below_depth = 1
+
+# Fleeing: where caution_flee_recall = 0 or the depth gate above holds a
+# flight's Recall back, the danger here at or above this percent of the
+# current HP allows it after all, beside the breeder and chaser exceptions
+# (#587). Only the flight's own read; the stand tests ignore it. 0 = off.
+# Change together: with caution_flee_recall and
+# caution_flee_recall_gate_below_depth; it does nothing unless one holds
+# Recall back.
+# Impact: off here; not measured yet (a zoo pilot is pending).
+
+borg_param_caution_flee_recall_danger_percent = 0
+
+# Waiting: 1 = while Word of Recall counts down, play by the ordinary rules:
+# flee by stairs or Teleport Level (the countdown keeps running on the new
+# level), use the ordinary escapes and attacks, treat a scary level as
+# usual; still rest or wait in place when safe (#603). Only on DL2 and
+# deeper: in town and on DL1 a staircase crosses between town and dungeon,
+# and the Recall would take the Borg back. 0 = C's Recall-only rules (the
+# buy-time escapes of caution_recall_*).
+# Impact: zoo-neutral and rarely reached: borg-zoo#400 (1,800 starts) 103
+# deaths against 105; reborn-recall-usual-200k-main (72 starts at 200k) the
+# same 4 deaths, 17 games changed, CL -0.04, DL -0.05; borg-zoo#428 (108
+# starts on e5cc5469) 2 against 2, 3 games changed. Shipped 1 (owner,
+# 2026-11-20, #694: "I would adopt it"), as the better way to play.
+
+borg_param_caution_recall_wait_as_usual = 1
+# caution_recall_pending_escape = 0/1 (#754): a Recall already counting down
+# counts as an escape on a scary level (no "standing and fighting"). An up
+# staircase reached on foot is still taken (on DL1: town, where the Recall
+# fires and returns the Borg to its maximum depth). 0 = #530.
+borg_param_caution_recall_pending_escape = 0
+# caution_recall_wait_no_explore = 0/1 (#754): while Recall counts down in the
+# dungeon, wait in place (rest when safe and borg_check_rest allows it, else
+# stay still) instead of exploring; the think ends there. With
+# caution_recall_wait_as_usual = 1 the flight and leave above it still run,
+# but the generic borg_leave_level after exploration is replaced by the wait.
+borg_param_caution_recall_wait_no_explore = 0
+
+# Waiting for Recall to fire (it fires 15-34 turns after the read). In the
+# dungeon and safe, rest this many turns at a time; in town, within this many
+# game turns x the game ratio of the jump, prepare the spells for arriving.
+# Impact (games of 6 that play differently with the value changed to):
+# caution_recall_rest_turns 1000: 2; caution_recall_prep_turns 4: 0.
+
+borg_param_caution_recall_rest_turns = 500
+borg_param_caution_recall_prep_turns = 2
+
+# No rest for Recall right after a monster was near (#567).
+# caution_recall_rest_monster_turns = N (game turns, 0 = off): while Recall is
+# active, if an awake monster was known within caution_recall_rest_monster_distance
+# grids in the last N game turns, stay still one turn at a time instead of
+# resting, so a monster that comes back is seen before it bites. A monster
+# that never moves does not count.
+# Impact (18 classes-18 starts, 100,000 turns, main 3ba17e2c): 200: 7 of 18
+# play differently (sum of CL 97 against 101, the same one death).
+borg_param_caution_recall_rest_monster_turns = 0
+borg_param_caution_recall_rest_monster_distance = 20
+
+# Waiting for Recall in danger above avoidance x danger_multiplier, buy time,
+# in this order: restore mana (max SP above mana_maxsp and SP below max /
+# mana_divisor); Phase Door, if the landing test passes (phase_tolerance
+# scary grids at most, phase_horizon turns ahead) and the spell's fail rate
+# is at most phase_fail or portal_fail; cure potions when less than
+# cure_loss HP is lost; healing when more than heal_loss is lost. A lower
+# multiplier buys time sooner; higher fail rates and tolerance try harder.
+# Change together: these settings form one set.
+# Impact (games of 6 that play differently with the value changed to):
+# caution_recall_danger_multiplier 4: 0; caution_recall_mana_maxsp 120: 0;
+# caution_recall_mana_divisor 8: 0; caution_recall_phase_tolerance 100: 0;
+# caution_recall_phase_horizon 2: 0; caution_recall_phase_fail 60: 0;
+# caution_recall_portal_fail 60: 0; caution_recall_cure_loss 200: 0;
+# caution_recall_heal_loss 300: 0.
+
+borg_param_caution_recall_danger_multiplier = 2
+borg_param_caution_recall_mana_maxsp = 60
+borg_param_caution_recall_mana_divisor = 4
+borg_param_caution_recall_phase_tolerance = 50
+borg_param_caution_recall_phase_horizon = 1
+borg_param_caution_recall_phase_fail = 30
+borg_param_caution_recall_portal_fail = 30
+borg_param_caution_recall_cure_loss = 100
+# #749: a Recall buy-time cure needs at least this percent of the max HP lost
+# (0 = C: at low level even full HP, so it drinks Cure Light Wounds for nothing).
+borg_param_caution_recall_cure_min_loss_percent = 30
+borg_param_caution_recall_heal_loss = 150
+
+
+### Descending and the trip policy ###
+
+# When a trip comes back to town (docs/TRIP-POLICY.md). borg_trip_policy:
+# 1 = add the return requests below; 0 = only the C Borg's own returns.
+# Go back when:
+# - borg_trip_pack_slack: this many pack slots or fewer are free; higher
+#   goes back sooner;
+# - borg_trip_unknown_stacks: this many unknown stacks could be identified in
+#   town (0 = never for this reason); lower goes back sooner;
+# - borg_trip_return_gold: gold plus the pack's sale value reaches this per
+#   character level (0 = never).
+# borg_trip_depth_margin is a diagnostic only. Since #479 the borg-zoo#170
+# speed30 bundle; borg_trip_unknown_stacks = 2 since fba1c6e0 (owner).
+# Impact (games of 6 that play differently with the value changed to):
+# trip_policy 0: 3; trip_pack_slack 2: 0; trip_unknown_stacks 4: 3;
+# trip_return_gold 1: 6; trip_depth_margin 1: 0.
+
+borg_trip_policy = 1
+borg_trip_depth_margin = 0
+borg_trip_pack_slack = 1
+borg_trip_unknown_stacks = 2
+borg_trip_return_gold = 0
+
+# Walking home (rising), a flight takes no down staircase unless the danger
+# here is at or above the HP, and that staircase is no easy escape (#557).
+# 0 = off (C).
+# Impact: set to 1, 1 of 6 test games play differently.
+
+borg_param_caution_rising_hold_flee_descent = 0
+# #753: with the hold on, a fleeing Borg below this percent of its max HP is
+# not held off a descent (0 = held at any HP).
+borg_param_caution_rising_hold_min_hp_percent = 0
+
+# Walking home (rising), hold a descent that is not a desperate escape for
+# this many Borg ticks on each level while it explores for an up staircase
+# (#483). Higher explores longer before giving up and going down.
+# Impact: set to 600, 1 of 6 test games play differently.
+
+borg_param_caution_rising_explore_ticks = 500
+
+# While rising, allow a descent again when the danger here is above
+# avoidance x this / 10 (#483). Lower lets danger push it down sooner.
+# Impact: set to 20, 0 of 6 test games play differently.
+
+borg_param_caution_rising_descend_danger_tenths = 10
+
+
+### Combat ###
+
+# Drink a Potion of Speed before a fight the Borg has committed to, when the
+# danger of the monsters that can move is above this many tenths of its
+# avoidance (#469). Lower drinks sooner and uses more potions; 0 = never
+# before a fight.
+# Impact: set to 60, 0 of 6 test games play differently.
+
+borg_param_attack_speed_fight_danger_tenths = 30
+
+# Divide the expected damage of a shot or throw at an adjacent non-unique
+# monster by this (launcher ammo and thrown objects, not Magic Missile)
+# (#485). Higher makes it melee rather than shoot point-blank. The class
+# files set 2 for Rangers and 3 for Rogues, who shoot well up close.
+# Impact: set to 10, 0 of 6 test games play differently.
+
+borg_param_attack_arrow_point_blank_divisor = 5
+
+# Count a living monster as having at least this many hit points (#546).
+# At 0 (C) a monster left with 1 HP (a floating eye at 1/9) counts as 0 and
+# no attack seems worth making, so the Borg walked past it and died.
+# Impact: set to 2, 0 of 5 test games play differently.
+
+borg_param_kill_live_min_power = 1
+
+# Kill the dangerous town monsters on sight (#619, owner): once the town is
+# not scary (the scary list's level per monster and class decides that), a
+# town monster that steals or hurts for at least min_damage (dice x sides; 6
+# takes the veteran, the mercenary, the squint-eyed rogue and the urchin, not
+# the cats, dogs and beggars) is the preferred target: its attack value is
+# multiplied by bonus_percent / 100, borg_attack picks the best attack on it
+# (no wands: C never aims one in town), and the hunt walks to it below CL20
+# (not a Mage or Necromancer below CL25: C's town hunt stays breeders only).
+# A lower min_damage takes more monsters; a higher bonus picks them sooner
+# over the others. Change together. 0 = C.
+# Impact: not on the file's 6-game measure; on 18 classes-18 games (100,000
+# turns) with the shipped list, 2 of 18 play differently (0 deaths, sum of
+# CL 99 as main); with caution_town_never_scary = 1, 3 deaths, CL 89.
+
+borg_param_attack_town_dangerous_on_sight = 0
+borg_param_attack_town_dangerous_min_damage = 6
+borg_param_attack_town_dangerous_bonus_percent = 300
+
+# Follow-ups to the switch above (#637), each 0 = as #619. caster_walk: a
+# Mage or Necromancer below CL25 walks to them too, with half its mana.
+# wand: a wand (not Wonder) may be aimed at them in town, only at them.
+# bonus_whole: the bonus multiplies the danger term of the attack's value
+# too, so they are the target for certain. Each needs on_sight at 1.
+# Impact: not on the file's 6-game measure; see CALIBRATION (#637).
+
+borg_param_attack_town_dangerous_caster_walk = 0
+borg_param_attack_town_dangerous_wand = 0
+borg_param_attack_town_dangerous_bonus_whole = 0
+
+# An unseen attacker (#697): "Something touches you" makes no monster, so no
+# danger, and the Borg rests through it. With attack_turns > 0 (game turns),
+# an unseen attack counts that long: no rest within distance grids of where
+# it struck; hurt, the Borg walks at least that far (a corridor first) and
+# rests there; struck again that far away, or nowhere to walk, it leaves the
+# level. heal_hp_percent > 0: below that share of HP, drink a cure. 0 = C.
+# Impact: see CALIBRATION (#697).
+
+borg_param_recover_unseen_attack_turns = 0
+borg_param_recover_unseen_attack_distance = 10
+borg_param_recover_unseen_heal_hp_percent = 0
+
+# Throws on melee's footing (#568): 1 = a thrown object is rated with the
+# engine's damage (a flask of oil 22, not its 1d4's 2), the engine's hit
+# chance with the throwing skill, no launcher, and melee's danger term
+# (2 turns, full damage) instead of the bolt's (1 turn). 0 = C. Shipped 1
+# (owner, 2026-11-20). Impact: see CALIBRATION (#568).
+
+borg_param_attack_throw_as_melee = 1
+
+# The hunt (#691): borg_flow_kill walks to a monster to fight it. Removed in
+# steps to measure what it is worth: 0 = C; 1 = only the targeted hunts
+# (breeders when a hunt for them applies, dangerous town monsters); 2 = no
+# out-of-view call ("chase old monsters"); 3 = never hunt (borg_attack still
+# fights what is in reach). Impact: see CALIBRATION (#691).
+
+borg_param_kill_flow_mode = 0
+
+# The C Borg's leash, its numbers as parameters (#732, owner 2026-11-20:
+# "remove our leash completely and expose the leash of C with configuration
+# parameters"). Leash = character level x per_level + base steps from the
+# stairs: for picking up items below pickup_max_level; for exploring while
+# the depth is at least the level less depth_margin; it grows by the twitch
+# count once bored (twitches over twitch_after). The values are C's.
+borg_param_flow_leash_per_level = 3
+borg_param_flow_leash_base = 9
+borg_param_flow_leash_unbounded = 250
+borg_param_flow_leash_pickup_max_level = 20
+borg_param_flow_leash_depth_margin = 5
+borg_param_flow_leash_twitch_after = 21
+borg_param_flow_leash_stairs_max_level = 20
+borg_param_flow_leash_take_near_max_level = 10
+borg_param_flow_leash_take_nearness = 5
+borg_param_flow_leash_take_max_level = 20
+
+# Phase Door off the floor (#761, owner 2026-11-20: "make sure it picks it
+# up"; case 425904011 at CL1 walked to a Cloak and left a Phase Door 12 or
+# more steps from the stairs, taken by the leash check of take_select).
+# While the Borg holds fewer Scrolls of Phase Door than
+# flow_take_phase_short_below, a Phase Door on the floor is exempt from the
+# two leash checks; with flow_take_phase_first it is also the only object
+# flowed to while one is in reach. 0 = off (C's leash for everything).
+borg_param_flow_take_phase_short_below = 0
+borg_param_flow_take_phase_first = 0
+
+# Bless (#560): cast it with a monster within near_distance grids when the
+# danger is above avoidance / danger_divisor, or the character level is at
+# most max_level, and below avoidance / max_danger_divisor; only at or below
+# the fail rate. A lower danger_divisor or a higher max_level blesses more
+# often; a lower max_danger_divisor stops sooner (beyond it, escapes take
+# over). Change together: these settings form one set.
+# Impact (games of 6 that play differently with the value changed to):
+# defend_bless_near_distance 6: 0; defend_bless_danger_divisor 24: 0;
+# defend_bless_max_level 30: 0; defend_bless_max_danger_divisor 4: 2;
+# defend_bless_fail 50: 0.
+
+borg_param_defend_bless_near_distance = 3
+borg_param_defend_bless_danger_divisor = 12
+borg_param_defend_bless_max_level = 15
+borg_param_defend_bless_max_danger_divisor = 2
+borg_param_defend_bless_fail = 25
+
+
+### Healing ###
+
+# Hurt and outmatched, after every escape was declined, drink a Cure Light,
+# Serious or Critical Wounds potion instead of attacking (#457), once at
+# least this percent of max HP is lost. Lower drinks sooner and uses more
+# potions. 0 = off.
+# Impact (games of 6 that play differently with the value changed to):
+# caution_heal_when_outmatched 0: 0; caution_heal_outmatched_min_loss 100:
+# 0.
+
+borg_param_caution_heal_when_outmatched = 1
+borg_param_caution_heal_outmatched_min_loss = 50
+
+# Healing potions to keep, in percent of max HP (#491, #487): bought first,
+# never sold below. Every class sets its own value in the class files (300
+# for Mages, 100 for Warriors), so this common line is not used now.
+# Change together: borg_param_town_heal_curve_scale_percent.
+# Impact: set to 200, 0 of 6 test games play differently.
+
+borg_param_town_heal_reserve_hp_percent = 100
+
+# Count the real HP a potion restores towards the reserve (#487); 0 = count
+# speed-weighted HP.
+# Impact: set to 0, 0 of 6 test games play differently.
+
+borg_param_town_heal_reserve_real_hp = 1
+
+# How much more healing is worth beyond the reserve, in percent of the
+# historical curve (#491): higher buys more potions and less gear. Every
+# class sets its own value (150 for Mages, 50 for Warriors), so this common
+# line is not used now.
+# Impact: set to 250, 0 of 6 test games play differently.
+
+borg_param_town_heal_curve_scale_percent = 125
+
+# Phase Door and flasks of oil by class (#682, owner 2026-11-19). The Phase
+# Door curve stretches as healing's (weight and demand together); the oil
+# scale weights each flask's thrown damage (flasks kept as lantern fuel are
+# not changed). 100 = before #682. Each class sets its own in its class file.
+borg_param_town_phase_curve_scale_percent = 100
+borg_param_town_oil_curve_scale_percent = 100
+
+# Dark-entry detection (#796): opt in below the spell level gate while retaining response SP.
+borg_param_light_detect_dark_entry = 0
+borg_param_light_detect_dark_entry_reserve_sp = 2
+
+# No detection prayer by panel at low level (#685, owner 2026-11-19): below
+# this character level the panel check casts no Detect Evil, Detect Monsters,
+# Read Minds or Seek Battle (items and rods still detect). 0 = C. #728
+# reverted it to 0 for every class (owner, 2026-11-20): a low-level character
+# sees only the grids next to it in a dark room, so it walks into floating
+# eyes, and detection shows them first. #744 (owner, 2026-11-20) sets 10 again
+# for Mage, Druid, Priest, Necromancer and Paladin in their class files
+# (borg-zoo#480, classes-1800 starts 1-360, 100k turns: same deaths, CL +0.53,
+# no floating-eye death); this common line stays 0 for the other classes.
+borg_param_light_detect_evil_spell_min_level = 0
+
+# Thrown oil (#712, owner 2026-11-20): the town planner values each flask of
+# oil kept to throw on a curve of its own, which a stack of shots cannot fill
+# (before, shots saturated the shared ATTACK curve and the flasks went to the
+# Home). Half its value at town_oil_flasks flasks. The Ranger keeps C's
+# behaviour: it has arrows and does not need oil.
+borg_param_town_oil_apart = 1
+borg_param_town_oil_flasks = 10
+
+# Ranger arrows (#716, owner 2026-11-20): the town planner's shot reserve as a
+# soft cap: each shot up to town_ranger_arrows_max is worth the same; past it
+# shots count on C's curve with weight and demand scaled by
+# town_ranger_arrows_curve_scale_percent (as healing's): each worth less than
+# the last. 0 = C (a curve that grows with the trip: 150-200 arrows carried,
+# Phase Door sent home). The Ranger sets 50 and 50 in its class file.
+borg_param_town_ranger_arrows_max = 0
+borg_param_town_ranger_arrows_curve_scale_percent = 0
+
+# Phase Door reserve (#761, owner 2026-11-20: "we need to value phase doors
+# much more, especially for rangers"): the first town_phase_reserve Phase
+# Doors are a requirement on top of the Phase Door curve, each worth
+# town_phase_reserve_percent of the trip's escape weight, nothing past the
+# reserve, so they are bought before arrows and potions. 0 = off (the curve
+# alone, whose first scroll is worth a fraction of one potion's cure).
+borg_param_town_phase_reserve = 0
+borg_param_town_phase_reserve_percent = 100
+
+# #789: reserve of oil available to throw and missiles for the equipped
+# launcher, counted together. Use __<class> for a class override.
+borg_param_town_ranged_reserve = 0
+
+# Unseen flavours, food and light, per class (#761, owner 2026-11-20). The
+# town planner does not buy unknown flavours to learn them (borg_town_w_knowledge
+# is forced to 0 in the plan); a shop lists true names, and a ware whose flavour
+# the player has not seen shows {unseen}: at birth that is every potion and
+# scroll, Cure Light Wounds and Phase Door included. town_unseen_percent scales
+# what such a ware supplies (Phase Door excepted, it has the town_phase_* lines
+# above). town_food_percent and town_light_percent scale borg_town_w_food and
+# borg_town_w_light for one class (those two have no per-class spelling).
+# 100 = today for all three.
+borg_param_town_unseen_percent = 100
+borg_param_town_food_percent = 100
+borg_param_town_light_percent = 100
+
+# A potion that heals at least this percent of max HP in one swallow counts
+# in full, a smaller one less (#491), so a deeper character prefers Cure
+# Serious Wounds, then Healing. Higher shifts purchases to stronger potions.
+# Impact: set to 33, 0 of 6 test games play differently.
+
+borg_param_town_heal_speed_percent = 66
+
+# 1 = after every rest, arm the Detect Invisible defence as the C Borg does
+# (187 reads on 18 games, 57 in town, 171 with nothing unseen); 0 = only an
+# unseen attack arms it (#516).
+# Impact: set to 1, 5 of 6 test games play differently.
+
+borg_param_recover_rest_arms_see_invis = 0
+
+
+
+### Fleeing ###
+
+# Rest at the stairs (#614). recover_rest_reach_stairs = N: on a flight to a
+# staircase at most N flow steps away the Borg does not rest (rod, HP or
+# mana), nor walk to a recovery spot, until it stands on the staircase;
+# potions and cures still work. A farther staircase is a long walk: it rests
+# as before. Raising N holds rests on longer flights. _memory: how long the
+# commitment outlives a re-plan (a new monster) on the same level. caution_stairs_leave_on_monster =
+# 1: in the dungeon, standing on a staircase while it still needs to recover
+# (HP or SP below the maximum), it takes the stairs as soon as a monster
+# threatens it (danger at least _danger_percent of the current HP), instead
+# of fighting; _down = 1 takes a down staircase too, 0 only an up one. 0 = C (it could rest mid-flight, 11 steps short of the
+# stairs, and be caught there).
+# Change together: the two make one rule (reach the stairs, rest there,
+# leave when something comes).
+# Impact: recover_rest_reach_stairs 20: 3 of 6 test games play differently;
+# caution_stairs_leave_on_monster 1: 2 of 6 (up only: 2 of 6); both: 3 of 6.
+
+borg_param_recover_rest_reach_stairs = 0
+borg_param_recover_rest_reach_stairs_memory = 10
+borg_param_caution_stairs_leave_on_monster = 0
+borg_param_caution_stairs_leave_danger_percent = 10
+borg_param_caution_stairs_leave_down = 1
+
+# No rest with a monster near (#615 rule a). recover_rest_monster_turns = N
+# (game turns, 0 = off): no rod, HP/SP or mana rest while an awake monster
+# that can move was known within recover_rest_monster_distance grids in the
+# last N game turns on this level (a monster that comes into view breaks a
+# rest; one that left the screen may come back).
+# Kept when confused, blind, hallucinating, stunned or afraid; the clock
+# clears when the monster that set it dies. The walk to a recovery grid waits too.
+# Impact (18 classes-18 starts, 100,000 turns): 100: 16 of 18 play differently; 200: 16 of 18.
+borg_param_recover_rest_monster_turns = 0
+borg_param_recover_rest_monster_distance = 20
+
+# Read Phase Door only with an awake monster next to the Borg, or one in view
+# with a ranged attack, not while the monster is still distant (#539).
+# 0 = C.
+# Impact: set to 0, 2 of 6 test games play differently.
+
+borg_param_escape_phase_adjacent_only = 1
+
+# The owner's Phase Door rule (#584), at every Phase Door site
+# (docs/PHASE-DOOR.md), before the site's own check: Phase Door only with an
+# awake enemy on an adjacent square and the fight judged lost (lost_test). The rule
+# only refuses the Phase Door: the other escapes go on, and if none acts the
+# Borg attacks (its best attack; at range with nothing adjacent) or, with an
+# awake monster in view, boosts (Speed first; else borg_defend's defences and
+# staves). lost_test: 0 = the danger threshold below; 1 = the fight compared
+# (its best attack of any kind, true damage, needs more turns to kill the
+# adjacent monsters, their HP left, than the danger needs to kill it); 2 = as 1, and the expected landing
+# is safer than here. 0 = each site's own check.
+# Shipped with lost_test 0 at 100% (#661, borg-zoo#347's thr-100 arm, 1,728
+# paired starts on 4acf071f): 77 deaths against 93 with the rule off (55
+# rescued, 39 newly killed, p = 0.12), mean max CL and DL unchanged; the
+# fight tests (1, 2) were neutral leaning worse. Confirmed on fresh starts
+# (borg-zoo#347's main confirmation, classes-1800-b, 3,600 games on
+# 3ba17e2c): 89 deaths against 128 (79 rescued, 40 newly killed, p =
+# 0.00045), CL and DL non-inferior; only Blackguards worse (7 to 11).
+
+borg_param_escape_phase_adjacent_rule = 1
+borg_param_escape_phase_lost_test = 0
+borg_param_escape_phase_lost_danger_percent = 100
+
+# With lost_test 1 or 2 (#625): 1 = the chosen attack counts at its success
+# chance (spell fail rate, device failure), and only for the uses the Borg can
+# pay for: all its mana (owner: the escape reserve is not set aside), a
+# wand's charges, one zap for a rod; then another attack that needs no mana
+# (never the chosen one itself), or melee. 0 = full damage every turn (#612).
+
+borg_param_escape_phase_lost_mana = 1
+
+# Teleport landing with either kind of teleport (#724, upstream Angband
+# 95387b06): 1 = the landing check (borg_caution_teleport) runs with a
+# teleport scroll or spell or a teleport staff or activation; 0 = C (both
+# needed, so with one only the Destruction and Teleport Level defences never
+# saw a safe landing).
+borg_param_escape_teleport_landing_either = 0
+
+# Immobile creatures (#646, #713). Owner: "always choose ranged against
+# immobile but annoying monsters"; "step away from immobile creature with
+# annoying effects and only attack them from a distance, if you have to".
+# 1 (#646) = next to a monster that never moves and attacks, step out of its
+# reach when confused (up to three times) or carrying something to throw or
+# shoot (once), and do not cure confusion next to it.
+# 2 (#713) = also keep one whose blows do more than plain damage (poison,
+# confusion, paralysis, fear, drain: 23 of 25, from DL1 to DL80) at range: never
+# melee it, no hunt walk to it, flows keep out of its reach (a flow to stairs
+# may pass, never onto its grid), always step away from it (while fleeing
+# too, up to three times); throws and shots kill it from afar.
+# 3 = as 2 for every immobile attacker. 0 = C (borg-cemetery#75, #79).
+# Change together: works with what the Borg carries to throw (#649, #652).
+# Off (owner, 2026-11-20): "stepaway flag is not a solution, I do not like
+# it". In borg-zoo#461 modes 2 and 3 lost games (22 -> 24 / 27 deaths; Druids
+# 5 -> 9 / 10): the step-away loops against a flight that passes the monster,
+# and steps instead of reading Phase Door. Mode 3 crashed (#726). Replaced by
+# #736: kill on sight at range, else do not get closer (a path cost).
+borg_param_caution_ranged_vs_immobile = 0
+
+# Immobile monsters and blocked stairs (#736, owner 2026-11-20, from the
+# replays of #717's Druid deaths): "the path to the stairs is not clean, so the
+# 'desperate for stairs' should see that the stairs are not reachable"; "it
+# stepped away in the wrong direction ... towards the exit"; "target the mobile
+# one". 0 = C for each.
+# - caution_stairs_clean_path: a desperate walk to the stairs needs a clean
+#   path: an awake monster on or next to it, as dangerous as
+#   caution_stairs_block_danger_percent of the HP, makes them not reachable.
+#   #751 (owner): 2 = only a monster IN BETWEEN (on the path, the staircase
+#   included) blocks it; 3 = on it, or next to it and nearer the staircase
+#   than the Borg (one the walk has to pass); 1 = on or next to it (#736).
+# - caution_immobile_step_to_exit: the step away from an immobile attacker
+#   goes toward the nearest staircase (only with caution_ranged_vs_immobile).
+# - attack_mobile_threat_first: while a mobile target is a threat
+#   (attack_mobile_threat_percent of the HP), immobile monsters are not targets.
+borg_param_caution_stairs_clean_path = 3
+borg_param_caution_stairs_block_danger_percent = 50
+# #747: Desperate for Stairs (three) stays put for a faster adjacent monster
+# only when its danger is at least this percent of the HP (0 = C: any).
+borg_param_caution_desperate_fast_danger_percent = 50
+# #751 (owner on 247597266): with a ranged attack and nothing adjacent, the
+# desperate walk does not start toward a dangerous monster within this many
+# grids of its path and nearer the stairs (0 = C).
+borg_param_caution_desperate_ranged_first_reach = 0
+# #750: 1 = a flight's stair flow (fleeing, or any bored stair flow up or
+# down while fleeing or leaving) refuses no grid for its danger (a monster
+# near a clear corridor no longer closes it); the path test decides. 0 = C.
+borg_param_caution_stairs_flight_ignore_danger = 1
+# #765: above 0, stair flights block awake monsters and pay this many extra
+# steps for danger equal to current HP. 0 keeps the existing flight routing.
+borg_param_caution_stairs_flight_threat_weight = 5
+
+# Clean path for every flight to the stairs (#743, the follow-up of #736):
+# 1 = a flight (a scary level, too much danger, "Looking for any stair")
+# takes only stairs whose path has no dangerous awake monster on or next to
+# it (caution_stairs_block_danger_percent of the HP); with none left the
+# flight does not start and the escapes and the attack decide. 0 = C.
+borg_param_caution_stairs_clean_path_flee = 1
+borg_param_caution_immobile_step_to_exit = 1
+borg_param_attack_mobile_threat_first = 1
+borg_param_attack_mobile_threat_percent = 50
+
+# Phase Door settings of two kinds (#584; docs/PHASE-DOOR.md lists every
+# site and its settings):
+# - ordinary_danger_tenths, unique_danger_tenths, unique_min_count,
+#   tolerance and horizon gate escape level 3.1 only: it fires when the
+#   danger is above avoidance x ordinary_danger_tenths / 10 with no unique
+#   near (unique_danger_tenths with at least unique_min_count uniques near),
+#   and phases if at most tolerance of 100 landing grids are scary looking
+#   horizon turns ahead. Change these five together.
+# - antisummon_delay is a shared timer, read at 7 of the 16 sites (escape
+#   2.2, 3.1, 3.3, 4.1, 4.3, 6.1, 8): no Phase Door there for that many turns
+#   after the Borg finished a digging flow (an anti-summon corridor, or a
+#   tunnel dug straight to a monster).
+# Impact (games of 6 that play differently with the value changed to):
+# escape_phase_ordinary_danger_tenths 20: 0;
+# escape_phase_unique_danger_tenths 26: 0; escape_phase_unique_min_count 4:
+# 0; escape_phase_tolerance 50: 0; escape_phase_horizon 4: 0 (all level
+# 3.1); escape_phase_antisummon_delay 100: 0 (the 7 sites).
+
+borg_param_escape_phase_ordinary_danger_tenths = 10
+borg_param_escape_phase_unique_danger_tenths = 13
+borg_param_escape_phase_unique_min_count = 2
+borg_param_escape_phase_tolerance = 25
+borg_param_escape_phase_horizon = 2
+borg_param_escape_phase_antisummon_delay = 50
+
+# Fox Form for a fleeing Druid (#551). With the switch at 1, a Druid about
+# to take a flight step at least min_steps from its goal casts Fox Form
+# (double movement, Free Action) if its fail rate is at most fail. It keeps
+# the shape while it flees or the level is scary. A fox does not fight: it
+# changes back before a melee blow, and an item or a spell changes back in
+# the same command. speed is what a fox's flight is worth in the danger and
+# the stand decision (+10 at normal speed); stand_speed is the same for a
+# Druid that can cast Fox Form but is not a fox yet. Raising min_steps casts
+# on longer flights only; raising fail casts with a riskier spell; lowering
+# the speeds counts more monsters as pursuers (more stands). 0 = never (C).
+# Change together: these settings form one set.
+# Impact: escape_fox_form 1: 1 of 6 test games plays differently (the Druid);
+# the other four: 0 with the switch at 0.
+# Shipped 1 (owner, 2026-11-20, #694): zoo-neutral (borg-zoo#400, 1,800
+# starts: 105 deaths against 105, 3 saved and 3 lost, only Druid games
+# change); adopted as the better way for a Druid to flee.
+
+borg_param_escape_fox_form = 1
+borg_param_escape_fox_form_fail = 25
+borg_param_escape_fox_form_min_steps = 3
+borg_param_escape_fox_form_speed = 10
+borg_param_escape_fox_form_stand_speed = 10
+
+# Fox Form for a Druid's walks in town (#620). With the switch at 1, a Druid
+# at most max_level, about to take a step of a walk in town (a shop, home, a
+# staircase, a flight) at least min_steps from its goal, casts Fox Form
+# (escape_fox_form_fail above sets the highest fail rate) and keeps it while
+# the walk lasts: it crosses town at double speed, and the town monsters get
+# half the turns. It changes back at the shop door (the game shuts it on a
+# fox) and before a blow. Raising min_steps casts on longer walks only (each
+# cast is a turn and mana); raising max_level keeps it longer. 0 = never (C).
+# Impact: set to 1, 1 of 6 test games play differently (the Druid).
+# Shipped 1 (owner, 2026-11-20, #694): zoo-neutral (borg-zoo#413 small, 90
+# starts: 4 deaths against 4, 10 games changed); adopted with escape_fox_form.
+
+borg_param_escape_fox_form_town = 1
+borg_param_escape_fox_form_town_max_level = 20
+borg_param_escape_fox_form_town_min_steps = 10
+
+# #694 (owner: "make the druid learn this spell first"): the rating Fox Form
+# is studied by. C rates it 5, below the 50 a spell needs unless the Borg is
+# bored, so a Druid learns it once bored (still early: within its first few
+# thousand log lines on classes-18). 100 is above Detect Life and Stinking
+# Cloud (95): learned first. Shipped 0 = C's rating (owner, 2026-11-20): on 6
+# Druid starts, first cost levels (sum of CL 45 -> 33, one death).
+borg_param_magic_fox_form_study_rating = 0
+
+# On a scary level with no reachable staircase, attack the monster with the
+# best ranged attack before reading Recall or Phase Door (#539). 0 = C.
+# Impact: set to 0, 2 of 6 test games play differently.
+
+borg_param_caution_scary_ranged_no_stairs = 1
+
+# Fleeing with no up staircase known, walk to a known down staircase (#544),
+# only when cornered (_cornered) and within _max_cost grids of flow (#548).
+# 0 = off. Change together: the three.
+# Impact (games of 6 that play differently with the value changed to):
+# caution_flee_known_down_stairs 1: 0; caution_flee_known_down_cornered 0:
+# 0; caution_flee_known_down_max_cost 80: 0.
+
+borg_param_caution_flee_known_down_stairs = 0
+borg_param_caution_flee_known_down_cornered = 1
+borg_param_caution_flee_known_down_max_cost = 40
+
+# Keep the known staircases when bravery is boosted because the Borg is
+# stuck (#544, #548). 0 = C, which forgets them.
+# Impact: set to 1, 0 of 6 test games play differently.
+
+borg_param_caution_jumpstart_keep_stairs = 0
+
+# The twitch (a random step when the Borg has nothing else to do) never
+# steps into lava without fire immunity: one step deals 100-200 fire
+# damage (#597). 0 = C.
+# Impact: with both #597 settings on, 1 of 18 classes-18 games plays
+# differently; priest-809881907 lives instead of dying in lava.
+
+borg_param_caution_twitch_avoid_lava = 1
+
+# When a monster is marked on every known staircase, the stair flows go
+# there anyway instead of finding no staircase: in town the only staircase
+# was refused for a monster on it, harmless or long gone (#597). 0 = C.
+# Impact: with both #597 settings on, 1 of 18 classes-18 games plays
+# differently (a Druid, one level lower).
+
+borg_param_caution_stair_parked_fallback = 1
+
+# After fleeing town, the stair scum grabs DL1 items near the stairs before
+# going back up. 1 = skip it while the level is scary, the danger here is
+# above caution_stair_scum_danger, or the HP is below the maximum, and go
+# straight back up (#549). 0 = C.
+# Impact (games of 6 that play differently with the value changed to):
+# caution_stair_scum_threat 0: 0; caution_stair_scum_danger 1: 0.
+
+borg_param_caution_stair_scum_threat = 1
+borg_param_caution_stair_scum_danger = 0
+
+
+### Cornered ###
+
+# Cornered: no Phase Door, teleport or escape, a known monster within the
+# radius, and danger at or above danger_tenths / 10 of the HP (#504). Then
+# the Borg uses every buff it has (fear cure, Speed, Heroism, Berserk
+# Strength, Blessing; spells only at or below spell_fail), reads Monster
+# Confusion against an adjacent unique or a monster more than
+# big_level_margin levels above it, and a melee class does not retreat.
+# 0 = off. Lower danger_tenths or a larger radius counts it cornered sooner.
+# Impact (games of 6 that play differently with the value changed to):
+# caution_cornered 0: 2; caution_cornered_danger_tenths 20: 1;
+# caution_cornered_radius 4: 0; caution_cornered_big_level_margin 1: 0;
+# caution_cornered_spell_fail 50: 0.
+
+borg_param_caution_cornered = 1
+borg_param_caution_cornered_danger_tenths = 10
+borg_param_caution_cornered_radius = 2
+borg_param_caution_cornered_big_level_margin = 0
+borg_param_caution_cornered_spell_fail = 25
+# #719 (owner): cornered, throw or shoot first while no monster is adjacent
+# and a ranged attack does damage; buff once one is next to it. 1 = the
+# cornered boost, 2 = also the breeder fight's boost; 0 = buff first.
+# Shipped 1 (owner, 2026-11-20): measured neutral and rare (starts 1-90: it
+# acts 4 times in 3 games, deaths 4 and 4).
+borg_param_caution_cornered_throw_first = 1
+
+
+### Breeders ###
+
+# With breeders on the level and no easy escape, stand and fight: breeders no
+# longer make the level scary or the Borg flee, and while only breeders are
+# near it does not retreat (#503). An easy escape is a free staircase within
+# easy_escape_steps grids, Phase Door, teleport, Teleport Level, an escape
+# or Word of Recall; a smaller value stands more often. Standing, with a
+# breeder within stand_radius grids and nothing else near, it neither
+# retreats nor backs away. 0 = C (flee breeders). Turns on the hunt below.
+# Impact (games of 6 that play differently with the value changed to):
+# caution_breeder_fight 0: 3; caution_breeder_easy_escape_steps 10: 1;
+# caution_breeder_stand_radius 10: 0.
+
+borg_param_caution_breeder_fight = 1
+borg_param_caution_breeder_easy_escape_steps = 5
+borg_param_caution_breeder_stand_radius = 5
+
+# The hunt (#503, #558): below CL10, every class hunts breeders while at most
+# this many are known on the level (Mages and Necromancers with spells, with
+# half their mana). Higher hunts larger groups; 0 = no hunt. A class value
+# in the class files overrides it (none set now, #574).
+# Impact: set to 8, 0 of 6 test games play differently.
+
+borg_param_caution_breeder_hunt_max_count = 4
+
+# The hunt: at this percent of max HP or more, with a breeder it would hunt,
+# do not rest (breeders multiply while it rests) (#558). Lower hunts while
+# more hurt; 0 = rest as C.
+# The hunt: judge a hunted breeder on its bite, without the +200 armour
+# corrosion fear of acid; a green worm mass's 1d3 bite read 630 (#558). At 0
+# the hunt never walks to an acid breeder, and the rest switch does nothing
+# for them. Change together: the two.
+# Impact (games of 6 that play differently with the value changed to):
+# recover_breeder_hunt_hp_percent 100: 0; danger_hunt_breeder_no_acid_fear
+# 0: 2.
+
+borg_param_recover_breeder_hunt_hp_percent = 50
+borg_param_danger_hunt_breeder_no_acid_fear = 1
+
+# No rest while breeders are known on the level (#644, owner: "clear the
+# breeders or leave the level asap"). 1 = in the dungeon no rod, HP/SP or mana
+# rest while any breeder is known: hunt them when the hunt above applies,
+# otherwise leave the level. Kept when confused, blind, hallucinating or
+# stunned. 0 = rest as C.
+# Impact (18 classes-18 starts, 100,000 turns): 1: 13 of 18 play differently.
+borg_param_recover_rest_breeders = 1
+
+# Fighting breeders with no easy escape and danger at or above this many
+# tenths of the HP (5 = half), use the cornered buffs (#504). Lower buffs
+# sooner and uses more potions; 0 = never.
+# Impact: set to 10, 0 of 6 test games play differently.
+
+borg_param_caution_breeder_boost_danger_tenths = 5
+
+# Breeder exit (#544): with only breeders near, one adjacent, and danger at
+# or above the HP (or surrounded), walk to the nearest known corridor or
+# doorway at least this distance from every breeder. 0 = off.
+# Impact (games of 6 that play differently with the value changed to):
+# caution_breeder_exit 1: 3; caution_breeder_exit_distance 12: 0.
+
+borg_param_caution_breeder_exit = 0
+borg_param_caution_breeder_exit_distance = 6
+
+# Slower crowd exit (#690, generalising the breeder exit): surrounded, the
+# danger here at or above the HP, and every awake monster within reach
+# slower than the Borg by the margin (energy per game turn) or never moving:
+# walk to the nearest known corridor, doorway or staircase at least this
+# distance from all of them, else to any open grid that far; with neither,
+# the distance comes down to 2. A faster awake monster near holds it. 0 = off.
+
+borg_param_caution_slow_crowd_exit = 0
+borg_param_caution_slow_crowd_exit_distance = 6
+borg_param_caution_slow_crowd_exit_margin_percent = 25
+
+# Avoid breeder colonies (#556): remember where breeders were seen for
+# caution_breeder_avoid_turns Borg turns; every flow but a kill flow (stairs,
+# flight, exploration, items, the breeder exit) refuses the grids within
+# caution_breeder_avoid_radius of one (the Borg's first step excepted), and a
+# Phase Door landing there counts as scary. 0 = off.
+
+borg_param_caution_breeder_avoid = 0
+borg_param_caution_breeder_avoid_radius = 1
+borg_param_caution_breeder_avoid_turns = 50
+
+# Fight through (#556, owner): when fleeing finds no route around the
+# remembered breeders, take the route through them; retreat and back-away
+# stand down for caution_breeder_through_turns Borg turns after, while the
+# danger is below the HP. 0 = the flight looks elsewhere.
+
+borg_param_caution_breeder_avoid_fight_through = 1
+borg_param_caution_breeder_through_turns = 5
+
+# Stuck behind breeders (#556): when the Borg is stuck (no flow finds a
+# route) while remembered breeders block it, the marks are ignored for this
+# many Borg turns. 0 = never.
+
+borg_param_caution_breeder_stuck_turns = 20
+
+# The breeder policy (#722, owner): one setting for the breeder switches.
+# -1 = the switches below as set. 0 = C. 1 = stand when there is no easy
+# escape, and hunt few breeders below CL10 (#503, #558). 2 = and never rest
+# while breeders are known: hunt them or leave (#644). 3 = and kill them first
+# while the kills outpace the breeding, at any count and level (#556); the
+# level is lost once more breeders are known than the class clears
+# (caution_breeder_hunt_max_count, per class) or the breeding wins; on a lost
+# level the Borg leaves, searching for stairs, and reads Recall after
+# lost_recall_turns game turns (owner: "search for stairs first, but if paths
+# are blocked by breeders, recall at some point"). 4 = and paths avoid
+# colonies (#556). 5 = and walk out of a breeder room (#544).
+# Impact: see CALIBRATION (#722).
+
+borg_param_caution_breeder_policy = 3
+borg_param_caution_breeder_lost_recall_turns = 500
+
+# Kill breeders first (#556, owner): stand and hunt breeders while the
+# breeding can be stopped (the known breeders' expected births a turn, times
+# births_percent, below the Borg's kills a turn with its best attack of any
+# kind, the attack planner's own choice), at any count and level
+# and whether or not it carries an escape; danger at or above the HP pauses the
+# stand (and the hunt) for that think only: the usual caution acts (retreat,
+# escape), but no level-long leave, breeder flee or scary level follows from
+# the pause (#722). Once the breeding outpaces the kills the level is lost
+# to them and the breeder flees act (with caution_breeder_avoid the flight
+# avoids the colony). 0 = #503's stand and #558's hunt.
+
+borg_param_caution_breeder_stoppable = 1
+borg_param_caution_breeder_stoppable_births_percent = 200
+borg_param_caution_breeder_stoppable_confirm = 5
+
+
+### Scary monsters ###
+
+# Named scary monsters (the list below) make a level scary: the Borg leaves,
+# flees and does not hunt (#503, #518). 0 = only the resist-based scares
+# (nether, blindness, chaos, confusion, poison), which apply either way.
+# Impact: set to 0, 6 of 6 test games play differently.
+
+borg_param_caution_scary_named_monsters = 1
+
+# The named scary monsters, by class and character level (#518), and the
+# monsters to ignore (#621, flag ignore; on whatever the switch above says);
+# none = the C Borg's compiled list, with no ignore lines. harness/run.sh
+# and the zoo copy the file next to borg.txt and pin its hash.
+
+borg_scary_list = scary_monsters.txt
+
+# #760: attack categories; compiled 0, shipped 1 by owner decision.
+borg_param_attack_on_sight = 1
+# #789: town hunt, ranged scoring bonus, and HP retreat floor.
+borg_param_town_hunt = 0
+borg_param_town_hunt_ranged_bonus_percent = 0
+borg_param_town_hunt_min_hp_percent = 0
+# #759: damage-race fight test; compiled 0, shipped 1 by owner decision.
+borg_param_caution_winning_fight = 1
+# #758: flight Recall survival gate; compiled 0, shipped 1 by owner decision.
+borg_param_caution_recall_survival = 1
+borg_param_caution_recall_survival_delay = 34
+
+# The world (#704): game data with some monsters more common, for stress tests
+# (scripts/make-world.py, harness/worlds/NAME.txt). harness/run.sh reads this
+# key, generates the data and records it; the Borg never reads it. none = the
+# game's own data. A world's games compare only with games of the same world.
+
+# A monster is also scary when one character turn of its melee can take at
+# least this percent of max HP: Fang is scary to a 10-HP Mage, not to an
+# 80-HP Warrior (#505). Lower makes more monsters scary; 0 = off. Spells are
+# not counted.
+# Impact: set to 120, 0 of 6 test games play differently.
+
+borg_param_caution_scary_damage_percent = 50
+
+# Flee a scary level only while the escape is real: a free staircase within
+# the breeders' easy_escape_steps, an escape item, or no scary monster awake
+# and as fast as the character. Otherwise stand and fight with the cornered
+# buffs. A monster that never moves is never scary (#530). 0 = always flee.
+# Impact: set to 0, 4 of 6 test games play differently.
+
+borg_param_caution_scary_stand = 1
+
+# 1 = a scary level stays scary until a new level (the C latch). 0 = checked
+# again each scan: with no scary monster left, the scare's leave and flee are
+# withdrawn. Door scares stay latched. Needs caution_scary_stand (#515).
+# Impact: set to 0, 4 of 6 test games play differently.
+
+borg_param_caution_scary_latch = 1
+
+# 1 = the level stops being scary once the last scary monster known was
+# killed, with the latch on or off; forgetting the monster is not enough, it
+# has not left the level (#590). 0 = the latch decides.
+# Change together: needs caution_scary_stand = 1 (the flag is decided after
+# each scan only there).
+# Impact: set to 1 it fires in 3 of 6 test games; shipped 1 (owner, 2026-11-20).
+
+borg_param_caution_scary_unlatch_kill = 1
+
+# 1 = the level stops being scary once a named-list or damage-rule scary
+# monster is known hurt or afraid (the thresholds below), or is killed, with
+# the latch on or off; forgetting it is not enough (#593). 0 = off.
+# Change together: needs caution_scary_stand = 1, and reads the thresholds
+# caution_scary_hurt_percent and caution_scary_afraid.
+# Impact: set to 1, 14 of 18 classes-18 games play differently (it clears
+# the flag 51 times: 23 hurt or afraid, 28 killed); no deaths either way.
+# Shipped 1 (#671, borg-zoo#400, all 1,800 classes-1800 starts on 3ba17e2c):
+# 93 deaths against 105 (28 rescued, 16 newly killed, p = 0.096), mean max CL
+# +0.09 and DL +0.05 (both significant). The confirmation on fresh starts
+# (reborn-calmed-confirm, 3,600 games, #696): 128 deaths against 130
+# (p = 0.89), mean max CL +0.10 [+0.06, +0.15]. Neutral on deaths, helpful on
+# progress.
+
+borg_param_caution_scary_unlatch_calmed = 1
+
+# A named-list or damage-rule scary monster that has lost this percent of
+# its HP, or (with the flag) is afraid, scares no more: Grip fled from one
+# flask of oil (#539). Lower calms monsters sooner; 0 and 0 = C. With the
+# latch at 1 it only stops the level from becoming scary; at 0 it also ends
+# the scare.
+# Impact (games of 6 that play differently with the value changed to):
+# caution_scary_hurt_percent 100: 0; caution_scary_afraid 0: 0.
+
+borg_param_caution_scary_hurt_percent = 50
+borg_param_caution_scary_afraid = 1
+
+# 1 = in town no monster makes the level scary (the named list, the damage
+# rule, the resist scares): the Borg meets town monsters by its danger rules,
+# fights them or walks past, instead of fleeing to DL1 and coming back to
+# finish shopping (#604, owner). The five town residents on the list (the
+# battle-scarred veteran, the mean-looking mercenary, the filthy street
+# urchin, the squint-eyed rogue, Farmer Maggot) made most of the town
+# scares: at least 697 in 18 games. 0 = C.
+# Impact: not on the file's 6-game measure; set to 1, 18 of 18 games (9
+# classes x seeds 2001/2002, race 0, 100,000 turns) play differently.
+
+borg_param_caution_town_never_scary = 0
+
+# The scary list's level, lowered for town residents (#622, owner): a town
+# monster on the list stops being scary this many character levels sooner,
+# so the order stays (the veteran and the mercenary longest) and the town
+# scare ends earlier. Higher ends it sooner: 11 or more ends the list's town
+# scares at once (as caution_town_never_scary, but only for the list). Each
+# level less brings more thefts (the urchin, the squint-eyed rogue): on 18
+# games 1 at 3, 13 at 6, 16 at 11. 0 = the list as it is. Shipped 3
+# (owner, 2026-11-19).
+# Impact: not on the file's 6-game measure; on 18 classes-18 games (100,000
+# turns), 0: 0 deaths, sum of CL 99; 3: 0, 102; 6: 1, 99; 11: 2, 98.
+
+borg_param_caution_town_scary_levels_less = 3
+
+# In town, while scary or fleeing, a path step no more dangerous than the
+# Borg's own grid is never refused (#647). C refuses any grid above the
+# flow's fear: a thief next to a low-level Borg makes its grid and every
+# grid toward the stairs too dangerous, and it cannot leave. 0 = C.
+# Impact: see CALIBRATION (#647).
+
+borg_param_caution_town_flee_no_worse = 0
+
+
+### The C Borg's own settings ###
+
+# Kept from the C Borg's borg.txt: equipment taste, risk, swaps, chests,
+# enchanting. None is tuned by this project yet.
+
+# Worship: extra value for equipment that improves one attribute (an AC
+# worshipper scores a point of AC at 3000 instead of 2000), so it trades
+# other qualities for it. borg_worships_gold also sells everything, even
+# unidentified, and climbs rather than recalls to sell (no effect after
+# CL20).
+# Impact (games of 6 that play differently with the value changed to):
+# worships_damage TRUE: 0; worships_speed TRUE: 0; worships_hp TRUE: 0;
+# worships_mana TRUE: 0; worships_ac TRUE: 4; worships_gold TRUE: 0.
+
+borg_worships_damage = FALSE
+borg_worships_speed = FALSE
+borg_worships_hp = FALSE
+borg_worships_mana = FALSE
+borg_worships_ac = FALSE
+borg_worships_gold = FALSE
+
+# borg_plays_risky: dive regardless of character level and stay in fights
+# rather than teleport; faster and more deaths. borg_kills_uniques: do not
+# go deeper while three or more uniques of the levels above are alive.
+# Impact (games of 6 that play differently with the value changed to):
+# plays_risky TRUE: 6; kills_uniques TRUE: 0.
+
+borg_plays_risky = FALSE
+borg_kills_uniques = FALSE
+
+# Carry swap items (equipment with a needed resist) and wear one when in
+# danger; lets it dive deeper, at two pack slots each.
+# Impact: set to FALSE, 0 of 6 test games play differently.
+
+borg_uses_swaps = TRUE
+
+# Open chests whose trap difficulty is within this of its disarming skill.
+# Higher opens riskier chests.
+# Impact: set to 14, 0 of 6 test games play differently.
+
+borg_chest_fail_tolerance = 7
+
+# Stop enchanting a weapon or armour at this bonus (+10 or so for ammo).
+# Higher spends more time and scrolls on enchanting.
+# Impact: set to 24, 0 of 6 test games play differently.
+
+borg_enchant_limit = 12
+
+# Retired from this file (#576, owner 2026-11-18); each is read at the value
+# shown, its compiled default, which is what this file shipped:
+# - borg_buy_strategy_default = 0, borg_buy_strategy_current_classes = 0,
+#   borg_buy_strategy_reserve410_classes = 0, borg_buy_identify = 0: the C
+#   chooser's buying strategy (the rejected better-borg-c#410 reserve and the
+#   learning purchases), never reached with borg_town_plan = 1;
+# - borg_uses_dynamic_calcs = FALSE: the formula section went with #519;
+# - borg_restore_ignore_settings = FALSE, borg_allow_strange_opts = FALSE.
+# A line naming one still sets it; retiring them in the core is #599.
+
+# The munchkin start, its by-class variant, the lunal mode and self-lunal
+# were removed: there is one play mode. An old borg.txt that names one at
+# its "off" value starts with a warning; one that would turn a removed mode
+# on is refused at start-up (docs/TRIP-POLICY.md, "Migration").
+
+
+# ---- BEGIN CLASS FILES (generated by scripts/borg-class-files.py from harness/borg_<class>.txt; do not edit) ----
+# The settings of harness/borg_<class>.txt that override the common ones
+# for one class (#520). Edit the class files and run
+# scripts/borg-class-files.py fold.
+# warrior (harness/borg_warrior.txt)
+borg_param_attack_preference_warrior_melee_permille = 1800
+borg_param_attack_preference_warrior_projectile_permille = 1200
+borg_param_attack_preference_warrior_thrown_permille = 1200
+borg_param_town_heal_curve_scale_percent_warrior = 50
+borg_param_town_heal_reserve_hp_percent_warrior = 100
+borg_param_town_devices_percent__warrior = 75
+borg_param_town_phase_curve_scale_percent__warrior = 75
+borg_param_town_oil_curve_scale_percent__warrior = 100
+borg_param_caution_breeder_hunt_max_count__warrior = 7
+borg_param_prepared_dl34_min_hp__warrior = 50
+borg_param_prepared_dl34_min_clevel__warrior = 4
+borg_param_prepared_dl59_min_hp__warrior = 60
+borg_param_prepared_dl59_min_clevel__warrior = 6
+borg_param_prepared_mid_clevel_offset__warrior = -4
+borg_param_prepared_deep_clevel_offset__warrior = 5
+borg_param_prepared_deep_min_clevel__warrior = 0
+borg_param_prepared_deep_max_clevel__warrior = 38
+# mage (harness/borg_mage.txt)
+borg_param_attack_preference_mage_spell_permille = 2000
+borg_param_attack_preference_mage_device_permille = 1200
+borg_param_town_heal_curve_scale_percent_mage = 150
+borg_param_town_heal_reserve_hp_percent_mage = 300
+borg_param_town_devices_percent__mage = 150
+borg_param_town_phase_curve_scale_percent__mage = 175
+borg_param_town_oil_curve_scale_percent__mage = 100
+borg_param_light_detect_evil_spell_min_level__mage = 10
+borg_param_prepared_dl34_min_hp__mage = 60
+borg_param_prepared_dl34_min_clevel__mage = 11
+borg_param_prepared_dl59_min_hp__mage = 80
+borg_param_prepared_dl59_min_clevel__mage = 15
+borg_param_prepared_mid_clevel_offset__mage = 5
+borg_param_prepared_deep_clevel_offset__mage = 8
+borg_param_prepared_deep_min_clevel__mage = 0
+borg_param_prepared_deep_max_clevel__mage = 38
+# druid (harness/borg_druid.txt)
+borg_param_attack_preference_druid_spell_permille = 1700
+borg_param_town_heal_curve_scale_percent_druid = 125
+borg_param_town_heal_reserve_hp_percent_druid = 250
+borg_param_town_devices_percent__druid = 100
+borg_param_town_phase_curve_scale_percent__druid = 175
+borg_param_town_oil_curve_scale_percent__druid = 150
+borg_param_light_detect_evil_spell_min_level__druid = 10
+borg_param_prepared_dl34_min_hp__druid = 40
+borg_param_prepared_dl34_min_clevel__druid = 9
+borg_param_prepared_dl59_min_hp__druid = 60
+borg_param_prepared_dl59_min_clevel__druid = 15
+borg_param_prepared_mid_clevel_offset__druid = 0
+borg_param_prepared_deep_clevel_offset__druid = 13
+borg_param_prepared_deep_min_clevel__druid = 0
+borg_param_prepared_deep_max_clevel__druid = 46
+# priest (harness/borg_priest.txt)
+borg_param_attack_preference_priest_spell_permille = 1700
+borg_param_town_heal_curve_scale_percent_priest = 125
+borg_param_town_heal_reserve_hp_percent_priest = 250
+borg_param_town_devices_percent__priest = 125
+borg_param_town_phase_curve_scale_percent__priest = 125
+borg_param_town_oil_curve_scale_percent__priest = 150
+borg_param_light_detect_evil_spell_min_level__priest = 10
+borg_param_prepared_dl34_min_hp__priest = 40
+borg_param_prepared_dl34_min_clevel__priest = 9
+borg_param_prepared_dl59_min_hp__priest = 60
+borg_param_prepared_dl59_min_clevel__priest = 15
+borg_param_prepared_mid_clevel_offset__priest = 0
+borg_param_prepared_deep_clevel_offset__priest = 13
+borg_param_prepared_deep_min_clevel__priest = 0
+borg_param_prepared_deep_max_clevel__priest = 46
+# necromancer (harness/borg_necromancer.txt)
+borg_param_attack_preference_necromancer_spell_permille = 1800
+borg_param_attack_preference_necromancer_device_permille = 1200
+borg_param_town_heal_curve_scale_percent_necromancer = 150
+borg_param_town_heal_reserve_hp_percent_necromancer = 300
+borg_param_town_devices_percent__necromancer = 150
+borg_param_town_phase_curve_scale_percent__necromancer = 175
+borg_param_town_oil_curve_scale_percent__necromancer = 100
+borg_param_light_detect_evil_spell_min_level__necromancer = 10
+borg_param_prepared_dl34_min_hp__necromancer = 60
+borg_param_prepared_dl34_min_clevel__necromancer = 11
+borg_param_prepared_dl59_min_hp__necromancer = 80
+borg_param_prepared_dl59_min_clevel__necromancer = 15
+borg_param_prepared_mid_clevel_offset__necromancer = 5
+borg_param_prepared_deep_clevel_offset__necromancer = 8
+borg_param_prepared_deep_min_clevel__necromancer = 0
+borg_param_prepared_deep_max_clevel__necromancer = 38
+# paladin (harness/borg_paladin.txt)
+borg_param_attack_preference_paladin_melee_permille = 1800
+borg_param_attack_preference_paladin_spell_permille = 1200
+borg_param_town_heal_curve_scale_percent_paladin = 75
+borg_param_town_heal_reserve_hp_percent_paladin = 150
+borg_param_town_devices_percent__paladin = 100
+borg_param_town_phase_curve_scale_percent__paladin = 100
+borg_param_town_oil_curve_scale_percent__paladin = 125
+borg_param_light_detect_evil_spell_min_level__paladin = 10
+borg_param_caution_breeder_hunt_max_count__paladin = 6
+borg_param_prepared_dl34_min_hp__paladin = 50
+borg_param_prepared_dl34_min_clevel__paladin = 4
+borg_param_prepared_dl59_min_hp__paladin = 60
+borg_param_prepared_dl59_min_clevel__paladin = 6
+borg_param_prepared_mid_clevel_offset__paladin = 0
+borg_param_prepared_deep_clevel_offset__paladin = 7
+borg_param_prepared_deep_min_clevel__paladin = 0
+borg_param_prepared_deep_max_clevel__paladin = 40
+# rogue (harness/borg_rogue.txt)
+borg_param_attack_preference_rogue_projectile_permille = 1300
+borg_param_attack_preference_rogue_thrown_permille = 1600
+borg_param_attack_arrow_point_blank_divisor_rogue = 3
+borg_param_town_heal_curve_scale_percent_rogue = 100
+borg_param_town_heal_reserve_hp_percent_rogue = 200
+borg_param_town_devices_percent__rogue = 135
+borg_param_town_phase_curve_scale_percent__rogue = 125
+borg_param_town_oil_curve_scale_percent__rogue = 125
+borg_param_caution_breeder_hunt_max_count__rogue = 6
+borg_param_prepared_dl34_min_hp__rogue = 50
+borg_param_prepared_dl34_min_clevel__rogue = 8
+borg_param_prepared_dl59_min_hp__rogue = 60
+borg_param_prepared_dl59_min_clevel__rogue = 10
+borg_param_prepared_mid_clevel_offset__rogue = 0
+borg_param_prepared_deep_clevel_offset__rogue = 10
+borg_param_prepared_deep_min_clevel__rogue = 0
+borg_param_prepared_deep_max_clevel__rogue = 43
+# ranger (harness/borg_ranger.txt)
+borg_param_attack_preference_ranger_projectile_permille = 2000
+borg_param_attack_arrow_point_blank_divisor_ranger = 2
+borg_param_town_heal_curve_scale_percent_ranger = 100
+borg_param_town_heal_reserve_hp_percent_ranger = 200
+borg_param_town_devices_percent__ranger = 115
+borg_param_town_phase_curve_scale_percent__ranger = 150
+borg_param_town_phase_reserve__ranger = 2
+borg_param_town_oil_curve_scale_percent__ranger = 50
+borg_param_caution_breeder_hunt_max_count__ranger = 6
+borg_param_prepared_dl34_min_hp__ranger = 50
+borg_param_prepared_dl34_min_clevel__ranger = 4
+borg_param_prepared_dl59_min_hp__ranger = 60
+borg_param_prepared_dl59_min_clevel__ranger = 6
+borg_param_prepared_mid_clevel_offset__ranger = 0
+borg_param_prepared_deep_clevel_offset__ranger = 8
+borg_param_prepared_deep_min_clevel__ranger = 29
+borg_param_prepared_deep_max_clevel__ranger = 41
+borg_param_town_oil_apart__ranger = 0
+borg_param_town_ranger_arrows_max__ranger = 50
+borg_param_town_ranger_arrows_curve_scale_percent__ranger = 50
+# blackguard (harness/borg_blackguard.txt)
+borg_param_attack_preference_blackguard_melee_permille = 1600
+borg_param_attack_preference_blackguard_spell_permille = 1400
+borg_param_town_heal_curve_scale_percent_blackguard = 100
+borg_param_town_heal_reserve_hp_percent_blackguard = 200
+borg_param_town_devices_percent__blackguard = 100
+borg_param_town_phase_curve_scale_percent__blackguard = 50
+borg_param_town_oil_curve_scale_percent__blackguard = 100
+borg_param_caution_breeder_hunt_max_count__blackguard = 8
+borg_param_prepared_dl34_min_hp__blackguard = 50
+borg_param_prepared_dl34_min_clevel__blackguard = 4
+borg_param_prepared_dl59_min_hp__blackguard = 60
+borg_param_prepared_dl59_min_clevel__blackguard = 6
+borg_param_prepared_mid_clevel_offset__blackguard = -4
+borg_param_prepared_deep_clevel_offset__blackguard = 5
+borg_param_prepared_deep_min_clevel__blackguard = 0
+borg_param_prepared_deep_max_clevel__blackguard = 38
+# ---- END CLASS FILES ----
+
+# #802: ship the unseen blocker profile exercised in #781's review trials.
+borg_param_caution_unseen_bump_turns = 200
+borg_param_caution_unseen_bump_response = 1
+borg_param_caution_unseen_bump_heal_hp_percent = 50
+borg_param_caution_unseen_bump_throw_tries = 3
