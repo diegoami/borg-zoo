@@ -1,0 +1,45 @@
+# borg-zoo#611: P6 review-fix compatibility pilot, ab775d48 (accepted main) against 038250d6 (task/T860-p6-review-fixes), shipped defaults.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-p6-review-fix-pilot.yaml
+name: reborn-p6-review-fix-pilot
+issue: 611
+question: >-
+  Does borg-reborn-rs 038250d6 (task/T860-p6-review-fixes: the reviewed P6 controls combined with main's newer curse-removal,
+  fuel and runtime changes) play like accepted main ab775d48 on the shipped defaults of both, with no parameter overrides?
+tier: pilot            # classes-18, 100,000 turns; no native45 expansion authorised
+
+specimens:
+- 4.2.6-reborn-rust-main-ab775d48
+- name: 4.2.6-reborn-rust-p6-review-fix-038250d6
+  repository: diegoami/borg-reborn-rs
+  ref: 038250d6e2b220ca012d80d3ba9c0630efae8924
+  label: "borg-reborn-rs task/T860-p6-review-fixes 038250d6 (tree d223a2d6e9cd678f315df46885d7d6c7bf24d0ca): main ab775d48 plus the reviewed P6 enchant/decurse/params additions; shipped harness/borg.txt and class profiles, scary_monsters.txt e0e29381..."
+  plans: {}
+  scary_lists:
+    scary_monsters.txt: e0e293814e8ed9c2f3a5f0af809f479e854878e5d0eaedea37b671dd1b20f5a8
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-p6rf
+arms:
+  shipped: {}          # no overrides in either build; the change is in the code
+control_specimen: 4.2.6-reborn-rust-main-ab775d48
+control: [shipped]
+owner_authorization: >-
+  2026-11-21: borg-reborn-rs source task #860 (after review #822 and the owner's "do the fix and merge"), filed as borg-zoo#611
+  under the zoo's claim and capacity workflow; zoo owner, 2026-11-21: "start all open pilots and followups" (a classes-18
+  pilot only; no native45 or other expansion).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result was read (borg-zoo#611; borg-reborn-rs #860). Both builds fixed: ab775d48 (accepted main)
+  and 038250d6 (tree d223a2d6). Two cells per start on classes-18, 18 starts, 36 cells, 100,000 turns, shipped settings and
+  class profiles, borg-rs core, errand none, no overrides.
+  Gate: all 36 cells accounted for; one binary per specimen; the exact binaries, configs and settings receipts recorded; the
+  ten candidate compiled defaults (40/65/65/8/10/3/5/20/5500/3501) read from params-core.json (the echo omits defaults) and
+  listed; no profile overrides; stop on a mismatch. Report: paired outcomes and final fields per start; key, message, state
+  and full-trace evidence hashes compared where retained (the limits of play_sha256 if only that is compared, said
+  explicitly); every error, stall and timeout; every natural death imported to the cemetery. Raw evidence retained. No
+  improvement claim. Zoo#571 (07aa4b1e against a3635ad8, 18 of 18) and the old full45 of #520 do not cover this pair.
