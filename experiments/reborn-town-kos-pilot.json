@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-town-kos-pilot",
+  "issue": 569,
+  "definition": "definitions/reborn-town-kos-pilot.yaml",
+  "question": "On borg-reborn-rs main 12c4ce7c, does kill on sight in town (attack_town_dangerous_on_sight 1) help or cost when the town scare is lowered to 11 (caution_town_scary_levels_less, shipped 3), do the three #637 switches (caster walk, wand, whole bonus) help at that level, and why does kill on sight alone kill fewer of the four dangerous town monsters than no kill on sight (borg-reborn-rs #667)?",
+  "description": "On borg-reborn-rs main 12c4ce7c, does kill on sight in town (attack_town_dangerous_on_sight 1) help or cost when the town scare is lowered to 11 (caution_town_scary_levels_less, shipped 3), do the three #637 switches (caster walk, wand, whole bonus) help at that level, and why does kill on sight alone kill fewer of the four dangerous town monsters than no kill on sight (borg-reborn-rs #667)? Generated from definitions/reborn-town-kos-pilot.yaml: 6 arms on 4.2.6-reborn-rust-main-12c4ce7c, suite classes-18.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#569; borg-reborn-rs #667). Pilot (RULES 16) on\nclasses-18, six arms, 18 starts each (108 games), all classes. Caveat stated up front: borg-reborn-rs #665 (one aged\n\"known\" test, so a dead monster is not hunted) is open; in the on-sight arms a dead dangerous town monster may still be\nchased, and the report says how often.\nGate: no config_error; one binary; each arm's values in params-core.json; shipped plays as main 12c4ce7c; every cell ends\nin death, turn_cap or borg_stopped; stalls, timeouts and crashes kept apart; frozen-turn bursts classified.\nReport per arm and class: deaths and causes (deaths in town apart), CL at death, final and maximum level, deepest level;\npaired rescued and newly killed against shipped (exact McNemar), identical plays; per game the kills of the four dangerous\ntown monsters (veteran, mercenary, squint-eyed rogue, urchin), thefts, and the first divergent action where kill on sight\nalone kills fewer of the four than no kill on sight, at N 6 and N 11 (question 2 of #667: does the damage-term bonus point\nthe Borg at them in a way that costs something else). Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-12c4ce7c"
+  ],
+  "profiles": [
+    "reborn-townkos-shipped",
+    "reborn-townkos-n6_off",
+    "reborn-townkos-n6_on",
+    "reborn-townkos-n11_off",
+    "reborn-townkos-n11_on",
+    "reborn-townkos-n11_sw"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-12c4ce7c",
+  "control_profile": "reborn-townkos-shipped",
+  "owner_authorization": "2026-11-21: borg-reborn-rs request #667 (left open by #637 and #653), filed as borg-zoo#569; zoo owner, 2026-11-21: \"why is borg reborn blocking anything. Go with our stuff\" (a classes-18 pilot only; the settings exist on main, so nothing waits for #665).",
+  "retain_evidence": true
+}
