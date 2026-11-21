@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-confusion-837-medium",
+  "issue": 581,
+  "definition": "definitions/reborn-confusion-837-medium.yaml",
+  "question": "On borg-reborn-rs da097a76, over 270 starts (classes-1800 starts 91-360, all classes), do the Cure Light Wounds as a confusion cure with no walk before the cure (clw_walk), the cure held only while a step out of reach is possible (stuck), and a confusion-cure reserve in town (csw) save deaths or add new ones against the shipped play?",
+  "description": "On borg-reborn-rs da097a76, over 270 starts (classes-1800 starts 91-360, all classes), do the Cure Light Wounds as a confusion cure with no walk before the cure (clw_walk), the cure held only while a step out of reach is possible (stuck), and a confusion-cure reserve in town (csw) save deaths or add new ones against the shipped play? Generated from definitions/reborn-confusion-837-medium.yaml: 4 arms on 4.2.6-reborn-rust-confusion-da097a76, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-21 after the small tier (run 44924461733: ctl 1/90 deaths, clw_walk 2, stuck 2, csw 3 and one stalled Ranger;\n0 rescued, 1, 1, 2 newly killed) and the classes-18 pilot (run 44916061503). Medium tier (RULES 14): the same four arms,\n270 starts each (1,080 games), classes-1800 starts 91-360, disjoint from the small tier.\nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start\n(lightless aborts counted, not dropped); frozen-turn bursts classified.\nReport per arm and class: deaths and causes (with a confuser or an immobile monster adjacent apart), CL at death, final\nand maximum level, deepest level; paired rescued and newly killed against ctl (exact McNemar), identical plays; the\nsmall tier pooled with this one as one study of 360 starts (RULES 14); a RULES 18 bin. Deaths decide each arm. Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-confusion-da097a76"
+  ],
+  "profiles": [
+    "reborn-confusion-ctl",
+    "reborn-confusion-clw_walk",
+    "reborn-confusion-stuck",
+    "reborn-confusion-csw"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-confusion-da097a76",
+  "control_profile": "reborn-confusion-ctl",
+  "owner_authorization": "2026-11-21: zoo owner, \"start all open pilots and followups\" (the medium tier of the four arms of the small tier, run 44924461733; read its gate before this one).",
+  "retain_evidence": false
+}
