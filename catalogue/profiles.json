@@ -9732,6 +9732,59 @@
         "borg_param_caution_immobile_step_mobile_first": 1,
         "borg_param_caution_immobile_no_return": 1
       }
+    },
+    "reborn-townkos-shipped": {
+      "description": "borg-zoo#569 (reborn-town-kos-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-townkos-n6_off": {
+      "description": "borg-zoo#569 (reborn-town-kos-pilot.yaml): arm n6_off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_scary_levels_less": 6
+      }
+    },
+    "reborn-townkos-n6_on": {
+      "description": "borg-zoo#569 (reborn-town-kos-pilot.yaml): arm n6_on.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_scary_levels_less": 6,
+        "borg_param_attack_town_dangerous_on_sight": 1
+      }
+    },
+    "reborn-townkos-n11_off": {
+      "description": "borg-zoo#569 (reborn-town-kos-pilot.yaml): arm n11_off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_scary_levels_less": 11
+      }
+    },
+    "reborn-townkos-n11_on": {
+      "description": "borg-zoo#569 (reborn-town-kos-pilot.yaml): arm n11_on.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_scary_levels_less": 11,
+        "borg_param_attack_town_dangerous_on_sight": 1
+      }
+    },
+    "reborn-townkos-n11_sw": {
+      "description": "borg-zoo#569 (reborn-town-kos-pilot.yaml): arm n11_sw.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_town_scary_levels_less": 11,
+        "borg_param_attack_town_dangerous_on_sight": 1,
+        "borg_param_attack_town_dangerous_caster_walk": 1,
+        "borg_param_attack_town_dangerous_wand": 1,
+        "borg_param_attack_town_dangerous_bonus_whole": 1
+      }
     }
   }
 }

@@ -1,0 +1,56 @@
+# borg-zoo#569: kill on sight in town with the town scare lowered (caution_town_scary_levels_less 11) and the three #637 switches (borg-reborn-rs #667).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-town-kos-pilot.yaml
+name: reborn-town-kos-pilot
+issue: 569
+question: >-
+  On borg-reborn-rs main 12c4ce7c, does kill on sight in town (attack_town_dangerous_on_sight 1) help or cost when the town
+  scare is lowered to 11 (caution_town_scary_levels_less, shipped 3), do the three #637 switches (caster walk, wand,
+  whole bonus) help at that level, and why does kill on sight alone kill fewer of the four dangerous town monsters than
+  no kill on sight (borg-reborn-rs #667)?
+tier: pilot            # classes-18, 100,000 turns; a small tier of what shows an effect after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-main-12c4ce7c
+  repository: diegoami/borg-reborn-rs
+  ref: 12c4ce7c308c872dc5c2e754e3d97402ac5a0683
+  label: "borg-reborn-rs main 12c4ce7c (head on 2026-11-21): attack_on_sight 1, attack_town_dangerous_on_sight 0, caution_town_scary_levels_less 3 as shipped; scary_monsters.txt 9766d882..."
+  scary_lists:
+    scary_monsters.txt: 9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-townkos
+arms:
+  shipped: {}                                                 # N 3, kill on sight off
+  n6_off:  {borg_param_caution_town_scary_levels_less: 6}
+  n6_on:   {borg_param_caution_town_scary_levels_less: 6,  borg_param_attack_town_dangerous_on_sight: 1}
+  n11_off: {borg_param_caution_town_scary_levels_less: 11}
+  n11_on:  {borg_param_caution_town_scary_levels_less: 11, borg_param_attack_town_dangerous_on_sight: 1}
+  n11_sw:                                                     # kill on sight with the three #637 switches
+    borg_param_caution_town_scary_levels_less: 11
+    borg_param_attack_town_dangerous_on_sight: 1
+    borg_param_attack_town_dangerous_caster_walk: 1
+    borg_param_attack_town_dangerous_wand: 1
+    borg_param_attack_town_dangerous_bonus_whole: 1
+control: [shipped]
+owner_authorization: >-
+  2026-11-21: borg-reborn-rs request #667 (left open by #637 and #653), filed as borg-zoo#569; zoo owner, 2026-11-21: "why is
+  borg reborn blocking anything. Go with our stuff" (a classes-18 pilot only; the settings exist on main, so nothing waits
+  for #665).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#569; borg-reborn-rs #667). Pilot (RULES 16) on
+  classes-18, six arms, 18 starts each (108 games), all classes. Caveat stated up front: borg-reborn-rs #665 (one aged
+  "known" test, so a dead monster is not hunted) is open; in the on-sight arms a dead dangerous town monster may still be
+  chased, and the report says how often.
+  Gate: no config_error; one binary; each arm's values in params-core.json; shipped plays as main 12c4ce7c; every cell ends
+  in death, turn_cap or borg_stopped; stalls, timeouts and crashes kept apart; frozen-turn bursts classified.
+  Report per arm and class: deaths and causes (deaths in town apart), CL at death, final and maximum level, deepest level;
+  paired rescued and newly killed against shipped (exact McNemar), identical plays; per game the kills of the four dangerous
+  town monsters (veteran, mercenary, squint-eyed rogue, urchin), thefts, and the first divergent action where kill on sight
+  alone kills fewer of the four than no kill on sight, at N 6 and N 11 (question 2 of #667: does the damage-term bonus point
+  the Borg at them in a way that costs something else). Descriptive (RULES 14).

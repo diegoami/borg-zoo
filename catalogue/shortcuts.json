@@ -1609,6 +1609,20 @@
         "reborn-immfix-immobile2_fix"
       ],
       "runs": []
+    },
+    "reborn-townkos": {
+      "issue": 569,
+      "status": "defined (pilot)",
+      "what": "Kill on sight in town with the town scare lowered (N 6, 11) and the three #637 switches on main 12c4ce7c (borg-reborn-rs #667).",
+      "profiles": [
+        "reborn-townkos-shipped",
+        "reborn-townkos-n6_off",
+        "reborn-townkos-n6_on",
+        "reborn-townkos-n11_off",
+        "reborn-townkos-n11_on",
+        "reborn-townkos-n11_sw"
+      ],
+      "runs": []
     }
   }
 }

@@ -113,6 +113,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-invis` | [#580](https://github.com/diegoami/borg-zoo/issues/580) | 3 | defined (pilot; classes-1800 after the gate) | Invisible attacker mode and Detect Invisible (borg-reborn-rs #831, PR #836) on b3f32a9a: A old behaviour, B shipped, C higher Detect Invisible value. |
 | `reborn-tpblock` | [#578](https://github.com/diegoami/borg-zoo/issues/578) | 2 | defined (pilot, small, medium) | Teleport block under an anti-teleportation curse (borg-reborn-rs #829, PR #833) on 6fe184ea: escape_teleport_block 0 against shipped 1. |
 | `reborn-immfix` | [#586](https://github.com/diegoami/borg-zoo/issues/586) | 3 | defined (pilot, then big at starts 361-900) | caution_ranged_vs_immobile 2 with the confusion and no-return switches on 8eadb21f: shipped, immobile2, immobile2_fix (borg-reborn-rs #837). |
+| `reborn-townkos` | [#569](https://github.com/diegoami/borg-zoo/issues/569) | 6 | defined (pilot) | Kill on sight in town with the town scare lowered (N 6, 11) and the three #637 switches on main 12c4ce7c (borg-reborn-rs #667). |
 
 ### `heal-attack-4`
 
@@ -1630,6 +1631,21 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-immfix-immobile2` | – | – | – | – | – | 2 |
 | `reborn-immfix-immobile2_fix` | 1 | 2 | 1 | 1 | 1 | 2 |
 
+### `reborn-townkos`
+
+Kill on sight in town with the town scare lowered (N 6, 11) and the three #637 switches on main 12c4ce7c (borg-reborn-rs #667).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_town_dangerous_bonus_whole` | `borg_param_attack_town_dangerous_caster_walk` | `borg_param_attack_town_dangerous_on_sight` | `borg_param_attack_town_dangerous_wand` | `borg_param_caution_town_scary_levels_less` |
+| --- | --- | --- | --- | --- | --- |
+| `reborn-townkos-shipped` | – | – | – | – | – |
+| `reborn-townkos-n6_off` | – | – | – | – | 6 |
+| `reborn-townkos-n6_on` | – | – | 1 | – | 6 |
+| `reborn-townkos-n11_off` | – | – | – | – | 11 |
+| `reborn-townkos-n11_on` | – | – | 1 | – | 11 |
+| `reborn-townkos-n11_sw` | 1 | 1 | 1 | 1 | 11 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1711,11 +1727,11 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |
 | `borg_param_attack_throw_as_melee` | 0, not set | `reborn-shipcheck-b895` |  |
 | `borg_param_attack_town_dangerous_bonus_percent` | 600, not set | `reborn-town-dangerous` |  |
-| `borg_param_attack_town_dangerous_bonus_whole` | 1, not set | `reborn-town-switch-screen` |  |
-| `borg_param_attack_town_dangerous_caster_walk` | 1, not set | `reborn-town-switch-screen` |  |
+| `borg_param_attack_town_dangerous_bonus_whole` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
+| `borg_param_attack_town_dangerous_caster_walk` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
 | `borg_param_attack_town_dangerous_min_damage` | 3, not set | `reborn-town-dangerous` |  |
-| `borg_param_attack_town_dangerous_on_sight` | 0, 1, not set | `reborn-town-dangerous`, `reborn-neutral-main`, `reborn-town-switch-screen` |  |
-| `borg_param_attack_town_dangerous_wand` | 1, not set | `reborn-town-switch-screen` |  |
+| `borg_param_attack_town_dangerous_on_sight` | 0, 1, not set | `reborn-town-dangerous`, `reborn-neutral-main`, `reborn-town-switch-screen`, `reborn-townkos` |  |
+| `borg_param_attack_town_dangerous_wand` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
 | `borg_param_caution_breeder_avoid` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_boost_danger_tenths` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_breeder_easy_escape_steps` | 3, 10, not set | `reborn-untested-caution` |  |
@@ -1763,6 +1779,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_stairs_leave_on_monster` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_town_flee_no_worse` | 1, not set | `reborn-untested-dbc`, `reborn-town-switch-screen` |  |
 | `borg_param_caution_town_never_scary` | 1, not set | `reborn-town-switch-screen` |  |
+| `borg_param_caution_town_scary_levels_less` | 6, 11, not set | `reborn-townkos` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_caution_unseen_bump_heal_hp_percent` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_unseen_bump_response` | 0, not set | `reborn-sloo` |  |
