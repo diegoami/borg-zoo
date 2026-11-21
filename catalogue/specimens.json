@@ -2723,6 +2723,32 @@
       "scary_lists": {
         "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
       }
+    },
+    "4.2.6-reborn-rust-main-ed52fec1": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "ed52fec125068728955175171cc531230faad6e3",
+      "label": "borg-reborn-rs main ed52fec1 (the v0.1.0-alpha.1 release commit, PR #827 merged): shipped harness/borg.txt a121173b..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-ranged-only-5887c29b": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "5887c29bdadb701d12362e18240c045459bfa906",
+      "label": "borg-reborn-rs claude/ecstatic-hawking-bcbxof 5887c29b (main 12c4ce7c plus the changes of #837 and #838, PR #843): shipped harness/borg.txt, scary_monsters.txt with 14 ranged candidates (inert at 0) e0e29381...",
+      "scary_lists": {
+        "scary_monsters.txt": "e0e293814e8ed9c2f3a5f0af809f479e854878e5d0eaedea37b671dd1b20f5a8"
+      }
     }
   }
 }

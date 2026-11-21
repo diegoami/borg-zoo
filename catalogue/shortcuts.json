@@ -1662,6 +1662,27 @@
         "reborn-healtiers-quaff200"
       ],
       "runs": []
+    },
+    "reborn-alpha1": {
+      "issue": 601,
+      "status": "defined (pilot; small-rest, medium, big, full planned, not dispatched)",
+      "what": "Release measurement of borg-reborn-rs v0.1.0-alpha.1 (ed52fec1): shipped settings, one arm, classes-1800 ladder (45+45+270+540+900), 100,000 turns.",
+      "profiles": [
+        "reborn-alpha1-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-rangedonly": {
+      "issue": 593,
+      "status": "defined (pilot)",
+      "what": "caution_ranged_only (borg-reborn-rs #838) on 5887c29b: shipped, ranged, immobile2, ranged_clw, classes-18 pilot.",
+      "profiles": [
+        "reborn-rangedonly-shipped",
+        "reborn-rangedonly-ranged",
+        "reborn-rangedonly-immobile2",
+        "reborn-rangedonly-ranged_clw"
+      ],
+      "runs": []
     }
   }
 }

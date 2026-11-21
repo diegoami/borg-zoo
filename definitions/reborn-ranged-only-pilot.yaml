@@ -1,0 +1,45 @@
+# borg-zoo#593: the ranged-only scary-list category (borg-reborn-rs #838, PR #843) against shipped and caution_ranged_vs_immobile 2.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-ranged-only-pilot.yaml
+name: reborn-ranged-only-pilot
+issue: 593
+question: >-
+  On borg-reborn-rs 5887c29b (main 12c4ce7c plus #837 and #838), does caution_ranged_only (listed ranged monsters are never
+  a melee target, never hunted, and the flows keep out of their grid) save deaths against the shipped play and against
+  caution_ranged_vs_immobile 2, with and without the confusion cure, and does it add stalls (a listed monster in a corridor)?
+tier: pilot            # classes-18, 100,000 turns; small, medium and big (starts 361-900) after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-ranged-only-5887c29b
+  repository: diegoami/borg-reborn-rs
+  ref: 5887c29bdadb701d12362e18240c045459bfa906
+  label: "borg-reborn-rs claude/ecstatic-hawking-bcbxof 5887c29b (main 12c4ce7c plus the changes of #837 and #838, PR #843): shipped harness/borg.txt, scary_monsters.txt with 14 ranged candidates (inert at 0) e0e29381..."
+  scary_lists:
+    scary_monsters.txt: e0e293814e8ed9c2f3a5f0af809f479e854878e5d0eaedea37b671dd1b20f5a8
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-rangedonly
+arms:
+  shipped: {}
+  ranged: {borg_param_caution_ranged_only: 1}
+  immobile2: {borg_param_caution_ranged_vs_immobile: 2}
+  ranged_clw:
+    borg_param_caution_ranged_only: 1
+    borg_param_caution_confused_clw_cure: 1
+    borg_param_caution_confused_cure_before_walk: 2
+control: [shipped]
+owner_authorization: >-
+  2026-11-21: borg-reborn-rs owner ("Check in the zoo before merging", #838), filed as borg-zoo#593; zoo owner, 2026-11-21:
+  "check claims issues and go" (a classes-18 pilot only; small, medium and big after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result was read. Four arms on one build, classes-18, 100,000 turns. Gate: no config_error;
+  one binary; every cell ends in death, turn_cap or borg_stopped (stalls, timeouts, crashes kept apart); frozen-turn bursts
+  classified; a stall with a listed monster in a one-wide corridor kept apart from one in an open room (#593, N2).
+  Report: deaths per class, paired rescued and newly killed by start against shipped and against immobile2, CL and DL,
+  deaths with a listed monster adjacent, identical plays per arm (an arm whose keys equal shipped's did not exercise its
+  setting). Counts of events at pilot size, descriptive.
