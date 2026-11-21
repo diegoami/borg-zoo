@@ -1,0 +1,86 @@
+# borg-zoo#589: the basic-kit mode of borg-reborn-rs #840 / PR #844. Pilot first (RULES 16).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-kit-pilot.yaml
+name: reborn-kit-pilot
+issue: 589
+question: >-
+  On borg-reborn-rs 78577c36 (the basic-kit mode, #840), do the kit leash, the curiosity limits and the restock
+  remedies a/b/c save early deaths without costing progress?
+tier: pilot            # classes-18, 100,000 turns; small + medium wait for this gate and the owner (RULES 14)
+
+specimen:
+  name: 4.2.6-reborn-rust-kit-78577c36
+  repository: diegoami/borg-reborn-rs
+  ref: 78577c366ee8024833df5c176f59ee7411341084
+  label: "borg-reborn-rs claude/wizardly-curie-u7y4zx 78577c36 (PR #844): the basic-kit switches (#840), all shipped 0. harness/borg.txt sha256 602ddb45..."
+  plans:
+    errands_plan.txt: 084bc3e8999697bd8edf7fd302ea75d65b50ef2714afdd3a47354a1f24137e87
+    errands_plan_ambitious.txt: c301858598cbb76d529fd49ef6c0c1c75332e4f229785e62459e46b986c6e0c9
+  scary_lists:
+    scary_monsters.txt: 9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-kit
+arms:
+  ctl: {}                       # the specimen as shipped: every kit switch 0
+  leash: &leash
+    borg_param_kit_leash: 1
+    borg_param_kit_leash_min: 1
+    borg_param_kit_leash_power: 1
+  leash-p2:
+    borg_param_kit_leash: 1
+    borg_param_kit_leash_power: 2
+  leash-m0:
+    borg_param_kit_leash: 1
+    borg_param_kit_leash_min: 0
+    borg_param_kit_leash_power: 2
+  leash-m2:
+    borg_param_kit_leash: 1
+    borg_param_kit_leash_min: 2
+  kit: &kit
+    <<: *leash
+    borg_param_kit_descent_min_percent: 50
+    borg_param_kit_leave_danger_percent: 25
+  a: &a
+    borg_param_kit_restock: 1
+    borg_param_kit_restock_light_turns: 500
+  b: &b
+    borg_param_kit_start_reserve: 1
+  b-classes:
+    borg_param_kit_start_reserve__ranger: 1
+    borg_param_kit_start_reserve__priest: 1
+    borg_param_kit_start_reserve__blackguard: 1
+    borg_param_kit_start_reserve__rogue: 1
+  c: &c
+    borg_param_kit_leash: 1
+    borg_param_kit_money_first: 1
+  a+b:
+    <<: [*a, *b]
+  all:
+    <<: [*kit, *a, *b, *c]
+control: [ctl]
+owner_authorization: >-
+  2026-11-21: borg-reborn-rs owner on #840 ("let us group those together and see whether we should make them buy
+  more phase doors or healing potions or trigger a return to town ... or reduce the leash"), filed as
+  borg-zoo#589; this session was asked to prepare and dispatch the pilot, then small + medium. Under RULES 14 and 16
+  only the pilot is dispatched now; small + medium wait for the pilot's gate and the owner.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of this build was read (borg-zoo#589; borg-reborn-rs#840, PR #844).
+  Pilot (RULES 16) of the issue's twelve arms on classes-18; ctl is the specimen's shipped configuration (every
+  kit switch 0). Gate: no config_error; one binary; each arm's borg_param_* values present in the applied borg.txt
+  and params-core.json; every cell ends; death bundles reproduced; ctl identical to main's play at the shipped
+  settings (the issue states the smoke suite is unchanged).
+  Endpoints, per arm and per class (wanted back, from the issue): deaths and causes; CL and DL at the cap; alive at
+  the cap having reached DL5 (progress counts: a short leash can leave a Borg with nothing to do); paired rescued and
+  newly killed by start against ctl (exact McNemar); identical plays; town trips for a and c. Every abnormal outcome
+  (stall, timeout, crash, harness failure, config error) is reported per arm (RULES 6). A death report with screens
+  for deaths in kit or all that ctl survives. Each tested value gets a RULES 18 bin (harmful, neutral, helpful).
+  An 18-game pilot sizes nothing: no claim of improvement from it (RULES 8). The issue's local replays (8 of 17
+  base deaths survive under leash/kit/c, but a C flow_leash_base control rescues 13 of 17) are not a result.
+  Not run: town_hunt=1 and borg_money_scum_amount as other ways to money (the issue lists them "if capacity
+  allows", with no value for the scum amount); they need an owner-set value and their own arms.

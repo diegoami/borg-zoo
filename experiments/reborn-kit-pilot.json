@@ -1,0 +1,33 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-kit-pilot",
+  "issue": 589,
+  "definition": "definitions/reborn-kit-pilot.yaml",
+  "question": "On borg-reborn-rs 78577c36 (the basic-kit mode, #840), do the kit leash, the curiosity limits and the restock remedies a/b/c save early deaths without costing progress?",
+  "description": "On borg-reborn-rs 78577c36 (the basic-kit mode, #840), do the kit leash, the curiosity limits and the restock remedies a/b/c save early deaths without costing progress? Generated from definitions/reborn-kit-pilot.yaml: 12 arms on 4.2.6-reborn-rust-kit-78577c36, suite classes-18.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#589; borg-reborn-rs#840, PR #844).\nPilot (RULES 16) of the issue's twelve arms on classes-18; ctl is the specimen's shipped configuration (every\nkit switch 0). Gate: no config_error; one binary; each arm's borg_param_* values present in the applied borg.txt\nand params-core.json; every cell ends; death bundles reproduced; ctl identical to main's play at the shipped\nsettings (the issue states the smoke suite is unchanged).\nEndpoints, per arm and per class (wanted back, from the issue): deaths and causes; CL and DL at the cap; alive at\nthe cap having reached DL5 (progress counts: a short leash can leave a Borg with nothing to do); paired rescued and\nnewly killed by start against ctl (exact McNemar); identical plays; town trips for a and c. Every abnormal outcome\n(stall, timeout, crash, harness failure, config error) is reported per arm (RULES 6). A death report with screens\nfor deaths in kit or all that ctl survives. Each tested value gets a RULES 18 bin (harmful, neutral, helpful).\nAn 18-game pilot sizes nothing: no claim of improvement from it (RULES 8). The issue's local replays (8 of 17\nbase deaths survive under leash/kit/c, but a C flow_leash_base control rescues 13 of 17) are not a result.\nNot run: town_hunt=1 and borg_money_scum_amount as other ways to money (the issue lists them \"if capacity\nallows\", with no value for the scum amount); they need an owner-set value and their own arms.",
+  "specimens": [
+    "4.2.6-reborn-rust-kit-78577c36"
+  ],
+  "profiles": [
+    "reborn-kit-ctl",
+    "reborn-kit-leash",
+    "reborn-kit-leash-p2",
+    "reborn-kit-leash-m0",
+    "reborn-kit-leash-m2",
+    "reborn-kit-kit",
+    "reborn-kit-a",
+    "reborn-kit-b",
+    "reborn-kit-b-classes",
+    "reborn-kit-c",
+    "reborn-kit-a+b",
+    "reborn-kit-all"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-kit-78577c36",
+  "control_profile": "reborn-kit-ctl",
+  "owner_authorization": "2026-11-21: borg-reborn-rs owner on #840 (\"let us group those together and see whether we should make them buy more phase doors or healing potions or trigger a return to town ... or reduce the leash\"), filed as borg-zoo#589; this session was asked to prepare and dispatch the pilot, then small + medium. Under RULES 14 and 16 only the pilot is dispatched now; small + medium wait for the pilot's gate and the owner.",
+  "retain_evidence": true
+}

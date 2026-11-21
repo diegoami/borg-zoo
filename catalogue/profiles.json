@@ -9521,6 +9521,126 @@
         "borg_reborn_errand": "none",
         "borg_param_caution_ranged_vs_immobile": 2
       }
+    },
+    "reborn-kit-ctl": {
+      "description": "borg-zoo#589 (reborn-kit-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-kit-leash": {
+      "description": "borg-zoo#589 (reborn-kit-pilot.yaml): arm leash.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_min": 1,
+        "borg_param_kit_leash_power": 1
+      }
+    },
+    "reborn-kit-leash-p2": {
+      "description": "borg-zoo#589 (reborn-kit-pilot.yaml): arm leash-p2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_power": 2
+      }
+    },
+    "reborn-kit-leash-m0": {
+      "description": "borg-zoo#589 (reborn-kit-pilot.yaml): arm leash-m0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_min": 0,
+        "borg_param_kit_leash_power": 2
+      }
+    },
+    "reborn-kit-leash-m2": {
+      "description": "borg-zoo#589 (reborn-kit-pilot.yaml): arm leash-m2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_min": 2
+      }
+    },
+    "reborn-kit-kit": {
+      "description": "borg-zoo#589 (reborn-kit-pilot.yaml): arm kit.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_min": 1,
+        "borg_param_kit_leash_power": 1,
+        "borg_param_kit_descent_min_percent": 50,
+        "borg_param_kit_leave_danger_percent": 25
+      }
+    },
+    "reborn-kit-a": {
+      "description": "borg-zoo#589 (reborn-kit-pilot.yaml): arm a.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_restock": 1,
+        "borg_param_kit_restock_light_turns": 500
+      }
+    },
+    "reborn-kit-b": {
+      "description": "borg-zoo#589 (reborn-kit-pilot.yaml): arm b.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_start_reserve": 1
+      }
+    },
+    "reborn-kit-b-classes": {
+      "description": "borg-zoo#589 (reborn-kit-pilot.yaml): arm b-classes.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_start_reserve__ranger": 1,
+        "borg_param_kit_start_reserve__priest": 1,
+        "borg_param_kit_start_reserve__blackguard": 1,
+        "borg_param_kit_start_reserve__rogue": 1
+      }
+    },
+    "reborn-kit-c": {
+      "description": "borg-zoo#589 (reborn-kit-pilot.yaml): arm c.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_money_first": 1
+      }
+    },
+    "reborn-kit-a+b": {
+      "description": "borg-zoo#589 (reborn-kit-pilot.yaml): arm a+b.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_start_reserve": 1,
+        "borg_param_kit_restock": 1,
+        "borg_param_kit_restock_light_turns": 500
+      }
+    },
+    "reborn-kit-all": {
+      "description": "borg-zoo#589 (reborn-kit-pilot.yaml): arm all.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_money_first": 1,
+        "borg_param_kit_start_reserve": 1,
+        "borg_param_kit_restock": 1,
+        "borg_param_kit_restock_light_turns": 500,
+        "borg_param_kit_leash_min": 1,
+        "borg_param_kit_leash_power": 1,
+        "borg_param_kit_descent_min_percent": 50,
+        "borg_param_kit_leave_danger_percent": 25
+      }
     }
   }
 }
