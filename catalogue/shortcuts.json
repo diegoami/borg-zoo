@@ -1598,6 +1598,17 @@
         "reborn-tpblock-block"
       ],
       "runs": []
+    },
+    "reborn-immfix": {
+      "issue": 586,
+      "status": "defined (pilot, then big at starts 361-900)",
+      "what": "caution_ranged_vs_immobile 2 with the confusion and no-return switches on 8eadb21f: shipped, immobile2, immobile2_fix (borg-reborn-rs #837).",
+      "profiles": [
+        "reborn-immfix-shipped",
+        "reborn-immfix-immobile2",
+        "reborn-immfix-immobile2_fix"
+      ],
+      "runs": []
     }
   }
 }

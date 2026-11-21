@@ -9704,6 +9704,34 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-immfix-shipped": {
+      "description": "borg-zoo#586 (reborn-immobile-fix-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-immfix-immobile2": {
+      "description": "borg-zoo#586 (reborn-immobile-fix-pilot.yaml): arm immobile2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_vs_immobile": 2
+      }
+    },
+    "reborn-immfix-immobile2_fix": {
+      "description": "borg-zoo#586 (reborn-immobile-fix-pilot.yaml): arm immobile2_fix.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_vs_immobile": 2,
+        "borg_param_caution_confused_clw_cure": 1,
+        "borg_param_caution_confused_cure_before_walk": 2,
+        "borg_param_caution_confusion_cure_when_stuck": 1,
+        "borg_param_caution_immobile_step_mobile_first": 1,
+        "borg_param_caution_immobile_no_return": 1
+      }
     }
   }
 }
