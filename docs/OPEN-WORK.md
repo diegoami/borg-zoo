@@ -85,6 +85,10 @@ The Ranger tiers (200 starts) asked for in #510, #511, #513, #516 and #517 are s
 - The results job can lose its push race when runs finish together: `gh run rerun RUN --failed`.
 - A merge-then-dispatch script must stop if the merge fails (PR #521 conflicted with main and three
   dispatches of experiments not yet on main failed).
+- A custom suite that lists seeds (a manifest from outside the catalogue) must carry `"external": true`. Without it the rule
+  generator skips any seed it shares with classes-1800, which shifted classes-1800 from its start 119 on (and the medium, big
+  and full tiers) from the merge of PR #532 until PR #546's fix; no run used the shifted starts (small and verysmall are the first
+  90 and 45). tests/test_zoo.py now pins the frozen seeds of classes-1800, classes-1800-200k and classes-18.
 - A PR that adds catalogue entries conflicts with every other one that does: take main's
   `catalogue/*.json` and `docs/PROFILES.md`, re-run `zoo define` and `zoo.profiles_page`.
 
