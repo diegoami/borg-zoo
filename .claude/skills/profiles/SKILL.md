@@ -8,7 +8,9 @@ description: Show what the owner can ask the zoo to run - the named arm sets (sh
 The answer lives in `docs/PROFILES.md`, generated from `catalogue/shortcuts.json`
 and the catalogue.
 
-1. Regenerate it to validate the shortcut references and refresh the page: `python3 -m zoo.profiles_page`.
+1. Run `python3 -m zoo.profiles_page` to validate the shortcut references
+   and refresh the page. On Windows, use `python -X utf8 -m zoo.profiles_page`
+   so the generator writes UTF-8.
 2. Show the owner the **Shortcuts** table from `docs/PROFILES.md`. If they name a
    shortcut, also show its section: the varying settings per profile, and its runs.
 3. If the owner gave an argument (a shortcut, an issue number or a setting name),

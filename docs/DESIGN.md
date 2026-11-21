@@ -524,8 +524,10 @@ from M8 onward inherits that default unchanged, so **before adding a
    question 9.
 2. **Birth rule:** fixed Human Warrior (comparable with better-borg-c's
    cohorts) or seed-chosen race and class (broader).
-3. **Calendar:** today each run uses the runner's clock. Freezing the date
-   (for example with libfaketime) would make runs comparable across days.
+3. **Calendar for natural starts:** natural comparisons use the runner's
+   clock. Freezing the date remains an option for comparisons across days.
+   The saved-state executors for suites, encounters and paired incidents
+   record a fixed-calendar requirement in their load identity.
 4. **Suite sizes:** after the pilot, size the comparisons from the observed
    death and discordance rates.
 5. **New parameters:** restock depth (#370) and dive ratio (#371) enter as
@@ -549,9 +551,9 @@ from M8 onward inherits that default unchanged, so **before adding a
    max depth at turn milestones (`milestones`, `zoo/stats.py`'s
    `milestone_table`) are in, over every finished run, needing no upstream
    change. Gold on hand at those same points is in too, but only for a
-   borg-rs specimen with `depth_stream` (today, the three `4.2.6-reborn-*`
-   specimens): a partial proxy, not a net worth, since that log only hashes
-   equipment and inventory, never values them. The better-borg-c observer
+   Rust headless specimen that recorded a state log (enabled by
+   `depth_stream` in the catalogue). The log hashes equipment and inventory
+   and records gold on hand as a partial proxy for net worth. The better-borg-c observer
    logs no gold at all. A full net-worth figure needs an upstream change
    (value the gear at each sampled state) in whichever harness the owner
    wants it from; that is a change request to route to that harness's own
