@@ -1453,6 +1453,16 @@
         "reborn-killers-fighters16"
       ],
       "runs": []
+    },
+    "reborn-receipt": {
+      "issue": 539,
+      "status": "defined (pilot; adapter contract check of settings-resolved.json)",
+      "what": "The resolved-settings receipt on main 78fb330f: a class override, a legacy alias, a scalar and a default-equal value, against the shipped profile.",
+      "profiles": [
+        "reborn-receipt-ctl",
+        "reborn-receipt-override"
+      ],
+      "runs": []
     }
   }
 }

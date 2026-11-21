@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-settings-receipt-pilot",
+  "issue": 539,
+  "definition": "definitions/reborn-settings-receipt-pilot.yaml",
+  "question": "Does a borg-rs cell on borg-reborn-rs main 78fb330f write settings-resolved.json, and does the zoo retain it, validate it and project each written borg_param_* key (class suffixes, a legacy attack_preference alias, a scalar, a value equal to the compiled default) onto the canonical name for the played class? A contract check, not a comparison.",
+  "description": "Does a borg-rs cell on borg-reborn-rs main 78fb330f write settings-resolved.json, and does the zoo retain it, validate it and project each written borg_param_* key (class suffixes, a legacy attack_preference alias, a scalar, a value equal to the compiled default) onto the canonical name for the played class? A contract check, not a comparison. Generated from definitions/reborn-settings-receipt-pilot.yaml: 2 arms on 4.2.6-reborn-rust-main-78fb330f, suite classes-18.",
+  "prespecified": "Fixed 2026-11-21, before any result of this build was read (borg-zoo#539; borg-reborn-rs #798). A contract check of the\nadapter in PR #554, with the first build that writes the receipt; the games themselves are not the question.\nGate: one binary; no config_error; every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified.\nContract: every cell has settings_resolved with status ok (36 of 36), its sha256 equal to the retained\nsettings-resolved.json, class_name equal to the played class; for the override arm and each class the projection\nverdicts are as follows. Rangers: town_phase_reserve__ranger match (3), the Mage key not applicable, the scalar\ntown_phase_reserve_percent match (150), the alias not applicable. Mages: town_phase_reserve__mage match (1),\nattack_preference_mage_spell_permille (the alias) match (1600), the scalar match. Warriors: town_phase_reserve__warrior\nomitted (equal to the default 0). Any other class: the class keys not applicable, the scalar match. ctl cells: receipt\nok; the map holds the shipped values that differ from the compiled defaults (the shipped borg.txt sets many); no projection. Report any cell with another verdict, a malformed receipt, or a\nreceipt that disagrees with params-core.json for the same name.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-78fb330f"
+  ],
+  "profiles": [
+    "reborn-receipt-ctl",
+    "reborn-receipt-override"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-78fb330f",
+  "control_profile": "reborn-receipt-ctl",
+  "owner_authorization": "2026-11-21: zoo owner, \"yes define it\" (the contract check of #539's receipt; a pilot, 36 games, all classes).",
+  "retain_evidence": true
+}
