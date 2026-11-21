@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-departure-room-small",
+  "issue": 612,
+  "definition": "definitions/reborn-departure-room-small.yaml",
+  "question": "On borg-reborn-rs c7ea18df, over 45 starts of classes-1800 at 300,000 turns (5 per class), do the departure room, the store keep and the Recall curve 110 (shipped), the room alone, or the curve alone get more starts past the DL5 gate, and with what deaths, against the build's own off settings?",
+  "description": "On borg-reborn-rs c7ea18df, over 45 starts of classes-1800 at 300,000 turns (5 per class), do the departure room, the store keep and the Recall curve 110 (shipped), the room alone, or the curve alone get more starts past the DL5 gate, and with what deaths, against the build's own off settings? Generated from definitions/reborn-departure-room-small.yaml: 4 arms on 4.2.6-reborn-rust-town-room-c7ea18df, suite classes-1800-300k-verysmall.",
+  "prespecified": "Fixed 2026-11-22 after the pilot (run 44950482392) and its evidence analysis, before any result of this tier was read.\nSmall tier (RULES 14; the verysmall slice of classes-1800 at 300,000 turns: 45 starts, 5 per class, all classes, 180\ncells), four arms of the pilot on one build. Evidence is not retained (130 MB per cell in the pilot).\nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start.\nReport per arm and class: starts with max depth >= 5, max depth exactly 4 with 500 gold or more at the end (the #859 problem\nas far as the cell summary shows; \"no Recall carried\" is not available without evidence), mean CL, mean depth, deaths and\ncauses, paired rescued and newly killed against ctl, identical plays. Directional only; confirmation needs a fresh seed\nblock (#556). Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-town-room-c7ea18df"
+  ],
+  "profiles": [
+    "reborn-room-ctl",
+    "reborn-room-shipped",
+    "reborn-room-room",
+    "reborn-room-recall"
+  ],
+  "suites": [
+    "classes-1800-300k-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-town-room-c7ea18df",
+  "control_profile": "reborn-room-ctl",
+  "owner_authorization": "2026-11-21: zoo owner, \"yes do all that\" (the small tier after the evidence analysis posted on #612: exposure enough, 16 of 18 ctl starts bought Recall).",
+  "retain_evidence": false
+}
