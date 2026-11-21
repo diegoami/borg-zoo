@@ -1539,6 +1539,65 @@
         "reborn-p6final-shipped"
       ],
       "runs": []
+    },
+    "reborn-cursed": {
+      "issue": 583,
+      "status": "defined (pilot)",
+      "what": "Cursed equipment (borg-reborn-rs #830, PR #832): the base 88d98537 against the change 9cbe0348, shipped settings.",
+      "profiles": [
+        "reborn-cursed-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-torch": {
+      "issue": 577,
+      "status": "defined (exposure pilot at 300,000 turns)",
+      "what": "Spare torches to buy and keep (borg-reborn-rs #810, PR #835): town_light_reserve_turns 0, 15000, 20000, 25000 on e4d64f08.",
+      "profiles": [
+        "reborn-torch-shipped",
+        "reborn-torch-two",
+        "reborn-torch-three",
+        "reborn-torch-four"
+      ],
+      "runs": []
+    },
+    "reborn-confusion": {
+      "issue": 581,
+      "status": "defined (pilot; small + medium after the gate)",
+      "what": "The six confusion settings of borg-reborn-rs #837 on da097a76: CLW cure, no walk before the cure, stuck, CSW reserve, kobold shaman attack or leave.",
+      "profiles": [
+        "reborn-confusion-ctl",
+        "reborn-confusion-clw",
+        "reborn-confusion-clw_walk",
+        "reborn-confusion-csw",
+        "reborn-confusion-stuck",
+        "reborn-confusion-r2",
+        "reborn-confusion-all",
+        "reborn-confusion-shaman_attack",
+        "reborn-confusion-shaman_leave"
+      ],
+      "runs": []
+    },
+    "reborn-invis": {
+      "issue": 580,
+      "status": "defined (pilot; classes-1800 after the gate)",
+      "what": "Invisible attacker mode and Detect Invisible (borg-reborn-rs #831, PR #836) on b3f32a9a: A old behaviour, B shipped, C higher Detect Invisible value.",
+      "profiles": [
+        "reborn-invis-A",
+        "reborn-invis-B",
+        "reborn-invis-C"
+      ],
+      "runs": []
+    },
+    "reborn-tpblock": {
+      "issue": 578,
+      "status": "defined (pilot, small, medium)",
+      "what": "Teleport block under an anti-teleportation curse (borg-reborn-rs #829, PR #833) on 6fe184ea: escape_teleport_block 0 against shipped 1.",
+      "profiles": [
+        "reborn-tpblock-ctl",
+        "reborn-tpblock-block"
+      ],
+      "runs": []
     }
   }
 }

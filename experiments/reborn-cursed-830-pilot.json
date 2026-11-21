@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-cursed-830-pilot",
+  "issue": 583,
+  "definition": "definitions/reborn-cursed-830-pilot.yaml",
+  "question": "Does borg-reborn-rs#832 (a known harmful curse comes off at once; a trip to town for Remove Curse when a removable curse stays worn; no Remove Curse scroll for a pack item worth less than the scroll) change play, and does it introduce stalls or deaths?",
+  "description": "Does borg-reborn-rs#832 (a known harmful curse comes off at once; a trip to town for Remove Curse when a removable curse stays worn; no Remove Curse scroll for a pack item worth less than the scroll) change play, and does it introduce stalls or deaths? Generated from definitions/reborn-cursed-830-pilot.yaml: 1 arms on 4.2.6-reborn-rust-main-88d98537, 4.2.6-reborn-rust-cursed-9cbe0348, suite classes-18.",
+  "prespecified": "Fixed 2026-11-21, before any zoo result of this change was read. Pilot (RULES 16); larger tiers only after this gate\nand the owner. There is no parameter for the change, so the control is the PR's base commit: the two specimens differ\nonly by PR #832 (commits c31a56e1, 8590624d, 625446ab, 7225eb02 and two handover notes; main 88d98537 is the merge base).\nGate: no config_error; one binary per specimen; every cell ends in death, turn_cap or borg_stopped; NO STALL: no cell\nwhose game clock stops while keys continue (a frozen-turn burst) and no wall timeout that the control does not have\n(an earlier head of this PR looped on a Remove Curse read, borg-reborn-rs#832); the sanity cells reproduce.\nReport per arm and per class: deaths and causes, CL at death, deepest level; paired rescued / newly killed; the number\nof games whose play is identical in both arms (the games that meet no curse are expected to be); per game, from\nmessages.log and trace-core: \"# Removing cursed\" notes by curse, \"prevents you teleporting\" and \"aggravating things\"\nmessages, Remove Curse scrolls bought and read and the gold they cost, and any \"restock remove curse\" trip reason\n(borg_must_return_to_town; it has never been seen in a game, so its count is the first live check of that trip); a\nRULES 18 bin. Descriptive: 18 starts cannot show an improvement and none is claimed.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-88d98537",
+    "4.2.6-reborn-rust-cursed-9cbe0348"
+  ],
+  "profiles": [
+    "reborn-cursed-shipped"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-88d98537",
+  "control_profile": "reborn-cursed-shipped",
+  "owner_authorization": "2026-11-21: the owner asked for the cursed-equipment fix (borg-reborn-rs#830: \"avoid cursed objects if possible, and if not when cursed make it a priority to go back to town and buy a remove curse scroll\"; \"don't spend a Remove Curse scroll on an item not worth keeping\"). This is the pilot of its measurement (RULES 14, 20), asked for by the session that wrote the change.",
+  "retain_evidence": true
+}
