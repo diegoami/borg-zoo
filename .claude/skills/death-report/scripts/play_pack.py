@@ -16,6 +16,7 @@ is the exact game: the Borg replays from birth, checked against the zoo keys.
 """
 import argparse
 import hashlib
+from collections import Counter
 import json
 import os
 import re
@@ -56,11 +57,14 @@ def main():
         subprocess.run(cmd, cwd=game, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=1800)
 
     rows = []
-    for b in sorted(p.parent for p in a.selected.rglob('zoo-death.json')):
+    bundles = sorted(p.parent for p in a.selected.rglob('zoo-death.json'))
+    # One seed can die in two different games (two arms): name those by death turn too.
+    per_seed = Counter(json.loads((b / 'zoo-death.json').read_text())['seed'] for b in bundles)
+    for b in bundles:
         z = json.loads((b / 'zoo-death.json').read_text())
         cfg = dict(l.split('=', 1) for l in (b / 'config.txt').read_text().split() if '=' in l)
         seed, race, cls, dt = z['seed'], int(cfg['race_idx']), int(cfg['class_idx']), z['final']['turn']
-        name = f'{CLASSES[cls].lower()}-{seed}'
+        name = f'{CLASSES[cls].lower()}-{seed}' + (f'-t{dt}' if per_seed[seed] > 1 else '')
         D = pack / name
         shutil.rmtree(D, ignore_errors=True)
         for d in ('user', 'saves', 'replay'):

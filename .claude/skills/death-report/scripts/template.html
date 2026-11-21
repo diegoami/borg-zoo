@@ -157,14 +157,14 @@ function screen(f){
 }
 function frames(d){return d.frames.concat([{...d.frames[d.frames.length-1],msgs:d.after,final:true}]);}
 function list(){
-  $('list').innerHTML=D.map((d,i)=>`<button class="d" type="button" data-i="${i}" aria-current="${i===cur}"><span class="top"><span>${d.race} ${d.cls}</span><span>CL ${d.cl}</span></span><span class="k">${esc(d.cause)}</span><span class="meta">game turn ${d.turn.toLocaleString()} · seed ${d.seed}</span></button>`).join('');
+  $('list').innerHTML=D.map((d,i)=>`<button class="d" type="button" data-i="${i}" aria-current="${i===cur}"><span class="top"><span>${d.race} ${d.cls}</span><span>CL ${d.cl}</span></span><span class="k">${esc(d.cause)}</span><span class="meta">game turn ${d.turn.toLocaleString()} · seed ${d.seed}${d.note?' · '+esc(d.note):''}</span></button>`).join('');
   $('list').querySelectorAll('.d').forEach(b=>b.onclick=()=>{cur=+b.dataset.i;fi=frames(D[cur]).length-1;render()});
 }
 function render(){
   const d=D[cur],F=frames(d),f=F[fi];
   $('list').querySelectorAll('.d').forEach(b=>b.setAttribute('aria-current',+b.dataset.i===cur));
   $('t').textContent=`${d.race} ${d.cls}, killed by ${d.cause}`;
-  $('ts').innerHTML=`Seed ${d.seed} · CL ${d.cl} · DL ${d.dl} · game turn ${d.turn.toLocaleString()} · ${d.keys.toLocaleString()} keys · replay ${d.replay_matches?'matches the zoo run':'differs from the zoo run'} · <a href="https://github.com/diegoami/borg-cemetery/tree/main/deaths/${d.case}" target="_blank" rel="noopener">cemetery dossier</a>`;
+  $('ts').innerHTML=`${d.note?esc(d.note)+' · ':''}Seed ${d.seed} · CL ${d.cl} · DL ${d.dl} · game turn ${d.turn.toLocaleString()} · ${d.keys.toLocaleString()} keys · replay ${d.replay_matches?'matches the zoo run':'differs from the zoo run'} · <a href="https://github.com/diegoami/borg-cemetery/tree/main/deaths/${d.case}" target="_blank" rel="noopener">cemetery dossier</a>`;
   $('facts').innerHTML=[`${d.shots} shots`,`${d.melee} melee swings`,`${d.throws} throws`,`${d.cures} cures quaffed`,`${d.ammo} ammo left`].map(x=>`<span class="chip">${x}</span>`).join('')+`<span class="chip${d.last==='melee'?' bad':''}">last attack: ${d.last}</span>`+(d.cure_left?`<span class="chip bad">${d.cure_left} cure potions left</span>`:'');
   $('term').innerHTML=screen(f);
   $('slider').max=F.length-1;$('slider').value=fi;
