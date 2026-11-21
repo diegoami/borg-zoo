@@ -40,6 +40,37 @@ class ConfigurationEvidenceTest(unittest.TestCase):
             configuration.build_inspector(meta, [cell], root / 'results', root / 'bad-site')
             self.assertIsNone(json.loads((root / 'bad-site/configurations/games.json').read_text())['games'][0]['file'])
 
+    def test_cells_sharing_a_config_blob_do_not_race(self):
+        # borg-zoo#548: one cell of 108 failed with "configuration evidence hash mismatch" because it opened the shared
+        # blob while another cell was still writing it. Many threads capturing the same bytes must all verify.
+        import threading
+        data = b"# shared\n" + b"x = 1\n" * 800000
+        digest = hashlib.sha256(data).hexdigest()
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            blobs = root / 'blobs'
+            errors, records = [], []
+
+            def one(i):
+                work = root / f'work{i}'
+                (work / 'user').mkdir(parents=True)
+                (work / 'user/borg.txt').write_bytes(data)
+                row = {'config_sha256': digest, 'seed': i}
+                try:
+                    configuration.capture(row, work, blobs)
+                    records.append(row)
+                except Exception as exc:  # the failure the test is about
+                    errors.append(exc)
+            threads = [threading.Thread(target=one, args=(i,)) for i in range(48)]
+            for t in threads:
+                t.start()
+            for t in threads:
+                t.join()
+            self.assertEqual(errors, [])
+            self.assertTrue(all(r['configuration_file']['status'] == 'verified' for r in records))
+            self.assertEqual(sorted(p.name for p in blobs.iterdir()), [f'{digest}.txt'])
+            self.assertEqual((blobs / f'{digest}.txt').read_bytes(), data)
+
     def test_missing_file_is_explicit_and_zero_values_have_different_meanings(self):
         with tempfile.TemporaryDirectory() as tmp:
             row = {'config_sha256': 'a' * 64}
