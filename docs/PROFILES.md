@@ -106,6 +106,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-deathrisk0eb` | [#534](https://github.com/diegoami/borg-zoo/issues/534) | 1 | defined (exact-build calibration pilot; small and medium follow in order after the gate) | borg-reborn-rs PR #792 at 0eb48328 (core-trace@3): the shipped settings with per-think death_risk observations, evidence retained. |
 | `reborn-recallres` | [#563](https://github.com/diegoami/borg-zoo/issues/563) | 3 | defined (pilot) | Word of Recall replenishment with a reserve of 1 (shipped), 2 and 3 scrolls on ae904090 (borg-reborn-rs #810, PR #813). |
 | `reborn-head` | [#566](https://github.com/diegoami/borg-zoo/issues/566) | 1 | defined (the full classes-1800 ladder: verysmall pilot, small-rest, medium, big, full; dispatched in order at the owner's request) | borg-reborn-rs main 3b4924ba (head on 2026-11-21) with its shipped settings and no overrides over all 1,800 classes-1800 starts. |
+| `reborn-p6final` | [#571](https://github.com/diegoami/borg-zoo/issues/571) | 1 | defined (pilot; the gate is returned before anything else) | P6 final candidate compatibility (borg-reborn-rs #814): main 07aa4b1e against a3635ad8, shipped defaults. |
 
 ### `heal-attack-4`
 
@@ -1540,6 +1541,14 @@ borg-reborn-rs main 3b4924ba (head on 2026-11-21) with its shipped settings and 
 Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 Profiles: `reborn-head-shipped`.
+
+### `reborn-p6final`
+
+P6 final candidate compatibility (borg-reborn-rs #814): main 07aa4b1e against a3635ad8, shipped defaults.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-p6final-shipped`.
 
 ## Settings you have built arms with
 

@@ -1,0 +1,54 @@
+# borg-zoo#571: P6 final candidate compatibility pilot (borg-reborn-rs #814): main 07aa4b1e against a3635ad8, shipped defaults.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-p6-final-pilot.yaml
+name: reborn-p6-final-pilot
+issue: 571
+question: >-
+  Does borg-reborn-rs a3635ad8 (task/T814-p6-final-reconciliation: main 07aa4b1e merged with track-p 221a2504, the reviewed
+  ten enchant/decurse parameters at their neutral defaults) play exactly as 07aa4b1e on the shipped defaults? The
+  final-main reconciliation after reviewed #783; a compatibility check, not tuning or a survival study, and not a re-run of
+  #520's old-pin study.
+tier: pilot            # classes-18, 100,000 turns; an exact native45 follow-up, if required, needs its own gate and disposition
+
+specimens:
+  - name: 4.2.6-reborn-rust-main-07aa4b1e
+    repository: diegoami/borg-reborn-rs
+    ref: 07aa4b1e92642b615e162773800979a97baf0dd6
+    label: "borg-reborn-rs main 07aa4b1e (accepted main): shipped harness/borg.txt, no overrides; writes settings-resolved.json; scary_monsters.txt 9766d882..."
+    scary_lists:
+      scary_monsters.txt: 9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f
+  - name: 4.2.6-reborn-rust-p6-final-a3635ad8
+    repository: diegoami/borg-reborn-rs
+    ref: a3635ad80ceb04165aa1d465acd908c158e50478
+    label: "borg-reborn-rs task/T814-p6-final-reconciliation a3635ad8 (tree c960c16f; parents track-p 221a2504 and main 07aa4b1e): the ten enchant/decurse parameters (decurse_spell_fail 40, enchant_spell_fail 65, enchant_brand_spell_fail 65, enchant_plain_target 8, enchant_ammo_target 10, enchant_min_shooter_power 3, enchant_ammo_min_quantity 5, enchant_brand_min_quantity 20, enchant_dungeon_max_turns 5500, enchant_town_max_turns 3501) at their neutral defaults; engine 574b618c, donor 8c5d000a, native tool pin 46978936."
+    scary_lists:
+      scary_monsters.txt: 9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f
+control_specimen: 4.2.6-reborn-rust-main-07aa4b1e
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-p6final
+arms:
+  shipped: {}      # each build's shipped harness/borg.txt, no overrides; the ten new names are left at compiled defaults
+control: [shipped]
+owner_authorization: >-
+  2026-11-21: zoo owner, "do 571, first thing" (the pilot requested for borg-reborn-rs #814, owner there: "Do 814").
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-21, before any result of these builds was read (borg-zoo#571; borg-reborn-rs #814, source RULES20). Standard
+  classes-18 pilot (RULES 16) on the two exact specimens, shipped harness/borg.txt defaults, borg-rs core, errand none, cap
+  100,000; 36 games, evidence retained. Nothing is expanded automatically: the gate is returned first; an exact native45
+  follow-up, if required, keeps the manifest sha256 7c81c28c03be3e6c188cb555fa8c917402bae0819d0791a1a810e031214d2eed
+  (suite reborn-native-full45) and needs its own gate and the owner's disposition (the #520 authorization was specific to its
+  old two refs).
+  Gate: both exact builds; one binary each; every cell, build, config, effective setting and retained evidence inspected; no
+  config_error, stall, timeout or crash; paired key, message and state differences and full-trace evidence hashes where
+  retained; outcomes and final fields consistent; source, binary, config and parameter receipt pins. The ten new defaults must be
+  40/65/65/8/10/3/5/20/5500/3501 in the candidate (compiled defaults read from params-core.json, since the effective-settings
+  echo omits defaults) and absent from the baseline; the resolved-settings receipt (settings_resolved) of each cell is
+  kept and read. No non-neutral arm. Stop on a mismatch and report the exact start, first differing key, trace and source;
+  report adapter and echo limits instead of declaring strict parity silently. All failures and deaths retained and
+  classified. No population or survival-improvement claim.
