@@ -1,5 +1,7 @@
 # Town class-profile checks (#88)
 
+This validation contract describes the pinned #88 probe. See [DESIGN](DESIGN.md#evidence-and-collection) for current evidence handling.
+
 **Question:** does each class receive the requested parameters, and do the
 native parsed settings match every recorded shadow vector?
 

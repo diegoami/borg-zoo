@@ -61,14 +61,17 @@
     disagree. The format is in `docs/DEFINE.md`.
 16. **Always the pilot first** (owner, 2026-11-17). Every measurement starts
     with a pilot of exactly its arms on exactly its build: the same
-    specimen(s) and the same profiles, on `classes-18` (`tier: pilot`), or
+    specimen(s) and profiles, on `classes-18` (`tier: pilot`), or
     on the study's own suite marked `pilot: true` when it is one class's
     starts. This holds even when a request asks for a bigger tier, and when
     only the build changed, even if the source is the same and only
     `borg.txt` differs. Propose the pilot instead and say why; a larger tier
     follows only after the pilot's gate is checked and the owner agrees
     (RULES 14). `python3 -m zoo define` refuses a new experiment above pilot
-    size when the catalogue has no such pilot. Experiments generated before
+    size when the catalogue has no pilot covering every requested specimen and
+    profile. A later tier can reuse a subset by listing those existing profiles.
+    The catalogue check verifies the definition. Inspect the collected pilot
+    before dispatching the next tier. Experiments generated before
     this rule are not rechecked.
     A screen or check of several switches on a main whose shipped arm has
     no death on `classes-18` may use `classes-1800-small` (starts 1-90,
@@ -105,3 +108,10 @@
     touch `zoo/`, `catalogue/` or the workflow. A session that finds a page
     more than two hours behind the results branch dispatches
     `gh workflow run pages.yml` and checks why the schedule did not fire.
+20. **Dispatch from the merged definition.** Check preflight, inspect the
+    plan and verify the JSON path on `main` after a successful merge. Stop
+    the dispatch if the merge fails. Pass the full path (for example,
+    `experiment=experiments/NAME.json`) and the planned shard count. If the
+    collect job loses an append-only push race, inspect the job and retry
+    with `gh run rerun RUN_ID --failed`. Verify the new attempt on the
+    results branch before reporting it. See [README](README.md#running-an-experiment).

@@ -10,7 +10,10 @@ a larger tier has too many deaths to read one by one.
 
 1. Find the experiment file and the run id. The run must have finished and been
    collected to the results branch.
-2. Generate the report:
+2. Generate the report on Linux from a checkout of the collected run's definition.
+   This helper assumes one borg-rs-kind specimen and uses the archived build.
+   For a source-based screen recording, see [death-report](../death-report/SKILL.md)
+   and its optional `~/projects/borg-reborn-rs` clone reference.
 
    ```sh
    python3 -m zoo.death_report --experiment experiments/NAME.json --run RUN_ID \
@@ -19,7 +22,8 @@ a larger tier has too many deaths to read one by one.
 
    This reads the run's cells from `origin/results` and groups the deaths by game:
    the same class, seed and play hash in several arms is one death. It downloads
-   the run's build artifact (`build-SPECIMEN`) and replays every dying arm plus the
+   the run's Linux build artifact (`build-SPECIMEN`; 7 days normally, 90
+   with `retain_evidence`) and replays every dying arm plus the
    control with `zoo run --keep`. Then it checks each replayed play hash against
    CI and writes `reports/NAME-deaths/README.md` and `evidence/`. It exits 1 if
    any replay does not match CI. In that case, stop and report the mismatch:

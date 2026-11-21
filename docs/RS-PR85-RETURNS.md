@@ -1,5 +1,7 @@
 # PR85 full-suite return-threshold development study
 
+Historical development study. The dispatch section records the original launch. See [FINDINGS](FINDINGS.md#rust-borg-borg-rs) for results.
+
 Owner instructions, 2026-11-15: merge the repaired inventory branch, restore
 the old selling-pressure fallback, and test exactly
 `(borg_trip_pack_slack, borg_trip_unknown_stacks) = (0,0), (1,2), (1,4), (2,4)`.

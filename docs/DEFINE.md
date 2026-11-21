@@ -1,8 +1,9 @@
 # Defining an experiment in YAML
 
-Every experiment has a definition, `definitions/NAME.yaml` (RULES 15). It is the
-only thing to write by hand. This command writes the experiment file and any new
-specimen and profiles:
+The YAML definition in `definitions/NAME.yaml` is the source of the generated
+experiment JSON (RULES 15). Use Python 3 with PyYAML installed. Definitions
+can reuse existing catalogue entries or create specimens and profiles. A new
+seed suite is a separate catalogue entry in `catalogue/suites.json`.
 
 ```sh
 python3 -m zoo define definitions/NAME.yaml           # write the catalogue entries
@@ -71,7 +72,7 @@ prespecified: |
 | `settings` | Settings shared by every arm. |
 | `vary` | Dimensions whose options multiply the arms. Option names build the profile names. |
 | `arms` | Instead of `vary`: each arm named, with its settings. |
-| `profiles` | Instead of `vary` or `arms`: existing profiles reused by name. |
+| `profiles` | Instead of `vary` or `arms`: existing profiles reused by name. Use this for later tiers that keep a subset of the pilot's profiles. `settings` does not override a reused profile. |
 | `profile_prefix` | The start of each profile name; defaults to `name`, and `''` means none. |
 | `control` | The control arm, by its option names; or `control_specimen` and `control_profile`. |
 | `prespecified` | The gate and endpoints, fixed before any result is read. |
@@ -82,6 +83,23 @@ prespecified: |
 
 YAML reads unquoted `on`, `off`, `yes` and `no` as true and false. Quote them when they are option names (`'on'`).
 
+## Custom seed suites
+
+Add an imported list of explicit `seeds` with `"external": true` under
+`suites` in `catalogue/suites.json`. This keeps the manifest's seeds out of
+the generator's exclusion set. Omitting the flag can silently shift an
+existing `seed_rule` suite (see [#547](https://github.com/diegoami/borg-zoo/pull/547)).
+If the manifest fixes births, set `"birth": "assigned"` and supply one
+`assigned_characters` entry per seed, with a string key and
+`[race, class]` value. Keep the manifest's order and record its provenance.
+See `reborn-native-full45` and `reborn-flight-600-pilot18` for examples.
+
+Use `suite: NAME` in the definition. If this is the first study run on its
+own development suite, set `pilot: true`. Later tiers can list the subset
+of pilot profiles they are taking forward, with `control_profile` set
+explicitly. Generate and check the definition, then run preflight and plan.
+The pilot's presence in the catalogue does not by itself clear the results gate.
+
 ## Asking for a run
 
 Open a **Run request** issue. Its main field is a definition like the one above.
@@ -90,25 +108,11 @@ the sanity cells, and dispatches the requested tier.
 
 ## Saving deaths in the cemetery
 
-The results branch keeps each cell's record (seed, class, race, cause, level, depth,
-`play_sha256`) but no key logs, so a death is replayed locally before it is read or
-saved; the game is deterministic. Say in the run request which deaths to save (the
-**Save deaths in the cemetery** field), or ask in the issue after the run. The zoo
-session then:
-
-1. builds the pinned specimen in its own checkout and replays the arm with the logs
-   kept: `python3 -m zoo run ... --arm SPECIMEN:PROFILE --build build --work work --keep`
-   (under `flock /tmp/angband-validation.lock`, RULES 9);
-2. writes a reading report for the arm, `python3 tools/report-deaths.py` into
-   `reports/NAME-deaths/` (what killed each death, the last messages and Borg notes,
-   whether the replay's keys equal the recorded `play_sha256`);
-3. saves the deaths with `python3 tools/save-deaths.py` into a **fresh clone** of
-   borg-cemetery on a branch, never another session's worktree. The tool checks every
-   replay against the recorded hashes and skips any that does not reproduce, writes the
-   run's `config.txt`, runs the cemetery's `export-death.py`, and `death_ids.py --check`;
-4. adds a short `runs/DATE-zoo-NAME/README.md` there with provenance (specimen, ref,
-   settings, replay and binary hashes), opens the cemetery pull request and links it in
-   the zoo issue.
-
-The cemetery's own tools write the dossiers; the zoo writes nothing else there. The
-cemetery PR is the owner's to review and merge.
+Rust headless comparisons replay natural deaths into separate `deaths-*`
+artifacts by default. The archived cell still has its `play_sha256` after
+the bundle expires. Use [CEMETERY-DEATHS](CEMETERY-DEATHS.md) for the bundle
+import, and [the pilot-deaths skill](../.claude/skills/pilot-deaths/SKILL.md)
+to read a pilot's deaths from its original build. Specify the selection
+in the request or on its issue. A replay whose keys differ from the
+recorded hash still needs investigation before it can be used as evidence.
+The cemetery PR is the owner's to review and merge.

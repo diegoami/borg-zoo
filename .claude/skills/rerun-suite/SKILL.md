@@ -19,7 +19,10 @@ The format and the gate are in `docs/SUITE-RUNS.md`. The suites are in `scenario
    - its `engine/UPSTREAM` commit must equal the suite's `protocol.engine_commit`;
    - note its `death-tools-pin.txt`.
 
-   If the engine differs, stop and tell the owner: the saves need another suite version.
+   Suite 1 pins `42cd156ac`. A build on `574b618c` fails validation (#473).
+   If the engine differs, report the mismatch. A compatible pinned ref can
+   still run Suite 1. Use a newer engine only after the owner decides how
+   to qualify the bank.
 2. **Name the run** `suite1-reborn-<branch or label>-<sha8>-<stock|profile>`. Check that no
    `scenario-inputs/NAME` or `scenario-experiments/NAME.json` exists yet.
 3. **Freeze the inputs.** Use a clean detached worktree of borg-reborn-rs at the SHA, never

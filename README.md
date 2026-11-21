@@ -12,27 +12,41 @@ settings, with early-game survival first?**
 
 | Piece | What it is |
 | --- | --- |
-| [Specimens](catalogue/specimens.json) | A Borg version: the game and Borg source at a pinned commit. Today: the original C Borg (angband/angband `e473720`) and better-borg-c milestones 1–4 (2, 7, 34 and 42 carried fixes). |
-| [Profiles](catalogue/profiles.json) | A configuration: the `borg.txt` settings a run uses. Every run checks the settings the Borg actually applied; one that did not take effect makes the run a `config_error`. |
+| [Specimens](catalogue/specimens.json) | A Borg version: the game and Borg source at a pinned commit. The catalogue includes the original C Borg, better-borg-c milestones, borg-rs and borg-reborn-rs builds, and Neo/Mandos lanes. |
+| [Profiles](catalogue/profiles.json) | A configuration: the `borg.txt` settings a run uses. Validation is harness- and specimen-specific. Cells can carry the written configuration, native settings and a core resolution receipt. |
 | [Suites](catalogue/suites.json) | Frozen seed lists with a turn cap, time limits and a birth rule. |
 | [Experiments](experiments/) | Specimens × profiles × suites, with a control arm for paired comparison. |
-| Runner | [better-borg-c](https://github.com/diegoami/better-borg-c)'s native runner and observer, pinned in the specimens catalogue. The zoo calls it; it does not reimplement it. |
-| Results | One JSON line per run on the [`results`](https://github.com/diegoami/borg-zoo/tree/results) branch, append-only, one directory per workflow run. |
+| Runner | The specimen selects a runner. The [design](docs/DESIGN.md) describes the C observer, the Rust headless adapter and the Neo/Mandos adapters. |
+| Results | One JSON line per cell on the [`results`](https://github.com/diegoami/borg-zoo/tree/results) branch, append-only, one directory per workflow run. |
 | Site | Static tables built from the results branch: outcomes per arm, paired rescued/newly-killed counts, survival by turn, depth reached. |
 
 ## Running an experiment
 
-On GitHub: **Actions → compare → Run workflow**, then choose the experiment
-file. The workflow builds each specimen once, runs the cells in parallel
-jobs, appends the results to the `results` branch and rebuilds the site.
+Write or update the YAML definition and run `zoo define`, `zoo preflight` and
+`zoo plan` before opening the catalogue PR. Start with a pilot and inspect its
+gate before asking the owner to grow the study. See [DEFINE](docs/DEFINE.md)
+and [RULES 11, 14–17](RULES.md).
 
-A big experiment is better run one arm at a time: `python3 -m zoo arms
---experiment experiments/F.json` lists the arms (`SPECIMEN:PROFILE`), and
-each is dispatched with the `arm` input. Every arm run keeps the experiment's
-name as its tag and appends its own run to the `results` branch; the site
-merges the arm runs of a tag into one experiment page and says where they
-differ (date, harness commit, compiler). A timeout then costs one arm, not the
-experiment.
+After the PR merges successfully, dispatch `compare.yml` from `main`. Pass the
+repository-relative JSON path as `experiment`, and size the shards from the
+pilot and the account's runner budget. This example reruns an existing pilot:
+
+```sh
+python3 -m zoo preflight --experiment experiments/reborn-settings-receipt-pilot.json
+python3 -m zoo plan --experiment experiments/reborn-settings-receipt-pilot.json --shards 3
+gh workflow run compare.yml --ref main \
+  -f experiment=experiments/reborn-settings-receipt-pilot.json -f shards=3
+```
+
+Check the run's build and cell outcomes, then look for
+`results/EXPERIMENT/RUN_ID-ATTEMPT/` on the results branch. If collection fails
+with `results -> results (fetch first)`, retry the failed jobs with
+`gh run rerun RUN_ID --failed` and verify the new attempt was published.
+
+For a single-arm diagnostic, `python3 -m zoo arms --experiment experiments/NAME.json`
+lists the `SPECIMEN:PROFILE` values for the optional `arm` input. The site groups
+separate arm runs by experiment name and shows their provenance. Dispatch
+paired study arms together to preserve the shared run conditions.
 
 **Smoke checks** (a milestone or head builds and plays) live in
 [`smoke/`](smoke/), not in `experiments/`. **Actions → smoke → Run workflow**
@@ -56,7 +70,7 @@ Tests: `python3 -m unittest discover -s tests`.
 
 ## Deaths go to the cemetery
 
-Every natural death of a borg-rs or borg-reborn-rs cell is replayed once with
+When cemetery bundles are enabled (the default), each natural death of a borg-rs or borg-reborn-rs cell is replayed once with
 full logs. Its key stream is checked against the cell's, and the result is
 uploaded as a death bundle in the run's `deaths-<specimen>-<shard>` artifacts
 (90 days). borg-cemetery imports a run's deaths as replayable dossiers with

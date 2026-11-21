@@ -7,6 +7,9 @@ incident index, or use Cemetery's stream-equality `verify` as an impact test.
 Synthetic records never enter `results/*/*/cells.jsonl`, population tables or
 natural-death registries.
 
+The smoke below preserves the pinned generated-birth comparison. For
+the frozen saved-state bank and its staged reruns, use [SUITE-RUNS](SUITE-RUNS.md).
+
 ## Reviewed definition and pushid resolution
 
 `scenario-experiments/cemetery-warrior-smoke.json` is the two-cell CI/manual smoke:

@@ -16,9 +16,19 @@ no other build beside it, unless the owner asks for a comparison. Another build 
 configuration is another run of the same suite, never a new suite. Changing a suite's saves
 makes a new version (`suite1-v2`).
 
+## Engine compatibility
+
+`suite1-v1` pins upstream Angband `42cd156ac`. A borg-reborn-rs build
+using `574b618c` fails the exact-engine check before execution (#473).
+Check the chosen commit's `engine/UPSTREAM` against the suite's
+`protocol.engine_commit` before snapshotting. For Suite 1 use a compatible
+older commit. Using the newer engine needs an owner decision on a new
+suite version or a verified compatibility policy.
+
 ## Start a run
 
-`/rerun-suite` does all of this. By hand:
+`/rerun-suite` does all of this. The local commands use Linux, like
+the workflow runner. By hand:
 
 1. **Freeze the inputs** from a clean borg-reborn-rs checkout at the commit:
 
@@ -50,7 +60,7 @@ makes a new version (`suite1-v2`).
 
    ```sh
    gh workflow run suite-run.yml -R diegoami/borg-zoo --ref BRANCH \
-     -f definition=scenario-experiments/NAME.json -f stage=small -f parent_run=<smoke run id>
+     -f definition=scenario-experiments/NAME.json -f stage=small -f parent_run=SMOKE_RUN_ID
    ```
 
    A later stage reuses the parent's build, plan and cells. It revalidates the parent's
