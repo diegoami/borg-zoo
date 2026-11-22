@@ -1,0 +1,46 @@
+# borg-zoo#695 follow-up: the level-1 deaths of reborn-trackp-206cf4e7-full (run 45070528012-2), pilot tier on track-p 7a466d73.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-lvl1-7a466d73-pilot.yaml
+name: reborn-lvl1-7a466d73-pilot
+issue: 695
+question: >-
+  On borg-reborn-rs track-p 7a466d73, do the first cures for every class (town_first_cure 2, at 200 or 400 percent), the #926 fast-fragile bundle, the two
+  together, the kit leash, or rest-at-the-stairs cut the CL1-2 deaths of the 206cf4e7 full run, and at what cost in progress?
+tier: pilot            # classes-18, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-7a466d73
+  repository: diegoami/borg-reborn-rs
+  ref: 7a466d7316db6f760ae59d3afa3eb72f4d046f5a
+  label: "borg-reborn-rs track-p head 7a466d73 on 2026-11-22 (#1057 ships attack_reserve_spell_overexert 0 (#1056); #890 unseen_belief compiled, shipped 0; #1035 potion ranged veto; on top of abd0cce1); shipped harness/borg.txt 9a7b57cb..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-lvl1
+arms:
+  ctl: {}
+  cure2: {borg_param_town_first_cure: 2}
+  ff: {borg_param_fast_fragile_heal_floor: 50, borg_param_fast_fragile_escape_quantile: 75, borg_param_fast_fragile_count_dot: 1}
+  cure2-ff: {borg_param_town_first_cure: 2, borg_param_fast_fragile_heal_floor: 50, borg_param_fast_fragile_escape_quantile: 75, borg_param_fast_fragile_count_dot: 1}
+  cure2p400-ff: {borg_param_town_first_cure: 2, borg_param_town_first_cure_percent: 400, borg_param_fast_fragile_heal_floor: 50, borg_param_fast_fragile_escape_quantile: 75, borg_param_fast_fragile_count_dot: 1}
+  kitleash: {borg_param_kit_leash: 1}
+  reststairs: {borg_param_recover_rest_reach_stairs: 20, borg_param_caution_stairs_leave_on_monster: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs owner, level-1 death review of 206cf4e7: "propose a zoo experiment at the pilot or verysmall tier as a
+  definition PR [...] Dispatching zoo runs is the owner's call." Proposed only: not dispatched.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read on the zoo (the local replays of the 20 death seeds of run 45070528012-2 are
+  in borg-cemetery studies/lvl1-deaths-trackp-206cf4e7; they are leads). Seven arms on track-p 7a466d73, classes-18, 18 starts each (126 cells), 100,000
+  turns, evidence retained. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or
+  borg_stopped; stalls and wall timeouts apart; identical plays per arm counted. Report per arm and class: deaths and causes, deaths at
+  CL <= 2 apart, paired rescued and newly killed against ctl; cure potions bought on the first town trip and quaffed per game (cure2);
+  Phase Doors read (ff); progress: CL at 25k, 50k and 100k turns (milestones), starts reaching DL3 and DL5 and their first turn there
+  (first_turn_at_depth). Directional (RULES 14): at about 2% deaths a pilot expects under one death per arm, so it is a gate. Next, on the
+  owner's go: verysmall (classes-1800 starts 1-45), then small and medium for the arms kept, then a confirmation on an unopened block.

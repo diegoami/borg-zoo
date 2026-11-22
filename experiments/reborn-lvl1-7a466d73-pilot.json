@@ -1,0 +1,28 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-lvl1-7a466d73-pilot",
+  "issue": 695,
+  "definition": "definitions/reborn-lvl1-7a466d73-pilot.yaml",
+  "question": "On borg-reborn-rs track-p 7a466d73, do the first cures for every class (town_first_cure 2, at 200 or 400 percent), the #926 fast-fragile bundle, the two together, the kit leash, or rest-at-the-stairs cut the CL1-2 deaths of the 206cf4e7 full run, and at what cost in progress?",
+  "description": "On borg-reborn-rs track-p 7a466d73, do the first cures for every class (town_first_cure 2, at 200 or 400 percent), the #926 fast-fragile bundle, the two together, the kit leash, or rest-at-the-stairs cut the CL1-2 deaths of the 206cf4e7 full run, and at what cost in progress? Generated from definitions/reborn-lvl1-7a466d73-pilot.yaml: 7 arms on 4.2.6-reborn-rust-trackp-7a466d73, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read on the zoo (the local replays of the 20 death seeds of run 45070528012-2 are\nin borg-cemetery studies/lvl1-deaths-trackp-206cf4e7; they are leads). Seven arms on track-p 7a466d73, classes-18, 18 starts each (126 cells), 100,000\nturns, evidence retained. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or\nborg_stopped; stalls and wall timeouts apart; identical plays per arm counted. Report per arm and class: deaths and causes, deaths at\nCL <= 2 apart, paired rescued and newly killed against ctl; cure potions bought on the first town trip and quaffed per game (cure2);\nPhase Doors read (ff); progress: CL at 25k, 50k and 100k turns (milestones), starts reaching DL3 and DL5 and their first turn there\n(first_turn_at_depth). Directional (RULES 14): at about 2% deaths a pilot expects under one death per arm, so it is a gate. Next, on the\nowner's go: verysmall (classes-1800 starts 1-45), then small and medium for the arms kept, then a confirmation on an unopened block.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-7a466d73"
+  ],
+  "profiles": [
+    "reborn-lvl1-ctl",
+    "reborn-lvl1-cure2",
+    "reborn-lvl1-ff",
+    "reborn-lvl1-cure2-ff",
+    "reborn-lvl1-cure2p400-ff",
+    "reborn-lvl1-kitleash",
+    "reborn-lvl1-reststairs"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-7a466d73",
+  "control_profile": "reborn-lvl1-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs owner, level-1 death review of 206cf4e7: \"propose a zoo experiment at the pilot or verysmall tier as a definition PR [...] Dispatching zoo runs is the owner's call.\" Proposed only: not dispatched.",
+  "retain_evidence": true
+}

@@ -12027,6 +12027,71 @@
         "borg_param_attack_throw_point_blank_divisor__rogue": 1,
         "borg_param_attack_throw_point_blank_divisor__blackguard": 1
       }
+    },
+    "reborn-lvl1-ctl": {
+      "description": "borg-zoo#695 (reborn-lvl1-7a466d73-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-lvl1-cure2": {
+      "description": "borg-zoo#695 (reborn-lvl1-7a466d73-pilot.yaml): arm cure2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_first_cure": 2
+      }
+    },
+    "reborn-lvl1-ff": {
+      "description": "borg-zoo#695 (reborn-lvl1-7a466d73-pilot.yaml): arm ff.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_heal_floor": 50,
+        "borg_param_fast_fragile_escape_quantile": 75,
+        "borg_param_fast_fragile_count_dot": 1
+      }
+    },
+    "reborn-lvl1-cure2-ff": {
+      "description": "borg-zoo#695 (reborn-lvl1-7a466d73-pilot.yaml): arm cure2-ff.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_first_cure": 2,
+        "borg_param_fast_fragile_heal_floor": 50,
+        "borg_param_fast_fragile_escape_quantile": 75,
+        "borg_param_fast_fragile_count_dot": 1
+      }
+    },
+    "reborn-lvl1-cure2p400-ff": {
+      "description": "borg-zoo#695 (reborn-lvl1-7a466d73-pilot.yaml): arm cure2p400-ff.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_first_cure": 2,
+        "borg_param_town_first_cure_percent": 400,
+        "borg_param_fast_fragile_heal_floor": 50,
+        "borg_param_fast_fragile_escape_quantile": 75,
+        "borg_param_fast_fragile_count_dot": 1
+      }
+    },
+    "reborn-lvl1-kitleash": {
+      "description": "borg-zoo#695 (reborn-lvl1-7a466d73-pilot.yaml): arm kitleash.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1
+      }
+    },
+    "reborn-lvl1-reststairs": {
+      "description": "borg-zoo#695 (reborn-lvl1-7a466d73-pilot.yaml): arm reststairs.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_recover_rest_reach_stairs": 20,
+        "borg_param_caution_stairs_leave_on_monster": 1
+      }
     }
   }
 }
