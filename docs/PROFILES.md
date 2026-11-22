@@ -154,7 +154,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-zerohp` | [#670](https://github.com/diegoami/borg-zoo/issues/670) | 2 | defined (pilot) | kill_live_zero_hp (#975, PR #994) on 1f4e9e89: ctl, zero, classes-18. |
 | `reborn-rest` | [#671](https://github.com/diegoami/borg-zoo/issues/671) | 4 | defined (pilot) | borg_recover rest switches (#981, #982; PRs #998, #999) on ed6c7ab8: ctl, shot, cure, both, classes-18. |
 | `reborn-ffq` | [#672](https://github.com/diegoami/borg-zoo/issues/672) | 7 | defined (pilot) | Fast-fragile quantile, heal floor, dot (#926, PR #1002) on d3c0fba9: 7 arms, classes-18. |
-| `reborn-overex` | [#675](https://github.com/diegoami/borg-zoo/issues/675) | 2 | defined (pilot on the small Mage suite) | Emergency attack spell beyond the mana (#980, PR #991) on 89888283: ctl (1), noexert (0), Mages. |
+| `reborn-overex` | [#675](https://github.com/diegoami/borg-zoo/issues/675) | 3 | defined (pilot on the small Mage suite) | Emergency attack spell beyond the mana (#980, PR #991, re-synced to 80cf6bf4): ctl (1), noexert (0), faint100, Mages. |
 | `reborn-unkcure` | [#684](https://github.com/diegoami/borg-zoo/issues/684) | 4 | defined (pilot) | Unknown cures and the cure HP floor (#985, PR #1003) on b5b0f5fd: ctl, hold, floor, both, classes-18. |
 | `reborn-rclshallow` | [#688](https://github.com/diegoami/borg-zoo/issues/688) | 4 | defined (pilot) | Recall on shallow trips (#984, PR #997) on 434d5371: ctl, urgent, hold, both, classes-18. |
 
@@ -2199,14 +2199,15 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 ### `reborn-overex`
 
-Emergency attack spell beyond the mana (#980, PR #991) on 89888283: ctl (1), noexert (0), Mages.
+Emergency attack spell beyond the mana (#980, PR #991, re-synced to 80cf6bf4): ctl (1), noexert (0), faint100, Mages.
 
 Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
-| Profile | `borg_param_attack_reserve_spell_overexert` |
-| --- | --- |
-| `reborn-overex-ctl` | – |
-| `reborn-overex-noexert` | 0 |
+| Profile | `borg_param_attack_reserve_faint_percent` | `borg_param_attack_reserve_spell_overexert` |
+| --- | --- | --- |
+| `reborn-overex-ctl` | – | – |
+| `reborn-overex-noexert` | – | 0 |
+| `reborn-overex-faint100` | 100 | – |
 
 ### `reborn-unkcure`
 
@@ -2316,7 +2317,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_projectile_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_warrior_spell_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
-| `borg_param_attack_reserve_faint_percent` | 25, not set | `reborn-loneslow`, `reborn-lonew` |  |
+| `borg_param_attack_reserve_faint_percent` | 25, 100, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-overex` |  |
 | `borg_param_attack_reserve_spell_damage_only` | 1, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_attack_reserve_spell_overexert` | 0, not set | `reborn-overex` |  |
 | `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |
