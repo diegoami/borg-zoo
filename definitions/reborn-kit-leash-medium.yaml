@@ -1,0 +1,52 @@
+# borg-zoo#589: medium tier follow-up of reborn-kit-leash-pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-kit-leash-medium.yaml
+name: reborn-kit-leash-medium
+issue: 589
+question: >-
+  On borg-reborn-rs main f57499d0, does the basic-kit mode (a kit score of cures, Phase Door, missiles or oil, light and
+  food; a leash that shrinks with it, curiosity limits, and three ways back to a full kit: restock, a start reserve, money
+  first) keep the Borg alive and progressing, against the shipped play (every kit switch 0)? kit_leash 1 is the core of it.
+tier: medium            # classes-1800 starts 91-360, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-f57499d0
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-kitleash
+arms:
+  ctl: {}
+  leash: {borg_param_kit_leash: 1, borg_param_kit_leash_min: 1, borg_param_kit_leash_power: 1}
+  leash-p2: {borg_param_kit_leash: 1, borg_param_kit_leash_power: 2}
+  leash-m0: {borg_param_kit_leash: 1, borg_param_kit_leash_min: 0, borg_param_kit_leash_power: 2}
+  leash-m2: {borg_param_kit_leash: 1, borg_param_kit_leash_min: 2}
+  kit: {borg_param_kit_leash: 1, borg_param_kit_descent_min_percent: 50, borg_param_kit_leave_danger_percent: 25}
+  a: {borg_param_kit_restock: 1, borg_param_kit_restock_light_turns: 500}
+  b: {borg_param_kit_start_reserve: 1}
+  b-classes: {borg_param_kit_start_reserve__ranger: 1, borg_param_kit_start_reserve__priest: 1, borg_param_kit_start_reserve__blackguard: 1, borg_param_kit_start_reserve__rogue: 1}
+  c: {borg_param_kit_leash: 1, borg_param_kit_money_first: 1}
+  a+b: {borg_param_kit_restock: 1, borg_param_kit_start_reserve: 1}
+  kit-money-hunt: {borg_param_kit_leash: 1, borg_param_kit_leash_min: 2, borg_param_kit_money_first: 1, borg_param_town_hunt: 1}
+  all:
+    borg_param_kit_leash: 1
+    borg_param_kit_descent_min_percent: 50
+    borg_param_kit_leave_danger_percent: 25
+    borg_param_kit_restock: 1
+    borg_param_kit_restock_light_turns: 500
+    borg_param_kit_start_reserve: 1
+    borg_param_kit_money_first: 1
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: zoo owner, "go with those as well" (the medium tier; the pilot gate is read and posted on the issue).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22 after the pilot gate (run 44981752264: no deaths in 10 arms, 3 arms lose the Ranger 226104090, depth falls 0.1-0.3 in the leash arms) and before any result of this tier was read. Medium tier (RULES 14) on the same build:
+  classes-1800 starts 91-360 (270 starts per arm, paired), all classes, 100,000 turns, one binary, disjoint from the other tiers of
+  the study (pool them as one study, RULES 14). All 13 arms of the pilot. Progress (alive at the cap with DL5 reached) is part of the question: a short leash can leave a Borg with nothing to do. Money scum stays out (RULES 15).
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by
+  start. Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level, alive at the cap having
+  reached DL5; paired rescued and newly killed against the control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not
+  retained at this tier. Descriptive.

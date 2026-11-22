@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-recall-blow-medium",
+  "issue": 632,
+  "definition": "definitions/reborn-recall-blow-medium.yaml",
+  "question": "On borg-reborn-rs 201d56eb (PR #892, track-p 4c686250 merged), does the flight Recall survival forecast's new blow model (poison priced as HP, status blows by their dice, a breeder's risk never refusing Recall, contact HP capped at the fastest attackers) save the games in which the old rule refused Recall (white worm masses, poison), or does it read Recall where the Borg then dies?",
+  "description": "On borg-reborn-rs 201d56eb (PR #892, track-p 4c686250 merged), does the flight Recall survival forecast's new blow model (poison priced as HP, status blows by their dice, a breeder's risk never refusing Recall, contact HP capped at the fastest attackers) save the games in which the old rule refused Recall (white worm masses, poison), or does it read Recall where the Borg then dies? Generated from definitions/reborn-recall-blow-medium.yaml: 2 arms on 4.2.6-reborn-rust-recall-blow-201d56eb, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-22 after the pilot gate (run 44982717684: 18 of 18 identical plays (the model acts on classes-1800 games with poison, status blows or breeders)) and before any result of this tier was read. Medium tier (RULES 14) on the same build:\nclasses-1800 starts 91-360 (270 starts per arm, paired), all classes, 100,000 turns, one binary, disjoint from the other tiers of\nthe study (pool them as one study, RULES 14). \nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by\nstart. Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level, alive at the cap having\nreached DL5; paired rescued and newly killed against the control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not\nretained at this tier. Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-recall-blow-201d56eb"
+  ],
+  "profiles": [
+    "reborn-blow-blow-off",
+    "reborn-blow-blow-on"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-recall-blow-201d56eb",
+  "control_profile": "reborn-blow-blow-off",
+  "owner_authorization": "2026-11-22: zoo owner, \"go with those as well\" (the medium tier; the pilot gate is read and posted on the issue).",
+  "retain_evidence": false
+}
