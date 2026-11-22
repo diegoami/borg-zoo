@@ -2020,6 +2020,16 @@
         "reborn-wjelly-all"
       ],
       "runs": []
+    },
+    "reborn-trackp-regression": {
+      "issue": 645,
+      "status": "defined (diagnosis pilot)",
+      "what": "The 37 starts that die on track-p 9085c266 and survive on main f57499d0, on the track-p head: shipped against attack_confused_by_direction 0, evidence retained.",
+      "profiles": [
+        "reborn-regress-shipped",
+        "reborn-regress-confused0"
+      ],
+      "runs": []
     }
   }
 }

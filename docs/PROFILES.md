@@ -147,6 +147,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-pbdtp` | [#651](https://github.com/diegoami/borg-zoo/issues/651) | 2 | defined (development re-measure on the 200 Ranger starts) | Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e (re-measure of #290): ctl, lo. |
 | `reborn-cavesp` | [#652](https://github.com/diegoami/borg-zoo/issues/652) | 8 | defined (pilot) | Five switches from the cave-spider death (#913-#916, #941) on 67a0c69d: 8 arms, classes-18. |
 | `reborn-wjelly` | [#654](https://github.com/diegoami/borg-zoo/issues/654) | 6 | defined (pilot) | Four switches from the white-jelly death (#931-#934) on 172bd671: ctl, reach, osc, kill, poison, all, classes-18. |
+| `reborn-trackp-regression` | [#645](https://github.com/diegoami/borg-zoo/issues/645) | 2 | defined (diagnosis pilot) | The 37 starts that die on track-p 9085c266 and survive on main f57499d0, on the track-p head: shipped against attack_confused_by_direction 0, evidence retained. |
 
 ### `heal-attack-4`
 
@@ -2093,6 +2094,17 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-wjelly-poison` | 75 | – | – | – |
 | `reborn-wjelly-all` | 75 | 3 | 3 | 1 |
 
+### `reborn-trackp-regression`
+
+The 37 starts that die on track-p 9085c266 and survive on main f57499d0, on the track-p head: shipped against attack_confused_by_direction 0, evidence retained.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_confused_by_direction` |
+| --- | --- |
+| `reborn-regress-shipped` | – |
+| `reborn-regress-confused0` | 0 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2117,7 +2129,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_arrow_point_blank_divisor_ranger` | 0, 1, 3, 4, not set | `reborn-pbd-by-class`, `reborn-pbd-rr`, `reborn-bundle` |  |
 | `borg_param_attack_arrow_point_blank_divisor_rogue` | 0, 2, 4, 6, not set | `reborn-pbd-by-class`, `reborn-pbd-rr` |  |
 | `borg_param_attack_arrow_point_blank_divisor_warrior` | 2, 10, not set | `reborn-pbd-by-class` |  |
-| `borg_param_attack_confused_by_direction` | 1, not set | `reborn-conf` |  |
+| `borg_param_attack_confused_by_direction` | 0, 1, not set | `reborn-conf`, `reborn-trackp-regression` |  |
 | `borg_param_attack_flask_saving` | 2, not set | `reborn-flask` |  |
 | `borg_param_attack_on_sight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3` |  |
 | `borg_param_attack_preference_blackguard_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
