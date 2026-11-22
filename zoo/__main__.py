@@ -186,7 +186,9 @@ def cmd_collect(args):
         'suites': {k: cat['suites'][k] for k in exp['suites']},
     }
     env = {'compilers': sorted({r.get('compiler') for r in records.values() if r.get('compiler')}),
-           'platforms': sorted({r.get('platform') for r in records.values() if r.get('platform')})}
+           'platforms': sorted({r.get('platform') for r in records.values() if r.get('platform')}),
+           # borg-reborn-rs #855: an `ltr` build plays other games from the same seed; absent = built before the key.
+           'arg_orders': sorted({r.get('arg_order') for r in records.values() if r.get('arg_order')})}
     meta = {'schema': 'borg-zoo/run@1', 'run_id': args.run_id, 'run_url': args.run_url,
             'completed': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M UTC'),
             'zoo_commit': args.zoo_commit, 'experiment': exp, 'catalogue': used,

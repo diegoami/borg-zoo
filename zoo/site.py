@@ -293,7 +293,7 @@ def consolidate(runs):
                 'catalogue': catalogue,
                 'run_id': '+'.join(p[0]['run_id'] for p in parts),
                 'environment': {k: sorted({v for p in parts for v in p[0].get('environment', {}).get(k, [])})
-                                for k in ('compilers', 'platforms')},
+                                for k in ('compilers', 'platforms', 'arg_orders')},
                 'missing_cells': sum(p[0].get('missing_cells', 0) for p in parts),
                 'consolidated_runs': [{'run_id': p[0]['run_id'], 'run_url': p[0].get('run_url', ''),
                                        'results_path': results_path(p[2]),
@@ -518,6 +518,10 @@ def consolidated_note(meta):
         differ.append('compiler')
     if len(env.get('platforms', [])) > 1:
         differ.append('platform')
+    if len(env.get('arg_orders', [])) > 1 or 'ltr' in env.get('arg_orders', []):
+        # borg-reborn-rs #855: an `ltr` compiler plays other games from the same seed, so arms built with different
+        # argument orders (or any `ltr` build) are not the same game and a pairing of them says nothing.
+        differ.append('argument order (arg_order, borg-reborn-rs #855)')
     what = ('They differ in: ' + ', '.join(differ) + '.') if differ else 'They share date, harness commit, compiler and platform.'
     return ('<p class="note">This experiment was run one arm per workflow run and consolidated here. '
             f'{what} Each arm plays the same seeds. Where the arms differ in any of these, a paired comparison '
