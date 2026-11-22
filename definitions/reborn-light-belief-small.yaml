@@ -1,0 +1,34 @@
+# borg-zoo#625: small tier follow-up of reborn-light-belief-pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-light-belief-small.yaml
+name: reborn-light-belief-small
+issue: 625
+question: >-
+  On borg-reborn-rs a516df64 (track-p 7e21967b + #888 + #890), does marking the grids lit by the Borg's own light at the
+  engine's radius (cave_light_engine_radius 1), alone and with shooting at monsters believed in the dark (unseen_belief 1),
+  save deaths, above all to worm masses and monsters in the dark, against the shipped play?
+tier: small            # classes-1800 starts 1-90, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-light-belief-a516df64
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-lightbel
+arms:
+  ctl: {}
+  light1: {borg_param_cave_light_engine_radius: 1}
+  light1-belief: {borg_param_cave_light_engine_radius: 1, borg_param_unseen_belief: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: zoo owner, "do all as suggested" (the small tier; the pilot gate is read and posted on the issue).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22 after the pilot gate (run 44976921051: ctl 1 death, light1 0, light1-belief 0) and before any result of this tier was read. Small tier (RULES 14) on the same build:
+  classes-1800 starts 1-90 (90 starts per arm, paired), all classes, 100,000 turns, one binary, disjoint from the other tiers of
+  the study (pool them as one study, RULES 14). 
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by
+  start. Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly
+  killed against the control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not retained at this tier. Descriptive.

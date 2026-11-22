@@ -10558,6 +10558,30 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-bholdn-ctl": {
+      "description": "borg-zoo#627 (reborn-breeder-hold-normal-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-bholdn-hold": {
+      "description": "borg-zoo#627 (reborn-breeder-hold-normal-pilot.yaml): arm hold.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_policy": -1,
+        "borg_param_caution_breeder_hold": 1
+      }
+    },
+    "reborn-bholdn-p6": {
+      "description": "borg-zoo#627 (reborn-breeder-hold-normal-pilot.yaml): arm p6.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_breeder_policy": 6
+      }
     }
   }
 }
