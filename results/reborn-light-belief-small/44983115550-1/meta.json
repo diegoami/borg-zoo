@@ -1,0 +1,577 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-lightbel-ctl": {
+        "description": "borg-zoo#625 (reborn-light-belief-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "8f71bf821d11eed7b280ee52f861d20cf3a9c5e53cd40aafa7fbfff98e018fda"
+      },
+      "reborn-lightbel-light1": {
+        "description": "borg-zoo#625 (reborn-light-belief-pilot.yaml): arm light1.",
+        "settings": {
+          "borg_param_cave_light_engine_radius": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "f6391d6caaa75e9fcb27816d35748598519e19a3897c5aaa459a8bdad9e4f95b"
+      },
+      "reborn-lightbel-light1-belief": {
+        "description": "borg-zoo#625 (reborn-light-belief-pilot.yaml): arm light1-belief.",
+        "settings": {
+          "borg_param_cave_light_engine_radius": 1,
+          "borg_param_unseen_belief": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "7814504524a39d5e72e3ab41b3bf2c761499d74bbe9b6761f4d4c383d3ba38e3"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-light-belief-a516df64": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs task/T879-unseen-belief a516df64 (track-p 7e21967b + #888 + #890): cave_light_engine_radius and unseen_belief compiled and shipped 0; shipped harness/borg.txt 32a20aaf..., scary_monsters.txt ff831d0a...",
+        "ref": "a516df64a285ecf2b6606d550242dc5445b80014",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-small": {
+        "assigned_characters": {
+          "102088710": [
+            "Elf",
+            "Rogue"
+          ],
+          "1028557754": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1042834709": [
+            "Gnome",
+            "Rogue"
+          ],
+          "10488336": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "1058178192": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1071405808": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "1086352478": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "1112777834": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "1149332291": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "1169386844": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "1199401383": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1217781050": [
+            "Human",
+            "Priest"
+          ],
+          "1236782037": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1248006956": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "1269315224": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1272553636": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "1277697136": [
+            "Human",
+            "Rogue"
+          ],
+          "1285833235": [
+            "Gnome",
+            "Paladin"
+          ],
+          "129607500": [
+            "Human",
+            "Ranger"
+          ],
+          "1303043906": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1304510506": [
+            "Half-Orc",
+            "Blackguard"
+          ],
+          "1326666591": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1356248624": [
+            "Elf",
+            "Warrior"
+          ],
+          "1370868461": [
+            "Dwarf",
+            "Mage"
+          ],
+          "1417651640": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "1429594888": [
+            "Dunadan",
+            "Mage"
+          ],
+          "1478804878": [
+            "Elf",
+            "Priest"
+          ],
+          "1484503304": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "1515505937": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1516096046": [
+            "Gnome",
+            "Druid"
+          ],
+          "1545553111": [
+            "High-Elf",
+            "Mage"
+          ],
+          "1552244183": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "1584060551": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "1629166764": [
+            "High-Elf",
+            "Druid"
+          ],
+          "167240942": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1678303796": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1678765969": [
+            "Elf",
+            "Druid"
+          ],
+          "1705599023": [
+            "Dwarf",
+            "Druid"
+          ],
+          "1751715076": [
+            "Human",
+            "Blackguard"
+          ],
+          "1758620521": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1759555484": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "176707408": [
+            "Human",
+            "Necromancer"
+          ],
+          "1834235471": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "1852741500": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1859521195": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1956591784": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "2002578196": [
+            "Hobbit",
+            "Druid"
+          ],
+          "200986077": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "2022908874": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "2041201968": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "2093434235": [
+            "Gnome",
+            "Mage"
+          ],
+          "2097768768": [
+            "Human",
+            "Mage"
+          ],
+          "2109297965": [
+            "Human",
+            "Druid"
+          ],
+          "234773070": [
+            "Elf",
+            "Mage"
+          ],
+          "247227001": [
+            "High-Elf",
+            "Priest"
+          ],
+          "247597266": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "25404286": [
+            "Dwarf",
+            "Blackguard"
+          ],
+          "255960706": [
+            "Dunadan",
+            "Blackguard"
+          ],
+          "300461652": [
+            "Hobbit",
+            "Mage"
+          ],
+          "352388688": [
+            "Human",
+            "Paladin"
+          ],
+          "384988836": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "399497898": [
+            "Dunadan",
+            "Priest"
+          ],
+          "406779093": [
+            "High-Elf",
+            "Blackguard"
+          ],
+          "412975293": [
+            "Elf",
+            "Necromancer"
+          ],
+          "446353753": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "507571350": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "572215387": [
+            "Elf",
+            "Ranger"
+          ],
+          "584077430": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "60792140": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "63257248": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "652511567": [
+            "Gnome",
+            "Priest"
+          ],
+          "655965451": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "674811104": [
+            "Half-Orc",
+            "Paladin"
+          ],
+          "710244031": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "736866367": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "740860644": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "765432699": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "797610775": [
+            "Dwarf",
+            "Paladin"
+          ],
+          "807773433": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "818961361": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "826156836": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "869093144": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "884072154": [
+            "Human",
+            "Warrior"
+          ],
+          "892923114": [
+            "Hobbit",
+            "Priest"
+          ],
+          "904568879": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "920137153": [
+            "Elf",
+            "Paladin"
+          ],
+          "926210318": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "957287853": [
+            "Elf",
+            "Blackguard"
+          ],
+          "979002123": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "99115049": [
+            "High-Elf",
+            "Ranger"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "Tier small of classes-1800 (RULES 14): starts 1-90 (10 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          884072154,
+          2097768768,
+          2109297965,
+          1217781050,
+          176707408,
+          352388688,
+          1277697136,
+          129607500,
+          1751715076,
+          1859521195,
+          247597266,
+          507571350,
+          584077430,
+          1199401383,
+          1584060551,
+          1759555484,
+          1758620521,
+          446353753,
+          1356248624,
+          234773070,
+          1678765969,
+          1478804878,
+          412975293,
+          920137153,
+          102088710,
+          572215387,
+          957287853,
+          1515505937,
+          300461652,
+          2002578196,
+          892923114,
+          384988836,
+          765432699,
+          826156836,
+          1248006956,
+          2022908874,
+          1326666591,
+          2093434235,
+          1516096046,
+          652511567,
+          1236782037,
+          1285833235,
+          1042834709,
+          167240942,
+          1552244183,
+          736866367,
+          1370868461,
+          1705599023,
+          1303043906,
+          10488336,
+          797610775,
+          2041201968,
+          807773433,
+          25404286,
+          1058178192,
+          200986077,
+          1169386844,
+          1852741500,
+          1417651640,
+          674811104,
+          1269315224,
+          1071405808,
+          1304510506,
+          1028557754,
+          63257248,
+          869093144,
+          1086352478,
+          1112777834,
+          1956591784,
+          926210318,
+          60792140,
+          1484503304,
+          740860644,
+          1429594888,
+          1678303796,
+          399497898,
+          904568879,
+          818961361,
+          979002123,
+          1834235471,
+          255960706,
+          655965451,
+          1545553111,
+          1629166764,
+          247227001,
+          1272553636,
+          1149332291,
+          710244031,
+          99115049,
+          406779093
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "range": [
+            0,
+            90
+          ],
+          "suite": "classes-1800"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-22 04:24 UTC",
+  "environment": {
+    "arg_orders": [],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-light-belief-a516df64",
+    "control_profile": "reborn-lightbel-ctl",
+    "definition": "definitions/reborn-light-belief-small.yaml",
+    "description": "On borg-reborn-rs a516df64 (track-p 7e21967b + #888 + #890), does marking the grids lit by the Borg's own light at the engine's radius (cave_light_engine_radius 1), alone and with shooting at monsters believed in the dark (unseen_belief 1), save deaths, above all to worm masses and monsters in the dark, against the shipped play? Generated from definitions/reborn-light-belief-small.yaml: 3 arms on 4.2.6-reborn-rust-light-belief-a516df64, suite classes-1800-small.",
+    "issue": 625,
+    "name": "reborn-light-belief-small",
+    "owner_authorization": "2026-11-22: zoo owner, \"do all as suggested\" (the small tier; the pilot gate is read and posted on the issue).",
+    "prespecified": "Fixed 2026-11-22 after the pilot gate (run 44976921051: ctl 1 death, light1 0, light1-belief 0) and before any result of this tier was read. Small tier (RULES 14) on the same build:\nclasses-1800 starts 1-90 (90 starts per arm, paired), all classes, 100,000 turns, one binary, disjoint from the other tiers of\nthe study (pool them as one study, RULES 14). \nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by\nstart. Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly\nkilled against the control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not retained at this tier. Descriptive.",
+    "profiles": [
+      "reborn-lightbel-ctl",
+      "reborn-lightbel-light1",
+      "reborn-lightbel-light1-belief"
+    ],
+    "question": "On borg-reborn-rs a516df64 (track-p 7e21967b + #888 + #890), does marking the grids lit by the Borg's own light at the engine's radius (cave_light_engine_radius 1), alone and with shooting at monsters believed in the dark (unseen_belief 1), save deaths, above all to worm masses and monsters in the dark, against the shipped play?",
+    "retain_evidence": false,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-light-belief-a516df64"
+    ],
+    "suites": [
+      "classes-1800-small"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44983115550-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44983115550",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "97e54f9f822be1772ced317789510e8929aef335"
+}
