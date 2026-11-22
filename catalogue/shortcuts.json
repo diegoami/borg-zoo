@@ -2279,6 +2279,19 @@
         "reborn-ks206-both0"
       ],
       "runs": []
+    },
+    "reborn-belief": {
+      "issue": 702,
+      "status": "defined (pilot, full)",
+      "what": "unseen_belief (#879, borg-reborn-rs #890, a must ship) and the engine light radius (#877) on track-p f8725bc0: ctl, light, belief, light+belief, light+belief-decay5; pilot then full (900 starts).",
+      "profiles": [
+        "reborn-bel-ctl",
+        "reborn-bel-light",
+        "reborn-bel-belief",
+        "reborn-bel-light+belief",
+        "reborn-bel-light+belief-decay5"
+      ],
+      "runs": []
     }
   }
 }
