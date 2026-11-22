@@ -1,0 +1,39 @@
+# borg-zoo#702: reborn-belief-f872, full tier (the belief arms at the pin containing #890).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-belief-f872-full.yaml
+name: reborn-belief-f872-full
+issue: 702
+question: >-
+  On track-p f8725bc0 (with #890), does the position belief (unseen_belief 1, #879) help, hurt or interact with the engine's light radius
+  (cave_light_engine_radius 1), and does a slower decay (unseen_decay_percent 5) change it?
+tier: full            # classes-1800 starts 901-1800 (900 per arm), 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-f8725bc0
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-bel872
+arms:
+  ctl: {}
+  light: {borg_param_cave_light_engine_radius: 1}
+  belief: {borg_param_unseen_belief: 1}
+  light+belief: {borg_param_cave_light_engine_radius: 1, borg_param_unseen_belief: 1}
+  light+belief-decay5: {borg_param_cave_light_engine_radius: 1, borg_param_unseen_belief: 1, borg_param_unseen_decay_percent: 5}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs owner, borg-zoo#702 comment 7087627658 ("Owner go (2026-11-23): define and dispatch the belief arms at track-p f8725bc0 now");
+  arms as in comment 7086863433 (decay5 the owner's choice, 2026-11-22); pilot as the gate, then full.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#702). Five arms at track-p f8725bc0 (#890 merged; both settings ship off): ctl; light
+  (cave_light_engine_radius 1); belief (unseen_belief 1); light+belief; light+belief-decay5 (unseen_decay_percent 5). Pilot as a gate, then the full tier
+  (classes-1800 starts 901-1800, 900 per arm), matching #695 and #702's light matrix at 206cf4e7.
+  Tier full: classes-1800 starts 901-1800 (900 per arm), 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core. Gate: no config_error; one binary; each arm's values in
+  params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class against
+  ctl: deaths and causes, rescued and newly killed (exact McNemar), CL and depth, alive at the cap having reached DL5; paired light+belief against light and
+  light+belief-decay5 against light+belief; light here against #702's light at 206cf4e7; the '# Unseen target (#879):' notes per game and their hit rate (a hit
+  or death message within the next turn; "It dies." from an invisible target is not attributed, borg-reborn-rs#889). Tiers of one study pooled (RULES 14).
+  Descriptive. Switching either setting on is a borg-reborn-rs P8 decision on this run.

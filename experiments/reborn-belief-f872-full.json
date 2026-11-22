@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-belief-f872-full",
+  "issue": 702,
+  "definition": "definitions/reborn-belief-f872-full.yaml",
+  "question": "On track-p f8725bc0 (with #890), does the position belief (unseen_belief 1, #879) help, hurt or interact with the engine's light radius (cave_light_engine_radius 1), and does a slower decay (unseen_decay_percent 5) change it?",
+  "description": "On track-p f8725bc0 (with #890), does the position belief (unseen_belief 1, #879) help, hurt or interact with the engine's light radius (cave_light_engine_radius 1), and does a slower decay (unseen_decay_percent 5) change it? Generated from definitions/reborn-belief-f872-full.yaml: 5 arms on 4.2.6-reborn-rust-trackp-f8725bc0, suite classes-1800-full.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#702). Five arms at track-p f8725bc0 (#890 merged; both settings ship off): ctl; light\n(cave_light_engine_radius 1); belief (unseen_belief 1); light+belief; light+belief-decay5 (unseen_decay_percent 5). Pilot as a gate, then the full tier\n(classes-1800 starts 901-1800, 900 per arm), matching #695 and #702's light matrix at 206cf4e7.\nTier full: classes-1800 starts 901-1800 (900 per arm), 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core. Gate: no config_error; one binary; each arm's values in\nparams-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class against\nctl: deaths and causes, rescued and newly killed (exact McNemar), CL and depth, alive at the cap having reached DL5; paired light+belief against light and\nlight+belief-decay5 against light+belief; light here against #702's light at 206cf4e7; the '# Unseen target (#879):' notes per game and their hit rate (a hit\nor death message within the next turn; \"It dies.\" from an invisible target is not attributed, borg-reborn-rs#889). Tiers of one study pooled (RULES 14).\nDescriptive. Switching either setting on is a borg-reborn-rs P8 decision on this run.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-f8725bc0"
+  ],
+  "profiles": [
+    "reborn-bel872-ctl",
+    "reborn-bel872-light",
+    "reborn-bel872-belief",
+    "reborn-bel872-light+belief",
+    "reborn-bel872-light+belief-decay5"
+  ],
+  "suites": [
+    "classes-1800-full"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-f8725bc0",
+  "control_profile": "reborn-bel872-ctl",
+  "owner_authorization": "2026-11-23: borg-reborn-rs owner, borg-zoo#702 comment 7087627658 (\"Owner go (2026-11-23): define and dispatch the belief arms at track-p f8725bc0 now\"); arms as in comment 7086863433 (decay5 the owner's choice, 2026-11-22); pilot as the gate, then full.",
+  "retain_evidence": true
+}

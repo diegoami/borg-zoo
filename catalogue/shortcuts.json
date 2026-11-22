@@ -2279,6 +2279,19 @@
         "reborn-ks206-both0"
       ],
       "runs": []
+    },
+    "reborn-bel872": {
+      "issue": 702,
+      "status": "defined (pilot, full)",
+      "what": "Position belief (#879) with and without the engine light radius on track-p f8725bc0: ctl, light, belief, light+belief, light+belief-decay5.",
+      "profiles": [
+        "reborn-bel872-ctl",
+        "reborn-bel872-light",
+        "reborn-bel872-belief",
+        "reborn-bel872-light+belief",
+        "reborn-bel872-light+belief-decay5"
+      ],
+      "runs": []
     }
   }
 }
