@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-throw-pb-medium",
+  "issue": 618,
+  "definition": "definitions/reborn-throw-pb-medium.yaml",
+  "question": "On borg-reborn-rs e037588b (task/T870-throw-point-blank, on accepted main f57499d0), does a separate point-blank divisor for thrown objects (attack_throw_point_blank_divisor 1: no native throw point-blank penalty), against the compiled 0 that inherits the arrow divisor, change deaths, progress or the oil thrown?",
+  "description": "On borg-reborn-rs e037588b (task/T870-throw-point-blank, on accepted main f57499d0), does a separate point-blank divisor for thrown objects (attack_throw_point_blank_divisor 1: no native throw point-blank penalty), against the compiled 0 that inherits the arrow divisor, change deaths, progress or the oil thrown? Generated from definitions/reborn-throw-pb-medium.yaml: 2 arms on 4.2.6-reborn-rust-throw-pb-e037588b, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-22 after the pilot (run 44967902905: 0 deaths, throw1 changes 15 of 18 starts, mean CL 6.56 / 6.61, depth\n2.39 / 2.56) and before any result of this tier was read. Medium tier (RULES 14): classes-1800 starts 91-360 (270 starts per arm,\npaired), 100,000 turns, same pinned source in both arms. Primary (tactical): deaths by 100,000 turns, all attempts retained.\nProgress guardrails: mean CL and mean max depth of throw1 may each fall by no more than 0.25 against inherit. Report per class\nand in aggregate; rescued and newly killed pairs (exact McNemar), keys-identical pairs and denominators; every unfinished\ngame. Evidence is not retained at this tier: oil thrown and the fast-monster adjacency diagnostics stay with the pilot. Not\na claim of improvement: a confirmation needs a new unopened seed block (classes-1800-b has been read).",
+  "specimens": [
+    "4.2.6-reborn-rust-throw-pb-e037588b"
+  ],
+  "profiles": [
+    "reborn-throwpb-inherit",
+    "reborn-throwpb-throw1"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-throw-pb-e037588b",
+  "control_profile": "reborn-throwpb-inherit",
+  "owner_authorization": "2026-11-22: zoo owner, \"yes continue with all\" (the medium tier of the pilot, run 44967902905, after its gate on #618).",
+  "retain_evidence": false
+}

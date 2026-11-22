@@ -1,0 +1,34 @@
+# borg-zoo#618: the small tier of the thrown-object point-blank divisor (borg-reborn-rs #870), e037588b: inherit against throw1.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-throw-pb-small.yaml
+name: reborn-throw-pb-small
+issue: 618
+question: >-
+  On borg-reborn-rs e037588b (task/T870-throw-point-blank, on accepted main f57499d0), does a separate point-blank divisor
+  for thrown objects (attack_throw_point_blank_divisor 1: no native throw point-blank penalty), against the compiled 0
+  that inherits the arrow divisor, change deaths, progress or the oil thrown?
+tier: small            # classes-1800 starts 1-90, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-throw-pb-e037588b
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-throwpb
+arms:
+  inherit: {borg_param_attack_throw_point_blank_divisor: 0}
+  throw1: {borg_param_attack_throw_point_blank_divisor: 1}
+control: [inherit]
+owner_authorization: >-
+  2026-11-22: zoo owner, "yes continue with all" (the small tier of the pilot, run 44967902905, after its gate on #618).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22 after the pilot (run 44967902905: 0 deaths, throw1 changes 15 of 18 starts, mean CL 6.56 / 6.61, depth
+  2.39 / 2.56) and before any result of this tier was read. Small tier (RULES 14): classes-1800 starts 1-90 (90 starts per arm,
+  paired), 100,000 turns, same pinned source in both arms. Primary (tactical): deaths by 100,000 turns, all attempts retained.
+  Progress guardrails: mean CL and mean max depth of throw1 may each fall by no more than 0.25 against inherit. Report per class
+  and in aggregate; rescued and newly killed pairs (exact McNemar), keys-identical pairs and denominators; every unfinished
+  game. Evidence is not retained at this tier: oil thrown and the fast-monster adjacency diagnostics stay with the pilot. Not
+  a claim of improvement: a confirmation needs a new unopened seed block (classes-1800-b has been read).
