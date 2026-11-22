@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-trackp-9085c266-verysmall",
+  "issue": 645,
+  "definition": "definitions/reborn-trackp-9085c266-verysmall.yaml",
+  "question": "What do the borg-rs core and shipped settings of borg-reborn-rs trackp at 9085c266 do over classes-1800's verysmall slice (45 starts, 100,000 turns)? A baseline of the trackp line: a description, not a comparison.",
+  "description": "What do the borg-rs core and shipped settings of borg-reborn-rs trackp at 9085c266 do over classes-1800's verysmall slice (45 starts, 100,000 turns)? A baseline of the trackp line: a description, not a comparison. Generated from definitions/reborn-trackp-9085c266-verysmall.yaml: 1 arms on 4.2.6-reborn-rust-trackp-9085c266, suite classes-1800-verysmall.",
+  "prespecified": "Fixed 2026-11-22, before any result was read. Baseline of the trackp line at 9085c266: one arm (shipped settings, borg-rs core, no\noverrides), classes-1800, 100,000 turns, ladder tier verysmall. Baselines are made regularly on track-p (a full ladder when the head has moved by\nseveral merged PRs) and lighter on main as an update. Gate: no config_error; one binary; every cell ends in death, turn_cap or\nborg_stopped; stalls, timeouts and wall timeouts counted apart. Report overall and per class: deaths and causes, CL and depth at death,\nsurvivors, alive at the cap having reached DL5, unfinished; paired by start against the other line's baseline and the earlier\nbaselines (f57499d0, ab775d48, ed52fec1). Descriptive (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-9085c266"
+  ],
+  "profiles": [
+    "reborn-head-shipped"
+  ],
+  "suites": [
+    "classes-1800-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-9085c266",
+  "control_profile": "reborn-head-shipped",
+  "owner_authorization": "2026-11-22: zoo owner, \"well both, but we need to regularly make a baseline full run with track-p, checking what main does is update\" (the baseline ladder of the trackp line, issue #645).",
+  "retain_evidence": true
+}

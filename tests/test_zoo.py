@@ -1410,6 +1410,23 @@ class ArmSplitTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             cat_mod.load_experiment(self.path, 'no-colon')
 
+    def test_lines_position_names_the_stand_of_a_ref_against_a_head(self):
+        """borg-zoo#645: the line a specimen is on and how far behind its head it is."""
+        from zoo import lines
+        answers = {'a...h': {'status': 'ahead', 'ahead_by': 3, 'behind_by': 0},
+                   'b...h': {'status': 'behind', 'ahead_by': 0, 'behind_by': 2},
+                   'c...h': {'status': 'diverged', 'ahead_by': 4, 'behind_by': 5}}
+        original = lines.gh
+        lines.gh = lambda path: answers.get(path.split('/compare/')[-1])
+        try:
+            self.assertEqual(lines.position('h', 'h'), 'at head')
+            self.assertEqual(lines.position('a', 'h'), 'behind 3')
+            self.assertEqual(lines.position('b', 'h'), 'ahead 2')
+            self.assertEqual(lines.position('c', 'h'), 'diverged (+5 / -4)')
+            self.assertEqual(lines.position('z', 'h'), 'unknown')
+        finally:
+            lines.gh = original
+
     def test_consolidated_note_flags_a_different_argument_order(self):
         """borg-reborn-rs #855: an `ltr` build plays other games from the same seed."""
         from zoo import site
