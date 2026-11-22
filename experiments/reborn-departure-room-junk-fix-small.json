@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-departure-room-junk-fix-small",
+  "issue": 639,
+  "definition": "definitions/reborn-departure-room-junk-fix-small.yaml",
+  "question": "On borg-reborn-rs 7f3d0d61 (c7ea18df plus the full-pack junk fix), do the 7 room stalls of the #612 small tier (6 borg_stopped, 1 wall_timeout) disappear, and what do the four profiles do over 45 starts of classes-1800 at 300,000 turns?",
+  "description": "On borg-reborn-rs 7f3d0d61 (c7ea18df plus the full-pack junk fix), do the 7 room stalls of the #612 small tier (6 borg_stopped, 1 wall_timeout) disappear, and what do the four profiles do over 45 starts of classes-1800 at 300,000 turns? Generated from definitions/reborn-departure-room-junk-fix-small.yaml: 4 arms on 4.2.6-reborn-rust-town-room-junk-fix-7f3d0d61, suite classes-1800-300k-verysmall.",
+  "prespecified": "Fixed 2026-11-22 after the junk-fix pilot (run 44986389859, #639: the Druid 934061548 reaches the cap in all four arms) and before any result of this tier was read.\nThe small tier of #612 (run 44963542265: room 7 unfinished of 45, shipped 0, ctl 1, recall 0) on the junk-fix build: 45 starts per arm, four arms, 300,000 turns, 180\ncells, evidence not retained. Report every unfinished cell with its stop reason (borg_stopped and wall_timeout apart) per profile against the original tier; deaths,\nmean CL and depth, paired rescued and newly killed against ctl, identical plays. Directional only (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-town-room-junk-fix-7f3d0d61"
+  ],
+  "profiles": [
+    "reborn-room-ctl",
+    "reborn-room-shipped",
+    "reborn-room-room",
+    "reborn-room-recall"
+  ],
+  "suites": [
+    "classes-1800-300k-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-town-room-junk-fix-7f3d0d61",
+  "control_profile": "reborn-room-ctl",
+  "owner_authorization": "2026-11-22: zoo owner, \"yes dispatch all\" (the small tier rerun of #612 on the junk-fix build, after the pilot gate of #639).",
+  "retain_evidence": false
+}

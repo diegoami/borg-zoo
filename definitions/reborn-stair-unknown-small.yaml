@@ -1,0 +1,37 @@
+# borg-zoo#642: small tier follow-up of reborn-stair-unknown-pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-stair-unknown-small.yaml
+name: reborn-stair-unknown-small
+issue: 642
+question: >-
+  In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs ea14528a (PR #897, on track-p 4c686250), do stair flights that
+  refuse or pay for unknown grids (caution_stairs_flight_unknown 1 and 2) save the breeder games in which the flight walked into a
+  dead end through unseen rock, or do they find no route and cost games? Each world has its own control.
+tier: small            # classes-1800 starts 1-90, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-stair-unknown-ea14528a
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-stairunk
+arms:
+  ctl-x4: {borg_world: breeders-x4}
+  m1-x4: {borg_world: breeders-x4, borg_param_caution_stairs_flight_unknown: 1, borg_param_caution_stairs_flight_unknown_steps: 5}
+  m2-x4: {borg_world: breeders-x4, borg_param_caution_stairs_flight_unknown: 2}
+  ctl-x8: {borg_world: breeders-x8}
+  m1-x8: {borg_world: breeders-x8, borg_param_caution_stairs_flight_unknown: 1, borg_param_caution_stairs_flight_unknown_steps: 5}
+  m2-x8: {borg_world: breeders-x8, borg_param_caution_stairs_flight_unknown: 2}
+control: [ctl-x4]
+owner_authorization: >-
+  2026-11-22: zoo owner, "yes dispatch all" (the small tier; the pilot gate is read and posted on the issue).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22 after the pilot gate (run 45023921364: arms play differently (0-1 of 18 identical), 1-3 deaths per arm) and before any result of this tier was read. Small tier (RULES 14) on the same build:
+  classes-1800 starts 1-90 (90 starts per arm, paired), all classes, 100,000 turns, one binary, disjoint from the other tiers of the study (pool them
+  as one study, RULES 14). All six profiles (ctl, m1, m2 in breeders-x4 and in breeders-x8); a world's arms are compared only within that world.
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by start.
+  Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly killed against
+  the control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not retained at this tier. Descriptive.
