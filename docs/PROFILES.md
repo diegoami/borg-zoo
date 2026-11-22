@@ -140,7 +140,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-fastpur` | [#643](https://github.com/diegoami/borg-zoo/issues/643) | 11 | defined (pilot) | borg-reborn-rs #907-#911 on 608d9fed: ctl, one arm per switch, walkcost-dh, all, classes-18. |
 | `reborn-trackp-9085c266` | [#645](https://github.com/diegoami/borg-zoo/issues/645) | 1 | defined (baseline ladder of the track-p line: pilot, small-rest, medium, big, full), dispatched 2026-11-22 | Baseline of borg-reborn-rs track-p 9085c266, shipped settings, one arm, classes-1800 (45+45+270+540+900), 100,000 turns. |
 | `reborn-main-b34196c5` | [#645](https://github.com/diegoami/borg-zoo/issues/645) | 1 | defined (lighter baseline of the main line: pilot, small-rest, medium), dispatched 2026-11-22 | Baseline of borg-reborn-rs main b34196c5, shipped settings, one arm, classes-1800 (45+45+270), 100,000 turns. |
-| `reborn-kitlt` | [#646](https://github.com/diegoami/borg-zoo/issues/646) | 5 | defined (pilot, small, medium), dispatched 2026-11-22 | kit_leash on the track-p head 9085c266 (re-run of #589's lead): ctl, leash, leash-m0, kit, c. |
+| `reborn-kitlt` | [#646](https://github.com/diegoami/borg-zoo/issues/646) | 5 | pilot, small, medium on 9085c266 dispatched; re-pinned to the head 4b2c2fcf with the town-hunt arm (reborn-kit-leash-head-*, #646) | kit_leash on the track-p head 9085c266 (re-run of #589's lead): ctl, leash, leash-m0, kit, c. |
+| `reborn-trackp-4b2c2fcf` | [#645](https://github.com/diegoami/borg-zoo/issues/645) | 1 | defined (baseline ladder of the track-p line at the head: pilot, small-rest, medium, big, full), dispatched 2026-11-22; replaces the ladder at 9085c266 | Baseline of borg-reborn-rs track-p 4b2c2fcf (cursed-torch swap and full-pack fix in), shipped settings, classes-1800 (45+45+270+540+900), 100,000 turns. |
 
 ### `heal-attack-4`
 
@@ -2010,6 +2011,14 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-kitlt-leash-m0` | – | 1 | 0 | 2 | – | – |
 | `reborn-kitlt-kit` | 50 | 1 | – | – | 25 | – |
 | `reborn-kitlt-c` | – | 1 | – | – | – | 1 |
+
+### `reborn-trackp-4b2c2fcf`
+
+Baseline of borg-reborn-rs track-p 4b2c2fcf (cursed-torch swap and full-pack fix in), shipped settings, classes-1800 (45+45+270+540+900), 100,000 turns.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-head-shipped`.
 
 ## Settings you have built arms with
 
