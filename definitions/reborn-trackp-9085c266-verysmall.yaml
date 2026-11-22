@@ -1,0 +1,38 @@
+# borg-zoo#645: baseline ladder of the trackp line at 9085c266, verysmall tier (45 starts).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-trackp-9085c266-verysmall.yaml
+name: reborn-trackp-9085c266-verysmall
+issue: 645
+question: >-
+  What do the borg-rs core and shipped settings of borg-reborn-rs trackp at 9085c266 do over classes-1800's verysmall slice (45 starts,
+  100,000 turns)? A baseline of the trackp line: a description, not a comparison.
+tier: verysmall
+pilot: true            # first run of this arm on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-9085c266
+  repository: diegoami/borg-reborn-rs
+  ref: 9085c2665c04b9b584dd744e7c23119a1dd5d937
+  label: "borg-reborn-rs LINE track-p, head 9085c266 on 2026-11-22 (#904 ship the confused attack merged; ten PRs ahead of the merge base f57499d0 with main: #864 room, #873 variety, #868 confused attack, #875 throw point-blank, #888 light radius, #892 recall poison, #905 full-pack junk fix); shipped harness/borg.txt e4bd2b87..., scary_monsters.txt ff831d0a..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-head
+arms:
+  shipped: {}
+control: [shipped]
+owner_authorization: >-
+  2026-11-22: zoo owner, "well both, but we need to regularly make a baseline full run with track-p, checking what main does is update" (the baseline ladder of the trackp line, issue #645).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result was read. Baseline of the trackp line at 9085c266: one arm (shipped settings, borg-rs core, no
+  overrides), classes-1800, 100,000 turns, ladder tier verysmall. Baselines are made regularly on track-p (a full ladder when the head has moved by
+  several merged PRs) and lighter on main as an update. Gate: no config_error; one binary; every cell ends in death, turn_cap or
+  borg_stopped; stalls, timeouts and wall timeouts counted apart. Report overall and per class: deaths and causes, CL and depth at death,
+  survivors, alive at the cap having reached DL5, unfinished; paired by start against the other line's baseline and the earlier
+  baselines (f57499d0, ab775d48, ed52fec1). Descriptive (RULES 14).

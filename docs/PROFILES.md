@@ -136,6 +136,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-dev` | [#633](https://github.com/diegoami/borg-zoo/issues/633) | 2 | pilot dispatched (run 44982737491); small (classes-1800-300k-verysmall) defined, dispatched after the pilot's gate (#633) | Devices as variety (#895, PR #898) on 3020d451: ctl against shipped, classes-18 at 300k. |
 | `reborn-conf` | [#636](https://github.com/diegoami/borg-zoo/issues/636) | 5 | defined (pilot) | Confused attacks by direction (#867, PR #868) on e8895f5e: ctl, confused, ctl-clw, confused-clw, confused-pb, classes-18 at 300k. |
 | `reborn-cursed-torch` | [#638](https://github.com/diegoami/borg-zoo/issues/638) | 1 | defined (pilot) | Cursed torch direct swap (#899, PR #900) on c8f30e3c: shipped, classes-18 and the two repro starts. |
+| `reborn-trackp-9085c266` | [#645](https://github.com/diegoami/borg-zoo/issues/645) | 1 | defined (baseline ladder of the track-p line: pilot, small-rest, medium, big, full), dispatched 2026-11-22 | Baseline of borg-reborn-rs track-p 9085c266, shipped settings, one arm, classes-1800 (45+45+270+540+900), 100,000 turns. |
+| `reborn-main-b34196c5` | [#645](https://github.com/diegoami/borg-zoo/issues/645) | 1 | defined (lighter baseline of the main line: pilot, small-rest, medium), dispatched 2026-11-22 | Baseline of borg-reborn-rs main b34196c5, shipped settings, one arm, classes-1800 (45+45+270), 100,000 turns. |
+| `reborn-kitlt` | [#646](https://github.com/diegoami/borg-zoo/issues/646) | 5 | defined (pilot, small, medium), dispatched 2026-11-22 | kit_leash on the track-p head 9085c266 (re-run of #589's lead): ctl, leash, leash-m0, kit, c. |
 
 ### `heal-attack-4`
 
@@ -1941,6 +1944,36 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 Profiles: `reborn-cursed-torch-shipped`.
 
+### `reborn-trackp-9085c266`
+
+Baseline of borg-reborn-rs track-p 9085c266, shipped settings, one arm, classes-1800 (45+45+270+540+900), 100,000 turns.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-head-shipped`.
+
+### `reborn-main-b34196c5`
+
+Baseline of borg-reborn-rs main b34196c5, shipped settings, one arm, classes-1800 (45+45+270), 100,000 turns.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-head-shipped`.
+
+### `reborn-kitlt`
+
+kit_leash on the track-p head 9085c266 (re-run of #589's lead): ctl, leash, leash-m0, kit, c.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_kit_descent_min_percent` | `borg_param_kit_leash` | `borg_param_kit_leash_min` | `borg_param_kit_leash_power` | `borg_param_kit_leave_danger_percent` | `borg_param_kit_money_first` |
+| --- | --- | --- | --- | --- | --- | --- |
+| `reborn-kitlt-ctl` | – | – | – | – | – | – |
+| `reborn-kitlt-leash` | – | 1 | 1 | 1 | – | – |
+| `reborn-kitlt-leash-m0` | – | 1 | 0 | 2 | – | – |
+| `reborn-kitlt-kit` | 50 | 1 | – | – | 25 | – |
+| `reborn-kitlt-c` | – | 1 | – | – | – | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2130,12 +2163,12 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_flow_take_phase_short_below` | 2, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_kill_flow_mode` | 0, 1, 2, 3 | `reborn-kill-flow-mode` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
-| `borg_param_kit_descent_min_percent` | 50, not set | `reborn-kitleash` |  |
-| `borg_param_kit_leash` | 1, not set | `reborn-kitleash` |  |
-| `borg_param_kit_leash_min` | 0, 1, 2, not set | `reborn-kitleash` |  |
-| `borg_param_kit_leash_power` | 1, 2, not set | `reborn-kitleash` |  |
-| `borg_param_kit_leave_danger_percent` | 25, not set | `reborn-kitleash` |  |
-| `borg_param_kit_money_first` | 1, not set | `reborn-kitleash` |  |
+| `borg_param_kit_descent_min_percent` | 50, not set | `reborn-kitleash`, `reborn-kitlt` |  |
+| `borg_param_kit_leash` | 1, not set | `reborn-kitleash`, `reborn-kitlt` |  |
+| `borg_param_kit_leash_min` | 0, 1, 2, not set | `reborn-kitleash`, `reborn-kitlt` |  |
+| `borg_param_kit_leash_power` | 1, 2, not set | `reborn-kitleash`, `reborn-kitlt` |  |
+| `borg_param_kit_leave_danger_percent` | 25, not set | `reborn-kitleash`, `reborn-kitlt` |  |
+| `borg_param_kit_money_first` | 1, not set | `reborn-kitleash`, `reborn-kitlt` |  |
 | `borg_param_kit_restock` | 1, not set | `reborn-kitleash` |  |
 | `borg_param_kit_restock_light_turns` | 500, not set | `reborn-kitleash` |  |
 | `borg_param_kit_start_reserve` | 1, not set | `reborn-kitleash` |  |

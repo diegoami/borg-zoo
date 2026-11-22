@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-main-b34196c5-medium",
+  "issue": 645,
+  "definition": "definitions/reborn-main-b34196c5-medium.yaml",
+  "question": "What do the borg-rs core and shipped settings of borg-reborn-rs main at b34196c5 do over classes-1800's medium slice (270 starts, 100,000 turns)? A baseline of the main line: a description, not a comparison.",
+  "description": "What do the borg-rs core and shipped settings of borg-reborn-rs main at b34196c5 do over classes-1800's medium slice (270 starts, 100,000 turns)? A baseline of the main line: a description, not a comparison. Generated from definitions/reborn-main-b34196c5-medium.yaml: 1 arms on 4.2.6-reborn-rust-main-b34196c5, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-22, before any result was read. Baseline of the main line at b34196c5: one arm (shipped settings, borg-rs core, no\noverrides), classes-1800, 100,000 turns, ladder tier medium. Baselines are made regularly on track-p (a full ladder when the head has moved by\nseveral merged PRs) and lighter on main as an update. Gate: no config_error; one binary; every cell ends in death, turn_cap or\nborg_stopped; stalls, timeouts and wall timeouts counted apart. Report overall and per class: deaths and causes, CL and depth at death,\nsurvivors, alive at the cap having reached DL5, unfinished; paired by start against the other line's baseline and the earlier\nbaselines (f57499d0, ab775d48, ed52fec1). Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-b34196c5"
+  ],
+  "profiles": [
+    "reborn-head-shipped"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-main-b34196c5",
+  "control_profile": "reborn-head-shipped",
+  "owner_authorization": "2026-11-22: zoo owner, \"well both, but we need to regularly make a baseline full run with track-p, checking what main does is update\" (the baseline ladder of the main line, issue #645).",
+  "retain_evidence": false
+}

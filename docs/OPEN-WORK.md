@@ -22,6 +22,22 @@
   with retained evidence). Suite 1's saved engine is `42cd156ac`. Builds
   on `574b618c` are rejected by the saved-suite identity check.
 
+## Two lines of borg-reborn-rs: baselines (owner, 2026-11-22, #645)
+
+borg-reborn-rs has two diverged lines. **track-p** is the working line (every source PR integrates there); **main** receives
+reviewed milestone merges only (#822 merged track-p into main as `f57499d0` on 2026-11-21; main has since gained #900, which
+track-p does not have). A result is tied to its exact source, so "the current build" always names a line.
+
+- **Baselines.** A full ladder on track-p (pilot 45, small-rest 45, medium 270, big 540, full 900; one arm, shipped settings, classes-1800,
+  100,000 turns) after every milestone and whenever the head has moved by several merged PRs; a lighter one on main (pilot, small-rest,
+  medium = 360 starts) as an update. Current: track-p `9085c266` (#645) and main `b34196c5` (#645); earlier on main: `ed52fec1` (#601),
+  `ab775d48` (#609), `f57499d0` (#623, the merge base of the two lines, so valid for both as a baseline and for neither's later PRs).
+- **Experiments.** Development experiments pin the track-p head (or the requester's branch, which is built on it); the specimen label names
+  the line and the merge base. A lead measured on one line is re-run on the working line before anyone ships it (kit_leash: #589 on
+  `f57499d0`, #646 on track-p).
+- **Tool.** `python3 -m zoo.lines` prints the two heads and where each specimen stands against them (docs/LINES.md is the generated list).
+  `/next-experiments` checks the head of the specimen's line before proposing a next tier.
+
 ## Read these first
 
 1. `docs/FINDINGS.md`: what the finished experiments showed. New results must

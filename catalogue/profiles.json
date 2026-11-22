@@ -10630,6 +10630,52 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-kitlt-ctl": {
+      "description": "borg-zoo#646 (reborn-kit-leash-trackp-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-kitlt-leash": {
+      "description": "borg-zoo#646 (reborn-kit-leash-trackp-pilot.yaml): arm leash.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_min": 1,
+        "borg_param_kit_leash_power": 1
+      }
+    },
+    "reborn-kitlt-leash-m0": {
+      "description": "borg-zoo#646 (reborn-kit-leash-trackp-pilot.yaml): arm leash-m0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_min": 0,
+        "borg_param_kit_leash_power": 2
+      }
+    },
+    "reborn-kitlt-kit": {
+      "description": "borg-zoo#646 (reborn-kit-leash-trackp-pilot.yaml): arm kit.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_descent_min_percent": 50,
+        "borg_param_kit_leave_danger_percent": 25
+      }
+    },
+    "reborn-kitlt-c": {
+      "description": "borg-zoo#646 (reborn-kit-leash-trackp-pilot.yaml): arm c.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_money_first": 1
+      }
     }
   }
 }

@@ -1884,6 +1884,37 @@
         "reborn-cursed-torch-shipped"
       ],
       "runs": []
+    },
+    "reborn-trackp-9085c266": {
+      "issue": 645,
+      "status": "defined (baseline ladder of the track-p line: pilot, small-rest, medium, big, full), dispatched 2026-11-22",
+      "what": "Baseline of borg-reborn-rs track-p 9085c266, shipped settings, one arm, classes-1800 (45+45+270+540+900), 100,000 turns.",
+      "profiles": [
+        "reborn-head-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-main-b34196c5": {
+      "issue": 645,
+      "status": "defined (lighter baseline of the main line: pilot, small-rest, medium), dispatched 2026-11-22",
+      "what": "Baseline of borg-reborn-rs main b34196c5, shipped settings, one arm, classes-1800 (45+45+270), 100,000 turns.",
+      "profiles": [
+        "reborn-head-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-kitlt": {
+      "issue": 646,
+      "status": "defined (pilot, small, medium), dispatched 2026-11-22",
+      "what": "kit_leash on the track-p head 9085c266 (re-run of #589's lead): ctl, leash, leash-m0, kit, c.",
+      "profiles": [
+        "reborn-kitlt-ctl",
+        "reborn-kitlt-leash",
+        "reborn-kitlt-leash-m0",
+        "reborn-kitlt-kit",
+        "reborn-kitlt-c"
+      ],
+      "runs": []
     }
   }
 }
