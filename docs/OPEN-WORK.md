@@ -38,6 +38,22 @@ track-p does not have). A result is tied to its exact source, so "the current bu
 - **Tool.** `python3 -m zoo.lines` prints the two heads and where each specimen stands against them (docs/LINES.md is the generated list).
   `/next-experiments` checks the head of the specimen's line before proposing a next tier.
 
+## Non-mushroom deaths of track-p 9085c266, full tier (2026-11-22, #645)
+
+The 17 deaths of run 45028029063 that a grey mushroom patch did not cause, replayed locally on both heads. The leads, per death and turn,
+are in [reports/reborn-trackp-9085c266-full-other-deaths](../reports/reborn-trackp-9085c266-full-other-deaths/README.md). They are
+leads, not fixes.
+
+- **track-p `4b2c2fcf`:** 15 of 17 still die, each in the identical game. The two cursed-torch town deaths survive (#899).
+- **main `c29664e1`:** 0 of 17 die, each the identical game to f57499d0. The 15 deaths come from track-p-only code.
+- **Where the games split:** track-p and main split in the first town visit on every seed; in 9 of 15, track-p buys Phase Door where main
+  buys CLW, CSW or oil (#873). That is where the paths split, not a cause of death.
+- **The mushroom count is 13 of 28, not 11.** Two "Grip" deaths (453254028, 857532386) are kill-on-sight swings at a grey mushroom patch
+  while confused, with Grip biting.
+- **The rest:** the #842 fast-fragile rules (unchanged against main), two two-step loops (the torch one is fixed on both heads; the
+  white-jelly one is not), and singles.
+- **Not dispatched:** a paired track-p arm with #873's staples set back would test the town lead; that is the owner's call.
+
 ## Read these first
 
 1. `docs/FINDINGS.md`: what the finished experiments showed. New results must

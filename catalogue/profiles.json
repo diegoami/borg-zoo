@@ -11229,6 +11229,41 @@
         "borg_param_fast_fragile_policy": 0,
         "borg_param_fast_fragile_no_heal": 0
       }
+    },
+    "reborn-t863-ctl": {
+      "description": "borg-zoo#669 (reborn-t863off-head-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-t863-phase0": {
+      "description": "borg-zoo#669 (reborn-t863off-head-pilot.yaml): arm phase0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_reserve": 0,
+        "borg_param_town_phase_reserve_percent": 100,
+        "borg_param_town_phase_reserve__ranger": 2,
+        "borg_param_town_phase_reserve__priest": 0,
+        "borg_param_town_phase_reserve__blackguard": 0
+      }
+    },
+    "reborn-t863-t863off": {
+      "description": "borg-zoo#669 (reborn-t863off-head-pilot.yaml): arm t863off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_phase_reserve": 0,
+        "borg_param_town_phase_reserve_percent": 100,
+        "borg_param_town_phase_reserve__ranger": 2,
+        "borg_param_town_phase_reserve__priest": 0,
+        "borg_param_town_phase_reserve__blackguard": 0,
+        "borg_param_town_recall_reserve": 1,
+        "borg_param_buy_recall_from_gold": 400,
+        "borg_param_town_prepared_percent": 0,
+        "borg_param_town_variety_min_depth": 127
+      }
     }
   }
 }

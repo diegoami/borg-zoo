@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-t863off-head-small",
+  "issue": 669,
+  "definition": "definitions/reborn-t863off-head-small.yaml",
+  "question": "On the borg-reborn-rs track-p head 4b2c2fcf, does setting back #873's town changes (the Phase Door reserve that the first visit buys before cures and oil; with or without the Recall reserve, the prepared remedies and the staple decay) change deaths and progress?",
+  "description": "On the borg-reborn-rs track-p head 4b2c2fcf, does setting back #873's town changes (the Phase Door reserve that the first visit buys before cures and oil; with or without the Recall reserve, the prepared remedies and the staple decay) change deaths and progress? Generated from definitions/reborn-t863off-head-small.yaml: 3 arms on 4.2.6-reborn-rust-trackp-4b2c2fcf, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-22 (borg-zoo#669, #668). Three arms on the track-p head 4b2c2fcf. ctl is the shipped play. phase0 sets town_phase_reserve back\nto 0 at 100 percent (Ranger 2, Priest and Blackguard 0, the f57499d0 values). t863off also sets back town_recall_reserve 1,\nbuy_recall_from_gold 400, town_prepared_percent 0 and town_variety_min_depth 127. Neither arm is f57499d0: the other track-p changes stay\n(a local check found 1 of 28 games identical). Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in\ndeath, turn_cap or borg_stopped; stalls and wall timeouts apart. Report per arm and class: deaths and causes, Phase Door and CLW carried\nat the first descent where the logs allow, mean CL and depth, paired rescued and newly killed against ctl (exact McNemar), identical\nplays. A lead, not a claim (RULES 8, 18).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-4b2c2fcf"
+  ],
+  "profiles": [
+    "reborn-t863-ctl",
+    "reborn-t863-phase0",
+    "reborn-t863-t863off"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-4b2c2fcf",
+  "control_profile": "reborn-t863-ctl",
+  "owner_authorization": "2026-11-22: zoo owner, \"yes dispatch it\" (the paired track-p arm with #873's staples set back, proposed in borg-zoo#668); pilot and small dispatched together: the pilot is the gate, medium and larger tiers wait for the owner.",
+  "retain_evidence": false
+}
