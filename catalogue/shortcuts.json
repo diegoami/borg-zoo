@@ -1957,6 +1957,69 @@
         "reborn-head-shipped"
       ],
       "runs": []
+    },
+    "reborn-vrm": {
+      "issue": 648,
+      "status": "defined (pilot)",
+      "what": "Re-measure of #863/#873 on the merged track-p e2d8919e: ctl, shipped, variety, kit, classes-18 at 300k.",
+      "profiles": [
+        "reborn-vrm-ctl",
+        "reborn-vrm-shipped",
+        "reborn-vrm-variety",
+        "reborn-vrm-kit"
+      ],
+      "runs": []
+    },
+    "reborn-flask": {
+      "issue": 649,
+      "status": "defined (pilot)",
+      "what": "Flask saving (#912) on bf077c4a: ctl, save2, save2-noov, classes-18 at 300k.",
+      "profiles": [
+        "reborn-flask-ctl",
+        "reborn-flask-save2",
+        "reborn-flask-save2-noov"
+      ],
+      "runs": []
+    },
+    "reborn-pbdtp": {
+      "issue": 651,
+      "status": "defined (development re-measure on the 200 Ranger starts)",
+      "what": "Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e (re-measure of #290): ctl, lo.",
+      "profiles": [
+        "reborn-pbdtp-ctl",
+        "reborn-pbdtp-lo"
+      ],
+      "runs": []
+    },
+    "reborn-cavesp": {
+      "issue": 652,
+      "status": "defined (pilot)",
+      "what": "Five switches from the cave-spider death (#913-#916, #941) on 67a0c69d: 8 arms, classes-18.",
+      "profiles": [
+        "reborn-cavesp-ctl",
+        "reborn-cavesp-sync",
+        "reborn-cavesp-sync-speed",
+        "reborn-cavesp-retreat",
+        "reborn-cavesp-grouped",
+        "reborn-cavesp-stats",
+        "reborn-cavesp-stats-contact",
+        "reborn-cavesp-all"
+      ],
+      "runs": []
+    },
+    "reborn-wjelly": {
+      "issue": 654,
+      "status": "defined (pilot)",
+      "what": "Four switches from the white-jelly death (#931-#934) on 172bd671: ctl, reach, osc, kill, poison, all, classes-18.",
+      "profiles": [
+        "reborn-wjelly-ctl",
+        "reborn-wjelly-reach",
+        "reborn-wjelly-osc",
+        "reborn-wjelly-kill",
+        "reborn-wjelly-poison",
+        "reborn-wjelly-all"
+      ],
+      "runs": []
     }
   }
 }

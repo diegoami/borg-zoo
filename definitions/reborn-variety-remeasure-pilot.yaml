@@ -1,0 +1,152 @@
+# borg-zoo#648: from the issue's definition. Write the catalogue entries with: python3 -m zoo define definitions/reborn-variety-remeasure-pilot.yaml
+name: reborn-variety-remeasure-pilot
+issue: 648
+question: >-
+  On the merged track-p e2d8919e (#873 merged), do the shipped Word of Recall and Phase Door purchases, the staples'
+  decay and the prepared remedies keep the Borg stocked without lowering its progress, and which part lowers it, if any?
+tier: pilot            # classes-18, 300,000 engine turns, evidence retained
+suites: [classes-18-300k]
+
+specimen:
+  name: 4.2.6-reborn-rust-track-p-e2d8919e
+  repository: diegoami/borg-reborn-rs
+  ref: e2d8919e8aa314b8a3622b90bf0b1be7958bdfd4
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+  label: >-
+    borg-reborn-rs track-p e2d8919e: #873 merged (a 128-bit capability-group mask; Word of Recall reserve 2 with the
+    purchase floor 200; Phase Door reserve 6 at 150 percent, Ranger and Blackguard 10, Priest 8, free copies 12-20; the
+    staples' decaying curve; the prepared remedies; all but the Recall and Phase Door purchases starting at DL2), with
+    #874, #875, #888, #892, #894 and the P7 close.
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-vrm
+arms:
+  ctl:                 # none of #873's values (the track-p settings before it)
+    borg_param_town_prepared_percent: 0
+    borg_param_town_variety_min_depth: 0
+    borg_param_town_staple_clw: 0
+    borg_param_town_staple_csw: 0
+    borg_param_town_staple_ccw: 0
+    borg_param_town_staple_phase: 0
+    borg_param_town_staple_oil: 0
+    borg_param_town_staple_food: 0
+    borg_param_town_staple_light: 0
+    borg_param_town_staple_clw__warrior: 0
+    borg_param_town_staple_csw__warrior: 0
+    borg_param_town_staple_phase__warrior: 0
+    borg_param_town_staple_oil__warrior: 0
+    borg_param_town_staple_clw__mage: 0
+    borg_param_town_staple_csw__mage: 0
+    borg_param_town_staple_phase__mage: 0
+    borg_param_town_staple_oil__mage: 0
+    borg_param_town_staple_clw__druid: 0
+    borg_param_town_staple_csw__druid: 0
+    borg_param_town_staple_phase__druid: 0
+    borg_param_town_staple_oil__druid: 0
+    borg_param_town_staple_clw__priest: 0
+    borg_param_town_staple_csw__priest: 0
+    borg_param_town_staple_phase__priest: 0
+    borg_param_town_staple_oil__priest: 0
+    borg_param_town_staple_clw__necromancer: 0
+    borg_param_town_staple_csw__necromancer: 0
+    borg_param_town_staple_phase__necromancer: 0
+    borg_param_town_staple_oil__necromancer: 0
+    borg_param_town_staple_clw__paladin: 0
+    borg_param_town_staple_csw__paladin: 0
+    borg_param_town_staple_phase__paladin: 0
+    borg_param_town_staple_oil__paladin: 0
+    borg_param_town_staple_clw__rogue: 0
+    borg_param_town_staple_csw__rogue: 0
+    borg_param_town_staple_phase__rogue: 0
+    borg_param_town_staple_oil__rogue: 0
+    borg_param_town_staple_clw__ranger: 0
+    borg_param_town_staple_csw__ranger: 0
+    borg_param_town_staple_phase__ranger: 0
+    borg_param_town_staple_oil__ranger: 0
+    borg_param_town_staple_clw__blackguard: 0
+    borg_param_town_staple_csw__blackguard: 0
+    borg_param_town_staple_phase__blackguard: 0
+    borg_param_town_staple_oil__blackguard: 0
+    borg_param_town_recall_reserve: 1
+    borg_param_buy_recall_from_gold: 400
+    borg_param_town_phase_reserve: 0
+    borg_param_town_phase_reserve_percent: 100
+    borg_param_town_phase_reserve__ranger: 2
+    borg_param_town_phase_reserve__blackguard: 0
+    borg_param_town_phase_reserve__priest: 0
+  shipped: {}          # as merged
+  variety:             # the staples' decay and the remedies only; Recall and Phase Door as before
+    borg_param_town_recall_reserve: 1
+    borg_param_buy_recall_from_gold: 400
+    borg_param_town_phase_reserve: 0
+    borg_param_town_phase_reserve_percent: 100
+    borg_param_town_phase_reserve__ranger: 2
+    borg_param_town_phase_reserve__blackguard: 0
+    borg_param_town_phase_reserve__priest: 0
+  kit:                 # Recall and Phase Door only; no decay, no remedies
+    borg_param_town_prepared_percent: 0
+    borg_param_town_variety_min_depth: 0
+    borg_param_town_staple_clw: 0
+    borg_param_town_staple_csw: 0
+    borg_param_town_staple_ccw: 0
+    borg_param_town_staple_phase: 0
+    borg_param_town_staple_oil: 0
+    borg_param_town_staple_food: 0
+    borg_param_town_staple_light: 0
+    borg_param_town_staple_clw__warrior: 0
+    borg_param_town_staple_csw__warrior: 0
+    borg_param_town_staple_phase__warrior: 0
+    borg_param_town_staple_oil__warrior: 0
+    borg_param_town_staple_clw__mage: 0
+    borg_param_town_staple_csw__mage: 0
+    borg_param_town_staple_phase__mage: 0
+    borg_param_town_staple_oil__mage: 0
+    borg_param_town_staple_clw__druid: 0
+    borg_param_town_staple_csw__druid: 0
+    borg_param_town_staple_phase__druid: 0
+    borg_param_town_staple_oil__druid: 0
+    borg_param_town_staple_clw__priest: 0
+    borg_param_town_staple_csw__priest: 0
+    borg_param_town_staple_phase__priest: 0
+    borg_param_town_staple_oil__priest: 0
+    borg_param_town_staple_clw__necromancer: 0
+    borg_param_town_staple_csw__necromancer: 0
+    borg_param_town_staple_phase__necromancer: 0
+    borg_param_town_staple_oil__necromancer: 0
+    borg_param_town_staple_clw__paladin: 0
+    borg_param_town_staple_csw__paladin: 0
+    borg_param_town_staple_phase__paladin: 0
+    borg_param_town_staple_oil__paladin: 0
+    borg_param_town_staple_clw__rogue: 0
+    borg_param_town_staple_csw__rogue: 0
+    borg_param_town_staple_phase__rogue: 0
+    borg_param_town_staple_oil__rogue: 0
+    borg_param_town_staple_clw__ranger: 0
+    borg_param_town_staple_csw__ranger: 0
+    borg_param_town_staple_phase__ranger: 0
+    borg_param_town_staple_oil__ranger: 0
+    borg_param_town_staple_clw__blackguard: 0
+    borg_param_town_staple_csw__blackguard: 0
+    borg_param_town_staple_phase__blackguard: 0
+    borg_param_town_staple_oil__blackguard: 0
+
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#648; zoo owner, 2026-11-22: "yes do them" (the pilot only; small + medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Pilot (classes-18, 2 starts per class, 300,000 turns, every cell's evidence retained: messages, town transactions,
+  return events): the gate is that no cell has a config_error and every game ends in death, at the cap, or is reported
+  unfinished with its stop message. Everything is directional; a claim needs a fresh seed block (RULES 14). Primary
+  measures, fixed here, each per arm and class: (1) stocked: the share of town departures after the first that carry no
+  Word of Recall, and that carry 5 or fewer Phase Doors; (2) progress: mean max CL and depth, and alive at the cap, with
+  rescued / newly killed pairs against ctl; (3) why progress differs, if it does: the turns spent in town and in
+  DL1-town bounces, the gold at each purchase and what each visit bought (first visit, first three visits), and the
+  deaths before CL5 by cause; (4) situations covered at departure (Detect Invisible, Remove Curse, a poison cure, a
+  confusion cure, a fear remedy) and the staples' stack sizes against their free counts.
