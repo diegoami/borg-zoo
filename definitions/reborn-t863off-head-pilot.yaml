@@ -1,0 +1,37 @@
+# borg-zoo#669: borg-reborn-rs #873 (issue #863) town changes set back on the track-p head 4b2c2fcf, pilot tier: ctl, phase0, t863off.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-t863off-head-pilot.yaml
+name: reborn-t863off-head-pilot
+issue: 669
+question: >-
+  On the borg-reborn-rs track-p head 4b2c2fcf, does setting back #873's town changes (the Phase Door reserve that the first visit buys before
+  cures and oil; with or without the Recall reserve, the prepared remedies and the staple decay) change deaths and progress?
+tier: pilot            # classes-18, 100,000 turns
+specimen: 4.2.6-reborn-rust-trackp-4b2c2fcf
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-t863
+arms:
+  ctl: {}
+  phase0: {borg_param_town_phase_reserve: 0, borg_param_town_phase_reserve_percent: 100, borg_param_town_phase_reserve__ranger: 2,
+           borg_param_town_phase_reserve__priest: 0, borg_param_town_phase_reserve__blackguard: 0}
+  t863off: {borg_param_town_phase_reserve: 0, borg_param_town_phase_reserve_percent: 100, borg_param_town_phase_reserve__ranger: 2,
+            borg_param_town_phase_reserve__priest: 0, borg_param_town_phase_reserve__blackguard: 0, borg_param_town_recall_reserve: 1,
+            borg_param_buy_recall_from_gold: 400, borg_param_town_prepared_percent: 0, borg_param_town_variety_min_depth: 127}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: zoo owner, "yes dispatch it" (the paired track-p arm with #873's staples set back, proposed in borg-zoo#668); pilot and small
+  dispatched together: the pilot is the gate, medium and larger tiers wait for the owner.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22 (borg-zoo#669, #668). Three arms on the track-p head 4b2c2fcf. ctl is the shipped play. phase0 sets town_phase_reserve back
+  to 0 at 100 percent (Ranger 2, Priest and Blackguard 0, the f57499d0 values). t863off also sets back town_recall_reserve 1,
+  buy_recall_from_gold 400, town_prepared_percent 0 and town_variety_min_depth 127. Neither arm is f57499d0: the other track-p changes stay
+  (a local check found 1 of 28 games identical). Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in
+  death, turn_cap or borg_stopped; stalls and wall timeouts apart. Report per arm and class: deaths and causes, Phase Door and CLW carried
+  at the first descent where the logs allow, mean CL and depth, paired rescued and newly killed against ctl (exact McNemar), identical
+  plays. A lead, not a claim (RULES 8, 18).

@@ -122,6 +122,9 @@ New issues, label `bug`:
 - [#983](https://github.com/diegoami/borg-reborn-rs/issues/983): confused melee with CLW unused; `caution_confused_clw_cure` ships 0 (17626119).
 - [#984](https://github.com/diegoami/borg-reborn-rs/issues/984): leaves town with 235 gold and no Word of Recall (312081895).
 - [#985](https://github.com/diegoami/borg-reborn-rs/issues/985): the bravery boost overrides cures while poisoned (1895660873).
+- [#986](https://github.com/diegoami/borg-reborn-rs/issues/986): Fang at CL1, "winning" while oil lands 1 in 6 (1194051723, 1024822556).
+- [#987](https://github.com/diegoami/borg-reborn-rs/issues/987): a 127-gold Ranger buys Phase Door first and no CLW (681096527); measured by
+  borg-zoo#669.
 
 New cases added as comments to existing issues:
 - [#974](https://github.com/diegoami/borg-reborn-rs/issues/974): 857532386, Grip while confused by a patch.
