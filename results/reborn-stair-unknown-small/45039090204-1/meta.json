@@ -1,0 +1,619 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-stairunk-ctl-x4": {
+        "description": "borg-zoo#642 (reborn-stair-unknown-pilot.yaml): arm ctl-x4.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "breeders-x4"
+        },
+        "sha256": "aece0ac3c956e8027379f09e6b262f2bf1ce4d5c0a73764222969422dde7f875"
+      },
+      "reborn-stairunk-ctl-x8": {
+        "description": "borg-zoo#642 (reborn-stair-unknown-pilot.yaml): arm ctl-x8.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "breeders-x8"
+        },
+        "sha256": "94bf73067a76cdb8bfa5e226c6b7cb889f64ad73d2d76f038212fb56e2dc0a8b"
+      },
+      "reborn-stairunk-m1-x4": {
+        "description": "borg-zoo#642 (reborn-stair-unknown-pilot.yaml): arm m1-x4.",
+        "settings": {
+          "borg_param_caution_stairs_flight_unknown": 1,
+          "borg_param_caution_stairs_flight_unknown_steps": 5,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "breeders-x4"
+        },
+        "sha256": "0b6bd75eba2bbf8b720360b383ec03c6197077f26d335c6d4bdbe005e7260ed7"
+      },
+      "reborn-stairunk-m1-x8": {
+        "description": "borg-zoo#642 (reborn-stair-unknown-pilot.yaml): arm m1-x8.",
+        "settings": {
+          "borg_param_caution_stairs_flight_unknown": 1,
+          "borg_param_caution_stairs_flight_unknown_steps": 5,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "breeders-x8"
+        },
+        "sha256": "705a1ea36c437cef1b656504fd41218c42665cb7b9216ca926be1c0c2850e8cd"
+      },
+      "reborn-stairunk-m2-x4": {
+        "description": "borg-zoo#642 (reborn-stair-unknown-pilot.yaml): arm m2-x4.",
+        "settings": {
+          "borg_param_caution_stairs_flight_unknown": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "breeders-x4"
+        },
+        "sha256": "e82e73701be350ddee643ea8ee6d65858826728be62c438efaa3bc141fd5e18b"
+      },
+      "reborn-stairunk-m2-x8": {
+        "description": "borg-zoo#642 (reborn-stair-unknown-pilot.yaml): arm m2-x8.",
+        "settings": {
+          "borg_param_caution_stairs_flight_unknown": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "breeders-x8"
+        },
+        "sha256": "b7335163286844324ef450ba4912b9c10a650bfb912b8c9ce6a2f4dd243b48c3"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-stair-unknown-ea14528a": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs PR #897 head ea14528a (on track-p 4c686250; code commit 9d86ed7b): caution_stairs_flight_unknown compiled and shipped 0; harness/borg.txt 50a42b87..., scary_monsters.txt ff831d0a...; worlds breeders-x4 a546fb51... and breeders-x8 9530ff13...",
+        "ref": "ea14528a77f5d63c36e16fd8b6d3759aa0b71dc1",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+        },
+        "worlds": {
+          "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8",
+          "breeders-x8": "9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-small": {
+        "assigned_characters": {
+          "102088710": [
+            "Elf",
+            "Rogue"
+          ],
+          "1028557754": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1042834709": [
+            "Gnome",
+            "Rogue"
+          ],
+          "10488336": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "1058178192": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1071405808": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "1086352478": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "1112777834": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "1149332291": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "1169386844": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "1199401383": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1217781050": [
+            "Human",
+            "Priest"
+          ],
+          "1236782037": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1248006956": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "1269315224": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1272553636": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "1277697136": [
+            "Human",
+            "Rogue"
+          ],
+          "1285833235": [
+            "Gnome",
+            "Paladin"
+          ],
+          "129607500": [
+            "Human",
+            "Ranger"
+          ],
+          "1303043906": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1304510506": [
+            "Half-Orc",
+            "Blackguard"
+          ],
+          "1326666591": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1356248624": [
+            "Elf",
+            "Warrior"
+          ],
+          "1370868461": [
+            "Dwarf",
+            "Mage"
+          ],
+          "1417651640": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "1429594888": [
+            "Dunadan",
+            "Mage"
+          ],
+          "1478804878": [
+            "Elf",
+            "Priest"
+          ],
+          "1484503304": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "1515505937": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1516096046": [
+            "Gnome",
+            "Druid"
+          ],
+          "1545553111": [
+            "High-Elf",
+            "Mage"
+          ],
+          "1552244183": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "1584060551": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "1629166764": [
+            "High-Elf",
+            "Druid"
+          ],
+          "167240942": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1678303796": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1678765969": [
+            "Elf",
+            "Druid"
+          ],
+          "1705599023": [
+            "Dwarf",
+            "Druid"
+          ],
+          "1751715076": [
+            "Human",
+            "Blackguard"
+          ],
+          "1758620521": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1759555484": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "176707408": [
+            "Human",
+            "Necromancer"
+          ],
+          "1834235471": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "1852741500": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1859521195": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1956591784": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "2002578196": [
+            "Hobbit",
+            "Druid"
+          ],
+          "200986077": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "2022908874": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "2041201968": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "2093434235": [
+            "Gnome",
+            "Mage"
+          ],
+          "2097768768": [
+            "Human",
+            "Mage"
+          ],
+          "2109297965": [
+            "Human",
+            "Druid"
+          ],
+          "234773070": [
+            "Elf",
+            "Mage"
+          ],
+          "247227001": [
+            "High-Elf",
+            "Priest"
+          ],
+          "247597266": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "25404286": [
+            "Dwarf",
+            "Blackguard"
+          ],
+          "255960706": [
+            "Dunadan",
+            "Blackguard"
+          ],
+          "300461652": [
+            "Hobbit",
+            "Mage"
+          ],
+          "352388688": [
+            "Human",
+            "Paladin"
+          ],
+          "384988836": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "399497898": [
+            "Dunadan",
+            "Priest"
+          ],
+          "406779093": [
+            "High-Elf",
+            "Blackguard"
+          ],
+          "412975293": [
+            "Elf",
+            "Necromancer"
+          ],
+          "446353753": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "507571350": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "572215387": [
+            "Elf",
+            "Ranger"
+          ],
+          "584077430": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "60792140": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "63257248": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "652511567": [
+            "Gnome",
+            "Priest"
+          ],
+          "655965451": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "674811104": [
+            "Half-Orc",
+            "Paladin"
+          ],
+          "710244031": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "736866367": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "740860644": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "765432699": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "797610775": [
+            "Dwarf",
+            "Paladin"
+          ],
+          "807773433": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "818961361": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "826156836": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "869093144": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "884072154": [
+            "Human",
+            "Warrior"
+          ],
+          "892923114": [
+            "Hobbit",
+            "Priest"
+          ],
+          "904568879": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "920137153": [
+            "Elf",
+            "Paladin"
+          ],
+          "926210318": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "957287853": [
+            "Elf",
+            "Blackguard"
+          ],
+          "979002123": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "99115049": [
+            "High-Elf",
+            "Ranger"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "Tier small of classes-1800 (RULES 14): starts 1-90 (10 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          884072154,
+          2097768768,
+          2109297965,
+          1217781050,
+          176707408,
+          352388688,
+          1277697136,
+          129607500,
+          1751715076,
+          1859521195,
+          247597266,
+          507571350,
+          584077430,
+          1199401383,
+          1584060551,
+          1759555484,
+          1758620521,
+          446353753,
+          1356248624,
+          234773070,
+          1678765969,
+          1478804878,
+          412975293,
+          920137153,
+          102088710,
+          572215387,
+          957287853,
+          1515505937,
+          300461652,
+          2002578196,
+          892923114,
+          384988836,
+          765432699,
+          826156836,
+          1248006956,
+          2022908874,
+          1326666591,
+          2093434235,
+          1516096046,
+          652511567,
+          1236782037,
+          1285833235,
+          1042834709,
+          167240942,
+          1552244183,
+          736866367,
+          1370868461,
+          1705599023,
+          1303043906,
+          10488336,
+          797610775,
+          2041201968,
+          807773433,
+          25404286,
+          1058178192,
+          200986077,
+          1169386844,
+          1852741500,
+          1417651640,
+          674811104,
+          1269315224,
+          1071405808,
+          1304510506,
+          1028557754,
+          63257248,
+          869093144,
+          1086352478,
+          1112777834,
+          1956591784,
+          926210318,
+          60792140,
+          1484503304,
+          740860644,
+          1429594888,
+          1678303796,
+          399497898,
+          904568879,
+          818961361,
+          979002123,
+          1834235471,
+          255960706,
+          655965451,
+          1545553111,
+          1629166764,
+          247227001,
+          1272553636,
+          1149332291,
+          710244031,
+          99115049,
+          406779093
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "range": [
+            0,
+            90
+          ],
+          "suite": "classes-1800"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-22 16:22 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-stair-unknown-ea14528a",
+    "control_profile": "reborn-stairunk-ctl-x4",
+    "definition": "definitions/reborn-stair-unknown-small.yaml",
+    "description": "In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs ea14528a (PR #897, on track-p 4c686250), do stair flights that refuse or pay for unknown grids (caution_stairs_flight_unknown 1 and 2) save the breeder games in which the flight walked into a dead end through unseen rock, or do they find no route and cost games? Each world has its own control. Generated from definitions/reborn-stair-unknown-small.yaml: 6 arms on 4.2.6-reborn-rust-stair-unknown-ea14528a, suite classes-1800-small.",
+    "issue": 642,
+    "name": "reborn-stair-unknown-small",
+    "owner_authorization": "2026-11-22: zoo owner, \"yes dispatch all\" (the small tier; the pilot gate is read and posted on the issue).",
+    "prespecified": "Fixed 2026-11-22 after the pilot gate (run 45023921364: arms play differently (0-1 of 18 identical), 1-3 deaths per arm) and before any result of this tier was read. Small tier (RULES 14) on the same build:\nclasses-1800 starts 1-90 (90 starts per arm, paired), all classes, 100,000 turns, one binary, disjoint from the other tiers of the study (pool them\nas one study, RULES 14). All six profiles (ctl, m1, m2 in breeders-x4 and in breeders-x8); a world's arms are compared only within that world.\nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by start.\nReport per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly killed against\nthe control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not retained at this tier. Descriptive.",
+    "profiles": [
+      "reborn-stairunk-ctl-x4",
+      "reborn-stairunk-m1-x4",
+      "reborn-stairunk-m2-x4",
+      "reborn-stairunk-ctl-x8",
+      "reborn-stairunk-m1-x8",
+      "reborn-stairunk-m2-x8"
+    ],
+    "question": "In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs ea14528a (PR #897, on track-p 4c686250), do stair flights that refuse or pay for unknown grids (caution_stairs_flight_unknown 1 and 2) save the breeder games in which the flight walked into a dead end through unseen rock, or do they find no route and cost games? Each world has its own control.",
+    "retain_evidence": false,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-stair-unknown-ea14528a"
+    ],
+    "suites": [
+      "classes-1800-small"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45039090204-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45039090204",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "10fae423d52f3a3e8a077768f86db2b98d273ad5"
+}
