@@ -1793,7 +1793,7 @@
     },
     "reborn-loneslow": {
       "issue": 626,
-      "status": "pilot, small and medium done; big (ctl against all) defined and dispatched (#626)",
+      "status": "pilot, small, medium, big done (all: 13 deaths against 25 in 900 starts); confirmation on classes-1800-fresh defined and dispatched (#626)",
       "what": "borg-reborn-rs #878 (PR #891) on 296adfbf: 11 arms (lone slow attack, danger without fear, faint, unseen-bump phase, breeder bonus), classes-18.",
       "profiles": [
         "reborn-loneslow-ctl",
@@ -2111,10 +2111,11 @@
     "reborn-overex": {
       "issue": 675,
       "status": "defined (pilot on the small Mage suite)",
-      "what": "Emergency attack spell beyond the mana (#980, PR #991) on 89888283: ctl (1), noexert (0), Mages.",
+      "what": "Emergency attack spell beyond the mana (#980, PR #991, re-synced to 80cf6bf4): ctl (1), noexert (0), faint100, Mages.",
       "profiles": [
         "reborn-overex-ctl",
-        "reborn-overex-noexert"
+        "reborn-overex-noexert",
+        "reborn-overex-faint100"
       ],
       "runs": []
     },
