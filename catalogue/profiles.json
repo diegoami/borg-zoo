@@ -11264,6 +11264,138 @@
         "borg_param_town_prepared_percent": 0,
         "borg_param_town_variety_min_depth": 127
       }
+    },
+    "reborn-lonew-ctl-x4": {
+      "description": "borg-zoo#678 (reborn-lone-slow-worlds-pilot.yaml): arm ctl-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4"
+      }
+    },
+    "reborn-lonew-lone-x4": {
+      "description": "borg-zoo#678 (reborn-lone-slow-worlds-pilot.yaml): arm lone-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_lone_slow_attack": 1
+      }
+    },
+    "reborn-lonew-phase-nofear-x4": {
+      "description": "borg-zoo#678 (reborn-lone-slow-worlds-pilot.yaml): arm phase-nofear-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_escape_phase_lost_damage_only": 1
+      }
+    },
+    "reborn-lonew-breeder5-x4": {
+      "description": "borg-zoo#678 (reborn-lone-slow-worlds-pilot.yaml): arm breeder5-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_danger_breeder_melee_extra_tenths": 5
+      }
+    },
+    "reborn-lonew-all-x4": {
+      "description": "borg-zoo#678 (reborn-lone-slow-worlds-pilot.yaml): arm all-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_lone_slow_attack": 1,
+        "borg_param_escape_phase_lost_damage_only": 1,
+        "borg_param_attack_reserve_spell_damage_only": 1,
+        "borg_param_attack_reserve_faint_percent": 25,
+        "borg_param_caution_unseen_bump_phase_turns": 20,
+        "borg_param_caution_unseen_bump_phase_min_danger": 5
+      }
+    },
+    "reborn-lonew-ctl-x8": {
+      "description": "borg-zoo#678 (reborn-lone-slow-worlds-pilot.yaml): arm ctl-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8"
+      }
+    },
+    "reborn-lonew-lone-x8": {
+      "description": "borg-zoo#678 (reborn-lone-slow-worlds-pilot.yaml): arm lone-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_lone_slow_attack": 1
+      }
+    },
+    "reborn-lonew-phase-nofear-x8": {
+      "description": "borg-zoo#678 (reborn-lone-slow-worlds-pilot.yaml): arm phase-nofear-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_escape_phase_lost_damage_only": 1
+      }
+    },
+    "reborn-lonew-breeder5-x8": {
+      "description": "borg-zoo#678 (reborn-lone-slow-worlds-pilot.yaml): arm breeder5-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_danger_breeder_melee_extra_tenths": 5
+      }
+    },
+    "reborn-lonew-all-x8": {
+      "description": "borg-zoo#678 (reborn-lone-slow-worlds-pilot.yaml): arm all-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_lone_slow_attack": 1,
+        "borg_param_escape_phase_lost_damage_only": 1,
+        "borg_param_attack_reserve_spell_damage_only": 1,
+        "borg_param_attack_reserve_faint_percent": 25,
+        "borg_param_caution_unseen_bump_phase_turns": 20,
+        "borg_param_caution_unseen_bump_phase_min_danger": 5
+      }
+    },
+    "reborn-blloww-blow-off-x4": {
+      "description": "borg-zoo#679 (reborn-recall-blow-worlds-pilot.yaml): arm blow-off-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_recall_blow_model": 0
+      }
+    },
+    "reborn-blloww-blow-on-x4": {
+      "description": "borg-zoo#679 (reborn-recall-blow-worlds-pilot.yaml): arm blow-on-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4"
+      }
+    },
+    "reborn-blloww-blow-off-x8": {
+      "description": "borg-zoo#679 (reborn-recall-blow-worlds-pilot.yaml): arm blow-off-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_caution_recall_blow_model": 0
+      }
+    },
+    "reborn-blloww-blow-on-x8": {
+      "description": "borg-zoo#679 (reborn-recall-blow-worlds-pilot.yaml): arm blow-on-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8"
+      }
     }
   }
 }

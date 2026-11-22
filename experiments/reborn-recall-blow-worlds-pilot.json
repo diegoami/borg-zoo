@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-recall-blow-worlds-pilot",
+  "issue": 679,
+  "definition": "definitions/reborn-recall-blow-worlds-pilot.yaml",
+  "question": "In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs 201d56eb (PR #892), does the flight Recall blow model (poison priced as HP, status blows by their dice, a breeder's risk never refusing Recall) save the games in which the old rule refused Recall against worm masses, where the normal world changed no outcome in 360 starts? Each world has its own control.",
+  "description": "In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs 201d56eb (PR #892), does the flight Recall blow model (poison priced as HP, status blows by their dice, a breeder's risk never refusing Recall) save the games in which the old rule refused Recall against worm masses, where the normal world changed no outcome in 360 starts? Each world has its own control. Generated from definitions/reborn-recall-blow-worlds-pilot.yaml: 4 arms on 4.2.6-reborn-rust-recall-blow-worlds-201d56eb, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any game of this build was played in these worlds (borg-zoo#679, companion of #632; RULES 21). blow-off against blow-on in\nbreeders-x4 and in breeders-x8 (4 profiles), classes-18, 18 starts each (72 cells), 100,000 turns, evidence retained. A world's arms are compared only\nwithin that world. Gate: no config_error; one binary; every cell records its world with the same borg_world_data_sha256 in every arm of that world; each\narm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls apart; identical plays. Report per world, arm and class:\ndeaths and causes (breeders and poison apart), CL and DL, paired rescued and newly killed; per arm \"# Refusing flight Recall\" notes per game (both\nreasons) and flight Recall reads, the \"# Flight Recall forecast: ... (#880)\" notes, deaths during a pending Recall. A breeder world is a stress test; a\nlead needs the normal-world result of #632 (no outcome changed in 360 starts) to be read with it. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-recall-blow-worlds-201d56eb"
+  ],
+  "profiles": [
+    "reborn-blloww-blow-off-x4",
+    "reborn-blloww-blow-on-x4",
+    "reborn-blloww-blow-off-x8",
+    "reborn-blloww-blow-on-x8"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-recall-blow-worlds-201d56eb",
+  "control_profile": "reborn-blloww-blow-off-x4",
+  "owner_authorization": "2026-11-22: zoo owner, \"yes do it\" (the breeder-world pilot of #632, the scenario companion #679; RULES 21).",
+  "retain_evidence": true
+}

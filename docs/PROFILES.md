@@ -149,6 +149,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-wjelly` | [#654](https://github.com/diegoami/borg-zoo/issues/654) | 6 | defined (pilot) | Four switches from the white-jelly death (#931-#934) on 172bd671: ctl, reach, osc, kill, poison, all, classes-18. |
 | `reborn-trackp-regression` | [#645](https://github.com/diegoami/borg-zoo/issues/645) | 2 | defined (diagnosis pilot) | The 37 starts that die on track-p 9085c266 and survive on main f57499d0, on the track-p head: shipped against attack_confused_by_direction 0, evidence retained. |
 | `reborn-pbdtp2` | [#651](https://github.com/diegoami/borg-zoo/issues/651) | 2 | defined (development re-measure on the 200 Ranger starts; the first run had config_error for lo: wrong class line name) | Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e, rerun with attack_arrow_point_blank_divisor_ranger. |
+| `reborn-lonew` | [#678](https://github.com/diegoami/borg-zoo/issues/678) | 10 | defined (pilot in the breeder worlds) | The #878 switches in breeders-x4 and breeders-x8 on 296adfbf: ctl, lone, phase-nofear, breeder5, all, classes-18 (scenario companion of #626). |
+| `reborn-blloww` | [#679](https://github.com/diegoami/borg-zoo/issues/679) | 4 | defined (pilot in the breeder worlds) | Flight Recall blow model in breeders-x4 and breeders-x8 on 201d56eb: blow-off, blow-on, classes-18 (scenario companion of #632). |
 
 ### `heal-attack-4`
 
@@ -2117,6 +2119,38 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-pbdtp2-ctl` | – |
 | `reborn-pbdtp2-lo` | 1 |
 
+### `reborn-lonew`
+
+The #878 switches in breeders-x4 and breeders-x8 on 296adfbf: ctl, lone, phase-nofear, breeder5, all, classes-18 (scenario companion of #626).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_reserve_faint_percent` | `borg_param_attack_reserve_spell_damage_only` | `borg_param_caution_unseen_bump_phase_min_danger` | `borg_param_caution_unseen_bump_phase_turns` | `borg_param_danger_breeder_melee_extra_tenths` | `borg_param_escape_phase_lost_damage_only` | `borg_param_lone_slow_attack` | `borg_world` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-lonew-ctl-x4` | – | – | – | – | – | – | – | breeders-x4 |
+| `reborn-lonew-lone-x4` | – | – | – | – | – | – | 1 | breeders-x4 |
+| `reborn-lonew-phase-nofear-x4` | – | – | – | – | – | 1 | – | breeders-x4 |
+| `reborn-lonew-breeder5-x4` | – | – | – | – | 5 | – | – | breeders-x4 |
+| `reborn-lonew-all-x4` | 25 | 1 | 5 | 20 | – | 1 | 1 | breeders-x4 |
+| `reborn-lonew-ctl-x8` | – | – | – | – | – | – | – | breeders-x8 |
+| `reborn-lonew-lone-x8` | – | – | – | – | – | – | 1 | breeders-x8 |
+| `reborn-lonew-phase-nofear-x8` | – | – | – | – | – | 1 | – | breeders-x8 |
+| `reborn-lonew-breeder5-x8` | – | – | – | – | 5 | – | – | breeders-x8 |
+| `reborn-lonew-all-x8` | 25 | 1 | 5 | 20 | – | 1 | 1 | breeders-x8 |
+
+### `reborn-blloww`
+
+Flight Recall blow model in breeders-x4 and breeders-x8 on 201d56eb: blow-off, blow-on, classes-18 (scenario companion of #632).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_recall_blow_model` | `borg_world` |
+| --- | --- | --- |
+| `reborn-blloww-blow-off-x4` | 0 | breeders-x4 |
+| `reborn-blloww-blow-on-x4` | – | breeders-x4 |
+| `reborn-blloww-blow-off-x8` | 0 | breeders-x8 |
+| `reborn-blloww-blow-on-x8` | – | breeders-x8 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2199,8 +2233,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_projectile_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_warrior_spell_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
-| `borg_param_attack_reserve_faint_percent` | 25, not set | `reborn-loneslow` |  |
-| `borg_param_attack_reserve_spell_damage_only` | 1, not set | `reborn-loneslow` |  |
+| `borg_param_attack_reserve_faint_percent` | 25, not set | `reborn-loneslow`, `reborn-lonew` |  |
+| `borg_param_attack_reserve_spell_damage_only` | 1, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |
 | `borg_param_attack_throw_as_melee` | 0, not set | `reborn-shipcheck-b895` |  |
 | `borg_param_attack_throw_point_blank_divisor` | 0, 1, not set | `reborn-throwpb`, `reborn-conf` |  |
@@ -2252,7 +2286,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_poisoned_no_cure_retreat_hp_percent` | 75, not set | `reborn-wjelly` |  |
 | `borg_param_caution_ranged_only` | 1, not set | `reborn-rangedonly` |  |
 | `borg_param_caution_ranged_vs_immobile` | 1, 2, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895`, `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly` |  |
-| `borg_param_caution_recall_blow_model` | 0, not set | `reborn-blow` |  |
+| `borg_param_caution_recall_blow_model` | 0, not set | `reborn-blow`, `reborn-blloww` |  |
 | `borg_param_caution_recall_cure_min_loss_percent` | 0, 30, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
 | `borg_param_caution_recall_pending_escape` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
@@ -2289,15 +2323,15 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_town_scary_levels_less` | 6, 11, not set | `reborn-townkos` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_caution_unseen_bump_heal_hp_percent` | 0, not set | `reborn-sloo` |  |
-| `borg_param_caution_unseen_bump_phase_min_danger` | 5, not set | `reborn-loneslow` |  |
-| `borg_param_caution_unseen_bump_phase_turns` | 20, not set | `reborn-loneslow` |  |
+| `borg_param_caution_unseen_bump_phase_min_danger` | 5, not set | `reborn-loneslow`, `reborn-lonew` |  |
+| `borg_param_caution_unseen_bump_phase_turns` | 20, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_caution_unseen_bump_response` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_unseen_bump_turns` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3`, `reborn-townhunt` |  |
 | `borg_param_caution_winning_fight_group_percent` | 100, not set | `reborn-fastpur` |  |
 | `borg_param_caution_winning_fight_margin_percent` | 20, not set | `reborn-fastpur` |  |
 | `borg_param_cave_light_engine_radius` | 1, not set | `reborn-lightbel` |  |
-| `borg_param_danger_breeder_melee_extra_tenths` | 0, 5, not set | `reborn-loneslow` |  |
+| `borg_param_danger_breeder_melee_extra_tenths` | 0, 5, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_danger_observed_haste` | 1, not set | `reborn-fastpur` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_fail` | 0, not set | `reborn-bless` |  |
@@ -2306,7 +2340,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_fox_form_town` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_escape_phase_adjacent_rule` | 0, 1, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
 | `borg_param_escape_phase_antisummon_delay` | 0, not set | `reborn-phase-thresholds` |  |
-| `borg_param_escape_phase_lost_damage_only` | 1, not set | `reborn-loneslow` |  |
+| `borg_param_escape_phase_lost_damage_only` | 1, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_escape_phase_lost_danger_percent` | 100, not set | `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
 | `borg_param_escape_phase_lost_test` | 0, 1, 2, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape`, `reborn-dungeon-switch-screen` |  |
 | `borg_param_escape_phase_ordinary_danger_tenths` | 5, 20, not set | `reborn-phase-thresholds` |  |
@@ -2359,7 +2393,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_light_detect_evil_spell_min_level__ranger` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__rogue` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__warrior` | 5, 10, not set | `reborn-low-level-detection` |  |
-| `borg_param_lone_slow_attack` | 1, not set | `reborn-loneslow` |  |
+| `borg_param_lone_slow_attack` | 1, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_prepared_clevel_depth_margin` | -2, 2, not set | `reborn-dive-gates-768` |  |
 | `borg_param_prepared_cure_min` | 0, 4, not set | `reborn-prepared` |  |
 | `borg_param_prepared_dl2_min_hp` | 23, 38, not set | `reborn-bundle`, `reborn-prepared` |  |
@@ -2570,7 +2604,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_town_w_escape` | 100, not set | `reborn-casters` |  |
 | `borg_town_w_space` | 12, 50, not set | `reborn-untested-town` |  |
 | `borg_town_w_support` | 25, 100, not set | `reborn-untested-town` |  |
-| `borg_world` | breeders-x4, breeders-x8 | `reborn-stairunk` |  |
+| `borg_world` | breeders-x4, breeders-x8 | `reborn-stairunk`, `reborn-lonew`, `reborn-blloww` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |

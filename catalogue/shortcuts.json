@@ -2040,6 +2040,36 @@
         "reborn-pbdtp2-lo"
       ],
       "runs": []
+    },
+    "reborn-lonew": {
+      "issue": 678,
+      "status": "defined (pilot in the breeder worlds)",
+      "what": "The #878 switches in breeders-x4 and breeders-x8 on 296adfbf: ctl, lone, phase-nofear, breeder5, all, classes-18 (scenario companion of #626).",
+      "profiles": [
+        "reborn-lonew-ctl-x4",
+        "reborn-lonew-lone-x4",
+        "reborn-lonew-phase-nofear-x4",
+        "reborn-lonew-breeder5-x4",
+        "reborn-lonew-all-x4",
+        "reborn-lonew-ctl-x8",
+        "reborn-lonew-lone-x8",
+        "reborn-lonew-phase-nofear-x8",
+        "reborn-lonew-breeder5-x8",
+        "reborn-lonew-all-x8"
+      ],
+      "runs": []
+    },
+    "reborn-blloww": {
+      "issue": 679,
+      "status": "defined (pilot in the breeder worlds)",
+      "what": "Flight Recall blow model in breeders-x4 and breeders-x8 on 201d56eb: blow-off, blow-on, classes-18 (scenario companion of #632).",
+      "profiles": [
+        "reborn-blloww-blow-off-x4",
+        "reborn-blloww-blow-on-x4",
+        "reborn-blloww-blow-off-x8",
+        "reborn-blloww-blow-on-x8"
+      ],
+      "runs": []
     }
   }
 }
