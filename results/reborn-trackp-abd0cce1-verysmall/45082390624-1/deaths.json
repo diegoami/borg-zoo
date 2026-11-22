@@ -1,0 +1,117 @@
+[
+  {
+    "cause": "a grey mold",
+    "cell": "classes-1800-verysmall/4.2.6-reborn-rust-trackp-abd0cce1/reborn-head-shipped/892923114",
+    "class": "Priest",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-1800-verysmall/4.2.6-reborn-rust-trackp-abd0cce1/reborn-head-shipped/892923114",
+      "complete": true,
+      "files": {
+        "archive/Borg.map": {
+          "bytes": 35324,
+          "sha256": "ae36319a6cc89c4dc039a4c594f6b4e3a9649446ea2f517a8c0e74df992c1a04"
+        },
+        "archive/borg-log.txt": {
+          "bytes": 170,
+          "sha256": "25b48e691ce43ae1389f387cabdb7d501ec9468a4980704600e296add7173b9d"
+        },
+        "archive/borg.dat": {
+          "bytes": 47,
+          "sha256": "605fb2e4a0c14aa3311d233d2c08119ba2893ab2488b3316e20f36184404adba"
+        },
+        "keys.log": {
+          "bytes": 152562,
+          "sha256": "4abeffdc5e617a582378487f2b2389d306a3f335feb31d75b534cf43cff4a51a"
+        },
+        "messages.log": {
+          "bytes": 898717,
+          "sha256": "9110dcc670c1c30e08d61c51213f0cd3b9553e09b0eb6f8f3eba84a8f45f5f99"
+        },
+        "params-core.json": {
+          "bytes": 779784,
+          "sha256": "073e2152d612eb7df6eada9014b1dbb3d617fc22f2cb79fe38f55ebe71248314"
+        },
+        "phase-observations.jsonl": {
+          "bytes": 6697,
+          "sha256": "484a3c23d489409f1d90894c2dea91d76fad8569596e0e5b2f762411efe37292"
+        },
+        "return-events.jsonl": {
+          "bytes": 9209,
+          "sha256": "b7211cec9ef198bdba7a702c846350f39a19cdf6eeef46a73cba3d2362ecb226"
+        },
+        "save/Borg": {
+          "bytes": 61136,
+          "sha256": "6aef871b71c74553c98f4e4cef6637c379aa2b1435f88c943d89c1ce23a41456"
+        },
+        "settings-resolved.json": {
+          "bytes": 3773,
+          "sha256": "739410da17c31aedafd4ede9b435681370dcc972adbb43e072aaedce8f36b1a3"
+        },
+        "state.log": {
+          "bytes": 1515664,
+          "sha256": "39ec98b5263342732e906ee6396bc8a1ecd2171c943cee2687bc08a25065b090"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "summary.json": {
+          "bytes": 1995,
+          "sha256": "3b2f848cf7b8d529dfde6fe9724034204c53f64f8e01395f4ad9cf7450e33143"
+        },
+        "town-recording.json": {
+          "bytes": 1851,
+          "sha256": "195f48c9f2be3977bb064eed15c8cd1fe5656c54ccf4e04e4f478019cab5bed4"
+        },
+        "town-transactions.jsonl": {
+          "bytes": 5245,
+          "sha256": "4dd6883b7d88da3b41baa7f5abf3a64d1a9b3ce504083341ef99b5c088b52b89"
+        },
+        "trace-core.jsonl": {
+          "bytes": 98279099,
+          "sha256": "fb19d565ed854e8bc69e82f080436bf9f875a02a5146a3546df3f11dab6fa767"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 111,
+          "sha256": "1d51d1e6a63a8a49aff92be0116a7d5af8ece96fa29a10b7065be138bbd069dd"
+        },
+        "user/borg.txt": {
+          "bytes": 98625,
+          "sha256": "8e9b08b7009e5f59499d3c5b48282794f5bf639f6a34be5c652327eadc97e48e"
+        },
+        "user/lore.txt": {
+          "bytes": 13455,
+          "sha256": "fd852ad095f2727b36e99c468eba54457f8661fa85494fb03322d3e77ad0aa37"
+        },
+        "user/scary_monsters.txt": {
+          "bytes": 7552,
+          "sha256": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": null,
+      "depth": 1,
+      "hp": null,
+      "keys": 11814,
+      "kind": "death",
+      "level": 4,
+      "max_depth": 2,
+      "max_level": 4,
+      "turn": 99721
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Hobbit",
+    "seed": 892923114,
+    "specimen": "4.2.6-reborn-rust-trackp-abd0cce1"
+  }
+]
