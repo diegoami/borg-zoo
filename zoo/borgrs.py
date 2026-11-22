@@ -669,6 +669,9 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'source_sha256': (manifest.get('build_id') or {}).get('source_sha256'),
         # The upstream Angband commit the build compiled (borg-zoo#473: borg-reborn-rs #730 moved it).
         'engine_upstream': (manifest.get('build_id') or {}).get('engine_upstream'),
+        # How the compiler orders the arguments of a call (borg-reborn-rs #855, 22224640): an `ltr` build plays other
+        # games from the same seed. Absent in builds before that commit (they were built `rtl` on the GCC runners).
+        'arg_order': (manifest.get('build_id') or {}).get('arg_order'),
         'binary_sha256': manifest.get('binary_sha256'), 'compiler': manifest.get('compiler'),
         'rustc': manifest.get('rustc'), 'platform': manifest.get('platform'),
     }

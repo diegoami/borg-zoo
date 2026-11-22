@@ -1410,6 +1410,16 @@ class ArmSplitTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             cat_mod.load_experiment(self.path, 'no-colon')
 
+    def test_consolidated_note_flags_a_different_argument_order(self):
+        """borg-reborn-rs #855: an `ltr` build plays other games from the same seed."""
+        from zoo import site
+        parts = [{'run_id': 'a', 'run_url': '', 'arm': 'x:y', 'completed': '2026-11-22 00:00 UTC',
+                  'harness': 'h' * 40, 'zoo_commit': 'z' * 40}]
+        for orders, flagged in ((['rtl'], False), ([], False), (['rtl', 'ltr'], True), (['ltr'], True)):
+            meta = {'consolidated_runs': parts, 'environment': {'compilers': ['gcc'], 'platforms': ['x'],
+                                                                 'arg_orders': orders}}
+            self.assertEqual('argument order' in site.consolidated_note(meta), flagged, orders)
+
     def test_site_consolidates_arm_runs_into_one_experiment(self):
         from zoo import site
         runs = []
