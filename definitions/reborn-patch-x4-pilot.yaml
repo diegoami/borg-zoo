@@ -1,0 +1,70 @@
+# DRAFT, not dispatched: the grey mushroom patch deaths of run 45028029063 (reborn-trackp-9085c266-full: 11 of 28
+# deaths, none on f57499d0 or ab775d48), stress-tested in worlds where the patch is 4 and 8 times as likely.
+# The issue number is to be filed. Write the catalogue entries with:
+#   python3 -m zoo define definitions/reborn-patch-x4-pilot.yaml
+# Its twin, reborn-patch-x8-pilot, is the same arms in the other world.
+#
+# Specimen: borg-reborn-rs e846f9f9 = track-p 9085c266 + one commit that adds `favour`/`favour_weight` to
+# scripts/make-world.py and harness/worlds/patches-x4.txt, patches-x8.txt (every race but the grey mushroom patch gets
+# its rarity times 4 or 8; depths unchanged). harness/borg.txt (e4bd2b87...) and scary_monsters.txt (ff831d0a...) are
+# 9085c266's, so outside a world it plays as the baseline specimen.
+#
+# Local replays of the 13 deaths at the patch (11 killed by it, 2 by Grip while confused by it) at 9085c266 (borg-reborn-rs
+# session notes, 2026-11-22): all 13 reproduce with the shipped settings. With the patch's attack line removed (`ranged`),
+# 8 games play the same keys up to the fatal patch and 7 of those 8 live to the cap. There the Borg rated the patch's danger
+# (408 against 15 HP), threw oil, drank Cure Light Wounds at HP 7, read Phase Door and recalled. attack_confused_by_direction 0
+# alone changed nothing in 11 of 13 (melee is allowed confused either way). Named cases show a direction, not an effect (RULES 14).
+name: reborn-patch-x4-pilot
+issue: null            # to be filed
+question: >-
+  In the world where the grey mushroom patch is 4 times as likely (patches-x4), does the kill-on-sight entry for it (#869) cost games
+  against the patch's ranged entry it replaced, with and without the confused attack by direction (#867, #901) and the
+  CLW confusion cure (#837)?
+tier: pilot            # classes-18, 100,000 turns; then verysmall (45 starts) of what leads, after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-patchworld-e846f9f9
+  repository: diegoami/borg-reborn-rs
+  ref: e846f9f94f28cd8d142b0b9c34eba1994e7038b4
+  label: "borg-reborn-rs e846f9f9 = track-p 9085c266 + make-world `favour` and the patches-x4/x8 worlds (branch claude/zen-pasteur-a10llc, no PR). Shipped harness/borg.txt e4bd2b87..., scary_monsters.txt ff831d0a..., borg-rs core; plays as 9085c266 outside a world."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+  worlds:
+    patches-x4: b28ef5dd21f69a621521e774f70b7336dcac84d5d30d6177b854d5377a52233c
+    patches-x8: 1298c38d85f5f5f7a2c4c84b934362e5e1444f4b4d8ca59a13c9f9b16f197806
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_world: patches-x4
+
+profile_prefix: reborn-patchx4
+arms:
+  ctl: {}                                                       # 9085c266 shipped: kill-on-sight, confused attack by direction
+  ranged:                                                 # #869 undone: the patch's ranged entry only
+    borg_scary_list_lines: ["grey mushroom patch | none | | attack"]
+  nodir: {borg_param_attack_confused_by_direction: 0}           # #901's switch off (C: melee only while confused)
+  rangedclw:                                              # ranged, and CLW counts as a confusion cure (#837)
+    borg_scary_list_lines: ["grey mushroom patch | none | | attack"]
+    borg_param_caution_confused_clw_cure: 1
+control: [ctl]
+owner_authorization: >-
+  Not yet given. 2026-11-22, owner: "can you then think of zoo run with a synthetic world where these patches are 4 or 8
+  times more frequent?" (a request to design it; dispatch waits for the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Draft of 2026-11-22, written before any game in these worlds was played. Pilot (RULES 16): 4 arms in patches-x4, classes-18
+  (72 games); the arms that lead go to verysmall after the gate and the owner. Games compare only within the world; ctl is
+  the control.
+  Gate: no config_error; one binary; every cell's config.txt has borg_world and the same borg_world_data_sha256 within a
+  world; each arm's values in params-core.json and its scary list copy (the borg_scary_list_lines applied); every cell ends
+  in death, turn_cap or borg_stopped; frozen-turn bursts classified; death bundles reproduced (in the world).
+  Report per world, arm and class: deaths and causes; patch deaths (killer the grey mushroom patch, or any killer while
+  confused next to a patch); CL and DL at death, max CL and DL; paired rescued and newly killed against ctl (exact
+  McNemar); identical plays. Per game: grey mushroom patches met ("# Creating a monster 'grey mushroom patch'"),
+  killed, and confused turns next to one; "# Attack on sight: grey mushroom patch" and "# Not fixing Confusion next to an
+  immobile confuser" notes; CLW quaffed while confused. Check that the world does what it says: patches met per game in x4
+  and x8 against the normal-world baseline at 9085c266 (run 45028029063, same Borg). A world is a stress test: a policy
+  that wins here still needs the normal world's measurement before a shipped value changes.
