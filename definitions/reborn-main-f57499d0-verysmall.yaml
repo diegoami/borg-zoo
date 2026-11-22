@@ -1,0 +1,40 @@
+# borg-zoo#623: the ladder of borg-reborn-rs main at f57499d0, verysmall tier (45 starts).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-main-f57499d0-verysmall.yaml
+name: reborn-main-f57499d0-verysmall
+issue: 623
+question: >-
+  What do the borg-rs core and shipped settings of borg-reborn-rs main f57499d0 do over classes-1800's verysmall
+  slice (45 starts, 100,000 turns)? Tonight's test of the current main: a description, not a comparison.
+tier: verysmall
+
+pilot: true            # first run of this arm on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-main-f57499d0
+  repository: diegoami/borg-reborn-rs
+  ref: f57499d09ba30e84c2e06e5ac08a008c856f9a6d
+  label: "borg-reborn-rs main f57499d0 (head on 2026-11-22: #822 P6 promotion, #865 and #872 stair-loop fixes merged): shipped harness/borg.txt dd21cc3e..., scary_monsters.txt e0e29381..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: e0e293814e8ed9c2f3a5f0af809f479e854878e5d0eaedea37b671dd1b20f5a8
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-head
+arms:
+  shipped: {}      # no overrides
+control: [shipped]
+owner_authorization: >-
+  2026-11-22: zoo owner, "do all of them in the order you think right" (the ladder of main f57499d0, issue #623).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result was read. The ladder of borg-reborn-rs main f57499d0 (shipped settings, borg-rs core, no
+  overrides) after tonight's run on ab775d48 (#609): one arm, classes-1800, 100,000 turns, verysmall (45, pilot), small-rest
+  (45), medium (270), big (540), full (900) = 1,800 starts. Descriptive (RULES 14).
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls, timeouts and harness failures
+  counted apart. Report, overall and per class: deaths and causes, CL and depth at death, survivors, alive at the cap having
+  reached DL5, unfinished games; paired by start against #609 (ab775d48) and #601 (ed52fec1): which starts die on which
+  build, and whether the 22 starts newly killed on ab775d48 still die.
