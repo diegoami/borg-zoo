@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-devices-small",
+  "issue": 633,
+  "definition": "definitions/reborn-devices-small.yaml",
+  "question": "On borg-reborn-rs 3020d451, over 45 starts of classes-1800 at 300,000 turns (5 per class), does a Borg that keeps and buys charged wands, staves and rods as variety play the same or better than one that values them only on the shared curves?",
+  "description": "On borg-reborn-rs 3020d451, over 45 starts of classes-1800 at 300,000 turns (5 per class), does a Borg that keeps and buys charged wands, staves and rods as variety play the same or better than one that values them only on the shared curves? Generated from definitions/reborn-devices-small.yaml: 2 arms on 4.2.6-reborn-rust-devices-3020d451, suite classes-1800-300k-verysmall.",
+  "prespecified": "Fixed 2026-11-22 before any result of this build was read. Small tier (RULES 14): 45 starts per arm (classes-1800 starts 1-45, 5\nper class), ctl against shipped, 300,000 turns, 90 cells, evidence not retained. Dispatched only after the pilot (classes-18 at\n300,000 turns) has passed its gate. Report per arm and class: deaths and causes, mean CL and depth, alive at the cap, paired rescued\nand newly killed against ctl, identical plays, unfinished games. Directional only (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-devices-3020d451"
+  ],
+  "profiles": [
+    "reborn-dev-ctl",
+    "reborn-dev-shipped"
+  ],
+  "suites": [
+    "classes-1800-300k-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-devices-3020d451",
+  "control_profile": "reborn-dev-ctl",
+  "owner_authorization": "2026-11-22: zoo owner, \"go with those as well\" (the small tier, dispatched only after the pilot's gate is read and posted on #633).",
+  "retain_evidence": false
+}
