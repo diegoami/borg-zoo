@@ -10582,6 +10582,54 @@
         "borg_reborn_errand": "none",
         "borg_param_caution_breeder_policy": 6
       }
+    },
+    "reborn-conf-ctl": {
+      "description": "borg-zoo#636 (reborn-confused-attack-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-conf-confused": {
+      "description": "borg-zoo#636 (reborn-confused-attack-pilot.yaml): arm confused.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_confused_by_direction": 1
+      }
+    },
+    "reborn-conf-ctl-clw": {
+      "description": "borg-zoo#636 (reborn-confused-attack-pilot.yaml): arm ctl-clw.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_confused_clw_cure": 1
+      }
+    },
+    "reborn-conf-confused-clw": {
+      "description": "borg-zoo#636 (reborn-confused-attack-pilot.yaml): arm confused-clw.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_confused_by_direction": 1,
+        "borg_param_caution_confused_clw_cure": 1
+      }
+    },
+    "reborn-conf-confused-pb": {
+      "description": "borg-zoo#636 (reborn-confused-attack-pilot.yaml): arm confused-pb.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_confused_by_direction": 1,
+        "borg_param_attack_throw_point_blank_divisor": 1
+      }
+    },
+    "reborn-cursed-torch-shipped": {
+      "description": "borg-zoo#638 (reborn-cursed-torch-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
     }
   }
 }

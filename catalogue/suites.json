@@ -2083,6 +2083,18 @@
       "wall_seconds": 3600,
       "stall_seconds": 90,
       "saves": false
+    },
+    "reborn-cursed-torch-repros": {
+      "description": "The two starts of classes-1800 whose games end in the paralysis-torch take-off/re-wield loop on borg-reborn-rs ab775d48 and f57499d0 (borg-zoo#609, #623): Elf Blackguard 1965910635 and Kobold Druid 653243095, each with its classes-1800 character, for the cursed-torch fix (borg-reborn-rs #899, PR #900). Chosen starts for a repro, not a sample.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "seeds": [1965910635, 653243095]
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
     }
   }
 }

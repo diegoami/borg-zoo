@@ -1,0 +1,49 @@
+# borg-zoo#636: confused attacks by direction (borg-reborn-rs #867, PR #868), e8895f5e, 5 arms, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-confused-attack-pilot.yaml
+name: reborn-confused-attack-pilot
+issue: 636
+question: >-
+  On borg-reborn-rs track-p e8895f5e (#868), does a confused Borg that may also throw, shoot and use wands, rods and staves at an
+  adjacent monster, sent by direction key and rated at the engine's 11/32 confused aim, holding its confusion cure next to an
+  immobile confuser while it has an attack, play the same or better than C's confused Borg, which may only melee? With and without
+  the CLW confusion cure (borg-zoo#581's death).
+tier: pilot            # classes-18, 300,000 engine turns
+suites: [classes-18-300k]
+
+specimen:
+  name: 4.2.6-reborn-rust-confused-attack-e8895f5e
+  repository: diegoami/borg-reborn-rs
+  ref: e8895f5e843dbe16c430c85f3886bf0b05dcc5a0
+  label: "borg-reborn-rs track-p e8895f5e (#868 merged on #873, #869, #870): attack_confused_by_direction shipped 0; harness/borg.txt f5ad6b55..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-conf
+arms:
+  ctl: {}
+  confused: {borg_param_attack_confused_by_direction: 1}
+  ctl-clw: {borg_param_caution_confused_clw_cure: 1}
+  confused-clw: {borg_param_attack_confused_by_direction: 1, borg_param_caution_confused_clw_cure: 1}
+  confused-pb: {borg_param_attack_confused_by_direction: 1, borg_param_attack_throw_point_blank_divisor: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-21/22: borg-reborn-rs owner (#867: "It should choose the best attack available ..."; the confused-pb arm added 2026-11-22),
+  filed as borg-zoo#636; zoo owner, 2026-11-22: "go with those as well" / "dispatch all" (the pilot only).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#636; borg-reborn-rs #867, PR #868). Five arms on one build,
+  classes-18 at 300,000 turns, 18 starts per arm (90 cells), evidence retained. Gate: no config_error; one binary; each arm's values
+  in params-core.json; every game ends in death or at the cap; stalls apart. Pairs: confused against ctl, confused-clw against
+  ctl-clw, confused-pb against ctl and against confused (the second control, ctl-clw, is a profile of the same experiment; the
+  pairing is made in the report). Primary measures, fixed here: (1) per class, the confused attacks made by direction ("# Confused:
+  aiming by direction N" notes), by kind (throw, missile, wand, rod) and against melee while confused; (2) the cure holds
+  ("attacking first (#867)" notes) and the turns spent confused next to an immobile confuser; (3) deaths while confused or within 20
+  turns of confusion, with rescued and newly killed pairs; (4) all deaths with rescued and newly killed pairs; (5) mean max CL and
+  depth, and alive at the cap. Directional only; a claim needs a fresh seed block (RULES 14). The point-blank part is decided from
+  confused-pb; the owner ships only attack_confused_by_direction 1 (PR #904).

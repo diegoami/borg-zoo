@@ -122,7 +122,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-nowalk` | [#604](https://github.com/diegoami/borg-zoo/issues/604) | 3 | pilot done (run 44936423074); small, medium defined and dispatched | fast_fragile_no_walk (borg-reborn-rs #849, PR #853) on d9ebf4c9: ctl, nowalk, nowalk-stats, classes-18 pilot. |
 | `reborn-tonight` | [#609](https://github.com/diegoami/borg-zoo/issues/609) | 1 | defined (ladder: pilot, small-rest, medium, big, full), dispatched 2026-11-21 | Tonight's test: borg-reborn-rs main ab775d48, shipped settings, one arm, classes-1800 ladder (45+45+270+540+900), 100,000 turns. |
 | `reborn-p6rf` | [#611](https://github.com/diegoami/borg-zoo/issues/611) | 1 | defined (pilot) | P6 review-fix compatibility (borg-reborn-rs #860): main ab775d48 against 038250d6, shipped settings, classes-18. |
-| `reborn-room` | [#612](https://github.com/diegoami/borg-zoo/issues/612) | 4 | pilot done (run 44950482392); small (classes-1800-300k-verysmall) defined and dispatched | Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k. |
+| `reborn-room` | [#612](https://github.com/diegoami/borg-zoo/issues/612) | 4 | pilot done (run 44950482392); small (classes-1800-300k-verysmall) defined and dispatched; rerun with the full-pack junk fix defined (#639) | Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k. |
 | `reborn-variety` | [#616](https://github.com/diegoami/borg-zoo/issues/616) | 4 | pilot done (run 44967883374); small (classes-1800-300k-verysmall) defined and dispatched | Variety, more Recall and Phase Door (borg-reborn-rs #863) on 4290a7da: ctl, shipped, variety, kit, classes-18 at 300k. |
 | `reborn-throwpb` | [#618](https://github.com/diegoami/borg-zoo/issues/618) | 2 | pilot done (run 44967902905); small and medium defined and dispatched | Thrown-object point-blank divisor (borg-reborn-rs #870) on e037588b: inherit (0) against throw1 (1), classes-18. |
 | `reborn-healskip` | [#621](https://github.com/diegoami/borg-zoo/issues/621) | 4 | pilot done (run 44976856993); small and medium defined and dispatched (#621) | Heal skip bands and the non-priest penalty (borg_caution.rs) on main f57499d0: ctl, nopen, half, always, classes-18. |
@@ -134,6 +134,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-kitleash` | [#589](https://github.com/diegoami/borg-zoo/issues/589) | 13 | pilot done (run 44981752264); small and medium (13 arms) defined and dispatched (#589) | Basic-kit mode (#840, PR #844 merged) on main f57499d0: 13 arms (kit_leash variants, kit, restock, start reserve, money first, kit-money-hunt, all), classes-18. |
 | `reborn-blow` | [#632](https://github.com/diegoami/borg-zoo/issues/632) | 2 | pilot done (run 44982717684: 18 of 18 identical); small and medium defined and dispatched (#632) | Flight Recall blow model (#880, PR #892) on 201d56eb: blow-off against blow-on (shipped), classes-18. |
 | `reborn-dev` | [#633](https://github.com/diegoami/borg-zoo/issues/633) | 2 | pilot dispatched (run 44982737491); small (classes-1800-300k-verysmall) defined, dispatched after the pilot's gate (#633) | Devices as variety (#895, PR #898) on 3020d451: ctl against shipped, classes-18 at 300k. |
+| `reborn-conf` | [#636](https://github.com/diegoami/borg-zoo/issues/636) | 5 | defined (pilot) | Confused attacks by direction (#867, PR #868) on e8895f5e: ctl, confused, ctl-clw, confused-clw, confused-pb, classes-18 at 300k. |
+| `reborn-cursed-torch` | [#638](https://github.com/diegoami/borg-zoo/issues/638) | 1 | defined (pilot) | Cursed torch direct swap (#899, PR #900) on c8f30e3c: shipped, classes-18 and the two repro starts. |
 
 ### `heal-attack-4`
 
@@ -1917,6 +1919,28 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-dev-ctl` | 0 |
 | `reborn-dev-shipped` | – |
 
+### `reborn-conf`
+
+Confused attacks by direction (#867, PR #868) on e8895f5e: ctl, confused, ctl-clw, confused-clw, confused-pb, classes-18 at 300k.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_confused_by_direction` | `borg_param_attack_throw_point_blank_divisor` | `borg_param_caution_confused_clw_cure` |
+| --- | --- | --- | --- |
+| `reborn-conf-ctl` | – | – | – |
+| `reborn-conf-confused` | 1 | – | – |
+| `reborn-conf-ctl-clw` | – | – | 1 |
+| `reborn-conf-confused-clw` | 1 | – | 1 |
+| `reborn-conf-confused-pb` | 1 | 1 | – |
+
+### `reborn-cursed-torch`
+
+Cursed torch direct swap (#899, PR #900) on c8f30e3c: shipped, classes-18 and the two repro starts.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-cursed-torch-shipped`.
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1940,6 +1964,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_arrow_point_blank_divisor_ranger` | 0, 1, 3, 4, not set | `reborn-pbd-by-class`, `reborn-pbd-rr`, `reborn-bundle` |  |
 | `borg_param_attack_arrow_point_blank_divisor_rogue` | 0, 2, 4, 6, not set | `reborn-pbd-by-class`, `reborn-pbd-rr` |  |
 | `borg_param_attack_arrow_point_blank_divisor_warrior` | 2, 10, not set | `reborn-pbd-by-class` |  |
+| `borg_param_attack_confused_by_direction` | 1, not set | `reborn-conf` |  |
 | `borg_param_attack_on_sight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3` |  |
 | `borg_param_attack_preference_blackguard_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_blackguard_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
@@ -2000,7 +2025,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_reserve_spell_damage_only` | 1, not set | `reborn-loneslow` |  |
 | `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |
 | `borg_param_attack_throw_as_melee` | 0, not set | `reborn-shipcheck-b895` |  |
-| `borg_param_attack_throw_point_blank_divisor` | 0, 1 | `reborn-throwpb` |  |
+| `borg_param_attack_throw_point_blank_divisor` | 0, 1, not set | `reborn-throwpb`, `reborn-conf` |  |
 | `borg_param_attack_town_dangerous_bonus_percent` | 600, not set | `reborn-town-dangerous` |  |
 | `borg_param_attack_town_dangerous_bonus_whole` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
 | `borg_param_attack_town_dangerous_caster_walk` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
@@ -2015,7 +2040,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_breeder_hold` | 1, not set | `reborn-bhold` |  |
 | `borg_param_caution_breeder_policy` | -1, 0, 1, 2, 3, 4, 5, 6, not set | `reborn-breeder-policy-x4`, `reborn-breederpol`, `reborn-bhold` |  |
 | `borg_param_caution_breeder_stoppable` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
-| `borg_param_caution_confused_clw_cure` | 1, not set | `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly` |  |
+| `borg_param_caution_confused_clw_cure` | 1, not set | `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly`, `reborn-conf` |  |
 | `borg_param_caution_confused_cure_before_walk` | 1, 2, not set | `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly` |  |
 | `borg_param_caution_confusion_cure_when_stuck` | 1, not set | `reborn-confusion`, `reborn-immfix` |  |
 | `borg_param_caution_cornered_throw_first` | 0, not set | `reborn-sloo` |  |

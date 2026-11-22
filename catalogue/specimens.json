@@ -2909,6 +2909,45 @@
       "scary_lists": {
         "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
       }
+    },
+    "4.2.6-reborn-rust-confused-attack-e8895f5e": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "e8895f5e843dbe16c430c85f3886bf0b05dcc5a0",
+      "label": "borg-reborn-rs track-p e8895f5e (#868 merged on #873, #869, #870): attack_confused_by_direction shipped 0; harness/borg.txt f5ad6b55..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
+    },
+    "4.2.6-reborn-rust-town-room-junk-fix-7f3d0d61": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "7f3d0d61b354ae911f131126781b4e4482e09290",
+      "label": "borg-reborn-rs c7ea18df (the #612 pilot build) plus only the full-pack junk fix of PR #905: 7f3d0d61; the original live town planner and class overrides, scary_monsters.txt 9766d882..., harness/borg.txt 3fb1c36f...",
+      "scary_lists": {
+        "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+      }
+    },
+    "4.2.6-reborn-rust-cursed-torch-c8f30e3c": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "c8f30e3c1689cefed35a536a5500febd4e4eb6ff",
+      "label": "borg-reborn-rs PR #900 review follow-up head c8f30e3c (cursed torch direct swap, #899): shipped harness/borg.txt dd21cc3e..., scary_monsters.txt e0e29381...; candidate source sha256 4165f5e9...",
+      "scary_lists": {
+        "scary_monsters.txt": "e0e293814e8ed9c2f3a5f0af809f479e854878e5d0eaedea37b671dd1b20f5a8"
+      }
     }
   }
 }
