@@ -1,0 +1,22 @@
+# borg-zoo#639: the 8 starts of the departure-room small tier that did not finish on the junk-fix build 7f3d0d61, re-run with evidence.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-room-stalls-diagnosis.yaml
+name: reborn-room-stalls-diagnosis
+issue: 639
+question: >-
+  Why do the room arm's 7 starts (6 borg_stopped, 1 wall_timeout) and the control's 1 start of the #612 small tier stop on 7f3d0d61, where the junk fix changed none
+  of the 180 games: lightless aborts, a think loop (borg-reborn-rs #936), or another stop?
+pilot: true            # a study on its own suite (RULES 16)
+suites: [classes-1800-300k-room-stalls]
+specimens: [4.2.6-reborn-rust-town-room-junk-fix-7f3d0d61]
+profiles: [reborn-room-ctl, reborn-room-room]
+control_specimen: 4.2.6-reborn-rust-town-room-junk-fix-7f3d0d61
+control_profile: reborn-room-ctl
+owner_authorization: >-
+  2026-11-22: zoo owner, "check your issues" (diagnosis of the 7 room stalls that the junk-fix rerun did not change).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22. The starts that did not finish in the junk-fix small tier, run again in ctl and room with the evidence retained and a wall limit of 5,400 s. Report per
+  cell whether the stop reproduces (same turn, same play sha256), the stop message and the last 60 messages, whether the game clock advances (a loop) or the wall clock is spent
+  on one decision, and which family it belongs to (lightless abort #811/#815, think loop #936, Fox Form eat #903, other). No comparison, no claim.

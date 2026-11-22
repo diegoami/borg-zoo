@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-room-stalls-diagnosis",
+  "issue": 639,
+  "definition": "definitions/reborn-room-stalls-diagnosis.yaml",
+  "question": "Why do the room arm's 7 starts (6 borg_stopped, 1 wall_timeout) and the control's 1 start of the #612 small tier stop on 7f3d0d61, where the junk fix changed none of the 180 games: lightless aborts, a think loop (borg-reborn-rs #936), or another stop?",
+  "description": "Why do the room arm's 7 starts (6 borg_stopped, 1 wall_timeout) and the control's 1 start of the #612 small tier stop on 7f3d0d61, where the junk fix changed none of the 180 games: lightless aborts, a think loop (borg-reborn-rs #936), or another stop? Generated from definitions/reborn-room-stalls-diagnosis.yaml: 2 arms on 4.2.6-reborn-rust-town-room-junk-fix-7f3d0d61, suite classes-1800-300k-room-stalls.",
+  "prespecified": "Fixed 2026-11-22. The starts that did not finish in the junk-fix small tier, run again in ctl and room with the evidence retained and a wall limit of 5,400 s. Report per\ncell whether the stop reproduces (same turn, same play sha256), the stop message and the last 60 messages, whether the game clock advances (a loop) or the wall clock is spent\non one decision, and which family it belongs to (lightless abort #811/#815, think loop #936, Fox Form eat #903, other). No comparison, no claim.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-town-room-junk-fix-7f3d0d61"
+  ],
+  "profiles": [
+    "reborn-room-ctl",
+    "reborn-room-room"
+  ],
+  "suites": [
+    "classes-1800-300k-room-stalls"
+  ],
+  "control": "4.2.6-reborn-rust-town-room-junk-fix-7f3d0d61",
+  "control_profile": "reborn-room-ctl",
+  "owner_authorization": "2026-11-22: zoo owner, \"check your issues\" (diagnosis of the 7 room stalls that the junk-fix rerun did not change).",
+  "retain_evidence": true
+}

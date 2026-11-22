@@ -122,7 +122,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-nowalk` | [#604](https://github.com/diegoami/borg-zoo/issues/604) | 3 | pilot done (run 44936423074); small, medium defined and dispatched | fast_fragile_no_walk (borg-reborn-rs #849, PR #853) on d9ebf4c9: ctl, nowalk, nowalk-stats, classes-18 pilot. |
 | `reborn-tonight` | [#609](https://github.com/diegoami/borg-zoo/issues/609) | 1 | defined (ladder: pilot, small-rest, medium, big, full), dispatched 2026-11-21 | Tonight's test: borg-reborn-rs main ab775d48, shipped settings, one arm, classes-1800 ladder (45+45+270+540+900), 100,000 turns. |
 | `reborn-p6rf` | [#611](https://github.com/diegoami/borg-zoo/issues/611) | 1 | defined (pilot) | P6 review-fix compatibility (borg-reborn-rs #860): main ab775d48 against 038250d6, shipped settings, classes-18. |
-| `reborn-room` | [#612](https://github.com/diegoami/borg-zoo/issues/612) | 4 | pilot done (run 44950482392); small (classes-1800-300k-verysmall) defined and dispatched; rerun with the full-pack junk fix defined (#639); small rerun on the junk-fix build defined and dispatched (#639) | Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k. |
+| `reborn-room` | [#612](https://github.com/diegoami/borg-zoo/issues/612) | 4 | pilot done (run 44950482392); small (classes-1800-300k-verysmall) defined and dispatched; rerun with the full-pack junk fix defined (#639); small rerun on the junk-fix build defined and dispatched (#639); junk-fix small tier changed none of 180 games (7 room stalls remain): diagnosis defined (#639) | Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k. |
 | `reborn-variety` | [#616](https://github.com/diegoami/borg-zoo/issues/616) | 4 | pilot done (run 44967883374); small (classes-1800-300k-verysmall) defined and dispatched | Variety, more Recall and Phase Door (borg-reborn-rs #863) on 4290a7da: ctl, shipped, variety, kit, classes-18 at 300k. |
 | `reborn-throwpb` | [#618](https://github.com/diegoami/borg-zoo/issues/618) | 2 | pilot done (run 44967902905); small and medium defined and dispatched | Thrown-object point-blank divisor (borg-reborn-rs #870) on e037588b: inherit (0) against throw1 (1), classes-18. |
 | `reborn-healskip` | [#621](https://github.com/diegoami/borg-zoo/issues/621) | 4 | pilot done (run 44976856993); small and medium defined and dispatched (#621) | Heal skip bands and the non-priest penalty (borg_caution.rs) on main f57499d0: ctl, nopen, half, always, classes-18. |
@@ -151,6 +151,12 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-pbdtp2` | [#651](https://github.com/diegoami/borg-zoo/issues/651) | 2 | defined (development re-measure on the 200 Ranger starts; the first run had config_error for lo: wrong class line name) | Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e, rerun with attack_arrow_point_blank_divisor_ranger. |
 | `reborn-lonew` | [#678](https://github.com/diegoami/borg-zoo/issues/678) | 10 | defined (pilot in the breeder worlds) | The #878 switches in breeders-x4 and breeders-x8 on 296adfbf: ctl, lone, phase-nofear, breeder5, all, classes-18 (scenario companion of #626). |
 | `reborn-blloww` | [#679](https://github.com/diegoami/borg-zoo/issues/679) | 4 | defined (pilot in the breeder worlds) | Flight Recall blow model in breeders-x4 and breeders-x8 on 201d56eb: blow-off, blow-on, classes-18 (scenario companion of #632). |
+| `reborn-zerohp` | [#670](https://github.com/diegoami/borg-zoo/issues/670) | 2 | defined (pilot) | kill_live_zero_hp (#975, PR #994) on 1f4e9e89: ctl, zero, classes-18. |
+| `reborn-rest` | [#671](https://github.com/diegoami/borg-zoo/issues/671) | 4 | defined (pilot) | borg_recover rest switches (#981, #982; PRs #998, #999) on ed6c7ab8: ctl, shot, cure, both, classes-18. |
+| `reborn-ffq` | [#672](https://github.com/diegoami/borg-zoo/issues/672) | 7 | defined (pilot) | Fast-fragile quantile, heal floor, dot (#926, PR #1002) on 8974509e: 7 arms, classes-18. |
+| `reborn-overex` | [#675](https://github.com/diegoami/borg-zoo/issues/675) | 2 | defined (pilot on the small Mage suite) | Emergency attack spell beyond the mana (#980, PR #991) on 89888283: ctl (1), noexert (0), Mages. |
+| `reborn-unkcure` | [#684](https://github.com/diegoami/borg-zoo/issues/684) | 4 | defined (pilot) | Unknown cures and the cure HP floor (#985, PR #1003) on b5b0f5fd: ctl, hold, floor, both, classes-18. |
+| `reborn-rclshallow` | [#688](https://github.com/diegoami/borg-zoo/issues/688) | 4 | defined (pilot) | Recall on shallow trips (#984, PR #997) on 434d5371: ctl, urgent, hold, both, classes-18. |
 
 ### `heal-attack-4`
 
@@ -2151,6 +2157,83 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-blloww-blow-off-x8` | 0 | breeders-x8 |
 | `reborn-blloww-blow-on-x8` | – | breeders-x8 |
 
+### `reborn-zerohp`
+
+kill_live_zero_hp (#975, PR #994) on 1f4e9e89: ctl, zero, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_kill_live_zero_hp` |
+| --- | --- |
+| `reborn-zerohp-ctl` | – |
+| `reborn-zerohp-zero` | 1 |
+
+### `reborn-rest`
+
+borg_recover rest switches (#981, #982; PRs #998, #999) on ed6c7ab8: ctl, shot, cure, both, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_recover_rest_cure_distance` | `borg_param_recover_rest_cure_hp_percent` | `borg_param_recover_unseen_shot` |
+| --- | --- | --- | --- |
+| `reborn-rest-ctl` | – | – | – |
+| `reborn-rest-shot` | – | – | 1 |
+| `reborn-rest-cure` | 20 | 50 | – |
+| `reborn-rest-both` | 20 | 50 | 1 |
+
+### `reborn-ffq`
+
+Fast-fragile quantile, heal floor, dot (#926, PR #1002) on 8974509e: 7 arms, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_fast_fragile_count_dot` | `borg_param_fast_fragile_escape_percent` | `borg_param_fast_fragile_escape_quantile` | `borg_param_fast_fragile_heal_floor` |
+| --- | --- | --- | --- | --- |
+| `reborn-ffq-ctl` | – | – | – | – |
+| `reborn-ffq-q50` | – | – | 50 | – |
+| `reborn-ffq-esc75` | – | 75 | – | – |
+| `reborn-ffq-q100` | – | – | 100 | – |
+| `reborn-ffq-floor25` | – | – | – | 25 |
+| `reborn-ffq-dot` | 1 | – | – | – |
+| `reborn-ffq-q50-floor-dot` | 1 | – | 50 | 25 |
+
+### `reborn-overex`
+
+Emergency attack spell beyond the mana (#980, PR #991) on 89888283: ctl (1), noexert (0), Mages.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_reserve_spell_overexert` |
+| --- | --- |
+| `reborn-overex-ctl` | – |
+| `reborn-overex-noexert` | 0 |
+
+### `reborn-unkcure`
+
+Unknown cures and the cure HP floor (#985, PR #1003) on b5b0f5fd: ctl, hold, floor, both, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_cure_hp_floor_percent` | `borg_param_sell_poor_town_unknown_hold` |
+| --- | --- | --- |
+| `reborn-unkcure-ctl` | – | – |
+| `reborn-unkcure-hold` | – | 1 |
+| `reborn-unkcure-floor` | 30 | – |
+| `reborn-unkcure-both` | 30 | 1 |
+
+### `reborn-rclshallow`
+
+Recall on shallow trips (#984, PR #997) on 434d5371: ctl, urgent, hold, both, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_recall_dl1_hold_up` | `borg_param_town_recall_urgent_depth` |
+| --- | --- | --- |
+| `reborn-rclshallow-ctl` | – | – |
+| `reborn-rclshallow-urgent` | – | 1 |
+| `reborn-rclshallow-hold` | 1 | – |
+| `reborn-rclshallow-both` | 1 | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2235,6 +2318,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_reserve_faint_percent` | 25, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_attack_reserve_spell_damage_only` | 1, not set | `reborn-loneslow`, `reborn-lonew` |  |
+| `borg_param_attack_reserve_spell_overexert` | 0, not set | `reborn-overex` |  |
 | `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |
 | `borg_param_attack_throw_as_melee` | 0, not set | `reborn-shipcheck-b895` |  |
 | `borg_param_attack_throw_point_blank_divisor` | 0, 1, not set | `reborn-throwpb`, `reborn-conf` |  |
@@ -2260,6 +2344,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_confused_cure_before_walk` | 1, 2, not set | `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly` |  |
 | `borg_param_caution_confusion_cure_when_stuck` | 1, not set | `reborn-confusion`, `reborn-immfix` |  |
 | `borg_param_caution_cornered_throw_first` | 0, not set | `reborn-sloo` |  |
+| `borg_param_caution_cure_hp_floor_percent` | 30, not set | `reborn-unkcure` |  |
 | `borg_param_caution_desperate_fast_danger_percent` | 0, 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
 | `borg_param_caution_desperate_fast_haste` | 1, not set | `reborn-fastpur` |  |
 | `borg_param_caution_desperate_ranged_first_reach` | 3, not set | `reborn-flight3-757`, `reborn-flight3main` |  |
@@ -2288,6 +2373,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_ranged_vs_immobile` | 1, 2, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895`, `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly` |  |
 | `borg_param_caution_recall_blow_model` | 0, not set | `reborn-blow`, `reborn-blloww` |  |
 | `borg_param_caution_recall_cure_min_loss_percent` | 0, 30, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
+| `borg_param_caution_recall_dl1_hold_up` | 1, not set | `reborn-rclshallow` |  |
 | `borg_param_caution_recall_pending_escape` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_recall_survival` | 0, 1, not set | `reborn-fight-recall`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3` |  |
@@ -2349,7 +2435,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
 | `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag`, `reborn-nowalk`, `reborn-cavesp` |  |
 | `borg_param_fast_fragile_contact_max` | 1, not set | `reborn-cavesp` |  |
-| `borg_param_fast_fragile_escape_percent` | 0, 75, not set | `reborn-fastfrag` |  |
+| `borg_param_fast_fragile_count_dot` | 1, not set | `reborn-ffq` |  |
+| `borg_param_fast_fragile_escape_percent` | 0, 75, not set | `reborn-fastfrag`, `reborn-ffq` |  |
+| `borg_param_fast_fragile_escape_quantile` | 50, 100, not set | `reborn-ffq` |  |
+| `borg_param_fast_fragile_heal_floor` | 25, not set | `reborn-ffq` |  |
 | `borg_param_fast_fragile_no_heal` | 1, 2, not set | `reborn-fastfrag` |  |
 | `borg_param_fast_fragile_no_walk` | 1, not set | `reborn-nowalk` |  |
 | `borg_param_fast_fragile_policy` | 1, not set | `reborn-fastfrag` |  |
@@ -2364,6 +2453,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_kill_flow_mode` | 0, 1, 2, 3 | `reborn-kill-flow-mode` |  |
 | `borg_param_kill_grouped_names` | 1, not set | `reborn-cavesp` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
+| `borg_param_kill_live_zero_hp` | 1, not set | `reborn-zerohp` |  |
 | `borg_param_kit_descent_min_percent` | 50, not set | `reborn-kitleash`, `reborn-kitlt` |  |
 | `borg_param_kit_leash` | 1, not set | `reborn-kitleash`, `reborn-kitlt` |  |
 | `borg_param_kit_leash_min` | 0, 1, 2, not set | `reborn-kitleash`, `reborn-kitlt` |  |
@@ -2444,10 +2534,14 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_prepared_mid_clevel_offset__warrior` | -7, -1, not set | `reborn-dive-gates-768` |  |
 | `borg_param_recover_rest_arms_see_invis` | 1, not set | `reborn-stand-seeinv` |  |
 | `borg_param_recover_rest_breeders` | 0, not set | `reborn-breeder-world-x4` |  |
+| `borg_param_recover_rest_cure_distance` | 20, not set | `reborn-rest` |  |
+| `borg_param_recover_rest_cure_hp_percent` | 50, not set | `reborn-rest` |  |
 | `borg_param_recover_unseen_attack_turns` | 0, not set | `reborn-invis` |  |
 | `borg_param_recover_unseen_detect_reads` | 0, not set | `reborn-invis` |  |
 | `borg_param_recover_unseen_heal_hp_percent` | 0, not set | `reborn-invis` |  |
 | `borg_param_recover_unseen_probe_tries` | 0, not set | `reborn-invis` |  |
+| `borg_param_recover_unseen_shot` | 1, not set | `reborn-rest` |  |
+| `borg_param_sell_poor_town_unknown_hold` | 1, not set | `reborn-unkcure` |  |
 | `borg_param_town_confusion_cure_reserve` | 1, not set | `reborn-confusion` |  |
 | `borg_param_town_departure_free_slots` | 0, 2, not set | `reborn-room` |  |
 | `borg_param_town_departure_free_weight` | 0, 50, not set | `reborn-room` |  |
@@ -2543,6 +2637,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_ranger_arrows_max__ranger` | 20, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_recall_curve_scale_percent` | 0, 110, not set | `reborn-room` |  |
 | `borg_param_town_recall_reserve` | 1, 2, 3, not set | `reborn-town-switch-screen`, `reborn-recallres`, `reborn-variety`, `reborn-vrm` |  |
+| `borg_param_town_recall_urgent_depth` | 1, not set | `reborn-rclshallow` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
 | `borg_param_town_staple_ccw` | 0, not set | `reborn-variety`, `reborn-vrm` |  |
 | `borg_param_town_staple_clw` | 0, not set | `reborn-variety`, `reborn-vrm` |  |

@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-zero-hp-pilot",
+  "issue": 670,
+  "definition": "definitions/reborn-zero-hp-pilot.yaml",
+  "question": "On borg-reborn-rs 1f4e9e89 (track-p 4b2c2fcf plus the parameter), does flooring the HP estimate of a monster left at exactly 0 HP (kill_live_zero_hp 1) save the games lost to monsters that never move (molds, mushroom patches, jellies, floating eyes)?",
+  "description": "On borg-reborn-rs 1f4e9e89 (track-p 4b2c2fcf plus the parameter), does flooring the HP estimate of a monster left at exactly 0 HP (kill_live_zero_hp 1) save the games lost to monsters that never move (molds, mushroom patches, jellies, floating eyes)? Generated from definitions/reborn-zero-hp-pilot.yaml: 2 arms on 4.2.6-reborn-rust-zero-hp-1f4e9e89, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#670; borg-reborn-rs #975, PR #994). ctl against zero, classes-18, 18 starts each (36 cells), 100,000 turns, evidence retained. Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays. Report per arm: deaths, causes, CL at death, max depth; deaths to monsters that never move; the \"who has 0 Hit Points\" and \"0 HP\" kill-on-sight notes per arm (should drop to none in zero while the monster lives); paired rescued and newly killed against ctl. Directional (RULES 14). RULES 21: the patch worlds of #665 are the enriched scenario for this switch.",
+  "specimens": [
+    "4.2.6-reborn-rust-zero-hp-1f4e9e89"
+  ],
+  "profiles": [
+    "reborn-zerohp-ctl",
+    "reborn-zerohp-zero"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-zero-hp-1f4e9e89",
+  "control_profile": "reborn-zerohp-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#670; zoo owner, 2026-11-22: \"check your issues\" (the pilot only; later tiers after the gate and the owner).",
+  "retain_evidence": true
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-rest-switches-pilot",
+  "issue": 671,
+  "definition": "definitions/reborn-rest-switches-pilot.yaml",
+  "question": "On borg-reborn-rs ed6c7ab8 (track-p 4b2c2fcf plus #998 and #999), do resting less under an unseen shooter (#981) and curing before a rest at low HP with a fast monster awake (#982), alone and together, save the deaths that happen while resting at danger 0?",
+  "description": "On borg-reborn-rs ed6c7ab8 (track-p 4b2c2fcf plus #998 and #999), do resting less under an unseen shooter (#981) and curing before a rest at low HP with a fast monster awake (#982), alone and together, save the deaths that happen while resting at danger 0? Generated from definitions/reborn-rest-switches-pilot.yaml: 4 arms on 4.2.6-reborn-rust-rest-ed6c7ab8, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#671; borg-reborn-rs #981, #982, PRs #998, #999). Four arms, classes-18, 18 starts each (72 cells), 100,000 turns, evidence retained (the two named starts of the issue, Elf Warrior 1312323730 and the cure case, are classes-1800 starts and not in this pilot). Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls apart; identical plays. Report per arm: deaths, causes, CL, depth, unfinished; deaths within 200 game turns of a \"# Resting to recover HP/SP...\" note with the HP at the rest; for shot and both the counts of \"# Mode: invisible attacker near\", \"# Detecting the invisible attacker.\", \"# Walking away from an unseen attacker\", \"# Leaving (an unseen attacker\", \"# Mode: unseen attacker killed\"; for cure and both the \"# Cure before rest:\" notes and CLW/CSW/CCW drunk per game; paired rescued and newly killed. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-rest-ed6c7ab8"
+  ],
+  "profiles": [
+    "reborn-rest-ctl",
+    "reborn-rest-shot",
+    "reborn-rest-cure",
+    "reborn-rest-both"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-rest-ed6c7ab8",
+  "control_profile": "reborn-rest-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#671; zoo owner, 2026-11-22: \"check your issues\" (the pilot only; later tiers after the gate and the owner).",
+  "retain_evidence": true
+}

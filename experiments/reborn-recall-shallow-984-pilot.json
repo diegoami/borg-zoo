@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-recall-shallow-984-pilot",
+  "issue": 688,
+  "definition": "definitions/reborn-recall-shallow-984-pilot.yaml",
+  "question": "On borg-reborn-rs 434d5371 (track-p 4b2c2fcf plus the #984 switches, shipped 0), does a Borg that makes the first Word of Recall urgent on any trip (town_recall_urgent_depth 1), or one that does not take the DL1 up staircase while a Recall counts down (caution_recall_dl1_hold_up 1), die less often without a Recall and reach DL5 more often, one at a time and together, without new deaths on DL1 while a Recall is pending?",
+  "description": "On borg-reborn-rs 434d5371 (track-p 4b2c2fcf plus the #984 switches, shipped 0), does a Borg that makes the first Word of Recall urgent on any trip (town_recall_urgent_depth 1), or one that does not take the DL1 up staircase while a Recall counts down (caution_recall_dl1_hold_up 1), die less often without a Recall and reach DL5 more often, one at a time and together, without new deaths on DL1 while a Recall is pending? Generated from definitions/reborn-recall-shallow-984-pilot.yaml: 4 arms on 4.2.6-reborn-rust-recall-shallow-434d5371, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-reborn-rs#984, PR #997). Four arms on one build, classes-18,\n100,000 turns, evidence retained; both switches are compiled 0 and absent from harness/borg.txt, so ctl is track-p 4b2c2fcf's\nplay. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped;\nstalls and wall timeouts apart; identical plays per arm. Endpoints, per arm and class, paired against ctl (rescued / newly killed):\n(1) P7's descent endpoint, alive at the cap having reached DL5; (2) deaths with no Word of Recall carried; (3) deaths on DL1 while\na Recall counts down (between \"The air about you becomes charged...\" and \"yanked\"), the cost of the hold. Per game: town visits\nleft with no Recall carried, \"You bought a Scroll of Word of Recall\", \"# Leaving via up stairs.\" on DL1 with a Recall pending\n(ctl) and \"You feel yourself yanked downwards!\" less than 35 world ticks after arriving in town. The named start 312081895\n(Half-Troll Blackguard, -race 7 -class 8) as a sanity cell for every arm. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-recall-shallow-434d5371"
+  ],
+  "profiles": [
+    "reborn-rclshallow-ctl",
+    "reborn-rclshallow-urgent",
+    "reborn-rclshallow-hold",
+    "reborn-rclshallow-both"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-recall-shallow-434d5371",
+  "control_profile": "reborn-rclshallow-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#688; zoo owner, 2026-11-22: \"check your issues\" (the pilot only).",
+  "retain_evidence": true
+}
