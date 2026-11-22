@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-trackp-ffheal-pilot",
+  "issue": 660,
+  "definition": "definitions/reborn-trackp-ffheal-pilot.yaml",
+  "question": "On track-p e2d8919e, which ships the fast-fragile policy with its heal ban (borg-reborn-rs#842), does the ban cost lives (borg-reborn-rs#926: a bleeding Necromancer reads Phase Door at HP 0 where a cure saves it), and does the policy itself, against the same build with neither?",
+  "description": "On track-p e2d8919e, which ships the fast-fragile policy with its heal ban (borg-reborn-rs#842), does the ban cost lives (borg-reborn-rs#926: a bleeding Necromancer reads Phase Door at HP 0 where a cure saves it), and does the policy itself, against the same build with neither? Generated from definitions/reborn-trackp-ffheal-pilot.yaml: 3 arms on 4.2.6-reborn-rust-track-p-e2d8919e, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22 before any result was read. Pilot (RULES 16) of three arms on track-p e2d8919e: shipped (the build's\nborg.txt: fast_fragile_policy 1, by_stats 0, no_heal 1), noban (no_heal 0) and off (policy 0, no_heal 0); classes-18,\n100,000 turns, one binary. Gate: no config_error; one binary; the three arms' applied settings differ only in the two\nswitches; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start; frozen-turn bursts\nclassified. Report per arm: deaths and causes, CL at death, maximum depth; deaths with a crow or wild cat adjacent;\nthe counts of \"the next turn kills ... Phase Door (#842)\" and \"No healing potion in contact with a fast-fragile\nattacker (#842)\"; deaths by a cut or poison; paired rescued and newly killed against shipped, and identical plays.\nDescriptive (RULES 8, 18); small and medium follow only after this gate and the owner's word (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-track-p-e2d8919e"
+  ],
+  "profiles": [
+    "reborn-tpffh-shipped",
+    "reborn-tpffh-noban",
+    "reborn-tpffh-off"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-track-p-e2d8919e",
+  "control_profile": "reborn-tpffh-shipped",
+  "owner_authorization": "2026-11-22: owner, \"Do the zoo run\" (the fast-fragile heal-ban measurement on track-p offered after borg-reborn-rs#926).",
+  "retain_evidence": false
+}
