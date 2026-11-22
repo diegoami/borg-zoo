@@ -1,0 +1,35 @@
+# borg-zoo#654: medium tier follow-up of reborn-white-jelly-pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-white-jelly-medium.yaml
+name: reborn-white-jelly-medium
+issue: 654
+question: >-
+  On borg-reborn-rs 172bd671 (track-p e2d8919e plus one commit), do the four switches from the stats-ban death of seed 829474344 (a stair
+  flight that keeps out of an immobile attacker's reach; no retreat after three undone retreats; no retreat beside an immobile attacker the
+  Borg can kill in three turns; no retreat when poisoned without a cure) save early deaths, one at a time and together?
+tier: medium            # classes-1800 starts 91-360, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-white-jelly-172bd671
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-wjelly
+arms:
+  ctl: {}
+  osc: {borg_param_caution_retreat_oscillation_limit: 3}
+  kill: {borg_param_caution_retreat_immobile_kill_turns: 3}
+  all: {borg_param_caution_stairs_immobile_reach: 1, borg_param_caution_retreat_oscillation_limit: 3, borg_param_caution_retreat_immobile_kill_turns: 3, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: zoo owner, "yes do all that" (the medium tier; the pilot gate is read and posted on the issue).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22 after the pilot gate (run 45033331780: one shared death; switches act in 1-9 of 18 games) and before any result of this tier was read. Medium tier (RULES 14) on the same build:
+  classes-1800 starts 91-360 (270 starts per arm, paired), all classes, 100,000 turns, one binary, disjoint from the other tiers of the study (pool them
+  as one study, RULES 14). The requester's short list: ctl, osc, kill, all.
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by start.
+  Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly killed against
+  the control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not retained at this tier. Descriptive.

@@ -54,6 +54,18 @@ leads, not fixes.
   white-jelly one is not), and singles.
 - **Not dispatched:** a paired track-p arm with #873's staples set back would test the town lead; that is the owner's call.
 
+## Fixes are tested twice: in an enriched world and in the normal world (owner, 2026-11-22; RULES 21)
+
+A request for a fix aimed at one situation (a crow, a grey mushroom patch, a breeder room) is measured in two runs: a **parallel run in a
+world where the situation is much more frequent**, and the normal world. In the normal world the situation is a few games in a thousand, so a
+tier of 360 starts shows almost nothing; the enriched world shows whether the fix acts when it matters, and the normal world (paired by start
+against the baseline) shows whether it harms elsewhere. The ticket proposes the scenario; the zoo files a companion issue where it did not
+(#676-#683). The worlds exist: `harness/worlds/breeders-x4/x8` (breeders 4 and 8 times as likely, shallower) and, since borg-reborn-rs #970,
+`favour = <race>` with `favour_weight = N` in `scripts/make-world.py` (`patches-x4`, `patches-x8`: the grey mushroom patch N times as likely,
+depth unchanged). The world tool is taken from the specimen's source, so the pinned build must contain #970. A new fix for a monster gets its own
+world (`favour = crow`, weight 4 or 8), pinned in the specimen's `worlds:` by sha256 as in #642, #659 and #678. Arms are compared only inside a
+world; a world is a stress test, never a ranking of settings, and a lead in it still needs the normal-world run before a shipped value changes.
+
 ## Read these first
 
 1. `docs/FINDINGS.md`: what the finished experiments showed. New results must
