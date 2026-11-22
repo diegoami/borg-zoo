@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-cursed-torch-pilot",
+  "issue": 638,
+  "definition": "definitions/reborn-cursed-torch-pilot.yaml",
+  "question": "Does the direct light swap end the two reported paralysis-torch loops (Blackguard 1965910635, Druid 653243095) on the shipped Borg?",
+  "description": "Does the direct light swap end the two reported paralysis-torch loops (Blackguard 1965910635, Druid 653243095) on the shipped Borg? Generated from definitions/reborn-cursed-torch-pilot.yaml: 1 arms on 4.2.6-reborn-rust-cursed-torch-c8f30e3c, suite classes-18, reborn-cursed-torch-repros.",
+  "prespecified": "Fixed 2026-11-22 (borg-zoo#638; borg-reborn-rs #899, PR #900). Inspect both repro runs from birth. The gate passes if neither\nrepeats a take-off/re-wield cycle and each reaches the exact cap or dies for a separately identified reason. For classes-18 report\ndeaths, cap survivors, stalls, crashes, timeouts and configuration failures. Retain any deaths in Borg Cemetery and keep the two\nrepro key and message streams available for verification. Candidate play sha256 sanity values (keys.log): Elf Blackguard\n0c96a44aca6fbcd891bd4717abcd00b1f22acc6ebc65cab90e47d37dd640d7ff, Kobold Druid\n73f1c85e9b995ae2d364a14ea07df5e1a2eb674d6c6d63735bdf878bb1e380b9; candidate source sha256\n4165f5e98eda0176092e013a8b865dfbbb15707ab603ecd2f11fd33dc31fa61f. Treat the pilot as descriptive.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-cursed-torch-c8f30e3c"
+  ],
+  "profiles": [
+    "reborn-cursed-torch-shipped"
+  ],
+  "suites": [
+    "classes-18",
+    "reborn-cursed-torch-repros"
+  ],
+  "control": "4.2.6-reborn-rust-cursed-torch-c8f30e3c",
+  "control_profile": "reborn-cursed-torch-shipped",
+  "owner_authorization": "2026-11-22: borg-reborn-rs owner (#899, PR #900), filed as borg-zoo#638; zoo owner, 2026-11-22: \"go with those as well\" (the pilot).",
+  "retain_evidence": true
+}

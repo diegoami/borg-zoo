@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-departure-room-junk-fix-pilot",
+  "issue": 639,
+  "definition": "definitions/reborn-departure-room-junk-fix-pilot.yaml",
+  "question": "Does the full-pack junk fix remove the Druid stop in the original departure-room pilot?",
+  "description": "Does the full-pack junk fix remove the Druid stop in the original departure-room pilot? Generated from definitions/reborn-departure-room-junk-fix-pilot.yaml: 4 arms on 4.2.6-reborn-rust-town-room-junk-fix-7f3d0d61, suite classes-18-300k.",
+  "prespecified": "Fixed 2026-11-22 (borg-zoo#639; borg-reborn-rs #905). Compare against run 44950482392 by profile and assigned start. Require the\nHalf-Elf Druid 934061548 to reach the exact cap in room and shipped. Verify the stack drop around turn 79,361 and that the\nassociated direction abort is absent. Report every unfinished cell with its stop reason. Retain all evidence and import each new\nnatural death to Borg Cemetery. Recompute the original pilot's Recall, depth, departure-room and survival measures with the same\ndefinitions and report them descriptively. Candidate key sha256 sanity values: room fa8d4a115addf169ebf86f175bd0267b65ee9bda3bc3afc4ee96122b02259844,\nshipped bdce3376408359d96f73900cd4d1c010ec8ccb1e7668bebc96632554d6912e9c; candidate source sha256\nf2215654b873033c8b65fa3de2f5c10dbb689f7f87977c45b10acd4451026a67.",
+  "specimens": [
+    "4.2.6-reborn-rust-town-room-junk-fix-7f3d0d61"
+  ],
+  "profiles": [
+    "reborn-room-ctl",
+    "reborn-room-shipped",
+    "reborn-room-room",
+    "reborn-room-recall"
+  ],
+  "suites": [
+    "classes-18-300k"
+  ],
+  "control": "4.2.6-reborn-rust-town-room-junk-fix-7f3d0d61",
+  "control_profile": "reborn-room-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs owner-requested rerun of borg-zoo#612 (#905), filed as borg-zoo#639; zoo owner, 2026-11-22: \"go with those as well\" (the pilot).",
+  "retain_evidence": true
+}

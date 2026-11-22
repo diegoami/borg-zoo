@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-confused-attack-pilot",
+  "issue": 636,
+  "definition": "definitions/reborn-confused-attack-pilot.yaml",
+  "question": "On borg-reborn-rs track-p e8895f5e (#868), does a confused Borg that may also throw, shoot and use wands, rods and staves at an adjacent monster, sent by direction key and rated at the engine's 11/32 confused aim, holding its confusion cure next to an immobile confuser while it has an attack, play the same or better than C's confused Borg, which may only melee? With and without the CLW confusion cure (borg-zoo#581's death).",
+  "description": "On borg-reborn-rs track-p e8895f5e (#868), does a confused Borg that may also throw, shoot and use wands, rods and staves at an adjacent monster, sent by direction key and rated at the engine's 11/32 confused aim, holding its confusion cure next to an immobile confuser while it has an attack, play the same or better than C's confused Borg, which may only melee? With and without the CLW confusion cure (borg-zoo#581's death). Generated from definitions/reborn-confused-attack-pilot.yaml: 5 arms on 4.2.6-reborn-rust-confused-attack-e8895f5e, suite classes-18-300k.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#636; borg-reborn-rs #867, PR #868). Five arms on one build,\nclasses-18 at 300,000 turns, 18 starts per arm (90 cells), evidence retained. Gate: no config_error; one binary; each arm's values\nin params-core.json; every game ends in death or at the cap; stalls apart. Pairs: confused against ctl, confused-clw against\nctl-clw, confused-pb against ctl and against confused (the second control, ctl-clw, is a profile of the same experiment; the\npairing is made in the report). Primary measures, fixed here: (1) per class, the confused attacks made by direction (\"# Confused:\naiming by direction N\" notes), by kind (throw, missile, wand, rod) and against melee while confused; (2) the cure holds\n(\"attacking first (#867)\" notes) and the turns spent confused next to an immobile confuser; (3) deaths while confused or within 20\nturns of confusion, with rescued and newly killed pairs; (4) all deaths with rescued and newly killed pairs; (5) mean max CL and\ndepth, and alive at the cap. Directional only; a claim needs a fresh seed block (RULES 14). The point-blank part is decided from\nconfused-pb; the owner ships only attack_confused_by_direction 1 (PR #904).",
+  "specimens": [
+    "4.2.6-reborn-rust-confused-attack-e8895f5e"
+  ],
+  "profiles": [
+    "reborn-conf-ctl",
+    "reborn-conf-confused",
+    "reborn-conf-ctl-clw",
+    "reborn-conf-confused-clw",
+    "reborn-conf-confused-pb"
+  ],
+  "suites": [
+    "classes-18-300k"
+  ],
+  "control": "4.2.6-reborn-rust-confused-attack-e8895f5e",
+  "control_profile": "reborn-conf-ctl",
+  "owner_authorization": "2026-11-21/22: borg-reborn-rs owner (#867: \"It should choose the best attack available ...\"; the confused-pb arm added 2026-11-22), filed as borg-zoo#636; zoo owner, 2026-11-22: \"go with those as well\" / \"dispatch all\" (the pilot only).",
+  "retain_evidence": true
+}

@@ -1,0 +1,37 @@
+# borg-zoo#638: the cursed torch direct swap (borg-reborn-rs #899, PR #900), c8f30e3c, shipped, pilot on classes-18 and the two repro starts.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-cursed-torch-pilot.yaml
+name: reborn-cursed-torch-pilot
+issue: 638
+question: Does the direct light swap end the two reported paralysis-torch loops (Blackguard 1965910635, Druid 653243095) on the shipped Borg?
+pilot: true            # first run of this arm on this specimen (RULES 16): classes-18 and the two repro starts, 100,000 turns
+suites: [classes-18, reborn-cursed-torch-repros]
+
+specimen:
+  name: 4.2.6-reborn-rust-cursed-torch-c8f30e3c
+  repository: diegoami/borg-reborn-rs
+  ref: c8f30e3c1689cefed35a536a5500febd4e4eb6ff
+  label: "borg-reborn-rs PR #900 review follow-up head c8f30e3c (cursed torch direct swap, #899): shipped harness/borg.txt dd21cc3e..., scary_monsters.txt e0e29381...; candidate source sha256 4165f5e9..."
+  scary_lists:
+    scary_monsters.txt: e0e293814e8ed9c2f3a5f0af809f479e854878e5d0eaedea37b671dd1b20f5a8
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-cursed-torch
+arms:
+  shipped: {}
+control: [shipped]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs owner (#899, PR #900), filed as borg-zoo#638; zoo owner, 2026-11-22: "go with those as well" (the pilot).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22 (borg-zoo#638; borg-reborn-rs #899, PR #900). Inspect both repro runs from birth. The gate passes if neither
+  repeats a take-off/re-wield cycle and each reaches the exact cap or dies for a separately identified reason. For classes-18 report
+  deaths, cap survivors, stalls, crashes, timeouts and configuration failures. Retain any deaths in Borg Cemetery and keep the two
+  repro key and message streams available for verification. Candidate play sha256 sanity values (keys.log): Elf Blackguard
+  0c96a44aca6fbcd891bd4717abcd00b1f22acc6ebc65cab90e47d37dd640d7ff, Kobold Druid
+  73f1c85e9b995ae2d364a14ea07df5e1a2eb674d6c6d63735bdf878bb1e380b9; candidate source sha256
+  4165f5e98eda0176092e013a8b865dfbbb15707ab603ecd2f11fd33dc31fa61f. Treat the pilot as descriptive.
