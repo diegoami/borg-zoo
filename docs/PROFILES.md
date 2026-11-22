@@ -136,6 +136,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-dev` | [#633](https://github.com/diegoami/borg-zoo/issues/633) | 2 | pilot dispatched (run 44982737491); small (classes-1800-300k-verysmall) defined, dispatched after the pilot's gate (#633) | Devices as variety (#895, PR #898) on 3020d451: ctl against shipped, classes-18 at 300k. |
 | `reborn-conf` | [#636](https://github.com/diegoami/borg-zoo/issues/636) | 5 | defined (pilot) | Confused attacks by direction (#867, PR #868) on e8895f5e: ctl, confused, ctl-clw, confused-clw, confused-pb, classes-18 at 300k. |
 | `reborn-cursed-torch` | [#638](https://github.com/diegoami/borg-zoo/issues/638) | 1 | defined (pilot) | Cursed torch direct swap (#899, PR #900) on c8f30e3c: shipped, classes-18 and the two repro starts. |
+| `reborn-stairunk` | [#642](https://github.com/diegoami/borg-zoo/issues/642) | 6 | defined (pilot) | Stair flights on known grids (#881, PR #897) on ea14528a: ctl, m1, m2 in breeders-x4 and breeders-x8, classes-18. |
+| `reborn-fastpur` | [#643](https://github.com/diegoami/borg-zoo/issues/643) | 11 | defined (pilot) | borg-reborn-rs #907-#911 on 608d9fed: ctl, one arm per switch, walkcost-dh, all, classes-18. |
 
 ### `heal-attack-4`
 
@@ -1941,6 +1943,41 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 Profiles: `reborn-cursed-torch-shipped`.
 
+### `reborn-stairunk`
+
+Stair flights on known grids (#881, PR #897) on ea14528a: ctl, m1, m2 in breeders-x4 and breeders-x8, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_stairs_flight_unknown` | `borg_param_caution_stairs_flight_unknown_steps` | `borg_world` |
+| --- | --- | --- | --- |
+| `reborn-stairunk-ctl-x4` | – | – | breeders-x4 |
+| `reborn-stairunk-m1-x4` | 1 | 5 | breeders-x4 |
+| `reborn-stairunk-m2-x4` | 2 | – | breeders-x4 |
+| `reborn-stairunk-ctl-x8` | – | – | breeders-x8 |
+| `reborn-stairunk-m1-x8` | 1 | 5 | breeders-x8 |
+| `reborn-stairunk-m2-x8` | 2 | – | breeders-x8 |
+
+### `reborn-fastpur`
+
+borg-reborn-rs #907-#911 on 608d9fed: ctl, one arm per switch, walkcost-dh, all, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_desperate_fast_haste` | `borg_param_caution_desperate_walk_cost_percent` | `borg_param_caution_heal_lethal_over_max` | `borg_param_caution_heal_outmatched_before_walk` | `borg_param_caution_scary_take_distance` | `borg_param_caution_winning_fight_group_percent` | `borg_param_caution_winning_fight_margin_percent` | `borg_param_danger_observed_haste` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-fastpur-ctl` | – | – | – | – | – | – | – | – |
+| `reborn-fastpur-haste` | 1 | – | – | – | – | – | – | – |
+| `reborn-fastpur-dangerhaste` | – | – | – | – | – | – | – | 1 |
+| `reborn-fastpur-walkcost` | – | 100 | – | – | – | – | – | – |
+| `reborn-fastpur-walkcost-dh` | – | 100 | – | – | – | – | – | 1 |
+| `reborn-fastpur-healmax` | – | – | 1 | – | – | – | – | – |
+| `reborn-fastpur-healfirst` | – | – | – | 1 | – | – | – | – |
+| `reborn-fastpur-margin` | – | – | – | – | – | – | 20 | – |
+| `reborn-fastpur-group` | – | – | – | – | – | 100 | – | – |
+| `reborn-fastpur-take` | – | – | – | – | 5 | – | – | – |
+| `reborn-fastpur-all` | 1 | 100 | 1 | 1 | 5 | 100 | 20 | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2045,9 +2082,11 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_confusion_cure_when_stuck` | 1, not set | `reborn-confusion`, `reborn-immfix` |  |
 | `borg_param_caution_cornered_throw_first` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_desperate_fast_danger_percent` | 0, 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
+| `borg_param_caution_desperate_fast_haste` | 1, not set | `reborn-fastpur` |  |
 | `borg_param_caution_desperate_ranged_first_reach` | 3, not set | `reborn-flight3-757`, `reborn-flight3main` |  |
 | `borg_param_caution_desperate_scary_distance` | 4, 8, not set | `reborn-despscary` |  |
 | `borg_param_caution_desperate_scary_level` | 10, not set | `reborn-despscary` |  |
+| `borg_param_caution_desperate_walk_cost_percent` | 100, not set | `reborn-fastpur` |  |
 | `borg_param_caution_flee_known_down_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_flee_recall_chasers` | 2, 6, not set | `reborn-untested-caution` |  |
@@ -2057,7 +2096,9 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_heal_band3_skip_chance` | 0, 40, not set | `reborn-healskip` |  |
 | `borg_param_caution_heal_band4_skip_chance` | 0, 25, not set | `reborn-healskip` |  |
 | `borg_param_caution_heal_band5_skip_chance` | 0, 12, not set | `reborn-healskip` |  |
+| `borg_param_caution_heal_lethal_over_max` | 1, not set | `reborn-fastpur` |  |
 | `borg_param_caution_heal_nonpriest_chance_penalty` | 0, not set | `reborn-healskip` |  |
+| `borg_param_caution_heal_outmatched_before_walk` | 1, not set | `reborn-fastpur` |  |
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
 | `borg_param_caution_immobile_no_return` | 1, not set | `reborn-immfix` |  |
 | `borg_param_caution_immobile_step_mobile_first` | 1, not set | `reborn-confusion`, `reborn-immfix` |  |
@@ -2080,6 +2121,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_scary_latch` | 0, 1 | `reborn-scary-calm` |  |
 | `borg_param_caution_scary_named_monsters` | 0, 1 | `reborn-scary-named-damage` |  |
 | `borg_param_caution_scary_stand` | 0, not set | `reborn-stand-seeinv` |  |
+| `borg_param_caution_scary_take_distance` | 5, not set | `reborn-fastpur` |  |
 | `borg_param_caution_scary_unlatch_calmed` | 0, 1, not set | `reborn-neutral-main`, `reborn-rebase-main`, `reborn-death-bank38` |  |
 | `borg_param_caution_scary_unlatch_kill` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_slow_crowd_exit` | 0, 1 | `reborn-slow-crowd-exit` |  |
@@ -2088,6 +2130,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_stairs_clean_path_flee` | 0, 1, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
 | `borg_param_caution_stairs_flight_ignore_danger` | 0, 1, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
 | `borg_param_caution_stairs_flight_threat_weight` | 0, 5, not set | `reborn-weighted765`, `reborn-floo` |  |
+| `borg_param_caution_stairs_flight_unknown` | 1, 2, not set | `reborn-stairunk` |  |
+| `borg_param_caution_stairs_flight_unknown_steps` | 5, not set | `reborn-stairunk` |  |
 | `borg_param_caution_stairs_leave_on_monster` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_town_flee_no_worse` | 1, not set | `reborn-untested-dbc`, `reborn-town-switch-screen` |  |
 | `borg_param_caution_town_never_scary` | 1, not set | `reborn-town-switch-screen` |  |
@@ -2099,8 +2143,11 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_unseen_bump_response` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_unseen_bump_turns` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3`, `reborn-townhunt` |  |
+| `borg_param_caution_winning_fight_group_percent` | 100, not set | `reborn-fastpur` |  |
+| `borg_param_caution_winning_fight_margin_percent` | 20, not set | `reborn-fastpur` |  |
 | `borg_param_cave_light_engine_radius` | 1, not set | `reborn-lightbel` |  |
 | `borg_param_danger_breeder_melee_extra_tenths` | 0, 5, not set | `reborn-loneslow` |  |
+| `borg_param_danger_observed_haste` | 1, not set | `reborn-fastpur` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_fail` | 0, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_max_danger_divisor` | 1, 4, not set | `reborn-bless` |  |
@@ -2369,6 +2416,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_town_w_escape` | 100, not set | `reborn-casters` |  |
 | `borg_town_w_space` | 12, 50, not set | `reborn-untested-town` |  |
 | `borg_town_w_support` | 25, 100, not set | `reborn-untested-town` |  |
+| `borg_world` | breeders-x4, breeders-x8 | `reborn-stairunk` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |
