@@ -131,6 +131,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-lightbel` | [#625](https://github.com/diegoami/borg-zoo/issues/625) | 3 | defined (pilot) | Engine light radius (#877) and unseen belief (#879) on a516df64: ctl, light1, light1-belief, classes-18. |
 | `reborn-loneslow` | [#626](https://github.com/diegoami/borg-zoo/issues/626) | 11 | defined (pilot) | borg-reborn-rs #878 (PR #891) on 296adfbf: 11 arms (lone slow attack, danger without fear, faint, unseen-bump phase, breeder bonus), classes-18. |
 | `reborn-bhold` | [#627](https://github.com/diegoami/borg-zoo/issues/627) | 4 | defined (pilot) | Slow-breeder hold rule (#882, PR #893) on 6062b84a in the breeders-x4 world: ctl, p4, hold, p6, classes-18. |
+| `reborn-kitleash` | [#589](https://github.com/diegoami/borg-zoo/issues/589) | 13 | defined (pilot) | Basic-kit mode (#840, PR #844 merged) on main f57499d0: 13 arms (kit_leash variants, kit, restock, start reserve, money first, kit-money-hunt, all), classes-18. |
 
 ### `heal-attack-4`
 
@@ -1870,6 +1871,28 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`, `borg_worl
 | `reborn-bhold-hold` | 1 | -1 |
 | `reborn-bhold-p6` | – | 6 |
 
+### `reborn-kitleash`
+
+Basic-kit mode (#840, PR #844 merged) on main f57499d0: 13 arms (kit_leash variants, kit, restock, start reserve, money first, kit-money-hunt, all), classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_kit_descent_min_percent` | `borg_param_kit_leash` | `borg_param_kit_leash_min` | `borg_param_kit_leash_power` | `borg_param_kit_leave_danger_percent` | `borg_param_kit_money_first` | `borg_param_kit_restock` | `borg_param_kit_restock_light_turns` | `borg_param_kit_start_reserve` | `borg_param_kit_start_reserve__blackguard` | `borg_param_kit_start_reserve__priest` | `borg_param_kit_start_reserve__ranger` | `borg_param_kit_start_reserve__rogue` | `borg_param_town_hunt` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-kitleash-ctl` | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-kitleash-leash` | – | 1 | 1 | 1 | – | – | – | – | – | – | – | – | – | – |
+| `reborn-kitleash-leash-p2` | – | 1 | – | 2 | – | – | – | – | – | – | – | – | – | – |
+| `reborn-kitleash-leash-m0` | – | 1 | 0 | 2 | – | – | – | – | – | – | – | – | – | – |
+| `reborn-kitleash-leash-m2` | – | 1 | 2 | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-kitleash-kit` | 50 | 1 | – | – | 25 | – | – | – | – | – | – | – | – | – |
+| `reborn-kitleash-a` | – | – | – | – | – | – | 1 | 500 | – | – | – | – | – | – |
+| `reborn-kitleash-b` | – | – | – | – | – | – | – | – | 1 | – | – | – | – | – |
+| `reborn-kitleash-b-classes` | – | – | – | – | – | – | – | – | – | 1 | 1 | 1 | 1 | – |
+| `reborn-kitleash-c` | – | 1 | – | – | – | 1 | – | – | – | – | – | – | – | – |
+| `reborn-kitleash-a+b` | – | – | – | – | – | – | 1 | – | 1 | – | – | – | – | – |
+| `reborn-kitleash-kit-money-hunt` | – | 1 | 2 | – | – | 1 | – | – | – | – | – | – | – | 1 |
+| `reborn-kitleash-all` | 50 | 1 | – | – | 25 | 1 | 1 | 500 | 1 | – | – | – | – | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2057,6 +2080,19 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_flow_take_phase_short_below` | 2, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_kill_flow_mode` | 0, 1, 2, 3 | `reborn-kill-flow-mode` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
+| `borg_param_kit_descent_min_percent` | 50, not set | `reborn-kitleash` |  |
+| `borg_param_kit_leash` | 1, not set | `reborn-kitleash` |  |
+| `borg_param_kit_leash_min` | 0, 1, 2, not set | `reborn-kitleash` |  |
+| `borg_param_kit_leash_power` | 1, 2, not set | `reborn-kitleash` |  |
+| `borg_param_kit_leave_danger_percent` | 25, not set | `reborn-kitleash` |  |
+| `borg_param_kit_money_first` | 1, not set | `reborn-kitleash` |  |
+| `borg_param_kit_restock` | 1, not set | `reborn-kitleash` |  |
+| `borg_param_kit_restock_light_turns` | 500, not set | `reborn-kitleash` |  |
+| `borg_param_kit_start_reserve` | 1, not set | `reborn-kitleash` |  |
+| `borg_param_kit_start_reserve__blackguard` | 1, not set | `reborn-kitleash` |  |
+| `borg_param_kit_start_reserve__priest` | 1, not set | `reborn-kitleash` |  |
+| `borg_param_kit_start_reserve__ranger` | 1, not set | `reborn-kitleash` |  |
+| `borg_param_kit_start_reserve__rogue` | 1, not set | `reborn-kitleash` |  |
 | `borg_param_light_detect_dark_entry` | 1, not set | `reborn-darkentry` |  |
 | `borg_param_light_detect_evil_spell_min_level` | 5, 10, not set | `reborn-low-level-detection`, `reborn-shipcheck-b895` |  |
 | `borg_param_light_detect_evil_spell_min_level@druid` | 0, not set | `reborn-detect-min-level`, `reborn-detect-min-dbc` |  |
@@ -2164,7 +2200,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_speed_percent` | 100, not set | `reborn-healtiers` |  |
-| `borg_param_town_hunt` | 1, not set | `reborn-townhunt` |  |
+| `borg_param_town_hunt` | 1, not set | `reborn-townhunt`, `reborn-kitleash` |  |
 | `borg_param_town_hunt_min_hp_percent` | 50, not set | `reborn-townhunt` |  |
 | `borg_param_town_hunt_ranged_bonus_percent` | 50, not set | `reborn-townhunt` |  |
 | `borg_param_town_invisible_count` | 0, not set | `reborn-invis` |  |
