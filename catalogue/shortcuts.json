@@ -1983,7 +1983,7 @@
     },
     "reborn-pbdtp": {
       "issue": 651,
-      "status": "defined (development re-measure on the 200 Ranger starts)",
+      "status": "run 45033279953: arm lo config_error in all 200 cells (class line name); rerun as reborn-pbdtp2",
       "what": "Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e (re-measure of #290): ctl, lo.",
       "profiles": [
         "reborn-pbdtp-ctl",
@@ -2018,6 +2018,26 @@
         "reborn-wjelly-kill",
         "reborn-wjelly-poison",
         "reborn-wjelly-all"
+      ],
+      "runs": []
+    },
+    "reborn-trackp-regression": {
+      "issue": 645,
+      "status": "defined (diagnosis pilot)",
+      "what": "The 37 starts that die on track-p 9085c266 and survive on main f57499d0, on the track-p head: shipped against attack_confused_by_direction 0, evidence retained.",
+      "profiles": [
+        "reborn-regress-shipped",
+        "reborn-regress-confused0"
+      ],
+      "runs": []
+    },
+    "reborn-pbdtp2": {
+      "issue": 651,
+      "status": "defined (development re-measure on the 200 Ranger starts; the first run had config_error for lo: wrong class line name)",
+      "what": "Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e, rerun with attack_arrow_point_blank_divisor_ranger.",
+      "profiles": [
+        "reborn-pbdtp2-ctl",
+        "reborn-pbdtp2-lo"
       ],
       "runs": []
     }

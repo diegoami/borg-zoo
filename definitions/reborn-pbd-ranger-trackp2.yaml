@@ -1,0 +1,43 @@
+# borg-zoo#651: the Ranger arrow point-blank divisor on track-p e2d8919e, rerun with the right class line name (attack_arrow_point_blank_divisor_ranger, one underscore): the first run (45033279953) had config_error 200 for the arm lo.
+name: reborn-pbd-ranger-trackp2
+issue: 651
+question: >-
+  On borg-reborn-rs track-p e2d8919e (attack on sight, the fast-fragile policy, #870's throw divisor, #873), do Rangers
+  with no arrow point-blank penalty (attack_arrow_point_blank_divisor@ranger 1) die less, or progress differently, than
+  with the shipped 2?
+suites: [classes-1800-small-rangers, classes-1800-medium-rangers, classes-1800-big-rangers, classes-1800-full-rangers]
+
+pilot: true            # first run of these arms on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-track-p-e2d8919e
+  repository: diegoami/borg-reborn-rs
+  ref: e2d8919e8aa314b8a3622b90bf0b1be7958bdfd4
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-pbdtp2
+arms:
+  ctl: {}                                              # shipped: Ranger arrow divisor 2
+  lo:
+    borg_param_attack_arrow_point_blank_divisor_ranger: 1
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#651; zoo owner, 2026-11-22: "yes do them" (the pilot only; small + medium after the gate and the owner).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Development re-measure (RULES 14), fixed before any result. The 200 Ranger starts of classes-1800 (the four tiers
+  above; the same starts as #290's development, so the result is comparable with f660aecc's 11 against 18).
+  Primary: deaths, divisor 1 against 2, paired by start, exact McNemar (descriptive at this stage).
+  Secondary: CL1-3 deaths; mean max CL and max DL; alive at the cap; games identical to ctl; arrows fired, broken and
+  bought per game; shots at an adjacent monster per game; deaths by cause.
+  Gate: no config_error; one binary; each arm's line verified in its borg.txt / settings-resolved.json; every cell ends
+  in death, turn_cap or borg_stopped, with every stall, timeout and crash reported.
+  If deaths fall (a lead), the confirmation is a prespecified test on Ranger starts no decision has read: the Ranger
+  starts of classes-1800-fresh (classes-1800-b-rangers was used by #290's confirmation).
