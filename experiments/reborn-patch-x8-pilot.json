@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-patch-x8-pilot",
+  "issue": 665,
+  "definition": "definitions/reborn-patch-x8-pilot.yaml",
+  "question": "In the world where the grey mushroom patch is 8 times as likely (patches-x8), does #969's HP floor (shipped 50) save the games the kill-on-sight entry (#869) cost, against no floor, the patch's ranged entry, the confused attack by direction off (#867, #901) and the CLW confusion cure (#837)?",
+  "description": "In the world where the grey mushroom patch is 8 times as likely (patches-x8), does #969's HP floor (shipped 50) save the games the kill-on-sight entry (#869) cost, against no floor, the patch's ranged entry, the confused attack by direction off (#867, #901) and the CLW confusion cure (#837)? Generated from definitions/reborn-patch-x8-pilot.yaml: 5 arms on 4.2.6-reborn-rust-pr976-f46b4997, suite classes-18.",
+  "prespecified": "Draft of 2026-11-22, written before any game in these worlds was played. Pilot (RULES 16): 5 arms in patches-x8, classes-18\n(90 games); the arms that lead go to verysmall after the gate and the owner. Games compare only within the world; ctl is\nthe control.\nGate: no config_error; one binary; every cell's config.txt has borg_world and the same borg_world_data_sha256 within a\nworld; each arm's values in params-core.json and its scary list copy (the borg_scary_list_lines applied); every cell ends\nin death, turn_cap or borg_stopped; frozen-turn bursts classified; death bundles reproduced (in the world).\nReport per world, arm and class: deaths and causes; patch deaths (killer the grey mushroom patch, or any killer while\nconfused next to a patch); CL and DL at death, max CL and DL; paired rescued and newly killed against ctl (exact\nMcNemar); identical plays. Per game: grey mushroom patches met (\"# Creating a monster 'grey mushroom patch'\"),\nkilled, and confused turns next to one; \"# Attack on sight: grey mushroom patch\" and \"# Not fixing Confusion next to an\nimmobile confuser\" notes; CLW quaffed while confused. Check that the world does what it says: patches met per game in x4\nand x8 against the normal-world baseline at 9085c266 (run 45028029063, same Borg). A world is a stress test: a policy\nthat wins here still needs the normal world's measurement before a shipped value changes.",
+  "specimens": [
+    "4.2.6-reborn-rust-pr976-f46b4997"
+  ],
+  "profiles": [
+    "reborn-patchx8-ctl",
+    "reborn-patchx8-floor0",
+    "reborn-patchx8-ranged",
+    "reborn-patchx8-nodir",
+    "reborn-patchx8-rangedclw"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-pr976-f46b4997",
+  "control_profile": "reborn-patchx8-ctl",
+  "owner_authorization": "2026-11-22, owner: \"can you then think of zoo run with a synthetic world where these patches are 4 or 8 times more frequent?\", then \"yes watch them, and dispatch the x8 pilot\" (borg-zoo#665).",
+  "retain_evidence": true
+}

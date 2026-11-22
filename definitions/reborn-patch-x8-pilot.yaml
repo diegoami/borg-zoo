@@ -1,8 +1,8 @@
-# DRAFT, not dispatched: the grey mushroom patch deaths of run 45028029063 (reborn-trackp-9085c266-full: 11 of 28
+# The grey mushroom patch deaths of run 45028029063 (reborn-trackp-9085c266-full: 11 of 28
 # deaths, none on f57499d0 or ab775d48), stress-tested in worlds where the patch is 4 and 8 times as likely.
 # borg-zoo#665. Write the catalogue entries with:
 #   python3 -m zoo define definitions/reborn-patch-x8-pilot.yaml
-# Its twin, reborn-patch-x4-pilot, is the same arms in the other world.
+# Its twin for patches-x4 is a draft (borg-zoo commit 3e7c95e), not defined.
 #
 # Specimen: borg-reborn-rs f46b4997, head of PR #976 (#969: attack_kill_on_sight_min_hp_percent, shipped 50) stacked on PR #971
 # (#970: `favour`/`favour_weight` in scripts/make-world.py, harness/worlds/patches-x4.txt and patches-x8.txt: every race but the
@@ -52,8 +52,8 @@ arms:
     borg_param_caution_confused_clw_cure: 1
 control: [ctl]
 owner_authorization: >-
-  Not yet given. 2026-11-22, owner: "can you then think of zoo run with a synthetic world where these patches are 4 or 8
-  times more frequent?" (a request to design it; dispatch waits for the owner).
+  2026-11-22, owner: "can you then think of zoo run with a synthetic world where these patches are 4 or 8 times more
+  frequent?", then "yes watch them, and dispatch the x8 pilot" (borg-zoo#665).
 extra:
   retain_evidence: true
 
