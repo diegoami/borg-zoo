@@ -1,0 +1,26 @@
+# borg-zoo#616: the small tier of the variety study (borg-reborn-rs #863, 4290a7da): classes-1800 starts 1-45 at 300,000 turns.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-variety-small.yaml
+name: reborn-variety-small
+issue: 616
+question: >-
+  On borg-reborn-rs 4290a7da, over 45 starts of classes-1800 at 300,000 turns (5 per class), do the shipped Recall and Phase
+  Door purchases and the variety (staples decay, remedies) keep the Borg alive and as deep as the build before #863, and which
+  of the two parts does it?
+suites: [classes-1800-300k-verysmall]   # classes-1800 starts 1-45, 300,000 turns
+specimens: [4.2.6-reborn-rust-variety-4290a7da]
+profiles: [reborn-var-ctl, reborn-var-shipped, reborn-var-variety, reborn-var-kit]
+control_specimen: 4.2.6-reborn-rust-variety-4290a7da
+control_profile: reborn-var-ctl
+owner_authorization: >-
+  2026-11-22: zoo owner, "yes continue with all" (the small tier of the pilot, run 44967883374, after its gate on #616).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22 after the pilot (run 44967883374: 0 identical plays, ctl 1 death, shipped 1, variety 0, kit 2; the Mage
+  1548306106 dies at CL2 to a wild cat in shipped and kit) and before any result of this tier was read. Small tier (RULES 14):
+  45 starts per arm (classes-1800 starts 1-45, 5 per class), four arms, 300,000 turns, 180 cells. Evidence is not retained
+  (130 MB per cell at 300,000 turns): the stocking measures of the issue stay with the pilot's evidence; this tier reports
+  deaths, progress and stalls. Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls
+  reported start by start. Report per arm and class: deaths and causes, mean CL and depth, paired rescued and newly killed
+  against ctl, identical plays, unfinished games. Directional only (RULES 14).

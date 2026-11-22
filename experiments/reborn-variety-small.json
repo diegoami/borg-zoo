@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-variety-small",
+  "issue": 616,
+  "definition": "definitions/reborn-variety-small.yaml",
+  "question": "On borg-reborn-rs 4290a7da, over 45 starts of classes-1800 at 300,000 turns (5 per class), do the shipped Recall and Phase Door purchases and the variety (staples decay, remedies) keep the Borg alive and as deep as the build before #863, and which of the two parts does it?",
+  "description": "On borg-reborn-rs 4290a7da, over 45 starts of classes-1800 at 300,000 turns (5 per class), do the shipped Recall and Phase Door purchases and the variety (staples decay, remedies) keep the Borg alive and as deep as the build before #863, and which of the two parts does it? Generated from definitions/reborn-variety-small.yaml: 4 arms on 4.2.6-reborn-rust-variety-4290a7da, suite classes-1800-300k-verysmall.",
+  "prespecified": "Fixed 2026-11-22 after the pilot (run 44967883374: 0 identical plays, ctl 1 death, shipped 1, variety 0, kit 2; the Mage\n1548306106 dies at CL2 to a wild cat in shipped and kit) and before any result of this tier was read. Small tier (RULES 14):\n45 starts per arm (classes-1800 starts 1-45, 5 per class), four arms, 300,000 turns, 180 cells. Evidence is not retained\n(130 MB per cell at 300,000 turns): the stocking measures of the issue stay with the pilot's evidence; this tier reports\ndeaths, progress and stalls. Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls\nreported start by start. Report per arm and class: deaths and causes, mean CL and depth, paired rescued and newly killed\nagainst ctl, identical plays, unfinished games. Directional only (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-variety-4290a7da"
+  ],
+  "profiles": [
+    "reborn-var-ctl",
+    "reborn-var-shipped",
+    "reborn-var-variety",
+    "reborn-var-kit"
+  ],
+  "suites": [
+    "classes-1800-300k-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-variety-4290a7da",
+  "control_profile": "reborn-var-ctl",
+  "owner_authorization": "2026-11-22: zoo owner, \"yes continue with all\" (the small tier of the pilot, run 44967883374, after its gate on #616).",
+  "retain_evidence": false
+}
