@@ -11156,6 +11156,30 @@
         "borg_reborn_errand": "none",
         "borg_param_attack_arrow_point_blank_divisor_ranger": 1
       }
+    },
+    "reborn-tpffh-shipped": {
+      "description": "borg-zoo#660 (reborn-trackp-ffheal-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-tpffh-noban": {
+      "description": "borg-zoo#660 (reborn-trackp-ffheal-pilot.yaml): arm noban.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_no_heal": 0
+      }
+    },
+    "reborn-tpffh-off": {
+      "description": "borg-zoo#660 (reborn-trackp-ffheal-pilot.yaml): arm off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_policy": 0,
+        "borg_param_fast_fragile_no_heal": 0
+      }
     }
   }
 }
