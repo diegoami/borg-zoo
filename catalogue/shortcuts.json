@@ -1715,7 +1715,7 @@
     },
     "reborn-room": {
       "issue": 612,
-      "status": "pilot done (run 44950482392); small (classes-1800-300k-verysmall) defined and dispatched; rerun with the full-pack junk fix defined (#639)",
+      "status": "pilot done (run 44950482392); small (classes-1800-300k-verysmall) defined and dispatched; rerun with the full-pack junk fix defined (#639); small rerun on the junk-fix build defined and dispatched (#639)",
       "what": "Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k.",
       "profiles": [
         "reborn-room-ctl",
@@ -1793,7 +1793,7 @@
     },
     "reborn-loneslow": {
       "issue": 626,
-      "status": "pilot done (run 44976940245); small and medium (5 arms) defined and dispatched (#626)",
+      "status": "pilot, small and medium done; big (ctl against all) defined and dispatched (#626)",
       "what": "borg-reborn-rs #878 (PR #891) on 296adfbf: 11 arms (lone slow attack, danger without fear, faint, unseen-bump phase, breeder bonus), classes-18.",
       "profiles": [
         "reborn-loneslow-ctl",
@@ -1865,7 +1865,7 @@
     },
     "reborn-conf": {
       "issue": 636,
-      "status": "defined (pilot)",
+      "status": "pilot done (run 44986409375); small (ctl, confused-pb) defined and dispatched (#636)",
       "what": "Confused attacks by direction (#867, PR #868) on e8895f5e: ctl, confused, ctl-clw, confused-clw, confused-pb, classes-18 at 300k.",
       "profiles": [
         "reborn-conf-ctl",
@@ -1887,7 +1887,7 @@
     },
     "reborn-stairunk": {
       "issue": 642,
-      "status": "defined (pilot)",
+      "status": "pilot done (run 45023921364); small and medium defined and dispatched (#642)",
       "what": "Stair flights on known grids (#881, PR #897) on ea14528a: ctl, m1, m2 in breeders-x4 and breeders-x8, classes-18.",
       "profiles": [
         "reborn-stairunk-ctl-x4",
@@ -1901,7 +1901,7 @@
     },
     "reborn-fastpur": {
       "issue": 643,
-      "status": "defined (pilot)",
+      "status": "pilot done (run 45023948564); small and medium (11 arms) defined and dispatched (#643)",
       "what": "borg-reborn-rs #907-#911 on 608d9fed: ctl, one arm per switch, walkcost-dh, all, classes-18.",
       "profiles": [
         "reborn-fastpur-ctl",
@@ -1983,7 +1983,7 @@
     },
     "reborn-pbdtp": {
       "issue": 651,
-      "status": "defined (development re-measure on the 200 Ranger starts)",
+      "status": "run 45033279953: arm lo config_error in all 200 cells (class line name); rerun as reborn-pbdtp2",
       "what": "Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e (re-measure of #290): ctl, lo.",
       "profiles": [
         "reborn-pbdtp-ctl",
@@ -2018,6 +2018,26 @@
         "reborn-wjelly-kill",
         "reborn-wjelly-poison",
         "reborn-wjelly-all"
+      ],
+      "runs": []
+    },
+    "reborn-trackp-regression": {
+      "issue": 645,
+      "status": "defined (diagnosis pilot)",
+      "what": "The 37 starts that die on track-p 9085c266 and survive on main f57499d0, on the track-p head: shipped against attack_confused_by_direction 0, evidence retained.",
+      "profiles": [
+        "reborn-regress-shipped",
+        "reborn-regress-confused0"
+      ],
+      "runs": []
+    },
+    "reborn-pbdtp2": {
+      "issue": 651,
+      "status": "defined (development re-measure on the 200 Ranger starts; the first run had config_error for lo: wrong class line name)",
+      "what": "Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e, rerun with attack_arrow_point_blank_divisor_ranger.",
+      "profiles": [
+        "reborn-pbdtp2-ctl",
+        "reborn-pbdtp2-lo"
       ],
       "runs": []
     }

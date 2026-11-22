@@ -1,0 +1,31 @@
+# borg-zoo#645: the 37 starts that die on track-p 9085c266 and survive on main f57499d0, run on the track-p head with the confused attack by direction on (shipped) and off.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-trackp-regression-diagnosis.yaml
+name: reborn-trackp-regression-diagnosis
+issue: 645
+question: >-
+  The track-p ladder at 9085c266 has 40 deaths in 1,800 starts against 30 on main f57499d0 (12 to a grey mushroom patch against about 1, Priests 10 against 1).
+  Are those 37 starts still dead on the track-p head 4b2c2fcf, and does attack_confused_by_direction 0 (shipped 1 on track-p since #904) rescue them?
+pilot: true            # a study on its own suite (RULES 16)
+suites: [classes-1800-trackp-9085c266-new-deaths]
+specimen: 4.2.6-reborn-rust-trackp-4b2c2fcf
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-regress
+arms:
+  shipped: {}
+  confused0: {borg_param_attack_confused_by_direction: 0}
+control: [shipped]
+owner_authorization: >-
+  2026-11-22: zoo owner, "what is in queue, what to run?" (a diagnosis of the track-p regression found in the ladder at 9085c266; baseline policy #645).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read. 37 starts x 2 arms = 74 cells on the track-p head 4b2c2fcf, 100,000 turns, evidence
+  retained. Report per arm: how many of the 37 still die (cause, class), paired rescued and newly killed (shipped against confused0), identical plays
+  (confused0 equals shipped where the switch never acts); for the grey mushroom patch deaths the last 40 messages and the attacks chosen while
+  confused ("# Confused: aiming by direction N" notes against melee) in shipped and in confused0. Not a sample: the starts are chosen for dying on
+  9085c266; any rate is meaningless. Descriptive.
