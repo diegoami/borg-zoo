@@ -1938,7 +1938,7 @@
     },
     "reborn-kitlt": {
       "issue": 646,
-      "status": "defined (pilot, small, medium), dispatched 2026-11-22",
+      "status": "pilot, small, medium on 9085c266 dispatched; re-pinned to the head 4b2c2fcf with the town-hunt arm (reborn-kit-leash-head-*, #646)",
       "what": "kit_leash on the track-p head 9085c266 (re-run of #589's lead): ctl, leash, leash-m0, kit, c.",
       "profiles": [
         "reborn-kitlt-ctl",
@@ -1946,6 +1946,15 @@
         "reborn-kitlt-leash-m0",
         "reborn-kitlt-kit",
         "reborn-kitlt-c"
+      ],
+      "runs": []
+    },
+    "reborn-trackp-4b2c2fcf": {
+      "issue": 645,
+      "status": "defined (baseline ladder of the track-p line at the head: pilot, small-rest, medium, big, full), dispatched 2026-11-22; replaces the ladder at 9085c266",
+      "what": "Baseline of borg-reborn-rs track-p 4b2c2fcf (cursed-torch swap and full-pack fix in), shipped settings, classes-1800 (45+45+270+540+900), 100,000 turns.",
+      "profiles": [
+        "reborn-head-shipped"
       ],
       "runs": []
     }
