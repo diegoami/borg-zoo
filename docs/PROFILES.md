@@ -129,7 +129,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-despscary` | [#622](https://github.com/diegoami/borg-zoo/issues/622) | 4 | pilot done (run 44976875737); small (ctl, d8, d4) defined and dispatched (#622) | Desperate walk to the stairs from a scary monster on main f57499d0: ctl, d8, d4, lvl10, classes-18. |
 | `reborn-main-f57499d0` | [#623](https://github.com/diegoami/borg-zoo/issues/623) | 1 | defined (ladder: pilot, small-rest, medium, big, full), dispatched 2026-11-22 | Ladder of borg-reborn-rs main f57499d0, shipped settings, one arm, classes-1800 (45+45+270+540+900), 100,000 turns. |
 | `reborn-lightbel` | [#625](https://github.com/diegoami/borg-zoo/issues/625) | 3 | pilot done (run 44976921051); small and medium defined and dispatched (#625) | Engine light radius (#877) and unseen belief (#879) on a516df64: ctl, light1, light1-belief, classes-18. |
-| `reborn-loneslow` | [#626](https://github.com/diegoami/borg-zoo/issues/626) | 11 | pilot, small and medium done; big (ctl against all) defined and dispatched (#626) | borg-reborn-rs #878 (PR #891) on 296adfbf: 11 arms (lone slow attack, danger without fear, faint, unseen-bump phase, breeder bonus), classes-18. |
+| `reborn-loneslow` | [#626](https://github.com/diegoami/borg-zoo/issues/626) | 11 | pilot, small, medium, big done (all: 13 deaths against 25 in 900 starts); confirmation on classes-1800-fresh defined and dispatched (#626) | borg-reborn-rs #878 (PR #891) on 296adfbf: 11 arms (lone slow attack, danger without fear, faint, unseen-bump phase, breeder bonus), classes-18. |
 | `reborn-bhold` | [#627](https://github.com/diegoami/borg-zoo/issues/627) | 4 | pilot done (run 44976959551); small and medium in the breeders-x4 world defined and dispatched; normal-world pilot defined (#627) | Slow-breeder hold rule (#882, PR #893) on 6062b84a in the breeders-x4 world: ctl, p4, hold, p6, classes-18. |
 | `reborn-kitleash` | [#589](https://github.com/diegoami/borg-zoo/issues/589) | 13 | pilot done (run 44981752264); small and medium (13 arms) defined and dispatched (#589) | Basic-kit mode (#840, PR #844 merged) on main f57499d0: 13 arms (kit_leash variants, kit, restock, start reserve, money first, kit-money-hunt, all), classes-18. |
 | `reborn-blow` | [#632](https://github.com/diegoami/borg-zoo/issues/632) | 2 | pilot done (run 44982717684: 18 of 18 identical); small and medium defined and dispatched (#632) | Flight Recall blow model (#880, PR #892) on 201d56eb: blow-off against blow-on (shipped), classes-18. |
@@ -154,7 +154,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-zerohp` | [#670](https://github.com/diegoami/borg-zoo/issues/670) | 2 | defined (pilot) | kill_live_zero_hp (#975, PR #994) on 1f4e9e89: ctl, zero, classes-18. |
 | `reborn-rest` | [#671](https://github.com/diegoami/borg-zoo/issues/671) | 4 | defined (pilot) | borg_recover rest switches (#981, #982; PRs #998, #999) on ed6c7ab8: ctl, shot, cure, both, classes-18. |
 | `reborn-ffq` | [#672](https://github.com/diegoami/borg-zoo/issues/672) | 7 | defined (pilot) | Fast-fragile quantile, heal floor, dot (#926, PR #1002) on 8974509e: 7 arms, classes-18. |
-| `reborn-overex` | [#675](https://github.com/diegoami/borg-zoo/issues/675) | 2 | defined (pilot on the small Mage suite) | Emergency attack spell beyond the mana (#980, PR #991) on 89888283: ctl (1), noexert (0), Mages. |
+| `reborn-overex` | [#675](https://github.com/diegoami/borg-zoo/issues/675) | 3 | defined (pilot on the small Mage suite) | Emergency attack spell beyond the mana (#980, PR #991, re-synced to 80cf6bf4): ctl (1), noexert (0), faint100, Mages. |
 | `reborn-unkcure` | [#684](https://github.com/diegoami/borg-zoo/issues/684) | 4 | defined (pilot) | Unknown cures and the cure HP floor (#985, PR #1003) on b5b0f5fd: ctl, hold, floor, both, classes-18. |
 | `reborn-rclshallow` | [#688](https://github.com/diegoami/borg-zoo/issues/688) | 4 | defined (pilot) | Recall on shallow trips (#984, PR #997) on 434d5371: ctl, urgent, hold, both, classes-18. |
 | `reborn-deadend` | [#659](https://github.com/diegoami/borg-zoo/issues/659) | 6 | defined (pilot) | Retreat and back-up refuse a dead end (#881 part 2, PR #953) on b157f9dd: ctl, d1, d2 in breeders-x4 and breeders-x8, classes-18. |
@@ -2204,14 +2204,15 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 ### `reborn-overex`
 
-Emergency attack spell beyond the mana (#980, PR #991) on 89888283: ctl (1), noexert (0), Mages.
+Emergency attack spell beyond the mana (#980, PR #991, re-synced to 80cf6bf4): ctl (1), noexert (0), faint100, Mages.
 
 Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
-| Profile | `borg_param_attack_reserve_spell_overexert` |
-| --- | --- |
-| `reborn-overex-ctl` | – |
-| `reborn-overex-noexert` | 0 |
+| Profile | `borg_param_attack_reserve_faint_percent` | `borg_param_attack_reserve_spell_overexert` |
+| --- | --- | --- |
+| `reborn-overex-ctl` | – | – |
+| `reborn-overex-noexert` | – | 0 |
+| `reborn-overex-faint100` | 100 | – |
 
 ### `reborn-unkcure`
 
@@ -2387,7 +2388,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_projectile_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_warrior_spell_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
-| `borg_param_attack_reserve_faint_percent` | 25, not set | `reborn-loneslow`, `reborn-lonew` |  |
+| `borg_param_attack_reserve_faint_percent` | 25, 100, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-overex` |  |
 | `borg_param_attack_reserve_spell_damage_only` | 1, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_attack_reserve_spell_overexert` | 0, not set | `reborn-overex` |  |
 | `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |

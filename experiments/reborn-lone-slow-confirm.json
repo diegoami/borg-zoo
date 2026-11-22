@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-lone-slow-confirm",
+  "issue": 626,
+  "definition": "definitions/reborn-lone-slow-confirm.yaml",
+  "question": "On a seed block no decision has read (classes-1800-fresh, 1,800 starts), does the combination of the five switches of #878 (lone slow attack, no-fear Phase and reserve, faint gate, fresh unseen-bump Phase) on borg-reborn-rs 296adfbf keep its lead of the development tiers (13 deaths against 25 in 900 starts, 20 rescued / 8 newly killed, exact p 0.036), against the shipped play of the same build?",
+  "description": "On a seed block no decision has read (classes-1800-fresh, 1,800 starts), does the combination of the five switches of #878 (lone slow attack, no-fear Phase and reserve, faint gate, fresh unseen-bump Phase) on borg-reborn-rs 296adfbf keep its lead of the development tiers (13 deaths against 25 in 900 starts, 20 rescued / 8 newly killed, exact p 0.036), against the shipped play of the same build? Generated from definitions/reborn-lone-slow-confirm.yaml: 2 arms on 4.2.6-reborn-rust-lone-slow-296adfbf, suite classes-1800-fresh.",
+  "prespecified": "Fixed 2026-11-22, before any start of classes-1800-fresh was played with this build or these arms. Confirmation (RULES 14): the two arms of the lead, ctl and all, on the whole fresh\nblock (1,800 starts, 100,000 turns, all classes), 3,600 cells, one binary, evidence not retained. The confirmation test, fixed here: the one-sided exact McNemar test that all has\nfewer deaths than ctl, paired by start, at alpha 0.05; the lead is confirmed only if the test rejects AND all has fewer deaths than ctl, AND mean CL and mean max depth of all fall by\nno more than 0.25 against ctl (P7's margin). Otherwise the development lead is not confirmed (and is reported as not confirmed, RULES 18). Gate: no config_error; one binary; every cell\nends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by start. Report per class: deaths and causes, rescued and newly killed, identical plays, CL and\ndepth, alive at the cap having reached DL5; a RULES 18 bin. The development tiers (classes-1800 starts 1-900, #626) are not re-used.",
+  "specimens": [
+    "4.2.6-reborn-rust-lone-slow-296adfbf"
+  ],
+  "profiles": [
+    "reborn-loneslow-ctl",
+    "reborn-loneslow-all"
+  ],
+  "suites": [
+    "classes-1800-fresh"
+  ],
+  "control": "4.2.6-reborn-rust-lone-slow-296adfbf",
+  "control_profile": "reborn-loneslow-ctl",
+  "owner_authorization": "2026-11-22: zoo owner, \"go 626\" (the confirmation of the lead on the fresh block, as the gate on #626 proposed; the arms are the pilot's and the development tiers').",
+  "retain_evidence": false
+}

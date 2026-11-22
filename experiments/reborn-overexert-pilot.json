@@ -3,21 +3,22 @@
   "name": "reborn-overexert-pilot",
   "issue": 675,
   "definition": "definitions/reborn-overexert-pilot.yaml",
-  "question": "On borg-reborn-rs 89888283 (track-p 4b2c2fcf plus the parameter), does forbidding the emergency attack spell beyond the current mana (attack_reserve_spell_overexert 0), which always faints the caster, save Mage games, against today's play (1)?",
-  "description": "On borg-reborn-rs 89888283 (track-p 4b2c2fcf plus the parameter), does forbidding the emergency attack spell beyond the current mana (attack_reserve_spell_overexert 0), which always faints the caster, save Mage games, against today's play (1)? Generated from definitions/reborn-overexert-pilot.yaml: 2 arms on 4.2.6-reborn-rust-overexert-89888283, suite classes-1800-small-mages.",
-  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#675; borg-reborn-rs #980, PR #991). ctl against noexert on the Mage starts of classes-1800-small (the path runs only for Mages under CL15 hurt by a lone weak monster; an all-class suite dilutes it, so the pilot is the Mage suite, 100,000 turns), evidence retained; the medium Mage suite follows on the owner's go. Gate: no config_error; one binary; the arm's value in params-core.json (a borg_param_ profile setting that changes borg_txt_sha256); every cell ends in death, turn_cap or borg_stopped; stalls apart; identical plays. Report per arm: deaths and causes, CL and depth, paired rescued and newly killed against ctl, the emergency-cast notes and faints per game. Directional (RULES 14).",
+  "question": "On borg-reborn-rs 80cf6bf4 (track-p c15a4e73 plus the parameter), does forbidding the emergency attack spell beyond the current mana (attack_reserve_spell_overexert 0), or pricing it with #878's guard (attack_reserve_faint_percent 100), save Mage games, against today's play (1)?",
+  "description": "On borg-reborn-rs 80cf6bf4 (track-p c15a4e73 plus the parameter), does forbidding the emergency attack spell beyond the current mana (attack_reserve_spell_overexert 0), or pricing it with #878's guard (attack_reserve_faint_percent 100), save Mage games, against today's play (1)? Generated from definitions/reborn-overexert-pilot.yaml: 3 arms on 4.2.6-reborn-rust-overexert-80cf6bf4, suite classes-1800-small-mages.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#675; borg-reborn-rs #980, PR #991). ctl, noexert and faint100 (#878's priced guard on the same cast: it shows whether the guard keeps the casts that work and refuses the ones that kill) on the Mage starts of classes-1800-small (the path runs only for Mages under CL15 hurt by a lone weak monster; an all-class suite dilutes it, so the pilot is the Mage suite, 100,000 turns), evidence retained; the medium Mage suite follows on the owner's go. Gate: no config_error; one binary; the arm's value in params-core.json (a borg_param_ profile setting that changes borg_txt_sha256); every cell ends in death, turn_cap or borg_stopped; stalls apart; identical plays. Report per arm: deaths and causes, CL and depth, paired rescued and newly killed against ctl, the emergency-cast notes and faints per game. Directional (RULES 14).",
   "pilot": true,
   "specimens": [
-    "4.2.6-reborn-rust-overexert-89888283"
+    "4.2.6-reborn-rust-overexert-80cf6bf4"
   ],
   "profiles": [
     "reborn-overex-ctl",
-    "reborn-overex-noexert"
+    "reborn-overex-noexert",
+    "reborn-overex-faint100"
   ],
   "suites": [
     "classes-1800-small-mages"
   ],
-  "control": "4.2.6-reborn-rust-overexert-89888283",
+  "control": "4.2.6-reborn-rust-overexert-80cf6bf4",
   "control_profile": "reborn-overex-ctl",
   "owner_authorization": "2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#675; zoo owner, 2026-11-22: \"check your issues\" (the pilot only; later tiers after the gate and the owner).",
   "retain_evidence": true
