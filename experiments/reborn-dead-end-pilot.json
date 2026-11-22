@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-dead-end-pilot",
+  "issue": 659,
+  "definition": "definitions/reborn-dead-end-pilot.yaml",
+  "question": "In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs b157f9dd (PR #953), does refusing a dead end (mode 1) or a grid farther from the way out than the Borg's own (mode 2) in the strategic retreat and the back-up save the games lost inside a one-exit lattice room of worm masses? Each world has its own control.",
+  "description": "In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs b157f9dd (PR #953), does refusing a dead end (mode 1) or a grid farther from the way out than the Borg's own (mode 2) in the strategic retreat and the back-up save the games lost inside a one-exit lattice room of worm masses? Each world has its own control. Generated from definitions/reborn-dead-end-pilot.yaml: 6 arms on 4.2.6-reborn-rust-dead-end-b157f9dd, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#659; borg-reborn-rs #881, PR #953). Six profiles on one build, classes-18,\n18 starts each (108 cells), 100,000 exact engine turns, evidence retained: ctl, d1 and d2 in breeders-x4 and in breeders-x8 (a world's arms are\ncompared only within that world). caution_retreat_dead_end_distance stays 6. Gate: no config_error; one binary; every cell records its world\nwith the same borg_world_data_sha256 in every arm of that world; each arm's value in params-core.json; every cell ends in death, turn_cap or\nborg_stopped with frozen-turn bursts classified; death bundles reproduce in the same world; the arms must play differently: the rule writes no\nnote, so if d1 or d2 plays identically to ctl in all 18 pilot games of a world, stop and report before the larger tiers. Primary: deaths by\n100,000 turns; mean CL and depth may each fall by no more than 0.25 against ctl in the same world. Report per world, arm and class: deaths and\ncauses and breeder deaths (the killer has MULTIPLY); paired rescued and newly killed against ctl (exact McNemar) and identical plays; final and\nmaximum CL, deepest level; unfinished games with denominators; a RULES 18 bin. Diagnostics: per game the \"# Retreating to\" and \"# Backing up to\"\nnotes against ctl, breeder exits, flee and escape notes, \"# Breeders cannot be stopped\" and \"No rest: ... breeders known\", breeders created and\nkilled. A breeder world is a stress test; a confirmation needs an unopened seed block. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-dead-end-b157f9dd"
+  ],
+  "profiles": [
+    "reborn-deadend-ctl-x4",
+    "reborn-deadend-d1-x4",
+    "reborn-deadend-d2-x4",
+    "reborn-deadend-ctl-x8",
+    "reborn-deadend-d1-x8",
+    "reborn-deadend-d2-x8"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-dead-end-b157f9dd",
+  "control_profile": "reborn-deadend-ctl-x4",
+  "owner_authorization": "2026-11-22: borg-reborn-rs owner (\"file the zoo request for part 2 in the breeder worlds\"), filed as borg-zoo#659; zoo owner, 2026-11-22: \"yes do all that\" (the classes-18 pilot only; small + medium after the gate and the owner).",
+  "retain_evidence": true
+}

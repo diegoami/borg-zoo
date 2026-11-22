@@ -142,13 +142,15 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-main-b34196c5` | [#645](https://github.com/diegoami/borg-zoo/issues/645) | 1 | defined (lighter baseline of the main line: pilot, small-rest, medium), dispatched 2026-11-22 | Baseline of borg-reborn-rs main b34196c5, shipped settings, one arm, classes-1800 (45+45+270), 100,000 turns. |
 | `reborn-kitlt` | [#646](https://github.com/diegoami/borg-zoo/issues/646) | 5 | pilot, small, medium on 9085c266 dispatched; re-pinned to the head 4b2c2fcf with the town-hunt arm (reborn-kit-leash-head-*, #646) | kit_leash on the track-p head 9085c266 (re-run of #589's lead): ctl, leash, leash-m0, kit, c. |
 | `reborn-trackp-4b2c2fcf` | [#645](https://github.com/diegoami/borg-zoo/issues/645) | 1 | defined (baseline ladder of the track-p line at the head: pilot, small-rest, medium, big, full), dispatched 2026-11-22; replaces the ladder at 9085c266 | Baseline of borg-reborn-rs track-p 4b2c2fcf (cursed-torch swap and full-pack fix in), shipped settings, classes-1800 (45+45+270+540+900), 100,000 turns. |
-| `reborn-vrm` | [#648](https://github.com/diegoami/borg-zoo/issues/648) | 4 | defined (pilot) | Re-measure of #863/#873 on the merged track-p e2d8919e: ctl, shipped, variety, kit, classes-18 at 300k. |
-| `reborn-flask` | [#649](https://github.com/diegoami/borg-zoo/issues/649) | 3 | defined (pilot) | Flask saving (#912) on bf077c4a: ctl, save2, save2-noov, classes-18 at 300k. |
+| `reborn-vrm` | [#648](https://github.com/diegoami/borg-zoo/issues/648) | 4 | pilot done (run 45033226329); small (classes-1800-300k-verysmall) defined and dispatched (#648) | Re-measure of #863/#873 on the merged track-p e2d8919e: ctl, shipped, variety, kit, classes-18 at 300k. |
+| `reborn-flask` | [#649](https://github.com/diegoami/borg-zoo/issues/649) | 3 | pilot done (run 45033254253); small and medium defined and dispatched (#649) | Flask saving (#912) on bf077c4a: ctl, save2, save2-noov, classes-18 at 300k. |
 | `reborn-pbdtp` | [#651](https://github.com/diegoami/borg-zoo/issues/651) | 2 | run 45033279953: arm lo config_error in all 200 cells (class line name); rerun as reborn-pbdtp2 | Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e (re-measure of #290): ctl, lo. |
-| `reborn-cavesp` | [#652](https://github.com/diegoami/borg-zoo/issues/652) | 8 | defined (pilot) | Five switches from the cave-spider death (#913-#916, #941) on 67a0c69d: 8 arms, classes-18. |
-| `reborn-wjelly` | [#654](https://github.com/diegoami/borg-zoo/issues/654) | 6 | defined (pilot) | Four switches from the white-jelly death (#931-#934) on 172bd671: ctl, reach, osc, kill, poison, all, classes-18. |
+| `reborn-cavesp` | [#652](https://github.com/diegoami/borg-zoo/issues/652) | 8 | pilot done (run 45033305701); small and medium (short list) defined and dispatched (#652) | Five switches from the cave-spider death (#913-#916, #941) on 67a0c69d: 8 arms, classes-18. |
+| `reborn-wjelly` | [#654](https://github.com/diegoami/borg-zoo/issues/654) | 6 | pilot done (run 45033331780); small and medium (short list) defined and dispatched (#654) | Four switches from the white-jelly death (#931-#934) on 172bd671: ctl, reach, osc, kill, poison, all, classes-18. |
 | `reborn-trackp-regression` | [#645](https://github.com/diegoami/borg-zoo/issues/645) | 2 | defined (diagnosis pilot) | The 37 starts that die on track-p 9085c266 and survive on main f57499d0, on the track-p head: shipped against attack_confused_by_direction 0, evidence retained. |
 | `reborn-pbdtp2` | [#651](https://github.com/diegoami/borg-zoo/issues/651) | 2 | defined (development re-measure on the 200 Ranger starts; the first run had config_error for lo: wrong class line name) | Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e, rerun with attack_arrow_point_blank_divisor_ranger. |
+| `reborn-deadend` | [#659](https://github.com/diegoami/borg-zoo/issues/659) | 6 | defined (pilot) | Retreat and back-up refuse a dead end (#881 part 2, PR #953) on b157f9dd: ctl, d1, d2 in breeders-x4 and breeders-x8, classes-18. |
+| `reborn-retreat-flight` | [#657](https://github.com/diegoami/borg-zoo/issues/657) | 2 | defined (pilot) | Stair routing after a tactical retreat (#932, PR #964) on e43b6d87: ctl, hold, classes-18 at 300k. |
 
 ### `heal-attack-4`
 
@@ -2117,6 +2119,30 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-pbdtp2-ctl` | – |
 | `reborn-pbdtp2-lo` | 1 |
 
+### `reborn-deadend`
+
+Retreat and back-up refuse a dead end (#881 part 2, PR #953) on b157f9dd: ctl, d1, d2 in breeders-x4 and breeders-x8, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_retreat_dead_end` | `borg_world` |
+| --- | --- | --- |
+| `reborn-deadend-ctl-x4` | – | breeders-x4 |
+| `reborn-deadend-d1-x4` | 1 | breeders-x4 |
+| `reborn-deadend-d2-x4` | 2 | breeders-x4 |
+| `reborn-deadend-ctl-x8` | – | breeders-x8 |
+| `reborn-deadend-d1-x8` | 1 | breeders-x8 |
+| `reborn-deadend-d2-x8` | 2 | breeders-x8 |
+
+### `reborn-retreat-flight`
+
+Stair routing after a tactical retreat (#932, PR #964) on e43b6d87: ctl, hold, classes-18 at 300k.
+
+| Profile | `borg_param_caution_retreat_reentry_ticks` |
+| --- | --- |
+| `reborn-retreat-flight-ctl` | – |
+| `reborn-retreat-flight-hold` | 128 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2259,9 +2285,11 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_recall_survival` | 0, 1, not set | `reborn-fight-recall`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3` |  |
 | `borg_param_caution_recall_wait_as_usual` | 0, 1, not set | `reborn-neutral-main`, `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_recall_wait_no_explore` | 1, not set | `reborn-recallwait` |  |
+| `borg_param_caution_retreat_dead_end` | 1, 2, not set | `reborn-deadend` |  |
 | `borg_param_caution_retreat_from_faster` | 1, not set | `reborn-cavesp` |  |
 | `borg_param_caution_retreat_immobile_kill_turns` | 3, not set | `reborn-wjelly` |  |
 | `borg_param_caution_retreat_oscillation_limit` | 3, not set | `reborn-wjelly` |  |
+| `borg_param_caution_retreat_reentry_ticks` | 128, not set | `reborn-retreat-flight` |  |
 | `borg_param_caution_rising_explore_ticks` | 500, 1000, 1500, 2000, not set | `reborn-rising-ticks3` |  |
 | `borg_param_caution_rising_hold_flee_descent` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_rising_hold_min_hp_percent` | 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main` |  |
@@ -2570,7 +2598,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_town_w_escape` | 100, not set | `reborn-casters` |  |
 | `borg_town_w_space` | 12, 50, not set | `reborn-untested-town` |  |
 | `borg_town_w_support` | 25, 100, not set | `reborn-untested-town` |  |
-| `borg_world` | breeders-x4, breeders-x8 | `reborn-stairunk` |  |
+| `borg_world` | breeders-x4, breeders-x8 | `reborn-stairunk`, `reborn-deadend` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |

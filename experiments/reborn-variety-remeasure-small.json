@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-variety-remeasure-small",
+  "issue": 648,
+  "definition": "definitions/reborn-variety-remeasure-small.yaml",
+  "question": "On the merged track-p e2d8919e (#873 merged), do the shipped Word of Recall and Phase Door purchases, the staples' decay and the prepared remedies keep the Borg stocked without lowering its progress, and which part lowers it, if any?",
+  "description": "On the merged track-p e2d8919e (#873 merged), do the shipped Word of Recall and Phase Door purchases, the staples' decay and the prepared remedies keep the Borg stocked without lowering its progress, and which part lowers it, if any? Generated from definitions/reborn-variety-remeasure-small.yaml: 4 arms on 4.2.6-reborn-rust-track-p-e2d8919e, suite classes-1800-300k-verysmall.",
+  "prespecified": "Fixed 2026-11-22 after the pilot gate (run 45033226329: CL gap of the Recall/Phase parts (-0.45) remains, depth gap does not) and before any result of this tier was read. Small tier (RULES 14) on the same build:\nclasses-1800 starts 1-45 (45 starts per arm, paired), all classes, 300,000 turns (the suite classes-1800-300k-verysmall, as #616's small tier), one binary, disjoint from the other tiers of the study (pool them\nas one study, RULES 14). All four arms (ctl, shipped, variety, kit).\nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by start.\nReport per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly killed against\nthe control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not retained at this tier. Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-track-p-e2d8919e"
+  ],
+  "profiles": [
+    "reborn-vrm-ctl",
+    "reborn-vrm-shipped",
+    "reborn-vrm-variety",
+    "reborn-vrm-kit"
+  ],
+  "suites": [
+    "classes-1800-300k-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-track-p-e2d8919e",
+  "control_profile": "reborn-vrm-ctl",
+  "owner_authorization": "2026-11-22: zoo owner, \"yes do all that\" (the small tier; the pilot gate is read and posted on the issue).",
+  "retain_evidence": false
+}

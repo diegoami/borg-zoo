@@ -1,0 +1,138 @@
+# borg-zoo#648: small tier follow-up of reborn-variety-remeasure-pilot.
+name: reborn-variety-remeasure-small
+issue: 648
+question: >-
+  On the merged track-p e2d8919e (#873 merged), do the shipped Word of Recall and Phase Door purchases, the staples'
+  decay and the prepared remedies keep the Borg stocked without lowering its progress, and which part lowers it, if any?
+tier: small            # classes-1800-300k-verysmall (starts 1-45), 300,000 turns
+suites: [classes-1800-300k-verysmall]
+specimen: 4.2.6-reborn-rust-track-p-e2d8919e
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-vrm
+arms:
+  ctl:                 # none of #873's values (the track-p settings before it)
+    borg_param_town_prepared_percent: 0
+    borg_param_town_variety_min_depth: 0
+    borg_param_town_staple_clw: 0
+    borg_param_town_staple_csw: 0
+    borg_param_town_staple_ccw: 0
+    borg_param_town_staple_phase: 0
+    borg_param_town_staple_oil: 0
+    borg_param_town_staple_food: 0
+    borg_param_town_staple_light: 0
+    borg_param_town_staple_clw__warrior: 0
+    borg_param_town_staple_csw__warrior: 0
+    borg_param_town_staple_phase__warrior: 0
+    borg_param_town_staple_oil__warrior: 0
+    borg_param_town_staple_clw__mage: 0
+    borg_param_town_staple_csw__mage: 0
+    borg_param_town_staple_phase__mage: 0
+    borg_param_town_staple_oil__mage: 0
+    borg_param_town_staple_clw__druid: 0
+    borg_param_town_staple_csw__druid: 0
+    borg_param_town_staple_phase__druid: 0
+    borg_param_town_staple_oil__druid: 0
+    borg_param_town_staple_clw__priest: 0
+    borg_param_town_staple_csw__priest: 0
+    borg_param_town_staple_phase__priest: 0
+    borg_param_town_staple_oil__priest: 0
+    borg_param_town_staple_clw__necromancer: 0
+    borg_param_town_staple_csw__necromancer: 0
+    borg_param_town_staple_phase__necromancer: 0
+    borg_param_town_staple_oil__necromancer: 0
+    borg_param_town_staple_clw__paladin: 0
+    borg_param_town_staple_csw__paladin: 0
+    borg_param_town_staple_phase__paladin: 0
+    borg_param_town_staple_oil__paladin: 0
+    borg_param_town_staple_clw__rogue: 0
+    borg_param_town_staple_csw__rogue: 0
+    borg_param_town_staple_phase__rogue: 0
+    borg_param_town_staple_oil__rogue: 0
+    borg_param_town_staple_clw__ranger: 0
+    borg_param_town_staple_csw__ranger: 0
+    borg_param_town_staple_phase__ranger: 0
+    borg_param_town_staple_oil__ranger: 0
+    borg_param_town_staple_clw__blackguard: 0
+    borg_param_town_staple_csw__blackguard: 0
+    borg_param_town_staple_phase__blackguard: 0
+    borg_param_town_staple_oil__blackguard: 0
+    borg_param_town_recall_reserve: 1
+    borg_param_buy_recall_from_gold: 400
+    borg_param_town_phase_reserve: 0
+    borg_param_town_phase_reserve_percent: 100
+    borg_param_town_phase_reserve__ranger: 2
+    borg_param_town_phase_reserve__blackguard: 0
+    borg_param_town_phase_reserve__priest: 0
+  shipped: {}          # as merged
+  variety:             # the staples' decay and the remedies only; Recall and Phase Door as before
+    borg_param_town_recall_reserve: 1
+    borg_param_buy_recall_from_gold: 400
+    borg_param_town_phase_reserve: 0
+    borg_param_town_phase_reserve_percent: 100
+    borg_param_town_phase_reserve__ranger: 2
+    borg_param_town_phase_reserve__blackguard: 0
+    borg_param_town_phase_reserve__priest: 0
+  kit:                 # Recall and Phase Door only; no decay, no remedies
+    borg_param_town_prepared_percent: 0
+    borg_param_town_variety_min_depth: 0
+    borg_param_town_staple_clw: 0
+    borg_param_town_staple_csw: 0
+    borg_param_town_staple_ccw: 0
+    borg_param_town_staple_phase: 0
+    borg_param_town_staple_oil: 0
+    borg_param_town_staple_food: 0
+    borg_param_town_staple_light: 0
+    borg_param_town_staple_clw__warrior: 0
+    borg_param_town_staple_csw__warrior: 0
+    borg_param_town_staple_phase__warrior: 0
+    borg_param_town_staple_oil__warrior: 0
+    borg_param_town_staple_clw__mage: 0
+    borg_param_town_staple_csw__mage: 0
+    borg_param_town_staple_phase__mage: 0
+    borg_param_town_staple_oil__mage: 0
+    borg_param_town_staple_clw__druid: 0
+    borg_param_town_staple_csw__druid: 0
+    borg_param_town_staple_phase__druid: 0
+    borg_param_town_staple_oil__druid: 0
+    borg_param_town_staple_clw__priest: 0
+    borg_param_town_staple_csw__priest: 0
+    borg_param_town_staple_phase__priest: 0
+    borg_param_town_staple_oil__priest: 0
+    borg_param_town_staple_clw__necromancer: 0
+    borg_param_town_staple_csw__necromancer: 0
+    borg_param_town_staple_phase__necromancer: 0
+    borg_param_town_staple_oil__necromancer: 0
+    borg_param_town_staple_clw__paladin: 0
+    borg_param_town_staple_csw__paladin: 0
+    borg_param_town_staple_phase__paladin: 0
+    borg_param_town_staple_oil__paladin: 0
+    borg_param_town_staple_clw__rogue: 0
+    borg_param_town_staple_csw__rogue: 0
+    borg_param_town_staple_phase__rogue: 0
+    borg_param_town_staple_oil__rogue: 0
+    borg_param_town_staple_clw__ranger: 0
+    borg_param_town_staple_csw__ranger: 0
+    borg_param_town_staple_phase__ranger: 0
+    borg_param_town_staple_oil__ranger: 0
+    borg_param_town_staple_clw__blackguard: 0
+    borg_param_town_staple_csw__blackguard: 0
+    borg_param_town_staple_phase__blackguard: 0
+    borg_param_town_staple_oil__blackguard: 0
+
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: zoo owner, "yes do all that" (the small tier; the pilot gate is read and posted on the issue).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22 after the pilot gate (run 45033226329: CL gap of the Recall/Phase parts (-0.45) remains, depth gap does not) and before any result of this tier was read. Small tier (RULES 14) on the same build:
+  classes-1800 starts 1-45 (45 starts per arm, paired), all classes, 300,000 turns (the suite classes-1800-300k-verysmall, as #616's small tier), one binary, disjoint from the other tiers of the study (pool them
+  as one study, RULES 14). All four arms (ctl, shipped, variety, kit).
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by start.
+  Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly killed against
+  the control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not retained at this tier. Descriptive.

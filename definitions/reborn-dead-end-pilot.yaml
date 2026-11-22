@@ -1,0 +1,51 @@
+# borg-zoo#659: retreat and back-up refuse a dead end in the breeder worlds (borg-reborn-rs #881 part 2, PR #953), b157f9dd, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-dead-end-pilot.yaml
+name: reborn-dead-end-pilot
+issue: 659
+question: >-
+  In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs b157f9dd (PR #953), does refusing a dead end (mode 1) or a grid farther
+  from the way out than the Borg's own (mode 2) in the strategic retreat and the back-up save the games lost inside a one-exit lattice
+  room of worm masses? Each world has its own control.
+tier: pilot            # classes-18, 100,000 turns, both worlds; small + medium (classes-1800 starts 1-360) after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-dead-end-b157f9dd
+  repository: diegoami/borg-reborn-rs
+  ref: b157f9dd083e4de08c551f78ad6ea38e33f140c7
+  label: "borg-reborn-rs PR #953 head b157f9dd (track-p 4b2c2fcf merged; #881 part 2: caution_retreat_dead_end compiled and shipped 0; not part 1, #897); harness/borg.txt e91e8914..., scary_monsters.txt ff831d0a...; worlds breeders-x4 a546fb51... and breeders-x8 9530ff13..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+  worlds:
+    breeders-x4: a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8
+    breeders-x8: 9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-deadend
+arms:
+  ctl-x4: {borg_world: breeders-x4}
+  d1-x4: {borg_world: breeders-x4, borg_param_caution_retreat_dead_end: 1}
+  d2-x4: {borg_world: breeders-x4, borg_param_caution_retreat_dead_end: 2}
+  ctl-x8: {borg_world: breeders-x8}
+  d1-x8: {borg_world: breeders-x8, borg_param_caution_retreat_dead_end: 1}
+  d2-x8: {borg_world: breeders-x8, borg_param_caution_retreat_dead_end: 2}
+control: [ctl-x4]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs owner ("file the zoo request for part 2 in the breeder worlds"), filed as borg-zoo#659; zoo owner, 2026-11-22: "yes do all that" (the classes-18 pilot only; small + medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#659; borg-reborn-rs #881, PR #953). Six profiles on one build, classes-18,
+  18 starts each (108 cells), 100,000 exact engine turns, evidence retained: ctl, d1 and d2 in breeders-x4 and in breeders-x8 (a world's arms are
+  compared only within that world). caution_retreat_dead_end_distance stays 6. Gate: no config_error; one binary; every cell records its world
+  with the same borg_world_data_sha256 in every arm of that world; each arm's value in params-core.json; every cell ends in death, turn_cap or
+  borg_stopped with frozen-turn bursts classified; death bundles reproduce in the same world; the arms must play differently: the rule writes no
+  note, so if d1 or d2 plays identically to ctl in all 18 pilot games of a world, stop and report before the larger tiers. Primary: deaths by
+  100,000 turns; mean CL and depth may each fall by no more than 0.25 against ctl in the same world. Report per world, arm and class: deaths and
+  causes and breeder deaths (the killer has MULTIPLY); paired rescued and newly killed against ctl (exact McNemar) and identical plays; final and
+  maximum CL, deepest level; unfinished games with denominators; a RULES 18 bin. Diagnostics: per game the "# Retreating to" and "# Backing up to"
+  notes against ctl, breeder exits, flee and escape notes, "# Breeders cannot be stopped" and "No rest: ... breeders known", breeders created and
+  killed. A breeder world is a stress test; a confirmation needs an unopened seed block. Directional (RULES 14).

@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-retreat-flight-pilot",
+  "issue": 657,
+  "definition": "definitions/reborn-retreat-flight-pilot.yaml",
+  "question": "Does keeping dangerous retreat grids out of stair routes stop retreat and stair-flight oscillations?",
+  "description": "Does keeping dangerous retreat grids out of stair routes stop retreat and stair-flight oscillations? Generated from definitions/reborn-retreat-flight-pilot.yaml: 2 arms on 4.2.6-reborn-rust-retreat-flight-e43b6d87, suite classes-18-300k.",
+  "prespecified": "For each matched seed and arm, count episodes where a tactical retreat\n(Retreating to or Backing up to) and a stair-flow step repeatedly return\nto the same hazardous square. Include both one and two alternate retreat\nlandings. Report length, turns until progress toward a staircase or escape,\ndamage, and the number of guard activations. Report cap survivors, deaths,\nunfinished cells, max depths and new loops in either arm. If neither arm\nexposes the behavior, report the missing exposure. The pilot is descriptive.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-retreat-flight-e43b6d87"
+  ],
+  "profiles": [
+    "reborn-retreat-flight-ctl",
+    "reborn-retreat-flight-hold"
+  ],
+  "suites": [
+    "classes-18-300k"
+  ],
+  "control": "4.2.6-reborn-rust-retreat-flight-e43b6d87",
+  "control_profile": "reborn-retreat-flight-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#657; zoo owner, 2026-11-22: \"yes do all that\" (the pilot only).",
+  "retain_evidence": true
+}
