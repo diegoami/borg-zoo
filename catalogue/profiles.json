@@ -11127,6 +11127,55 @@
         "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
       }
     },
+    "reborn-patchx8-ctl": {
+      "description": "borg-zoo#665 (reborn-patch-x8-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "patches-x8"
+      }
+    },
+    "reborn-patchx8-floor0": {
+      "description": "borg-zoo#665 (reborn-patch-x8-pilot.yaml): arm floor0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "patches-x8",
+        "borg_param_attack_kill_on_sight_min_hp_percent": 0
+      }
+    },
+    "reborn-patchx8-ranged": {
+      "description": "borg-zoo#665 (reborn-patch-x8-pilot.yaml): arm ranged.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "patches-x8",
+        "borg_scary_list_lines": [
+          "grey mushroom patch | none | | attack"
+        ]
+      }
+    },
+    "reborn-patchx8-nodir": {
+      "description": "borg-zoo#665 (reborn-patch-x8-pilot.yaml): arm nodir.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "patches-x8",
+        "borg_param_attack_confused_by_direction": 0
+      }
+    },
+    "reborn-patchx8-rangedclw": {
+      "description": "borg-zoo#665 (reborn-patch-x8-pilot.yaml): arm rangedclw.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "patches-x8",
+        "borg_scary_list_lines": [
+          "grey mushroom patch | none | | attack"
+        ],
+        "borg_param_caution_confused_clw_cure": 1
+      }
+    },
     "reborn-regress-shipped": {
       "description": "borg-zoo#645 (reborn-trackp-regression-diagnosis.yaml): arm shipped.",
       "settings": {
