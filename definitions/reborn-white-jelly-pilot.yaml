@@ -1,0 +1,44 @@
+# borg-zoo#654: four switches from the white-jelly death (borg-reborn-rs #931 #932 #933 #934), 172bd671, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-white-jelly-pilot.yaml
+name: reborn-white-jelly-pilot
+issue: 654
+question: >-
+  On borg-reborn-rs 172bd671 (track-p e2d8919e plus one commit), do the four switches from the stats-ban death of seed 829474344 (a stair
+  flight that keeps out of an immobile attacker's reach; no retreat after three undone retreats; no retreat beside an immobile attacker the
+  Borg can kill in three turns; no retreat when poisoned without a cure) save early deaths, one at a time and together?
+tier: pilot            # classes-18, 100,000 turns; small + medium (classes-1800 starts 1-360) after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-white-jelly-172bd671
+  repository: diegoami/borg-reborn-rs
+  ref: 172bd671b7a584e5d3a9be3539d8fef2843dc8b8
+  label: "borg-reborn-rs claude/kind-brown-leqftg 172bd671 (track-p e2d8919e + one commit): the four switches compiled and shipped 0; harness/borg.txt b77a48bc..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-wjelly
+arms:
+  ctl: {}
+  reach: {borg_param_caution_stairs_immobile_reach: 1}
+  osc: {borg_param_caution_retreat_oscillation_limit: 3}
+  kill: {borg_param_caution_retreat_immobile_kill_turns: 3}
+  poison: {borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+  all: {borg_param_caution_stairs_immobile_reach: 1, borg_param_caution_retreat_oscillation_limit: 3, borg_param_caution_retreat_immobile_kill_turns: 3, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs owner ("file a zoo request to test the fixes for #931-#934"), filed as borg-zoo#654; zoo owner, 2026-11-22: "yes do them" (the pilot only; small + medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#654; borg-reborn-rs #931-#934). Six arms on one build, classes-18, 18
+  starts per arm (108 cells), 100,000 turns, evidence retained; every switch is shipped 0, so ctl is track-p's play. Gate: no config_error;
+  one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart;
+  identical plays per arm (osc may move many games: it first fires at turn 33,295 in the named case). Report per arm and class: deaths and
+  causes, CL and depth, paired rescued and newly killed against ctl; per game the counts of each switch's note ("(#931)", "(#932)", "(#933)",
+  "(#934)"); for osc and poison the deaths within 20 thinks after a "No retreat" note. The seed 829474344 is a classes-1800 start. If capacity
+  is short: ctl, osc, kill, all first. Small + medium (and classes-1800-big-rangers) only on the owner's go. Directional (RULES 14).

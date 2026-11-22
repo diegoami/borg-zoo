@@ -1,0 +1,36 @@
+# borg-zoo#646: kit_leash on the track-p head 4b2c2fcf, pilot tier: ctl, leash, leash-m0, kit, c, town-hunt.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-kit-leash-head-pilot.yaml
+name: reborn-kit-leash-head-pilot
+issue: 646
+question: >-
+  On the borg-reborn-rs track-p head 4b2c2fcf, does kit_leash 1 (alone, with no kit, with the descent and danger rules, or with money
+  first) keep its lead of #589 on main f57499d0: 3 to 6 deaths in 360 starts against 9 for ctl?
+tier: pilot            # classes-18, 100,000 turns
+specimen: 4.2.6-reborn-rust-trackp-4b2c2fcf
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-kitlt
+arms:
+  ctl: {}
+  leash: {borg_param_kit_leash: 1, borg_param_kit_leash_min: 1, borg_param_kit_leash_power: 1}
+  leash-m0: {borg_param_kit_leash: 1, borg_param_kit_leash_min: 0, borg_param_kit_leash_power: 2}
+  kit: {borg_param_kit_leash: 1, borg_param_kit_descent_min_percent: 50, borg_param_kit_leave_danger_percent: 25}
+  c: {borg_param_kit_leash: 1, borg_param_kit_money_first: 1}
+  town-hunt: {borg_param_town_hunt: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: zoo owner, "well both, but we need to regularly make a baseline full run with track-p" (the re-run of #589's lead on track-p,
+  issue #646; pilot, small and medium dispatched together: the pilot is the gate and its tiers follow on the owner's standing go).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#646; #589). Six arms (the five of #589 and the owner's town-hunt-only arm) on the track-p head, ctl is track-p's play
+  (every kit switch shipped 0). classes-18 at 100,000 turns; 18 starts per arm, paired; 100,000 turns. Gate: no config_error; one binary; each arm's values in
+  params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart. Report per arm and class:
+  deaths and causes, alive at the cap having reached DL5, mean CL and depth, paired rescued and newly killed against ctl (exact
+  McNemar), identical plays; pool pilot-excluded small + medium as one study of 360 starts (RULES 14). A lead, not a claim; a confirmation
+  needs an unopened seed block.
