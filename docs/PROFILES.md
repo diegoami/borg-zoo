@@ -153,7 +153,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-blloww` | [#679](https://github.com/diegoami/borg-zoo/issues/679) | 4 | defined (pilot in the breeder worlds) | Flight Recall blow model in breeders-x4 and breeders-x8 on 201d56eb: blow-off, blow-on, classes-18 (scenario companion of #632). |
 | `reborn-zerohp` | [#670](https://github.com/diegoami/borg-zoo/issues/670) | 2 | defined (pilot) | kill_live_zero_hp (#975, PR #994) on 1f4e9e89: ctl, zero, classes-18. |
 | `reborn-rest` | [#671](https://github.com/diegoami/borg-zoo/issues/671) | 4 | defined (pilot) | borg_recover rest switches (#981, #982; PRs #998, #999) on ed6c7ab8: ctl, shot, cure, both, classes-18. |
-| `reborn-ffq` | [#672](https://github.com/diegoami/borg-zoo/issues/672) | 7 | defined (pilot) | Fast-fragile quantile, heal floor, dot (#926, PR #1002) on 8974509e: 7 arms, classes-18. |
+| `reborn-ffq` | [#672](https://github.com/diegoami/borg-zoo/issues/672) | 7 | defined (pilot) | Fast-fragile quantile, heal floor, dot (#926, PR #1002) on d3c0fba9: 7 arms, classes-18. |
 | `reborn-overex` | [#675](https://github.com/diegoami/borg-zoo/issues/675) | 2 | defined (pilot on the small Mage suite) | Emergency attack spell beyond the mana (#980, PR #991) on 89888283: ctl (1), noexert (0), Mages. |
 | `reborn-unkcure` | [#684](https://github.com/diegoami/borg-zoo/issues/684) | 4 | defined (pilot) | Unknown cures and the cure HP floor (#985, PR #1003) on b5b0f5fd: ctl, hold, floor, both, classes-18. |
 | `reborn-rclshallow` | [#688](https://github.com/diegoami/borg-zoo/issues/688) | 4 | defined (pilot) | Recall on shallow trips (#984, PR #997) on 434d5371: ctl, urgent, hold, both, classes-18. |
@@ -2183,7 +2183,7 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 ### `reborn-ffq`
 
-Fast-fragile quantile, heal floor, dot (#926, PR #1002) on 8974509e: 7 arms, classes-18.
+Fast-fragile quantile, heal floor, dot (#926, PR #1002) on d3c0fba9: 7 arms, classes-18.
 
 Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 

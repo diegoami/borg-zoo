@@ -2,15 +2,15 @@
 name: reborn-ff-quantile-pilot
 issue: 672
 question: >-
-  On borg-reborn-rs 8974509e (track-p 4b2c2fcf plus PR #1002), do the three #926 switches (the damage quantile of 'the next turn kills', the heal floor, cut and poison in the test) save the early deaths to fast-fragile monsters (cats, crows) without a cost in Phase Door?
+  On borg-reborn-rs d3c0fba9 (track-p 2415bedf plus PR #1002), do the three #926 switches (the damage quantile of 'the next turn kills', the heal floor, cut and poison in the test) save the early deaths to fast-fragile monsters (cats, crows) without a cost in Phase Door?
 tier: pilot            # classes-18, 100,000 turns
 
 
 specimen:
-  name: 4.2.6-reborn-rust-ff-floor-8974509e
+  name: 4.2.6-reborn-rust-ff-floor-d3c0fba9
   repository: diegoami/borg-reborn-rs
-  ref: 8974509ebf9768cd3bf50590a965c5c76df156b9
-  label: "borg-reborn-rs task/926-fast-fragile-floor 8974509e (PR #1002 on track-p 4b2c2fcf): fast_fragile_escape_quantile, fast_fragile_heal_floor, fast_fragile_count_dot compiled and shipped 0; harness/borg.txt 0abc045f..., scary_monsters.txt ff831d0a..."
+  ref: d3c0fba97165c8907a4e03b0dc6e6beac1e7fe66
+  label: "borg-reborn-rs task/926-fast-fragile-floor d3c0fba9 (PR #1002 on track-p 2415bedf): fast_fragile_escape_quantile, fast_fragile_heal_floor, fast_fragile_count_dot compiled and shipped 0; harness/borg.txt 68cfe5d6..., scary_monsters.txt ff831d0a..."
   scary_lists:
     scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
 
