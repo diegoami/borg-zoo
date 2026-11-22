@@ -10174,6 +10174,76 @@
         "borg_reborn_errand": "none",
         "borg_param_attack_throw_point_blank_divisor": 1
       }
+    },
+    "reborn-healskip-ctl": {
+      "description": "borg-zoo#621 (reborn-heal-skip-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-healskip-nopen": {
+      "description": "borg-zoo#621 (reborn-heal-skip-pilot.yaml): arm nopen.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_heal_nonpriest_chance_penalty": 0
+      }
+    },
+    "reborn-healskip-half": {
+      "description": "borg-zoo#621 (reborn-heal-skip-pilot.yaml): arm half.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_heal_band1_skip_chance": 49,
+        "borg_param_caution_heal_band2_skip_chance": 48,
+        "borg_param_caution_heal_band3_skip_chance": 40,
+        "borg_param_caution_heal_band4_skip_chance": 25,
+        "borg_param_caution_heal_band5_skip_chance": 12
+      }
+    },
+    "reborn-healskip-always": {
+      "description": "borg-zoo#621 (reborn-heal-skip-pilot.yaml): arm always.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_heal_nonpriest_chance_penalty": 0,
+        "borg_param_caution_heal_band2_skip_chance": 0,
+        "borg_param_caution_heal_band3_skip_chance": 0,
+        "borg_param_caution_heal_band4_skip_chance": 0,
+        "borg_param_caution_heal_band5_skip_chance": 0
+      }
+    },
+    "reborn-despscary-ctl": {
+      "description": "borg-zoo#622 (reborn-desperate-scary-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-despscary-d8": {
+      "description": "borg-zoo#622 (reborn-desperate-scary-pilot.yaml): arm d8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_desperate_scary_distance": 8
+      }
+    },
+    "reborn-despscary-d4": {
+      "description": "borg-zoo#622 (reborn-desperate-scary-pilot.yaml): arm d4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_desperate_scary_distance": 4
+      }
+    },
+    "reborn-despscary-lvl10": {
+      "description": "borg-zoo#622 (reborn-desperate-scary-pilot.yaml): arm lvl10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_desperate_scary_level": 10
+      }
     }
   }
 }

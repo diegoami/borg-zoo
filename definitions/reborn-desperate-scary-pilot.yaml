@@ -1,0 +1,35 @@
+# borg-zoo#622: the desperate walk to the stairs from a scary monster (branch three) on main f57499d0, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-desperate-scary-pilot.yaml
+name: reborn-desperate-scary-pilot
+issue: 622
+question: >-
+  On borg-reborn-rs main f57499d0, does shortening the desperate walk to the up stairs from a scary monster (8 or 4 grids
+  instead of 20) or limiting it to characters under CL10 save games in which the Borg walked from full HP to death beside the
+  monster, or does it add deaths?
+tier: pilot            # classes-18, 100,000 turns; small (classes-1800 starts 1-90) after the gate and the owner
+
+specimen: 4.2.6-reborn-rust-main-f57499d0
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-despscary
+arms:
+  ctl: {}
+  d8: {borg_param_caution_desperate_scary_distance: 8}
+  d4: {borg_param_caution_desperate_scary_distance: 4}
+  lvl10: {borg_param_caution_desperate_scary_level: 10}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: zoo owner, "do all of them in the order you think right" (the proposals of /next-experiments, issue #622).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#622). Four arms on one build, classes-18, 18 starts per
+  arm (72 cells), 100,000 turns, evidence retained. Gate: no config_error; one binary; each arm's values in params-core.json;
+  every cell ends in death, turn_cap or borg_stopped; stalls apart.
+  Report per arm and class: deaths and causes; paired rescued and newly killed against ctl; identical plays (the branch
+  fires rarely: count the games in which "# Desperate for Stairs (three)" appears per arm, and HP at the walk's start, before
+  reading any outcome); mean CL and depth. Small only on the owner's go. Directional (RULES 14).
