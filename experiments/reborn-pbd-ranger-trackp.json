@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-pbd-ranger-trackp",
+  "issue": 651,
+  "definition": "definitions/reborn-pbd-ranger-trackp.yaml",
+  "question": "On borg-reborn-rs track-p e2d8919e (attack on sight, the fast-fragile policy, #870's throw divisor, #873), do Rangers with no arrow point-blank penalty (attack_arrow_point_blank_divisor@ranger 1) die less, or progress differently, than with the shipped 2?",
+  "description": "On borg-reborn-rs track-p e2d8919e (attack on sight, the fast-fragile policy, #870's throw divisor, #873), do Rangers with no arrow point-blank penalty (attack_arrow_point_blank_divisor@ranger 1) die less, or progress differently, than with the shipped 2? Generated from definitions/reborn-pbd-ranger-trackp.yaml: 2 arms on 4.2.6-reborn-rust-track-p-e2d8919e, suite classes-1800-small-rangers, classes-1800-medium-rangers, classes-1800-big-rangers, classes-1800-full-rangers.",
+  "prespecified": "Development re-measure (RULES 14), fixed before any result. The 200 Ranger starts of classes-1800 (the four tiers\nabove; the same starts as #290's development, so the result is comparable with f660aecc's 11 against 18).\nPrimary: deaths, divisor 1 against 2, paired by start, exact McNemar (descriptive at this stage).\nSecondary: CL1-3 deaths; mean max CL and max DL; alive at the cap; games identical to ctl; arrows fired, broken and\nbought per game; shots at an adjacent monster per game; deaths by cause.\nGate: no config_error; one binary; each arm's line verified in its borg.txt / settings-resolved.json; every cell ends\nin death, turn_cap or borg_stopped, with every stall, timeout and crash reported.\nIf deaths fall (a lead), the confirmation is a prespecified test on Ranger starts no decision has read: the Ranger\nstarts of classes-1800-fresh (classes-1800-b-rangers was used by #290's confirmation).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-track-p-e2d8919e"
+  ],
+  "profiles": [
+    "reborn-pbdtp-ctl",
+    "reborn-pbdtp-lo"
+  ],
+  "suites": [
+    "classes-1800-small-rangers",
+    "classes-1800-medium-rangers",
+    "classes-1800-big-rangers",
+    "classes-1800-full-rangers"
+  ],
+  "control": "4.2.6-reborn-rust-track-p-e2d8919e",
+  "control_profile": "reborn-pbdtp-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#651; zoo owner, 2026-11-22: \"yes do them\" (the pilot only; small + medium after the gate and the owner).",
+  "retain_evidence": false
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-cave-spider-pilot",
+  "issue": 652,
+  "definition": "definitions/reborn-cave-spider-pilot.yaml",
+  "question": "On borg-reborn-rs 67a0c69d (track-p 86843a79 plus PRs #943-#947), do the five switches from the stats-ban death of seed 2008390085 (the speed flag following the engine timer, the emergency Speed potion, no one-grid retreat from a faster monster, grouped monster names, the fast-fragile contact cap) save early deaths, one at a time and together?",
+  "description": "On borg-reborn-rs 67a0c69d (track-p 86843a79 plus PRs #943-#947), do the five switches from the stats-ban death of seed 2008390085 (the speed flag following the engine timer, the emergency Speed potion, no one-grid retreat from a faster monster, grouped monster names, the fast-fragile contact cap) save early deaths, one at a time and together? Generated from definitions/reborn-cave-spider-pilot.yaml: 8 arms on 4.2.6-reborn-rust-cave-spider-67a0c69d, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#652; borg-reborn-rs #913-#916, #941). Eight arms on one build,\nclasses-18, 18 starts per arm (144 cells), 100,000 turns, evidence retained; every switch is shipped 0, so ctl is track-p's play; stats\nis the reference of stats-contact. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death,\nturn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (trait_timed_sync may move many games). Report per arm and\nclass: deaths and causes, CL and depth, paired rescued and newly killed against ctl (stats-contact against stats); for sync and\nsync-speed the Speed potions drunk per game (\"# Attempting to cast Speed\", \"# Emergency Speed\") and deaths with Speed still in the pack;\nfor retreat the \"# No retreat:\" notes; for stats-contact the \"# Fast-fragile: N marked attackers in contact\" notes. The seed 2008390085 is a\nclasses-1800 start. If capacity is short: ctl, sync, sync-speed, retreat, all first. Small + medium only on the owner's go. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-cave-spider-67a0c69d"
+  ],
+  "profiles": [
+    "reborn-cavesp-ctl",
+    "reborn-cavesp-sync",
+    "reborn-cavesp-sync-speed",
+    "reborn-cavesp-retreat",
+    "reborn-cavesp-grouped",
+    "reborn-cavesp-stats",
+    "reborn-cavesp-stats-contact",
+    "reborn-cavesp-all"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-cave-spider-67a0c69d",
+  "control_profile": "reborn-cavesp-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs owner (\"process these issues\"), filed as borg-zoo#652; zoo owner, 2026-11-22: \"yes do them\" (the pilot only; small + medium after the gate and the owner).",
+  "retain_evidence": true
+}

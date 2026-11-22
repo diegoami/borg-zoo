@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-variety-remeasure-pilot",
+  "issue": 648,
+  "definition": "definitions/reborn-variety-remeasure-pilot.yaml",
+  "question": "On the merged track-p e2d8919e (#873 merged), do the shipped Word of Recall and Phase Door purchases, the staples' decay and the prepared remedies keep the Borg stocked without lowering its progress, and which part lowers it, if any?",
+  "description": "On the merged track-p e2d8919e (#873 merged), do the shipped Word of Recall and Phase Door purchases, the staples' decay and the prepared remedies keep the Borg stocked without lowering its progress, and which part lowers it, if any? Generated from definitions/reborn-variety-remeasure-pilot.yaml: 4 arms on 4.2.6-reborn-rust-track-p-e2d8919e, suite classes-18-300k.",
+  "prespecified": "Pilot (classes-18, 2 starts per class, 300,000 turns, every cell's evidence retained: messages, town transactions,\nreturn events): the gate is that no cell has a config_error and every game ends in death, at the cap, or is reported\nunfinished with its stop message. Everything is directional; a claim needs a fresh seed block (RULES 14). Primary\nmeasures, fixed here, each per arm and class: (1) stocked: the share of town departures after the first that carry no\nWord of Recall, and that carry 5 or fewer Phase Doors; (2) progress: mean max CL and depth, and alive at the cap, with\nrescued / newly killed pairs against ctl; (3) why progress differs, if it does: the turns spent in town and in\nDL1-town bounces, the gold at each purchase and what each visit bought (first visit, first three visits), and the\ndeaths before CL5 by cause; (4) situations covered at departure (Detect Invisible, Remove Curse, a poison cure, a\nconfusion cure, a fear remedy) and the staples' stack sizes against their free counts.",
+  "specimens": [
+    "4.2.6-reborn-rust-track-p-e2d8919e"
+  ],
+  "profiles": [
+    "reborn-vrm-ctl",
+    "reborn-vrm-shipped",
+    "reborn-vrm-variety",
+    "reborn-vrm-kit"
+  ],
+  "suites": [
+    "classes-18-300k"
+  ],
+  "control": "4.2.6-reborn-rust-track-p-e2d8919e",
+  "control_profile": "reborn-vrm-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#648; zoo owner, 2026-11-22: \"yes do them\" (the pilot only; small + medium after the gate and the owner).",
+  "retain_evidence": true
+}
