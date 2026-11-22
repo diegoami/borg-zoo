@@ -11126,6 +11126,21 @@
         "borg_param_caution_retreat_immobile_kill_turns": 3,
         "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
       }
+    },
+    "reborn-regress-shipped": {
+      "description": "borg-zoo#645 (reborn-trackp-regression-diagnosis.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-regress-confused0": {
+      "description": "borg-zoo#645 (reborn-trackp-regression-diagnosis.yaml): arm confused0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_confused_by_direction": 0
+      }
     }
   }
 }

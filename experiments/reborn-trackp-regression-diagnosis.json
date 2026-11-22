@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-trackp-regression-diagnosis",
+  "issue": 645,
+  "definition": "definitions/reborn-trackp-regression-diagnosis.yaml",
+  "question": "The track-p ladder at 9085c266 has 40 deaths in 1,800 starts against 30 on main f57499d0 (12 to a grey mushroom patch against about 1, Priests 10 against 1). Are those 37 starts still dead on the track-p head 4b2c2fcf, and does attack_confused_by_direction 0 (shipped 1 on track-p since #904) rescue them?",
+  "description": "The track-p ladder at 9085c266 has 40 deaths in 1,800 starts against 30 on main f57499d0 (12 to a grey mushroom patch against about 1, Priests 10 against 1). Are those 37 starts still dead on the track-p head 4b2c2fcf, and does attack_confused_by_direction 0 (shipped 1 on track-p since #904) rescue them? Generated from definitions/reborn-trackp-regression-diagnosis.yaml: 2 arms on 4.2.6-reborn-rust-trackp-4b2c2fcf, suite classes-1800-trackp-9085c266-new-deaths.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read. 37 starts x 2 arms = 74 cells on the track-p head 4b2c2fcf, 100,000 turns, evidence\nretained. Report per arm: how many of the 37 still die (cause, class), paired rescued and newly killed (shipped against confused0), identical plays\n(confused0 equals shipped where the switch never acts); for the grey mushroom patch deaths the last 40 messages and the attacks chosen while\nconfused (\"# Confused: aiming by direction N\" notes against melee) in shipped and in confused0. Not a sample: the starts are chosen for dying on\n9085c266; any rate is meaningless. Descriptive.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-4b2c2fcf"
+  ],
+  "profiles": [
+    "reborn-regress-shipped",
+    "reborn-regress-confused0"
+  ],
+  "suites": [
+    "classes-1800-trackp-9085c266-new-deaths"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-4b2c2fcf",
+  "control_profile": "reborn-regress-shipped",
+  "owner_authorization": "2026-11-22: zoo owner, \"what is in queue, what to run?\" (a diagnosis of the track-p regression found in the ladder at 9085c266; baseline policy #645).",
+  "retain_evidence": true
+}
