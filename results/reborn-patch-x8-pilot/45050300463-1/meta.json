@@ -1,0 +1,201 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-patchx8-ctl": {
+        "description": "borg-zoo#665 (reborn-patch-x8-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "patches-x8"
+        },
+        "sha256": "938fd37ee71cb1401a97dbdbf092b139a98f782a1e764f5b1fc456b53dc75565"
+      },
+      "reborn-patchx8-floor0": {
+        "description": "borg-zoo#665 (reborn-patch-x8-pilot.yaml): arm floor0.",
+        "settings": {
+          "borg_param_attack_kill_on_sight_min_hp_percent": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "patches-x8"
+        },
+        "sha256": "0d0c2896d4fc8d2adbab899f3da6a3bc04ba14566881c8a8d0d40d5cbf33eb71"
+      },
+      "reborn-patchx8-nodir": {
+        "description": "borg-zoo#665 (reborn-patch-x8-pilot.yaml): arm nodir.",
+        "settings": {
+          "borg_param_attack_confused_by_direction": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "patches-x8"
+        },
+        "sha256": "58e81088187d2e73e51717b03cab5bd7592a5e52d6597cd27ffaa6af07d9eb69"
+      },
+      "reborn-patchx8-ranged": {
+        "description": "borg-zoo#665 (reborn-patch-x8-pilot.yaml): arm ranged.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_scary_list_lines": [
+            "grey mushroom patch | none | | attack"
+          ],
+          "borg_world": "patches-x8"
+        },
+        "sha256": "9ed4d54039bd09528f175970f627527fb30449cc718471e933866ffdfb4a988f"
+      },
+      "reborn-patchx8-rangedclw": {
+        "description": "borg-zoo#665 (reborn-patch-x8-pilot.yaml): arm rangedclw.",
+        "settings": {
+          "borg_param_caution_confused_clw_cure": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_scary_list_lines": [
+            "grey mushroom patch | none | | attack"
+          ],
+          "borg_world": "patches-x8"
+        },
+        "sha256": "5b0afc2a26da34fbaa60cb8e8b845e3ec0d2bb78679de801ae710dc5c08c613c"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-pr976-f46b4997": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs f46b4997, head of PR #976 (#969: kill-on-sight HP floor, shipped 50) stacked on #971 (#970: make-world favour, patches-x4/x8), on track-p 4b2c2fcf. scary_monsters.txt 5a4ec4b6... (comment change only), borg-rs core.",
+        "ref": "f46b49976164233acabc3b114f946c1c104254f9",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        },
+        "worlds": {
+          "patches-x4": "b28ef5dd21f69a621521e774f70b7336dcac84d5d30d6177b854d5377a52233c",
+          "patches-x8": "1298c38d85f5f5f7a2c4c84b934362e5e1444f4b4d8ca59a13c9f9b16f197806"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-22 17:41 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-pr976-f46b4997",
+    "control_profile": "reborn-patchx8-ctl",
+    "definition": "definitions/reborn-patch-x8-pilot.yaml",
+    "description": "In the world where the grey mushroom patch is 8 times as likely (patches-x8), does #969's HP floor (shipped 50) save the games the kill-on-sight entry (#869) cost, against no floor, the patch's ranged entry, the confused attack by direction off (#867, #901) and the CLW confusion cure (#837)? Generated from definitions/reborn-patch-x8-pilot.yaml: 5 arms on 4.2.6-reborn-rust-pr976-f46b4997, suite classes-18.",
+    "issue": 665,
+    "name": "reborn-patch-x8-pilot",
+    "owner_authorization": "2026-11-22, owner: \"can you then think of zoo run with a synthetic world where these patches are 4 or 8 times more frequent?\", then \"yes watch them, and dispatch the x8 pilot\" (borg-zoo#665).",
+    "prespecified": "Draft of 2026-11-22, written before any game in these worlds was played. Pilot (RULES 16): 5 arms in patches-x8, classes-18\n(90 games); the arms that lead go to verysmall after the gate and the owner. Games compare only within the world; ctl is\nthe control.\nGate: no config_error; one binary; every cell's config.txt has borg_world and the same borg_world_data_sha256 within a\nworld; each arm's values in params-core.json and its scary list copy (the borg_scary_list_lines applied); every cell ends\nin death, turn_cap or borg_stopped; frozen-turn bursts classified; death bundles reproduced (in the world).\nReport per world, arm and class: deaths and causes; patch deaths (killer the grey mushroom patch, or any killer while\nconfused next to a patch); CL and DL at death, max CL and DL; paired rescued and newly killed against ctl (exact\nMcNemar); identical plays. Per game: grey mushroom patches met (\"# Creating a monster 'grey mushroom patch'\"),\nkilled, and confused turns next to one; \"# Attack on sight: grey mushroom patch\" and \"# Not fixing Confusion next to an\nimmobile confuser\" notes; CLW quaffed while confused. Check that the world does what it says: patches met per game in x4\nand x8 against the normal-world baseline at 9085c266 (run 45028029063, same Borg). A world is a stress test: a policy\nthat wins here still needs the normal world's measurement before a shipped value changes.",
+    "profiles": [
+      "reborn-patchx8-ctl",
+      "reborn-patchx8-floor0",
+      "reborn-patchx8-ranged",
+      "reborn-patchx8-nodir",
+      "reborn-patchx8-rangedclw"
+    ],
+    "question": "In the world where the grey mushroom patch is 8 times as likely (patches-x8), does #969's HP floor (shipped 50) save the games the kill-on-sight entry (#869) cost, against no floor, the patch's ranged entry, the confused attack by direction off (#867, #901) and the CLW confusion cure (#837)?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-pr976-f46b4997"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45050300463-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45050300463",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "0d1da36337b482908630ee6b3442407304be6da4"
+}
