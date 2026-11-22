@@ -1,0 +1,45 @@
+# borg-zoo#621: medium tier follow-up of reborn-heal-skip-pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-heal-skip-medium.yaml
+name: reborn-heal-skip-medium
+issue: 621
+question: >-
+  On borg-reborn-rs main f57499d0, does healing more often while wounded (no non-priest penalty; the skip chances of the
+  heal bands halved; bands 2-5 never skipped) save the early deaths in which Cure potions stayed in the pack, or does it
+  spend them sooner and add deaths?
+tier: medium            # classes-1800 starts 91-360, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-f57499d0
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-healskip
+arms:
+  ctl: {}
+  nopen: {borg_param_caution_heal_nonpriest_chance_penalty: 0}
+  half:
+    borg_param_caution_heal_band1_skip_chance: 49
+    borg_param_caution_heal_band2_skip_chance: 48
+    borg_param_caution_heal_band3_skip_chance: 40
+    borg_param_caution_heal_band4_skip_chance: 25
+    borg_param_caution_heal_band5_skip_chance: 12
+  always:
+    borg_param_caution_heal_nonpriest_chance_penalty: 0
+    borg_param_caution_heal_band2_skip_chance: 0
+    borg_param_caution_heal_band3_skip_chance: 0
+    borg_param_caution_heal_band4_skip_chance: 0
+    borg_param_caution_heal_band5_skip_chance: 0
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: zoo owner, "do all as suggested" (the medium tier; the pilot gate is read and posted on the issue).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22 after the pilot gate (run 44976856993: 0 deaths, arms change 2-6 of 18 starts) and before any result of this tier was read. Medium tier (RULES 14) on the same build:
+  classes-1800 starts 91-360 (270 starts per arm, paired), all classes, 100,000 turns, one binary, disjoint from the other tiers of
+  the study (pool them as one study, RULES 14). 
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by
+  start. Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly
+  killed against the control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not retained at this tier. Descriptive.

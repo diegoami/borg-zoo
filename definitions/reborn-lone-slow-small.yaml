@@ -1,0 +1,37 @@
+# borg-zoo#626: small tier follow-up of reborn-lone-slow-pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-lone-slow-small.yaml
+name: reborn-lone-slow-small
+issue: 626
+question: >-
+  On borg-reborn-rs 296adfbf (PR #891, track-p 8c2483ec merged), do the five switches of #878 (attack on sight on a lone
+  slow monster with the best ranged attack; Phase Door verdict and reserve spell read the danger without fear; no reserve cast
+  that faints in the monsters' reach; the unseen-bump Phase only for a fresh bump or real danger) and the breeder melee
+  bonus 15 / 5 / 0 save the Mage and Priest deaths to white worm masses without adding deaths?
+tier: small            # classes-1800 starts 1-90, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-lone-slow-296adfbf
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-loneslow
+arms:
+  ctl: {}
+  lone: {borg_param_lone_slow_attack: 1}
+  phase-nofear: {borg_param_escape_phase_lost_damage_only: 1}
+  breeder5: {borg_param_danger_breeder_melee_extra_tenths: 5}
+  all: {borg_param_lone_slow_attack: 1, borg_param_escape_phase_lost_damage_only: 1, borg_param_attack_reserve_spell_damage_only: 1, borg_param_attack_reserve_faint_percent: 25, borg_param_caution_unseen_bump_phase_turns: 20, borg_param_caution_unseen_bump_phase_min_danger: 5}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: zoo owner, "do all as suggested" (the small tier; the pilot gate is read and posted on the issue).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22 after the pilot gate (run 44976940245: 11 arms; reserve-nofear and faint25 identical to ctl) and before any result of this tier was read. Small tier (RULES 14) on the same build:
+  classes-1800 starts 1-90 (90 starts per arm, paired), all classes, 100,000 turns, one binary, disjoint from the other tiers of
+  the study (pool them as one study, RULES 14). Five arms (the requester's short list: ctl, lone, phase-nofear, all, breeder5); the arms identical to ctl in the pilot are dropped.
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by
+  start. Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly
+  killed against the control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not retained at this tier. Descriptive.

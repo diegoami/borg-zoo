@@ -1,0 +1,34 @@
+# borg-zoo#622: small tier follow-up of reborn-desperate-scary-pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-desperate-scary-small.yaml
+name: reborn-desperate-scary-small
+issue: 622
+question: >-
+  On borg-reborn-rs main f57499d0, does shortening the desperate walk to the up stairs from a scary monster (8 or 4 grids
+  instead of 20) or limiting it to characters under CL10 save games in which the Borg walked from full HP to death beside the
+  monster, or does it add deaths?
+tier: small            # classes-1800 starts 1-90, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-main-f57499d0
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-despscary
+arms:
+  ctl: {}
+  d8: {borg_param_caution_desperate_scary_distance: 8}
+  d4: {borg_param_caution_desperate_scary_distance: 4}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: zoo owner, "do all as suggested" (the small tier; the pilot gate is read and posted on the issue).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22 after the pilot gate (run 44976875737: d8 1 newly killed, d4 0, lvl10 identical to ctl) and before any result of this tier was read. Small tier (RULES 14) on the same build:
+  classes-1800 starts 1-90 (90 starts per arm, paired), all classes, 100,000 turns, one binary, disjoint from the other tiers of
+  the study (pool them as one study, RULES 14). Three arms; lvl10 played 18 of 18 identical to ctl in the pilot and is dropped.
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by
+  start. Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly
+  killed against the control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not retained at this tier. Descriptive.

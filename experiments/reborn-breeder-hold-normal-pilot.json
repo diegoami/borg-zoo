@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-breeder-hold-normal-pilot",
+  "issue": 627,
+  "definition": "definitions/reborn-breeder-hold-normal-pilot.yaml",
+  "question": "In the NORMAL world (no borg_world) on borg-reborn-rs 6062b84a (PR #893), does the slow-breeder hold rule (caution_breeder_policy -1 with caution_breeder_hold 1), or policy 6, add deaths against the shipped policy 3 (harm check of #627)?",
+  "description": "In the NORMAL world (no borg_world) on borg-reborn-rs 6062b84a (PR #893), does the slow-breeder hold rule (caution_breeder_policy -1 with caution_breeder_hold 1), or policy 6, add deaths against the shipped policy 3 (harm check of #627)? Generated from definitions/reborn-breeder-hold-normal-pilot.yaml: 3 arms on 4.2.6-reborn-rust-breeder-hold-6062b84a, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any result of this definition was read (borg-zoo#627). Three arms (ctl, hold, p6) on the build of the\nbreeders-x4 pilot in the normal world (no borg_world), classes-18, 18 starts per arm (54 cells), 100,000 turns, evidence retained.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls\napart; identical plays. Report per arm and class: deaths and causes (breeders and poison apart), CL and DL, paired rescued and newly\nkilled against ctl. Small and medium (classes-1800 starts 1-360) only on the owner's go. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-breeder-hold-6062b84a"
+  ],
+  "profiles": [
+    "reborn-bholdn-ctl",
+    "reborn-bholdn-hold",
+    "reborn-bholdn-p6"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-breeder-hold-6062b84a",
+  "control_profile": "reborn-bholdn-ctl",
+  "owner_authorization": "2026-11-22: zoo owner, \"do all as suggested\" (the normal-world slice for harm asked by #627: a classes-18 pilot first, RULES 16).",
+  "retain_evidence": true
+}

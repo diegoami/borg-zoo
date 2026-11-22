@@ -1,0 +1,22 @@
+# borg-zoo#623: the two unfinished starts of the f57499d0 ladder, run again with evidence and a longer wall limit.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-f57499d0-unfinished.yaml
+name: reborn-f57499d0-unfinished
+issue: 623
+question: >-
+  Why did Blackguard 1410846136 stop with a wall timeout (no stop within 900 s) and Druid 1370505797 with borg_stopped at turn
+  61,407 on borg-reborn-rs main f57499d0: a slow game, a loop, or an abort, and is it the same on a second run?
+suites: [classes-1800-f57499d0-unfinished]
+specimens: [4.2.6-reborn-rust-main-f57499d0]
+profiles: [reborn-head-shipped]
+control_specimen: 4.2.6-reborn-rust-main-f57499d0
+control_profile: reborn-head-shipped
+owner_authorization: >-
+  2026-11-22: zoo owner, "do all as suggested" (investigate the wall timeout of the f57499d0 ladder).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22. The two starts of the f57499d0 ladder that did not finish, run again on the same build and settings with the
+  evidence retained and a wall limit of 3,600 s. Report whether each game reproduces its stop (same turn, same key stream hash as
+  the ladder's cell), the stop message and the last 60 messages, whether the game clock advances (a loop) or the wall clock is
+  spent on one decision (a slow think), and the key and message counts per 1,000 turns before the stop. No comparison, no claim.

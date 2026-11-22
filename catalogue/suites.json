@@ -2071,6 +2071,18 @@
       "wall_seconds": 5400,
       "stall_seconds": 180,
       "saves": false
+    },
+    "classes-1800-f57499d0-unfinished": {
+      "description": "The two starts of classes-1800 that did not finish on borg-reborn-rs main f57499d0 (borg-zoo#623): Blackguard 1410846136 (wall timeout after 900 s) and Druid 1370505797 (borg_stopped at turn 61,407). A wall limit of 3,600 s tells a slow game from a loop. Chosen starts for a diagnosis, not a sample.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "seeds": [1410846136, 1370505797]
+      },
+      "cap": 100000,
+      "wall_seconds": 3600,
+      "stall_seconds": 90,
+      "saves": false
     }
   }
 }

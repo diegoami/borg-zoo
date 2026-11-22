@@ -1,0 +1,36 @@
+# borg-zoo#627: medium tier follow-up of reborn-breeder-hold-pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-hold-medium.yaml
+name: reborn-breeder-hold-medium
+issue: 627
+question: >-
+  In the breeders-x4 world on borg-reborn-rs 6062b84a (PR #893), does the slow-breeder rule "hold, or cut the known way out;
+  never retreat into the colony" (caution_breeder_policy -1 with caution_breeder_hold 1), or policy 4 or 6, save the games lost
+  to breeders against the shipped policy 3?
+tier: medium            # classes-1800 starts 91-360, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-breeder-hold-6062b84a
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_world: breeders-x4
+
+profile_prefix: reborn-bhold
+arms:
+  ctl: {}
+  p4: {borg_param_caution_breeder_policy: 4}
+  hold: {borg_param_caution_breeder_policy: -1, borg_param_caution_breeder_hold: 1}
+  p6: {borg_param_caution_breeder_policy: 6}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: zoo owner, "do all as suggested" (the medium tier; the pilot gate is read and posted on the issue).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22 after the pilot gate (run 44976959551: breeders-x4 world, ctl 2 breeder deaths, hold 0) and before any result of this tier was read. Medium tier (RULES 14) on the same build:
+  classes-1800 starts 91-360 (270 starts per arm, paired), all classes, 100,000 turns, one binary, disjoint from the other tiers of
+  the study (pool them as one study, RULES 14). In the breeders-x4 world (the #482 starts), all four arms.
+  Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by
+  start. Report per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly
+  killed against the control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not retained at this tier. Descriptive.
