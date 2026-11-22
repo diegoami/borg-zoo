@@ -1,0 +1,209 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-ffq-ctl": {
+        "description": "borg-zoo#672 (reborn-ff-quantile-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "386806b685fa9b02a96a122217540a3230702d6bfbdc6d24ff15d585b06f69a4"
+      },
+      "reborn-ffq-dot": {
+        "description": "borg-zoo#672 (reborn-ff-quantile-pilot.yaml): arm dot.",
+        "settings": {
+          "borg_param_fast_fragile_count_dot": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "adf0869e148c3cba2319a36e6dc17c9676373a04e8eeb0a411a7b051a4a6d183"
+      },
+      "reborn-ffq-esc75": {
+        "description": "borg-zoo#672 (reborn-ff-quantile-pilot.yaml): arm esc75.",
+        "settings": {
+          "borg_param_fast_fragile_escape_percent": 75,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "5cc32c2b5bfb0dd97af5e99c390e9992c0e15b4c07641998abe2a0116bb5a297"
+      },
+      "reborn-ffq-floor25": {
+        "description": "borg-zoo#672 (reborn-ff-quantile-pilot.yaml): arm floor25.",
+        "settings": {
+          "borg_param_fast_fragile_heal_floor": 25,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "1c727726f2b0f282a5e080308cd7be4d0a29ccbc23c6469c1638783927aeac7c"
+      },
+      "reborn-ffq-q100": {
+        "description": "borg-zoo#672 (reborn-ff-quantile-pilot.yaml): arm q100.",
+        "settings": {
+          "borg_param_fast_fragile_escape_quantile": 100,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "fdcba34ff931808bc325c9fdf020fa9ca67accbc6bacd475e6c64c88f38a8c1e"
+      },
+      "reborn-ffq-q50": {
+        "description": "borg-zoo#672 (reborn-ff-quantile-pilot.yaml): arm q50.",
+        "settings": {
+          "borg_param_fast_fragile_escape_quantile": 50,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "e5247ad5657329afc96befa7e88dbce18157f1a774646328bdcd59168bed1c0f"
+      },
+      "reborn-ffq-q50-floor-dot": {
+        "description": "borg-zoo#672 (reborn-ff-quantile-pilot.yaml): arm q50-floor-dot.",
+        "settings": {
+          "borg_param_fast_fragile_count_dot": 1,
+          "borg_param_fast_fragile_escape_quantile": 50,
+          "borg_param_fast_fragile_heal_floor": 25,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "3c9853116283db42078851fff71b71ea0ec01ab86de61e7d2d3f5f23139f3dae"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-ff-floor-8974509e": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs task/926-fast-fragile-floor 8974509e (PR #1002 on track-p 4b2c2fcf): fast_fragile_escape_quantile, fast_fragile_heal_floor, fast_fragile_count_dot compiled and shipped 0; harness/borg.txt 0abc045f..., scary_monsters.txt ff831d0a...",
+        "ref": "8974509ebf9768cd3bf50590a965c5c76df156b9",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-22 22:04 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-ff-floor-8974509e",
+    "control_profile": "reborn-ffq-ctl",
+    "definition": "definitions/reborn-ff-quantile-pilot.yaml",
+    "description": "On borg-reborn-rs 8974509e (track-p 4b2c2fcf plus PR #1002), do the three #926 switches (the damage quantile of 'the next turn kills', the heal floor, cut and poison in the test) save the early deaths to fast-fragile monsters (cats, crows) without a cost in Phase Door? Generated from definitions/reborn-ff-quantile-pilot.yaml: 7 arms on 4.2.6-reborn-rust-ff-floor-8974509e, suite classes-18.",
+    "issue": 672,
+    "name": "reborn-ff-quantile-pilot",
+    "owner_authorization": "2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#672; zoo owner, 2026-11-22: \"check your issues\" (the pilot only; later tiers after the gate and the owner).",
+    "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#672; borg-reborn-rs #926, PR #1002). Seven arms, classes-18, 18 starts each (126 cells), 100,000 turns, evidence retained. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls apart; identical plays (floor25 and dot may be identical to ctl on classes-18: not exercised). Report per arm and class: deaths and causes (crow, wild cat apart), CL and depth, paired rescued and newly killed against ctl; Phase Doors read per game (q100 reads Phase Door at full HP against a cat: the cost). The two #926 seeds (1398933929, 1294425391) are classes-1800 starts. Then small (classes-1800 starts 1-90) on a block not yet read for a #842 decision, on the owner's go. Directional (RULES 14). RULES 21: the fast-fragile scenario is #681 (crow and wild cat worlds).",
+    "profiles": [
+      "reborn-ffq-ctl",
+      "reborn-ffq-q50",
+      "reborn-ffq-esc75",
+      "reborn-ffq-q100",
+      "reborn-ffq-floor25",
+      "reborn-ffq-dot",
+      "reborn-ffq-q50-floor-dot"
+    ],
+    "question": "On borg-reborn-rs 8974509e (track-p 4b2c2fcf plus PR #1002), do the three #926 switches (the damage quantile of 'the next turn kills', the heal floor, cut and poison in the test) save the early deaths to fast-fragile monsters (cats, crows) without a cost in Phase Door?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-ff-floor-8974509e"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45075113275-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45075113275",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "d660503bbed337648e6171858f32d8319953f7f5"
+}
