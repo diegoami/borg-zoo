@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-throw-all1-small",
+  "issue": 701,
+  "definition": "definitions/reborn-throw-all1-small.yaml",
+  "question": "On track-p 206cf4e7, is a thrown-object point-blank divisor of 1 for every class (the four classes the track-p split leaves at 0: warrior, paladin, rogue, blackguard) better than the shipped class split? (reborn-confused-attack: confused-pb 1 death against 3.)",
+  "description": "On track-p 206cf4e7, is a thrown-object point-blank divisor of 1 for every class (the four classes the track-p split leaves at 0: warrior, paladin, rogue, blackguard) better than the shipped class split? (reborn-confused-attack: confused-pb 1 death against 3.) Generated from definitions/reborn-throw-all1-small.yaml: 2 arms on 4.2.6-reborn-rust-trackp-206cf4e7, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#701; #875, #904, #636). ctl against all1; report per class, the four overridden classes are the point. Not the arrow divisor (the Ranger arrow divisor 1 was worse in #651).\nTier small: classes-1800 starts 1-90 (90 per arm), one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen track-p 206cf4e7 (the pin of #695). Gate: no config_error; one binary; each arm's values in params-core.json; every\ncell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and\ndepth, alive at the cap having reached DL5; tiers of one study pooled (RULES 14). Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-206cf4e7"
+  ],
+  "profiles": [
+    "reborn-pb206-ctl",
+    "reborn-pb206-all1"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-206cf4e7",
+  "control_profile": "reborn-pb206-ctl",
+  "owner_authorization": "2026-11-22: request of the owner via borg-reborn-rs P8, 2026-11-22 filed as borg-zoo#701; zoo owner, 2026-11-22: \"yes go with 699 to 703\" (pilot as the gate, then the tiers dispatched together).",
+  "retain_evidence": false
+}

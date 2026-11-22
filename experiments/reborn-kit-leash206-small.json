@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-kit-leash206-small",
+  "issue": 700,
+  "definition": "definitions/reborn-kit-leash206-small.yaml",
+  "question": "On track-p 206cf4e7, without the patch bug that cost the leash arms 4 of their 8 newly killed games on 9085c266, does the kit leash (leash-m0, leash), the town hunt or their mix lead against the shipped play, as on main f57499d0 (#589: leash-m0 2 deaths against 9)?",
+  "description": "On track-p 206cf4e7, without the patch bug that cost the leash arms 4 of their 8 newly killed games on 9085c266, does the kit leash (leash-m0, leash), the town hunt or their mix lead against the shipped play, as on main f57499d0 (#589: leash-m0 2 deaths against 9)? Generated from definitions/reborn-kit-leash206-small.yaml: 5 arms on 4.2.6-reborn-rust-trackp-206cf4e7, suite classes-1800-small.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#700; #589, #646). Five arms; pilot as a gate, then small + medium (the same 360 starts as #589 and #646, so the three lines pair).\nTier small: classes-1800 starts 1-90 (90 per arm), one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen track-p 206cf4e7 (the pin of #695). Gate: no config_error; one binary; each arm's values in params-core.json; every\ncell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and\ndepth, alive at the cap having reached DL5; tiers of one study pooled (RULES 14). Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-206cf4e7"
+  ],
+  "profiles": [
+    "reborn-kl206-ctl",
+    "reborn-kl206-leash-m0",
+    "reborn-kl206-leash",
+    "reborn-kl206-town-hunt",
+    "reborn-kl206-kit-money-hunt"
+  ],
+  "suites": [
+    "classes-1800-small"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-206cf4e7",
+  "control_profile": "reborn-kl206-ctl",
+  "owner_authorization": "2026-11-22: request of the owner via borg-reborn-rs P8, 2026-11-22 filed as borg-zoo#700; zoo owner, 2026-11-22: \"yes go with 699 to 703\" (pilot as the gate, then the tiers dispatched together).",
+  "retain_evidence": false
+}

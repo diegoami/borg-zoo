@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-trackp-abd0cce1-full",
+  "issue": 695,
+  "definition": "definitions/reborn-trackp-abd0cce1-full.yaml",
+  "question": "What do the borg-rs core and shipped settings of borg-reborn-rs trackp at abd0cce1 do over classes-1800's full slice (900 starts, 100,000 turns)? A baseline of the trackp line: a description, not a comparison.",
+  "description": "What do the borg-rs core and shipped settings of borg-reborn-rs trackp at abd0cce1 do over classes-1800's full slice (900 starts, 100,000 turns)? A baseline of the trackp line: a description, not a comparison. Generated from definitions/reborn-trackp-abd0cce1-full.yaml: 1 arms on 4.2.6-reborn-rust-trackp-abd0cce1, suite classes-1800-full.",
+  "prespecified": "Fixed 2026-11-22, before any result was read (borg-zoo#695 (the newest build)). Baseline of the track-p line at abd0cce1: one arm (shipped settings, borg-rs core, no overrides),\nclasses-1800, 100,000 turns, ladder tier full. Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls,\ntimeouts and wall timeouts counted apart. Report overall and per class: deaths and causes, CL and depth at death, survivors, alive at the cap having reached\nDL5, unfinished; paired by start against the 206cf4e7, 9085c266 and 4b2c2fcf baselines and main's (f57499d0, ab775d48); in particular grey mushroom patch deaths (and\nconfused-by-patch deaths) and any new leading killer. This is a progress baseline, not the P8 exit run (borg-reborn-rs PLAN.md). Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-abd0cce1"
+  ],
+  "profiles": [
+    "reborn-head-shipped"
+  ],
+  "suites": [
+    "classes-1800-full"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-abd0cce1",
+  "control_profile": "reborn-head-shipped",
+  "owner_authorization": "2026-11-22: zoo owner, \"I would like a trackp with the newest build as well\" (the baseline ladder of track-p at its newest head abd0cce1, as #695's at 206cf4e7; the newest build ships the lone-slow bundle and other P8 changes).",
+  "retain_evidence": false
+}
