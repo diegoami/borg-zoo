@@ -3227,6 +3227,36 @@
       "scary_lists": {
         "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
       }
+    },
+    "4.2.6-reborn-rust-breeder-followups-bfc24d10": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "bfc24d10f7f91d27684ad74d073a2fcfe7828695",
+      "label": "borg-reborn-rs scratch/T1008-1010-breeders bfc24d10 (track-p 6bc4de1d + PRs #1011 #1012 #1015 + the new world white-worm-mass-x4; the three switches compiled and shipped 0); harness/borg.txt e4bd2b87..., scary_monsters.txt ff831d0a...; worlds white-worm-mass-x4 f5f238ed... and breeders-x4 a546fb51...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      },
+      "worlds": {
+        "white-worm-mass-x4": "f5f238edafeaaebc3f4789318331530c43976b1986ddabbe5c7d2ee7e04e65d9",
+        "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8"
+      }
+    },
+    "4.2.6-reborn-rust-first-book-5ad50d96": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "5ad50d966969844d1e879432ca7bf093415d50b3",
+      "label": "borg-reborn-rs task/1004-ranger-first-book 5ad50d96 (track-p 6bc4de1d + #1004): town_book_lookahead_levels compiled and shipped 0; harness/borg.txt 3d149b0e..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
     }
   }
 }

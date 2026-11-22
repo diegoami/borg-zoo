@@ -159,6 +159,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-rclshallow` | [#688](https://github.com/diegoami/borg-zoo/issues/688) | 4 | defined (pilot) | Recall on shallow trips (#984, PR #997) on 434d5371: ctl, urgent, hold, both, classes-18. |
 | `reborn-deadend` | [#659](https://github.com/diegoami/borg-zoo/issues/659) | 6 | defined (pilot) | Retreat and back-up refuse a dead end (#881 part 2, PR #953) on b157f9dd: ctl, d1, d2 in breeders-x4 and breeders-x8, classes-18. |
 | `reborn-retreat-flight` | [#657](https://github.com/diegoami/borg-zoo/issues/657) | 2 | defined (pilot) | Stair routing after a tactical retreat (#932, PR #964) on e43b6d87: ctl, hold, classes-18 at 300k. |
+| `reborn-bfol` | [#692](https://github.com/diegoami/borg-zoo/issues/692) | 14 | defined (pilot in the breeder worlds) | The three follow-ups of #878 (#1008-#1010) on bfc24d10: 7 arms in white-worm-mass-x4 and breeders-x4, classes-18. |
+| `reborn-book` | [#693](https://github.com/diegoami/borg-zoo/issues/693) | 2 | defined (pilot) | Keep the first spellbook before its first spell (#1004, PR #1019) on 5ad50d96: ctl, la4, small Rangers and Rogues. |
 
 ### `heal-attack-4`
 
@@ -2260,6 +2262,40 @@ Stair routing after a tactical retreat (#932, PR #964) on e43b6d87: ctl, hold, c
 | `reborn-retreat-flight-ctl` | – |
 | `reborn-retreat-flight-hold` | 128 |
 
+### `reborn-bfol`
+
+The three follow-ups of #878 (#1008-#1010) on bfc24d10: 7 arms in white-worm-mass-x4 and breeders-x4, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_attack_price_status_blows` | `borg_param_caution_breeder_danger_damage_only` | `borg_param_lone_slow_attack` | `borg_param_lone_slow_breeder_lost` | `borg_world` |
+| --- | --- | --- | --- | --- | --- |
+| `reborn-bfol-ctl-wwm` | – | – | – | – | white-worm-mass-x4 |
+| `reborn-bfol-lone-wwm` | – | – | 1 | – | white-worm-mass-x4 |
+| `reborn-bfol-lost-wwm` | – | – | 1 | 1 | white-worm-mass-x4 |
+| `reborn-bfol-stand-wwm` | – | 1 | – | – | white-worm-mass-x4 |
+| `reborn-bfol-price-wwm` | 1 | – | – | – | white-worm-mass-x4 |
+| `reborn-bfol-stand-price-wwm` | 1 | 1 | – | – | white-worm-mass-x4 |
+| `reborn-bfol-all-wwm` | 1 | 1 | 1 | 1 | white-worm-mass-x4 |
+| `reborn-bfol-ctl-x4` | – | – | – | – | breeders-x4 |
+| `reborn-bfol-lone-x4` | – | – | 1 | – | breeders-x4 |
+| `reborn-bfol-lost-x4` | – | – | 1 | 1 | breeders-x4 |
+| `reborn-bfol-stand-x4` | – | 1 | – | – | breeders-x4 |
+| `reborn-bfol-price-x4` | 1 | – | – | – | breeders-x4 |
+| `reborn-bfol-stand-price-x4` | 1 | 1 | – | – | breeders-x4 |
+| `reborn-bfol-all-x4` | 1 | 1 | 1 | 1 | breeders-x4 |
+
+### `reborn-book`
+
+Keep the first spellbook before its first spell (#1004, PR #1019) on 5ad50d96: ctl, la4, small Rangers and Rogues.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_book_lookahead_levels` |
+| --- | --- |
+| `reborn-book-ctl` | – |
+| `reborn-book-la4` | 4 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2359,8 +2395,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_town_dangerous_on_sight` | 0, 1, not set | `reborn-town-dangerous`, `reborn-neutral-main`, `reborn-town-switch-screen`, `reborn-townkos` |  |
 | `borg_param_attack_town_dangerous_wand` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
 | `borg_param_buy_recall_from_gold` | 400, not set | `reborn-variety`, `reborn-vrm` |  |
+| `borg_param_caution_attack_price_status_blows` | 1, not set | `reborn-bfol` |  |
 | `borg_param_caution_breeder_avoid` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_boost_danger_tenths` | 0, not set | `reborn-sloo` |  |
+| `borg_param_caution_breeder_danger_damage_only` | 1, not set | `reborn-bfol` |  |
 | `borg_param_caution_breeder_easy_escape_steps` | 3, 10, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_breeder_exit` | 1, not set | `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_hold` | 1, not set | `reborn-bhold` |  |
@@ -2511,7 +2549,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_light_detect_evil_spell_min_level__ranger` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__rogue` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__warrior` | 5, 10, not set | `reborn-low-level-detection` |  |
-| `borg_param_lone_slow_attack` | 1, not set | `reborn-loneslow`, `reborn-lonew` |  |
+| `borg_param_lone_slow_attack` | 1, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-bfol` |  |
+| `borg_param_lone_slow_breeder_lost` | 1, not set | `reborn-bfol` |  |
 | `borg_param_prepared_clevel_depth_margin` | -2, 2, not set | `reborn-dive-gates-768` |  |
 | `borg_param_prepared_cure_min` | 0, 4, not set | `reborn-prepared` |  |
 | `borg_param_prepared_dl2_min_hp` | 23, 38, not set | `reborn-bundle`, `reborn-prepared` |  |
@@ -2570,6 +2609,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_recover_unseen_probe_tries` | 0, not set | `reborn-invis` |  |
 | `borg_param_recover_unseen_shot` | 1, not set | `reborn-rest` |  |
 | `borg_param_sell_poor_town_unknown_hold` | 1, not set | `reborn-unkcure` |  |
+| `borg_param_town_book_lookahead_levels` | 4, not set | `reborn-book` |  |
 | `borg_param_town_confusion_cure_reserve` | 1, not set | `reborn-confusion` |  |
 | `borg_param_town_departure_free_slots` | 0, 2, not set | `reborn-room` |  |
 | `borg_param_town_departure_free_weight` | 0, 50, not set | `reborn-room` |  |
@@ -2727,7 +2767,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_town_w_escape` | 100, not set | `reborn-casters` |  |
 | `borg_town_w_space` | 12, 50, not set | `reborn-untested-town` |  |
 | `borg_town_w_support` | 25, 100, not set | `reborn-untested-town` |  |
-| `borg_world` | breeders-x4, breeders-x8 | `reborn-stairunk`, `reborn-lonew`, `reborn-blloww`, `reborn-deadend` |  |
+| `borg_world` | breeders-x4, breeders-x8, white-worm-mass-x4 | `reborn-stairunk`, `reborn-lonew`, `reborn-blloww`, `reborn-deadend`, `reborn-bfol` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |

@@ -1,0 +1,57 @@
+# borg-zoo#692: the three follow-ups of #878 (borg-reborn-rs #1008-#1010) in the breeder worlds first, bfc24d10, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-followups-pilot.yaml
+name: reborn-breeder-followups-pilot
+issue: 692
+question: >-
+  In the white-worm-mass-x4 and breeders-x4 worlds on borg-reborn-rs bfc24d10 (track-p 6bc4de1d plus PRs #1011, #1012 and #1015), do the three follow-ups of #878
+  (the lone-slow attack that leaves a breeder alone on a lost level, the breeder stand that reads danger without fear, the pricing of poison and status blows in
+  attack on sight) save the worm-mass games, alone and together? lost is compared with lone; the others with ctl; each world has its own control.
+tier: pilot            # classes-18, 100,000 turns, both worlds (RULES 21); then verysmall in the worlds, breeders-x8, and the normal world, on the owner's go
+
+specimen:
+  name: 4.2.6-reborn-rust-breeder-followups-bfc24d10
+  repository: diegoami/borg-reborn-rs
+  ref: bfc24d10f7f91d27684ad74d073a2fcfe7828695
+  label: "borg-reborn-rs scratch/T1008-1010-breeders bfc24d10 (track-p 6bc4de1d + PRs #1011 #1012 #1015 + the new world white-worm-mass-x4; the three switches compiled and shipped 0); harness/borg.txt e4bd2b87..., scary_monsters.txt ff831d0a...; worlds white-worm-mass-x4 f5f238ed... and breeders-x4 a546fb51..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+  worlds:
+    white-worm-mass-x4: f5f238edafeaaebc3f4789318331530c43976b1986ddabbe5c7d2ee7e04e65d9
+    breeders-x4: a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-bfol
+arms:
+  ctl-wwm: {borg_world: white-worm-mass-x4}
+  lone-wwm: {borg_world: white-worm-mass-x4, borg_param_lone_slow_attack: 1}
+  lost-wwm: {borg_world: white-worm-mass-x4, borg_param_lone_slow_attack: 1, borg_param_lone_slow_breeder_lost: 1}
+  stand-wwm: {borg_world: white-worm-mass-x4, borg_param_caution_breeder_danger_damage_only: 1}
+  price-wwm: {borg_world: white-worm-mass-x4, borg_param_caution_attack_price_status_blows: 1}
+  stand-price-wwm: {borg_world: white-worm-mass-x4, borg_param_caution_breeder_danger_damage_only: 1, borg_param_caution_attack_price_status_blows: 1}
+  all-wwm: {borg_world: white-worm-mass-x4, borg_param_lone_slow_attack: 1, borg_param_lone_slow_breeder_lost: 1, borg_param_caution_breeder_danger_damage_only: 1, borg_param_caution_attack_price_status_blows: 1}
+  ctl-x4: {borg_world: breeders-x4}
+  lone-x4: {borg_world: breeders-x4, borg_param_lone_slow_attack: 1}
+  lost-x4: {borg_world: breeders-x4, borg_param_lone_slow_attack: 1, borg_param_lone_slow_breeder_lost: 1}
+  stand-x4: {borg_world: breeders-x4, borg_param_caution_breeder_danger_damage_only: 1}
+  price-x4: {borg_world: breeders-x4, borg_param_caution_attack_price_status_blows: 1}
+  stand-price-x4: {borg_world: breeders-x4, borg_param_caution_breeder_danger_damage_only: 1, borg_param_caution_attack_price_status_blows: 1}
+  all-x4: {borg_world: breeders-x4, borg_param_lone_slow_attack: 1, borg_param_lone_slow_breeder_lost: 1, borg_param_caution_breeder_danger_damage_only: 1, borg_param_caution_attack_price_status_blows: 1}
+control: [ctl-wwm]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs owner ("file the zoo requests for all three ... ask zoo to have runs with breeders on"), filed as borg-zoo#692; zoo owner, 2026-11-22: "ok anything new" (the pilot only; later tiers after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any game of this build was played (borg-zoo#692; borg-reborn-rs #1008-#1010; RULES 21). Seven arms in two worlds (14 profiles), classes-18, 18 starts
+  each (252 cells), 100,000 turns, evidence retained. Compare lost with lone and the others with ctl, always within a world (a world is a stress test, never a ranking).
+  Gate: no config_error; one binary; every cell records its world with one borg_world_data_sha256 per world across arms; each arm's values in params-core.json; every cell ends in
+  death, turn_cap or borg_stopped; stalls and wall timeouts apart; the arms must play differently (report an arm identical to its control in all 18 games of a world; for
+  lost count the "(#1008)" notes). Primary: deaths by 100,000 turns; mean CL and depth may each fall by no more than 0.25 against the control in the same world. Report per world,
+  arm and class: deaths and causes; breeder deaths (the killer has MULTIPLY) and poison deaths; grey mushroom patch deaths apart (#969); paired rescued and newly killed against
+  the control (exact McNemar), identical plays; CL, depth; unfinished with denominators. Diagnostics: per game the "# Attack on sight: white worm mass (breeder)", "(lone and
+  slow" and "(#1008)" notes, "# Retreating to" and "# Backing up to" within 5 grids of a breeder, Hard breeder fight boosts, Phase Door reads, breeders created and killed, "# Breeders
+  cannot be stopped", reserve-spell casts and faints. Directional (RULES 14).

@@ -11643,6 +11643,155 @@
       "settings": {
         "borg_param_caution_retreat_reentry_ticks": 128
       }
+    },
+    "reborn-bfol-ctl-wwm": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm ctl-wwm.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "white-worm-mass-x4"
+      }
+    },
+    "reborn-bfol-lone-wwm": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm lone-wwm.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "white-worm-mass-x4",
+        "borg_param_lone_slow_attack": 1
+      }
+    },
+    "reborn-bfol-lost-wwm": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm lost-wwm.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "white-worm-mass-x4",
+        "borg_param_lone_slow_attack": 1,
+        "borg_param_lone_slow_breeder_lost": 1
+      }
+    },
+    "reborn-bfol-stand-wwm": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm stand-wwm.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "white-worm-mass-x4",
+        "borg_param_caution_breeder_danger_damage_only": 1
+      }
+    },
+    "reborn-bfol-price-wwm": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm price-wwm.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "white-worm-mass-x4",
+        "borg_param_caution_attack_price_status_blows": 1
+      }
+    },
+    "reborn-bfol-stand-price-wwm": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm stand-price-wwm.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "white-worm-mass-x4",
+        "borg_param_caution_breeder_danger_damage_only": 1,
+        "borg_param_caution_attack_price_status_blows": 1
+      }
+    },
+    "reborn-bfol-all-wwm": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm all-wwm.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "white-worm-mass-x4",
+        "borg_param_lone_slow_attack": 1,
+        "borg_param_lone_slow_breeder_lost": 1,
+        "borg_param_caution_breeder_danger_damage_only": 1,
+        "borg_param_caution_attack_price_status_blows": 1
+      }
+    },
+    "reborn-bfol-ctl-x4": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm ctl-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4"
+      }
+    },
+    "reborn-bfol-lone-x4": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm lone-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_lone_slow_attack": 1
+      }
+    },
+    "reborn-bfol-lost-x4": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm lost-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_lone_slow_attack": 1,
+        "borg_param_lone_slow_breeder_lost": 1
+      }
+    },
+    "reborn-bfol-stand-x4": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm stand-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_danger_damage_only": 1
+      }
+    },
+    "reborn-bfol-price-x4": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm price-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_attack_price_status_blows": 1
+      }
+    },
+    "reborn-bfol-stand-price-x4": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm stand-price-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_danger_damage_only": 1,
+        "borg_param_caution_attack_price_status_blows": 1
+      }
+    },
+    "reborn-bfol-all-x4": {
+      "description": "borg-zoo#692 (reborn-breeder-followups-pilot.yaml): arm all-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_lone_slow_attack": 1,
+        "borg_param_lone_slow_breeder_lost": 1,
+        "borg_param_caution_breeder_danger_damage_only": 1,
+        "borg_param_caution_attack_price_status_blows": 1
+      }
+    },
+    "reborn-book-ctl": {
+      "description": "borg-zoo#693 (reborn-first-book-1004-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-book-la4": {
+      "description": "borg-zoo#693 (reborn-first-book-1004-pilot.yaml): arm la4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_book_lookahead_levels": 4
+      }
     }
   }
 }

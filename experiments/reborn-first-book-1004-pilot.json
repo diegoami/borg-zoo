@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-first-book-1004-pilot",
+  "issue": 693,
+  "definition": "definitions/reborn-first-book-1004-pilot.yaml",
+  "question": "On borg-reborn-rs 5ad50d96 (track-p 6bc4de1d plus town_book_lookahead_levels, shipped 0), does keeping the first spellbook through the levels before its first spell (4 levels) change early deaths, levels or depth of Rogues and Rangers?",
+  "description": "On borg-reborn-rs 5ad50d96 (track-p 6bc4de1d plus town_book_lookahead_levels, shipped 0), does keeping the first spellbook through the levels before its first spell (4 levels) change early deaths, levels or depth of Rogues and Rangers? Generated from definitions/reborn-first-book-1004-pilot.yaml: 2 arms on 4.2.6-reborn-rust-first-book-5ad50d96, suite classes-1800-small-rangers, classes-1800-small-rogues.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-reborn-rs#1004, PR #1019). Two arms on one build, Rogues and\nRangers only (the only classes whose first book has no level-1 spell; the other classes play the same keys in both arms),\n100,000 turns, evidence retained. Gate: no config_error; one binary; the value in params-core.json; every cell ends in death,\nturn_cap or borg_stopped; identical plays per arm. Report per arm and class: deaths and causes, CL and depth at death and at\nthe end, paired rescued and newly killed against ctl; per game the game turn of the first \"# Selling Book\" of the class's\nfirst book, the game turn of the first spell learnt, and the gold spent buying the book back. Directional (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-first-book-5ad50d96"
+  ],
+  "profiles": [
+    "reborn-book-ctl",
+    "reborn-book-la4"
+  ],
+  "suites": [
+    "classes-1800-small-rangers",
+    "classes-1800-small-rogues"
+  ],
+  "control": "4.2.6-reborn-rust-first-book-5ad50d96",
+  "control_profile": "reborn-book-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs owner (\"yes post the zoo request for 1004\"), filed as borg-zoo#693; zoo owner, 2026-11-22: \"ok anything new\" (the pilot only).",
+  "retain_evidence": true
+}

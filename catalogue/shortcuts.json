@@ -2165,6 +2165,38 @@
         "reborn-retreat-flight-hold"
       ],
       "runs": []
+    },
+    "reborn-bfol": {
+      "issue": 692,
+      "status": "defined (pilot in the breeder worlds)",
+      "what": "The three follow-ups of #878 (#1008-#1010) on bfc24d10: 7 arms in white-worm-mass-x4 and breeders-x4, classes-18.",
+      "profiles": [
+        "reborn-bfol-ctl-wwm",
+        "reborn-bfol-lone-wwm",
+        "reborn-bfol-lost-wwm",
+        "reborn-bfol-stand-wwm",
+        "reborn-bfol-price-wwm",
+        "reborn-bfol-stand-price-wwm",
+        "reborn-bfol-all-wwm",
+        "reborn-bfol-ctl-x4",
+        "reborn-bfol-lone-x4",
+        "reborn-bfol-lost-x4",
+        "reborn-bfol-stand-x4",
+        "reborn-bfol-price-x4",
+        "reborn-bfol-stand-price-x4",
+        "reborn-bfol-all-x4"
+      ],
+      "runs": []
+    },
+    "reborn-book": {
+      "issue": 693,
+      "status": "defined (pilot)",
+      "what": "Keep the first spellbook before its first spell (#1004, PR #1019) on 5ad50d96: ctl, la4, small Rangers and Rogues.",
+      "profiles": [
+        "reborn-book-ctl",
+        "reborn-book-la4"
+      ],
+      "runs": []
     }
   }
 }
