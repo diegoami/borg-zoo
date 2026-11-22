@@ -115,3 +115,18 @@
     collect job loses an append-only push race, inspect the job and retry
     with `gh run rerun RUN_ID --failed`. Verify the new attempt on the
     results branch before reporting it. See [README](README.md#running-an-experiment).
+21. **A fix is tested in a world where its situation is frequent, and in the
+    normal world; the ticket proposes the scenario** (owner, 2026-11-22). A
+    request for a fix aimed at one situation (a monster, a place) names that
+    situation and a **world** in which it is frequent: a `harness/worlds` file
+    pinned by sha256 under the specimen's `worlds:` (`breeders-x4`/`x8`;
+    `favour = <race>` with `favour_weight` from borg-reborn-rs #970, e.g.
+    `patches-x4`/`x8`; a new race gets its own). The zoo runs the pilot in that
+    world and in the normal world. In the normal world the situation is a few
+    games in a thousand, so its tiers show harm, not benefit; the world shows
+    whether the fix acts when it matters. Arms are compared only inside a
+    world, each world has its own control, and a world is a stress test: a lead
+    in it needs the normal-world run (paired by start against the baseline,
+    RULES 14) before any shipped value changes. A ticket that names no world is
+    answered with a comment asking for one; the zoo runs the normal world
+    meanwhile and does not invent a world.
