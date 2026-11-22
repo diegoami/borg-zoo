@@ -3257,6 +3257,19 @@
       "scary_lists": {
         "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
       }
+    },
+    "4.2.6-reborn-rust-trackp-206cf4e7": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "206cf4e769081fb4454fbfe5830d1215706ba76a",
+      "label": "borg-reborn-rs LINE track-p, head 206cf4e7 on 2026-11-22 (P7 review fixes folded back from the retired promote/P7: #959-#963, #973, the grey mushroom fixes #971 and #976 (kill-on-sight HP floor 50, #969), #1001 (test an unknown potion when safe, shipped on), the P8 fixes merged so far incl. #991); shipped harness/borg.txt, scary_monsters.txt 5a4ec4b6... (comment change only), borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
     }
   }
 }
