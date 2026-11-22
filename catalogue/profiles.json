@@ -11141,6 +11141,21 @@
         "borg_reborn_errand": "none",
         "borg_param_attack_confused_by_direction": 0
       }
+    },
+    "reborn-pbdtp2-ctl": {
+      "description": "borg-zoo#651 (reborn-pbd-ranger-trackp2.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-pbdtp2-lo": {
+      "description": "borg-zoo#651 (reborn-pbd-ranger-trackp2.yaml): arm lo.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_arrow_point_blank_divisor_ranger": 1
+      }
     }
   }
 }

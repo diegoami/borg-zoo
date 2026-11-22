@@ -144,10 +144,11 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-trackp-4b2c2fcf` | [#645](https://github.com/diegoami/borg-zoo/issues/645) | 1 | defined (baseline ladder of the track-p line at the head: pilot, small-rest, medium, big, full), dispatched 2026-11-22; replaces the ladder at 9085c266 | Baseline of borg-reborn-rs track-p 4b2c2fcf (cursed-torch swap and full-pack fix in), shipped settings, classes-1800 (45+45+270+540+900), 100,000 turns. |
 | `reborn-vrm` | [#648](https://github.com/diegoami/borg-zoo/issues/648) | 4 | defined (pilot) | Re-measure of #863/#873 on the merged track-p e2d8919e: ctl, shipped, variety, kit, classes-18 at 300k. |
 | `reborn-flask` | [#649](https://github.com/diegoami/borg-zoo/issues/649) | 3 | defined (pilot) | Flask saving (#912) on bf077c4a: ctl, save2, save2-noov, classes-18 at 300k. |
-| `reborn-pbdtp` | [#651](https://github.com/diegoami/borg-zoo/issues/651) | 2 | defined (development re-measure on the 200 Ranger starts) | Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e (re-measure of #290): ctl, lo. |
+| `reborn-pbdtp` | [#651](https://github.com/diegoami/borg-zoo/issues/651) | 2 | run 45033279953: arm lo config_error in all 200 cells (class line name); rerun as reborn-pbdtp2 | Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e (re-measure of #290): ctl, lo. |
 | `reborn-cavesp` | [#652](https://github.com/diegoami/borg-zoo/issues/652) | 8 | defined (pilot) | Five switches from the cave-spider death (#913-#916, #941) on 67a0c69d: 8 arms, classes-18. |
 | `reborn-wjelly` | [#654](https://github.com/diegoami/borg-zoo/issues/654) | 6 | defined (pilot) | Four switches from the white-jelly death (#931-#934) on 172bd671: ctl, reach, osc, kill, poison, all, classes-18. |
 | `reborn-trackp-regression` | [#645](https://github.com/diegoami/borg-zoo/issues/645) | 2 | defined (diagnosis pilot) | The 37 starts that die on track-p 9085c266 and survive on main f57499d0, on the track-p head: shipped against attack_confused_by_direction 0, evidence retained. |
+| `reborn-pbdtp2` | [#651](https://github.com/diegoami/borg-zoo/issues/651) | 2 | defined (development re-measure on the 200 Ranger starts; the first run had config_error for lo: wrong class line name) | Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e, rerun with attack_arrow_point_blank_divisor_ranger. |
 
 ### `heal-attack-4`
 
@@ -2105,6 +2106,17 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-regress-shipped` | – |
 | `reborn-regress-confused0` | 0 |
 
+### `reborn-pbdtp2`
+
+Ranger arrow point-blank divisor 1 against 2 on track-p e2d8919e, rerun with attack_arrow_point_blank_divisor_ranger.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_arrow_point_blank_divisor_ranger` |
+| --- | --- |
+| `reborn-pbdtp2-ctl` | – |
+| `reborn-pbdtp2-lo` | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2126,7 +2138,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_arrow_point_blank_divisor_necromancer` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_arrow_point_blank_divisor_paladin` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_arrow_point_blank_divisor_priest` | 2, 10, not set | `reborn-pbd-by-class` |  |
-| `borg_param_attack_arrow_point_blank_divisor_ranger` | 0, 1, 3, 4, not set | `reborn-pbd-by-class`, `reborn-pbd-rr`, `reborn-bundle` |  |
+| `borg_param_attack_arrow_point_blank_divisor_ranger` | 0, 1, 3, 4, not set | `reborn-pbd-by-class`, `reborn-pbd-rr`, `reborn-bundle`, `reborn-pbdtp2` |  |
 | `borg_param_attack_arrow_point_blank_divisor_rogue` | 0, 2, 4, 6, not set | `reborn-pbd-by-class`, `reborn-pbd-rr` |  |
 | `borg_param_attack_arrow_point_blank_divisor_warrior` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_confused_by_direction` | 0, 1, not set | `reborn-conf`, `reborn-trackp-regression` |  |
