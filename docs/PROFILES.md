@@ -162,6 +162,12 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-bfol` | [#692](https://github.com/diegoami/borg-zoo/issues/692) | 14 | defined (pilot in the breeder worlds) | The three follow-ups of #878 (#1008-#1010) on bfc24d10: 7 arms in white-worm-mass-x4 and breeders-x4, classes-18. |
 | `reborn-book` | [#693](https://github.com/diegoami/borg-zoo/issues/693) | 2 | defined (pilot) | Keep the first spellbook before its first spell (#1004, PR #1019) on 5ad50d96: ctl, la4, small Rangers and Rogues. |
 | `reborn-trackp-206cf4e7` | [#695](https://github.com/diegoami/borg-zoo/issues/695) | 1 | defined (baseline ladder of track-p at 206cf4e7: pilot, small-rest, medium, big, full), dispatched 2026-11-22 | Baseline of borg-reborn-rs track-p 206cf4e7 (P7 fixes folded in, the grey mushroom fixes, P8 fixes so far), shipped settings, classes-1800 (45+45+270+540+900), 100,000 turns. |
+| `reborn-trackp-abd0cce1` | [#695](https://github.com/diegoami/borg-zoo/issues/695) | 1 | defined (baseline ladder of track-p at its newest head abd0cce1: pilot, small-rest, medium, big, full), dispatched 2026-11-22 | Baseline of borg-reborn-rs track-p abd0cce1 (the newest build: the lone-slow bundle shipped, #1047), shipped settings, classes-1800 (45+45+270+540+900), 100,000 turns. |
+| `reborn-lbun` | [#699](https://github.com/diegoami/borg-zoo/issues/699) | 6 | defined (pilot, big) | The lone-slow bundle and its parts on track-p 206cf4e7: ctl, all, reserve, faint, bump, all-minus-lone. |
+| `reborn-kl206` | [#700](https://github.com/diegoami/borg-zoo/issues/700) | 5 | defined (pilot, small, medium) | Kit leash and town hunt on track-p 206cf4e7: ctl, leash-m0, leash, town-hunt, kit-money-hunt. |
+| `reborn-pb206` | [#701](https://github.com/diegoami/borg-zoo/issues/701) | 2 | defined (pilot, small, medium) | Throw point-blank divisor 1 for warrior, paladin, rogue, blackguard on track-p 206cf4e7: ctl, all1. |
+| `reborn-li206` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 6 | defined (pilot, full) | Engine light radius alone and with the day's leads on track-p 206cf4e7: ctl, light, light+lone, light+leash, light+throw, combined. |
+| `reborn-ks206` | [#703](https://github.com/diegoami/borg-zoo/issues/703) | 4 | defined (pilot, small, medium) | Kill-on-sight floor and unknown-potion test in the normal world on track-p 206cf4e7: ctl, floor0, potions0, both0. |
 
 ### `heal-attack-4`
 
@@ -2306,6 +2312,82 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 Profiles: `reborn-head-shipped`.
 
+### `reborn-trackp-abd0cce1`
+
+Baseline of borg-reborn-rs track-p abd0cce1 (the newest build: the lone-slow bundle shipped, #1047), shipped settings, classes-1800 (45+45+270+540+900), 100,000 turns.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-head-shipped`.
+
+### `reborn-lbun`
+
+The lone-slow bundle and its parts on track-p 206cf4e7: ctl, all, reserve, faint, bump, all-minus-lone.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_reserve_faint_percent` | `borg_param_attack_reserve_spell_damage_only` | `borg_param_caution_unseen_bump_phase_min_danger` | `borg_param_caution_unseen_bump_phase_turns` | `borg_param_escape_phase_lost_damage_only` | `borg_param_lone_slow_attack` |
+| --- | --- | --- | --- | --- | --- | --- |
+| `reborn-lbun-ctl` | – | – | – | – | – | – |
+| `reborn-lbun-all` | 25 | 1 | 5 | 20 | 1 | 1 |
+| `reborn-lbun-reserve` | – | 1 | – | – | – | – |
+| `reborn-lbun-faint` | 25 | – | – | – | – | – |
+| `reborn-lbun-bump` | – | – | 5 | 20 | – | – |
+| `reborn-lbun-all-minus-lone` | 25 | 1 | 5 | 20 | 1 | – |
+
+### `reborn-kl206`
+
+Kit leash and town hunt on track-p 206cf4e7: ctl, leash-m0, leash, town-hunt, kit-money-hunt.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_kit_leash` | `borg_param_kit_leash_min` | `borg_param_kit_leash_power` | `borg_param_kit_money_first` | `borg_param_town_hunt` |
+| --- | --- | --- | --- | --- | --- |
+| `reborn-kl206-ctl` | – | – | – | – | – |
+| `reborn-kl206-leash-m0` | 1 | 0 | 2 | – | – |
+| `reborn-kl206-leash` | 1 | 1 | 1 | – | – |
+| `reborn-kl206-town-hunt` | – | – | – | – | 1 |
+| `reborn-kl206-kit-money-hunt` | 1 | 2 | – | 1 | 1 |
+
+### `reborn-pb206`
+
+Throw point-blank divisor 1 for warrior, paladin, rogue, blackguard on track-p 206cf4e7: ctl, all1.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_throw_point_blank_divisor__blackguard` | `borg_param_attack_throw_point_blank_divisor__paladin` | `borg_param_attack_throw_point_blank_divisor__rogue` | `borg_param_attack_throw_point_blank_divisor__warrior` |
+| --- | --- | --- | --- | --- |
+| `reborn-pb206-ctl` | – | – | – | – |
+| `reborn-pb206-all1` | 1 | 1 | 1 | 1 |
+
+### `reborn-li206`
+
+Engine light radius alone and with the day's leads on track-p 206cf4e7: ctl, light, light+lone, light+leash, light+throw, combined.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_reserve_faint_percent` | `borg_param_attack_reserve_spell_damage_only` | `borg_param_attack_throw_point_blank_divisor__blackguard` | `borg_param_attack_throw_point_blank_divisor__paladin` | `borg_param_attack_throw_point_blank_divisor__rogue` | `borg_param_attack_throw_point_blank_divisor__warrior` | `borg_param_caution_unseen_bump_phase_min_danger` | `borg_param_caution_unseen_bump_phase_turns` | `borg_param_cave_light_engine_radius` | `borg_param_escape_phase_lost_damage_only` | `borg_param_kit_leash` | `borg_param_kit_leash_min` | `borg_param_kit_leash_power` | `borg_param_lone_slow_attack` | `borg_param_town_hunt` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-li206-ctl` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-li206-light` | – | – | – | – | – | – | – | – | 1 | – | – | – | – | – | – |
+| `reborn-li206-light+lone` | 25 | 1 | – | – | – | – | 5 | 20 | 1 | 1 | – | – | – | 1 | – |
+| `reborn-li206-light+leash` | – | – | – | – | – | – | – | – | 1 | – | 1 | 0 | 2 | – | – |
+| `reborn-li206-light+throw` | – | – | 1 | 1 | 1 | 1 | – | – | 1 | – | – | – | – | – | – |
+| `reborn-li206-combined` | 25 | 1 | 1 | 1 | 1 | 1 | 5 | 20 | 1 | 1 | 1 | 0 | 2 | 1 | 1 |
+
+### `reborn-ks206`
+
+Kill-on-sight floor and unknown-potion test in the normal world on track-p 206cf4e7: ctl, floor0, potions0, both0.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_kill_on_sight_min_hp_percent` | `borg_param_item_test_unknown_potions` |
+| --- | --- | --- |
+| `reborn-ks206-ctl` | – | – |
+| `reborn-ks206-floor0` | 0 | – |
+| `reborn-ks206-potions0` | – | 0 |
+| `reborn-ks206-both0` | 0 | 0 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2332,6 +2414,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_arrow_point_blank_divisor_warrior` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_confused_by_direction` | 0, 1, not set | `reborn-conf`, `reborn-trackp-regression` |  |
 | `borg_param_attack_flask_saving` | 2, not set | `reborn-flask` |  |
+| `borg_param_attack_kill_on_sight_min_hp_percent` | 0, not set | `reborn-ks206` |  |
 | `borg_param_attack_on_sight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3` |  |
 | `borg_param_attack_preference_blackguard_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_blackguard_device_permille` | 500, 750, not set | `reborn-attack-focus` |  |
@@ -2388,16 +2471,16 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_projectile_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_warrior_spell_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
-| `borg_param_attack_reserve_faint_percent` | 25, 100, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-overex` |  |
-| `borg_param_attack_reserve_spell_damage_only` | 1, not set | `reborn-loneslow`, `reborn-lonew` |  |
+| `borg_param_attack_reserve_faint_percent` | 25, 100, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-overex`, `reborn-lbun`, `reborn-li206` |  |
+| `borg_param_attack_reserve_spell_damage_only` | 1, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-lbun`, `reborn-li206` |  |
 | `borg_param_attack_reserve_spell_overexert` | 0, not set | `reborn-overex` |  |
 | `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |
 | `borg_param_attack_throw_as_melee` | 0, not set | `reborn-shipcheck-b895` |  |
 | `borg_param_attack_throw_point_blank_divisor` | 0, 1, not set | `reborn-throwpb`, `reborn-conf` |  |
-| `borg_param_attack_throw_point_blank_divisor__blackguard` | 1, not set | `reborn-flask` |  |
-| `borg_param_attack_throw_point_blank_divisor__paladin` | 1, not set | `reborn-flask` |  |
-| `borg_param_attack_throw_point_blank_divisor__rogue` | 1, not set | `reborn-flask` |  |
-| `borg_param_attack_throw_point_blank_divisor__warrior` | 1, not set | `reborn-flask` |  |
+| `borg_param_attack_throw_point_blank_divisor__blackguard` | 1, not set | `reborn-flask`, `reborn-pb206`, `reborn-li206` |  |
+| `borg_param_attack_throw_point_blank_divisor__paladin` | 1, not set | `reborn-flask`, `reborn-pb206`, `reborn-li206` |  |
+| `borg_param_attack_throw_point_blank_divisor__rogue` | 1, not set | `reborn-flask`, `reborn-pb206`, `reborn-li206` |  |
+| `borg_param_attack_throw_point_blank_divisor__warrior` | 1, not set | `reborn-flask`, `reborn-pb206`, `reborn-li206` |  |
 | `borg_param_attack_town_dangerous_bonus_percent` | 600, not set | `reborn-town-dangerous` |  |
 | `borg_param_attack_town_dangerous_bonus_whole` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
 | `borg_param_attack_town_dangerous_caster_walk` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
@@ -2485,14 +2568,14 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_town_scary_levels_less` | 6, 11, not set | `reborn-townkos` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_caution_unseen_bump_heal_hp_percent` | 0, not set | `reborn-sloo` |  |
-| `borg_param_caution_unseen_bump_phase_min_danger` | 5, not set | `reborn-loneslow`, `reborn-lonew` |  |
-| `borg_param_caution_unseen_bump_phase_turns` | 20, not set | `reborn-loneslow`, `reborn-lonew` |  |
+| `borg_param_caution_unseen_bump_phase_min_danger` | 5, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-lbun`, `reborn-li206` |  |
+| `borg_param_caution_unseen_bump_phase_turns` | 20, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-lbun`, `reborn-li206` |  |
 | `borg_param_caution_unseen_bump_response` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_unseen_bump_turns` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3`, `reborn-townhunt` |  |
 | `borg_param_caution_winning_fight_group_percent` | 100, not set | `reborn-fastpur` |  |
 | `borg_param_caution_winning_fight_margin_percent` | 20, not set | `reborn-fastpur` |  |
-| `borg_param_cave_light_engine_radius` | 1, not set | `reborn-lightbel` |  |
+| `borg_param_cave_light_engine_radius` | 1, not set | `reborn-lightbel`, `reborn-li206` |  |
 | `borg_param_danger_breeder_melee_extra_tenths` | 0, 5, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_danger_observed_haste` | 1, not set | `reborn-fastpur` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
@@ -2502,7 +2585,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_fox_form_town` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_escape_phase_adjacent_rule` | 0, 1, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
 | `borg_param_escape_phase_antisummon_delay` | 0, not set | `reborn-phase-thresholds` |  |
-| `borg_param_escape_phase_lost_damage_only` | 1, not set | `reborn-loneslow`, `reborn-lonew` |  |
+| `borg_param_escape_phase_lost_damage_only` | 1, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-lbun`, `reborn-li206` |  |
 | `borg_param_escape_phase_lost_danger_percent` | 100, not set | `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
 | `borg_param_escape_phase_lost_test` | 0, 1, 2, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape`, `reborn-dungeon-switch-screen` |  |
 | `borg_param_escape_phase_ordinary_danger_tenths` | 5, 20, not set | `reborn-phase-thresholds` |  |
@@ -2526,16 +2609,17 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_flow_leash_stairs_max_level` | 0, not set | `reborn-cleash`, `reborn-cleashnone` |  |
 | `borg_param_flow_take_phase_first` | 1, not set | `reborn-phase-first-761` |  |
 | `borg_param_flow_take_phase_short_below` | 2, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
+| `borg_param_item_test_unknown_potions` | 0, not set | `reborn-ks206` |  |
 | `borg_param_kill_flow_mode` | 0, 1, 2, 3 | `reborn-kill-flow-mode` |  |
 | `borg_param_kill_grouped_names` | 1, not set | `reborn-cavesp` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
 | `borg_param_kill_live_zero_hp` | 1, not set | `reborn-zerohp` |  |
 | `borg_param_kit_descent_min_percent` | 50, not set | `reborn-kitleash`, `reborn-kitlt` |  |
-| `borg_param_kit_leash` | 1, not set | `reborn-kitleash`, `reborn-kitlt` |  |
-| `borg_param_kit_leash_min` | 0, 1, 2, not set | `reborn-kitleash`, `reborn-kitlt` |  |
-| `borg_param_kit_leash_power` | 1, 2, not set | `reborn-kitleash`, `reborn-kitlt` |  |
+| `borg_param_kit_leash` | 1, not set | `reborn-kitleash`, `reborn-kitlt`, `reborn-kl206`, `reborn-li206` |  |
+| `borg_param_kit_leash_min` | 0, 1, 2, not set | `reborn-kitleash`, `reborn-kitlt`, `reborn-kl206`, `reborn-li206` |  |
+| `borg_param_kit_leash_power` | 1, 2, not set | `reborn-kitleash`, `reborn-kitlt`, `reborn-kl206`, `reborn-li206` |  |
 | `borg_param_kit_leave_danger_percent` | 25, not set | `reborn-kitleash`, `reborn-kitlt` |  |
-| `borg_param_kit_money_first` | 1, not set | `reborn-kitleash`, `reborn-kitlt` |  |
+| `borg_param_kit_money_first` | 1, not set | `reborn-kitleash`, `reborn-kitlt`, `reborn-kl206` |  |
 | `borg_param_kit_restock` | 1, not set | `reborn-kitleash` |  |
 | `borg_param_kit_restock_light_turns` | 500, not set | `reborn-kitleash` |  |
 | `borg_param_kit_start_reserve` | 1, not set | `reborn-kitleash` |  |
@@ -2559,7 +2643,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_light_detect_evil_spell_min_level__ranger` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__rogue` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__warrior` | 5, 10, not set | `reborn-low-level-detection` |  |
-| `borg_param_lone_slow_attack` | 1, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-bfol` |  |
+| `borg_param_lone_slow_attack` | 1, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-bfol`, `reborn-lbun`, `reborn-li206` |  |
 | `borg_param_lone_slow_breeder_lost` | 1, not set | `reborn-bfol` |  |
 | `borg_param_prepared_clevel_depth_margin` | -2, 2, not set | `reborn-dive-gates-768` |  |
 | `borg_param_prepared_cure_min` | 0, 4, not set | `reborn-prepared` |  |
@@ -2657,7 +2741,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_speed_percent` | 100, not set | `reborn-healtiers` |  |
-| `borg_param_town_hunt` | 1, not set | `reborn-townhunt`, `reborn-kitleash` |  |
+| `borg_param_town_hunt` | 1, not set | `reborn-townhunt`, `reborn-kitleash`, `reborn-kl206`, `reborn-li206` |  |
 | `borg_param_town_hunt_min_hp_percent` | 50, not set | `reborn-townhunt` |  |
 | `borg_param_town_hunt_ranged_bonus_percent` | 50, not set | `reborn-townhunt` |  |
 | `borg_param_town_invisible_count` | 0, not set | `reborn-invis` |  |

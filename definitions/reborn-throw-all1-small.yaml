@@ -1,0 +1,28 @@
+# borg-zoo#701: reborn-throw-all1, small tier. Write the catalogue entries with: python3 -m zoo define definitions/reborn-throw-all1-small.yaml
+name: reborn-throw-all1-small
+issue: 701
+question: >-
+  On track-p 206cf4e7, is a thrown-object point-blank divisor of 1 for every class (the four classes the track-p split leaves at 0: warrior, paladin, rogue, blackguard) better than the shipped class split? (reborn-confused-attack: confused-pb 1 death against 3.)
+tier: small            # classes-1800 starts 1-90 (90 per arm), 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-206cf4e7
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-pb206
+arms:
+  ctl: {}
+  all1: {borg_param_attack_throw_point_blank_divisor__warrior: 1, borg_param_attack_throw_point_blank_divisor__paladin: 1, borg_param_attack_throw_point_blank_divisor__rogue: 1, borg_param_attack_throw_point_blank_divisor__blackguard: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: request of the owner via borg-reborn-rs P8, 2026-11-22 filed as borg-zoo#701; zoo owner, 2026-11-22: "yes go with 699 to 703" (pilot as the gate, then the tiers dispatched together).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#701; #875, #904, #636). ctl against all1; report per class, the four overridden classes are the point. Not the arrow divisor (the Ranger arrow divisor 1 was worse in #651).
+  Tier small: classes-1800 starts 1-90 (90 per arm), one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen track-p 206cf4e7 (the pin of #695). Gate: no config_error; one binary; each arm's values in params-core.json; every
+  cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and
+  depth, alive at the cap having reached DL5; tiers of one study pooled (RULES 14). Descriptive.

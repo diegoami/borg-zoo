@@ -1,0 +1,32 @@
+# borg-zoo#702: reborn-light-matrix, full tier. Write the catalogue entries with: python3 -m zoo define definitions/reborn-light-matrix-full.yaml
+name: reborn-light-matrix-full
+issue: 702
+question: >-
+  On track-p 206cf4e7, does the engine's light radius (cave_light_engine_radius 1; #877, #884, #958) help, hurt or interact, alone and together with the leads of the day (the lone-slow bundle #699, the leash-m0 #700, the throw divisor #701, the town hunt)?
+tier: full            # classes-1800 starts 901-1800 (900 per arm), 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-206cf4e7
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-li206
+arms:
+  ctl: {}
+  light: {borg_param_cave_light_engine_radius: 1}
+  light+lone: {borg_param_cave_light_engine_radius: 1, borg_param_lone_slow_attack: 1, borg_param_escape_phase_lost_damage_only: 1, borg_param_attack_reserve_spell_damage_only: 1, borg_param_attack_reserve_faint_percent: 25, borg_param_caution_unseen_bump_phase_turns: 20, borg_param_caution_unseen_bump_phase_min_danger: 5}
+  light+leash: {borg_param_cave_light_engine_radius: 1, borg_param_kit_leash: 1, borg_param_kit_leash_min: 0, borg_param_kit_leash_power: 2}
+  light+throw: {borg_param_cave_light_engine_radius: 1, borg_param_attack_throw_point_blank_divisor__warrior: 1, borg_param_attack_throw_point_blank_divisor__paladin: 1, borg_param_attack_throw_point_blank_divisor__rogue: 1, borg_param_attack_throw_point_blank_divisor__blackguard: 1}
+  combined: {borg_param_cave_light_engine_radius: 1, borg_param_lone_slow_attack: 1, borg_param_escape_phase_lost_damage_only: 1, borg_param_attack_reserve_spell_damage_only: 1, borg_param_attack_reserve_faint_percent: 25, borg_param_caution_unseen_bump_phase_turns: 20, borg_param_caution_unseen_bump_phase_min_danger: 5, borg_param_kit_leash: 1, borg_param_kit_leash_min: 0, borg_param_kit_leash_power: 2, borg_param_attack_throw_point_blank_divisor__warrior: 1, borg_param_attack_throw_point_blank_divisor__paladin: 1, borg_param_attack_throw_point_blank_divisor__rogue: 1, borg_param_attack_throw_point_blank_divisor__blackguard: 1, borg_param_town_hunt: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: request of borg-reborn-rs (owner, "it needs to be tested thoroughly together with the other settings") filed as borg-zoo#702; zoo owner, 2026-11-22: "yes go with 699 to 703" (pilot as the gate, then the tiers dispatched together).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#702). Six arms: ctl; light; light+lone; light+leash; light+throw; combined (light + the lone-slow bundle + leash-m0 + all1 + town_hunt 1). light+belief (unseen_belief 1, #879) later, once PR #890 is in track-p (it is not on this pin). Pilot as a gate, then the full tier (classes-1800 starts 901-1800, 900 per arm), matching #695. Interaction: each combined arm against its single-lead arm of #699, #700, #701 at the same pin; the light radius's signature (deaths from a monster the Borg removed from its map shortly before) if the evidence allows. Switching cave_light_engine_radius on would be a P8 change, decided on this run.
+  Tier full: classes-1800 starts 901-1800 (900 per arm), one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen track-p 206cf4e7 (the pin of #695). Gate: no config_error; one binary; each arm's values in params-core.json; every
+  cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and
+  depth, alive at the cap having reached DL5; tiers of one study pooled (RULES 14). Descriptive.

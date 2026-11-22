@@ -2207,6 +2207,78 @@
         "reborn-head-shipped"
       ],
       "runs": []
+    },
+    "reborn-trackp-abd0cce1": {
+      "issue": 695,
+      "status": "defined (baseline ladder of track-p at its newest head abd0cce1: pilot, small-rest, medium, big, full), dispatched 2026-11-22",
+      "what": "Baseline of borg-reborn-rs track-p abd0cce1 (the newest build: the lone-slow bundle shipped, #1047), shipped settings, classes-1800 (45+45+270+540+900), 100,000 turns.",
+      "profiles": [
+        "reborn-head-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-lbun": {
+      "issue": 699,
+      "status": "defined (pilot, big)",
+      "what": "The lone-slow bundle and its parts on track-p 206cf4e7: ctl, all, reserve, faint, bump, all-minus-lone.",
+      "profiles": [
+        "reborn-lbun-ctl",
+        "reborn-lbun-all",
+        "reborn-lbun-reserve",
+        "reborn-lbun-faint",
+        "reborn-lbun-bump",
+        "reborn-lbun-all-minus-lone"
+      ],
+      "runs": []
+    },
+    "reborn-kl206": {
+      "issue": 700,
+      "status": "defined (pilot, small, medium)",
+      "what": "Kit leash and town hunt on track-p 206cf4e7: ctl, leash-m0, leash, town-hunt, kit-money-hunt.",
+      "profiles": [
+        "reborn-kl206-ctl",
+        "reborn-kl206-leash-m0",
+        "reborn-kl206-leash",
+        "reborn-kl206-town-hunt",
+        "reborn-kl206-kit-money-hunt"
+      ],
+      "runs": []
+    },
+    "reborn-pb206": {
+      "issue": 701,
+      "status": "defined (pilot, small, medium)",
+      "what": "Throw point-blank divisor 1 for warrior, paladin, rogue, blackguard on track-p 206cf4e7: ctl, all1.",
+      "profiles": [
+        "reborn-pb206-ctl",
+        "reborn-pb206-all1"
+      ],
+      "runs": []
+    },
+    "reborn-li206": {
+      "issue": 702,
+      "status": "defined (pilot, full)",
+      "what": "Engine light radius alone and with the day's leads on track-p 206cf4e7: ctl, light, light+lone, light+leash, light+throw, combined.",
+      "profiles": [
+        "reborn-li206-ctl",
+        "reborn-li206-light",
+        "reborn-li206-light+lone",
+        "reborn-li206-light+leash",
+        "reborn-li206-light+throw",
+        "reborn-li206-combined"
+      ],
+      "runs": []
+    },
+    "reborn-ks206": {
+      "issue": 703,
+      "status": "defined (pilot, small, medium)",
+      "what": "Kill-on-sight floor and unknown-potion test in the normal world on track-p 206cf4e7: ctl, floor0, potions0, both0.",
+      "profiles": [
+        "reborn-ks206-ctl",
+        "reborn-ks206-floor0",
+        "reborn-ks206-potions0",
+        "reborn-ks206-both0"
+      ],
+      "runs": []
     }
   }
 }

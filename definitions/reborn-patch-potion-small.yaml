@@ -1,0 +1,30 @@
+# borg-zoo#703: reborn-patch-potion, small tier. Write the catalogue entries with: python3 -m zoo define definitions/reborn-patch-potion-small.yaml
+name: reborn-patch-potion-small
+issue: 703
+question: >-
+  In the normal world on track-p 206cf4e7, what do the two settings track-p ships on named replays only cost or save: the kill-on-sight HP floor (#969, #976, floor 50) and the unknown-potion test (#983, #1001, with its ranged veto #1030)?
+tier: small            # classes-1800 starts 1-90 (90 per arm), 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-206cf4e7
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-ks206
+arms:
+  ctl: {}
+  floor0: {borg_param_attack_kill_on_sight_min_hp_percent: 0}
+  potions0: {borg_param_item_test_unknown_potions: 0}
+  both0: {borg_param_attack_kill_on_sight_min_hp_percent: 0, borg_param_item_test_unknown_potions: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: request of the owner via borg-reborn-rs P8, 2026-11-22 filed as borg-zoo#703; zoo owner, 2026-11-22: "yes go with 699 to 703" (pilot as the gate, then the tiers dispatched together).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#703; #665 measured the floor in a stress world only). ctl (floor 50, potion test on); floor0; potions0; both0 (the pre-#969/#983 play on this build). The issue asks for the head after borg-reborn-rs #1035 merges: #1035 is still open, so this runs on 206cf4e7 and is not re-run unless the owner asks. Report patch deaths; per game the potion tests ("# Testing unknown potion (#983)"), vetoes ("# Not testing an unknown potion ... (#1030)") and the turns from a potion's pickup to its first test (the pilot retains evidence). Paired by start also against the 9085c266 baseline (run 45028029063).
+  Tier small: classes-1800 starts 1-90 (90 per arm), one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen track-p 206cf4e7 (the pin of #695). Gate: no config_error; one binary; each arm's values in params-core.json; every
+  cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and
+  depth, alive at the cap having reached DL5; tiers of one study pooled (RULES 14). Descriptive.

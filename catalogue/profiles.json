@@ -11800,6 +11800,233 @@
         "borg_reborn_errand": "none",
         "borg_param_attack_reserve_faint_percent": 100
       }
+    },
+    "reborn-kl206-ctl": {
+      "description": "borg-zoo#700 (reborn-kit-leash206-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-kl206-leash-m0": {
+      "description": "borg-zoo#700 (reborn-kit-leash206-pilot.yaml): arm leash-m0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_min": 0,
+        "borg_param_kit_leash_power": 2
+      }
+    },
+    "reborn-kl206-leash": {
+      "description": "borg-zoo#700 (reborn-kit-leash206-pilot.yaml): arm leash.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_min": 1,
+        "borg_param_kit_leash_power": 1
+      }
+    },
+    "reborn-kl206-town-hunt": {
+      "description": "borg-zoo#700 (reborn-kit-leash206-pilot.yaml): arm town-hunt.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_hunt": 1
+      }
+    },
+    "reborn-kl206-kit-money-hunt": {
+      "description": "borg-zoo#700 (reborn-kit-leash206-pilot.yaml): arm kit-money-hunt.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_min": 2,
+        "borg_param_kit_money_first": 1,
+        "borg_param_town_hunt": 1
+      }
+    },
+    "reborn-li206-ctl": {
+      "description": "borg-zoo#702 (reborn-light-matrix-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-li206-light": {
+      "description": "borg-zoo#702 (reborn-light-matrix-pilot.yaml): arm light.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_cave_light_engine_radius": 1
+      }
+    },
+    "reborn-li206-light+lone": {
+      "description": "borg-zoo#702 (reborn-light-matrix-pilot.yaml): arm light+lone.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_cave_light_engine_radius": 1,
+        "borg_param_lone_slow_attack": 1,
+        "borg_param_escape_phase_lost_damage_only": 1,
+        "borg_param_attack_reserve_spell_damage_only": 1,
+        "borg_param_attack_reserve_faint_percent": 25,
+        "borg_param_caution_unseen_bump_phase_turns": 20,
+        "borg_param_caution_unseen_bump_phase_min_danger": 5
+      }
+    },
+    "reborn-li206-light+leash": {
+      "description": "borg-zoo#702 (reborn-light-matrix-pilot.yaml): arm light+leash.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_cave_light_engine_radius": 1,
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_min": 0,
+        "borg_param_kit_leash_power": 2
+      }
+    },
+    "reborn-li206-light+throw": {
+      "description": "borg-zoo#702 (reborn-light-matrix-pilot.yaml): arm light+throw.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_cave_light_engine_radius": 1,
+        "borg_param_attack_throw_point_blank_divisor__warrior": 1,
+        "borg_param_attack_throw_point_blank_divisor__paladin": 1,
+        "borg_param_attack_throw_point_blank_divisor__rogue": 1,
+        "borg_param_attack_throw_point_blank_divisor__blackguard": 1
+      }
+    },
+    "reborn-li206-combined": {
+      "description": "borg-zoo#702 (reborn-light-matrix-pilot.yaml): arm combined.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_cave_light_engine_radius": 1,
+        "borg_param_lone_slow_attack": 1,
+        "borg_param_escape_phase_lost_damage_only": 1,
+        "borg_param_attack_reserve_spell_damage_only": 1,
+        "borg_param_attack_reserve_faint_percent": 25,
+        "borg_param_caution_unseen_bump_phase_turns": 20,
+        "borg_param_caution_unseen_bump_phase_min_danger": 5,
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_min": 0,
+        "borg_param_kit_leash_power": 2,
+        "borg_param_attack_throw_point_blank_divisor__warrior": 1,
+        "borg_param_attack_throw_point_blank_divisor__paladin": 1,
+        "borg_param_attack_throw_point_blank_divisor__rogue": 1,
+        "borg_param_attack_throw_point_blank_divisor__blackguard": 1,
+        "borg_param_town_hunt": 1
+      }
+    },
+    "reborn-lbun-ctl": {
+      "description": "borg-zoo#699 (reborn-lone-bundle-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-lbun-all": {
+      "description": "borg-zoo#699 (reborn-lone-bundle-pilot.yaml): arm all.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_lone_slow_attack": 1,
+        "borg_param_escape_phase_lost_damage_only": 1,
+        "borg_param_attack_reserve_spell_damage_only": 1,
+        "borg_param_attack_reserve_faint_percent": 25,
+        "borg_param_caution_unseen_bump_phase_turns": 20,
+        "borg_param_caution_unseen_bump_phase_min_danger": 5
+      }
+    },
+    "reborn-lbun-reserve": {
+      "description": "borg-zoo#699 (reborn-lone-bundle-pilot.yaml): arm reserve.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_reserve_spell_damage_only": 1
+      }
+    },
+    "reborn-lbun-faint": {
+      "description": "borg-zoo#699 (reborn-lone-bundle-pilot.yaml): arm faint.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_reserve_faint_percent": 25
+      }
+    },
+    "reborn-lbun-bump": {
+      "description": "borg-zoo#699 (reborn-lone-bundle-pilot.yaml): arm bump.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_unseen_bump_phase_turns": 20,
+        "borg_param_caution_unseen_bump_phase_min_danger": 5
+      }
+    },
+    "reborn-lbun-all-minus-lone": {
+      "description": "borg-zoo#699 (reborn-lone-bundle-pilot.yaml): arm all-minus-lone.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_lost_damage_only": 1,
+        "borg_param_attack_reserve_spell_damage_only": 1,
+        "borg_param_attack_reserve_faint_percent": 25,
+        "borg_param_caution_unseen_bump_phase_turns": 20,
+        "borg_param_caution_unseen_bump_phase_min_danger": 5
+      }
+    },
+    "reborn-ks206-ctl": {
+      "description": "borg-zoo#703 (reborn-patch-potion-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-ks206-floor0": {
+      "description": "borg-zoo#703 (reborn-patch-potion-pilot.yaml): arm floor0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_kill_on_sight_min_hp_percent": 0
+      }
+    },
+    "reborn-ks206-potions0": {
+      "description": "borg-zoo#703 (reborn-patch-potion-pilot.yaml): arm potions0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_item_test_unknown_potions": 0
+      }
+    },
+    "reborn-ks206-both0": {
+      "description": "borg-zoo#703 (reborn-patch-potion-pilot.yaml): arm both0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_kill_on_sight_min_hp_percent": 0,
+        "borg_param_item_test_unknown_potions": 0
+      }
+    },
+    "reborn-pb206-ctl": {
+      "description": "borg-zoo#701 (reborn-throw-all1-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-pb206-all1": {
+      "description": "borg-zoo#701 (reborn-throw-all1-pilot.yaml): arm all1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_throw_point_blank_divisor__warrior": 1,
+        "borg_param_attack_throw_point_blank_divisor__paladin": 1,
+        "borg_param_attack_throw_point_blank_divisor__rogue": 1,
+        "borg_param_attack_throw_point_blank_divisor__blackguard": 1
+      }
     }
   }
 }

@@ -1,0 +1,32 @@
+# borg-zoo#699: reborn-lone-bundle, pilot tier. Write the catalogue entries with: python3 -m zoo define definitions/reborn-lone-bundle-pilot.yaml
+name: reborn-lone-bundle-pilot
+issue: 699
+question: >-
+  On track-p 206cf4e7 (with the #969 patch fix), does the lone-slow bundle (#878) keep its lead of the development tiers (13 deaths against 25 in 900 starts), and which of its untested parts (reserve, faint, bump) carries it?
+tier: pilot            # classes-18, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-206cf4e7
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-lbun
+arms:
+  ctl: {}
+  all: {borg_param_lone_slow_attack: 1, borg_param_escape_phase_lost_damage_only: 1, borg_param_attack_reserve_spell_damage_only: 1, borg_param_attack_reserve_faint_percent: 25, borg_param_caution_unseen_bump_phase_turns: 20, borg_param_caution_unseen_bump_phase_min_danger: 5}
+  reserve: {borg_param_attack_reserve_spell_damage_only: 1}
+  faint: {borg_param_attack_reserve_faint_percent: 25}
+  bump: {borg_param_caution_unseen_bump_phase_turns: 20, borg_param_caution_unseen_bump_phase_min_danger: 5}
+  all-minus-lone: {borg_param_escape_phase_lost_damage_only: 1, borg_param_attack_reserve_spell_damage_only: 1, borg_param_attack_reserve_faint_percent: 25, borg_param_caution_unseen_bump_phase_turns: 20, borg_param_caution_unseen_bump_phase_min_danger: 5}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: request of the owner via borg-reborn-rs P8, 2026-11-22 filed as borg-zoo#699; zoo owner, 2026-11-22: "yes go with 699 to 703" (pilot as the gate, then the tiers dispatched together).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#699). Six arms: ctl; all (the six settings of #626's all); reserve; faint; bump; all-minus-lone (all with lone_slow_attack 0). Pilot as a gate, then the big tier (classes-1800 starts 361-900, 540 per arm), reported also pooled with the gate. The development lead was 13 against 25 deaths in 900 starts (20 rescued / 8 newly killed, p 0.036) on 296adfbf; the confirmation on the fresh block is #626's.
+  Tier pilot: classes-18, 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen track-p 206cf4e7 (the pin of #695). Gate: no config_error; one binary; each arm's values in params-core.json; every
+  cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and
+  depth, alive at the cap having reached DL5; tiers of one study pooled (RULES 14). Descriptive.

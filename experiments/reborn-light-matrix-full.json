@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-light-matrix-full",
+  "issue": 702,
+  "definition": "definitions/reborn-light-matrix-full.yaml",
+  "question": "On track-p 206cf4e7, does the engine's light radius (cave_light_engine_radius 1; #877, #884, #958) help, hurt or interact, alone and together with the leads of the day (the lone-slow bundle #699, the leash-m0 #700, the throw divisor #701, the town hunt)?",
+  "description": "On track-p 206cf4e7, does the engine's light radius (cave_light_engine_radius 1; #877, #884, #958) help, hurt or interact, alone and together with the leads of the day (the lone-slow bundle #699, the leash-m0 #700, the throw divisor #701, the town hunt)? Generated from definitions/reborn-light-matrix-full.yaml: 6 arms on 4.2.6-reborn-rust-trackp-206cf4e7, suite classes-1800-full.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#702). Six arms: ctl; light; light+lone; light+leash; light+throw; combined (light + the lone-slow bundle + leash-m0 + all1 + town_hunt 1). light+belief (unseen_belief 1, #879) later, once PR #890 is in track-p (it is not on this pin). Pilot as a gate, then the full tier (classes-1800 starts 901-1800, 900 per arm), matching #695. Interaction: each combined arm against its single-lead arm of #699, #700, #701 at the same pin; the light radius's signature (deaths from a monster the Borg removed from its map shortly before) if the evidence allows. Switching cave_light_engine_radius on would be a P8 change, decided on this run.\nTier full: classes-1800 starts 901-1800 (900 per arm), one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen track-p 206cf4e7 (the pin of #695). Gate: no config_error; one binary; each arm's values in params-core.json; every\ncell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and\ndepth, alive at the cap having reached DL5; tiers of one study pooled (RULES 14). Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-206cf4e7"
+  ],
+  "profiles": [
+    "reborn-li206-ctl",
+    "reborn-li206-light",
+    "reborn-li206-light+lone",
+    "reborn-li206-light+leash",
+    "reborn-li206-light+throw",
+    "reborn-li206-combined"
+  ],
+  "suites": [
+    "classes-1800-full"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-206cf4e7",
+  "control_profile": "reborn-li206-ctl",
+  "owner_authorization": "2026-11-22: request of borg-reborn-rs (owner, \"it needs to be tested thoroughly together with the other settings\") filed as borg-zoo#702; zoo owner, 2026-11-22: \"yes go with 699 to 703\" (pilot as the gate, then the tiers dispatched together).",
+  "retain_evidence": false
+}
