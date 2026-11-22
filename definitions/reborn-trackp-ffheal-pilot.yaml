@@ -1,0 +1,45 @@
+# borg-zoo#660: from the issue's definition. Write the catalogue entries with: python3 -m zoo define definitions/reborn-trackp-ffheal-pilot.yaml
+name: reborn-trackp-ffheal-pilot
+issue: 660
+question: >-
+  On track-p e2d8919e, which ships the fast-fragile policy with its heal ban (borg-reborn-rs#842), does the ban cost
+  lives (borg-reborn-rs#926: a bleeding Necromancer reads Phase Door at HP 0 where a cure saves it), and does the policy
+  itself, against the same build with neither?
+tier: pilot            # classes-18, 100,000 engine turns
+
+specimen:
+  name: 4.2.6-reborn-rust-track-p-e2d8919e
+  repository: diegoami/borg-reborn-rs
+  ref: e2d8919e8aa314b8a3622b90bf0b1be7958bdfd4
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+  label: >-
+    borg-reborn-rs track-p e2d8919e: #873 merged (a 128-bit capability-group mask; Word of Recall reserve 2 with the
+    purchase floor 200; Phase Door reserve 6 at 150 percent, Ranger and Blackguard 10, Priest 8, free copies 12-20; the
+    staples' decaying curve; the prepared remedies; all but the Recall and Phase Door purchases starting at DL2), with
+    #874, #875, #888, #892, #894 and the P7 close.
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-tpffh
+arms:
+  shipped: {}
+  noban: {borg_param_fast_fragile_no_heal: 0}
+  'off': {borg_param_fast_fragile_policy: 0, borg_param_fast_fragile_no_heal: 0}
+control: [shipped]
+owner_authorization: >-
+  2026-11-22: owner, "Do the zoo run" (the fast-fragile heal-ban measurement on track-p offered after borg-reborn-rs#926).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-22 before any result was read. Pilot (RULES 16) of three arms on track-p e2d8919e: shipped (the build's
+  borg.txt: fast_fragile_policy 1, by_stats 0, no_heal 1), noban (no_heal 0) and off (policy 0, no_heal 0); classes-18,
+  100,000 turns, one binary. Gate: no config_error; one binary; the three arms' applied settings differ only in the two
+  switches; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start; frozen-turn bursts
+  classified. Report per arm: deaths and causes, CL at death, maximum depth; deaths with a crow or wild cat adjacent;
+  the counts of "the next turn kills ... Phase Door (#842)" and "No healing potion in contact with a fast-fragile
+  attacker (#842)"; deaths by a cut or poison; paired rescued and newly killed against shipped, and identical plays.
+  Descriptive (RULES 8, 18); small and medium follow only after this gate and the owner's word (RULES 14).
