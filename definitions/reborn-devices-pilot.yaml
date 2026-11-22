@@ -1,0 +1,41 @@
+# borg-zoo#633: devices as variety (borg-reborn-rs #895, PR #898), 3020d451, ctl against shipped, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-devices-pilot.yaml
+name: reborn-devices-pilot
+issue: 633
+question: >-
+  On borg-reborn-rs 3020d451 (#895, track-p 4c686250), does a Borg that keeps and buys charged wands, staves and rods as variety
+  (the shipped settings) carry more usable devices and play the same or better than one that values them only on the shared
+  curves?
+tier: pilot            # classes-18 at 300,000 turns; a small tier on the same starts after the gate and the owner
+
+suites: [classes-18-300k]
+
+specimen:
+  name: 4.2.6-reborn-rust-devices-3020d451
+  repository: diegoami/borg-reborn-rs
+  ref: 3020d451b8204ebbfd0b42efe4ecb1a75666bfdb
+  label: "borg-reborn-rs task/T895-devices 3020d451 (PR #898, on track-p 4c686250): town_device_percent 24, charges attack 10 / escape 5 / detect 5 / control 5, the teleport staff only with 3000 gold spare, shipped on from town_variety_min_depth 2; harness/borg.txt ea793c0a..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-dev
+arms:
+  ctl: {borg_param_town_device_percent: 0}
+  shipped: {}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#633; zoo owner, 2026-11-22: "continue" / "what else" (the pilot only; small + medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#633; borg-reborn-rs #895, PR #898). Two arms on one build,
+  classes-18 at 300,000 turns, 18 starts per arm (36 cells), evidence retained; ctl sets the one new switch back. Gate: no
+  config_error; one binary; every game ends in death or at the cap; stalls apart. Primary measures, fixed here: (1) learned, charged
+  devices carried at each town departure after the first, by situation (attack, escape, detection, control), per class; (2)
+  devices bought and sold per game, charged against empty; (3) deaths with rescued and newly killed pairs against ctl; (4) mean
+  max CL and depth, and alive at the cap. Expect little at this tier. Directional (RULES 14).
