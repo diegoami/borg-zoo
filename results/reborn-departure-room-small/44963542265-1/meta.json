@@ -1,0 +1,369 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-room-ctl": {
+        "description": "borg-zoo#612 (reborn-departure-room-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_param_town_departure_free_slots": 0,
+          "borg_param_town_departure_free_weight": 0,
+          "borg_param_town_recall_curve_scale_percent": 0,
+          "borg_param_town_store_keep_min": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "476df64a41b7600d1d146b8d0c74238f959f436e0e37917d9d9c07a30abd0650"
+      },
+      "reborn-room-recall": {
+        "description": "borg-zoo#612 (reborn-departure-room-pilot.yaml): arm recall.",
+        "settings": {
+          "borg_param_town_departure_free_slots": 0,
+          "borg_param_town_departure_free_weight": 0,
+          "borg_param_town_recall_curve_scale_percent": 110,
+          "borg_param_town_store_keep_min": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "7d173adc99c338cb44dac75c0fbd8f533f82a4a6788962df87dfe1bb2507e4b9"
+      },
+      "reborn-room-room": {
+        "description": "borg-zoo#612 (reborn-departure-room-pilot.yaml): arm room.",
+        "settings": {
+          "borg_param_town_departure_free_slots": 2,
+          "borg_param_town_departure_free_weight": 50,
+          "borg_param_town_recall_curve_scale_percent": 0,
+          "borg_param_town_store_keep_min": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "469511ea6ca92ccfafbcf4671785307e44f13f27974e2d460d6161d554b555b6"
+      },
+      "reborn-room-shipped": {
+        "description": "borg-zoo#612 (reborn-departure-room-pilot.yaml): arm shipped.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "134a7e8b65d7d86b9af27eca0401929d4ef290458cf66260955376f5f1008cc4"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-town-room-c7ea18df": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs task/T859-town-room c7ea18df (PR #864, based on track-p 562979d3): shipped harness/borg.txt and class overrides, live town planner, scary_monsters.txt 9766d882...",
+        "ref": "c7ea18dff9f1865bddfebbd5651ca2ad1a533107",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "9766d882edd205e416a716a9031284dd87de6f369a7ba13b6dc248f849473f7f"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-300k-verysmall": {
+        "assigned_characters": {
+          "102088710": [
+            "Elf",
+            "Rogue"
+          ],
+          "1042834709": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1199401383": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1217781050": [
+            "Human",
+            "Priest"
+          ],
+          "1236782037": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1248006956": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "1277697136": [
+            "Human",
+            "Rogue"
+          ],
+          "1285833235": [
+            "Gnome",
+            "Paladin"
+          ],
+          "129607500": [
+            "Human",
+            "Ranger"
+          ],
+          "1326666591": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1356248624": [
+            "Elf",
+            "Warrior"
+          ],
+          "1478804878": [
+            "Elf",
+            "Priest"
+          ],
+          "1515505937": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1516096046": [
+            "Gnome",
+            "Druid"
+          ],
+          "1552244183": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "1584060551": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "167240942": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1678765969": [
+            "Elf",
+            "Druid"
+          ],
+          "1751715076": [
+            "Human",
+            "Blackguard"
+          ],
+          "1758620521": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1759555484": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "176707408": [
+            "Human",
+            "Necromancer"
+          ],
+          "1859521195": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "2002578196": [
+            "Hobbit",
+            "Druid"
+          ],
+          "2022908874": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "2093434235": [
+            "Gnome",
+            "Mage"
+          ],
+          "2097768768": [
+            "Human",
+            "Mage"
+          ],
+          "2109297965": [
+            "Human",
+            "Druid"
+          ],
+          "234773070": [
+            "Elf",
+            "Mage"
+          ],
+          "247597266": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "300461652": [
+            "Hobbit",
+            "Mage"
+          ],
+          "352388688": [
+            "Human",
+            "Paladin"
+          ],
+          "384988836": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "412975293": [
+            "Elf",
+            "Necromancer"
+          ],
+          "446353753": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "507571350": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "572215387": [
+            "Elf",
+            "Ranger"
+          ],
+          "584077430": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "652511567": [
+            "Gnome",
+            "Priest"
+          ],
+          "765432699": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "826156836": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "884072154": [
+            "Human",
+            "Warrior"
+          ],
+          "892923114": [
+            "Hobbit",
+            "Priest"
+          ],
+          "920137153": [
+            "Elf",
+            "Paladin"
+          ],
+          "957287853": [
+            "Elf",
+            "Blackguard"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 300000,
+        "description": "The first 45 starts of classes-1800 (5 per class) at 300,000 engine turns: a late-game look at the shipped Borg (owner, 2026-11-21).",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          884072154,
+          2097768768,
+          2109297965,
+          1217781050,
+          176707408,
+          352388688,
+          1277697136,
+          129607500,
+          1751715076,
+          1859521195,
+          247597266,
+          507571350,
+          584077430,
+          1199401383,
+          1584060551,
+          1759555484,
+          1758620521,
+          446353753,
+          1356248624,
+          234773070,
+          1678765969,
+          1478804878,
+          412975293,
+          920137153,
+          102088710,
+          572215387,
+          957287853,
+          1515505937,
+          300461652,
+          2002578196,
+          892923114,
+          384988836,
+          765432699,
+          826156836,
+          1248006956,
+          2022908874,
+          1326666591,
+          2093434235,
+          1516096046,
+          652511567,
+          1236782037,
+          1285833235,
+          1042834709,
+          167240942,
+          1552244183
+        ],
+        "stall_seconds": 180,
+        "subset": {
+          "range": [
+            0,
+            45
+          ],
+          "suite": "classes-1800"
+        },
+        "wall_seconds": 5400
+      }
+    }
+  },
+  "completed": "2026-11-22 01:22 UTC",
+  "environment": {
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-town-room-c7ea18df",
+    "control_profile": "reborn-room-ctl",
+    "definition": "definitions/reborn-departure-room-small.yaml",
+    "description": "On borg-reborn-rs c7ea18df, over 45 starts of classes-1800 at 300,000 turns (5 per class), do the departure room, the store keep and the Recall curve 110 (shipped), the room alone, or the curve alone get more starts past the DL5 gate, and with what deaths, against the build's own off settings? Generated from definitions/reborn-departure-room-small.yaml: 4 arms on 4.2.6-reborn-rust-town-room-c7ea18df, suite classes-1800-300k-verysmall.",
+    "issue": 612,
+    "name": "reborn-departure-room-small",
+    "owner_authorization": "2026-11-21: zoo owner, \"yes do all that\" (the small tier after the evidence analysis posted on #612: exposure enough, 16 of 18 ctl starts bought Recall).",
+    "prespecified": "Fixed 2026-11-22 after the pilot (run 44950482392) and its evidence analysis, before any result of this tier was read.\nSmall tier (RULES 14; the verysmall slice of classes-1800 at 300,000 turns: 45 starts, 5 per class, all classes, 180\ncells), four arms of the pilot on one build. Evidence is not retained (130 MB per cell in the pilot).\nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls reported start by start.\nReport per arm and class: starts with max depth >= 5, max depth exactly 4 with 500 gold or more at the end (the #859 problem\nas far as the cell summary shows; \"no Recall carried\" is not available without evidence), mean CL, mean depth, deaths and\ncauses, paired rescued and newly killed against ctl, identical plays. Directional only; confirmation needs a fresh seed\nblock (#556). Descriptive.",
+    "profiles": [
+      "reborn-room-ctl",
+      "reborn-room-shipped",
+      "reborn-room-room",
+      "reborn-room-recall"
+    ],
+    "question": "On borg-reborn-rs c7ea18df, over 45 starts of classes-1800 at 300,000 turns (5 per class), do the departure room, the store keep and the Recall curve 110 (shipped), the room alone, or the curve alone get more starts past the DL5 gate, and with what deaths, against the build's own off settings?",
+    "retain_evidence": false,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-town-room-c7ea18df"
+    ],
+    "suites": [
+      "classes-1800-300k-verysmall"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "44963542265-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/44963542265",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "6703004831d2204dd5edad7b8c6129e030401a15"
+}
