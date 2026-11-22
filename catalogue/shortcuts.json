@@ -1724,6 +1724,28 @@
         "reborn-room-recall"
       ],
       "runs": []
+    },
+    "reborn-variety": {
+      "issue": 616,
+      "status": "defined (pilot)",
+      "what": "Variety, more Recall and Phase Door (borg-reborn-rs #863) on 4290a7da: ctl, shipped, variety, kit, classes-18 at 300k.",
+      "profiles": [
+        "reborn-var-ctl",
+        "reborn-var-shipped",
+        "reborn-var-variety",
+        "reborn-var-kit"
+      ],
+      "runs": []
+    },
+    "reborn-throwpb": {
+      "issue": 618,
+      "status": "defined (pilot)",
+      "what": "Thrown-object point-blank divisor (borg-reborn-rs #870) on e037588b: inherit (0) against throw1 (1), classes-18.",
+      "profiles": [
+        "reborn-throwpb-inherit",
+        "reborn-throwpb-throw1"
+      ],
+      "runs": []
     }
   }
 }

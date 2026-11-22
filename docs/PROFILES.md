@@ -123,6 +123,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-tonight` | [#609](https://github.com/diegoami/borg-zoo/issues/609) | 1 | defined (ladder: pilot, small-rest, medium, big, full), dispatched 2026-11-21 | Tonight's test: borg-reborn-rs main ab775d48, shipped settings, one arm, classes-1800 ladder (45+45+270+540+900), 100,000 turns. |
 | `reborn-p6rf` | [#611](https://github.com/diegoami/borg-zoo/issues/611) | 1 | defined (pilot) | P6 review-fix compatibility (borg-reborn-rs #860): main ab775d48 against 038250d6, shipped settings, classes-18. |
 | `reborn-room` | [#612](https://github.com/diegoami/borg-zoo/issues/612) | 4 | pilot done (run 44950482392); small (classes-1800-300k-verysmall) defined and dispatched | Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k. |
+| `reborn-variety` | [#616](https://github.com/diegoami/borg-zoo/issues/616) | 4 | defined (pilot) | Variety, more Recall and Phase Door (borg-reborn-rs #863) on 4290a7da: ctl, shipped, variety, kit, classes-18 at 300k. |
+| `reborn-throwpb` | [#618](https://github.com/diegoami/borg-zoo/issues/618) | 2 | defined (pilot) | Thrown-object point-blank divisor (borg-reborn-rs #870) on e037588b: inherit (0) against throw1 (1), classes-18. |
 
 ### `heal-attack-4`
 
@@ -1759,6 +1761,30 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-room-room` | 2 | 50 | 0 | 0 |
 | `reborn-room-recall` | 0 | 0 | 110 | 0 |
 
+### `reborn-variety`
+
+Variety, more Recall and Phase Door (borg-reborn-rs #863) on 4290a7da: ctl, shipped, variety, kit, classes-18 at 300k.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_buy_recall_from_gold` | `borg_param_town_phase_reserve` | `borg_param_town_phase_reserve__blackguard` | `borg_param_town_phase_reserve__priest` | `borg_param_town_phase_reserve__ranger` | `borg_param_town_prepared_percent` | `borg_param_town_recall_reserve` | `borg_param_town_staple_ccw` | `borg_param_town_staple_clw` | `borg_param_town_staple_clw__blackguard` | `borg_param_town_staple_clw__druid` | `borg_param_town_staple_clw__mage` | `borg_param_town_staple_clw__necromancer` | `borg_param_town_staple_clw__paladin` | `borg_param_town_staple_clw__priest` | `borg_param_town_staple_clw__ranger` | `borg_param_town_staple_clw__rogue` | `borg_param_town_staple_clw__warrior` | `borg_param_town_staple_csw` | `borg_param_town_staple_csw__blackguard` | `borg_param_town_staple_csw__druid` | `borg_param_town_staple_csw__mage` | `borg_param_town_staple_csw__necromancer` | `borg_param_town_staple_csw__paladin` | `borg_param_town_staple_csw__priest` | `borg_param_town_staple_csw__ranger` | `borg_param_town_staple_csw__rogue` | `borg_param_town_staple_csw__warrior` | `borg_param_town_staple_food` | `borg_param_town_staple_light` | `borg_param_town_staple_oil` | `borg_param_town_staple_oil__blackguard` | `borg_param_town_staple_oil__druid` | `borg_param_town_staple_oil__mage` | `borg_param_town_staple_oil__necromancer` | `borg_param_town_staple_oil__paladin` | `borg_param_town_staple_oil__priest` | `borg_param_town_staple_oil__ranger` | `borg_param_town_staple_oil__rogue` | `borg_param_town_staple_oil__warrior` | `borg_param_town_staple_phase` | `borg_param_town_staple_phase__blackguard` | `borg_param_town_staple_phase__druid` | `borg_param_town_staple_phase__mage` | `borg_param_town_staple_phase__necromancer` | `borg_param_town_staple_phase__paladin` | `borg_param_town_staple_phase__priest` | `borg_param_town_staple_phase__ranger` | `borg_param_town_staple_phase__rogue` | `borg_param_town_staple_phase__warrior` | `borg_param_town_variety_min_depth` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-var-ctl` | 400 | 0 | 0 | 0 | 2 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| `reborn-var-shipped` | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-var-variety` | 400 | 0 | 0 | 0 | 2 | – | 1 | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-var-kit` | – | – | – | – | – | 0 | – | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+### `reborn-throwpb`
+
+Thrown-object point-blank divisor (borg-reborn-rs #870) on e037588b: inherit (0) against throw1 (1), classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_throw_point_blank_divisor` |
+| --- | --- |
+| `reborn-throwpb-inherit` | 0 |
+| `reborn-throwpb-throw1` | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1840,12 +1866,14 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |
 | `borg_param_attack_throw_as_melee` | 0, not set | `reborn-shipcheck-b895` |  |
+| `borg_param_attack_throw_point_blank_divisor` | 0, 1 | `reborn-throwpb` |  |
 | `borg_param_attack_town_dangerous_bonus_percent` | 600, not set | `reborn-town-dangerous` |  |
 | `borg_param_attack_town_dangerous_bonus_whole` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
 | `borg_param_attack_town_dangerous_caster_walk` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
 | `borg_param_attack_town_dangerous_min_damage` | 3, not set | `reborn-town-dangerous` |  |
 | `borg_param_attack_town_dangerous_on_sight` | 0, 1, not set | `reborn-town-dangerous`, `reborn-neutral-main`, `reborn-town-switch-screen`, `reborn-townkos` |  |
 | `borg_param_attack_town_dangerous_wand` | 1, not set | `reborn-town-switch-screen`, `reborn-townkos` |  |
+| `borg_param_buy_recall_from_gold` | 400, not set | `reborn-variety` |  |
 | `borg_param_caution_breeder_avoid` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
 | `borg_param_caution_breeder_boost_danger_tenths` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_breeder_easy_escape_steps` | 3, 10, not set | `reborn-untested-caution` |  |
@@ -2080,19 +2108,66 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_curve_scale_percent__ranger` | 100, not set | `reborn-sloo` |  |
 | `borg_param_town_phase_curve_scale_percent__rogue` | 100, not set | `reborn-sloo` |  |
 | `borg_param_town_phase_curve_scale_percent__warrior` | 100, not set | `reborn-sloo` |  |
-| `borg_param_town_phase_reserve` | 1, 2, 3, not set | `reborn-bundle`, `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve` |  |
+| `borg_param_town_phase_reserve` | 0, 1, 2, 3, not set | `reborn-bundle`, `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve`, `reborn-variety` |  |
+| `borg_param_town_phase_reserve__blackguard` | 0, not set | `reborn-variety` |  |
 | `borg_param_town_phase_reserve__mage` | 1, not set | `reborn-receipt` |  |
-| `borg_param_town_phase_reserve__ranger` | 3, not set | `reborn-receipt` |  |
+| `borg_param_town_phase_reserve__priest` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_phase_reserve__ranger` | 2, 3, not set | `reborn-receipt`, `reborn-variety` |  |
 | `borg_param_town_phase_reserve__warrior` | 0, not set | `reborn-receipt` |  |
 | `borg_param_town_phase_reserve_percent` | 50, 100, 150, 200, 400, not set | `reborn-bundle`, `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve`, `reborn-receipt` |  |
+| `borg_param_town_prepared_percent` | 0, not set | `reborn-variety` |  |
 | `borg_param_town_ranged_reserve` | 6, not set | `reborn-townhunt` |  |
 | `borg_param_town_ranger_arrows_max__ranger` | 20, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_recall_curve_scale_percent` | 0, 110, not set | `reborn-room` |  |
-| `borg_param_town_recall_reserve` | 1, 2, 3, not set | `reborn-town-switch-screen`, `reborn-recallres` |  |
+| `borg_param_town_recall_reserve` | 1, 2, 3, not set | `reborn-town-switch-screen`, `reborn-recallres`, `reborn-variety` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
+| `borg_param_town_staple_ccw` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_clw` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_clw__blackguard` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_clw__druid` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_clw__mage` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_clw__necromancer` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_clw__paladin` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_clw__priest` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_clw__ranger` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_clw__rogue` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_clw__warrior` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_csw` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_csw__blackguard` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_csw__druid` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_csw__mage` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_csw__necromancer` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_csw__paladin` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_csw__priest` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_csw__ranger` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_csw__rogue` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_csw__warrior` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_food` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_light` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_oil` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_oil__blackguard` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_oil__druid` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_oil__mage` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_oil__necromancer` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_oil__paladin` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_oil__priest` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_oil__ranger` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_oil__rogue` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_oil__warrior` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_phase` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_phase__blackguard` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_phase__druid` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_phase__mage` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_phase__necromancer` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_phase__paladin` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_phase__priest` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_phase__ranger` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_phase__rogue` | 0, not set | `reborn-variety` |  |
+| `borg_param_town_staple_phase__warrior` | 0, not set | `reborn-variety` |  |
 | `borg_param_town_store_keep_min` | 0, not set | `reborn-room` |  |
 | `borg_param_town_store_only_overweight` | 0, 1, not set | `reborn-store-overweight`, `reborn-shipcheck-b895` |  |
 | `borg_param_town_unseen_percent` | 50, not set | `reborn-phase-first-761` |  |
+| `borg_param_town_variety_min_depth` | 0, not set | `reborn-variety` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
 | `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, 5 lines, 7 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters`, `reborn-attacksight`, `reborn-killers`, `reborn-confusion` |  |
 | `borg_town_attack_turns` | 50, not set | `reborn-casters`, `reborn-crow-escape` |  |
