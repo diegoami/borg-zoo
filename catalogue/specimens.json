@@ -2828,6 +2828,48 @@
       "scary_lists": {
         "scary_monsters.txt": "e0e293814e8ed9c2f3a5f0af809f479e854878e5d0eaedea37b671dd1b20f5a8"
       }
+    },
+    "4.2.6-reborn-rust-light-belief-a516df64": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "a516df64a285ecf2b6606d550242dc5445b80014",
+      "label": "borg-reborn-rs task/T879-unseen-belief a516df64 (track-p 7e21967b + #888 + #890): cave_light_engine_radius and unseen_belief compiled and shipped 0; shipped harness/borg.txt 32a20aaf..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
+    },
+    "4.2.6-reborn-rust-lone-slow-296adfbf": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "296adfbf1dfaeab22b254b616654176a9f44e091",
+      "label": "borg-reborn-rs task/T878-attack-on-sight 296adfbf (PR #891: track-p 8c2483ec + #875): lone_slow_attack, escape_phase_lost_damage_only, attack_reserve_spell_damage_only, attack_reserve_faint_percent, caution_unseen_bump_phase_* compiled and shipped off; harness/borg.txt 0e8a3be0..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
+    },
+    "4.2.6-reborn-rust-breeder-hold-6062b84a": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "6062b84a4e2da6c7d810ca42ba9f702a91e5c05d",
+      "label": "borg-reborn-rs task/T882-breeder-hold 6062b84a (PR #893, tree 7f3878f5; contains track-p 8c2483ec): shipped caution_breeder_policy 3, caution_breeder_hold 0, borg_world none; harness/borg.txt d9a122e0..., worlds/breeders-x4.txt a546fb51..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      },
+      "worlds": {
+        "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8"
+      }
     }
   }
 }

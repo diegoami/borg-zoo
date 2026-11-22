@@ -125,6 +125,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-room` | [#612](https://github.com/diegoami/borg-zoo/issues/612) | 4 | pilot done (run 44950482392); small (classes-1800-300k-verysmall) defined and dispatched | Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k. |
 | `reborn-variety` | [#616](https://github.com/diegoami/borg-zoo/issues/616) | 4 | defined (pilot) | Variety, more Recall and Phase Door (borg-reborn-rs #863) on 4290a7da: ctl, shipped, variety, kit, classes-18 at 300k. |
 | `reborn-throwpb` | [#618](https://github.com/diegoami/borg-zoo/issues/618) | 2 | defined (pilot) | Thrown-object point-blank divisor (borg-reborn-rs #870) on e037588b: inherit (0) against throw1 (1), classes-18. |
+| `reborn-lightbel` | [#625](https://github.com/diegoami/borg-zoo/issues/625) | 3 | defined (pilot) | Engine light radius (#877) and unseen belief (#879) on a516df64: ctl, light1, light1-belief, classes-18. |
+| `reborn-loneslow` | [#626](https://github.com/diegoami/borg-zoo/issues/626) | 11 | defined (pilot) | borg-reborn-rs #878 (PR #891) on 296adfbf: 11 arms (lone slow attack, danger without fear, faint, unseen-bump phase, breeder bonus), classes-18. |
+| `reborn-bhold` | [#627](https://github.com/diegoami/borg-zoo/issues/627) | 4 | defined (pilot) | Slow-breeder hold rule (#882, PR #893) on 6062b84a in the breeders-x4 world: ctl, p4, hold, p6, classes-18. |
 
 ### `heal-attack-4`
 
@@ -1785,6 +1788,51 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-throwpb-inherit` | 0 |
 | `reborn-throwpb-throw1` | 1 |
 
+### `reborn-lightbel`
+
+Engine light radius (#877) and unseen belief (#879) on a516df64: ctl, light1, light1-belief, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_cave_light_engine_radius` | `borg_param_unseen_belief` |
+| --- | --- | --- |
+| `reborn-lightbel-ctl` | – | – |
+| `reborn-lightbel-light1` | 1 | – |
+| `reborn-lightbel-light1-belief` | 1 | 1 |
+
+### `reborn-loneslow`
+
+borg-reborn-rs #878 (PR #891) on 296adfbf: 11 arms (lone slow attack, danger without fear, faint, unseen-bump phase, breeder bonus), classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_reserve_faint_percent` | `borg_param_attack_reserve_spell_damage_only` | `borg_param_caution_unseen_bump_phase_min_danger` | `borg_param_caution_unseen_bump_phase_turns` | `borg_param_danger_breeder_melee_extra_tenths` | `borg_param_escape_phase_lost_damage_only` | `borg_param_lone_slow_attack` |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-loneslow-ctl` | – | – | – | – | – | – | – |
+| `reborn-loneslow-lone` | – | – | – | – | – | – | 1 |
+| `reborn-loneslow-phase-nofear` | – | – | – | – | – | 1 | – |
+| `reborn-loneslow-reserve-nofear` | – | 1 | – | – | – | – | – |
+| `reborn-loneslow-faint25` | 25 | – | – | – | – | – | – |
+| `reborn-loneslow-bump-fresh` | – | – | – | 20 | – | – | – |
+| `reborn-loneslow-bump-danger` | – | – | 5 | – | – | – | – |
+| `reborn-loneslow-breeder5` | – | – | – | – | 5 | – | – |
+| `reborn-loneslow-breeder0` | – | – | – | – | 0 | – | – |
+| `reborn-loneslow-all` | 25 | 1 | 5 | 20 | – | 1 | 1 |
+| `reborn-loneslow-all-breeder5` | 25 | 1 | 5 | 20 | 5 | 1 | 1 |
+
+### `reborn-bhold`
+
+Slow-breeder hold rule (#882, PR #893) on 6062b84a in the breeders-x4 world: ctl, p4, hold, p6, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`, `borg_world = breeders-x4`.
+
+| Profile | `borg_param_caution_breeder_hold` | `borg_param_caution_breeder_policy` |
+| --- | --- | --- |
+| `reborn-bhold-ctl` | – | – |
+| `reborn-bhold-p4` | – | 4 |
+| `reborn-bhold-hold` | 1 | -1 |
+| `reborn-bhold-p6` | – | 6 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1864,6 +1912,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_preference_warrior_projectile_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
 | `borg_param_attack_preference_warrior_spell_permille` | 500, 750, not set | `reborn-attack-focus` |  |
 | `borg_param_attack_preference_warrior_thrown_permille` | 1000, 1100, 1200, 1300, not set | `heal-attack-4`, `reborn-attack-by-class`, `reborn-bundle` |  |
+| `borg_param_attack_reserve_faint_percent` | 25, not set | `reborn-loneslow` |  |
+| `borg_param_attack_reserve_spell_damage_only` | 1, not set | `reborn-loneslow` |  |
 | `borg_param_attack_speed_fight_danger_tenths` | 30, 60, not set | `reborn-bundle` |  |
 | `borg_param_attack_throw_as_melee` | 0, not set | `reborn-shipcheck-b895` |  |
 | `borg_param_attack_throw_point_blank_divisor` | 0, 1 | `reborn-throwpb` |  |
@@ -1878,7 +1928,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_breeder_boost_danger_tenths` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_breeder_easy_escape_steps` | 3, 10, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_breeder_exit` | 1, not set | `reborn-breeder-world-x4` |  |
-| `borg_param_caution_breeder_policy` | 0, 1, 2, 3, 4, 5, not set | `reborn-breeder-policy-x4`, `reborn-breederpol` |  |
+| `borg_param_caution_breeder_hold` | 1, not set | `reborn-bhold` |  |
+| `borg_param_caution_breeder_policy` | -1, 0, 1, 2, 3, 4, 5, 6, not set | `reborn-breeder-policy-x4`, `reborn-breederpol`, `reborn-bhold` |  |
 | `borg_param_caution_breeder_stoppable` | 0, 1, not set | `reborn-breeder-stoppable`, `reborn-breederstop-dbc`, `reborn-breeder-world-x4` |  |
 | `borg_param_caution_confused_clw_cure` | 1, not set | `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly` |  |
 | `borg_param_caution_confused_cure_before_walk` | 1, 2, not set | `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly` |  |
@@ -1925,9 +1976,13 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_town_scary_levels_less` | 6, 11, not set | `reborn-townkos` |  |
 | `borg_param_caution_twitch_avoid_lava` | 0, 1, not set | `reborn-597` |  |
 | `borg_param_caution_unseen_bump_heal_hp_percent` | 0, not set | `reborn-sloo` |  |
+| `borg_param_caution_unseen_bump_phase_min_danger` | 5, not set | `reborn-loneslow` |  |
+| `borg_param_caution_unseen_bump_phase_turns` | 20, not set | `reborn-loneslow` |  |
 | `borg_param_caution_unseen_bump_response` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_unseen_bump_turns` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3`, `reborn-townhunt` |  |
+| `borg_param_cave_light_engine_radius` | 1, not set | `reborn-lightbel` |  |
+| `borg_param_danger_breeder_melee_extra_tenths` | 0, 5, not set | `reborn-loneslow` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_fail` | 0, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_max_danger_divisor` | 1, 4, not set | `reborn-bless` |  |
@@ -1935,6 +1990,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_fox_form_town` | 1, not set | `reborn-town-switch-screen` |  |
 | `borg_param_escape_phase_adjacent_rule` | 0, 1, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
 | `borg_param_escape_phase_antisummon_delay` | 0, not set | `reborn-phase-thresholds` |  |
+| `borg_param_escape_phase_lost_damage_only` | 1, not set | `reborn-loneslow` |  |
 | `borg_param_escape_phase_lost_danger_percent` | 100, not set | `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
 | `borg_param_escape_phase_lost_test` | 0, 1, 2, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape`, `reborn-dungeon-switch-screen` |  |
 | `borg_param_escape_phase_ordinary_danger_tenths` | 5, 20, not set | `reborn-phase-thresholds` |  |
@@ -1972,6 +2028,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_light_detect_evil_spell_min_level__ranger` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__rogue` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__warrior` | 5, 10, not set | `reborn-low-level-detection` |  |
+| `borg_param_lone_slow_attack` | 1, not set | `reborn-loneslow` |  |
 | `borg_param_prepared_clevel_depth_margin` | -2, 2, not set | `reborn-dive-gates-768` |  |
 | `borg_param_prepared_cure_min` | 0, 4, not set | `reborn-prepared` |  |
 | `borg_param_prepared_dl2_min_hp` | 23, 38, not set | `reborn-bundle`, `reborn-prepared` |  |
@@ -2168,6 +2225,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_store_only_overweight` | 0, 1, not set | `reborn-store-overweight`, `reborn-shipcheck-b895` |  |
 | `borg_param_town_unseen_percent` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_param_town_variety_min_depth` | 0, not set | `reborn-variety` |  |
+| `borg_param_unseen_belief` | 1, not set | `reborn-lightbel` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
 | `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, 5 lines, 7 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters`, `reborn-attacksight`, `reborn-killers`, `reborn-confusion` |  |
 | `borg_town_attack_turns` | 50, not set | `reborn-casters`, `reborn-crow-escape` |  |

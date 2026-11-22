@@ -1,0 +1,49 @@
+# borg-zoo#627: the slow-breeder hold rule of borg-reborn-rs PR #893 (#882) in the breeders-x4 world, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-breeder-hold-pilot.yaml
+name: reborn-breeder-hold-pilot
+issue: 627
+question: >-
+  In the breeders-x4 world on borg-reborn-rs 6062b84a (PR #893), does the slow-breeder rule "hold, or cut the known way out;
+  never retreat into the colony" (caution_breeder_policy -1 with caution_breeder_hold 1), or policy 4 or 6, save the games lost
+  to breeders against the shipped policy 3?
+tier: pilot            # classes-18 in the breeders-x4 world, 100,000 turns; the #482 starts 1-360 and a normal-world slice after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-breeder-hold-6062b84a
+  repository: diegoami/borg-reborn-rs
+  ref: 6062b84a4e2da6c7d810ca42ba9f702a91e5c05d
+  label: "borg-reborn-rs task/T882-breeder-hold 6062b84a (PR #893, tree 7f3878f5; contains track-p 8c2483ec): shipped caution_breeder_policy 3, caution_breeder_hold 0, borg_world none; harness/borg.txt d9a122e0..., worlds/breeders-x4.txt a546fb51..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+  worlds:   # harness/worlds/NAME.txt, made per cell by scripts/make-world.py (borg-zoo#482)
+    breeders-x4: a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_world: breeders-x4
+
+profile_prefix: reborn-bhold
+arms:
+  ctl: {}
+  p4: {borg_param_caution_breeder_policy: 4}
+  hold: {borg_param_caution_breeder_policy: -1, borg_param_caution_breeder_hold: 1}
+  p6: {borg_param_caution_breeder_policy: 6}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#627; zoo owner, 2026-11-22: "do all of them in the order you think right" (the classes-18 pilot only; small + medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#627; borg-reborn-rs #882, PR #893). Four arms on one
+  build in the breeders-x4 world (borg_world breeders-x4 in every arm), classes-18 gate first (18 starts per arm, 72 cells),
+  100,000 turns, evidence retained; then the #482 starts 1-360 in the world and a normal-world slice (small + medium) for harm,
+  on the owner's go. Gate: no config_error; one binary; every cell records world breeders-x4 with the same
+  borg_world_data_sha256 in every arm; each arm's values in params-core.json; every cell ends in death, turn_cap or
+  borg_stopped; stalls apart; death bundles reproduced with the same world. Primary: deaths with a breeder as killer or last
+  attacker (including poison with a breeder as last attacker). Secondary: all deaths, mean CL and max depth, unfinished games,
+  the "Retreating to"/"Backing up" notes on levels with breeders, and the rule's notes ("Cutting out through the breeders",
+  "Holding against the breeders", "Leaving the breeders by the stairs"). Paired rescued and newly killed against ctl (exact
+  McNemar), per class (Priest, Mage, Necromancer, Druid apart). A breeder world is a stress test; a confirmation needs a
+  block not yet read. Directional (RULES 14).

@@ -1,0 +1,42 @@
+# borg-zoo#625: engine light radius (#877) and shooting at believed unseen monsters (#879), borg-reborn-rs PRs #888/#890, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-light-belief-pilot.yaml
+name: reborn-light-belief-pilot
+issue: 625
+question: >-
+  On borg-reborn-rs a516df64 (track-p 7e21967b + #888 + #890), does marking the grids lit by the Borg's own light at the
+  engine's radius (cave_light_engine_radius 1), alone and with shooting at monsters believed in the dark (unseen_belief 1),
+  save deaths, above all to worm masses and monsters in the dark, against the shipped play?
+tier: pilot            # classes-18, 100,000 turns; small + medium (classes-1800 starts 1-360) after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-light-belief-a516df64
+  repository: diegoami/borg-reborn-rs
+  ref: a516df64a285ecf2b6606d550242dc5445b80014
+  label: "borg-reborn-rs task/T879-unseen-belief a516df64 (track-p 7e21967b + #888 + #890): cave_light_engine_radius and unseen_belief compiled and shipped 0; shipped harness/borg.txt 32a20aaf..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-lightbel
+arms:
+  ctl: {}
+  light1: {borg_param_cave_light_engine_radius: 1}
+  light1-belief: {borg_param_cave_light_engine_radius: 1, borg_param_unseen_belief: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#625; zoo owner, 2026-11-22: "do all of them in the order you think right" (the classes-18 pilot only; small + medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#625; borg-reborn-rs #877, #879, PRs #888, #890).
+  Three arms on one build, classes-18, 18 starts per arm (54 cells), 100,000 turns, evidence retained. Every switch is shipped 0:
+  ctl is today's play. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death,
+  turn_cap or borg_stopped; stalls apart; identical plays per arm (an arm equal to ctl did not exercise its switch).
+  Report per arm and class: deaths and causes (worm masses and monsters in the dark apart), CL and DL, paired rescued and
+  newly killed against ctl; for light1-belief the "# Unseen target (#879)" notes per game and how many of those shots hit (a hit
+  or death message within the next turn). unseen_max_age, unseen_decay_percent and unseen_max_shots are hypotheses. P7's tactical
+  endpoint is deaths by 100,000 turns with mean CL and depth inside a margin fixed before the comparison. Directional (RULES 14).

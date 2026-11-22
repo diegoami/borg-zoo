@@ -1746,6 +1746,48 @@
         "reborn-throwpb-throw1"
       ],
       "runs": []
+    },
+    "reborn-lightbel": {
+      "issue": 625,
+      "status": "defined (pilot)",
+      "what": "Engine light radius (#877) and unseen belief (#879) on a516df64: ctl, light1, light1-belief, classes-18.",
+      "profiles": [
+        "reborn-lightbel-ctl",
+        "reborn-lightbel-light1",
+        "reborn-lightbel-light1-belief"
+      ],
+      "runs": []
+    },
+    "reborn-loneslow": {
+      "issue": 626,
+      "status": "defined (pilot)",
+      "what": "borg-reborn-rs #878 (PR #891) on 296adfbf: 11 arms (lone slow attack, danger without fear, faint, unseen-bump phase, breeder bonus), classes-18.",
+      "profiles": [
+        "reborn-loneslow-ctl",
+        "reborn-loneslow-lone",
+        "reborn-loneslow-phase-nofear",
+        "reborn-loneslow-reserve-nofear",
+        "reborn-loneslow-faint25",
+        "reborn-loneslow-bump-fresh",
+        "reborn-loneslow-bump-danger",
+        "reborn-loneslow-breeder5",
+        "reborn-loneslow-breeder0",
+        "reborn-loneslow-all",
+        "reborn-loneslow-all-breeder5"
+      ],
+      "runs": []
+    },
+    "reborn-bhold": {
+      "issue": 627,
+      "status": "defined (pilot)",
+      "what": "Slow-breeder hold rule (#882, PR #893) on 6062b84a in the breeders-x4 world: ctl, p4, hold, p6, classes-18.",
+      "profiles": [
+        "reborn-bhold-ctl",
+        "reborn-bhold-p4",
+        "reborn-bhold-hold",
+        "reborn-bhold-p6"
+      ],
+      "runs": []
     }
   }
 }
