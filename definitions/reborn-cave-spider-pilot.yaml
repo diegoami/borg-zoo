@@ -1,0 +1,47 @@
+# borg-zoo#652: five switches from the cave-spider death (borg-reborn-rs #913 #914 #915 #916 #941), 67a0c69d, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-cave-spider-pilot.yaml
+name: reborn-cave-spider-pilot
+issue: 652
+question: >-
+  On borg-reborn-rs 67a0c69d (track-p 86843a79 plus PRs #943-#947), do the five switches from the stats-ban death of seed 2008390085
+  (the speed flag following the engine timer, the emergency Speed potion, no one-grid retreat from a faster monster, grouped monster
+  names, the fast-fragile contact cap) save early deaths, one at a time and together?
+tier: pilot            # classes-18, 100,000 turns; small + medium (classes-1800 starts 1-360) after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-cave-spider-67a0c69d
+  repository: diegoami/borg-reborn-rs
+  ref: 67a0c69daf92e794508b59c24e3f092ef9cf04e2
+  label: "borg-reborn-rs claude/happy-brahmagupta-2jcsa3 67a0c69d (track-p 86843a79 + PRs #943 #944 #945 #946 #947): the five switches compiled and shipped 0; harness/borg.txt 0de1d27c..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-cavesp
+arms:
+  ctl: {}
+  sync: {borg_param_trait_timed_sync: 1}
+  sync-speed: {borg_param_trait_timed_sync: 1, borg_param_caution_emergency_speed_danger_percent: 50}
+  retreat: {borg_param_caution_retreat_from_faster: 1}
+  grouped: {borg_param_kill_grouped_names: 1}
+  stats: {borg_param_fast_fragile_by_stats: 1}
+  stats-contact: {borg_param_fast_fragile_by_stats: 1, borg_param_fast_fragile_contact_max: 1}
+  all: {borg_param_trait_timed_sync: 1, borg_param_caution_emergency_speed_danger_percent: 50, borg_param_caution_retreat_from_faster: 1, borg_param_kill_grouped_names: 1, borg_param_fast_fragile_contact_max: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs owner ("process these issues"), filed as borg-zoo#652; zoo owner, 2026-11-22: "yes do them" (the pilot only; small + medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#652; borg-reborn-rs #913-#916, #941). Eight arms on one build,
+  classes-18, 18 starts per arm (144 cells), 100,000 turns, evidence retained; every switch is shipped 0, so ctl is track-p's play; stats
+  is the reference of stats-contact. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death,
+  turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (trait_timed_sync may move many games). Report per arm and
+  class: deaths and causes, CL and depth, paired rescued and newly killed against ctl (stats-contact against stats); for sync and
+  sync-speed the Speed potions drunk per game ("# Attempting to cast Speed", "# Emergency Speed") and deaths with Speed still in the pack;
+  for retreat the "# No retreat:" notes; for stats-contact the "# Fast-fragile: N marked attackers in contact" notes. The seed 2008390085 is a
+  classes-1800 start. If capacity is short: ctl, sync, sync-speed, retreat, all first. Small + medium only on the owner's go. Directional (RULES 14).

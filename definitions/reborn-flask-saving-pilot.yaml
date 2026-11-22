@@ -1,0 +1,52 @@
+# borg-zoo#649: from the issue's definition. Write the catalogue entries with: python3 -m zoo define definitions/reborn-flask-saving-pilot.yaml
+name: reborn-flask-saving-pilot
+issue: 649
+question: >-
+  On borg-reborn-rs bf077c4a (#912, on track-p 9085c266), does a Borg that keeps its flasks of oil while melee is enough
+  (attack_flask_saving 2: adjacent monsters and ones coming to melee anyway) play the same or better than the shipped
+  Borg, which throws whenever a flask rates highest? And are the melee classes' point-blank overrides (#901) still needed
+  once it does?
+tier: pilot            # classes-18, 300,000 engine turns
+suites: [classes-18-300k]
+
+specimen:
+  name: 4.2.6-reborn-rust-flask-saving-bf077c4a
+  repository: diegoami/borg-reborn-rs
+  ref: bf077c4aa2fa1455229acf2c1be7ee2a9d747b8c
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+  label: >-
+    borg-reborn-rs task/T912-flask-saving bf077c4a (PR #925), on track-p 9085c266 (#904 merged: confused attack by
+    direction 1; point-blank divisor 1 for casters, 0 for Warrior, Blackguard, Paladin, Rogue). Adds attack_flask_saving
+    (0-2, shipped 0), attack_flask_melee_rounds 3, attack_flask_danger_percent 50.
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-flask
+arms:
+  ctl: {}                                            # as shipped
+  save2:
+    borg_param_attack_flask_saving: 2
+  save2-noov:                                        # and without #901's melee-class overrides
+    borg_param_attack_flask_saving: 2
+    borg_param_attack_throw_point_blank_divisor__warrior: 1
+    borg_param_attack_throw_point_blank_divisor__blackguard: 1
+    borg_param_attack_throw_point_blank_divisor__paladin: 1
+    borg_param_attack_throw_point_blank_divisor__rogue: 1
+
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#649; zoo owner, 2026-11-22: "yes do them" (the pilot only; small + medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Pilot (classes-18, 2 starts per class, 300,000 turns): the gate is that no cell has a config_error and every game
+  ends in death or at the cap. Everything is directional; a claim needs a fresh seed block (RULES 14). Pairs: save2
+  against ctl, save2-noov against ctl and against save2 (the overrides). Primary measures, fixed here, per class:
+  (1) flasks of oil thrown per game, adjacent and at range; (2) flasks carried at each town departure and return, and
+  games that run out of light fuel or flasks; (3) deaths, with rescued and newly killed pairs against ctl, and deaths
+  within 20 turns of a fight where a flask was saved; (4) HP lost per kill and turns per kill against monsters the
+  shipped Borg throws at; (5) mean max CL and depth, and alive at the cap.
