@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-variety-pilot",
+  "issue": 616,
+  "definition": "definitions/reborn-variety-pilot.yaml",
+  "question": "On borg-reborn-rs 4290a7da (#863, stacked on #864), do the shipped Word of Recall and Phase Door purchases (a larger reserve, a lower gold floor), the staples' decay and the prepared remedies, started below the first level, keep the Borg stocked with what it uses and add variety, and which of the two parts does it?",
+  "description": "On borg-reborn-rs 4290a7da (#863, stacked on #864), do the shipped Word of Recall and Phase Door purchases (a larger reserve, a lower gold floor), the staples' decay and the prepared remedies, started below the first level, keep the Borg stocked with what it uses and add variety, and which of the two parts does it? Generated from definitions/reborn-variety-pilot.yaml: 4 arms on 4.2.6-reborn-rust-variety-4290a7da, suite classes-18-300k.",
+  "prespecified": "Pilot (classes-18, 2 starts per class, 300,000 turns): the gate is that no cell has a config_error, the class lines\nare written in every arm, and every game ends in death or at the cap. Everything is directional; a claim needs a\nfresh seed block (RULES 14). Primary measures, fixed here: (1) stocked: the share of town departures after the first\nthat carry no Word of Recall, and that carry 5 or fewer Phase Doors, per class; (2) situations covered at\ndeparture: of Detect Invisible, Remove Curse, a poison cure, a confusion cure and a fear cure, how many the pack\nholds at least one of, per visit after the first; (3) deaths by cause (poison, invisible attackers, curses,\nrunning out of escapes or healing) with rescued and newly killed pairs against ctl; (4) mean max CL and depth,\nand alive at the cap.",
+  "specimens": [
+    "4.2.6-reborn-rust-variety-4290a7da"
+  ],
+  "profiles": [
+    "reborn-var-ctl",
+    "reborn-var-shipped",
+    "reborn-var-variety",
+    "reborn-var-kit"
+  ],
+  "suites": [
+    "classes-18-300k"
+  ],
+  "control": "4.2.6-reborn-rust-variety-4290a7da",
+  "control_profile": "reborn-var-ctl",
+  "owner_authorization": "2026-11-21: borg-reborn-rs owner (#863: \"we can try it like that ... but we need test in the zoo\"), filed as borg-zoo#616; zoo owner, 2026-11-21: \"dispatch all the waiting follow-ups\" and \"start all open pilots\" (the classes-18-300k pilot only; a small tier after the gate and the owner).",
+  "retain_evidence": true
+}

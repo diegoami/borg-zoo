@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-throw-pb-pilot",
+  "issue": 618,
+  "definition": "definitions/reborn-throw-pb-pilot.yaml",
+  "question": "On borg-reborn-rs e037588b (task/T870-throw-point-blank, on accepted main f57499d0), does a separate point-blank divisor for thrown objects (attack_throw_point_blank_divisor 1: no native throw point-blank penalty), against the compiled 0 that inherits the arrow divisor, change deaths, progress or the oil thrown?",
+  "description": "On borg-reborn-rs e037588b (task/T870-throw-point-blank, on accepted main f57499d0), does a separate point-blank divisor for thrown objects (attack_throw_point_blank_divisor 1: no native throw point-blank penalty), against the compiled 0 that inherits the arrow divisor, change deaths, progress or the oil thrown? Generated from definitions/reborn-throw-pb-pilot.yaml: 2 arms on 4.2.6-reborn-rust-throw-pb-e037588b, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#618; borg-reborn-rs #870). Same pinned source in both\narms, all other resolved settings identical; arrows keep attack_arrow_point_blank_divisor. Pilot (RULES 16) on classes-18,\n18 starts per arm (36 cells), 100,000 turns, evidence retained; then small + medium (classes-1800 starts 1-360, 360 paired\nstarts) on the owner's go.\nGate: no config_error; one binary; params-core.json and settings-resolved.json record the intended resolved throw values\n(inherit: 0 resolving to the arrow divisor, throw1: 1); every cell ends in death, turn_cap or borg_stopped; stalls apart.\nPrimary (tactical): deaths by 100,000 turns, all attempts retained. Progress guardrails: mean CL and mean max depth of\nthrow1 may each fall by no more than 0.25 against inherit. Report per class and in aggregate; rescued and newly killed\npairs, keys-identical pairs and denominators; every unfinished game. Diagnostics: oil thrown per run (inventory use plus\n\"Throwing painful object\" notes); deaths to fast monsters, and the cases with a visible awake fast monster adjacent at the\nlast recorded decision before death (adjacency and speed read from the trace and screen, unobservable cases stated as such,\nnever inferred from the cause name); changed native throw choices against changed scores only. Named case: start 1705507033\n(race 7, class 4). The fast-fragile planner already bypasses conservation policy. Not a claim of improvement: a\nconfirmation needs a new unopened seed block (classes-1800-b has been read).",
+  "specimens": [
+    "4.2.6-reborn-rust-throw-pb-e037588b"
+  ],
+  "profiles": [
+    "reborn-throwpb-inherit",
+    "reborn-throwpb-throw1"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-throw-pb-e037588b",
+  "control_profile": "reborn-throwpb-inherit",
+  "owner_authorization": "2026-11-22: owner through borg-reborn-rs #870, filed as borg-zoo#618; zoo owner, 2026-11-22: \"dispatch all the waiting follow-ups\" / \"start all open pilots\" (a classes-18 pilot; small + medium after the gate and the owner).",
+  "retain_evidence": true
+}
