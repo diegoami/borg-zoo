@@ -1,0 +1,45 @@
+# borg-zoo#679 (scenario companion of #632): the flight Recall blow model in the breeder worlds, 201d56eb, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-recall-blow-worlds-pilot.yaml
+name: reborn-recall-blow-worlds-pilot
+issue: 679
+question: >-
+  In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs 201d56eb (PR #892), does the flight Recall blow model (poison priced as HP, status blows by
+  their dice, a breeder's risk never refusing Recall) save the games in which the old rule refused Recall against worm masses, where the normal world
+  changed no outcome in 360 starts? Each world has its own control.
+tier: pilot            # classes-18, 100,000 turns, both worlds (RULES 21)
+
+specimen:
+  name: 4.2.6-reborn-rust-recall-blow-worlds-201d56eb
+  repository: diegoami/borg-reborn-rs
+  ref: 201d56ebcbd912355580a53ca3d8179f3b6fffba
+  label: "borg-reborn-rs task/880-recall-poison 201d56eb (PR #892; the build of reborn-recall-blow-pilot) with its breeders-x4 and breeders-x8 worlds pinned (RULES 21); harness/borg.txt eccabbbc..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+  worlds:
+    breeders-x4: a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8
+    breeders-x8: 9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-blloww
+arms:
+  blow-off-x4: {borg_world: breeders-x4, borg_param_caution_recall_blow_model: 0}
+  blow-on-x4: {borg_world: breeders-x4}
+  blow-off-x8: {borg_world: breeders-x8, borg_param_caution_recall_blow_model: 0}
+  blow-on-x8: {borg_world: breeders-x8}
+control: [blow-off-x4]
+owner_authorization: >-
+  2026-11-22: zoo owner, "yes do it" (the breeder-world pilot of #632, the scenario companion #679; RULES 21).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any game of this build was played in these worlds (borg-zoo#679, companion of #632; RULES 21). blow-off against blow-on in
+  breeders-x4 and in breeders-x8 (4 profiles), classes-18, 18 starts each (72 cells), 100,000 turns, evidence retained. A world's arms are compared only
+  within that world. Gate: no config_error; one binary; every cell records its world with the same borg_world_data_sha256 in every arm of that world; each
+  arm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls apart; identical plays. Report per world, arm and class:
+  deaths and causes (breeders and poison apart), CL and DL, paired rescued and newly killed; per arm "# Refusing flight Recall" notes per game (both
+  reasons) and flight Recall reads, the "# Flight Recall forecast: ... (#880)" notes, deaths during a pending Recall. A breeder world is a stress test; a
+  lead needs the normal-world result of #632 (no outcome changed in 360 starts) to be read with it. Directional (RULES 14).

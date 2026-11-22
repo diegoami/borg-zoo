@@ -3086,6 +3086,40 @@
         "patches-x4": "b28ef5dd21f69a621521e774f70b7336dcac84d5d30d6177b854d5377a52233c",
         "patches-x8": "1298c38d85f5f5f7a2c4c84b934362e5e1444f4b4d8ca59a13c9f9b16f197806"
       }
+    },
+    "4.2.6-reborn-rust-lone-slow-worlds-296adfbf": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "296adfbf1dfaeab22b254b616654176a9f44e091",
+      "label": "borg-reborn-rs task/T878-attack-on-sight 296adfbf (PR #891; the build of reborn-lone-slow-pilot) with its breeders-x4 and breeders-x8 worlds pinned (RULES 21); harness/borg.txt 0e8a3be0..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      },
+      "worlds": {
+        "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8",
+        "breeders-x8": "9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de"
+      }
+    },
+    "4.2.6-reborn-rust-recall-blow-worlds-201d56eb": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "201d56ebcbd912355580a53ca3d8179f3b6fffba",
+      "label": "borg-reborn-rs task/880-recall-poison 201d56eb (PR #892; the build of reborn-recall-blow-pilot) with its breeders-x4 and breeders-x8 worlds pinned (RULES 21); harness/borg.txt eccabbbc..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      },
+      "worlds": {
+        "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8",
+        "breeders-x8": "9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de"
+      }
     }
   }
 }

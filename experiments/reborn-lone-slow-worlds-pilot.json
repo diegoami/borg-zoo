@@ -1,0 +1,31 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-lone-slow-worlds-pilot",
+  "issue": 678,
+  "definition": "definitions/reborn-lone-slow-worlds-pilot.yaml",
+  "question": "In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs 296adfbf (PR #891), do the switches of #878 (attack on sight on a lone slow monster with the best ranged attack; the Phase Door verdict and the reserve spell read the danger without fear; no reserve cast that faints; the unseen-bump Phase only when fresh or dangerous; the breeder melee bonus 5) save the white worm mass games they were written for, where the normal world shows only a few such games? Each world has its own control.",
+  "description": "In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs 296adfbf (PR #891), do the switches of #878 (attack on sight on a lone slow monster with the best ranged attack; the Phase Door verdict and the reserve spell read the danger without fear; no reserve cast that faints; the unseen-bump Phase only when fresh or dangerous; the breeder melee bonus 5) save the white worm mass games they were written for, where the normal world shows only a few such games? Each world has its own control. Generated from definitions/reborn-lone-slow-worlds-pilot.yaml: 10 arms on 4.2.6-reborn-rust-lone-slow-worlds-296adfbf, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any game of this build was played in these worlds (borg-zoo#678, companion of #626; RULES 21). Five arms (the requester's short\nlist: ctl, lone, phase-nofear, breeder5, all) in breeders-x4 and in breeders-x8 (10 profiles), classes-18, 18 starts each (180 cells), 100,000 turns,\nevidence retained. A world's arms are compared only within that world (ctl-x4 against x4 arms, ctl-x8 against x8 arms). Gate: no config_error; one binary;\nevery cell records its world with the same borg_world_data_sha256 in every arm of that world; each arm's values in params-core.json; every cell ends in\ndeath, turn_cap or borg_stopped; stalls apart; identical plays. Report per world, arm and class: deaths and causes (breeders and poison apart), CL and\nDL, paired rescued and newly killed against the world's ctl; per arm Phase Doors read, retreats and back-ups next to a breeder, reserve-spell casts and\nfaints, the \"(lone and slow ...) (#878)\" notes. A breeder world is a stress test: a lead here needs the normal-world tiers of #626 (small + medium +\nbig, already run) before a shipped value changes. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-lone-slow-worlds-296adfbf"
+  ],
+  "profiles": [
+    "reborn-lonew-ctl-x4",
+    "reborn-lonew-lone-x4",
+    "reborn-lonew-phase-nofear-x4",
+    "reborn-lonew-breeder5-x4",
+    "reborn-lonew-all-x4",
+    "reborn-lonew-ctl-x8",
+    "reborn-lonew-lone-x8",
+    "reborn-lonew-phase-nofear-x8",
+    "reborn-lonew-breeder5-x8",
+    "reborn-lonew-all-x8"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-lone-slow-worlds-296adfbf",
+  "control_profile": "reborn-lonew-ctl-x4",
+  "owner_authorization": "2026-11-22: zoo owner, \"yes do it\" (the breeder-world pilots of #626, the scenario companion #678; RULES 21).",
+  "retain_evidence": true
+}
