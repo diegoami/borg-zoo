@@ -161,6 +161,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-retreat-flight` | [#657](https://github.com/diegoami/borg-zoo/issues/657) | 2 | defined (pilot) | Stair routing after a tactical retreat (#932, PR #964) on e43b6d87: ctl, hold, classes-18 at 300k. |
 | `reborn-bfol` | [#692](https://github.com/diegoami/borg-zoo/issues/692) | 14 | defined (pilot in the breeder worlds) | The three follow-ups of #878 (#1008-#1010) on bfc24d10: 7 arms in white-worm-mass-x4 and breeders-x4, classes-18. |
 | `reborn-book` | [#693](https://github.com/diegoami/borg-zoo/issues/693) | 2 | defined (pilot) | Keep the first spellbook before its first spell (#1004, PR #1019) on 5ad50d96: ctl, la4, small Rangers and Rogues. |
+| `reborn-trackp-206cf4e7` | [#695](https://github.com/diegoami/borg-zoo/issues/695) | 1 | defined (baseline ladder of track-p at 206cf4e7: pilot, small-rest, medium, big, full), dispatched 2026-11-22 | Baseline of borg-reborn-rs track-p 206cf4e7 (P7 fixes folded in, the grey mushroom fixes, P8 fixes so far), shipped settings, classes-1800 (45+45+270+540+900), 100,000 turns. |
 
 ### `heal-attack-4`
 
@@ -2295,6 +2296,14 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | --- | --- |
 | `reborn-book-ctl` | – |
 | `reborn-book-la4` | 4 |
+
+### `reborn-trackp-206cf4e7`
+
+Baseline of borg-reborn-rs track-p 206cf4e7 (P7 fixes folded in, the grey mushroom fixes, P8 fixes so far), shipped settings, classes-1800 (45+45+270+540+900), 100,000 turns.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-head-shipped`.
 
 ## Settings you have built arms with
 
