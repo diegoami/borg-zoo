@@ -113,6 +113,25 @@ death" is the gear at death, from the recorder replay.
      `buy_recall_from_gold` 200 on track-p.
    - Whether the price or the #864 Recall curve explains that is inference.
 
+## Filed in borg-reborn-rs (2026-11-22)
+
+New issues, label `bug`:
+- [#980](https://github.com/diegoami/borg-reborn-rs/issues/980): emergency attack spell with no mana (592754909; f57499d0 1378676237).
+- [#981](https://github.com/diegoami/borg-reborn-rs/issues/981): rests at danger 0 under an unseen archer (1312323730).
+- [#982](https://github.com/diegoami/borg-reborn-rs/issues/982): rests at 2/17 HP with 12 CLW after a crow (2125189042).
+- [#983](https://github.com/diegoami/borg-reborn-rs/issues/983): confused melee with CLW unused; `caution_confused_clw_cure` ships 0 (17626119).
+- [#984](https://github.com/diegoami/borg-reborn-rs/issues/984): leaves town with 235 gold and no Word of Recall (312081895).
+- [#985](https://github.com/diegoami/borg-reborn-rs/issues/985): the bravery boost overrides cures while poisoned (1895660873).
+
+New cases added as comments to existing issues:
+- [#974](https://github.com/diegoami/borg-reborn-rs/issues/974): 857532386, Grip while confused by a patch.
+- [#929](https://github.com/diegoami/borg-reborn-rs/issues/929): 1194051723 and 1024822556, the guessed wall on the Borg's own grid. The source path is
+  named there.
+- [#932](https://github.com/diegoami/borg-reborn-rs/issues/932): 312081895, the `borg_flow_dark` against `borg_caution` two-step.
+- [#975](https://github.com/diegoami/borg-reborn-rs/issues/975): 282602274, a grey mold at 0 HP.
+- [#926](https://github.com/diegoami/borg-reborn-rs/issues/926): 1294425391, the heal ban at 2 HP; 1398933929, "the next turn kills" on mean
+  damage.
+
 ## What this cannot show, and what would settle it
 
 - **Whether any one change caused any one death.** The games split in the first town visit, so a seed that survives on main shows only a
