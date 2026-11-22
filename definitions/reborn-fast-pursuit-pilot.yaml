@@ -1,0 +1,51 @@
+# borg-zoo#643: borg-reborn-rs #907-#911 (hasted pursuers, the stairs walk's cost, CLW over max HP, fight-race margin, scary take), 608d9fed, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-fast-pursuit-pilot.yaml
+name: reborn-fast-pursuit-pilot
+issue: 643
+question: >-
+  On borg-reborn-rs 608d9fed (track-p 9085c266 plus PRs #920-#924), do the switches of #907-#911 (hasted pursuers priced in the
+  stairs walk and in the danger read, the walk's cost, Cure potions when the danger is over the maximum HP, the fight-race margin
+  and group allowance, taking a wanted item on a scary level) save the early deaths of the Desperate for Stairs walk (Rogue
+  381988580: 13 squares from HP 23 with 14 Phase Door and 21 Cure Light Wounds), one at a time and together?
+tier: pilot            # classes-18, 100,000 turns; small + medium (classes-1800 starts 1-360) after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-fast-pursuit-608d9fed
+  repository: diegoami/borg-reborn-rs
+  ref: 608d9fed67f3775bcd1c24a4260c14c78772cde6
+  label: "borg-reborn-rs task/T911-scary-pickup 608d9fed (track-p 9085c266 + PRs #920-#924): the switches of #907-#911 compiled and shipped 0; harness/borg.txt f72ff6a7..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-fastpur
+arms:
+  ctl: {}
+  haste: {borg_param_caution_desperate_fast_haste: 1}
+  dangerhaste: {borg_param_danger_observed_haste: 1}
+  walkcost: {borg_param_caution_desperate_walk_cost_percent: 100}
+  walkcost-dh: {borg_param_caution_desperate_walk_cost_percent: 100, borg_param_danger_observed_haste: 1}
+  healmax: {borg_param_caution_heal_lethal_over_max: 1}
+  healfirst: {borg_param_caution_heal_outmatched_before_walk: 1}
+  margin: {borg_param_caution_winning_fight_margin_percent: 20}
+  group: {borg_param_caution_winning_fight_group_percent: 100}
+  take: {borg_param_caution_scary_take_distance: 5}
+  all: {borg_param_caution_desperate_fast_haste: 1, borg_param_danger_observed_haste: 1, borg_param_caution_desperate_walk_cost_percent: 100, borg_param_caution_heal_lethal_over_max: 1, borg_param_caution_heal_outmatched_before_walk: 1, borg_param_caution_winning_fight_margin_percent: 20, borg_param_caution_winning_fight_group_percent: 100, borg_param_caution_scary_take_distance: 5}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#643; zoo owner, 2026-11-22: "resume with the experiments" (the classes-18 pilot only; small + medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#643; borg-reborn-rs #907-#911). Eleven arms on one build
+  (ctl, one arm per switch, walkcost-dh = #908 with #907, all), classes-18, 18 starts per arm (198 cells), 100,000 turns, evidence
+  retained; every new switch is shipped 0 so ctl is track-p's shipped play. Gate: no config_error; one binary; each arm's values in
+  params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm.
+  Report per arm and class: deaths and causes, CL and DL, paired rescued and newly killed against ctl; for dangerhaste whether it
+  changes early-game play broadly (it moves every danger read: count identical plays). The Rogue 381988580 is a classes-1800 start,
+  not in this pilot. Small + medium (classes-1800 starts 1-360), then big (starts 361-900) for ctl, all and the best arms, only on
+  the owner's go; if capacity is short: ctl, all, walkcost-dh, haste and healmax first. Directional (RULES 14).

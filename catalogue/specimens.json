@@ -2948,6 +2948,36 @@
       "scary_lists": {
         "scary_monsters.txt": "e0e293814e8ed9c2f3a5f0af809f479e854878e5d0eaedea37b671dd1b20f5a8"
       }
+    },
+    "4.2.6-reborn-rust-stair-unknown-ea14528a": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "ea14528a77f5d63c36e16fd8b6d3759aa0b71dc1",
+      "label": "borg-reborn-rs PR #897 head ea14528a (on track-p 4c686250; code commit 9d86ed7b): caution_stairs_flight_unknown compiled and shipped 0; harness/borg.txt 50a42b87..., scary_monsters.txt ff831d0a...; worlds breeders-x4 a546fb51... and breeders-x8 9530ff13...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      },
+      "worlds": {
+        "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8",
+        "breeders-x8": "9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de"
+      }
+    },
+    "4.2.6-reborn-rust-fast-pursuit-608d9fed": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "608d9fed67f3775bcd1c24a4260c14c78772cde6",
+      "label": "borg-reborn-rs task/T911-scary-pickup 608d9fed (track-p 9085c266 + PRs #920-#924): the switches of #907-#911 compiled and shipped 0; harness/borg.txt f72ff6a7..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
     }
   }
 }

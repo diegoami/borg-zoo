@@ -1884,6 +1884,39 @@
         "reborn-cursed-torch-shipped"
       ],
       "runs": []
+    },
+    "reborn-stairunk": {
+      "issue": 642,
+      "status": "defined (pilot)",
+      "what": "Stair flights on known grids (#881, PR #897) on ea14528a: ctl, m1, m2 in breeders-x4 and breeders-x8, classes-18.",
+      "profiles": [
+        "reborn-stairunk-ctl-x4",
+        "reborn-stairunk-m1-x4",
+        "reborn-stairunk-m2-x4",
+        "reborn-stairunk-ctl-x8",
+        "reborn-stairunk-m1-x8",
+        "reborn-stairunk-m2-x8"
+      ],
+      "runs": []
+    },
+    "reborn-fastpur": {
+      "issue": 643,
+      "status": "defined (pilot)",
+      "what": "borg-reborn-rs #907-#911 on 608d9fed: ctl, one arm per switch, walkcost-dh, all, classes-18.",
+      "profiles": [
+        "reborn-fastpur-ctl",
+        "reborn-fastpur-haste",
+        "reborn-fastpur-dangerhaste",
+        "reborn-fastpur-walkcost",
+        "reborn-fastpur-walkcost-dh",
+        "reborn-fastpur-healmax",
+        "reborn-fastpur-healfirst",
+        "reborn-fastpur-margin",
+        "reborn-fastpur-group",
+        "reborn-fastpur-take",
+        "reborn-fastpur-all"
+      ],
+      "runs": []
     }
   }
 }

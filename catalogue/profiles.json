@@ -10630,6 +10630,155 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-stairunk-ctl-x4": {
+      "description": "borg-zoo#642 (reborn-stair-unknown-pilot.yaml): arm ctl-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4"
+      }
+    },
+    "reborn-stairunk-m1-x4": {
+      "description": "borg-zoo#642 (reborn-stair-unknown-pilot.yaml): arm m1-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_stairs_flight_unknown": 1,
+        "borg_param_caution_stairs_flight_unknown_steps": 5
+      }
+    },
+    "reborn-stairunk-m2-x4": {
+      "description": "borg-zoo#642 (reborn-stair-unknown-pilot.yaml): arm m2-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_stairs_flight_unknown": 2
+      }
+    },
+    "reborn-stairunk-ctl-x8": {
+      "description": "borg-zoo#642 (reborn-stair-unknown-pilot.yaml): arm ctl-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8"
+      }
+    },
+    "reborn-stairunk-m1-x8": {
+      "description": "borg-zoo#642 (reborn-stair-unknown-pilot.yaml): arm m1-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_caution_stairs_flight_unknown": 1,
+        "borg_param_caution_stairs_flight_unknown_steps": 5
+      }
+    },
+    "reborn-stairunk-m2-x8": {
+      "description": "borg-zoo#642 (reborn-stair-unknown-pilot.yaml): arm m2-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_caution_stairs_flight_unknown": 2
+      }
+    },
+    "reborn-fastpur-ctl": {
+      "description": "borg-zoo#643 (reborn-fast-pursuit-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-fastpur-haste": {
+      "description": "borg-zoo#643 (reborn-fast-pursuit-pilot.yaml): arm haste.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_desperate_fast_haste": 1
+      }
+    },
+    "reborn-fastpur-dangerhaste": {
+      "description": "borg-zoo#643 (reborn-fast-pursuit-pilot.yaml): arm dangerhaste.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_danger_observed_haste": 1
+      }
+    },
+    "reborn-fastpur-walkcost": {
+      "description": "borg-zoo#643 (reborn-fast-pursuit-pilot.yaml): arm walkcost.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_desperate_walk_cost_percent": 100
+      }
+    },
+    "reborn-fastpur-walkcost-dh": {
+      "description": "borg-zoo#643 (reborn-fast-pursuit-pilot.yaml): arm walkcost-dh.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_desperate_walk_cost_percent": 100,
+        "borg_param_danger_observed_haste": 1
+      }
+    },
+    "reborn-fastpur-healmax": {
+      "description": "borg-zoo#643 (reborn-fast-pursuit-pilot.yaml): arm healmax.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_heal_lethal_over_max": 1
+      }
+    },
+    "reborn-fastpur-healfirst": {
+      "description": "borg-zoo#643 (reborn-fast-pursuit-pilot.yaml): arm healfirst.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_heal_outmatched_before_walk": 1
+      }
+    },
+    "reborn-fastpur-margin": {
+      "description": "borg-zoo#643 (reborn-fast-pursuit-pilot.yaml): arm margin.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_winning_fight_margin_percent": 20
+      }
+    },
+    "reborn-fastpur-group": {
+      "description": "borg-zoo#643 (reborn-fast-pursuit-pilot.yaml): arm group.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_winning_fight_group_percent": 100
+      }
+    },
+    "reborn-fastpur-take": {
+      "description": "borg-zoo#643 (reborn-fast-pursuit-pilot.yaml): arm take.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_scary_take_distance": 5
+      }
+    },
+    "reborn-fastpur-all": {
+      "description": "borg-zoo#643 (reborn-fast-pursuit-pilot.yaml): arm all.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_desperate_fast_haste": 1,
+        "borg_param_danger_observed_haste": 1,
+        "borg_param_caution_desperate_walk_cost_percent": 100,
+        "borg_param_caution_heal_lethal_over_max": 1,
+        "borg_param_caution_heal_outmatched_before_walk": 1,
+        "borg_param_caution_winning_fight_margin_percent": 20,
+        "borg_param_caution_winning_fight_group_percent": 100,
+        "borg_param_caution_scary_take_distance": 5
+      }
     }
   }
 }

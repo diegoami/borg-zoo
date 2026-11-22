@@ -1,0 +1,32 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-fast-pursuit-pilot",
+  "issue": 643,
+  "definition": "definitions/reborn-fast-pursuit-pilot.yaml",
+  "question": "On borg-reborn-rs 608d9fed (track-p 9085c266 plus PRs #920-#924), do the switches of #907-#911 (hasted pursuers priced in the stairs walk and in the danger read, the walk's cost, Cure potions when the danger is over the maximum HP, the fight-race margin and group allowance, taking a wanted item on a scary level) save the early deaths of the Desperate for Stairs walk (Rogue 381988580: 13 squares from HP 23 with 14 Phase Door and 21 Cure Light Wounds), one at a time and together?",
+  "description": "On borg-reborn-rs 608d9fed (track-p 9085c266 plus PRs #920-#924), do the switches of #907-#911 (hasted pursuers priced in the stairs walk and in the danger read, the walk's cost, Cure potions when the danger is over the maximum HP, the fight-race margin and group allowance, taking a wanted item on a scary level) save the early deaths of the Desperate for Stairs walk (Rogue 381988580: 13 squares from HP 23 with 14 Phase Door and 21 Cure Light Wounds), one at a time and together? Generated from definitions/reborn-fast-pursuit-pilot.yaml: 11 arms on 4.2.6-reborn-rust-fast-pursuit-608d9fed, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#643; borg-reborn-rs #907-#911). Eleven arms on one build\n(ctl, one arm per switch, walkcost-dh = #908 with #907, all), classes-18, 18 starts per arm (198 cells), 100,000 turns, evidence\nretained; every new switch is shipped 0 so ctl is track-p's shipped play. Gate: no config_error; one binary; each arm's values in\nparams-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm.\nReport per arm and class: deaths and causes, CL and DL, paired rescued and newly killed against ctl; for dangerhaste whether it\nchanges early-game play broadly (it moves every danger read: count identical plays). The Rogue 381988580 is a classes-1800 start,\nnot in this pilot. Small + medium (classes-1800 starts 1-360), then big (starts 361-900) for ctl, all and the best arms, only on\nthe owner's go; if capacity is short: ctl, all, walkcost-dh, haste and healmax first. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-fast-pursuit-608d9fed"
+  ],
+  "profiles": [
+    "reborn-fastpur-ctl",
+    "reborn-fastpur-haste",
+    "reborn-fastpur-dangerhaste",
+    "reborn-fastpur-walkcost",
+    "reborn-fastpur-walkcost-dh",
+    "reborn-fastpur-healmax",
+    "reborn-fastpur-healfirst",
+    "reborn-fastpur-margin",
+    "reborn-fastpur-group",
+    "reborn-fastpur-take",
+    "reborn-fastpur-all"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-fast-pursuit-608d9fed",
+  "control_profile": "reborn-fastpur-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#643; zoo owner, 2026-11-22: \"resume with the experiments\" (the classes-18 pilot only; small + medium after the gate and the owner).",
+  "retain_evidence": true
+}

@@ -1,0 +1,54 @@
+# borg-zoo#642: stair flights on known grids in breeder worlds (borg-reborn-rs #881, PR #897), ea14528a, ctl / m1 / m2 in breeders-x4 and breeders-x8, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-stair-unknown-pilot.yaml
+name: reborn-stair-unknown-pilot
+issue: 642
+question: >-
+  In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs ea14528a (PR #897, on track-p 4c686250), do stair flights that
+  refuse or pay for unknown grids (caution_stairs_flight_unknown 1 and 2) save the breeder games in which the flight walked into a
+  dead end through unseen rock, or do they find no route and cost games? Each world has its own control.
+tier: pilot            # classes-18, 100,000 turns, both worlds; small + medium (classes-1800 starts 1-360) after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-stair-unknown-ea14528a
+  repository: diegoami/borg-reborn-rs
+  ref: ea14528a77f5d63c36e16fd8b6d3759aa0b71dc1
+  label: "borg-reborn-rs PR #897 head ea14528a (on track-p 4c686250; code commit 9d86ed7b): caution_stairs_flight_unknown compiled and shipped 0; harness/borg.txt 50a42b87..., scary_monsters.txt ff831d0a...; worlds breeders-x4 a546fb51... and breeders-x8 9530ff13..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+  worlds:   # harness/worlds/NAME.txt, made per cell by scripts/make-world.py
+    breeders-x4: a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8
+    breeders-x8: 9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-stairunk
+arms:
+  ctl-x4: {borg_world: breeders-x4}
+  m1-x4: {borg_world: breeders-x4, borg_param_caution_stairs_flight_unknown: 1, borg_param_caution_stairs_flight_unknown_steps: 5}
+  m2-x4: {borg_world: breeders-x4, borg_param_caution_stairs_flight_unknown: 2}
+  ctl-x8: {borg_world: breeders-x8}
+  m1-x8: {borg_world: breeders-x8, borg_param_caution_stairs_flight_unknown: 1, borg_param_caution_stairs_flight_unknown_steps: 5}
+  m2-x8: {borg_world: breeders-x8, borg_param_caution_stairs_flight_unknown: 2}
+control: [ctl-x4]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#642; zoo owner, 2026-11-22: "resume with the experiments" (the classes-18 pilot only; small + medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#642; borg-reborn-rs #881, PR #897). Six profiles on one build,
+  classes-18, 18 starts each (108 cells), 100,000 exact engine turns, evidence retained: ctl, m1 and m2 in breeders-x4 and in
+  breeders-x8 (a world's arms are compared only within that world; the report pairs m1-x4 and m2-x4 with ctl-x4, and m1-x8 and
+  m2-x8 with ctl-x8). Gate: no config_error; one binary; every cell records its world with the same borg_world_data_sha256 in every
+  arm of that world, and each arm's two values appear in params-core.json; every cell ends in death, turn_cap or borg_stopped with
+  frozen-turn bursts classified; death bundles reproduce in the same world; the arms must play differently: if m1 or m2 is identical
+  to ctl in all 18 pilot games of a world, stop and report before the larger tiers. Primary (P7's tactical endpoint): deaths by 100,000
+  turns, all attempts retained; mean CL and mean max depth may each fall by no more than 0.25 against ctl in the same world.
+  Report per world, arm and class: deaths and causes and breeder deaths (the killer has MULTIPLY); paired rescued and newly killed
+  against ctl (exact McNemar) and identical plays; final and maximum CL, deepest level; unfinished games, stalls, timeouts and errors
+  with denominators; a RULES 18 bin. Diagnostics: stair flights per game (committed flights, and flights that found no route:
+  "Stairs not reachable"), Word of Recall reads in flight per game, breeders created and killed per game, "# Breeders cannot be stopped"
+  and "No rest: ... breeders known" per game. A breeder world is a stress test; a confirmation on a new unopened seed block comes before
+  any shipped override (classes-1800-b has been read). Directional (RULES 14).
