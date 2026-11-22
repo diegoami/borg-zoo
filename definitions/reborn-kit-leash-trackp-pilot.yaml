@@ -19,6 +19,7 @@ arms:
   leash-m0: {borg_param_kit_leash: 1, borg_param_kit_leash_min: 0, borg_param_kit_leash_power: 2}
   kit: {borg_param_kit_leash: 1, borg_param_kit_descent_min_percent: 50, borg_param_kit_leave_danger_percent: 25}
   c: {borg_param_kit_leash: 1, borg_param_kit_money_first: 1}
+  town-hunt: {borg_param_town_hunt: 1}   # owner 2026-11-22: town_hunt alone, to separate it from the kit (borg-cemetery#110)
 control: [ctl]
 owner_authorization: >-
   2026-11-22: zoo owner, "well both, but we need to regularly make a baseline full run with track-p" (the re-run of #589's lead on track-p,
@@ -27,7 +28,7 @@ extra:
   retain_evidence: true
 
 prespecified: |
-  Fixed 2026-11-22, before any result of this build was read (borg-zoo#646; #589). Five arms on the track-p head, ctl is track-p's play
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#646; #589). Six arms on the track-p head (town-hunt added 2026-11-22, before dispatch), ctl is track-p's play
   (every kit switch shipped 0). classes-18 at 100,000 turns; 18 starts per arm, paired; 100,000 turns. Gate: no config_error; one binary; each arm's values in
   params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart. Report per arm and class:
   deaths and causes, alive at the cap having reached DL5, mean CL and depth, paired rescued and newly killed against ctl (exact
