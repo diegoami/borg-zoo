@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-white-jelly-medium",
+  "issue": 654,
+  "definition": "definitions/reborn-white-jelly-medium.yaml",
+  "question": "On borg-reborn-rs 172bd671 (track-p e2d8919e plus one commit), do the four switches from the stats-ban death of seed 829474344 (a stair flight that keeps out of an immobile attacker's reach; no retreat after three undone retreats; no retreat beside an immobile attacker the Borg can kill in three turns; no retreat when poisoned without a cure) save early deaths, one at a time and together?",
+  "description": "On borg-reborn-rs 172bd671 (track-p e2d8919e plus one commit), do the four switches from the stats-ban death of seed 829474344 (a stair flight that keeps out of an immobile attacker's reach; no retreat after three undone retreats; no retreat beside an immobile attacker the Borg can kill in three turns; no retreat when poisoned without a cure) save early deaths, one at a time and together? Generated from definitions/reborn-white-jelly-medium.yaml: 4 arms on 4.2.6-reborn-rust-white-jelly-172bd671, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-22 after the pilot gate (run 45033331780: one shared death; switches act in 1-9 of 18 games) and before any result of this tier was read. Medium tier (RULES 14) on the same build:\nclasses-1800 starts 91-360 (270 starts per arm, paired), all classes, 100,000 turns, one binary, disjoint from the other tiers of the study (pool them\nas one study, RULES 14). The requester's short list: ctl, osc, kill, all.\nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by start.\nReport per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly killed against\nthe control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not retained at this tier. Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-white-jelly-172bd671"
+  ],
+  "profiles": [
+    "reborn-wjelly-ctl",
+    "reborn-wjelly-osc",
+    "reborn-wjelly-kill",
+    "reborn-wjelly-all"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-white-jelly-172bd671",
+  "control_profile": "reborn-wjelly-ctl",
+  "owner_authorization": "2026-11-22: zoo owner, \"yes do all that\" (the medium tier; the pilot gate is read and posted on the issue).",
+  "retain_evidence": false
+}

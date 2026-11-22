@@ -73,6 +73,9 @@ Consider, and keep the ones the evidence supports:
   rescued > newly killed and few identical plays. Tiers grow one at a time:
   pilot → small → medium → big → full (RULES 14). Drop the arms that showed nothing.
   Read each tier gate and get the owner's go before dispatching the next.
+- **Enriched world for a fix** (owner, 2026-11-22): for a fix aimed at one situation (a monster, a place), propose the arms twice: in a world
+  where that situation is much more frequent (`harness/worlds`, `favour = <race>` with `favour_weight`, or breeders-x4/x8) and in the normal world
+  (docs/OPEN-WORK.md, "Fixes are tested twice"). If no world exists for the monster, ask the requester for one.
 - **Always a pilot first** (RULES 16): any new arm, and any arm on a new specimen, starts
   with a pilot of exactly those arms on exactly that build. `zoo define` refuses a bigger
   tier without one. Never propose small or larger for arms that have no pilot on the
