@@ -1,0 +1,41 @@
+# borg-zoo#632: the flight Recall blow model (borg-reborn-rs #880, PR #892), 201d56eb, off against on, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-recall-blow-pilot.yaml
+name: reborn-recall-blow-pilot
+issue: 632
+question: >-
+  On borg-reborn-rs 201d56eb (PR #892, track-p 4c686250 merged), does the flight Recall survival forecast's new blow model
+  (poison priced as HP, status blows by their dice, a breeder's risk never refusing Recall, contact HP capped at the fastest
+  attackers) save the games in which the old rule refused Recall (white worm masses, poison), or does it read Recall where the
+  Borg then dies?
+tier: pilot            # classes-18, 100,000 turns; small + medium (classes-1800 starts 1-360) after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-recall-blow-201d56eb
+  repository: diegoami/borg-reborn-rs
+  ref: 201d56ebcbd912355580a53ca3d8179f3b6fffba
+  label: "borg-reborn-rs task/880-recall-poison 201d56eb (PR #892 merged with track-p 4c686250): caution_recall_blow_model compiled 0 and shipped 1; harness/borg.txt eccabbbc..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-blow
+arms:
+  blow-off: {borg_param_caution_recall_blow_model: 0}
+  blow-on: {}
+control: [blow-off]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#632; zoo owner, 2026-11-22: "continue" / "what else" (the pilot only; small + medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#632; borg-reborn-rs #880, PR #892). Two arms on one build,
+  classes-18, 18 starts per arm (36 cells), 100,000 turns, evidence retained; blow-on is shipped (the PR's play), blow-off restores
+  #758's rule. Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or
+  borg_stopped; stalls apart; identical plays. Report per arm and class: deaths and causes (breeders and poison apart), CL and DL,
+  paired rescued and newly killed against blow-off; "# Refusing flight Recall" notes per game (both reasons) and flight Recall
+  reads; for blow-on the "# Flight Recall forecast: ... (#880)" notes; deaths during a pending Recall. The two named starts
+  (Mage 461220874, Priest 399497898) are classes-1800 starts. Small + medium only on the owner's go. Directional (RULES 14).

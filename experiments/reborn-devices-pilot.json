@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-devices-pilot",
+  "issue": 633,
+  "definition": "definitions/reborn-devices-pilot.yaml",
+  "question": "On borg-reborn-rs 3020d451 (#895, track-p 4c686250), does a Borg that keeps and buys charged wands, staves and rods as variety (the shipped settings) carry more usable devices and play the same or better than one that values them only on the shared curves?",
+  "description": "On borg-reborn-rs 3020d451 (#895, track-p 4c686250), does a Borg that keeps and buys charged wands, staves and rods as variety (the shipped settings) carry more usable devices and play the same or better than one that values them only on the shared curves? Generated from definitions/reborn-devices-pilot.yaml: 2 arms on 4.2.6-reborn-rust-devices-3020d451, suite classes-18-300k.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#633; borg-reborn-rs #895, PR #898). Two arms on one build,\nclasses-18 at 300,000 turns, 18 starts per arm (36 cells), evidence retained; ctl sets the one new switch back. Gate: no\nconfig_error; one binary; every game ends in death or at the cap; stalls apart. Primary measures, fixed here: (1) learned, charged\ndevices carried at each town departure after the first, by situation (attack, escape, detection, control), per class; (2)\ndevices bought and sold per game, charged against empty; (3) deaths with rescued and newly killed pairs against ctl; (4) mean\nmax CL and depth, and alive at the cap. Expect little at this tier. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-devices-3020d451"
+  ],
+  "profiles": [
+    "reborn-dev-ctl",
+    "reborn-dev-shipped"
+  ],
+  "suites": [
+    "classes-18-300k"
+  ],
+  "control": "4.2.6-reborn-rust-devices-3020d451",
+  "control_profile": "reborn-dev-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#633; zoo owner, 2026-11-22: \"continue\" / \"what else\" (the pilot only; small + medium after the gate and the owner).",
+  "retain_evidence": true
+}

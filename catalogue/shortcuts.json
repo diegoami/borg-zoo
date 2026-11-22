@@ -1842,6 +1842,26 @@
         "reborn-kitleash-all"
       ],
       "runs": []
+    },
+    "reborn-blow": {
+      "issue": 632,
+      "status": "defined (pilot)",
+      "what": "Flight Recall blow model (#880, PR #892) on 201d56eb: blow-off against blow-on (shipped), classes-18.",
+      "profiles": [
+        "reborn-blow-blow-off",
+        "reborn-blow-blow-on"
+      ],
+      "runs": []
+    },
+    "reborn-dev": {
+      "issue": 633,
+      "status": "defined (pilot)",
+      "what": "Devices as variety (#895, PR #898) on 3020d451: ctl against shipped, classes-18 at 300k.",
+      "profiles": [
+        "reborn-dev-ctl",
+        "reborn-dev-shipped"
+      ],
+      "runs": []
     }
   }
 }

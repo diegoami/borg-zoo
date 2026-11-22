@@ -132,6 +132,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-loneslow` | [#626](https://github.com/diegoami/borg-zoo/issues/626) | 11 | defined (pilot) | borg-reborn-rs #878 (PR #891) on 296adfbf: 11 arms (lone slow attack, danger without fear, faint, unseen-bump phase, breeder bonus), classes-18. |
 | `reborn-bhold` | [#627](https://github.com/diegoami/borg-zoo/issues/627) | 4 | defined (pilot) | Slow-breeder hold rule (#882, PR #893) on 6062b84a in the breeders-x4 world: ctl, p4, hold, p6, classes-18. |
 | `reborn-kitleash` | [#589](https://github.com/diegoami/borg-zoo/issues/589) | 13 | defined (pilot) | Basic-kit mode (#840, PR #844 merged) on main f57499d0: 13 arms (kit_leash variants, kit, restock, start reserve, money first, kit-money-hunt, all), classes-18. |
+| `reborn-blow` | [#632](https://github.com/diegoami/borg-zoo/issues/632) | 2 | defined (pilot) | Flight Recall blow model (#880, PR #892) on 201d56eb: blow-off against blow-on (shipped), classes-18. |
+| `reborn-dev` | [#633](https://github.com/diegoami/borg-zoo/issues/633) | 2 | defined (pilot) | Devices as variety (#895, PR #898) on 3020d451: ctl against shipped, classes-18 at 300k. |
 
 ### `heal-attack-4`
 
@@ -1893,6 +1895,28 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-kitleash-kit-money-hunt` | – | 1 | 2 | – | – | 1 | – | – | – | – | – | – | – | 1 |
 | `reborn-kitleash-all` | 50 | 1 | – | – | 25 | 1 | 1 | 500 | 1 | – | – | – | – | – |
 
+### `reborn-blow`
+
+Flight Recall blow model (#880, PR #892) on 201d56eb: blow-off against blow-on (shipped), classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_recall_blow_model` |
+| --- | --- |
+| `reborn-blow-blow-off` | 0 |
+| `reborn-blow-blow-on` | – |
+
+### `reborn-dev`
+
+Devices as variety (#895, PR #898) on 3020d451: ctl against shipped, classes-18 at 300k.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_device_percent` |
+| --- | --- |
+| `reborn-dev-ctl` | 0 |
+| `reborn-dev-shipped` | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2015,6 +2039,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_jumpstart_keep_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_ranged_only` | 1, not set | `reborn-rangedonly` |  |
 | `borg_param_caution_ranged_vs_immobile` | 1, 2, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895`, `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly` |  |
+| `borg_param_caution_recall_blow_model` | 0, not set | `reborn-blow` |  |
 | `borg_param_caution_recall_cure_min_loss_percent` | 0, 30, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
 | `borg_param_caution_recall_pending_escape` | 1, not set | `reborn-recallwait` |  |
 | `borg_param_caution_recall_rest_turns` | 250, 1000, not set | `reborn-untested-caution` |  |
@@ -2167,6 +2192,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_confusion_cure_reserve` | 1, not set | `reborn-confusion` |  |
 | `borg_param_town_departure_free_slots` | 0, 2, not set | `reborn-room` |  |
 | `borg_param_town_departure_free_weight` | 0, 50, not set | `reborn-room` |  |
+| `borg_param_town_device_percent` | 0, not set | `reborn-dev` |  |
 | `borg_param_town_devices_percent` | 50, 200, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_devices_percent@blackguard` | 50, 100, 200, not set | `reborn-untested-dbc` |  |
 | `borg_param_town_devices_percent@druid` | 50, 100, 200, not set | `reborn-untested-dbc` |  |

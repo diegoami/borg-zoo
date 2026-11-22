@@ -10528,6 +10528,36 @@
         "borg_param_kit_start_reserve": 1,
         "borg_param_kit_money_first": 1
       }
+    },
+    "reborn-blow-blow-off": {
+      "description": "borg-zoo#632 (reborn-recall-blow-pilot.yaml): arm blow-off.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_recall_blow_model": 0
+      }
+    },
+    "reborn-blow-blow-on": {
+      "description": "borg-zoo#632 (reborn-recall-blow-pilot.yaml): arm blow-on.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-dev-ctl": {
+      "description": "borg-zoo#633 (reborn-devices-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_device_percent": 0
+      }
+    },
+    "reborn-dev-shipped": {
+      "description": "borg-zoo#633 (reborn-devices-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
     }
   }
 }
