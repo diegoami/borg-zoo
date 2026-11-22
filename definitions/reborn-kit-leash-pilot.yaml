@@ -1,0 +1,55 @@
+# borg-zoo#589: the basic-kit mode (borg-reborn-rs #840, PR #844, merged) on main f57499d0, 13 arms, pilot. Supersedes the unmerged PR #590 (pin 78577c36).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-kit-leash-pilot.yaml
+name: reborn-kit-leash-pilot
+issue: 589
+question: >-
+  On borg-reborn-rs main f57499d0, does the basic-kit mode (a kit score of cures, Phase Door, missiles or oil, light and
+  food; a leash that shrinks with it, curiosity limits, and three ways back to a full kit: restock, a start reserve, money
+  first) keep the Borg alive and progressing, against the shipped play (every kit switch 0)? kit_leash 1 is the core of it.
+tier: pilot            # classes-18, 100,000 turns; small + medium (classes-1800 starts 1-360) after the gate and the owner
+
+specimen: 4.2.6-reborn-rust-main-f57499d0
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-kitleash
+arms:
+  ctl: {}
+  leash: {borg_param_kit_leash: 1, borg_param_kit_leash_min: 1, borg_param_kit_leash_power: 1}
+  leash-p2: {borg_param_kit_leash: 1, borg_param_kit_leash_power: 2}
+  leash-m0: {borg_param_kit_leash: 1, borg_param_kit_leash_min: 0, borg_param_kit_leash_power: 2}
+  leash-m2: {borg_param_kit_leash: 1, borg_param_kit_leash_min: 2}
+  kit: {borg_param_kit_leash: 1, borg_param_kit_descent_min_percent: 50, borg_param_kit_leave_danger_percent: 25}
+  a: {borg_param_kit_restock: 1, borg_param_kit_restock_light_turns: 500}
+  b: {borg_param_kit_start_reserve: 1}
+  b-classes: {borg_param_kit_start_reserve__ranger: 1, borg_param_kit_start_reserve__priest: 1, borg_param_kit_start_reserve__blackguard: 1, borg_param_kit_start_reserve__rogue: 1}
+  c: {borg_param_kit_leash: 1, borg_param_kit_money_first: 1}
+  a+b: {borg_param_kit_restock: 1, borg_param_kit_start_reserve: 1}
+  kit-money-hunt: {borg_param_kit_leash: 1, borg_param_kit_leash_min: 2, borg_param_kit_money_first: 1, borg_param_town_hunt: 1}
+  all:
+    borg_param_kit_leash: 1
+    borg_param_kit_descent_min_percent: 50
+    borg_param_kit_leave_danger_percent: 25
+    borg_param_kit_restock: 1
+    borg_param_kit_restock_light_turns: 500
+    borg_param_kit_start_reserve: 1
+    borg_param_kit_money_first: 1
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: zoo owner, "can we have experiments with kit_leash=1" (the 13 arms of borg-reborn-rs #840 as filed on #589, with
+  the owner's kit-money-hunt arm, on current main f57499d0 instead of the pin 78577c36: PR #844 is merged and its switches ship 0).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#589; borg-reborn-rs #840, PR #844). Thirteen arms on
+  one build, classes-18, 18 starts per arm (234 cells), 100,000 turns, evidence retained. Every kit switch is compiled and
+  shipped 0 on main, so ctl is today's play. Gate: no config_error; one binary; each arm's values in params-core.json; every cell
+  ends in death, turn_cap or borg_stopped; stalls apart; identical plays per arm (an arm equal to ctl did not exercise its
+  switches). Report per arm and class: deaths and causes, CL and DL at the cap, alive at the cap having reached DL5 (progress is
+  part of the question: a short leash can leave a Borg with nothing to do), paired rescued and newly killed against ctl, the
+  count of town trips for a and c, the "kit" notes. The 20 cases of #840 are classes-1800 starts and not in this pilot. Money
+  scum stays out (RULES 15). Capacity short: ctl, leash, kit, a, b, c first. Small + medium (classes-1800 starts 1-360) only on
+  the owner's go. Directional (RULES 14).

@@ -1,0 +1,34 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-kit-leash-pilot",
+  "issue": 589,
+  "definition": "definitions/reborn-kit-leash-pilot.yaml",
+  "question": "On borg-reborn-rs main f57499d0, does the basic-kit mode (a kit score of cures, Phase Door, missiles or oil, light and food; a leash that shrinks with it, curiosity limits, and three ways back to a full kit: restock, a start reserve, money first) keep the Borg alive and progressing, against the shipped play (every kit switch 0)? kit_leash 1 is the core of it.",
+  "description": "On borg-reborn-rs main f57499d0, does the basic-kit mode (a kit score of cures, Phase Door, missiles or oil, light and food; a leash that shrinks with it, curiosity limits, and three ways back to a full kit: restock, a start reserve, money first) keep the Borg alive and progressing, against the shipped play (every kit switch 0)? kit_leash 1 is the core of it. Generated from definitions/reborn-kit-leash-pilot.yaml: 13 arms on 4.2.6-reborn-rust-main-f57499d0, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#589; borg-reborn-rs #840, PR #844). Thirteen arms on\none build, classes-18, 18 starts per arm (234 cells), 100,000 turns, evidence retained. Every kit switch is compiled and\nshipped 0 on main, so ctl is today's play. Gate: no config_error; one binary; each arm's values in params-core.json; every cell\nends in death, turn_cap or borg_stopped; stalls apart; identical plays per arm (an arm equal to ctl did not exercise its\nswitches). Report per arm and class: deaths and causes, CL and DL at the cap, alive at the cap having reached DL5 (progress is\npart of the question: a short leash can leave a Borg with nothing to do), paired rescued and newly killed against ctl, the\ncount of town trips for a and c, the \"kit\" notes. The 20 cases of #840 are classes-1800 starts and not in this pilot. Money\nscum stays out (RULES 15). Capacity short: ctl, leash, kit, a, b, c first. Small + medium (classes-1800 starts 1-360) only on\nthe owner's go. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-f57499d0"
+  ],
+  "profiles": [
+    "reborn-kitleash-ctl",
+    "reborn-kitleash-leash",
+    "reborn-kitleash-leash-p2",
+    "reborn-kitleash-leash-m0",
+    "reborn-kitleash-leash-m2",
+    "reborn-kitleash-kit",
+    "reborn-kitleash-a",
+    "reborn-kitleash-b",
+    "reborn-kitleash-b-classes",
+    "reborn-kitleash-c",
+    "reborn-kitleash-a+b",
+    "reborn-kitleash-kit-money-hunt",
+    "reborn-kitleash-all"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-f57499d0",
+  "control_profile": "reborn-kitleash-ctl",
+  "owner_authorization": "2026-11-22: zoo owner, \"can we have experiments with kit_leash=1\" (the 13 arms of borg-reborn-rs #840 as filed on #589, with the owner's kit-money-hunt arm, on current main f57499d0 instead of the pin 78577c36: PR #844 is merged and its switches ship 0).",
+  "retain_evidence": true
+}
