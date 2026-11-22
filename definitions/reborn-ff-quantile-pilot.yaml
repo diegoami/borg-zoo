@@ -1,0 +1,37 @@
+# borg-zoo#672: pilot from the issue's request. Write the catalogue entries with: python3 -m zoo define definitions/reborn-ff-quantile-pilot.yaml
+name: reborn-ff-quantile-pilot
+issue: 672
+question: >-
+  On borg-reborn-rs 8974509e (track-p 4b2c2fcf plus PR #1002), do the three #926 switches (the damage quantile of 'the next turn kills', the heal floor, cut and poison in the test) save the early deaths to fast-fragile monsters (cats, crows) without a cost in Phase Door?
+tier: pilot            # classes-18, 100,000 turns
+
+
+specimen:
+  name: 4.2.6-reborn-rust-ff-floor-8974509e
+  repository: diegoami/borg-reborn-rs
+  ref: 8974509ebf9768cd3bf50590a965c5c76df156b9
+  label: "borg-reborn-rs task/926-fast-fragile-floor 8974509e (PR #1002 on track-p 4b2c2fcf): fast_fragile_escape_quantile, fast_fragile_heal_floor, fast_fragile_count_dot compiled and shipped 0; harness/borg.txt 0abc045f..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-ffq
+arms:
+  ctl: {}
+  q50: {borg_param_fast_fragile_escape_quantile: 50}
+  esc75: {borg_param_fast_fragile_escape_percent: 75}
+  q100: {borg_param_fast_fragile_escape_quantile: 100}
+  floor25: {borg_param_fast_fragile_heal_floor: 25}
+  dot: {borg_param_fast_fragile_count_dot: 1}
+  q50-floor-dot: {borg_param_fast_fragile_escape_quantile: 50, borg_param_fast_fragile_heal_floor: 25, borg_param_fast_fragile_count_dot: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#672; zoo owner, 2026-11-22: "check your issues" (the pilot only; later tiers after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#672; borg-reborn-rs #926, PR #1002). Seven arms, classes-18, 18 starts each (126 cells), 100,000 turns, evidence retained. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls apart; identical plays (floor25 and dot may be identical to ctl on classes-18: not exercised). Report per arm and class: deaths and causes (crow, wild cat apart), CL and depth, paired rescued and newly killed against ctl; Phase Doors read per game (q100 reads Phase Door at full HP against a cat: the cost). The two #926 seeds (1398933929, 1294425391) are classes-1800 starts. Then small (classes-1800 starts 1-90) on a block not yet read for a #842 decision, on the owner's go. Directional (RULES 14). RULES 21: the fast-fragile scenario is #681 (crow and wild cat worlds).

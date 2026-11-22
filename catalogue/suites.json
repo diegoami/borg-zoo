@@ -2107,6 +2107,18 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "saves": false
+    },
+    "classes-1800-300k-room-stalls": {
+      "description": "The 8 starts of classes-1800-300k-verysmall that did not finish with the departure-room settings or the control on borg-reborn-rs 7f3d0d61 (borg-zoo#639): 6 borg_stopped and 1 wall_timeout in the room arm, 1 borg_stopped in ctl. Chosen starts for a diagnosis, not a sample.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800-300k-verysmall",
+        "seeds": [234773070, 300461652, 507571350, 572215387, 1516096046, 1751715076, 2002578196, 2097768768]
+      },
+      "cap": 300000,
+      "wall_seconds": 5400,
+      "stall_seconds": 180,
+      "saves": false
     }
   }
 }

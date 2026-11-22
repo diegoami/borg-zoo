@@ -1,0 +1,28 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-ff-quantile-pilot",
+  "issue": 672,
+  "definition": "definitions/reborn-ff-quantile-pilot.yaml",
+  "question": "On borg-reborn-rs 8974509e (track-p 4b2c2fcf plus PR #1002), do the three #926 switches (the damage quantile of 'the next turn kills', the heal floor, cut and poison in the test) save the early deaths to fast-fragile monsters (cats, crows) without a cost in Phase Door?",
+  "description": "On borg-reborn-rs 8974509e (track-p 4b2c2fcf plus PR #1002), do the three #926 switches (the damage quantile of 'the next turn kills', the heal floor, cut and poison in the test) save the early deaths to fast-fragile monsters (cats, crows) without a cost in Phase Door? Generated from definitions/reborn-ff-quantile-pilot.yaml: 7 arms on 4.2.6-reborn-rust-ff-floor-8974509e, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#672; borg-reborn-rs #926, PR #1002). Seven arms, classes-18, 18 starts each (126 cells), 100,000 turns, evidence retained. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls apart; identical plays (floor25 and dot may be identical to ctl on classes-18: not exercised). Report per arm and class: deaths and causes (crow, wild cat apart), CL and depth, paired rescued and newly killed against ctl; Phase Doors read per game (q100 reads Phase Door at full HP against a cat: the cost). The two #926 seeds (1398933929, 1294425391) are classes-1800 starts. Then small (classes-1800 starts 1-90) on a block not yet read for a #842 decision, on the owner's go. Directional (RULES 14). RULES 21: the fast-fragile scenario is #681 (crow and wild cat worlds).",
+  "specimens": [
+    "4.2.6-reborn-rust-ff-floor-8974509e"
+  ],
+  "profiles": [
+    "reborn-ffq-ctl",
+    "reborn-ffq-q50",
+    "reborn-ffq-esc75",
+    "reborn-ffq-q100",
+    "reborn-ffq-floor25",
+    "reborn-ffq-dot",
+    "reborn-ffq-q50-floor-dot"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-ff-floor-8974509e",
+  "control_profile": "reborn-ffq-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#672; zoo owner, 2026-11-22: \"check your issues\" (the pilot only; later tiers after the gate and the owner).",
+  "retain_evidence": true
+}

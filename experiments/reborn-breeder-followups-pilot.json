@@ -1,0 +1,35 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-breeder-followups-pilot",
+  "issue": 692,
+  "definition": "definitions/reborn-breeder-followups-pilot.yaml",
+  "question": "In the white-worm-mass-x4 and breeders-x4 worlds on borg-reborn-rs bfc24d10 (track-p 6bc4de1d plus PRs #1011, #1012 and #1015), do the three follow-ups of #878 (the lone-slow attack that leaves a breeder alone on a lost level, the breeder stand that reads danger without fear, the pricing of poison and status blows in attack on sight) save the worm-mass games, alone and together? lost is compared with lone; the others with ctl; each world has its own control.",
+  "description": "In the white-worm-mass-x4 and breeders-x4 worlds on borg-reborn-rs bfc24d10 (track-p 6bc4de1d plus PRs #1011, #1012 and #1015), do the three follow-ups of #878 (the lone-slow attack that leaves a breeder alone on a lost level, the breeder stand that reads danger without fear, the pricing of poison and status blows in attack on sight) save the worm-mass games, alone and together? lost is compared with lone; the others with ctl; each world has its own control. Generated from definitions/reborn-breeder-followups-pilot.yaml: 14 arms on 4.2.6-reborn-rust-breeder-followups-bfc24d10, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any game of this build was played (borg-zoo#692; borg-reborn-rs #1008-#1010; RULES 21). Seven arms in two worlds (14 profiles), classes-18, 18 starts\neach (252 cells), 100,000 turns, evidence retained. Compare lost with lone and the others with ctl, always within a world (a world is a stress test, never a ranking).\nGate: no config_error; one binary; every cell records its world with one borg_world_data_sha256 per world across arms; each arm's values in params-core.json; every cell ends in\ndeath, turn_cap or borg_stopped; stalls and wall timeouts apart; the arms must play differently (report an arm identical to its control in all 18 games of a world; for\nlost count the \"(#1008)\" notes). Primary: deaths by 100,000 turns; mean CL and depth may each fall by no more than 0.25 against the control in the same world. Report per world,\narm and class: deaths and causes; breeder deaths (the killer has MULTIPLY) and poison deaths; grey mushroom patch deaths apart (#969); paired rescued and newly killed against\nthe control (exact McNemar), identical plays; CL, depth; unfinished with denominators. Diagnostics: per game the \"# Attack on sight: white worm mass (breeder)\", \"(lone and\nslow\" and \"(#1008)\" notes, \"# Retreating to\" and \"# Backing up to\" within 5 grids of a breeder, Hard breeder fight boosts, Phase Door reads, breeders created and killed, \"# Breeders\ncannot be stopped\", reserve-spell casts and faints. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-breeder-followups-bfc24d10"
+  ],
+  "profiles": [
+    "reborn-bfol-ctl-wwm",
+    "reborn-bfol-lone-wwm",
+    "reborn-bfol-lost-wwm",
+    "reborn-bfol-stand-wwm",
+    "reborn-bfol-price-wwm",
+    "reborn-bfol-stand-price-wwm",
+    "reborn-bfol-all-wwm",
+    "reborn-bfol-ctl-x4",
+    "reborn-bfol-lone-x4",
+    "reborn-bfol-lost-x4",
+    "reborn-bfol-stand-x4",
+    "reborn-bfol-price-x4",
+    "reborn-bfol-stand-price-x4",
+    "reborn-bfol-all-x4"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-breeder-followups-bfc24d10",
+  "control_profile": "reborn-bfol-ctl-wwm",
+  "owner_authorization": "2026-11-22: borg-reborn-rs owner (\"file the zoo requests for all three ... ask zoo to have runs with breeders on\"), filed as borg-zoo#692; zoo owner, 2026-11-22: \"ok anything new\" (the pilot only; later tiers after the gate and the owner).",
+  "retain_evidence": true
+}

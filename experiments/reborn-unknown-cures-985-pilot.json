@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-unknown-cures-985-pilot",
+  "issue": 684,
+  "definition": "definitions/reborn-unknown-cures-985-pilot.yaml",
+  "question": "On borg-reborn-rs b5b0f5fd (track-p 4b2c2fcf plus the #985 switches, shipped 0), does a poor low-level Borg that waits in town to sell one of each unknown kind (sell_poor_town_unknown_hold), or one that cures poison and bleeding below 30% HP whatever the danger (caution_cure_hp_floor_percent), die less often early, one at a time and together?",
+  "description": "On borg-reborn-rs b5b0f5fd (track-p 4b2c2fcf plus the #985 switches, shipped 0), does a poor low-level Borg that waits in town to sell one of each unknown kind (sell_poor_town_unknown_hold), or one that cures poison and bleeding below 30% HP whatever the danger (caution_cure_hp_floor_percent), die less often early, one at a time and together? Generated from definitions/reborn-unknown-cures-985-pilot.yaml: 4 arms on 4.2.6-reborn-rust-unknown-cures-b5b0f5fd, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-reborn-rs#985, PR #1003). Four arms on one build, classes-18,\n100,000 turns, evidence retained; both switches are shipped 0, so ctl is track-p 4b2c2fcf's play. Gate: no config_error; one binary;\neach arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical\nplays per arm. Report per arm and class: deaths and causes (poison and bleeding apart), CL and depth at death, paired rescued and\nnewly killed against ctl. Per game: \"Nothing to sell in town (leaving)\" notes, the unaware kinds sold (\"# Selling\" with an unaware\nflavour, \"You had ...\"), game turns spent in town below CL6, and \"# Curing.\" / \"# Emergency Cure Poison\" notes below 30% HP.\nThe named start 1895660873 (classes-1800) as a sanity cell for ctl and hold. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-unknown-cures-b5b0f5fd"
+  ],
+  "profiles": [
+    "reborn-unkcure-ctl",
+    "reborn-unkcure-hold",
+    "reborn-unkcure-floor",
+    "reborn-unkcure-both"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-unknown-cures-b5b0f5fd",
+  "control_profile": "reborn-unkcure-ctl",
+  "owner_authorization": "2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#684; zoo owner, 2026-11-22: \"check your issues\" (the pilot only).",
+  "retain_evidence": true
+}

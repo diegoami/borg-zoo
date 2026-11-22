@@ -1,0 +1,34 @@
+# borg-zoo#693: from the issue's definition. Write the catalogue entries with: python3 -m zoo define definitions/reborn-first-book-1004-pilot.yaml
+name: reborn-first-book-1004-pilot
+issue: 693
+question: >-
+  On borg-reborn-rs 5ad50d96 (track-p 6bc4de1d plus town_book_lookahead_levels, shipped 0), does keeping the first spellbook
+  through the levels before its first spell (4 levels) change early deaths, levels or depth of Rogues and Rangers?
+pilot: true            # a study on its own suites (RULES 16); larger tiers after the gate and the owner
+suites: [classes-1800-small-rangers, classes-1800-small-rogues]   # Rangers and Rogues of the small slice, 100,000 turns
+specimen:
+  name: 4.2.6-reborn-rust-first-book-5ad50d96
+  repository: diegoami/borg-reborn-rs
+  ref: 5ad50d966969844d1e879432ca7bf093415d50b3
+  label: "borg-reborn-rs task/1004-ranger-first-book 5ad50d96 (track-p 6bc4de1d + #1004): town_book_lookahead_levels compiled and shipped 0; harness/borg.txt 3d149b0e..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-book
+arms:
+  ctl: {}
+  la4: {borg_param_town_book_lookahead_levels: 4}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs owner ("yes post the zoo request for 1004"), filed as borg-zoo#693; zoo owner, 2026-11-22: "ok anything new" (the pilot only).
+extra:
+  retain_evidence: true
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-reborn-rs#1004, PR #1019). Two arms on one build, Rogues and
+  Rangers only (the only classes whose first book has no level-1 spell; the other classes play the same keys in both arms),
+  100,000 turns, evidence retained. Gate: no config_error; one binary; the value in params-core.json; every cell ends in death,
+  turn_cap or borg_stopped; identical plays per arm. Report per arm and class: deaths and causes, CL and depth at death and at
+  the end, paired rescued and newly killed against ctl; per game the game turn of the first "# Selling Book" of the class's
+  first book, the game turn of the first spell learnt, and the gold spent buying the book back. Directional (RULES 14).

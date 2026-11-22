@@ -1715,7 +1715,7 @@
     },
     "reborn-room": {
       "issue": 612,
-      "status": "pilot done (run 44950482392); small (classes-1800-300k-verysmall) defined and dispatched; rerun with the full-pack junk fix defined (#639); small rerun on the junk-fix build defined and dispatched (#639)",
+      "status": "pilot done (run 44950482392); small (classes-1800-300k-verysmall) defined and dispatched; rerun with the full-pack junk fix defined (#639); small rerun on the junk-fix build defined and dispatched (#639); junk-fix small tier changed none of 180 games (7 room stalls remain): diagnosis defined (#639)",
       "what": "Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k.",
       "profiles": [
         "reborn-room-ctl",
@@ -2068,6 +2068,133 @@
         "reborn-blloww-blow-on-x4",
         "reborn-blloww-blow-off-x8",
         "reborn-blloww-blow-on-x8"
+      ],
+      "runs": []
+    },
+    "reborn-zerohp": {
+      "issue": 670,
+      "status": "defined (pilot)",
+      "what": "kill_live_zero_hp (#975, PR #994) on 1f4e9e89: ctl, zero, classes-18.",
+      "profiles": [
+        "reborn-zerohp-ctl",
+        "reborn-zerohp-zero"
+      ],
+      "runs": []
+    },
+    "reborn-rest": {
+      "issue": 671,
+      "status": "defined (pilot)",
+      "what": "borg_recover rest switches (#981, #982; PRs #998, #999) on ed6c7ab8: ctl, shot, cure, both, classes-18.",
+      "profiles": [
+        "reborn-rest-ctl",
+        "reborn-rest-shot",
+        "reborn-rest-cure",
+        "reborn-rest-both"
+      ],
+      "runs": []
+    },
+    "reborn-ffq": {
+      "issue": 672,
+      "status": "defined (pilot)",
+      "what": "Fast-fragile quantile, heal floor, dot (#926, PR #1002) on 8974509e: 7 arms, classes-18.",
+      "profiles": [
+        "reborn-ffq-ctl",
+        "reborn-ffq-q50",
+        "reborn-ffq-esc75",
+        "reborn-ffq-q100",
+        "reborn-ffq-floor25",
+        "reborn-ffq-dot",
+        "reborn-ffq-q50-floor-dot"
+      ],
+      "runs": []
+    },
+    "reborn-overex": {
+      "issue": 675,
+      "status": "defined (pilot on the small Mage suite)",
+      "what": "Emergency attack spell beyond the mana (#980, PR #991) on 89888283: ctl (1), noexert (0), Mages.",
+      "profiles": [
+        "reborn-overex-ctl",
+        "reborn-overex-noexert"
+      ],
+      "runs": []
+    },
+    "reborn-unkcure": {
+      "issue": 684,
+      "status": "defined (pilot)",
+      "what": "Unknown cures and the cure HP floor (#985, PR #1003) on b5b0f5fd: ctl, hold, floor, both, classes-18.",
+      "profiles": [
+        "reborn-unkcure-ctl",
+        "reborn-unkcure-hold",
+        "reborn-unkcure-floor",
+        "reborn-unkcure-both"
+      ],
+      "runs": []
+    },
+    "reborn-rclshallow": {
+      "issue": 688,
+      "status": "defined (pilot)",
+      "what": "Recall on shallow trips (#984, PR #997) on 434d5371: ctl, urgent, hold, both, classes-18.",
+      "profiles": [
+        "reborn-rclshallow-ctl",
+        "reborn-rclshallow-urgent",
+        "reborn-rclshallow-hold",
+        "reborn-rclshallow-both"
+      ],
+      "runs": []
+    },
+    "reborn-deadend": {
+      "issue": 659,
+      "status": "defined (pilot)",
+      "what": "Retreat and back-up refuse a dead end (#881 part 2, PR #953) on b157f9dd: ctl, d1, d2 in breeders-x4 and breeders-x8, classes-18.",
+      "profiles": [
+        "reborn-deadend-ctl-x4",
+        "reborn-deadend-d1-x4",
+        "reborn-deadend-d2-x4",
+        "reborn-deadend-ctl-x8",
+        "reborn-deadend-d1-x8",
+        "reborn-deadend-d2-x8"
+      ],
+      "runs": []
+    },
+    "reborn-retreat-flight": {
+      "issue": 657,
+      "status": "defined (pilot)",
+      "what": "Stair routing after a tactical retreat (#932, PR #964) on e43b6d87: ctl, hold, classes-18 at 300k.",
+      "profiles": [
+        "reborn-retreat-flight-ctl",
+        "reborn-retreat-flight-hold"
+      ],
+      "runs": []
+    },
+    "reborn-bfol": {
+      "issue": 692,
+      "status": "defined (pilot in the breeder worlds)",
+      "what": "The three follow-ups of #878 (#1008-#1010) on bfc24d10: 7 arms in white-worm-mass-x4 and breeders-x4, classes-18.",
+      "profiles": [
+        "reborn-bfol-ctl-wwm",
+        "reborn-bfol-lone-wwm",
+        "reborn-bfol-lost-wwm",
+        "reborn-bfol-stand-wwm",
+        "reborn-bfol-price-wwm",
+        "reborn-bfol-stand-price-wwm",
+        "reborn-bfol-all-wwm",
+        "reborn-bfol-ctl-x4",
+        "reborn-bfol-lone-x4",
+        "reborn-bfol-lost-x4",
+        "reborn-bfol-stand-x4",
+        "reborn-bfol-price-x4",
+        "reborn-bfol-stand-price-x4",
+        "reborn-bfol-all-x4"
+      ],
+      "runs": []
+    },
+    "reborn-book": {
+      "issue": 693,
+      "status": "defined (pilot)",
+      "what": "Keep the first spellbook before its first spell (#1004, PR #1019) on 5ad50d96: ctl, la4, small Rangers and Rogues.",
+      "profiles": [
+        "reborn-book-ctl",
+        "reborn-book-la4"
       ],
       "runs": []
     }

@@ -1,0 +1,31 @@
+# borg-zoo#657: stair routing after a tactical retreat (borg-reborn-rs #932, PR #964), pilot. From the issue.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-retreat-flight-pilot.yaml
+name: reborn-retreat-flight-pilot
+issue: 657
+question: Does keeping dangerous retreat grids out of stair routes stop retreat and stair-flight oscillations?
+suites: [classes-18-300k]
+pilot: true
+specimen:
+  name: 4.2.6-reborn-rust-retreat-flight-e43b6d87
+  repository: diegoami/borg-reborn-rs
+  ref: e43b6d87594904b5aad9a10f1b1bdd77ae11f652
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+profile_prefix: reborn-retreat-flight
+arms:
+  ctl: {}
+  hold:
+    borg_param_caution_retreat_reentry_ticks: 128
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#657; zoo owner, 2026-11-22: "yes do all that" (the pilot only).
+extra:
+  retain_evidence: true
+prespecified: |
+  For each matched seed and arm, count episodes where a tactical retreat
+  (Retreating to or Backing up to) and a stair-flow step repeatedly return
+  to the same hazardous square. Include both one and two alternate retreat
+  landings. Report length, turns until progress toward a staircase or escape,
+  damage, and the number of guard activations. Report cap survivors, deaths,
+  unfinished cells, max depths and new loops in either arm. If neither arm
+  exposes the behavior, report the missing exposure. The pilot is descriptive.

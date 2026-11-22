@@ -1,0 +1,32 @@
+# borg-zoo#670: pilot from the issue's request. Write the catalogue entries with: python3 -m zoo define definitions/reborn-zero-hp-pilot.yaml
+name: reborn-zero-hp-pilot
+issue: 670
+question: >-
+  On borg-reborn-rs 1f4e9e89 (track-p 4b2c2fcf plus the parameter), does flooring the HP estimate of a monster left at exactly 0 HP (kill_live_zero_hp 1) save the games lost to monsters that never move (molds, mushroom patches, jellies, floating eyes)?
+tier: pilot            # classes-18, 100,000 turns
+
+
+specimen:
+  name: 4.2.6-reborn-rust-zero-hp-1f4e9e89
+  repository: diegoami/borg-reborn-rs
+  ref: 1f4e9e89127cf94ce99daa18c62c8e107af7486b
+  label: "borg-reborn-rs task/975-hp-estimate-floor 1f4e9e89 (track-p 4b2c2fcf + kill_live_zero_hp, compiled 0); harness/borg.txt e4bd2b87..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-zerohp
+arms:
+  ctl: {}
+  zero: {borg_param_kill_live_zero_hp: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#670; zoo owner, 2026-11-22: "check your issues" (the pilot only; later tiers after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#670; borg-reborn-rs #975, PR #994). ctl against zero, classes-18, 18 starts each (36 cells), 100,000 turns, evidence retained. Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays. Report per arm: deaths, causes, CL at death, max depth; deaths to monsters that never move; the "who has 0 Hit Points" and "0 HP" kill-on-sight notes per arm (should drop to none in zero while the monster lives); paired rescued and newly killed against ctl. Directional (RULES 14). RULES 21: the patch worlds of #665 are the enriched scenario for this switch.

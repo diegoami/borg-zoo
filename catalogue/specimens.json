@@ -3120,6 +3120,143 @@
         "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8",
         "breeders-x8": "9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de"
       }
+    },
+    "4.2.6-reborn-rust-zero-hp-1f4e9e89": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "1f4e9e89127cf94ce99daa18c62c8e107af7486b",
+      "label": "borg-reborn-rs task/975-hp-estimate-floor 1f4e9e89 (track-p 4b2c2fcf + kill_live_zero_hp, compiled 0); harness/borg.txt e4bd2b87..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
+    },
+    "4.2.6-reborn-rust-rest-ed6c7ab8": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "ed6c7ab8c2cda952395a7a33aa6def546484a9bb",
+      "label": "borg-reborn-rs task/982-low-hp-rest-cure ed6c7ab8 (track-p 4b2c2fcf + #998 + #999, both switches compiled and shipped 0); harness/borg.txt 2aa82392..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
+    },
+    "4.2.6-reborn-rust-ff-floor-8974509e": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "8974509ebf9768cd3bf50590a965c5c76df156b9",
+      "label": "borg-reborn-rs task/926-fast-fragile-floor 8974509e (PR #1002 on track-p 4b2c2fcf): fast_fragile_escape_quantile, fast_fragile_heal_floor, fast_fragile_count_dot compiled and shipped 0; harness/borg.txt 0abc045f..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
+    },
+    "4.2.6-reborn-rust-overexert-89888283": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "898882838b168ef36ed670864c8fba804557e56b",
+      "label": "borg-reborn-rs task/980-emergency-attack-mana 89888283 (track-p 4b2c2fcf + attack_reserve_spell_overexert, compiled 1 = today's play); harness/borg.txt e4bd2b87..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
+    },
+    "4.2.6-reborn-rust-unknown-cures-b5b0f5fd": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "b5b0f5fd794bcceb79f6de118a302365b668db9b",
+      "label": "borg-reborn-rs task/985-bravery-cure-floor b5b0f5fd (track-p 4b2c2fcf + #985): both switches compiled and shipped 0; harness/borg.txt e01a933f..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
+    },
+    "4.2.6-reborn-rust-recall-shallow-434d5371": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "434d53712b67d06bbd66b6f5e2779dd31e64aa81",
+      "label": "borg-reborn-rs task/984-recall-restock 434d5371 (track-p 4b2c2fcf + #984): both switches compiled 0, not in harness/borg.txt; harness/borg.txt e4bd2b87..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
+    },
+    "4.2.6-reborn-rust-dead-end-b157f9dd": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "b157f9dd083e4de08c551f78ad6ea38e33f140c7",
+      "label": "borg-reborn-rs PR #953 head b157f9dd (track-p 4b2c2fcf merged; #881 part 2: caution_retreat_dead_end compiled and shipped 0; not part 1, #897); harness/borg.txt e91e8914..., scary_monsters.txt ff831d0a...; worlds breeders-x4 a546fb51... and breeders-x8 9530ff13...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      },
+      "worlds": {
+        "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8",
+        "breeders-x8": "9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de"
+      }
+    },
+    "4.2.6-reborn-rust-retreat-flight-e43b6d87": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "e43b6d87594904b5aad9a10f1b1bdd77ae11f652",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
+    },
+    "4.2.6-reborn-rust-breeder-followups-bfc24d10": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "bfc24d10f7f91d27684ad74d073a2fcfe7828695",
+      "label": "borg-reborn-rs scratch/T1008-1010-breeders bfc24d10 (track-p 6bc4de1d + PRs #1011 #1012 #1015 + the new world white-worm-mass-x4; the three switches compiled and shipped 0); harness/borg.txt e4bd2b87..., scary_monsters.txt ff831d0a...; worlds white-worm-mass-x4 f5f238ed... and breeders-x4 a546fb51...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      },
+      "worlds": {
+        "white-worm-mass-x4": "f5f238edafeaaebc3f4789318331530c43976b1986ddabbe5c7d2ee7e04e65d9",
+        "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8"
+      }
+    },
+    "4.2.6-reborn-rust-first-book-5ad50d96": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "5ad50d966969844d1e879432ca7bf093415d50b3",
+      "label": "borg-reborn-rs task/1004-ranger-first-book 5ad50d96 (track-p 6bc4de1d + #1004): town_book_lookahead_levels compiled and shipped 0; harness/borg.txt 3d149b0e..., scary_monsters.txt ff831d0a...",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
     }
   }
 }

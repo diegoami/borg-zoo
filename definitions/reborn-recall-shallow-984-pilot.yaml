@@ -1,0 +1,40 @@
+# borg-zoo#688: from the issue's definition. Write the catalogue entries with: python3 -m zoo define definitions/reborn-recall-shallow-984-pilot.yaml
+name: reborn-recall-shallow-984-pilot
+issue: 688
+question: >-
+  On borg-reborn-rs 434d5371 (track-p 4b2c2fcf plus the #984 switches, shipped 0), does a Borg that makes the first Word of
+  Recall urgent on any trip (town_recall_urgent_depth 1), or one that does not take the DL1 up staircase while a Recall counts
+  down (caution_recall_dl1_hold_up 1), die less often without a Recall and reach DL5 more often, one at a time and together,
+  without new deaths on DL1 while a Recall is pending?
+tier: pilot            # classes-18, 100,000 turns; small/medium only after the gate and the owner
+specimen:
+  name: 4.2.6-reborn-rust-recall-shallow-434d5371
+  repository: diegoami/borg-reborn-rs
+  ref: 434d53712b67d06bbd66b6f5e2779dd31e64aa81
+  label: "borg-reborn-rs task/984-recall-restock 434d5371 (track-p 4b2c2fcf + #984): both switches compiled 0, not in harness/borg.txt; harness/borg.txt e4bd2b87..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-rclshallow
+arms:
+  ctl: {}
+  urgent: {borg_param_town_recall_urgent_depth: 1}
+  hold: {borg_param_caution_recall_dl1_hold_up: 1}
+  both: {borg_param_town_recall_urgent_depth: 1, borg_param_caution_recall_dl1_hold_up: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#688; zoo owner, 2026-11-22: "check your issues" (the pilot only).
+extra:
+  retain_evidence: true
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-reborn-rs#984, PR #997). Four arms on one build, classes-18,
+  100,000 turns, evidence retained; both switches are compiled 0 and absent from harness/borg.txt, so ctl is track-p 4b2c2fcf's
+  play. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped;
+  stalls and wall timeouts apart; identical plays per arm. Endpoints, per arm and class, paired against ctl (rescued / newly killed):
+  (1) P7's descent endpoint, alive at the cap having reached DL5; (2) deaths with no Word of Recall carried; (3) deaths on DL1 while
+  a Recall counts down (between "The air about you becomes charged..." and "yanked"), the cost of the hold. Per game: town visits
+  left with no Recall carried, "You bought a Scroll of Word of Recall", "# Leaving via up stairs." on DL1 with a Recall pending
+  (ctl) and "You feel yourself yanked downwards!" less than 35 world ticks after arriving in town. The named start 312081895
+  (Half-Troll Blackguard, -race 7 -class 8) as a sanity cell for every arm. Directional (RULES 14).
