@@ -11792,6 +11792,14 @@
         "borg_reborn_errand": "none",
         "borg_param_town_book_lookahead_levels": 4
       }
+    },
+    "reborn-overex-faint100": {
+      "description": "borg-zoo#675 (reborn-overexert-pilot.yaml): arm faint100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_reserve_faint_percent": 100
+      }
     }
   }
 }

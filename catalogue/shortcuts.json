@@ -2111,10 +2111,11 @@
     "reborn-overex": {
       "issue": 675,
       "status": "defined (pilot on the small Mage suite)",
-      "what": "Emergency attack spell beyond the mana (#980, PR #991) on 89888283: ctl (1), noexert (0), Mages.",
+      "what": "Emergency attack spell beyond the mana (#980, PR #991, re-synced to 80cf6bf4): ctl (1), noexert (0), faint100, Mages.",
       "profiles": [
         "reborn-overex-ctl",
-        "reborn-overex-noexert"
+        "reborn-overex-noexert",
+        "reborn-overex-faint100"
       ],
       "runs": []
     },
