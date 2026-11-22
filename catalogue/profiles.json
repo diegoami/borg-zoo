@@ -10244,6 +10244,164 @@
         "borg_reborn_errand": "none",
         "borg_param_caution_desperate_scary_level": 10
       }
+    },
+    "reborn-lightbel-ctl": {
+      "description": "borg-zoo#625 (reborn-light-belief-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-lightbel-light1": {
+      "description": "borg-zoo#625 (reborn-light-belief-pilot.yaml): arm light1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_cave_light_engine_radius": 1
+      }
+    },
+    "reborn-lightbel-light1-belief": {
+      "description": "borg-zoo#625 (reborn-light-belief-pilot.yaml): arm light1-belief.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_cave_light_engine_radius": 1,
+        "borg_param_unseen_belief": 1
+      }
+    },
+    "reborn-loneslow-ctl": {
+      "description": "borg-zoo#626 (reborn-lone-slow-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-loneslow-lone": {
+      "description": "borg-zoo#626 (reborn-lone-slow-pilot.yaml): arm lone.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_lone_slow_attack": 1
+      }
+    },
+    "reborn-loneslow-phase-nofear": {
+      "description": "borg-zoo#626 (reborn-lone-slow-pilot.yaml): arm phase-nofear.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_lost_damage_only": 1
+      }
+    },
+    "reborn-loneslow-reserve-nofear": {
+      "description": "borg-zoo#626 (reborn-lone-slow-pilot.yaml): arm reserve-nofear.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_reserve_spell_damage_only": 1
+      }
+    },
+    "reborn-loneslow-faint25": {
+      "description": "borg-zoo#626 (reborn-lone-slow-pilot.yaml): arm faint25.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_reserve_faint_percent": 25
+      }
+    },
+    "reborn-loneslow-bump-fresh": {
+      "description": "borg-zoo#626 (reborn-lone-slow-pilot.yaml): arm bump-fresh.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_unseen_bump_phase_turns": 20
+      }
+    },
+    "reborn-loneslow-bump-danger": {
+      "description": "borg-zoo#626 (reborn-lone-slow-pilot.yaml): arm bump-danger.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_unseen_bump_phase_min_danger": 5
+      }
+    },
+    "reborn-loneslow-breeder5": {
+      "description": "borg-zoo#626 (reborn-lone-slow-pilot.yaml): arm breeder5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_danger_breeder_melee_extra_tenths": 5
+      }
+    },
+    "reborn-loneslow-breeder0": {
+      "description": "borg-zoo#626 (reborn-lone-slow-pilot.yaml): arm breeder0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_danger_breeder_melee_extra_tenths": 0
+      }
+    },
+    "reborn-loneslow-all": {
+      "description": "borg-zoo#626 (reborn-lone-slow-pilot.yaml): arm all.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_lone_slow_attack": 1,
+        "borg_param_escape_phase_lost_damage_only": 1,
+        "borg_param_attack_reserve_spell_damage_only": 1,
+        "borg_param_attack_reserve_faint_percent": 25,
+        "borg_param_caution_unseen_bump_phase_turns": 20,
+        "borg_param_caution_unseen_bump_phase_min_danger": 5
+      }
+    },
+    "reborn-loneslow-all-breeder5": {
+      "description": "borg-zoo#626 (reborn-lone-slow-pilot.yaml): arm all-breeder5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_lone_slow_attack": 1,
+        "borg_param_escape_phase_lost_damage_only": 1,
+        "borg_param_attack_reserve_spell_damage_only": 1,
+        "borg_param_attack_reserve_faint_percent": 25,
+        "borg_param_caution_unseen_bump_phase_turns": 20,
+        "borg_param_caution_unseen_bump_phase_min_danger": 5,
+        "borg_param_danger_breeder_melee_extra_tenths": 5
+      }
+    },
+    "reborn-bhold-ctl": {
+      "description": "borg-zoo#627 (reborn-breeder-hold-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4"
+      }
+    },
+    "reborn-bhold-p4": {
+      "description": "borg-zoo#627 (reborn-breeder-hold-pilot.yaml): arm p4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_policy": 4
+      }
+    },
+    "reborn-bhold-hold": {
+      "description": "borg-zoo#627 (reborn-breeder-hold-pilot.yaml): arm hold.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_policy": -1,
+        "borg_param_caution_breeder_hold": 1
+      }
+    },
+    "reborn-bhold-p6": {
+      "description": "borg-zoo#627 (reborn-breeder-hold-pilot.yaml): arm p6.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_breeder_policy": 6
+      }
     }
   }
 }
