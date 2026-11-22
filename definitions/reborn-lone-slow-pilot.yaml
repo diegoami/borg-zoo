@@ -1,0 +1,52 @@
+# borg-zoo#626: borg-reborn-rs #878 (PR #891): lone slow target, danger without fear, reserve faint, unseen-bump Phase, breeder bonus; 11 arms, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-lone-slow-pilot.yaml
+name: reborn-lone-slow-pilot
+issue: 626
+question: >-
+  On borg-reborn-rs 296adfbf (PR #891, track-p 8c2483ec merged), do the five switches of #878 (attack on sight on a lone
+  slow monster with the best ranged attack; Phase Door verdict and reserve spell read the danger without fear; no reserve cast
+  that faints in the monsters' reach; the unseen-bump Phase only for a fresh bump or real danger) and the breeder melee
+  bonus 15 / 5 / 0 save the Mage and Priest deaths to white worm masses without adding deaths?
+tier: pilot            # classes-18, 100,000 turns; small + medium (classes-1800 starts 1-360) after the gate and the owner
+
+specimen:
+  name: 4.2.6-reborn-rust-lone-slow-296adfbf
+  repository: diegoami/borg-reborn-rs
+  ref: 296adfbf1dfaeab22b254b616654176a9f44e091
+  label: "borg-reborn-rs task/T878-attack-on-sight 296adfbf (PR #891: track-p 8c2483ec + #875): lone_slow_attack, escape_phase_lost_damage_only, attack_reserve_spell_damage_only, attack_reserve_faint_percent, caution_unseen_bump_phase_* compiled and shipped off; harness/borg.txt 0e8a3be0..., scary_monsters.txt ff831d0a..."
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-loneslow
+arms:
+  ctl: {}
+  lone: {borg_param_lone_slow_attack: 1}
+  phase-nofear: {borg_param_escape_phase_lost_damage_only: 1}
+  reserve-nofear: {borg_param_attack_reserve_spell_damage_only: 1}
+  faint25: {borg_param_attack_reserve_faint_percent: 25}
+  bump-fresh: {borg_param_caution_unseen_bump_phase_turns: 20}
+  bump-danger: {borg_param_caution_unseen_bump_phase_min_danger: 5}
+  breeder5: {borg_param_danger_breeder_melee_extra_tenths: 5}
+  breeder0: {borg_param_danger_breeder_melee_extra_tenths: 0}
+  all: {borg_param_lone_slow_attack: 1, borg_param_escape_phase_lost_damage_only: 1, borg_param_attack_reserve_spell_damage_only: 1, borg_param_attack_reserve_faint_percent: 25, borg_param_caution_unseen_bump_phase_turns: 20, borg_param_caution_unseen_bump_phase_min_danger: 5}
+  all-breeder5: {borg_param_lone_slow_attack: 1, borg_param_escape_phase_lost_damage_only: 1, borg_param_attack_reserve_spell_damage_only: 1, borg_param_attack_reserve_faint_percent: 25, borg_param_caution_unseen_bump_phase_turns: 20, borg_param_caution_unseen_bump_phase_min_danger: 5, borg_param_danger_breeder_melee_extra_tenths: 5}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs request (RULES 20), filed as borg-zoo#626; zoo owner, 2026-11-22: "do all of them in the order you think right" (the classes-18 pilot only; small + medium after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of this build was read (borg-zoo#626; borg-reborn-rs #878, PR #891). Eleven arms on one
+  build, classes-18, 18 starts per arm (198 cells), 100,000 turns, evidence retained; ctl is today's track-p play (breeder15 is
+  ctl; breeder0 is a lower bound the issue did not list). Gate: no config_error; one binary; each arm's values in params-core.json;
+  every cell ends in death, turn_cap or borg_stopped; stalls apart; identical plays per arm. Report per arm and class: deaths and
+  causes (breeders and poison apart), CL and DL, paired rescued and newly killed against ctl; per arm Phase Doors read (and
+  unseen-bump ones), retreats and back-ups next to a breeder, reserve-spell casts and faints, "# Attack on sight: ... (lone and
+  slow ...) (#878)" notes, "# No reserve spell" and "# Phase (unseen bump): no ... (#878)" notes. Named starts Human Mage 461220874 and
+  Dunadan Priest 399497898 on every arm (they are classes-1800 starts, not in this pilot). If capacity is short the requester's
+  order: ctl, lone, phase-nofear, all, breeder5 first. Small + medium only on the owner's go. Directional (RULES 14).
