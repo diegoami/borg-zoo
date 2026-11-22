@@ -10779,6 +10779,21 @@
         "borg_param_caution_winning_fight_group_percent": 100,
         "borg_param_caution_scary_take_distance": 5
       }
+    },
+    "reborn-pbdtp-ctl": {
+      "description": "borg-zoo#651 (reborn-pbd-ranger-trackp-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-pbdtp-lo": {
+      "description": "borg-zoo#651 (reborn-pbd-ranger-trackp-pilot.yaml): arm lo.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_arrow_point_blank_divisor__ranger": 1
+      }
     }
   }
 }

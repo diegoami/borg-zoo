@@ -1,0 +1,49 @@
+# borg-zoo#651: Ranger arrow point-blank divisor 1 against the shipped 2 on track-p e2d8919e (re-measure of #290), pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-pbd-ranger-trackp-pilot.yaml
+#
+# Only the Ranger line changes, so only Ranger starts are played.
+name: reborn-pbd-ranger-trackp-pilot
+issue: 651
+question: >-
+  On borg-reborn-rs track-p e2d8919e (attack on sight, the fast-fragile policy, #870's throw divisor, #873), do Rangers
+  with no arrow point-blank penalty (attack_arrow_point_blank_divisor@ranger 1) die less, or progress differently, than
+  with the shipped 2?
+suites: [classes-1800-small-rangers]
+pilot: true   # the study's first run, on the 10 Ranger starts of classes-1800-small (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-track-p-e2d8919e
+  repository: diegoami/borg-reborn-rs
+  ref: e2d8919e8aa314b8a3622b90bf0b1be7958bdfd4
+  label: >-
+    borg-reborn-rs track-p e2d8919e: after the P7 close (#937), with #873 merged; harness/borg.txt e4bd2b87...,
+    scary_monsters.txt ff831d0a..., source hash 453451d4...; Ranger arrow point-blank divisor 2, throw divisor 1.
+  scary_lists:
+    scary_monsters.txt: ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-pbdtp
+arms:
+  ctl: {}   # shipped: Ranger arrow divisor 2
+  lo: {borg_param_attack_arrow_point_blank_divisor__ranger: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: the owner asked borg-reborn-rs to file the request for H2 (borg-zoo#651) and to dispatch it. The pilot
+  comes first (RULES 16); medium, big and full follow only after its gate and the owner's word (RULES 14).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result of these arms was read. Pilot (RULES 16) of the development re-measure on the
+  200 Ranger starts of classes-1800 (#290's development starts; f660aecc gave 11 against 18 deaths there).
+  Gate:
+  - no config_error; one binary; each arm's line in its borg.txt;
+  - every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;
+  - death bundles reproduced.
+  Read (descriptive, pooled with the later tiers as one study, RULES 14): deaths and causes, CL1-3 deaths, mean max
+  CL and DL, alive at the cap, paired rescued and newly killed against ctl, identical plays; arrows fired, broken and
+  bought per game and shots at an adjacent monster, where the evidence allows. A lead in deaths is confirmed only on
+  the Ranger starts of classes-1800-fresh (classes-1800-b-rangers was #290's confirmation).

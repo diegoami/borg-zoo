@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-pbd-ranger-trackp-pilot",
+  "issue": 651,
+  "definition": "definitions/reborn-pbd-ranger-trackp-pilot.yaml",
+  "question": "On borg-reborn-rs track-p e2d8919e (attack on sight, the fast-fragile policy, #870's throw divisor, #873), do Rangers with no arrow point-blank penalty (attack_arrow_point_blank_divisor@ranger 1) die less, or progress differently, than with the shipped 2?",
+  "description": "On borg-reborn-rs track-p e2d8919e (attack on sight, the fast-fragile policy, #870's throw divisor, #873), do Rangers with no arrow point-blank penalty (attack_arrow_point_blank_divisor@ranger 1) die less, or progress differently, than with the shipped 2? Generated from definitions/reborn-pbd-ranger-trackp-pilot.yaml: 2 arms on 4.2.6-reborn-rust-track-p-e2d8919e, suite classes-1800-small-rangers.",
+  "prespecified": "Fixed 2026-11-22, before any result of these arms was read. Pilot (RULES 16) of the development re-measure on the\n200 Ranger starts of classes-1800 (#290's development starts; f660aecc gave 11 against 18 deaths there).\nGate:\n- no config_error; one binary; each arm's line in its borg.txt;\n- every cell ends in death, turn_cap or borg_stopped; frozen-turn bursts classified and key outliers listed;\n- death bundles reproduced.\nRead (descriptive, pooled with the later tiers as one study, RULES 14): deaths and causes, CL1-3 deaths, mean max\nCL and DL, alive at the cap, paired rescued and newly killed against ctl, identical plays; arrows fired, broken and\nbought per game and shots at an adjacent monster, where the evidence allows. A lead in deaths is confirmed only on\nthe Ranger starts of classes-1800-fresh (classes-1800-b-rangers was #290's confirmation).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-track-p-e2d8919e"
+  ],
+  "profiles": [
+    "reborn-pbdtp-ctl",
+    "reborn-pbdtp-lo"
+  ],
+  "suites": [
+    "classes-1800-small-rangers"
+  ],
+  "control": "4.2.6-reborn-rust-track-p-e2d8919e",
+  "control_profile": "reborn-pbdtp-ctl",
+  "owner_authorization": "2026-11-22: the owner asked borg-reborn-rs to file the request for H2 (borg-zoo#651) and to dispatch it. The pilot comes first (RULES 16); medium, big and full follow only after its gate and the owner's word (RULES 14).",
+  "retain_evidence": true
+}
