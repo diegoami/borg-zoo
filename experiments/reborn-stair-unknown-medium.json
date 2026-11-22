@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-stair-unknown-medium",
+  "issue": 642,
+  "definition": "definitions/reborn-stair-unknown-medium.yaml",
+  "question": "In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs ea14528a (PR #897, on track-p 4c686250), do stair flights that refuse or pay for unknown grids (caution_stairs_flight_unknown 1 and 2) save the breeder games in which the flight walked into a dead end through unseen rock, or do they find no route and cost games? Each world has its own control.",
+  "description": "In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs ea14528a (PR #897, on track-p 4c686250), do stair flights that refuse or pay for unknown grids (caution_stairs_flight_unknown 1 and 2) save the breeder games in which the flight walked into a dead end through unseen rock, or do they find no route and cost games? Each world has its own control. Generated from definitions/reborn-stair-unknown-medium.yaml: 6 arms on 4.2.6-reborn-rust-stair-unknown-ea14528a, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-22 after the pilot gate (run 45023921364: arms play differently (0-1 of 18 identical), 1-3 deaths per arm) and before any result of this tier was read. Medium tier (RULES 14) on the same build:\nclasses-1800 starts 91-360 (270 starts per arm, paired), all classes, 100,000 turns, one binary, disjoint from the other tiers of the study (pool them\nas one study, RULES 14). All six profiles (ctl, m1, m2 in breeders-x4 and in breeders-x8); a world's arms are compared only within that world.\nGate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by start.\nReport per arm and class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly killed against\nthe control (exact McNemar), identical plays; a RULES 18 bin. Evidence is not retained at this tier. Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-stair-unknown-ea14528a"
+  ],
+  "profiles": [
+    "reborn-stairunk-ctl-x4",
+    "reborn-stairunk-m1-x4",
+    "reborn-stairunk-m2-x4",
+    "reborn-stairunk-ctl-x8",
+    "reborn-stairunk-m1-x8",
+    "reborn-stairunk-m2-x8"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-stair-unknown-ea14528a",
+  "control_profile": "reborn-stairunk-ctl-x4",
+  "owner_authorization": "2026-11-22: zoo owner, \"yes dispatch all\" (the medium tier; the pilot gate is read and posted on the issue).",
+  "retain_evidence": false
+}

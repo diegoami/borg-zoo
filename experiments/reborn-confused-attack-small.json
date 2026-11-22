@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-confused-attack-small",
+  "issue": 636,
+  "definition": "definitions/reborn-confused-attack-small.yaml",
+  "question": "On borg-reborn-rs e8895f5e, over 45 starts of classes-1800 at 300,000 turns (5 per class), does the confused attack by direction with no point-blank penalty on throws (confused-pb) keep the pilot's lead (1 death against 3, 2 rescued / 0 newly killed) against the shipped play?",
+  "description": "On borg-reborn-rs e8895f5e, over 45 starts of classes-1800 at 300,000 turns (5 per class), does the confused attack by direction with no point-blank penalty on throws (confused-pb) keep the pilot's lead (1 death against 3, 2 rescued / 0 newly killed) against the shipped play? Generated from definitions/reborn-confused-attack-small.yaml: 2 arms on 4.2.6-reborn-rust-confused-attack-e8895f5e, suite classes-1800-300k-verysmall.",
+  "prespecified": "Fixed 2026-11-22 after the pilot (run 44986409375: ctl 3 deaths, confused 3, ctl-clw 4, confused-clw 4, confused-pb 1) and before any result of this tier was read.\nSmall tier (RULES 14): 45 starts per arm (classes-1800 starts 1-45, 5 per class), ctl against confused-pb only, 300,000 turns, 90 cells, evidence not retained.\nReport deaths and causes, mean CL and depth, alive at the cap, paired rescued and newly killed (exact McNemar), identical plays, unfinished. The Druid 934061548 starvation\nof the pilot (a Fox Form defect fixed on track-p, not on this build) is in these starts if it falls in 1-45. Directional only (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-confused-attack-e8895f5e"
+  ],
+  "profiles": [
+    "reborn-conf-ctl",
+    "reborn-conf-confused-pb"
+  ],
+  "suites": [
+    "classes-1800-300k-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-confused-attack-e8895f5e",
+  "control_profile": "reborn-conf-ctl",
+  "owner_authorization": "2026-11-22: zoo owner, \"yes dispatch all\" (the small tier of the arm that moved something in the pilot, #636: confused-pb).",
+  "retain_evidence": false
+}
