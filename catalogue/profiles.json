@@ -11581,6 +11581,68 @@
         "borg_param_town_recall_urgent_depth": 1,
         "borg_param_caution_recall_dl1_hold_up": 1
       }
+    },
+    "reborn-deadend-ctl-x4": {
+      "description": "borg-zoo#659 (reborn-dead-end-pilot.yaml): arm ctl-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4"
+      }
+    },
+    "reborn-deadend-d1-x4": {
+      "description": "borg-zoo#659 (reborn-dead-end-pilot.yaml): arm d1-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_retreat_dead_end": 1
+      }
+    },
+    "reborn-deadend-d2-x4": {
+      "description": "borg-zoo#659 (reborn-dead-end-pilot.yaml): arm d2-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_retreat_dead_end": 2
+      }
+    },
+    "reborn-deadend-ctl-x8": {
+      "description": "borg-zoo#659 (reborn-dead-end-pilot.yaml): arm ctl-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8"
+      }
+    },
+    "reborn-deadend-d1-x8": {
+      "description": "borg-zoo#659 (reborn-dead-end-pilot.yaml): arm d1-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_caution_retreat_dead_end": 1
+      }
+    },
+    "reborn-deadend-d2-x8": {
+      "description": "borg-zoo#659 (reborn-dead-end-pilot.yaml): arm d2-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_caution_retreat_dead_end": 2
+      }
+    },
+    "reborn-retreat-flight-ctl": {
+      "description": "borg-zoo#657 (reborn-retreat-flight-pilot.yaml): arm ctl.",
+      "settings": {}
+    },
+    "reborn-retreat-flight-hold": {
+      "description": "borg-zoo#657 (reborn-retreat-flight-pilot.yaml): arm hold.",
+      "settings": {
+        "borg_param_caution_retreat_reentry_ticks": 128
+      }
     }
   }
 }

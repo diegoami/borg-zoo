@@ -2141,6 +2141,30 @@
         "reborn-rclshallow-both"
       ],
       "runs": []
+    },
+    "reborn-deadend": {
+      "issue": 659,
+      "status": "defined (pilot)",
+      "what": "Retreat and back-up refuse a dead end (#881 part 2, PR #953) on b157f9dd: ctl, d1, d2 in breeders-x4 and breeders-x8, classes-18.",
+      "profiles": [
+        "reborn-deadend-ctl-x4",
+        "reborn-deadend-d1-x4",
+        "reborn-deadend-d2-x4",
+        "reborn-deadend-ctl-x8",
+        "reborn-deadend-d1-x8",
+        "reborn-deadend-d2-x8"
+      ],
+      "runs": []
+    },
+    "reborn-retreat-flight": {
+      "issue": 657,
+      "status": "defined (pilot)",
+      "what": "Stair routing after a tactical retreat (#932, PR #964) on e43b6d87: ctl, hold, classes-18 at 300k.",
+      "profiles": [
+        "reborn-retreat-flight-ctl",
+        "reborn-retreat-flight-hold"
+      ],
+      "runs": []
     }
   }
 }

@@ -157,6 +157,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-overex` | [#675](https://github.com/diegoami/borg-zoo/issues/675) | 2 | defined (pilot on the small Mage suite) | Emergency attack spell beyond the mana (#980, PR #991) on 89888283: ctl (1), noexert (0), Mages. |
 | `reborn-unkcure` | [#684](https://github.com/diegoami/borg-zoo/issues/684) | 4 | defined (pilot) | Unknown cures and the cure HP floor (#985, PR #1003) on b5b0f5fd: ctl, hold, floor, both, classes-18. |
 | `reborn-rclshallow` | [#688](https://github.com/diegoami/borg-zoo/issues/688) | 4 | defined (pilot) | Recall on shallow trips (#984, PR #997) on 434d5371: ctl, urgent, hold, both, classes-18. |
+| `reborn-deadend` | [#659](https://github.com/diegoami/borg-zoo/issues/659) | 6 | defined (pilot) | Retreat and back-up refuse a dead end (#881 part 2, PR #953) on b157f9dd: ctl, d1, d2 in breeders-x4 and breeders-x8, classes-18. |
+| `reborn-retreat-flight` | [#657](https://github.com/diegoami/borg-zoo/issues/657) | 2 | defined (pilot) | Stair routing after a tactical retreat (#932, PR #964) on e43b6d87: ctl, hold, classes-18 at 300k. |
 
 ### `heal-attack-4`
 
@@ -2234,6 +2236,30 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-rclshallow-hold` | 1 | – |
 | `reborn-rclshallow-both` | 1 | 1 |
 
+### `reborn-deadend`
+
+Retreat and back-up refuse a dead end (#881 part 2, PR #953) on b157f9dd: ctl, d1, d2 in breeders-x4 and breeders-x8, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_retreat_dead_end` | `borg_world` |
+| --- | --- | --- |
+| `reborn-deadend-ctl-x4` | – | breeders-x4 |
+| `reborn-deadend-d1-x4` | 1 | breeders-x4 |
+| `reborn-deadend-d2-x4` | 2 | breeders-x4 |
+| `reborn-deadend-ctl-x8` | – | breeders-x8 |
+| `reborn-deadend-d1-x8` | 1 | breeders-x8 |
+| `reborn-deadend-d2-x8` | 2 | breeders-x8 |
+
+### `reborn-retreat-flight`
+
+Stair routing after a tactical retreat (#932, PR #964) on e43b6d87: ctl, hold, classes-18 at 300k.
+
+| Profile | `borg_param_caution_retreat_reentry_ticks` |
+| --- | --- |
+| `reborn-retreat-flight-ctl` | – |
+| `reborn-retreat-flight-hold` | 128 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2379,9 +2405,11 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_recall_survival` | 0, 1, not set | `reborn-fight-recall`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3` |  |
 | `borg_param_caution_recall_wait_as_usual` | 0, 1, not set | `reborn-neutral-main`, `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_recall_wait_no_explore` | 1, not set | `reborn-recallwait` |  |
+| `borg_param_caution_retreat_dead_end` | 1, 2, not set | `reborn-deadend` |  |
 | `borg_param_caution_retreat_from_faster` | 1, not set | `reborn-cavesp` |  |
 | `borg_param_caution_retreat_immobile_kill_turns` | 3, not set | `reborn-wjelly` |  |
 | `borg_param_caution_retreat_oscillation_limit` | 3, not set | `reborn-wjelly` |  |
+| `borg_param_caution_retreat_reentry_ticks` | 128, not set | `reborn-retreat-flight` |  |
 | `borg_param_caution_rising_explore_ticks` | 500, 1000, 1500, 2000, not set | `reborn-rising-ticks3` |  |
 | `borg_param_caution_rising_hold_flee_descent` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_rising_hold_min_hp_percent` | 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main` |  |
@@ -2699,7 +2727,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_town_w_escape` | 100, not set | `reborn-casters` |  |
 | `borg_town_w_space` | 12, 50, not set | `reborn-untested-town` |  |
 | `borg_town_w_support` | 25, 100, not set | `reborn-untested-town` |  |
-| `borg_world` | breeders-x4, breeders-x8 | `reborn-stairunk`, `reborn-lonew`, `reborn-blloww` |  |
+| `borg_world` | breeders-x4, breeders-x8 | `reborn-stairunk`, `reborn-lonew`, `reborn-blloww`, `reborn-deadend` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |
