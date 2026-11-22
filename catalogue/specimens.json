@@ -2978,6 +2978,32 @@
       "scary_lists": {
         "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
       }
+    },
+    "4.2.6-reborn-rust-main-b34196c5": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "b34196c5296087dd4eaeb7acc2eebf52bf41f5f7",
+      "label": "borg-reborn-rs LINE main, head b34196c5 on 2026-11-22 (#900 cursed-torch fix merged; 14 commits ahead of the merge base f57499d0 with track-p, which it does not contain: main does not have #864/#873/#868/#875/#888/#892/#905); shipped harness/borg.txt dd21cc3e..., scary_monsters.txt e0e29381..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "e0e293814e8ed9c2f3a5f0af809f479e854878e5d0eaedea37b671dd1b20f5a8"
+      }
+    },
+    "4.2.6-reborn-rust-trackp-9085c266": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "9085c2665c04b9b584dd744e7c23119a1dd5d937",
+      "label": "borg-reborn-rs LINE track-p, head 9085c266 on 2026-11-22 (#904 ship the confused attack merged; ten PRs ahead of the merge base f57499d0 with main: #864 room, #873 variety, #868 confused attack, #875 throw point-blank, #888 light radius, #892 recall poison, #905 full-pack junk fix); shipped harness/borg.txt e4bd2b87..., scary_monsters.txt ff831d0a..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "ff831d0a309105a114631f1763aeba591c181f54a9d124988f331b7461df7ef1"
+      }
     }
   }
 }

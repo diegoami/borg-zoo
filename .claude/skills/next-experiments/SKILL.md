@@ -58,8 +58,11 @@ dispatch, and never write a definition into `definitions/` until the owner picks
   a `purchase_burst` (#205) is shopping and the cell kept its outcome.
 - A newer main is a newer game: a lead on one ref can reverse on the next (on 2026-11-18
   reserve 100 with curve 50 led on e0aa2e0a and was the worst curve on dd5f026e). Check
-  that the lead's specimen is still current main before proposing its next tier; if not,
-  propose the pilot again on current main.
+  that the lead's specimen is still the head of its line before proposing its next tier; if not,
+  propose the pilot again on the head. borg-reborn-rs has two lines (borg-zoo#645): track-p is the working
+  line (pin development experiments to its head), main gets reviewed milestone merges; run
+  `python3 -m zoo.lines --match REF` to see where a specimen stands against both heads, name the line in
+  every proposal, and re-run a lead on track-p before proposing it for shipping.
 - Unfinished cells (stalls, timeouts) are findings of their own: a stall in an arm is
   a reason for a fix and a re-run before any comparison.
 

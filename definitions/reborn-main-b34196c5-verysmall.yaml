@@ -1,0 +1,38 @@
+# borg-zoo#645: baseline ladder of the main line at b34196c5, verysmall tier (45 starts).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-main-b34196c5-verysmall.yaml
+name: reborn-main-b34196c5-verysmall
+issue: 645
+question: >-
+  What do the borg-rs core and shipped settings of borg-reborn-rs main at b34196c5 do over classes-1800's verysmall slice (45 starts,
+  100,000 turns)? A baseline of the main line: a description, not a comparison.
+tier: verysmall
+pilot: true            # first run of this arm on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-main-b34196c5
+  repository: diegoami/borg-reborn-rs
+  ref: b34196c5296087dd4eaeb7acc2eebf52bf41f5f7
+  label: "borg-reborn-rs LINE main, head b34196c5 on 2026-11-22 (#900 cursed-torch fix merged; 14 commits ahead of the merge base f57499d0 with track-p, which it does not contain: main does not have #864/#873/#868/#875/#888/#892/#905); shipped harness/borg.txt dd21cc3e..., scary_monsters.txt e0e29381..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: e0e293814e8ed9c2f3a5f0af809f479e854878e5d0eaedea37b671dd1b20f5a8
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-head
+arms:
+  shipped: {}
+control: [shipped]
+owner_authorization: >-
+  2026-11-22: zoo owner, "well both, but we need to regularly make a baseline full run with track-p, checking what main does is update" (the baseline ladder of the main line, issue #645).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-22, before any result was read. Baseline of the main line at b34196c5: one arm (shipped settings, borg-rs core, no
+  overrides), classes-1800, 100,000 turns, ladder tier verysmall. Baselines are made regularly on track-p (a full ladder when the head has moved by
+  several merged PRs) and lighter on main as an update. Gate: no config_error; one binary; every cell ends in death, turn_cap or
+  borg_stopped; stalls, timeouts and wall timeouts counted apart. Report overall and per class: deaths and causes, CL and depth at death,
+  survivors, alive at the cap having reached DL5, unfinished; paired by start against the other line's baseline and the earlier
+  baselines (f57499d0, ab775d48, ed52fec1). Descriptive (RULES 14).

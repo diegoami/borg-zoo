@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-kit-leash-trackp-medium",
+  "issue": 646,
+  "definition": "definitions/reborn-kit-leash-trackp-medium.yaml",
+  "question": "On the borg-reborn-rs track-p head 9085c266, does kit_leash 1 (alone, with no kit, with the descent and danger rules, or with money first) keep its lead of #589 on main f57499d0: 3 to 6 deaths in 360 starts against 9 for ctl?",
+  "description": "On the borg-reborn-rs track-p head 9085c266, does kit_leash 1 (alone, with no kit, with the descent and danger rules, or with money first) keep its lead of #589 on main f57499d0: 3 to 6 deaths in 360 starts against 9 for ctl? Generated from definitions/reborn-kit-leash-trackp-medium.yaml: 5 arms on 4.2.6-reborn-rust-trackp-9085c266, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#646; #589). Five arms on the track-p head, ctl is track-p's play\n(every kit switch shipped 0). classes-1800 starts 91-360; 270 starts per arm, paired; 100,000 turns. Gate: no config_error; one binary; each arm's values in\nparams-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart. Report per arm and class:\ndeaths and causes, alive at the cap having reached DL5, mean CL and depth, paired rescued and newly killed against ctl (exact\nMcNemar), identical plays; pool pilot-excluded small + medium as one study of 360 starts (RULES 14). A lead, not a claim; a confirmation\nneeds an unopened seed block.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-9085c266"
+  ],
+  "profiles": [
+    "reborn-kitlt-ctl",
+    "reborn-kitlt-leash",
+    "reborn-kitlt-leash-m0",
+    "reborn-kitlt-kit",
+    "reborn-kitlt-c"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-9085c266",
+  "control_profile": "reborn-kitlt-ctl",
+  "owner_authorization": "2026-11-22: zoo owner, \"well both, but we need to regularly make a baseline full run with track-p\" (the re-run of #589's lead on track-p, issue #646; pilot, small and medium dispatched together: the pilot is the gate and its tiers follow on the owner's standing go).",
+  "retain_evidence": false
+}
