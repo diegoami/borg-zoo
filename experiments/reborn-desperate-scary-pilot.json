@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-desperate-scary-pilot",
+  "issue": 622,
+  "definition": "definitions/reborn-desperate-scary-pilot.yaml",
+  "question": "On borg-reborn-rs main f57499d0, does shortening the desperate walk to the up stairs from a scary monster (8 or 4 grids instead of 20) or limiting it to characters under CL10 save games in which the Borg walked from full HP to death beside the monster, or does it add deaths?",
+  "description": "On borg-reborn-rs main f57499d0, does shortening the desperate walk to the up stairs from a scary monster (8 or 4 grids instead of 20) or limiting it to characters under CL10 save games in which the Borg walked from full HP to death beside the monster, or does it add deaths? Generated from definitions/reborn-desperate-scary-pilot.yaml: 4 arms on 4.2.6-reborn-rust-main-f57499d0, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any result of this build was read (borg-zoo#622). Four arms on one build, classes-18, 18 starts per\narm (72 cells), 100,000 turns, evidence retained. Gate: no config_error; one binary; each arm's values in params-core.json;\nevery cell ends in death, turn_cap or borg_stopped; stalls apart.\nReport per arm and class: deaths and causes; paired rescued and newly killed against ctl; identical plays (the branch\nfires rarely: count the games in which \"# Desperate for Stairs (three)\" appears per arm, and HP at the walk's start, before\nreading any outcome); mean CL and depth. Small only on the owner's go. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-main-f57499d0"
+  ],
+  "profiles": [
+    "reborn-despscary-ctl",
+    "reborn-despscary-d8",
+    "reborn-despscary-d4",
+    "reborn-despscary-lvl10"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-f57499d0",
+  "control_profile": "reborn-despscary-ctl",
+  "owner_authorization": "2026-11-22: zoo owner, \"do all of them in the order you think right\" (the proposals of /next-experiments, issue #622).",
+  "retain_evidence": true
+}

@@ -123,6 +123,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-tonight` | [#609](https://github.com/diegoami/borg-zoo/issues/609) | 1 | defined (ladder: pilot, small-rest, medium, big, full), dispatched 2026-11-21 | Tonight's test: borg-reborn-rs main ab775d48, shipped settings, one arm, classes-1800 ladder (45+45+270+540+900), 100,000 turns. |
 | `reborn-p6rf` | [#611](https://github.com/diegoami/borg-zoo/issues/611) | 1 | defined (pilot) | P6 review-fix compatibility (borg-reborn-rs #860): main ab775d48 against 038250d6, shipped settings, classes-18. |
 | `reborn-room` | [#612](https://github.com/diegoami/borg-zoo/issues/612) | 4 | pilot done (run 44950482392); small (classes-1800-300k-verysmall) defined and dispatched | Departure room, store keep and Recall curve (borg-reborn-rs #859, PR #864) on c7ea18df: ctl, shipped, room, recall, classes-18 at 300k. |
+| `reborn-healskip` | [#621](https://github.com/diegoami/borg-zoo/issues/621) | 4 | defined (pilot) | Heal skip bands and the non-priest penalty (borg_caution.rs) on main f57499d0: ctl, nopen, half, always, classes-18. |
+| `reborn-despscary` | [#622](https://github.com/diegoami/borg-zoo/issues/622) | 4 | defined (pilot) | Desperate walk to the stairs from a scary monster on main f57499d0: ctl, d8, d4, lvl10, classes-18. |
+| `reborn-main-f57499d0` | [#623](https://github.com/diegoami/borg-zoo/issues/623) | 1 | defined (ladder: pilot, small-rest, medium, big, full), dispatched 2026-11-22 | Ladder of borg-reborn-rs main f57499d0, shipped settings, one arm, classes-1800 (45+45+270+540+900), 100,000 turns. |
 
 ### `heal-attack-4`
 
@@ -1759,6 +1762,40 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-room-room` | 2 | 50 | 0 | 0 |
 | `reborn-room-recall` | 0 | 0 | 110 | 0 |
 
+### `reborn-healskip`
+
+Heal skip bands and the non-priest penalty (borg_caution.rs) on main f57499d0: ctl, nopen, half, always, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_heal_band1_skip_chance` | `borg_param_caution_heal_band2_skip_chance` | `borg_param_caution_heal_band3_skip_chance` | `borg_param_caution_heal_band4_skip_chance` | `borg_param_caution_heal_band5_skip_chance` | `borg_param_caution_heal_nonpriest_chance_penalty` |
+| --- | --- | --- | --- | --- | --- | --- |
+| `reborn-healskip-ctl` | – | – | – | – | – | – |
+| `reborn-healskip-nopen` | – | – | – | – | – | 0 |
+| `reborn-healskip-half` | 49 | 48 | 40 | 25 | 12 | – |
+| `reborn-healskip-always` | – | 0 | 0 | 0 | 0 | 0 |
+
+### `reborn-despscary`
+
+Desperate walk to the stairs from a scary monster on main f57499d0: ctl, d8, d4, lvl10, classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_desperate_scary_distance` | `borg_param_caution_desperate_scary_level` |
+| --- | --- | --- |
+| `reborn-despscary-ctl` | – | – |
+| `reborn-despscary-d8` | 8 | – |
+| `reborn-despscary-d4` | 4 | – |
+| `reborn-despscary-lvl10` | – | 10 |
+
+### `reborn-main-f57499d0`
+
+Ladder of borg-reborn-rs main f57499d0, shipped settings, one arm, classes-1800 (45+45+270+540+900), 100,000 turns.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-head-shipped`.
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -1858,10 +1895,18 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_cornered_throw_first` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_desperate_fast_danger_percent` | 0, 50, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
 | `borg_param_caution_desperate_ranged_first_reach` | 3, not set | `reborn-flight3-757`, `reborn-flight3main` |  |
+| `borg_param_caution_desperate_scary_distance` | 4, 8, not set | `reborn-despscary` |  |
+| `borg_param_caution_desperate_scary_level` | 10, not set | `reborn-despscary` |  |
 | `borg_param_caution_flee_known_down_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_flee_recall` | 0, not set | `reborn-recall-settings` |  |
 | `borg_param_caution_flee_recall_chasers` | 2, 6, not set | `reborn-untested-caution` |  |
 | `borg_param_caution_flee_recall_gate_below_depth` | 0, 2, 3, not set | `reborn-recall-settings`, `reborn-bundle` |  |
+| `borg_param_caution_heal_band1_skip_chance` | 49, not set | `reborn-healskip` |  |
+| `borg_param_caution_heal_band2_skip_chance` | 0, 48, not set | `reborn-healskip` |  |
+| `borg_param_caution_heal_band3_skip_chance` | 0, 40, not set | `reborn-healskip` |  |
+| `borg_param_caution_heal_band4_skip_chance` | 0, 25, not set | `reborn-healskip` |  |
+| `borg_param_caution_heal_band5_skip_chance` | 0, 12, not set | `reborn-healskip` |  |
+| `borg_param_caution_heal_nonpriest_chance_penalty` | 0, not set | `reborn-healskip` |  |
 | `borg_param_caution_heal_outmatched_min_loss` | 25, 50, 75, not set | `reborn-outmatched` |  |
 | `borg_param_caution_immobile_no_return` | 1, not set | `reborn-immfix` |  |
 | `borg_param_caution_immobile_step_mobile_first` | 1, not set | `reborn-confusion`, `reborn-immfix` |  |

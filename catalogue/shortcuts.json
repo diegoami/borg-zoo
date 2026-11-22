@@ -1724,6 +1724,39 @@
         "reborn-room-recall"
       ],
       "runs": []
+    },
+    "reborn-healskip": {
+      "issue": 621,
+      "status": "defined (pilot)",
+      "what": "Heal skip bands and the non-priest penalty (borg_caution.rs) on main f57499d0: ctl, nopen, half, always, classes-18.",
+      "profiles": [
+        "reborn-healskip-ctl",
+        "reborn-healskip-nopen",
+        "reborn-healskip-half",
+        "reborn-healskip-always"
+      ],
+      "runs": []
+    },
+    "reborn-despscary": {
+      "issue": 622,
+      "status": "defined (pilot)",
+      "what": "Desperate walk to the stairs from a scary monster on main f57499d0: ctl, d8, d4, lvl10, classes-18.",
+      "profiles": [
+        "reborn-despscary-ctl",
+        "reborn-despscary-d8",
+        "reborn-despscary-d4",
+        "reborn-despscary-lvl10"
+      ],
+      "runs": []
+    },
+    "reborn-main-f57499d0": {
+      "issue": 623,
+      "status": "defined (ladder: pilot, small-rest, medium, big, full), dispatched 2026-11-22",
+      "what": "Ladder of borg-reborn-rs main f57499d0, shipped settings, one arm, classes-1800 (45+45+270+540+900), 100,000 turns.",
+      "profiles": [
+        "reborn-head-shipped"
+      ],
+      "runs": []
     }
   }
 }
