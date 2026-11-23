@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-leash-holes-verysmall",
+  "issue": 719,
+  "definition": "definitions/reborn-leash-holes-verysmall.yaml",
+  "question": "On borg-reborn-rs 12fe36d8, on classes-1800 starts 1-45, do the three stair-leash switches of #1062 change deaths and the progress against ctl?",
+  "description": "On borg-reborn-rs 12fe36d8, on classes-1800 starts 1-45, do the three stair-leash switches of #1062 change deaths and the progress against ctl? Generated from definitions/reborn-leash-holes-verysmall.yaml: 5 arms on 4.2.6-reborn-rust-leashholes-12fe36d8, suite classes-1800-verysmall.",
+  "prespecified": "Fixed 2026-11-23, after the pilot gate of reborn-leash-holes-pilot (borg-zoo#719: 0 deaths in every arm, every switch exercised, any/unknown/leash3 0.5-0.8 CL lower at the cap) and before any result of this tier was read. Five arms on 12fe36d8 (borg-reborn-rs PR #1087 merged with track-p bc215cf8; every #1062 switch ships 0, so ctl is the shipped play): ctl; any (flow_leash_any_stair 1); unknown (flow_leash_unknown_stair_steps 20); recall (flow_leash_teleported_recall 1); leash3 (all three). Tier verysmall: classes-1800 starts 1-45, 100,000 turns, paired against ctl. Report: deaths at CL <= 2 and all deaths per class and arm (rescued and newly killed, exact McNemar), CL and DL at death, identical plays; the progress cost (milestones at 25k / 50k / 100k turns, starts reaching DL3 and DL5, first_turn_at_depth, #718's fields). The cases behind it (Kobold Mage 592754909, Dwarf Mage 645909552, Dunadan Druid 1024822556) are in classes-1800 starts 901-1800 and are not in this block. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-leashholes-12fe36d8"
+  ],
+  "profiles": [
+    "reborn-lhole-ctl",
+    "reborn-lhole-any",
+    "reborn-lhole-unknown",
+    "reborn-lhole-recall",
+    "reborn-lhole-leash3"
+  ],
+  "suites": [
+    "classes-1800-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-leashholes-12fe36d8",
+  "control_profile": "reborn-lhole-ctl",
+  "owner_authorization": "2026-11-23: borg-reborn-rs owner (\"file the zoo request\": pilot then a verysmall study paired against ctl), borg-zoo#719; zoo owner, 2026-11-23: \"yes do all\".",
+  "retain_evidence": false
+}

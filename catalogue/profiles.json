@@ -12547,6 +12547,22 @@
         "borg_param_escape_phase_unknown_scary": 0,
         "borg_param_escape_phase_newcomer_wait": 1
       }
+    },
+    "reborn-food-ctl0": {
+      "description": "borg-zoo#729 (reborn-food-bfs-pilot.yaml): arm ctl0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_breadth_first": 0
+      }
+    },
+    "reborn-food-bfs1": {
+      "description": "borg-zoo#729 (reborn-food-bfs-pilot.yaml): arm bfs1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_breadth_first": 1
+      }
     }
   }
 }

@@ -182,6 +182,10 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-bfs` | [#730](https://github.com/diegoami/borg-zoo/issues/730) | 2 | defined (pilot, full) | Breadth-first exploration on (shipped, #1088) against off (explore_breadth_first 0, arm bfs0) on track-p 1c071812: ctl, bfs0. |
 | `reborn-phase` | [#731](https://github.com/diegoami/borg-zoo/issues/731) | 4 | defined (pilot, full) | The two #1066 Phase Door switches (unknown_scary, newcomer_wait), shipped on in #1096 on track-p 6cd5c8bf: shipped, phase0 (both 0), unknown, newcomer. |
 | `reborn-mixed` | [#732](https://github.com/diegoami/borg-zoo/issues/732) | 6 | defined (pilot, verysmall, small-rest) | Mixed exploration (explore_mixed, #1098, PR #1117) on 3a2d2215: ctl, mixed, nobfs, mixed-alone, mixed-tight, mixed-loose. |
+| `reborn-food-bfs` | [#729](https://github.com/diegoami/borg-zoo/issues/729) | 2 | defined (pilot) | Food forecasts after the Hungry biscuit fix (#1109) on f0e13e99: ctl0 (breadth-first off), bfs1 (on); classes-18 with evidence. |
+| `reborn-ffb-ladder` | [#711](https://github.com/diegoami/borg-zoo/issues/711) | 2 | defined (verysmall, small-rest, medium, big = starts 1-900) | Confirmation block for the fast-fragile bundle lead on 769f3fbd: ctl, bundle on classes-1800 starts 1-900. |
+| `reborn-bfs-ladder` | [#730](https://github.com/diegoami/borg-zoo/issues/730) | 2 | defined (verysmall, small-rest, medium, big = starts 1-900) | Breadth-first on (shipped) vs off, second block, classes-1800 starts 1-900 on 1c071812: ctl, bfs0. |
+| `reborn-leash-holes-vs` | [#719](https://github.com/diegoami/borg-zoo/issues/719) | 5 | defined (verysmall) | The stair-leash switches of #1062 on 12fe36d8, classes-1800 starts 1-45. |
 
 ### `heal-attack-4`
 
@@ -2576,6 +2580,53 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-mx-mixed-tight` | – | 8 | 1 |
 | `reborn-mx-mixed-loose` | – | 3 | 1 |
 
+### `reborn-food-bfs`
+
+Food forecasts after the Hungry biscuit fix (#1109) on f0e13e99: ctl0 (breadth-first off), bfs1 (on); classes-18 with evidence.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_explore_breadth_first` |
+| --- | --- |
+| `reborn-food-ctl0` | 0 |
+| `reborn-food-bfs1` | 1 |
+
+### `reborn-ffb-ladder`
+
+Confirmation block for the fast-fragile bundle lead on 769f3fbd: ctl, bundle on classes-1800 starts 1-900.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_fast_fragile_count_dot` | `borg_param_fast_fragile_escape_quantile` | `borg_param_fast_fragile_heal_floor` |
+| --- | --- | --- | --- |
+| `reborn-ffb769-ctl` | – | – | – |
+| `reborn-ffb769-bundle` | 1 | 75 | 50 |
+
+### `reborn-bfs-ladder`
+
+Breadth-first on (shipped) vs off, second block, classes-1800 starts 1-900 on 1c071812: ctl, bfs0.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_explore_breadth_first` |
+| --- | --- |
+| `reborn-bfs-ctl` | – |
+| `reborn-bfs-bfs0` | 0 |
+
+### `reborn-leash-holes-vs`
+
+The stair-leash switches of #1062 on 12fe36d8, classes-1800 starts 1-45.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_flow_leash_any_stair` | `borg_param_flow_leash_teleported_recall` | `borg_param_flow_leash_unknown_stair_steps` |
+| --- | --- | --- | --- |
+| `reborn-lhole-ctl` | – | – | – |
+| `reborn-lhole-any` | 1 | – | – |
+| `reborn-lhole-unknown` | – | – | 20 |
+| `reborn-lhole-recall` | – | 1 | – |
+| `reborn-lhole-leash3` | 1 | 1 | 20 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2783,28 +2834,28 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_phase_unknown_scary` | 0, 1 | `reborn-phase` |  |
 | `borg_param_escape_teleport_block` | 0, not set | `reborn-tpblock` |  |
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
-| `borg_param_explore_breadth_first` | 0, not set | `reborn-bfs`, `reborn-mixed` |  |
+| `borg_param_explore_breadth_first` | 0, 1, not set | `reborn-bfs`, `reborn-mixed`, `reborn-food-bfs`, `reborn-bfs-ladder` |  |
 | `borg_param_explore_mix_contact_damage` | 3, 8, not set | `reborn-mixed` |  |
 | `borg_param_explore_mixed` | 1, not set | `reborn-mixed` |  |
 | `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag`, `reborn-nowalk`, `reborn-cavesp` |  |
 | `borg_param_fast_fragile_contact_max` | 1, not set | `reborn-cavesp` |  |
-| `borg_param_fast_fragile_count_dot` | 1, not set | `reborn-ffq`, `reborn-ff-dot`, `reborn-ffb769` |  |
+| `borg_param_fast_fragile_count_dot` | 1, not set | `reborn-ffq`, `reborn-ff-dot`, `reborn-ffb769`, `reborn-ffb-ladder` |  |
 | `borg_param_fast_fragile_escape_percent` | 0, 75, not set | `reborn-fastfrag`, `reborn-ffq` |  |
-| `borg_param_fast_fragile_escape_quantile` | 50, 75, 100, not set | `reborn-ffq`, `reborn-ffb769` |  |
-| `borg_param_fast_fragile_heal_floor` | 25, 50, not set | `reborn-ffq`, `reborn-ffb769` |  |
+| `borg_param_fast_fragile_escape_quantile` | 50, 75, 100, not set | `reborn-ffq`, `reborn-ffb769`, `reborn-ffb-ladder` |  |
+| `borg_param_fast_fragile_heal_floor` | 25, 50, not set | `reborn-ffq`, `reborn-ffb769`, `reborn-ffb-ladder` |  |
 | `borg_param_fast_fragile_heal_min_ratio` | 0, not set | `reborn-ff-ratio` |  |
 | `borg_param_fast_fragile_no_heal` | 1, 2, not set | `reborn-fastfrag` |  |
 | `borg_param_fast_fragile_no_walk` | 1, not set | `reborn-nowalk` |  |
 | `borg_param_fast_fragile_policy` | 1, not set | `reborn-fastfrag` |  |
 | `borg_param_flow_leash` | 0, 1, 2 | `reborn-stairs-leash` |  |
-| `borg_param_flow_leash_any_stair` | 1, not set | `reborn-leash-holes` |  |
+| `borg_param_flow_leash_any_stair` | 1, not set | `reborn-leash-holes`, `reborn-leash-holes-vs` |  |
 | `borg_param_flow_leash_base` | 5, 15, not set | `reborn-cleash` |  |
 | `borg_param_flow_leash_depth_margin` | -100, 0, 10, not set | `reborn-cleash` |  |
 | `borg_param_flow_leash_per_level` | 2, 5, not set | `reborn-cleash` |  |
 | `borg_param_flow_leash_pickup_max_level` | 0, not set | `reborn-cleash`, `reborn-cleashnone` |  |
 | `borg_param_flow_leash_stairs_max_level` | 0, not set | `reborn-cleash`, `reborn-cleashnone` |  |
-| `borg_param_flow_leash_teleported_recall` | 1, not set | `reborn-leash-holes` |  |
-| `borg_param_flow_leash_unknown_stair_steps` | 20, not set | `reborn-leash-holes` |  |
+| `borg_param_flow_leash_teleported_recall` | 1, not set | `reborn-leash-holes`, `reborn-leash-holes-vs` |  |
+| `borg_param_flow_leash_unknown_stair_steps` | 20, not set | `reborn-leash-holes`, `reborn-leash-holes-vs` |  |
 | `borg_param_flow_take_phase_first` | 1, not set | `reborn-phase-first-761` |  |
 | `borg_param_flow_take_phase_short_below` | 2, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_item_test_unknown_potions` | 0, not set | `reborn-ks206` |  |

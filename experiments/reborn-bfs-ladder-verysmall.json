@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-bfs-ladder-verysmall",
+  "issue": 730,
+  "definition": "definitions/reborn-bfs-ladder-verysmall.yaml",
+  "question": "On track-p 1c071812, on classes-1800 starts 1-900 (a block the first full tier did not play), does breadth-first exploration change deaths (especially at CL <= 2) and the progress cost seen on starts 901-1800?",
+  "description": "On track-p 1c071812, on classes-1800 starts 1-900 (a block the first full tier did not play), does breadth-first exploration change deaths (especially at CL <= 2) and the progress cost seen on starts 901-1800? Generated from definitions/reborn-bfs-ladder-verysmall.yaml: 2 arms on 4.2.6-reborn-rust-trackp-1c071812, suite classes-1800-verysmall.",
+  "prespecified": "Fixed 2026-11-23, after reading the full tier of reborn-bfs-full (borg-zoo#730: on 13 deaths against off 12, deaths at CL <= 2 7 against 4, DL3 reached 230 against 306, mean CL 5.35 against 6.17) and before any result of this block was read. Two arms on track-p 1c071812 (the pilot of these arms there passed): ctl (breadth-first on as shipped) and bfs0 (explore_breadth_first 0), classes-1800 ladder tier verysmall; the four ladder tiers (verysmall, small-rest, medium, big) together are starts 1-900, a second block, and are read pooled (RULES 14). Primary: deaths by 100,000 turns (CL <= 2 and DL1 apart), exact McNemar by start; the progress cost, prespecified from the first block: starts reaching DL3, DL4 and DL5 (exact McNemar by start), mean final CL, the first turn at max HP 25 and at CL5 (#718's fields), per class. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-1c071812"
+  ],
+  "profiles": [
+    "reborn-bfs-ctl",
+    "reborn-bfs-bfs0"
+  ],
+  "suites": [
+    "classes-1800-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-1c071812",
+  "control_profile": "reborn-bfs-ctl",
+  "owner_authorization": "2026-11-23: zoo owner, \"yes do all\" (a second block, starts 1-900, for breadth-first on vs off).",
+  "retain_evidence": false
+}

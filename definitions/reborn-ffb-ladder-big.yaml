@@ -1,0 +1,25 @@
+# borg-zoo#711: fast-fragile bundle confirmation, big tier (540 starts, starts 361-900). Write the catalogue entries with: python3 -m zoo define definitions/reborn-ffb-ladder-big.yaml
+name: reborn-ffb-ladder-big
+issue: 711
+question: >-
+  On track-p 769f3fbd, does the fast-fragile bundle (quantile 75, heal floor 50, count_dot 1) again save games and kill none, on classes-1800 starts 1-900, an unopened block?
+tier: big            # 540 starts, starts 361-900, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-769f3fbd
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-ffb769
+arms:
+  ctl: {}
+  bundle: {borg_param_fast_fragile_escape_quantile: 75, borg_param_fast_fragile_heal_floor: 50, borg_param_fast_fragile_count_dot: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: zoo owner, "yes do all" (the confirmation block for the #711 lead, starts 1-900).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-23, after reading the full tier of reborn-ffbundle-769f-full (borg-zoo#711: bundle 20 deaths against ctl's 23, 3 rescued and none newly killed, p 0.25) and before any result of this block was read. Two arms on track-p 769f3fbd (the bundle's pilot there passed): ctl and bundle (fast_fragile_escape_quantile 75, fast_fragile_heal_floor 50, fast_fragile_count_dot 1), classes-1800 ladder tier big; the four ladder tiers (verysmall, small-rest, medium, big) together are starts 1-900, an unopened block for this setting, and are read pooled (RULES 14). Primary: deaths by 100,000 turns, exact McNemar by start; the fast-fragile killers (crow, wild cat, cave spider) apart; identical plays; progress (DL3 and DL5 reached, mean CL). Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart. Descriptive (RULES 14); a claim needs this confirmation to repeat the first block.

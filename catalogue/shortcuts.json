@@ -2439,6 +2439,49 @@
         "reborn-mx-mixed-loose"
       ],
       "runs": []
+    },
+    "reborn-food-bfs": {
+      "issue": 729,
+      "status": "defined (pilot)",
+      "what": "Food forecasts after the Hungry biscuit fix (#1109) on f0e13e99: ctl0 (breadth-first off), bfs1 (on); classes-18 with evidence.",
+      "profiles": [
+        "reborn-food-ctl0",
+        "reborn-food-bfs1"
+      ],
+      "runs": []
+    },
+    "reborn-ffb-ladder": {
+      "issue": 711,
+      "status": "defined (verysmall, small-rest, medium, big = starts 1-900)",
+      "what": "Confirmation block for the fast-fragile bundle lead on 769f3fbd: ctl, bundle on classes-1800 starts 1-900.",
+      "profiles": [
+        "reborn-ffb769-ctl",
+        "reborn-ffb769-bundle"
+      ],
+      "runs": []
+    },
+    "reborn-bfs-ladder": {
+      "issue": 730,
+      "status": "defined (verysmall, small-rest, medium, big = starts 1-900)",
+      "what": "Breadth-first on (shipped) vs off, second block, classes-1800 starts 1-900 on 1c071812: ctl, bfs0.",
+      "profiles": [
+        "reborn-bfs-ctl",
+        "reborn-bfs-bfs0"
+      ],
+      "runs": []
+    },
+    "reborn-leash-holes-vs": {
+      "issue": 719,
+      "status": "defined (verysmall)",
+      "what": "The stair-leash switches of #1062 on 12fe36d8, classes-1800 starts 1-45.",
+      "profiles": [
+        "reborn-lhole-ctl",
+        "reborn-lhole-any",
+        "reborn-lhole-unknown",
+        "reborn-lhole-recall",
+        "reborn-lhole-leash3"
+      ],
+      "runs": []
     }
   }
 }
