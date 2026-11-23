@@ -2482,6 +2482,18 @@
         "reborn-lhole-leash3"
       ],
       "runs": []
+    },
+    "reborn-ss9276": {
+      "issue": 721,
+      "status": "defined (pilot, verysmall, small-rest, medium, big = starts 1-900)",
+      "what": "stair_scum on the shipped build 9276b75a (PR #1090): shipped, noscum, nobfs, neither on classes-18 and classes-1800 starts 1-900.",
+      "profiles": [
+        "reborn-ss9276-shipped",
+        "reborn-ss9276-noscum",
+        "reborn-ss9276-nobfs",
+        "reborn-ss9276-neither"
+      ],
+      "runs": []
     }
   }
 }

@@ -186,6 +186,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-ffb-ladder` | [#711](https://github.com/diegoami/borg-zoo/issues/711) | 2 | defined (verysmall, small-rest, medium, big = starts 1-900) | Confirmation block for the fast-fragile bundle lead on 769f3fbd: ctl, bundle on classes-1800 starts 1-900. |
 | `reborn-bfs-ladder` | [#730](https://github.com/diegoami/borg-zoo/issues/730) | 2 | defined (verysmall, small-rest, medium, big = starts 1-900) | Breadth-first on (shipped) vs off, second block, classes-1800 starts 1-900 on 1c071812: ctl, bfs0. |
 | `reborn-leash-holes-vs` | [#719](https://github.com/diegoami/borg-zoo/issues/719) | 5 | defined (verysmall) | The stair-leash switches of #1062 on 12fe36d8, classes-1800 starts 1-45. |
+| `reborn-ss9276` | [#721](https://github.com/diegoami/borg-zoo/issues/721) | 4 | defined (pilot, verysmall, small-rest, medium, big = starts 1-900) | stair_scum on the shipped build 9276b75a (PR #1090): shipped, noscum, nobfs, neither on classes-18 and classes-1800 starts 1-900. |
 
 ### `heal-attack-4`
 
@@ -2627,6 +2628,19 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-lhole-recall` | – | 1 | – |
 | `reborn-lhole-leash3` | 1 | 1 | 20 |
 
+### `reborn-ss9276`
+
+stair_scum on the shipped build 9276b75a (PR #1090): shipped, noscum, nobfs, neither on classes-18 and classes-1800 starts 1-900.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_explore_breadth_first` | `borg_param_stair_scum` |
+| --- | --- | --- |
+| `reborn-ss9276-shipped` | – | – |
+| `reborn-ss9276-noscum` | – | 0 |
+| `reborn-ss9276-nobfs` | 0 | – |
+| `reborn-ss9276-neither` | 0 | 0 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2834,7 +2848,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_phase_unknown_scary` | 0, 1 | `reborn-phase` |  |
 | `borg_param_escape_teleport_block` | 0, not set | `reborn-tpblock` |  |
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
-| `borg_param_explore_breadth_first` | 0, 1, not set | `reborn-bfs`, `reborn-mixed`, `reborn-food-bfs`, `reborn-bfs-ladder` |  |
+| `borg_param_explore_breadth_first` | 0, 1, not set | `reborn-bfs`, `reborn-mixed`, `reborn-food-bfs`, `reborn-bfs-ladder`, `reborn-ss9276` |  |
 | `borg_param_explore_mix_contact_damage` | 3, 8, not set | `reborn-mixed` |  |
 | `borg_param_explore_mixed` | 1, not set | `reborn-mixed` |  |
 | `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag`, `reborn-nowalk`, `reborn-cavesp` |  |
@@ -2952,6 +2966,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_recover_unseen_probe_tries` | 0, not set | `reborn-invis` |  |
 | `borg_param_recover_unseen_shot` | 1, not set | `reborn-rest` |  |
 | `borg_param_sell_poor_town_unknown_hold` | 1, not set | `reborn-unkcure` |  |
+| `borg_param_stair_scum` | 0, not set | `reborn-ss9276` |  |
 | `borg_param_town_book_lookahead_levels` | 4, not set | `reborn-book` |  |
 | `borg_param_town_confusion_cure_reserve` | 1, not set | `reborn-confusion` |  |
 | `borg_param_town_departure_free_slots` | 0, 2, not set | `reborn-room` |  |
