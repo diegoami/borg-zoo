@@ -12595,6 +12595,49 @@
         "borg_param_stair_scum": 0,
         "borg_param_explore_breadth_first": 0
       }
+    },
+    "reborn-pois-ctl": {
+      "description": "borg-zoo#738 (reborn-pois-phase-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-pois-phase50": {
+      "description": "borg-zoo#738 (reborn-pois-phase-pilot.yaml): arm phase50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_lost_danger_percent": 50
+      }
+    },
+    "reborn-pois-conf": {
+      "description": "borg-zoo#738 (reborn-pois-phase-pilot.yaml): arm conf.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_confused_clw_cure": 1
+      }
+    },
+    "reborn-pois-osc": {
+      "description": "borg-zoo#738 (reborn-pois-phase-pilot.yaml): arm osc.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_retreat_oscillation_limit": 3,
+        "borg_param_caution_retreat_oscillation_backaway": 1
+      }
+    },
+    "reborn-pois-all": {
+      "description": "borg-zoo#738 (reborn-pois-phase-pilot.yaml): arm all.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_lost_danger_percent": 50,
+        "borg_param_caution_confused_clw_cure": 1,
+        "borg_param_caution_retreat_oscillation_limit": 3,
+        "borg_param_caution_retreat_oscillation_backaway": 1
+      }
     }
   }
 }

@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-pois-phase-pilot",
+  "issue": 738,
+  "definition": "definitions/reborn-pois-phase-pilot.yaml",
+  "question": "On borg-reborn-rs track-p 1c071812, do a lower Phase rule threshold (escape_phase_lost_danger_percent 50), the CLW confusion cure (caution_confused_clw_cure 1) and the retreat breaker with back-aways (caution_retreat_oscillation_limit 3, caution_retreat_oscillation_backaway 1) save early deaths, one at a time and together, without costing progress?",
+  "description": "On borg-reborn-rs track-p 1c071812, do a lower Phase rule threshold (escape_phase_lost_danger_percent 50), the CLW confusion cure (caution_confused_clw_cure 1) and the retreat breaker with back-aways (caution_retreat_oscillation_limit 3, caution_retreat_oscillation_backaway 1) save early deaths, one at a time and together, without costing progress? Generated from definitions/reborn-pois-phase-pilot.yaml: 5 arms on 4.2.6-reborn-rust-trackp-1c071812, suite classes-18.",
+  "prespecified": "Fixed 2026-11-23, before any result of these arms on random starts was read (borg-zoo#738; borg-reborn-rs#1134). Five arms on track-p 1c071812, classes-18,\n100,000 turns, evidence retained. Mechanism evidence only, from chosen starts (the 25 deaths of run 45121432449, replayed from birth, borg-cemetery#146):\nphase50 rescued 5 at the fatal episode, conf 2, osc 1; none killed any of 18 sampled survivors. Chosen-start rescues did not carry over to fresh starts\nbefore (#429, #501), so this measures on random starts.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts\napart; identical plays per arm (an arm that plays the control's keys in most games was not exercised).\nReport per arm and class: deaths and causes (poison apart), CL at death, final and maximum level, deepest level; paired rescued and newly killed against\nctl (exact McNemar); Phase Door reads, CLW quaffs and Word of Recall reads per game; per game the counts of each switch's notes (\"Phase rule ... the rule\nallows a Phase Door\", \"Fixing Confusion\", \"(#932)\"). Descriptive (RULES 14). Next tier verysmall (classes-1800 starts 1-45) with the arms that are not\nharmful, only on the owner's word.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-1c071812"
+  ],
+  "profiles": [
+    "reborn-pois-ctl",
+    "reborn-pois-phase50",
+    "reborn-pois-conf",
+    "reborn-pois-osc",
+    "reborn-pois-all"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-1c071812",
+  "control_profile": "reborn-pois-ctl",
+  "owner_authorization": "Not authorized yet: a proposal from the analysis of run 45121432449 (borg-reborn-rs#1134, borg-cemetery#146), filed as borg-zoo#738. Dispatch is the owner's call.",
+  "retain_evidence": true
+}
