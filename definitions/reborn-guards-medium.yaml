@@ -1,0 +1,34 @@
+# borg-zoo#742: medium tier of reborn-guards-pilot (the retreat guards shipped by borg-reborn-rs #1124, normal world, track-p 353f5c09).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-guards-medium.yaml
+name: reborn-guards-medium
+issue: 742
+question: >-
+  On borg-reborn-rs track-p 353f5c09, did shipping the stair-route hold (128) and the retreat oscillation limit (3) help or hurt, which of them does the
+  work, and do the switches still off add anything on top? Paired by start against the shipped control.
+tier: medium            # classes-1800 starts 91-360, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-353f5c09
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-guards
+arms:
+  ctl: {}
+  guardsoff: {borg_param_caution_retreat_reentry_ticks: 0, borg_param_caution_retreat_oscillation_limit: 0}
+  nohold: {borg_param_caution_retreat_reentry_ticks: 0}
+  noosc: {borg_param_caution_retreat_oscillation_limit: 0}
+  plus: {borg_param_caution_retreat_oscillation_backaway: 1, borg_param_caution_stairs_immobile_reach: 1, borg_param_caution_retreat_immobile_kill_turns: 3, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs owner, "can we make a bigger experiment" and "and also in the breeder world... but use the latest build" (borg-zoo#742). The larger tiers follow reborn-guards-pilot's gate.
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-23, before any game of this build was played (borg-zoo#742). The medium tier (RULES 14) of reborn-guards-pilot on the same build and arms:
+  classes-1800 starts 91-360, all classes, 100,000 turns, one binary, disjoint from the other tiers (pool small and medium as one study). Gate: no
+  config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by start. Report per arm and
+  class: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly killed against ctl (exact McNemar), identical
+  plays; a RULES 18 bin per arm (guardsoff answers whether #1124 helped). Evidence is not retained at this tier. Descriptive.

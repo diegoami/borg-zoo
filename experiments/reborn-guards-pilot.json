@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-guards-pilot",
+  "issue": 742,
+  "definition": "definitions/reborn-guards-pilot.yaml",
+  "question": "On borg-reborn-rs track-p 353f5c09, which ships the stair-route hold (caution_retreat_reentry_ticks 128, #964) and the retreat oscillation limit (caution_retreat_oscillation_limit 3, #966) since #1124, did shipping the two guards help or hurt, which of them does the work, and do the switches still off (back-aways counted, reach, kill, poison) add anything on top?",
+  "description": "On borg-reborn-rs track-p 353f5c09, which ships the stair-route hold (caution_retreat_reentry_ticks 128, #964) and the retreat oscillation limit (caution_retreat_oscillation_limit 3, #966) since #1124, did shipping the two guards help or hurt, which of them does the work, and do the switches still off (back-aways counted, reach, kill, poison) add anything on top? Generated from definitions/reborn-guards-pilot.yaml: 5 arms on 4.2.6-reborn-rust-trackp-353f5c09, suite classes-18.",
+  "prespecified": "Fixed 2026-11-23, before any game of this build was played (borg-zoo#742; borg-reborn-rs #964, #966, #1123/#1124). Five arms (ctl = shipped, hold 128\nand osc 3; guardsoff = both 0, the play before #1124; nohold; noosc; plus = shipped with back-aways counted, reach 1, kill 3 and poison 75), classes-18,\n18 starts each (90 cells), 100,000 turns, evidence retained. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends\nin death, turn_cap or borg_stopped; stalls apart; identical plays. Report per arm and class: deaths and causes, CL and DL, paired rescued and newly\nkilled against ctl, identical plays, and the counts of \"# Stair flight avoiding retreat grid\" and \"# No retreat: N moves away in a row\". The small and\nmedium tiers (classes-1800 starts 1-360) follow the gate with the same arms. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-353f5c09"
+  ],
+  "profiles": [
+    "reborn-guards-ctl",
+    "reborn-guards-guardsoff",
+    "reborn-guards-nohold",
+    "reborn-guards-noosc",
+    "reborn-guards-plus"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-353f5c09",
+  "control_profile": "reborn-guards-ctl",
+  "owner_authorization": "2026-11-23: borg-reborn-rs owner, \"can we make a bigger experiment\" and \"and also in the breeder world... but use the latest build\" (borg-zoo#742).",
+  "retain_evidence": true
+}

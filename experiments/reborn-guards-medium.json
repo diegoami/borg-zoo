@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-guards-medium",
+  "issue": 742,
+  "definition": "definitions/reborn-guards-medium.yaml",
+  "question": "On borg-reborn-rs track-p 353f5c09, did shipping the stair-route hold (128) and the retreat oscillation limit (3) help or hurt, which of them does the work, and do the switches still off add anything on top? Paired by start against the shipped control.",
+  "description": "On borg-reborn-rs track-p 353f5c09, did shipping the stair-route hold (128) and the retreat oscillation limit (3) help or hurt, which of them does the work, and do the switches still off add anything on top? Paired by start against the shipped control. Generated from definitions/reborn-guards-medium.yaml: 5 arms on 4.2.6-reborn-rust-trackp-353f5c09, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-23, before any game of this build was played (borg-zoo#742). The medium tier (RULES 14) of reborn-guards-pilot on the same build and arms:\nclasses-1800 starts 91-360, all classes, 100,000 turns, one binary, disjoint from the other tiers (pool small and medium as one study). Gate: no\nconfig_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts reported start by start. Report per arm and\nclass: deaths and causes, CL at death, final and maximum level, deepest level; paired rescued and newly killed against ctl (exact McNemar), identical\nplays; a RULES 18 bin per arm (guardsoff answers whether #1124 helped). Evidence is not retained at this tier. Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-353f5c09"
+  ],
+  "profiles": [
+    "reborn-guards-ctl",
+    "reborn-guards-guardsoff",
+    "reborn-guards-nohold",
+    "reborn-guards-noosc",
+    "reborn-guards-plus"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-353f5c09",
+  "control_profile": "reborn-guards-ctl",
+  "owner_authorization": "2026-11-23: borg-reborn-rs owner, \"can we make a bigger experiment\" and \"and also in the breeder world... but use the latest build\" (borg-zoo#742). The larger tiers follow reborn-guards-pilot's gate.",
+  "retain_evidence": false
+}
