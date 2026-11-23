@@ -71,6 +71,7 @@ def main():
     ap.add_argument('--source', required=True, type=Path)
     ap.add_argument('--work', required=True, type=Path)
     ap.add_argument('--frames', type=int, default=50)
+    ap.add_argument('-j', '--jobs', type=int, default=1, help='replays run at once')
     a = ap.parse_args()
     head = subprocess.run(['git', '-C', str(a.source), 'rev-parse', 'HEAD'], capture_output=True, text=True, check=True).stdout.strip()
     bundles = [p.parent for p in sorted(a.selected.rglob('zoo-death.json'))]
@@ -85,11 +86,24 @@ def main():
     data = []
     # One seed can die in two different games (two arms): name those by death turn too.
     per_seed = Counter(json.loads((b / 'zoo-death.json').read_text())['seed'] for b in bundles)
-    for b in bundles:
+    # An arm's name: the part of its profile name that differs between the
+    # profiles in the selection (reborn-ro-ranged-x8 -> ranged).
+    profiles = sorted({json.loads((b / 'zoo-death.json').read_text()).get('profile') or '' for b in bundles})
+    parts = [p.split('-') for p in profiles]
+    pre = 0
+    while len(parts) > 1 and all(len(q) > pre + 1 for q in parts) and len({q[pre] for q in parts}) == 1:
+        pre += 1
+    suf = 0
+    while len(parts) > 1 and all(len(q) > pre + suf + 1 for q in parts) and len({q[-1 - suf] for q in parts}) == 1:
+        suf += 1
+    arms = {p: '-'.join(q[pre:len(q) - suf]) for p, q in zip(profiles, parts)} if len(profiles) > 1 else {}
+
+    def one(b):
         z = json.loads((b / 'zoo-death.json').read_text())
         cfg = dict(l.split('=', 1) for l in (b / 'config.txt').read_text().split() if '=' in l)
         seed, race, cls = z['seed'], int(cfg['race_idx']), int(cfg['class_idx'])
-        name = f'{CLASSES[cls].lower()}-{seed}' + (f"-t{z['final']['turn']}" if per_seed[seed] > 1 else '')
+        arm = arms.get(z.get('profile') or '', '')
+        name = f'{CLASSES[cls].lower()}-{seed}' + (f'-{arm}' if arm else '') + (f"-t{z['final']['turn']}" if per_seed[seed] > 1 and not arm else '')
         w = a.work / 'rec' / name
         shutil.rmtree(w, ignore_errors=True)
         for d in ('user', 'save', 'archive', 'panic', 'scores', 'record'):
@@ -99,15 +113,26 @@ def main():
                 shutil.copy2(f, w / 'user' / f.name)
         for f in (b / 'user').glob('*plan*.txt'):
             shutil.copy2(f, w / 'user' / f.name)
+        # A world (borg-reborn-rs #704): the game data harness/run.sh made with
+        # scripts/make-world.py, checked against the cell's data SHA-256.
+        data_args = []
+        world = cfg.get('borg_world', '')
+        if world and world != 'none':
+            out = subprocess.run(['python3', str(a.source / 'scripts/make-world.py'), '--config', str(a.source / 'harness/worlds' / f'{world}.txt'),
+                                  '--lib', str(game / 'lib'), '--out', str(w / 'world')], capture_output=True, text=True, check=True).stdout.strip()
+            if out != cfg.get('borg_world_data_sha256'):
+                print(f'{seed}: world {world} data {out[:12]} is not the cell\'s {cfg.get("borg_world_data_sha256", "")[:12]}, dropped')
+                return None
+            data_args = [f'-dgamedata={w}/world/gamedata', f'-dpref={w}/world/customize', f'-dhelp={w}/world/help', f'-dscreens={w}/world/screens']
         subprocess.run(['./angband', '-mborgh', '-n', '-uPlayer', f'-duser={w}/user', f'-dsave={w}/save', f'-darchive={w}/archive',
-                        f'-dpanic={w}/panic', f'-dscores={w}/scores', '--', '-seed', str(seed), '-race', str(race), '-class', str(cls),
+                        f'-dpanic={w}/panic', f'-dscores={w}/scores', *data_args, '--', '-seed', str(seed), '-race', str(race), '-class', str(cls),
                         '-turns', cfg.get('turns', '100000'), '-keylog', f'{w}/keys.log', '-summary', f'{w}/summary.json',
                         '-menu-letters', '-exact-turns', '-msglog', f'{w}/messages.log'],
                        cwd=game, env=env | {'ANGBAND_RECORD_DIR': str(w / 'record')}, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=1800)
         ok = hashlib.sha256((w / 'keys.log').read_bytes()).hexdigest() == z['play_sha256']
         if not ok:
             print(f'{seed}: KEYS DIFFER from the zoo cell, dropped')
-            continue
+            return None
         frames = [json.loads(l) for l in open(w / 'record/frames.jsonl')]
         msgs = {}
         for l in open(w / 'record/messages.jsonl'):
@@ -126,13 +151,17 @@ def main():
         idx = [x['i'] for x in last]
         out = [x | {'msgs': [t for q in range(idx[k - 1] + 1 if k else x['i'], x['i'] + 1) for t in msgs.get(q, [])]} for k, x in enumerate(last)]
         fin = z.get('final') or {}
-        data.append(dict(dir=name, cls=CLASSES[cls], race=RACES[race], seed=seed, cause=z['cause'],
+        print(f'{seed}: keys match, {len(frames)} frames', flush=True)
+        return dict(dir=name, arm=arm or z.get('profile'), world=world or None, cls=CLASSES[cls], race=RACES[race], seed=seed, cause=z['cause'],
                          cl=fin.get('level'), dl=fin.get('depth'), turn=fin.get('turn'), keys=sum(1 for _ in open(w / 'keys.log')),
                          play=z['play_sha256'], replay_matches=True, specimen=z['specimen'], run=z.get('run_id'),
                          frames=out, after=[t for q in sorted(msgs) if q > idx[-1] for t in msgs[q]],
                          equip=[], quiver=[], inv=gear(frames[-1]), total_frames=len(frames),
-                         **counts((w / 'messages.log').read_text(errors='replace'))))
-        print(f'{seed}: keys match, {len(frames)} frames')
+                         **counts((w / 'messages.log').read_text(errors='replace')))
+
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max(1, a.jobs)) as pool:
+        data = [d for d in pool.map(one, bundles) if d]
     data.sort(key=lambda d: d['turn'] or 0)
     (a.work / 'frames.json').write_text(json.dumps(data))
     print(f'{len(data)} deaths -> {a.work / "frames.json"}')
