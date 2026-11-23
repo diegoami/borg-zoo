@@ -1,0 +1,27 @@
+# borg-zoo#695: reborn-bfsnow-small-rest, small-rest tier (starts 46-90). Write the catalogue entries with: python3 -m zoo define definitions/reborn-bfsnow-small-rest.yaml
+name: reborn-bfsnow-small-rest
+issue: 695
+question: >-
+  On track-p 13151fb5, does turning breadth-first exploration off (leaving stair_scum alone) keep the safety of the shipped build and recover the progress it costs?
+tier: small-rest            # starts 46-90
+
+specimen: 4.2.6-reborn-rust-trackp-13151fb5
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-bfsn
+arms:
+  shipped: {}
+  bfs0: {borg_param_explore_breadth_first: 0}
+control: [shipped]
+owner_authorization: >-
+  2026-11-23: zoo owner, "Yeah do 1,2,3,4,5" (the five next experiments proposed after the current-state baseline of #695).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#695's current-state baseline; #730, #721). Two arms on track-p 13151fb5: shipped (explore_breadth_first 1 with stair_scum on by class) and bfs0 (explore_breadth_first 0: stair_scum alone, the arm that cut deaths at CL <= 2 from 10 to 4 at no progress cost in #721 on 9276b75a, and gave +0.8 CL and +30% DL3 arrivals in #730). Pilot as the gate, then the ladder classes-1800 starts 1-900 (verysmall, small-rest, medium, big) and the full tier (starts 901-1800), 1,800 starts per arm, read pooled and per block. Primary: deaths by 100,000 turns, exact McNemar by start, deaths at CL <= 2 and on DL1 apart; progress: DL3, DL4 and DL5 reached, mean CL, first turn at max HP 20 and 25 and at CL5 (#718), per class. The current-state baseline (353f5c09: 14 deaths in 1,800 starts, DL3 396, DL5 32, mean CL 5.24, against abd0cce1 37, 747, 88, 6.52) is the progress deficit this arm tests.
+  Tier small-rest: starts 46-90, 100,000 turns.
+  Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Descriptive (RULES 14).

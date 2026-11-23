@@ -2155,6 +2155,18 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "saves": false
+    },
+    "classes-1800-floating-eye-353f5c09": {
+      "description": "The 4 starts of classes-1800 whose game ended in a floating eye on borg-reborn-rs track-p 353f5c09 (the current-state baseline of borg-zoo#695, starts 1-1800): Druid 1291190486, Necromancer 1285891430, Paladin 873505497, Priest 1982468086. Chosen starts for a replay with notes, not a sample.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "seeds": [873505497, 1285891430, 1291190486, 1982468086]
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
     }
   }
 }

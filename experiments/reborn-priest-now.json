@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-priest-now",
+  "issue": 736,
+  "definition": "definitions/reborn-priest-now.yaml",
+  "question": "On track-p 13151fb5, how much progress does the shipped light radius cost the Priest class (Call Light casts, levelling), against light 0?",
+  "description": "On track-p 13151fb5, how much progress does the shipped light radius cost the Priest class (Call Light casts, levelling), against light 0? Generated from definitions/reborn-priest-now.yaml: 2 arms on 4.2.6-reborn-rust-trackp-13151fb5, suite classes-1800-full-priests.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-reborn-rs #1119: with cave_light_engine_radius 1 Priests cast Call Light about 6 times as often and level slowly; the issue is still open). The 100 Priest starts of classes-1800 starts 901-1800 on track-p 13151fb5, ctl (shipped: light radius 1) against light0 (cave_light_engine_radius 0), evidence retained (the Call Light casts and mana rests per game, as in reborn-light-priest-pilot), to measure the Priest class's progress on the current build and to re-measure it when #1119 is fixed. Report: Priests reaching CL5, first turn at levels 2-5 and at DL2 (#718), Call Light casts per game, deaths. Descriptive (RULES 14).\nTier pilot: classes-1800 full-priests (starts 901-1800), 100,000 turns, evidence retained.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Descriptive (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-13151fb5"
+  ],
+  "profiles": [
+    "reborn-prnow-ctl",
+    "reborn-prnow-light0"
+  ],
+  "suites": [
+    "classes-1800-full-priests"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-13151fb5",
+  "control_profile": "reborn-prnow-ctl",
+  "owner_authorization": "2026-11-23: zoo owner, \"Yeah do 1,2,3,4,5\" (the five next experiments proposed after the current-state baseline of #695).",
+  "retain_evidence": true
+}

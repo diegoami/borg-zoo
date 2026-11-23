@@ -2584,6 +2584,47 @@
         "reborn-head-shipped"
       ],
       "runs": []
+    },
+    "reborn-bfsnow": {
+      "issue": 695,
+      "status": "defined (pilot, ladder 1-900, full 901-1800)",
+      "what": "Breadth-first off (stair_scum alone) against shipped on track-p 13151fb5: shipped, bfs0.",
+      "profiles": [
+        "reborn-bfsn-shipped",
+        "reborn-bfsn-bfs0"
+      ],
+      "runs": []
+    },
+    "reborn-rfx": {
+      "issue": 736,
+      "status": "defined (pilot, ladder 1-900)",
+      "what": "Rubble confirmation and the combined arm on 7bfbe121: ctl, rubble, bfs0, bfs0-rubble.",
+      "profiles": [
+        "reborn-rfx-ctl",
+        "reborn-rfx-rubble",
+        "reborn-rfx-bfs0",
+        "reborn-rfx-bfs0-rubble"
+      ],
+      "runs": []
+    },
+    "reborn-floating-eye-replay": {
+      "issue": 695,
+      "status": "defined (4 starts)",
+      "what": "The 4 floating-eye deaths of the 353f5c09 baseline replayed with notes.",
+      "profiles": [
+        "reborn-head-shipped"
+      ],
+      "runs": []
+    },
+    "reborn-priest-now": {
+      "issue": 736,
+      "status": "defined (100 Priests)",
+      "what": "The shipped light radius on the Priest class at track-p 13151fb5: ctl, light0, with notes.",
+      "profiles": [
+        "reborn-prnow-ctl",
+        "reborn-prnow-light0"
+      ],
+      "runs": []
     }
   }
 }

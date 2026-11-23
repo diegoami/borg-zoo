@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-rfx-pilot",
+  "issue": 736,
+  "definition": "definitions/reborn-rfx-pilot.yaml",
+  "question": "On borg-reborn-rs 7bfbe121, does view_rubble_blocks_sight hold on an unopened block, and does it add to turning breadth-first off?",
+  "description": "On borg-reborn-rs 7bfbe121, does view_rubble_blocks_sight hold on an unopened block, and does it add to turning breadth-first off? Generated from definitions/reborn-rfx-pilot.yaml: 4 arms on 4.2.6-reborn-rust-perception-7bfbe121, suite classes-18.",
+  "prespecified": "Fixed 2026-11-23, after the full tier of reborn-perception-full (borg-zoo#736: rubble 5 deaths against ctl's 9, 8 rescued / 4 newly killed, DL5 reached 26 against 19) and the breadth-first and stair_scum results (#730, #721), before any result of this block was read. Four arms on 7bfbe121 (borg-reborn-rs PR #1128 on track-p d3d1629f, which ships stair_scum and breadth-first; the rubble switch is not on track-p): ctl (shipped); rubble (view_rubble_blocks_sight 1); bfs0 (explore_breadth_first 0); bfs0-rubble (both). Item 2 of the proposal (confirm the rubble lead on an unopened block) is ctl against rubble; item 5 (a combined candidates run) is bfs0-rubble against ctl, with bfs0 and rubble alone showing which part does the work. Pilot as the gate (ctl and rubble have had theirs on this build), then the ladder classes-1800 starts 1-900 (verysmall, small-rest, medium, big), read pooled. Primary: deaths, exact McNemar by start (rubble against ctl; bfs0-rubble against ctl; bfs0-rubble against bfs0), deaths at CL <= 2 apart; progress: DL3 and DL5 reached, mean CL, per class; the # Forgetting a monster notes are read from the pilot evidence.\nTier pilot: classes-18, 100,000 turns, evidence retained.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Descriptive (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-perception-7bfbe121"
+  ],
+  "profiles": [
+    "reborn-rfx-ctl",
+    "reborn-rfx-rubble",
+    "reborn-rfx-bfs0",
+    "reborn-rfx-bfs0-rubble"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-perception-7bfbe121",
+  "control_profile": "reborn-rfx-ctl",
+  "owner_authorization": "2026-11-23: zoo owner, \"Yeah do 1,2,3,4,5\" (the five next experiments proposed after the current-state baseline of #695).",
+  "retain_evidence": true
+}

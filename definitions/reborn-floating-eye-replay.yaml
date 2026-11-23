@@ -1,0 +1,28 @@
+# borg-zoo#695: reborn-floating-eye-replay, pilot tier (the 4 floating-eye deaths of the 353f5c09 baseline). Write the catalogue entries with: python3 -m zoo define definitions/reborn-floating-eye-replay.yaml
+name: reborn-floating-eye-replay
+issue: 695
+question: >-
+  On track-p 353f5c09, how does the Borg meet the floating eye in the 4 starts where it dies to one?
+tier: pilot            # the 4 floating-eye deaths of the 353f5c09 baseline
+pilot: true            # a study on its own suite (RULES 16)
+suite: classes-1800-floating-eye-353f5c09
+
+specimen: 4.2.6-reborn-rust-trackp-353f5c09
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-head
+arms:
+  shipped: {}
+control: [shipped]
+owner_authorization: >-
+  2026-11-23: zoo owner, "Yeah do 1,2,3,4,5" (the five next experiments proposed after the current-state baseline of #695).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, after reading the cells (not the notes) of reborn-trackp-353f5c09-* (borg-zoo#695: 4 of the 14 deaths are floating eyes). The 4 starts whose game ends in a floating eye on track-p 353f5c09 (Druid 1291190486 CL4 DL2, Necromancer 1285891430 CL2 DL1, Paladin 873505497 CL4 DL2, Priest 1982468086 CL2 DL1), replayed with notes retained to see how the Borg meets the eye: whether it is seen before the gaze, what the Borg does next to it (melee, flight, Phase Door, cure), whether it was paralysed while fighting something else. One arm (shipped), 4 cells, a diagnosis not a sample (RULES 14). The enriched-world study (a floating-eye world, #735 and #740 arms) waits for the world file in borg-reborn-rs.
+  Tier pilot: the 4 chosen starts, 100,000 turns, evidence retained.
+  Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Descriptive (RULES 14).

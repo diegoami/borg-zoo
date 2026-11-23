@@ -13149,6 +13149,68 @@
         "borg_param_caution_retreat_immobile_kill_turns": 3,
         "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
       }
+    },
+    "reborn-bfsn-shipped": {
+      "description": "borg-zoo#695 (reborn-bfsnow-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-bfsn-bfs0": {
+      "description": "borg-zoo#695 (reborn-bfsnow-pilot.yaml): arm bfs0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_breadth_first": 0
+      }
+    },
+    "reborn-rfx-ctl": {
+      "description": "borg-zoo#736 (reborn-rfx-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-rfx-rubble": {
+      "description": "borg-zoo#736 (reborn-rfx-pilot.yaml): arm rubble.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_view_rubble_blocks_sight": 1
+      }
+    },
+    "reborn-rfx-bfs0": {
+      "description": "borg-zoo#736 (reborn-rfx-pilot.yaml): arm bfs0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_breadth_first": 0
+      }
+    },
+    "reborn-rfx-bfs0-rubble": {
+      "description": "borg-zoo#736 (reborn-rfx-pilot.yaml): arm bfs0-rubble.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_view_rubble_blocks_sight": 1,
+        "borg_param_explore_breadth_first": 0
+      }
+    },
+    "reborn-prnow-ctl": {
+      "description": "borg-zoo#736 (reborn-priest-now.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-prnow-light0": {
+      "description": "borg-zoo#736 (reborn-priest-now.yaml): arm light0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_cave_light_engine_radius": 0
+      }
     }
   }
 }

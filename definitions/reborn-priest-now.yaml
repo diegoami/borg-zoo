@@ -1,0 +1,35 @@
+# borg-zoo#736: reborn-priest-now, pilot tier (the 100 Priest starts of starts 901-1800). Write the catalogue entries with: python3 -m zoo define definitions/reborn-priest-now.yaml
+name: reborn-priest-now
+issue: 736
+question: >-
+  On track-p 13151fb5, how much progress does the shipped light radius cost the Priest class (Call Light casts, levelling), against light 0?
+tier: pilot            # the 100 Priest starts of starts 901-1800
+pilot: true            # a study on its own suite (RULES 16)
+suite: classes-1800-full-priests
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-13151fb5
+  repository: diegoami/borg-reborn-rs
+  ref: 13151fb5538c7861280cf6d6559bc6a0960a12b6
+  label: "borg-reborn-rs LINE track-p, head 13151fb5 on 2026-11-23 (50 commits after 353f5c09; ships stair_scum on by class, explore_breadth_first 1, cave_light_engine_radius 1, unseen_belief 1 and the other shipped changes); shipped harness/borg.txt ee128917..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-prnow
+arms:
+  ctl: {}
+  light0: {borg_param_cave_light_engine_radius: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: zoo owner, "Yeah do 1,2,3,4,5" (the five next experiments proposed after the current-state baseline of #695).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-reborn-rs #1119: with cave_light_engine_radius 1 Priests cast Call Light about 6 times as often and level slowly; the issue is still open). The 100 Priest starts of classes-1800 starts 901-1800 on track-p 13151fb5, ctl (shipped: light radius 1) against light0 (cave_light_engine_radius 0), evidence retained (the Call Light casts and mana rests per game, as in reborn-light-priest-pilot), to measure the Priest class's progress on the current build and to re-measure it when #1119 is fixed. Report: Priests reaching CL5, first turn at levels 2-5 and at DL2 (#718), Call Light casts per game, deaths. Descriptive (RULES 14).
+  Tier pilot: classes-1800 full-priests (starts 901-1800), 100,000 turns, evidence retained.
+  Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Descriptive (RULES 14).

@@ -194,6 +194,10 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-t1134` | [#738](https://github.com/diegoami/borg-zoo/issues/738) | 6 | defined (pilot, verysmall) | Phase threshold 50, confusion CLW cure, retreat breaker, prepared remedy 50 on track-p 1c071812 (borg-reborn-rs #1134): ctl, phase50, conf, osc, prep50, all. |
 | `reborn-mixed40` | [#732](https://github.com/diegoami/borg-zoo/issues/732) | 8 | defined (pilot, verysmall, small-rest) | Mixed exploration, C's leave-when-done and the old bfs stay (#1098, PR #1117) on 40c3bcc8: ctl, cexit, bfs-stay, mixed, nobfs, mixed-alone, mixed-tight, mixed-loose. |
 | `reborn-trackp-353f5c09` | [#695](https://github.com/diegoami/borg-zoo/issues/695) | 1 | defined (verysmall, small-rest, medium, big, full) | Baseline ladder of track-p at its current head 353f5c09 (2026-11-23): shipped settings, classes-1800 starts 1-1800. |
+| `reborn-bfsnow` | [#695](https://github.com/diegoami/borg-zoo/issues/695) | 2 | defined (pilot, ladder 1-900, full 901-1800) | Breadth-first off (stair_scum alone) against shipped on track-p 13151fb5: shipped, bfs0. |
+| `reborn-rfx` | [#736](https://github.com/diegoami/borg-zoo/issues/736) | 4 | defined (pilot, ladder 1-900) | Rubble confirmation and the combined arm on 7bfbe121: ctl, rubble, bfs0, bfs0-rubble. |
+| `reborn-floating-eye-replay` | [#695](https://github.com/diegoami/borg-zoo/issues/695) | 1 | defined (4 starts) | The 4 floating-eye deaths of the 353f5c09 baseline replayed with notes. |
+| `reborn-priest-now` | [#736](https://github.com/diegoami/borg-zoo/issues/736) | 2 | defined (100 Priests) | The shipped light radius on the Priest class at track-p 13151fb5: ctl, light0, with notes. |
 
 ### `heal-attack-4`
 
@@ -2743,6 +2747,49 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 Profiles: `reborn-head-shipped`.
 
+### `reborn-bfsnow`
+
+Breadth-first off (stair_scum alone) against shipped on track-p 13151fb5: shipped, bfs0.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_explore_breadth_first` |
+| --- | --- |
+| `reborn-bfsn-shipped` | – |
+| `reborn-bfsn-bfs0` | 0 |
+
+### `reborn-rfx`
+
+Rubble confirmation and the combined arm on 7bfbe121: ctl, rubble, bfs0, bfs0-rubble.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_explore_breadth_first` | `borg_param_view_rubble_blocks_sight` |
+| --- | --- | --- |
+| `reborn-rfx-ctl` | – | – |
+| `reborn-rfx-rubble` | – | 1 |
+| `reborn-rfx-bfs0` | 0 | – |
+| `reborn-rfx-bfs0-rubble` | 0 | 1 |
+
+### `reborn-floating-eye-replay`
+
+The 4 floating-eye deaths of the 353f5c09 baseline replayed with notes.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-head-shipped`.
+
+### `reborn-priest-now`
+
+The shipped light radius on the Priest class at track-p 13151fb5: ctl, light0, with notes.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_cave_light_engine_radius` |
+| --- | --- |
+| `reborn-prnow-ctl` | – |
+| `reborn-prnow-light0` | 0 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2935,7 +2982,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3`, `reborn-townhunt` |  |
 | `borg_param_caution_winning_fight_group_percent` | 100, not set | `reborn-fastpur` |  |
 | `borg_param_caution_winning_fight_margin_percent` | 20, not set | `reborn-fastpur` |  |
-| `borg_param_cave_light_engine_radius` | 1, not set | `reborn-lightbel`, `reborn-li206`, `reborn-belief`, `reborn-leash-dl1`, `reborn-light-ladder`, `reborn-light-priest` |  |
+| `borg_param_cave_light_engine_radius` | 0, 1, not set | `reborn-lightbel`, `reborn-li206`, `reborn-belief`, `reborn-leash-dl1`, `reborn-light-ladder`, `reborn-light-priest`, `reborn-priest-now` |  |
 | `borg_param_danger_breeder_melee_extra_tenths` | 0, 5, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_danger_observed_haste` | 1, not set | `reborn-fastpur` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
@@ -2956,7 +3003,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_teleport_block` | 0, not set | `reborn-tpblock` |  |
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
 | `borg_param_explore_bfs_leave_when_done` | 0, not set | `reborn-mixed40` |  |
-| `borg_param_explore_breadth_first` | 0, 1, not set | `reborn-bfs`, `reborn-mixed`, `reborn-food-bfs`, `reborn-bfs-ladder`, `reborn-ss9276`, `reborn-mixed40` |  |
+| `borg_param_explore_breadth_first` | 0, 1, not set | `reborn-bfs`, `reborn-mixed`, `reborn-food-bfs`, `reborn-bfs-ladder`, `reborn-ss9276`, `reborn-mixed40`, `reborn-bfsnow`, `reborn-rfx` |  |
 | `borg_param_explore_c_leave_when_done` | 1, not set | `reborn-mixed40` |  |
 | `borg_param_explore_mix_contact_damage` | 3, 8, not set | `reborn-mixed`, `reborn-mixed40` |  |
 | `borg_param_explore_mixed` | 1, not set | `reborn-mixed`, `reborn-mixed40` |  |
@@ -3229,7 +3276,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_unseen_belief` | 1, not set | `reborn-lightbel`, `reborn-belief` |  |
 | `borg_param_unseen_decay_percent` | 5, not set | `reborn-belief` |  |
 | `borg_param_update_dark_clears_light` | 1, not set | `reborn-perception` |  |
-| `borg_param_view_rubble_blocks_sight` | 1, not set | `reborn-perception` |  |
+| `borg_param_view_rubble_blocks_sight` | 1, not set | `reborn-perception`, `reborn-rfx` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
 | `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, 5 lines, 7 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters`, `reborn-attacksight`, `reborn-killers`, `reborn-confusion` |  |
 | `borg_town_attack_turns` | 50, not set | `reborn-casters`, `reborn-crow-escape` |  |
