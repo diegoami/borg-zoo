@@ -1,0 +1,30 @@
+# borg-zoo#702 / #700: why the kit leash holds the Borg on DL1 (light+leash 24 deaths against light's 15), the 49 death starts replayed to 25,000 turns with notes retained.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-leash-dl1-pilot.yaml
+name: reborn-leash-dl1-pilot
+issue: 702
+question: >-
+  On track-p 206cf4e7, why does the kit leash (kit_leash 1, kit_leash_min 0, kit_leash_power 2) add early deaths on DL1 in borg-zoo#702's full tier (light+leash 24 deaths, 16 of them never below DL1, against light's 15 and 9)? The 49 starts that died with ctl, light or light+leash, replayed to 25,000 turns with notes retained, with the leash alone and with the light radius.
+tier: pilot            # the 49 chosen starts, 25,000 turns
+pilot: true            # a study on its own suite (RULES 16)
+suite: classes-1800-leash-dl1-deaths
+
+specimen: 4.2.6-reborn-rust-trackp-206cf4e7
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-ldl1
+arms:
+  ctl: {}
+  light: {borg_param_cave_light_engine_radius: 1}
+  leash: {borg_param_kit_leash: 1, borg_param_kit_leash_min: 0, borg_param_kit_leash_power: 2}
+  light+leash: {borg_param_cave_light_engine_radius: 1, borg_param_kit_leash: 1, borg_param_kit_leash_min: 0, borg_param_kit_leash_power: 2}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: zoo owner, "yes do those, actually since this is a low level problem you can make the game last less" (replay the divergent starts of #702's full tier with notes retained, shortened to 25,000 turns).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, after reading the cells (not the notes) of reborn-light-matrix-full (run 45082814576, borg-zoo#702): ctl 20 deaths, light 15, light+leash 24, 16 of the leash arm's deaths with max depth 1 against 9 for light and 12 for ctl; 64 starts never reach DL2 with the leash arm against 48 for light. The 49 starts are every classes-1800 start of that tier that died in ctl, light or light+leash. A diagnosis, not a sample: nothing here is a rate. Four arms, 25,000 turns (the game is deterministic, so every play is the same as the 100,000-turn game up to the cap; 17 of light+leash's 24 deaths come before 25,000 turns), evidence retained, 196 cells, specimen track-p 206cf4e7 (the build of the full tier). Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death or turn_cap (turn_cap at 25,000 here); plays of ctl and light match the full tier's keys (play_sha256) wherever the game is the same. Read per start from the notes: where the leash holds the Borg (kit and money checks, "leash" notes, turns spent at DL1, trips to town, what it fought) and what killed it; the leash alone against ctl and against light+leash, so the leash's own effect is apart from the radius's. Descriptive (RULES 14).
