@@ -1,0 +1,201 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-mx-ctl": {
+        "description": "borg-zoo#732 (reborn-mixed-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "75b09f3811e609f9fb0d32a35e238a63573be68c7dad4a1d9809ad8e9a89f59b"
+      },
+      "reborn-mx-mixed": {
+        "description": "borg-zoo#732 (reborn-mixed-pilot.yaml): arm mixed.",
+        "settings": {
+          "borg_param_explore_mixed": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "b76d87906731651aa2c78798e0a0945b853659393c86b6bd357450ddd4e32fd8"
+      },
+      "reborn-mx-mixed-alone": {
+        "description": "borg-zoo#732 (reborn-mixed-pilot.yaml): arm mixed-alone.",
+        "settings": {
+          "borg_param_explore_breadth_first": 0,
+          "borg_param_explore_mixed": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "dfed3b5210f28fb1399ff3aa23b25a7ee44efdfe772890edcf8c7032cc41a154"
+      },
+      "reborn-mx-mixed-loose": {
+        "description": "borg-zoo#732 (reborn-mixed-pilot.yaml): arm mixed-loose.",
+        "settings": {
+          "borg_param_explore_mix_contact_damage": 3,
+          "borg_param_explore_mixed": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "31ebfd378ad1aeed4af36bb8f1f1cc198dafa116ebf82a017716228c6380333d"
+      },
+      "reborn-mx-mixed-tight": {
+        "description": "borg-zoo#732 (reborn-mixed-pilot.yaml): arm mixed-tight.",
+        "settings": {
+          "borg_param_explore_mix_contact_damage": 8,
+          "borg_param_explore_mixed": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "050b8759b24e07ff0410b50456365ef273972b97bae7865331192d4fb1f35fd6"
+      },
+      "reborn-mx-nobfs": {
+        "description": "borg-zoo#732 (reborn-mixed-pilot.yaml): arm nobfs.",
+        "settings": {
+          "borg_param_explore_breadth_first": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "827f40a3e74d6b3b530663ef91ec4a10b90f1c42364c307d69dc9c834d5f1f82"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-mixed-3a2d2215": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs branch claude/hopeful-bell-u42h8q 3a2d2215 (PR #1117: #1098 explore_mixed compiled and shipped 0, on track-p 8e1c8797; explore_breadth_first 1 and cave_light_engine_radius 1 shipped); shipped harness/borg.txt 8a4ddbfc..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+        "ref": "3a2d2215fe1529c7181609560fc0bfc750b79d3b",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-23 06:27 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-mixed-3a2d2215",
+    "control_profile": "reborn-mx-ctl",
+    "definition": "definitions/reborn-mixed-pilot.yaml",
+    "description": "On borg-reborn-rs 3a2d2215 (PR #1117), does mixed exploration (explore_mixed 1: depth-first only within a radius of the nearest known staircase, above the breadth-first threshold) change the deaths of CL3-8 characters or the progress, alone or on top of breadth-first, and do its two contact-damage settings matter? Generated from definitions/reborn-mixed-pilot.yaml: 6 arms on 4.2.6-reborn-rust-mixed-3a2d2215, suite classes-18.",
+    "issue": 732,
+    "name": "reborn-mixed-pilot",
+    "owner_authorization": "2026-11-23: borg-reborn-rs (the zoo study of #1098, PR #1117); zoo owner, 2026-11-23: \"yes do it\" (the pilot as the gate; verysmall and small-rest each on the owner's word).",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#732; borg-reborn-rs #1098, PR #1117, the second mode of #1080). Six arms on 3a2d2215 (explore_mixed compiled and shipped 0; track-p 8e1c8797 with PR #1117): ctl (shipped, breadth-first on); mixed (explore_mixed 1, the full ladder breadth-first then mixed); nobfs (explore_breadth_first 0, the control for mixed-alone); mixed-alone (explore_mixed 1 and explore_breadth_first 0); mixed-tight (explore_mixed 1, explore_mix_contact_damage 8); mixed-loose (explore_mixed 1, explore_mix_contact_damage 3). Tiers one at a time on the one specimen: pilot, then verysmall (classes-1800 starts 1-45), then small-rest (46-90), each on the owner's word; if capacity is short, ctl and mixed first. The mode applies above the breadth-first threshold, where C's exploring leash applies; the owner expects survivability to rise sharply at CL5-6, so it may not pay for itself. Requester's local direction on the 20 level-1 death starts: ctl against mixed 0 deaths against 0, 13 plays identical, 7 split, mean CL 4.95 against 4.90, DL3 reached by 2 against 1.\nTier pilot: classes-18, 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen 3a2d2215. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report: all deaths and deaths at CL3-8 (the band this mode is for), paired by start (ctl against each arm; mixed-alone against nobfs), exact McNemar; the cost: CL at 25k / 50k / 100k turns, starts reaching DL3 and DL5 and their first turn there; deaths per 10,000 turns at each (CL, DL) from #718's turns_at_level_depth; a death report with screens (/death-report) for deaths in mixed or ctl. Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-mx-ctl",
+      "reborn-mx-mixed",
+      "reborn-mx-nobfs",
+      "reborn-mx-mixed-alone",
+      "reborn-mx-mixed-tight",
+      "reborn-mx-mixed-loose"
+    ],
+    "question": "On borg-reborn-rs 3a2d2215 (PR #1117), does mixed exploration (explore_mixed 1: depth-first only within a radius of the nearest known staircase, above the breadth-first threshold) change the deaths of CL3-8 characters or the progress, alone or on top of breadth-first, and do its two contact-damage settings matter?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-mixed-3a2d2215"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45121669060-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45121669060",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "593e48ff7d84fbec1ebaa1010e55cb480758ee9d"
+}
