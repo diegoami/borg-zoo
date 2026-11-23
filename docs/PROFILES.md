@@ -201,6 +201,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-abl` | [#750](https://github.com/diegoami/borg-zoo/issues/750) | 8 | pilot and starts 1-360 read; the nodear arm was rejected by the binary (parameter below its range) and has no result, redone as reborn-dear | Ablation of each new shipped-on mode on track-p 13151fb5: ctl, nomixed, noleash, nohall, nodear, nopot, notrap, noscum. |
 | `reborn-dials` | [#750](https://github.com/diegoami/borg-zoo/issues/750) | 1 | defined (pilot) | The dials of the new modes, one at a time, on track-p 13151fb5 (20 arms). |
 | `reborn-dear` | [#750](https://github.com/diegoami/borg-zoo/issues/750) | 2 | defined (pilot, verysmall, small-rest, medium) | Redo of the ablation's nodear arm on track-p 13151fb5: ctl and nodear (town_prepared_poison_percent 0, town_prepared_ccw 0). |
+| `reborn-wa` | [#749](https://github.com/diegoami/borg-zoo/issues/749) | 6 | defined (pilots: normal, patches-x8, poison-x8) | caution_walk_away_immobile shipped (1) against 0 on track-p 85f8800b, in the normal world, patches-x8 and poison-x8. |
+| `reborn-dc` | [#744](https://github.com/diegoami/borg-zoo/issues/744) | 8 | defined (pilots: normal, poison-x8) | The dear-cure rows of borg-reborn-rs PR #1149 on d96cc8de: pre1134, ship, nogate, m1135. |
 
 ### `heal-attack-4`
 
@@ -2829,6 +2831,38 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-dear-ctl` | – | – |
 | `reborn-dear-nodear` | 0 | 0 |
 
+### `reborn-wa`
+
+caution_walk_away_immobile shipped (1) against 0 on track-p 85f8800b, in the normal world, patches-x8 and poison-x8.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_walk_away_immobile` | `borg_world` |
+| --- | --- | --- |
+| `reborn-wa-wa0` | 0 | – |
+| `reborn-wa-ship` | – | – |
+| `reborn-wa-p8-wa0` | 0 | patches-x8 |
+| `reborn-wa-p8-ship` | – | patches-x8 |
+| `reborn-wa-ps8-wa0` | 0 | poison-x8 |
+| `reborn-wa-ps8-ship` | – | poison-x8 |
+
+### `reborn-dc`
+
+The dear-cure rows of borg-reborn-rs PR #1149 on d96cc8de: pre1134, ship, nogate, m1135.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_prepared_ccw` | `borg_param_town_prepared_ccw_percent` | `borg_param_town_prepared_dear_after_recall` | `borg_param_town_prepared_neutralize` | `borg_param_town_prepared_neutralize_percent` | `borg_param_town_prepared_poison_percent` | `borg_world` |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-dc-pre1134` | 0 | 0 | 0 | 0 | 0 | 0 | – |
+| `reborn-dc-ship` | – | – | – | – | – | – | – |
+| `reborn-dc-nogate` | – | – | 0 | – | – | – | – |
+| `reborn-dc-m1135` | – | – | 0 | 0 | 0 | 40 | – |
+| `reborn-dc-ps8-pre1134` | 0 | 0 | 0 | 0 | 0 | 0 | poison-x8 |
+| `reborn-dc-ps8-ship` | – | – | – | – | – | – | poison-x8 |
+| `reborn-dc-ps8-nogate` | – | – | 0 | – | – | – | poison-x8 |
+| `reborn-dc-ps8-m1135` | – | – | 0 | 0 | 0 | 40 | poison-x8 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -3018,6 +3052,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_unseen_bump_phase_turns` | 20, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-lbun`, `reborn-li206` |  |
 | `borg_param_caution_unseen_bump_response` | 0, not set | `reborn-sloo` |  |
 | `borg_param_caution_unseen_bump_turns` | 0, not set | `reborn-sloo` |  |
+| `borg_param_caution_walk_away_immobile` | 0, not set | `reborn-wa` |  |
 | `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3`, `reborn-townhunt` |  |
 | `borg_param_caution_winning_fight_group_percent` | 100, not set | `reborn-fastpur` |  |
 | `borg_param_caution_winning_fight_margin_percent` | 20, not set | `reborn-fastpur` |  |
@@ -3254,10 +3289,14 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_reserve__ranger` | 2, 3, not set | `reborn-receipt`, `reborn-variety`, `reborn-vrm` |  |
 | `borg_param_town_phase_reserve__warrior` | 0, not set | `reborn-receipt` |  |
 | `borg_param_town_phase_reserve_percent` | 50, 100, 150, 200, 400, not set | `reborn-bundle`, `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve`, `reborn-receipt`, `reborn-vrm` |  |
-| `borg_param_town_prepared_ccw` | 0, not set | `reborn-abl`, `reborn-dear` |  |
+| `borg_param_town_prepared_ccw` | 0, not set | `reborn-abl`, `reborn-dear`, `reborn-dc` |  |
+| `borg_param_town_prepared_ccw_percent` | 0, not set | `reborn-dc` |  |
+| `borg_param_town_prepared_dear_after_recall` | 0, not set | `reborn-dc` |  |
+| `borg_param_town_prepared_neutralize` | 0, not set | `reborn-dc` |  |
+| `borg_param_town_prepared_neutralize_percent` | 0, not set | `reborn-dc` |  |
 | `borg_param_town_prepared_percent` | 0, 50, not set | `reborn-variety`, `reborn-vrm`, `reborn-t1134` |  |
 | `borg_param_town_prepared_poison` | 0, not set | `reborn-abl` |  |
-| `borg_param_town_prepared_poison_percent` | 0, not set | `reborn-dear` |  |
+| `borg_param_town_prepared_poison_percent` | 0, 40, not set | `reborn-dear`, `reborn-dc` |  |
 | `borg_param_town_ranged_reserve` | 6, not set | `reborn-townhunt` |  |
 | `borg_param_town_ranger_arrows_max__ranger` | 20, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_recall_curve_scale_percent` | 0, 110, not set | `reborn-room` |  |
@@ -3331,7 +3370,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_town_w_escape` | 100, not set | `reborn-casters` |  |
 | `borg_town_w_space` | 12, 50, not set | `reborn-untested-town` |  |
 | `borg_town_w_support` | 25, 100, not set | `reborn-untested-town` |  |
-| `borg_world` | breeders-x4, breeders-x8, patches-x8, white-worm-mass-x4, not set | `reborn-stairunk`, `reborn-lonew`, `reborn-blloww`, `reborn-deadend`, `reborn-bfol`, `reborn-kos-cure`, `reborn-ro-tp` |  |
+| `borg_world` | breeders-x4, breeders-x8, patches-x8, poison-x8, white-worm-mass-x4, not set | `reborn-stairunk`, `reborn-lonew`, `reborn-blloww`, `reborn-deadend`, `reborn-bfol`, `reborn-kos-cure`, `reborn-ro-tp`, `reborn-wa`, `reborn-dc` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |

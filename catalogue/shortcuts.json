@@ -2660,6 +2660,36 @@
         "reborn-dear-nodear"
       ],
       "runs": []
+    },
+    "reborn-wa": {
+      "issue": 749,
+      "status": "defined (pilots: normal, patches-x8, poison-x8)",
+      "what": "caution_walk_away_immobile shipped (1) against 0 on track-p 85f8800b, in the normal world, patches-x8 and poison-x8.",
+      "profiles": [
+        "reborn-wa-wa0",
+        "reborn-wa-ship",
+        "reborn-wa-p8-wa0",
+        "reborn-wa-p8-ship",
+        "reborn-wa-ps8-wa0",
+        "reborn-wa-ps8-ship"
+      ],
+      "runs": []
+    },
+    "reborn-dc": {
+      "issue": 744,
+      "status": "defined (pilots: normal, poison-x8)",
+      "what": "The dear-cure rows of borg-reborn-rs PR #1149 on d96cc8de: pre1134, ship, nogate, m1135.",
+      "profiles": [
+        "reborn-dc-pre1134",
+        "reborn-dc-ship",
+        "reborn-dc-nogate",
+        "reborn-dc-m1135",
+        "reborn-dc-ps8-pre1134",
+        "reborn-dc-ps8-ship",
+        "reborn-dc-ps8-nogate",
+        "reborn-dc-ps8-m1135"
+      ],
+      "runs": []
     }
   }
 }
