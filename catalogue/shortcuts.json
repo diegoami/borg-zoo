@@ -2413,6 +2413,32 @@
         "reborn-bfs-bfs0"
       ],
       "runs": []
+    },
+    "reborn-phase": {
+      "issue": 731,
+      "status": "defined (pilot, full)",
+      "what": "The two #1066 Phase Door switches (unknown_scary, newcomer_wait), shipped on in #1096 on track-p 6cd5c8bf: shipped, phase0 (both 0), unknown, newcomer.",
+      "profiles": [
+        "reborn-ph-shipped",
+        "reborn-ph-phase0",
+        "reborn-ph-unknown",
+        "reborn-ph-newcomer"
+      ],
+      "runs": []
+    },
+    "reborn-mixed": {
+      "issue": 732,
+      "status": "defined (pilot, verysmall, small-rest)",
+      "what": "Mixed exploration (explore_mixed, #1098, PR #1117) on 3a2d2215: ctl, mixed, nobfs, mixed-alone, mixed-tight, mixed-loose.",
+      "profiles": [
+        "reborn-mx-ctl",
+        "reborn-mx-mixed",
+        "reborn-mx-nobfs",
+        "reborn-mx-mixed-alone",
+        "reborn-mx-mixed-tight",
+        "reborn-mx-mixed-loose"
+      ],
+      "runs": []
     }
   }
 }

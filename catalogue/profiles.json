@@ -12461,6 +12461,92 @@
         "borg_reborn_errand": "none",
         "borg_param_explore_breadth_first": 0
       }
+    },
+    "reborn-mx-ctl": {
+      "description": "borg-zoo#732 (reborn-mixed-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-mx-mixed": {
+      "description": "borg-zoo#732 (reborn-mixed-pilot.yaml): arm mixed.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_mixed": 1
+      }
+    },
+    "reborn-mx-nobfs": {
+      "description": "borg-zoo#732 (reborn-mixed-pilot.yaml): arm nobfs.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_breadth_first": 0
+      }
+    },
+    "reborn-mx-mixed-alone": {
+      "description": "borg-zoo#732 (reborn-mixed-pilot.yaml): arm mixed-alone.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_mixed": 1,
+        "borg_param_explore_breadth_first": 0
+      }
+    },
+    "reborn-mx-mixed-tight": {
+      "description": "borg-zoo#732 (reborn-mixed-pilot.yaml): arm mixed-tight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_mixed": 1,
+        "borg_param_explore_mix_contact_damage": 8
+      }
+    },
+    "reborn-mx-mixed-loose": {
+      "description": "borg-zoo#732 (reborn-mixed-pilot.yaml): arm mixed-loose.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_mixed": 1,
+        "borg_param_explore_mix_contact_damage": 3
+      }
+    },
+    "reborn-ph-shipped": {
+      "description": "borg-zoo#731 (reborn-phase-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_unknown_scary": 1,
+        "borg_param_escape_phase_newcomer_wait": 1
+      }
+    },
+    "reborn-ph-phase0": {
+      "description": "borg-zoo#731 (reborn-phase-pilot.yaml): arm phase0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_unknown_scary": 0,
+        "borg_param_escape_phase_newcomer_wait": 0
+      }
+    },
+    "reborn-ph-unknown": {
+      "description": "borg-zoo#731 (reborn-phase-pilot.yaml): arm unknown.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_unknown_scary": 1,
+        "borg_param_escape_phase_newcomer_wait": 0
+      }
+    },
+    "reborn-ph-newcomer": {
+      "description": "borg-zoo#731 (reborn-phase-pilot.yaml): arm newcomer.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_unknown_scary": 0,
+        "borg_param_escape_phase_newcomer_wait": 1
+      }
     }
   }
 }

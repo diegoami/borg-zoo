@@ -180,6 +180,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-kos-cure` | [#727](https://github.com/diegoami/borg-zoo/issues/727) | 4 | defined (x8 pilot, normal pilot, full) | attack_kill_on_sight_floor_cure 1 (shipped) against 0 (#1064, PR #1082) on bc215cf8: patches-x8 and the normal world; ctl, cure0. |
 | `reborn-ffb769` | [#711](https://github.com/diegoami/borg-zoo/issues/711) | 5 | defined (pilot, full) | The #926 fast-fragile bundle (escape quantile 75, heal floor 50, count_dot 1) and its three parts on track-p 769f3fbd: ctl, bundle, q75, floor50, dot. |
 | `reborn-bfs` | [#730](https://github.com/diegoami/borg-zoo/issues/730) | 2 | defined (pilot, full) | Breadth-first exploration on (shipped, #1088) against off (explore_breadth_first 0, arm bfs0) on track-p 1c071812: ctl, bfs0. |
+| `reborn-phase` | [#731](https://github.com/diegoami/borg-zoo/issues/731) | 4 | defined (pilot, full) | The two #1066 Phase Door switches (unknown_scary, newcomer_wait), shipped on in #1096 on track-p 6cd5c8bf: shipped, phase0 (both 0), unknown, newcomer. |
+| `reborn-mixed` | [#732](https://github.com/diegoami/borg-zoo/issues/732) | 6 | defined (pilot, verysmall, small-rest) | Mixed exploration (explore_mixed, #1098, PR #1117) on 3a2d2215: ctl, mixed, nobfs, mixed-alone, mixed-tight, mixed-loose. |
 
 ### `heal-attack-4`
 
@@ -2546,6 +2548,34 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-bfs-ctl` | – |
 | `reborn-bfs-bfs0` | 0 |
 
+### `reborn-phase`
+
+The two #1066 Phase Door switches (unknown_scary, newcomer_wait), shipped on in #1096 on track-p 6cd5c8bf: shipped, phase0 (both 0), unknown, newcomer.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_escape_phase_newcomer_wait` | `borg_param_escape_phase_unknown_scary` |
+| --- | --- | --- |
+| `reborn-ph-shipped` | 1 | 1 |
+| `reborn-ph-phase0` | 0 | 0 |
+| `reborn-ph-unknown` | 0 | 1 |
+| `reborn-ph-newcomer` | 1 | 0 |
+
+### `reborn-mixed`
+
+Mixed exploration (explore_mixed, #1098, PR #1117) on 3a2d2215: ctl, mixed, nobfs, mixed-alone, mixed-tight, mixed-loose.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_explore_breadth_first` | `borg_param_explore_mix_contact_damage` | `borg_param_explore_mixed` |
+| --- | --- | --- | --- |
+| `reborn-mx-ctl` | – | – | – |
+| `reborn-mx-mixed` | – | – | 1 |
+| `reborn-mx-nobfs` | 0 | – | – |
+| `reborn-mx-mixed-alone` | 0 | – | 1 |
+| `reborn-mx-mixed-tight` | – | 8 | 1 |
+| `reborn-mx-mixed-loose` | – | 3 | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2747,11 +2777,15 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_phase_lost_damage_only` | 1, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-lbun`, `reborn-li206` |  |
 | `borg_param_escape_phase_lost_danger_percent` | 100, not set | `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape` |  |
 | `borg_param_escape_phase_lost_test` | 0, 1, 2, not set | `reborn-phase-rule-main`, `reborn-bgphase`, `reborn-rebase-main`, `reborn-death-bank38`, `reborn-crow-escape`, `reborn-dungeon-switch-screen` |  |
+| `borg_param_escape_phase_newcomer_wait` | 0, 1 | `reborn-phase` |  |
 | `borg_param_escape_phase_ordinary_danger_tenths` | 5, 20, not set | `reborn-phase-thresholds` |  |
 | `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
+| `borg_param_escape_phase_unknown_scary` | 0, 1 | `reborn-phase` |  |
 | `borg_param_escape_teleport_block` | 0, not set | `reborn-tpblock` |  |
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
-| `borg_param_explore_breadth_first` | 0, not set | `reborn-bfs` |  |
+| `borg_param_explore_breadth_first` | 0, not set | `reborn-bfs`, `reborn-mixed` |  |
+| `borg_param_explore_mix_contact_damage` | 3, 8, not set | `reborn-mixed` |  |
+| `borg_param_explore_mixed` | 1, not set | `reborn-mixed` |  |
 | `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag`, `reborn-nowalk`, `reborn-cavesp` |  |
 | `borg_param_fast_fragile_contact_max` | 1, not set | `reborn-cavesp` |  |
 | `borg_param_fast_fragile_count_dot` | 1, not set | `reborn-ffq`, `reborn-ff-dot`, `reborn-ffb769` |  |
