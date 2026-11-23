@@ -1,0 +1,45 @@
+# borg-zoo#711: reborn-ffbundle-769f, pilot tier (the #926 fast-fragile bundle and its parts).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-ffbundle-769f-pilot.yaml
+name: reborn-ffbundle-769f-pilot
+issue: 711
+question: >-
+  On track-p 769f3fbd, does the #926 fast-fragile bundle (escape quantile 75, heal floor 50, cut and poison counted) help, hurt or interact,
+  against shipped play and against each of its three parts alone?
+tier: pilot            # classes-18, 100,000 turns
+pilot: true            # first run of these arms on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-769f3fbd
+  repository: diegoami/borg-reborn-rs
+  ref: 769f3fbd649eb2fb31e5c81cfc0ee6e32fcc78d8
+  label: "borg-reborn-rs LINE track-p at 769f3fbd on 2026-11-23 (on top of f8725bc0; the #926 fast-fragile settings ship 0: fast_fragile_escape_quantile, fast_fragile_heal_floor, fast_fragile_count_dot); shipped harness/borg.txt 98086559..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-ffb769
+arms:
+  ctl: {}
+  bundle: {borg_param_fast_fragile_escape_quantile: 75, borg_param_fast_fragile_heal_floor: 50, borg_param_fast_fragile_count_dot: 1}
+  q75: {borg_param_fast_fragile_escape_quantile: 75}
+  floor50: {borg_param_fast_fragile_heal_floor: 50}
+  dot: {borg_param_fast_fragile_count_dot: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs owner ("can we turn on the fast-fragile bundle" ... "and make a zoo test asap"), filed as borg-zoo#711; values changed by the owner before dispatch, 2026-11-23 (#711 comment 7088263118): "heal floor 50, 75th percentile, count_dot 1"; pilot as the gate, then full.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#711). Five arms at track-p 769f3fbd (all three settings ship 0): ctl; bundle
+  (fast_fragile_escape_quantile 75, fast_fragile_heal_floor 50, fast_fragile_count_dot 1); q75; floor50; dot (each part alone). Supersedes #672's pin.
+  Pilot as a gate, then the full tier (classes-1800 starts 901-1800, 900 per arm), matching #695 and #702; if capacity is short, ctl and bundle in full
+  first and the single-setting arms at big. Tier pilot: classes-18, 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core. Gate: no config_error; one
+  binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm.
+  Report per arm and class against ctl: deaths and causes, rescued and newly killed (exact McNemar), CL and depth, alive at the cap having reached DL5,
+  identical plays; deaths to fast-fragile monsters (crow, wild cat, cave spider ...); games that die with a healing potion in the pack; Phase Door scrolls
+  used per game. Fast-fragile decisions are rare (about 1 game in 60, #660, #596). Tiers of one study pooled (RULES 14). Descriptive. Whether the bundle
+  stays on in harness/borg.txt is a borg-reborn-rs decision on this run.

@@ -1,0 +1,25 @@
+# borg-zoo#738: Phase threshold 50 against shipped on track-p 1c071812, full tier (900 starts, classes-1800 starts 901-1800). Write the catalogue entries with: python3 -m zoo define definitions/reborn-phase50-full.yaml
+name: reborn-phase50-full
+issue: 738
+question: >-
+  On borg-reborn-rs track-p 1c071812, does lowering the Phase Door "fight is lost" danger threshold (escape_phase_lost_danger_percent 50) lower deaths on random starts, as the replays of the 25 deaths of reborn-bfs-full suggest (5 rescued at the fatal point, 2 of them poison), and what does it cost?
+tier: full            # 900 starts, classes-1800 starts 901-1800, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-1c071812
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-t1134
+arms:
+  ctl: {}
+  phase50: {borg_param_escape_phase_lost_danger_percent: 50}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: zoo owner, "escape_phase_lost_danger_percent = 50 must also be tested" (borg-zoo#738, borg-reborn-rs #1134).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this block was read (borg-zoo#738; borg-reborn-rs #1134; the owner: "escape_phase_lost_danger_percent = 50 must also be tested"). Two arms on track-p 1c071812 (the six-arm pilot there passed: 0 deaths in every arm, phase50 changed 4 of 18 plays): ctl (shipped) and phase50 (escape_phase_lost_danger_percent 50). Ladder tier full; the tiers verysmall, small-rest, medium and big together are classes-1800 starts 1-900 and the full tier is starts 901-1800 (the block of reborn-bfs-full, whose 25 deaths are the evidence of #1134), 1,800 starts in all, read pooled and per block (RULES 14). Primary: deaths by 100,000 turns, exact McNemar by start; deaths at CL <= 2 and poison deaths apart (the replays of the 25 deaths rescued 5, 2 of them poison); identical plays; progress: DL3 and DL5 reached, mean CL, first_turn_at_depth, #718's fields. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart. Descriptive (RULES 14).

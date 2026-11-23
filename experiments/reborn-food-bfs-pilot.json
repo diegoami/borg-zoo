@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-food-bfs-pilot",
+  "issue": 729,
+  "definition": "definitions/reborn-food-bfs-pilot.yaml",
+  "question": "On borg-reborn-rs f0e13e99 (task/T1109-hungry-biscuit, the Hungry biscuit fix), how does the food reserve behave with breadth-first exploration off (control) and on (shipped class thresholds): food-driven town returns per 100,000 dungeon turns, the departure stock against the planner's demand, Hungry and Weak events and biscuit use, on the classes-18 starts at the usual cap?",
+  "description": "On borg-reborn-rs f0e13e99 (task/T1109-hungry-biscuit, the Hungry biscuit fix), how does the food reserve behave with breadth-first exploration off (control) and on (shipped class thresholds): food-driven town returns per 100,000 dungeon turns, the departure stock against the planner's demand, Hungry and Weak events and biscuit use, on the classes-18 starts at the usual cap? Generated from definitions/reborn-food-bfs-pilot.yaml: 2 arms on 4.2.6-reborn-rust-hungry-biscuit-f0e13e99, suite classes-18.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#729; borg-reborn-rs #1109). Two arms on f0e13e99 (class files as shipped): ctl0 (explore_breadth_first 0, the control) and bfs1 (explore_breadth_first 1 with the shipped class-specific HP thresholds), same race, class, seed, birth configuration and cap in each pair. This is the first stage of the request: the 18 classes-18 starts at the usual cap (100,000 turns) to check the collection, evidence retained (state, messages, return events, native town receipts, town plan records). Not run here: the matched long-cap stage at 2,200,000 engine turns, which needs the two incident Mage starts of #1109 and independent Mage starts from an owner-approved unused seed block (asked for on the issue). Primary endpoint (prespecified): food-driven town returns per 100,000 dungeon turns, from native return reasons and depth transitions, generic restock apart unless driven by food; per-start paired results, counts of completed trips and food-driven returns, durations in engine turns with unfinished trips marked. Also: store purchases matched to 'You bought ... for ... gold' receipts, Home withdrawals counted apart; transactions, copies, nutrition and retail gold by kind; departures joined to the final town-plan leave record (paction 7, capability_curves nutrition row index 1: demand in column 2, supply in column 3, in thousandths; set-to items like Remove Hunger 35 shown apart from additive food: biscuit 10, ration 30); the departure stock against the planner's demand, the offers and the trip duration; observed Hungry/Weak events and biscuit use; cases where a trip exhausted food despite departing with enough stock; whether each arm actually used dark-bfs; early stops kept and reported. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped. Descriptive (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-hungry-biscuit-f0e13e99"
+  ],
+  "profiles": [
+    "reborn-food-ctl0",
+    "reborn-food-bfs1"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-hungry-biscuit-f0e13e99",
+  "control_profile": "reborn-food-ctl0",
+  "owner_authorization": "2026-11-23: borg-reborn-rs request borg-zoo#729 (\"Run paired food forecasts after the Hungry biscuit fix\", #1109; the owner starts the runs); zoo owner, 2026-11-23: \"yes do all\" (the classes-18 collection stage; the 2,200,000-turn stage needs the owner's unused seed block).",
+  "retain_evidence": true
+}

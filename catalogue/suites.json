@@ -2131,6 +2131,30 @@
       "wall_seconds": 900,
       "stall_seconds": 90,
       "saves": false
+    },
+    "classes-1800-priest-light-slow": {
+      "description": "The 63 Priest starts of classes-1800 starts 1-900 where, on borg-reborn-rs track-p 206cf4e7, light (cave_light_engine_radius 1) reached CL5 more than 15,000 turns after ctl or not at all within 100,000 turns (borg-zoo#702's light ladder), played to 60,000 turns with notes retained to see why the light radius slows Priests. Chosen starts for a diagnosis, not a sample.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "seeds": [2613747, 60959135, 111864827, 150307609, 179371675, 199095980, 200893737, 235160511, 247227001, 289043149, 350159779, 399497898, 403291759, 462832113, 507639047, 524850074, 543459087, 559636045, 584077430, 652511567, 685052922, 809881907, 895822921, 912024202, 914815160, 925576758, 981347301, 1002239165, 1007490173, 1012848986, 1055640847, 1086352478, 1112911014, 1125731181, 1151763704, 1169034064, 1186804206, 1277144831, 1303043906, 1375157069, 1387344181, 1416094492, 1494399662, 1577979420, 1598761213, 1626238247, 1672210802, 1686079085, 1695962135, 1714445858, 1735723339, 1740071931, 1808349933, 1820359588, 1852741500, 1870400446, 1928714163, 1980969254, 1983891190, 1985974231, 2053553896, 2096758023, 2146549397]
+      },
+      "cap": 60000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-lvl1-206cf4e7-deaths": {
+      "description": "The 20 start seeds of classes-1800 that died in run 45070528012 (reborn-trackp-206cf4e7-full, borg-reborn-rs track-p 206cf4e7; borg-cemetery#138, study lvl1-deaths-trackp-206cf4e7), for borg-zoo#737's targeted check of the trap rules. Chosen starts, not a sample.",
+      "role": "development",
+      "subset": {
+        "suite": "classes-1800",
+        "seeds": [142490685, 269489578, 282602274, 312081895, 327746368, 453254028, 526144893, 584191223, 592754909, 645909552, 694417276, 781905420, 848342657, 1024822556, 1194051723, 1398933929, 1868115537, 2025089708, 2125189042, 2136378178]
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
     }
   }
 }

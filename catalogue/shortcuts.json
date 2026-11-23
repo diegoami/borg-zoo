@@ -2314,6 +2314,267 @@
         "reborn-li206-light"
       ],
       "runs": []
+    },
+    "reborn-leash-holes": {
+      "issue": 719,
+      "status": "defined (pilot)",
+      "what": "The three stair-leash switches of #1062 (any stair, unknown-stair steps, teleported Recall) on 12fe36d8: ctl, any, unknown, recall, leash3; classes-18.",
+      "profiles": [
+        "reborn-lhole-ctl",
+        "reborn-lhole-any",
+        "reborn-lhole-unknown",
+        "reborn-lhole-recall",
+        "reborn-lhole-leash3"
+      ],
+      "runs": []
+    },
+    "reborn-heal-quaff": {
+      "issue": 722,
+      "status": "defined (pilot)",
+      "what": "Town heal speed 100 and the quaff bonus 200 (#845, PR #848) on 925fc5d7: ctl, speed100, quaff200; classes-18 at 300,000 turns.",
+      "profiles": [
+        "reborn-hq-ctl",
+        "reborn-hq-speed100",
+        "reborn-hq-quaff200"
+      ],
+      "runs": []
+    },
+    "reborn-short-gold": {
+      "issue": 723,
+      "status": "defined (pilot)",
+      "what": "Short-gold shopping with held oil (#828, PR #854) on b8605b5c: ctl, shortgold; classes-18.",
+      "profiles": [
+        "reborn-sg-ctl",
+        "reborn-sg-shortgold"
+      ],
+      "runs": []
+    },
+    "reborn-light-priest": {
+      "issue": 702,
+      "status": "defined (pilot)",
+      "what": "Why the light radius slows Priests: the 63 slow Priest starts of the light ladder replayed to 60,000 turns with notes: ctl, light on 206cf4e7.",
+      "profiles": [
+        "reborn-li206-ctl",
+        "reborn-li206-light"
+      ],
+      "runs": []
+    },
+    "reborn-ff-ratio": {
+      "issue": 717,
+      "status": "defined (pilot, full)",
+      "what": "Fast-fragile heal ratio 30 (shipped) against 0 (#1065, PR #1089) on c7e55e1d: ctl, ratio0.",
+      "profiles": [
+        "reborn-ffr-ctl",
+        "reborn-ffr-ratio0"
+      ],
+      "runs": []
+    },
+    "reborn-ff-dot": {
+      "issue": 713,
+      "status": "defined (pilot)",
+      "what": "Fast-fragile own cut and poison (count_dot 1, #1028) on track-p 8f32a8a0: ctl, dot.",
+      "profiles": [
+        "reborn-ffd-ctl",
+        "reborn-ffd-dot"
+      ],
+      "runs": []
+    },
+    "reborn-kos-cure": {
+      "issue": 727,
+      "status": "defined (x8 pilot, normal pilot, full)",
+      "what": "attack_kill_on_sight_floor_cure 1 (shipped) against 0 (#1064, PR #1082) on bc215cf8: patches-x8 and the normal world; ctl, cure0.",
+      "profiles": [
+        "reborn-kos-ctl-x8",
+        "reborn-kos-cure0-x8",
+        "reborn-kos-ctl",
+        "reborn-kos-cure0"
+      ],
+      "runs": []
+    },
+    "reborn-ffb769": {
+      "issue": 711,
+      "status": "defined (pilot, full)",
+      "what": "The #926 fast-fragile bundle (escape quantile 75, heal floor 50, count_dot 1) and its three parts on track-p 769f3fbd: ctl, bundle, q75, floor50, dot.",
+      "profiles": [
+        "reborn-ffb769-ctl",
+        "reborn-ffb769-bundle",
+        "reborn-ffb769-q75",
+        "reborn-ffb769-floor50",
+        "reborn-ffb769-dot"
+      ],
+      "runs": []
+    },
+    "reborn-bfs": {
+      "issue": 730,
+      "status": "defined (pilot, full)",
+      "what": "Breadth-first exploration on (shipped, #1088) against off (explore_breadth_first 0, arm bfs0) on track-p 1c071812: ctl, bfs0.",
+      "profiles": [
+        "reborn-bfs-ctl",
+        "reborn-bfs-bfs0"
+      ],
+      "runs": []
+    },
+    "reborn-phase": {
+      "issue": 731,
+      "status": "defined (pilot, full)",
+      "what": "The two #1066 Phase Door switches (unknown_scary, newcomer_wait), shipped on in #1096 on track-p 6cd5c8bf: shipped, phase0 (both 0), unknown, newcomer.",
+      "profiles": [
+        "reborn-ph-shipped",
+        "reborn-ph-phase0",
+        "reborn-ph-unknown",
+        "reborn-ph-newcomer"
+      ],
+      "runs": []
+    },
+    "reborn-mixed": {
+      "issue": 732,
+      "status": "defined (pilot, verysmall, small-rest)",
+      "what": "Mixed exploration (explore_mixed, #1098, PR #1117) on 3a2d2215: ctl, mixed, nobfs, mixed-alone, mixed-tight, mixed-loose.",
+      "profiles": [
+        "reborn-mx-ctl",
+        "reborn-mx-mixed",
+        "reborn-mx-nobfs",
+        "reborn-mx-mixed-alone",
+        "reborn-mx-mixed-tight",
+        "reborn-mx-mixed-loose"
+      ],
+      "runs": []
+    },
+    "reborn-food-bfs": {
+      "issue": 729,
+      "status": "defined (pilot)",
+      "what": "Food forecasts after the Hungry biscuit fix (#1109) on f0e13e99: ctl0 (breadth-first off), bfs1 (on); classes-18 with evidence.",
+      "profiles": [
+        "reborn-food-ctl0",
+        "reborn-food-bfs1"
+      ],
+      "runs": []
+    },
+    "reborn-ffb-ladder": {
+      "issue": 711,
+      "status": "defined (verysmall, small-rest, medium, big = starts 1-900)",
+      "what": "Confirmation block for the fast-fragile bundle lead on 769f3fbd: ctl, bundle on classes-1800 starts 1-900.",
+      "profiles": [
+        "reborn-ffb769-ctl",
+        "reborn-ffb769-bundle"
+      ],
+      "runs": []
+    },
+    "reborn-bfs-ladder": {
+      "issue": 730,
+      "status": "defined (verysmall, small-rest, medium, big = starts 1-900)",
+      "what": "Breadth-first on (shipped) vs off, second block, classes-1800 starts 1-900 on 1c071812: ctl, bfs0.",
+      "profiles": [
+        "reborn-bfs-ctl",
+        "reborn-bfs-bfs0"
+      ],
+      "runs": []
+    },
+    "reborn-leash-holes-vs": {
+      "issue": 719,
+      "status": "defined (verysmall)",
+      "what": "The stair-leash switches of #1062 on 12fe36d8, classes-1800 starts 1-45.",
+      "profiles": [
+        "reborn-lhole-ctl",
+        "reborn-lhole-any",
+        "reborn-lhole-unknown",
+        "reborn-lhole-recall",
+        "reborn-lhole-leash3"
+      ],
+      "runs": []
+    },
+    "reborn-ss9276": {
+      "issue": 721,
+      "status": "defined (pilot, verysmall, small-rest, medium, big = starts 1-900)",
+      "what": "stair_scum on the shipped build 9276b75a (PR #1090): shipped, noscum, nobfs, neither on classes-18 and classes-1800 starts 1-900.",
+      "profiles": [
+        "reborn-ss9276-shipped",
+        "reborn-ss9276-noscum",
+        "reborn-ss9276-nobfs",
+        "reborn-ss9276-neither"
+      ],
+      "runs": []
+    },
+    "reborn-ro-tp": {
+      "issue": 740,
+      "status": "defined (normal pilot, x8 pilot, normal starts 1-900, x8 verysmall)",
+      "what": "caution_ranged_only 1 and caution_ranged_vs_immobile 2 on track-p 1c071812: ctl, ranged, immobile2 in the normal world and patches-x8.",
+      "profiles": [
+        "reborn-ro-ctl",
+        "reborn-ro-ranged",
+        "reborn-ro-immobile2",
+        "reborn-ro-ctl-x8",
+        "reborn-ro-ranged-x8",
+        "reborn-ro-immobile2-x8"
+      ],
+      "runs": []
+    },
+    "reborn-paralyser": {
+      "issue": 735,
+      "status": "defined (pilot, small, medium)",
+      "what": "The #1125 paralyser switches (PR #1129, 173156ac): ctl, lost, walk, all.",
+      "profiles": [
+        "reborn-par-ctl",
+        "reborn-par-lost",
+        "reborn-par-walk",
+        "reborn-par-all"
+      ],
+      "runs": []
+    },
+    "reborn-perception": {
+      "issue": 736,
+      "status": "defined (pilot, full)",
+      "what": "Stale light and sight through rubble (#885, #917, PR #1128, 7bfbe121): ctl, dark, rubble, both.",
+      "profiles": [
+        "reborn-per-ctl",
+        "reborn-per-dark",
+        "reborn-per-rubble",
+        "reborn-per-both"
+      ],
+      "runs": []
+    },
+    "reborn-trap": {
+      "issue": 737,
+      "status": "defined (20 death seeds, full ctl/trapoff)",
+      "what": "The #1067 trap rules, shipped on (PR #1086, 91dd0d0a): ctl, trapoff, way, recover, noleave.",
+      "profiles": [
+        "reborn-trap-ctl",
+        "reborn-trap-trapoff",
+        "reborn-trap-way",
+        "reborn-trap-recover",
+        "reborn-trap-noleave"
+      ],
+      "runs": []
+    },
+    "reborn-t1134": {
+      "issue": 738,
+      "status": "defined (pilot, verysmall)",
+      "what": "Phase threshold 50, confusion CLW cure, retreat breaker, prepared remedy 50 on track-p 1c071812 (borg-reborn-rs #1134): ctl, phase50, conf, osc, prep50, all.",
+      "profiles": [
+        "reborn-t1134-ctl",
+        "reborn-t1134-phase50",
+        "reborn-t1134-conf",
+        "reborn-t1134-osc",
+        "reborn-t1134-prep50",
+        "reborn-t1134-all"
+      ],
+      "runs": []
+    },
+    "reborn-mixed40": {
+      "issue": 732,
+      "status": "defined (pilot, verysmall, small-rest)",
+      "what": "Mixed exploration, C's leave-when-done and the old bfs stay (#1098, PR #1117) on 40c3bcc8: ctl, cexit, bfs-stay, mixed, nobfs, mixed-alone, mixed-tight, mixed-loose.",
+      "profiles": [
+        "reborn-mx40-ctl",
+        "reborn-mx40-cexit",
+        "reborn-mx40-bfs-stay",
+        "reborn-mx40-mixed",
+        "reborn-mx40-nobfs",
+        "reborn-mx40-mixed-alone",
+        "reborn-mx40-mixed-tight",
+        "reborn-mx40-mixed-loose"
+      ],
+      "runs": []
     }
   }
 }

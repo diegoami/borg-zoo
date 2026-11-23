@@ -1,0 +1,28 @@
+# borg-zoo#702: why the light radius slows Priests: the 63 slow Priest starts of the light ladder replayed to 60,000 turns with notes retained.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-light-priest-pilot.yaml
+name: reborn-light-priest-pilot
+issue: 702
+question: >-
+  On track-p 206cf4e7, why does the engine's light radius (cave_light_engine_radius 1) slow Priests (CL5 reached by 65 of 100 against 97, median first turn at DL2 about 52,000 against 23,000 on classes-1800 starts 1-900)? The 63 Priest starts where light reached CL5 more than 15,000 turns after ctl or not at all, played to 60,000 turns with notes retained, ctl and light.
+tier: pilot            # the 63 chosen starts, 60,000 turns
+pilot: true            # a study on its own suite (RULES 16)
+suite: classes-1800-priest-light-slow
+
+specimen: 4.2.6-reborn-rust-trackp-206cf4e7
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-li206
+arms:
+  ctl: {}
+  light: {borg_param_cave_light_engine_radius: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: zoo owner, "ok do all of them" (the Priest replay with notes of the light radius's slowdown, offered after the light ladder on starts 1-900).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, after reading the cells (not the notes) of reborn-light-ladder-{verysmall,small-rest,medium,big} (borg-zoo#702): Priests reach CL5 in 97 of 100 starts with ctl and 65 with light, with a median first turn at DL2 of 23,227 against 51,930. The 63 starts are the Priests of classes-1800 starts 1-900 where light reached CL5 more than 15,000 turns after ctl or not at all. A diagnosis, not a sample: nothing here is a rate. Two arms, 60,000 turns (the game is deterministic, so every play is the same as the 100,000-turn game up to the cap), evidence retained, 126 cells, specimen track-p 206cf4e7 (the ladder's build, whose light arm had its pilot in #702's matrix). Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death or turn_cap (turn_cap at 60,000); ctl plays the ladder's keys (play_sha256) wherever the cap does not cut. Read per start from the notes and state log: where the turns go in light (town, DL1, resting, the same stair walks), the first turn at levels 2-5 and at DL2 against ctl (first_turn_at_level, turns_at_level_depth), what the Priest does in the dark that it does not do in ctl (spells cast, resting, "flowing toward" steps), and the deaths (2 in light, 0 in ctl). Descriptive (RULES 14).

@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-bfs-pilot",
+  "issue": 730,
+  "definition": "definitions/reborn-bfs-pilot.yaml",
+  "question": "On borg-reborn-rs track-p 1c071812 (which ships explore_breadth_first 1 from #1088), does breadth-first exploration from the stairs for weak characters lower early deaths, and what does it cost in progress, against C's depth-first order (explore_breadth_first 0)?",
+  "description": "On borg-reborn-rs track-p 1c071812 (which ships explore_breadth_first 1 from #1088), does breadth-first exploration from the stairs for weak characters lower early deaths, and what does it cost in progress, against C's depth-first order (explore_breadth_first 0)? Generated from definitions/reborn-bfs-pilot.yaml: 2 arms on 4.2.6-reborn-rust-trackp-1c071812, suite classes-18.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#730; borg-reborn-rs #1085, PR #1088). Two arms on track-p 1c071812: ctl (shipped: explore_breadth_first 1, the per-class explore_bfs_max_hp and explore_bfs_hp_per_level of the class files, explore_bfs_slack 0) and bfs0 (explore_breadth_first 0, C's depth-first order). Pilot as the gate, then the full tier (classes-1800 starts 901-1800, 900 per arm). Primary: deaths by 100,000 turns, exact McNemar by start (rescued = dead with bfs0 and alive with ctl); deaths at CL <= 2 and on DL1 apart. Progress cost, prespecified: starts reaching DL3, DL4 and DL5 (any outcome, exact McNemar by start), mean final CL and depth, per class; how long weak characters stay weak (first_turn_at_level, turns_at_level_depth, first_turn_at_max_hp of the cells, #718), for each class's threshold. Pilot evidence: per game the '# Flowing toward dark-bfs' style notes (the new method) against dark-1..5 and the games where it never acts (identical plays).\nTier pilot: classes-18, 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core, specimen track-p 1c071812. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (a switch that plays the control's keys in most pairs was not exercised). Descriptive (RULES 14); whether it stays shipped on is a borg-reborn-rs decision.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-1c071812"
+  ],
+  "profiles": [
+    "reborn-bfs-ctl",
+    "reborn-bfs-bfs0"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-1c071812",
+  "control_profile": "reborn-bfs-ctl",
+  "owner_authorization": "2026-11-23: zoo owner, \"we need an experiment comparing bread[th] first off with on\" (borg-zoo#730; borg-reborn-rs #1085's closing note: the zoo comparison against explore_breadth_first = 0 is still to run).",
+  "retain_evidence": true
+}

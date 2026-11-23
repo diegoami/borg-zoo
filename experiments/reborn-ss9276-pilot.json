@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-ss9276-pilot",
+  "issue": 721,
+  "definition": "definitions/reborn-ss9276-pilot.yaml",
+  "question": "On borg-reborn-rs 9276b75a (PR #1090 after its Codex re-review, with stair_scum shipped on by class and #1085's breadth-first exploration), what does stair_scum add to breadth-first, and what does breadth-first add to stair_scum, against neither, in deaths of weak characters and in progress?",
+  "description": "On borg-reborn-rs 9276b75a (PR #1090 after its Codex re-review, with stair_scum shipped on by class and #1085's breadth-first exploration), what does stair_scum add to breadth-first, and what does breadth-first add to stair_scum, against neither, in deaths of weak characters and in progress? Generated from definitions/reborn-ss9276-pilot.yaml: 4 arms on 4.2.6-reborn-rust-stair-scum-9276b75a, suite classes-18.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#721; borg-reborn-rs #1061, PR #1090 at 9276b75a, synchronized with track-p 69a5ff40; the earlier pilot reborn-stairscum1061-pilot, run 45112130177, was at 0d09e318, stair_scum alone, and does not carry over). The shipped build ships stair_scum on at the owner's settings (stair_scum_max_hp 20; slack steps by class: Druid and Necromancer 1, Mage and Priest 2, Ranger and Rogue 3, Paladin and Blackguard 4; Warrior off; level rate 50) and #1085's breadth-first exploration. The class lines win over any common value, so the four arms vary only what has no class line: shipped (none); noscum (stair_scum 0, breadth-first alone); nobfs (explore_breadth_first 0, stair_scum alone); neither (both 0, the play before either mode, the control). The other session's seven-arm pilot of #721 (level0, hp25, kitleash) is separate. Owner, 2026-11-23: \"I need a bigger sample for stair scum\": the pilot as the gate, then the four ladder tiers (verysmall, small-rest, medium, big = classes-1800 starts 1-900), read pooled (RULES 14).\nTier pilot: classes-18, 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen 9276b75a. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report, paired by start against neither: all deaths and deaths at CL <= 2 and on DL1 (rescued and newly killed, exact McNemar), per class; shipped against noscum (what stair_scum adds on top of breadth-first) and shipped against nobfs (what breadth-first adds on top of stair_scum); the progress cost: starts reaching DL3, DL4 and DL5 (exact McNemar by start), mean final CL, first turn at max HP 20 and 25 and at CL5 (#718's fields), per class; pilot evidence: the stair_scum notes per game. Descriptive (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-stair-scum-9276b75a"
+  ],
+  "profiles": [
+    "reborn-ss9276-shipped",
+    "reborn-ss9276-noscum",
+    "reborn-ss9276-nobfs",
+    "reborn-ss9276-neither"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-stair-scum-9276b75a",
+  "control_profile": "reborn-ss9276-neither",
+  "owner_authorization": "2026-11-23: borg-reborn-rs owner on the #1061 session (\"start zoo test\", \"yes repin it\"), borg-zoo#721; zoo owner, 2026-11-23: \"I need a bigger sample for stair scum\".",
+  "retain_evidence": true
+}

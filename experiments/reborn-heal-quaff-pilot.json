@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-heal-quaff-pilot",
+  "issue": 722,
+  "definition": "definitions/reborn-heal-quaff-pilot.yaml",
+  "question": "On borg-reborn-rs 925fc5d7 (PR #848 merged with track-p c687334c), does the town heal speed 100 (town_heal_speed_percent) or the opt-in quaff bonus 200 (town_heal_quaff_bonus_percent, #845) change what the Borg buys and carries for healing (more Cure Critical Wounds) and its deaths, over 300,000 turns?",
+  "description": "On borg-reborn-rs 925fc5d7 (PR #848 merged with track-p c687334c), does the town heal speed 100 (town_heal_speed_percent) or the opt-in quaff bonus 200 (town_heal_quaff_bonus_percent, #845) change what the Borg buys and carries for healing (more Cure Critical Wounds) and its deaths, over 300,000 turns? Generated from definitions/reborn-heal-quaff-pilot.yaml: 3 arms on 4.2.6-reborn-rust-healtiers-925fc5d7, suite classes-18-300k.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#722; borg-reborn-rs #845, PR #848; replaces #597's pilot, whose specimen bba5e4be predates most of today's track-p, so #597's results do not carry over). Three arms on 925fc5d7 (town_heal_quaff_bonus_percent ships 0, town_heal_speed_percent 66, so ctl is the shipped play): ctl; speed100 (town_heal_speed_percent 100); quaff200 (town_heal_quaff_bonus_percent 200). Pilot: classes-18, 300,000 turns (as #597), evidence retained, 54 cells; nothing further until the pilot is read. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart. Read: the shopping measure of #597 (the CCW share of wound-potion purchases on late visits where ctl sees an affordable CCW, max HP above 60 and the real-HP reserve met; opportunity counts per class and seed; if exposure is too low, say so); wound potions per tier bought and carried at each departure (CLW, CSW, CCW) with gold spent and post-shop gold, per class and arm; the CCW count per departure; Phase Door and Recall at the first three departures and departures without an escape; deaths, CL, DL and stalls paired by start against ctl (rescued, newly killed, identical plays); the borg_stopped Mage 1548306106 of #597's run if it recurs. Every value is a hypothesis; descriptive (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-healtiers-925fc5d7"
+  ],
+  "profiles": [
+    "reborn-hq-ctl",
+    "reborn-hq-speed100",
+    "reborn-hq-quaff200"
+  ],
+  "suites": [
+    "classes-18-300k"
+  ],
+  "control": "4.2.6-reborn-rust-healtiers-925fc5d7",
+  "control_profile": "reborn-hq-ctl",
+  "owner_authorization": "2026-11-23: borg-reborn-rs owner (\"file the zoo pilots\"; replaces #597's pilot), filed as borg-zoo#722 (borg-reborn-rs #845, PR #848); zoo owner, 2026-11-23: \"any new studies\" (the classes-18 pilot at 300,000 turns; nothing further until it is read).",
+  "retain_evidence": true
+}

@@ -1,0 +1,28 @@
+# borg-zoo#719: stair-leash holes, verysmall tier (45 starts, classes-1800 starts 1-45). Write the catalogue entries with: python3 -m zoo define definitions/reborn-leash-holes-verysmall.yaml
+name: reborn-leash-holes-verysmall
+issue: 719
+question: >-
+  On borg-reborn-rs 12fe36d8, on classes-1800 starts 1-45, do the three stair-leash switches of #1062 change deaths and the progress against ctl?
+tier: verysmall            # 45 starts, classes-1800 starts 1-45, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-leashholes-12fe36d8
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-lhole
+arms:
+  ctl: {}
+  any: {borg_param_flow_leash_any_stair: 1}
+  unknown: {borg_param_flow_leash_unknown_stair_steps: 20}
+  recall: {borg_param_flow_leash_teleported_recall: 1}
+  leash3: {borg_param_flow_leash_any_stair: 1, borg_param_flow_leash_unknown_stair_steps: 20, borg_param_flow_leash_teleported_recall: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs owner ("file the zoo request": pilot then a verysmall study paired against ctl), borg-zoo#719; zoo owner, 2026-11-23: "yes do all".
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-23, after the pilot gate of reborn-leash-holes-pilot (borg-zoo#719: 0 deaths in every arm, every switch exercised, any/unknown/leash3 0.5-0.8 CL lower at the cap) and before any result of this tier was read. Five arms on 12fe36d8 (borg-reborn-rs PR #1087 merged with track-p bc215cf8; every #1062 switch ships 0, so ctl is the shipped play): ctl; any (flow_leash_any_stair 1); unknown (flow_leash_unknown_stair_steps 20); recall (flow_leash_teleported_recall 1); leash3 (all three). Tier verysmall: classes-1800 starts 1-45, 100,000 turns, paired against ctl. Report: deaths at CL <= 2 and all deaths per class and arm (rescued and newly killed, exact McNemar), CL and DL at death, identical plays; the progress cost (milestones at 25k / 50k / 100k turns, starts reaching DL3 and DL5, first_turn_at_depth, #718's fields). The cases behind it (Kobold Mage 592754909, Dwarf Mage 645909552, Dunadan Druid 1024822556) are in classes-1800 starts 901-1800 and are not in this block. Descriptive (RULES 14).

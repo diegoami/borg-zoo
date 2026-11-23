@@ -1,0 +1,36 @@
+# borg-zoo#732: reborn-mixed-verysmall, verysmall tier. Write the catalogue entries with: python3 -m zoo define definitions/reborn-mixed-verysmall.yaml
+name: reborn-mixed-verysmall
+issue: 732
+question: >-
+  On borg-reborn-rs 3a2d2215 (PR #1117), does mixed exploration (explore_mixed 1: depth-first only within a radius of the nearest known staircase, above the breadth-first threshold) change the deaths of CL3-8 characters or the progress, alone or on top of breadth-first, and do its two contact-damage settings matter?
+tier: verysmall            # classes-1800 starts 1-45, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-mixed-3a2d2215
+  repository: diegoami/borg-reborn-rs
+  ref: 3a2d2215fe1529c7181609560fc0bfc750b79d3b
+  label: "borg-reborn-rs branch claude/hopeful-bell-u42h8q 3a2d2215 (PR #1117: #1098 explore_mixed compiled and shipped 0, on track-p 8e1c8797; explore_breadth_first 1 and cave_light_engine_radius 1 shipped); shipped harness/borg.txt 8a4ddbfc..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-mx
+arms:
+  ctl: {}
+  mixed: {borg_param_explore_mixed: 1}
+  nobfs: {borg_param_explore_breadth_first: 0}
+  mixed-alone: {borg_param_explore_mixed: 1, borg_param_explore_breadth_first: 0}
+  mixed-tight: {borg_param_explore_mixed: 1, borg_param_explore_mix_contact_damage: 8}
+  mixed-loose: {borg_param_explore_mixed: 1, borg_param_explore_mix_contact_damage: 3}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs (the zoo study of #1098, PR #1117); zoo owner, 2026-11-23: "yes do it" (the pilot as the gate; verysmall and small-rest each on the owner's word).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#732; borg-reborn-rs #1098, PR #1117, the second mode of #1080). Six arms on 3a2d2215 (explore_mixed compiled and shipped 0; track-p 8e1c8797 with PR #1117): ctl (shipped, breadth-first on); mixed (explore_mixed 1, the full ladder breadth-first then mixed); nobfs (explore_breadth_first 0, the control for mixed-alone); mixed-alone (explore_mixed 1 and explore_breadth_first 0); mixed-tight (explore_mixed 1, explore_mix_contact_damage 8); mixed-loose (explore_mixed 1, explore_mix_contact_damage 3). Tiers one at a time on the one specimen: pilot, then verysmall (classes-1800 starts 1-45), then small-rest (46-90), each on the owner's word; if capacity is short, ctl and mixed first. The mode applies above the breadth-first threshold, where C's exploring leash applies; the owner expects survivability to rise sharply at CL5-6, so it may not pay for itself. Requester's local direction on the 20 level-1 death starts: ctl against mixed 0 deaths against 0, 13 plays identical, 7 split, mean CL 4.95 against 4.90, DL3 reached by 2 against 1.
+  Tier verysmall: classes-1800 starts 1-45, 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen 3a2d2215. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report: all deaths and deaths at CL3-8 (the band this mode is for), paired by start (ctl against each arm; mixed-alone against nobfs), exact McNemar; the cost: CL at 25k / 50k / 100k turns, starts reaching DL3 and DL5 and their first turn there; deaths per 10,000 turns at each (CL, DL) from #718's turns_at_level_depth; a death report with screens (/death-report) for deaths in mixed or ctl. Descriptive (RULES 14).

@@ -1,0 +1,33 @@
+# borg-zoo#730: breadth-first exploration on against off (borg-reborn-rs #1085, #1088), pilot tier. Write the catalogue entries with: python3 -m zoo define definitions/reborn-bfs-pilot.yaml
+name: reborn-bfs-pilot
+issue: 730
+question: >-
+  On borg-reborn-rs track-p 1c071812 (which ships explore_breadth_first 1 from #1088), does breadth-first exploration from the stairs for weak characters lower early deaths, and what does it cost in progress, against C's depth-first order (explore_breadth_first 0)?
+tier: pilot            # classes-18, 100,000 turns
+pilot: true            # first run of these arms on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-1c071812
+  repository: diegoami/borg-reborn-rs
+  ref: 1c07181217a7f7076dc6d3c158bebeb00b968f76
+  label: "borg-reborn-rs LINE track-p, head 1c071812 on 2026-11-23 (contains #1088 a82d7042: explore_breadth_first shipped 1 with the per-class explore_bfs_max_hp and explore_bfs_hp_per_level of the class files, and cave_light_engine_radius 1); shipped harness/borg.txt 025501a1..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-bfs
+arms:
+  ctl: {}
+  bfs0: {borg_param_explore_breadth_first: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: zoo owner, "we need an experiment comparing bread[th] first off with on" (borg-zoo#730; borg-reborn-rs #1085's closing note: the zoo comparison against explore_breadth_first = 0 is still to run).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#730; borg-reborn-rs #1085, PR #1088). Two arms on track-p 1c071812: ctl (shipped: explore_breadth_first 1, the per-class explore_bfs_max_hp and explore_bfs_hp_per_level of the class files, explore_bfs_slack 0) and bfs0 (explore_breadth_first 0, C's depth-first order). Pilot as the gate, then the full tier (classes-1800 starts 901-1800, 900 per arm). Primary: deaths by 100,000 turns, exact McNemar by start (rescued = dead with bfs0 and alive with ctl); deaths at CL <= 2 and on DL1 apart. Progress cost, prespecified: starts reaching DL3, DL4 and DL5 (any outcome, exact McNemar by start), mean final CL and depth, per class; how long weak characters stay weak (first_turn_at_level, turns_at_level_depth, first_turn_at_max_hp of the cells, #718), for each class's threshold. Pilot evidence: per game the '# Flowing toward dark-bfs' style notes (the new method) against dark-1..5 and the games where it never acts (identical plays).
+  Tier pilot: classes-18, 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core, specimen track-p 1c071812. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (a switch that plays the control's keys in most pairs was not exercised). Descriptive (RULES 14); whether it stays shipped on is a borg-reborn-rs decision.

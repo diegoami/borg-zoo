@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-paralyser-medium",
+  "issue": 735,
+  "definition": "definitions/reborn-paralyser-medium.yaml",
+  "question": "On borg-reborn-rs 173156ac (PR #1129), do the #1125 paralyser switches (the Phase rule judging the fight lost next to a paralyser, stepping out of its reach, no flow into its reach, remembering never-moving monsters) lower the floating-eye and other paralyser deaths without Free Action, and what do they cost?",
+  "description": "On borg-reborn-rs 173156ac (PR #1129), do the #1125 paralyser switches (the Phase rule judging the fight lost next to a paralyser, stepping out of its reach, no flow into its reach, remembering never-moving monsters) lower the floating-eye and other paralyser deaths without Free Action, and what do they cost? Generated from definitions/reborn-paralyser-medium.yaml: 4 arms on 4.2.6-reborn-rust-paralyser-173156ac, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#735; borg-reborn-rs #1125, PR #1129). Four arms on 173156ac (track-p 040d2a5f plus #1129; every switch compiled and shipped 0, so ctl is today's play; each applies only without Free Action): ctl; lost (escape_paralyser_fight_lost 1); walk (caution_paralyser_step_away, caution_paralyser_no_reach and caution_remember_never_move 1, bundled because the step alone walked back to the eye); all (all four). If capacity is short ctl and all first. Pilot (classes-18) as the gate, then small and medium (classes-1800 starts 1-360). Wanted: deaths per class and arm paired by start; paralyser deaths on their own (the 27 PARALYZE races, the floating eye at DL1-3 above all); per game counts of each (#1125) note (\"# Phase rule: next to the paralysing <race> without Free Action: the fight is lost (#1125)\", \"# Stepping out of the reach of the paralysing <race>, no Free Action (#1125)\", \"# Keeping the never-moving <race> at (y,x) through the bounce reset (#1125)\"); stalls and bouncing-borg level exits, since closed reaches can cut off part of a level. Local direction (one game, Half-Elf Necromancer 453254028): lost lives, walk (2+3) lives, all lives, step alone walks back and dies.\nTier medium: classes-1800 starts 91-360, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and depth, alive at the cap having reached DL5, identical plays; progress (DL3/DL5 reached, first_turn_at_depth, #718 fields). Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-paralyser-173156ac"
+  ],
+  "profiles": [
+    "reborn-par-ctl",
+    "reborn-par-lost",
+    "reborn-par-walk",
+    "reborn-par-all"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-paralyser-173156ac",
+  "control_profile": "reborn-par-ctl",
+  "owner_authorization": "2026-11-23: borg-reborn-rs owner, borg-zoo#735 (pilot, then small and medium); zoo owner: \"continue with experiments\".",
+  "retain_evidence": false
+}

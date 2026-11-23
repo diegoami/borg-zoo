@@ -1,0 +1,32 @@
+# borg-zoo#723: reborn-short-gold-pilot, pilot. Write the catalogue entries with: python3 -m zoo define definitions/reborn-short-gold-pilot.yaml
+name: reborn-short-gold-pilot
+issue: 723
+question: >-
+  On borg-reborn-rs b8605b5c (PR #854 merged with track-p c687334c), does short-gold shopping with held oil (town_short_gold 1, #828) change what the Borg carries at its first departure and at its first dangerous encounter at CL 1-3, and its early deaths?
+tier: pilot            # classes-18, 100,000 turns
+pilot: true            # first run of these arms on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-shortgold-b8605b5c
+  repository: diegoami/borg-reborn-rs
+  ref: b8605b5caba6633b235ca4076bb783de1311c32b
+  label: "borg-reborn-rs PR #854 head b8605b5c (#828 town_short_gold compiled and shipped 0; merged with track-p c687334c; includes borg_town_plan 1 and town_missiles_percent -1); shipped harness/borg.txt 40096aa1..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-sg
+arms:
+  ctl: {borg_param_town_short_gold: 0}
+  shortgold: {borg_param_town_short_gold: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs owner ("file the zoo pilots"; replaces #575's pin), filed as borg-zoo#723 (borg-reborn-rs #828, PR #854); zoo owner, 2026-11-23: "any new studies" (the classes-18 pilot as the gate; the small tier only if the pilot shows the policy acts as intended).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#723; borg-reborn-rs #828, PR #854; replaces #575's pin, which never ran). Two arms on b8605b5c (town_short_gold ships 0, so ctl is the shipped play): ctl (town_short_gold 0); shortgold (town_short_gold 1). Pilot: classes-18, 100,000 turns, evidence retained, 36 cells. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; whether the shopping order and the oil use act as intended. Read, per class and paired start, at the first departure from town and at the first dangerous encounter at CL 1-3: healing potions, Phase Door, usable ranged options and throwable oil apart from fuel; purchase counts and gold spent; for Grip, Fang and other early dangerous encounters the oil carried at contact, whether held oil was used and how the fight or escape ended; deaths at CL 1-3 and all deaths, paired (rescued, newly killed, identical plays), max CL and DL, stalls and missing cells. At a control death rate near 2% the counts are reported without strong conclusions. Then, only if the pilot shows the policy acts as intended: the small tier (seed block and turn cap recorded before dispatch). The Rogue start of run 44841145368 (seed 102088710) is reported apart if it can be recovered. Every value is a hypothesis; descriptive (RULES 14).
