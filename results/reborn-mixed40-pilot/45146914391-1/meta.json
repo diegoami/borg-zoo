@@ -1,0 +1,221 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-mx40-bfs-stay": {
+        "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm bfs-stay.",
+        "settings": {
+          "borg_param_explore_bfs_leave_when_done": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "f05433c7d2e6386de8ca4d55def9130167a71f1ac08f4f420161e51bb79f7506"
+      },
+      "reborn-mx40-cexit": {
+        "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm cexit.",
+        "settings": {
+          "borg_param_explore_c_leave_when_done": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "6e62e3387624153f6603c97641c7bcd7c36fab2b603b172e7993ade95a58da5e"
+      },
+      "reborn-mx40-ctl": {
+        "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "dbfd1c5b8350b6ee5bca4002d5df63d4a8661fc3f9b0b53492f8cdfde98cbbd6"
+      },
+      "reborn-mx40-mixed": {
+        "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm mixed.",
+        "settings": {
+          "borg_param_explore_mixed": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "e2229c589bac9ffad31741fa3ace2f8fb692c3e2b7af148df9cd15f0d7b15a96"
+      },
+      "reborn-mx40-mixed-alone": {
+        "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm mixed-alone.",
+        "settings": {
+          "borg_param_explore_breadth_first": 0,
+          "borg_param_explore_mixed": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "b596fbfa4e939ae7bd5a328779ce6c81746b7c9dc055c4b2438c334ef119e027"
+      },
+      "reborn-mx40-mixed-loose": {
+        "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm mixed-loose.",
+        "settings": {
+          "borg_param_explore_mix_contact_damage": 3,
+          "borg_param_explore_mixed": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "00906bc7ca64787bcdba4aeb6823d5b40436ea46a27f0fd4cd9668f168a70ed5"
+      },
+      "reborn-mx40-mixed-tight": {
+        "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm mixed-tight.",
+        "settings": {
+          "borg_param_explore_mix_contact_damage": 8,
+          "borg_param_explore_mixed": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "20ba90b0edde041f2cc39ce71db686ac37221df002d82fea2e4abed553a00c15"
+      },
+      "reborn-mx40-nobfs": {
+        "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm nobfs.",
+        "settings": {
+          "borg_param_explore_breadth_first": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "f3319f6702756761d17c85751159214dffa625cbe1d2ff60a1c37c0a41d3daa8"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-mixed-40c3bcc8": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs branch claude/hopeful-bell-u42h8q 40c3bcc8 (PR #1117: explore_mixed, explore_c_leave_when_done and explore_bfs_leave_when_done, merged with track-p d3d1629f which ships stair_scum; the owner review's fixes); shipped harness/borg.txt 0c6556bd..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+        "ref": "40c3bcc88a628067d6710b3eceb78aceddba818d",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-23 09:35 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-mixed-40c3bcc8",
+    "control_profile": "reborn-mx40-ctl",
+    "definition": "definitions/reborn-mixed40-pilot.yaml",
+    "description": "On borg-reborn-rs 40c3bcc8 (PR #1117), does mixed exploration (explore_mixed), C's leave-when-done (explore_c_leave_when_done) or the old breadth-first stay (explore_bfs_leave_when_done 0) change the deaths of CL3-8 characters or the progress against the shipped play? Generated from definitions/reborn-mixed40-pilot.yaml: 8 arms on 4.2.6-reborn-rust-mixed-40c3bcc8, suite classes-18.",
+    "issue": 732,
+    "name": "reborn-mixed40-pilot",
+    "owner_authorization": "2026-11-23: borg-reborn-rs (the zoo study of #1098, PR #1117; re-pinned to 40c3bcc8), borg-zoo#732; zoo owner, 2026-11-23: \"continue with experiments\".",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#732; borg-reborn-rs #1098, PR #1117 at 40c3bcc8: merged with track-p d3d1629f, which ships stair_scum (#1061); with the fixes of the owner review of #1117; the earlier pilot and verysmall at 3a2d2215 were on a previous build and do not carry over). Eight arms: ctl (shipped, explore_breadth_first 1 and explore_bfs_leave_when_done 1); cexit (explore_c_leave_when_done 1: C's own exploration takes the stairs once it finds nothing, before the secret-door search; locally secret-door searches 587 -> 78, mean CL at 100k 5.55 -> 5.20, one game stuck in a two-grid loop, #1130); bfs-stay (explore_bfs_leave_when_done 0, the old behaviour); mixed (explore_mixed 1); nobfs (explore_breadth_first 0, the control for mixed-alone); mixed-alone (explore_mixed 1, explore_breadth_first 0); mixed-tight (explore_mixed 1, explore_mix_contact_damage 8); mixed-loose (explore_mixed 1, explore_mix_contact_damage 3). Pilot, then verysmall (classes-1800 starts 1-45), then small-rest (46-90), each tier on the owner's word after the previous gate; if capacity is short ctl, bfs-stay, cexit and mixed first. Local direction on the 20 starts (before the merge with d3d1629f, stair_scum off): mean CL at 100k bfs-stay / ctl / mixed 5.10 / 5.55 / 5.35, deaths 0 / 1 / 1 (the same floating-eye game, #852). The owner expects survivability to rise sharply at CL5-6, so the mode may not pay for itself.\nTier pilot: classes-18, 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen 40c3bcc8. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report: all deaths and deaths at CL3-8 (the band the mode is for), paired by start against ctl (mixed-alone against nobfs), exact McNemar; the cost: CL at 25k / 50k / 100k turns, starts reaching DL3 and DL5 and their first turn there; deaths per 10,000 turns at each (CL, DL) from #718's turns_at_level_depth; a death report with screens (/death-report) for deaths in mixed or ctl. Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-mx40-ctl",
+      "reborn-mx40-cexit",
+      "reborn-mx40-bfs-stay",
+      "reborn-mx40-mixed",
+      "reborn-mx40-nobfs",
+      "reborn-mx40-mixed-alone",
+      "reborn-mx40-mixed-tight",
+      "reborn-mx40-mixed-loose"
+    ],
+    "question": "On borg-reborn-rs 40c3bcc8 (PR #1117), does mixed exploration (explore_mixed), C's leave-when-done (explore_c_leave_when_done) or the old breadth-first stay (explore_bfs_leave_when_done 0) change the deaths of CL3-8 characters or the progress against the shipped play?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-mixed-40c3bcc8"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45146914391-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45146914391",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "711840f80ee1766371423f94cfb9c68d674fe181"
+}
