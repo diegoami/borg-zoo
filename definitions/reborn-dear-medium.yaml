@@ -1,0 +1,27 @@
+# borg-zoo#750: reborn-dear-medium, medium tier (starts 91-360). Write the catalogue entries with: python3 -m zoo define definitions/reborn-dear-medium.yaml
+name: reborn-dear-medium
+issue: 750
+question: >-
+  On track-p 13151fb5, what do the dear-cure rows (#1134: Cure Critical Wounds copies and the poison remedy at 40 percent) change in deaths and progress, switched off?
+tier: medium            # starts 91-360, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-13151fb5
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-dear
+arms:
+  ctl: {}
+  nodear: {borg_param_town_prepared_poison_percent: 0, borg_param_town_prepared_ccw: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: zoo owner, "close them and file experiments with the new parameters introduced" (borg-zoo#750).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this arm was read (borg-zoo#750, Experiment A, redo of the arm `nodear`). The first `nodear` (reborn-abl-*) set town_prepared_poison 0, below that parameter's range 1-20, and the binary rejected the configuration in every cell; no result of it exists. Two arms on track-p 13151fb5: ctl (shipped) and nodear (the #1134 additions off: town_prepared_poison_percent 0, i.e. the poison remedy at the shared town_prepared_percent 8 instead of 40, and town_prepared_ccw 0, i.e. no Cure Critical Wounds row of their own). The older town_prepared_* rows stay on in both arms.
+  Tier medium: starts 91-360, 100,000 turns.
+  Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (an arm that plays ctl's keys was not exercised). Report per arm against ctl: deaths and causes (exact McNemar), deaths at CL <= 2, DL3 and DL5 reached, mean CL, per class. Descriptive (RULES 14).

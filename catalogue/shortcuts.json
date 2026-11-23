@@ -2628,7 +2628,7 @@
     },
     "reborn-abl": {
       "issue": 750,
-      "status": "defined (pilot, verysmall, small-rest, medium)",
+      "status": "pilot and starts 1-360 read; the nodear arm was rejected by the binary (parameter below its range) and has no result, redone as reborn-dear",
       "what": "Ablation of each new shipped-on mode on track-p 13151fb5: ctl, nomixed, noleash, nohall, nodear, nopot, notrap, noscum.",
       "profiles": [
         "reborn-abl-ctl",
@@ -2648,6 +2648,16 @@
       "what": "The dials of the new modes, one at a time, on track-p 13151fb5 (20 arms).",
       "profiles": [
         "reborn-dial-ctl"
+      ],
+      "runs": []
+    },
+    "reborn-dear": {
+      "issue": 750,
+      "status": "defined (pilot, verysmall, small-rest, medium)",
+      "what": "Redo of the ablation's nodear arm on track-p 13151fb5: ctl and nodear (town_prepared_poison_percent 0, town_prepared_ccw 0).",
+      "profiles": [
+        "reborn-dear-ctl",
+        "reborn-dear-nodear"
       ],
       "runs": []
     }

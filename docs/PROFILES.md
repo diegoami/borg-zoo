@@ -198,8 +198,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-rfx` | [#736](https://github.com/diegoami/borg-zoo/issues/736) | 4 | defined (pilot, ladder 1-900) | Rubble confirmation and the combined arm on 7bfbe121: ctl, rubble, bfs0, bfs0-rubble. |
 | `reborn-floating-eye-replay` | [#695](https://github.com/diegoami/borg-zoo/issues/695) | 1 | defined (4 starts) | The 4 floating-eye deaths of the 353f5c09 baseline replayed with notes. |
 | `reborn-priest-now` | [#736](https://github.com/diegoami/borg-zoo/issues/736) | 2 | defined (100 Priests) | The shipped light radius on the Priest class at track-p 13151fb5: ctl, light0, with notes. |
-| `reborn-abl` | [#750](https://github.com/diegoami/borg-zoo/issues/750) | 8 | defined (pilot, verysmall, small-rest, medium) | Ablation of each new shipped-on mode on track-p 13151fb5: ctl, nomixed, noleash, nohall, nodear, nopot, notrap, noscum. |
+| `reborn-abl` | [#750](https://github.com/diegoami/borg-zoo/issues/750) | 8 | pilot and starts 1-360 read; the nodear arm was rejected by the binary (parameter below its range) and has no result, redone as reborn-dear | Ablation of each new shipped-on mode on track-p 13151fb5: ctl, nomixed, noleash, nohall, nodear, nopot, notrap, noscum. |
 | `reborn-dials` | [#750](https://github.com/diegoami/borg-zoo/issues/750) | 1 | defined (pilot) | The dials of the new modes, one at a time, on track-p 13151fb5 (20 arms). |
+| `reborn-dear` | [#750](https://github.com/diegoami/borg-zoo/issues/750) | 2 | defined (pilot, verysmall, small-rest, medium) | Redo of the ablation's nodear arm on track-p 13151fb5: ctl and nodear (town_prepared_poison_percent 0, town_prepared_ccw 0). |
 
 ### `heal-attack-4`
 
@@ -2817,6 +2818,17 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 Profiles: `reborn-dial-ctl`.
 
+### `reborn-dear`
+
+Redo of the ablation's nodear arm on track-p 13151fb5: ctl and nodear (town_prepared_poison_percent 0, town_prepared_ccw 0).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_prepared_ccw` | `borg_param_town_prepared_poison_percent` |
+| --- | --- | --- |
+| `reborn-dear-ctl` | – | – |
+| `reborn-dear-nodear` | 0 | 0 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -3242,9 +3254,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_reserve__ranger` | 2, 3, not set | `reborn-receipt`, `reborn-variety`, `reborn-vrm` |  |
 | `borg_param_town_phase_reserve__warrior` | 0, not set | `reborn-receipt` |  |
 | `borg_param_town_phase_reserve_percent` | 50, 100, 150, 200, 400, not set | `reborn-bundle`, `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve`, `reborn-receipt`, `reborn-vrm` |  |
-| `borg_param_town_prepared_ccw` | 0, not set | `reborn-abl` |  |
+| `borg_param_town_prepared_ccw` | 0, not set | `reborn-abl`, `reborn-dear` |  |
 | `borg_param_town_prepared_percent` | 0, 50, not set | `reborn-variety`, `reborn-vrm`, `reborn-t1134` |  |
 | `borg_param_town_prepared_poison` | 0, not set | `reborn-abl` |  |
+| `borg_param_town_prepared_poison_percent` | 0, not set | `reborn-dear` |  |
 | `borg_param_town_ranged_reserve` | 6, not set | `reborn-townhunt` |  |
 | `borg_param_town_ranger_arrows_max__ranger` | 20, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_recall_curve_scale_percent` | 0, 110, not set | `reborn-room` |  |

@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-dear-verysmall",
+  "issue": 750,
+  "definition": "definitions/reborn-dear-verysmall.yaml",
+  "question": "On track-p 13151fb5, what do the dear-cure rows (#1134: Cure Critical Wounds copies and the poison remedy at 40 percent) change in deaths and progress, switched off?",
+  "description": "On track-p 13151fb5, what do the dear-cure rows (#1134: Cure Critical Wounds copies and the poison remedy at 40 percent) change in deaths and progress, switched off? Generated from definitions/reborn-dear-verysmall.yaml: 2 arms on 4.2.6-reborn-rust-trackp-13151fb5, suite classes-1800-verysmall.",
+  "prespecified": "Fixed 2026-11-23, before any result of this arm was read (borg-zoo#750, Experiment A, redo of the arm `nodear`). The first `nodear` (reborn-abl-*) set town_prepared_poison 0, below that parameter's range 1-20, and the binary rejected the configuration in every cell; no result of it exists. Two arms on track-p 13151fb5: ctl (shipped) and nodear (the #1134 additions off: town_prepared_poison_percent 0, i.e. the poison remedy at the shared town_prepared_percent 8 instead of 40, and town_prepared_ccw 0, i.e. no Cure Critical Wounds row of their own). The older town_prepared_* rows stay on in both arms.\nTier verysmall: classes-1800 starts 1-45, 100,000 turns.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (an arm that plays ctl's keys was not exercised). Report per arm against ctl: deaths and causes (exact McNemar), deaths at CL <= 2, DL3 and DL5 reached, mean CL, per class. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-13151fb5"
+  ],
+  "profiles": [
+    "reborn-dear-ctl",
+    "reborn-dear-nodear"
+  ],
+  "suites": [
+    "classes-1800-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-13151fb5",
+  "control_profile": "reborn-dear-ctl",
+  "owner_authorization": "2026-11-23: zoo owner, \"close them and file experiments with the new parameters introduced\" (borg-zoo#750).",
+  "retain_evidence": false
+}

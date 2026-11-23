@@ -13454,6 +13454,22 @@
         "borg_reborn_errand": "none",
         "borg_param_item_test_unknown_hold_turns": 360
       }
+    },
+    "reborn-dear-ctl": {
+      "description": "borg-zoo#750 (reborn-dear-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-dear-nodear": {
+      "description": "borg-zoo#750 (reborn-dear-pilot.yaml): arm nodear.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_prepared_poison_percent": 0,
+        "borg_param_town_prepared_ccw": 0
+      }
     }
   }
 }
