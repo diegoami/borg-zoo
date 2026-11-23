@@ -1,0 +1,190 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-lhole-any": {
+        "description": "borg-zoo#719 (reborn-leash-holes-pilot.yaml): arm any.",
+        "settings": {
+          "borg_param_flow_leash_any_stair": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "bd2e4808e76738060d469b9a9414c0140cbe50c5f160e79fad41a5795f5683b8"
+      },
+      "reborn-lhole-ctl": {
+        "description": "borg-zoo#719 (reborn-leash-holes-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "5cb9c036c40c515882b2a8d7d0507842ed61c7b604ff2c1e7008945c965e4836"
+      },
+      "reborn-lhole-leash3": {
+        "description": "borg-zoo#719 (reborn-leash-holes-pilot.yaml): arm leash3.",
+        "settings": {
+          "borg_param_flow_leash_any_stair": 1,
+          "borg_param_flow_leash_teleported_recall": 1,
+          "borg_param_flow_leash_unknown_stair_steps": 20,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "5f301f4a40bb62f9de351eaaf4bee686f2e9499dca4b45feadd94d14486c27d0"
+      },
+      "reborn-lhole-recall": {
+        "description": "borg-zoo#719 (reborn-leash-holes-pilot.yaml): arm recall.",
+        "settings": {
+          "borg_param_flow_leash_teleported_recall": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "58acdbb427687803b872572950df93edf99f855b434cf1daaee6183c36e42642"
+      },
+      "reborn-lhole-unknown": {
+        "description": "borg-zoo#719 (reborn-leash-holes-pilot.yaml): arm unknown.",
+        "settings": {
+          "borg_param_flow_leash_unknown_stair_steps": 20,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "53bb4ce88c778093ead9915b442cd0f9340ee320d7acb5ff219a713a62be5b04"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-leashholes-12fe36d8": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs PR #1087 head 12fe36d8 (#1062 stair-leash switches compiled and shipped 0; merged with track-p bc215cf8, which ships the #926 fast-fragile bundle (#1074), cave_light_engine_radius 1 and the #895 devices); shipped harness/borg.txt 37228f0e..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+        "ref": "12fe36d803136db3bdb4b806bac96e0d6ef93e4b",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-23 05:33 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-leashholes-12fe36d8",
+    "control_profile": "reborn-lhole-ctl",
+    "definition": "definitions/reborn-leash-holes-pilot.yaml",
+    "description": "On borg-reborn-rs 12fe36d8 (PR #1087 merged with track-p bc215cf8), do the three stair-leash switches of #1062 (flow_leash_any_stair, flow_leash_unknown_stair_steps 20, flow_leash_teleported_recall), alone and together, change the early deaths of a weak Borg that has no up staircase known or is teleported far from one, and what do they cost in progress? Generated from definitions/reborn-leash-holes-pilot.yaml: 5 arms on 4.2.6-reborn-rust-leashholes-12fe36d8, suite classes-18.",
+    "issue": 719,
+    "name": "reborn-leash-holes-pilot",
+    "owner_authorization": "2026-11-23: borg-reborn-rs owner (\"file the zoo request\"), filed as borg-zoo#719 (borg-reborn-rs #1062, PR #1087); zoo owner, 2026-11-23: \"any new studies\" (the classes-18 pilot as the gate; a verysmall paired against ctl follows the gate).",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#719; borg-reborn-rs #1062, PR #1087). Five arms on track-p bc215cf8 + #1087 (12fe36d8; every #1062 switch ships 0, so ctl is the shipped play): ctl; any (flow_leash_any_stair 1); unknown (flow_leash_unknown_stair_steps 20); recall (flow_leash_teleported_recall 1); leash3 (all three). Pilot: classes-18, 100,000 turns, evidence retained, 90 cells. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (a switch that plays the control's keys in every game was not exercised). Read per arm and class: deaths and causes, deaths at CL <= 2 apart, rescued and newly killed against ctl (exact McNemar); progress: level at 25k, 50k and 100k turns (milestones), starts reaching DL3 and DL5 and their first turn there (first_turn_at_depth) (#646's kit leash lowered DL3 arrivals from 129 to 111 and delayed the median by about 10,000 turns); per game from messages.log the notes '# Looking for stairs. Goal_less, any stair', '# Leash: a N-grid jump left the Borg' and '# Leash: reading Recall after the jump', with their games. Then, on the gate and the owner: verysmall (classes-1800 starts 1-45) paired against ctl. Every value (20, 5, 30) is a hypothesis; descriptive (RULES 14).",
+    "profiles": [
+      "reborn-lhole-ctl",
+      "reborn-lhole-any",
+      "reborn-lhole-unknown",
+      "reborn-lhole-recall",
+      "reborn-lhole-leash3"
+    ],
+    "question": "On borg-reborn-rs 12fe36d8 (PR #1087 merged with track-p bc215cf8), do the three stair-leash switches of #1062 (flow_leash_any_stair, flow_leash_unknown_stair_steps 20, flow_leash_teleported_recall), alone and together, change the early deaths of a weak Borg that has no up staircase known or is teleported far from one, and what do they cost in progress?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-leashholes-12fe36d8"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45117503301-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45117503301",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "cf03c82cdb48da0b5a15400caa96cedd6c3ed813"
+}
