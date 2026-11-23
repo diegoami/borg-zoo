@@ -1,0 +1,45 @@
+# borg-zoo#721 / borg-reborn-rs#1061 (PR #1090): the stair_scum exploration mode for characters under 25 max HP, the pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-stairscum1061-pilot.yaml
+name: reborn-stairscum1061-pilot
+issue: 721
+question: >-
+  On borg-reborn-rs track-p bf8d2604 merged with #1061 (30167dac), does the stair_scum mode
+  (an exploration bounded by a retreat a +10 monster cannot win, while max HP < 25 and no
+  monster detection) cut the deaths of weak characters, at what cost in level and depth, strict
+  and with its two loosening dials, against the control and the kit leash?
+tier: pilot
+
+specimen:
+  name: 4.2.6-reborn-rust-stair-scum-30167dac
+  repository: diegoami/borg-reborn-rs
+  ref: 30167dacb4906ff5b66f9fc16f173964484c03c3
+  label: >-
+    borg-reborn-rs LINE task/1061-stair-scum (PR #1090) at 30167dac: track-p bf8d2604 (the #926
+    fast-fragile bundle shipped, #1074) merged with #1061's stair_scum mode, every #1061 value at its
+    neutral setting (stair_scum 0, smoke-borg-rs 4/4 identical); shipped harness/borg.txt,
+    scary_monsters.txt 5a4ec4b6..., borg-rs core.
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-ss1061
+arms:
+  ctl: {}
+  strict: {borg_param_stair_scum: 1}
+  slack1: {borg_param_stair_scum: 1, borg_param_stair_scum_slack_steps: 1}
+  slack2: {borg_param_stair_scum: 1, borg_param_stair_scum_slack_steps: 2}
+  rate1: {borg_param_stair_scum: 1, borg_param_stair_scum_slack_per_hp_tenths: 1}
+  hp30: {borg_param_stair_scum: 1, borg_param_stair_scum_max_hp: 30}
+  kitleash: {borg_param_kit_leash: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23, borg-reborn-rs owner on the #1061 session: "push to task/1061-stair-scum and file
+  the zoo request", then "start zoo test". The pilot first (RULES 16).
+
+prespecified: |
+  Fixed 2026-11-23, before any cell of this experiment is read. Specimen borg-reborn-rs 30167dac, default borg-rs core, shipped harness/borg.txt; seven arms on classes-18 at 100,000 turns (126 cells). The pilot is the gate, not a measurement (RULES 14, 16).
+  Gate: no config_error; one binary for every arm; each arm's values in params-core.json (stair_scum, stair_scum_slack_steps, stair_scum_slack_per_hp_tenths, stair_scum_max_hp, kit_leash); every cell ends in death or turn_cap, none in stall, timeout or crash; ctl plays the shipped game (stair_scum 0); in each stair_scum arm the mode acts (its "# Stair scum:" notes appear in the cells whose characters start under the threshold).
+  Reported per arm, paired by start against ctl: deaths, deaths at CL <= 2 and while max HP < 25; CL at 25k, 50k and 100k turns (milestones); starts reaching DL3 and DL5 with their first turn there (first_turn_at_depth); identical plays. Descriptive at this size; the next tier (verysmall, starts 1-45) only after the gate is checked and the owner agrees, with the arms the owner keeps.

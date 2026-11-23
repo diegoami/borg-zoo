@@ -12177,6 +12177,65 @@
         "borg_param_recover_unseen_shot": 0,
         "borg_param_recover_rest_cure_hp_percent": 0
       }
+    },
+    "reborn-ss1061-ctl": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-ss1061-strict": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm strict.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 1
+      }
+    },
+    "reborn-ss1061-slack1": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm slack1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 1,
+        "borg_param_stair_scum_slack_steps": 1
+      }
+    },
+    "reborn-ss1061-slack2": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm slack2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 1,
+        "borg_param_stair_scum_slack_steps": 2
+      }
+    },
+    "reborn-ss1061-rate1": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm rate1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 1,
+        "borg_param_stair_scum_slack_per_hp_tenths": 1
+      }
+    },
+    "reborn-ss1061-hp30": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm hp30.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 1,
+        "borg_param_stair_scum_max_hp": 30
+      }
+    },
+    "reborn-ss1061-kitleash": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm kitleash.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1
+      }
     }
   }
 }
