@@ -1,0 +1,36 @@
+# borg-zoo#740: caution_ranged_only and caution_ranged_vs_immobile 2 on track-p 1c071812, verysmall tier (45 starts, classes-1800 starts 1-45, patches-x8). Write the catalogue entries with: python3 -m zoo define definitions/reborn-ro-tp-x8-small-rest.yaml
+name: reborn-ro-tp-x8-small-rest
+issue: 740
+question: >-
+  On borg-reborn-rs track-p 1c071812, do caution_ranged_only 1 and caution_ranged_vs_immobile 2 lower the deaths of the Borg beside floating eyes, mushroom patches and the other ranged-list monsters, and what do they cost, in the patches-x8 world?
+tier: small-rest            # 45 starts, starts 46-90, patches-x8, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-1c071812-pw
+  repository: diegoami/borg-reborn-rs
+  ref: 1c07181217a7f7076dc6d3c158bebeb00b968f76
+  label: "borg-reborn-rs LINE track-p, head 1c071812 on 2026-11-23, worlds pinned (patches-x8 a6721bdd..., patches-x4 2c7da2fe...); shipped harness/borg.txt 025501a1..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+  worlds:
+    patches-x8: a6721bdd20a440f397ab923705dc99df8826a698ad78cd1e96f95cb1f4b98aca
+    patches-x4: 2c7da2fe5a68e17caf5fef37094f64b21ae59b5aee09a570d489152f415a2525
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-ro
+arms:
+  ctl-x8: {borg_world: patches-x8}
+  ranged-x8: {borg_world: patches-x8, borg_param_caution_ranged_only: 1}
+  immobile2-x8: {borg_world: patches-x8, borg_param_caution_ranged_vs_immobile: 2}
+control: [ctl-x8]
+owner_authorization: >-
+  2026-11-23: zoo owner, "we need to test caution_ranged_only" and "caution_ranged_vs_immobile = 2 as well" (borg-zoo#740).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#740; borg-reborn-rs #838, #852, #837). Three arms on track-p 1c071812: ctl (shipped: caution_ranged_only 0, caution_ranged_vs_immobile 0); ranged (caution_ranged_only 1: the scary list's ranged entries kept at range, with the reach block of PR #843 as shipped on track-p); immobile2 (caution_ranged_vs_immobile 2). The earlier measurements (borg-zoo#593, #576 on 5887c29b / 3b4924ba, 900 starts: ranged 14 deaths against 11, 1 rescued / 4 newly killed; immobile2 17 against 11, 4 / 10) were on a line about 700 commits older, before breadth-first, the light radius, the #969 patch floor and the confused attack, and do not carry over. The #852 version (no reach block, resistances; borg-reborn-rs PR #1126, base main) is not on track-p and is not measured here. Each world's arms are compared only inside that world (RULES 21): the normal world, and patches-x8 (about 6 times the grey mushroom patches, the situation the setting is for). Plan: classes-18 pilots in both worlds as the gate (evidence retained), then the normal world at classes-1800 starts 1-900 (verysmall, small-rest, medium, big, read pooled) and patches-x8 verysmall.
+  Tier small-rest: classes-1800 small-rest (starts 46-90), world patches-x8, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen track-p 1c071812 with the worlds pinned (patches-x8 a6721bdd..., patches-x4 2c7da2fe...). Gate: no config_error; one binary; every cell of a world records it with the same borg_world_data_sha256 in every arm; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm, world and class: deaths and causes (floating-eye and patch deaths apart; any killer while confused or paralysed next to a listed monster), rescued and newly killed against ctl (exact McNemar), CL and depth, DL3/DL5 reached, identical plays; pilot evidence: how often the listed monsters are met and what the Borg does at range. Descriptive (RULES 14).
