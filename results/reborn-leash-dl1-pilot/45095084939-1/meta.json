@@ -1,0 +1,436 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-ldl1-ctl": {
+        "description": "borg-zoo#702 (reborn-leash-dl1-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "5c2633a45ca4afbee66e71807b4984ad7aa4c8a80fe422348fd01f77377b5272"
+      },
+      "reborn-ldl1-leash": {
+        "description": "borg-zoo#702 (reborn-leash-dl1-pilot.yaml): arm leash.",
+        "settings": {
+          "borg_param_kit_leash": 1,
+          "borg_param_kit_leash_min": 0,
+          "borg_param_kit_leash_power": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "49991da882bab0d8a122a89ee17f241a4890bccbf2c6dc3b5ec83559f8d74283"
+      },
+      "reborn-ldl1-light": {
+        "description": "borg-zoo#702 (reborn-leash-dl1-pilot.yaml): arm light.",
+        "settings": {
+          "borg_param_cave_light_engine_radius": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "87a418e43c5ea69bd05eae1f2b5d7855a26ad59d362b4c7041b5d4269d6df0c0"
+      },
+      "reborn-ldl1-light+leash": {
+        "description": "borg-zoo#702 (reborn-leash-dl1-pilot.yaml): arm light+leash.",
+        "settings": {
+          "borg_param_cave_light_engine_radius": 1,
+          "borg_param_kit_leash": 1,
+          "borg_param_kit_leash_min": 0,
+          "borg_param_kit_leash_power": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "a51a58255bf08c221589441533dc15f7a8f7b7c99f714e23d5b4b97ff453d22d"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-trackp-206cf4e7": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs LINE track-p, head 206cf4e7 on 2026-11-22 (P7 review fixes folded back from the retired promote/P7: #959-#963, #973, the grey mushroom fixes #971 and #976 (kill-on-sight HP floor 50, #969), #1001 (test an unknown potion when safe, shipped on), the P8 fixes merged so far incl. #991); shipped harness/borg.txt, scary_monsters.txt 5a4ec4b6... (comment change only), borg-rs core.",
+        "ref": "206cf4e769081fb4454fbfe5830d1215706ba76a",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-leash-dl1-deaths": {
+        "assigned_characters": {
+          "1024822556": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1034169524": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1043901934": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "1059193438": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "1106145777": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "1194051723": [
+            "Elf",
+            "Paladin"
+          ],
+          "1324886610": [
+            "Elf",
+            "Mage"
+          ],
+          "1333938907": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1398933929": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "142490685": [
+            "Human",
+            "Ranger"
+          ],
+          "1549487069": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "1554402732": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1583000499": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "1821728573": [
+            "Elf",
+            "Warrior"
+          ],
+          "1868115537": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1875401781": [
+            "Human",
+            "Rogue"
+          ],
+          "2025089708": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "2063715385": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "2106680369": [
+            "Elf",
+            "Ranger"
+          ],
+          "2125189042": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "2136378178": [
+            "Human",
+            "Necromancer"
+          ],
+          "218907419": [
+            "Dunadan",
+            "Druid"
+          ],
+          "269489578": [
+            "Dunadan",
+            "Priest"
+          ],
+          "282602274": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "284201809": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "312081895": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "316631741": [
+            "Human",
+            "Priest"
+          ],
+          "327746368": [
+            "Gnome",
+            "Priest"
+          ],
+          "410104179": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "428238561": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "434892746": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "453254028": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "494378654": [
+            "Gnome",
+            "Warrior"
+          ],
+          "508419596": [
+            "Elf",
+            "Warrior"
+          ],
+          "526144893": [
+            "Human",
+            "Ranger"
+          ],
+          "584191223": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "58554637": [
+            "Human",
+            "Ranger"
+          ],
+          "592754909": [
+            "Kobold",
+            "Mage"
+          ],
+          "621641318": [
+            "Dunadan",
+            "Priest"
+          ],
+          "645909552": [
+            "Dwarf",
+            "Mage"
+          ],
+          "694417276": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "725072442": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "752786822": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "781905420": [
+            "Human",
+            "Druid"
+          ],
+          "805307467": [
+            "Kobold",
+            "Priest"
+          ],
+          "842068151": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "848342657": [
+            "Hobbit",
+            "Priest"
+          ],
+          "947630404": [
+            "Elf",
+            "Blackguard"
+          ],
+          "971641096": [
+            "Dunadan",
+            "Priest"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 25000,
+        "description": "The 49 starts of classes-1800 (starts 901-1800) that died with ctl, light or light+leash in borg-zoo#702's full tier on borg-reborn-rs track-p 206cf4e7 (run 45082814576), played to 25,000 turns with notes retained, to see why the kit leash holds the Borg on DL1 (most of these deaths are at CL1-4, never below DL1). Chosen starts for a diagnosis, not a sample.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          428238561,
+          2125189042,
+          218907419,
+          1875401781,
+          1868115537,
+          1554402732,
+          1034169524,
+          434892746,
+          284201809,
+          592754909,
+          584191223,
+          694417276,
+          2136378178,
+          58554637,
+          1194051723,
+          947630404,
+          494378654,
+          1549487069,
+          1024822556,
+          1583000499,
+          316631741,
+          1821728573,
+          1398933929,
+          781905420,
+          2025089708,
+          725072442,
+          752786822,
+          1059193438,
+          805307467,
+          142490685,
+          2063715385,
+          508419596,
+          2106680369,
+          282602274,
+          645909552,
+          621641318,
+          842068151,
+          453254028,
+          1043901934,
+          1333938907,
+          312081895,
+          971641096,
+          526144893,
+          1324886610,
+          848342657,
+          1106145777,
+          327746368,
+          410104179,
+          269489578
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "seeds": [
+            58554637,
+            142490685,
+            218907419,
+            269489578,
+            282602274,
+            284201809,
+            312081895,
+            316631741,
+            327746368,
+            410104179,
+            428238561,
+            434892746,
+            453254028,
+            494378654,
+            508419596,
+            526144893,
+            584191223,
+            592754909,
+            621641318,
+            645909552,
+            694417276,
+            725072442,
+            752786822,
+            781905420,
+            805307467,
+            842068151,
+            848342657,
+            947630404,
+            971641096,
+            1024822556,
+            1034169524,
+            1043901934,
+            1059193438,
+            1106145777,
+            1194051723,
+            1324886610,
+            1333938907,
+            1398933929,
+            1549487069,
+            1554402732,
+            1583000499,
+            1821728573,
+            1868115537,
+            1875401781,
+            2025089708,
+            2063715385,
+            2106680369,
+            2125189042,
+            2136378178
+          ],
+          "suite": "classes-1800"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-23 01:38 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-trackp-206cf4e7",
+    "control_profile": "reborn-ldl1-ctl",
+    "definition": "definitions/reborn-leash-dl1-pilot.yaml",
+    "description": "On track-p 206cf4e7, why does the kit leash (kit_leash 1, kit_leash_min 0, kit_leash_power 2) add early deaths on DL1 in borg-zoo#702's full tier (light+leash 24 deaths, 16 of them never below DL1, against light's 15 and 9)? The 49 starts that died with ctl, light or light+leash, replayed to 25,000 turns with notes retained, with the leash alone and with the light radius. Generated from definitions/reborn-leash-dl1-pilot.yaml: 4 arms on 4.2.6-reborn-rust-trackp-206cf4e7, suite classes-1800-leash-dl1-deaths.",
+    "issue": 702,
+    "name": "reborn-leash-dl1-pilot",
+    "owner_authorization": "2026-11-23: zoo owner, \"yes do those, actually since this is a low level problem you can make the game last less\" (replay the divergent starts of #702's full tier with notes retained, shortened to 25,000 turns).",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-23, after reading the cells (not the notes) of reborn-light-matrix-full (run 45082814576, borg-zoo#702): ctl 20 deaths, light 15, light+leash 24, 16 of the leash arm's deaths with max depth 1 against 9 for light and 12 for ctl; 64 starts never reach DL2 with the leash arm against 48 for light. The 49 starts are every classes-1800 start of that tier that died in ctl, light or light+leash. A diagnosis, not a sample: nothing here is a rate. Four arms, 25,000 turns (the game is deterministic, so every play is the same as the 100,000-turn game up to the cap; 17 of light+leash's 24 deaths come before 25,000 turns), evidence retained, 196 cells, specimen track-p 206cf4e7 (the build of the full tier). Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death or turn_cap (turn_cap at 25,000 here); plays of ctl and light match the full tier's keys (play_sha256) wherever the game is the same. Read per start from the notes: where the leash holds the Borg (kit and money checks, \"leash\" notes, turns spent at DL1, trips to town, what it fought) and what killed it; the leash alone against ctl and against light+leash, so the leash's own effect is apart from the radius's. Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-ldl1-ctl",
+      "reborn-ldl1-light",
+      "reborn-ldl1-leash",
+      "reborn-ldl1-light+leash"
+    ],
+    "question": "On track-p 206cf4e7, why does the kit leash (kit_leash 1, kit_leash_min 0, kit_leash_power 2) add early deaths on DL1 in borg-zoo#702's full tier (light+leash 24 deaths, 16 of them never below DL1, against light's 15 and 9)? The 49 starts that died with ctl, light or light+leash, replayed to 25,000 turns with notes retained, with the leash alone and with the light radius.",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-trackp-206cf4e7"
+    ],
+    "suites": [
+      "classes-1800-leash-dl1-deaths"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45095084939-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45095084939",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "ca2ec1718ed115cd1ef5e27327c506a03f48fb8c"
+}
