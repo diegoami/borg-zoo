@@ -12446,6 +12446,21 @@
         "borg_reborn_errand": "none",
         "borg_param_fast_fragile_count_dot": 1
       }
+    },
+    "reborn-bfs-ctl": {
+      "description": "borg-zoo#730 (reborn-bfs-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-bfs-bfs0": {
+      "description": "borg-zoo#730 (reborn-bfs-pilot.yaml): arm bfs0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_breadth_first": 0
+      }
     }
   }
 }

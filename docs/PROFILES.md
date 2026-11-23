@@ -179,6 +179,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-ff-dot` | [#713](https://github.com/diegoami/borg-zoo/issues/713) | 2 | defined (pilot) | Fast-fragile own cut and poison (count_dot 1, #1028) on track-p 8f32a8a0: ctl, dot. |
 | `reborn-kos-cure` | [#727](https://github.com/diegoami/borg-zoo/issues/727) | 4 | defined (x8 pilot, normal pilot, full) | attack_kill_on_sight_floor_cure 1 (shipped) against 0 (#1064, PR #1082) on bc215cf8: patches-x8 and the normal world; ctl, cure0. |
 | `reborn-ffb769` | [#711](https://github.com/diegoami/borg-zoo/issues/711) | 5 | defined (pilot, full) | The #926 fast-fragile bundle (escape quantile 75, heal floor 50, count_dot 1) and its three parts on track-p 769f3fbd: ctl, bundle, q75, floor50, dot. |
+| `reborn-bfs` | [#730](https://github.com/diegoami/borg-zoo/issues/730) | 2 | defined (pilot, full) | Breadth-first exploration on (shipped, #1088) against off (explore_breadth_first 0, arm bfs0) on track-p 1c071812: ctl, bfs0. |
 
 ### `heal-attack-4`
 
@@ -2534,6 +2535,17 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-ffb769-floor50` | – | – | 50 |
 | `reborn-ffb769-dot` | 1 | – | – |
 
+### `reborn-bfs`
+
+Breadth-first exploration on (shipped, #1088) against off (explore_breadth_first 0, arm bfs0) on track-p 1c071812: ctl, bfs0.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_explore_breadth_first` |
+| --- | --- |
+| `reborn-bfs-ctl` | – |
+| `reborn-bfs-bfs0` | 0 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2739,6 +2751,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_phase_unique_danger_tenths` | 7, not set | `reborn-phase-thresholds` |  |
 | `borg_param_escape_teleport_block` | 0, not set | `reborn-tpblock` |  |
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
+| `borg_param_explore_breadth_first` | 0, not set | `reborn-bfs` |  |
 | `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag`, `reborn-nowalk`, `reborn-cavesp` |  |
 | `borg_param_fast_fragile_contact_max` | 1, not set | `reborn-cavesp` |  |
 | `borg_param_fast_fragile_count_dot` | 1, not set | `reborn-ffq`, `reborn-ff-dot`, `reborn-ffb769` |  |
