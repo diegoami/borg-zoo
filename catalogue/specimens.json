@@ -3628,6 +3628,36 @@
         "breeders-x4": "a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8",
         "breeders-x8": "9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de"
       }
+    },
+    "4.2.6-reborn-rust-poison-worlds-76567cda": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "76567cda564dff538279c4f5e440be95c26d95cb",
+      "label": "borg-reborn-rs claude/friendly-knuth-tn12ji 76567cda (track-p d7d83a15 + PR #1135, its town rows shipped 0, + harness/worlds/poison-x4 and poison-x8); harness/borg.txt 5027f83d..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      },
+      "worlds": {
+        "poison-x4": "59a9a5986b4ebbe14b2a352f747a14e456a105a5c28dc850e749794cbec3a2d5",
+        "poison-x8": "fb86c333c80e048da19e68e7e15efc63df49134f91124ecb5168165558e5de0d"
+      }
+    },
+    "4.2.6-reborn-rust-stair-scum-2a6985db": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "2a6985db9620188b2cc68a8802877caacbbf9d03",
+      "label": "borg-reborn-rs LINE task/1061-stair-scum (PR #1090) at 2a6985db: track-p 40c1c963 (with #1085's breadth-first exploration, explore_breadth_first 1) merged with #1061's stair_scum mode (the fixes of Codex's four reviews), shipped on at the owner's byclass settings (stair_scum 1, stair_scum_max_hp 20, slack by class: Druid and Necromancer 1, Mage and Priest 2, Ranger and Rogue 3, Paladin and Blackguard 4, the Warrior off; per-level rate 50); smoke-borg-rs re-recorded there; shipped harness/borg.txt, scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
     }
   }
 }

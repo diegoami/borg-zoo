@@ -13149,6 +13149,228 @@
         "borg_param_caution_retreat_immobile_kill_turns": 3,
         "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
       }
+    },
+    "reborn-pois-ctl": {
+      "description": "borg-zoo#738 (reborn-pois-phase-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-pois-phase50": {
+      "description": "borg-zoo#738 (reborn-pois-phase-pilot.yaml): arm phase50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_lost_danger_percent": 50
+      }
+    },
+    "reborn-pois-conf": {
+      "description": "borg-zoo#738 (reborn-pois-phase-pilot.yaml): arm conf.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_confused_clw_cure": 1
+      }
+    },
+    "reborn-pois-osc": {
+      "description": "borg-zoo#738 (reborn-pois-phase-pilot.yaml): arm osc.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_retreat_oscillation_limit": 3,
+        "borg_param_caution_retreat_oscillation_backaway": 1
+      }
+    },
+    "reborn-pois-prep50": {
+      "description": "borg-zoo#738 (reborn-pois-phase-pilot.yaml): arm prep50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_prepared_percent": 50
+      }
+    },
+    "reborn-pois-all": {
+      "description": "borg-zoo#738 (reborn-pois-phase-pilot.yaml): arm all.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_lost_danger_percent": 50,
+        "borg_param_caution_confused_clw_cure": 1,
+        "borg_param_caution_retreat_oscillation_limit": 3,
+        "borg_param_caution_retreat_oscillation_backaway": 1
+      }
+    },
+    "reborn-pw-ctl-x8": {
+      "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm ctl-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8"
+      }
+    },
+    "reborn-pw-pkg-x8": {
+      "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm pkg-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8",
+        "borg_param_escape_phase_lost_danger_percent": 50,
+        "borg_param_caution_ranged_only": 1,
+        "borg_param_caution_ranged_vs_immobile": 2,
+        "borg_param_caution_confused_clw_cure": 1
+      }
+    },
+    "reborn-pw-ranged-x8": {
+      "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm ranged-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8",
+        "borg_param_caution_ranged_only": 1
+      }
+    },
+    "reborn-pw-p934-x8": {
+      "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm p934-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8",
+        "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
+      }
+    },
+    "reborn-pw-osc-x8": {
+      "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm osc-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8",
+        "borg_param_caution_retreat_oscillation_limit": 3,
+        "borg_param_caution_retreat_oscillation_backaway": 1
+      }
+    },
+    "reborn-pw-breeder5-x8": {
+      "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm breeder5-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8",
+        "borg_param_caution_breeder_policy": 5
+      }
+    },
+    "reborn-pw-buy-x8": {
+      "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm buy-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8",
+        "borg_param_town_prepared_poison_percent": 40,
+        "borg_param_town_prepared_ccw": 2,
+        "borg_param_town_prepared_ccw_percent": 112
+      }
+    },
+    "reborn-pw-all-x8": {
+      "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm all-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8",
+        "borg_param_escape_phase_lost_danger_percent": 50,
+        "borg_param_caution_ranged_only": 1,
+        "borg_param_caution_confused_clw_cure": 1,
+        "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75,
+        "borg_param_caution_retreat_oscillation_limit": 3,
+        "borg_param_caution_retreat_oscillation_backaway": 1,
+        "borg_param_town_prepared_poison_percent": 40,
+        "borg_param_town_prepared_ccw": 2,
+        "borg_param_town_prepared_ccw_percent": 112
+      }
+    },
+    "reborn-ss1061s-shipped": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-ss1061s-noscum": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm noscum.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 0
+      }
+    },
+    "reborn-ss1061s-nobfs": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm nobfs.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_breadth_first": 0
+      }
+    },
+    "reborn-ss1061s-neither": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm neither.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 0,
+        "borg_param_explore_breadth_first": 0
+      }
+    },
+    "reborn-ss1061s-level0": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm level0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_slack_per_level_percent": 0
+      }
+    },
+    "reborn-ss1061s-hp25": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm hp25.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_max_hp": 25
+      }
+    },
+    "reborn-ss1061s-kitleash": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm kitleash.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 0,
+        "borg_param_explore_breadth_first": 0,
+        "borg_param_kit_leash": 1
+      }
+    },
+    "reborn-pkg-ctl": {
+      "description": "borg-zoo#738 (reborn-trackp-pkg-big.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-pkg-pkg": {
+      "description": "borg-zoo#738 (reborn-trackp-pkg-big.yaml): arm pkg.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_lost_danger_percent": 50,
+        "borg_param_caution_ranged_only": 1,
+        "borg_param_caution_ranged_vs_immobile": 2,
+        "borg_param_caution_confused_clw_cure": 1
+      }
+    },
+    "reborn-pkg-pkgnoimm": {
+      "description": "borg-zoo#738 (reborn-trackp-pkg-big.yaml): arm pkgnoimm.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_lost_danger_percent": 50,
+        "borg_param_caution_ranged_only": 1,
+        "borg_param_caution_confused_clw_cure": 1
+      }
     }
   }
 }
