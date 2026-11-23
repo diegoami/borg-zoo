@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-light-ladder-medium",
+  "issue": 702,
+  "definition": "definitions/reborn-light-ladder-medium.yaml",
+  "question": "On track-p 206cf4e7, on classes-1800 starts 1-900 (a block that #702's full tier did not play), does the engine's light radius (cave_light_engine_radius 1) change deaths, and does it slow the descent (DL3 and DL5 reached, mainly for Warriors and Paladins) as it did on starts 901-1800?",
+  "description": "On track-p 206cf4e7, on classes-1800 starts 1-900 (a block that #702's full tier did not play), does the engine's light radius (cave_light_engine_radius 1) change deaths, and does it slow the descent (DL3 and DL5 reached, mainly for Warriors and Paladins) as it did on starts 901-1800? Generated from definitions/reborn-light-ladder-medium.yaml: 2 arms on 4.2.6-reborn-rust-trackp-206cf4e7, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-23, before any result of this block was read (borg-zoo#702). Two arms on track-p 206cf4e7 (the build of #702's full tier, whose light arm had its pilot there): ctl and light (cave_light_engine_radius 1), classes-1800 ladder tier medium; the four ladder tiers (verysmall, small-rest, medium, big) together are starts 1-900 and are read pooled (RULES 14). Primary: deaths by 100,000 turns, exact McNemar by start. Prespecified from the first block: the depth reached (DL3, DL4, DL5, any outcome; exact McNemar by start), mean final CL, and per class (Warrior and Paladin first); deaths on DL1. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; ctl must play the same keys as #695's reborn-head-shipped on the same starts (play_sha256). Descriptive (RULES 14); whether light stays is the owner's call.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-206cf4e7"
+  ],
+  "profiles": [
+    "reborn-li206-ctl",
+    "reborn-li206-light"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-206cf4e7",
+  "control_profile": "reborn-li206-ctl",
+  "owner_authorization": "2026-11-23: zoo owner, \"yes run light vs ctl on starts 1-900\" (the light radius is the setting the owner would keep if viable; #702's full tier on starts 901-1800 showed 15 deaths against 20 but DL5 reached 21 against 37).",
+  "retain_evidence": false
+}
