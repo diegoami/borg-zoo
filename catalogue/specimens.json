@@ -3353,28 +3353,32 @@
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
     },
-    "4.2.6-reborn-rust-healtiers-925fc5d7": {
+    "4.2.6-reborn-rust-jelly-worlds-ea4e8534": {
       "kind": "borg-rs",
       "impl": "rust",
       "exact_turns": true,
       "depth_stream": true,
       "role": "candidate",
       "repository": "diegoami/borg-reborn-rs",
-      "ref": "925fc5d78485667f9343edf4e7f1b85266077d5d",
-      "label": "borg-reborn-rs PR #848 head 925fc5d7 (#845 town_heal_quaff_bonus_percent compiled and shipped 0; merged with track-p c687334c, past the #863 staples, #859 Recall curve, #873 Phase Door reserve 6 and #987 first cures); shipped harness/borg.txt 7b41d464..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "ref": "ea4e8534b745efb1ffb53288003da0e45be34b99",
+      "label": "borg-reborn-rs claude/youthful-knuth-mqj0h9 ea4e8534 (tree = track-p 57d47863 with #964-#968 merged, every switch shipped 0, plus the jellies-x4 and jellies-x8 worlds pinned, RULES 21); harness/borg.txt 943e1742..., scary_monsters.txt 5a4ec4b6...",
       "scary_lists": {
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      },
+      "worlds": {
+        "jellies-x4": "3b4ac5b85be59fe3d8b689f2cad82ac42e0b502bea2cbe4d0fb4a89f02dc33a6",
+        "jellies-x8": "21db3a7627aacb19117d65ee60a52765c491300a6363bd444bc97ec180f03e06"
       }
     },
-    "4.2.6-reborn-rust-shortgold-b8605b5c": {
+    "4.2.6-reborn-rust-trackp-1c071812": {
       "kind": "borg-rs",
       "impl": "rust",
       "exact_turns": true,
       "depth_stream": true,
       "role": "candidate",
       "repository": "diegoami/borg-reborn-rs",
-      "ref": "b8605b5caba6633b235ca4076bb783de1311c32b",
-      "label": "borg-reborn-rs PR #854 head b8605b5c (#828 town_short_gold compiled and shipped 0; merged with track-p c687334c; includes borg_town_plan 1 and town_missiles_percent -1); shipped harness/borg.txt 40096aa1..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "ref": "1c07181217a7f7076dc6d3c158bebeb00b968f76",
+      "label": "borg-reborn-rs LINE track-p, head 1c071812 on 2026-11-23 (contains #1088 a82d7042: explore_breadth_first shipped 1 with the per-class explore_bfs_max_hp and explore_bfs_hp_per_level of the class files, and cave_light_engine_radius 1); shipped harness/borg.txt 025501a1..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
       "scary_lists": {
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
@@ -3388,6 +3392,58 @@
       "repository": "diegoami/borg-reborn-rs",
       "ref": "8f32a8a0d128322595ee5a77a71ea27179b22997",
       "label": "borg-reborn-rs LINE track-p, head 8f32a8a0 on 2026-11-23 (contains #1028, PR #1068, 3088d9a6; fast_fragile_count_dot, fast_fragile_heal_floor and fast_fragile_escape_quantile compiled and shipped 0); shipped harness/borg.txt 1c0d0223..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
+    },
+    "4.2.6-reborn-rust-ffratio-c7e55e1d": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "c7e55e1d330967738d8446c7154ad979b5f1a682",
+      "label": "borg-reborn-rs PR #1089 head c7e55e1d (task/1065-heal-ratio-2: track-p a82d7042 merged with #1065; ships the #1074 bundle fast_fragile_heal_floor 50, escape_quantile 75, count_dot 1, cave_light_engine_radius 1 and fast_fragile_heal_min_ratio 30); shipped harness/borg.txt bf9fa19f..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
+    },
+    "4.2.6-reborn-rust-trackp-769f3fbd": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "769f3fbd649eb2fb31e5c81cfc0ee6e32fcc78d8",
+      "label": "borg-reborn-rs LINE track-p at 769f3fbd on 2026-11-23 (on top of f8725bc0; the #926 fast-fragile settings ship 0: fast_fragile_escape_quantile, fast_fragile_heal_floor, fast_fragile_count_dot); shipped harness/borg.txt 98086559..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
+    },
+    "4.2.6-reborn-rust-hungry-biscuit-f0e13e99": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "f0e13e99f642a079bf3b7c703b3e23bc39eda704",
+      "label": "borg-reborn-rs branch task/T1109-hungry-biscuit f0e13e99 (Track P's default borg-core with the #1109 Hungry biscuit fix; explore_breadth_first 1 shipped); shipped harness/borg.txt 025501a1..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
+    },
+    "4.2.6-reborn-rust-healtiers-925fc5d7": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "925fc5d78485667f9343edf4e7f1b85266077d5d",
+      "label": "borg-reborn-rs PR #848 head 925fc5d7 (#845 town_heal_quaff_bonus_percent compiled and shipped 0; merged with track-p c687334c, past the #863 staples, #859 Recall curve, #873 Phase Door reserve 6 and #987 first cures); shipped harness/borg.txt 7b41d464..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
       "scary_lists": {
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
@@ -3409,19 +3465,6 @@
         "patches-x4": "2c7da2fe5a68e17caf5fef37094f64b21ae59b5aee09a570d489152f415a2525"
       }
     },
-    "4.2.6-reborn-rust-trackp-769f3fbd": {
-      "kind": "borg-rs",
-      "impl": "rust",
-      "exact_turns": true,
-      "depth_stream": true,
-      "role": "candidate",
-      "repository": "diegoami/borg-reborn-rs",
-      "ref": "769f3fbd649eb2fb31e5c81cfc0ee6e32fcc78d8",
-      "label": "borg-reborn-rs LINE track-p at 769f3fbd on 2026-11-23 (on top of f8725bc0; the #926 fast-fragile settings ship 0: fast_fragile_escape_quantile, fast_fragile_heal_floor, fast_fragile_count_dot); shipped harness/borg.txt 98086559..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
-      "scary_lists": {
-        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
-      }
-    },
     "4.2.6-reborn-rust-leashholes-12fe36d8": {
       "kind": "borg-rs",
       "impl": "rust",
@@ -3431,32 +3474,6 @@
       "repository": "diegoami/borg-reborn-rs",
       "ref": "12fe36d803136db3bdb4b806bac96e0d6ef93e4b",
       "label": "borg-reborn-rs PR #1087 head 12fe36d8 (#1062 stair-leash switches compiled and shipped 0; merged with track-p bc215cf8, which ships the #926 fast-fragile bundle (#1074), cave_light_engine_radius 1 and the #895 devices); shipped harness/borg.txt 37228f0e..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
-      "scary_lists": {
-        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
-      }
-    },
-    "4.2.6-reborn-rust-ffratio-c7e55e1d": {
-      "kind": "borg-rs",
-      "impl": "rust",
-      "exact_turns": true,
-      "depth_stream": true,
-      "role": "candidate",
-      "repository": "diegoami/borg-reborn-rs",
-      "ref": "c7e55e1d330967738d8446c7154ad979b5f1a682",
-      "label": "borg-reborn-rs PR #1089 head c7e55e1d (task/1065-heal-ratio-2: track-p a82d7042 merged with #1065; ships the #1074 bundle fast_fragile_heal_floor 50, escape_quantile 75, count_dot 1, cave_light_engine_radius 1 and fast_fragile_heal_min_ratio 30); shipped harness/borg.txt bf9fa19f..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
-      "scary_lists": {
-        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
-      }
-    },
-    "4.2.6-reborn-rust-trackp-1c071812": {
-      "kind": "borg-rs",
-      "impl": "rust",
-      "exact_turns": true,
-      "depth_stream": true,
-      "role": "candidate",
-      "repository": "diegoami/borg-reborn-rs",
-      "ref": "1c07181217a7f7076dc6d3c158bebeb00b968f76",
-      "label": "borg-reborn-rs LINE track-p, head 1c071812 on 2026-11-23 (contains #1088 a82d7042: explore_breadth_first shipped 1 with the per-class explore_bfs_max_hp and explore_bfs_hp_per_level of the class files, and cave_light_engine_radius 1); shipped harness/borg.txt 025501a1..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
       "scary_lists": {
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
@@ -3487,6 +3504,23 @@
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
     },
+    "4.2.6-reborn-rust-trackp-1c071812-pw": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "1c07181217a7f7076dc6d3c158bebeb00b968f76",
+      "label": "borg-reborn-rs LINE track-p, head 1c071812 on 2026-11-23, worlds pinned (patches-x8 a6721bdd..., patches-x4 2c7da2fe...); shipped harness/borg.txt 025501a1..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      },
+      "worlds": {
+        "patches-x8": "a6721bdd20a440f397ab923705dc99df8826a698ad78cd1e96f95cb1f4b98aca",
+        "patches-x4": "2c7da2fe5a68e17caf5fef37094f64b21ae59b5aee09a570d489152f415a2525"
+      }
+    },
     "4.2.6-reborn-rust-shortgold-4db877c6": {
       "kind": "borg-rs",
       "impl": "rust",
@@ -3500,15 +3534,15 @@
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
     },
-    "4.2.6-reborn-rust-hungry-biscuit-f0e13e99": {
+    "4.2.6-reborn-rust-shortgold-b8605b5c": {
       "kind": "borg-rs",
       "impl": "rust",
       "exact_turns": true,
       "depth_stream": true,
       "role": "candidate",
       "repository": "diegoami/borg-reborn-rs",
-      "ref": "f0e13e99f642a079bf3b7c703b3e23bc39eda704",
-      "label": "borg-reborn-rs branch task/T1109-hungry-biscuit f0e13e99 (Track P's default borg-core with the #1109 Hungry biscuit fix; explore_breadth_first 1 shipped); shipped harness/borg.txt 025501a1..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "ref": "b8605b5caba6633b235ca4076bb783de1311c32b",
+      "label": "borg-reborn-rs PR #854 head b8605b5c (#828 town_short_gold compiled and shipped 0; merged with track-p c687334c; includes borg_town_plan 1 and town_missiles_percent -1); shipped harness/borg.txt 40096aa1..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
       "scary_lists": {
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
@@ -3522,6 +3556,58 @@
       "repository": "diegoami/borg-reborn-rs",
       "ref": "9276b75ae36965ec6b48202f96b6705f1717c008",
       "label": "borg-reborn-rs PR #1090 head 9276b75a (task/1061-stair-scum, synchronized with track-p 69a5ff40: stair_scum shipped on at max HP 20 with the owner's slack steps by class and the Warrior off, explore_breadth_first 1, cave_light_engine_radius 1); shipped harness/borg.txt 0cc4ebef..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
+    },
+    "4.2.6-reborn-rust-paralyser-173156ac": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "173156ac6b0e314f12bb4c65e2acee5108fc4756",
+      "label": "borg-reborn-rs branch claude/pensive-faraday-wl4qqt 173156ac (PR #1129: track-p 040d2a5f plus the #1125 paralyser switches, all compiled and shipped 0); shipped harness/borg.txt c2c13a3d..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
+    },
+    "4.2.6-reborn-rust-perception-7bfbe121": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "7bfbe1210b4d4ce6a9772ae9dbab69d5325e7040",
+      "label": "borg-reborn-rs PR #1128 head 7bfbe121 (track-p d3d1629f merged with #1128 and its review fixes; update_dark_clears_light and view_rubble_blocks_sight compiled and shipped 0); shipped harness/borg.txt f7cd9969..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
+    },
+    "4.2.6-reborn-rust-trapway-91dd0d0a": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "91dd0d0a90649921b75df8632a2c7f78aee55810",
+      "label": "borg-reborn-rs track-p 91dd0d0a (the merge of PR #1086, #1067 trap rules: trap_recover 1, trap_way_back 1, trap_leave_level_count 2 shipped on); shipped harness/borg.txt 12a8c78e..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
+    },
+    "4.2.6-reborn-rust-mixed-40c3bcc8": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "40c3bcc88a628067d6710b3eceb78aceddba818d",
+      "label": "borg-reborn-rs branch claude/hopeful-bell-u42h8q 40c3bcc8 (PR #1117: explore_mixed, explore_c_leave_when_done and explore_bfs_leave_when_done, merged with track-p d3d1629f which ships stair_scum; the owner review's fixes); shipped harness/borg.txt 0c6556bd..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
       "scary_lists": {
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }

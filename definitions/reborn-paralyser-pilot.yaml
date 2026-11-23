@@ -1,0 +1,35 @@
+# borg-zoo#735: reborn-paralyser-pilot, pilot tier (classes-18). Write the catalogue entries with: python3 -m zoo define definitions/reborn-paralyser-pilot.yaml
+name: reborn-paralyser-pilot
+issue: 735
+question: >-
+  On borg-reborn-rs 173156ac (PR #1129), do the #1125 paralyser switches (the Phase rule judging the fight lost next to a paralyser, stepping out of its reach, no flow into its reach, remembering never-moving monsters) lower the floating-eye and other paralyser deaths without Free Action, and what do they cost?
+tier: pilot            # classes-18, 100,000 turns
+pilot: true            # first run of these arms on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-paralyser-173156ac
+  repository: diegoami/borg-reborn-rs
+  ref: 173156ac6b0e314f12bb4c65e2acee5108fc4756
+  label: "borg-reborn-rs branch claude/pensive-faraday-wl4qqt 173156ac (PR #1129: track-p 040d2a5f plus the #1125 paralyser switches, all compiled and shipped 0); shipped harness/borg.txt c2c13a3d..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-par
+arms:
+  ctl: {}
+  lost: {borg_param_escape_paralyser_fight_lost: 1}
+  walk: {borg_param_caution_paralyser_step_away: 1, borg_param_caution_paralyser_no_reach: 1, borg_param_caution_remember_never_move: 1}
+  all: {borg_param_escape_paralyser_fight_lost: 1, borg_param_caution_paralyser_step_away: 1, borg_param_caution_paralyser_no_reach: 1, borg_param_caution_remember_never_move: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs owner ("yes", to filing the zoo request for #1125), borg-zoo#735; zoo owner, 2026-11-23: "continue with experiments" (the pilot as the gate).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#735; borg-reborn-rs #1125, PR #1129). Four arms on 173156ac (track-p 040d2a5f plus #1129; every switch compiled and shipped 0, so ctl is today's play; each applies only without Free Action): ctl; lost (escape_paralyser_fight_lost 1); walk (caution_paralyser_step_away, caution_paralyser_no_reach and caution_remember_never_move 1, bundled because the step alone walked back to the eye); all (all four). If capacity is short ctl and all first. Pilot (classes-18) as the gate, then small and medium (classes-1800 starts 1-360). Wanted: deaths per class and arm paired by start; paralyser deaths on their own (the 27 PARALYZE races, the floating eye at DL1-3 above all); per game counts of each (#1125) note ("# Phase rule: next to the paralysing <race> without Free Action: the fight is lost (#1125)", "# Stepping out of the reach of the paralysing <race>, no Free Action (#1125)", "# Keeping the never-moving <race> at (y,x) through the bounce reset (#1125)"); stalls and bouncing-borg level exits, since closed reaches can cut off part of a level. Local direction (one game, Half-Elf Necromancer 453254028): lost lives, walk (2+3) lives, all lives, step alone walks back and dies.
+  Tier pilot: classes-18, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and depth, alive at the cap having reached DL5, identical plays; progress (DL3/DL5 reached, first_turn_at_depth, #718 fields). Descriptive (RULES 14).

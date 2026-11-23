@@ -2494,6 +2494,87 @@
         "reborn-ss9276-neither"
       ],
       "runs": []
+    },
+    "reborn-ro-tp": {
+      "issue": 740,
+      "status": "defined (normal pilot, x8 pilot, normal starts 1-900, x8 verysmall)",
+      "what": "caution_ranged_only 1 and caution_ranged_vs_immobile 2 on track-p 1c071812: ctl, ranged, immobile2 in the normal world and patches-x8.",
+      "profiles": [
+        "reborn-ro-ctl",
+        "reborn-ro-ranged",
+        "reborn-ro-immobile2",
+        "reborn-ro-ctl-x8",
+        "reborn-ro-ranged-x8",
+        "reborn-ro-immobile2-x8"
+      ],
+      "runs": []
+    },
+    "reborn-paralyser": {
+      "issue": 735,
+      "status": "defined (pilot, small, medium)",
+      "what": "The #1125 paralyser switches (PR #1129, 173156ac): ctl, lost, walk, all.",
+      "profiles": [
+        "reborn-par-ctl",
+        "reborn-par-lost",
+        "reborn-par-walk",
+        "reborn-par-all"
+      ],
+      "runs": []
+    },
+    "reborn-perception": {
+      "issue": 736,
+      "status": "defined (pilot, full)",
+      "what": "Stale light and sight through rubble (#885, #917, PR #1128, 7bfbe121): ctl, dark, rubble, both.",
+      "profiles": [
+        "reborn-per-ctl",
+        "reborn-per-dark",
+        "reborn-per-rubble",
+        "reborn-per-both"
+      ],
+      "runs": []
+    },
+    "reborn-trap": {
+      "issue": 737,
+      "status": "defined (20 death seeds, full ctl/trapoff)",
+      "what": "The #1067 trap rules, shipped on (PR #1086, 91dd0d0a): ctl, trapoff, way, recover, noleave.",
+      "profiles": [
+        "reborn-trap-ctl",
+        "reborn-trap-trapoff",
+        "reborn-trap-way",
+        "reborn-trap-recover",
+        "reborn-trap-noleave"
+      ],
+      "runs": []
+    },
+    "reborn-t1134": {
+      "issue": 738,
+      "status": "defined (pilot, verysmall)",
+      "what": "Phase threshold 50, confusion CLW cure, retreat breaker, prepared remedy 50 on track-p 1c071812 (borg-reborn-rs #1134): ctl, phase50, conf, osc, prep50, all.",
+      "profiles": [
+        "reborn-t1134-ctl",
+        "reborn-t1134-phase50",
+        "reborn-t1134-conf",
+        "reborn-t1134-osc",
+        "reborn-t1134-prep50",
+        "reborn-t1134-all"
+      ],
+      "runs": []
+    },
+    "reborn-mixed40": {
+      "issue": 732,
+      "status": "defined (pilot, verysmall, small-rest)",
+      "what": "Mixed exploration, C's leave-when-done and the old bfs stay (#1098, PR #1117) on 40c3bcc8: ctl, cexit, bfs-stay, mixed, nobfs, mixed-alone, mixed-tight, mixed-loose.",
+      "profiles": [
+        "reborn-mx40-ctl",
+        "reborn-mx40-cexit",
+        "reborn-mx40-bfs-stay",
+        "reborn-mx40-mixed",
+        "reborn-mx40-nobfs",
+        "reborn-mx40-mixed-alone",
+        "reborn-mx40-mixed-tight",
+        "reborn-mx40-mixed-loose"
+      ],
+      "runs": []
     }
   }
 }

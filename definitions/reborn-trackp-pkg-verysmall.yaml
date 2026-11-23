@@ -1,0 +1,47 @@
+# borg-zoo#738 (borg-reborn-rs#1134): the owner's package of four settings on track-p 1c071812, verysmall tier (classes-1800 starts 1-45, 100,000 turns). Write the catalogue entries with: python3 -m zoo define definitions/reborn-trackp-pkg-verysmall.yaml
+name: reborn-trackp-pkg-verysmall
+issue: 738
+question: >-
+  On borg-reborn-rs track-p 1c071812, does the owner's package (escape_phase_lost_danger_percent 50, caution_ranged_only 1,
+  caution_ranged_vs_immobile 2, caution_confused_clw_cure 1; caution_recall_survival stays 1 as shipped) change deaths and progress on
+  random starts, and what does caution_ranged_vs_immobile 2 add or cost inside it?
+tier: verysmall            # classes-1800 starts 1-45, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-1c071812
+  repository: diegoami/borg-reborn-rs
+  ref: 1c07181217a7f7076dc6d3c158bebeb00b968f76
+  label: "borg-reborn-rs LINE track-p, head 1c071812 on 2026-11-23 (the specimen of #730); shipped harness/borg.txt 025501a1..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-pkg
+arms:
+  ctl: {}
+  pkg: {borg_param_escape_phase_lost_danger_percent: 50, borg_param_caution_ranged_only: 1, borg_param_caution_ranged_vs_immobile: 2, borg_param_caution_confused_clw_cure: 1}
+  pkgnoimm: {borg_param_escape_phase_lost_danger_percent: 50, borg_param_caution_ranged_only: 1, borg_param_caution_confused_clw_cure: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23, owner (borg-reborn-rs#1134 session): "Let us send an arm to the ZOO for escape_phase_lost_danger_percent = 50,
+  caution_ranged_only = 1, caution_ranged_vs_immobile = 2, caution_confused_clw_cure = 1, caution_recall_survival stays 1."
+  pkgnoimm (the same without caution_ranged_vs_immobile 2) added by the session because borg-zoo#740 measured immobile2 alone at 17
+  deaths against ctl 13 (2 rescued / 6 newly killed, 900 starts), so the package is read with and without it.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any result of these arms was read (borg-zoo#738; borg-reborn-rs#1134; evidence borg-cemetery#146). Three arms on
+  track-p 1c071812: ctl (shipped); pkg (escape_phase_lost_danger_percent 50, caution_ranged_only 1, caution_ranged_vs_immobile 2,
+  caution_confused_clw_cure 1; caution_recall_survival 1 as shipped); pkgnoimm (pkg without caution_ranged_vs_immobile 2). Prior evidence:
+  local replays of the 25 deaths of run 45121432449 rescued at the fatal point phase50 5, ranged_only 4, immobile2 3, conf 2 (each alone, none
+  killed any of 18 sampled survivors; the package was not replayed); borg-zoo#740 on the same build, starts 1-900: ranged 12 deaths vs ctl 13
+  (2/1), immobile2 17 (2/6), DL3 reached 215 and 221 vs 199. Plan: pilot (classes-18) as the gate, then classes-1800 starts 1-900
+  (verysmall, small-rest, medium, big, read pooled).
+  Tier verysmall: classes-1800 starts 1-45, 100,000 turns. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped;
+  stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes (poison, floating eye/patch/jelly, while
+  confused apart), rescued and newly killed against ctl and pkg against pkgnoimm (exact McNemar), CL and depth, DL3/DL5 reached, identical
+  plays; Phase Door reads and "Fixing Confusion" notes per game. Descriptive (RULES 14).

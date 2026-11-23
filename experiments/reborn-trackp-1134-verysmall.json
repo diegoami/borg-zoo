@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-trackp-1134-verysmall",
+  "issue": 738,
+  "definition": "definitions/reborn-trackp-1134-verysmall.yaml",
+  "question": "On borg-reborn-rs track-p 1c071812, do the four settings proposed from the 25 deaths of reborn-bfs-full (Phase threshold 50, the confusion CLW cure, the retreat oscillation breaker, prepared-remedy weight 50), one at a time and together, change deaths on random starts?",
+  "description": "On borg-reborn-rs track-p 1c071812, do the four settings proposed from the 25 deaths of reborn-bfs-full (Phase threshold 50, the confusion CLW cure, the retreat oscillation breaker, prepared-remedy weight 50), one at a time and together, change deaths on random starts? Generated from definitions/reborn-trackp-1134-verysmall.yaml: 6 arms on 4.2.6-reborn-rust-trackp-1c071812, suite classes-1800-verysmall.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#738; borg-reborn-rs #1134; evidence borg-cemetery#146: the 25 deaths of run 45121432449, reborn-bfs-full). Six arms on track-p 1c071812 (the specimen of #730): ctl (shipped); phase50 (escape_phase_lost_danger_percent 50); conf (caution_confused_clw_cure 1); osc (caution_retreat_oscillation_limit 3 and caution_retreat_oscillation_backaway 1); prep50 (town_prepared_percent 50, the owner's: buy more poison and critical-wounds cures); all (phase50, conf and osc together; prep50 not in all). Not proposed as arms: caution_recall_survival 0 (it reverts an owner decision, #758) and escape_phase_lost_damage_only 0 (a broad change). The measurement is on random starts (classes-1800), not on the chosen death starts, because borg-zoo#429 and #501 found that such rescues did not carry over to fresh starts. Pilot (classes-18) as the gate; verysmall (classes-1800 starts 1-45) follows if the owner agrees. Local replays of the 25 deaths (rescues at the fatal point): phase50 5, conf 2, osc 1, prep50 0.\nTier verysmall: classes-1800 starts 1-45, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and depth, alive at the cap having reached DL5, identical plays; progress (DL3/DL5 reached, first_turn_at_depth, #718 fields). Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-1c071812"
+  ],
+  "profiles": [
+    "reborn-t1134-ctl",
+    "reborn-t1134-phase50",
+    "reborn-t1134-conf",
+    "reborn-t1134-osc",
+    "reborn-t1134-prep50",
+    "reborn-t1134-all"
+  ],
+  "suites": [
+    "classes-1800-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-1c071812",
+  "control_profile": "reborn-t1134-ctl",
+  "owner_authorization": "2026-11-23: borg-reborn-rs #1134 (pilot then verysmall if the owner agrees); zoo owner: \"continue with experiments\".",
+  "retain_evidence": false
+}

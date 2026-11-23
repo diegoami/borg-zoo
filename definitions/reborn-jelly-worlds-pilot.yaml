@@ -1,0 +1,65 @@
+# borg-zoo#712 (scenario of #677 for the switches of #654, plus borg-reborn-rs #964): the immobile-toucher switches in the jelly worlds, ea4e8534, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-jelly-worlds-pilot.yaml
+name: reborn-jelly-worlds-pilot
+issue: 712
+question: >-
+  In the jellies-x4 and jellies-x8 worlds on borg-reborn-rs ea4e8534 (track-p 57d47863, with #964 and #965-#968 merged and every switch shipped 0),
+  do the switches written for the white-jelly deaths save the games where an immobile toucher stands beside the Borg's route, which the normal world
+  shows only rarely? The arms: the stair route keeps off a retreat's square (#964, hold), the retreat breaker with back-aways (#1023, osc-ba), both
+  together (hold-osc), the reach-free stair route (#931, reach), the escape before the retreat when poisoned without a cure (#934, poison), and the
+  bundle of #654 (all). Each world has its own control.
+tier: pilot            # classes-18, 100,000 turns, both worlds (RULES 21); the arms that lead go to verysmall in the world, then the normal-world tiers of #654
+
+specimen:
+  name: 4.2.6-reborn-rust-jelly-worlds-ea4e8534
+  repository: diegoami/borg-reborn-rs
+  ref: ea4e8534b745efb1ffb53288003da0e45be34b99
+  label: "borg-reborn-rs claude/youthful-knuth-mqj0h9 ea4e8534 (tree = track-p 57d47863 with #964-#968 merged, every switch shipped 0, plus the jellies-x4 and jellies-x8 worlds pinned, RULES 21); harness/borg.txt 943e1742..., scary_monsters.txt 5a4ec4b6..."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+  worlds:
+    jellies-x4: 3b4ac5b85be59fe3d8b689f2cad82ac42e0b502bea2cbe4d0fb4a89f02dc33a6
+    jellies-x8: 21db3a7627aacb19117d65ee60a52765c491300a6363bd444bc97ec180f03e06
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-jelly
+arms:
+  ctl-x8: {borg_world: jellies-x8}
+  hold-x8: {borg_world: jellies-x8, borg_param_caution_retreat_reentry_ticks: 128}
+  oscba-x8: {borg_world: jellies-x8, borg_param_caution_retreat_oscillation_limit: 3, borg_param_caution_retreat_oscillation_backaway: 1}
+  holdosc-x8: {borg_world: jellies-x8, borg_param_caution_retreat_reentry_ticks: 128, borg_param_caution_retreat_oscillation_limit: 3, borg_param_caution_retreat_oscillation_backaway: 1}
+  reach-x8: {borg_world: jellies-x8, borg_param_caution_stairs_immobile_reach: 1}
+  poison-x8: {borg_world: jellies-x8, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+  all-x8: {borg_world: jellies-x8, borg_param_caution_stairs_immobile_reach: 1, borg_param_caution_retreat_oscillation_limit: 3, borg_param_caution_retreat_oscillation_backaway: 1, borg_param_caution_retreat_immobile_kill_turns: 3, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+  ctl-x4: {borg_world: jellies-x4}
+  hold-x4: {borg_world: jellies-x4, borg_param_caution_retreat_reentry_ticks: 128}
+  oscba-x4: {borg_world: jellies-x4, borg_param_caution_retreat_oscillation_limit: 3, borg_param_caution_retreat_oscillation_backaway: 1}
+  holdosc-x4: {borg_world: jellies-x4, borg_param_caution_retreat_reentry_ticks: 128, borg_param_caution_retreat_oscillation_limit: 3, borg_param_caution_retreat_oscillation_backaway: 1}
+  reach-x4: {borg_world: jellies-x4, borg_param_caution_stairs_immobile_reach: 1}
+  poison-x4: {borg_world: jellies-x4, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+  all-x4: {borg_world: jellies-x4, borg_param_caution_stairs_immobile_reach: 1, borg_param_caution_retreat_oscillation_limit: 3, borg_param_caution_retreat_oscillation_backaway: 1, borg_param_caution_retreat_immobile_kill_turns: 3, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+control: [ctl-x8]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs owner, "we need the ZOO" (release of #712's hold) and "yeah dispatch to zoo" (borg-zoo#712; the pilot only, later
+  tiers after the gate and the owner).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any game of this build was played in these worlds (borg-zoo#712, scenario of #677; borg-reborn-rs #931, #932/#964, #1023,
+  #933, #934; RULES 21). Seven arms, the requester's short list (ctl = shipped, every switch 0; hold = caution_retreat_reentry_ticks 128; oscba =
+  caution_retreat_oscillation_limit 3 with _backaway 1; holdosc = hold and oscba; reach = caution_stairs_immobile_reach 1, its detour limit
+  caution_stairs_immobile_reach_extra_steps at the shipped 20; poison = caution_poisoned_no_cure_retreat_hp_percent 75; all = reach, oscba,
+  caution_retreat_immobile_kill_turns 3 and poison, without hold) in jellies-x8 and jellies-x4 (14 profiles), classes-18, 18 starts each (252 cells),
+  100,000 turns, evidence retained. osc (limit 3 alone), osc5 (_thinks 5) and kill (alone) are left to a later run. A world's arms are compared only
+  within that world (ctl-x8 against x8 arms, ctl-x4 against x4 arms). Gate: no config_error; one binary; every cell records its world with the same
+  borg_world_data_sha256 in every arm of that world; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls
+  apart; identical plays. Report per world, arm and class: deaths and causes (white, yellow, blue and green jelly, and poison, apart; any death with a
+  jelly adjacent apart), CL and DL, paired rescued and newly killed against the world's ctl; per arm the counts of "# Stair flight avoiding retreat
+  grid" (hold, holdosc), "# No retreat: N moves away in a row from here were undone" (oscba, holdosc, all), "# No retreat: immobile" (all),
+  "# Poisoned, no cure" (poison, all) and strategic retreats and back-ups taken next to a jelly; world check: jellies met per game ("Creating a
+  monster '... jelly'") and killed. The jellies are DL2-5, so most games meet them. A world is a stress test: a lead here needs the normal-world tiers
+  of #654 (paired by start against ctl) before a shipped value is judged. Directional (RULES 14).

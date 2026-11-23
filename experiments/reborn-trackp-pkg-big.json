@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-trackp-pkg-big",
+  "issue": 738,
+  "definition": "definitions/reborn-trackp-pkg-big.yaml",
+  "question": "On borg-reborn-rs track-p 1c071812, does the owner's package (escape_phase_lost_danger_percent 50, caution_ranged_only 1, caution_ranged_vs_immobile 2, caution_confused_clw_cure 1; caution_recall_survival stays 1 as shipped) change deaths and progress on random starts, and what does caution_ranged_vs_immobile 2 add or cost inside it?",
+  "description": "On borg-reborn-rs track-p 1c071812, does the owner's package (escape_phase_lost_danger_percent 50, caution_ranged_only 1, caution_ranged_vs_immobile 2, caution_confused_clw_cure 1; caution_recall_survival stays 1 as shipped) change deaths and progress on random starts, and what does caution_ranged_vs_immobile 2 add or cost inside it? Generated from definitions/reborn-trackp-pkg-big.yaml: 3 arms on 4.2.6-reborn-rust-trackp-1c071812, suite classes-1800-big.",
+  "prespecified": "Fixed 2026-11-23, before any result of these arms was read (borg-zoo#738; borg-reborn-rs#1134; evidence borg-cemetery#146). Three arms on\ntrack-p 1c071812: ctl (shipped); pkg (escape_phase_lost_danger_percent 50, caution_ranged_only 1, caution_ranged_vs_immobile 2,\ncaution_confused_clw_cure 1; caution_recall_survival 1 as shipped); pkgnoimm (pkg without caution_ranged_vs_immobile 2). Prior evidence:\nlocal replays of the 25 deaths of run 45121432449 rescued at the fatal point phase50 5, ranged_only 4, immobile2 3, conf 2 (each alone, none\nkilled any of 18 sampled survivors; the package was not replayed); borg-zoo#740 on the same build, starts 1-900: ranged 12 deaths vs ctl 13\n(2/1), immobile2 17 (2/6), DL3 reached 215 and 221 vs 199. Plan: pilot (classes-18) as the gate, then classes-1800 starts 1-900\n(verysmall, small-rest, medium, big, read pooled).\nTier big: classes-1800 starts 361-900, 100,000 turns. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped;\nstalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes (poison, floating eye/patch/jelly, while\nconfused apart), rescued and newly killed against ctl and pkg against pkgnoimm (exact McNemar), CL and depth, DL3/DL5 reached, identical\nplays; Phase Door reads and \"Fixing Confusion\" notes per game. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-1c071812"
+  ],
+  "profiles": [
+    "reborn-pkg-ctl",
+    "reborn-pkg-pkg",
+    "reborn-pkg-pkgnoimm"
+  ],
+  "suites": [
+    "classes-1800-big"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-1c071812",
+  "control_profile": "reborn-pkg-ctl",
+  "owner_authorization": "2026-11-23, owner (borg-reborn-rs#1134 session): \"Let us send an arm to the ZOO for escape_phase_lost_danger_percent = 50, caution_ranged_only = 1, caution_ranged_vs_immobile = 2, caution_confused_clw_cure = 1, caution_recall_survival stays 1.\" pkgnoimm (the same without caution_ranged_vs_immobile 2) added by the session because borg-zoo#740 measured immobile2 alone at 17 deaths against ctl 13 (2 rescued / 6 newly killed, 900 starts), so the package is read with and without it.",
+  "retain_evidence": true
+}
