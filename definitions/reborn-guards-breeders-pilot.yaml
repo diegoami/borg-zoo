@@ -1,0 +1,43 @@
+# borg-zoo#742: the retreat guards shipped by borg-reborn-rs #1124 in the breeder worlds, track-p 353f5c09, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-guards-breeders-pilot.yaml
+name: reborn-guards-breeders-pilot
+issue: 742
+question: >-
+  In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs track-p 353f5c09 (hold 128 and osc 3 shipped, #1124), do the shipped retreat guards
+  matter among white worm masses, and do back-aways counted in the run (#1023's Priest 1512540769 loop) or the poisoned escape (#934) change the
+  breeder games? Each world has its own control.
+tier: pilot            # classes-18, 100,000 turns, both worlds (RULES 21)
+
+specimen: 4.2.6-reborn-rust-trackp-353f5c09
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-guardsbr
+arms:
+  ctl-x8: {borg_world: breeders-x8}
+  guardsoff-x8: {borg_world: breeders-x8, borg_param_caution_retreat_reentry_ticks: 0, borg_param_caution_retreat_oscillation_limit: 0}
+  ba-x8: {borg_world: breeders-x8, borg_param_caution_retreat_oscillation_backaway: 1}
+  poison-x8: {borg_world: breeders-x8, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+  plus-x8: {borg_world: breeders-x8, borg_param_caution_retreat_oscillation_backaway: 1, borg_param_caution_stairs_immobile_reach: 1, borg_param_caution_retreat_immobile_kill_turns: 3, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+  ctl-x4: {borg_world: breeders-x4}
+  guardsoff-x4: {borg_world: breeders-x4, borg_param_caution_retreat_reentry_ticks: 0, borg_param_caution_retreat_oscillation_limit: 0}
+  ba-x4: {borg_world: breeders-x4, borg_param_caution_retreat_oscillation_backaway: 1}
+  poison-x4: {borg_world: breeders-x4, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+  plus-x4: {borg_world: breeders-x4, borg_param_caution_retreat_oscillation_backaway: 1, borg_param_caution_stairs_immobile_reach: 1, borg_param_caution_retreat_immobile_kill_turns: 3, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+control: [ctl-x8]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs owner, "can we make a bigger experiment" and "and also in the breeder world... but use the latest build" (borg-zoo#742).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any game of this build was played in these worlds (borg-zoo#742; RULES 21). Five arms (ctl = shipped; guardsoff = hold and osc 0;
+  ba = back-aways counted; poison = 75; plus = ba, reach 1, kill 3, poison 75) in breeders-x8 and breeders-x4 (10 profiles), classes-18, 18 starts each
+  (180 cells), 100,000 turns, evidence retained. A world's arms are compared only within that world. Gate: no config_error; one binary; every cell
+  records its world with the same borg_world_data_sha256 in every arm of that world; each arm's values in params-core.json; every cell ends in death,
+  turn_cap or borg_stopped; stalls apart; identical plays. Report per world, arm and class: deaths and causes (breeders and poison apart), CL and DL,
+  paired rescued and newly killed against the world's ctl; per arm the counts of "# No retreat: N moves away in a row", "# Stair flight avoiding
+  retreat grid", "# Poisoned, no cure" and back-ups next to a breeder. A world is a stress test: a lead here needs the normal-world tiers. Directional
+  (RULES 14).

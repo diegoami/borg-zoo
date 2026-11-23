@@ -13010,6 +13010,145 @@
         "borg_param_explore_mixed": 1,
         "borg_param_explore_mix_contact_damage": 3
       }
+    },
+    "reborn-guards-ctl": {
+      "description": "borg-zoo#742 (reborn-guards-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-guards-guardsoff": {
+      "description": "borg-zoo#742 (reborn-guards-pilot.yaml): arm guardsoff.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_retreat_reentry_ticks": 0,
+        "borg_param_caution_retreat_oscillation_limit": 0
+      }
+    },
+    "reborn-guards-nohold": {
+      "description": "borg-zoo#742 (reborn-guards-pilot.yaml): arm nohold.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_retreat_reentry_ticks": 0
+      }
+    },
+    "reborn-guards-noosc": {
+      "description": "borg-zoo#742 (reborn-guards-pilot.yaml): arm noosc.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_retreat_oscillation_limit": 0
+      }
+    },
+    "reborn-guards-plus": {
+      "description": "borg-zoo#742 (reborn-guards-pilot.yaml): arm plus.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_retreat_oscillation_backaway": 1,
+        "borg_param_caution_stairs_immobile_reach": 1,
+        "borg_param_caution_retreat_immobile_kill_turns": 3,
+        "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
+      }
+    },
+    "reborn-guardsbr-ctl-x8": {
+      "description": "borg-zoo#742 (reborn-guards-breeders-pilot.yaml): arm ctl-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8"
+      }
+    },
+    "reborn-guardsbr-guardsoff-x8": {
+      "description": "borg-zoo#742 (reborn-guards-breeders-pilot.yaml): arm guardsoff-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_caution_retreat_reentry_ticks": 0,
+        "borg_param_caution_retreat_oscillation_limit": 0
+      }
+    },
+    "reborn-guardsbr-ba-x8": {
+      "description": "borg-zoo#742 (reborn-guards-breeders-pilot.yaml): arm ba-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_caution_retreat_oscillation_backaway": 1
+      }
+    },
+    "reborn-guardsbr-poison-x8": {
+      "description": "borg-zoo#742 (reborn-guards-breeders-pilot.yaml): arm poison-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
+      }
+    },
+    "reborn-guardsbr-plus-x8": {
+      "description": "borg-zoo#742 (reborn-guards-breeders-pilot.yaml): arm plus-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_caution_retreat_oscillation_backaway": 1,
+        "borg_param_caution_stairs_immobile_reach": 1,
+        "borg_param_caution_retreat_immobile_kill_turns": 3,
+        "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
+      }
+    },
+    "reborn-guardsbr-ctl-x4": {
+      "description": "borg-zoo#742 (reborn-guards-breeders-pilot.yaml): arm ctl-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4"
+      }
+    },
+    "reborn-guardsbr-guardsoff-x4": {
+      "description": "borg-zoo#742 (reborn-guards-breeders-pilot.yaml): arm guardsoff-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_retreat_reentry_ticks": 0,
+        "borg_param_caution_retreat_oscillation_limit": 0
+      }
+    },
+    "reborn-guardsbr-ba-x4": {
+      "description": "borg-zoo#742 (reborn-guards-breeders-pilot.yaml): arm ba-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_retreat_oscillation_backaway": 1
+      }
+    },
+    "reborn-guardsbr-poison-x4": {
+      "description": "borg-zoo#742 (reborn-guards-breeders-pilot.yaml): arm poison-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
+      }
+    },
+    "reborn-guardsbr-plus-x4": {
+      "description": "borg-zoo#742 (reborn-guards-breeders-pilot.yaml): arm plus-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x4",
+        "borg_param_caution_retreat_oscillation_backaway": 1,
+        "borg_param_caution_stairs_immobile_reach": 1,
+        "borg_param_caution_retreat_immobile_kill_turns": 3,
+        "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
+      }
     }
   }
 }

@@ -1,0 +1,31 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-guards-breeders-pilot",
+  "issue": 742,
+  "definition": "definitions/reborn-guards-breeders-pilot.yaml",
+  "question": "In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs track-p 353f5c09 (hold 128 and osc 3 shipped, #1124), do the shipped retreat guards matter among white worm masses, and do back-aways counted in the run (#1023's Priest 1512540769 loop) or the poisoned escape (#934) change the breeder games? Each world has its own control.",
+  "description": "In the breeders-x4 and breeders-x8 worlds on borg-reborn-rs track-p 353f5c09 (hold 128 and osc 3 shipped, #1124), do the shipped retreat guards matter among white worm masses, and do back-aways counted in the run (#1023's Priest 1512540769 loop) or the poisoned escape (#934) change the breeder games? Each world has its own control. Generated from definitions/reborn-guards-breeders-pilot.yaml: 10 arms on 4.2.6-reborn-rust-trackp-353f5c09, suite classes-18.",
+  "prespecified": "Fixed 2026-11-23, before any game of this build was played in these worlds (borg-zoo#742; RULES 21). Five arms (ctl = shipped; guardsoff = hold and osc 0;\nba = back-aways counted; poison = 75; plus = ba, reach 1, kill 3, poison 75) in breeders-x8 and breeders-x4 (10 profiles), classes-18, 18 starts each\n(180 cells), 100,000 turns, evidence retained. A world's arms are compared only within that world. Gate: no config_error; one binary; every cell\nrecords its world with the same borg_world_data_sha256 in every arm of that world; each arm's values in params-core.json; every cell ends in death,\nturn_cap or borg_stopped; stalls apart; identical plays. Report per world, arm and class: deaths and causes (breeders and poison apart), CL and DL,\npaired rescued and newly killed against the world's ctl; per arm the counts of \"# No retreat: N moves away in a row\", \"# Stair flight avoiding\nretreat grid\", \"# Poisoned, no cure\" and back-ups next to a breeder. A world is a stress test: a lead here needs the normal-world tiers. Directional\n(RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-353f5c09"
+  ],
+  "profiles": [
+    "reborn-guardsbr-ctl-x8",
+    "reborn-guardsbr-guardsoff-x8",
+    "reborn-guardsbr-ba-x8",
+    "reborn-guardsbr-poison-x8",
+    "reborn-guardsbr-plus-x8",
+    "reborn-guardsbr-ctl-x4",
+    "reborn-guardsbr-guardsoff-x4",
+    "reborn-guardsbr-ba-x4",
+    "reborn-guardsbr-poison-x4",
+    "reborn-guardsbr-plus-x4"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-353f5c09",
+  "control_profile": "reborn-guardsbr-ctl-x8",
+  "owner_authorization": "2026-11-23: borg-reborn-rs owner, \"can we make a bigger experiment\" and \"and also in the breeder world... but use the latest build\" (borg-zoo#742).",
+  "retain_evidence": true
+}

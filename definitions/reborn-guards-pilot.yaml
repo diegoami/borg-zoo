@@ -1,0 +1,45 @@
+# borg-zoo#742: the retreat guards shipped by borg-reborn-rs #1124, normal world, track-p 353f5c09, pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-guards-pilot.yaml
+name: reborn-guards-pilot
+issue: 742
+question: >-
+  On borg-reborn-rs track-p 353f5c09, which ships the stair-route hold (caution_retreat_reentry_ticks 128, #964) and the retreat oscillation limit
+  (caution_retreat_oscillation_limit 3, #966) since #1124, did shipping the two guards help or hurt, which of them does the work, and do the switches
+  still off (back-aways counted, reach, kill, poison) add anything on top?
+tier: pilot            # classes-18, 100,000 turns; small + medium (classes-1800 starts 1-360) after the gate (owner asked for the bigger run)
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-353f5c09
+  repository: diegoami/borg-reborn-rs
+  ref: 353f5c096af7f4a8532c387024230f817b98e879
+  label: "borg-reborn-rs track-p 353f5c09 (#1124: caution_retreat_reentry_ticks 128 and caution_retreat_oscillation_limit 3 shipped) with its breeders-x4 and breeders-x8 worlds pinned (RULES 21); harness/borg.txt 03f101dc..., scary_monsters.txt 5a4ec4b6..."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+  worlds:
+    breeders-x4: a546fb51ca981ce7f6fcd2d953ceb93650b60341a1ec09762ec26756ff5d95f8
+    breeders-x8: 9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-guards
+arms:
+  ctl: {}
+  guardsoff: {borg_param_caution_retreat_reentry_ticks: 0, borg_param_caution_retreat_oscillation_limit: 0}
+  nohold: {borg_param_caution_retreat_reentry_ticks: 0}
+  noosc: {borg_param_caution_retreat_oscillation_limit: 0}
+  plus: {borg_param_caution_retreat_oscillation_backaway: 1, borg_param_caution_stairs_immobile_reach: 1, borg_param_caution_retreat_immobile_kill_turns: 3, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs owner, "can we make a bigger experiment" and "and also in the breeder world... but use the latest build" (borg-zoo#742).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any game of this build was played (borg-zoo#742; borg-reborn-rs #964, #966, #1123/#1124). Five arms (ctl = shipped, hold 128
+  and osc 3; guardsoff = both 0, the play before #1124; nohold; noosc; plus = shipped with back-aways counted, reach 1, kill 3 and poison 75), classes-18,
+  18 starts each (90 cells), 100,000 turns, evidence retained. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends
+  in death, turn_cap or borg_stopped; stalls apart; identical plays. Report per arm and class: deaths and causes, CL and DL, paired rescued and newly
+  killed against ctl, identical plays, and the counts of "# Stair flight avoiding retreat grid" and "# No retreat: N moves away in a row". The small and
+  medium tiers (classes-1800 starts 1-360) follow the gate with the same arms. Directional (RULES 14).
