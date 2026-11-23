@@ -12028,6 +12028,48 @@
         "borg_param_attack_throw_point_blank_divisor__blackguard": 1
       }
     },
+    "reborn-bel-ctl": {
+      "description": "borg-zoo#702 (reborn-belief-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-bel-light": {
+      "description": "borg-zoo#702 (reborn-belief-pilot.yaml): arm light.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_cave_light_engine_radius": 1
+      }
+    },
+    "reborn-bel-belief": {
+      "description": "borg-zoo#702 (reborn-belief-pilot.yaml): arm belief.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_unseen_belief": 1
+      }
+    },
+    "reborn-bel-light+belief": {
+      "description": "borg-zoo#702 (reborn-belief-pilot.yaml): arm light+belief.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_cave_light_engine_radius": 1,
+        "borg_param_unseen_belief": 1
+      }
+    },
+    "reborn-bel-light+belief-decay5": {
+      "description": "borg-zoo#702 (reborn-belief-pilot.yaml): arm light+belief-decay5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_cave_light_engine_radius": 1,
+        "borg_param_unseen_belief": 1,
+        "borg_param_unseen_decay_percent": 5
+      }
+    },
     "reborn-archer-ctl-x8": {
       "description": "borg-zoo#706 (reborn-archer-worlds-pilot.yaml): arm ctl-x8.",
       "settings": {

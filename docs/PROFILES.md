@@ -168,6 +168,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-pb206` | [#701](https://github.com/diegoami/borg-zoo/issues/701) | 2 | defined (pilot, small, medium) | Throw point-blank divisor 1 for warrior, paladin, rogue, blackguard on track-p 206cf4e7: ctl, all1. |
 | `reborn-li206` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 6 | defined (pilot, full) | Engine light radius alone and with the day's leads on track-p 206cf4e7: ctl, light, light+lone, light+leash, light+throw, combined. |
 | `reborn-ks206` | [#703](https://github.com/diegoami/borg-zoo/issues/703) | 4 | defined (pilot, small, medium) | Kill-on-sight floor and unknown-potion test in the normal world on track-p 206cf4e7: ctl, floor0, potions0, both0. |
+| `reborn-belief` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 5 | defined (pilot, full) | unseen_belief (#879, borg-reborn-rs #890, a must ship) and the engine light radius (#877) on track-p f8725bc0: ctl, light, belief, light+belief, light+belief-decay5; pilot then full (900 starts). |
 
 ### `heal-attack-4`
 
@@ -2388,6 +2389,20 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-ks206-potions0` | – | 0 |
 | `reborn-ks206-both0` | 0 | 0 |
 
+### `reborn-belief`
+
+unseen_belief (#879, borg-reborn-rs #890, a must ship) and the engine light radius (#877) on track-p f8725bc0: ctl, light, belief, light+belief, light+belief-decay5; pilot then full (900 starts).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_cave_light_engine_radius` | `borg_param_unseen_belief` | `borg_param_unseen_decay_percent` |
+| --- | --- | --- | --- |
+| `reborn-bel-ctl` | – | – | – |
+| `reborn-bel-light` | 1 | – | – |
+| `reborn-bel-belief` | – | 1 | – |
+| `reborn-bel-light+belief` | 1 | 1 | – |
+| `reborn-bel-light+belief-decay5` | 1 | 1 | 5 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2575,7 +2590,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3`, `reborn-townhunt` |  |
 | `borg_param_caution_winning_fight_group_percent` | 100, not set | `reborn-fastpur` |  |
 | `borg_param_caution_winning_fight_margin_percent` | 20, not set | `reborn-fastpur` |  |
-| `borg_param_cave_light_engine_radius` | 1, not set | `reborn-lightbel`, `reborn-li206` |  |
+| `borg_param_cave_light_engine_radius` | 1, not set | `reborn-lightbel`, `reborn-li206`, `reborn-belief` |  |
 | `borg_param_danger_breeder_melee_extra_tenths` | 0, 5, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_danger_observed_haste` | 1, not set | `reborn-fastpur` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
@@ -2849,7 +2864,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_unseen_percent` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_param_town_variety_min_depth` | 0, not set | `reborn-variety`, `reborn-vrm` |  |
 | `borg_param_trait_timed_sync` | 1, not set | `reborn-cavesp` |  |
-| `borg_param_unseen_belief` | 1, not set | `reborn-lightbel` |  |
+| `borg_param_unseen_belief` | 1, not set | `reborn-lightbel`, `reborn-belief` |  |
+| `borg_param_unseen_decay_percent` | 5, not set | `reborn-belief` |  |
 | `borg_plays_risky` | FALSE, TRUE | `reborn-plays-risky` |  |
 | `borg_scary_list_lines` | 1 line, 14 lines, 2 lines, 28 lines, 35 lines, 4 lines, 5 lines, 7 lines, not set | `reborn-scary-classes`, `reborn-scary-tough`, `reborn-scary-ends`, `reborn-bundle`, `reborn-scary-floor-main`, `reborn-errands-floor3`, `reborn-crow`, `reborn-casters`, `reborn-attacksight`, `reborn-killers`, `reborn-confusion` |  |
 | `borg_town_attack_turns` | 50, not set | `reborn-casters`, `reborn-crow-escape` |  |

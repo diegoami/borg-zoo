@@ -1,0 +1,37 @@
+# borg-zoo#702 (and #625): reborn-belief, full tier. Write the catalogue entries with: python3 -m zoo define definitions/reborn-belief-full.yaml
+name: reborn-belief-full
+issue: 702
+question: >-
+  On track-p f8725bc0 (the merge of borg-reborn-rs #890, unseen_belief, a must ship), does shooting at a monster believed in the dark (unseen_belief 1, #879) help, hurt or change nothing, alone, with the engine's light radius (cave_light_engine_radius 1, #877), and with a lower decay (unseen_decay_percent 5)?
+tier: full            # classes-1800 starts 901-1800 (900 per arm), 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-f8725bc0
+  repository: diegoami/borg-reborn-rs
+  ref: f8725bc0b6c7ff1e1ec6e398027049406f53cdb2
+  label: "borg-reborn-rs LINE track-p, the merge of #890 (#879 unseen_belief, shipped 0, with #877 light radius shipped 0) on 2026-11-22; also contains #1035 (no unknown-potion test while an awake ranged monster could shoot) and the lone-slow bundle (#1047); shipped harness/borg.txt 29391454..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-bel
+arms:
+  ctl: {}
+  light: {borg_param_cave_light_engine_radius: 1}
+  belief: {borg_param_unseen_belief: 1}
+  light+belief: {borg_param_cave_light_engine_radius: 1, borg_param_unseen_belief: 1}
+  light+belief-decay5: {borg_param_cave_light_engine_radius: 1, borg_param_unseen_belief: 1, borg_param_unseen_decay_percent: 5}
+control: [ctl]
+owner_authorization: >-
+  2026-11-22: borg-reborn-rs owner, "unseen_belief (#879, PR #890) is a must ship" (comment on borg-zoo#702: run light+belief and belief alone once #890 is in track-p; decay measured apart); zoo owner, 2026-11-23: "I really would like to test the settings from borg-reborn-rs#890".
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#702, #625). Five arms at track-p f8725bc0 (everything ships off there, so ctl is today's play): ctl; light (cave_light_engine_radius 1); belief (unseen_belief 1); light+belief; light+belief-decay5 (light+belief with unseen_decay_percent 5, the owner's choice to measure the decay apart). Pilot as the gate, then the full tier (classes-1800 starts 901-1800, 900 per arm), matching #695 and #702's other arms. Comparisons: each arm against ctl; light+belief against light; light+belief-decay5 against light+belief, paired by start (exact McNemar). Wanted: per game the '# Unseen target (#879):' notes (pilot, retained evidence) and how many hit; the known waste of #889 ('It dies.' not attributed). The light arm also pairs with #702's light at 206cf4e7 only descriptively (different build).
+  Tier full: classes-1800 starts 901-1800 (900 per arm), 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen track-p f8725bc0. Gate: no config_error; one binary; each arm's values in params-core.json; every
+  cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (belief alone is expected to change little: C's light radius deletes the records first). Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and
+  depth, alive at the cap having reached DL5; tiers of one study pooled (RULES 14). Descriptive. Switching either setting on in harness/borg.txt is a borg-reborn-rs P8 decision on this run.
