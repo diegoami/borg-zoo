@@ -193,6 +193,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-trap` | [#737](https://github.com/diegoami/borg-zoo/issues/737) | 5 | defined (20 death seeds, full ctl/trapoff) | The #1067 trap rules, shipped on (PR #1086, 91dd0d0a): ctl, trapoff, way, recover, noleave. |
 | `reborn-t1134` | [#738](https://github.com/diegoami/borg-zoo/issues/738) | 6 | defined (pilot, verysmall) | Phase threshold 50, confusion CLW cure, retreat breaker, prepared remedy 50 on track-p 1c071812 (borg-reborn-rs #1134): ctl, phase50, conf, osc, prep50, all. |
 | `reborn-mixed40` | [#732](https://github.com/diegoami/borg-zoo/issues/732) | 8 | defined (pilot, verysmall, small-rest) | Mixed exploration, C's leave-when-done and the old bfs stay (#1098, PR #1117) on 40c3bcc8: ctl, cexit, bfs-stay, mixed, nobfs, mixed-alone, mixed-tight, mixed-loose. |
+| `reborn-dp` | [#745](https://github.com/diegoami/borg-zoo/issues/745) | 4 | defined (pilots, x8 verysmall-medium, normal verysmall-big) | deal_with_poison (#1140, PR #1146, 1909efb9) in poison-x8 and the normal world: ctl, deal. |
 
 ### `heal-attack-4`
 
@@ -2734,6 +2735,19 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-mx40-mixed-tight` | – | – | – | 8 | 1 |
 | `reborn-mx40-mixed-loose` | – | – | – | 3 | 1 |
 
+### `reborn-dp`
+
+deal_with_poison (#1140, PR #1146, 1909efb9) in poison-x8 and the normal world: ctl, deal.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_deal_with_poison` | `borg_world` |
+| --- | --- | --- |
+| `reborn-dp-ctl` | – | – |
+| `reborn-dp-deal` | 1 | – |
+| `reborn-dp-ctl-x8` | – | poison-x8 |
+| `reborn-dp-deal-x8` | 1 | poison-x8 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2929,6 +2943,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_cave_light_engine_radius` | 1, not set | `reborn-lightbel`, `reborn-li206`, `reborn-belief`, `reborn-leash-dl1`, `reborn-light-ladder`, `reborn-light-priest` |  |
 | `borg_param_danger_breeder_melee_extra_tenths` | 0, 5, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_danger_observed_haste` | 1, not set | `reborn-fastpur` |  |
+| `borg_param_deal_with_poison` | 1, not set | `reborn-dp` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_fail` | 0, not set | `reborn-bless` |  |
 | `borg_param_defend_bless_max_danger_divisor` | 1, 4, not set | `reborn-bless` |  |
@@ -3232,7 +3247,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_town_w_escape` | 100, not set | `reborn-casters` |  |
 | `borg_town_w_space` | 12, 50, not set | `reborn-untested-town` |  |
 | `borg_town_w_support` | 25, 100, not set | `reborn-untested-town` |  |
-| `borg_world` | breeders-x4, breeders-x8, patches-x8, white-worm-mass-x4, not set | `reborn-stairunk`, `reborn-lonew`, `reborn-blloww`, `reborn-deadend`, `reborn-bfol`, `reborn-kos-cure`, `reborn-ro-tp` |  |
+| `borg_world` | breeders-x4, breeders-x8, patches-x8, poison-x8, white-worm-mass-x4, not set | `reborn-stairunk`, `reborn-lonew`, `reborn-blloww`, `reborn-deadend`, `reborn-bfol`, `reborn-kos-cure`, `reborn-ro-tp`, `reborn-dp` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |

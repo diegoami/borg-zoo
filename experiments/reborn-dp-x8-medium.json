@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-dp-x8-medium",
+  "issue": 745,
+  "definition": "definitions/reborn-dp-x8-medium.yaml",
+  "question": "On borg-reborn-rs 1909efb9 (PR #1146), does the poison triage (deal_with_poison 1) lower the poison deaths (white jellies, white worm masses and the others) in the poison-rich world and in the normal world, and what does it cost?",
+  "description": "On borg-reborn-rs 1909efb9 (PR #1146), does the poison triage (deal_with_poison 1) lower the poison deaths (white jellies, white worm masses and the others) in the poison-rich world and in the normal world, and what does it cost? Generated from definitions/reborn-dp-x8-medium.yaml: 2 arms on 4.2.6-reborn-rust-dealpoison-1909efb9, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#745; borg-reborn-rs #1140, PR #1146 at 1909efb9, the owner's re-review fixes; replaces 7d9c8078 and 5e92db2d). Two arms: ctl (deal_with_poison 0, shipped) and deal (deal_with_poison 1: a poison triage built on the HP the poison still takes, with the six parts A note, F cure carried, B late drink, C leave, D town, E fight race; poison_late_drink_margin 2 and poison_cure_pending_percent 50 kept at their defaults). Each world's arms are compared only inside that world (RULES 21): poison-x8 (harness/worlds/poison-x8.txt, #741's world) and the normal world. Runs: pilot first in both worlds (classes-18, evidence retained); poison-x8 needs more starts than #741's verysmall (1 ctl death in 45): starts 1-360 (verysmall, small-rest, medium) here, 1-300 as the request asks at least; the normal world starts 1-900 to measure the cost elsewhere.\nTier medium: classes-1800 medium, world poison-x8, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen 1909efb9 with the poison-x8 world pinned. Gate: no config_error; one binary; every cell of a world records it with the same borg_world_data_sha256 in every arm; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report: deaths per arm, poison deaths apart (jelly, worm mass, other), rescued and newly killed against ctl (exact McNemar), DL3 and DL5 reached; from the notes (pilot evidence, all tagged #1140) per arm: '# Poison: cured with what it carries', '# Poison: late drink', '# Leaving (the poison outlasts HP and healing, #1140)', '# Recalling: the poison takes', '# Poison triage: ... buying', '# Poison fight race: ... lost', '# Stepping out of reach of a poisoner that never moves'; the death report (/death-report) for every deal death that ctl survived. Local direction (borg-cemetery#146 replays, not a claim): Rogue 626789725, Druid 799968561 and Ranger 956247604 die with ctl and live with deal; Paladin 1200156945 dies in both. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-dealpoison-1909efb9"
+  ],
+  "profiles": [
+    "reborn-dp-ctl-x8",
+    "reborn-dp-deal-x8"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-dealpoison-1909efb9",
+  "control_profile": "reborn-dp-ctl-x8",
+  "owner_authorization": "2026-11-23: borg-reborn-rs owner (\"yes do it\": measure deal_with_poison, #1140), borg-zoo#745; zoo owner, 2026-11-23: \"continue\".",
+  "retain_evidence": false
+}

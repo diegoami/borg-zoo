@@ -13149,6 +13149,38 @@
         "borg_param_caution_retreat_immobile_kill_turns": 3,
         "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
       }
+    },
+    "reborn-dp-ctl": {
+      "description": "borg-zoo#745 (reborn-dp-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-dp-deal": {
+      "description": "borg-zoo#745 (reborn-dp-pilot.yaml): arm deal.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_deal_with_poison": 1
+      }
+    },
+    "reborn-dp-ctl-x8": {
+      "description": "borg-zoo#745 (reborn-dp-x8-pilot.yaml): arm ctl-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8"
+      }
+    },
+    "reborn-dp-deal-x8": {
+      "description": "borg-zoo#745 (reborn-dp-x8-pilot.yaml): arm deal-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8",
+        "borg_param_deal_with_poison": 1
+      }
     }
   }
 }
