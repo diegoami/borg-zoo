@@ -12638,6 +12638,14 @@
         "borg_param_caution_retreat_oscillation_limit": 3,
         "borg_param_caution_retreat_oscillation_backaway": 1
       }
+    },
+    "reborn-pois-prep50": {
+      "description": "borg-zoo#738 (reborn-pois-phase-pilot.yaml): arm prep50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_prepared_percent": 50
+      }
     }
   }
 }

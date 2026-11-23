@@ -1,11 +1,12 @@
-# borg-zoo#738 (borg-reborn-rs#1134): three settings from the 25 deaths of reborn-bfs-full run 45121432449, pilot tier.
+# borg-zoo#738 (borg-reborn-rs#1134): four settings from the 25 deaths of reborn-bfs-full run 45121432449, pilot tier.
 # Write the catalogue entries with: python3 -m zoo define definitions/reborn-pois-phase-pilot.yaml
 name: reborn-pois-phase-pilot
 issue: 738
 question: >-
   On borg-reborn-rs track-p 1c071812, do a lower Phase rule threshold (escape_phase_lost_danger_percent 50), the CLW
   confusion cure (caution_confused_clw_cure 1) and the retreat breaker with back-aways (caution_retreat_oscillation_limit 3,
-  caution_retreat_oscillation_backaway 1) save early deaths, one at a time and together, without costing progress?
+  caution_retreat_oscillation_backaway 1) save early deaths, one at a time and together, without costing progress? And does a
+  higher weight on prepared remedies (town_prepared_percent 50: Neutralize Poison and Cure Critical Wounds among them) change them?
 tier: pilot            # classes-18, 100,000 turns; verysmall (classes-1800 starts 1-45) after the gate and the owner
 
 specimen: 4.2.6-reborn-rust-trackp-1c071812
@@ -20,6 +21,7 @@ arms:
   phase50: {borg_param_escape_phase_lost_danger_percent: 50}
   conf: {borg_param_caution_confused_clw_cure: 1}
   osc: {borg_param_caution_retreat_oscillation_limit: 3, borg_param_caution_retreat_oscillation_backaway: 1}
+  prep50: {borg_param_town_prepared_percent: 50}   # owner, 2026-11-23: "make them buy potions to cure poison and critical wounds more"
   all: {borg_param_escape_phase_lost_danger_percent: 50, borg_param_caution_confused_clw_cure: 1, borg_param_caution_retreat_oscillation_limit: 3, borg_param_caution_retreat_oscillation_backaway: 1}
 control: [ctl]
 owner_authorization: >-
@@ -29,13 +31,15 @@ extra:
   retain_evidence: true
 
 prespecified: |
-  Fixed 2026-11-23, before any result of these arms on random starts was read (borg-zoo#738; borg-reborn-rs#1134). Five arms on track-p 1c071812, classes-18,
+  Fixed 2026-11-23, before any result of these arms on random starts was read (borg-zoo#738; borg-reborn-rs#1134). Six arms on track-p 1c071812, classes-18,
   100,000 turns, evidence retained. Mechanism evidence only, from chosen starts (the 25 deaths of run 45121432449, replayed from birth, borg-cemetery#146):
-  phase50 rescued 5 at the fatal episode, conf 2, osc 1; none killed any of 18 sampled survivors. Chosen-start rescues did not carry over to fresh starts
+  phase50 rescued 5 at the fatal episode, conf 2, osc 1; none killed any of 18 sampled survivors. prep50 (added 2026-11-23 on the
+  owner's request, still before any random-start result) changed 3 of the 25 death games, all early, and raised the Neutralize Poison
+  bought by 18 survivors from 2 to 14 potions, killing none; "all" stays the first three settings. Chosen-start rescues did not carry over to fresh starts
   before (#429, #501), so this measures on random starts.
   Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts
   apart; identical plays per arm (an arm that plays the control's keys in most games was not exercised).
   Report per arm and class: deaths and causes (poison apart), CL at death, final and maximum level, deepest level; paired rescued and newly killed against
-  ctl (exact McNemar); Phase Door reads, CLW quaffs and Word of Recall reads per game; per game the counts of each switch's notes ("Phase rule ... the rule
+  ctl (exact McNemar); Phase Door reads, CLW quaffs and Word of Recall reads per game; Neutralize Poison and Cure Critical Wounds bought and quaffed per game (prep50); per game the counts of each switch's notes ("Phase rule ... the rule
   allows a Phase Door", "Fixing Confusion", "(#932)"). Descriptive (RULES 14). Next tier verysmall (classes-1800 starts 1-45) with the arms that are not
   harmful, only on the owner's word.
