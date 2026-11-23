@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-trackp-353f5c09-full",
+  "issue": 695,
+  "definition": "definitions/reborn-trackp-353f5c09-full.yaml",
+  "question": "What do the borg-rs core and shipped settings of borg-reborn-rs trackp at 353f5c09 do over classes-1800's full slice (900 starts, 100,000 turns)? A baseline of the trackp line: a description, not a comparison.",
+  "description": "What do the borg-rs core and shipped settings of borg-reborn-rs trackp at 353f5c09 do over classes-1800's full slice (900 starts, 100,000 turns)? A baseline of the trackp line: a description, not a comparison. Generated from definitions/reborn-trackp-353f5c09-full.yaml: 1 arms on 4.2.6-reborn-rust-trackp-353f5c09, suite classes-1800-full.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#695, the current state). Baseline of the track-p line at 353f5c09: one arm (shipped settings, borg-rs core, no overrides),\nclasses-1800, 100,000 turns, ladder tier full. Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; stalls,\ntimeouts and wall timeouts counted apart. Report overall and per class: deaths and causes, CL and depth at death, survivors, alive at the cap having reached\nDL5, unfinished; paired by start against the abd0cce1 and 206cf4e7 baselines of the same starts; in particular grey mushroom patch deaths (and\nconfused-by-patch deaths) and any new leading killer. This is a progress baseline, not the P8 exit run (borg-reborn-rs PLAN.md). Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-353f5c09"
+  ],
+  "profiles": [
+    "reborn-head-shipped"
+  ],
+  "suites": [
+    "classes-1800-full"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-353f5c09",
+  "control_profile": "reborn-head-shipped",
+  "owner_authorization": "2026-11-23: zoo owner, \"ok continue, can we make a run with the current state at some point\" (the baseline ladder of track-p at its current head 353f5c09, as #695's at 206cf4e7 and abd0cce1; the current head ships stair_scum, unseen_belief, the Phase Door switches, the trap rules and the light radius).",
+  "retain_evidence": false
+}
