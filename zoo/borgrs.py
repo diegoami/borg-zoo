@@ -76,7 +76,7 @@ DEPTH_MARKS = (1, 2, 3, 4, 5, 6, 8, 10, 15, 20)
 # f.. au<gold> xp<xp> lv<level> t...| o...| p... e... r...". A line with no
 # player state yet (before birth) is "<turn> -" and is skipped.
 STATE_LINE = re.compile(
-    r'^(?P<turn>\d+) \S+ d(?P<depth>\d+)/(?P<max_depth>\d+) hp\S+ sp\S+ f\S+ '
+    r'^(?P<turn>\d+) \S+ d(?P<depth>\d+)/(?P<max_depth>\d+) hp(?P<hp>-?\d+)/(?P<max_hp>\d+) sp\S+ f\S+ '
     r'au(?P<gold>-?\d+) xp(?P<xp>\d+) lv(?P<level>\d+)\b')
 
 
@@ -96,6 +96,52 @@ def first_turns_at_depth(states, marks=DEPTH_MARKS):
         for m in marks:
             if s['max_depth'] >= m and str(m) not in out:
                 out[str(m)] = s['turn']
+    return out
+
+
+# Character levels to report first_turn_at_level for: every level to 20 (borg-zoo#718).
+LEVEL_MARKS = tuple(range(2, 21))
+# Max HP marks for first_turn_at_max_hp (borg-zoo#718; borg-reborn-rs#1061's 25 HP stair-scum threshold).
+MAX_HP_MARKS = (15, 20, 25, 30, 40, 60)
+
+
+def first_turns_at_level(states, marks=LEVEL_MARKS):
+    """The first game turn with character level at or above each mark."""
+    out = {}
+    for s in states:
+        for m in marks:
+            if s['level'] >= m and str(m) not in out:
+                out[str(m)] = s['turn']
+    return out
+
+
+def first_turns_at_max_hp(states, marks=MAX_HP_MARKS):
+    """The first game turn with max HP at or above each mark."""
+    out = {}
+    for s in states:
+        for m in marks:
+            if s['max_hp'] >= m and str(m) not in out:
+                out[str(m)] = s['turn']
+    return out
+
+
+def turns_at_level_depth(states, end_turn=None):
+    """Game turns spent at each (character level, current depth) pair, as
+    {"<level>,<depth>": turns}: each interval between consecutive state lines
+    is charged to the earlier line's pair, and the last line's pair is charged
+    up to end_turn (the cell's final turn) when that is later. The exposure
+    for a deaths-per-turn rate at a level and depth (borg-zoo#718); a death's
+    own (level, depth) is in the cell's final."""
+    out = {}
+    for i, s in enumerate(states):
+        if i + 1 < len(states):
+            nxt = states[i + 1]['turn']
+        else:
+            nxt = end_turn if end_turn is not None else s['turn']
+        span = nxt - s['turn']
+        if span > 0:
+            key = f"{s['level']},{s['depth']}"
+            out[key] = out.get(key, 0) + span
     return out
 
 
@@ -661,6 +707,10 @@ def run_cell(cell, build_dir, work, cat, keep=False):
                   'level': summary.get('clevel'), 'max_level': summary.get('clevel'),
                   'hp': None, 'decisions': None, 'keys': summary.get('keys')},
         'first_turn_at_depth': first_turns_at_depth(states) if states else {},
+        # borg-zoo#718: time at a level and depth, for a death rate per turn of exposure; {} without a state log.
+        'first_turn_at_level': first_turns_at_level(states) if states else {},
+        'turns_at_level_depth': turns_at_level_depth(states, summary.get('game_turns')) if states else {},
+        'first_turn_at_max_hp': first_turns_at_max_hp(states) if states else {},
         'milestones': milestones(states, suite['cap']) if states else None,
         'wall_seconds': wall,
         'trace_sha256': keys_sha, 'play_sha256': keys_sha,
