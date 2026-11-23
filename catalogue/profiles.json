@@ -12401,6 +12401,64 @@
         "borg_param_caution_retreat_immobile_kill_turns": 3,
         "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
       }
+    },
+    "reborn-ss1061s-shipped": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-ss1061s-noscum": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm noscum.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 0
+      }
+    },
+    "reborn-ss1061s-nobfs": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm nobfs.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_breadth_first": 0
+      }
+    },
+    "reborn-ss1061s-neither": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm neither.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 0,
+        "borg_param_explore_breadth_first": 0
+      }
+    },
+    "reborn-ss1061s-level0": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm level0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_slack_per_level_percent": 0
+      }
+    },
+    "reborn-ss1061s-hp25": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm hp25.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_max_hp": 25
+      }
+    },
+    "reborn-ss1061s-kitleash": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-shipped-pilot.yaml): arm kitleash.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 0,
+        "borg_param_explore_breadth_first": 0,
+        "borg_param_kit_leash": 1
+      }
     }
   }
 }
