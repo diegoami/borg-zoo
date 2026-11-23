@@ -1,0 +1,35 @@
+# borg-zoo#745: deal_with_poison on 1909efb9, pilot tier (classes-18, poison-x8). Write the catalogue entries with: python3 -m zoo define definitions/reborn-dp-x8-pilot.yaml
+name: reborn-dp-x8-pilot
+issue: 745
+question: >-
+  On borg-reborn-rs 1909efb9 (PR #1146), does the poison triage (deal_with_poison 1) lower the poison deaths (white jellies, white worm masses and the others) in the poison-rich world and in the normal world, and what does it cost?
+tier: pilot            # classes-18, poison-x8, 100,000 turns
+pilot: true            # first run of these arms on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-dealpoison-1909efb9
+  repository: diegoami/borg-reborn-rs
+  ref: 1909efb920cbdefc4312eff5c9e181f2275e6154
+  label: "borg-reborn-rs branch claude/loving-bohr-z4g39a 1909efb9 (PR #1146: #1140 deal_with_poison compiled and shipped 0, merged with track-p bf76b64d, which ships #1135's dear cures and #1098's exploration; world poison-x8 pinned); shipped harness/borg.txt 87633839..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+  worlds:
+    poison-x8: fb86c333c80e048da19e68e7e15efc63df49134f91124ecb5168165558e5de0d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-dp
+arms:
+  ctl-x8: {borg_world: poison-x8}
+  deal-x8: {borg_world: poison-x8, borg_param_deal_with_poison: 1}
+control: [ctl-x8]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs owner ("yes do it": measure deal_with_poison, #1140), borg-zoo#745; zoo owner, 2026-11-23: "continue".
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#745; borg-reborn-rs #1140, PR #1146 at 1909efb9, the owner's re-review fixes; replaces 7d9c8078 and 5e92db2d). Two arms: ctl (deal_with_poison 0, shipped) and deal (deal_with_poison 1: a poison triage built on the HP the poison still takes, with the six parts A note, F cure carried, B late drink, C leave, D town, E fight race; poison_late_drink_margin 2 and poison_cure_pending_percent 50 kept at their defaults). Each world's arms are compared only inside that world (RULES 21): poison-x8 (harness/worlds/poison-x8.txt, #741's world) and the normal world. Runs: pilot first in both worlds (classes-18, evidence retained); poison-x8 needs more starts than #741's verysmall (1 ctl death in 45): starts 1-360 (verysmall, small-rest, medium) here, 1-300 as the request asks at least; the normal world starts 1-900 to measure the cost elsewhere.
+  Tier pilot: classes-18, 100,000 turns, world poison-x8, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen 1909efb9 with the poison-x8 world pinned. Gate: no config_error; one binary; every cell of a world records it with the same borg_world_data_sha256 in every arm; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report: deaths per arm, poison deaths apart (jelly, worm mass, other), rescued and newly killed against ctl (exact McNemar), DL3 and DL5 reached; from the notes (pilot evidence, all tagged #1140) per arm: '# Poison: cured with what it carries', '# Poison: late drink', '# Leaving (the poison outlasts HP and healing, #1140)', '# Recalling: the poison takes', '# Poison triage: ... buying', '# Poison fight race: ... lost', '# Stepping out of reach of a poisoner that never moves'; the death report (/death-report) for every deal death that ctl survived. Local direction (borg-cemetery#146 replays, not a claim): Rogue 626789725, Druid 799968561 and Ranger 956247604 die with ctl and live with deal; Paladin 1200156945 dies in both. Descriptive (RULES 14).

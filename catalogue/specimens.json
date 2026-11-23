@@ -3658,6 +3658,22 @@
       "scary_lists": {
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
+    },
+    "4.2.6-reborn-rust-dealpoison-1909efb9": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "1909efb920cbdefc4312eff5c9e181f2275e6154",
+      "label": "borg-reborn-rs branch claude/loving-bohr-z4g39a 1909efb9 (PR #1146: #1140 deal_with_poison compiled and shipped 0, merged with track-p bf76b64d, which ships #1135's dear cures and #1098's exploration; world poison-x8 pinned); shipped harness/borg.txt 87633839..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      },
+      "worlds": {
+        "poison-x8": "fb86c333c80e048da19e68e7e15efc63df49134f91124ecb5168165558e5de0d"
+      }
     }
   }
 }

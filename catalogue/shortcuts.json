@@ -2584,6 +2584,18 @@
         "reborn-head-shipped"
       ],
       "runs": []
+    },
+    "reborn-dp": {
+      "issue": 745,
+      "status": "defined (pilots, x8 verysmall-medium, normal verysmall-big)",
+      "what": "deal_with_poison (#1140, PR #1146, 1909efb9) in poison-x8 and the normal world: ctl, deal.",
+      "profiles": [
+        "reborn-dp-ctl",
+        "reborn-dp-deal",
+        "reborn-dp-ctl-x8",
+        "reborn-dp-deal-x8"
+      ],
+      "runs": []
     }
   }
 }
