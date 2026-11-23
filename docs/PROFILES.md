@@ -169,6 +169,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-li206` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 6 | defined (pilot, full) | Engine light radius alone and with the day's leads on track-p 206cf4e7: ctl, light, light+lone, light+leash, light+throw, combined. |
 | `reborn-ks206` | [#703](https://github.com/diegoami/borg-zoo/issues/703) | 4 | defined (pilot, small, medium) | Kill-on-sight floor and unknown-potion test in the normal world on track-p 206cf4e7: ctl, floor0, potions0, both0. |
 | `reborn-bel872` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 5 | defined (pilot, full) | Position belief (#879) with and without the engine light radius on track-p f8725bc0: ctl, light, belief, light+belief, light+belief-decay5. |
+| `reborn-ffb769` | [#711](https://github.com/diegoami/borg-zoo/issues/711) | 5 | defined (pilot, full) | The #926 fast-fragile bundle (escape quantile 75, heal floor 50, count_dot 1) and its three parts on track-p 769f3fbd: ctl, bundle, q75, floor50, dot. |
 
 ### `heal-attack-4`
 
@@ -2403,6 +2404,20 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-bel872-light+belief` | 1 | 1 | – |
 | `reborn-bel872-light+belief-decay5` | 1 | 1 | 5 |
 
+### `reborn-ffb769`
+
+The #926 fast-fragile bundle (escape quantile 75, heal floor 50, count_dot 1) and its three parts on track-p 769f3fbd: ctl, bundle, q75, floor50, dot.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_fast_fragile_count_dot` | `borg_param_fast_fragile_escape_quantile` | `borg_param_fast_fragile_heal_floor` |
+| --- | --- | --- | --- |
+| `reborn-ffb769-ctl` | – | – | – |
+| `reborn-ffb769-bundle` | 1 | 75 | 50 |
+| `reborn-ffb769-q75` | – | 75 | – |
+| `reborn-ffb769-floor50` | – | – | 50 |
+| `reborn-ffb769-dot` | 1 | – | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2609,10 +2624,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
 | `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag`, `reborn-nowalk`, `reborn-cavesp` |  |
 | `borg_param_fast_fragile_contact_max` | 1, not set | `reborn-cavesp` |  |
-| `borg_param_fast_fragile_count_dot` | 1, not set | `reborn-ffq` |  |
+| `borg_param_fast_fragile_count_dot` | 1, not set | `reborn-ffq`, `reborn-ffb769` |  |
 | `borg_param_fast_fragile_escape_percent` | 0, 75, not set | `reborn-fastfrag`, `reborn-ffq` |  |
-| `borg_param_fast_fragile_escape_quantile` | 50, 100, not set | `reborn-ffq` |  |
-| `borg_param_fast_fragile_heal_floor` | 25, not set | `reborn-ffq` |  |
+| `borg_param_fast_fragile_escape_quantile` | 50, 75, 100, not set | `reborn-ffq`, `reborn-ffb769` |  |
+| `borg_param_fast_fragile_heal_floor` | 25, 50, not set | `reborn-ffq`, `reborn-ffb769` |  |
 | `borg_param_fast_fragile_no_heal` | 1, 2, not set | `reborn-fastfrag` |  |
 | `borg_param_fast_fragile_no_walk` | 1, not set | `reborn-nowalk` |  |
 | `borg_param_fast_fragile_policy` | 1, not set | `reborn-fastfrag` |  |

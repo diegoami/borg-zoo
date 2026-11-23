@@ -12069,6 +12069,47 @@
         "borg_param_unseen_belief": 1,
         "borg_param_unseen_decay_percent": 5
       }
+    },
+    "reborn-ffb769-ctl": {
+      "description": "borg-zoo#711 (reborn-ffbundle-769f-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-ffb769-bundle": {
+      "description": "borg-zoo#711 (reborn-ffbundle-769f-pilot.yaml): arm bundle.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_escape_quantile": 75,
+        "borg_param_fast_fragile_heal_floor": 50,
+        "borg_param_fast_fragile_count_dot": 1
+      }
+    },
+    "reborn-ffb769-q75": {
+      "description": "borg-zoo#711 (reborn-ffbundle-769f-pilot.yaml): arm q75.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_escape_quantile": 75
+      }
+    },
+    "reborn-ffb769-floor50": {
+      "description": "borg-zoo#711 (reborn-ffbundle-769f-pilot.yaml): arm floor50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_heal_floor": 50
+      }
+    },
+    "reborn-ffb769-dot": {
+      "description": "borg-zoo#711 (reborn-ffbundle-769f-pilot.yaml): arm dot.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_count_dot": 1
+      }
     }
   }
 }

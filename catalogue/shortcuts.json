@@ -2292,6 +2292,19 @@
         "reborn-bel872-light+belief-decay5"
       ],
       "runs": []
+    },
+    "reborn-ffb769": {
+      "issue": 711,
+      "status": "defined (pilot, full)",
+      "what": "The #926 fast-fragile bundle (escape quantile 75, heal floor 50, count_dot 1) and its three parts on track-p 769f3fbd: ctl, bundle, q75, floor50, dot.",
+      "profiles": [
+        "reborn-ffb769-ctl",
+        "reborn-ffb769-bundle",
+        "reborn-ffb769-q75",
+        "reborn-ffb769-floor50",
+        "reborn-ffb769-dot"
+      ],
+      "runs": []
     }
   }
 }

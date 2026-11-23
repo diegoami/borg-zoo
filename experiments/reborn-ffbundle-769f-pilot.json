@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-ffbundle-769f-pilot",
+  "issue": 711,
+  "definition": "definitions/reborn-ffbundle-769f-pilot.yaml",
+  "question": "On track-p 769f3fbd, does the #926 fast-fragile bundle (escape quantile 75, heal floor 50, cut and poison counted) help, hurt or interact, against shipped play and against each of its three parts alone?",
+  "description": "On track-p 769f3fbd, does the #926 fast-fragile bundle (escape quantile 75, heal floor 50, cut and poison counted) help, hurt or interact, against shipped play and against each of its three parts alone? Generated from definitions/reborn-ffbundle-769f-pilot.yaml: 5 arms on 4.2.6-reborn-rust-trackp-769f3fbd, suite classes-18.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#711). Five arms at track-p 769f3fbd (all three settings ship 0): ctl; bundle\n(fast_fragile_escape_quantile 75, fast_fragile_heal_floor 50, fast_fragile_count_dot 1); q75; floor50; dot (each part alone). Supersedes #672's pin.\nPilot as a gate, then the full tier (classes-1800 starts 901-1800, 900 per arm), matching #695 and #702; if capacity is short, ctl and bundle in full\nfirst and the single-setting arms at big. Tier pilot: classes-18, 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core. Gate: no config_error; one\nbinary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm.\nReport per arm and class against ctl: deaths and causes, rescued and newly killed (exact McNemar), CL and depth, alive at the cap having reached DL5,\nidentical plays; deaths to fast-fragile monsters (crow, wild cat, cave spider ...); games that die with a healing potion in the pack; Phase Door scrolls\nused per game. Fast-fragile decisions are rare (about 1 game in 60, #660, #596). Tiers of one study pooled (RULES 14). Descriptive. Whether the bundle\nstays on in harness/borg.txt is a borg-reborn-rs decision on this run.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-769f3fbd"
+  ],
+  "profiles": [
+    "reborn-ffb769-ctl",
+    "reborn-ffb769-bundle",
+    "reborn-ffb769-q75",
+    "reborn-ffb769-floor50",
+    "reborn-ffb769-dot"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-769f3fbd",
+  "control_profile": "reborn-ffb769-ctl",
+  "owner_authorization": "2026-11-23: borg-reborn-rs owner (\"can we turn on the fast-fragile bundle\" ... \"and make a zoo test asap\"), filed as borg-zoo#711; values changed by the owner before dispatch, 2026-11-23 (#711 comment 7088263118): \"heal floor 50, 75th percentile, count_dot 1\"; pilot as the gate, then full.",
+  "retain_evidence": true
+}
