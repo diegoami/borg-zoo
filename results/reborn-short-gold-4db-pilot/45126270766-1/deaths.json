@@ -1,0 +1,117 @@
+[
+  {
+    "cause": "poison",
+    "cell": "classes-18/4.2.6-reborn-rust-shortgold-4db877c6/reborn-sg-shortgold/934061548",
+    "class": "Druid",
+    "diagnosis": "unassessed",
+    "died_after_cap": null,
+    "evidence": {
+      "cell": "classes-18/4.2.6-reborn-rust-shortgold-4db877c6/reborn-sg-shortgold/934061548",
+      "complete": true,
+      "files": {
+        "archive/Borg.map": {
+          "bytes": 37324,
+          "sha256": "d9e9bea845028e4de21c5c4ea26e18ae92c1e94d4ded24d4e954a021c2beed63"
+        },
+        "archive/borg-log.txt": {
+          "bytes": 166,
+          "sha256": "04f571306968de6a3b9b47d6b6536ece4963771c79058e88c641d407bc5e6700"
+        },
+        "archive/borg.dat": {
+          "bytes": 43,
+          "sha256": "cd1a1189d0c1820cbf8e3ad137ee020cf164f6792369f51271b44fedaaec1c92"
+        },
+        "keys.log": {
+          "bytes": 27962,
+          "sha256": "7d8a24fa31d58f87afea823ce539e3af9a0473a214883bb57c5e5daee74c1f9c"
+        },
+        "messages.log": {
+          "bytes": 136512,
+          "sha256": "2a89fb3acab5eda053629f329da4c99b2b0c86c9bfaa460fc469498bca5adfa7"
+        },
+        "params-core.json": {
+          "bytes": 811127,
+          "sha256": "493aeb4739bf7b998d3a1bd237cd2ee370171f304f27d7d62728510cb8531be4"
+        },
+        "phase-observations.jsonl": {
+          "bytes": 5034,
+          "sha256": "5f8f5f5cab37202e1eaca210a130f9d4d4eb68b343e60a82c5e20c950c0d03bf"
+        },
+        "return-events.jsonl": {
+          "bytes": 4976,
+          "sha256": "6b055a05e7c41317bca683a6f9b6ec87468e78abb8a684e7c9f856ecdbbfcefc"
+        },
+        "save/Borg": {
+          "bytes": 60392,
+          "sha256": "a2408bd9310e438412ab4a683fa24e609d68bce21e703529c92d71ebb696241c"
+        },
+        "settings-resolved.json": {
+          "bytes": 4507,
+          "sha256": "64d1a065d68c1345f60e095e5a9e48077dc99afafc35310de9fcbe463b385119"
+        },
+        "state.log": {
+          "bytes": 282747,
+          "sha256": "1073c3bbb0ca6116ff1d98ebb2adf20ef977ebbc16fb853c72aaafa3160986f1"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "summary.json": {
+          "bytes": 1987,
+          "sha256": "18992d7d325a9ea6d659989e4b3e179c5235d62d8984d0f25df42a47b22f305e"
+        },
+        "town-recording.json": {
+          "bytes": 1773,
+          "sha256": "6f0fb1d8903bec93071f625b8105c8b04d621129e4ed1f3029169b3de87ae7d8"
+        },
+        "town-transactions.jsonl": {
+          "bytes": 5348,
+          "sha256": "f8c935ab71141145bf5fdff79ca8dbe7258cadf4eebcc03c7435f87edef93c2b"
+        },
+        "trace-core.jsonl": {
+          "bytes": 13178213,
+          "sha256": "249be1addec604150bb8e5afaf0cabef149a5f9175f71399544e7679ca519ec9"
+        },
+        "user/CharOutput.txt": {
+          "bytes": 112,
+          "sha256": "08aecdab69c259f0a71bdd4f41e23e77f97411113005e2f2bf48a02ddc38e87e"
+        },
+        "user/borg.txt": {
+          "bytes": 109379,
+          "sha256": "e622ccb08fc29eed63dfcae0a01cce724850c9ac06fa71d5af4d2f47c0107f80"
+        },
+        "user/lore.txt": {
+          "bytes": 5260,
+          "sha256": "beaacfe469ef5dacc984900a29cd490589bae7be321a0c2906f4abff5066fa48"
+        },
+        "user/scary_monsters.txt": {
+          "bytes": 7552,
+          "sha256": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        },
+        "user/window.prf": {
+          "bytes": 393,
+          "sha256": "065d489b097f395404ab33c6c61bbb1013ddbd40269106aaf323d62d76fe80d5"
+        }
+      },
+      "missing_required": [],
+      "schema": "borg-zoo/evidence@1"
+    },
+    "final": {
+      "decisions": null,
+      "depth": 1,
+      "hp": null,
+      "keys": 2257,
+      "kind": "death",
+      "level": 3,
+      "max_depth": 1,
+      "max_level": 3,
+      "turn": 18650
+    },
+    "outcome": "death",
+    "qualification": "Recorded outcome only; no causal diagnosis or replay fidelity claimed.",
+    "race": "Half-Elf",
+    "seed": 934061548,
+    "specimen": "4.2.6-reborn-rust-shortgold-4db877c6"
+  }
+]
