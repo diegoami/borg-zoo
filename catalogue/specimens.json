@@ -3322,6 +3322,23 @@
       "scary_lists": {
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
+    },
+    "4.2.6-reborn-rust-archer-worlds-d098aee7": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "d098aee7e27d38b462fd9b95ec8bffd0f9727261",
+      "label": "borg-reborn-rs task/982-low-hp-rest-cure d098aee7 (track-p 5cb95bc0 + #998 + #999, recover_unseen_shot 1 and recover_rest_cure_hp_percent 50 shipped) with its archers-x4 and archers-x8 worlds pinned (RULES 21); harness/borg.txt 94788489..., scary_monsters.txt 5a4ec4b6...",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      },
+      "worlds": {
+        "archers-x4": "efbad9f57c09395ed90498365e27f4f16d2053ecd1054f664630a79550f6d340",
+        "archers-x8": "22efc46841efe720b2e993a98d01d4769ddcdce0b076977f71e094dd15155d9e"
+      }
     }
   }
 }

@@ -12069,6 +12069,114 @@
         "borg_param_unseen_belief": 1,
         "borg_param_unseen_decay_percent": 5
       }
+    },
+    "reborn-ldl1-ctl": {
+      "description": "borg-zoo#702 (reborn-leash-dl1-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-ldl1-light": {
+      "description": "borg-zoo#702 (reborn-leash-dl1-pilot.yaml): arm light.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_cave_light_engine_radius": 1
+      }
+    },
+    "reborn-ldl1-leash": {
+      "description": "borg-zoo#702 (reborn-leash-dl1-pilot.yaml): arm leash.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_min": 0,
+        "borg_param_kit_leash_power": 2
+      }
+    },
+    "reborn-ldl1-light+leash": {
+      "description": "borg-zoo#702 (reborn-leash-dl1-pilot.yaml): arm light+leash.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_cave_light_engine_radius": 1,
+        "borg_param_kit_leash": 1,
+        "borg_param_kit_leash_min": 0,
+        "borg_param_kit_leash_power": 2
+      }
+    },
+    "reborn-archer-ctl-x8": {
+      "description": "borg-zoo#706 (reborn-archer-worlds-pilot.yaml): arm ctl-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "archers-x8"
+      }
+    },
+    "reborn-archer-shotoff-x8": {
+      "description": "borg-zoo#706 (reborn-archer-worlds-pilot.yaml): arm shotoff-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "archers-x8",
+        "borg_param_recover_unseen_shot": 0
+      }
+    },
+    "reborn-archer-cureoff-x8": {
+      "description": "borg-zoo#706 (reborn-archer-worlds-pilot.yaml): arm cureoff-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "archers-x8",
+        "borg_param_recover_rest_cure_hp_percent": 0
+      }
+    },
+    "reborn-archer-off-x8": {
+      "description": "borg-zoo#706 (reborn-archer-worlds-pilot.yaml): arm off-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "archers-x8",
+        "borg_param_recover_unseen_shot": 0,
+        "borg_param_recover_rest_cure_hp_percent": 0
+      }
+    },
+    "reborn-archer-ctl-x4": {
+      "description": "borg-zoo#706 (reborn-archer-worlds-pilot.yaml): arm ctl-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "archers-x4"
+      }
+    },
+    "reborn-archer-shotoff-x4": {
+      "description": "borg-zoo#706 (reborn-archer-worlds-pilot.yaml): arm shotoff-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "archers-x4",
+        "borg_param_recover_unseen_shot": 0
+      }
+    },
+    "reborn-archer-cureoff-x4": {
+      "description": "borg-zoo#706 (reborn-archer-worlds-pilot.yaml): arm cureoff-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "archers-x4",
+        "borg_param_recover_rest_cure_hp_percent": 0
+      }
+    },
+    "reborn-archer-off-x4": {
+      "description": "borg-zoo#706 (reborn-archer-worlds-pilot.yaml): arm off-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "archers-x4",
+        "borg_param_recover_unseen_shot": 0,
+        "borg_param_recover_rest_cure_hp_percent": 0
+      }
     }
   }
 }

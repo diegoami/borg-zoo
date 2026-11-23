@@ -1,0 +1,29 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-archer-worlds-pilot",
+  "issue": 706,
+  "definition": "definitions/reborn-archer-worlds-pilot.yaml",
+  "question": "In the archers-x4 and archers-x8 worlds on borg-reborn-rs d098aee7 (track-p 5cb95bc0 plus #998 and #999, both rules shipped on), do the unseen-shooter rule (#981, recover_unseen_shot) and the cure-before-rest rule (#982, recover_rest_cure_hp_percent 50) save the games where the Borg rests under an archer it cannot see, which the normal world shows only rarely? Each world has its own control.",
+  "description": "In the archers-x4 and archers-x8 worlds on borg-reborn-rs d098aee7 (track-p 5cb95bc0 plus #998 and #999, both rules shipped on), do the unseen-shooter rule (#981, recover_unseen_shot) and the cure-before-rest rule (#982, recover_rest_cure_hp_percent 50) save the games where the Borg rests under an archer it cannot see, which the normal world shows only rarely? Each world has its own control. Generated from definitions/reborn-archer-worlds-pilot.yaml: 8 arms on 4.2.6-reborn-rust-archer-worlds-d098aee7, suite classes-18.",
+  "prespecified": "Fixed 2026-11-22, before any game of this build was played in these worlds (borg-zoo#706; borg-reborn-rs #981, #982, PRs #998, #999; RULES 21).\nFour arms (ctl = shipped, both rules on; shotoff; cureoff; off = the play before #998/#999) in archers-x8 and archers-x4 (8 profiles), classes-18,\n18 starts each (144 cells), 100,000 turns, evidence retained. A world's arms are compared only within that world (ctl-x8 against x8 arms, ctl-x4\nagainst x4 arms). Gate: no config_error; one binary; every cell records its world with the same borg_world_data_sha256 in every arm of that world;\neach arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls apart; identical plays. Report per world, arm and\nclass: deaths and causes (kobold archer, scout, orc tracker, ruffian apart; any death within 200 game turns of a \"You are hit by ...!\" message apart),\nCL and DL, paired rescued and newly killed against the world's ctl; per arm \"# Resting to recover HP/SP...\" notes within 50 game turns of a\n\"You are hit by ...!\" message, the counts of \"# Mode: invisible attacker near\", \"# Walking away from an unseen attacker\", \"# Mode: unseen attacker\nkilled\", \"# Mode: over (a ... which casts or shoots, died after unseen hits)\", \"# Cure before rest:\" notes and cures drunk; world check: kobold archers\nand scouts met per game (\"Creating a monster 'kobold archer'\" / \"'scout'\"). The favoured races are generated from DL4 (favour changes weights, not\ndepth), so games that stay above DL4 meet them only out of depth. A world is a stress test: a lead here needs the normal-world tiers before a shipped\nvalue is judged. Directional (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-archer-worlds-d098aee7"
+  ],
+  "profiles": [
+    "reborn-archer-ctl-x8",
+    "reborn-archer-shotoff-x8",
+    "reborn-archer-cureoff-x8",
+    "reborn-archer-off-x8",
+    "reborn-archer-ctl-x4",
+    "reborn-archer-shotoff-x4",
+    "reborn-archer-cureoff-x4",
+    "reborn-archer-off-x4"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-archer-worlds-d098aee7",
+  "control_profile": "reborn-archer-ctl-x8",
+  "owner_authorization": "2026-11-22: borg-reborn-rs owner, \"ask the zoo to create a world with more archers to test this\" and \"dispatch the archer world pilot\" (borg-zoo#706; the pilot only, later tiers after the gate and the owner).",
+  "retain_evidence": true
+}
