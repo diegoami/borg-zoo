@@ -193,6 +193,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-trap` | [#737](https://github.com/diegoami/borg-zoo/issues/737) | 5 | defined (20 death seeds, full ctl/trapoff) | The #1067 trap rules, shipped on (PR #1086, 91dd0d0a): ctl, trapoff, way, recover, noleave. |
 | `reborn-t1134` | [#738](https://github.com/diegoami/borg-zoo/issues/738) | 6 | defined (pilot, verysmall) | Phase threshold 50, confusion CLW cure, retreat breaker, prepared remedy 50 on track-p 1c071812 (borg-reborn-rs #1134): ctl, phase50, conf, osc, prep50, all. |
 | `reborn-mixed40` | [#732](https://github.com/diegoami/borg-zoo/issues/732) | 8 | defined (pilot, verysmall, small-rest) | Mixed exploration, C's leave-when-done and the old bfs stay (#1098, PR #1117) on 40c3bcc8: ctl, cexit, bfs-stay, mixed, nobfs, mixed-alone, mixed-tight, mixed-loose. |
+| `reborn-trackp-353f5c09` | [#695](https://github.com/diegoami/borg-zoo/issues/695) | 1 | defined (verysmall, small-rest, medium, big, full) | Baseline ladder of track-p at its current head 353f5c09 (2026-11-23): shipped settings, classes-1800 starts 1-1800. |
 | `reborn-dp` | [#745](https://github.com/diegoami/borg-zoo/issues/745) | 4 | defined (pilots, x8 verysmall-medium, normal verysmall-big) | deal_with_poison (#1140, PR #1146, 1909efb9) in poison-x8 and the normal world: ctl, deal. |
 
 ### `heal-attack-4`
@@ -2734,6 +2735,14 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-mx40-mixed-alone` | – | 0 | – | – | 1 |
 | `reborn-mx40-mixed-tight` | – | – | – | 8 | 1 |
 | `reborn-mx40-mixed-loose` | – | – | – | 3 | 1 |
+
+### `reborn-trackp-353f5c09`
+
+Baseline ladder of track-p at its current head 353f5c09 (2026-11-23): shipped settings, classes-1800 starts 1-1800.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-head-shipped`.
 
 ### `reborn-dp`
 

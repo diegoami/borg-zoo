@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-stairscum1061-shipped-pilot",
+  "issue": 721,
+  "definition": "definitions/reborn-stairscum1061-shipped-pilot.yaml",
+  "question": "On borg-reborn-rs PR #1090's head 2a6985db (track-p 40c1c963 merged with #1061), where the shipped harness/borg.txt plays the stair_scum mode at the owner's byclass settings together with #1085's breadth-first exploration: does the combination cut the deaths of weak characters against the play with neither, at what cost in level and depth, and what does each part do alone?",
+  "description": "On borg-reborn-rs PR #1090's head 2a6985db (track-p 40c1c963 merged with #1061), where the shipped harness/borg.txt plays the stair_scum mode at the owner's byclass settings together with #1085's breadth-first exploration: does the combination cut the deaths of weak characters against the play with neither, at what cost in level and depth, and what does each part do alone? Generated from definitions/reborn-stairscum1061-shipped-pilot.yaml: 7 arms on 4.2.6-reborn-rust-stair-scum-2a6985db, suite classes-18.",
+  "prespecified": "Fixed 2026-11-23, before any cell of this experiment is read. Specimen borg-reborn-rs 2a6985db, default borg-rs core, shipped harness/borg.txt (stair_scum on at the owner's byclass settings, explore_breadth_first on); seven arms on classes-18 at 100,000 turns (126 cells). The control is neither (both modes off: the play before them). The pilot is the gate, not a measurement (RULES 14, 16).\nGate: no config_error; one binary for every arm; each arm's values in settings-resolved.json (stair_scum 1 except noscum, neither, kitleash and every Warrior; explore_breadth_first; stair_scum_max_hp; stair_scum_slack_per_level_percent; kit_leash; the class slack values); every cell ends in death or turn_cap, none in stall, timeout or crash; in the arms with stair_scum its \"# Stair scum:\" notes appear for the non-Warrior characters under the threshold, and in noscum, neither and kitleash none do.\nReported per arm, paired by start against neither, and shipped against noscum and nobfs (each part's own effect): deaths, deaths at CL <= 2 and while max HP < 25; CL at 25k, 50k and 100k turns (milestones); starts reaching DL3 and DL5 with their first turn there (first_turn_at_depth); identical plays; the \"# Stair scum:\" level changes and returns per game. Descriptive at this size; the next tier (verysmall, starts 1-45) only after the gate is checked and the owner agrees, with the arms the owner keeps.",
+  "specimens": [
+    "4.2.6-reborn-rust-stair-scum-2a6985db"
+  ],
+  "profiles": [
+    "reborn-ss1061s-shipped",
+    "reborn-ss1061s-noscum",
+    "reborn-ss1061s-nobfs",
+    "reborn-ss1061s-neither",
+    "reborn-ss1061s-level0",
+    "reborn-ss1061s-hp25",
+    "reborn-ss1061s-kitleash"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-stair-scum-2a6985db",
+  "control_profile": "reborn-ss1061s-neither",
+  "owner_authorization": "2026-11-23, borg-reborn-rs owner on the #1061 session: \"start zoo test\", then \"ok let us merge with those settings\" and \"yes repin it\" (the pilot on the shipped combination). The pilot first (RULES 16)."
+}
