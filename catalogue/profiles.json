@@ -12178,43 +12178,90 @@
         "borg_param_recover_rest_cure_hp_percent": 0
       }
     },
-    "reborn-hq-ctl": {
-      "description": "borg-zoo#722 (reborn-heal-quaff-pilot.yaml): arm ctl.",
+    "reborn-ss1061-ctl": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm ctl.",
       "settings": {
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
     },
-    "reborn-hq-speed100": {
-      "description": "borg-zoo#722 (reborn-heal-quaff-pilot.yaml): arm speed100.",
+    "reborn-ss1061-scum": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm scum.",
       "settings": {
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none",
-        "borg_param_town_heal_speed_percent": 100
+        "borg_param_stair_scum": 1
       }
     },
-    "reborn-hq-quaff200": {
-      "description": "borg-zoo#722 (reborn-heal-quaff-pilot.yaml): arm quaff200.",
+    "reborn-ss1061-level0": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm level0.",
       "settings": {
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none",
-        "borg_param_town_heal_quaff_bonus_percent": 200
+        "borg_param_stair_scum": 1,
+        "borg_param_stair_scum_slack_per_level_percent": 0
       }
     },
-    "reborn-sg-ctl": {
-      "description": "borg-zoo#723 (reborn-short-gold-pilot.yaml): arm ctl.",
+    "reborn-ss1061-slack1": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm slack1.",
       "settings": {
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none",
-        "borg_param_town_short_gold": 0
+        "borg_param_stair_scum": 1,
+        "borg_param_stair_scum_slack_steps": 1
       }
     },
-    "reborn-sg-shortgold": {
-      "description": "borg-zoo#723 (reborn-short-gold-pilot.yaml): arm shortgold.",
+    "reborn-ss1061-slack2": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm slack2.",
       "settings": {
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none",
-        "borg_param_town_short_gold": 1
+        "borg_param_stair_scum": 1,
+        "borg_param_stair_scum_slack_steps": 2
+      }
+    },
+    "reborn-ss1061-rate1": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm rate1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 1,
+        "borg_param_stair_scum_slack_per_hp_tenths": 1
+      }
+    },
+    "reborn-ss1061-hp30": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm hp30.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 1,
+        "borg_param_stair_scum_max_hp": 30
+      }
+    },
+    "reborn-ss1061-kitleash": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm kitleash.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_kit_leash": 1
+      }
+    },
+    "reborn-ss1061-byclass": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm byclass.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 1,
+        "borg_param_stair_scum_max_hp": 20,
+        "borg_param_stair_scum__warrior": 0,
+        "borg_param_stair_scum_slack_steps__druid": 1,
+        "borg_param_stair_scum_slack_steps__necromancer": 1,
+        "borg_param_stair_scum_slack_steps__mage": 2,
+        "borg_param_stair_scum_slack_steps__priest": 2,
+        "borg_param_stair_scum_slack_steps__ranger": 3,
+        "borg_param_stair_scum_slack_steps__rogue": 3,
+        "borg_param_stair_scum_slack_steps__paladin": 4,
+        "borg_param_stair_scum_slack_steps__blackguard": 4
       }
     },
     "reborn-lhole-ctl": {
@@ -12256,6 +12303,45 @@
         "borg_param_flow_leash_any_stair": 1,
         "borg_param_flow_leash_unknown_stair_steps": 20,
         "borg_param_flow_leash_teleported_recall": 1
+      }
+    },
+    "reborn-hq-ctl": {
+      "description": "borg-zoo#722 (reborn-heal-quaff-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-hq-speed100": {
+      "description": "borg-zoo#722 (reborn-heal-quaff-pilot.yaml): arm speed100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_speed_percent": 100
+      }
+    },
+    "reborn-hq-quaff200": {
+      "description": "borg-zoo#722 (reborn-heal-quaff-pilot.yaml): arm quaff200.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_heal_quaff_bonus_percent": 200
+      }
+    },
+    "reborn-sg-ctl": {
+      "description": "borg-zoo#723 (reborn-short-gold-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_short_gold": 0
+      }
+    },
+    "reborn-sg-shortgold": {
+      "description": "borg-zoo#723 (reborn-short-gold-pilot.yaml): arm shortgold.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_short_gold": 1
       }
     }
   }
