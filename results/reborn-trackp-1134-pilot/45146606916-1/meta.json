@@ -1,0 +1,202 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-t1134-all": {
+        "description": "borg-zoo#738 (reborn-trackp-1134-pilot.yaml): arm all.",
+        "settings": {
+          "borg_param_caution_confused_clw_cure": 1,
+          "borg_param_caution_retreat_oscillation_backaway": 1,
+          "borg_param_caution_retreat_oscillation_limit": 3,
+          "borg_param_escape_phase_lost_danger_percent": 50,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "7b0fb7cea9f279873a7b87207fb6b375984c56af1a12fb69d1de416dc5105bc5"
+      },
+      "reborn-t1134-conf": {
+        "description": "borg-zoo#738 (reborn-trackp-1134-pilot.yaml): arm conf.",
+        "settings": {
+          "borg_param_caution_confused_clw_cure": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "e1e3eaac3fcb66ee0c51ef2c29ec4fd8aa278a26380a93b3017d438f3dd59754"
+      },
+      "reborn-t1134-ctl": {
+        "description": "borg-zoo#738 (reborn-trackp-1134-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "0a551ad6481ffe24eedf33e1b20050e45b33cddc0b9724c71d414ab4f4356c66"
+      },
+      "reborn-t1134-osc": {
+        "description": "borg-zoo#738 (reborn-trackp-1134-pilot.yaml): arm osc.",
+        "settings": {
+          "borg_param_caution_retreat_oscillation_backaway": 1,
+          "borg_param_caution_retreat_oscillation_limit": 3,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "57e4565565c7661910397315324134b6d91806ec456782b821a5f2719fa128c7"
+      },
+      "reborn-t1134-phase50": {
+        "description": "borg-zoo#738 (reborn-trackp-1134-pilot.yaml): arm phase50.",
+        "settings": {
+          "borg_param_escape_phase_lost_danger_percent": 50,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "0811d02a2bc1ede034d0278426ffe743fe0d6d20c96e9dd619f8e146f0c82992"
+      },
+      "reborn-t1134-prep50": {
+        "description": "borg-zoo#738 (reborn-trackp-1134-pilot.yaml): arm prep50.",
+        "settings": {
+          "borg_param_town_prepared_percent": 50,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "b030df9ad3bc24110ae7b3602ea6fe95344fd358d73bc116ff232ffa16bc750c"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-trackp-1c071812": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs LINE track-p, head 1c071812 on 2026-11-23 (contains #1088 a82d7042: explore_breadth_first shipped 1 with the per-class explore_bfs_max_hp and explore_bfs_hp_per_level of the class files, and cave_light_engine_radius 1); shipped harness/borg.txt 025501a1..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+        "ref": "1c07181217a7f7076dc6d3c158bebeb00b968f76",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-23 09:30 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-trackp-1c071812",
+    "control_profile": "reborn-t1134-ctl",
+    "definition": "definitions/reborn-trackp-1134-pilot.yaml",
+    "description": "On borg-reborn-rs track-p 1c071812, do the four settings proposed from the 25 deaths of reborn-bfs-full (Phase threshold 50, the confusion CLW cure, the retreat oscillation breaker, prepared-remedy weight 50), one at a time and together, change deaths on random starts? Generated from definitions/reborn-trackp-1134-pilot.yaml: 6 arms on 4.2.6-reborn-rust-trackp-1c071812, suite classes-18.",
+    "issue": 738,
+    "name": "reborn-trackp-1134-pilot",
+    "owner_authorization": "2026-11-23: borg-reborn-rs #1134 (the zoo request; dispatch the owner's call); zoo owner, 2026-11-23: \"continue with experiments\".",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#738; borg-reborn-rs #1134; evidence borg-cemetery#146: the 25 deaths of run 45121432449, reborn-bfs-full). Six arms on track-p 1c071812 (the specimen of #730): ctl (shipped); phase50 (escape_phase_lost_danger_percent 50); conf (caution_confused_clw_cure 1); osc (caution_retreat_oscillation_limit 3 and caution_retreat_oscillation_backaway 1); prep50 (town_prepared_percent 50, the owner's: buy more poison and critical-wounds cures); all (phase50, conf and osc together; prep50 not in all). Not proposed as arms: caution_recall_survival 0 (it reverts an owner decision, #758) and escape_phase_lost_damage_only 0 (a broad change). The measurement is on random starts (classes-1800), not on the chosen death starts, because borg-zoo#429 and #501 found that such rescues did not carry over to fresh starts. Pilot (classes-18) as the gate; verysmall (classes-1800 starts 1-45) follows if the owner agrees. Local replays of the 25 deaths (rescues at the fatal point): phase50 5, conf 2, osc 1, prep50 0.\nTier pilot: classes-18, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and depth, alive at the cap having reached DL5, identical plays; progress (DL3/DL5 reached, first_turn_at_depth, #718 fields). Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-t1134-ctl",
+      "reborn-t1134-phase50",
+      "reborn-t1134-conf",
+      "reborn-t1134-osc",
+      "reborn-t1134-prep50",
+      "reborn-t1134-all"
+    ],
+    "question": "On borg-reborn-rs track-p 1c071812, do the four settings proposed from the 25 deaths of reborn-bfs-full (Phase threshold 50, the confusion CLW cure, the retreat oscillation breaker, prepared-remedy weight 50), one at a time and together, change deaths on random starts?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-trackp-1c071812"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45146606916-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45146606916",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "f269369612b3d4a6cda27d77aad6355edeaa46dd"
+}
