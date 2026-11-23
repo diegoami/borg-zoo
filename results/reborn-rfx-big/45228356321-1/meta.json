@@ -1,0 +1,2839 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-rfx-bfs0": {
+        "description": "borg-zoo#736 (reborn-rfx-pilot.yaml): arm bfs0.",
+        "settings": {
+          "borg_param_explore_breadth_first": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "594784abeb54106628e0c0510173e9f5563837e539042a1ee1c96302cb1996b4"
+      },
+      "reborn-rfx-bfs0-rubble": {
+        "description": "borg-zoo#736 (reborn-rfx-pilot.yaml): arm bfs0-rubble.",
+        "settings": {
+          "borg_param_explore_breadth_first": 0,
+          "borg_param_view_rubble_blocks_sight": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "f0f98191204cb16322fc637cbd706565066da871e51809b8f0c783d9926c8712"
+      },
+      "reborn-rfx-ctl": {
+        "description": "borg-zoo#736 (reborn-rfx-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "c5b8cf3fea7a2c10554877ef8c1b04a05a8ba588b3ad93982aafda73b8e2fd70"
+      },
+      "reborn-rfx-rubble": {
+        "description": "borg-zoo#736 (reborn-rfx-pilot.yaml): arm rubble.",
+        "settings": {
+          "borg_param_view_rubble_blocks_sight": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "aca49c8660809460c78e8177a5bdbf44d3f0df7da56b96abd32a7c4ae316e0d6"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-perception-7bfbe121": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs PR #1128 head 7bfbe121 (track-p d3d1629f merged with #1128 and its review fixes; update_dark_clears_light and view_rubble_blocks_sight compiled and shipped 0); shipped harness/borg.txt f7cd9969..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+        "ref": "7bfbe1210b4d4ce6a9772ae9dbab69d5325e7040",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-big": {
+        "assigned_characters": {
+          "1003072120": [
+            "Human",
+            "Rogue"
+          ],
+          "1004173758": [
+            "High-Elf",
+            "Druid"
+          ],
+          "1005268769": [
+            "Hobbit",
+            "Mage"
+          ],
+          "100579143": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "1007490173": [
+            "Gnome",
+            "Priest"
+          ],
+          "1008473321": [
+            "Gnome",
+            "Paladin"
+          ],
+          "1010756063": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "1015222340": [
+            "Dwarf",
+            "Druid"
+          ],
+          "1015825610": [
+            "Dwarf",
+            "Blackguard"
+          ],
+          "1025781865": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "1038332022": [
+            "Kobold",
+            "Paladin"
+          ],
+          "1039810670": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "1040762963": [
+            "Gnome",
+            "Rogue"
+          ],
+          "104287461": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1043295547": [
+            "Human",
+            "Rogue"
+          ],
+          "1047871405": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1049745580": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1055640847": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1060167893": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "1063186565": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1071051290": [
+            "Elf",
+            "Warrior"
+          ],
+          "1071077524": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "1071535077": [
+            "Human",
+            "Druid"
+          ],
+          "1078586115": [
+            "Gnome",
+            "Druid"
+          ],
+          "1082390569": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "1082949996": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "1086202728": [
+            "Dunadan",
+            "Mage"
+          ],
+          "1086715777": [
+            "Hobbit",
+            "Mage"
+          ],
+          "1088421828": [
+            "Elf",
+            "Ranger"
+          ],
+          "1095690747": [
+            "Elf",
+            "Druid"
+          ],
+          "1096476705": [
+            "Human",
+            "Rogue"
+          ],
+          "1097322362": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "1104807169": [
+            "High-Elf",
+            "Blackguard"
+          ],
+          "1107100402": [
+            "Dunadan",
+            "Blackguard"
+          ],
+          "1111530519": [
+            "Kobold",
+            "Druid"
+          ],
+          "1112551083": [
+            "Elf",
+            "Druid"
+          ],
+          "1116137467": [
+            "Kobold",
+            "Ranger"
+          ],
+          "111864827": [
+            "Kobold",
+            "Priest"
+          ],
+          "112134062": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "1125731181": [
+            "Elf",
+            "Priest"
+          ],
+          "1126568599": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "1127488700": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "1130042566": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "1130680503": [
+            "Gnome",
+            "Paladin"
+          ],
+          "1132520084": [
+            "Dwarf",
+            "Blackguard"
+          ],
+          "1133202464": [
+            "Half-Orc",
+            "Blackguard"
+          ],
+          "114314811": [
+            "Kobold",
+            "Paladin"
+          ],
+          "1145926751": [
+            "Human",
+            "Ranger"
+          ],
+          "114942676": [
+            "Elf",
+            "Druid"
+          ],
+          "1154119197": [
+            "Gnome",
+            "Mage"
+          ],
+          "1155146108": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1157897194": [
+            "Gnome",
+            "Warrior"
+          ],
+          "116037261": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "1161816936": [
+            "Kobold",
+            "Mage"
+          ],
+          "1165340195": [
+            "Kobold",
+            "Ranger"
+          ],
+          "1169034064": [
+            "Elf",
+            "Priest"
+          ],
+          "1179277706": [
+            "Gnome",
+            "Druid"
+          ],
+          "1181683524": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1186804206": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1190322689": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "1196308353": [
+            "Hobbit",
+            "Druid"
+          ],
+          "1196437196": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "1201355553": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1201394442": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "1203232169": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "1203844272": [
+            "Human",
+            "Warrior"
+          ],
+          "1215936094": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1217637721": [
+            "Human",
+            "Blackguard"
+          ],
+          "1221522953": [
+            "Human",
+            "Necromancer"
+          ],
+          "1230880825": [
+            "Half-Orc",
+            "Blackguard"
+          ],
+          "1237885495": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1241679603": [
+            "Human",
+            "Ranger"
+          ],
+          "1247318324": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "1261438670": [
+            "Dwarf",
+            "Mage"
+          ],
+          "1267936921": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "1269339697": [
+            "Elf",
+            "Mage"
+          ],
+          "1269639523": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1273768530": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1275592033": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "128021319": [
+            "Dwarf",
+            "Druid"
+          ],
+          "1282398708": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "1284700242": [
+            "Kobold",
+            "Blackguard"
+          ],
+          "1284984413": [
+            "Human",
+            "Mage"
+          ],
+          "1285493765": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1285851703": [
+            "Kobold",
+            "Necromancer"
+          ],
+          "1285891430": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "13040847": [
+            "Dunadan",
+            "Mage"
+          ],
+          "1304963728": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "131941101": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "132373298": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "1328921103": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "1334863873": [
+            "Kobold",
+            "Blackguard"
+          ],
+          "1349925537": [
+            "Hobbit",
+            "Druid"
+          ],
+          "1350232662": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1350297981": [
+            "Human",
+            "Ranger"
+          ],
+          "1350390977": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "1351792683": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1352555807": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1355387156": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1358989653": [
+            "Elf",
+            "Blackguard"
+          ],
+          "1360725731": [
+            "Elf",
+            "Rogue"
+          ],
+          "1371416780": [
+            "Kobold",
+            "Druid"
+          ],
+          "1372421606": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "1375157069": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1375586104": [
+            "Kobold",
+            "Warrior"
+          ],
+          "138331922": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "1386817380": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "1386870371": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "1387347454": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "138790139": [
+            "Human",
+            "Ranger"
+          ],
+          "1395928296": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "1400593711": [
+            "Half-Orc",
+            "Paladin"
+          ],
+          "1402162165": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "1408098979": [
+            "Kobold",
+            "Necromancer"
+          ],
+          "1409861679": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1410940887": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "1412404266": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "1414633688": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1416094492": [
+            "Kobold",
+            "Priest"
+          ],
+          "1416873696": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "1424809541": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "1428159580": [
+            "Human",
+            "Paladin"
+          ],
+          "143921193": [
+            "Kobold",
+            "Rogue"
+          ],
+          "1439999286": [
+            "Half-Orc",
+            "Blackguard"
+          ],
+          "1440046728": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "1440594846": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1449239943": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1451127583": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "1454808357": [
+            "Kobold",
+            "Druid"
+          ],
+          "1458207663": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "1459543014": [
+            "Kobold",
+            "Blackguard"
+          ],
+          "1459644861": [
+            "Elf",
+            "Priest"
+          ],
+          "1463017729": [
+            "Human",
+            "Rogue"
+          ],
+          "1463149642": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "1467257738": [
+            "Kobold",
+            "Necromancer"
+          ],
+          "1468031379": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1469524567": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "1474282934": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "1475277588": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "1476002913": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "147980028": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "1481908410": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1487735693": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "1488202005": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1489414949": [
+            "Human",
+            "Paladin"
+          ],
+          "1494399662": [
+            "Elf",
+            "Priest"
+          ],
+          "1494451990": [
+            "Gnome",
+            "Paladin"
+          ],
+          "1504193572": [
+            "High-Elf",
+            "Mage"
+          ],
+          "1507935046": [
+            "Kobold",
+            "Mage"
+          ],
+          "1508143544": [
+            "High-Elf",
+            "Druid"
+          ],
+          "150845604": [
+            "High-Elf",
+            "Ranger"
+          ],
+          "1510674408": [
+            "Kobold",
+            "Mage"
+          ],
+          "1512540769": [
+            "Human",
+            "Priest"
+          ],
+          "1516522111": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "151918505": [
+            "Human",
+            "Rogue"
+          ],
+          "1522254951": [
+            "Dwarf",
+            "Mage"
+          ],
+          "1532621812": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1534716974": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "1534944004": [
+            "Kobold",
+            "Paladin"
+          ],
+          "1537291411": [
+            "Kobold",
+            "Blackguard"
+          ],
+          "1539279657": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "1541832398": [
+            "Half-Orc",
+            "Blackguard"
+          ],
+          "1546098917": [
+            "Elf",
+            "Blackguard"
+          ],
+          "1547753266": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1548841115": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "1552078737": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "1554751520": [
+            "High-Elf",
+            "Blackguard"
+          ],
+          "1558422602": [
+            "Human",
+            "Priest"
+          ],
+          "1559293364": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "1566104242": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1570878907": [
+            "Dwarf",
+            "Paladin"
+          ],
+          "1574214551": [
+            "Elf",
+            "Druid"
+          ],
+          "1583605217": [
+            "Kobold",
+            "Ranger"
+          ],
+          "1593777953": [
+            "Elf",
+            "Warrior"
+          ],
+          "1594647951": [
+            "Human",
+            "Mage"
+          ],
+          "1598761213": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1607255266": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "1611798330": [
+            "Kobold",
+            "Necromancer"
+          ],
+          "1612988429": [
+            "Gnome",
+            "Mage"
+          ],
+          "1614733148": [
+            "Kobold",
+            "Druid"
+          ],
+          "161870564": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1620615713": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "1622183699": [
+            "Dwarf",
+            "Druid"
+          ],
+          "1626238247": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1632437088": [
+            "Dunadan",
+            "Blackguard"
+          ],
+          "1636934199": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1637507990": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "1646882832": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "1649122033": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "1652009025": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "1655093287": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1655203226": [
+            "Elf",
+            "Paladin"
+          ],
+          "1655264581": [
+            "Kobold",
+            "Necromancer"
+          ],
+          "1657192735": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "1657203031": [
+            "Hobbit",
+            "Mage"
+          ],
+          "1664171821": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "1668062946": [
+            "Human",
+            "Blackguard"
+          ],
+          "1672210802": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1674396030": [
+            "Human",
+            "Druid"
+          ],
+          "1675322435": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1677955921": [
+            "Human",
+            "Mage"
+          ],
+          "1680294123": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1685050086": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "1685742167": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1686079085": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1689218211": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "1695962135": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1698541048": [
+            "High-Elf",
+            "Blackguard"
+          ],
+          "1704227224": [
+            "Human",
+            "Paladin"
+          ],
+          "1707770222": [
+            "Dunadan",
+            "Druid"
+          ],
+          "1710198840": [
+            "Dwarf",
+            "Paladin"
+          ],
+          "1714201389": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "1714445858": [
+            "Gnome",
+            "Priest"
+          ],
+          "17181587": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "1718822315": [
+            "Human",
+            "Warrior"
+          ],
+          "1720011788": [
+            "High-Elf",
+            "Mage"
+          ],
+          "1721349795": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "1722012962": [
+            "Gnome",
+            "Paladin"
+          ],
+          "1725010187": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1725304081": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1730962740": [
+            "Human",
+            "Blackguard"
+          ],
+          "1735292709": [
+            "Human",
+            "Warrior"
+          ],
+          "1735723339": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1737052393": [
+            "High-Elf",
+            "Druid"
+          ],
+          "1740071931": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "1740231339": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1741690893": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1758601605": [
+            "Dunadan",
+            "Mage"
+          ],
+          "1759613367": [
+            "High-Elf",
+            "Ranger"
+          ],
+          "1760538017": [
+            "Kobold",
+            "Ranger"
+          ],
+          "1764583527": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "1770630957": [
+            "Dunadan",
+            "Mage"
+          ],
+          "1772893594": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "177451495": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "1778882627": [
+            "High-Elf",
+            "Mage"
+          ],
+          "1785100791": [
+            "Elf",
+            "Druid"
+          ],
+          "179371675": [
+            "Human",
+            "Priest"
+          ],
+          "1796184991": [
+            "Human",
+            "Druid"
+          ],
+          "1799609501": [
+            "Human",
+            "Necromancer"
+          ],
+          "1804935035": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "1808349933": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1812032121": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "1816553362": [
+            "Human",
+            "Warrior"
+          ],
+          "1818656822": [
+            "High-Elf",
+            "Blackguard"
+          ],
+          "1820359588": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1821012872": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "1826848970": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "1826991810": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "1827706864": [
+            "Elf",
+            "Mage"
+          ],
+          "182815350": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "183255986": [
+            "Half-Orc",
+            "Paladin"
+          ],
+          "1833177612": [
+            "High-Elf",
+            "Ranger"
+          ],
+          "1834117313": [
+            "Hobbit",
+            "Mage"
+          ],
+          "1834803414": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "1836104327": [
+            "Kobold",
+            "Paladin"
+          ],
+          "1838309752": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "1841992360": [
+            "Dwarf",
+            "Mage"
+          ],
+          "1847306706": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "1854090559": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "185524383": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "1864110846": [
+            "Elf",
+            "Blackguard"
+          ],
+          "1865911738": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "1866066257": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1885746267": [
+            "High-Elf",
+            "Druid"
+          ],
+          "1889040836": [
+            "Half-Orc",
+            "Paladin"
+          ],
+          "1890279321": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "1891028740": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1891460442": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "1894253281": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1896767101": [
+            "Hobbit",
+            "Druid"
+          ],
+          "1903480237": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1905689890": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "1906340599": [
+            "Dwarf",
+            "Blackguard"
+          ],
+          "1911224414": [
+            "Elf",
+            "Necromancer"
+          ],
+          "1920162032": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1920507879": [
+            "Human",
+            "Warrior"
+          ],
+          "1924084353": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "1924781520": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1925085453": [
+            "Elf",
+            "Rogue"
+          ],
+          "1926893800": [
+            "High-Elf",
+            "Druid"
+          ],
+          "1928714163": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1929578346": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "1931378920": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "1946213110": [
+            "Elf",
+            "Ranger"
+          ],
+          "1950233420": [
+            "Hobbit",
+            "Mage"
+          ],
+          "1950270029": [
+            "High-Elf",
+            "Blackguard"
+          ],
+          "1955269560": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "1960118704": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "196211983": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "1963292942": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "1963327974": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "1963456254": [
+            "Human",
+            "Rogue"
+          ],
+          "1969739027": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1972332898": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1976035382": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "1976632032": [
+            "Hobbit",
+            "Druid"
+          ],
+          "1978307485": [
+            "Kobold",
+            "Warrior"
+          ],
+          "1980969254": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1983891190": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1987427386": [
+            "High-Elf",
+            "Blackguard"
+          ],
+          "199095980": [
+            "Gnome",
+            "Priest"
+          ],
+          "1995746583": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "1996445461": [
+            "Dwarf",
+            "Paladin"
+          ],
+          "2006818063": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "2007494369": [
+            "Elf",
+            "Blackguard"
+          ],
+          "2008323596": [
+            "Elf",
+            "Mage"
+          ],
+          "2008390085": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "200893737": [
+            "Kobold",
+            "Priest"
+          ],
+          "2014548350": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "2017526033": [
+            "High-Elf",
+            "Mage"
+          ],
+          "2019181816": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "2021869738": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "2024689133": [
+            "High-Elf",
+            "Ranger"
+          ],
+          "2026147390": [
+            "Dwarf",
+            "Paladin"
+          ],
+          "2032865893": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "2038220879": [
+            "High-Elf",
+            "Mage"
+          ],
+          "2040749929": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "204602382": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "2059668090": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "2064233389": [
+            "Dunadan",
+            "Blackguard"
+          ],
+          "2073786438": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "2074799137": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "2078477958": [
+            "Human",
+            "Blackguard"
+          ],
+          "2078490269": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "2084015908": [
+            "Kobold",
+            "Rogue"
+          ],
+          "2085177519": [
+            "Dunadan",
+            "Ranger"
+          ],
+          "2096758023": [
+            "Dunadan",
+            "Priest"
+          ],
+          "2101846683": [
+            "Gnome",
+            "Mage"
+          ],
+          "2102114119": [
+            "Kobold",
+            "Warrior"
+          ],
+          "21087663": [
+            "Human",
+            "Mage"
+          ],
+          "2112246173": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "2116807159": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "21193349": [
+            "Kobold",
+            "Paladin"
+          ],
+          "2123130442": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "2123625785": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "212866582": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "2132671068": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "2133904684": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "2146549397": [
+            "Human",
+            "Priest"
+          ],
+          "2146742008": [
+            "Kobold",
+            "Ranger"
+          ],
+          "214960633": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "221626517": [
+            "Kobold",
+            "Mage"
+          ],
+          "232314393": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "233591182": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "23482467": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "238331379": [
+            "Dwarf",
+            "Druid"
+          ],
+          "238844665": [
+            "Human",
+            "Paladin"
+          ],
+          "247163535": [
+            "Gnome",
+            "Rogue"
+          ],
+          "247356081": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "255334941": [
+            "Kobold",
+            "Rogue"
+          ],
+          "259107916": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "26585942": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "266170313": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "268242322": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "287528710": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "289043149": [
+            "Dunadan",
+            "Priest"
+          ],
+          "290201693": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "29858407": [
+            "Dwarf",
+            "Paladin"
+          ],
+          "303519024": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "312789942": [
+            "Human",
+            "Necromancer"
+          ],
+          "323295677": [
+            "Kobold",
+            "Warrior"
+          ],
+          "330049894": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "333988572": [
+            "Half-Orc",
+            "Rogue"
+          ],
+          "336539426": [
+            "High-Elf",
+            "Priest"
+          ],
+          "336725191": [
+            "Half-Troll",
+            "Blackguard"
+          ],
+          "342446026": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "347186112": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "356069759": [
+            "Dunadan",
+            "Mage"
+          ],
+          "358188643": [
+            "Dunadan",
+            "Blackguard"
+          ],
+          "360777854": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "380168238": [
+            "Elf",
+            "Paladin"
+          ],
+          "381193224": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "381988580": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "382783874": [
+            "Kobold",
+            "Druid"
+          ],
+          "383215433": [
+            "Kobold",
+            "Mage"
+          ],
+          "38330797": [
+            "Human",
+            "Necromancer"
+          ],
+          "387833203": [
+            "Human",
+            "Ranger"
+          ],
+          "390305857": [
+            "Gnome",
+            "Rogue"
+          ],
+          "396224391": [
+            "Half-Orc",
+            "Blackguard"
+          ],
+          "401670788": [
+            "Gnome",
+            "Mage"
+          ],
+          "402790494": [
+            "Kobold",
+            "Druid"
+          ],
+          "403205551": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "403291759": [
+            "Kobold",
+            "Priest"
+          ],
+          "405549376": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "417396285": [
+            "Dwarf",
+            "Blackguard"
+          ],
+          "41769144": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "422467006": [
+            "Gnome",
+            "Rogue"
+          ],
+          "425904011": [
+            "Elf",
+            "Ranger"
+          ],
+          "433358847": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "433542489": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "439323566": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "440079582": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "446505978": [
+            "Kobold",
+            "Mage"
+          ],
+          "458006127": [
+            "Elf",
+            "Rogue"
+          ],
+          "462832113": [
+            "Elf",
+            "Priest"
+          ],
+          "464542488": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "46720842": [
+            "Kobold",
+            "Rogue"
+          ],
+          "468143251": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "484243219": [
+            "Dunadan",
+            "Druid"
+          ],
+          "485581213": [
+            "Elf",
+            "Paladin"
+          ],
+          "495450758": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "498087933": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "502470827": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "507828026": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "512993369": [
+            "Kobold",
+            "Ranger"
+          ],
+          "514533261": [
+            "Hobbit",
+            "Druid"
+          ],
+          "518606877": [
+            "Gnome",
+            "Mage"
+          ],
+          "520757110": [
+            "High-Elf",
+            "Mage"
+          ],
+          "526558001": [
+            "Elf",
+            "Mage"
+          ],
+          "527958641": [
+            "Half-Troll",
+            "Paladin"
+          ],
+          "528935884": [
+            "Human",
+            "Paladin"
+          ],
+          "531074955": [
+            "Gnome",
+            "Paladin"
+          ],
+          "53289191": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "536091098": [
+            "Half-Troll",
+            "Necromancer"
+          ],
+          "538736164": [
+            "Elf",
+            "Necromancer"
+          ],
+          "539586270": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "543459087": [
+            "Dunadan",
+            "Priest"
+          ],
+          "545764508": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "553703050": [
+            "Half-Orc",
+            "Paladin"
+          ],
+          "559636045": [
+            "Gnome",
+            "Priest"
+          ],
+          "563084032": [
+            "Elf",
+            "Ranger"
+          ],
+          "576782268": [
+            "Elf",
+            "Warrior"
+          ],
+          "5773879": [
+            "Dwarf",
+            "Rogue"
+          ],
+          "581908501": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "587628354": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "587989218": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "588903849": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "593055509": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "594116739": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "595254080": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "595770744": [
+            "High-Elf",
+            "Ranger"
+          ],
+          "598799200": [
+            "Kobold",
+            "Warrior"
+          ],
+          "604063478": [
+            "Gnome",
+            "Warrior"
+          ],
+          "60797314": [
+            "Kobold",
+            "Paladin"
+          ],
+          "60959135": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "609828710": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "610720490": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "618948390": [
+            "Half-Troll",
+            "Warrior"
+          ],
+          "619467458": [
+            "Half-Orc",
+            "Mage"
+          ],
+          "631942040": [
+            "Dwarf",
+            "Druid"
+          ],
+          "635956600": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "636988115": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "640089021": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "657473626": [
+            "Human",
+            "Necromancer"
+          ],
+          "660738784": [
+            "Kobold",
+            "Warrior"
+          ],
+          "664714848": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "667825909": [
+            "Elf",
+            "Rogue"
+          ],
+          "670896906": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "678693426": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "681740682": [
+            "Elf",
+            "Paladin"
+          ],
+          "688313942": [
+            "Elf",
+            "Paladin"
+          ],
+          "690310410": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "694670532": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "699747896": [
+            "Dunadan",
+            "Rogue"
+          ],
+          "699901762": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "700480475": [
+            "Elf",
+            "Warrior"
+          ],
+          "712397378": [
+            "Kobold",
+            "Rogue"
+          ],
+          "718471242": [
+            "Half-Orc",
+            "Druid"
+          ],
+          "718837815": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "724502774": [
+            "High-Elf",
+            "Druid"
+          ],
+          "725188949": [
+            "Gnome",
+            "Druid"
+          ],
+          "730349941": [
+            "Gnome",
+            "Druid"
+          ],
+          "733735548": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "734113159": [
+            "Human",
+            "Necromancer"
+          ],
+          "734816873": [
+            "Elf",
+            "Rogue"
+          ],
+          "739186786": [
+            "Kobold",
+            "Blackguard"
+          ],
+          "74056657": [
+            "Dunadan",
+            "Paladin"
+          ],
+          "740647812": [
+            "High-Elf",
+            "Rogue"
+          ],
+          "741622146": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "742634947": [
+            "Human",
+            "Ranger"
+          ],
+          "746676231": [
+            "Human",
+            "Mage"
+          ],
+          "747004555": [
+            "Elf",
+            "Necromancer"
+          ],
+          "747291634": [
+            "Human",
+            "Warrior"
+          ],
+          "758514170": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "759132654": [
+            "Half-Orc",
+            "Necromancer"
+          ],
+          "76303131": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "765478448": [
+            "Kobold",
+            "Blackguard"
+          ],
+          "767827692": [
+            "Elf",
+            "Warrior"
+          ],
+          "776619145": [
+            "Kobold",
+            "Necromancer"
+          ],
+          "777992679": [
+            "Dunadan",
+            "Mage"
+          ],
+          "784386556": [
+            "High-Elf",
+            "Ranger"
+          ],
+          "784903395": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "789642137": [
+            "Human",
+            "Priest"
+          ],
+          "790167982": [
+            "Human",
+            "Druid"
+          ],
+          "793543950": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "796266519": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "798380952": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "801645919": [
+            "Human",
+            "Druid"
+          ],
+          "813826708": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "819194477": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "823514418": [
+            "Half-Troll",
+            "Mage"
+          ],
+          "825004229": [
+            "Half-Orc",
+            "Paladin"
+          ],
+          "828046980": [
+            "Human",
+            "Druid"
+          ],
+          "829474344": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "829722462": [
+            "Dunadan",
+            "Warrior"
+          ],
+          "832354864": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "83469335": [
+            "Elf",
+            "Necromancer"
+          ],
+          "836258022": [
+            "Dwarf",
+            "Priest"
+          ],
+          "846360439": [
+            "Elf",
+            "Necromancer"
+          ],
+          "853531748": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "856090987": [
+            "Half-Orc",
+            "Warrior"
+          ],
+          "859701314": [
+            "Half-Troll",
+            "Ranger"
+          ],
+          "863044376": [
+            "Elf",
+            "Mage"
+          ],
+          "864889461": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "864942296": [
+            "Human",
+            "Paladin"
+          ],
+          "866449815": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "872618772": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "875161411": [
+            "Human",
+            "Blackguard"
+          ],
+          "878092961": [
+            "Dunadan",
+            "Blackguard"
+          ],
+          "878437252": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "88327735": [
+            "Dunadan",
+            "Blackguard"
+          ],
+          "887766592": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "888048606": [
+            "Dwarf",
+            "Blackguard"
+          ],
+          "893932490": [
+            "Half-Orc",
+            "Ranger"
+          ],
+          "895822921": [
+            "Kobold",
+            "Priest"
+          ],
+          "896825692": [
+            "Human",
+            "Mage"
+          ],
+          "901700095": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "903153797": [
+            "Gnome",
+            "Ranger"
+          ],
+          "904428240": [
+            "High-Elf",
+            "Paladin"
+          ],
+          "906146022": [
+            "Gnome",
+            "Druid"
+          ],
+          "907246559": [
+            "Human",
+            "Blackguard"
+          ],
+          "912024202": [
+            "Gnome",
+            "Priest"
+          ],
+          "914815160": [
+            "Hobbit",
+            "Priest"
+          ],
+          "920926960": [
+            "Half-Troll",
+            "Rogue"
+          ],
+          "922717299": [
+            "Dwarf",
+            "Necromancer"
+          ],
+          "923822944": [
+            "High-Elf",
+            "Necromancer"
+          ],
+          "925576758": [
+            "Human",
+            "Priest"
+          ],
+          "930698593": [
+            "Kobold",
+            "Rogue"
+          ],
+          "932799621": [
+            "Dwarf",
+            "Warrior"
+          ],
+          "939146579": [
+            "Dwarf",
+            "Ranger"
+          ],
+          "94315689": [
+            "Elf",
+            "Ranger"
+          ],
+          "947201658": [
+            "Dunadan",
+            "Necromancer"
+          ],
+          "947406922": [
+            "Dwarf",
+            "Mage"
+          ],
+          "950427387": [
+            "Kobold",
+            "Priest"
+          ],
+          "96984284": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "97272995": [
+            "Dwarf",
+            "Mage"
+          ],
+          "972741575": [
+            "High-Elf",
+            "Warrior"
+          ],
+          "973924822": [
+            "Half-Troll",
+            "Druid"
+          ],
+          "981347301": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "994930271": [
+            "Elf",
+            "Blackguard"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "Tier big of classes-1800 (RULES 14): starts 361-900 (60 more per class; with small and medium, 100 per class), with each seed's classes-1800 character. The four tiers are disjoint and together are exactly classes-1800.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          1047871405,
+          1865911738,
+          588903849,
+          1010756063,
+          536091098,
+          41769144,
+          1680294123,
+          829474344,
+          1304963728,
+          196211983,
+          356069759,
+          484243219,
+          1598761213,
+          1285891430,
+          1282398708,
+          699747896,
+          131941101,
+          88327735,
+          972741575,
+          1778882627,
+          1885746267,
+          1820359588,
+          1082949996,
+          1854090559,
+          1424809541,
+          1833177612,
+          1987427386,
+          1375586104,
+          446505978,
+          402790494,
+          200893737,
+          776619145,
+          21193349,
+          712397378,
+          1583605217,
+          1537291411,
+          1718822315,
+          746676231,
+          828046980,
+          179371675,
+          657473626,
+          1489414949,
+          1096476705,
+          1350297981,
+          1217637721,
+          204602382,
+          581908501,
+          733735548,
+          1469524567,
+          76303131,
+          1201394442,
+          1963327974,
+          1440594846,
+          1657192735,
+          767827692,
+          1827706864,
+          1785100791,
+          1169034064,
+          846360439,
+          485581213,
+          1925085453,
+          1088421828,
+          994930271,
+          104287461,
+          1086715777,
+          1196308353,
+          1983891190,
+          17181587,
+          1071077524,
+          1350390977,
+          1386817380,
+          2078490269,
+          604063478,
+          518606877,
+          1179277706,
+          912024202,
+          1215936094,
+          531074955,
+          422467006,
+          1891028740,
+          507828026,
+          287528710,
+          947406922,
+          631942040,
+          1695962135,
+          922717299,
+          1710198840,
+          1201355553,
+          1387347454,
+          888048606,
+          609828710,
+          619467458,
+          664714848,
+          1181683524,
+          468143251,
+          553703050,
+          333988572,
+          1685050086,
+          1541832398,
+          1481908410,
+          823514418,
+          1451127583,
+          233591182,
+          405549376,
+          1607255266,
+          2123130442,
+          636988115,
+          1539279657,
+          1903480237,
+          777992679,
+          1414633688,
+          2096758023,
+          947201658,
+          2014548350,
+          2032865893,
+          2085177519,
+          1107100402,
+          495450758,
+          520757110,
+          1508143544,
+          1672210802,
+          923822944,
+          1905689890,
+          1559293364,
+          1759613367,
+          1818656822,
+          598799200,
+          221626517,
+          1454808357,
+          1416094492,
+          1467257738,
+          1534944004,
+          2084015908,
+          1760538017,
+          1459543014,
+          1203844272,
+          21087663,
+          801645919,
+          1512540769,
+          38330797,
+          528935884,
+          151918505,
+          138790139,
+          907246559,
+          1764583527,
+          866449815,
+          1463149642,
+          1740071931,
+          819194477,
+          1127488700,
+          1372421606,
+          545764508,
+          678693426,
+          1593777953,
+          526558001,
+          1095690747,
+          462832113,
+          83469335,
+          688313942,
+          734816873,
+          425904011,
+          1546098917,
+          2133904684,
+          1950233420,
+          1896767101,
+          914815160,
+          2123625785,
+          2112246173,
+          1812032121,
+          1931378920,
+          1929578346,
+          1157897194,
+          401670788,
+          1078586115,
+          1714445858,
+          26585942,
+          1130680503,
+          1040762963,
+          1866066257,
+          1328921103,
+          1126568599,
+          1261438670,
+          1622183699,
+          1055640847,
+          1689218211,
+          1996445461,
+          1350232662,
+          464542488,
+          1906340599,
+          856090987,
+          259107916,
+          1247318324,
+          53289191,
+          759132654,
+          183255986,
+          1714201389,
+          433542489,
+          1439999286,
+          1552078737,
+          1804935035,
+          100579143,
+          1847306706,
+          1386870371,
+          1410940887,
+          1352555807,
+          1475277588,
+          1772893594,
+          829722462,
+          13040847,
+          1409861679,
+          1725010187,
+          1203232169,
+          74056657,
+          303519024,
+          1637507990,
+          358188643,
+          360777854,
+          1720011788,
+          1737052393,
+          1049745580,
+          1190322689,
+          904428240,
+          1395928296,
+          2024689133,
+          1950270029,
+          1978307485,
+          383215433,
+          1614733148,
+          950427387,
+          1408098979,
+          1038332022,
+          143921193,
+          512993369,
+          1284700242,
+          1816553362,
+          896825692,
+          1071535077,
+          1558422602,
+          1221522953,
+          238844665,
+          1463017729,
+          387833203,
+          1668062946,
+          182815350,
+          1476002913,
+          502470827,
+          439323566,
+          1275592033,
+          1516522111,
+          595254080,
+          1894253281,
+          853531748,
+          1071051290,
+          863044376,
+          1574214551,
+          1125731181,
+          1911224414,
+          380168238,
+          667825909,
+          563084032,
+          2007494369,
+          699901762,
+          1657203031,
+          1976632032,
+          1924781520,
+          670896906,
+          212866582,
+          2073786438,
+          138331922,
+          796266519,
+          161870564,
+          2101846683,
+          725188949,
+          1007490173,
+          1725304081,
+          1494451990,
+          1969739027,
+          1355387156,
+          147980028,
+          1039810670,
+          1522254951,
+          238331379,
+          1735723339,
+          381193224,
+          2026147390,
+          1063186565,
+          266170313,
+          1015825610,
+          1924084353,
+          1412404266,
+          539586270,
+          1626238247,
+          330049894,
+          1400593711,
+          23482467,
+          2006818063,
+          1230880825,
+          618948390,
+          1834803414,
+          784903395,
+          440079582,
+          1652009025,
+          1060167893,
+          1995746583,
+          185524383,
+          336725191,
+          1655093287,
+          1086202728,
+          1707770222,
+          1375157069,
+          132373298,
+          1130042566,
+          1890279321,
+          1976035382,
+          878092961,
+          694670532,
+          2017526033,
+          724502774,
+          1686079085,
+          403205551,
+          1196437196,
+          1487735693,
+          784386556,
+          1104807169,
+          2102114119,
+          1161816936,
+          382783874,
+          111864827,
+          1285851703,
+          1836104327,
+          46720842,
+          2146742008,
+          739186786,
+          1920507879,
+          1284984413,
+          1674396030,
+          789642137,
+          1799609501,
+          864942296,
+          1043295547,
+          1145926751,
+          1730962740,
+          690310410,
+          878437252,
+          1267936921,
+          587989218,
+          798380952,
+          1097322362,
+          268242322,
+          901700095,
+          1963292942,
+          700480475,
+          1269339697,
+          1112551083,
+          1494399662,
+          747004555,
+          1655203226,
+          458006127,
+          94315689,
+          1358989653,
+          1972332898,
+          1834117313,
+          514533261,
+          1186804206,
+          1821012872,
+          832354864,
+          887766592,
+          813826708,
+          635956600,
+          1685742167,
+          1154119197,
+          906146022,
+          559636045,
+          1468031379,
+          1722012962,
+          247163535,
+          903153797,
+          594116739,
+          1025781865,
+          1841992360,
+          1015222340,
+          1980969254,
+          1721349795,
+          29858407,
+          1440046728,
+          1548841115,
+          1132520084,
+          1532621812,
+          1891460442,
+          718471242,
+          60959135,
+          1826848970,
+          825004229,
+          2019181816,
+          640089021,
+          1133202464,
+          2132671068,
+          758514170,
+          973924822,
+          1534716974,
+          2059668090,
+          1826991810,
+          920926960,
+          859701314,
+          2040749929,
+          1675322435,
+          1758601605,
+          1237885495,
+          543459087,
+          587628354,
+          1620615713,
+          2021869738,
+          1664171821,
+          1632437088,
+          872618772,
+          2038220879,
+          1926893800,
+          336539426,
+          1838309752,
+          1082390569,
+          2008390085,
+          595770744,
+          1554751520,
+          323295677,
+          1507935046,
+          1371416780,
+          895822921,
+          1655264581,
+          114314811,
+          255334941,
+          1116137467,
+          1334863873,
+          1735292709,
+          1594647951,
+          790167982,
+          925576758,
+          312789942,
+          1428159580,
+          1963456254,
+          1241679603,
+          2078477958,
+          1155146108,
+          593055509,
+          96984284,
+          864889461,
+          1285493765,
+          112134062,
+          498087933,
+          1273768530,
+          1474282934,
+          576782268,
+          2008323596,
+          114942676,
+          1459644861,
+          538736164,
+          681740682,
+          1360725731,
+          1946213110,
+          1864110846,
+          1488202005,
+          1005268769,
+          1349925537,
+          1928714163,
+          1402162165,
+          177451495,
+          793543950,
+          347186112,
+          1955269560,
+          1741690893,
+          1612988429,
+          730349941,
+          199095980,
+          1740231339,
+          1008473321,
+          390305857,
+          1547753266,
+          342446026,
+          932799621,
+          97272995,
+          128021319,
+          836258022,
+          433358847,
+          1570878907,
+          5773879,
+          939146579,
+          417396285,
+          1636934199,
+          1458207663,
+          1646882832,
+          1808349933,
+          247356081,
+          1889040836,
+          1449239943,
+          893932490,
+          396224391,
+          2074799137,
+          1649122033,
+          718837815,
+          981347301,
+          2116807159,
+          527958641,
+          1920162032,
+          214960633,
+          1416873696,
+          1269639523,
+          1770630957,
+          1351792683,
+          289043149,
+          1960118704,
+          610720490,
+          381988580,
+          116037261,
+          2064233389,
+          741622146,
+          1504193572,
+          1004173758,
+          1566104242,
+          290201693,
+          232314393,
+          740647812,
+          150845604,
+          1698541048,
+          660738784,
+          1510674408,
+          1111530519,
+          403291759,
+          1611798330,
+          60797314,
+          930698593,
+          1165340195,
+          765478448,
+          747291634,
+          1677955921,
+          1796184991,
+          2146549397,
+          734113159,
+          1704227224,
+          1003072120,
+          742634947,
+          875161411
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "range": [
+            360,
+            900
+          ],
+          "suite": "classes-1800"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-23 18:21 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-perception-7bfbe121",
+    "control_profile": "reborn-rfx-ctl",
+    "definition": "definitions/reborn-rfx-big.yaml",
+    "description": "On borg-reborn-rs 7bfbe121, does view_rubble_blocks_sight hold on an unopened block, and does it add to turning breadth-first off? Generated from definitions/reborn-rfx-big.yaml: 4 arms on 4.2.6-reborn-rust-perception-7bfbe121, suite classes-1800-big.",
+    "issue": 736,
+    "name": "reborn-rfx-big",
+    "owner_authorization": "2026-11-23: zoo owner, \"Yeah do 1,2,3,4,5\" (the five next experiments proposed after the current-state baseline of #695).",
+    "prespecified": "Fixed 2026-11-23, after the full tier of reborn-perception-full (borg-zoo#736: rubble 5 deaths against ctl's 9, 8 rescued / 4 newly killed, DL5 reached 26 against 19) and the breadth-first and stair_scum results (#730, #721), before any result of this block was read. Four arms on 7bfbe121 (borg-reborn-rs PR #1128 on track-p d3d1629f, which ships stair_scum and breadth-first; the rubble switch is not on track-p): ctl (shipped); rubble (view_rubble_blocks_sight 1); bfs0 (explore_breadth_first 0); bfs0-rubble (both). Item 2 of the proposal (confirm the rubble lead on an unopened block) is ctl against rubble; item 5 (a combined candidates run) is bfs0-rubble against ctl, with bfs0 and rubble alone showing which part does the work. Pilot as the gate (ctl and rubble have had theirs on this build), then the ladder classes-1800 starts 1-900 (verysmall, small-rest, medium, big), read pooled. Primary: deaths, exact McNemar by start (rubble against ctl; bfs0-rubble against ctl; bfs0-rubble against bfs0), deaths at CL <= 2 apart; progress: DL3 and DL5 reached, mean CL, per class; the # Forgetting a monster notes are read from the pilot evidence.\nTier big: starts 361-900, 100,000 turns.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-rfx-ctl",
+      "reborn-rfx-rubble",
+      "reborn-rfx-bfs0",
+      "reborn-rfx-bfs0-rubble"
+    ],
+    "question": "On borg-reborn-rs 7bfbe121, does view_rubble_blocks_sight hold on an unopened block, and does it add to turning breadth-first off?",
+    "retain_evidence": false,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-perception-7bfbe121"
+    ],
+    "suites": [
+      "classes-1800-big"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45228356321-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45228356321",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "719eaee3cb8ca071ede1df444ec263165fe1dc5c"
+}
