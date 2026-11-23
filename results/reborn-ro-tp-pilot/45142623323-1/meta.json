@@ -1,0 +1,172 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-ro-ctl": {
+        "description": "borg-zoo#740 (reborn-ro-tp-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "7944462fca772ad6c30fe7cb6b95e47294be4b225e59c6c2fa1ea59342cddb52"
+      },
+      "reborn-ro-immobile2": {
+        "description": "borg-zoo#740 (reborn-ro-tp-pilot.yaml): arm immobile2.",
+        "settings": {
+          "borg_param_caution_ranged_vs_immobile": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "87139bbc92499891c5ffe05a6edd9e2ef2945545c1be308a0140006aa54dfe11"
+      },
+      "reborn-ro-ranged": {
+        "description": "borg-zoo#740 (reborn-ro-tp-pilot.yaml): arm ranged.",
+        "settings": {
+          "borg_param_caution_ranged_only": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "909eef4ad7b6f7ac9e5aa63e5feb078f344a3181852fad767138248b2a14e5cd"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-trackp-1c071812-pw": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs LINE track-p, head 1c071812 on 2026-11-23, worlds pinned (patches-x8 a6721bdd..., patches-x4 2c7da2fe...); shipped harness/borg.txt 025501a1..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+        "ref": "1c07181217a7f7076dc6d3c158bebeb00b968f76",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        },
+        "worlds": {
+          "patches-x4": "2c7da2fe5a68e17caf5fef37094f64b21ae59b5aee09a570d489152f415a2525",
+          "patches-x8": "a6721bdd20a440f397ab923705dc99df8826a698ad78cd1e96f95cb1f4b98aca"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-23 09:02 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-trackp-1c071812-pw",
+    "control_profile": "reborn-ro-ctl",
+    "definition": "definitions/reborn-ro-tp-pilot.yaml",
+    "description": "On borg-reborn-rs track-p 1c071812, do caution_ranged_only 1 and caution_ranged_vs_immobile 2 lower the deaths of the Borg beside floating eyes, mushroom patches and the other ranged-list monsters, and what do they cost, in the normal world? Generated from definitions/reborn-ro-tp-pilot.yaml: 3 arms on 4.2.6-reborn-rust-trackp-1c071812-pw, suite classes-18.",
+    "issue": 740,
+    "name": "reborn-ro-tp-pilot",
+    "owner_authorization": "2026-11-23: zoo owner, \"we need to test caution_ranged_only\" and \"caution_ranged_vs_immobile = 2 as well\" (borg-zoo#740).",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#740; borg-reborn-rs #838, #852, #837). Three arms on track-p 1c071812: ctl (shipped: caution_ranged_only 0, caution_ranged_vs_immobile 0); ranged (caution_ranged_only 1: the scary list's ranged entries kept at range, with the reach block of PR #843 as shipped on track-p); immobile2 (caution_ranged_vs_immobile 2). The earlier measurements (borg-zoo#593, #576 on 5887c29b / 3b4924ba, 900 starts: ranged 14 deaths against 11, 1 rescued / 4 newly killed; immobile2 17 against 11, 4 / 10) were on a line about 700 commits older, before breadth-first, the light radius, the #969 patch floor and the confused attack, and do not carry over. The #852 version (no reach block, resistances; borg-reborn-rs PR #1126, base main) is not on track-p and is not measured here. Each world's arms are compared only inside that world (RULES 21): the normal world, and patches-x8 (about 6 times the grey mushroom patches, the situation the setting is for). Plan: classes-18 pilots in both worlds as the gate (evidence retained), then the normal world at classes-1800 starts 1-900 (verysmall, small-rest, medium, big, read pooled) and patches-x8 verysmall.\nTier pilot: classes-18, 100,000 turns, normal world, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen track-p 1c071812 with the worlds pinned (patches-x8 a6721bdd..., patches-x4 2c7da2fe...). Gate: no config_error; one binary; every cell of a world records it with the same borg_world_data_sha256 in every arm; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm, world and class: deaths and causes (floating-eye and patch deaths apart; any killer while confused or paralysed next to a listed monster), rescued and newly killed against ctl (exact McNemar), CL and depth, DL3/DL5 reached, identical plays; pilot evidence: how often the listed monsters are met and what the Borg does at range. Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-ro-ctl",
+      "reborn-ro-ranged",
+      "reborn-ro-immobile2"
+    ],
+    "question": "On borg-reborn-rs track-p 1c071812, do caution_ranged_only 1 and caution_ranged_vs_immobile 2 lower the deaths of the Borg beside floating eyes, mushroom patches and the other ranged-list monsters, and what do they cost, in the normal world?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-trackp-1c071812-pw"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45142623323-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45142623323",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "d655768fa726b197eaf04695d94678e555ec1b0d"
+}
