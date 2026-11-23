@@ -1,0 +1,159 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-food-bfs1": {
+        "description": "borg-zoo#729 (reborn-food-bfs-pilot.yaml): arm bfs1.",
+        "settings": {
+          "borg_param_explore_breadth_first": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "06c7fc686f44b49f899ac3b9b07c9d159831181c020bc6a9561dc067cf61f608"
+      },
+      "reborn-food-ctl0": {
+        "description": "borg-zoo#729 (reborn-food-bfs-pilot.yaml): arm ctl0.",
+        "settings": {
+          "borg_param_explore_breadth_first": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "59f155d42c40dee71a71928eec93666470810b9cb49d8afd8fc636f679819e80"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-hungry-biscuit-f0e13e99": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs branch task/T1109-hungry-biscuit f0e13e99 (Track P's default borg-core with the #1109 Hungry biscuit fix; explore_breadth_first 1 shipped); shipped harness/borg.txt 025501a1..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+        "ref": "f0e13e99f642a079bf3b7c703b3e23bc39eda704",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-23 07:13 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-hungry-biscuit-f0e13e99",
+    "control_profile": "reborn-food-ctl0",
+    "definition": "definitions/reborn-food-bfs-pilot.yaml",
+    "description": "On borg-reborn-rs f0e13e99 (task/T1109-hungry-biscuit, the Hungry biscuit fix), how does the food reserve behave with breadth-first exploration off (control) and on (shipped class thresholds): food-driven town returns per 100,000 dungeon turns, the departure stock against the planner's demand, Hungry and Weak events and biscuit use, on the classes-18 starts at the usual cap? Generated from definitions/reborn-food-bfs-pilot.yaml: 2 arms on 4.2.6-reborn-rust-hungry-biscuit-f0e13e99, suite classes-18.",
+    "issue": 729,
+    "name": "reborn-food-bfs-pilot",
+    "owner_authorization": "2026-11-23: borg-reborn-rs request borg-zoo#729 (\"Run paired food forecasts after the Hungry biscuit fix\", #1109; the owner starts the runs); zoo owner, 2026-11-23: \"yes do all\" (the classes-18 collection stage; the 2,200,000-turn stage needs the owner's unused seed block).",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#729; borg-reborn-rs #1109). Two arms on f0e13e99 (class files as shipped): ctl0 (explore_breadth_first 0, the control) and bfs1 (explore_breadth_first 1 with the shipped class-specific HP thresholds), same race, class, seed, birth configuration and cap in each pair. This is the first stage of the request: the 18 classes-18 starts at the usual cap (100,000 turns) to check the collection, evidence retained (state, messages, return events, native town receipts, town plan records). Not run here: the matched long-cap stage at 2,200,000 engine turns, which needs the two incident Mage starts of #1109 and independent Mage starts from an owner-approved unused seed block (asked for on the issue). Primary endpoint (prespecified): food-driven town returns per 100,000 dungeon turns, from native return reasons and depth transitions, generic restock apart unless driven by food; per-start paired results, counts of completed trips and food-driven returns, durations in engine turns with unfinished trips marked. Also: store purchases matched to 'You bought ... for ... gold' receipts, Home withdrawals counted apart; transactions, copies, nutrition and retail gold by kind; departures joined to the final town-plan leave record (paction 7, capability_curves nutrition row index 1: demand in column 2, supply in column 3, in thousandths; set-to items like Remove Hunger 35 shown apart from additive food: biscuit 10, ration 30); the departure stock against the planner's demand, the offers and the trip duration; observed Hungry/Weak events and biscuit use; cases where a trip exhausted food despite departing with enough stock; whether each arm actually used dark-bfs; early stops kept and reported. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped. Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-food-ctl0",
+      "reborn-food-bfs1"
+    ],
+    "question": "On borg-reborn-rs f0e13e99 (task/T1109-hungry-biscuit, the Hungry biscuit fix), how does the food reserve behave with breadth-first exploration off (control) and on (shipped class thresholds): food-driven town returns per 100,000 dungeon turns, the departure stock against the planner's demand, Hungry and Weak events and biscuit use, on the classes-18 starts at the usual cap?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-hungry-biscuit-f0e13e99"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45126292874-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45126292874",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "0ef6164ee521e3eccbc0f0afe33a0e787bbd44a4"
+}
