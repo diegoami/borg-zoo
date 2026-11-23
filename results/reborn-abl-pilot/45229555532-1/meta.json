@@ -1,0 +1,223 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-abl-ctl": {
+        "description": "borg-zoo#750 (reborn-abl-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "af746ed20c2be7a26718e849c0b0fe2f89accfe9bdf94069aa38c09d208a97e8"
+      },
+      "reborn-abl-nodear": {
+        "description": "borg-zoo#750 (reborn-abl-pilot.yaml): arm nodear.",
+        "settings": {
+          "borg_param_town_prepared_ccw": 0,
+          "borg_param_town_prepared_poison": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "09d1aa00a2c5eb1532beb6e53666310d1248d37822305c1879fb3cfaab9796e0"
+      },
+      "reborn-abl-nohall": {
+        "description": "borg-zoo#750 (reborn-abl-pilot.yaml): arm nohall.",
+        "settings": {
+          "borg_param_light_hallway_repeat_guard": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "bc0d55824cd11c9fde496c2fef0348cd0c9e3d9759ef9a045ba851db28fb7d8b"
+      },
+      "reborn-abl-noleash": {
+        "description": "borg-zoo#750 (reborn-abl-pilot.yaml): arm noleash.",
+        "settings": {
+          "borg_param_flow_leash_any_stair": 0,
+          "borg_param_flow_leash_teleported_recall": 0,
+          "borg_param_flow_leash_unknown_stair_steps": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "da66bd51b97479d929fba5cb7a8415867f09fd8a7929a91c312b963212063810"
+      },
+      "reborn-abl-nomixed": {
+        "description": "borg-zoo#750 (reborn-abl-pilot.yaml): arm nomixed.",
+        "settings": {
+          "borg_param_explore_mixed": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "14add94de063595ff53cd090795acd1783c626e1d40446bb9ca9585f578b6fef"
+      },
+      "reborn-abl-nopot": {
+        "description": "borg-zoo#750 (reborn-abl-pilot.yaml): arm nopot.",
+        "settings": {
+          "borg_param_item_test_unknown_potions": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "fc0f3c3e98409433988694231b9dce64c6b3ae3632c3315a08e3a33166dbb7ba"
+      },
+      "reborn-abl-noscum": {
+        "description": "borg-zoo#750 (reborn-abl-pilot.yaml): arm noscum.",
+        "settings": {
+          "borg_param_stair_scum": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "66926d0b94dcf65ec371a25677d4632904869e0c3965cdca8b6c46a7279f50b8"
+      },
+      "reborn-abl-notrap": {
+        "description": "borg-zoo#750 (reborn-abl-pilot.yaml): arm notrap.",
+        "settings": {
+          "borg_param_trap_leave_level_count": 0,
+          "borg_param_trap_recover": 0,
+          "borg_param_trap_way_back": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "0ee13d418f2e7a0245a9e94a1f2f66b2e9da14c1197c5e091a9f1f69fe717a24"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-trackp-13151fb5": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs LINE track-p, head 13151fb5 on 2026-11-23 (50 commits after 353f5c09; ships stair_scum on by class, explore_breadth_first 1, cave_light_engine_radius 1, unseen_belief 1 and the other shipped changes); shipped harness/borg.txt ee128917..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+        "ref": "13151fb5538c7861280cf6d6559bc6a0960a12b6",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-23 17:50 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-trackp-13151fb5",
+    "control_profile": "reborn-abl-ctl",
+    "definition": "definitions/reborn-abl-pilot.yaml",
+    "description": "On track-p 13151fb5, what does each new shipped-on mode (mixed exploration, the leash holes, the hallway light guard, the dear cures, the unknown-potion test, the trap rules, stair_scum) change in deaths and progress, switched off one at a time? Generated from definitions/reborn-abl-pilot.yaml: 8 arms on 4.2.6-reborn-rust-trackp-13151fb5, suite classes-18.",
+    "issue": 750,
+    "name": "reborn-abl-pilot",
+    "owner_authorization": "2026-11-23: zoo owner, \"close them and file experiments with the new parameters introduced\" (borg-zoo#750).",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#750, Experiment A). Eight arms on track-p 13151fb5: ctl (shipped) and the single removal of each new shipped-on mode: nomixed (explore_mixed 0), noleash (the three flow_leash switches 0), nohall (light_hallway_repeat_guard 0), nodear (town_prepared_poison 0 and town_prepared_ccw 0), nopot (item_test_unknown_potions 0), notrap (the three trap rules 0), noscum (stair_scum 0); breadth-first off is reborn-bfsnow (#695). Pilot, then the ladder classes-1800 starts 1-360 (verysmall, small-rest, medium); big and full on the owner's word.\nTier pilot: classes-18, 100,000 turns, evidence retained.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (an arm that plays ctl's keys was not exercised). Report per arm against ctl: deaths and causes (exact McNemar), deaths at CL <= 2, DL3 and DL5 reached, mean CL, per class. Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-abl-ctl",
+      "reborn-abl-nomixed",
+      "reborn-abl-noleash",
+      "reborn-abl-nohall",
+      "reborn-abl-nodear",
+      "reborn-abl-nopot",
+      "reborn-abl-notrap",
+      "reborn-abl-noscum"
+    ],
+    "question": "On track-p 13151fb5, what does each new shipped-on mode (mixed exploration, the leash holes, the hallway light guard, the dear cures, the unknown-potion test, the trap rules, stair_scum) change in deaths and progress, switched off one at a time?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-trackp-13151fb5"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45229555532-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45229555532",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "09ec040fac5b078c6df23ac5c3bc10f9142e95db"
+}
