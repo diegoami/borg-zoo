@@ -1,0 +1,50 @@
+# borg-zoo#721 / borg-reborn-rs#1061 (PR #1090): the stair_scum exploration mode as shipped, with breadth-first exploration (#1085), the pilot (after reborn-stairscum1061-pilot, stair_scum alone).
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-stairscum1061-shipped-pilot.yaml
+name: reborn-stairscum1061-shipped-pilot
+issue: 721
+question: >-
+  On borg-reborn-rs PR #1090's head 2a6985db (track-p 40c1c963 merged with #1061), where the shipped
+  harness/borg.txt plays the stair_scum mode at the owner's byclass settings together with #1085's
+  breadth-first exploration: does the combination cut the deaths of weak characters against the play
+  with neither, at what cost in level and depth, and what does each part do alone?
+tier: pilot
+
+specimen:
+  name: 4.2.6-reborn-rust-stair-scum-2a6985db
+  repository: diegoami/borg-reborn-rs
+  ref: 2a6985db9620188b2cc68a8802877caacbbf9d03
+  label: >-
+    borg-reborn-rs LINE task/1061-stair-scum (PR #1090) at 2a6985db: track-p 40c1c963 (with #1085's
+    breadth-first exploration, explore_breadth_first 1) merged with #1061's stair_scum mode (the fixes of
+    Codex's four reviews), shipped on at the owner's byclass settings (stair_scum 1, stair_scum_max_hp 20,
+    slack by class: Druid and Necromancer 1, Mage and Priest 2, Ranger and Rogue 3, Paladin and
+    Blackguard 4, the Warrior off; per-level rate 50); smoke-borg-rs re-recorded there; shipped
+    harness/borg.txt, scary_monsters.txt 5a4ec4b6..., borg-rs core.
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-ss1061s
+# The owner, 2026-11-23: "ok let us merge with those settings", then "yes repin it" (measure the shipped
+# combination). The shipped class lines (slack per class, the Warrior off) win over a common value, so the
+# arms vary only what has no class line: the two switches, stair_scum_max_hp, the level rate, the kit leash.
+arms:
+  shipped: {}
+  noscum: {borg_param_stair_scum: 0}
+  nobfs: {borg_param_explore_breadth_first: 0}
+  neither: {borg_param_stair_scum: 0, borg_param_explore_breadth_first: 0}
+  level0: {borg_param_stair_scum_slack_per_level_percent: 0}
+  hp25: {borg_param_stair_scum_max_hp: 25}
+  kitleash: {borg_param_stair_scum: 0, borg_param_explore_breadth_first: 0, borg_param_kit_leash: 1}
+control: [neither]
+owner_authorization: >-
+  2026-11-23, borg-reborn-rs owner on the #1061 session: "start zoo test", then "ok let us merge with
+  those settings" and "yes repin it" (the pilot on the shipped combination). The pilot first (RULES 16).
+
+prespecified: |
+  Fixed 2026-11-23, before any cell of this experiment is read. Specimen borg-reborn-rs 2a6985db, default borg-rs core, shipped harness/borg.txt (stair_scum on at the owner's byclass settings, explore_breadth_first on); seven arms on classes-18 at 100,000 turns (126 cells). The control is neither (both modes off: the play before them). The pilot is the gate, not a measurement (RULES 14, 16).
+  Gate: no config_error; one binary for every arm; each arm's values in settings-resolved.json (stair_scum 1 except noscum, neither, kitleash and every Warrior; explore_breadth_first; stair_scum_max_hp; stair_scum_slack_per_level_percent; kit_leash; the class slack values); every cell ends in death or turn_cap, none in stall, timeout or crash; in the arms with stair_scum its "# Stair scum:" notes appear for the non-Warrior characters under the threshold, and in noscum, neither and kitleash none do.
+  Reported per arm, paired by start against neither, and shipped against noscum and nobfs (each part's own effect): deaths, deaths at CL <= 2 and while max HP < 25; CL at 25k, 50k and 100k turns (milestones); starts reaching DL3 and DL5 with their first turn there (first_turn_at_depth); identical plays; the "# Stair scum:" level changes and returns per game. Descriptive at this size; the next tier (verysmall, starts 1-45) only after the gate is checked and the owner agrees, with the arms the owner keeps.
