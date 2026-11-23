@@ -170,6 +170,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-ks206` | [#703](https://github.com/diegoami/borg-zoo/issues/703) | 4 | defined (pilot, small, medium) | Kill-on-sight floor and unknown-potion test in the normal world on track-p 206cf4e7: ctl, floor0, potions0, both0. |
 | `reborn-belief` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 5 | defined (pilot, full) | unseen_belief (#879, borg-reborn-rs #890, a must ship) and the engine light radius (#877) on track-p f8725bc0: ctl, light, belief, light+belief, light+belief-decay5; pilot then full (900 starts). |
 | `reborn-leash-dl1` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 4 | defined (pilot) | Why the kit leash adds DL1 deaths: 49 death starts of #702's full tier replayed to 25,000 turns with notes on track-p 206cf4e7: ctl, light, leash, light+leash. |
+| `reborn-light-ladder` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 2 | defined (verysmall, small-rest, medium, big = starts 1-900) | Light radius (cave_light_engine_radius 1) against ctl on classes-1800 starts 1-900 at track-p 206cf4e7: second block for the depth cost seen on starts 901-1800. |
 
 ### `heal-attack-4`
 
@@ -2417,6 +2418,17 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-ldl1-leash` | – | 1 | 0 | 2 |
 | `reborn-ldl1-light+leash` | 1 | 1 | 0 | 2 |
 
+### `reborn-light-ladder`
+
+Light radius (cave_light_engine_radius 1) against ctl on classes-1800 starts 1-900 at track-p 206cf4e7: second block for the depth cost seen on starts 901-1800.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_cave_light_engine_radius` |
+| --- | --- |
+| `reborn-li206-ctl` | – |
+| `reborn-li206-light` | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2604,7 +2616,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3`, `reborn-townhunt` |  |
 | `borg_param_caution_winning_fight_group_percent` | 100, not set | `reborn-fastpur` |  |
 | `borg_param_caution_winning_fight_margin_percent` | 20, not set | `reborn-fastpur` |  |
-| `borg_param_cave_light_engine_radius` | 1, not set | `reborn-lightbel`, `reborn-li206`, `reborn-belief`, `reborn-leash-dl1` |  |
+| `borg_param_cave_light_engine_radius` | 1, not set | `reborn-lightbel`, `reborn-li206`, `reborn-belief`, `reborn-leash-dl1`, `reborn-light-ladder` |  |
 | `borg_param_danger_breeder_melee_extra_tenths` | 0, 5, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_danger_observed_haste` | 1, not set | `reborn-fastpur` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
