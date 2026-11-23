@@ -1,0 +1,495 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-li206-ctl": {
+        "description": "borg-zoo#702 (reborn-light-matrix-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "711ea15fb91e9df5394b018d3d9b24364a1b2bc1bed490b5df59d555ec838116"
+      },
+      "reborn-li206-light": {
+        "description": "borg-zoo#702 (reborn-light-matrix-pilot.yaml): arm light.",
+        "settings": {
+          "borg_param_cave_light_engine_radius": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "f80b21ecef7bc80f59f825f14b757432c7249c9c1bfabfbc3dd2fac593aac95e"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-trackp-206cf4e7": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs LINE track-p, head 206cf4e7 on 2026-11-22 (P7 review fixes folded back from the retired promote/P7: #959-#963, #973, the grey mushroom fixes #971 and #976 (kill-on-sight HP floor 50, #969), #1001 (test an unknown potion when safe, shipped on), the P8 fixes merged so far incl. #991); shipped harness/borg.txt, scary_monsters.txt 5a4ec4b6... (comment change only), borg-rs core.",
+        "ref": "206cf4e769081fb4454fbfe5830d1215706ba76a",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-priest-light-slow": {
+        "assigned_characters": {
+          "1002239165": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1007490173": [
+            "Gnome",
+            "Priest"
+          ],
+          "1012848986": [
+            "Gnome",
+            "Priest"
+          ],
+          "1055640847": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1086352478": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "1112911014": [
+            "Elf",
+            "Priest"
+          ],
+          "111864827": [
+            "Kobold",
+            "Priest"
+          ],
+          "1125731181": [
+            "Elf",
+            "Priest"
+          ],
+          "1151763704": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1169034064": [
+            "Elf",
+            "Priest"
+          ],
+          "1186804206": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1277144831": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "1303043906": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1375157069": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1387344181": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "1416094492": [
+            "Kobold",
+            "Priest"
+          ],
+          "1494399662": [
+            "Elf",
+            "Priest"
+          ],
+          "150307609": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1577979420": [
+            "Elf",
+            "Priest"
+          ],
+          "1598761213": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1626238247": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1672210802": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1686079085": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1695962135": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1714445858": [
+            "Gnome",
+            "Priest"
+          ],
+          "1735723339": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1740071931": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "179371675": [
+            "Human",
+            "Priest"
+          ],
+          "1808349933": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1820359588": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1852741500": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1870400446": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1928714163": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1980969254": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1983891190": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1985974231": [
+            "High-Elf",
+            "Priest"
+          ],
+          "199095980": [
+            "Gnome",
+            "Priest"
+          ],
+          "200893737": [
+            "Kobold",
+            "Priest"
+          ],
+          "2053553896": [
+            "Hobbit",
+            "Priest"
+          ],
+          "2096758023": [
+            "Dunadan",
+            "Priest"
+          ],
+          "2146549397": [
+            "Human",
+            "Priest"
+          ],
+          "235160511": [
+            "Elf",
+            "Priest"
+          ],
+          "247227001": [
+            "High-Elf",
+            "Priest"
+          ],
+          "2613747": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "289043149": [
+            "Dunadan",
+            "Priest"
+          ],
+          "350159779": [
+            "Dwarf",
+            "Priest"
+          ],
+          "399497898": [
+            "Dunadan",
+            "Priest"
+          ],
+          "403291759": [
+            "Kobold",
+            "Priest"
+          ],
+          "462832113": [
+            "Elf",
+            "Priest"
+          ],
+          "507639047": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "524850074": [
+            "Kobold",
+            "Priest"
+          ],
+          "543459087": [
+            "Dunadan",
+            "Priest"
+          ],
+          "559636045": [
+            "Gnome",
+            "Priest"
+          ],
+          "584077430": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "60959135": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "652511567": [
+            "Gnome",
+            "Priest"
+          ],
+          "685052922": [
+            "Dwarf",
+            "Priest"
+          ],
+          "809881907": [
+            "Human",
+            "Priest"
+          ],
+          "895822921": [
+            "Kobold",
+            "Priest"
+          ],
+          "912024202": [
+            "Gnome",
+            "Priest"
+          ],
+          "914815160": [
+            "Hobbit",
+            "Priest"
+          ],
+          "925576758": [
+            "Human",
+            "Priest"
+          ],
+          "981347301": [
+            "Half-Troll",
+            "Priest"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 60000,
+        "description": "The 63 Priest starts of classes-1800 starts 1-900 where, on borg-reborn-rs track-p 206cf4e7, light (cave_light_engine_radius 1) reached CL5 more than 15,000 turns after ctl or not at all within 100,000 turns (borg-zoo#702's light ladder), played to 60,000 turns with notes retained to see why the light radius slows Priests. Chosen starts for a diagnosis, not a sample.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          584077430,
+          652511567,
+          1303043906,
+          1852741500,
+          1086352478,
+          399497898,
+          247227001,
+          1387344181,
+          1577979420,
+          350159779,
+          150307609,
+          1151763704,
+          809881907,
+          1277144831,
+          235160511,
+          1870400446,
+          685052922,
+          2613747,
+          1002239165,
+          1985974231,
+          524850074,
+          1112911014,
+          2053553896,
+          1012848986,
+          507639047,
+          1598761213,
+          1820359588,
+          200893737,
+          179371675,
+          1169034064,
+          1983891190,
+          912024202,
+          1695962135,
+          2096758023,
+          1672210802,
+          1416094492,
+          1740071931,
+          462832113,
+          914815160,
+          1714445858,
+          1055640847,
+          1125731181,
+          1007490173,
+          1735723339,
+          1626238247,
+          1375157069,
+          1686079085,
+          111864827,
+          1494399662,
+          1186804206,
+          559636045,
+          1980969254,
+          60959135,
+          543459087,
+          895822921,
+          925576758,
+          1928714163,
+          199095980,
+          1808349933,
+          981347301,
+          289043149,
+          403291759,
+          2146549397
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "seeds": [
+            2613747,
+            60959135,
+            111864827,
+            150307609,
+            179371675,
+            199095980,
+            200893737,
+            235160511,
+            247227001,
+            289043149,
+            350159779,
+            399497898,
+            403291759,
+            462832113,
+            507639047,
+            524850074,
+            543459087,
+            559636045,
+            584077430,
+            652511567,
+            685052922,
+            809881907,
+            895822921,
+            912024202,
+            914815160,
+            925576758,
+            981347301,
+            1002239165,
+            1007490173,
+            1012848986,
+            1055640847,
+            1086352478,
+            1112911014,
+            1125731181,
+            1151763704,
+            1169034064,
+            1186804206,
+            1277144831,
+            1303043906,
+            1375157069,
+            1387344181,
+            1416094492,
+            1494399662,
+            1577979420,
+            1598761213,
+            1626238247,
+            1672210802,
+            1686079085,
+            1695962135,
+            1714445858,
+            1735723339,
+            1740071931,
+            1808349933,
+            1820359588,
+            1852741500,
+            1870400446,
+            1928714163,
+            1980969254,
+            1983891190,
+            1985974231,
+            2053553896,
+            2096758023,
+            2146549397
+          ],
+          "suite": "classes-1800"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-23 05:35 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-trackp-206cf4e7",
+    "control_profile": "reborn-li206-ctl",
+    "definition": "definitions/reborn-light-priest-pilot.yaml",
+    "description": "On track-p 206cf4e7, why does the engine's light radius (cave_light_engine_radius 1) slow Priests (CL5 reached by 65 of 100 against 97, median first turn at DL2 about 52,000 against 23,000 on classes-1800 starts 1-900)? The 63 Priest starts where light reached CL5 more than 15,000 turns after ctl or not at all, played to 60,000 turns with notes retained, ctl and light. Generated from definitions/reborn-light-priest-pilot.yaml: 2 arms on 4.2.6-reborn-rust-trackp-206cf4e7, suite classes-1800-priest-light-slow.",
+    "issue": 702,
+    "name": "reborn-light-priest-pilot",
+    "owner_authorization": "2026-11-23: zoo owner, \"ok do all of them\" (the Priest replay with notes of the light radius's slowdown, offered after the light ladder on starts 1-900).",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-23, after reading the cells (not the notes) of reborn-light-ladder-{verysmall,small-rest,medium,big} (borg-zoo#702): Priests reach CL5 in 97 of 100 starts with ctl and 65 with light, with a median first turn at DL2 of 23,227 against 51,930. The 63 starts are the Priests of classes-1800 starts 1-900 where light reached CL5 more than 15,000 turns after ctl or not at all. A diagnosis, not a sample: nothing here is a rate. Two arms, 60,000 turns (the game is deterministic, so every play is the same as the 100,000-turn game up to the cap), evidence retained, 126 cells, specimen track-p 206cf4e7 (the ladder's build, whose light arm had its pilot in #702's matrix). Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death or turn_cap (turn_cap at 60,000); ctl plays the ladder's keys (play_sha256) wherever the cap does not cut. Read per start from the notes and state log: where the turns go in light (town, DL1, resting, the same stair walks), the first turn at levels 2-5 and at DL2 against ctl (first_turn_at_level, turns_at_level_depth), what the Priest does in the dark that it does not do in ctl (spells cast, resting, \"flowing toward\" steps), and the deaths (2 in light, 0 in ctl). Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-li206-ctl",
+      "reborn-li206-light"
+    ],
+    "question": "On track-p 206cf4e7, why does the engine's light radius (cave_light_engine_radius 1) slow Priests (CL5 reached by 65 of 100 against 97, median first turn at DL2 about 52,000 against 23,000 on classes-1800 starts 1-900)? The 63 Priest starts where light reached CL5 more than 15,000 turns after ctl or not at all, played to 60,000 turns with notes retained, ctl and light.",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-trackp-206cf4e7"
+    ],
+    "suites": [
+      "classes-1800-priest-light-slow"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45117606315-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45117606315",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "cf03c82cdb48da0b5a15400caa96cedd6c3ed813"
+}
