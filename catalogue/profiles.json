@@ -12185,12 +12185,21 @@
         "borg_reborn_errand": "none"
       }
     },
-    "reborn-ss1061-strict": {
-      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm strict.",
+    "reborn-ss1061-scum": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm scum.",
       "settings": {
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none",
         "borg_param_stair_scum": 1
+      }
+    },
+    "reborn-ss1061-level0": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm level0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 1,
+        "borg_param_stair_scum_slack_per_level_percent": 0
       }
     },
     "reborn-ss1061-slack1": {
@@ -12235,6 +12244,24 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none",
         "borg_param_kit_leash": 1
+      }
+    },
+    "reborn-ss1061-byclass": {
+      "description": "borg-zoo#721 (reborn-stairscum1061-pilot.yaml): arm byclass.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 1,
+        "borg_param_stair_scum_max_hp": 20,
+        "borg_param_stair_scum__warrior": 0,
+        "borg_param_stair_scum_slack_steps__druid": 1,
+        "borg_param_stair_scum_slack_steps__necromancer": 1,
+        "borg_param_stair_scum_slack_steps__mage": 2,
+        "borg_param_stair_scum_slack_steps__priest": 2,
+        "borg_param_stair_scum_slack_steps__ranger": 3,
+        "borg_param_stair_scum_slack_steps__rogue": 3,
+        "borg_param_stair_scum_slack_steps__paladin": 4,
+        "borg_param_stair_scum_slack_steps__blackguard": 4
       }
     }
   }
