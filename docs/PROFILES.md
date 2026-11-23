@@ -198,6 +198,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-rfx` | [#736](https://github.com/diegoami/borg-zoo/issues/736) | 4 | defined (pilot, ladder 1-900) | Rubble confirmation and the combined arm on 7bfbe121: ctl, rubble, bfs0, bfs0-rubble. |
 | `reborn-floating-eye-replay` | [#695](https://github.com/diegoami/borg-zoo/issues/695) | 1 | defined (4 starts) | The 4 floating-eye deaths of the 353f5c09 baseline replayed with notes. |
 | `reborn-priest-now` | [#736](https://github.com/diegoami/borg-zoo/issues/736) | 2 | defined (100 Priests) | The shipped light radius on the Priest class at track-p 13151fb5: ctl, light0, with notes. |
+| `reborn-abl` | [#750](https://github.com/diegoami/borg-zoo/issues/750) | 8 | defined (pilot, verysmall, small-rest, medium) | Ablation of each new shipped-on mode on track-p 13151fb5: ctl, nomixed, noleash, nohall, nodear, nopot, notrap, noscum. |
+| `reborn-dials` | [#750](https://github.com/diegoami/borg-zoo/issues/750) | 1 | defined (pilot) | The dials of the new modes, one at a time, on track-p 13151fb5 (20 arms). |
 
 ### `heal-attack-4`
 
@@ -2790,6 +2792,31 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-prnow-ctl` | – |
 | `reborn-prnow-light0` | 0 |
 
+### `reborn-abl`
+
+Ablation of each new shipped-on mode on track-p 13151fb5: ctl, nomixed, noleash, nohall, nodear, nopot, notrap, noscum.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_explore_mixed` | `borg_param_flow_leash_any_stair` | `borg_param_flow_leash_teleported_recall` | `borg_param_flow_leash_unknown_stair_steps` | `borg_param_item_test_unknown_potions` | `borg_param_light_hallway_repeat_guard` | `borg_param_stair_scum` | `borg_param_town_prepared_ccw` | `borg_param_town_prepared_poison` | `borg_param_trap_leave_level_count` | `borg_param_trap_recover` | `borg_param_trap_way_back` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reborn-abl-ctl` | – | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-abl-nomixed` | 0 | – | – | – | – | – | – | – | – | – | – | – |
+| `reborn-abl-noleash` | – | 0 | 0 | 0 | – | – | – | – | – | – | – | – |
+| `reborn-abl-nohall` | – | – | – | – | – | 0 | – | – | – | – | – | – |
+| `reborn-abl-nodear` | – | – | – | – | – | – | – | 0 | 0 | – | – | – |
+| `reborn-abl-nopot` | – | – | – | – | 0 | – | – | – | – | – | – | – |
+| `reborn-abl-notrap` | – | – | – | – | – | – | – | – | – | 0 | 0 | 0 |
+| `reborn-abl-noscum` | – | – | – | – | – | – | 0 | – | – | – | – | – |
+
+### `reborn-dials`
+
+The dials of the new modes, one at a time, on track-p 13151fb5 (20 arms).
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+Profiles: `reborn-dial-ctl`.
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -3006,7 +3033,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_explore_breadth_first` | 0, 1, not set | `reborn-bfs`, `reborn-mixed`, `reborn-food-bfs`, `reborn-bfs-ladder`, `reborn-ss9276`, `reborn-mixed40`, `reborn-bfsnow`, `reborn-rfx` |  |
 | `borg_param_explore_c_leave_when_done` | 1, not set | `reborn-mixed40` |  |
 | `borg_param_explore_mix_contact_damage` | 3, 8, not set | `reborn-mixed`, `reborn-mixed40` |  |
-| `borg_param_explore_mixed` | 1, not set | `reborn-mixed`, `reborn-mixed40` |  |
+| `borg_param_explore_mixed` | 0, 1, not set | `reborn-mixed`, `reborn-mixed40`, `reborn-abl` |  |
 | `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag`, `reborn-nowalk`, `reborn-cavesp` |  |
 | `borg_param_fast_fragile_contact_max` | 1, not set | `reborn-cavesp` |  |
 | `borg_param_fast_fragile_count_dot` | 1, not set | `reborn-ffq`, `reborn-ff-dot`, `reborn-ffb769`, `reborn-ffb-ladder` |  |
@@ -3018,17 +3045,17 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_fast_fragile_no_walk` | 1, not set | `reborn-nowalk` |  |
 | `borg_param_fast_fragile_policy` | 1, not set | `reborn-fastfrag` |  |
 | `borg_param_flow_leash` | 0, 1, 2 | `reborn-stairs-leash` |  |
-| `borg_param_flow_leash_any_stair` | 1, not set | `reborn-leash-holes`, `reborn-leash-holes-vs` |  |
+| `borg_param_flow_leash_any_stair` | 0, 1, not set | `reborn-leash-holes`, `reborn-leash-holes-vs`, `reborn-abl` |  |
 | `borg_param_flow_leash_base` | 5, 15, not set | `reborn-cleash` |  |
 | `borg_param_flow_leash_depth_margin` | -100, 0, 10, not set | `reborn-cleash` |  |
 | `borg_param_flow_leash_per_level` | 2, 5, not set | `reborn-cleash` |  |
 | `borg_param_flow_leash_pickup_max_level` | 0, not set | `reborn-cleash`, `reborn-cleashnone` |  |
 | `borg_param_flow_leash_stairs_max_level` | 0, not set | `reborn-cleash`, `reborn-cleashnone` |  |
-| `borg_param_flow_leash_teleported_recall` | 1, not set | `reborn-leash-holes`, `reborn-leash-holes-vs` |  |
-| `borg_param_flow_leash_unknown_stair_steps` | 20, not set | `reborn-leash-holes`, `reborn-leash-holes-vs` |  |
+| `borg_param_flow_leash_teleported_recall` | 0, 1, not set | `reborn-leash-holes`, `reborn-leash-holes-vs`, `reborn-abl` |  |
+| `borg_param_flow_leash_unknown_stair_steps` | 0, 20, not set | `reborn-leash-holes`, `reborn-leash-holes-vs`, `reborn-abl` |  |
 | `borg_param_flow_take_phase_first` | 1, not set | `reborn-phase-first-761` |  |
 | `borg_param_flow_take_phase_short_below` | 2, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
-| `borg_param_item_test_unknown_potions` | 0, not set | `reborn-ks206` |  |
+| `borg_param_item_test_unknown_potions` | 0, not set | `reborn-ks206`, `reborn-abl` |  |
 | `borg_param_kill_flow_mode` | 0, 1, 2, 3 | `reborn-kill-flow-mode` |  |
 | `borg_param_kill_grouped_names` | 1, not set | `reborn-cavesp` |  |
 | `borg_param_kill_live_min_power` | 0, 1 | `reborn-kill-power-main` |  |
@@ -3062,6 +3089,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_light_detect_evil_spell_min_level__ranger` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__rogue` | 5, 10, not set | `reborn-low-level-detection` |  |
 | `borg_param_light_detect_evil_spell_min_level__warrior` | 5, 10, not set | `reborn-low-level-detection` |  |
+| `borg_param_light_hallway_repeat_guard` | 0, not set | `reborn-abl` |  |
 | `borg_param_lone_slow_attack` | 1, not set | `reborn-loneslow`, `reborn-lonew`, `reborn-bfol`, `reborn-lbun`, `reborn-li206` |  |
 | `borg_param_lone_slow_breeder_lost` | 1, not set | `reborn-bfol` |  |
 | `borg_param_prepared_clevel_depth_margin` | -2, 2, not set | `reborn-dive-gates-768` |  |
@@ -3122,7 +3150,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_recover_unseen_probe_tries` | 0, not set | `reborn-invis` |  |
 | `borg_param_recover_unseen_shot` | 1, not set | `reborn-rest` |  |
 | `borg_param_sell_poor_town_unknown_hold` | 1, not set | `reborn-unkcure` |  |
-| `borg_param_stair_scum` | 0, not set | `reborn-ss9276` |  |
+| `borg_param_stair_scum` | 0, not set | `reborn-ss9276`, `reborn-abl` |  |
 | `borg_param_town_book_lookahead_levels` | 4, not set | `reborn-book` |  |
 | `borg_param_town_confusion_cure_reserve` | 1, not set | `reborn-confusion` |  |
 | `borg_param_town_departure_free_slots` | 0, 2, not set | `reborn-room` |  |
@@ -3214,7 +3242,9 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_phase_reserve__ranger` | 2, 3, not set | `reborn-receipt`, `reborn-variety`, `reborn-vrm` |  |
 | `borg_param_town_phase_reserve__warrior` | 0, not set | `reborn-receipt` |  |
 | `borg_param_town_phase_reserve_percent` | 50, 100, 150, 200, 400, not set | `reborn-bundle`, `reborn-phase-first-761`, `reborn-rangerphase`, `reborn-phasereserve`, `reborn-receipt`, `reborn-vrm` |  |
+| `borg_param_town_prepared_ccw` | 0, not set | `reborn-abl` |  |
 | `borg_param_town_prepared_percent` | 0, 50, not set | `reborn-variety`, `reborn-vrm`, `reborn-t1134` |  |
+| `borg_param_town_prepared_poison` | 0, not set | `reborn-abl` |  |
 | `borg_param_town_ranged_reserve` | 6, not set | `reborn-townhunt` |  |
 | `borg_param_town_ranger_arrows_max__ranger` | 20, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_recall_curve_scale_percent` | 0, 110, not set | `reborn-room` |  |
@@ -3270,9 +3300,9 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_unseen_percent` | 50, not set | `reborn-phase-first-761` |  |
 | `borg_param_town_variety_min_depth` | 0, not set | `reborn-variety`, `reborn-vrm` |  |
 | `borg_param_trait_timed_sync` | 1, not set | `reborn-cavesp` |  |
-| `borg_param_trap_leave_level_count` | 0, not set | `reborn-trap` |  |
-| `borg_param_trap_recover` | 0, not set | `reborn-trap` |  |
-| `borg_param_trap_way_back` | 0, not set | `reborn-trap` |  |
+| `borg_param_trap_leave_level_count` | 0, not set | `reborn-trap`, `reborn-abl` |  |
+| `borg_param_trap_recover` | 0, not set | `reborn-trap`, `reborn-abl` |  |
+| `borg_param_trap_way_back` | 0, not set | `reborn-trap`, `reborn-abl` |  |
 | `borg_param_unseen_belief` | 1, not set | `reborn-lightbel`, `reborn-belief` |  |
 | `borg_param_unseen_decay_percent` | 5, not set | `reborn-belief` |  |
 | `borg_param_update_dark_clears_light` | 1, not set | `reborn-perception` |  |

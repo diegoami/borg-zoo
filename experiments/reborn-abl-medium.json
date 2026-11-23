@@ -1,0 +1,29 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-abl-medium",
+  "issue": 750,
+  "definition": "definitions/reborn-abl-medium.yaml",
+  "question": "On track-p 13151fb5, what does each new shipped-on mode (mixed exploration, the leash holes, the hallway light guard, the dear cures, the unknown-potion test, the trap rules, stair_scum) change in deaths and progress, switched off one at a time?",
+  "description": "On track-p 13151fb5, what does each new shipped-on mode (mixed exploration, the leash holes, the hallway light guard, the dear cures, the unknown-potion test, the trap rules, stair_scum) change in deaths and progress, switched off one at a time? Generated from definitions/reborn-abl-medium.yaml: 8 arms on 4.2.6-reborn-rust-trackp-13151fb5, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#750, Experiment A). Eight arms on track-p 13151fb5: ctl (shipped) and the single removal of each new shipped-on mode: nomixed (explore_mixed 0), noleash (the three flow_leash switches 0), nohall (light_hallway_repeat_guard 0), nodear (town_prepared_poison 0 and town_prepared_ccw 0), nopot (item_test_unknown_potions 0), notrap (the three trap rules 0), noscum (stair_scum 0); breadth-first off is reborn-bfsnow (#695). Pilot, then the ladder classes-1800 starts 1-360 (verysmall, small-rest, medium); big and full on the owner's word.\nTier medium: starts 91-360, 100,000 turns.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (an arm that plays ctl's keys was not exercised). Report per arm against ctl: deaths and causes (exact McNemar), deaths at CL <= 2, DL3 and DL5 reached, mean CL, per class. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-13151fb5"
+  ],
+  "profiles": [
+    "reborn-abl-ctl",
+    "reborn-abl-nomixed",
+    "reborn-abl-noleash",
+    "reborn-abl-nohall",
+    "reborn-abl-nodear",
+    "reborn-abl-nopot",
+    "reborn-abl-notrap",
+    "reborn-abl-noscum"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-13151fb5",
+  "control_profile": "reborn-abl-ctl",
+  "owner_authorization": "2026-11-23: zoo owner, \"close them and file experiments with the new parameters introduced\" (borg-zoo#750).",
+  "retain_evidence": false
+}

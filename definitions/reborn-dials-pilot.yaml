@@ -1,0 +1,46 @@
+# borg-zoo#750: reborn-dials-pilot, pilot tier (classes-18). Write the catalogue entries with: python3 -m zoo define definitions/reborn-dials-pilot.yaml
+name: reborn-dials-pilot
+issue: 750
+question: >-
+  On track-p 13151fb5, which dials of the new modes change the play at all, and in which direction (mixed radius, step and level cap; leash Recall level and steps; trap disarm and leave dials; stair_scum ratio and alarm; the unknown-potion hold)?
+tier: pilot            # classes-18, 100,000 turns
+pilot: true            # first run of these arms on this specimen (RULES 16)
+
+specimen: 4.2.6-reborn-rust-trackp-13151fb5
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-dial
+arms:
+  ctl: {}
+  mix_r3: {borg_param_explore_mix_radius: 3}
+  mix_r8: {borg_param_explore_mix_radius: 8}
+  mix_step1: {borg_param_explore_mix_step: 1}
+  mix_step4: {borg_param_explore_mix_step: 4}
+  mixcl_hi: {borg_param_explore_mix_max_clevel__warrior: 6, borg_param_explore_mix_max_clevel__mage: 9, borg_param_explore_mix_max_clevel__druid: 8, borg_param_explore_mix_max_clevel__priest: 10, borg_param_explore_mix_max_clevel__necromancer: 10, borg_param_explore_mix_max_clevel__paladin: 9, borg_param_explore_mix_max_clevel__rogue: 7, borg_param_explore_mix_max_clevel__ranger: 8, borg_param_explore_mix_max_clevel__blackguard: 7}
+  mixcl_lo: {borg_param_explore_mix_max_clevel__warrior: 1, borg_param_explore_mix_max_clevel__mage: 4, borg_param_explore_mix_max_clevel__druid: 3, borg_param_explore_mix_max_clevel__priest: 5, borg_param_explore_mix_max_clevel__necromancer: 5, borg_param_explore_mix_max_clevel__paladin: 4, borg_param_explore_mix_max_clevel__rogue: 2, borg_param_explore_mix_max_clevel__ranger: 3, borg_param_explore_mix_max_clevel__blackguard: 2}
+  leash_lvl8: {borg_param_flow_leash_recall_max_level: 8}
+  leash_steps15: {borg_param_flow_leash_recall_steps: 15}
+  leash_steps60: {borg_param_flow_leash_recall_steps: 60}
+  trap_dis25: {borg_param_trap_disarm_min_percent: 25}
+  trap_dis75: {borg_param_trap_disarm_min_percent: 75}
+  trap_tries3: {borg_param_trap_disarm_max_tries: 3}
+  trap_near2: {borg_param_trap_leave_near_count: 2}
+  scum_ratio1: {borg_param_stair_scum_speed_ratio: 1}
+  scum_ratio3: {borg_param_stair_scum_speed_ratio: 3}
+  scum_alarm0: {borg_param_stair_scum_alarm_turns: 0}
+  scum_alarm300: {borg_param_stair_scum_alarm_turns: 300}
+  hold0: {borg_param_item_test_unknown_hold_turns: 0}
+  hold360: {borg_param_item_test_unknown_hold_turns: 360}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: zoo owner, "close them and file experiments with the new parameters introduced" (borg-zoo#750).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#750, Experiment B). Twenty arms on track-p 13151fb5: ctl and one dial at a time, each a hypothesis in the parameter docs: explore_mix_radius 3 and 8 (shipped 5), explore_mix_step 1 and 4 (2), every class's explore_mix_max_clevel +3 and -2 (shipped per class: Warrior 3, Mage 6, Druid 5, Priest 7, Necromancer 7, Paladin 6, Rogue 4, Ranger 5, Blackguard 4), flow_leash_recall_max_level 8 (5), flow_leash_recall_steps 15 and 60 (30), trap_disarm_min_percent 25 and 75 (50), trap_disarm_max_tries 3 (10), trap_leave_near_count 2 (0), stair_scum_speed_ratio 1 and 3 (2), stair_scum_alarm_turns 0 and 300 (100), item_test_unknown_hold_turns 0 and 360 (180). A pilot only: the arms whose plays differ from ctl go on to a ladder on the owner's word; an arm that plays ctl's keys in all 18 games was not exercised.
+  Tier pilot: classes-18, 100,000 turns, evidence retained.
+  Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (an arm that plays ctl's keys was not exercised). Report per arm against ctl: deaths and causes (exact McNemar), deaths at CL <= 2, DL3 and DL5 reached, mean CL, per class. Descriptive (RULES 14).

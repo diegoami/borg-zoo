@@ -1,0 +1,33 @@
+# borg-zoo#750: reborn-abl-medium, medium tier (starts 91-360). Write the catalogue entries with: python3 -m zoo define definitions/reborn-abl-medium.yaml
+name: reborn-abl-medium
+issue: 750
+question: >-
+  On track-p 13151fb5, what does each new shipped-on mode (mixed exploration, the leash holes, the hallway light guard, the dear cures, the unknown-potion test, the trap rules, stair_scum) change in deaths and progress, switched off one at a time?
+tier: medium            # starts 91-360, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-13151fb5
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-abl
+arms:
+  ctl: {}
+  nomixed: {borg_param_explore_mixed: 0}
+  noleash: {borg_param_flow_leash_any_stair: 0, borg_param_flow_leash_unknown_stair_steps: 0, borg_param_flow_leash_teleported_recall: 0}
+  nohall: {borg_param_light_hallway_repeat_guard: 0}
+  nodear: {borg_param_town_prepared_poison: 0, borg_param_town_prepared_ccw: 0}
+  nopot: {borg_param_item_test_unknown_potions: 0}
+  notrap: {borg_param_trap_recover: 0, borg_param_trap_way_back: 0, borg_param_trap_leave_level_count: 0}
+  noscum: {borg_param_stair_scum: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: zoo owner, "close them and file experiments with the new parameters introduced" (borg-zoo#750).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#750, Experiment A). Eight arms on track-p 13151fb5: ctl (shipped) and the single removal of each new shipped-on mode: nomixed (explore_mixed 0), noleash (the three flow_leash switches 0), nohall (light_hallway_repeat_guard 0), nodear (town_prepared_poison 0 and town_prepared_ccw 0), nopot (item_test_unknown_potions 0), notrap (the three trap rules 0), noscum (stair_scum 0); breadth-first off is reborn-bfsnow (#695). Pilot, then the ladder classes-1800 starts 1-360 (verysmall, small-rest, medium); big and full on the owner's word.
+  Tier medium: starts 91-360, 100,000 turns.
+  Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (an arm that plays ctl's keys was not exercised). Report per arm against ctl: deaths and causes (exact McNemar), deaths at CL <= 2, DL3 and DL5 reached, mean CL, per class. Descriptive (RULES 14).

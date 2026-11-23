@@ -1,0 +1,42 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-dials-pilot",
+  "issue": 750,
+  "definition": "definitions/reborn-dials-pilot.yaml",
+  "question": "On track-p 13151fb5, which dials of the new modes change the play at all, and in which direction (mixed radius, step and level cap; leash Recall level and steps; trap disarm and leave dials; stair_scum ratio and alarm; the unknown-potion hold)?",
+  "description": "On track-p 13151fb5, which dials of the new modes change the play at all, and in which direction (mixed radius, step and level cap; leash Recall level and steps; trap disarm and leave dials; stair_scum ratio and alarm; the unknown-potion hold)? Generated from definitions/reborn-dials-pilot.yaml: 20 arms on 4.2.6-reborn-rust-trackp-13151fb5, suite classes-18.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#750, Experiment B). Twenty arms on track-p 13151fb5: ctl and one dial at a time, each a hypothesis in the parameter docs: explore_mix_radius 3 and 8 (shipped 5), explore_mix_step 1 and 4 (2), every class's explore_mix_max_clevel +3 and -2 (shipped per class: Warrior 3, Mage 6, Druid 5, Priest 7, Necromancer 7, Paladin 6, Rogue 4, Ranger 5, Blackguard 4), flow_leash_recall_max_level 8 (5), flow_leash_recall_steps 15 and 60 (30), trap_disarm_min_percent 25 and 75 (50), trap_disarm_max_tries 3 (10), trap_leave_near_count 2 (0), stair_scum_speed_ratio 1 and 3 (2), stair_scum_alarm_turns 0 and 300 (100), item_test_unknown_hold_turns 0 and 360 (180). A pilot only: the arms whose plays differ from ctl go on to a ladder on the owner's word; an arm that plays ctl's keys in all 18 games was not exercised.\nTier pilot: classes-18, 100,000 turns, evidence retained.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (an arm that plays ctl's keys was not exercised). Report per arm against ctl: deaths and causes (exact McNemar), deaths at CL <= 2, DL3 and DL5 reached, mean CL, per class. Descriptive (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-13151fb5"
+  ],
+  "profiles": [
+    "reborn-dial-ctl",
+    "reborn-dial-mix_r3",
+    "reborn-dial-mix_r8",
+    "reborn-dial-mix_step1",
+    "reborn-dial-mix_step4",
+    "reborn-dial-mixcl_hi",
+    "reborn-dial-mixcl_lo",
+    "reborn-dial-leash_lvl8",
+    "reborn-dial-leash_steps15",
+    "reborn-dial-leash_steps60",
+    "reborn-dial-trap_dis25",
+    "reborn-dial-trap_dis75",
+    "reborn-dial-trap_tries3",
+    "reborn-dial-trap_near2",
+    "reborn-dial-scum_ratio1",
+    "reborn-dial-scum_ratio3",
+    "reborn-dial-scum_alarm0",
+    "reborn-dial-scum_alarm300",
+    "reborn-dial-hold0",
+    "reborn-dial-hold360"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-13151fb5",
+  "control_profile": "reborn-dial-ctl",
+  "owner_authorization": "2026-11-23: zoo owner, \"close them and file experiments with the new parameters introduced\" (borg-zoo#750).",
+  "retain_evidence": true
+}

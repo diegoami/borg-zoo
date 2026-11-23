@@ -2625,6 +2625,31 @@
         "reborn-prnow-light0"
       ],
       "runs": []
+    },
+    "reborn-abl": {
+      "issue": 750,
+      "status": "defined (pilot, verysmall, small-rest, medium)",
+      "what": "Ablation of each new shipped-on mode on track-p 13151fb5: ctl, nomixed, noleash, nohall, nodear, nopot, notrap, noscum.",
+      "profiles": [
+        "reborn-abl-ctl",
+        "reborn-abl-nomixed",
+        "reborn-abl-noleash",
+        "reborn-abl-nohall",
+        "reborn-abl-nodear",
+        "reborn-abl-nopot",
+        "reborn-abl-notrap",
+        "reborn-abl-noscum"
+      ],
+      "runs": []
+    },
+    "reborn-dials": {
+      "issue": 750,
+      "status": "defined (pilot)",
+      "what": "The dials of the new modes, one at a time, on track-p 13151fb5 (20 arms).",
+      "profiles": [
+        "reborn-dial-ctl"
+      ],
+      "runs": []
     }
   }
 }
