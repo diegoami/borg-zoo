@@ -1,0 +1,429 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-pw-all-x8": {
+        "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm all-x8.",
+        "settings": {
+          "borg_param_caution_confused_clw_cure": 1,
+          "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75,
+          "borg_param_caution_ranged_only": 1,
+          "borg_param_caution_retreat_oscillation_backaway": 1,
+          "borg_param_caution_retreat_oscillation_limit": 3,
+          "borg_param_escape_phase_lost_danger_percent": 50,
+          "borg_param_town_prepared_ccw": 2,
+          "borg_param_town_prepared_ccw_percent": 112,
+          "borg_param_town_prepared_poison_percent": 40,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "poison-x8"
+        },
+        "sha256": "fab65e93bc27b8a711ab061deb354ecf755ca025419177f3675f9d21566cad09"
+      },
+      "reborn-pw-breeder5-x8": {
+        "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm breeder5-x8.",
+        "settings": {
+          "borg_param_caution_breeder_policy": 5,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "poison-x8"
+        },
+        "sha256": "8ac7706215ea5707f1565172b5f9e3cd8c0db0f167f40d773d889c3731d53ac4"
+      },
+      "reborn-pw-buy-x8": {
+        "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm buy-x8.",
+        "settings": {
+          "borg_param_town_prepared_ccw": 2,
+          "borg_param_town_prepared_ccw_percent": 112,
+          "borg_param_town_prepared_poison_percent": 40,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "poison-x8"
+        },
+        "sha256": "0fa3c443b45c139e6511b53c63503e22f329e0bc2952bbe6bc9b6b36d5dfae91"
+      },
+      "reborn-pw-ctl-x8": {
+        "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm ctl-x8.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "poison-x8"
+        },
+        "sha256": "d954df97508cbe29295031a15f79d1d03c6ecfef0913dc7a78d48f4f9b47fde6"
+      },
+      "reborn-pw-osc-x8": {
+        "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm osc-x8.",
+        "settings": {
+          "borg_param_caution_retreat_oscillation_backaway": 1,
+          "borg_param_caution_retreat_oscillation_limit": 3,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "poison-x8"
+        },
+        "sha256": "f49df9ec1926428de731313685c0c5a738659c40655aecc20e3e67bd2df8703c"
+      },
+      "reborn-pw-p934-x8": {
+        "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm p934-x8.",
+        "settings": {
+          "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "poison-x8"
+        },
+        "sha256": "1beb5ce7d819dd0d6142f85e7a66422d032dab203b4e495bcf54da829f5e4d0b"
+      },
+      "reborn-pw-pkg-x8": {
+        "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm pkg-x8.",
+        "settings": {
+          "borg_param_caution_confused_clw_cure": 1,
+          "borg_param_caution_ranged_only": 1,
+          "borg_param_caution_ranged_vs_immobile": 2,
+          "borg_param_escape_phase_lost_danger_percent": 50,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "poison-x8"
+        },
+        "sha256": "51eaa2bfa1439047c285e435ec37b7d38689bf1216a0274b4de7d00f014923d2"
+      },
+      "reborn-pw-ranged-x8": {
+        "description": "borg-zoo#741 (reborn-poison-worlds-pilot.yaml): arm ranged-x8.",
+        "settings": {
+          "borg_param_caution_ranged_only": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "poison-x8"
+        },
+        "sha256": "c1c057330a74ff6ef054215abe61d8a8232e497a9e239165e0ee615dc4023613"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-poison-worlds-76567cda": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs claude/friendly-knuth-tn12ji 76567cda (track-p d7d83a15 + PR #1135, its town rows shipped 0, + harness/worlds/poison-x4 and poison-x8); harness/borg.txt 5027f83d..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+        "ref": "76567cda564dff538279c4f5e440be95c26d95cb",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        },
+        "worlds": {
+          "poison-x4": "59a9a5986b4ebbe14b2a352f747a14e456a105a5c28dc850e749794cbec3a2d5",
+          "poison-x8": "fb86c333c80e048da19e68e7e15efc63df49134f91124ecb5168165558e5de0d"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-verysmall": {
+        "assigned_characters": {
+          "102088710": [
+            "Elf",
+            "Rogue"
+          ],
+          "1042834709": [
+            "Gnome",
+            "Rogue"
+          ],
+          "1199401383": [
+            "Half-Elf",
+            "Necromancer"
+          ],
+          "1217781050": [
+            "Human",
+            "Priest"
+          ],
+          "1236782037": [
+            "Gnome",
+            "Necromancer"
+          ],
+          "1248006956": [
+            "Hobbit",
+            "Ranger"
+          ],
+          "1277697136": [
+            "Human",
+            "Rogue"
+          ],
+          "1285833235": [
+            "Gnome",
+            "Paladin"
+          ],
+          "129607500": [
+            "Human",
+            "Ranger"
+          ],
+          "1326666591": [
+            "Gnome",
+            "Warrior"
+          ],
+          "1356248624": [
+            "Elf",
+            "Warrior"
+          ],
+          "1478804878": [
+            "Elf",
+            "Priest"
+          ],
+          "1515505937": [
+            "Hobbit",
+            "Warrior"
+          ],
+          "1516096046": [
+            "Gnome",
+            "Druid"
+          ],
+          "1552244183": [
+            "Gnome",
+            "Blackguard"
+          ],
+          "1584060551": [
+            "Half-Elf",
+            "Paladin"
+          ],
+          "167240942": [
+            "Gnome",
+            "Ranger"
+          ],
+          "1678765969": [
+            "Elf",
+            "Druid"
+          ],
+          "1751715076": [
+            "Human",
+            "Blackguard"
+          ],
+          "1758620521": [
+            "Half-Elf",
+            "Ranger"
+          ],
+          "1759555484": [
+            "Half-Elf",
+            "Rogue"
+          ],
+          "176707408": [
+            "Human",
+            "Necromancer"
+          ],
+          "1859521195": [
+            "Half-Elf",
+            "Warrior"
+          ],
+          "2002578196": [
+            "Hobbit",
+            "Druid"
+          ],
+          "2022908874": [
+            "Hobbit",
+            "Blackguard"
+          ],
+          "2093434235": [
+            "Gnome",
+            "Mage"
+          ],
+          "2097768768": [
+            "Human",
+            "Mage"
+          ],
+          "2109297965": [
+            "Human",
+            "Druid"
+          ],
+          "234773070": [
+            "Elf",
+            "Mage"
+          ],
+          "247597266": [
+            "Half-Elf",
+            "Mage"
+          ],
+          "300461652": [
+            "Hobbit",
+            "Mage"
+          ],
+          "352388688": [
+            "Human",
+            "Paladin"
+          ],
+          "384988836": [
+            "Hobbit",
+            "Necromancer"
+          ],
+          "412975293": [
+            "Elf",
+            "Necromancer"
+          ],
+          "446353753": [
+            "Half-Elf",
+            "Blackguard"
+          ],
+          "507571350": [
+            "Half-Elf",
+            "Druid"
+          ],
+          "572215387": [
+            "Elf",
+            "Ranger"
+          ],
+          "584077430": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "652511567": [
+            "Gnome",
+            "Priest"
+          ],
+          "765432699": [
+            "Hobbit",
+            "Paladin"
+          ],
+          "826156836": [
+            "Hobbit",
+            "Rogue"
+          ],
+          "884072154": [
+            "Human",
+            "Warrior"
+          ],
+          "892923114": [
+            "Hobbit",
+            "Priest"
+          ],
+          "920137153": [
+            "Elf",
+            "Paladin"
+          ],
+          "957287853": [
+            "Elf",
+            "Blackguard"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "Tier verysmall of classes-1800 (RULES 14): starts 1-45 (5 per class), with each seed's classes-1800 character. Between the pilot and small: a study that ran it continues with small-rest (starts 46-90), so its tiers stay disjoint.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          884072154,
+          2097768768,
+          2109297965,
+          1217781050,
+          176707408,
+          352388688,
+          1277697136,
+          129607500,
+          1751715076,
+          1859521195,
+          247597266,
+          507571350,
+          584077430,
+          1199401383,
+          1584060551,
+          1759555484,
+          1758620521,
+          446353753,
+          1356248624,
+          234773070,
+          1678765969,
+          1478804878,
+          412975293,
+          920137153,
+          102088710,
+          572215387,
+          957287853,
+          1515505937,
+          300461652,
+          2002578196,
+          892923114,
+          384988836,
+          765432699,
+          826156836,
+          1248006956,
+          2022908874,
+          1326666591,
+          2093434235,
+          1516096046,
+          652511567,
+          1236782037,
+          1285833235,
+          1042834709,
+          167240942,
+          1552244183
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "range": [
+            0,
+            45
+          ],
+          "suite": "classes-1800"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-23 13:24 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-poison-worlds-76567cda",
+    "control_profile": "reborn-pw-ctl-x8",
+    "definition": "definitions/reborn-poison-worlds-verysmall.yaml",
+    "description": "In the poison-x8 world (the six DL1-3 races whose blows poison, each about 8 times as likely; at DL2 45.5 % of the allocation weight against 9.1 %) on borg-reborn-rs 76567cda (track-p d7d83a15 plus #1135 shipped 0 plus the poison worlds), which settings lower the deaths to poison from white jellies, worm masses and icky things, and at what cost? Generated from definitions/reborn-poison-worlds-verysmall.yaml: 8 arms on 4.2.6-reborn-rust-poison-worlds-76567cda, suite classes-1800-verysmall.",
+    "issue": 741,
+    "name": "reborn-poison-worlds-verysmall",
+    "owner_authorization": "2026-11-23, owner (borg-reborn-rs#1134 session): \"We need zoo experiments with high concentration of poisionous animals, and try different settings\"; earlier \"another [issue] to test settings for preventing being poisoned fighting jelly and white worm masses\" (borg-zoo#741).",
+    "prespecified": "Fixed 2026-11-23, before any game of this build was played in this world (borg-zoo#741; borg-reborn-rs#1134, #1135, #1136, #1137; RULES 21).\nEight arms in poison-x8, each against ctl-x8: ctl (shipped); pkg (the owner's package: escape_phase_lost_danger_percent 50, caution_ranged_only 1,\ncaution_ranged_vs_immobile 2, caution_confused_clw_cure 1); ranged (caution_ranged_only 1; the white jelly is a ranged entry of\nscary_monsters.txt); p934 (caution_poisoned_no_cure_retreat_hp_percent 75); osc (caution_retreat_oscillation_limit 3, _backaway 1); breeder5\n(caution_breeder_policy 5 against the shipped 3: paths avoid colonies and the Borg walks out of a breeder room); buy (#1135:\ntown_prepared_poison_percent 40, town_prepared_ccw 2, town_prepared_ccw_percent 112); all (pkg without immobile2, plus p934, osc and buy).\nThe normal world is measured for the package by reborn-trackp-pkg-* (#738) and for ranged/immobile2 by #740; poison-x4 is defined in the\nspecimen for a later tier. Pilot (classes-18) as the gate, then verysmall (starts 1-45) in poison-x8.\nTier verysmall: classes-1800 starts 1-45, 100,000 turns, poison-x8. Gate: no config_error; one binary; every cell records borg_world poison-x8 with the same borg_world_data_sha256;\neach arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per\narm. Report per arm and class: deaths with poison apart (white/yellow jelly, worm masses, icky things, other), the killer, CL and depth at\ndeath, rescued and newly killed against ctl-x8 (exact McNemar), DL3/DL5 reached, encounters with the six races, melee blows on them,\nNeutralize Poison / CCW bought and quaffed. Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-pw-ctl-x8",
+      "reborn-pw-pkg-x8",
+      "reborn-pw-ranged-x8",
+      "reborn-pw-p934-x8",
+      "reborn-pw-osc-x8",
+      "reborn-pw-breeder5-x8",
+      "reborn-pw-buy-x8",
+      "reborn-pw-all-x8"
+    ],
+    "question": "In the poison-x8 world (the six DL1-3 races whose blows poison, each about 8 times as likely; at DL2 45.5 % of the allocation weight against 9.1 %) on borg-reborn-rs 76567cda (track-p d7d83a15 plus #1135 shipped 0 plus the poison worlds), which settings lower the deaths to poison from white jellies, worm masses and icky things, and at what cost?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-poison-worlds-76567cda"
+    ],
+    "suites": [
+      "classes-1800-verysmall"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45180408915-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45180408915",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "ba4e3300bcd94c1149264f89dd5df644eae70895"
+}
