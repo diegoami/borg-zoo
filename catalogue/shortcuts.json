@@ -2559,6 +2559,22 @@
         "reborn-t1134-all"
       ],
       "runs": []
+    },
+    "reborn-mixed40": {
+      "issue": 732,
+      "status": "defined (pilot, verysmall, small-rest)",
+      "what": "Mixed exploration, C's leave-when-done and the old bfs stay (#1098, PR #1117) on 40c3bcc8: ctl, cexit, bfs-stay, mixed, nobfs, mixed-alone, mixed-tight, mixed-loose.",
+      "profiles": [
+        "reborn-mx40-ctl",
+        "reborn-mx40-cexit",
+        "reborn-mx40-bfs-stay",
+        "reborn-mx40-mixed",
+        "reborn-mx40-nobfs",
+        "reborn-mx40-mixed-alone",
+        "reborn-mx40-mixed-tight",
+        "reborn-mx40-mixed-loose"
+      ],
+      "runs": []
     }
   }
 }

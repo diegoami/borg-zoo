@@ -1,0 +1,30 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-mixed40-pilot",
+  "issue": 732,
+  "definition": "definitions/reborn-mixed40-pilot.yaml",
+  "question": "On borg-reborn-rs 40c3bcc8 (PR #1117), does mixed exploration (explore_mixed), C's leave-when-done (explore_c_leave_when_done) or the old breadth-first stay (explore_bfs_leave_when_done 0) change the deaths of CL3-8 characters or the progress against the shipped play?",
+  "description": "On borg-reborn-rs 40c3bcc8 (PR #1117), does mixed exploration (explore_mixed), C's leave-when-done (explore_c_leave_when_done) or the old breadth-first stay (explore_bfs_leave_when_done 0) change the deaths of CL3-8 characters or the progress against the shipped play? Generated from definitions/reborn-mixed40-pilot.yaml: 8 arms on 4.2.6-reborn-rust-mixed-40c3bcc8, suite classes-18.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#732; borg-reborn-rs #1098, PR #1117 at 40c3bcc8: merged with track-p d3d1629f, which ships stair_scum (#1061); with the fixes of the owner review of #1117; the earlier pilot and verysmall at 3a2d2215 were on a previous build and do not carry over). Eight arms: ctl (shipped, explore_breadth_first 1 and explore_bfs_leave_when_done 1); cexit (explore_c_leave_when_done 1: C's own exploration takes the stairs once it finds nothing, before the secret-door search; locally secret-door searches 587 -> 78, mean CL at 100k 5.55 -> 5.20, one game stuck in a two-grid loop, #1130); bfs-stay (explore_bfs_leave_when_done 0, the old behaviour); mixed (explore_mixed 1); nobfs (explore_breadth_first 0, the control for mixed-alone); mixed-alone (explore_mixed 1, explore_breadth_first 0); mixed-tight (explore_mixed 1, explore_mix_contact_damage 8); mixed-loose (explore_mixed 1, explore_mix_contact_damage 3). Pilot, then verysmall (classes-1800 starts 1-45), then small-rest (46-90), each tier on the owner's word after the previous gate; if capacity is short ctl, bfs-stay, cexit and mixed first. Local direction on the 20 starts (before the merge with d3d1629f, stair_scum off): mean CL at 100k bfs-stay / ctl / mixed 5.10 / 5.55 / 5.35, deaths 0 / 1 / 1 (the same floating-eye game, #852). The owner expects survivability to rise sharply at CL5-6, so the mode may not pay for itself.\nTier pilot: classes-18, 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen 40c3bcc8. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report: all deaths and deaths at CL3-8 (the band the mode is for), paired by start against ctl (mixed-alone against nobfs), exact McNemar; the cost: CL at 25k / 50k / 100k turns, starts reaching DL3 and DL5 and their first turn there; deaths per 10,000 turns at each (CL, DL) from #718's turns_at_level_depth; a death report with screens (/death-report) for deaths in mixed or ctl. Descriptive (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-mixed-40c3bcc8"
+  ],
+  "profiles": [
+    "reborn-mx40-ctl",
+    "reborn-mx40-cexit",
+    "reborn-mx40-bfs-stay",
+    "reborn-mx40-mixed",
+    "reborn-mx40-nobfs",
+    "reborn-mx40-mixed-alone",
+    "reborn-mx40-mixed-tight",
+    "reborn-mx40-mixed-loose"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-mixed-40c3bcc8",
+  "control_profile": "reborn-mx40-ctl",
+  "owner_authorization": "2026-11-23: borg-reborn-rs (the zoo study of #1098, PR #1117; re-pinned to 40c3bcc8), borg-zoo#732; zoo owner, 2026-11-23: \"continue with experiments\".",
+  "retain_evidence": true
+}

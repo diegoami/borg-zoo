@@ -192,6 +192,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-perception` | [#736](https://github.com/diegoami/borg-zoo/issues/736) | 4 | defined (pilot, full) | Stale light and sight through rubble (#885, #917, PR #1128, 7bfbe121): ctl, dark, rubble, both. |
 | `reborn-trap` | [#737](https://github.com/diegoami/borg-zoo/issues/737) | 5 | defined (20 death seeds, full ctl/trapoff) | The #1067 trap rules, shipped on (PR #1086, 91dd0d0a): ctl, trapoff, way, recover, noleave. |
 | `reborn-t1134` | [#738](https://github.com/diegoami/borg-zoo/issues/738) | 6 | defined (pilot, verysmall) | Phase threshold 50, confusion CLW cure, retreat breaker, prepared remedy 50 on track-p 1c071812 (borg-reborn-rs #1134): ctl, phase50, conf, osc, prep50, all. |
+| `reborn-mixed40` | [#732](https://github.com/diegoami/borg-zoo/issues/732) | 8 | defined (pilot, verysmall, small-rest) | Mixed exploration, C's leave-when-done and the old bfs stay (#1098, PR #1117) on 40c3bcc8: ctl, cexit, bfs-stay, mixed, nobfs, mixed-alone, mixed-tight, mixed-loose. |
 
 ### `heal-attack-4`
 
@@ -2716,6 +2717,23 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-t1134-prep50` | – | – | – | – | 50 |
 | `reborn-t1134-all` | 1 | 1 | 3 | 50 | – |
 
+### `reborn-mixed40`
+
+Mixed exploration, C's leave-when-done and the old bfs stay (#1098, PR #1117) on 40c3bcc8: ctl, cexit, bfs-stay, mixed, nobfs, mixed-alone, mixed-tight, mixed-loose.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_explore_bfs_leave_when_done` | `borg_param_explore_breadth_first` | `borg_param_explore_c_leave_when_done` | `borg_param_explore_mix_contact_damage` | `borg_param_explore_mixed` |
+| --- | --- | --- | --- | --- | --- |
+| `reborn-mx40-ctl` | – | – | – | – | – |
+| `reborn-mx40-cexit` | – | – | 1 | – | – |
+| `reborn-mx40-bfs-stay` | 0 | – | – | – | – |
+| `reborn-mx40-mixed` | – | – | – | – | 1 |
+| `reborn-mx40-nobfs` | – | 0 | – | – | – |
+| `reborn-mx40-mixed-alone` | – | 0 | – | – | 1 |
+| `reborn-mx40-mixed-tight` | – | – | – | 8 | 1 |
+| `reborn-mx40-mixed-loose` | – | – | – | 3 | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2928,9 +2946,11 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_phase_unknown_scary` | 0, 1 | `reborn-phase` |  |
 | `borg_param_escape_teleport_block` | 0, not set | `reborn-tpblock` |  |
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
-| `borg_param_explore_breadth_first` | 0, 1, not set | `reborn-bfs`, `reborn-mixed`, `reborn-food-bfs`, `reborn-bfs-ladder`, `reborn-ss9276` |  |
-| `borg_param_explore_mix_contact_damage` | 3, 8, not set | `reborn-mixed` |  |
-| `borg_param_explore_mixed` | 1, not set | `reborn-mixed` |  |
+| `borg_param_explore_bfs_leave_when_done` | 0, not set | `reborn-mixed40` |  |
+| `borg_param_explore_breadth_first` | 0, 1, not set | `reborn-bfs`, `reborn-mixed`, `reborn-food-bfs`, `reborn-bfs-ladder`, `reborn-ss9276`, `reborn-mixed40` |  |
+| `borg_param_explore_c_leave_when_done` | 1, not set | `reborn-mixed40` |  |
+| `borg_param_explore_mix_contact_damage` | 3, 8, not set | `reborn-mixed`, `reborn-mixed40` |  |
+| `borg_param_explore_mixed` | 1, not set | `reborn-mixed`, `reborn-mixed40` |  |
 | `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag`, `reborn-nowalk`, `reborn-cavesp` |  |
 | `borg_param_fast_fragile_contact_max` | 1, not set | `reborn-cavesp` |  |
 | `borg_param_fast_fragile_count_dot` | 1, not set | `reborn-ffq`, `reborn-ff-dot`, `reborn-ffb769`, `reborn-ffb-ladder` |  |

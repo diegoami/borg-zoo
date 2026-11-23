@@ -12944,6 +12944,72 @@
         "borg_param_caution_retreat_oscillation_limit": 3,
         "borg_param_caution_retreat_oscillation_backaway": 1
       }
+    },
+    "reborn-mx40-ctl": {
+      "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-mx40-cexit": {
+      "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm cexit.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_c_leave_when_done": 1
+      }
+    },
+    "reborn-mx40-bfs-stay": {
+      "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm bfs-stay.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_bfs_leave_when_done": 0
+      }
+    },
+    "reborn-mx40-mixed": {
+      "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm mixed.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_mixed": 1
+      }
+    },
+    "reborn-mx40-nobfs": {
+      "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm nobfs.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_breadth_first": 0
+      }
+    },
+    "reborn-mx40-mixed-alone": {
+      "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm mixed-alone.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_mixed": 1,
+        "borg_param_explore_breadth_first": 0
+      }
+    },
+    "reborn-mx40-mixed-tight": {
+      "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm mixed-tight.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_mixed": 1,
+        "borg_param_explore_mix_contact_damage": 8
+      }
+    },
+    "reborn-mx40-mixed-loose": {
+      "description": "borg-zoo#732 (reborn-mixed40-pilot.yaml): arm mixed-loose.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_mixed": 1,
+        "borg_param_explore_mix_contact_damage": 3
+      }
     }
   }
 }
