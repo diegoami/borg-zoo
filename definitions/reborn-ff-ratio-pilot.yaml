@@ -1,0 +1,34 @@
+# borg-zoo#717: fast-fragile heal ratio (borg-reborn-rs #1065, PR #1089, shipped 30), pilot tier.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-ff-ratio-pilot.yaml
+name: reborn-ff-ratio-pilot
+issue: 717
+question: >-
+  On borg-reborn-rs 8d736268 (PR #1089: track-p 09580159 with the #1074 bundle, the light radius and the heal ratio shipped at 30), does the shipped fast_fragile_heal_min_ratio 30 change deaths against ratio 0 (the play of track-p before #1065), and how often is its gate reached?
+tier: pilot            # classes-18, 100,000 turns
+pilot: true            # first run of these arms on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-ffratio-8d736268
+  repository: diegoami/borg-reborn-rs
+  ref: 8d736268ae754d3b703b45bc230a84aa3f98bf06
+  label: "borg-reborn-rs PR #1089 head 8d736268 (task/1065-heal-ratio-2: track-p 09580159 merged with #1065; ships the #1074 bundle fast_fragile_heal_floor 50, escape_quantile 75, count_dot 1, cave_light_engine_radius 1 and fast_fragile_heal_min_ratio 30); shipped harness/borg.txt bdf43f7c..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-ffr
+arms:
+  ctl: {}
+  ratio0: {borg_param_fast_fragile_heal_min_ratio: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs owner ("file zoo request"; re-pinned to PR #1089 shipping the ratio at 30), filed as borg-zoo#717; zoo owner, 2026-11-23: "ok do all of them" (pilot as the gate, then the full tier).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#717; borg-reborn-rs #1065, PR #1089; the request's latest re-pin). Two arms at 8d736268: ctl (shipped: the #926 bundle on, fast_fragile_heal_min_ratio 30) and ratio0 (fast_fragile_heal_min_ratio 0, the play of track-p before #1065). Pilot as the gate, then the full tier (classes-1800 starts 901-1800, 900 per arm). Fast-fragile decisions are rare (about 1 game in 60, #660, #596) and this gate is rarer still; the requester's local replays of 7 seeds play identical keys with ratio 30 and ratio 0, the gate never reached, so the pilot may show no difference, which is a result too.
+  Tier pilot: classes-18, 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core, specimen 8d736268. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays (ratio0 against ctl: a gate that never fires plays the same keys). Report: paired deaths ctl against ratio0 with the rescued and the newly killed games (exact McNemar), CL and depth, alive at the cap having reached DL5; per arm the counts of the two '(#1065)' trace notes ('# Fast-fragile in contact, HP a/b: at the heal floor, a cure is allowed if it leaves ...' and '... even a full heal leaves ... no cure at the heal floor') and the games they occur in (pilot, retained evidence); deaths to fast-fragile monsters (crow, wild cat) and deaths with a cure potion in the pack. Whether 30 stays shipped is a borg-reborn-rs decision on this run. Descriptive (RULES 14).

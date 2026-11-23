@@ -12177,6 +12177,36 @@
         "borg_param_recover_unseen_shot": 0,
         "borg_param_recover_rest_cure_hp_percent": 0
       }
+    },
+    "reborn-ffr-ctl": {
+      "description": "borg-zoo#717 (reborn-ff-ratio-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-ffr-ratio0": {
+      "description": "borg-zoo#717 (reborn-ff-ratio-pilot.yaml): arm ratio0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_heal_min_ratio": 0
+      }
+    },
+    "reborn-ffd-ctl": {
+      "description": "borg-zoo#713 (reborn-ff-dot-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-ffd-dot": {
+      "description": "borg-zoo#713 (reborn-ff-dot-pilot.yaml): arm dot.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_fast_fragile_count_dot": 1
+      }
     }
   }
 }

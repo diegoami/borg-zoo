@@ -171,6 +171,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-belief` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 5 | defined (pilot, full) | unseen_belief (#879, borg-reborn-rs #890, a must ship) and the engine light radius (#877) on track-p f8725bc0: ctl, light, belief, light+belief, light+belief-decay5; pilot then full (900 starts). |
 | `reborn-leash-dl1` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 4 | defined (pilot) | Why the kit leash adds DL1 deaths: 49 death starts of #702's full tier replayed to 25,000 turns with notes on track-p 206cf4e7: ctl, light, leash, light+leash. |
 | `reborn-light-ladder` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 2 | defined (verysmall, small-rest, medium, big = starts 1-900) | Light radius (cave_light_engine_radius 1) against ctl on classes-1800 starts 1-900 at track-p 206cf4e7: second block for the depth cost seen on starts 901-1800. |
+| `reborn-light-priest` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 2 | defined (pilot) | Why the light radius slows Priests: the 63 slow Priest starts of the light ladder replayed to 60,000 turns with notes: ctl, light on 206cf4e7. |
+| `reborn-ff-ratio` | [#717](https://github.com/diegoami/borg-zoo/issues/717) | 2 | defined (pilot, full) | Fast-fragile heal ratio 30 (shipped) against 0 (#1065, PR #1089) on 8d736268: ctl, ratio0. |
+| `reborn-ff-dot` | [#713](https://github.com/diegoami/borg-zoo/issues/713) | 2 | defined (pilot) | Fast-fragile own cut and poison (count_dot 1, #1028) on track-p 8f32a8a0: ctl, dot. |
 
 ### `heal-attack-4`
 
@@ -2429,6 +2432,39 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-li206-ctl` | – |
 | `reborn-li206-light` | 1 |
 
+### `reborn-light-priest`
+
+Why the light radius slows Priests: the 63 slow Priest starts of the light ladder replayed to 60,000 turns with notes: ctl, light on 206cf4e7.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_cave_light_engine_radius` |
+| --- | --- |
+| `reborn-li206-ctl` | – |
+| `reborn-li206-light` | 1 |
+
+### `reborn-ff-ratio`
+
+Fast-fragile heal ratio 30 (shipped) against 0 (#1065, PR #1089) on 8d736268: ctl, ratio0.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_fast_fragile_heal_min_ratio` |
+| --- | --- |
+| `reborn-ffr-ctl` | – |
+| `reborn-ffr-ratio0` | 0 |
+
+### `reborn-ff-dot`
+
+Fast-fragile own cut and poison (count_dot 1, #1028) on track-p 8f32a8a0: ctl, dot.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_fast_fragile_count_dot` |
+| --- | --- |
+| `reborn-ffd-ctl` | – |
+| `reborn-ffd-dot` | 1 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2616,7 +2652,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_winning_fight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3`, `reborn-townhunt` |  |
 | `borg_param_caution_winning_fight_group_percent` | 100, not set | `reborn-fastpur` |  |
 | `borg_param_caution_winning_fight_margin_percent` | 20, not set | `reborn-fastpur` |  |
-| `borg_param_cave_light_engine_radius` | 1, not set | `reborn-lightbel`, `reborn-li206`, `reborn-belief`, `reborn-leash-dl1`, `reborn-light-ladder` |  |
+| `borg_param_cave_light_engine_radius` | 1, not set | `reborn-lightbel`, `reborn-li206`, `reborn-belief`, `reborn-leash-dl1`, `reborn-light-ladder`, `reborn-light-priest` |  |
 | `borg_param_danger_breeder_melee_extra_tenths` | 0, 5, not set | `reborn-loneslow`, `reborn-lonew` |  |
 | `borg_param_danger_observed_haste` | 1, not set | `reborn-fastpur` |  |
 | `borg_param_defend_bless_danger_divisor` | 6, not set | `reborn-bless` |  |
@@ -2635,10 +2671,11 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
 | `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag`, `reborn-nowalk`, `reborn-cavesp` |  |
 | `borg_param_fast_fragile_contact_max` | 1, not set | `reborn-cavesp` |  |
-| `borg_param_fast_fragile_count_dot` | 1, not set | `reborn-ffq` |  |
+| `borg_param_fast_fragile_count_dot` | 1, not set | `reborn-ffq`, `reborn-ff-dot` |  |
 | `borg_param_fast_fragile_escape_percent` | 0, 75, not set | `reborn-fastfrag`, `reborn-ffq` |  |
 | `borg_param_fast_fragile_escape_quantile` | 50, 100, not set | `reborn-ffq` |  |
 | `borg_param_fast_fragile_heal_floor` | 25, not set | `reborn-ffq` |  |
+| `borg_param_fast_fragile_heal_min_ratio` | 0, not set | `reborn-ff-ratio` |  |
 | `borg_param_fast_fragile_no_heal` | 1, 2, not set | `reborn-fastfrag` |  |
 | `borg_param_fast_fragile_no_walk` | 1, not set | `reborn-nowalk` |  |
 | `borg_param_fast_fragile_policy` | 1, not set | `reborn-fastfrag` |  |

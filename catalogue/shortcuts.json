@@ -2314,6 +2314,36 @@
         "reborn-li206-light"
       ],
       "runs": []
+    },
+    "reborn-light-priest": {
+      "issue": 702,
+      "status": "defined (pilot)",
+      "what": "Why the light radius slows Priests: the 63 slow Priest starts of the light ladder replayed to 60,000 turns with notes: ctl, light on 206cf4e7.",
+      "profiles": [
+        "reborn-li206-ctl",
+        "reborn-li206-light"
+      ],
+      "runs": []
+    },
+    "reborn-ff-ratio": {
+      "issue": 717,
+      "status": "defined (pilot, full)",
+      "what": "Fast-fragile heal ratio 30 (shipped) against 0 (#1065, PR #1089) on 8d736268: ctl, ratio0.",
+      "profiles": [
+        "reborn-ffr-ctl",
+        "reborn-ffr-ratio0"
+      ],
+      "runs": []
+    },
+    "reborn-ff-dot": {
+      "issue": 713,
+      "status": "defined (pilot)",
+      "what": "Fast-fragile own cut and poison (count_dot 1, #1028) on track-p 8f32a8a0: ctl, dot.",
+      "profiles": [
+        "reborn-ffd-ctl",
+        "reborn-ffd-dot"
+      ],
+      "runs": []
     }
   }
 }

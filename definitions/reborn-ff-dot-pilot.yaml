@@ -1,0 +1,33 @@
+# borg-zoo#713: fast-fragile own cut and poison (borg-reborn-rs #926/#1028), pilot.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-ff-dot-pilot.yaml
+name: reborn-ff-dot-pilot
+issue: 713
+question: >-
+  On borg-reborn-rs track-p 8f32a8a0 (which contains #1028, PR #1068, merged as 3088d9a6), does counting the Borg's own cut and poison in 'the next turn kills' (fast_fragile_count_dot 1) change the fast-fragile decisions or deaths against the shipped play, and how often does the switch fire?
+tier: pilot            # classes-18, 100,000 turns; then small (classes-1800 starts 1-90) after the gate
+pilot: true            # first run of this arm on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-8f32a8a0
+  repository: diegoami/borg-reborn-rs
+  ref: 8f32a8a0d128322595ee5a77a71ea27179b22997
+  label: "borg-reborn-rs LINE track-p, head 8f32a8a0 on 2026-11-23 (contains #1028, PR #1068, 3088d9a6; fast_fragile_count_dot, fast_fragile_heal_floor and fast_fragile_escape_quantile compiled and shipped 0); shipped harness/borg.txt 1c0d0223..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-ffd
+arms:
+  ctl: {}
+  dot: {borg_param_fast_fragile_count_dot: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs owner ("file the zoo request for the dot arm"), filed as borg-zoo#713 (supersedes #672's dot arm, pinned to 8974509e / 345cf356); zoo owner, 2026-11-23: "ok do all of them" (the classes-18 pilot; the small tier after the gate).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#713; borg-reborn-rs #926, #1028). Two arms on track-p 8f32a8a0 (fast_fragile_count_dot ships 0, so ctl is the shipped play): ctl; dot (fast_fragile_count_dot 1). Pilot: classes-18, 100,000 turns, evidence retained, 36 cells; then small (classes-1800 starts 1-90, every class, on a seed block not yet read for a fast-fragile decision if one is available) on the owner's word. The requester's local replays: no recorded game reaches the branch that drinks the potion, dot plays the same keys as ctl on the #926 seeds 1398933929 (9653a0d480ef1dd2) and 1294425391 (2a7f2615f8c44b0b), so the pilot may well show no difference, which is a result too. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays. Report: deaths per class and arm paired by start (rescued, newly killed, CL and DL); how often it fires, from the notes '# Fast-fragile: its own cut and poison (... world ticks of ... HP before its next action) take it below 0 from HP ...: <potion> ... (#1028)' per arm and the games they occur in. Descriptive (RULES 14).
