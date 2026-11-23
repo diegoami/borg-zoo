@@ -264,13 +264,31 @@ class BorgRsTest(unittest.TestCase):
                 '10000 7,7 d3/3 hp30/30 sp0/0 f3000 au900 xp500 lv5 t1:3 o- p0 e0 r0\n')
         states = borgrs.parse_state_log(text)
         self.assertEqual(len(states), 4)
-        self.assertEqual(states[-1], {'turn': 10000, 'depth': 3, 'max_depth': 3, 'gold': 900, 'xp': 500, 'level': 5})
+        self.assertEqual(states[-1], {'turn': 10000, 'depth': 3, 'max_depth': 3, 'hp': 30, 'max_hp': 30, 'gold': 900, 'xp': 500, 'level': 5})
         self.assertEqual(borgrs.first_turns_at_depth(states, marks=(1, 2, 3)), {'1': 2000, '2': 5000, '3': 10000})
         rows = borgrs.milestones(states, cap=10000, fractions=(0.5, 1.0))
         self.assertEqual(rows, [{'turn': 5000, 'level': 3, 'max_depth': 2, 'gold': 300},
                                 {'turn': 10000, 'level': 5, 'max_depth': 3, 'gold': 900}])
         self.assertEqual(borgrs.milestones([], cap=10000, fractions=(0.5,)),
                          [{'turn': 5000, 'level': None, 'max_depth': None, 'gold': None}])
+
+    def test_level_and_hp_exposure_fields(self):
+        # borg-zoo#718: first turn at a level, time at (level, depth), first turn at a max HP.
+        text = ('100 5,5 d0/0 hp10/10 sp0/0 f5000 au50 xp0 lv1 t- o- p0 e0 r0\n'
+                '2000 6,6 d1/1 hp15/18 sp0/0 f4500 au150 xp40 lv2 t- o- p0 e0 r0\n'
+                '5000 6,6 d1/2 hp9/22 sp0/0 f4000 au300 xp120 lv3 t- o- p0 e0 r0\n'
+                '8000 7,7 d0/2 hp22/22 sp0/0 f3000 au900 xp500 lv3 t- o- p0 e0 r0\n')
+        states = borgrs.parse_state_log(text)
+        self.assertEqual(borgrs.first_turns_at_level(states, marks=(2, 3, 4)), {'2': 2000, '3': 5000})
+        self.assertEqual(borgrs.first_turns_at_max_hp(states, marks=(15, 20, 25)), {'15': 2000, '20': 5000})
+        self.assertEqual(borgrs.turns_at_level_depth(states, end_turn=9000),
+                         {'1,0': 1900, '2,1': 3000, '3,1': 3000, '3,0': 1000})
+        # Without an end turn the last line adds nothing; a negative current HP still parses.
+        self.assertEqual(borgrs.turns_at_level_depth(states), {'1,0': 1900, '2,1': 3000, '3,1': 3000})
+        dying = borgrs.parse_state_log('300 1,1 d1/1 hp-3/20 sp0/0 f0 au0 xp0 lv1 t- o- p0 e0 r0\n')
+        self.assertEqual((dying[0]['hp'], dying[0]['max_hp']), (-3, 20))
+        self.assertEqual((borgrs.first_turns_at_level([]), borgrs.turns_at_level_depth([]),
+                          borgrs.first_turns_at_max_hp([])), ({}, {}, {}))
 
     def test_borg_rs_specimens_reject_random_birth(self):
         with tempfile.TemporaryDirectory() as tmp:

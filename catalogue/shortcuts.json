@@ -2304,6 +2304,16 @@
         "reborn-ldl1-light+leash"
       ],
       "runs": []
+    },
+    "reborn-light-ladder": {
+      "issue": 702,
+      "status": "defined (verysmall, small-rest, medium, big = starts 1-900)",
+      "what": "Light radius (cave_light_engine_radius 1) against ctl on classes-1800 starts 1-900 at track-p 206cf4e7: second block for the depth cost seen on starts 901-1800.",
+      "profiles": [
+        "reborn-li206-ctl",
+        "reborn-li206-light"
+      ],
+      "runs": []
     }
   }
 }
