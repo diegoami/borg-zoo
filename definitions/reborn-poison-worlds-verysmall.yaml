@@ -1,0 +1,56 @@
+# borg-zoo#741 (borg-reborn-rs#1134): settings against poisoning in the poison-x8 world, borg-reborn-rs 76567cda, verysmall.
+# Write the catalogue entries with: python3 -m zoo define definitions/reborn-poison-worlds-verysmall.yaml
+name: reborn-poison-worlds-verysmall
+issue: 741
+question: >-
+  In the poison-x8 world (the six DL1-3 races whose blows poison, each about 8 times as likely; at DL2 45.5 % of the allocation weight against
+  9.1 %) on borg-reborn-rs 76567cda (track-p d7d83a15 plus #1135 shipped 0 plus the poison worlds), which settings lower the deaths to poison
+  from white jellies, worm masses and icky things, and at what cost?
+tier: verysmall            # classes-1800 starts 1-45, 100,000 turns, poison-x8
+
+specimen:
+  name: 4.2.6-reborn-rust-poison-worlds-76567cda
+  repository: diegoami/borg-reborn-rs
+  ref: 76567cda564dff538279c4f5e440be95c26d95cb
+  label: "borg-reborn-rs claude/friendly-knuth-tn12ji 76567cda (track-p d7d83a15 + PR #1135, its town rows shipped 0, + harness/worlds/poison-x4 and poison-x8); harness/borg.txt 5027f83d..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+  worlds:
+    poison-x4: 59a9a5986b4ebbe14b2a352f747a14e456a105a5c28dc850e749794cbec3a2d5
+    poison-x8: fb86c333c80e048da19e68e7e15efc63df49134f91124ecb5168165558e5de0d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-pw
+arms:
+  ctl-x8: {borg_world: poison-x8}
+  pkg-x8: {borg_world: poison-x8, borg_param_escape_phase_lost_danger_percent: 50, borg_param_caution_ranged_only: 1, borg_param_caution_ranged_vs_immobile: 2, borg_param_caution_confused_clw_cure: 1}
+  ranged-x8: {borg_world: poison-x8, borg_param_caution_ranged_only: 1}
+  p934-x8: {borg_world: poison-x8, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75}
+  osc-x8: {borg_world: poison-x8, borg_param_caution_retreat_oscillation_limit: 3, borg_param_caution_retreat_oscillation_backaway: 1}
+  breeder5-x8: {borg_world: poison-x8, borg_param_caution_breeder_policy: 5}
+  buy-x8: {borg_world: poison-x8, borg_param_town_prepared_poison_percent: 40, borg_param_town_prepared_ccw: 2, borg_param_town_prepared_ccw_percent: 112}
+  all-x8: {borg_world: poison-x8, borg_param_escape_phase_lost_danger_percent: 50, borg_param_caution_ranged_only: 1, borg_param_caution_confused_clw_cure: 1, borg_param_caution_poisoned_no_cure_retreat_hp_percent: 75, borg_param_caution_retreat_oscillation_limit: 3, borg_param_caution_retreat_oscillation_backaway: 1, borg_param_town_prepared_poison_percent: 40, borg_param_town_prepared_ccw: 2, borg_param_town_prepared_ccw_percent: 112}
+control: [ctl-x8]
+owner_authorization: >-
+  2026-11-23, owner (borg-reborn-rs#1134 session): "We need zoo experiments with high concentration of poisionous animals, and try different
+  settings"; earlier "another [issue] to test settings for preventing being poisoned fighting jelly and white worm masses" (borg-zoo#741).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any game of this build was played in this world (borg-zoo#741; borg-reborn-rs#1134, #1135, #1136, #1137; RULES 21).
+  Eight arms in poison-x8, each against ctl-x8: ctl (shipped); pkg (the owner's package: escape_phase_lost_danger_percent 50, caution_ranged_only 1,
+  caution_ranged_vs_immobile 2, caution_confused_clw_cure 1); ranged (caution_ranged_only 1; the white jelly is a ranged entry of
+  scary_monsters.txt); p934 (caution_poisoned_no_cure_retreat_hp_percent 75); osc (caution_retreat_oscillation_limit 3, _backaway 1); breeder5
+  (caution_breeder_policy 5 against the shipped 3: paths avoid colonies and the Borg walks out of a breeder room); buy (#1135:
+  town_prepared_poison_percent 40, town_prepared_ccw 2, town_prepared_ccw_percent 112); all (pkg without immobile2, plus p934, osc and buy).
+  The normal world is measured for the package by reborn-trackp-pkg-* (#738) and for ranged/immobile2 by #740; poison-x4 is defined in the
+  specimen for a later tier. Pilot (classes-18) as the gate, then verysmall (starts 1-45) in poison-x8.
+  Tier verysmall: classes-1800 starts 1-45, 100,000 turns, poison-x8. Gate: no config_error; one binary; every cell records borg_world poison-x8 with the same borg_world_data_sha256;
+  each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per
+  arm. Report per arm and class: deaths with poison apart (white/yellow jelly, worm masses, icky things, other), the killer, CL and depth at
+  death, rescued and newly killed against ctl-x8 (exact McNemar), DL3/DL5 reached, encounters with the six races, melee blows on them,
+  Neutralize Poison / CCW bought and quaffed. Descriptive (RULES 14).
