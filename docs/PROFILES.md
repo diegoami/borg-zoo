@@ -177,6 +177,8 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-light-priest` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 2 | defined (pilot) | Why the light radius slows Priests: the 63 slow Priest starts of the light ladder replayed to 60,000 turns with notes: ctl, light on 206cf4e7. |
 | `reborn-ff-ratio` | [#717](https://github.com/diegoami/borg-zoo/issues/717) | 2 | defined (pilot, full) | Fast-fragile heal ratio 30 (shipped) against 0 (#1065, PR #1089) on c5a24f8e: ctl, ratio0. |
 | `reborn-ff-dot` | [#713](https://github.com/diegoami/borg-zoo/issues/713) | 2 | defined (pilot) | Fast-fragile own cut and poison (count_dot 1, #1028) on track-p 8f32a8a0: ctl, dot. |
+| `reborn-kos-cure` | [#727](https://github.com/diegoami/borg-zoo/issues/727) | 4 | defined (x8 pilot, normal pilot, full) | attack_kill_on_sight_floor_cure 1 (shipped) against 0 (#1064, PR #1082) on bc215cf8: patches-x8 and the normal world; ctl, cure0. |
+| `reborn-ffb769` | [#711](https://github.com/diegoami/borg-zoo/issues/711) | 5 | defined (pilot, full) | The #926 fast-fragile bundle (escape quantile 75, heal floor 50, count_dot 1) and its three parts on track-p 769f3fbd: ctl, bundle, q75, floor50, dot. |
 
 ### `heal-attack-4`
 
@@ -2505,6 +2507,33 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-ffd-ctl` | – |
 | `reborn-ffd-dot` | 1 |
 
+### `reborn-kos-cure`
+
+attack_kill_on_sight_floor_cure 1 (shipped) against 0 (#1064, PR #1082) on bc215cf8: patches-x8 and the normal world; ctl, cure0.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_attack_kill_on_sight_floor_cure` | `borg_world` |
+| --- | --- | --- |
+| `reborn-kos-ctl-x8` | – | patches-x8 |
+| `reborn-kos-cure0-x8` | 0 | patches-x8 |
+| `reborn-kos-ctl` | – | – |
+| `reborn-kos-cure0` | 0 | – |
+
+### `reborn-ffb769`
+
+The #926 fast-fragile bundle (escape quantile 75, heal floor 50, count_dot 1) and its three parts on track-p 769f3fbd: ctl, bundle, q75, floor50, dot.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_fast_fragile_count_dot` | `borg_param_fast_fragile_escape_quantile` | `borg_param_fast_fragile_heal_floor` |
+| --- | --- | --- | --- |
+| `reborn-ffb769-ctl` | – | – | – |
+| `reborn-ffb769-bundle` | 1 | 75 | 50 |
+| `reborn-ffb769-q75` | – | 75 | – |
+| `reborn-ffb769-floor50` | – | – | 50 |
+| `reborn-ffb769-dot` | 1 | – | – |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2531,6 +2560,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_attack_arrow_point_blank_divisor_warrior` | 2, 10, not set | `reborn-pbd-by-class` |  |
 | `borg_param_attack_confused_by_direction` | 0, 1, not set | `reborn-conf`, `reborn-trackp-regression` |  |
 | `borg_param_attack_flask_saving` | 2, not set | `reborn-flask` |  |
+| `borg_param_attack_kill_on_sight_floor_cure` | 0, not set | `reborn-kos-cure` |  |
 | `borg_param_attack_kill_on_sight_min_hp_percent` | 0, not set | `reborn-ks206` |  |
 | `borg_param_attack_on_sight` | 0, 1, not set | `reborn-fight-recall`, `reborn-attacksight`, `reborn-adopted`, `reborn-adopted-600`, `reborn-ship3` |  |
 | `borg_param_attack_preference_blackguard_activation_permille` | 500, 750, not set | `reborn-attack-focus` |  |
@@ -2711,10 +2741,10 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_escape_teleport_landing_either` | 0, 1 | `reborn-teleport-landing-either` |  |
 | `borg_param_fast_fragile_by_stats` | 1, not set | `reborn-fastfrag`, `reborn-nowalk`, `reborn-cavesp` |  |
 | `borg_param_fast_fragile_contact_max` | 1, not set | `reborn-cavesp` |  |
-| `borg_param_fast_fragile_count_dot` | 1, not set | `reborn-ffq`, `reborn-ff-dot` |  |
+| `borg_param_fast_fragile_count_dot` | 1, not set | `reborn-ffq`, `reborn-ff-dot`, `reborn-ffb769` |  |
 | `borg_param_fast_fragile_escape_percent` | 0, 75, not set | `reborn-fastfrag`, `reborn-ffq` |  |
-| `borg_param_fast_fragile_escape_quantile` | 50, 100, not set | `reborn-ffq` |  |
-| `borg_param_fast_fragile_heal_floor` | 25, not set | `reborn-ffq` |  |
+| `borg_param_fast_fragile_escape_quantile` | 50, 75, 100, not set | `reborn-ffq`, `reborn-ffb769` |  |
+| `borg_param_fast_fragile_heal_floor` | 25, 50, not set | `reborn-ffq`, `reborn-ffb769` |  |
 | `borg_param_fast_fragile_heal_min_ratio` | 0, not set | `reborn-ff-ratio` |  |
 | `borg_param_fast_fragile_no_heal` | 1, 2, not set | `reborn-fastfrag` |  |
 | `borg_param_fast_fragile_no_walk` | 1, not set | `reborn-nowalk` |  |
@@ -2984,7 +3014,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_town_w_escape` | 100, not set | `reborn-casters` |  |
 | `borg_town_w_space` | 12, 50, not set | `reborn-untested-town` |  |
 | `borg_town_w_support` | 25, 100, not set | `reborn-untested-town` |  |
-| `borg_world` | breeders-x4, breeders-x8, white-worm-mass-x4 | `reborn-stairunk`, `reborn-lonew`, `reborn-blloww`, `reborn-deadend`, `reborn-bfol` |  |
+| `borg_world` | breeders-x4, breeders-x8, patches-x8, white-worm-mass-x4, not set | `reborn-stairunk`, `reborn-lonew`, `reborn-blloww`, `reborn-deadend`, `reborn-bfol`, `reborn-kos-cure` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |

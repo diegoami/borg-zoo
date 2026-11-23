@@ -3417,6 +3417,36 @@
       "scary_lists": {
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
+    },
+    "4.2.6-reborn-rust-trackp-bc215cf8": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "bc215cf8a9620bac198ba052cf7620e8493c06d5",
+      "label": "borg-reborn-rs LINE track-p, the merge of #1082 (bc215cf8; #1064 attack_kill_on_sight_floor_cure shipped 1; worlds patches-x8 a6721bdd... and patches-x4 2c7da2fe...); shipped harness/borg.txt 82cb49ca..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      },
+      "worlds": {
+        "patches-x8": "a6721bdd20a440f397ab923705dc99df8826a698ad78cd1e96f95cb1f4b98aca",
+        "patches-x4": "2c7da2fe5a68e17caf5fef37094f64b21ae59b5aee09a570d489152f415a2525"
+      }
+    },
+    "4.2.6-reborn-rust-trackp-769f3fbd": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "769f3fbd649eb2fb31e5c81cfc0ee6e32fcc78d8",
+      "label": "borg-reborn-rs LINE track-p at 769f3fbd on 2026-11-23 (on top of f8725bc0; the #926 fast-fragile settings ship 0: fast_fragile_escape_quantile, fast_fragile_heal_floor, fast_fragile_count_dot); shipped harness/borg.txt 98086559..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
     }
   }
 }

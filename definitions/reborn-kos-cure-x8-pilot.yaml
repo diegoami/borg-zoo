@@ -1,0 +1,36 @@
+# borg-zoo#727: reborn-kos-cure, pilot tier. Write the catalogue entries with: python3 -m zoo define definitions/reborn-kos-cure-x8-pilot.yaml
+name: reborn-kos-cure-x8-pilot
+issue: 727
+question: >-
+  On borg-reborn-rs bc215cf8 (track-p with #1082 merged), in the patches-x8 world (about 6 times the grey mushroom patches), does the kill-on-sight floor cure (attack_kill_on_sight_floor_cure 1, shipped) save games a patch would kill compared with 0?
+tier: pilot            # classes-18, 100,000 turns, patches-x8
+pilot: true            # first run of these arms on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-bc215cf8
+  repository: diegoami/borg-reborn-rs
+  ref: bc215cf8a9620bac198ba052cf7620e8493c06d5
+  label: "borg-reborn-rs LINE track-p, the merge of #1082 (bc215cf8; #1064 attack_kill_on_sight_floor_cure shipped 1; worlds patches-x8 a6721bdd... and patches-x4 2c7da2fe...); shipped harness/borg.txt 82cb49ca..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+  worlds:
+    patches-x8: a6721bdd20a440f397ab923705dc99df8826a698ad78cd1e96f95cb1f4b98aca
+    patches-x4: 2c7da2fe5a68e17caf5fef37094f64b21ae59b5aee09a570d489152f415a2525
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-kos
+arms:
+  ctl-x8: {borg_world: patches-x8}
+  cure0-x8: {borg_world: patches-x8, borg_param_attack_kill_on_sight_floor_cure: 0}
+control: [ctl-x8]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs owner ("ok post zoo"; "the flag ships 1 with #1082", re-pinned to the merge commit bc215cf8), filed as borg-zoo#727; zoo owner, 2026-11-23: "merge and continue" (the pilots as the gate; the normal-world full tier after them).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#727; borg-reborn-rs #1064, PR #1082, merged into track-p as bc215cf8). Two arms in the patches-x8 world (the arms are compared only inside that world): ctl (shipped, attack_kill_on_sight_floor_cure 1) and cure0 (borg_param_attack_kill_on_sight_floor_cure 0, track-p's play before #1082). Runs, as requested: the patches-x8 pilot as the gate (about 6 times the patches of the normal world, #665's world check); if it plays differently, the patches-x8 verysmall; the normal world: a pilot as the gate and then the full tier (classes-1800 starts 901-1800, 900 per arm), before any shipped value is settled (the floor is rare there; the patch was 11 of 28 deaths on track-p 9085c266, before #969). The requester's local direction: the seven same-game deaths of the study play identical keys at flag 0 and 1 on this specimen, so the normal world may show no difference, which is a result too; the escape branch is reached in no replayed game.
+  Tier pilot: classes-18, 100,000 turns, world patches-x8, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns, specimen bc215cf8. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; in a world every cell records it with the same borg_world_data_sha256 in every arm; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against cure0 (exact McNemar; ctl is the control of the design, the question is ctl against cure0), CL and depth, alive at the cap having reached DL5; patch deaths (the patch as killer, or any killer while confused next to one); deaths with a cure potion in the pack; per game from messages.log (pilot evidence) how often each branch fires: '# Not attacking on sight: ... a cure or an escape at hand (#969)', '# Taking the cure the kill-on-sight floor counted: ... (#1064)', '# Kill-on-sight floor prefers the escape to its cure: ... (#1064)', '# Kill-on-sight floor: no escape usable, taking the cure after all: ... (#1064)', '# Kill-on-sight floor: stairs underfoot', '... Phase Door before the cure (#1064)', and Phase Door at site 'kill-on-sight floor'. Then the gate: ship the flag at 1 or 0, a borg-reborn-rs decision. Descriptive (RULES 14).
