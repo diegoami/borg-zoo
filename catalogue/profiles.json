@@ -12263,6 +12263,144 @@
         "borg_param_stair_scum_slack_steps__paladin": 4,
         "borg_param_stair_scum_slack_steps__blackguard": 4
       }
+    },
+    "reborn-jelly-ctl-x8": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm ctl-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x8"
+      }
+    },
+    "reborn-jelly-hold-x8": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm hold-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x8",
+        "borg_param_caution_retreat_reentry_ticks": 128
+      }
+    },
+    "reborn-jelly-oscba-x8": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm oscba-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x8",
+        "borg_param_caution_retreat_oscillation_limit": 3,
+        "borg_param_caution_retreat_oscillation_backaway": 1
+      }
+    },
+    "reborn-jelly-holdosc-x8": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm holdosc-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x8",
+        "borg_param_caution_retreat_reentry_ticks": 128,
+        "borg_param_caution_retreat_oscillation_limit": 3,
+        "borg_param_caution_retreat_oscillation_backaway": 1
+      }
+    },
+    "reborn-jelly-reach-x8": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm reach-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x8",
+        "borg_param_caution_stairs_immobile_reach": 1
+      }
+    },
+    "reborn-jelly-poison-x8": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm poison-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x8",
+        "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
+      }
+    },
+    "reborn-jelly-all-x8": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm all-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x8",
+        "borg_param_caution_stairs_immobile_reach": 1,
+        "borg_param_caution_retreat_oscillation_limit": 3,
+        "borg_param_caution_retreat_oscillation_backaway": 1,
+        "borg_param_caution_retreat_immobile_kill_turns": 3,
+        "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
+      }
+    },
+    "reborn-jelly-ctl-x4": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm ctl-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x4"
+      }
+    },
+    "reborn-jelly-hold-x4": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm hold-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x4",
+        "borg_param_caution_retreat_reentry_ticks": 128
+      }
+    },
+    "reborn-jelly-oscba-x4": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm oscba-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x4",
+        "borg_param_caution_retreat_oscillation_limit": 3,
+        "borg_param_caution_retreat_oscillation_backaway": 1
+      }
+    },
+    "reborn-jelly-holdosc-x4": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm holdosc-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x4",
+        "borg_param_caution_retreat_reentry_ticks": 128,
+        "borg_param_caution_retreat_oscillation_limit": 3,
+        "borg_param_caution_retreat_oscillation_backaway": 1
+      }
+    },
+    "reborn-jelly-reach-x4": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm reach-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x4",
+        "borg_param_caution_stairs_immobile_reach": 1
+      }
+    },
+    "reborn-jelly-poison-x4": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm poison-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x4",
+        "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
+      }
+    },
+    "reborn-jelly-all-x4": {
+      "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm all-x4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "jellies-x4",
+        "borg_param_caution_stairs_immobile_reach": 1,
+        "borg_param_caution_retreat_oscillation_limit": 3,
+        "borg_param_caution_retreat_oscillation_backaway": 1,
+        "borg_param_caution_retreat_immobile_kill_turns": 3,
+        "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75
+      }
     }
   }
 }
