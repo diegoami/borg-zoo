@@ -3352,6 +3352,19 @@
       "scary_lists": {
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
+    },
+    "4.2.6-reborn-rust-stair-scum-9276b75a": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "9276b75ae36965ec6b48202f96b6705f1717c008",
+      "label": "borg-reborn-rs LINE task/1061-stair-scum (PR #1090) at 9276b75a: track-p 69a5ff40 (with #1085's breadth-first exploration, explore_breadth_first 1) merged with #1061's stair_scum mode (the fixes of Codex's three reviews), shipped on at the owner's byclass settings (stair_scum 1, stair_scum_max_hp 20, slack by class: Druid and Necromancer 1, Mage and Priest 2, Ranger and Rogue 3, Paladin and Blackguard 4, the Warrior off; per-level rate 50); smoke-borg-rs re-recorded there; shipped harness/borg.txt, scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
     }
   }
 }
