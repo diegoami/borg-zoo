@@ -187,6 +187,7 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-bfs-ladder` | [#730](https://github.com/diegoami/borg-zoo/issues/730) | 2 | defined (verysmall, small-rest, medium, big = starts 1-900) | Breadth-first on (shipped) vs off, second block, classes-1800 starts 1-900 on 1c071812: ctl, bfs0. |
 | `reborn-leash-holes-vs` | [#719](https://github.com/diegoami/borg-zoo/issues/719) | 5 | defined (verysmall) | The stair-leash switches of #1062 on 12fe36d8, classes-1800 starts 1-45. |
 | `reborn-ss9276` | [#721](https://github.com/diegoami/borg-zoo/issues/721) | 4 | defined (pilot, verysmall, small-rest, medium, big = starts 1-900) | stair_scum on the shipped build 9276b75a (PR #1090): shipped, noscum, nobfs, neither on classes-18 and classes-1800 starts 1-900. |
+| `reborn-ro-tp` | [#740](https://github.com/diegoami/borg-zoo/issues/740) | 6 | defined (normal pilot, x8 pilot, normal starts 1-900, x8 verysmall) | caution_ranged_only 1 and caution_ranged_vs_immobile 2 on track-p 1c071812: ctl, ranged, immobile2 in the normal world and patches-x8. |
 
 ### `heal-attack-4`
 
@@ -2641,6 +2642,21 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-ss9276-nobfs` | 0 | – |
 | `reborn-ss9276-neither` | 0 | 0 |
 
+### `reborn-ro-tp`
+
+caution_ranged_only 1 and caution_ranged_vs_immobile 2 on track-p 1c071812: ctl, ranged, immobile2 in the normal world and patches-x8.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_caution_ranged_only` | `borg_param_caution_ranged_vs_immobile` | `borg_world` |
+| --- | --- | --- | --- |
+| `reborn-ro-ctl` | – | – | – |
+| `reborn-ro-ranged` | 1 | – | – |
+| `reborn-ro-immobile2` | – | 2 | – |
+| `reborn-ro-ctl-x8` | – | – | patches-x8 |
+| `reborn-ro-ranged-x8` | 1 | – | patches-x8 |
+| `reborn-ro-immobile2-x8` | – | 2 | patches-x8 |
+
 ## Settings you have built arms with
 
 Only the settings that differ between the arms of a shortcut.
@@ -2780,8 +2796,8 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_caution_immobile_step_mobile_first` | 1, not set | `reborn-confusion`, `reborn-immfix` |  |
 | `borg_param_caution_jumpstart_keep_stairs` | 1, not set | `reborn-dungeon-switch-screen` |  |
 | `borg_param_caution_poisoned_no_cure_retreat_hp_percent` | 75, not set | `reborn-wjelly` |  |
-| `borg_param_caution_ranged_only` | 1, not set | `reborn-rangedonly` |  |
-| `borg_param_caution_ranged_vs_immobile` | 1, 2, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895`, `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly` |  |
+| `borg_param_caution_ranged_only` | 1, not set | `reborn-rangedonly`, `reborn-ro-tp` |  |
+| `borg_param_caution_ranged_vs_immobile` | 1, 2, not set | `reborn-dungeon-switch-screen`, `reborn-shipcheck-b895`, `reborn-confusion`, `reborn-immfix`, `reborn-rangedonly`, `reborn-ro-tp` |  |
 | `borg_param_caution_recall_blow_model` | 0, not set | `reborn-blow`, `reborn-blloww` |  |
 | `borg_param_caution_recall_cure_min_loss_percent` | 0, 30, not set | `reborn-flight-fixes`, `reborn-flight3-757`, `reborn-flight3main`, `reborn-weighted765`, `reborn-floo` |  |
 | `borg_param_caution_recall_dl1_hold_up` | 1, not set | `reborn-rclshallow` |  |
@@ -3127,7 +3143,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_town_w_escape` | 100, not set | `reborn-casters` |  |
 | `borg_town_w_space` | 12, 50, not set | `reborn-untested-town` |  |
 | `borg_town_w_support` | 25, 100, not set | `reborn-untested-town` |  |
-| `borg_world` | breeders-x4, breeders-x8, patches-x8, white-worm-mass-x4, not set | `reborn-stairunk`, `reborn-lonew`, `reborn-blloww`, `reborn-deadend`, `reborn-bfol`, `reborn-kos-cure` |  |
+| `borg_world` | breeders-x4, breeders-x8, patches-x8, white-worm-mass-x4, not set | `reborn-stairunk`, `reborn-lonew`, `reborn-blloww`, `reborn-deadend`, `reborn-bfol`, `reborn-kos-cure`, `reborn-ro-tp` |  |
 | `borg_worships_ac` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_damage` | TRUE, not set | `reborn-worships` |  |
 | `borg_worships_hp` | TRUE, not set | `reborn-worships` |  |

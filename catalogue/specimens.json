@@ -3525,6 +3525,23 @@
       "scary_lists": {
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
+    },
+    "4.2.6-reborn-rust-trackp-1c071812-pw": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "1c07181217a7f7076dc6d3c158bebeb00b968f76",
+      "label": "borg-reborn-rs LINE track-p, head 1c071812 on 2026-11-23, worlds pinned (patches-x8 a6721bdd..., patches-x4 2c7da2fe...); shipped harness/borg.txt 025501a1..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      },
+      "worlds": {
+        "patches-x8": "a6721bdd20a440f397ab923705dc99df8826a698ad78cd1e96f95cb1f4b98aca",
+        "patches-x4": "2c7da2fe5a68e17caf5fef37094f64b21ae59b5aee09a570d489152f415a2525"
+      }
     }
   }
 }

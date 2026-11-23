@@ -12595,6 +12595,55 @@
         "borg_param_stair_scum": 0,
         "borg_param_explore_breadth_first": 0
       }
+    },
+    "reborn-ro-ctl": {
+      "description": "borg-zoo#740 (reborn-ro-tp-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-ro-ranged": {
+      "description": "borg-zoo#740 (reborn-ro-tp-pilot.yaml): arm ranged.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_only": 1
+      }
+    },
+    "reborn-ro-immobile2": {
+      "description": "borg-zoo#740 (reborn-ro-tp-pilot.yaml): arm immobile2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_ranged_vs_immobile": 2
+      }
+    },
+    "reborn-ro-ctl-x8": {
+      "description": "borg-zoo#740 (reborn-ro-tp-x8-pilot.yaml): arm ctl-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "patches-x8"
+      }
+    },
+    "reborn-ro-ranged-x8": {
+      "description": "borg-zoo#740 (reborn-ro-tp-x8-pilot.yaml): arm ranged-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "patches-x8",
+        "borg_param_caution_ranged_only": 1
+      }
+    },
+    "reborn-ro-immobile2-x8": {
+      "description": "borg-zoo#740 (reborn-ro-tp-x8-pilot.yaml): arm immobile2-x8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "patches-x8",
+        "borg_param_caution_ranged_vs_immobile": 2
+      }
     }
   }
 }

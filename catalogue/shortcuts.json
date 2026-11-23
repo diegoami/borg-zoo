@@ -2494,6 +2494,20 @@
         "reborn-ss9276-neither"
       ],
       "runs": []
+    },
+    "reborn-ro-tp": {
+      "issue": 740,
+      "status": "defined (normal pilot, x8 pilot, normal starts 1-900, x8 verysmall)",
+      "what": "caution_ranged_only 1 and caution_ranged_vs_immobile 2 on track-p 1c071812: ctl, ranged, immobile2 in the normal world and patches-x8.",
+      "profiles": [
+        "reborn-ro-ctl",
+        "reborn-ro-ranged",
+        "reborn-ro-immobile2",
+        "reborn-ro-ctl-x8",
+        "reborn-ro-ranged-x8",
+        "reborn-ro-immobile2-x8"
+      ],
+      "runs": []
     }
   }
 }
