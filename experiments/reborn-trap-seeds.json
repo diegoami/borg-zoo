@@ -1,0 +1,27 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-trap-seeds",
+  "issue": 737,
+  "definition": "definitions/reborn-trap-seeds.yaml",
+  "question": "On borg-reborn-rs track-p 91dd0d0a, do the #1067 trap rules (recover to the stairs after a hurting trap, clear a trap that cuts the way back, leave a trap-dense level), shipped on, lower the deaths of weak characters against the play before them, on the 20 level-1 death seeds and on classes-1800?",
+  "description": "On borg-reborn-rs track-p 91dd0d0a, do the #1067 trap rules (recover to the stairs after a hurting trap, clear a trap that cuts the way back, leave a trap-dense level), shipped on, lower the deaths of weak characters against the play before them, on the 20 level-1 death seeds and on classes-1800? Generated from definitions/reborn-trap-seeds.yaml: 5 arms on 4.2.6-reborn-rust-trapway-91dd0d0a, suite classes-1800-lvl1-206cf4e7-deaths.",
+  "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-zoo#737; borg-reborn-rs #1067, PR #1086 merged into track-p as 91dd0d0a, shipped on by the owner before this measurement). Five arms on 91dd0d0a, each on top of the shipped harness/borg.txt: ctl (shipped: trap_recover 1, trap_way_back 1, trap_leave_level_count 2); trapoff (all three 0, track-p before #1086; named trapoff because off is read as a boolean in the definition format); way (trap_way_back alone: trap_recover 0 and trap_leave_level_count 0); recover (trap_recover alone); noleave (trap_leave_level_count 0). Runs: (1) the 20 death seeds of run 45070528012 (borg-cemetery#138), all arms, a targeted check, not a rate (this experiment, on its own suite); (2) a full classes-1800 run (900 starts) for ctl and trapoff, and way and recover too if capacity allows (not defined here yet). Endpoints fixed before the comparison: primary: deaths while max HP < 60 by 100,000 turns, ctl against trapoff, with rescued and newly killed pairs; secondary: all deaths, mean CL and depth at 25k, 50k and 100k, starts reaching DL3 and DL5 and their first turn there; diagnostic: per arm how many games set off a trap below 60 HP and how often each rule acts ('# Trap: hurt by a trap', '# Trap: disarming', '# Trap: walking onto', '# Trap: a trap-dense level, leaving', '# Trap: resting'). Wanted: the gate, paired results per run and class, and the death report with screens (/death-report) for deaths in ctl that trapoff survives and for any death within 20 turns of a '# Trap:' note. Local direction (one start): seed 1868115537 on f67fad19 dies without the rules and lives with trap_way_back; on later track-p it no longer dies.\nTier pilot: the 20 death starts of the 206cf4e7 full run, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and depth, alive at the cap having reached DL5, identical plays; progress (DL3/DL5 reached, first_turn_at_depth, #718 fields). Descriptive (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-trapway-91dd0d0a"
+  ],
+  "profiles": [
+    "reborn-trap-ctl",
+    "reborn-trap-trapoff",
+    "reborn-trap-way",
+    "reborn-trap-recover",
+    "reborn-trap-noleave"
+  ],
+  "suites": [
+    "classes-1800-lvl1-206cf4e7-deaths"
+  ],
+  "control": "4.2.6-reborn-rust-trapway-91dd0d0a",
+  "control_profile": "reborn-trap-ctl",
+  "owner_authorization": "2026-11-23: borg-reborn-rs owner (\"file the zoo request and merge but set the values to try\"), borg-zoo#737; zoo owner, 2026-11-23: \"continue with experiments\".",
+  "retain_evidence": true
+}

@@ -2508,6 +2508,57 @@
         "reborn-ro-immobile2-x8"
       ],
       "runs": []
+    },
+    "reborn-paralyser": {
+      "issue": 735,
+      "status": "defined (pilot, small, medium)",
+      "what": "The #1125 paralyser switches (PR #1129, 173156ac): ctl, lost, walk, all.",
+      "profiles": [
+        "reborn-par-ctl",
+        "reborn-par-lost",
+        "reborn-par-walk",
+        "reborn-par-all"
+      ],
+      "runs": []
+    },
+    "reborn-perception": {
+      "issue": 736,
+      "status": "defined (pilot, full)",
+      "what": "Stale light and sight through rubble (#885, #917, PR #1128, 7bfbe121): ctl, dark, rubble, both.",
+      "profiles": [
+        "reborn-per-ctl",
+        "reborn-per-dark",
+        "reborn-per-rubble",
+        "reborn-per-both"
+      ],
+      "runs": []
+    },
+    "reborn-trap": {
+      "issue": 737,
+      "status": "defined (20 death seeds, full ctl/trapoff)",
+      "what": "The #1067 trap rules, shipped on (PR #1086, 91dd0d0a): ctl, trapoff, way, recover, noleave.",
+      "profiles": [
+        "reborn-trap-ctl",
+        "reborn-trap-trapoff",
+        "reborn-trap-way",
+        "reborn-trap-recover",
+        "reborn-trap-noleave"
+      ],
+      "runs": []
+    },
+    "reborn-t1134": {
+      "issue": 738,
+      "status": "defined (pilot, verysmall)",
+      "what": "Phase threshold 50, confusion CLW cure, retreat breaker, prepared remedy 50 on track-p 1c071812 (borg-reborn-rs #1134): ctl, phase50, conf, osc, prep50, all.",
+      "profiles": [
+        "reborn-t1134-ctl",
+        "reborn-t1134-phase50",
+        "reborn-t1134-conf",
+        "reborn-t1134-osc",
+        "reborn-t1134-prep50",
+        "reborn-t1134-all"
+      ],
+      "runs": []
     }
   }
 }

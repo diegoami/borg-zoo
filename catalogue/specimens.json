@@ -3559,6 +3559,45 @@
       "scary_lists": {
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
+    },
+    "4.2.6-reborn-rust-paralyser-173156ac": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "173156ac6b0e314f12bb4c65e2acee5108fc4756",
+      "label": "borg-reborn-rs branch claude/pensive-faraday-wl4qqt 173156ac (PR #1129: track-p 040d2a5f plus the #1125 paralyser switches, all compiled and shipped 0); shipped harness/borg.txt c2c13a3d..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
+    },
+    "4.2.6-reborn-rust-perception-7bfbe121": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "7bfbe1210b4d4ce6a9772ae9dbab69d5325e7040",
+      "label": "borg-reborn-rs PR #1128 head 7bfbe121 (track-p d3d1629f merged with #1128 and its review fixes; update_dark_clears_light and view_rubble_blocks_sight compiled and shipped 0); shipped harness/borg.txt f7cd9969..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
+    },
+    "4.2.6-reborn-rust-trapway-91dd0d0a": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "91dd0d0a90649921b75df8632a2c7f78aee55810",
+      "label": "borg-reborn-rs track-p 91dd0d0a (the merge of PR #1086, #1067 trap rules: trap_recover 1, trap_way_back 1, trap_leave_level_count 2 shipped on); shipped harness/borg.txt 12a8c78e..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
     }
   }
 }

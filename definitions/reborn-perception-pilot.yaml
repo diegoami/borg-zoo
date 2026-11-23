@@ -1,0 +1,35 @@
+# borg-zoo#736: reborn-perception-pilot, pilot tier (classes-18). Write the catalogue entries with: python3 -m zoo define definitions/reborn-perception-pilot.yaml
+name: reborn-perception-pilot
+issue: 736
+question: >-
+  On borg-reborn-rs 7bfbe121 (PR #1128), do the two perception fixes (update_dark_clears_light for a stale light mark, view_rubble_blocks_sight for passable rubble) change deaths, in particular the deaths soon after the Borg forgets a monster it should see, and which should ship in P8?
+tier: pilot            # classes-18, 100,000 turns
+pilot: true            # first run of these arms on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-perception-7bfbe121
+  repository: diegoami/borg-reborn-rs
+  ref: 7bfbe1210b4d4ce6a9772ae9dbab69d5325e7040
+  label: "borg-reborn-rs PR #1128 head 7bfbe121 (track-p d3d1629f merged with #1128 and its review fixes; update_dark_clears_light and view_rubble_blocks_sight compiled and shipped 0); shipped harness/borg.txt f7cd9969..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-per
+arms:
+  ctl: {}
+  dark: {borg_param_update_dark_clears_light: 1}
+  rubble: {borg_param_view_rubble_blocks_sight: 1}
+  both: {borg_param_update_dark_clears_light: 1, borg_param_view_rubble_blocks_sight: 1}
+control: [ctl]
+owner_authorization: >-
+  2026-11-23: borg-reborn-rs (the session's call on the PR #1128 switches), borg-zoo#736; zoo owner, 2026-11-23: "continue with experiments".
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#736; borg-reborn-rs #885, #917, PR #1128 at 7bfbe121: track-p d3d1629f merged with #1128 and its review fixes; the belief switches of #889 are P9 and not asked for). Four arms (both switches compiled and shipped 0, so ctl is track-p d3d1629f's play): ctl; dark (update_dark_clears_light 1: a floor grid the engine shows neither glowing nor lit loses BORG_LIGHT); rubble (view_rubble_blocks_sight 1: passable rubble stops the Borg's view); both. Pilot (classes-18) as the gate; if the pilot plays differently, the full tier (classes-1800 starts 901-1800, 900 per arm, matching #702); if capacity is short a rubble / ctl pilot alone is the most informative. Smoke at the specimen: dark 4/4 identical, rubble 2/4. Wanted: the signature, the count of '# Forgetting a monster' notes per arm and deaths within 200 game turns of a forget of the killer's race; for rubble, deaths and forgets with passable rubble within two grids of the forgotten monster's last grid if the evidence allows. The result decides whether each switch ships in P8.
+  Tier pilot: classes-18, one binary, shipped settings plus each arm's overrides, borg-rs core, 100,000 turns. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Report per arm and class: deaths and causes, rescued and newly killed against ctl (exact McNemar), CL and depth, alive at the cap having reached DL5, identical plays; progress (DL3/DL5 reached, first_turn_at_depth, #718 fields). Descriptive (RULES 14).
