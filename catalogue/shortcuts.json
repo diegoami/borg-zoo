@@ -2315,6 +2315,40 @@
       ],
       "runs": []
     },
+    "reborn-leash-holes": {
+      "issue": 719,
+      "status": "defined (pilot)",
+      "what": "The three stair-leash switches of #1062 (any stair, unknown-stair steps, teleported Recall) on 449be363: ctl, any, unknown, recall, leash3; classes-18.",
+      "profiles": [
+        "reborn-lhole-ctl",
+        "reborn-lhole-any",
+        "reborn-lhole-unknown",
+        "reborn-lhole-recall",
+        "reborn-lhole-leash3"
+      ],
+      "runs": []
+    },
+    "reborn-heal-quaff": {
+      "issue": 722,
+      "status": "defined (pilot)",
+      "what": "Town heal speed 100 and the quaff bonus 200 (#845, PR #848) on 925fc5d7: ctl, speed100, quaff200; classes-18 at 300,000 turns.",
+      "profiles": [
+        "reborn-hq-ctl",
+        "reborn-hq-speed100",
+        "reborn-hq-quaff200"
+      ],
+      "runs": []
+    },
+    "reborn-short-gold": {
+      "issue": 723,
+      "status": "defined (pilot)",
+      "what": "Short-gold shopping with held oil (#828, PR #854) on b8605b5c: ctl, shortgold; classes-18.",
+      "profiles": [
+        "reborn-sg-ctl",
+        "reborn-sg-shortgold"
+      ],
+      "runs": []
+    },
     "reborn-light-priest": {
       "issue": 702,
       "status": "defined (pilot)",

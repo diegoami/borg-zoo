@@ -171,6 +171,9 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-belief` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 5 | defined (pilot, full) | unseen_belief (#879, borg-reborn-rs #890, a must ship) and the engine light radius (#877) on track-p f8725bc0: ctl, light, belief, light+belief, light+belief-decay5; pilot then full (900 starts). |
 | `reborn-leash-dl1` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 4 | defined (pilot) | Why the kit leash adds DL1 deaths: 49 death starts of #702's full tier replayed to 25,000 turns with notes on track-p 206cf4e7: ctl, light, leash, light+leash. |
 | `reborn-light-ladder` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 2 | defined (verysmall, small-rest, medium, big = starts 1-900) | Light radius (cave_light_engine_radius 1) against ctl on classes-1800 starts 1-900 at track-p 206cf4e7: second block for the depth cost seen on starts 901-1800. |
+| `reborn-leash-holes` | [#719](https://github.com/diegoami/borg-zoo/issues/719) | 5 | defined (pilot) | The three stair-leash switches of #1062 (any stair, unknown-stair steps, teleported Recall) on 449be363: ctl, any, unknown, recall, leash3; classes-18. |
+| `reborn-heal-quaff` | [#722](https://github.com/diegoami/borg-zoo/issues/722) | 3 | defined (pilot) | Town heal speed 100 and the quaff bonus 200 (#845, PR #848) on 925fc5d7: ctl, speed100, quaff200; classes-18 at 300,000 turns. |
+| `reborn-short-gold` | [#723](https://github.com/diegoami/borg-zoo/issues/723) | 2 | defined (pilot) | Short-gold shopping with held oil (#828, PR #854) on b8605b5c: ctl, shortgold; classes-18. |
 | `reborn-light-priest` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 2 | defined (pilot) | Why the light radius slows Priests: the 63 slow Priest starts of the light ladder replayed to 60,000 turns with notes: ctl, light on 206cf4e7. |
 | `reborn-ff-ratio` | [#717](https://github.com/diegoami/borg-zoo/issues/717) | 2 | defined (pilot, full) | Fast-fragile heal ratio 30 (shipped) against 0 (#1065, PR #1089) on 8d736268: ctl, ratio0. |
 | `reborn-ff-dot` | [#713](https://github.com/diegoami/borg-zoo/issues/713) | 2 | defined (pilot) | Fast-fragile own cut and poison (count_dot 1, #1028) on track-p 8f32a8a0: ctl, dot. |
@@ -2432,6 +2435,43 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 | `reborn-li206-ctl` | – |
 | `reborn-li206-light` | 1 |
 
+### `reborn-leash-holes`
+
+The three stair-leash switches of #1062 (any stair, unknown-stair steps, teleported Recall) on 449be363: ctl, any, unknown, recall, leash3; classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_flow_leash_any_stair` | `borg_param_flow_leash_teleported_recall` | `borg_param_flow_leash_unknown_stair_steps` |
+| --- | --- | --- | --- |
+| `reborn-lhole-ctl` | – | – | – |
+| `reborn-lhole-any` | 1 | – | – |
+| `reborn-lhole-unknown` | – | – | 20 |
+| `reborn-lhole-recall` | – | 1 | – |
+| `reborn-lhole-leash3` | 1 | 1 | 20 |
+
+### `reborn-heal-quaff`
+
+Town heal speed 100 and the quaff bonus 200 (#845, PR #848) on 925fc5d7: ctl, speed100, quaff200; classes-18 at 300,000 turns.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_heal_quaff_bonus_percent` | `borg_param_town_heal_speed_percent` |
+| --- | --- | --- |
+| `reborn-hq-ctl` | – | – |
+| `reborn-hq-speed100` | – | 100 |
+| `reborn-hq-quaff200` | 200 | – |
+
+### `reborn-short-gold`
+
+Short-gold shopping with held oil (#828, PR #854) on b8605b5c: ctl, shortgold; classes-18.
+
+Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
+
+| Profile | `borg_param_town_short_gold` |
+| --- | --- |
+| `reborn-sg-ctl` | 0 |
+| `reborn-sg-shortgold` | 1 |
+
 ### `reborn-light-priest`
 
 Why the light radius slows Priests: the 63 slow Priest starts of the light ladder replayed to 60,000 turns with notes: ctl, light on 206cf4e7.
@@ -2680,11 +2720,14 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_fast_fragile_no_walk` | 1, not set | `reborn-nowalk` |  |
 | `borg_param_fast_fragile_policy` | 1, not set | `reborn-fastfrag` |  |
 | `borg_param_flow_leash` | 0, 1, 2 | `reborn-stairs-leash` |  |
+| `borg_param_flow_leash_any_stair` | 1, not set | `reborn-leash-holes` |  |
 | `borg_param_flow_leash_base` | 5, 15, not set | `reborn-cleash` |  |
 | `borg_param_flow_leash_depth_margin` | -100, 0, 10, not set | `reborn-cleash` |  |
 | `borg_param_flow_leash_per_level` | 2, 5, not set | `reborn-cleash` |  |
 | `borg_param_flow_leash_pickup_max_level` | 0, not set | `reborn-cleash`, `reborn-cleashnone` |  |
 | `borg_param_flow_leash_stairs_max_level` | 0, not set | `reborn-cleash`, `reborn-cleashnone` |  |
+| `borg_param_flow_leash_teleported_recall` | 1, not set | `reborn-leash-holes` |  |
+| `borg_param_flow_leash_unknown_stair_steps` | 20, not set | `reborn-leash-holes` |  |
 | `borg_param_flow_take_phase_first` | 1, not set | `reborn-phase-first-761` |  |
 | `borg_param_flow_take_phase_short_below` | 2, not set | `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_item_test_unknown_potions` | 0, not set | `reborn-ks206` |  |
@@ -2808,7 +2851,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_curve_scale_percent_ranger` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_rogue` | 0, 50, 150, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_curve_scale_percent_warrior` | 0, 25, 75, not set | `reborn-heal-by-class` |  |
-| `borg_param_town_heal_quaff_bonus_percent` | 200, not set | `reborn-healtiers` |  |
+| `borg_param_town_heal_quaff_bonus_percent` | 200, not set | `reborn-healtiers`, `reborn-heal-quaff` |  |
 | `borg_param_town_heal_reserve_hp_percent_blackguard` | -1, 75, 150, 225, not set | `reborn-heal-by-class`, `reborn-class-curves`, `reborn-class-curves-dbc`, `reborn-bgcurve-dbc` |  |
 | `borg_param_town_heal_reserve_hp_percent_druid` | -1, 125, 350, 375, not set | `reborn-heal-by-class`, `reborn-casters` |  |
 | `borg_param_town_heal_reserve_hp_percent_mage` | -1, 150, 400, 450, not set | `reborn-heal-by-class`, `reborn-mage-priest`, `reborn-casters` |  |
@@ -2818,7 +2861,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_heal_reserve_hp_percent_ranger` | -1, 100, 300, not set | `reborn-heal-by-class`, `reborn-phase-first-761`, `reborn-rangerphase` |  |
 | `borg_param_town_heal_reserve_hp_percent_rogue` | -1, 100, 300, not set | `reborn-heal-by-class` |  |
 | `borg_param_town_heal_reserve_hp_percent_warrior` | -1, 50, 150, not set | `reborn-heal-by-class` |  |
-| `borg_param_town_heal_speed_percent` | 100, not set | `reborn-healtiers` |  |
+| `borg_param_town_heal_speed_percent` | 100, not set | `reborn-healtiers`, `reborn-heal-quaff` |  |
 | `borg_param_town_hunt` | 1, not set | `reborn-townhunt`, `reborn-kitleash`, `reborn-kl206`, `reborn-li206` |  |
 | `borg_param_town_hunt_min_hp_percent` | 50, not set | `reborn-townhunt` |  |
 | `borg_param_town_hunt_ranged_bonus_percent` | 50, not set | `reborn-townhunt` |  |
@@ -2879,6 +2922,7 @@ Only the settings that differ between the arms of a shortcut.
 | `borg_param_town_recall_reserve` | 1, 2, 3, not set | `reborn-town-switch-screen`, `reborn-recallres`, `reborn-variety`, `reborn-vrm` |  |
 | `borg_param_town_recall_urgent_depth` | 1, not set | `reborn-rclshallow` |  |
 | `borg_param_town_recall_value_percent` | 300, 1000, not set | `reborn-recall-settings` |  |
+| `borg_param_town_short_gold` | 0, 1 | `reborn-short-gold` |  |
 | `borg_param_town_staple_ccw` | 0, not set | `reborn-variety`, `reborn-vrm` |  |
 | `borg_param_town_staple_clw` | 0, not set | `reborn-variety`, `reborn-vrm` |  |
 | `borg_param_town_staple_clw__blackguard` | 0, not set | `reborn-variety`, `reborn-vrm` |  |
