@@ -12216,6 +12216,47 @@
         "borg_reborn_errand": "none",
         "borg_param_town_short_gold": 1
       }
+    },
+    "reborn-lhole-ctl": {
+      "description": "borg-zoo#719 (reborn-leash-holes-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-lhole-any": {
+      "description": "borg-zoo#719 (reborn-leash-holes-pilot.yaml): arm any.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_any_stair": 1
+      }
+    },
+    "reborn-lhole-unknown": {
+      "description": "borg-zoo#719 (reborn-leash-holes-pilot.yaml): arm unknown.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_unknown_stair_steps": 20
+      }
+    },
+    "reborn-lhole-recall": {
+      "description": "borg-zoo#719 (reborn-leash-holes-pilot.yaml): arm recall.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_teleported_recall": 1
+      }
+    },
+    "reborn-lhole-leash3": {
+      "description": "borg-zoo#719 (reborn-leash-holes-pilot.yaml): arm leash3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_any_stair": 1,
+        "borg_param_flow_leash_unknown_stair_steps": 20,
+        "borg_param_flow_leash_teleported_recall": 1
+      }
     }
   }
 }
