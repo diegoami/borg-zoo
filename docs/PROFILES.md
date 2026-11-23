@@ -171,11 +171,11 @@ Ask for a run by shortcut, ref and tier, for example: **"small run of `maxdepth-
 | `reborn-belief` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 5 | defined (pilot, full) | unseen_belief (#879, borg-reborn-rs #890, a must ship) and the engine light radius (#877) on track-p f8725bc0: ctl, light, belief, light+belief, light+belief-decay5; pilot then full (900 starts). |
 | `reborn-leash-dl1` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 4 | defined (pilot) | Why the kit leash adds DL1 deaths: 49 death starts of #702's full tier replayed to 25,000 turns with notes on track-p 206cf4e7: ctl, light, leash, light+leash. |
 | `reborn-light-ladder` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 2 | defined (verysmall, small-rest, medium, big = starts 1-900) | Light radius (cave_light_engine_radius 1) against ctl on classes-1800 starts 1-900 at track-p 206cf4e7: second block for the depth cost seen on starts 901-1800. |
-| `reborn-leash-holes` | [#719](https://github.com/diegoami/borg-zoo/issues/719) | 5 | defined (pilot) | The three stair-leash switches of #1062 (any stair, unknown-stair steps, teleported Recall) on 2d29687f: ctl, any, unknown, recall, leash3; classes-18. |
+| `reborn-leash-holes` | [#719](https://github.com/diegoami/borg-zoo/issues/719) | 5 | defined (pilot) | The three stair-leash switches of #1062 (any stair, unknown-stair steps, teleported Recall) on 12fe36d8: ctl, any, unknown, recall, leash3; classes-18. |
 | `reborn-heal-quaff` | [#722](https://github.com/diegoami/borg-zoo/issues/722) | 3 | defined (pilot) | Town heal speed 100 and the quaff bonus 200 (#845, PR #848) on 925fc5d7: ctl, speed100, quaff200; classes-18 at 300,000 turns. |
 | `reborn-short-gold` | [#723](https://github.com/diegoami/borg-zoo/issues/723) | 2 | defined (pilot) | Short-gold shopping with held oil (#828, PR #854) on b8605b5c: ctl, shortgold; classes-18. |
 | `reborn-light-priest` | [#702](https://github.com/diegoami/borg-zoo/issues/702) | 2 | defined (pilot) | Why the light radius slows Priests: the 63 slow Priest starts of the light ladder replayed to 60,000 turns with notes: ctl, light on 206cf4e7. |
-| `reborn-ff-ratio` | [#717](https://github.com/diegoami/borg-zoo/issues/717) | 2 | defined (pilot, full) | Fast-fragile heal ratio 30 (shipped) against 0 (#1065, PR #1089) on c5a24f8e: ctl, ratio0. |
+| `reborn-ff-ratio` | [#717](https://github.com/diegoami/borg-zoo/issues/717) | 2 | defined (pilot, full) | Fast-fragile heal ratio 30 (shipped) against 0 (#1065, PR #1089) on c7e55e1d: ctl, ratio0. |
 | `reborn-ff-dot` | [#713](https://github.com/diegoami/borg-zoo/issues/713) | 2 | defined (pilot) | Fast-fragile own cut and poison (count_dot 1, #1028) on track-p 8f32a8a0: ctl, dot. |
 | `reborn-kos-cure` | [#727](https://github.com/diegoami/borg-zoo/issues/727) | 4 | defined (x8 pilot, normal pilot, full) | attack_kill_on_sight_floor_cure 1 (shipped) against 0 (#1064, PR #1082) on bc215cf8: patches-x8 and the normal world; ctl, cure0. |
 | `reborn-ffb769` | [#711](https://github.com/diegoami/borg-zoo/issues/711) | 5 | defined (pilot, full) | The #926 fast-fragile bundle (escape quantile 75, heal floor 50, count_dot 1) and its three parts on track-p 769f3fbd: ctl, bundle, q75, floor50, dot. |
@@ -2439,7 +2439,7 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 ### `reborn-leash-holes`
 
-The three stair-leash switches of #1062 (any stair, unknown-stair steps, teleported Recall) on 2d29687f: ctl, any, unknown, recall, leash3; classes-18.
+The three stair-leash switches of #1062 (any stair, unknown-stair steps, teleported Recall) on 12fe36d8: ctl, any, unknown, recall, leash3; classes-18.
 
 Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
@@ -2487,7 +2487,7 @@ Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
 ### `reborn-ff-ratio`
 
-Fast-fragile heal ratio 30 (shipped) against 0 (#1065, PR #1089) on c5a24f8e: ctl, ratio0.
+Fast-fragile heal ratio 30 (shipped) against 0 (#1065, PR #1089) on c7e55e1d: ctl, ratio0.
 
 Every arm: `borg_reborn_core = borg-rs`, `borg_reborn_errand = none`.
 
