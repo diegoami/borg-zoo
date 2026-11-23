@@ -1,0 +1,308 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-jelly-all-x4": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm all-x4.",
+        "settings": {
+          "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75,
+          "borg_param_caution_retreat_immobile_kill_turns": 3,
+          "borg_param_caution_retreat_oscillation_backaway": 1,
+          "borg_param_caution_retreat_oscillation_limit": 3,
+          "borg_param_caution_stairs_immobile_reach": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x4"
+        },
+        "sha256": "141806aacef65917b6431cb4f6afab3773d386db8d3970b3fc66f0e8fcfc4771"
+      },
+      "reborn-jelly-all-x8": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm all-x8.",
+        "settings": {
+          "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75,
+          "borg_param_caution_retreat_immobile_kill_turns": 3,
+          "borg_param_caution_retreat_oscillation_backaway": 1,
+          "borg_param_caution_retreat_oscillation_limit": 3,
+          "borg_param_caution_stairs_immobile_reach": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x8"
+        },
+        "sha256": "01d8bcae4d26951c2ba92070482dc5ff6dce777aa6eddc46f91eb1a35a37385c"
+      },
+      "reborn-jelly-ctl-x4": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm ctl-x4.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x4"
+        },
+        "sha256": "9bb39128d4497231c86bebc19d11f3c0c7a2145c2070ac66805735bfa8d20c8f"
+      },
+      "reborn-jelly-ctl-x8": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm ctl-x8.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x8"
+        },
+        "sha256": "799247f67f7e08151202dc41084762b9438081a81d4500d2d0c4bcddf7dcf21f"
+      },
+      "reborn-jelly-hold-x4": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm hold-x4.",
+        "settings": {
+          "borg_param_caution_retreat_reentry_ticks": 128,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x4"
+        },
+        "sha256": "931e9a817813997c7307c2dbcacb2cf7fa8b0e5a437509c0d5554a0609e2fa79"
+      },
+      "reborn-jelly-hold-x8": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm hold-x8.",
+        "settings": {
+          "borg_param_caution_retreat_reentry_ticks": 128,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x8"
+        },
+        "sha256": "e368902e87281bdb653f515588564163e9007f4ce7ba3f63cd3f139fa84301b8"
+      },
+      "reborn-jelly-holdosc-x4": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm holdosc-x4.",
+        "settings": {
+          "borg_param_caution_retreat_oscillation_backaway": 1,
+          "borg_param_caution_retreat_oscillation_limit": 3,
+          "borg_param_caution_retreat_reentry_ticks": 128,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x4"
+        },
+        "sha256": "ced0e65c8962a52f42800e28a1e8a84e3dfffd9b0750098a472632ea7b82a4de"
+      },
+      "reborn-jelly-holdosc-x8": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm holdosc-x8.",
+        "settings": {
+          "borg_param_caution_retreat_oscillation_backaway": 1,
+          "borg_param_caution_retreat_oscillation_limit": 3,
+          "borg_param_caution_retreat_reentry_ticks": 128,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x8"
+        },
+        "sha256": "fc2664ec0fa20a3af2fa23b366f9a4f1eaee0616572f6b2d5f462e0063616e1f"
+      },
+      "reborn-jelly-oscba-x4": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm oscba-x4.",
+        "settings": {
+          "borg_param_caution_retreat_oscillation_backaway": 1,
+          "borg_param_caution_retreat_oscillation_limit": 3,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x4"
+        },
+        "sha256": "6401baec95dc9326f2a242539f14df3858ad08516617b5ec4918bd83cc268acc"
+      },
+      "reborn-jelly-oscba-x8": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm oscba-x8.",
+        "settings": {
+          "borg_param_caution_retreat_oscillation_backaway": 1,
+          "borg_param_caution_retreat_oscillation_limit": 3,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x8"
+        },
+        "sha256": "043a55fe37c4564bd09e7a7bd353a9b59d2dded0b907394eab2929d648b52a2b"
+      },
+      "reborn-jelly-poison-x4": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm poison-x4.",
+        "settings": {
+          "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x4"
+        },
+        "sha256": "e3d6540d6c97933e4128652646a73352718209b11556cb136c450923092d719f"
+      },
+      "reborn-jelly-poison-x8": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm poison-x8.",
+        "settings": {
+          "borg_param_caution_poisoned_no_cure_retreat_hp_percent": 75,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x8"
+        },
+        "sha256": "6a416e6ad4172fdffb1e75046e6dff04bcfde17f21061fb7536eb14be9abc604"
+      },
+      "reborn-jelly-reach-x4": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm reach-x4.",
+        "settings": {
+          "borg_param_caution_stairs_immobile_reach": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x4"
+        },
+        "sha256": "eb636291b7724d7778eaae2357aff338dc44141a7425d3c30343eb932556e4f8"
+      },
+      "reborn-jelly-reach-x8": {
+        "description": "borg-zoo#712 (reborn-jelly-worlds-pilot.yaml): arm reach-x8.",
+        "settings": {
+          "borg_param_caution_stairs_immobile_reach": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_world": "jellies-x8"
+        },
+        "sha256": "88875a10f2b8eb1fddbf669f54106220d919ac397a1afbbfa788033677d2ce95"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-jelly-worlds-ea4e8534": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs claude/youthful-knuth-mqj0h9 ea4e8534 (tree = track-p 57d47863 with #964-#968 merged, every switch shipped 0, plus the jellies-x4 and jellies-x8 worlds pinned, RULES 21); harness/borg.txt 943e1742..., scary_monsters.txt 5a4ec4b6...",
+        "ref": "ea4e8534b745efb1ffb53288003da0e45be34b99",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        },
+        "worlds": {
+          "jellies-x4": "3b4ac5b85be59fe3d8b689f2cad82ac42e0b502bea2cbe4d0fb4a89f02dc33a6",
+          "jellies-x8": "21db3a7627aacb19117d65ee60a52765c491300a6363bd444bc97ec180f03e06"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-23 07:19 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-jelly-worlds-ea4e8534",
+    "control_profile": "reborn-jelly-ctl-x8",
+    "definition": "definitions/reborn-jelly-worlds-pilot.yaml",
+    "description": "In the jellies-x4 and jellies-x8 worlds on borg-reborn-rs ea4e8534 (track-p 57d47863, with #964 and #965-#968 merged and every switch shipped 0), do the switches written for the white-jelly deaths save the games where an immobile toucher stands beside the Borg's route, which the normal world shows only rarely? The arms: the stair route keeps off a retreat's square (#964, hold), the retreat breaker with back-aways (#1023, osc-ba), both together (hold-osc), the reach-free stair route (#931, reach), the escape before the retreat when poisoned without a cure (#934, poison), and the bundle of #654 (all). Each world has its own control. Generated from definitions/reborn-jelly-worlds-pilot.yaml: 14 arms on 4.2.6-reborn-rust-jelly-worlds-ea4e8534, suite classes-18.",
+    "issue": 712,
+    "name": "reborn-jelly-worlds-pilot",
+    "owner_authorization": "2026-11-23: borg-reborn-rs owner, \"we need the ZOO\" (release of #712's hold) and \"yeah dispatch to zoo\" (borg-zoo#712; the pilot only, later tiers after the gate and the owner).",
+    "prespecified": "Fixed 2026-11-23, before any game of this build was played in these worlds (borg-zoo#712, scenario of #677; borg-reborn-rs #931, #932/#964, #1023,\n#933, #934; RULES 21). Seven arms, the requester's short list (ctl = shipped, every switch 0; hold = caution_retreat_reentry_ticks 128; oscba =\ncaution_retreat_oscillation_limit 3 with _backaway 1; holdosc = hold and oscba; reach = caution_stairs_immobile_reach 1, its detour limit\ncaution_stairs_immobile_reach_extra_steps at the shipped 20; poison = caution_poisoned_no_cure_retreat_hp_percent 75; all = reach, oscba,\ncaution_retreat_immobile_kill_turns 3 and poison, without hold) in jellies-x8 and jellies-x4 (14 profiles), classes-18, 18 starts each (252 cells),\n100,000 turns, evidence retained. osc (limit 3 alone), osc5 (_thinks 5) and kill (alone) are left to a later run. A world's arms are compared only\nwithin that world (ctl-x8 against x8 arms, ctl-x4 against x4 arms). Gate: no config_error; one binary; every cell records its world with the same\nborg_world_data_sha256 in every arm of that world; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls\napart; identical plays. Report per world, arm and class: deaths and causes (white, yellow, blue and green jelly, and poison, apart; any death with a\njelly adjacent apart), CL and DL, paired rescued and newly killed against the world's ctl; per arm the counts of \"# Stair flight avoiding retreat\ngrid\" (hold, holdosc), \"# No retreat: N moves away in a row from here were undone\" (oscba, holdosc, all), \"# No retreat: immobile\" (all),\n\"# Poisoned, no cure\" (poison, all) and strategic retreats and back-ups taken next to a jelly; world check: jellies met per game (\"Creating a\nmonster '... jelly'\") and killed. The jellies are DL2-5, so most games meet them. A world is a stress test: a lead here needs the normal-world tiers\nof #654 (paired by start against ctl) before a shipped value is judged. Directional (RULES 14).",
+    "profiles": [
+      "reborn-jelly-ctl-x8",
+      "reborn-jelly-hold-x8",
+      "reborn-jelly-oscba-x8",
+      "reborn-jelly-holdosc-x8",
+      "reborn-jelly-reach-x8",
+      "reborn-jelly-poison-x8",
+      "reborn-jelly-all-x8",
+      "reborn-jelly-ctl-x4",
+      "reborn-jelly-hold-x4",
+      "reborn-jelly-oscba-x4",
+      "reborn-jelly-holdosc-x4",
+      "reborn-jelly-reach-x4",
+      "reborn-jelly-poison-x4",
+      "reborn-jelly-all-x4"
+    ],
+    "question": "In the jellies-x4 and jellies-x8 worlds on borg-reborn-rs ea4e8534 (track-p 57d47863, with #964 and #965-#968 merged and every switch shipped 0), do the switches written for the white-jelly deaths save the games where an immobile toucher stands beside the Borg's route, which the normal world shows only rarely? The arms: the stair route keeps off a retreat's square (#964, hold), the retreat breaker with back-aways (#1023, osc-ba), both together (hold-osc), the reach-free stair route (#931, reach), the escape before the retreat when poisoned without a cure (#934, poison), and the bundle of #654 (all). Each world has its own control.",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-jelly-worlds-ea4e8534"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45129019321-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45129019321",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "cf5d0dd8978ea4d221ebf6140371da39fc3cea8d"
+}
