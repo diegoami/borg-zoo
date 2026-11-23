@@ -3340,6 +3340,32 @@
         "archers-x8": "22efc46841efe720b2e993a98d01d4769ddcdce0b076977f71e094dd15155d9e"
       }
     },
+    "4.2.6-reborn-rust-stair-scum-0d09e318": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "0d09e31843d591987bb61f7b20d26f9ab30319b6",
+      "label": "borg-reborn-rs LINE task/1061-stair-scum (PR #1090) at 0d09e318: track-p c687334c (the #926 fast-fragile bundle shipped, #1074) merged with #1061's stair_scum mode (with the fixes of Codex's review of #1090) and its slack dials (steps, per max HP, per level; the per-level rate at its default 50), every #1061 value at its neutral setting (stair_scum 0, smoke-borg-rs 4/4 identical); shipped harness/borg.txt, scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
+    },
+    "4.2.6-reborn-rust-leashholes-2d29687f": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "2d29687f643a13a31678188fdaf3c99573035791",
+      "label": "borg-reborn-rs PR #1087 head 2d29687f (#1062 stair-leash switches compiled and shipped 0; merged with track-p 57d47863, which ships the #926 fast-fragile bundle (#1074), cave_light_engine_radius 1 and the #895 devices); shipped harness/borg.txt 7849a135..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      }
+    },
     "4.2.6-reborn-rust-healtiers-925fc5d7": {
       "kind": "borg-rs",
       "impl": "rust",
@@ -3366,28 +3392,15 @@
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
     },
-    "4.2.6-reborn-rust-leashholes-449be363": {
+    "4.2.6-reborn-rust-ffratio-c5a24f8e": {
       "kind": "borg-rs",
       "impl": "rust",
       "exact_turns": true,
       "depth_stream": true,
       "role": "candidate",
       "repository": "diegoami/borg-reborn-rs",
-      "ref": "449be3638fc8b8bb0a30125e0c5a0699a91c3ade",
-      "label": "borg-reborn-rs PR #1087 head 449be363 (#1062 stair-leash switches compiled and shipped 0; merged with track-p 0dbe9843, which ships the #926 fast-fragile bundle (#1074), cave_light_engine_radius 1 and the #895 devices); shipped harness/borg.txt ab3b0be1..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
-      "scary_lists": {
-        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
-      }
-    },
-    "4.2.6-reborn-rust-ffratio-8d736268": {
-      "kind": "borg-rs",
-      "impl": "rust",
-      "exact_turns": true,
-      "depth_stream": true,
-      "role": "candidate",
-      "repository": "diegoami/borg-reborn-rs",
-      "ref": "8d736268ae754d3b703b45bc230a84aa3f98bf06",
-      "label": "borg-reborn-rs PR #1089 head 8d736268 (task/1065-heal-ratio-2: track-p 09580159 merged with #1065; ships the #1074 bundle fast_fragile_heal_floor 50, escape_quantile 75, count_dot 1, cave_light_engine_radius 1 and fast_fragile_heal_min_ratio 30); shipped harness/borg.txt bdf43f7c..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+      "ref": "c5a24f8e41510d47a75a9c0635a331725848d87a",
+      "label": "borg-reborn-rs PR #1089 head c5a24f8e (task/1065-heal-ratio-2: track-p ae842b60 merged with #1065; ships the #1074 bundle fast_fragile_heal_floor 50, escape_quantile 75, count_dot 1, cave_light_engine_radius 1 and fast_fragile_heal_min_ratio 30); shipped harness/borg.txt accbcc4a..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
       "scary_lists": {
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }

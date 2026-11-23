@@ -2,15 +2,15 @@
 name: reborn-leash-holes-pilot
 issue: 719
 question: >-
-  On borg-reborn-rs 449be363 (PR #1087 merged with track-p 0dbe9843), do the three stair-leash switches of #1062 (flow_leash_any_stair, flow_leash_unknown_stair_steps 20, flow_leash_teleported_recall), alone and together, change the early deaths of a weak Borg that has no up staircase known or is teleported far from one, and what do they cost in progress?
+  On borg-reborn-rs 2d29687f (PR #1087 merged with track-p 57d47863), do the three stair-leash switches of #1062 (flow_leash_any_stair, flow_leash_unknown_stair_steps 20, flow_leash_teleported_recall), alone and together, change the early deaths of a weak Borg that has no up staircase known or is teleported far from one, and what do they cost in progress?
 tier: pilot            # classes-18, 100,000 turns
 pilot: true            # first run of these arms on this specimen (RULES 16)
 
 specimen:
-  name: 4.2.6-reborn-rust-leashholes-449be363
+  name: 4.2.6-reborn-rust-leashholes-2d29687f
   repository: diegoami/borg-reborn-rs
-  ref: 449be3638fc8b8bb0a30125e0c5a0699a91c3ade
-  label: "borg-reborn-rs PR #1087 head 449be363 (#1062 stair-leash switches compiled and shipped 0; merged with track-p 0dbe9843, which ships the #926 fast-fragile bundle (#1074), cave_light_engine_radius 1 and the #895 devices); shipped harness/borg.txt ab3b0be1..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  ref: 2d29687f643a13a31678188fdaf3c99573035791
+  label: "borg-reborn-rs PR #1087 head 2d29687f (#1062 stair-leash switches compiled and shipped 0; merged with track-p 57d47863, which ships the #926 fast-fragile bundle (#1074), cave_light_engine_radius 1 and the #895 devices); shipped harness/borg.txt 7849a135..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
   scary_lists:
     scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
 
@@ -32,4 +32,4 @@ extra:
   retain_evidence: true
 
 prespecified: |
-  Fixed 2026-11-23, before any result of this build was read (borg-zoo#719; borg-reborn-rs #1062, PR #1087). Five arms on track-p 0dbe9843 + #1087 (449be363; every #1062 switch ships 0, so ctl is the shipped play): ctl; any (flow_leash_any_stair 1); unknown (flow_leash_unknown_stair_steps 20); recall (flow_leash_teleported_recall 1); leash3 (all three). Pilot: classes-18, 100,000 turns, evidence retained, 90 cells. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (a switch that plays the control's keys in every game was not exercised). Read per arm and class: deaths and causes, deaths at CL <= 2 apart, rescued and newly killed against ctl (exact McNemar); progress: level at 25k, 50k and 100k turns (milestones), starts reaching DL3 and DL5 and their first turn there (first_turn_at_depth) (#646's kit leash lowered DL3 arrivals from 129 to 111 and delayed the median by about 10,000 turns); per game from messages.log the notes '# Looking for stairs. Goal_less, any stair', '# Leash: a N-grid jump left the Borg' and '# Leash: reading Recall after the jump', with their games. Then, on the gate and the owner: verysmall (classes-1800 starts 1-45) paired against ctl. Every value (20, 5, 30) is a hypothesis; descriptive (RULES 14).
+  Fixed 2026-11-23, before any result of this build was read (borg-zoo#719; borg-reborn-rs #1062, PR #1087). Five arms on track-p 57d47863 + #1087 (2d29687f; every #1062 switch ships 0, so ctl is the shipped play): ctl; any (flow_leash_any_stair 1); unknown (flow_leash_unknown_stair_steps 20); recall (flow_leash_teleported_recall 1); leash3 (all three). Pilot: classes-18, 100,000 turns, evidence retained, 90 cells. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (a switch that plays the control's keys in every game was not exercised). Read per arm and class: deaths and causes, deaths at CL <= 2 apart, rescued and newly killed against ctl (exact McNemar); progress: level at 25k, 50k and 100k turns (milestones), starts reaching DL3 and DL5 and their first turn there (first_turn_at_depth) (#646's kit leash lowered DL3 arrivals from 129 to 111 and delayed the median by about 10,000 turns); per game from messages.log the notes '# Looking for stairs. Goal_less, any stair', '# Leash: a N-grid jump left the Borg' and '# Leash: reading Recall after the jump', with their games. Then, on the gate and the owner: verysmall (classes-1800 starts 1-45) paired against ctl. Every value (20, 5, 30) is a hypothesis; descriptive (RULES 14).
