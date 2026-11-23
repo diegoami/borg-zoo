@@ -1,0 +1,616 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-prnow-ctl": {
+        "description": "borg-zoo#736 (reborn-priest-now.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "93c7ba13dcdba0816feea72dab3d846ac964cbd54bb9b0468916f7a3e1d18123"
+      },
+      "reborn-prnow-light0": {
+        "description": "borg-zoo#736 (reborn-priest-now.yaml): arm light0.",
+        "settings": {
+          "borg_param_cave_light_engine_radius": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "6e94dab864c622623ea36636a955fc90e57df37f1ee9acbccab5fce8c3469580"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-trackp-13151fb5": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs LINE track-p, head 13151fb5 on 2026-11-23 (50 commits after 353f5c09; ships stair_scum on by class, explore_breadth_first 1, cave_light_engine_radius 1, unseen_belief 1 and the other shipped changes); shipped harness/borg.txt ee128917..., scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+        "ref": "13151fb5538c7861280cf6d6559bc6a0960a12b6",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        }
+      }
+    },
+    "suites": {
+      "classes-1800-full-priests": {
+        "assigned_characters": {
+          "1034169524": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1090796358": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1149765595": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1159862795": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "1177168947": [
+            "Human",
+            "Priest"
+          ],
+          "1209700408": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "1209775855": [
+            "Dwarf",
+            "Priest"
+          ],
+          "121533623": [
+            "Human",
+            "Priest"
+          ],
+          "1223893321": [
+            "Human",
+            "Priest"
+          ],
+          "1235521165": [
+            "Kobold",
+            "Priest"
+          ],
+          "1236546678": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1294425391": [
+            "Elf",
+            "Priest"
+          ],
+          "1308765461": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1309976551": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1315192163": [
+            "Human",
+            "Priest"
+          ],
+          "1318472289": [
+            "Kobold",
+            "Priest"
+          ],
+          "1334300291": [
+            "Human",
+            "Priest"
+          ],
+          "1397430180": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1418864568": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1430097029": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1452563801": [
+            "Gnome",
+            "Priest"
+          ],
+          "1472906131": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1475562842": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "1495706209": [
+            "Hobbit",
+            "Priest"
+          ],
+          "1526543580": [
+            "Elf",
+            "Priest"
+          ],
+          "154155381": [
+            "Dunadan",
+            "Priest"
+          ],
+          "1582674824": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1606657148": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1636541559": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1650399632": [
+            "Dwarf",
+            "Priest"
+          ],
+          "1690591579": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1700103993": [
+            "High-Elf",
+            "Priest"
+          ],
+          "1738632604": [
+            "Human",
+            "Priest"
+          ],
+          "1741676259": [
+            "Human",
+            "Priest"
+          ],
+          "1743946701": [
+            "Gnome",
+            "Priest"
+          ],
+          "17626119": [
+            "Gnome",
+            "Priest"
+          ],
+          "1805582749": [
+            "Gnome",
+            "Priest"
+          ],
+          "1838948383": [
+            "Elf",
+            "Priest"
+          ],
+          "1841141152": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1896645817": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "1935672562": [
+            "Human",
+            "Priest"
+          ],
+          "1959536239": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1972316005": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "1982468086": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "1986973337": [
+            "Elf",
+            "Priest"
+          ],
+          "2048006258": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "2063715385": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "2065283323": [
+            "Kobold",
+            "Priest"
+          ],
+          "2081019804": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "210261444": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "211798192": [
+            "Kobold",
+            "Priest"
+          ],
+          "2129861957": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "2147137502": [
+            "Gnome",
+            "Priest"
+          ],
+          "229641482": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "249140769": [
+            "Gnome",
+            "Priest"
+          ],
+          "269489578": [
+            "Dunadan",
+            "Priest"
+          ],
+          "30279795": [
+            "Kobold",
+            "Priest"
+          ],
+          "316631741": [
+            "Human",
+            "Priest"
+          ],
+          "317600943": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "327746368": [
+            "Gnome",
+            "Priest"
+          ],
+          "344339521": [
+            "High-Elf",
+            "Priest"
+          ],
+          "379197371": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "389489263": [
+            "Gnome",
+            "Priest"
+          ],
+          "416026605": [
+            "Elf",
+            "Priest"
+          ],
+          "449571409": [
+            "High-Elf",
+            "Priest"
+          ],
+          "462442073": [
+            "Elf",
+            "Priest"
+          ],
+          "464959396": [
+            "Elf",
+            "Priest"
+          ],
+          "473906676": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "500978646": [
+            "Kobold",
+            "Priest"
+          ],
+          "573626691": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "602274799": [
+            "High-Elf",
+            "Priest"
+          ],
+          "621641318": [
+            "Dunadan",
+            "Priest"
+          ],
+          "62350794": [
+            "Elf",
+            "Priest"
+          ],
+          "643276724": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "656636316": [
+            "Dwarf",
+            "Priest"
+          ],
+          "669703187": [
+            "Dwarf",
+            "Priest"
+          ],
+          "694417276": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "696511964": [
+            "Hobbit",
+            "Priest"
+          ],
+          "699612033": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "713745780": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "805307467": [
+            "Kobold",
+            "Priest"
+          ],
+          "808156779": [
+            "Elf",
+            "Priest"
+          ],
+          "818374815": [
+            "Half-Orc",
+            "Priest"
+          ],
+          "822614027": [
+            "Dwarf",
+            "Priest"
+          ],
+          "827681208": [
+            "Dunadan",
+            "Priest"
+          ],
+          "837070528": [
+            "Hobbit",
+            "Priest"
+          ],
+          "842068151": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "847754285": [
+            "Gnome",
+            "Priest"
+          ],
+          "848342657": [
+            "Hobbit",
+            "Priest"
+          ],
+          "85370809": [
+            "Hobbit",
+            "Priest"
+          ],
+          "895955819": [
+            "High-Elf",
+            "Priest"
+          ],
+          "899167068": [
+            "Kobold",
+            "Priest"
+          ],
+          "901451811": [
+            "Hobbit",
+            "Priest"
+          ],
+          "920597138": [
+            "Half-Elf",
+            "Priest"
+          ],
+          "938619085": [
+            "Dunadan",
+            "Priest"
+          ],
+          "971641096": [
+            "Dunadan",
+            "Priest"
+          ],
+          "981378852": [
+            "Dwarf",
+            "Priest"
+          ],
+          "994753489": [
+            "Kobold",
+            "Priest"
+          ],
+          "995451390": [
+            "Half-Troll",
+            "Priest"
+          ],
+          "999640817": [
+            "Dwarf",
+            "Priest"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 100000,
+        "description": "The Priest starts of classes-1800-full (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
+        "role": "development",
+        "saves": false,
+        "seeds": [
+          1159862795,
+          1838948383,
+          1495706209,
+          249140769,
+          822614027,
+          317600943,
+          2048006258,
+          1309976551,
+          1090796358,
+          1318472289,
+          1738632604,
+          2081019804,
+          808156779,
+          1236546678,
+          1805582749,
+          1034169524,
+          1959536239,
+          1896645817,
+          938619085,
+          602274799,
+          30279795,
+          1315192163,
+          713745780,
+          1986973337,
+          85370809,
+          389489263,
+          1209775855,
+          1972316005,
+          694417276,
+          154155381,
+          1636541559,
+          994753489,
+          1223893321,
+          1475562842,
+          62350794,
+          696511964,
+          17626119,
+          999640817,
+          1582674824,
+          379197371,
+          1418864568,
+          344339521,
+          211798192,
+          316631741,
+          1209700408,
+          464959396,
+          901451811,
+          1452563801,
+          656636316,
+          210261444,
+          995451390,
+          827681208,
+          1690591579,
+          1235521165,
+          1935672562,
+          920597138,
+          462442073,
+          1308765461,
+          847754285,
+          1650399632,
+          818374815,
+          2129861957,
+          1397430180,
+          449571409,
+          805307467,
+          1334300291,
+          2063715385,
+          416026605,
+          837070528,
+          2147137502,
+          1149765595,
+          473906676,
+          699612033,
+          621641318,
+          1430097029,
+          2065283323,
+          1177168947,
+          842068151,
+          1294425391,
+          1472906131,
+          1743946701,
+          669703187,
+          1841141152,
+          643276724,
+          971641096,
+          895955819,
+          500978646,
+          121533623,
+          229641482,
+          1526543580,
+          848342657,
+          327746368,
+          981378852,
+          1606657148,
+          1982468086,
+          269489578,
+          1700103993,
+          899167068,
+          1741676259,
+          573626691
+        ],
+        "stall_seconds": 90,
+        "subset": {
+          "class": "Priest",
+          "suite": "classes-1800-full"
+        },
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-23 17:27 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-trackp-13151fb5",
+    "control_profile": "reborn-prnow-ctl",
+    "definition": "definitions/reborn-priest-now.yaml",
+    "description": "On track-p 13151fb5, how much progress does the shipped light radius cost the Priest class (Call Light casts, levelling), against light 0? Generated from definitions/reborn-priest-now.yaml: 2 arms on 4.2.6-reborn-rust-trackp-13151fb5, suite classes-1800-full-priests.",
+    "issue": 736,
+    "name": "reborn-priest-now",
+    "owner_authorization": "2026-11-23: zoo owner, \"Yeah do 1,2,3,4,5\" (the five next experiments proposed after the current-state baseline of #695).",
+    "pilot": true,
+    "prespecified": "Fixed 2026-11-23, before any result of this build was read (borg-reborn-rs #1119: with cave_light_engine_radius 1 Priests cast Call Light about 6 times as often and level slowly; the issue is still open). The 100 Priest starts of classes-1800 starts 901-1800 on track-p 13151fb5, ctl (shipped: light radius 1) against light0 (cave_light_engine_radius 0), evidence retained (the Call Light casts and mana rests per game, as in reborn-light-priest-pilot), to measure the Priest class's progress on the current build and to re-measure it when #1119 is fixed. Report: Priests reaching CL5, first turn at levels 2-5 and at DL2 (#718), Call Light casts per game, deaths. Descriptive (RULES 14).\nTier pilot: classes-1800 full-priests (starts 901-1800), 100,000 turns, evidence retained.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm. Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-prnow-ctl",
+      "reborn-prnow-light0"
+    ],
+    "question": "On track-p 13151fb5, how much progress does the shipped light radius cost the Priest class (Call Light casts, levelling), against light 0?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-trackp-13151fb5"
+    ],
+    "suites": [
+      "classes-1800-full-priests"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45224905088-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45224905088",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "719eaee3cb8ca071ede1df444ec263165fe1dc5c"
+}
