@@ -97,6 +97,7 @@ details.cols dt{font-weight:600}details.cols dd{margin:0}
 details.fold{margin:20px 0;border:1px solid var(--line);border-radius:8px;background:var(--card);padding:2px 14px 10px}
 details.fold>summary{cursor:pointer;font-weight:700;font-size:1.15rem;padding:8px 0}
 details.fold>summary:hover{color:var(--accent)}details.fold[open]>summary{margin-bottom:8px;border-bottom:1px solid var(--line)}
+.subtitle{color:var(--muted);font-size:1.05rem;margin:0 0 10px}
 .facts{margin:10px 0}.facts dl{display:grid;grid-template-columns:max-content 1fr;gap:3px 16px;margin:0}.facts dt{color:var(--muted);white-space:nowrap}.facts dd{margin:0}
 details.fold dl{display:grid;grid-template-columns:max-content 1fr;gap:3px 16px;margin:8px 0}details.fold dt{color:var(--muted)}details.fold dd{margin:0}
 """
@@ -710,14 +711,26 @@ QUESTION_RE = re.compile(r'On (?P<pin>[^,]+), what do (?:the )?(?P<subject>[^(]+
 
 
 def question_title(exp):
-    """The question compressed to a title: pin, tracker ref, subject, mode, detail
-    (owner, 2026-11-24). Falls back to the question verbatim when it has another shape."""
+    """The h1: the question's detail - 'Cure Critical Wounds copies and the poison
+    remedy at 40 percent.' (owner, 2026-11-24, two-line title). Falls back to the
+    question verbatim when it has another shape."""
     q = exp.get('question') or ''
     m = QUESTION_RE.match(q)
     if not m:
         return q or exp.get('name', '')
-    return (f"{m['pin']}, {m['ref']}: {m['subject'].strip()}, {m['mode'].strip()}, "
-            f"{m['detail'].strip()}.")
+    return f"{m['detail'].strip()}."
+
+
+def subject_mode(exp):
+    """The second title line: 'Dear-cure rows, switched on and off.' The pin and
+    tracker ref live in the facts card (build, tickets). None for other shapes."""
+    m = QUESTION_RE.match(exp.get('question') or '')
+    if not m:
+        return None
+    mode = m['mode'].strip()
+    if re.fullmatch(r'switched \w+', mode):
+        mode = 'switched on and off'
+    return f"{m['subject'].strip().capitalize()}, {mode}."
 
 
 def upstream_ticket(exp, snapshot):
@@ -812,10 +825,13 @@ def run_page(meta, cells):
     page_title = display['title'] if display else exp['name']
     intro = display['intro'] if display else exp.get('description', '')
     header_title = display['title'] if display else question_title(exp)
+    sub = None if display else subject_mode(exp)
+    headline, diagnostics = [], []
     parts = [f'<p><a href="../../index.html">All experiments</a></p>',
              f'<h1>{esc(header_title)}</h1>',
-             header_facts(exp, meta['catalogue']),
-             provenance_line(exp),
+             (f'<p class="subtitle">{esc(sub)}</p>' if sub else ''),
+             header_facts(exp, meta['catalogue'])]
+    meta_parts = [provenance_line(exp),
              build_used(meta, cells),
              fold('What is being tested?',
                   (f'<p class="lead">{esc(intro)}</p>' if intro else '') + experiment_brief(meta)),
@@ -836,17 +852,15 @@ def run_page(meta, cells):
              'Progress is reaching <strong>character level 5 by 100,000 engine turns</strong>. '
              'For historical prespecified studies, see the original endpoints in the study plan.</p>'
              + '</details>']
-    parts.append(cutoff_note(exp, specimens, meta.get('completed', ''),
-                             (meta.get('catalogue') or {}).get('harness', {}).get('commit', '')))
     for suite, rows in analysis.items():
         s = meta['catalogue']['suites'][suite]
-        parts.append(fold(f'Suite {esc(suite)}',
+        headline.append(fold(f'Suite {esc(suite)}',
                           f'<p class="muted">{esc(s["description"])} · '
                           f'{len(s["seeds"])} seeds · cap {s["cap"]:,} engine turns · birth {esc(s["birth"])}</p>'))
-        parts.append(study_summary(meta, cells, suite))
-        parts.append('<h3>Outcomes per arm</h3>')
+        headline.append(study_summary(meta, cells, suite))
+        headline.append('<h3>Outcomes per arm</h3>')
         first = rows[0]['summary'] if rows else None
-        parts.append(explain_folded(
+        headline.append(explain_folded(
             'One row per arm: a Borg version, with a settings profile when the experiment varies it. Every arm '
             'plays the same seeds. The primary figure is CL5 \u2014 character level 5 reached by 100,000 engine '
             'turns (Rule 22, #758); deaths and the death rate sit alongside it, and depth is a diagnostic.',
@@ -854,7 +868,7 @@ def run_page(meta, cells):
             (f'{arm_label(meta, rows[0]["specimen"], rows[0]["profile"])}: {first["valid"]:,} of {first["cells"]:,} runs finished and '
              f'{first["deaths"]:,} died ({pct(first["death_rate"])}); with this many seeds the true death rate '
              f'is most likely {ci(first["death_ci"])}.') if first and first['valid'] else None))
-        parts.append(table(
+        headline.append(table(
             OUTCOME_COLS,
             [[arm_label(meta, r['specimen'], r['profile']), r['summary']['cells'], r['summary']['valid'],
               r['summary']['deaths'], pct(r['summary']['cl5_rate']),
@@ -871,8 +885,8 @@ def run_page(meta, cells):
             if not versus:
                 continue
             control = esc(exp['control']) if key == 'vs_version' else f'profile {esc(control_profile)}'
-            parts.append(f'<h3>{title}</h3>')
-            parts.append(explain_folded(
+            headline.append(f'<h3>{title}</h3>')
+            headline.append(explain_folded(
                 f'Each row compares one arm with the control ({control}) seed by seed. The primary endpoint is '
                 'CL5: gained against lost, tested by exact McNemar over the seeds with known attainment in '
                 'both arms. Deaths are read the same way: seeds where both died or both lived cannot tell the '
@@ -880,7 +894,7 @@ def run_page(meta, cells):
                 'against <span class="bad">Newly killed</span> (only this arm died).',
                 PAIRED_COLS,
                 example_for(meta, versus, key, exp['control'], control_profile)))
-            parts.append(table(
+            headline.append(table(
                 PAIRED_COLS,
                 [[arm_label(meta, r['specimen'], r['profile']),
                   v['cl5_pairs'], v['cl5_gained'], v['cl5_lost'], pval(v['cl5_p']),
@@ -905,14 +919,14 @@ def run_page(meta, cells):
                                num(st.get('depth_changes')),
                                esc('; '.join(f'{t} ×{n}' for t, n in top[:2])) or '–'])
             unfinished_inner.append(table(UNFINISHED_COLS, rows_u, left=1))
-            parts.append(fold('Runs that did not finish', ''.join(unfinished_inner)))
+            diagnostics.append(fold('Runs that did not finish', ''.join(unfinished_inner)))
         for field, title in (('class', 'Deaths by class'), ('race', 'Deaths by race')):
             per = stats.by_character(exp, cells, field).get(suite)
             many = {'class': 'classes', 'race': 'races'}[field]
             if not per or len(per) < 2:
                 continue
             arms = [a['arm'] for a in per[0]['arms']]
-            parts.append(fold(title, explain(
+            diagnostics.append(fold(title, explain(
                 f'One row per {field}, one column per arm. Each cell is deaths / finished runs (death rate) for '
                 f'characters of that {field}. Read down a column to see which {many} die most; read across a row '
                 f'to see whether a version changed that {field}\'s risk. Cells hold a few hundred runs or fewer, '
@@ -921,7 +935,7 @@ def run_page(meta, cells):
                         [[esc(r['value'])] + [f'{a["deaths"]}/{a["n"]} ({pct(a["rate"])})' if a['n'] else '–'
                                               for a in r['arms']] for r in per])))
         if class_pairs.get(suite):
-            parts.append(fold('Paired deaths by class',
+            diagnostics.append(fold('Paired deaths by class',
                               explain('Each row pairs seeds within the class actually played. Only pairs where '
                                       'both arms finished contribute to rescued/newly killed counts; unfinished '
                                       'attempts remain reported separately. These are descriptive comparisons: '
@@ -964,9 +978,9 @@ def run_page(meta, cells):
                                          [[esc(label(r['arm'])), esc(r['group']), num(r['pairs']), num(r['new']),
                                            num(r['fewer']), pval(r['p']) if r['p'] is not None else '–']
                                           for r in cz['paired']], left=2))
-            parts.append(fold('Deaths by cause', ''.join(cause_inner)))
+            diagnostics.append(fold('Deaths by cause', ''.join(cause_inner)))
         turns = [x['turn'] for x in rows[0]['survival']] if rows else []
-        parts.append(fold('Share alive by engine turn', explain(
+        diagnostics.append(fold('Share alive by engine turn', explain(
             'For each arm, the share of finished runs whose character was still alive at each engine turn (the '
             'last column is the turn cap). Read along a row to see when the deaths happen: an arm with fewer '
             'early deaths keeps a higher share in the first columns.')
@@ -975,7 +989,7 @@ def run_page(meta, cells):
                      for r in rows])))
         marks = [x['depth'] for x in rows[0]['depths']] if rows else []
         no_marks = {k for k, v in meta['catalogue']['specimens'].items() if v.get('kind') == 'borg-rs'}
-        parts.append(fold('Depth reached (diagnostic)', explain(
+        diagnostics.append(fold('Depth reached (diagnostic)', explain(
             'For each arm and dungeon level (DL): the share of finished runs that ever reached that level, then '
             'the median engine turn at which they first got there. A higher share reached sooner means faster '
             'descent, which is not the same as safer play.'
@@ -1010,7 +1024,11 @@ def run_page(meta, cells):
             milestone_inner.append(table(['Version'] + [f'{t:,}' if t is not None else '–' for t in m_turns],
                                              [[arm_label(meta, r['specimen'], r['profile'])] +
                                               [fmt_milestone(x) for x in r['milestones']] for r in rows]))
-            parts.append(fold('Level, max depth and gold by engine turn', ''.join(milestone_inner)))
+            diagnostics.append(fold('Level, max depth and gold by engine turn', ''.join(milestone_inner)))
+    parts += headline + meta_parts
+    parts.append(cutoff_note(exp, specimens, meta.get('completed', ''),
+                             (meta.get('catalogue') or {}).get('harness', {}).get('commit', '')))
+    parts += diagnostics
     returns_by_profile = {}
     for cell in cells:
         activity = cell.get('return_activity')

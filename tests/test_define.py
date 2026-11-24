@@ -151,8 +151,10 @@ class ReportShowsDefinitionTest(unittest.TestCase):
              'and the poison remedy at 40 percent) change in deaths and progress, switched off?')
         self.assertEqual(
             site.question_title({'question': q, 'name': 'x'}),
-            'track-p 13151fb5, #1134: dear-cure rows, switched off, '
             'Cure Critical Wounds copies and the poison remedy at 40 percent.')
+        self.assertEqual(site.subject_mode({'question': q}),
+                         'Dear-cure rows, switched on and off.')
+        self.assertEqual(site.subject_mode({'question': 'Free-form wording?', 'name': 'x'}), None)
         self.assertEqual(site.question_title({'question': 'Free-form wording?', 'name': 'x'}),
                          'Free-form wording?')  # other shapes fall back to the question
         self.assertEqual(site.question_title({'name': 'reborn-x'}), 'reborn-x')
