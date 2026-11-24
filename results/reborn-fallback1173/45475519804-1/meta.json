@@ -1,0 +1,161 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-fb1173-shipped": {
+        "description": "borg-zoo#779 (reborn-fallback1173.yaml): arm shipped.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "a03f69bbaa39b8b96902f4e996de1634c1b2407734a39e0b07e9b105197322b5"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-trackp-3c1aa939": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs track-p 3c1aa939 - the merged #1174 exhausted-exit fix (the fallback tries a known up staircase when the dive has no way down, sets stair_less so caution takes it); shipped harness/borg.txt, scary_monsters.txt f35bfc49... (the list changed with the #1173-era updates), borg-rs core.",
+        "ref": "3c1aa9397c68fd67f0757f60c6655e0e8c4f9692",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "f35bfc49af22ee19a1ea0270d2ed471595bf3104813fc69891312d0fccece75c"
+        }
+      },
+      "4.2.6-reborn-rust-trackp-7c5df737": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs track-p base 7c5df737 (before the #1174 exhausted-exit fix; ships one-level look-ahead for owned spellbooks #1019); shipped harness/borg.txt, scary_monsters.txt 5a4ec4b6..., borg-rs core.",
+        "ref": "7c5df737333e77da85ed04fed4046c50e8c82e52",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "control",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-24 20:02 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-trackp-7c5df737",
+    "control_profile": "reborn-fb1173-shipped",
+    "definition": "definitions/reborn-fallback1173.yaml",
+    "description": "Does the #1173 exhausted-exit fallback (trying a known up staircase when the power dive has no way down) remove the long secret-door search loops on shallow levels, without death or progress regression? Generated from definitions/reborn-fallback1173.yaml: 1 arms on 4.2.6-reborn-rust-trackp-7c5df737, 4.2.6-reborn-rust-trackp-3c1aa939, suite classes-18.",
+    "issue": 779,
+    "name": "reborn-fallback1173",
+    "owner_authorization": "2026-11-24: borg-reborn-rs owner started it (\"you can continue on those now\", borg-reborn-rs#1175) and the zoo owner said \"dispatch all\" (borg-zoo#779).",
+    "prespecified": "Fixed 2026-11-24, before any result (Rule 22, #758). Two builds of diegoami/borg-reborn-rs, both with the shipped harness/borg.txt: base 7c5df737 (before the fix) and fixed 3c1aa939 (the merged #1174: the exhausted fallback tries a known up staircase when the dive has no way down, and sets stair_less so caution takes it). No profile overrides - the fallback is core code, not a switch. Pilot classes-18 paired; the smoke games never reach the state (4/4 identical), so the small tier follows on a clean gate, larger tiers on the owner's word. Gate: no config_error; one binary per arm; every cell ends in death, turn_cap or borg_stopped. Progress endpoint (Rule 22): CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics. Report: paired per class against base (deaths, mean CL, max depth, rescued/newly killed, identical games); on the fixed arm the count of the fallback note \"# No down stair to dive by; trying the up stairs (#1173)\" (how often the new path acts) and the secret-door search count (the #1117 replay measure - the loop the fix removes); any death in either arm gets a /death-report pack with screens. Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-fb1173-shipped"
+    ],
+    "question": "Does the #1173 exhausted-exit fallback (trying a known up staircase when the power dive has no way down) remove the long secret-door search loops on shallow levels, without death or progress regression?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-trackp-7c5df737",
+      "4.2.6-reborn-rust-trackp-3c1aa939"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45475519804-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45475519804",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "d6fcec84c4d3a9bcbe99cd495f6b350e7c330605"
+}
