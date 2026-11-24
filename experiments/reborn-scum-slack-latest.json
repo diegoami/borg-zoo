@@ -1,0 +1,31 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scum-slack-latest",
+  "issue": 785,
+  "definition": "definitions/reborn-scum-slack-latest.yaml",
+  "question": "On the latest track-p build 52fff0de, does stair scumming off cost deaths for CL5 speed, do the scum parameters (max HP, speed ratio, contact damage) change play, and does giving each class more scum slack (steps +1, +2) hold deaths at zero while keeping or improving CL5?",
+  "description": "On the latest track-p build 52fff0de, does stair scumming off cost deaths for CL5 speed, do the scum parameters (max HP, speed ratio, contact damage) change play, and does giving each class more scum slack (steps +1, +2) hold deaths at zero while keeping or improving CL5? Generated from definitions/reborn-scum-slack-latest.yaml: 10 arms on 4.2.6-reborn-rust-trackp-52fff0de, suite classes-18.",
+  "prespecified": "Fixed 2026-11-24, before any result (Rule 22, #758). RULES 16 pilot on the new specimen (track-p head 52fff0de, the #1209 stair-scum extension merge): classes-18, all arms, evidence not retained; the ladder tiers (verysmall, small-rest, medium) run the exercised arms after this gate, disjoint starts, on the owner's word. Scumming's other parameters stay shipped; the arms dial single parameters two-sided, plus the owner's slack steps +1/+2 per class (shipped at this ref: warrior 4, mage 2, druid 1, priest 2, necromancer 1, paladin 4, rogue 3, ranger 3, blackguard 4) and the owner-named scum0 (scumming fully off). SAFETY: the owner expects scum0 to cost some deaths - its read reports every death with cause and a /death-report pack, and scum0 cannot be adopted while its deaths exceed ship's; every other arm is held to deaths-0 strictly (an arm whose deaths rise cannot be adopted however fast it levels). Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics; median first-turn-at-level-5 where recorded. Report per arm against ship: the CL5 endpoint, paired CL5 gained/lost (exact McNemar), deaths and causes, rescued/newly killed, identical plays, median first-L5 turn. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-52fff0de"
+  ],
+  "profiles": [
+    "reborn-scumslack-ship",
+    "reborn-scumslack-scum0",
+    "reborn-scumslack-slack1",
+    "reborn-scumslack-slack2",
+    "reborn-scumslack-maxhp14",
+    "reborn-scumslack-maxhp42",
+    "reborn-scumslack-ratio1",
+    "reborn-scumslack-ratio4",
+    "reborn-scumslack-contact2",
+    "reborn-scumslack-contact8"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-52fff0de",
+  "control_profile": "reborn-scumslack-ship",
+  "owner_authorization": "2026-11-24: zoo owner, \"now we need to test scum stair off and on with the latest build, and one where each class gets one or two more borg_param_stair_scum_slack_steps. Highest priority\", then \"also these parameters should be tested\" (max_hp 28, max_hp_race_delta 0, speed_ratio 2, contact_damage 4) (borg-zoo#785).",
+  "retain_evidence": false
+}

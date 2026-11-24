@@ -13999,6 +13999,101 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-scumslack-ship": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-scumslack-scum0": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm scum0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum": 0
+      }
+    },
+    "reborn-scumslack-slack1": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm slack1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_slack_steps__warrior": 5,
+        "borg_param_stair_scum_slack_steps__mage": 3,
+        "borg_param_stair_scum_slack_steps__druid": 2,
+        "borg_param_stair_scum_slack_steps__priest": 3,
+        "borg_param_stair_scum_slack_steps__necromancer": 2,
+        "borg_param_stair_scum_slack_steps__paladin": 5,
+        "borg_param_stair_scum_slack_steps__rogue": 4,
+        "borg_param_stair_scum_slack_steps__ranger": 4,
+        "borg_param_stair_scum_slack_steps__blackguard": 5
+      }
+    },
+    "reborn-scumslack-slack2": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm slack2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_slack_steps__warrior": 6,
+        "borg_param_stair_scum_slack_steps__mage": 4,
+        "borg_param_stair_scum_slack_steps__druid": 3,
+        "borg_param_stair_scum_slack_steps__priest": 4,
+        "borg_param_stair_scum_slack_steps__necromancer": 3,
+        "borg_param_stair_scum_slack_steps__paladin": 6,
+        "borg_param_stair_scum_slack_steps__rogue": 5,
+        "borg_param_stair_scum_slack_steps__ranger": 5,
+        "borg_param_stair_scum_slack_steps__blackguard": 6
+      }
+    },
+    "reborn-scumslack-maxhp14": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm maxhp14.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_max_hp": 14
+      }
+    },
+    "reborn-scumslack-maxhp42": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm maxhp42.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_max_hp": 42
+      }
+    },
+    "reborn-scumslack-ratio1": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm ratio1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_speed_ratio": 1
+      }
+    },
+    "reborn-scumslack-ratio4": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm ratio4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_speed_ratio": 4
+      }
+    },
+    "reborn-scumslack-contact2": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm contact2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_contact_damage": 2
+      }
+    },
+    "reborn-scumslack-contact8": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm contact8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_contact_damage": 8
+      }
     }
   }
 }

@@ -3744,6 +3744,19 @@
       "role": "candidate",
       "ref": "3c1aa9397c68fd67f0757f60c6655e0e8c4f9692",
       "label": "borg-reborn-rs track-p 3c1aa939 - the merged #1174 exhausted-exit fix (the fallback tries a known up staircase when the dive has no way down, sets stair_less so caution takes it); shipped harness/borg.txt, scary_monsters.txt f35bfc49... (the list changed with the #1173-era updates), borg-rs core."
+    },
+    "4.2.6-reborn-rust-trackp-52fff0de": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "52fff0deb6fbce911d1aa597187bb189543cd74b",
+      "label": "borg-reborn-rs track-p head 52fff0de on 2026-11-24 (the #1209 stair-scum extension merge, after #1174/#1183/#1188/#1200 and the #1173-era scary-list change f35bfc49...); shipped harness/borg.txt 433b4ca0..., scary_monsters.txt f35bfc49..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "f35bfc49af22ee19a1ea0270d2ed471595bf3104813fc69891312d0fccece75c"
+      }
     }
   }
 }
