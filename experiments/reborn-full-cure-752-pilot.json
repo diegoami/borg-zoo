@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-full-cure-752-pilot",
+  "issue": 752,
+  "definition": "definitions/reborn-full-cure-752-pilot.yaml",
+  "question": "Does reserving one full confusion cure advance first CSW or full-cure coverage while preserving Phase Door?",
+  "description": "Does reserving one full confusion cure advance first CSW or full-cure coverage while preserving Phase Door? Generated from definitions/reborn-full-cure-752-pilot.yaml: 2 arms on 4.2.6-reborn-rust-trackp-c5501d3c-pw, suite classes-18.",
+  "prespecified": "Normal world, 100,000 turns, classes-18. Verify all 36 cells and effective class settings on one binary, with populated town-plan.jsonl. Account for all stops and config errors and read the gate before any expansion.\nOn paired starts, report first departure carrying a full confusion cure at or after an affordable CSW opportunity, first CSW purchase turn and level, tier counts, and Phase Door, Recall, light and food at the affected departure. Distinguish purchases from birth stock, pickups and Home withdrawals. Use town-plan records for stocked offers, price, gold after urgent needs and displaced purchases.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-c5501d3c-pw"
+  ],
+  "profiles": [
+    "reborn-full-cure-752-pilot-ctl",
+    "reborn-full-cure-752-pilot-cure1"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-c5501d3c-pw",
+  "control_profile": "reborn-full-cure-752-pilot-ctl",
+  "owner_authorization": "Owner approved the retained two-arm pilot on c5501d3c in Zoo #752.",
+  "retain_evidence": true
+}
