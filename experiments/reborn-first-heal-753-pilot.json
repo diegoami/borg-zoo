@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-first-heal-753-pilot",
+  "issue": 753,
+  "definition": "definitions/reborn-first-heal-753-pilot.yaml",
+  "question": "Does valuing the first healing potion change the short-gold departure kit while preserving Phase Door?",
+  "description": "Does valuing the first healing potion change the short-gold departure kit while preserving Phase Door? Generated from definitions/reborn-first-heal-753-pilot.yaml: 2 arms on 4.2.6-reborn-rust-trackp-c5501d3c-pw, suite classes-18.",
+  "prespecified": "Normal world, 100,000 turns, classes-18. Verify all 36 cells and effective class settings on one binary, with populated town-plan.jsonl. Account for all stops and config errors and read the gate before any expansion.\nReport paired first-departure healing by tier and Phase Door, the first visit that displaces a scroll, stock and budget, light and food, progress and outcomes. Ranger is the same-settings check: the class override must resolve to two in both arms and its paired plays must match.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-c5501d3c-pw"
+  ],
+  "profiles": [
+    "reborn-first-heal-753-pilot-ctl",
+    "reborn-first-heal-753-pilot-first1"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-c5501d3c-pw",
+  "control_profile": "reborn-first-heal-753-pilot-ctl",
+  "owner_authorization": "Owner approved the retained two-arm pilot on c5501d3c in Zoo #753.",
+  "retain_evidence": true
+}

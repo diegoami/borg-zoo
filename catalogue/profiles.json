@@ -13404,6 +13404,41 @@
         "borg_param_deal_with_poison": 1
       }
     },
+    "reborn-full-cure-752-pilot-ctl": {
+      "description": "borg-zoo#752 (reborn-full-cure-752-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1
+      }
+    },
+    "reborn-full-cure-752-pilot-cure1": {
+      "description": "borg-zoo#752 (reborn-full-cure-752-pilot.yaml): arm cure1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_param_town_confusion_cure_reserve": 1
+      }
+    },
+    "reborn-first-heal-753-pilot-ctl": {
+      "description": "borg-zoo#753 (reborn-first-heal-753-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1
+      }
+    },
+    "reborn-first-heal-753-pilot-first1": {
+      "description": "borg-zoo#753 (reborn-first-heal-753-pilot.yaml): arm first1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_param_town_first_cure": 1,
+        "borg_param_town_first_cure__ranger": 2
+      }
+    },
     "reborn-dc2-receipt-pre1134": {
       "description": "borg-zoo#744 (reborn-dc2-receipt-pilot.yaml): arm pre1134.",
       "settings": {
