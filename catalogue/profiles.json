@@ -13403,6 +13403,29 @@
         "borg_world": "poison-x8",
         "borg_param_deal_with_poison": 1
       }
+    },
+    "reborn-p8-exploration-shipped": {
+      "description": "borg-zoo#754 (reborn-p8-exploration-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-p8-exploration-bfs0": {
+      "description": "borg-zoo#754 (reborn-p8-exploration-pilot.yaml): arm bfs0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_breadth_first": 0
+      }
+    },
+    "reborn-p8-exploration-nomixed": {
+      "description": "borg-zoo#754 (reborn-p8-exploration-pilot.yaml): arm nomixed.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_mixed": 0
+      }
     }
   }
 }

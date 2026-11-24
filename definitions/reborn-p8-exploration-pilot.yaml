@@ -1,0 +1,39 @@
+name: reborn-p8-exploration-pilot
+issue: 754
+question: Does turning breadth-first or mixed exploration off individually improve P8 progress without increasing early deaths?
+tier: pilot
+specimen:
+  name: 4.2.6-reborn-rust-trackp-c5501d3c
+  repository: diegoami/borg-reborn-rs
+  ref: c5501d3c5aeac2449fc47ed6ca6efe2fbafdd894
+  label: Track P c5501d3c with shipped mixed level growth and class caps (#1161).
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-p8-exploration
+arms:
+  shipped: {}
+  bfs0: {borg_param_explore_breadth_first: 0}
+  nomixed: {borg_param_explore_mixed: 0}
+control: [shipped]
+extra:
+  retain_evidence: true
+prespecified: |
+  Classes-18, normal world, 100,000 exact engine turns. Gate on 54 complete
+  cells (18 paired birth tuples), one binary, GCC right-to-left order, zero
+  configuration errors, and the intended resolved flags in each class:
+  shipped 1/1, bfs0 0/1, nomixed 1/0. Check all abnormal outcomes before
+  advancing. The shipped borg.txt SHA-256 is
+  c225c1802c2a8ea6f662a8b6ea9a98826fd1f8ef4ff90f6b4841bae486ca6bdd.
+  Keep the shipped settings, world, compiler and birth tuples paired.
+  If the gate passes, read the first 900 classes-1800 starts through the
+  small, medium and big gates, pairing each single override against shipped.
+  Safety: all deaths and deaths at CL <= 2, rescued/newly killed, cause,
+  CL/DL at death, and unfinished outcomes with reasons. Progress: alive at
+  the cap having reached DL5 (primary), DL3/DL5 arrivals and first arrival
+  turns, CL at 25k/50k/100k, and CL/DL exposure where available. Report overall,
+  by class and by tier. Reused starts are descriptive. Confirm a selected
+  default on unopened starts. Consider a both-off arm only if the single
+  overrides leave a concrete interaction. The P8 release comparison is #756.

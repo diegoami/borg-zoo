@@ -1,0 +1,14 @@
+name: reborn-p8-exploration-small
+issue: 754
+question: Does turning breadth-first or mixed exploration off individually improve P8 progress without increasing early deaths?
+tier: small
+specimen: 4.2.6-reborn-rust-trackp-c5501d3c
+profiles: [reborn-p8-exploration-shipped, reborn-p8-exploration-bfs0, reborn-p8-exploration-nomixed]
+control_profile: reborn-p8-exploration-shipped
+prespecified: |
+  Use the disjoint classes-1800 small slice only after the preceding gate
+  passes and the owner agrees. Check the specimen, all three applied profiles,
+  identical birth tuples across arms, and record all abnormal outcomes.
+  Pair bfs0 and nomixed individually against shipped. Read cumulatively with
+  earlier non-pilot slices through start 900. Read safety and progress as
+  defined in reborn-p8-exploration-pilot. Results are descriptive.
