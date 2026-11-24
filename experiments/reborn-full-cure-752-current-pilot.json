@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-full-cure-752-current-pilot",
+  "issue": 752,
+  "definition": "definitions/reborn-full-cure-752-current-pilot.yaml",
+  "question": "On current Track P, can the one-copy full confusion cure reserve advance the first CSW purchase and improve first-opportunity departure coverage while preserving Phase Door and Recall?",
+  "description": "On current Track P, can the one-copy full confusion cure reserve advance the first CSW purchase and improve first-opportunity departure coverage while preserving Phase Door and Recall? Generated from definitions/reborn-full-cure-752-current-pilot.yaml: 2 arms on 4.2.6-reborn-rust-trackp-3c46575d, suite classes-18.",
+  "prespecified": "Paired classes-18 in the normal world, 100,000 turns. Verify all 36 cells and their effective settings, one binary, and populated town-plan receipts. Both arms use the shipped 100% reserve weight.\nCount paired gains and losses in CSW carried at the first measured departure after a stocked CSW offer affordable with post-urgent gold. Report separately whether that purchase would leave enough for the outstanding light, food, and escape supplies. Record full confusion cures from other sources separately. Use the shipped arm to establish the opportunity cohort and report opportunities that moved or disappeared in cure1.\nRead confirmed purchases by resolved kind. Record first CSW purchase turn and level, CSW bought by turn 5,000 and by cap, and Phase Door and Recall carried at the affected departures, including departures with zero Phase Door. Track missing evidence, progress, and all stops. Evaluate the pilot before any larger tier.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-3c46575d"
+  ],
+  "profiles": [
+    "reborn-full-cure-752-current-pilot-ctl",
+    "reborn-full-cure-752-current-pilot-cure1"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-3c46575d",
+  "control_profile": "reborn-full-cure-752-current-pilot-ctl",
+  "retain_evidence": true
+}

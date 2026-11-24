@@ -1,0 +1,32 @@
+name: reborn-full-cure-752-current-pilot
+issue: 752
+question: >-
+  On current Track P, can the one-copy full confusion cure reserve advance
+  the first CSW purchase and improve first-opportunity departure coverage
+  while preserving Phase Door and Recall?
+tier: pilot
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-3c46575d
+  repository: diegoami/borg-reborn-rs
+  ref: 3c46575d166426074d128653e6c4f861997e6f02
+  label: "Track P with the last-class-book protection and powerdive updates."
+  scary_lists:
+    scary_monsters.txt: f35bfc49af22ee19a1ea0270d2ed471595bf3104813fc69891312d0fccece75c
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_town_plan: 1
+
+arms:
+  ctl: {}
+  cure1: {borg_param_town_confusion_cure_reserve: 1}
+control: [ctl]
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Paired classes-18 in the normal world, 100,000 turns. Verify all 36 cells and their effective settings, one binary, and populated town-plan receipts. Both arms use the shipped 100% reserve weight.
+  Count paired gains and losses in CSW carried at the first measured departure after a stocked CSW offer affordable with post-urgent gold. Report separately whether that purchase would leave enough for the outstanding light, food, and escape supplies. Record full confusion cures from other sources separately. Use the shipped arm to establish the opportunity cohort and report opportunities that moved or disappeared in cure1.
+  Read confirmed purchases by resolved kind. Record first CSW purchase turn and level, CSW bought by turn 5,000 and by cap, and Phase Door and Recall carried at the affected departures, including departures with zero Phase Door. Track missing evidence, progress, and all stops. Evaluate the pilot before any larger tier.

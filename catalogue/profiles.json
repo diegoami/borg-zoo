@@ -13551,6 +13551,23 @@
         "borg_param_town_prepared_neutralize_percent": 0,
         "borg_param_town_prepared_dear_after_recall": 0
       }
+    },
+    "reborn-full-cure-752-current-pilot-ctl": {
+      "description": "borg-zoo#752 (reborn-full-cure-752-current-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1
+      }
+    },
+    "reborn-full-cure-752-current-pilot-cure1": {
+      "description": "borg-zoo#752 (reborn-full-cure-752-current-pilot.yaml): arm cure1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_town_plan": 1,
+        "borg_param_town_confusion_cure_reserve": 1
+      }
     }
   }
 }
