@@ -1,0 +1,35 @@
+name: reborn-phase-unknown-current-pilot
+issue: 731
+question: Does disabling the unseen-grid veto change Phase Door outcomes with newcomer wait still enabled on Track P?
+tier: pilot
+specimen:
+  name: 4.2.6-reborn-rust-trackp-3c46575d
+  repository: diegoami/borg-reborn-rs
+  ref: 3c46575d166426074d128653e6c4f861997e6f02
+  label: Track P after the power-dive upstairs fix (#1174).
+  scary_lists:
+    scary_monsters.txt: f35bfc49af22ee19a1ea0270d2ed471595bf3104813fc69891312d0fccece75c
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+profile_prefix: reborn-phase-unknown-current
+arms:
+  shipped: {}
+  unknown0: {borg_param_escape_phase_unknown_scary: 0}
+control: [shipped]
+extra:
+  retain_evidence: true
+prespecified: |
+  Normal world, 18 common birth tuples, exact 100,000 engine turns, GCC
+  right-to-left argument order. Verify all 36 cells use one binary, the
+  written setting and resolution receipts, newcomer_wait=1 in both
+  arms, and classify every abnormal outcome before advancing.
+  Report paired deaths, deaths through CL2, cause, unfinished outcomes,
+  CL5 attainment by 100,000 turns and DL3/DL5 as diagnostics. Review the
+  first differing escape decisions, separating unknown-grid refusals
+  from the newcomer wait. Use the two cases in borg-cemetery PR #149
+  as named diagnostics on their original build, and report any
+  current-build reproductions separately.
+  Keep the exploration settings fixed in both arms. This is a pilot
+  gate for borg-reborn-rs #1073. A population decision requires a
+  later gate and an owner-approved paired suite.

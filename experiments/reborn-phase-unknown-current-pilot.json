@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-phase-unknown-current-pilot",
+  "issue": 731,
+  "definition": "definitions/reborn-phase-unknown-current-pilot.yaml",
+  "question": "Does disabling the unseen-grid veto change Phase Door outcomes with newcomer wait still enabled on Track P?",
+  "description": "Does disabling the unseen-grid veto change Phase Door outcomes with newcomer wait still enabled on Track P? Generated from definitions/reborn-phase-unknown-current-pilot.yaml: 2 arms on 4.2.6-reborn-rust-trackp-3c46575d, suite classes-18.",
+  "prespecified": "Normal world, 18 common birth tuples, exact 100,000 engine turns, GCC\nright-to-left argument order. Verify all 36 cells use one binary, the\nwritten setting and resolution receipts, newcomer_wait=1 in both\narms, and classify every abnormal outcome before advancing.\nReport paired deaths, deaths through CL2, cause, unfinished outcomes,\nCL5 attainment by 100,000 turns and DL3/DL5 as diagnostics. Review the\nfirst differing escape decisions, separating unknown-grid refusals\nfrom the newcomer wait. Use the two cases in borg-cemetery PR #149\nas named diagnostics on their original build, and report any\ncurrent-build reproductions separately.\nKeep the exploration settings fixed in both arms. This is a pilot\ngate for borg-reborn-rs #1073. A population decision requires a\nlater gate and an owner-approved paired suite.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-3c46575d"
+  ],
+  "profiles": [
+    "reborn-phase-unknown-current-shipped",
+    "reborn-phase-unknown-current-unknown0"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-3c46575d",
+  "control_profile": "reborn-phase-unknown-current-shipped",
+  "retain_evidence": true
+}
