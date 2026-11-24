@@ -13846,6 +13846,30 @@
         "borg_param_caution_retreat_reentry_ticks": 0,
         "borg_param_caution_retreat_oscillation_limit": 0
       }
+    },
+    "reborn-baseline-c5501d3c-shipped": {
+      "description": "borg-zoo#767 (reborn-baseline-c5501d3c.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-notrapc-ctl": {
+      "description": "borg-zoo#766 (reborn-notrap-confirm.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-notrapc-notrap": {
+      "description": "borg-zoo#766 (reborn-notrap-confirm.yaml): arm notrap.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_trap_recover": 0,
+        "borg_param_trap_way_back": 0,
+        "borg_param_trap_leave_level_count": 0
+      }
     }
   }
 }
