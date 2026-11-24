@@ -1563,13 +1563,11 @@ class SmokeTabTest(unittest.TestCase):
                                   'suites': {k: cat['suites'][k] for k in exp['suites']}}}))
             from zoo import site
             site.build_site(Path(tmp) / 'res', Path(tmp) / 'site')
-            smoke = (Path(tmp) / 'site/smoke.html').read_text()
             detailed = (Path(tmp) / 'site/detailed.html').read_text()
-            self.assertIn('runs/rs-smoke/r1/index.html', smoke)
-            self.assertNotIn('classes-rs-m11', smoke)
-            self.assertNotIn('runs/rs-smoke/', detailed)
+            self.assertFalse((Path(tmp) / 'site/smoke.html').exists())  # no smoke tab (owner, 2026-11-24)
+            self.assertNotIn('runs/rs-smoke/', detailed)  # smoke checks are not listed anywhere
+            self.assertNotIn('smoke.html', detailed)
             self.assertIn('runs/classes-rs-m11/r1/index.html', detailed)
-            self.assertIn('smoke.html', detailed)
             self.assertTrue((Path(tmp) / 'site/runs/rs-smoke/r1/index.html').exists())
 
 
