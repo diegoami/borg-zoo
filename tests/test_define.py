@@ -134,6 +134,6 @@ class ReportShowsDefinitionTest(unittest.TestCase):
         html = site.provenance_line({'name': 'reborn-heal-pilot'})
         self.assertIn('borg-zoo issue #151', html)
         self.assertIn('definitions/reborn-heal-pilot.yaml', html)
-        self.assertIn('<details class="definition" open>', html)
+        self.assertIn('<details class="definition">', html)  # closed by default (owner, 2026-11-24)
         self.assertIn('caution_heal_when_outmatched', html)  # the YAML itself, not just a link
         self.assertEqual(site.provenance_line({'name': 'no-such-experiment'}), '')
