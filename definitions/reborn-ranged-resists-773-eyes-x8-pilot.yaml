@@ -1,0 +1,34 @@
+name: reborn-ranged-resists-773-eyes-x8-pilot
+issue: 773
+question: >-
+  How do the two resistance-aware ranged caution settings from Reborn #1126 change play on the main line?
+tier: pilot
+
+specimen:
+  name: 4.2.6-reborn-rust-main-c5ed866d-eyes
+  repository: diegoami/borg-reborn-rs
+  ref: c5ed866dfa046dcb4e8b22466ef8ed5e6c57bbbf
+  label: "Main at Reborn #1126 merge b5d07d64 with the eyes-x8 data config only. The Borg code and shipped profile are identical to b5d07d64."
+  scary_lists:
+    scary_monsters.txt: b863ac5f18fc49e9ade9ee34b11ba72d693eb7c684498ce6396bc856188bc7bf
+  worlds:
+    eyes-x8: e5adb0a0e197568cb08aa193df0794aa5c97df27c380ccb553f8b3ab7d450094
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+arms:
+  ctl: {borg_world: eyes-x8}
+  ranged: {borg_world: eyes-x8, borg_param_caution_ranged_only: 1}
+  immobile2: {borg_world: eyes-x8, borg_param_caution_ranged_vs_immobile: 2}
+control: [ctl]
+owner_authorization: "Owner requested adding these Zoo pilot definitions on 2026-11-24."
+extra:
+  retain_evidence: true
+
+prespecified: |
+  eyes-x8, classes-18, 100,000 exact engine turns. Pair identical births within this world. Verify one build, the resolved settings and all 54 cell receipts. Verify staged world-data SHA-256 3919ce1b227d8c777b3882005e2982497973a7933e1a1c28a829c6a47cd463af in every arm.
+  The control uses both shipped settings at 0. Each treatment changes one setting and shares the same control within a world. Zoo #740 used the earlier Track P implementation.
+  Count exercised pairs and record routes through adjacent grids, ranged attacks, melee, retreats and stair use. Record protection at target contact, including Free Action, where observable. An aligned encounter exercising the relevant change gates any larger tier. If protection coverage is absent, use a retained case with and without the applicable protection to verify the decision.
+  Report paired deaths, rescued and newly killed starts, and CL5 reached by 100,000 engine turns. Report unfinished and abnormal outcomes separately. Keep DL3 and DL5 as diagnostics, mark unobservable coverage as unknown, and treat pilot outcomes as descriptive.

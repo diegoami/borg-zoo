@@ -1,0 +1,26 @@
+name: reborn-ranged-resists-773-normal-pilot
+issue: 773
+question: >-
+  How do the two resistance-aware ranged caution settings from Reborn #1126 change play on the main line?
+tier: pilot
+
+specimen: 4.2.6-reborn-rust-main-c5ed866d-eyes
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+arms:
+  ctl: {}
+  ranged: {borg_param_caution_ranged_only: 1}
+  immobile2: {borg_param_caution_ranged_vs_immobile: 2}
+control: [ctl]
+owner_authorization: "Owner requested adding these Zoo pilot definitions on 2026-11-24."
+extra:
+  retain_evidence: true
+
+prespecified: |
+  normal, classes-18, 100,000 exact engine turns. Pair identical births within this world. Verify one build, the resolved settings and all 54 cell receipts. Verify the upstream game data is used.
+  The control uses both shipped settings at 0. Each treatment changes one setting and shares the same control within a world. Zoo #740 used the earlier Track P implementation.
+  Count exercised pairs and record routes through adjacent grids, ranged attacks, melee, retreats and stair use. Record protection at target contact, including Free Action, where observable. An aligned encounter exercising the relevant change gates any larger tier. If protection coverage is absent, use a retained case with and without the applicable protection to verify the decision.
+  Report paired deaths, rescued and newly killed starts, and CL5 reached by 100,000 engine turns. Report unfinished and abnormal outcomes separately. Keep DL3 and DL5 as diagnostics, mark unobservable coverage as unknown, and treat pilot outcomes as descriptive.

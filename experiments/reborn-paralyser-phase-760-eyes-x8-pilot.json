@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-paralyser-phase-760-eyes-x8-pilot",
+  "issue": 760,
+  "definition": "definitions/reborn-paralyser-phase-760-eyes-x8-pilot.yaml",
+  "question": "With walk-away enabled, does allowing Phase Door beside a known awake paralyser change the action or its priority?",
+  "description": "With walk-away enabled, does allowing Phase Door beside a known awake paralyser change the action or its priority? Generated from definitions/reborn-paralyser-phase-760-eyes-x8-pilot.yaml: 2 arms on 4.2.6-reborn-rust-trackp-ba08a4f3-eyes, suite classes-18.",
+  "prespecified": "eyes-x8, classes-18, 100,000 exact engine turns. Pair identical births within this world. Verify one build, the resolved settings and all 36 cell receipts. Verify staged world-data SHA-256 3919ce1b227d8c777b3882005e2982497973a7933e1a1c28a829c6a47cd463af in every arm.\nKeep caution_walk_away_immobile=1 and loop_breaker=1. Only the phase arm overrides escape_paralyser_fight_lost to 1. The shipped value is 0. Memory retention and the other #1125 overrides stay off.\nAt known awake adjacent paralysers, record Free Action, usable step, ranged attack, stair and Phase source, verdict, action, landing and renewed exposure where observable. Count early combat deferrals without usable Phase, including mobile paralysers. Record paralysis and eye deaths. An aligned eyes-x8 action or priority difference gates any proposed development tier. Review normal-world failed or unnecessary Phase attempts and newly killed starts.\nReport paired deaths, rescued and newly killed starts, and CL5 reached by 100,000 engine turns. Report unfinished and abnormal outcomes separately. Keep DL3 and DL5 as diagnostics, mark unobservable coverage as unknown, and treat pilot outcomes as descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-ba08a4f3-eyes"
+  ],
+  "profiles": [
+    "reborn-paralyser-phase-760-eyes-x8-pilot-ship",
+    "reborn-paralyser-phase-760-eyes-x8-pilot-phase"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-ba08a4f3-eyes",
+  "control_profile": "reborn-paralyser-phase-760-eyes-x8-pilot-ship",
+  "owner_authorization": "Owner requested adding these Zoo pilot definitions on 2026-11-24.",
+  "retain_evidence": true
+}
