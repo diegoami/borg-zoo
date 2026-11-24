@@ -1,0 +1,193 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-dc2-receipt-m1135": {
+        "description": "borg-zoo#744 (reborn-dc2-receipt-pilot.yaml): arm m1135.",
+        "settings": {
+          "borg_param_town_prepared_dear_after_recall": 0,
+          "borg_param_town_prepared_neutralize": 0,
+          "borg_param_town_prepared_neutralize_percent": 0,
+          "borg_param_town_prepared_poison_percent": 40,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1
+        },
+        "sha256": "2ba8ef3d7cf4f3a304fff154246e40f38890eb4c41dc19a13475e2cf50860454"
+      },
+      "reborn-dc2-receipt-nogate": {
+        "description": "borg-zoo#744 (reborn-dc2-receipt-pilot.yaml): arm nogate.",
+        "settings": {
+          "borg_param_town_prepared_dear_after_recall": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1
+        },
+        "sha256": "9db7e5102ce5966bedd0e5e27da7657df2ad3fa9a3a17547d7d6985df12a408b"
+      },
+      "reborn-dc2-receipt-pre1134": {
+        "description": "borg-zoo#744 (reborn-dc2-receipt-pilot.yaml): arm pre1134.",
+        "settings": {
+          "borg_param_town_prepared_ccw": 0,
+          "borg_param_town_prepared_ccw_percent": 0,
+          "borg_param_town_prepared_dear_after_recall": 0,
+          "borg_param_town_prepared_neutralize": 0,
+          "borg_param_town_prepared_neutralize_percent": 0,
+          "borg_param_town_prepared_poison_percent": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1
+        },
+        "sha256": "4b99b6b82e40abe86ada4d8c85663f12ffff71f2f6f32c2cefa4e1d6cede0a27"
+      },
+      "reborn-dc2-receipt-ship": {
+        "description": "borg-zoo#744 (reborn-dc2-receipt-pilot.yaml): arm ship.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1
+        },
+        "sha256": "6d43f390e367acf05ad2f3e815a51c3938a2a063a49df8eb34b5f605ee8ca4ff"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-trackp-c5501d3c-pw": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs track-p at the #1149 merge c5501d3c on 2026-11-23 (#1149 PR head 8aa716cd, after merging track-p #945/#947/#1148/#1161); world poison-x8 pinned (fb86c333...); shipped harness/borg.txt c225c180..., scary_monsters.txt 5a4ec4b6..., borg-rs core. track-p also ships caution_walk_away_immobile 1 (#1148) in every arm.",
+        "ref": "c5501d3c5aeac2449fc47ed6ca6efe2fbafdd894",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        },
+        "worlds": {
+          "poison-x8": "fb86c333c80e048da19e68e7e15efc63df49134f91124ecb5168165558e5de0d"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-24 09:14 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-trackp-c5501d3c-pw",
+    "control_profile": "reborn-dc2-receipt-pre1134",
+    "definition": "definitions/reborn-dc2-receipt-pilot.yaml",
+    "description": "On borg-reborn-rs PR #1149 (c5501d3c, the normal world), what do the dear-cure rows (Neutralize Poison, Cure Critical Wounds, the Recall gate) change in purchases per game, in the staples bought and in deaths, against the play before #1134, the same rows without the Recall gate, and what track-p ships after #1135? Generated from definitions/reborn-dc2-receipt-pilot.yaml: 4 arms on 4.2.6-reborn-rust-trackp-c5501d3c-pw, suite classes-18.",
+    "issue": 744,
+    "name": "reborn-dc2-receipt-pilot",
+    "owner_authorization": "Owner approved repeating the existing four-arm pilot with town-plan evidence in Zoo #744.",
+    "pilot": true,
+    "prespecified": "Repeat the same c5501d3c four-arm pilot in normal on all 18 original starts, without advancing the tier. Explicit borg_town_plan=1 matches shipped play and enables receipt capture. Verify settings, outcome and paired key hashes against the earlier pilot where applicable.\nFor town visits at max DL at least 2, count stock and affordable opportunities by resolved item kind. Report price, post-urgent gold, carried Recall, active dear-cure rows and confirmed purchases in order. Compare Phase Door and Recall on departure, along with healing, light and food. Read this gate before any tier expansion.",
+    "profiles": [
+      "reborn-dc2-receipt-pre1134",
+      "reborn-dc2-receipt-ship",
+      "reborn-dc2-receipt-nogate",
+      "reborn-dc2-receipt-m1135"
+    ],
+    "question": "On borg-reborn-rs PR #1149 (c5501d3c, the normal world), what do the dear-cure rows (Neutralize Poison, Cure Critical Wounds, the Recall gate) change in purchases per game, in the staples bought and in deaths, against the play before #1134, the same rows without the Recall gate, and what track-p ships after #1135?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-trackp-c5501d3c-pw"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45362231180-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45362231180",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "77de055e6a3f30b2825f238551dfb9036ac43409"
+}
