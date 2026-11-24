@@ -80,5 +80,18 @@ class DescriptionTest(unittest.TestCase):
         self.assertEqual(sd.describe('borg_unknown', base), (None, None))
 
 
+class FmtTest(unittest.TestCase):
+    def test_long_and_multi_values_synthsize_into_one_cell(self):
+        from zoo.settings_page import fmt
+        self.assertEqual(fmt(None), 'build default')
+        self.assertEqual(fmt(1), '1')
+        self.assertEqual(fmt(True), '1')
+        self.assertEqual(fmt('errands_plan.txt'), 'errands_plan.txt')  # a file reference stays whole
+        self.assertEqual(fmt({f'c{i}': 1 for i in range(12)}), '12 entries → 1')  # uniform dict
+        self.assertEqual(fmt({'a': 1, 'b': 2}), '2 entries differ (…)')
+        out = fmt('x' * 40)
+        self.assertTrue(out.startswith('xxxxxxxxxx…') and len(out) < 40)  # wildcard in the middle
+
+
 if __name__ == '__main__':
     unittest.main()
