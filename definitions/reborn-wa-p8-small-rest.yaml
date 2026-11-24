@@ -1,0 +1,37 @@
+# borg-zoo#749: caution_walk_away_immobile on track-p 85f8800b (patches-x8 world), small-rest tier (classes-1800 starts 1-45). Write the catalogue entries with: python3 -m zoo define definitions/reborn-wa-pilot.yaml
+name: reborn-wa-p8-small-rest
+issue: 749
+question: >-
+  On borg-reborn-rs track-p 85f8800b (normal world), what does caution_walk_away_immobile 1 (shipped on in #1148 before any measurement) change in deaths by walk-away monsters, in other deaths and in DL3 and DL5 reached, against 0 (the play before #1147)?
+tier: verysmall            # classes-1800 starts 46-90, patches-x8 world, 100,000 turns
+pilot: true            # first run of these arms on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-85f8800b-pw
+  repository: diegoami/borg-reborn-rs
+  ref: 85f8800bf37e71c3739efe734ff136521de5e790
+  label: "borg-reborn-rs LINE track-p, #1148 merge 85f8800b on 2026-11-23, worlds pinned (patches-x8 a6721bdd..., poison-x8 fb86c333...); shipped harness/borg.txt 34eac5de..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+  worlds:
+    patches-x8: a6721bdd20a440f397ab923705dc99df8826a698ad78cd1e96f95cb1f4b98aca
+    poison-x8: fb86c333c80e048da19e68e7e15efc63df49134f91124ecb5168165558e5de0d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-wa
+arms:
+  wa0: {borg_param_caution_walk_away_immobile: 0}
+  ship: {}
+control: [wa0]
+owner_authorization: >-
+  2026-11-23: zoo owner, request borg-reborn-rs#1147 filed as borg-zoo#749 (the switch ships on; this run decides whether it stays). 2026-11-24: zoo owner, "start them all" — the tier ladder of #749 after the pilots' gate was read.
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-24, after the verysmall tier's gate was read and passed (borg-zoo#749; borg-reborn-rs #1147, PR #1148). Two arms on track-p 85f8800b (normal world): off (caution_walk_away_immobile 0, the play before #1147) and ship (1, shipped). Tier small-rest (RULES 14) of the study on the same build and arms: classes-1800 starts 46-90, 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core, evidence not retained, disjoint from the pilot (classes-18) and the verysmall tier (starts 1-45) and the later tiers.
+  Progress endpoint (Rule 22, #758): CL5 reached by 100,000 turns - known attainment out of all starts, with deaths, unfinished outcomes and alive at the cutoff with CL5 reported separately; dungeon depth (DL3/DL5) and level arrival as diagnostics.
+  Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (an arm that plays wa0's keys was not exercised). Report per arm against wa0: the CL5 endpoint, deaths and causes (walk-away: mushroom patches, jellies, floating eye, other), rescued and newly killed (exact McNemar), DL3 and DL5 reached, stalls and bouncing-borg exits, and from the notes of ship the #1147 counts (steps with and without a clean way to the stairs, staircase leaves, cornered cures, cornered Phase Door, last-resort blows). Descriptive (RULES 14).
