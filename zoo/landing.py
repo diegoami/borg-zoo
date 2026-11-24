@@ -1117,12 +1117,12 @@ def versions_page():
 
 RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.'),
             ('Issue', 'The borg-zoo issue the experiment answers.'),
-            ('Completed', 'When the run finished (UTC).'),
-            ('Versions', 'How many Borg versions it compares.'),
-            ('Profiles', 'How many settings profiles it compares.'),
             ('Runs', 'Games played: versions × profiles × seeds.'),
             ('Finished', 'Games that reached an endpoint (death or the turn cap); the rest stalled, timed out '
                          'or failed.'),
+            ('Deaths', 'Deaths among finished games, all arms of the run together.'),
+            ('CL5', 'Share of runs with known attainment that reached character level 5 by 100,000 turns, '
+                    'all arms together.'),
             ('Deaths range (worst, best)', 'Wilson 95% interval of the arm with the highest death rate, then '
                                            'the arm with the lowest; one interval when a run has a single arm.'),
             ('CL5 range (worst, best)', 'Wilson 95% interval of the arm with the lowest CL5 attainment, then '
@@ -1208,4 +1208,5 @@ def landing_page(runs, run_rows):
         + explain('Every experiment run, newest first, small tiers and pilots included; smoke checks and '
                   'scenario runs are not listed. Each report shows the YAML definition and the build used.',
                   RUN_COLS)
-        + (table(RUN_COLS, run_rows) if run_rows else '<p class="muted">No results yet.</p>'))
+        + (f'<div class="runs-list">{table(RUN_COLS, run_rows)}</div>' if run_rows
+           else '<p class="muted">No results yet.</p>'))

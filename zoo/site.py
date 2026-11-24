@@ -97,6 +97,7 @@ details.cols dt{font-weight:600}details.cols dd{margin:0}
 details.fold{margin:20px 0;border:1px solid var(--line);border-radius:8px;background:var(--card);padding:2px 14px 10px}
 details.fold>summary{cursor:pointer;font-weight:700;font-size:1.15rem;padding:8px 0}
 details.fold>summary:hover{color:var(--accent)}details.fold[open]>summary{margin-bottom:8px;border-bottom:1px solid var(--line)}
+.runs-list td:first-child,.runs-list th:first-child{white-space:normal;max-width:20rem;overflow-wrap:anywhere}
 .subtitle{color:var(--muted);font-size:1.05rem;margin:0 0 10px}
 .facts{margin:10px 0}.facts dl{display:grid;grid-template-columns:max-content 1fr;gap:3px 16px;margin:0}.facts dt{color:var(--muted);white-space:nowrap}.facts dd{margin:0}
 details.fold dl{display:grid;grid-template-columns:max-content 1fr;gap:3px 16px;margin:8px 0}details.fold dt{color:var(--muted)}details.fold dd{margin:0}
@@ -706,59 +707,88 @@ def world_type(exp, snapshot):
     return ' · '.join(dict.fromkeys(worlds))
 
 
-QUESTION_RE = re.compile(r'On (?P<pin>[^,]+), what do (?:the )?(?P<subject>[^(]+?) '
-                          r'\((?P<ref>[^:)]+): (?P<detail>[^)]+)\) change[^,]*, (?P<mode>[^?]+)\?')
+QUESTION_SHAPES = (
+    # 'On <pin>, what do the <subject> (<ref>: <detail>) change ..., <mode>?'
+    re.compile(r'^On (?P<pin>[^,]+), what do (?:the )?(?P<subject>[^(]+?) '
+               r'\((?P<ref>[^:)]+): (?P<detail>[^)]+)\) change[^,]*, (?P<mode>[^?]+)\?$'),
+    # 'On <pin> (<world>), what does <subject> (<detail>) change ..., against <ctl> (...)?
+    re.compile(r'^On (?P<pin>[^,(]+(?:\s*\([^)]*\))?), what does (?P<subject>[^(]+?) '
+               r'\((?P<detail>[^)]+)\) change (?P<end>[^?]+)\?$'),
+    # 'On <pin>, did shipping <subject> help or hurt, ...?'
+    re.compile(r'^On (?P<pin>[^,]+), did (?P<subject>.*?) help or hurt'),
+)
+
+
+def question_parts(exp):
+    """(headline, subtitle, refs) parsed from the question, per its shape; None
+    when no shape matches (owner, 2026-11-24: two-line titles, tickets in the facts)."""
+    q = exp.get('question') or ''
+    m = QUESTION_SHAPES[0].match(q)
+    if m:
+        return (f"{m['detail'].strip()}.",
+                f"{m['subject'].strip().capitalize()}, switched on and off.",
+                re.findall(r'#\d+', q))
+    m = QUESTION_SHAPES[1].match(q)
+    if m:
+        mode = ('on against off' if re.search(r'against (?:0|off)\b', m['end'])
+                else m['end'].split(',')[0].strip())
+        return (f"{m['subject'].strip()}.",
+                f"{m['detail'].strip().capitalize()}, {mode}.",
+                re.findall(r'#\d+', q))
+    m = QUESTION_SHAPES[2].match(q)
+    if m:
+        subject = re.sub(r'^shipping\s+', '', m['subject'].strip(), flags=re.I)
+        return (f"{subject.capitalize()}.", 'Help or hurt.', re.findall(r'#\d+', q))
+    return None
 
 
 def question_title(exp):
-    """The h1: the question's detail - 'Cure Critical Wounds copies and the poison
-    remedy at 40 percent.' (owner, 2026-11-24, two-line title). Falls back to the
-    question verbatim when it has another shape."""
+    """The h1: the question's substance - 'Cure Critical Wounds copies and the
+    poison remedy at 40 percent.' (owner, 2026-11-24). Falls back to the
+    question verbatim when no shape matches."""
+    parts = question_parts(exp)
+    if parts:
+        return parts[0]
     q = exp.get('question') or ''
-    m = QUESTION_RE.match(q)
-    if not m:
-        return q or exp.get('name', '')
-    return f"{m['detail'].strip()}."
+    return q or exp.get('name', '')
 
 
 def subject_mode(exp):
-    """The second title line: 'Dear-cure rows, switched on and off.' The pin and
-    tracker ref live in the facts card (build, tickets). None for other shapes."""
-    m = QUESTION_RE.match(exp.get('question') or '')
-    if not m:
-        return None
-    mode = m['mode'].strip()
-    if re.fullmatch(r'switched \w+', mode):
-        mode = 'switched on and off'
-    return f"{m['subject'].strip().capitalize()}, {mode}."
+    """The second title line: 'Dear-cure rows, switched on and off.' None when
+    no shape matches."""
+    parts = question_parts(exp)
+    return parts[1] if parts else None
 
 
-def upstream_ticket(exp, snapshot):
-    """The upstream tracker reference the question names — "(#1134: ...)" —
-    linked to the specimens' repository (owner, 2026-11-24: both tickets in the header)."""
-    m = QUESTION_RE.match(exp.get('question') or '')
-    if not m:
-        return None
-    num = m['ref'].lstrip('#').strip()
-    if not num.isdigit():
-        return None
+def upstream_tickets(exp, snapshot):
+    """Every tracker reference the question names (#1134, #1148, #1147, ...),
+    each linked in the specimens' repository."""
+    parts = question_parts(exp)
+    nums = parts[2] if parts else []
     repo = next((snapshot['specimens'].get(s, {}).get('repository', '')
                  for s in exp['specimens']
                  if snapshot['specimens'].get(s, {}).get('repository')), '')
     if not repo:
-        return None
-    return f'<a href="https://github.com/{esc(repo)}/issues/{num}">{esc(repo.split("/")[-1])} #{num}</a>'
+        return []
+    name = repo.split('/')[-1]
+    return [f'<a href="https://github.com/{esc(repo)}/issues/{n.lstrip("#")}">{esc(name)} {esc(n)}</a>'
+            for n in nums]
+
+
+def ticket_refs(exp, snapshot):
+    """The ticket line: the borg-zoo issue, then the upstream tracker reference
+    the question names - both tickets, zoo first (owner, 2026-11-24)."""
+    issue = cat_mod.issue_of(exp)
+    ups = upstream_tickets(exp, snapshot)
+    refs = [f'<a href="{cat_mod.ISSUES_URL}{issue}">borg-zoo #{issue}</a>'] if issue else []
+    all_refs = refs + ups
+    return ' · '.join(all_refs) if all_refs else '–'
 
 
 def header_facts(exp, snapshot):
     """The compact facts block heading every report (owner, 2026-11-24): ticket
     reference, samples, arms, world type, and the build, prominently."""
-    issue = cat_mod.issue_of(exp)
-    refs = [f'<a href="{cat_mod.ISSUES_URL}{issue}">borg-zoo #{issue}</a>'] if issue else []
-    up = upstream_ticket(exp, snapshot)
-    if up:
-        refs.append(up)
-    ticket = ' · '.join(refs) if refs else '–'
+    ticket = ticket_refs(exp, snapshot)
     n_arms = len(exp['specimens']) * len(exp['profiles'])
     suite_lines = []
     for name in exp['suites']:
@@ -854,9 +884,9 @@ def run_page(meta, cells):
              + '</details>']
     for suite, rows in analysis.items():
         s = meta['catalogue']['suites'][suite]
-        headline.append(fold(f'Suite {esc(suite)}',
+        suite_fold = fold(f'Suite {esc(suite)}',
                           f'<p class="muted">{esc(s["description"])} · '
-                          f'{len(s["seeds"])} seeds · cap {s["cap"]:,} engine turns · birth {esc(s["birth"])}</p>'))
+                          f'{len(s["seeds"])} seeds · cap {s["cap"]:,} engine turns · birth {esc(s["birth"])}</p>')
         headline.append(study_summary(meta, cells, suite))
         headline.append('<h3>Outcomes per arm</h3>')
         first = rows[0]['summary'] if rows else None
@@ -902,6 +932,7 @@ def run_page(meta, cells):
                   f'<span class="good">{v["rescued"]}</span>', f'<span class="bad">{v["newly_killed"]}</span>',
                   v['both_died'], v['both_lived'], v['identical_traces'], pval(v['death_p'])]
                  for r in versus for v in [r[key]]]))
+        headline.append(suite_fold)  # the suite section sits below both tables (owner, 2026-11-24)
         unfinished = [c for c in cells if c['suite'] == suite and c['outcome'] not in stats.VALID]
         if unfinished:
             unfinished_inner = [explain(
@@ -1136,16 +1167,19 @@ def build_site(results, out):
             shutil.copy(src / 'meta.json', target / 'meta.json')
         if meta['experiment']['name'] in smoke:
             continue
-        finished = sum(1 for c in cells if c['outcome'] in stats.VALID)
+        valid = [c for c in cells if c['outcome'] in stats.VALID]
+        finished = len(valid)
+        deaths_total = sum(1 for c in valid if c['outcome'] == 'death')
+        known = [c for c in cells if stats.cl5_reached(c) is not None]
+        cl5_pct = (f'{100 * sum(1 for c in known if stats.cl5_reached(c)) / len(known):.0f}%'
+                   if known else '–')
         death_ivs = landing.arm_intervals(cells, lambda c: c['outcome'] == 'death')
         cl5_ivs = landing.arm_intervals(cells, lambda c: stats.cl5_reached(c) is True,
                                         known=lambda c: stats.cl5_reached(c))
         rows.append([f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
                      f'{esc((study_info(meta) or {}).get("title", meta["experiment"]["name"]))}</a>',
                      (f'<a href="{cat_mod.ISSUES_URL}{issue}">#{issue}</a>' if (issue := cat_mod.issue_of(meta['experiment'])) else '–'),
-                     esc(meta.get('completed', '?')),
-                     len(meta['experiment']['specimens']), len(meta['experiment']['profiles']),
-                     len(cells), finished,
+                     len(cells), finished, deaths_total, cl5_pct,
                      landing.range_cell(list(reversed(death_ivs))),
                      landing.range_cell(cl5_ivs)])
     from . import landing

@@ -24,7 +24,7 @@ from . import catalogue as cat_mod
 from . import stats
 from .briefs import question
 from . import setting_descriptions
-from .site import esc, pval, table, explain
+from .site import esc, pval, table, explain, question_title, subject_mode, ticket_refs
 
 MEDIUM = 270
 SORT_SCRIPT = (
@@ -306,12 +306,11 @@ def study_block(key, study):
     head = head_row(study)
     meta = study['runs'][0]['metas'][0]
     exp = meta['experiment']
-    issue = cat_mod.issue_of(exp)
     spec = meta['catalogue'].get('specimens', {}).get(head['specimen'], {})
-    title = exp['name'] if not study['pooled'] else re.sub(r'-(pilot|verysmall|small-rest|small|medium|big|full|1800)$', '', exp['name'])
-    parts = [f'<h3>{esc(title)}</h3>', f'<p>{esc(question(exp))}</p>',
-             f'<p class="muted">'
-             + (f'<a href="{cat_mod.ISSUES_URL}{issue}">#{issue}</a> · ' if issue else '')
+    detail, sub = question_title(exp), subject_mode(exp)
+    parts = [f'<h3>{esc(detail)}</h3>',
+             (f'<p class="subtitle">{esc(sub)}</p>' if sub else ''),
+             f'<p class="muted">{ticket_refs(exp, meta["catalogue"])} · '
              + f'build {esc(head["specimen"])} (<code>{esc(spec.get("ref", "?")[:8])}</code>) · '
              + (f'{esc(head["tier"])}' if study['pooled'] else run_line(head)) + '</p>']
     parts.append(result_table(key, head))
