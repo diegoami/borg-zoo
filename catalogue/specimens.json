@@ -20,6 +20,19 @@
   },
   "note": "Mode cutoff (borg-zoo#54): better-borg-c commit fd683ced (PR 302) made borg_munchkin_by_class default TRUE, so specimens before it do not carry the class rule and play a different game under the same profile name. Every better-borg-c-kind specimen declares which side of that commit it is on (\"mode_side\"); comparisons that straddle the cutoff are excluded, and profile \"default\" is only a compatibility alias for experiments recorded before the cutoff. Profiles normal, munchkin-class, munchkin-on and lunal name the modes explicitly.",
   "specimens": {
+    "4.2.6-reborn-rust-trackp-3c46575d": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "3c46575d166426074d128653e6c4f861997e6f02",
+      "label": "Track P after the power-dive upstairs fix (#1174).",
+      "scary_lists": {
+        "scary_monsters.txt": "f35bfc49af22ee19a1ea0270d2ed471595bf3104813fc69891312d0fccece75c"
+      }
+    },
     "4.2.6": {
       "repository": "diegoami/better-borg-c",
       "ref": "e473720ed88a0f0c7ca66815cef3000eb4a38bc3",
@@ -3704,17 +3717,36 @@
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
     },
-    "4.2.6-reborn-rust-trackp-3c46575d": {
+    "4.2.6-reborn-rust-trackp-ba08a4f3-eyes": {
       "kind": "borg-rs",
       "impl": "rust",
       "exact_turns": true,
       "depth_stream": true,
       "role": "candidate",
       "repository": "diegoami/borg-reborn-rs",
-      "ref": "3c46575d166426074d128653e6c4f861997e6f02",
-      "label": "Track P after the power-dive upstairs fix (#1174).",
+      "ref": "ba08a4f3adcc66de068b52aea59e46eb31a63264",
+      "label": "Track P 7bf58639 with the eye-world configs from Reborn #1165, including the shipped walk-away rule.",
       "scary_lists": {
-        "scary_monsters.txt": "f35bfc49af22ee19a1ea0270d2ed471595bf3104813fc69891312d0fccece75c"
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      },
+      "worlds": {
+        "eyes-x8": "e5adb0a0e197568cb08aa193df0794aa5c97df27c380ccb553f8b3ab7d450094"
+      }
+    },
+    "4.2.6-reborn-rust-main-2c11b93f-eyes": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "2c11b93f657dbf5f5b1ce2fc1b2c73d042ea407e",
+      "label": "Main at Reborn #1126 merge b5d07d64 with the eyes-x8 config and pinned world generator. The Borg code and shipped profile are identical to b5d07d64.",
+      "scary_lists": {
+        "scary_monsters.txt": "b863ac5f18fc49e9ade9ee34b11ba72d693eb7c684498ce6396bc856188bc7bf"
+      },
+      "worlds": {
+        "eyes-x8": "e5adb0a0e197568cb08aa193df0794aa5c97df27c380ccb553f8b3ab7d450094"
       }
     }
   }

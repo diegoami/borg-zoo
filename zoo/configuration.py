@@ -168,9 +168,12 @@ def build_inspector(meta, cells, source, target):
             cache[digest] = data, origin
         filename = None
         if data is not None:
-            filename = f'{digest}.txt'
+            # Published gzipped: 586,936 cells of borg.txt text pushed the site
+            # artifact past GitHub Pages' 1 GB deploy limit (2026-11-24); the
+            # inspector inflates with DecompressionStream, the bytes stay exact.
+            filename = f'{digest}.txt.gz'
             if filename not in written:
-                (target / filename).write_bytes(data)
+                (target / filename).write_bytes(gzip.compress(data, 6))
                 written.add(filename)
         applied = cell.get('profile_applied', cell['profile'])
         profile = meta['catalogue'].get('profiles', {}).get(applied)

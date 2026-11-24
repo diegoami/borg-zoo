@@ -1,0 +1,33 @@
+name: reborn-paralyser-phase-760-eyes-x8-pilot
+issue: 760
+question: >-
+  With walk-away enabled, does allowing Phase Door beside a known awake paralyser change the action or its priority?
+tier: pilot
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-ba08a4f3-eyes
+  repository: diegoami/borg-reborn-rs
+  ref: ba08a4f3adcc66de068b52aea59e46eb31a63264
+  label: "Track P 7bf58639 with the eye-world configs from Reborn #1165, including the shipped walk-away rule."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+  worlds:
+    eyes-x8: e5adb0a0e197568cb08aa193df0794aa5c97df27c380ccb553f8b3ab7d450094
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+arms:
+  ship: {borg_world: eyes-x8}
+  phase: {borg_world: eyes-x8, borg_param_escape_paralyser_fight_lost: 1}
+control: [ship]
+owner_authorization: "Owner requested adding these Zoo pilot definitions on 2026-11-24."
+extra:
+  retain_evidence: true
+
+prespecified: |
+  eyes-x8, classes-18, 100,000 exact engine turns. Pair identical births within this world. Verify one build, the resolved settings and all 36 cell receipts. Verify staged world-data SHA-256 3919ce1b227d8c777b3882005e2982497973a7933e1a1c28a829c6a47cd463af in every arm.
+  Keep caution_walk_away_immobile=1 and loop_breaker=1. Only the phase arm overrides escape_paralyser_fight_lost to 1. The shipped value is 0. Memory retention and the other #1125 overrides stay off.
+  At known awake adjacent paralysers, record Free Action, usable step, ranged attack, stair and Phase source, verdict, action, landing and renewed exposure where observable. Count early combat deferrals without usable Phase, including mobile paralysers. Record paralysis and eye deaths. An aligned eyes-x8 action or priority difference gates any proposed development tier. Review normal-world failed or unnecessary Phase attempts and newly killed starts.
+  Report paired deaths, rescued and newly killed starts, and CL5 reached by 100,000 engine turns. Report unfinished and abnormal outcomes separately. Keep DL3 and DL5 as diagnostics, mark unobservable coverage as unknown, and treat pilot outcomes as descriptive.

@@ -174,12 +174,16 @@ OPERATIONAL = re.compile(r'autosave|cheat|delay|dump|verbose|respawn|save_death|
 
 
 def untested(found):
-    """Settings the shipped borg-reborn-rs borg.txt documents that no experiment varied."""
+    """Settings the shipped borg-reborn-rs borg.txt documents that no experiment varied.
+    Settings the owner flagged as not changeable stay out (catalogue/not-changeable.json):
+    a NEVER setting is not suggested for testing either."""
+    from . import catalogue as cat_mod
+    blocked = cat_mod.not_changeable()
     described = setting_descriptions.load()
     out = []
     for key, d in sorted(described.items()):
         if (d.get('source', '').endswith('harness/borg.txt') and 'borg-reborn-rs' in d.get('source', '')
-                and key not in found and not OPERATIONAL.search(key)):
+                and key not in found and key not in blocked and not OPERATIONAL.search(key)):
             first = re.split(r'(?<=\.)\s', d['text'], maxsplit=1)[0]
             out.append([f'<code>{esc(key)}</code>', esc(first if len(first) <= 240 else first[:237] + '...')])
     return out
