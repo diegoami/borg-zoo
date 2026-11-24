@@ -1,0 +1,162 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-full-cure-752-pilot-ctl": {
+        "description": "borg-zoo#752 (reborn-full-cure-752-pilot.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1
+        },
+        "sha256": "5ad06144d3ff72eb06678a731ff75e1a53b3b0022a953e4731d3b0a3fb965dfe"
+      },
+      "reborn-full-cure-752-pilot-cure1": {
+        "description": "borg-zoo#752 (reborn-full-cure-752-pilot.yaml): arm cure1.",
+        "settings": {
+          "borg_param_town_confusion_cure_reserve": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none",
+          "borg_town_plan": 1
+        },
+        "sha256": "dab2f85c1f8ae9a6a12b6c1337ae7eb9dd3b542b89552c026ede115dcab93823"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-trackp-c5501d3c-pw": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs track-p at the #1149 merge c5501d3c on 2026-11-23 (#1149 PR head 8aa716cd, after merging track-p #945/#947/#1148/#1161); world poison-x8 pinned (fb86c333...); shipped harness/borg.txt c225c180..., scary_monsters.txt 5a4ec4b6..., borg-rs core. track-p also ships caution_walk_away_immobile 1 (#1148) in every arm.",
+        "ref": "c5501d3c5aeac2449fc47ed6ca6efe2fbafdd894",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        },
+        "worlds": {
+          "poison-x8": "fb86c333c80e048da19e68e7e15efc63df49134f91124ecb5168165558e5de0d"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-24 09:10 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-trackp-c5501d3c-pw",
+    "control_profile": "reborn-full-cure-752-pilot-ctl",
+    "definition": "definitions/reborn-full-cure-752-pilot.yaml",
+    "description": "Does reserving one full confusion cure advance first CSW or full-cure coverage while preserving Phase Door? Generated from definitions/reborn-full-cure-752-pilot.yaml: 2 arms on 4.2.6-reborn-rust-trackp-c5501d3c-pw, suite classes-18.",
+    "issue": 752,
+    "name": "reborn-full-cure-752-pilot",
+    "owner_authorization": "Owner approved the retained two-arm pilot on c5501d3c in Zoo #752.",
+    "prespecified": "Normal world, 100,000 turns, classes-18. Verify all 36 cells and effective class settings on one binary, with populated town-plan.jsonl. Account for all stops and config errors and read the gate before any expansion.\nOn paired starts, report first departure carrying a full confusion cure at or after an affordable CSW opportunity, first CSW purchase turn and level, tier counts, and Phase Door, Recall, light and food at the affected departure. Distinguish purchases from birth stock, pickups and Home withdrawals. Use town-plan records for stocked offers, price, gold after urgent needs and displaced purchases.",
+    "profiles": [
+      "reborn-full-cure-752-pilot-ctl",
+      "reborn-full-cure-752-pilot-cure1"
+    ],
+    "question": "Does reserving one full confusion cure advance first CSW or full-cure coverage while preserving Phase Door?",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-trackp-c5501d3c-pw"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45361672961-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45361672961",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "aa3ce2ebab81c84a33dd85471140694a7f88595f"
+}
