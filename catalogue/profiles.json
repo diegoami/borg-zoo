@@ -13870,6 +13870,57 @@
         "borg_param_trap_way_back": 0,
         "borg_param_trap_leave_level_count": 0
       }
+    },
+    "reborn-clspeed-ctl": {
+      "description": "borg-zoo#783 (reborn-clspeed-head.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-clspeed-scumlean": {
+      "description": "borg-zoo#783 (reborn-clspeed-head.yaml): arm scumlean.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_max_hp": 10,
+        "borg_param_stair_scum_speed_ratio": 1
+      }
+    },
+    "reborn-clspeed-scumalarm0": {
+      "description": "borg-zoo#783 (reborn-clspeed-head.yaml): arm scumalarm0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_alarm_turns": 0
+      }
+    },
+    "reborn-clspeedp8-ctl": {
+      "description": "borg-zoo#783 (reborn-clspeed-p8.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_world": "patches-x8",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-clspeedp8-scumlean": {
+      "description": "borg-zoo#783 (reborn-clspeed-p8.yaml): arm scumlean.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_world": "patches-x8",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_max_hp": 10,
+        "borg_param_stair_scum_speed_ratio": 1
+      }
+    },
+    "reborn-clspeedp8-scumalarm0": {
+      "description": "borg-zoo#783 (reborn-clspeed-p8.yaml): arm scumalarm0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_world": "patches-x8",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_alarm_turns": 0
+      }
     }
   }
 }
