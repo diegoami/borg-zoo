@@ -1,0 +1,293 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-scumslack-contact2": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm contact2.",
+        "settings": {
+          "borg_param_stair_scum_contact_damage": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "23001d1eef3f50018c2b9e810ead7d0cb5d29b22b4e99c06db20f4b3b785fe3e"
+      },
+      "reborn-scumslack-contact8": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm contact8.",
+        "settings": {
+          "borg_param_stair_scum_contact_damage": 8,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "9eaba891e2e141e0a78e3fd76186957e33666d71ec5befa573d4dc3b1b2f1da2"
+      },
+      "reborn-scumslack-hp1": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm hp1.",
+        "settings": {
+          "borg_param_stair_scum_slack_per_hp_tenths": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "8d08eca5fc3934e149eab7259642ccf6ce95fbc5c68828263597e0e76fad92ba"
+      },
+      "reborn-scumslack-hp3": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm hp3.",
+        "settings": {
+          "borg_param_stair_scum_slack_per_hp_tenths": 3,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "743aeec91f0c805280a813daf58a2c6973f87a056de7d9072e78dddd8cabadb8"
+      },
+      "reborn-scumslack-lvlpct100": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm lvlpct100.",
+        "settings": {
+          "borg_param_stair_scum_slack_per_level_percent": 100,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "e1363ddc2334c1d1e8b7171b378bed17b0508e33084452e82d6fbeed3e701817"
+      },
+      "reborn-scumslack-lvlpct25": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm lvlpct25.",
+        "settings": {
+          "borg_param_stair_scum_slack_per_level_percent": 25,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "049b44646770206a1dac062ea487dc5f18557b72d17e7b28ab5872e467e1304b"
+      },
+      "reborn-scumslack-maxhp14": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm maxhp14.",
+        "settings": {
+          "borg_param_stair_scum_max_hp": 14,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "add960727e14b26dfbba2f860de27f0a88802f4e012090035bc39b3112ae0186"
+      },
+      "reborn-scumslack-maxhp42": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm maxhp42.",
+        "settings": {
+          "borg_param_stair_scum_max_hp": 42,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "1f1c500670c9da715e2e74331d80407c7d06c9c14891de2985ddb8e35cb10cb2"
+      },
+      "reborn-scumslack-ratio1": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm ratio1.",
+        "settings": {
+          "borg_param_stair_scum_speed_ratio": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "8fa2a76c570f590301eae0a7e936d8a8d9958ad4cabb9353309aec5466497bde"
+      },
+      "reborn-scumslack-ratio4": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm ratio4.",
+        "settings": {
+          "borg_param_stair_scum_speed_ratio": 4,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "6268d676b229ed5b139b25621cb158fe37d8ae614c3ba7cfbd2581253fbbb71d"
+      },
+      "reborn-scumslack-scum0": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm scum0.",
+        "settings": {
+          "borg_param_stair_scum": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "482607a945ebd55c6f7a173d1ccb64d36a8f78e274d2ce7c7ae841dc949e5d42"
+      },
+      "reborn-scumslack-ship": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm ship.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "08cfed0782e09ea3d48126d97ae81e83486be570ddd6accc62dd8915a084c66b"
+      },
+      "reborn-scumslack-slack1": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm slack1.",
+        "settings": {
+          "borg_param_stair_scum_slack_steps__blackguard": 5,
+          "borg_param_stair_scum_slack_steps__druid": 2,
+          "borg_param_stair_scum_slack_steps__mage": 3,
+          "borg_param_stair_scum_slack_steps__necromancer": 2,
+          "borg_param_stair_scum_slack_steps__paladin": 5,
+          "borg_param_stair_scum_slack_steps__priest": 3,
+          "borg_param_stair_scum_slack_steps__ranger": 4,
+          "borg_param_stair_scum_slack_steps__rogue": 4,
+          "borg_param_stair_scum_slack_steps__warrior": 5,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "ee56104d9cceff14f922007d2f75e7425f886be48e7fd745758af11d4012ef8b"
+      },
+      "reborn-scumslack-slack2": {
+        "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm slack2.",
+        "settings": {
+          "borg_param_stair_scum_slack_steps__blackguard": 6,
+          "borg_param_stair_scum_slack_steps__druid": 3,
+          "borg_param_stair_scum_slack_steps__mage": 4,
+          "borg_param_stair_scum_slack_steps__necromancer": 3,
+          "borg_param_stair_scum_slack_steps__paladin": 6,
+          "borg_param_stair_scum_slack_steps__priest": 4,
+          "borg_param_stair_scum_slack_steps__ranger": 5,
+          "borg_param_stair_scum_slack_steps__rogue": 5,
+          "borg_param_stair_scum_slack_steps__warrior": 6,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "ecfd9686c3cb078b3ac6177012ba285776ed7f70d6354abf4ef32490026e7f84"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-trackp-52fff0de": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs track-p head 52fff0de on 2026-11-24 (the #1209 stair-scum extension merge, after #1174/#1183/#1188/#1200 and the #1173-era scary-list change f35bfc49...); shipped harness/borg.txt 433b4ca0..., scary_monsters.txt f35bfc49..., borg-rs core.",
+        "ref": "52fff0deb6fbce911d1aa597187bb189543cd74b",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "f35bfc49af22ee19a1ea0270d2ed471595bf3104813fc69891312d0fccece75c"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-24 22:41 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-trackp-52fff0de",
+    "control_profile": "reborn-scumslack-ship",
+    "definition": "definitions/reborn-scum-slack-latest.yaml",
+    "description": "On the latest track-p build 52fff0de, does stair scumming off cost deaths for CL5 speed, do the scum parameters (max HP, speed ratio, contact damage) change play, and does giving each class more scum slack (steps +1, +2) hold deaths at zero while keeping or improving CL5? Generated from definitions/reborn-scum-slack-latest.yaml: 14 arms on 4.2.6-reborn-rust-trackp-52fff0de, suite classes-18.",
+    "issue": 785,
+    "name": "reborn-scum-slack-latest",
+    "owner_authorization": "2026-11-24: zoo owner, \"now we need to test scum stair off and on with the latest build, and one where each class gets one or two more borg_param_stair_scum_slack_steps. Highest priority\", then \"also these parameters should be tested\" (max_hp 28, max_hp_race_delta 0, speed_ratio 2, contact_damage 4) (borg-zoo#785).",
+    "prespecified": "Fixed 2026-11-24, before any result (Rule 22, #758). RULES 16 pilot on the new specimen (track-p head 52fff0de, the #1209 stair-scum extension merge): classes-18, all arms, evidence not retained; the ladder tiers (verysmall, small-rest, medium) run the exercised arms after this gate, disjoint starts, on the owner's word. Scumming's other parameters stay shipped; the arms dial single parameters two-sided (slack_per_level_percent 25/100, slack_per_hp_tenths 1/3, max_hp 14/42, speed_ratio 1/4, contact_damage 2/8), plus the owner's slack steps +1/+2 per class (shipped at this ref: warrior 4, mage 2, druid 1, priest 2, necromancer 1, paladin 4, rogue 3, ranger 3, blackguard 4) and the owner-named scum0 (scumming fully off). SAFETY: the owner expects scum0 to cost some deaths - its read reports every death with cause and a /death-report pack, and scum0 cannot be adopted while its deaths exceed ship's; every other arm is held to deaths-0 strictly (an arm whose deaths rise cannot be adopted however fast it levels). Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics; median first-turn-at-level-5 where recorded. Report per arm against ship: the CL5 endpoint, paired CL5 gained/lost (exact McNemar), deaths and causes, rescued/newly killed, identical plays, median first-L5 turn. Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-scumslack-ship",
+      "reborn-scumslack-scum0",
+      "reborn-scumslack-slack1",
+      "reborn-scumslack-slack2",
+      "reborn-scumslack-maxhp14",
+      "reborn-scumslack-maxhp42",
+      "reborn-scumslack-ratio1",
+      "reborn-scumslack-ratio4",
+      "reborn-scumslack-contact2",
+      "reborn-scumslack-contact8",
+      "reborn-scumslack-lvlpct25",
+      "reborn-scumslack-lvlpct100",
+      "reborn-scumslack-hp1",
+      "reborn-scumslack-hp3"
+    ],
+    "question": "On the latest track-p build 52fff0de, does stair scumming off cost deaths for CL5 speed, do the scum parameters (max HP, speed ratio, contact damage) change play, and does giving each class more scum slack (steps +1, +2) hold deaths at zero while keeping or improving CL5?",
+    "retain_evidence": false,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-trackp-52fff0de"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45500843796-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45500843796",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "cca4603af47751adfb515ee663df78db94f84bee"
+}
