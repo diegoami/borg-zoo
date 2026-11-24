@@ -1,0 +1,30 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-mixdials-head",
+  "issue": 769,
+  "definition": "definitions/reborn-mixdials-head.yaml",
+  "question": "At track-p c5501d3c, which of the mixed-exploration walk's own parameters - sight floor, speed ratio, contact-damage estimate, max radius - change play and CL5 progress when moved?",
+  "description": "At track-p c5501d3c, which of the mixed-exploration walk's own parameters - sight floor, speed ratio, contact-damage estimate, max radius - change play and CL5 progress when moved? Generated from definitions/reborn-mixdials-head.yaml: 9 arms on 4.2.6-reborn-rust-trackp-c5501d3c-pw, suite classes-18.",
+  "prespecified": "Fixed 2026-11-24, before any result (Rule 22, #758). One dial per arm against ctl, shipped values otherwise, classes-18, evidence not retained. Overlap note: explore_mix_radius (2, 5), explore_mix_step (1) and explore_mix_max_clevel (30) are dialled in reborn-dials-head; this experiment covers the walk's remaining four dials, two-sided. Deaths-0 constraint (owner, #783): an arm whose deaths rise cannot be adopted however fast it levels. Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics; the turn of first reaching character level 5 where recorded. Report per arm against ctl: the CL5 endpoint, paired CL5 gained/lost (exact McNemar), deaths and causes, identical plays. A dial that plays ctl's keys was not exercised and gets no ladder. Descriptive (RULES 14); ladders on the owner's word.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-c5501d3c-pw"
+  ],
+  "profiles": [
+    "reborn-mixdials-ctl",
+    "reborn-mixdials-sight3",
+    "reborn-mixdials-sight8",
+    "reborn-mixdials-ratio1",
+    "reborn-mixdials-ratio4",
+    "reborn-mixdials-contact2",
+    "reborn-mixdials-contact10",
+    "reborn-mixdials-maxr5",
+    "reborn-mixdials-maxr20"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-c5501d3c-pw",
+  "control_profile": "reborn-mixdials-ctl",
+  "owner_authorization": "2026-11-24: zoo owner, \"the breadth mixed strategy has a lot of parameters to tune as well, do experiments with those too\" (borg-zoo#769).",
+  "retain_evidence": false
+}
