@@ -96,6 +96,8 @@ details.cols dt{font-weight:600}details.cols dd{margin:0}
 details.fold{margin:20px 0;border:1px solid var(--line);border-radius:8px;background:var(--card);padding:2px 14px 10px}
 details.fold>summary{cursor:pointer;font-weight:700;font-size:1.15rem;padding:8px 0}
 details.fold>summary:hover{color:var(--accent)}details.fold[open]>summary{margin-bottom:8px;border-bottom:1px solid var(--line)}
+.facts{margin:10px 0}.facts dl{display:grid;grid-template-columns:max-content 1fr;gap:3px 16px;margin:0}.facts dt{color:var(--muted);white-space:nowrap}.facts dd{margin:0}
+details.fold dl{display:grid;grid-template-columns:max-content 1fr;gap:3px 16px;margin:8px 0}details.fold dt{color:var(--muted)}details.fold dd{margin:0}
 """
 
 
@@ -157,6 +159,17 @@ def fold(title, inner):
     return f'<details class="fold"><summary>{title}</summary>{inner}</details>'
 
 
+def explain_folded(how, columns=(), example=None):
+    """The how-to-read text behind one closed fold: the table shows first (owner, 2026-11-24)."""
+    out = f'<p class="how">{how}</p>'
+    if example:
+        out += f'<p class="example"><strong>Example:</strong> {example}</p>'
+    described = [c for c in columns if isinstance(c, tuple)]
+    if described:
+        out += '<dl>' + ''.join(f'<dt>{esc(n)}</dt><dd>{esc(m)}</dd>' for n, m in described) + '</dl>'
+    return f'<details class="cols"><summary>How to read this table</summary>{out}</details>' 
+
+
 VERSION_COL = ('Version', 'The Borg version, and the settings profile when the experiment varies it. '
                           'In brackets: how many fixes from the tracker it carries.')
 OUTCOME_COLS = [
@@ -164,21 +177,21 @@ OUTCOME_COLS = [
     ('Runs', 'Seeds played: one game per seed.'),
     ('Finished', 'Runs that reached an endpoint: the character died, or was alive at the turn cap. '
                  'Only these count in the rates.'),
+    ('Deaths', 'Finished runs in which the character died before the cap.'),
     ('CL5 by 100,000', 'Share of runs with known attainment that reached character level 5 by turn '
                        '100,000, including characters that later died or stopped. The primary progress '
                        'endpoint (Rule 22, #758).'),
-    ('CL5 range', 'Wilson 95% interval for CL5 attainment.'),
-    ('CL5 known / runs', 'Number with known attainment out of all starts. Shorter and interrupted runs '
-                         'without enough evidence are unknown.'),
-    ('Alive at 100,000 with CL5', 'Count known to have reached CL5 and still be alive at turn 100,000.'),
-    ('Deaths', 'Finished runs in which the character died before the cap.'),
-    ('Death rate', 'Deaths divided by finished runs.'),
-    ('Death rate range', 'The 95% range (Wilson interval) for the death rate: with this many seeds, the true '
-                         'rate most likely lies in it. Two versions whose ranges overlap widely may not differ.'),
     ('Median max depth', 'The middle value, over finished runs, of the deepest dungeon level reached (0 = town). '
                          'A diagnostic; depth is not the success criterion.'),
     ('Median max level', 'The middle value of the highest character level reached. A diagnostic.'),
     ('Median death turn', 'The middle engine turn at which the dying runs died. Lower means earlier deaths.'),
+    ('Death rate', 'Deaths divided by finished runs.'),
+    ('Death rate range', 'The 95% range (Wilson interval) for the death rate: with this many seeds, the true '
+                         'rate most likely lies in it. Two versions whose ranges overlap widely may not differ.'),
+    ('CL5 range', 'Wilson 95% interval for CL5 attainment.'),
+    ('Alive at 100,000 with CL5', 'Count known to have reached CL5 and still be alive at turn 100,000.'),
+    ('CL5 known / runs', 'Number with known attainment out of all starts. Shorter and interrupted runs '
+                         'without enough evidence are unknown.'),
     ('Other outcomes', 'Runs with no endpoint, by kind: stalled (game time stopped advancing), wall_timeout '
                        '(out of real time), crash, harness_failure, config_error (the settings did not take '
                        'effect). Never counted as deaths.'),
@@ -241,11 +254,10 @@ def paired_example(meta, r, v, control):
 def example_for(meta, versus, key, control_specimen, control_profile):
     """The paired row with the smallest p, read out in words."""
     r = min(versus, key=lambda r: r[key]['death_p'] if r[key]['death_p'] is not None else 2)
-    many = len(meta['experiment']['profiles']) > 1
     if key == 'vs_version':
-        control = esc(control_specimen) + (f' · {esc(r["profile"])}' if many else '')
+        control = arm_label(meta, control_specimen, r['profile'])
     else:
-        control = f'{esc(r["specimen"])} · {esc(control_profile)}'
+        control = arm_label(meta, r['specimen'], control_profile)
     return paired_example(meta, r, r[key], control)
 
 
@@ -351,12 +363,12 @@ def tested_settings(meta):
             row.append(f"Attack {cfg.get('borg_town_w_attack', 100)} / support {cfg.get('borg_town_w_support', 50)} / learning {cfg.get('borg_town_w_knowledge', 25)}" if live else 'Existing priorities')
         rows.append(row)
     ids = ''.join(f'<li><code>{esc(name)}</code>: {esc(study_presentation()["profiles"].get(name, name))}</li>' for name in meta['experiment']['profiles'])
-    return ('<h2>What is being tested?</h2><p>The new shopper makes actual purchases, sales and Home transfers. '
+    return fold('What is being tested? (study details)', '<p>The new shopper makes actual purchases, sales and Home transfers. '
             'The trip policy decides when to go home. The risk multiplier changes supply planning; '
             'it does not make the character fight more recklessly. Other declared settings stay the same.</p>'
             + ('<p>This build includes expanded object capabilities and the all-item learning-return fix. The inventory coverage gate accounts for all 104 ordinary shop kinds, including contextual exclusions. Unknown food and mushrooms can contribute; unchanged unresolved items do not repeatedly trigger returns by themselves. ' + esc(study_info(meta).get('scope_note', 'This compares both policies together.')) + '</p>' if repaired else '<p>These are the frozen runs of the original, limited shopping model. The object-coverage fixes now being developed are not included.</p>')
             + table(['Choice', 'Shopping', 'Dungeon returns', 'Supply planning', 'Return triggers'] + (['Purchase priorities'] if repaired else []), rows)
-            + '<p><strong>Primary question: how many characters die?</strong> Character level and depth are secondary. '
+            + '<p><strong>Primary endpoint: CL5 by 100,000 turns (Rule 22, #758);</strong> deaths, character level and depth are reported alongside. '
               'Putting an unknown object in the Home frees space but does not identify it.</p>'
             + '<details><summary>Exact identifiers and statistical plan</summary><ul>' + ids + '</ul><p>'
             + esc(meta['experiment'].get('prespecified', '')) + '</p></details>')
@@ -460,6 +472,8 @@ def arm_label(meta, specimen, profile):
     friendly = study_presentation()['profiles'].get(profile) if study_info(meta) else None
     if friendly:
         return f'<span title="{esc(specimen)} · {esc(profile)}">{esc(friendly)}</span>'
+    if len(meta['experiment']['specimens']) == 1:
+        return esc(profile)  # one version: the profile alone identifies the arm (owner, 2026-11-24)
     label = esc(specimen)
     if spec.get('carries') is not None:
         label += f' <span class="muted">({spec["carries"]} carries)</span>'
@@ -606,7 +620,8 @@ def experiment_brief(meta, compact=False):
         base = 'version’s shipped configuration' if profile.get('base') == 'shipped' else 'build defaults'
         settings.append(f'<li><strong>{esc(name)}</strong>: {esc(written or base)}'
                         + (f' (other settings use {esc(base)})' if written else '') + '</li>')
-    control = f'{exp["control"]} · {profile_label(exp.get("control_profile", exp["profiles"][0]))}'
+    control = (f'{exp["control"]} · {profile_label(exp.get("control_profile", exp["profiles"][0]))}'
+               if len(exp['specimens']) > 1 else profile_label(exp.get("control_profile", exp["profiles"][0])))
     comparison = ('Versions and settings both vary.' if len(exp['specimens']) > 1 and len(exp['profiles']) > 1
                   else 'Same version; settings vary.' if len(exp['profiles']) > 1
                   else 'Same settings profile; versions vary.' if len(exp['specimens']) > 1
@@ -618,21 +633,20 @@ def experiment_brief(meta, compact=False):
         link = (f'<a href="{esc(source)}">exact source</a>' if source else '–')
         build_rows.append([esc(name), esc(spec.get('repository', '–')),
                            f'<code>{esc(spec.get("ref", "–"))}</code>', link])
-    return (f'<section class="card experiment-brief"><h2>What is being tested?</h2>'
-            f'<p class="question">{esc(question(exp))}</p><dl>'
+    return (f'<p class="question">{esc(question(exp))}</p><dl>'
             f'<dt>Comparison</dt><dd>{esc(comparison)}</dd>'
             f'<dt>Versions</dt><dd>{esc(versions)}</dd>'
             f'<dt>Settings</dt><dd>{esc(profiles)}</dd>'
             f'<dt>Baseline</dt><dd>{esc(control)}</dd>'
             f'<dt>Test conditions</dt><dd>{"<br>".join(esc(x) for x in limits)}</dd>'
             f'<dt>Study type</dt><dd>{"Prespecified; the study plan below defines the endpoints." if exp.get("prespecified") else "Descriptive; no prespecified primary endpoint recorded."}</dd>'
-            '<dt>Results shown</dt><dd>Deaths before the cap, dungeon depth and character level. '
+            '<dt>Results shown</dt><dd>CL5 by 100,000 turns; deaths before the cap; depth and level as diagnostics. '
             'Stalls, timeouts and errors are reported separately.</dd></dl>'
             '<details class="background"><summary>Builds compared</summary>'
             + table(['Specimen', 'Repository', 'Exact commit', 'Source'], build_rows)
             + '</details>'
             '<details class="background"><summary>Exact settings used</summary><ul>'
-            + ''.join(settings) + '</ul></details></section>')
+            + ''.join(settings) + '</ul></details>')
 def town_shadow_table(meta, cells):
     if not any(meta['catalogue']['specimens'].get(s, {}).get('town_shadow_records')
                for s in meta['experiment']['specimens']):
@@ -668,19 +682,62 @@ def town_shadow_table(meta, cells):
 
 
 def provenance_line(exp):
-    """The issue an experiment answers and the YAML that defines it."""
-    issue, definition = cat_mod.issue_of(exp), cat_mod.definition_of(exp)
-    parts = []
-    if issue:
-        parts.append(f'Answers <a href="{cat_mod.ISSUES_URL}{issue}">borg-zoo issue #{issue}</a>')
-    if definition:
-        parts.append(f'Defined in <a href="{cat_mod.DEFINITIONS_URL}{definition}"><code>{esc(definition)}</code></a>')
-    line = f'<p class="issue">{" · ".join(parts)}</p>' if parts else ''
-    if definition:
-        text = (cat_mod.ROOT / definition).read_text()
-        line += (f'<details class="definition"><summary>Experiment definition: <code>{esc(definition)}</code>'
-                 f'</summary><pre>{esc(text)}</pre></details>')
-    return line
+    """The experiment-definition YAML, closed by default; the ticket lives in the header facts."""
+    definition = cat_mod.definition_of(exp)
+    if not definition:
+        return ''
+    text = (cat_mod.ROOT / definition).read_text()
+    return (f'<details class="definition"><summary>Experiment definition: <code>{esc(definition)}</code>'
+            f'</summary><pre>{esc(text)}</pre></details>')
+
+
+WORLD_LABELS = {
+    'breeders-x4': 'Breeders ×4', 'breeders-x8': 'Breeders ×8',
+    'patches-x8': 'Patches ×8', 'poison-x8': 'Poison ×8', 'eyes-x8': 'Eyes ×8',
+    'archers-x4': 'Archers ×4', 'archers-x8': 'Archers ×8',
+    'jellies-x4': 'Jellies ×4', 'jellies-x8': 'Jellies ×8',
+    'white-worm-mass-x4': 'White worm mass ×4',
+}
+
+
+def world_type(exp, snapshot):
+    """The worlds the arms play, from the recorded profile settings."""
+    worlds = []
+    for name in exp['profiles']:
+        w = ((snapshot.get('profiles') or {}).get(name) or {}).get('settings', {}).get('borg_world')
+        worlds.append(WORLD_LABELS.get(w, w.replace('-', ' ').capitalize() if w else 'Normal'))
+    return ' · '.join(dict.fromkeys(worlds))
+
+
+def header_facts(exp, snapshot):
+    """The compact facts block heading every report (owner, 2026-11-24): ticket
+    reference, samples, arms, world type, and the build, prominently."""
+    issue = cat_mod.issue_of(exp)
+    ticket = f'<a href="{cat_mod.ISSUES_URL}{issue}">borg-zoo #{issue}</a>' if issue else '–'
+    n_arms = len(exp['specimens']) * len(exp['profiles'])
+    suite_lines = []
+    for name in exp['suites']:
+        suite = snapshot['suites'][name]
+        suite_lines.append(f'{len(suite["seeds"]) * n_arms:,} games '
+                           f'({len(suite["seeds"]):,} seeds × {n_arms} arms, cap {suite["cap"]:,} turns)')
+    meta = {'experiment': exp, 'catalogue': snapshot}
+    arms = ', '.join(arm_label(meta, s, p)
+                     for s in exp['specimens'] for p in exp['profiles'])
+    builds = []
+    for name in exp['specimens']:
+        spec = snapshot['specimens'].get(name, {})
+        repo, ref = spec.get('repository', ''), spec.get('ref', '')
+        link = (f'<a href="https://github.com/{esc(repo)}/commit/{esc(ref)}"><code>{esc(ref[:9])}</code></a>'
+                if repo and ref else f'<code>{esc(ref[:9] or "–")}</code>')
+        carries = f' · {spec["carries"]} carries' if spec.get('carries') is not None else ''
+        builds.append(f'{esc(name)} · {esc(repo or "?")} {link}{carries}')
+    return (f'<div class="card facts"><dl>'
+            f'<dt>Ticket reference</dt><dd>{ticket}</dd>'
+            f'<dt>Samples</dt><dd>{"<br>".join(suite_lines)}</dd>'
+            f'<dt>Arms</dt><dd>{n_arms}: {arms}</dd>'
+            f'<dt>World type</dt><dd>{world_type(exp, snapshot)}</dd>'
+            f'<dt>Build</dt><dd>{"<br>".join(builds)}</dd>'
+            f'</dl></div>')
 
 
 def build_used(meta, cells):
@@ -722,13 +779,15 @@ def run_page(meta, cells):
     display = study_info(meta)
     page_title = display['title'] if display else exp['name']
     intro = display['intro'] if display else exp.get('description', '')
+    header_title = display['title'] if display else (exp.get('question') or exp['name'])
     parts = [f'<p><a href="../../index.html">All experiments</a></p>',
-             f'<h1>{esc(page_title)}</h1>',
+             f'<h1>{esc(header_title)}</h1>',
+             header_facts(exp, meta['catalogue']),
              provenance_line(exp),
              build_used(meta, cells),
-             f'<p class="lead">{esc(intro)}</p>',
+             fold('What is being tested?',
+                  (f'<p class="lead">{esc(intro)}</p>' if intro else '') + experiment_brief(meta)),
              configuration.summary(meta),
-             experiment_brief(meta),
              tested_settings(meta),
              '<details class="background"><summary>Background and study plan</summary>'
              f'<p>{esc(exp.get("description", ""))}</p>'
@@ -749,28 +808,29 @@ def run_page(meta, cells):
                              (meta.get('catalogue') or {}).get('harness', {}).get('commit', '')))
     for suite, rows in analysis.items():
         s = meta['catalogue']['suites'][suite]
-        parts.append(f'<h2>Suite {esc(suite)}</h2><p class="muted">{esc(s["description"])} · '
-                     f'{len(s["seeds"])} seeds · cap {s["cap"]:,} engine turns · birth {esc(s["birth"])}</p>')
+        parts.append(fold(f'Suite {esc(suite)}',
+                          f'<p class="muted">{esc(s["description"])} · '
+                          f'{len(s["seeds"])} seeds · cap {s["cap"]:,} engine turns · birth {esc(s["birth"])}</p>'))
         parts.append(study_summary(meta, cells, suite))
         parts.append('<h3>Outcomes per arm</h3>')
         first = rows[0]['summary'] if rows else None
-        parts.append(explain(
+        parts.append(explain_folded(
             'One row per arm: a Borg version, with a settings profile when the experiment varies it. Every arm '
             'plays the same seeds. The primary figure is CL5 \u2014 character level 5 reached by 100,000 engine '
             'turns (Rule 22, #758); deaths and the death rate sit alongside it, and depth is a diagnostic.',
             OUTCOME_COLS,
-            (f'{esc(rows[0]["specimen"])}: {first["valid"]:,} of {first["cells"]:,} runs finished and '
+            (f'{arm_label(meta, rows[0]["specimen"], rows[0]["profile"])}: {first["valid"]:,} of {first["cells"]:,} runs finished and '
              f'{first["deaths"]:,} died ({pct(first["death_rate"])}); with this many seeds the true death rate '
-             f'is most likely {ci(first["death_ci"])}.') if first and first['valid'] else None,
-            open_=False))
+             f'is most likely {ci(first["death_ci"])}.') if first and first['valid'] else None))
         parts.append(table(
             OUTCOME_COLS,
             [[arm_label(meta, r['specimen'], r['profile']), r['summary']['cells'], r['summary']['valid'],
-              pct(r['summary']['cl5_rate']), ci(r['summary']['cl5_ci']),
-              f'{r["summary"]["cl5_known"]:,} / {r["summary"]["cells"]:,}', r['summary']['cl5_alive'],
-              r['summary']['deaths'], pct(r['summary']['death_rate']), ci(r['summary']['death_ci']),
+              r['summary']['deaths'], pct(r['summary']['cl5_rate']),
               num(r['summary']['median_max_depth']), num(r['summary']['median_max_level']),
               num(r['summary']['median_death_turn']),
+              pct(r['summary']['death_rate']), ci(r['summary']['death_ci']),
+              ci(r['summary']['cl5_ci']), r['summary']['cl5_alive'],
+              f'{r["summary"]["cl5_known"]:,} / {r["summary"]["cells"]:,}',
               esc(', '.join(f'{k} {v}' for k, v in r['summary']['counts'].items()
                             if v and k not in stats.VALID)) or '–']
              for r in rows]))
@@ -782,15 +842,14 @@ def run_page(meta, cells):
                 continue
             control = esc(exp['control']) if key == 'vs_version' else f'profile {esc(control_profile)}'
             parts.append(f'<h3>{title}</h3>')
-            parts.append(explain(
+            parts.append(explain_folded(
                 f'Each row compares one arm with the control ({control}) seed by seed. The primary endpoint is '
                 'CL5: gained against lost, tested by exact McNemar over the seeds with known attainment in '
                 'both arms. Deaths are read the same way: seeds where both died or both lived cannot tell the '
                 'arms apart; the comparison rests on <span class="good">Rescued</span> (only the control died) '
                 'against <span class="bad">Newly killed</span> (only this arm died).',
                 PAIRED_COLS,
-                example_for(meta, versus, key, exp['control'], control_profile),
-                open_=True))
+                example_for(meta, versus, key, exp['control'], control_profile)))
             parts.append(table(
                 PAIRED_COLS,
                 [[arm_label(meta, r['specimen'], r['profile']),
@@ -828,8 +887,7 @@ def run_page(meta, cells):
                 f'characters of that {field}. Read down a column to see which {many} die most; read across a row '
                 f'to see whether a version changed that {field}\'s risk. Cells hold a few hundred runs or fewer, '
                 'so read the pattern, not single values.')
-                + table([field.capitalize()] + [s_ if len(exp['profiles']) == 1 else f'{s_} · {p_}'
-                                                for s_, p_ in arms],
+                + table([field.capitalize()] + [arm_label(meta, s_, p_) for s_, p_ in arms],
                         [[esc(r['value'])] + [f'{a["deaths"]}/{a["n"]} ({pct(a["rate"])})' if a['n'] else '–'
                                               for a in r['arms']] for r in per])))
         if class_pairs.get(suite):
@@ -849,7 +907,7 @@ def run_page(meta, cells):
                                       for r in class_pairs[suite]], left=3)))
         cz = stats.by_cause(exp, cells).get(suite)
         if cz:
-            label = lambda a: a[0] if len(exp['profiles']) == 1 else f'{a[0]} · {a[1]}'
+            label = lambda a: arm_label(meta, a[0], a[1])
             cause_inner = [explain(
                 'What killed the characters that died, per arm. The harness records the cause as free text, so '
                 'it is grouped: <strong>Poison</strong>, <strong>Hunger</strong> (starvation), '

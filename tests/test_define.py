@@ -132,8 +132,15 @@ class ReportShowsDefinitionTest(unittest.TestCase):
     def test_provenance_links_issue_and_embeds_the_yaml(self):
         from zoo import site
         html = site.provenance_line({'name': 'reborn-heal-pilot'})
-        self.assertIn('borg-zoo issue #151', html)
         self.assertIn('definitions/reborn-heal-pilot.yaml', html)
         self.assertIn('<details class="definition">', html)  # closed by default (owner, 2026-11-24)
         self.assertIn('caution_heal_when_outmatched', html)  # the YAML itself, not just a link
         self.assertEqual(site.provenance_line({'name': 'no-such-experiment'}), '')
+        facts = site.header_facts({'name': 'reborn-heal-pilot', 'issue': 151,
+                                   'specimens': [], 'profiles': [], 'suites': []},
+                                  {'suites': {}, 'specimens': {}, 'profiles': {}})
+        self.assertIn('borg-zoo #151', facts)  # the ticket moved to the header facts (owner, 2026-11-24)
+        self.assertIn('Samples</dt>', facts)
+        self.assertIn('Arms</dt>', facts)
+        self.assertIn('World type</dt>', facts)
+        self.assertIn('Build</dt>', facts)
