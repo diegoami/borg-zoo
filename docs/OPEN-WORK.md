@@ -8,6 +8,10 @@
   `experiment=experiments/NAME.json`, not the experiment's bare name.
   Check each named parameter at the pinned specimen ref. Preflight checks
   the plan, not the upstream parameter inventory.
+- Dispatch a tier only after its pilot gate is READ, not when the run
+  succeeds: the #750 watcher dispatched a ladder on run success and ran a
+  whole tier with a broken arm (its own `nodear` set a parameter below its
+  1-20 range).
 - Start with a pilot and inspect its published gate before proposing the
   next tier. The owner's standing 2026-11-20 guidance allows pilots and
   small tiers. Ask before heavy tiers or 200-Ranger runs unless specifically
@@ -37,6 +41,70 @@ track-p does not have). A result is tied to its exact source, so "the current bu
   `f57499d0`, #646 on track-p).
 - **Tool.** `python3 -m zoo.lines` prints the two heads and where each specimen stands against them (docs/LINES.md is the generated list).
   `/next-experiments` checks the head of the specimen's line before proposing a next tier.
+
+## Status checked 2026-11-24 (handover: gates read, six runs in flight)
+
+**In flight** (all `compare`, dispatched 2026-11-24 on the owner's "start them all",
+after each gate was read):
+
+- #742 `reborn-guards-small` (450 cells, classes-1800 starts 1-90): run
+  [45353585470](https://github.com/diegoami/borg-zoo/actions/runs/45353585470), from `main`.
+- #749 walk-away verysmall (2 arms x 45 starts, classes-1800): runs
+  [45353782160](https://github.com/diegoami/borg-zoo/actions/runs/45353782160) (normal world),
+  [45353787944](https://github.com/diegoami/borg-zoo/actions/runs/45353787944) (patches-x8),
+  [45353793296](https://github.com/diegoami/borg-zoo/actions/runs/45353793296) (poison-x8),
+  branch `definition/new-params-wa-tiers`.
+- #744 `reborn-dc2` pilots (4 arms x 18, specimen `4.2.6-reborn-rust-trackp-c5501d3c-pw`): runs
+  [45353937365](https://github.com/diegoami/borg-zoo/actions/runs/45353937365) (normal world) and
+  [45353942202](https://github.com/diegoami/borg-zoo/actions/runs/45353942202) (poison-x8),
+  branch `definition/dc2-c5501d3c`.
+
+**Next steps when these finish** (one tier at a time, gate read each time):
+
+1. guards-small gate read -> dispatch `reborn-guards-medium` (defined, 1,350 cells, on `main`).
+2. Each wa verysmall gate -> its world's small-rest tier (not yet defined; mirror
+   `definitions/reborn-wa-pilot.yaml`, keep the `borg_world:` arm setting).
+3. dc2 pilot gates -> the `reborn-dc2` verysmall (not yet defined).
+4. PRs for `definition/new-params-wa-tiers` (carries the #749/#744 pilots too) and
+   `definition/dc2-c5501d3c` (stacked on it) when the runs finish; preflight was 0 problems.
+
+**Gate reads posted 2026-11-23/24** (details in the issues): #742's pilots clean, but in
+breeders-x4 ba/plus/poison replay ctl's keys 18/18 and guardsoff 11/18 - the guards are
+barely exercised there at classes-18, so that world is "not tested", not "no difference".
+#749's pilots: 0 deaths in all three worlds; the arm is fully exercised in patches-x8
+(18/18 plays differ), 15/18 in normal and poison-x8. #744's pilots at `d96cc8de` passed,
+then the study was **re-pinned to `c5501d3c`**: #1149 merged into track-p there, so `ship`
+is upstream's shipped play from that commit (shipped values verified in `harness/borg.txt`:
+neutralize 2 at 40 percent, ccw 2 at 112 percent, dear_after_recall 1), and walk-away
+(#1148) ships in every arm. The `d96cc8de` results stay on the results branch as the
+pre-merge read.
+
+**#750 reborn-dear ladder read (2026-11-23, comment posted)**: clean null - 0 discordant
+pairs over 360 paired starts; the only death in either arm is seed 1736476654 (Hobbit
+Warrior, CL 1), a grey mushroom patch at turn 10,630, byte-identical in both arms (same
+play hash). Ablation: `noscum` 3 extra deaths, `nopot` a DL3/DL5 cost - leads only;
+`nohall` was not exercised at this tier (359/360 identical plays).
+
+**Build fact**: track-p `13151fb5` (the #750 ablation and dear specimen) does **not**
+contain #1147/#1148 - the walk-away merge `85f8800b` is 13 commits later. Do not read
+`13151fb5`-era results as walk-away-included.
+
+**Death report for seed 1736476654** (owner-served, not published): HTML at
+`/tmp/opencode/death-1736476654/warrior-patch-1736476654.html` (served at
+`http://127.0.0.1:8787/` while the session lives); play pack `~/borg-play/dear-1736476654`
+(saves at 7630/9630/10330/10627; both the recorder's and the pack's replays match the
+cell's play hash). Findings: the patch spawned on the DL1 arrival turn with line of sight;
+the Borg stepped off its arrival staircase before the first spore; 0 of 5 confused swings
+reached the patch; no cure potion was carried; Phase Door x6 never read. Deliberately not
+done: cemetery dossier PR and any public link on #750 - the HTML is localhost-only, so
+publish it first. Scratchpad `/tmp/opencode/death-1736476654` (clone and builds, about
+200 MB) waits for the owner's cleanup word.
+
+**Still waiting on the owner** (unchanged from 2026-11-23): #750 B-dial ladders (10
+exercised dials named in the issue), #732 verysmall, #723 small (or close it - the pilot
+shows a progress cost and no death benefit), #722 ladder, #713 small, #712 worlds,
+#706 tiers, #693/#688 tiers, #123 medium, #687 (needs a named Mage seed set), and the
+#735 re-measure on a post-#1150 head.
 
 ## Non-mushroom deaths of track-p 9085c266, full tier (2026-11-22, #645)
 
