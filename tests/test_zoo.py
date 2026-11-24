@@ -655,9 +655,10 @@ class LandingTest(unittest.TestCase):
                 'catalogue': {'specimens': cat_mod.catalogue()['specimens']['specimens'],
                               'suites': cat_mod.catalogue()['suites']}}
         page = landing.landing_page([(meta, cells, None)], [])
-        self.assertIn("Do better-borg-c's fixes change early survival?", page)
-        self.assertIn('Not measurably', page)
+        self.assertNotIn('Cross-experiment summaries', page)  # the block is gone (owner, 2026-11-24)
+        self.assertNotIn('Do better-borg-c', page)  # no milestone cards either
         self.assertNotIn('Which settings change early survival?', page)
+        self.assertNotIn('Borg comparison charts', page)  # and no footer line
         self.assertIn('class="tab active" href="index.html"', page)
 
     def test_find_arm_prefers_more_seeds_over_newer(self):
