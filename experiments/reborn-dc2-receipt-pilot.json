@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-dc2-receipt-pilot",
+  "issue": 744,
+  "definition": "definitions/reborn-dc2-receipt-pilot.yaml",
+  "question": "On borg-reborn-rs PR #1149 (c5501d3c, the normal world), what do the dear-cure rows (Neutralize Poison, Cure Critical Wounds, the Recall gate) change in purchases per game, in the staples bought and in deaths, against the play before #1134, the same rows without the Recall gate, and what track-p ships after #1135?",
+  "description": "On borg-reborn-rs PR #1149 (c5501d3c, the normal world), what do the dear-cure rows (Neutralize Poison, Cure Critical Wounds, the Recall gate) change in purchases per game, in the staples bought and in deaths, against the play before #1134, the same rows without the Recall gate, and what track-p ships after #1135? Generated from definitions/reborn-dc2-receipt-pilot.yaml: 4 arms on 4.2.6-reborn-rust-trackp-c5501d3c-pw, suite classes-18.",
+  "prespecified": "Repeat the same c5501d3c four-arm pilot in normal on all 18 original starts, without advancing the tier. Explicit borg_town_plan=1 matches shipped play and enables receipt capture. Verify settings, outcome and paired key hashes against the earlier pilot where applicable.\nFor town visits at max DL at least 2, count stock and affordable opportunities by resolved item kind. Report price, post-urgent gold, carried Recall, active dear-cure rows and confirmed purchases in order. Compare Phase Door and Recall on departure, along with healing, light and food. Read this gate before any tier expansion.",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-c5501d3c-pw"
+  ],
+  "profiles": [
+    "reborn-dc2-receipt-pre1134",
+    "reborn-dc2-receipt-ship",
+    "reborn-dc2-receipt-nogate",
+    "reborn-dc2-receipt-m1135"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-c5501d3c-pw",
+  "control_profile": "reborn-dc2-receipt-pre1134",
+  "owner_authorization": "Owner approved repeating the existing four-arm pilot with town-plan evidence in Zoo #744.",
+  "retain_evidence": true
+}
