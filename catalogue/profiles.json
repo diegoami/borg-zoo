@@ -14094,6 +14094,38 @@
         "borg_reborn_errand": "none",
         "borg_param_stair_scum_contact_damage": 8
       }
+    },
+    "reborn-scumslack-lvlpct25": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm lvlpct25.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_slack_per_level_percent": 25
+      }
+    },
+    "reborn-scumslack-lvlpct100": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm lvlpct100.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_slack_per_level_percent": 100
+      }
+    },
+    "reborn-scumslack-hp1": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm hp1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_slack_per_hp_tenths": 1
+      }
+    },
+    "reborn-scumslack-hp3": {
+      "description": "borg-zoo#785 (reborn-scum-slack-latest.yaml): arm hp3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_slack_per_hp_tenths": 3
+      }
     }
   }
 }
