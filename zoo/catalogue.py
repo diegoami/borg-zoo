@@ -453,6 +453,14 @@ def expected_options(profile):
     return {name: int(value) for name, value in profile['settings'].items()}
 
 
+def not_changeable(root=ROOT):
+    """Settings the owner has flagged as not changeable (catalogue/not-changeable.json):
+    keyed by borg.txt setting, each with the date and the reason. The Settings tab
+    records them and keeps them off the landing page and the changes ranking."""
+    path = Path(root) / 'catalogue' / 'not-changeable.json'
+    return json.loads(path.read_text()) if path.exists() else {}
+
+
 def smoke_names(root=ROOT):
     """Names of the smoke checks: the files in smoke/ and smoke/retired/ (checks
     of specimens that were retired; they keep their runs on the Smoke tab but

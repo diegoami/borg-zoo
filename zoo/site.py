@@ -1114,9 +1114,11 @@ def build_site(results, out):
     smoke = cat_mod.smoke_names()
     # The analysis pages see every run: a setup with nothing bigger than a
     # smoke run is still listed, marked "smoke-scale only - not plotted", and a
-    # full run always outranks a smoke one. Only the run lists are split.
+    # full run always outranks a smoke one. Smoke checks are not listed on the
+    # Full runs tab at all, and there is no smoke tab (owner, 2026-11-24).
     runs = every
-    rows, smoke_rows = [], []
+    rows = []
+    from . import landing
     for meta, cells, src in every:
         target = out / 'runs' / meta['experiment']['name'] / meta['run_id']
         target.mkdir(parents=True, exist_ok=True)
@@ -1132,13 +1134,20 @@ def build_site(results, out):
             (target / 'meta.json').write_text(json.dumps(meta, indent=2, sort_keys=True) + '\n')
         else:
             shutil.copy(src / 'meta.json', target / 'meta.json')
+        if meta['experiment']['name'] in smoke:
+            continue
         finished = sum(1 for c in cells if c['outcome'] in stats.VALID)
-        (smoke_rows if meta['experiment']['name'] in smoke else rows).append([f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
+        death_ivs = landing.arm_intervals(cells, lambda c: c['outcome'] == 'death')
+        cl5_ivs = landing.arm_intervals(cells, lambda c: stats.cl5_reached(c) is True,
+                                        known=lambda c: stats.cl5_reached(c))
+        rows.append([f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
                      f'{esc((study_info(meta) or {}).get("title", meta["experiment"]["name"]))}</a>',
                      (f'<a href="{cat_mod.ISSUES_URL}{issue}">#{issue}</a>' if (issue := cat_mod.issue_of(meta['experiment'])) else '–'),
                      esc(meta.get('completed', '?')),
                      len(meta['experiment']['specimens']), len(meta['experiment']['profiles']),
-                     len(cells), finished])
+                     len(cells), finished,
+                     landing.range_cell(list(reversed(death_ivs))),
+                     landing.range_cell(cl5_ivs)])
     from . import landing
     shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
     (out / 'overview.html').write_text(page('Borg comparisons · borg-zoo', landing.overview_page(runs), charts=True))
@@ -1161,7 +1170,6 @@ def build_site(results, out):
     full = page('Full runs · borg-zoo', landing.landing_page(runs, rows))
     (out / 'index.html').write_text(full)
     (out / 'detailed.html').write_text(full)  # older links
-    (out / 'smoke.html').write_text(page('Smoke · borg-zoo', landing.smoke_page(smoke_rows)))
     (out / 'stalls.html').write_text(page('Stalls and crashes · borg-zoo', landing.stalls_page(runs)))
     (out / 'versions.html').write_text(page('Versions · borg-zoo', landing.versions_page()))
     (out / '.nojekyll').write_text('')

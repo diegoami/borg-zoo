@@ -71,8 +71,31 @@ def tier(suites):
     return ', '.join(names)
 
 
+LONG = 22
+
+
 def fmt(value):
-    return 'build default' if value is None else str(value)
+    """One compact cell for a setting value (owner, 2026-11-24): build default,
+    short values verbatim, uniform dicts synthesized ('12 entries → 1'),
+    mixed dicts as differing entries, long strings head…tail with a wildcard,
+    file references kept whole."""
+    if value is None:
+        return 'build default'
+    if isinstance(value, bool):
+        return str(int(value))
+    if isinstance(value, (int, float)):
+        return str(value)
+    if isinstance(value, dict):
+        n, vals = len(value), {fmt(v) for v in value.values()}
+        if n and len(vals) == 1:
+            return f'{n} entries → {next(iter(vals))}'
+        return f'{n} entries differ (…)'
+    text = str(value)
+    if len(text) <= LONG:
+        return text
+    if text.endswith(('.txt', '.json', '.yaml', '.lst')):
+        return text  # a file reference; the config inspector shows the whole file
+    return f'{text[:10]}…{text[-8:]}' 
 
 
 def varied(meta, profiles):
@@ -168,7 +191,8 @@ def collect(runs):
             found.setdefault(key, []).append(study)
     for studies_of in found.values():
         studies_of.sort(key=lambda s: s['runs'][0]['metas'][0].get('completed', ''), reverse=True)
-    return found
+    blocked = cat_mod.not_changeable()
+    return {k: v for k, v in found.items() if k not in blocked}
 
 
 def head_row(study):
@@ -207,6 +231,19 @@ INDEX_COLS = [('Setting', 'The exact borg.txt key; the link lists every experime
               ('Last tested', 'When the newest of those runs finished (UTC).')]
 
 
+def documented_pending(found):
+    """The settings the repo's setting documentation covers (the shipped
+    borg.txt) that no experiment has compared yet, in a closed fold."""
+    from . import changes_page
+    pending = changes_page.untested(found)
+    if not pending:
+        return ''
+    return (f'<details class="background"><summary>Documented in the shipped borg.txt, not compared yet '
+            f'({len(pending)})</summary>'
+            + table(['Setting', 'What the shipped borg.txt says about it'], pending, left=2)
+            + '</details>')
+
+
 def index_page(found):
     from .landing import nav
     rows = []
@@ -224,11 +261,13 @@ def index_page(found):
             + explain('Every borg.txt setting that took more than one value between the arms of an experiment, '
                       'pilots included. Each link lists those experiments with their build, size, deaths per arm '
                       'and how certain the result is. Verdicts are about deaths only.', INDEX_COLS)
-            + f'<ul>{legend}</ul>'
+            + '<details class="background"><summary>What the verdicts mean (clear difference, and so on)</summary>'
+            + f'<ul>{legend}</ul></details>'
             + '<p class="muted">Click a column heading to sort by it; click again to reverse.</p>'
-            + '<p><a href="changes.html">Plausible changes</a>: every tested change ranked from helpful to harmful, '
-              'with the settings no experiment has varied yet.</p>'
-            + (table(INDEX_COLS, rows) if rows else '<p class="muted">No settings tested yet.</p>') + SORT_SCRIPT)
+            + (table(INDEX_COLS, rows) if rows else '<p class="muted">No settings tested yet.</p>')
+            + documented_pending(found)
+            + '<p><a href="changes.html">Plausible changes</a>: every tested change ranked from helpful to harmful.</p>'
+            + SORT_SCRIPT)
 
 
 def result_table(key, row):
@@ -251,7 +290,9 @@ def result_table(key, row):
                      f'{a["deaths"]}/{a["n"]}', rate,
                      pr['rescued'] if pr else '–', pr['newly_killed'] if pr else '–', esc(pval(pr['death_p'])) if pr else '–'])
     verdict = (f'<p><strong>{esc(row["verdict"][:1].upper() + row["verdict"][1:])}</strong> '
-               f'({row["n"]:,} starts per arm, {len(row["arms"])} arms). {esc(VERDICT_NOTE[row["verdict"]])}</p>')
+               f'({row["n"]:,} starts per arm, {len(row["arms"])} arms). '
+               f'<details class="background"><summary>What this verdict means</summary>'
+               f'<p>{esc(VERDICT_NOTE[row["verdict"]])}</p></details></p>')
     return verdict + table(cols, body)
 
 
@@ -293,9 +334,11 @@ def setting_page(key, studies):
             f'<h3>What it changes</h3><p>{description_html(key, setting_descriptions.load())}</p>'
             f'<h3>Where it was tested</h3>'
             f'<p>Varied in {len(studies)} stud{"ies" if len(studies) != 1 else "y"} ({runs} run{"s" if runs != 1 else ""}), '
-            f'newest first: {esc(summary)}. A study run in tiers (pilot, small, medium...) is shown pooled, every '
-            f'start counted once, with each run below it. Results on different builds are not interchangeable: '
-            f'a later build may play differently.</p>'
+            f'newest first: {esc(summary)}.'
+            f'<details class="background"><summary>How to read these studies</summary><p>A study run in tiers '
+            f'(pilot, small, medium...) is shown pooled, every start counted once, with each run below it. '
+            f'Results on different builds are not interchangeable: a later build may play differently.</p>'
+            f'</details>'
             + ''.join(study_block(key, s) for s in studies) + SORT_SCRIPT)
 
 
