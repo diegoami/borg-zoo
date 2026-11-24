@@ -307,7 +307,7 @@ def find_arm(runs, specimen, profile, specs, cls=None, cap=None):
                and (cap is None or c.get('cap') == cap)]
         if not arm:
             continue
-        s = dict(stats.arm_summary(arm), progress_score=stats.progress_score(arm))
+        s = stats.arm_summary(arm)
         key = (s['valid'], meta.get('completed', ''))
         if key > best_key:
             best_summary, best_meta, best_arm, best_key = s, meta, arm, key
@@ -379,19 +379,13 @@ DEFAULT_POLICY = POLICIES[0]
 # evidence either, and a small subset can look best by noise alone (the first
 # cut of this chart picked a 200-cell M5 subset at 83% alive).
 DASHBOARD_MIN_CELLS = 1500
-# A setup that survives by barely progressing is not a best Borg. The floor is
-# deliberately low (DL1 plus level 1 scores 2): it excludes the known stall
-# trap while retaining ordinary early-game progress.
-DASHBOARD_MIN_PROGRESS = 2
-# "Best" balances both outcomes: 60% survivability and 40% progress. Progress
-# is normalised within the eligible line before it is combined, because the
-# raw depth + level scale differs between C and Rust builds and between eras.
+# Rank setups with measured CL5 progress and sufficient coverage.
 DASHBOARD_SURVIVAL_WEIGHT = 0.60
 DASHBOARD_PROGRESS_WEIGHT = 0.40
 
 # ... and every point is read at one turn cap. classes-1800 is 100,000 turns;
 # classes-1800-200k is 200,000, and a 200k arm survives longer by construction.
-DASHBOARD_CAP = 100000
+DASHBOARD_CAP = stats.CL5_TURN_CAP
 
 
 def chart_configs(html):
@@ -454,7 +448,7 @@ def narrow_to_class(entries, cls):
         if not part:
             out.append((e, None, meta, None))
         else:
-            out.append((e, dict(stats.arm_summary(part), progress_score=stats.progress_score(part)),
+            out.append((e, stats.arm_summary(part),
                         meta, part))
     return out
 
@@ -483,24 +477,25 @@ def dashboard_rank(candidates):
     """Rank eligible setups by 60% survivability + 40% normalised progress.
 
     Each candidate is (entry, summary, meta, arm). Survivability is the share
-    alive at the cap. Progress is median depth + level, normalised to 0..1
+    alive at the cap. Progress is CL5 attainment, normalised to 0..1
     against the highest and lowest eligible value in the same line. The line's
     name and completed run break exact ties.
     """
     eligible = [c for c in candidates
                 if c[1] is not None and c[1].get('death_rate') is not None
-                and c[1].get('progress_score') is not None
-                and c[1].get('progress_score') >= DASHBOARD_MIN_PROGRESS]
+                and c[1].get('cl5_rate') is not None
+                and c[1]['cl5_rate'] > 0
+                and c[1]['cl5_known'] >= DASHBOARD_MIN_CELLS]
     if not eligible:
         return None
-    scores = [c[1]['progress_score'] for c in eligible]
+    scores = [c[1]['cl5_rate'] for c in eligible]
     low, high = min(scores), max(scores)
     span = high - low
 
     def rank(candidate):
         e, s, meta, arm = candidate
         survival = 1 - s['death_rate']
-        progress = ((s['progress_score'] - low) / span
+        progress = ((s['cl5_rate'] - low) / span
                     if span else 1.0)
         combined = (DASHBOARD_SURVIVAL_WEIGHT * survival
                     + DASHBOARD_PROGRESS_WEIGHT * progress)
@@ -539,8 +534,8 @@ def exemplar_entries(runs, specs, policy, cls=None):
                 continue
             # A setup that stalls on DL1 at level 1 cannot win merely by
             # avoiding death, so keep it out of the ranking entirely.
-            progress = s.get('progress_score')
-            if progress is None or progress < DASHBOARD_MIN_PROGRESS:
+            progress = s.get('cl5_rate')
+            if progress is None or progress == 0 or s['cl5_known'] < DASHBOARD_MIN_CELLS:
                 continue
             entry = {'specimen': name, 'profile': profile,
                      'name': f'{title} {milestone_short(name, spec)} (best {"C" if line == "c" else "Rust"})',
@@ -554,7 +549,7 @@ def exemplar_entries(runs, specs, policy, cls=None):
         spec = specs[entry['specimen']]
         entry['note'] = (f'{spec.get("carries", "?")} carried fixes; the best-measured '
                          f'{title} milestone under this policy, ranked by 60% survivability '
-                         f'and 40% normalised depth + level.')
+                         f'and 40% normalised CL5 attainment.')
         entries.append((entry, s, meta, arm))
     if policy['slug'] == 'no-munchkin':
         ns, nmeta, narm = find_arm(runs, 'neo-b3-api2-upstream', 'default', specs,
@@ -571,7 +566,7 @@ def exemplar_entries(runs, specs, policy, cls=None):
 
 def exemplar_points(runs, specs, policy, cls=None):
     """(x, y, label, color, title) per exemplar, x = survivability, y =
-    progress_score (median max depth + character level, not a rate); cls
+    CL5 attainment by 100,000 turns; cls
     restricts to one played class (the per-class pages) or None for all. A
     setup whose best run is smoke-scale (DASHBOARD_MIN_CELLS) gets no point:
     the chart reads as evidence, and a 3-seed sanity check is not that."""
@@ -582,10 +577,10 @@ def exemplar_points(runs, specs, policy, cls=None):
         # a class slice is one ninth of it and must not be re-tested here
         plotted = s is not None and s['valid'] > 0
         x = (1 - s['death_rate']) if plotted and s['death_rate'] is not None else None
-        yv = s['progress_score'] if plotted else None
+        yv = s['cl5_rate'] if plotted else None
         title = (f"{e['name']} — alive at cap {100 * (1 - s['death_rate']):.0f}%, "
-                 f"depth+level {s['progress_score']:.0f}, {s['valid']} finished"
-                 if plotted and s['death_rate'] is not None and s['progress_score'] is not None
+                 f"CL5 {pct(s['cl5_rate'])}, {s['cl5_known']} known"
+                 if plotted and s['death_rate'] is not None and s['cl5_rate'] is not None
                  else e['name'])
         points.append((x, yv, e['short'], e['color'], title))
     return points, entries
@@ -601,7 +596,7 @@ def exemplar_table(entries, specs):
         source = specs.get(e['specimen'], {}).get('source')
         src = f' · <a href="{esc(source)}">source</a>' if source else ''
         x = (1 - s['death_rate']) if s and s['death_rate'] is not None else None
-        yv = s['progress_score'] if s else None
+        yv = s['cl5_rate'] if s else None
         badge = f'<span class="legend-mark" style="background:{e["color"]}"></span>'
         thin = ('<br><span class="muted">no run yet · not plotted</span>' if s is None
                 else '<br><span class="muted">smoke-scale only — not plotted</span>'
@@ -617,14 +612,14 @@ def exemplar_table(entries, specs):
                     f'<td class="l">{e["note"]}{src}{thin}</td>'
                     f'<td class="l"><span class="muted">{esc(e.get("modes", ""))}</span></td>'
                     f'<td>{pct(x) if x is not None else "–"}</td>'
-                    f'<td>{num(yv) if yv is not None else "–"}</td>'
+                    f'<td>{pct(yv) if yv is not None else "–"}</td>'
+                    f'<td>{num(s["cl5_known"]) if s else "–"}</td>'
                     f'<td>{num(s["valid"]) if s else "–"}</td>'
                     f'<td class="l">{run_cell}</td></tr>')
     legend = ('<div class="wrap"><table><thead><tr><th class="l">Setup</th><th class="l">What it is</th>'
               '<th class="l">Modes</th><th>Alive at cap</th>'
-              '<th title="Median, over finished runs including deaths, of max dungeon level reached + '
-              'character level reached. A plain combined figure, not a calibrated score.">Depth + level</th>'
-              '<th title="Cells that reached death or the turn cap; the denominator of both columns">'
+              '<th>CL5 by 100,000</th><th>CL5 known</th>'
+              '<th title="Cells that reached death or the turn cap">'
               'Finished</th><th class="l">Run · suite · completed · profile</th>'
               '</tr></thead><tbody>' + ''.join(rows) + '</tbody></table></div>')
     return legend, run_keys
@@ -638,34 +633,34 @@ def card_exemplars(runs, policy=DEFAULT_POLICY):
     if not any(p[0] is not None for p in points):
         return None
     chart = echarts_scatter(points, x_label='Survivability — alive at the turn cap',
-                            y_label='Progress — median max dungeon level + character level', y_fmt='num')
+                            y_label='Progress — CL5 by 100,000 turns')
     legend, run_keys = exemplar_table(entries, specs)
     links = class_links(runs, specs)
     snapshots = turn_snapshots_section(entries)
     cross_run = len(run_keys) > 1
     measured = [(e, s) for e, s, _m, _a in entries
                 if s is not None and dashboard_plotted(s) and s.get('death_rate') is not None
-                and s.get('progress_score') is not None
-                and s.get('progress_score') >= DASHBOARD_MIN_PROGRESS]
+                and s.get('cl5_rate') is not None
+                and s.get('cl5_rate') > 0 and s['cl5_known'] >= DASHBOARD_MIN_CELLS]
     best = dashboard_rank([(e, s, m, a) for e, s, m, a in entries
                             if s is not None and dashboard_plotted(s)
                             and s.get('death_rate') is not None
-                            and s.get('progress_score') is not None
-                            and s.get('progress_score') >= DASHBOARD_MIN_PROGRESS])
+                            and s.get('cl5_rate') is not None
+                            and s.get('cl5_rate') > 0 and s['cl5_known'] >= DASHBOARD_MIN_CELLS])
     if policy['slug'] == 'munchkin':
         answer = (f'With the munchkin start held fixed, <strong>{esc(best[0]["name"])}</strong> ranks best '
-                  f'on the combined score: 60% survivability plus 40% normalised depth + level. '
-                  f'It has {pct(1 - best[1]["death_rate"])} alive at the cap, depth + level '
-                  f'{num(best[1].get("progress_score"))}, and {num(best[1]["valid"])} finished runs. '
+                  f'on the combined score: 60% survivability plus 40% normalised CL5 attainment. '
+                  f'It has {pct(1 - best[1]["death_rate"])} alive at the cap, with CL5 reached by '
+                  f'{pct(best[1].get("cl5_rate"))} of {num(best[1]["cl5_known"])} known starts. '
                   f'The policy itself is the big mover: plain Angband '
                   f'4.2.6 loses {pct(next((s["death_rate"] for e, s in measured if e["specimen"] == "4.2.6"), 0))} '
                   f'of its runs without it, so compare points inside this tab, never against the '
                   f'no-munchkin tab.' if best[0] else 'No run at dashboard scale yet.')
     else:
         answer = (f'Without the munchkin start, <strong>{esc(best[0]["name"])}</strong> ranks best '
-                  f'on the combined score: 60% survivability plus 40% normalised depth + level. '
-                  f'It has {pct(1 - best[1]["death_rate"])} alive at the cap, depth + level '
-                  f'{num(best[1].get("progress_score"))}, and {num(best[1]["valid"])} finished runs. '
+                  f'on the combined score: 60% survivability plus 40% normalised CL5 attainment. '
+                  f'It has {pct(1 - best[1]["death_rate"])} alive at the cap, with CL5 reached by '
+                  f'{pct(best[1].get("cl5_rate"))} of {num(best[1]["cl5_known"])} known starts. '
                   f'Only milestones with a plain run appear: beyond M7 the shipped default forces the '
                   f'start class-wide, so those versions need a <code>normal</code> run before they can '
                   f'be placed here.' if best[0] else 'No run at dashboard scale yet.')
@@ -677,10 +672,9 @@ def card_exemplars(runs, policy=DEFAULT_POLICY):
             f'<p class="foot">Each point is the run with the most finished cells for that exact version '
             f'and profile at {DASHBOARD_CAP:,} turns — not necessarily the newest, which is only the '
             f'tiebreaker — and carries its name on the chart. One point per line, the best with a full '
-            f'class run. "Best" combines 60% survivability with 40% normalised depth + level, so a '
+            f'class run. "Best" combines 60% survivability with 40% normalised CL5 attainment, so a '
             f'setup must both survive and progress to win; every other milestone keeps its catalogue '
-            f'entry and run page. "Progress" is '
-            f'depth + level added unweighted, median over every finished run including deaths. The Neo '
+            f'entry and run page. Progress counts CL5 among starts whose attainment is known. The Neo '
             f'Angband point is never comparable with the rest: Mandos plays a different engine on '
             f'different seeds.</p>'
             f'{links}{snapshots}</div>')
@@ -729,7 +723,7 @@ def turn_snapshots_section(entries):
               if one_cap else
               'the same setups, at 25/50/75/100% of each one’s own cap (more than one cap is in play, '
               'so turns are not directly comparable across tiles).')
-    return (f'<h3>Progress over turns</h3><p class="foot">Not just the end state: {caption} Survivability '
+    return (f'<h3>Depth and level over turns</h3><p class="foot">Not just the end state: {caption} Survivability '
             f'runs left to right, 0–100%; depth + level runs bottom to top, one fixed scale across every '
             f'tile. A tile with only some marks means the rest had no per-turn data recorded '
             f'(no <code>depth_stream</code>, for a borg-rs specimen) or had already died by then.</p>'
@@ -776,7 +770,7 @@ def class_pages(runs):
     for policy in POLICIES:
         pts = [p for cls in classes for p in exemplar_points(runs, specs, policy, cls)[0]]
         if any(p[0] is not None for p in pts):
-            scales[policy['slug']] = axis_limits(pts, y_fmt='num')
+            scales[policy['slug']] = axis_limits(pts)
     pages = []
     for cls in classes:
         sections = []
@@ -786,8 +780,8 @@ def class_pages(runs):
                 continue
             x_max, y_max = scales[policy['slug']]
             chart = echarts_scatter(points, x_label='Survivability — alive at the turn cap',
-                                    y_label='Progress — median max dungeon level + character level',
-                                    y_fmt='num', x_max=x_max, y_max=y_max)
+                                    y_label='Progress — CL5 by 100,000 turns',
+                                    x_max=x_max, y_max=y_max)
             legend, _ = exemplar_table(entries, specs)
             sections.append(f'<h2>{esc(policy["title"])}</h2>'
                             f'<p class="foot">{policy["blurb"]}</p>{chart}{legend}')

@@ -48,6 +48,61 @@ def reached(cell, depth=DEPTH_GOAL):
     return (cell['final'].get('max_depth') or 0) >= depth
 
 
+CL5_TURN_CAP = 100_000
+
+
+def cl5_reached(cell):
+    """True or False when CL5 attainment by the cutoff is known, else None."""
+    if cell['outcome'] == 'config_error' or cell.get('config_error'):
+        return None
+    timeline = cell.get('first_turn_at_level') or {}
+    first = timeline.get('5')
+    if first is not None:
+        return first <= CL5_TURN_CAP
+
+    final = cell['final']
+    turn = final.get('turn')
+    maximum = final.get('max_level')
+    milestones = cell.get('milestones') or []
+    for mark in milestones:
+        if mark['turn'] <= CL5_TURN_CAP and (mark.get('level') or 0) >= 5:
+            return True
+    if turn is None:
+        return None
+    if turn <= CL5_TURN_CAP and (maximum or final.get('level') or 0) >= 5:
+        return True
+
+    # Older borg-rs cells wrote the current level into max_level; a drained
+    # character at the cap cannot establish a historical maximum on its own.
+    has_maximum = maximum is not None and (
+        cell.get('harness_kind') != 'borg-rs' or final.get('max_level_verified'))
+    # A run that stayed at its starting level has no attainment marks.
+    # The sibling exposure field distinguishes that from a missing level log.
+    has_timeline = bool(timeline) or (
+        'first_turn_at_level' in cell and bool(cell.get('turns_at_level_depth')))
+    observed_to_cutoff = turn >= CL5_TURN_CAP or cell['outcome'] == 'death'
+    if observed_to_cutoff and ((has_maximum and maximum < 5) or has_timeline):
+        return False
+    return None
+
+
+def cl5_summary(cells):
+    known = hits = alive = 0
+    for cell in cells:
+        reached = cl5_reached(cell)
+        if reached is None:
+            continue
+        known += 1
+        if reached:
+            hits += 1
+            turn = cell['final'].get('turn')
+            if turn is not None and (turn > CL5_TURN_CAP or
+                                     (turn == CL5_TURN_CAP and survived(cell))):
+                alive += 1
+    return {'cl5_known': known, 'cl5_reached': hits, 'cl5_alive': alive,
+            'cl5_rate': hits / known if known else None, 'cl5_ci': wilson(hits, known)}
+
+
 def arm_summary(cells):
     counts = {o: 0 for o in OUTCOMES}
     for c in cells:
@@ -63,6 +118,7 @@ def arm_summary(cells):
         'cells': len(cells), 'valid': n, 'counts': counts,
         'deaths': len(deaths), 'death_rate': len(deaths) / n if n else None,
         'death_ci': wilson(len(deaths), n),
+        **cl5_summary(cells),
         'goal': len(goal), 'goal_rate': len(goal) / n if n else None, 'goal_ci': wilson(len(goal), n),
         'median_max_depth': median(depths) if depths else None,
         'median_max_level': median(levels) if levels else None,
@@ -138,14 +194,20 @@ def same_play(a, b):
 
 
 def paired(control_cells, arm_cells):
-    control = {(c['suite'], c['seed']): c for c in control_cells if c['outcome'] in VALID}
+    control = {(c['suite'], c['seed']): c for c in control_cells}
     rescued = newly_killed = both_died = both_lived = identical = 0
     goal_gained = goal_lost = 0
+    cl5_pairs = cl5_gained = cl5_lost = 0
     for c in arm_cells:
-        if c['outcome'] not in VALID:
-            continue
         k = control.get((c['suite'], c['seed']))
         if not k or pairing_class(k) != pairing_class(c):
+            continue
+        a_cl5, k_cl5 = cl5_reached(c), cl5_reached(k)
+        if a_cl5 is not None and k_cl5 is not None:
+            cl5_pairs += 1
+            cl5_gained += a_cl5 and not k_cl5
+            cl5_lost += k_cl5 and not a_cl5
+        if c['outcome'] not in VALID or k['outcome'] not in VALID:
             continue
         a_dead, k_dead = c['outcome'] == 'death', k['outcome'] == 'death'
         if k_dead and not a_dead:
@@ -165,6 +227,8 @@ def paired(control_cells, arm_cells):
     return {'pairs': pairs, 'rescued': rescued, 'newly_killed': newly_killed,
             'both_died': both_died, 'both_lived': both_lived, 'identical_traces': identical,
             'death_p': mcnemar_exact(rescued, newly_killed),
+            'cl5_pairs': cl5_pairs, 'cl5_gained': cl5_gained, 'cl5_lost': cl5_lost,
+            'cl5_p': mcnemar_exact(cl5_gained, cl5_lost),
             'goal_gained': goal_gained, 'goal_lost': goal_lost,
             'goal_p': mcnemar_exact(goal_gained, goal_lost)}
 

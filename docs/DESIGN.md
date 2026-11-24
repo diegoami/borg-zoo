@@ -432,8 +432,10 @@ catch the regressions, the render catches everything else.
 **Per arm:**
 - runs, finished runs and outcome counts;
 - deaths and death rate, with a Wilson 95% interval;
-- "goal" rate (alive at the cap having reached DL5, a placeholder) - still used
-  by the Detailed tab's milestone cards, left unchanged;
+- CL5 by 100,000 engine turns is the primary early-game progress endpoint
+  (#758). Show the rate and Wilson interval among runs with known attainment,
+  the known count out of all starts, and the count alive at the cutoff with
+  CL5. Verified attainment counts even if a run later dies or stops.
 - median maximum depth and level;
 - median death turn;
 - share alive at 25/50/75/100% of the cap;
@@ -443,19 +445,14 @@ catch the regressions, the render catches everything else.
   point (a death before it is excluded, not substituted with a worse
   value). Shown on the site as "Level, max depth and gold by engine turn"
   whenever at least one cell in the suite carries it.
-- `progress_score`: median of max_depth + max_level per cell (including
-  deaths - a death's reach still counts, unlike the DL5 goal rate), one
-  number instead of two. Used on the Overview tab's exemplars card and its
-  by-class/turn-snapshot grids in place of the DL5 goal rate, after the
-  owner's call that "alive at cap, reached DL5" was a bad metric and should
-  be a combined depth+level (and eventually net worth) figure (2026-11-09).
-  `milestone_progress_score` is its sibling at each turn fraction, reusing
-  `milestone_table`'s death-exclusion rule. Neither touches `arm_summary`'s
-  own `goal_rate`/`DEPTH_GOAL`, which the Detailed tab still shows - a
-  deliberately narrow change, not a redefinition of the site-wide metric.
+- The Overview and class pages use CL5 attainment for progress. The
+  depth-and-level trajectory remains a diagnostic. Archived study text
+  preserves its prespecified endpoint. The regenerated tables read the
+  new metric retrospectively without changing the stored cells.
 
 **Paired against the control arm, on seeds where both finished:**
 - rescued, newly killed, both died, both lived;
+- CL5 gained and lost among starts with known attainment in both arms;
 - identical traces;
 - an exact McNemar p for deaths and for the goal.
 
