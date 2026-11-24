@@ -1200,15 +1200,12 @@ def overview_page(runs):
 def landing_page(runs, run_rows):
     """Every experiment run in one list, newest first: small tiers and pilots
     included, each with the borg-zoo issue it answers. Smoke checks and
-    scenario runs are not listed (owner, 2026-11-24)."""
-    cards = [c for c in (card_milestones(runs), card_port(runs), card_stalls(runs)) if c]
+    scenario runs are not listed, and the page ends at the table - no
+    cross-experiment summaries, caveats or footer (owner, 2026-11-24)."""
     return (
         f'<h1>Borg zoo</h1>{nav("index.html")}'
         '<h2>Full runs</h2>'
         + explain('Every experiment run, newest first, small tiers and pilots included; smoke checks and '
                   'scenario runs are not listed. Each report shows the YAML definition and the build used.',
                   RUN_COLS)
-        + (table(RUN_COLS, run_rows) if run_rows else '<p class="muted">No results yet.</p>')
-        + '<details class="background"><summary>Cross-experiment summaries and historical caveats</summary>'
-        + mode_cutoff_note() + f'<div class="cards">{"".join(cards)}</div></details>'
-        + FOOTER)
+        + (table(RUN_COLS, run_rows) if run_rows else '<p class="muted">No results yet.</p>'))
