@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-fallback1173",
+  "issue": 779,
+  "definition": "definitions/reborn-fallback1173.yaml",
+  "question": "Does the #1173 exhausted-exit fallback (trying a known up staircase when the power dive has no way down) remove the long secret-door search loops on shallow levels, without death or progress regression?",
+  "description": "Does the #1173 exhausted-exit fallback (trying a known up staircase when the power dive has no way down) remove the long secret-door search loops on shallow levels, without death or progress regression? Generated from definitions/reborn-fallback1173.yaml: 1 arms on 4.2.6-reborn-rust-trackp-7c5df737, 4.2.6-reborn-rust-trackp-3c1aa939, suite classes-18.",
+  "prespecified": "Fixed 2026-11-24, before any result (Rule 22, #758). Two builds of diegoami/borg-reborn-rs, both with the shipped harness/borg.txt: base 7c5df737 (before the fix) and fixed 3c1aa939 (the merged #1174: the exhausted fallback tries a known up staircase when the dive has no way down, and sets stair_less so caution takes it). No profile overrides - the fallback is core code, not a switch. Pilot classes-18 paired; the smoke games never reach the state (4/4 identical), so the small tier follows on a clean gate, larger tiers on the owner's word. Gate: no config_error; one binary per arm; every cell ends in death, turn_cap or borg_stopped. Progress endpoint (Rule 22): CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics. Report: paired per class against base (deaths, mean CL, max depth, rescued/newly killed, identical games); on the fixed arm the count of the fallback note \"# No down stair to dive by; trying the up stairs (#1173)\" (how often the new path acts) and the secret-door search count (the #1117 replay measure - the loop the fix removes); any death in either arm gets a /death-report pack with screens. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-7c5df737",
+    "4.2.6-reborn-rust-trackp-3c1aa939"
+  ],
+  "profiles": [
+    "reborn-fb1173-shipped"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-7c5df737",
+  "control_profile": "shipped",
+  "owner_authorization": "2026-11-24: borg-reborn-rs owner started it (\"you can continue on those now\", borg-reborn-rs#1175) and the zoo owner said \"dispatch all\" (borg-zoo#779).",
+  "retain_evidence": true
+}
