@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-wa-p8-verysmall",
+  "issue": 749,
+  "definition": "definitions/reborn-wa-p8-verysmall.yaml",
+  "question": "On borg-reborn-rs track-p 85f8800b (patches-x8), what does caution_walk_away_immobile 1 (shipped on in #1148 before any measurement) change in deaths by walk-away monsters, in other deaths and in DL3 and DL5 reached, against 0 (the play before #1147)?",
+  "description": "On borg-reborn-rs track-p 85f8800b (patches-x8), what does caution_walk_away_immobile 1 (shipped on in #1148 before any measurement) change in deaths by walk-away monsters, in other deaths and in DL3 and DL5 reached, against 0 (the play before #1147)? Generated from definitions/reborn-wa-p8-verysmall.yaml: 2 arms on 4.2.6-reborn-rust-trackp-85f8800b-pw, suite classes-1800-verysmall.",
+  "prespecified": "Fixed 2026-11-24, after the pilot gate was read and passed (borg-zoo#749; borg-reborn-rs #1147, PR #1148). Two arms on track-p 85f8800b (patches-x8): off (caution_walk_away_immobile 0, the play before #1147) and ship (1, shipped). Tier verysmall (RULES 14) of the pilot on the same build and arms: classes-1800 starts 1-45, 100,000 turns, one binary, shipped settings plus each arm's overrides, borg-rs core, evidence not retained, disjoint from the pilot (classes-18) and from the later tiers.\nGate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (an arm that plays wa0's keys was not exercised). Report per arm against wa0: deaths and causes (walk-away: mushroom patches, jellies, floating eye, other), rescued and newly killed (exact McNemar), DL3 and DL5 reached, stalls and bouncing-borg exits, and from the notes of ship the #1147 counts (steps with and without a clean way to the stairs, staircase leaves, cornered cures, cornered Phase Door, last-resort blows). Descriptive (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-85f8800b-pw"
+  ],
+  "profiles": [
+    "reborn-wa-p8-wa0",
+    "reborn-wa-p8-ship"
+  ],
+  "suites": [
+    "classes-1800-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-85f8800b-pw",
+  "control_profile": "reborn-wa-p8-wa0",
+  "owner_authorization": "2026-11-23: zoo owner, request borg-reborn-rs#1147 filed as borg-zoo#749 (the switch ships on; this run decides whether it stays). 2026-11-24: zoo owner, \"start them all\" \u2014 the tier ladder of #749 after the pilots' gate was read.",
+  "retain_evidence": false
+}
