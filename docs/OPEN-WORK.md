@@ -67,6 +67,12 @@ after each gate was read):
 3. dc2 pilot gates -> the `reborn-dc2` verysmall (not yet defined).
 4. PRs for `definition/new-params-wa-tiers` (carries the #749/#744 pilots too) and
    `definition/dc2-c5501d3c` (stacked on it) when the runs finish; preflight was 0 problems.
+   **Collision, same day**: PR #759 (a parallel session) merged the SAME `c5501d3c`
+   specimen block plus `reborn-dc2-receipt(-ps8)-pilot` (the #744 receipt repeats with
+   `borg_town_plan: 1`) and the #752/#753 cure pilots onto `main`. The dc2 branch is
+   stacked on `definition/new-params` and now conflicts with `main`: at merge time,
+   regenerate the catalogue from the merged set (see Traps). Do not rewrite the dc2
+   branch while its runs are in flight; both dc2 pilot runs read it as pushed.
 
 **Gate reads posted 2026-11-23/24** (details in the issues): #742's pilots clean, but in
 breeders-x4 ba/plus/poison replay ctl's keys 18/18 and guardsoff 11/18 - the guards are
