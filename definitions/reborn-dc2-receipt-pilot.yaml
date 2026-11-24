@@ -1,0 +1,36 @@
+name: reborn-dc2-receipt-pilot
+issue: 744
+question: >-
+  On borg-reborn-rs PR #1149 (c5501d3c, the normal world), what do the dear-cure rows (Neutralize Poison, Cure Critical Wounds, the Recall gate) change in purchases per game, in the staples bought and in deaths, against the play before #1134, the same rows without the Recall gate, and what track-p ships after #1135?
+tier: pilot            # classes-18, the normal world, 100,000 turns
+pilot: true            # first run of these arms on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-c5501d3c-pw
+  repository: diegoami/borg-reborn-rs
+  ref: c5501d3c5aeac2449fc47ed6ca6efe2fbafdd894
+  label: "borg-reborn-rs track-p at the #1149 merge c5501d3c on 2026-11-23 (#1149 PR head 8aa716cd, after merging track-p #945/#947/#1148/#1161); world poison-x8 pinned (fb86c333...); shipped harness/borg.txt c225c180..., scary_monsters.txt 5a4ec4b6..., borg-rs core. track-p also ships caution_walk_away_immobile 1 (#1148) in every arm."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+  worlds:
+    poison-x8: fb86c333c80e048da19e68e7e15efc63df49134f91124ecb5168165558e5de0d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_town_plan: 1
+
+profile_prefix: reborn-dc2-receipt
+arms:
+  pre1134: {borg_param_town_prepared_poison_percent: 0, borg_param_town_prepared_neutralize: 0, borg_param_town_prepared_neutralize_percent: 0, borg_param_town_prepared_ccw: 0, borg_param_town_prepared_ccw_percent: 0, borg_param_town_prepared_dear_after_recall: 0}
+  ship: {}
+  nogate: {borg_param_town_prepared_dear_after_recall: 0}
+  m1135: {borg_param_town_prepared_poison_percent: 40, borg_param_town_prepared_neutralize: 0, borg_param_town_prepared_neutralize_percent: 0, borg_param_town_prepared_dear_after_recall: 0}
+control: [pre1134]
+owner_authorization: "Owner approved repeating the existing four-arm pilot with town-plan evidence in Zoo #744."
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Repeat the same c5501d3c four-arm pilot in normal on all 18 original starts, without advancing the tier. Explicit borg_town_plan=1 matches shipped play and enables receipt capture. Verify settings, outcome and paired key hashes against the earlier pilot where applicable.
+  For town visits at max DL at least 2, count stock and affordable opportunities by resolved item kind. Report price, post-urgent gold, carried Recall, active dear-cure rows and confirmed purchases in order. Compare Phase Door and Recall on departure, along with healing, light and food. Read this gate before any tier expansion.
