@@ -1,0 +1,381 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-dials-ctl": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm ctl.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "ba3b4c35948174672cc2e88f93a6ecf6f51718f349a9b4c1c8e0e0af00039170"
+      },
+      "reborn-dials-hold0": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm hold0.",
+        "settings": {
+          "borg_param_item_test_unknown_hold_turns": 0,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "4bf01038a614597f9189380a11adc6ab65c67152fc367b22ca777fa57f0d326c"
+      },
+      "reborn-dials-hold360": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm hold360.",
+        "settings": {
+          "borg_param_item_test_unknown_hold_turns": 360,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "851636f636673d1ed9af599a7ab5cca2cfc853ea4b3f41ab256539d3b30ca2af"
+      },
+      "reborn-dials-kos30": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm kos30.",
+        "settings": {
+          "borg_param_attack_kill_on_sight_min_hp_percent": 30,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "69ce618480129ae6e7531f2faee30f4773606acbb447906f2f0b72b839623c3b"
+      },
+      "reborn-dials-kos70": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm kos70.",
+        "settings": {
+          "borg_param_attack_kill_on_sight_min_hp_percent": 70,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "cdfa7d0131a13f3129745f1051d622e199aff43def7066f0adac0ec0a9d285ba"
+      },
+      "reborn-dials-leash15": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm leash15.",
+        "settings": {
+          "borg_param_flow_leash_recall_steps": 15,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "29418985ea174009fa7029db3f0a3a70ac510b33e6e88cfc0909f490818b0bdc"
+      },
+      "reborn-dials-leash60": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm leash60.",
+        "settings": {
+          "borg_param_flow_leash_recall_steps": 60,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "61bd00f301e898a23aa2a538c5d4e81877bfdb5e34644fbfb0b8febb912b5745"
+      },
+      "reborn-dials-leashlvl8": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm leashlvl8.",
+        "settings": {
+          "borg_param_flow_leash_recall_max_level": 8,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "6bea7b4cf946d44696601e2deb0479b8fa5d1455b993496cfb452a8b9edc1fee"
+      },
+      "reborn-dials-mixcl30": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm mixcl30.",
+        "settings": {
+          "borg_param_explore_mix_max_clevel": 30,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "cbf3f542cf7bb246b376ac86595b4faffed84de214e081d6111b0c6a563a9aa4"
+      },
+      "reborn-dials-mixr2": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm mixr2.",
+        "settings": {
+          "borg_param_explore_mix_radius": 2,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "c8e4abbd2fe110218405fd868e3759a9c5915b8e981cf10de2d8364549f46634"
+      },
+      "reborn-dials-mixr5": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm mixr5.",
+        "settings": {
+          "borg_param_explore_mix_radius": 5,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "0486bb3334cd5c2bd7629f63657e0d74b7008ee4e0f54426a21dd172e8d123ae"
+      },
+      "reborn-dials-mixstep1": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm mixstep1.",
+        "settings": {
+          "borg_param_explore_mix_step": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "db0776aaabab17e560ca97d75c01357a2954c698b9dc78953ad733d85920f03a"
+      },
+      "reborn-dials-phase_lost50": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm phase_lost50.",
+        "settings": {
+          "borg_param_escape_phase_lost_danger_percent": 50,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "cb2eb00cfcd4a4db3f871c9776e70a681000970f1ecdc5d10b3cdc0a31da6629"
+      },
+      "reborn-dials-phasetol10": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm phasetol10.",
+        "settings": {
+          "borg_param_escape_phase_tolerance": 10,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "c47780a3acfd0f2c8209f984e9d006ac31bdea15c99ae0dd76ff51101d21f0cc"
+      },
+      "reborn-dials-prep16": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm prep16.",
+        "settings": {
+          "borg_param_town_prepared_percent": 16,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "a6287bb4cb66090ce790093125a194d1a389284b26b75aa968046ba4497f5220"
+      },
+      "reborn-dials-prep4": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm prep4.",
+        "settings": {
+          "borg_param_town_prepared_percent": 4,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "39889b860635e2449a826bd91523f02818498a6fd07df20b40b111524342fd82"
+      },
+      "reborn-dials-scumhp10": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm scumhp10.",
+        "settings": {
+          "borg_param_stair_scum_max_hp": 10,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "ce7e10c5746139e48c0ea86fe7045847321c5b92a933c347dc4d8262f1742bfe"
+      },
+      "reborn-dials-scumratio1": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm scumratio1.",
+        "settings": {
+          "borg_param_stair_scum_speed_ratio": 1,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "5596c8e47783e66af271e1a5b86bd2a232605df4071f07b2e38d2bc1f83347e1"
+      },
+      "reborn-dials-stairsteps10": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm stairsteps10.",
+        "settings": {
+          "borg_param_flow_leash_unknown_stair_steps": 10,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "06cd992d9e2fa2ecbe0857e70632850c3c5e82dabb79ec222ffb6214549d6a3d"
+      },
+      "reborn-dials-testhp30": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm testhp30.",
+        "settings": {
+          "borg_param_item_test_unknown_min_hp_percent": 30,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "527465b45d1f819c4fdd647ccb79ae30a12a248c6c3f33a0fb68deb22d172e76"
+      },
+      "reborn-dials-trapdis25": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm trapdis25.",
+        "settings": {
+          "borg_param_trap_disarm_min_percent": 25,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "ec2549c8f55d5b21d58bd4a757221e40812d0e56f308e87a73eff2ed2824b325"
+      },
+      "reborn-dials-trapnear4": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm trapnear4.",
+        "settings": {
+          "borg_param_trap_leave_near_count": 4,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "0c7fb4f42317860f3581335bdedd5a4082609e4348fa28706a95f1c04d811d81"
+      },
+      "reborn-dials-walkfail15": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm walkfail15.",
+        "settings": {
+          "borg_param_caution_walk_away_phase_fail": 15,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "025a7beb655a860a3860ca2ccd9172a32245ea8b6350c5a3ad6de28d760dd2d4"
+      },
+      "reborn-dials-walkfail60": {
+        "description": "borg-zoo#769 (reborn-dials-head.yaml): arm walkfail60.",
+        "settings": {
+          "borg_param_caution_walk_away_phase_fail": 60,
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "d897c6919fcb9c59665ee78798668c1df279263771c4e5af1223b942d8a17406"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-trackp-c5501d3c-pw": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs track-p at the #1149 merge c5501d3c on 2026-11-23 (#1149 PR head 8aa716cd, after merging track-p #945/#947/#1148/#1161); world poison-x8 pinned (fb86c333...); shipped harness/borg.txt c225c180..., scary_monsters.txt 5a4ec4b6..., borg-rs core. track-p also ships caution_walk_away_immobile 1 (#1148) in every arm.",
+        "ref": "c5501d3c5aeac2449fc47ed6ca6efe2fbafdd894",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+        },
+        "worlds": {
+          "breeders-x8": "9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de",
+          "poison-x8": "fb86c333c80e048da19e68e7e15efc63df49134f91124ecb5168165558e5de0d"
+        }
+      }
+    },
+    "suites": {
+      "classes-18": {
+        "birth": "assigned",
+        "cap": 100000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Every class twice: 18 fresh seeds, 100,000 engine turns, classes dealt and races cycled as in classes-1800. A smoke suite for assigned births.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 18,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          1085222502,
+          1548306106,
+          102023799,
+          1569794094,
+          300036923,
+          766958386,
+          1502695781,
+          226104090,
+          1472012981,
+          1019921749,
+          801785300,
+          934061548,
+          592068863,
+          1574344917,
+          661409606,
+          1381972077,
+          1739161339,
+          888896726
+        ],
+        "stall_seconds": 90,
+        "wall_seconds": 900
+      }
+    }
+  },
+  "completed": "2026-11-24 17:14 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-trackp-c5501d3c-pw",
+    "control_profile": "reborn-dials-ctl",
+    "definition": "definitions/reborn-dials-head.yaml",
+    "description": "At track-p c5501d3c, which shipped numeric parameters change play and progress when moved, and which of those are worth a ladder? Generated from definitions/reborn-dials-head.yaml: 24 arms on 4.2.6-reborn-rust-trackp-c5501d3c-pw, suite classes-18.",
+    "issue": 769,
+    "name": "reborn-dials-head",
+    "owner_authorization": "2026-11-24: zoo owner, \"escape_phase_lost_danger_percent 50 and other numbers is something worth exploring\" (borg-zoo#769).",
+    "prespecified": "Fixed 2026-11-24, before any result (Rule 22, #758). Pilot classes-18, 100,000 turns, one dial per arm against ctl, shipped values otherwise, evidence not retained. Out of scope: caution_walk_away_immobile 0 (owner: NEVER, the index row), on/off switches already measured by their studies, and the #1149 dear-row percents (untouched until #745's re-pin read lands). Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics. Report per arm against ctl: the CL5 endpoint, deaths and causes, paired CL5 and deaths (exact McNemar over pairs known in both arms), identical plays. A dial that plays ctl's keys was not exercised and gets no ladder. Exercised dials go to ladders one at a time on the owner's word (RULES 14). Descriptive.",
+    "profiles": [
+      "reborn-dials-ctl",
+      "reborn-dials-phase_lost50",
+      "reborn-dials-walkfail15",
+      "reborn-dials-walkfail60",
+      "reborn-dials-phasetol10",
+      "reborn-dials-kos30",
+      "reborn-dials-kos70",
+      "reborn-dials-hold0",
+      "reborn-dials-hold360",
+      "reborn-dials-testhp30",
+      "reborn-dials-mixr2",
+      "reborn-dials-mixr5",
+      "reborn-dials-mixstep1",
+      "reborn-dials-mixcl30",
+      "reborn-dials-leash15",
+      "reborn-dials-leash60",
+      "reborn-dials-leashlvl8",
+      "reborn-dials-stairsteps10",
+      "reborn-dials-scumhp10",
+      "reborn-dials-scumratio1",
+      "reborn-dials-trapdis25",
+      "reborn-dials-trapnear4",
+      "reborn-dials-prep4",
+      "reborn-dials-prep16"
+    ],
+    "question": "At track-p c5501d3c, which shipped numeric parameters change play and progress when moved, and which of those are worth a ladder?",
+    "retain_evidence": false,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-trackp-c5501d3c-pw"
+    ],
+    "suites": [
+      "classes-18"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45442518943-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45442518943",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "ea31bd07ecc6435300c64e4b1afcd7f2b988d22e"
+}
