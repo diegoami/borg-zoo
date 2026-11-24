@@ -160,11 +160,12 @@ OUTCOME_COLS = [
     ('Death rate', 'Deaths divided by finished runs.'),
     ('Death rate range', 'The 95% range (Wilson interval) for the death rate: with this many seeds, the true '
                          'rate most likely lies in it. Two versions whose ranges overlap widely may not differ.'),
-    (f'Alive at cap, reached DL{stats.DEPTH_GOAL}', 'Share of finished runs that were alive at the turn cap and '
-                                                    f'had reached dungeon level {stats.DEPTH_GOAL} on the way: '
-                                                    'survived and made progress. Staying shallow to survive '
-                                                    'does not count.'),
-    ('Its range', 'The 95% range for the previous column.'),
+    ('CL5 by 100,000', 'Share of runs with known attainment that reached character level 5 by turn '
+                       '100,000, including characters that later died or stopped.'),
+    ('CL5 range', 'Wilson 95% interval for CL5 attainment.'),
+    ('CL5 known / runs', 'Number with known attainment out of all starts. Shorter and interrupted runs '
+                         'without enough evidence are unknown.'),
+    ('Alive at 100,000 with CL5', 'Count known to have reached CL5 and still be alive at turn 100,000.'),
     ('Median max depth', 'The middle value, over finished runs, of the deepest dungeon level reached (0 = town).'),
     ('Median max level', 'The middle value of the highest character level reached.'),
     ('Median death turn', 'The middle engine turn at which the dying runs died. Lower means earlier deaths.'),
@@ -185,11 +186,10 @@ PAIRED_COLS = [
     ('p (death)', 'Exact McNemar test of Rescued against Newly killed: the chance of a split at least this '
                   'uneven if both arms were equally deadly. Below 0.05 suggests a real difference; with many '
                   'rows, some low values turn up by chance.'),
-    (f'DL{stats.DEPTH_GOAL} alive: gained', f'Seeds where this arm was alive at the cap having reached '
-                                            f'DL{stats.DEPTH_GOAL}, and the control was not.'),
-    (f'DL{stats.DEPTH_GOAL} alive: lost', f'Seeds where the control was alive at the cap having reached '
-                                          f'DL{stats.DEPTH_GOAL}, and this arm was not.'),
-    (f'p (DL{stats.DEPTH_GOAL} alive)', 'The same test on gained against lost.'),
+    ('CL5 pairs', 'Seeds with known CL5 attainment in both arms.'),
+    ('CL5 gained', 'Seeds where this arm reached CL5 by 100,000 and the control did not.'),
+    ('CL5 lost', 'Seeds where the control reached CL5 by 100,000 and this arm did not.'),
+    ('p (CL5)', 'Exact McNemar test on CL5 gains and losses.'),
 ]
 UNFINISHED_COLS = [
     VERSION_COL,
@@ -726,11 +726,9 @@ def run_page(meta, cells):
              '<details class="background"><summary>How to read the statistics</summary><p class="note">An <em>arm</em> is one Borg version run with one settings profile; every arm plays '
              'the same seeds, one game per seed. Results are descriptive unless the experiment says it is '
              'prespecified above. Ranges are Wilson 95% intervals; paired p-values are exact McNemar tests on the '
-             'seeds where both arms finished. Two outcomes are measured: <strong>death</strong> before the turn '
-             f'cap, and <strong>alive at the cap having reached dungeon level {stats.DEPTH_GOAL}</strong> '
-             + ('(survived and made progress). Deaths are primary for this study; the goal column is descriptive.</p>'
-                if display else
-                '(survived and made progress). For prespecified studies, use the endpoints in the study plan.</p>')
+             'seeds with known outcomes for that endpoint. Deaths are measured before the run cap. '
+             'Progress is reaching <strong>character level 5 by 100,000 engine turns</strong>. '
+             'For historical prespecified studies, see the original endpoints in the study plan.</p>'
              + '</details>']
     parts.append(cutoff_note(exp, specimens, meta.get('completed', ''),
                              (meta.get('catalogue') or {}).get('harness', {}).get('commit', '')))
@@ -753,7 +751,8 @@ def run_page(meta, cells):
             OUTCOME_COLS,
             [[arm_label(meta, r['specimen'], r['profile']), r['summary']['cells'], r['summary']['valid'],
               r['summary']['deaths'], pct(r['summary']['death_rate']), ci(r['summary']['death_ci']),
-              pct(r['summary']['goal_rate']), ci(r['summary']['goal_ci']),
+              pct(r['summary']['cl5_rate']), ci(r['summary']['cl5_ci']),
+              f'{r["summary"]["cl5_known"]:,} / {r["summary"]["cells"]:,}', r['summary']['cl5_alive'],
               num(r['summary']['median_max_depth']), num(r['summary']['median_max_level']),
               num(r['summary']['median_death_turn']),
               esc(', '.join(f'{k} {v}' for k, v in r['summary']['counts'].items()
@@ -781,14 +780,14 @@ def run_page(meta, cells):
                 [[arm_label(meta, r['specimen'], r['profile']), v['pairs'],
                   f'<span class="good">{v["rescued"]}</span>', f'<span class="bad">{v["newly_killed"]}</span>',
                   v['both_died'], v['both_lived'], v['identical_traces'], pval(v['death_p']),
-                  v['goal_gained'], v['goal_lost'], pval(v['goal_p'])]
+                  v['cl5_pairs'], v['cl5_gained'], v['cl5_lost'], pval(v['cl5_p'])]
                  for r in versus for v in [r[key]]]))
         unfinished = [c for c in cells if c['suite'] == suite and c['outcome'] not in stats.VALID]
         if unfinished:
             parts.append('<h3>Runs that did not finish</h3>')
             parts.append(explain(
-                'Runs that reached neither death nor the turn cap, one row each. They are left out of every '
-                'rate above. A stall usually means the Borg loops while game time stands still; each one is a '
+                'Runs that reached neither death nor the turn cap, one row each. Verified CL5 attainment can '
+                'still contribute to progress. A stall usually means the Borg loops while game time stands still; each one is a '
                 'lead for a liveness bug. Stall kind is a heuristic label; the counters and the notes are the '
                 'evidence.', UNFINISHED_COLS))
             rows_u = []

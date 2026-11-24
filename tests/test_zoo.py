@@ -686,24 +686,24 @@ class LandingTest(unittest.TestCase):
         self.assertEqual(landing.find_arm(runs, '4.2.6-bbc-m4', 'default', {})[0]['valid'], 3)
 
     def test_best_exemplar_combines_survivability_and_progress(self):
-        """Best is 60% survivability + 40% normalised depth/level. A setup
+        """Best is 60% survivability + 40% normalised CL5 attainment. A setup
         stuck at DL1/level 1 is ineligible, and a small progress advantage
         cannot outweigh a large survivability deficit."""
         def arm(specimen, profile, deaths, n, depth, level):
             cells = []
             for s in range(n):
                 c = cell(specimen, s, 'death' if s < deaths else 'turn_cap',
-                         max_depth=depth, cap=100000)
+                         max_depth=depth, cap=100000, turn=100000)
                 c['final']['max_level'] = level
                 c['profile'] = profile
                 cells.append(c)
             return ({'experiment': {'name': specimen, 'suites': ['classes-1800']},
                      'run_id': 'r1', 'completed': '2026-11-09 00:00 UTC'}, cells, None)
 
-        runs = [arm('4.2.6', 'default', 640, 1600, 2, 4),
+        runs = [arm('4.2.6', 'default', 640, 1600, 2, 5),
                 arm('4.2.6-rs-stalled', 'default', 200, 1600, 1, 1),
-                arm('4.2.6-rs-progress', 'default', 600, 1600, 2, 4),
-                arm('4.2.6-rs-survivor', 'default', 200, 1600, 2, 4)]
+                arm('4.2.6-rs-progress', 'default', 600, 1600, 2, 5),
+                arm('4.2.6-rs-survivor', 'default', 200, 1600, 2, 5)]
         specs = cat_mod.catalogue()['specimens']['specimens']
         specs = dict(specs)
         specs['4.2.6-rs-stalled'] = {'kind': 'borg-rs', 'impl': 'rust', 'ref': 'a' * 40}
@@ -756,7 +756,7 @@ class LandingTest(unittest.TestCase):
         self.assertIn('not one controlled comparison', card)  # cross-run caveat (#38 S1)
         self.assertIn('classes-1800 · 2026-11-09 00:00 UTC', card)  # run/suite/date per row (S2)
         self.assertIn('most finished cells', card)  # not "newest" (S3)
-        self.assertIn('Depth + level', card)
+        self.assertIn('CL5 by 100,000', card)
         self.assertIsNone(landing.card_exemplars([]))
 
         # the munchkin tab reads the same runs under the explicit munchkin profile
@@ -877,7 +877,7 @@ class LandingTest(unittest.TestCase):
         specs = cat_mod.catalogue()['specimens']['specimens']
         points, entries = landing.exemplar_points(runs, specs, landing.DEFAULT_POLICY)
         section = landing.turn_snapshots_section(entries)
-        self.assertIn('Progress over turns', section)
+        self.assertIn('Depth and level over turns', section)
         for turn in ('25,000', '50,000', '75,000', '100,000'):
             self.assertIn(turn, section)
         self.assertIn('class-cell', section)
@@ -1264,6 +1264,33 @@ class StatsTest(unittest.TestCase):
         self.assertEqual(rows, [{'fraction': 1.0, 'turn': 50, 'n': 3, 'score': 6}])  # sorted 2,6,21 -> median 6
         self.assertEqual(stats.milestone_progress_score([cell('a', 1, 'turn_cap')], fractions=(1.0,)),
                          [{'fraction': 1.0, 'turn': None, 'n': 0, 'score': None}])
+
+    def test_cl5_uses_evidence_at_the_cutoff_and_records_unknowns(self):
+        at_cap = cell('a', 1, 'turn_cap', turn=100_000, cap=100_000)
+        early_death = cell('a', 2, 'death', turn=30_000)
+        early_death['final']['max_level'] = 4
+        later_death = dict(cell('a', 3, 'death', turn=90_000),
+                           first_turn_at_level={'5': 50_000})
+        after_cap = dict(cell('a', 4, 'turn_cap', turn=200_000, cap=200_000),
+                         first_turn_at_level={'5': 100_001})
+        timeout = dict(cell('a', 5, 'wall_timeout', turn=40_000),
+                       first_turn_at_level={'5': 10_000})
+        short = cell('a', 6, 'turn_cap', turn=20_000)
+        short['final']['max_level'] = 4
+        drained = dict(at_cap, harness_kind='borg-rs', final={'turn': 100_000, 'max_level': 4})
+        after_key = dict(at_cap, final={'turn': 100_005, 'max_level': 5})
+        self.assertEqual([stats.cl5_reached(c) for c in
+                          (at_cap, early_death, later_death, after_cap, timeout, short,
+                           drained, after_key)],
+                         [True, False, True, False, True, None, None, None])
+        self.assertTrue(stats.cl5_reached(dict(drained, first_turn_at_level={'5': 100_000})))
+        self.assertIsNone(stats.cl5_reached(dict(at_cap, outcome='config_error')))
+        summary = stats.arm_summary([at_cap, early_death, later_death, timeout, short])
+        self.assertEqual((summary['cl5_reached'], summary['cl5_known'], summary['cl5_alive']),
+                         (3, 4, 1))
+        paired = stats.paired([dict(timeout, seed=1), dict(short, seed=2)],
+                              [at_cap, early_death])
+        self.assertEqual((paired['pairs'], paired['cl5_pairs'], paired['cl5_gained']), (1, 1, 0))
 
     def test_wilson_and_mcnemar(self):
         lo, hi = stats.wilson(0, 10)

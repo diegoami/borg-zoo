@@ -704,7 +704,9 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         'played_race': summary.get('race'), 'played_class': summary.get('class'),
         'final': {'kind': summary.get('stop_reason'), 'turn': summary.get('game_turns'),
                   'depth': summary.get('depth'), 'max_depth': summary.get('max_depth'),
-                  'level': summary.get('clevel'), 'max_level': summary.get('clevel'),
+                  'level': summary.get('clevel'),
+                  'max_level': summary.get('max_clevel', summary.get('clevel')),
+                  'max_level_verified': summary.get('max_clevel') is not None,
                   'hp': None, 'decisions': None, 'keys': summary.get('keys')},
         'first_turn_at_depth': first_turns_at_depth(states) if states else {},
         # borg-zoo#718: time at a level and depth, for a death rate per turn of exposure; {} without a state log.
