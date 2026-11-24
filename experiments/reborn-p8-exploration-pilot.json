@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-p8-exploration-pilot",
+  "issue": 754,
+  "definition": "definitions/reborn-p8-exploration-pilot.yaml",
+  "question": "Does turning breadth-first or mixed exploration off individually improve P8 progress without increasing early deaths?",
+  "description": "Does turning breadth-first or mixed exploration off individually improve P8 progress without increasing early deaths? Generated from definitions/reborn-p8-exploration-pilot.yaml: 3 arms on 4.2.6-reborn-rust-trackp-c5501d3c, suite classes-18.",
+  "prespecified": "Classes-18, normal world, 100,000 exact engine turns. Gate on 54 complete\ncells (18 paired birth tuples), one binary, GCC right-to-left order, zero\nconfiguration errors, and the intended resolved flags in each class:\nshipped 1/1, bfs0 0/1, nomixed 1/0. Check all abnormal outcomes before\nadvancing. The shipped borg.txt SHA-256 is\nc225c1802c2a8ea6f662a8b6ea9a98826fd1f8ef4ff90f6b4841bae486ca6bdd.\nKeep the shipped settings, world, compiler and birth tuples paired.\nIf the gate passes, read the first 900 classes-1800 starts through the\nsmall, medium and big gates, pairing each single override against shipped.\nSafety: all deaths and deaths at CL <= 2, rescued/newly killed, cause,\nCL/DL at death, and unfinished outcomes with reasons. Primary progress\n(#758): first attainment of CL5 or higher by 100,000 turns inclusive.\nInclude attainment before death or interruption. An unfinished start\nwith no verified attainment has unknown progress. Report coverage and\ncount paired effects on identifiable pairs. Report alive at cap with CL5\nseparately. DL3/DL5 arrivals and arrival turns, CL at 25k/50k/100k and\nCL/DL exposure are secondary. Report overall, by class and by tier.\nReused starts are descriptive. Confirm a selected\ndefault on unopened starts. Consider a both-off arm only if the single\noverrides leave a concrete interaction. The P8 release comparison is #756.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-c5501d3c"
+  ],
+  "profiles": [
+    "reborn-p8-exploration-shipped",
+    "reborn-p8-exploration-bfs0",
+    "reborn-p8-exploration-nomixed"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-c5501d3c",
+  "control_profile": "reborn-p8-exploration-shipped",
+  "retain_evidence": true
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-p8-exploration-big",
+  "issue": 754,
+  "definition": "definitions/reborn-p8-exploration-big.yaml",
+  "question": "Does turning breadth-first or mixed exploration off individually improve P8 progress without increasing early deaths?",
+  "description": "Does turning breadth-first or mixed exploration off individually improve P8 progress without increasing early deaths? Generated from definitions/reborn-p8-exploration-big.yaml: 3 arms on 4.2.6-reborn-rust-trackp-c5501d3c, suite classes-1800-big.",
+  "prespecified": "Use the disjoint classes-1800 big slice only after the preceding gate\npasses and the owner agrees. Check the specimen, all three applied profiles,\nidentical birth tuples across arms, and record all abnormal outcomes.\nPair bfs0 and nomixed individually against shipped. Read cumulatively with\nearlier non-pilot slices through start 900. Read safety and progress as\ndefined in reborn-p8-exploration-pilot. Results are descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-c5501d3c"
+  ],
+  "profiles": [
+    "reborn-p8-exploration-shipped",
+    "reborn-p8-exploration-bfs0",
+    "reborn-p8-exploration-nomixed"
+  ],
+  "suites": [
+    "classes-1800-big"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-c5501d3c",
+  "control_profile": "reborn-p8-exploration-shipped"
+}
