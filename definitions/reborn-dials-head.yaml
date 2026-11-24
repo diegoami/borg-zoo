@@ -1,0 +1,47 @@
+# borg-zoo#769: dial sweep of the shipped numbers at track-p c5501d3c (escape_phase_lost_danger_percent 50 first among the dials). Write the catalogue entries with: python3 -m zoo define definitions/reborn-dials-head.yaml
+name: reborn-dials-head
+issue: 769
+question: >-
+  At track-p c5501d3c, which shipped numeric parameters change play and progress when moved, and which of those are worth a ladder?
+tier: pilot            # classes-18, one dial per arm, normal world, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-c5501d3c-pw
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-dials
+arms:
+  ctl: {}
+  phase_lost50: {borg_param_escape_phase_lost_danger_percent: 50}
+  walkfail15: {borg_param_caution_walk_away_phase_fail: 15}
+  walkfail60: {borg_param_caution_walk_away_phase_fail: 60}
+  phasetol10: {borg_param_escape_phase_tolerance: 10}
+  kos30: {borg_param_attack_kill_on_sight_min_hp_percent: 30}
+  kos70: {borg_param_attack_kill_on_sight_min_hp_percent: 70}
+  hold0: {borg_param_item_test_unknown_hold_turns: 0}
+  hold360: {borg_param_item_test_unknown_hold_turns: 360}
+  testhp30: {borg_param_item_test_unknown_min_hp_percent: 30}
+  mixr2: {borg_param_explore_mix_radius: 2}
+  mixr5: {borg_param_explore_mix_radius: 5}
+  mixstep1: {borg_param_explore_mix_step: 1}
+  mixcl30: {borg_param_explore_mix_max_clevel: 30}
+  leash15: {borg_param_flow_leash_recall_steps: 15}
+  leash60: {borg_param_flow_leash_recall_steps: 60}
+  leashlvl8: {borg_param_flow_leash_recall_max_level: 8}
+  stairsteps10: {borg_param_flow_leash_unknown_stair_steps: 10}
+  scumhp10: {borg_param_stair_scum_max_hp: 10}
+  scumratio1: {borg_param_stair_scum_speed_ratio: 1}
+  trapdis25: {borg_param_trap_disarm_min_percent: 25}
+  trapnear4: {borg_param_trap_leave_near_count: 4}
+  prep4: {borg_param_town_prepared_percent: 4}
+  prep16: {borg_param_town_prepared_percent: 16}
+control: [ctl]
+owner_authorization: >-
+  2026-11-24: zoo owner, "escape_phase_lost_danger_percent 50 and other numbers is something worth exploring" (borg-zoo#769).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-24, before any result (Rule 22, #758). Pilot classes-18, 100,000 turns, one dial per arm against ctl, shipped values otherwise, evidence not retained. Out of scope: caution_walk_away_immobile 0 (owner: NEVER, the index row), on/off switches already measured by their studies, and the #1149 dear-row percents (untouched until #745's re-pin read lands). Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics. Report per arm against ctl: the CL5 endpoint, deaths and causes, paired CL5 and deaths (exact McNemar over pairs known in both arms), identical plays. A dial that plays ctl's keys was not exercised and gets no ladder. Exercised dials go to ladders one at a time on the owner's word (RULES 14). Descriptive.

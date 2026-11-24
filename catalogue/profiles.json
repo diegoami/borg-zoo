@@ -13551,6 +13551,301 @@
         "borg_param_town_prepared_neutralize_percent": 0,
         "borg_param_town_prepared_dear_after_recall": 0
       }
+    },
+    "reborn-guardsinv-ship": {
+      "description": "borg-zoo#771 (reborn-guards-inv.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-guardsinv-guardsoff": {
+      "description": "borg-zoo#771 (reborn-guards-inv.yaml): arm guardsoff.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_retreat_reentry_ticks": 0,
+        "borg_param_caution_retreat_oscillation_limit": 0
+      }
+    },
+    "reborn-guardsinv-nohold": {
+      "description": "borg-zoo#771 (reborn-guards-inv.yaml): arm nohold.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_retreat_reentry_ticks": 0
+      }
+    },
+    "reborn-guardsinv-noosc": {
+      "description": "borg-zoo#771 (reborn-guards-inv.yaml): arm noosc.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_retreat_oscillation_limit": 0
+      }
+    },
+    "reborn-guardsinv-walkoff": {
+      "description": "borg-zoo#771 (reborn-guards-inv.yaml): arm walkoff.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_walk_away_immobile": 0,
+        "borg_param_caution_retreat_reentry_ticks": 0,
+        "borg_param_caution_retreat_oscillation_limit": 0
+      }
+    },
+    "reborn-usc-ship": {
+      "description": "borg-zoo#770 (reborn-usc.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-usc-unknown0": {
+      "description": "borg-zoo#770 (reborn-usc.yaml): arm unknown0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_unknown_scary": 0
+      }
+    },
+    "reborn-dials-ctl": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-dials-phase_lost50": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm phase_lost50.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_lost_danger_percent": 50
+      }
+    },
+    "reborn-dials-walkfail15": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm walkfail15.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_walk_away_phase_fail": 15
+      }
+    },
+    "reborn-dials-walkfail60": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm walkfail60.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_caution_walk_away_phase_fail": 60
+      }
+    },
+    "reborn-dials-phasetol10": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm phasetol10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_escape_phase_tolerance": 10
+      }
+    },
+    "reborn-dials-kos30": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm kos30.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_kill_on_sight_min_hp_percent": 30
+      }
+    },
+    "reborn-dials-kos70": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm kos70.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_attack_kill_on_sight_min_hp_percent": 70
+      }
+    },
+    "reborn-dials-hold0": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm hold0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_item_test_unknown_hold_turns": 0
+      }
+    },
+    "reborn-dials-hold360": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm hold360.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_item_test_unknown_hold_turns": 360
+      }
+    },
+    "reborn-dials-testhp30": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm testhp30.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_item_test_unknown_min_hp_percent": 30
+      }
+    },
+    "reborn-dials-mixr2": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm mixr2.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_mix_radius": 2
+      }
+    },
+    "reborn-dials-mixr5": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm mixr5.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_mix_radius": 5
+      }
+    },
+    "reborn-dials-mixstep1": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm mixstep1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_mix_step": 1
+      }
+    },
+    "reborn-dials-mixcl30": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm mixcl30.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_explore_mix_max_clevel": 30
+      }
+    },
+    "reborn-dials-leash15": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm leash15.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_recall_steps": 15
+      }
+    },
+    "reborn-dials-leash60": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm leash60.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_recall_steps": 60
+      }
+    },
+    "reborn-dials-leashlvl8": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm leashlvl8.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_recall_max_level": 8
+      }
+    },
+    "reborn-dials-stairsteps10": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm stairsteps10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_flow_leash_unknown_stair_steps": 10
+      }
+    },
+    "reborn-dials-scumhp10": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm scumhp10.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_max_hp": 10
+      }
+    },
+    "reborn-dials-scumratio1": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm scumratio1.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_stair_scum_speed_ratio": 1
+      }
+    },
+    "reborn-dials-trapdis25": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm trapdis25.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_trap_disarm_min_percent": 25
+      }
+    },
+    "reborn-dials-trapnear4": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm trapnear4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_trap_leave_near_count": 4
+      }
+    },
+    "reborn-dials-prep4": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm prep4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_prepared_percent": 4
+      }
+    },
+    "reborn-dials-prep16": {
+      "description": "borg-zoo#769 (reborn-dials-head.yaml): arm prep16.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_prepared_percent": 16
+      }
+    },
+    "reborn-guardsinvb-ship": {
+      "description": "borg-zoo#771 (reborn-guards-inv-breeders.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8"
+      }
+    },
+    "reborn-guardsinvb-guardsoff": {
+      "description": "borg-zoo#771 (reborn-guards-inv-breeders.yaml): arm guardsoff.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_caution_retreat_reentry_ticks": 0,
+        "borg_param_caution_retreat_oscillation_limit": 0
+      }
+    },
+    "reborn-guardsinvb-nohold": {
+      "description": "borg-zoo#771 (reborn-guards-inv-breeders.yaml): arm nohold.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_caution_retreat_reentry_ticks": 0
+      }
+    },
+    "reborn-guardsinvb-noosc": {
+      "description": "borg-zoo#771 (reborn-guards-inv-breeders.yaml): arm noosc.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_caution_retreat_oscillation_limit": 0
+      }
+    },
+    "reborn-guardsinvb-walkoff": {
+      "description": "borg-zoo#771 (reborn-guards-inv-breeders.yaml): arm walkoff.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "breeders-x8",
+        "borg_param_caution_walk_away_immobile": 0,
+        "borg_param_caution_retreat_reentry_ticks": 0,
+        "borg_param_caution_retreat_oscillation_limit": 0
+      }
     }
   }
 }
