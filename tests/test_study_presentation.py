@@ -61,7 +61,8 @@ class StudyPresentationTest(unittest.TestCase):
         meta=self.meta();meta['experiment']['name']='unrelated'
         self.assertEqual(site.tested_settings(meta),'')
         self.assertEqual(site.study_summary(meta,[],'s'),'')
-        self.assertIn('pinned · rs-joint-risk2000',site.arm_label(meta,'pinned','rs-joint-risk2000'))
+        self.assertIn('rs-joint-risk2000', site.arm_label(meta, 'pinned', 'rs-joint-risk2000'))
+        self.assertNotIn('pinned · ', site.arm_label(meta, 'pinned', 'rs-joint-risk2000'))  # one version: profile alone (owner, 2026-11-24)
 
     def test_detailed_page_lists_every_run_with_its_issue(self):
         from zoo import landing

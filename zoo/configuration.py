@@ -106,7 +106,7 @@ def summary(meta):
                 details += ' Class-specific overrides apply; inspect the selected game for its applied profile.'
             rows.append(f'<tr><td>{esc(specimen)}</td><td>{esc(names[profile])}</td><td>{esc(details)}</td></tr>')
     fixed_text = '; '.join(explain(k, profiles[next(iter(profiles))].get(k)) for k in fixed) if profiles else ''
-    return ('<section class="card"><h2>Configurations compared</h2>'
+    return ('<section class="card"><details class="fold"><summary>Configurations compared</summary>'
         '<p><a href="configurations/index.html"><strong>View borg.txt for any game</strong></a> '
         '— choose a seed and arm to inspect, copy or download its original file.</p>'
         '<p>Requested profile overrides, the actual file, and native-reported effective settings are separate evidence. '
@@ -115,7 +115,7 @@ def summary(meta):
         + ''.join(rows) + '</table></div>'
         + '<details><summary>Settings held fixed in the recorded profiles</summary><p>'
         + esc(fixed_text or 'No common explicit overrides recorded; build defaults remain unspecified.')
-        + '</p></details><p>Pack slack 0 means wait until the pack is full. Unknown stacks 0 disables learning-driven returns.</p></section>')
+        + '</p></details><p>Pack slack 0 means wait until the pack is full. Unknown stacks 0 disables learning-driven returns.</p></details></section>')
 
 
 def explain(key, value):

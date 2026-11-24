@@ -132,8 +132,38 @@ class ReportShowsDefinitionTest(unittest.TestCase):
     def test_provenance_links_issue_and_embeds_the_yaml(self):
         from zoo import site
         html = site.provenance_line({'name': 'reborn-heal-pilot'})
-        self.assertIn('borg-zoo issue #151', html)
         self.assertIn('definitions/reborn-heal-pilot.yaml', html)
-        self.assertIn('<details class="definition" open>', html)
+        self.assertIn('<details class="definition">', html)  # closed by default (owner, 2026-11-24)
         self.assertIn('caution_heal_when_outmatched', html)  # the YAML itself, not just a link
         self.assertEqual(site.provenance_line({'name': 'no-such-experiment'}), '')
+        facts = site.header_facts({'name': 'reborn-heal-pilot', 'issue': 151,
+                                   'specimens': [], 'profiles': [], 'suites': []},
+                                  {'suites': {}, 'specimens': {}, 'profiles': {}})
+        self.assertIn('borg-zoo #151', facts)  # the ticket moved to the header facts (owner, 2026-11-24)
+        self.assertIn('Samples</dt>', facts)
+        self.assertIn('Arms</dt>', facts)
+        self.assertIn('World type</dt>', facts)
+        self.assertIn('Build</dt>', facts)
+
+    def test_question_title_compresses_the_owner_format(self):
+        from zoo import site
+        q = ('On track-p 13151fb5, what do the dear-cure rows (#1134: Cure Critical Wounds copies '
+             'and the poison remedy at 40 percent) change in deaths and progress, switched off?')
+        self.assertEqual(
+            site.question_title({'question': q, 'name': 'x'}),
+            'Cure Critical Wounds copies and the poison remedy at 40 percent.')
+        self.assertEqual(site.subject_mode({'question': q}),
+                         'Dear-cure rows, switched on and off.')
+        self.assertEqual(site.subject_mode({'question': 'Free-form wording?', 'name': 'x'}), None)
+        self.assertEqual(site.question_title({'question': 'Free-form wording?', 'name': 'x'}),
+                         'Free-form wording?')  # other shapes fall back to the question
+        self.assertEqual(site.question_title({'name': 'reborn-x'}), 'reborn-x')
+        both = site.header_facts({'name': 'x', 'issue': 750,
+                                  'question': 'On track-p 13151fb5, what do the dear-cure rows '
+                                              '(#1134: Cure Critical Wounds copies) change in deaths '
+                                              'and progress, switched off?',
+                                  'specimens': ['s'], 'profiles': ['p'], 'suites': []},
+                                 {'suites': {}, 'specimens': {'s': {'repository': 'diegoami/borg-reborn-rs'}},
+                                  'profiles': {}})
+        self.assertIn('borg-zoo #750', both)
+        self.assertIn('borg-reborn-rs #1134', both)  # both tickets, zoo first (owner, 2026-11-24)
