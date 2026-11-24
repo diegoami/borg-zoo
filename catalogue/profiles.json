@@ -13601,6 +13601,88 @@
         "borg_param_town_prepared_neutralize_percent": 0,
         "borg_param_town_prepared_dear_after_recall": 0
       }
+    },
+    "reborn-dc2-pre1134": {
+      "description": "borg-zoo#744 (reborn-dc2-pilot.yaml): arm pre1134.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_prepared_poison_percent": 0,
+        "borg_param_town_prepared_neutralize": 0,
+        "borg_param_town_prepared_neutralize_percent": 0,
+        "borg_param_town_prepared_ccw": 0,
+        "borg_param_town_prepared_ccw_percent": 0,
+        "borg_param_town_prepared_dear_after_recall": 0
+      }
+    },
+    "reborn-dc2-ship": {
+      "description": "borg-zoo#744 (reborn-dc2-pilot.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-dc2-nogate": {
+      "description": "borg-zoo#744 (reborn-dc2-pilot.yaml): arm nogate.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_prepared_dear_after_recall": 0
+      }
+    },
+    "reborn-dc2-m1135": {
+      "description": "borg-zoo#744 (reborn-dc2-pilot.yaml): arm m1135.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_prepared_poison_percent": 40,
+        "borg_param_town_prepared_neutralize": 0,
+        "borg_param_town_prepared_neutralize_percent": 0,
+        "borg_param_town_prepared_dear_after_recall": 0
+      }
+    },
+    "reborn-dc2-ps8-pre1134": {
+      "description": "borg-zoo#744 (reborn-dc2-ps8-pilot.yaml): arm pre1134.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8",
+        "borg_param_town_prepared_poison_percent": 0,
+        "borg_param_town_prepared_neutralize": 0,
+        "borg_param_town_prepared_neutralize_percent": 0,
+        "borg_param_town_prepared_ccw": 0,
+        "borg_param_town_prepared_ccw_percent": 0,
+        "borg_param_town_prepared_dear_after_recall": 0
+      }
+    },
+    "reborn-dc2-ps8-ship": {
+      "description": "borg-zoo#744 (reborn-dc2-ps8-pilot.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8"
+      }
+    },
+    "reborn-dc2-ps8-nogate": {
+      "description": "borg-zoo#744 (reborn-dc2-ps8-pilot.yaml): arm nogate.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8",
+        "borg_param_town_prepared_dear_after_recall": 0
+      }
+    },
+    "reborn-dc2-ps8-m1135": {
+      "description": "borg-zoo#744 (reborn-dc2-ps8-pilot.yaml): arm m1135.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_world": "poison-x8",
+        "borg_param_town_prepared_poison_percent": 40,
+        "borg_param_town_prepared_neutralize": 0,
+        "borg_param_town_prepared_neutralize_percent": 0,
+        "borg_param_town_prepared_dear_after_recall": 0
+      }
     }
   }
 }

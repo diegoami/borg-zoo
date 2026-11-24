@@ -1,0 +1,37 @@
+# borg-zoo#744: the dear-cure rows of borg-reborn-rs PR #1149 on c5501d3c (poison-x8), pilot tier (classes-18). Write the catalogue entries with: python3 -m zoo define definitions/reborn-dc2-ps8-pilot.yaml
+name: reborn-dc2-ps8-pilot
+issue: 744
+question: >-
+  On borg-reborn-rs PR #1149 (c5501d3c, poison-x8), what do the dear-cure rows (Neutralize Poison, Cure Critical Wounds, the Recall gate) change in purchases per game, in the staples bought and in deaths, against the play before #1134, the same rows without the Recall gate, and what track-p ships after #1135?
+tier: pilot            # classes-18, poison-x8, 100,000 turns
+pilot: true            # first run of these arms on this specimen (RULES 16)
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-c5501d3c-pw
+  repository: diegoami/borg-reborn-rs
+  ref: c5501d3c5aeac2449fc47ed6ca6efe2fbafdd894
+  label: "borg-reborn-rs track-p at the #1149 merge c5501d3c on 2026-11-23 (#1149 PR head 8aa716cd, after merging track-p #945/#947/#1148/#1161); world poison-x8 pinned (fb86c333...); shipped harness/borg.txt c225c180..., scary_monsters.txt 5a4ec4b6..., borg-rs core. track-p also ships caution_walk_away_immobile 1 (#1148) in every arm."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+  worlds:
+    poison-x8: fb86c333c80e048da19e68e7e15efc63df49134f91124ecb5168165558e5de0d
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-dc2-ps8
+arms:
+  pre1134: {borg_world: poison-x8, borg_param_town_prepared_poison_percent: 0, borg_param_town_prepared_neutralize: 0, borg_param_town_prepared_neutralize_percent: 0, borg_param_town_prepared_ccw: 0, borg_param_town_prepared_ccw_percent: 0, borg_param_town_prepared_dear_after_recall: 0}
+  ship: {borg_world: poison-x8}
+  nogate: {borg_world: poison-x8, borg_param_town_prepared_dear_after_recall: 0}
+  m1135: {borg_world: poison-x8, borg_param_town_prepared_poison_percent: 40, borg_param_town_prepared_neutralize: 0, borg_param_town_prepared_neutralize_percent: 0, borg_param_town_prepared_dear_after_recall: 0}
+control: [pre1134]
+owner_authorization: >-
+  2026-11-23: zoo owner, "3 yes" (a zoo request for the dear-cure settings); "40 just Neutralize Poison" (borg-zoo#744). 2026-11-24: zoo owner, "start them all"; re-pinned to c5501d3c on the 2026-11-23 21:37 note that #1149 merged into track-p there (ship is upstream's shipped play from that commit), after the d96cc8de pilots' gates were read and passed.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-24, as the re-pin of the #744 pilots to track-p c5501d3c (#1149 merged there; the d96cc8de gates passed with every arm exercised: normal world ship 15, m1135 11, nogate 11 of 18 plays differing from pre1134; poison-x8 ship 17, m1135 14, nogate 14, 0 deaths anywhere). Four arms on c5501d3c (poison-x8): pre1134 (all dear-cure rows 0, the play before #1134), ship (PR #1149 as shipped: neutralize 2 at 40 percent, ccw 2 at 112 percent, dear_after_recall 1), nogate (ship with dear_after_recall 0), m1135 (what track-p ships after #1135: shared poison row at 40, neutralize 0, ccw 2 at 112, dear_after_recall 0). Pilot tier: classes-18, 100,000 turns, one binary, evidence retained.
+  Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; stalls and wall timeouts apart; identical plays per arm (an arm that plays pre1134's keys was not exercised). Report per arm and per class: purchases per game of Cure Critical Wounds and Neutralize Poison, and of the staples as a guard (Word of Recall, Cure Light Wounds, Cure Serious Wounds, Phase Door, flasks of oil, light, food), deaths and deaths by poison, gold at death, CL and depth at death, Recall carried when leaving town past DL2. Descriptive (RULES 14).
