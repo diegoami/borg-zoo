@@ -144,3 +144,24 @@ class ReportShowsDefinitionTest(unittest.TestCase):
         self.assertIn('Arms</dt>', facts)
         self.assertIn('World type</dt>', facts)
         self.assertIn('Build</dt>', facts)
+
+    def test_question_title_compresses_the_owner_format(self):
+        from zoo import site
+        q = ('On track-p 13151fb5, what do the dear-cure rows (#1134: Cure Critical Wounds copies '
+             'and the poison remedy at 40 percent) change in deaths and progress, switched off?')
+        self.assertEqual(
+            site.question_title({'question': q, 'name': 'x'}),
+            'track-p 13151fb5, #1134: dear-cure rows, switched off, '
+            'Cure Critical Wounds copies and the poison remedy at 40 percent.')
+        self.assertEqual(site.question_title({'question': 'Free-form wording?', 'name': 'x'}),
+                         'Free-form wording?')  # other shapes fall back to the question
+        self.assertEqual(site.question_title({'name': 'reborn-x'}), 'reborn-x')
+        both = site.header_facts({'name': 'x', 'issue': 750,
+                                  'question': 'On track-p 13151fb5, what do the dear-cure rows '
+                                              '(#1134: Cure Critical Wounds copies) change in deaths '
+                                              'and progress, switched off?',
+                                  'specimens': ['s'], 'profiles': ['p'], 'suites': []},
+                                 {'suites': {}, 'specimens': {'s': {'repository': 'diegoami/borg-reborn-rs'}},
+                                  'profiles': {}})
+        self.assertIn('borg-zoo #750', both)
+        self.assertIn('borg-reborn-rs #1134', both)  # both tickets, zoo first (owner, 2026-11-24)

@@ -1,6 +1,7 @@
 """Static statistics site generated from the results tree."""
 import gzip
 import html
+import re
 import json
 import shutil
 from functools import lru_cache
@@ -186,12 +187,7 @@ OUTCOME_COLS = [
     ('Median max level', 'The middle value of the highest character level reached. A diagnostic.'),
     ('Median death turn', 'The middle engine turn at which the dying runs died. Lower means earlier deaths.'),
     ('Death rate', 'Deaths divided by finished runs.'),
-    ('Death rate range', 'The 95% range (Wilson interval) for the death rate: with this many seeds, the true '
-                         'rate most likely lies in it. Two versions whose ranges overlap widely may not differ.'),
-    ('CL5 range', 'Wilson 95% interval for CL5 attainment.'),
     ('Alive at 100,000 with CL5', 'Count known to have reached CL5 and still be alive at turn 100,000.'),
-    ('CL5 known / runs', 'Number with known attainment out of all starts. Shorter and interrupted runs '
-                         'without enough evidence are unknown.'),
     ('Other outcomes', 'Runs with no endpoint, by kind: stalled (game time stopped advancing), wall_timeout '
                        '(out of real time), crash, harness_failure, config_error (the settings did not take '
                        'effect). Never counted as deaths.'),
@@ -709,11 +705,47 @@ def world_type(exp, snapshot):
     return ' · '.join(dict.fromkeys(worlds))
 
 
+QUESTION_RE = re.compile(r'On (?P<pin>[^,]+), what do (?:the )?(?P<subject>[^(]+?) '
+                          r'\((?P<ref>[^:)]+): (?P<detail>[^)]+)\) change[^,]*, (?P<mode>[^?]+)\?')
+
+
+def question_title(exp):
+    """The question compressed to a title: pin, tracker ref, subject, mode, detail
+    (owner, 2026-11-24). Falls back to the question verbatim when it has another shape."""
+    q = exp.get('question') or ''
+    m = QUESTION_RE.match(q)
+    if not m:
+        return q or exp.get('name', '')
+    return (f"{m['pin']}, {m['ref']}: {m['subject'].strip()}, {m['mode'].strip()}, "
+            f"{m['detail'].strip()}.")
+
+
+def upstream_ticket(exp, snapshot):
+    """The upstream tracker reference the question names — "(#1134: ...)" —
+    linked to the specimens' repository (owner, 2026-11-24: both tickets in the header)."""
+    m = QUESTION_RE.match(exp.get('question') or '')
+    if not m:
+        return None
+    num = m['ref'].lstrip('#').strip()
+    if not num.isdigit():
+        return None
+    repo = next((snapshot['specimens'].get(s, {}).get('repository', '')
+                 for s in exp['specimens']
+                 if snapshot['specimens'].get(s, {}).get('repository')), '')
+    if not repo:
+        return None
+    return f'<a href="https://github.com/{esc(repo)}/issues/{num}">{esc(repo.split("/")[-1])} #{num}</a>'
+
+
 def header_facts(exp, snapshot):
     """The compact facts block heading every report (owner, 2026-11-24): ticket
     reference, samples, arms, world type, and the build, prominently."""
     issue = cat_mod.issue_of(exp)
-    ticket = f'<a href="{cat_mod.ISSUES_URL}{issue}">borg-zoo #{issue}</a>' if issue else '–'
+    refs = [f'<a href="{cat_mod.ISSUES_URL}{issue}">borg-zoo #{issue}</a>'] if issue else []
+    up = upstream_ticket(exp, snapshot)
+    if up:
+        refs.append(up)
+    ticket = ' · '.join(refs) if refs else '–'
     n_arms = len(exp['specimens']) * len(exp['profiles'])
     suite_lines = []
     for name in exp['suites']:
@@ -779,7 +811,7 @@ def run_page(meta, cells):
     display = study_info(meta)
     page_title = display['title'] if display else exp['name']
     intro = display['intro'] if display else exp.get('description', '')
-    header_title = display['title'] if display else (exp.get('question') or exp['name'])
+    header_title = display['title'] if display else question_title(exp)
     parts = [f'<p><a href="../../index.html">All experiments</a></p>',
              f'<h1>{esc(header_title)}</h1>',
              header_facts(exp, meta['catalogue']),
@@ -828,9 +860,7 @@ def run_page(meta, cells):
               r['summary']['deaths'], pct(r['summary']['cl5_rate']),
               num(r['summary']['median_max_depth']), num(r['summary']['median_max_level']),
               num(r['summary']['median_death_turn']),
-              pct(r['summary']['death_rate']), ci(r['summary']['death_ci']),
-              ci(r['summary']['cl5_ci']), r['summary']['cl5_alive'],
-              f'{r["summary"]["cl5_known"]:,} / {r["summary"]["cells"]:,}',
+              pct(r['summary']['death_rate']), r['summary']['cl5_alive'],
               esc(', '.join(f'{k} {v}' for k, v in r['summary']['counts'].items()
                             if v and k not in stats.VALID)) or '–']
              for r in rows]))
