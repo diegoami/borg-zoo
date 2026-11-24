@@ -36,7 +36,11 @@
       status('Checking original file SHA-256…');
       const fileResponse = await fetch(cell.file);
       if (!fileResponse.ok) throw new Error('Original file could not be downloaded');
-      const raw = new Uint8Array(await fileResponse.arrayBuffer());
+      let raw = new Uint8Array(await fileResponse.arrayBuffer());
+      if (cell.file.endsWith('.gz')) {
+        if (typeof DecompressionStream === 'undefined') throw new Error('This browser cannot inflate the gzipped original borg.txt; a current browser is needed.');
+        raw = new Uint8Array(await new Response(new Blob([raw]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer());
+      }
       const digest = [...new Uint8Array(await crypto.subtle.digest('SHA-256', raw))].map(x => x.toString(16).padStart(2, '0')).join('');
       if (ticket !== serial) return;
       if (digest !== cell.config_sha256) throw new Error('SHA-256 mismatch: refusing to display, copy or download these bytes');

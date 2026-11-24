@@ -1,3 +1,4 @@
+import gzip
 import hashlib
 import json
 import tempfile
@@ -30,7 +31,10 @@ class ConfigurationEvidenceTest(unittest.TestCase):
                     'catalogue': {'profiles': {'normal': cat['profiles']['normal']},
                                   'specimens': cat['specimens']['specimens']}}
             configuration.build_inspector(meta, [cell], root / 'results', root / 'site')
-            self.assertEqual((root / 'site/configurations' / (digest + '.txt')).read_bytes(), data)
+            # Published gzipped (the artifact crossed GitHub Pages' 1 GB deploy
+            # limit, owner 2026-11-24); the bytes inflate to the exact original.
+            published = gzip.decompress((root / 'site/configurations' / (digest + '.txt.gz')).read_bytes())
+            self.assertEqual(published, data)
             row = json.loads((root / 'site/configurations/games.json').read_text())['games'][0]
             self.assertEqual(row['requested_overrides'], {'borg_trip_pack_slack': 0})
             self.assertEqual(row['applied_profile'], 'class-specific')
