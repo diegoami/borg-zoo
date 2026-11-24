@@ -130,3 +130,17 @@
     RULES 14) before any shipped value changes. A ticket that names no world is
     answered with a comment asking for one; the zoo runs the normal world
     meanwhile and does not invent a world.
+22. **Early-game progress is CL5 reached by 100,000 engine turns**
+    (owner, 2026-11-24, [#758](https://github.com/diegoami/borg-zoo/issues/758)).
+    Use this primary progress endpoint in new early-game study definitions,
+    tier reads, paired comparisons and the site. A character that reaches
+    level 5 at or before turn 100,000 counts even if it later dies or stops.
+    Report deaths, unfinished outcomes and alive at 100,000 with CL5
+    separately. Keep dungeon depth and arrival times as diagnostics.
+    Report known attainment out of all starts and compare only pairs whose
+    attainment is known in both arms. Use recorded level evidence at or before
+    the cutoff. Report unknown status when the record cannot establish the
+    outcome, including when the only evidence is a terminal level recorded
+    after 100,000. Regenerate historical reports from retained cells where
+    possible. Label recalculated figures retrospective and preserve the
+    original prespecified endpoints and stored results.
