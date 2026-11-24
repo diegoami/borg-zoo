@@ -1284,6 +1284,8 @@ class StatsTest(unittest.TestCase):
                            drained, after_key)],
                          [True, False, True, False, True, None, None, None])
         self.assertTrue(stats.cl5_reached(dict(drained, first_turn_at_level={'5': 100_000})))
+        self.assertIs(stats.cl5_reached(dict(drained, first_turn_at_level={},
+                                             turns_at_level_depth={'1,1': 100_000})), False)
         self.assertIsNone(stats.cl5_reached(dict(at_cap, outcome='config_error')))
         summary = stats.arm_summary([at_cap, early_death, later_death, timeout, short])
         self.assertEqual((summary['cl5_reached'], summary['cl5_known'], summary['cl5_alive']),

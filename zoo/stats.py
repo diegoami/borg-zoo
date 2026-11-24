@@ -76,8 +76,12 @@ def cl5_reached(cell):
     # character at the cap cannot establish a historical maximum on its own.
     has_maximum = maximum is not None and (
         cell.get('harness_kind') != 'borg-rs' or final.get('max_level_verified'))
+    # A run that stayed at its starting level has no attainment marks.
+    # The sibling exposure field distinguishes that from a missing level log.
+    has_timeline = bool(timeline) or (
+        'first_turn_at_level' in cell and bool(cell.get('turns_at_level_depth')))
     observed_to_cutoff = turn >= CL5_TURN_CAP or cell['outcome'] == 'death'
-    if observed_to_cutoff and ((has_maximum and maximum < 5) or timeline):
+    if observed_to_cutoff and ((has_maximum and maximum < 5) or has_timeline):
         return False
     return None
 
