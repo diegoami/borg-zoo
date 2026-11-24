@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-clspeed-p8",
+  "issue": 783,
+  "definition": "definitions/reborn-clspeed-p8.yaml",
+  "question": "In patches-x8 at track-p c5501d3c, does scumming leaner (max HP 10, speed ratio 1) - or just the scum alarm off - reach CL5 by 100,000 turns faster while keeping deaths at 0?",
+  "description": "In patches-x8 at track-p c5501d3c, does scumming leaner (max HP 10, speed ratio 1) - or just the scum alarm off - reach CL5 by 100,000 turns faster while keeping deaths at 0? Generated from definitions/reborn-clspeed-p8.yaml: 3 arms on 4.2.6-reborn-rust-trackp-c5501d3c-pw, suite classes-18.",
+  "prespecified": "Fixed 2026-11-24, before any result (Rule 22, #758). Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics. SAFETY CONSTRAINT (the owner's word): deaths stay at 0, and scumming itself stays ON - the arms tune its parameters, none removes it (removing scumming outright would cost lives). An arm whose deaths rise cannot be adopted however fast it levels; the read states any death with its cause and a /death-report pack. Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm. Report per arm against ctl: the CL5 endpoint, paired CL5 gained/lost (exact McNemar), the turn of first reaching character level 5 where recorded (a direct speed read), deaths, identical plays. Descriptive (RULES 14); ladder on the owner's word.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-c5501d3c-pw"
+  ],
+  "profiles": [
+    "reborn-clspeedp8-ctl",
+    "reborn-clspeedp8-scumlean",
+    "reborn-clspeedp8-scumalarm0"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-c5501d3c-pw",
+  "control_profile": "reborn-clspeedp8-ctl",
+  "owner_authorization": "2026-11-24: zoo owner, \"since deaths are 0 pretty much almost everywhere we need more of these that improve CL faster keeping deaths to 0\" (borg-zoo#783).",
+  "retain_evidence": false
+}
