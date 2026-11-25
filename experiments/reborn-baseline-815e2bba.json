@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-baseline-815e2bba",
+  "issue": 794,
+  "definition": "definitions/reborn-baseline-815e2bba.yaml",
+  "question": "What does the shipped game play like at the current track-p head 815e2bba (the #1240 quiver-trimming merge, after #1234 and #1228): CL5 by 100,000 turns, deaths, level arrival - the anchor the next studies read against?",
+  "description": "What does the shipped game play like at the current track-p head 815e2bba (the #1240 quiver-trimming merge, after #1234 and #1228): CL5 by 100,000 turns, deaths, level arrival - the anchor the next studies read against? Generated from definitions/reborn-baseline-815e2bba.yaml: 1 arms on 4.2.6-reborn-rust-trackp-815e2bba, suite classes-18.",
+  "prespecified": "Fixed 2026-11-25, before any result (Rule 22, #758). Baseline description of the shipped settings at track-p 815e2bba: one arm (ship), classes-18, normal world, 100,000 turns, evidence not retained. The shipped game changed materially since the last measured pin 52fff0de (prepared_dl2_min_hp 30 to 0; the loop window shipped at 16/3; caution_rising_skip_held_stairs, defend_prep_mana_starved, recover_mana_rest_full_hp, attack_throw_surplus 1/100, explore_mix_depth_adjusted_level and light_first_cast_require_dark shipped on; desperate-caution keys shipped off; the item_test_unknown block removed) - this run describes the new shipped game and anchors future studies; it compares against nothing. Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and median first-turn-at-level-5 as diagnostics. Descriptive (RULES 14); the ladder (verysmall, small-rest, medium) is the owner's later call.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-815e2bba"
+  ],
+  "profiles": [
+    "reborn-baseline-815e2bba-ship"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-815e2bba",
+  "control_profile": "reborn-baseline-815e2bba-ship",
+  "owner_authorization": "2026-11-25: zoo owner, \"well I would like a normal run with the curren status on track-p\" (borg-zoo#794).",
+  "retain_evidence": false
+}
