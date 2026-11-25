@@ -14336,6 +14336,30 @@
         "borg_param_prepared_dl2_min_clevel__ranger": 0,
         "borg_param_prepared_dl2_min_clevel__blackguard": 0
       }
+    },
+    "reborn-baseline-242a4724-sandal4": {
+      "description": "borg-zoo#801 (reborn-baseline-242a4724-sandal.yaml): arm sandal4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_junk_inferior_sandal_ac_margin": 4
+      }
+    },
+    "reborn-baseline-242a4724-sandal_class": {
+      "description": "borg-zoo#801 (reborn-baseline-242a4724-sandal.yaml): arm sandal_class.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_junk_inferior_sandal_ac_margin__warrior": 4,
+        "borg_param_junk_inferior_sandal_ac_margin__paladin": 4,
+        "borg_param_junk_inferior_sandal_ac_margin__blackguard": 4,
+        "borg_param_junk_inferior_sandal_ac_margin__rogue": 4,
+        "borg_param_junk_inferior_sandal_ac_margin__ranger": 4,
+        "borg_param_junk_inferior_sandal_ac_margin__mage": 7,
+        "borg_param_junk_inferior_sandal_ac_margin__priest": 7,
+        "borg_param_junk_inferior_sandal_ac_margin__necromancer": 7,
+        "borg_param_junk_inferior_sandal_ac_margin__druid": 7
+      }
     }
   }
 }
