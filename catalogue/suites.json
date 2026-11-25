@@ -3251,6 +3251,21 @@
         ]
       },
       "saves": false
+    },
+    "classes-9-full-3m": {
+      "description": "The classes-9-full full-game starts (same seeds, classes and births) at a 3,000,000-turn cap: the continuation look for games that were alive at 1,000,000 (the first 1M replays identically - the engine is deterministic).",
+      "role": "pilot",
+      "subset": {
+        "suite": "classes-9-full",
+        "range": [
+          0,
+          9
+        ]
+      },
+      "cap": 3000000,
+      "wall_seconds": 12600,
+      "stall_seconds": 180,
+      "saves": false
     }
   }
 }
