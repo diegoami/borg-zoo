@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-baseline-815e2bba-verysmall",
+  "issue": 794,
+  "definition": "definitions/reborn-baseline-815e2bba-verysmall.yaml",
+  "question": "The shipped game at the current track-p head 815e2bba at a bigger sample: CL5 by 100,000 turns, deaths, level arrival - the anchor the next studies read against.",
+  "description": "The shipped game at the current track-p head 815e2bba at a bigger sample: CL5 by 100,000 turns, deaths, level arrival - the anchor the next studies read against. Generated from definitions/reborn-baseline-815e2bba-verysmall.yaml: 1 arms on 4.2.6-reborn-rust-trackp-815e2bba, suite classes-1800-verysmall.",
+  "prespecified": "Fixed 2026-11-25, before any result (Rule 22, #758). The ladder of the #794 baseline: the shipped settings at track-p 815e2bba, one arm (ship), tier verysmall (classes-1800 starts 1-45), disjoint from the pilot's classes-18 slice and from the other tier's slice. The pilot read stands: 16/18 CL5, 0 deaths, median first-L5 44,934. This run describes the new shipped game and anchors future studies; it compares against nothing. Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and median first-turn-at-level-5 as diagnostics. Descriptive (RULES 14). Tier verysmall (RULES 14), the gate.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-815e2bba"
+  ],
+  "profiles": [
+    "reborn-baseline-815e2bba-ship"
+  ],
+  "suites": [
+    "classes-1800-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-815e2bba",
+  "control_profile": "reborn-baseline-815e2bba-ship",
+  "owner_authorization": "2026-11-25: zoo owner, \"well I would like a normal run with the curren status on track-p\", then \"ok but reborn-baseline is important\" (borg-zoo#794).",
+  "retain_evidence": false
+}

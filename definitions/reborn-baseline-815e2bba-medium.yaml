@@ -1,0 +1,24 @@
+# borg-zoo#794: the baseline ladder of the shipped settings at track-p 815e2bba (the #1240 merge). Write the catalogue entries with: python3 -m zoo define definitions/reborn-baseline-815e2bba-medium.yaml
+name: reborn-baseline-815e2bba-medium
+issue: 794
+question: >-
+  The shipped game at the current track-p head 815e2bba at a bigger sample: CL5 by 100,000 turns, deaths, level arrival - the anchor the next studies read against.
+tier: medium            # classes-1800 starts 91-360, shipped settings, normal world, 100,000 turns; disjoint from the pilot (classes-18) and the other tier
+
+specimen: 4.2.6-reborn-rust-trackp-815e2bba
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-baseline-815e2bba   # the pilot's profile, so RULES 16 finds it
+arms:
+  ship: {}
+control: [ship]
+owner_authorization: >-
+  2026-11-25: zoo owner, "well I would like a normal run with the curren status on track-p", then "ok but reborn-baseline is important" (borg-zoo#794).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-25, before any result (Rule 22, #758). The ladder of the #794 baseline: the shipped settings at track-p 815e2bba, one arm (ship), tier medium (classes-1800 starts 91-360), disjoint from the pilot's classes-18 slice and from the other tier's slice. The pilot read stands: 16/18 CL5, 0 deaths, median first-L5 44,934. This run describes the new shipped game and anchors future studies; it compares against nothing. Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and median first-turn-at-level-5 as diagnostics. Descriptive (RULES 14). Tier medium (RULES 14), the payload; disjoint from verysmall (1-45).
