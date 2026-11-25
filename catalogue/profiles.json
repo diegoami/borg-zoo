@@ -14298,6 +14298,26 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-baseline-242a4724-home0": {
+      "description": "borg-zoo#801 (reborn-baseline-242a4724-isolate.yaml): arm home0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_home_reserve": 0
+      }
+    },
+    "reborn-baseline-242a4724-keys0": {
+      "description": "borg-zoo#801 (reborn-baseline-242a4724-isolate.yaml): arm keys0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_home_reserve": 0,
+        "borg_param_town_shop_overloaded": 0,
+        "borg_param_junk_inferior_spares": 0,
+        "borg_param_junk_inferior_sandal_ac_margin": 0,
+        "borg_param_town_loadout_power_loss": 0
+      }
     }
   }
 }
