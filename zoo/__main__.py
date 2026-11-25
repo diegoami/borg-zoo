@@ -61,9 +61,13 @@ def cmd_run(args):
         record = harness.run_cell(cell, args.build, args.harness, args.work, cat, keep=keep, source=args.source, toolkit=args.toolkit)
         applied, requested = cat_mod.resolve_profile(cat, cell)
         record['requested_profile_settings'] = requested.get('settings', {})
-        configuration.capture(record, Path(args.work) / cat_mod.cell_key(cell), out.parent / 'configurations')
+        directory = Path(args.work) / cat_mod.cell_key(cell)
+        configuration.capture(record, directory, out.parent / 'configurations')
+        if exp.get('ccw_census'):
+            from . import town_ccw
+            record['ccw_census'] = town_ccw.collect(directory, record.get('specimen_ref'))
         if exp.get('retain_evidence'):
-            evidence.attach(record, Path(args.work) / cat_mod.cell_key(cell))
+            evidence.attach(record, directory)
         print(json.dumps({k: record[k] for k in ('specimen', 'profile', 'seed', 'outcome', 'wall_seconds')}),
               flush=True)
         return record
@@ -196,6 +200,9 @@ def cmd_collect(args):
     (target / 'meta.json').write_text(json.dumps(meta, indent=2, sort_keys=True) + '\n')
     if exp.get('retain_evidence'):
         evidence.write_indexes(target, list(records.values()))
+    if exp.get('ccw_census'):
+        from . import town_ccw
+        town_ccw.publish(target, records.values())
     print(json.dumps({'run': str(target), 'cells': len(records), 'missing': len(missing)}))
 
 

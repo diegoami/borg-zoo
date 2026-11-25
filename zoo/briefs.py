@@ -4,6 +4,7 @@ These describe the comparison, never its result. New experiments without an
 editorial question get a factual summary of the dimensions they vary.
 """
 QUESTIONS = {
+    'reborn-ccw-census-pilot': 'How often can the shipped Borg afford its first Cure Critical Wounds after staples, and does it leave town carrying one?',
     'neo-books-509-seeded-v2-1800': 'Do casters retain usable spellbooks and cast after restoring C book value on the previous Neo baseline?',
     'neo-b4-parity-books-v1-small': 'Small tier: how does the Neo parity-and-books candidate play on the first 90 development starts?',
     'neo-b4-parity-books-v1-1800': 'How does the Neo beta.4-engine candidate with six parity repairs and retained spellbook value survive and progress?',
