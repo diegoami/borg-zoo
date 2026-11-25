@@ -13632,6 +13632,52 @@
         "borg_reborn_errand": "none",
         "borg_param_caution_ranged_vs_immobile": 2
       }
+    },
+    "reborn-loopwin-ctl": {
+      "description": "borg-zoo#784 (reborn-loopwin-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_loop_breaker": 0
+      }
+    },
+    "reborn-loopwin-net3": {
+      "description": "borg-zoo#784 (reborn-loopwin-pilot.yaml): arm net3.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_loop_breaker": 1,
+        "borg_param_loop_moves": 16,
+        "borg_param_loop_grids": 3
+      }
+    },
+    "reborn-loopwin-net4": {
+      "description": "borg-zoo#784 (reborn-loopwin-pilot.yaml): arm net4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_loop_breaker": 1,
+        "borg_param_loop_moves": 16,
+        "borg_param_loop_grids": 4
+      }
+    },
+    "reborn-recloop-ctl": {
+      "description": "borg-zoo#786 (reborn-recloop-pilot.yaml): arm ctl.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_defend_prep_mana_starved": 0,
+        "borg_param_recover_mana_rest_full_hp": 0
+      }
+    },
+    "reborn-recloop-shipped": {
+      "description": "borg-zoo#786 (reborn-recloop-pilot.yaml): arm shipped.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_defend_prep_mana_starved": 1,
+        "borg_param_recover_mana_rest_full_hp": 1
+      }
     }
   }
 }
