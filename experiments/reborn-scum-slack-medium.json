@@ -1,0 +1,35 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-scum-slack-medium",
+  "issue": 785,
+  "definition": "definitions/reborn-scum-slack-medium.yaml",
+  "question": "The same 14 stair-scum arms as the pilot (45500843796) on the same build, at a bigger sample: does scum0's speed-with-no-measured-deaths hold, do rare deaths appear for any arm, and do the dials that never bound at 18 starts (slack steps, contact, per-level percent, per-HP tenths) bind here?",
+  "description": "The same 14 stair-scum arms as the pilot (45500843796) on the same build, at a bigger sample: does scum0's speed-with-no-measured-deaths hold, do rare deaths appear for any arm, and do the dials that never bound at 18 starts (slack steps, contact, per-level percent, per-HP tenths) bind here? Generated from definitions/reborn-scum-slack-medium.yaml: 14 arms on 4.2.6-reborn-rust-trackp-52fff0de, suite classes-1800-medium.",
+  "prespecified": "Fixed 2026-11-25, before any result (Rule 22, #758). The ladder of the #785 pilot: the same 14 arms on the same specimen (track-p head 52fff0de, the #1209 stair-scum extension), tier medium (classes-1800 starts 91-360), disjoint from the pilot's classes-18 slice and from the other tier's slice. The pilot's reads stand as the gate: scum0 matched ship's CL5 with 0 deaths and -10,800 median turns to L5; ratio1 killed 2; ratio4 cost 6 CL5 (p 0.031); eight dials never bound at 18 starts - this tier measures whether that was tier size. SAFETY: the owner expects scum0 (scumming fully off) to be where rare deaths would show; its read reports every death with cause, and scum0 cannot be adopted while its deaths exceed ship's at this tier. Every other arm is held to deaths-0 strictly (an arm whose deaths rise cannot be adopted however fast it levels). Scumming stays ON as shipped - \"scum saves lives but kills the attention\" (owner) - only its parameters may be tuned. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 as diagnostics; median first-turn-at-level-5 where recorded. Report per arm against ship: CL5, paired gained/lost (exact McNemar), deaths and causes, rescued/newly killed, identical plays (a dial that replays ship here is \"not tested\", not \"no effect\" - RULES 18), median first-L5. Tier medium (RULES 14): the payload; disjoint from the verysmall tier (1-45). Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-52fff0de"
+  ],
+  "profiles": [
+    "reborn-scumslack-ship",
+    "reborn-scumslack-scum0",
+    "reborn-scumslack-slack1",
+    "reborn-scumslack-slack2",
+    "reborn-scumslack-maxhp14",
+    "reborn-scumslack-maxhp42",
+    "reborn-scumslack-ratio1",
+    "reborn-scumslack-ratio4",
+    "reborn-scumslack-contact2",
+    "reborn-scumslack-contact8",
+    "reborn-scumslack-lvlpct25",
+    "reborn-scumslack-lvlpct100",
+    "reborn-scumslack-hp1",
+    "reborn-scumslack-hp3"
+  ],
+  "suites": [
+    "classes-1800-medium"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-52fff0de",
+  "control_profile": "reborn-scumslack-ship",
+  "owner_authorization": "2026-11-25: zoo owner, \"no , we need bigger numbers in SAMPLES , I mean repeat the experiment\" - the pilot's ladder on the owner's word, as the original #785 filing planned (verysmall gate, medium payload).",
+  "retain_evidence": false
+}

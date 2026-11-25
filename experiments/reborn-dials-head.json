@@ -1,0 +1,45 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-dials-head",
+  "issue": 769,
+  "definition": "definitions/reborn-dials-head.yaml",
+  "question": "At track-p c5501d3c, which shipped numeric parameters change play and progress when moved, and which of those are worth a ladder?",
+  "description": "At track-p c5501d3c, which shipped numeric parameters change play and progress when moved, and which of those are worth a ladder? Generated from definitions/reborn-dials-head.yaml: 24 arms on 4.2.6-reborn-rust-trackp-c5501d3c-pw, suite classes-18.",
+  "prespecified": "Fixed 2026-11-24, before any result (Rule 22, #758). Pilot classes-18, 100,000 turns, one dial per arm against ctl, shipped values otherwise, evidence not retained. Out of scope: caution_walk_away_immobile 0 (owner: NEVER, the index row), on/off switches already measured by their studies, and the #1149 dear-row percents (untouched until #745's re-pin read lands). Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics. Report per arm against ctl: the CL5 endpoint, deaths and causes, paired CL5 and deaths (exact McNemar over pairs known in both arms), identical plays. A dial that plays ctl's keys was not exercised and gets no ladder. Exercised dials go to ladders one at a time on the owner's word (RULES 14). Descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-c5501d3c-pw"
+  ],
+  "profiles": [
+    "reborn-dials-ctl",
+    "reborn-dials-phase_lost50",
+    "reborn-dials-walkfail15",
+    "reborn-dials-walkfail60",
+    "reborn-dials-phasetol10",
+    "reborn-dials-kos30",
+    "reborn-dials-kos70",
+    "reborn-dials-hold0",
+    "reborn-dials-hold360",
+    "reborn-dials-testhp30",
+    "reborn-dials-mixr2",
+    "reborn-dials-mixr5",
+    "reborn-dials-mixstep1",
+    "reborn-dials-mixcl30",
+    "reborn-dials-leash15",
+    "reborn-dials-leash60",
+    "reborn-dials-leashlvl8",
+    "reborn-dials-stairsteps10",
+    "reborn-dials-scumhp10",
+    "reborn-dials-scumratio1",
+    "reborn-dials-trapdis25",
+    "reborn-dials-trapnear4",
+    "reborn-dials-prep4",
+    "reborn-dials-prep16"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-c5501d3c-pw",
+  "control_profile": "reborn-dials-ctl",
+  "owner_authorization": "2026-11-24: zoo owner, \"escape_phase_lost_danger_percent 50 and other numbers is something worth exploring\" (borg-zoo#769).",
+  "retain_evidence": false
+}
