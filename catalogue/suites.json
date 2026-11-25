@@ -1018,7 +1018,13 @@
     "classes-1800-200k-pilot": {
       "description": "The first 18 starts of classes-1800-200k (2 per class), 200,000 engine turns: a pilot for questions that need longer games, e.g. casters past CL 8 (borg-zoo#350).",
       "role": "pilot",
-      "subset": {"suite": "classes-1800-200k", "range": [0, 18]},
+      "subset": {
+        "suite": "classes-1800-200k",
+        "range": [
+          0,
+          18
+        ]
+      },
       "cap": 200000,
       "wall_seconds": 1800,
       "stall_seconds": 120,
@@ -1027,7 +1033,13 @@
     "classes-1800-200k-small": {
       "description": "Starts 19-90 of classes-1800-200k (8 per class), 200,000 engine turns: the small tier after classes-1800-200k-pilot (starts 1-18), disjoint from it (borg-zoo#350).",
       "role": "development",
-      "subset": {"suite": "classes-1800-200k", "range": [18, 90]},
+      "subset": {
+        "suite": "classes-1800-200k",
+        "range": [
+          18,
+          90
+        ]
+      },
       "cap": 200000,
       "wall_seconds": 1800,
       "stall_seconds": 120,
@@ -1036,7 +1048,13 @@
     "classes-1800-200k-medium": {
       "description": "Starts 91-360 of classes-1800-200k (30 per class), 200,000 engine turns: the medium tier after classes-1800-200k-pilot and -small (borg-zoo#383).",
       "role": "development",
-      "subset": {"suite": "classes-1800-200k", "range": [90, 360]},
+      "subset": {
+        "suite": "classes-1800-200k",
+        "range": [
+          90,
+          360
+        ]
+      },
       "cap": 200000,
       "wall_seconds": 1800,
       "stall_seconds": 120,
@@ -1047,7 +1065,10 @@
       "role": "development",
       "subset": {
         "suite": "classes-1800",
-        "range": [0, 45]
+        "range": [
+          0,
+          45
+        ]
       },
       "cap": 100000,
       "wall_seconds": 900,
@@ -1059,7 +1080,10 @@
       "role": "development",
       "subset": {
         "suite": "classes-1800",
-        "range": [45, 90]
+        "range": [
+          45,
+          90
+        ]
       },
       "cap": 100000,
       "wall_seconds": 900,
@@ -1071,7 +1095,10 @@
       "role": "development",
       "subset": {
         "suite": "classes-1800",
-        "range": [0, 90]
+        "range": [
+          0,
+          90
+        ]
       },
       "cap": 100000,
       "wall_seconds": 900,
@@ -1081,7 +1108,10 @@
     "classes-1800-small-rangers": {
       "description": "The Ranger starts of classes-1800-small (borg-zoo#198): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-small", "class": "Ranger"},
+      "subset": {
+        "suite": "classes-1800-small",
+        "class": "Ranger"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1090,7 +1120,10 @@
     "classes-1800-small-rogues": {
       "description": "The Rogue starts of classes-1800-small (borg-zoo#198): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-small", "class": "Rogue"},
+      "subset": {
+        "suite": "classes-1800-small",
+        "class": "Rogue"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1099,7 +1132,10 @@
     "classes-1800-small-mages": {
       "description": "The Mage starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-small", "class": "Mage"},
+      "subset": {
+        "suite": "classes-1800-small",
+        "class": "Mage"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1108,7 +1144,10 @@
     "classes-1800-small-priests": {
       "description": "The Priest starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-small", "class": "Priest"},
+      "subset": {
+        "suite": "classes-1800-small",
+        "class": "Priest"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1117,7 +1156,10 @@
     "classes-1800-small-druids": {
       "description": "The Druid starts of classes-1800-small (borg-zoo#312): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-small", "class": "Druid"},
+      "subset": {
+        "suite": "classes-1800-small",
+        "class": "Druid"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1128,7 +1170,10 @@
       "role": "development",
       "subset": {
         "suite": "classes-1800",
-        "range": [90, 360]
+        "range": [
+          90,
+          360
+        ]
       },
       "cap": 100000,
       "wall_seconds": 900,
@@ -1140,7 +1185,10 @@
       "role": "development",
       "subset": {
         "suite": "classes-1800",
-        "range": [360, 900]
+        "range": [
+          360,
+          900
+        ]
       },
       "cap": 100000,
       "wall_seconds": 900,
@@ -1150,7 +1198,10 @@
     "classes-1800-medium-rangers": {
       "description": "The Ranger starts of classes-1800-medium (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-medium", "class": "Ranger"},
+      "subset": {
+        "suite": "classes-1800-medium",
+        "class": "Ranger"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1159,7 +1210,10 @@
     "classes-1800-medium-rogues": {
       "description": "The Rogue starts of classes-1800-medium (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-medium", "class": "Rogue"},
+      "subset": {
+        "suite": "classes-1800-medium",
+        "class": "Rogue"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1168,7 +1222,10 @@
     "classes-1800-big-rangers": {
       "description": "The Ranger starts of classes-1800-big (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-big", "class": "Ranger"},
+      "subset": {
+        "suite": "classes-1800-big",
+        "class": "Ranger"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1177,7 +1234,10 @@
     "classes-1800-big-rogues": {
       "description": "The Rogue starts of classes-1800-big (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-big", "class": "Rogue"},
+      "subset": {
+        "suite": "classes-1800-big",
+        "class": "Rogue"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1188,7 +1248,10 @@
       "role": "development",
       "subset": {
         "suite": "classes-1800",
-        "range": [900, 1800]
+        "range": [
+          900,
+          1800
+        ]
       },
       "cap": 100000,
       "wall_seconds": 900,
@@ -1198,7 +1261,43 @@
     "classes-1800-crowcat-deaths": {
       "description": "The 32 starts of classes-1800 where shipped borg-reborn-rs main 3ba17e2c (reborn-errands38-none) died to a crow or a wild cat (borg-zoo#408): chosen starts for a mechanism check, not a random sample.",
       "role": "development",
-      "subset": {"suite": "classes-1800", "seeds": [46720842, 121466703, 213995942, 238601369, 256351365, 300461652, 440347779, 458006127, 504233000, 518606877, 520757110, 773106230, 810310797, 861292696, 1005268769, 1082949996, 1209439220, 1244628290, 1267936921, 1290636548, 1311784001, 1330341082, 1447548027, 1532260360, 1612359658, 1643476647, 1808419225, 1838309752, 1935672562, 1960118704, 1996566312, 2128748366]},
+      "subset": {
+        "suite": "classes-1800",
+        "seeds": [
+          46720842,
+          121466703,
+          213995942,
+          238601369,
+          256351365,
+          300461652,
+          440347779,
+          458006127,
+          504233000,
+          518606877,
+          520757110,
+          773106230,
+          810310797,
+          861292696,
+          1005268769,
+          1082949996,
+          1209439220,
+          1244628290,
+          1267936921,
+          1290636548,
+          1311784001,
+          1330341082,
+          1447548027,
+          1532260360,
+          1612359658,
+          1643476647,
+          1808419225,
+          1838309752,
+          1935672562,
+          1960118704,
+          1996566312,
+          2128748366
+        ]
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1207,7 +1306,116 @@
     "classes-1800-deaths38": {
       "description": "The 105 starts of classes-1800 where shipped borg-reborn-rs main 3ba17e2c (reborn-errands38-none) died (borg-zoo#429): a death-start bank for mechanism checks, chosen starts, not a random sample.",
       "role": "development",
-      "subset": {"suite": "classes-1800", "seeds": [39054154, 46720842, 96984284, 114942676, 121466703, 151918505, 156402779, 179371675, 210261444, 213995942, 218907419, 235160511, 238601369, 256351365, 300461652, 309417622, 312789942, 396224391, 419740901, 425904011, 440347779, 458006127, 464296083, 502470827, 504233000, 518606877, 520757110, 538736164, 559636045, 589244119, 627922983, 662032265, 681096527, 704416868, 729362605, 729986776, 738597549, 747660823, 759132654, 773106230, 801645919, 810310797, 842068151, 842485384, 857532386, 861292696, 912444426, 914815160, 917392404, 949813766, 973038018, 1005268769, 1071535077, 1082949996, 1086202728, 1088421828, 1162917119, 1177168947, 1199401383, 1209439220, 1244628290, 1261438670, 1267936921, 1282398708, 1290636548, 1311784001, 1315192163, 1330341082, 1350161869, 1395192011, 1419263331, 1447548027, 1455373684, 1516096046, 1532260360, 1543403783, 1558339483, 1575381233, 1575424768, 1581451064, 1611798330, 1612359658, 1643476647, 1663840412, 1718908179, 1721349795, 1740231339, 1783532644, 1808419225, 1838309752, 1847306706, 1867842701, 1894253281, 1935672562, 1946087915, 1950270029, 1954874415, 1960118704, 1974870982, 1976035382, 1996566312, 2021869738, 2128748366, 2133904684, 2146549397]},
+      "subset": {
+        "suite": "classes-1800",
+        "seeds": [
+          39054154,
+          46720842,
+          96984284,
+          114942676,
+          121466703,
+          151918505,
+          156402779,
+          179371675,
+          210261444,
+          213995942,
+          218907419,
+          235160511,
+          238601369,
+          256351365,
+          300461652,
+          309417622,
+          312789942,
+          396224391,
+          419740901,
+          425904011,
+          440347779,
+          458006127,
+          464296083,
+          502470827,
+          504233000,
+          518606877,
+          520757110,
+          538736164,
+          559636045,
+          589244119,
+          627922983,
+          662032265,
+          681096527,
+          704416868,
+          729362605,
+          729986776,
+          738597549,
+          747660823,
+          759132654,
+          773106230,
+          801645919,
+          810310797,
+          842068151,
+          842485384,
+          857532386,
+          861292696,
+          912444426,
+          914815160,
+          917392404,
+          949813766,
+          973038018,
+          1005268769,
+          1071535077,
+          1082949996,
+          1086202728,
+          1088421828,
+          1162917119,
+          1177168947,
+          1199401383,
+          1209439220,
+          1244628290,
+          1261438670,
+          1267936921,
+          1282398708,
+          1290636548,
+          1311784001,
+          1315192163,
+          1330341082,
+          1350161869,
+          1395192011,
+          1419263331,
+          1447548027,
+          1455373684,
+          1516096046,
+          1532260360,
+          1543403783,
+          1558339483,
+          1575381233,
+          1575424768,
+          1581451064,
+          1611798330,
+          1612359658,
+          1643476647,
+          1663840412,
+          1718908179,
+          1721349795,
+          1740231339,
+          1783532644,
+          1808419225,
+          1838309752,
+          1847306706,
+          1867842701,
+          1894253281,
+          1935672562,
+          1946087915,
+          1950270029,
+          1954874415,
+          1960118704,
+          1974870982,
+          1976035382,
+          1996566312,
+          2021869738,
+          2128748366,
+          2133904684,
+          2146549397
+        ]
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1216,7 +1424,10 @@
     "classes-1800-full-rangers": {
       "description": "The Ranger starts of classes-1800-full (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-full", "class": "Ranger"},
+      "subset": {
+        "suite": "classes-1800-full",
+        "class": "Ranger"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1225,7 +1436,10 @@
     "classes-1800-full-rogues": {
       "description": "The Rogue starts of classes-1800-full (borg-zoo#290): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-full", "class": "Rogue"},
+      "subset": {
+        "suite": "classes-1800-full",
+        "class": "Rogue"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1355,7 +1569,34 @@
     "classes-1800-b-crowcat-deaths": {
       "description": "The 23 starts of classes-1800-b where shipped borg-reborn-rs main 3ba17e2c (reborn-errands38-none) died to a crow or a wild cat (borg-zoo#408): chosen starts for a mechanism check, not a random sample.",
       "role": "development",
-      "subset": {"suite": "classes-1800-b", "seeds": [9976609, 83189782, 453812472, 461333610, 473090660, 499926828, 662456967, 688038640, 926161511, 960896019, 1064906563, 1161859855, 1198994146, 1254893248, 1358440192, 1364225192, 1365836524, 1579321526, 1625381930, 1637197562, 1723335135, 1840832686, 1944217924]},
+      "subset": {
+        "suite": "classes-1800-b",
+        "seeds": [
+          9976609,
+          83189782,
+          453812472,
+          461333610,
+          473090660,
+          499926828,
+          662456967,
+          688038640,
+          926161511,
+          960896019,
+          1064906563,
+          1161859855,
+          1198994146,
+          1254893248,
+          1358440192,
+          1364225192,
+          1365836524,
+          1579321526,
+          1625381930,
+          1637197562,
+          1723335135,
+          1840832686,
+          1944217924
+        ]
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1364,25 +1605,139 @@
     "classes-1800-b-deaths38": {
       "description": "The 128 starts of classes-1800-b where shipped borg-reborn-rs main 3ba17e2c (reborn-errands38-none) died (borg-zoo#429): a death-start bank for mechanism checks, chosen starts, not a random sample.",
       "role": "development",
-      "subset": {"suite": "classes-1800-b", "seeds": [9976609, 21731285, 62144603, 83189782, 131564537, 135920339, 136785264, 148470249, 156091991, 162752946, 168666865, 191295128, 239652864, 258063704, 274124089, 276875510, 288984063, 326436605, 331498833, 331715392, 360080812, 365789550, 381657601, 382970074, 418269067, 453812472, 461333610, 465409546, 473090660, 479395818, 499926828, 502879390, 521581839, 564172173, 594952458, 600939196, 657331994, 662456967, 663869430, 688038640, 696586416, 705136760, 737917900, 756430473, 785191085, 789693885, 798765472, 817676495, 835585970, 837162623, 843884188, 845723538, 874993142, 904970668, 926161511, 945588897, 960896019, 966427527, 974069559, 987746661, 990156004, 1033180565, 1064906563, 1074369736, 1109771545, 1128877839, 1133492796, 1141162517, 1150668985, 1156126810, 1161859855, 1178772142, 1190503952, 1198994146, 1242209657, 1243627814, 1254893248, 1279165744, 1290032980, 1328803522, 1334170293, 1343094539, 1345296809, 1353230862, 1354010556, 1354389580, 1358440192, 1361109760, 1364225192, 1365836524, 1378849733, 1402621423, 1423966963, 1480802338, 1500532180, 1567660469, 1579321526, 1581318542, 1588325287, 1625381930, 1637197562, 1669035154, 1676374870, 1681351646, 1708053750, 1723335135, 1769025050, 1771023558, 1791541691, 1799832606, 1806245857, 1840832686, 1859278104, 1865346681, 1894415266, 1944217924, 1944450986, 1987195964, 1987704522, 1991185818, 1999736507, 2019909989, 2090276175, 2106487868, 2109728711, 2112064818, 2133116148, 2138133000]},
-      "cap": 100000,
-      "wall_seconds": 900,
-      "stall_seconds": 90,
-      "saves": false
-    },
-    "classes-1800-b-rogues": {
-      "description": "The 200 Rogue starts of classes-1800-b (borg-zoo#369): fresh seeds for confirming a Rogue lead from classes-1800. Prespecified tests only.",
-      "role": "confirmation",
-      "subset": {"suite": "classes-1800-b", "class": "Rogue"},
-      "cap": 100000,
-      "wall_seconds": 900,
-      "stall_seconds": 90,
-      "saves": false
-    },
-    "classes-1800-b-blackguards": {
-      "description": "The 200 Blackguard starts of classes-1800-b (borg-zoo#433): fresh seeds for the Blackguard follow-up of the class curves. Prespecified tests only.",
-      "role": "confirmation",
-      "subset": {"suite": "classes-1800-b", "class": "Blackguard"},
+      "subset": {
+        "suite": "classes-1800-b",
+        "seeds": [
+          9976609,
+          21731285,
+          62144603,
+          83189782,
+          131564537,
+          135920339,
+          136785264,
+          148470249,
+          156091991,
+          162752946,
+          168666865,
+          191295128,
+          239652864,
+          258063704,
+          274124089,
+          276875510,
+          288984063,
+          326436605,
+          331498833,
+          331715392,
+          360080812,
+          365789550,
+          381657601,
+          382970074,
+          418269067,
+          453812472,
+          461333610,
+          465409546,
+          473090660,
+          479395818,
+          499926828,
+          502879390,
+          521581839,
+          564172173,
+          594952458,
+          600939196,
+          657331994,
+          662456967,
+          663869430,
+          688038640,
+          696586416,
+          705136760,
+          737917900,
+          756430473,
+          785191085,
+          789693885,
+          798765472,
+          817676495,
+          835585970,
+          837162623,
+          843884188,
+          845723538,
+          874993142,
+          904970668,
+          926161511,
+          945588897,
+          960896019,
+          966427527,
+          974069559,
+          987746661,
+          990156004,
+          1033180565,
+          1064906563,
+          1074369736,
+          1109771545,
+          1128877839,
+          1133492796,
+          1141162517,
+          1150668985,
+          1156126810,
+          1161859855,
+          1178772142,
+          1190503952,
+          1198994146,
+          1242209657,
+          1243627814,
+          1254893248,
+          1279165744,
+          1290032980,
+          1328803522,
+          1334170293,
+          1343094539,
+          1345296809,
+          1353230862,
+          1354010556,
+          1354389580,
+          1358440192,
+          1361109760,
+          1364225192,
+          1365836524,
+          1378849733,
+          1402621423,
+          1423966963,
+          1480802338,
+          1500532180,
+          1567660469,
+          1579321526,
+          1581318542,
+          1588325287,
+          1625381930,
+          1637197562,
+          1669035154,
+          1676374870,
+          1681351646,
+          1708053750,
+          1723335135,
+          1769025050,
+          1771023558,
+          1791541691,
+          1799832606,
+          1806245857,
+          1840832686,
+          1859278104,
+          1865346681,
+          1894415266,
+          1944217924,
+          1944450986,
+          1987195964,
+          1987704522,
+          1991185818,
+          1999736507,
+          2019909989,
+          2090276175,
+          2106487868,
+          2109728711,
+          2112064818,
+          2133116148,
+          2138133000
+        ]
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1391,7 +1746,22 @@
     "classes-1800-b-rogues": {
       "description": "The 200 Rogue starts of classes-1800-b (borg-zoo#379): fresh seeds for confirming a Rogue lead from classes-1800. Prespecified tests only.",
       "role": "confirmation",
-      "subset": {"suite": "classes-1800-b", "class": "Rogue"},
+      "subset": {
+        "suite": "classes-1800-b",
+        "class": "Rogue"
+      },
+      "cap": 100000,
+      "wall_seconds": 900,
+      "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-1800-b-blackguards": {
+      "description": "The 200 Blackguard starts of classes-1800-b (borg-zoo#433): fresh seeds for the Blackguard follow-up of the class curves. Prespecified tests only.",
+      "role": "confirmation",
+      "subset": {
+        "suite": "classes-1800-b",
+        "class": "Blackguard"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1400,7 +1770,10 @@
     "classes-1800-b-rangers": {
       "description": "The 200 Ranger starts of classes-1800-b (borg-zoo#290): fresh seeds for confirming a Ranger lead from classes-1800. Prespecified tests only.",
       "role": "confirmation",
-      "subset": {"suite": "classes-1800-b", "class": "Ranger"},
+      "subset": {
+        "suite": "classes-1800-b",
+        "class": "Ranger"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1713,7 +2086,10 @@
       "role": "development",
       "subset": {
         "suite": "neo-seeded-v2-classes-1800",
-        "range": [0, 90]
+        "range": [
+          0,
+          90
+        ]
       },
       "cap": 100000,
       "wall_seconds": 600,
@@ -1804,7 +2180,10 @@
     "classes-1800-small-blackguards": {
       "description": "The Blackguard starts of classes-1800-small (borg-zoo#415, the Blackguard exception to the Phase Door rule): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-small", "class": "Blackguard"},
+      "subset": {
+        "suite": "classes-1800-small",
+        "class": "Blackguard"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1813,7 +2192,10 @@
     "classes-1800-medium-blackguards": {
       "description": "The Blackguard starts of classes-1800-medium (borg-zoo#415, the Blackguard exception to the Phase Door rule): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-medium", "class": "Blackguard"},
+      "subset": {
+        "suite": "classes-1800-medium",
+        "class": "Blackguard"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1822,7 +2204,10 @@
     "classes-1800-big-blackguards": {
       "description": "The Blackguard starts of classes-1800-big (borg-zoo#415, the Blackguard exception to the Phase Door rule): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-big", "class": "Blackguard"},
+      "subset": {
+        "suite": "classes-1800-big",
+        "class": "Blackguard"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1831,16 +2216,10 @@
     "classes-1800-full-blackguards": {
       "description": "The Blackguard starts of classes-1800-full (borg-zoo#415, the Blackguard exception to the Phase Door rule): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-full", "class": "Blackguard"},
-      "cap": 100000,
-      "wall_seconds": 900,
-      "stall_seconds": 90,
-      "saves": false
-    },
-    "classes-1800-small-mages": {
-      "description": "The Mage starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
-      "role": "development",
-      "subset": {"suite": "classes-1800-small", "class": "Mage"},
+      "subset": {
+        "suite": "classes-1800-full",
+        "class": "Blackguard"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1849,7 +2228,10 @@
     "classes-1800-medium-mages": {
       "description": "The Mage starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-medium", "class": "Mage"},
+      "subset": {
+        "suite": "classes-1800-medium",
+        "class": "Mage"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1858,7 +2240,10 @@
     "classes-1800-big-mages": {
       "description": "The Mage starts of classes-1800-big (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-big", "class": "Mage"},
+      "subset": {
+        "suite": "classes-1800-big",
+        "class": "Mage"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1867,16 +2252,10 @@
     "classes-1800-full-mages": {
       "description": "The Mage starts of classes-1800-full (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-full", "class": "Mage"},
-      "cap": 100000,
-      "wall_seconds": 900,
-      "stall_seconds": 90,
-      "saves": false
-    },
-    "classes-1800-small-priests": {
-      "description": "The Priest starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
-      "role": "development",
-      "subset": {"suite": "classes-1800-small", "class": "Priest"},
+      "subset": {
+        "suite": "classes-1800-full",
+        "class": "Mage"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1885,7 +2264,10 @@
     "classes-1800-medium-priests": {
       "description": "The Priest starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-medium", "class": "Priest"},
+      "subset": {
+        "suite": "classes-1800-medium",
+        "class": "Priest"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1894,7 +2276,10 @@
     "classes-1800-big-priests": {
       "description": "The Priest starts of classes-1800-big (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-big", "class": "Priest"},
+      "subset": {
+        "suite": "classes-1800-big",
+        "class": "Priest"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1903,7 +2288,10 @@
     "classes-1800-full-priests": {
       "description": "The Priest starts of classes-1800-full (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-full", "class": "Priest"},
+      "subset": {
+        "suite": "classes-1800-full",
+        "class": "Priest"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1912,7 +2300,10 @@
     "classes-1800-small-necromancers": {
       "description": "The Necromancer starts of classes-1800-small (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-small", "class": "Necromancer"},
+      "subset": {
+        "suite": "classes-1800-small",
+        "class": "Necromancer"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1921,7 +2312,10 @@
     "classes-1800-medium-necromancers": {
       "description": "The Necromancer starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-medium", "class": "Necromancer"},
+      "subset": {
+        "suite": "classes-1800-medium",
+        "class": "Necromancer"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1930,7 +2324,10 @@
     "classes-1800-big-necromancers": {
       "description": "The Necromancer starts of classes-1800-big (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-big", "class": "Necromancer"},
+      "subset": {
+        "suite": "classes-1800-big",
+        "class": "Necromancer"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1939,7 +2336,10 @@
     "classes-1800-full-necromancers": {
       "description": "The Necromancer starts of classes-1800-full (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-full", "class": "Necromancer"},
+      "subset": {
+        "suite": "classes-1800-full",
+        "class": "Necromancer"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1948,7 +2348,10 @@
     "classes-1800-medium-druids": {
       "description": "The Druid starts of classes-1800-medium (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-medium", "class": "Druid"},
+      "subset": {
+        "suite": "classes-1800-medium",
+        "class": "Druid"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1957,7 +2360,10 @@
     "classes-1800-big-druids": {
       "description": "The Druid starts of classes-1800-big (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-big", "class": "Druid"},
+      "subset": {
+        "suite": "classes-1800-big",
+        "class": "Druid"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1966,7 +2372,10 @@
     "classes-1800-full-druids": {
       "description": "The Druid starts of classes-1800-full (borg-zoo#415, the casters study): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-full", "class": "Druid"},
+      "subset": {
+        "suite": "classes-1800-full",
+        "class": "Druid"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1976,10 +2385,127 @@
       "description": "The first 2 starts per class of the owner's retained 600 (200 Rangers, 50 of each other class; borg-cemetery 5ed93e24 studies/reborn-flight-fights-20261120/starts-600.tsv, sha256 6ffdd8d6...), in the TSV's global order: 18 starts, 100,000 engine turns, explicit race and class per seed (borg-zoo#528). Pilot tier; its TSV sha256 is aa4f44d56c203c39b41e2928447c15fd740a9a9fc2bfb7eb9bfbaa2fdd48fc69. Development evidence, not an independent confirmation suite.",
       "role": "pilot",
       "external": true,
-      "seeds": [1992500, 4020641, 28999353, 35001376, 4971587, 13040847, 1915072, 12875881, 2613747, 17626119, 4160641, 6939003, 6809624, 14366282, 5773879, 21863389, 803642, 1324266],
+      "seeds": [
+        1992500,
+        4020641,
+        28999353,
+        35001376,
+        4971587,
+        13040847,
+        1915072,
+        12875881,
+        2613747,
+        17626119,
+        4160641,
+        6939003,
+        6809624,
+        14366282,
+        5773879,
+        21863389,
+        803642,
+        1324266
+      ],
       "birth": "assigned",
-      "characters": {"classes": ["Warrior", "Mage", "Druid", "Priest", "Necromancer", "Paladin", "Rogue", "Ranger", "Blackguard"], "races": ["Human", "Half-Elf", "Elf", "Hobbit", "Gnome", "Dwarf", "Half-Orc", "Half-Troll", "Dunadan", "High-Elf", "Kobold"]},
-      "assigned_characters": {"1992500": ["Kobold", "Ranger"], "4020641": ["Elf", "Ranger"], "28999353": ["Half-Orc", "Warrior"], "35001376": ["Kobold", "Warrior"], "4971587": ["Half-Orc", "Mage"], "13040847": ["Dunadan", "Mage"], "1915072": ["Hobbit", "Druid"], "12875881": ["Elf", "Druid"], "2613747": ["Half-Troll", "Priest"], "17626119": ["Gnome", "Priest"], "4160641": ["Gnome", "Necromancer"], "6939003": ["Hobbit", "Necromancer"], "6809624": ["Half-Elf", "Paladin"], "14366282": ["Half-Troll", "Paladin"], "5773879": ["Dwarf", "Rogue"], "21863389": ["Elf", "Rogue"], "803642": ["Half-Troll", "Blackguard"], "1324266": ["Elf", "Blackguard"]},
+      "characters": {
+        "classes": [
+          "Warrior",
+          "Mage",
+          "Druid",
+          "Priest",
+          "Necromancer",
+          "Paladin",
+          "Rogue",
+          "Ranger",
+          "Blackguard"
+        ],
+        "races": [
+          "Human",
+          "Half-Elf",
+          "Elf",
+          "Hobbit",
+          "Gnome",
+          "Dwarf",
+          "Half-Orc",
+          "Half-Troll",
+          "Dunadan",
+          "High-Elf",
+          "Kobold"
+        ]
+      },
+      "assigned_characters": {
+        "1992500": [
+          "Kobold",
+          "Ranger"
+        ],
+        "4020641": [
+          "Elf",
+          "Ranger"
+        ],
+        "28999353": [
+          "Half-Orc",
+          "Warrior"
+        ],
+        "35001376": [
+          "Kobold",
+          "Warrior"
+        ],
+        "4971587": [
+          "Half-Orc",
+          "Mage"
+        ],
+        "13040847": [
+          "Dunadan",
+          "Mage"
+        ],
+        "1915072": [
+          "Hobbit",
+          "Druid"
+        ],
+        "12875881": [
+          "Elf",
+          "Druid"
+        ],
+        "2613747": [
+          "Half-Troll",
+          "Priest"
+        ],
+        "17626119": [
+          "Gnome",
+          "Priest"
+        ],
+        "4160641": [
+          "Gnome",
+          "Necromancer"
+        ],
+        "6939003": [
+          "Hobbit",
+          "Necromancer"
+        ],
+        "6809624": [
+          "Half-Elf",
+          "Paladin"
+        ],
+        "14366282": [
+          "Half-Troll",
+          "Paladin"
+        ],
+        "5773879": [
+          "Dwarf",
+          "Rogue"
+        ],
+        "21863389": [
+          "Elf",
+          "Rogue"
+        ],
+        "803642": [
+          "Half-Troll",
+          "Blackguard"
+        ],
+        "1324266": [
+          "Elf",
+          "Blackguard"
+        ]
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -1989,10 +2515,262 @@
       "description": "The native full45 manifest of borg-reborn-rs (harness/suites/full at d0657712, sha256 7c81c28c03be3e6c188cb555fa8c917402bae0819d0791a1a810e031214d2eed): nine classes by five starts, seeds 1000-1044, race (class + k) % 11, explicit menu births, 100,000 game turns (borg-zoo#520). Not classes-1800's starts.",
       "role": "pilot",
       "external": true,
-      "seeds": [1000, 1001, 1002, 1003, 1004, 1010, 1011, 1012, 1013, 1014, 1020, 1021, 1022, 1023, 1024, 1030, 1031, 1032, 1033, 1034, 1040, 1041, 1042, 1043, 1044, 1050, 1051, 1052, 1053, 1054, 1060, 1061, 1062, 1063, 1064, 1070, 1071, 1072, 1073, 1074, 1080, 1081, 1082, 1083, 1084],
+      "seeds": [
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        1010,
+        1011,
+        1012,
+        1013,
+        1014,
+        1020,
+        1021,
+        1022,
+        1023,
+        1024,
+        1030,
+        1031,
+        1032,
+        1033,
+        1034,
+        1040,
+        1041,
+        1042,
+        1043,
+        1044,
+        1050,
+        1051,
+        1052,
+        1053,
+        1054,
+        1060,
+        1061,
+        1062,
+        1063,
+        1064,
+        1070,
+        1071,
+        1072,
+        1073,
+        1074,
+        1080,
+        1081,
+        1082,
+        1083,
+        1084
+      ],
       "birth": "assigned",
-      "characters": {"classes": ["Warrior", "Mage", "Druid", "Priest", "Necromancer", "Paladin", "Rogue", "Ranger", "Blackguard"], "races": ["Human", "Half-Elf", "Elf", "Hobbit", "Gnome", "Dwarf", "Half-Orc", "Half-Troll", "Dunadan", "High-Elf", "Kobold"]},
-      "assigned_characters": {"1000": ["Human", "Warrior"], "1001": ["Half-Elf", "Warrior"], "1002": ["Elf", "Warrior"], "1003": ["Hobbit", "Warrior"], "1004": ["Gnome", "Warrior"], "1010": ["Half-Elf", "Mage"], "1011": ["Elf", "Mage"], "1012": ["Hobbit", "Mage"], "1013": ["Gnome", "Mage"], "1014": ["Dwarf", "Mage"], "1020": ["Elf", "Druid"], "1021": ["Hobbit", "Druid"], "1022": ["Gnome", "Druid"], "1023": ["Dwarf", "Druid"], "1024": ["Half-Orc", "Druid"], "1030": ["Hobbit", "Priest"], "1031": ["Gnome", "Priest"], "1032": ["Dwarf", "Priest"], "1033": ["Half-Orc", "Priest"], "1034": ["Half-Troll", "Priest"], "1040": ["Gnome", "Necromancer"], "1041": ["Dwarf", "Necromancer"], "1042": ["Half-Orc", "Necromancer"], "1043": ["Half-Troll", "Necromancer"], "1044": ["Dunadan", "Necromancer"], "1050": ["Dwarf", "Paladin"], "1051": ["Half-Orc", "Paladin"], "1052": ["Half-Troll", "Paladin"], "1053": ["Dunadan", "Paladin"], "1054": ["High-Elf", "Paladin"], "1060": ["Half-Orc", "Rogue"], "1061": ["Half-Troll", "Rogue"], "1062": ["Dunadan", "Rogue"], "1063": ["High-Elf", "Rogue"], "1064": ["Kobold", "Rogue"], "1070": ["Half-Troll", "Ranger"], "1071": ["Dunadan", "Ranger"], "1072": ["High-Elf", "Ranger"], "1073": ["Kobold", "Ranger"], "1074": ["Human", "Ranger"], "1080": ["Dunadan", "Blackguard"], "1081": ["High-Elf", "Blackguard"], "1082": ["Kobold", "Blackguard"], "1083": ["Human", "Blackguard"], "1084": ["Half-Elf", "Blackguard"]},
+      "characters": {
+        "classes": [
+          "Warrior",
+          "Mage",
+          "Druid",
+          "Priest",
+          "Necromancer",
+          "Paladin",
+          "Rogue",
+          "Ranger",
+          "Blackguard"
+        ],
+        "races": [
+          "Human",
+          "Half-Elf",
+          "Elf",
+          "Hobbit",
+          "Gnome",
+          "Dwarf",
+          "Half-Orc",
+          "Half-Troll",
+          "Dunadan",
+          "High-Elf",
+          "Kobold"
+        ]
+      },
+      "assigned_characters": {
+        "1000": [
+          "Human",
+          "Warrior"
+        ],
+        "1001": [
+          "Half-Elf",
+          "Warrior"
+        ],
+        "1002": [
+          "Elf",
+          "Warrior"
+        ],
+        "1003": [
+          "Hobbit",
+          "Warrior"
+        ],
+        "1004": [
+          "Gnome",
+          "Warrior"
+        ],
+        "1010": [
+          "Half-Elf",
+          "Mage"
+        ],
+        "1011": [
+          "Elf",
+          "Mage"
+        ],
+        "1012": [
+          "Hobbit",
+          "Mage"
+        ],
+        "1013": [
+          "Gnome",
+          "Mage"
+        ],
+        "1014": [
+          "Dwarf",
+          "Mage"
+        ],
+        "1020": [
+          "Elf",
+          "Druid"
+        ],
+        "1021": [
+          "Hobbit",
+          "Druid"
+        ],
+        "1022": [
+          "Gnome",
+          "Druid"
+        ],
+        "1023": [
+          "Dwarf",
+          "Druid"
+        ],
+        "1024": [
+          "Half-Orc",
+          "Druid"
+        ],
+        "1030": [
+          "Hobbit",
+          "Priest"
+        ],
+        "1031": [
+          "Gnome",
+          "Priest"
+        ],
+        "1032": [
+          "Dwarf",
+          "Priest"
+        ],
+        "1033": [
+          "Half-Orc",
+          "Priest"
+        ],
+        "1034": [
+          "Half-Troll",
+          "Priest"
+        ],
+        "1040": [
+          "Gnome",
+          "Necromancer"
+        ],
+        "1041": [
+          "Dwarf",
+          "Necromancer"
+        ],
+        "1042": [
+          "Half-Orc",
+          "Necromancer"
+        ],
+        "1043": [
+          "Half-Troll",
+          "Necromancer"
+        ],
+        "1044": [
+          "Dunadan",
+          "Necromancer"
+        ],
+        "1050": [
+          "Dwarf",
+          "Paladin"
+        ],
+        "1051": [
+          "Half-Orc",
+          "Paladin"
+        ],
+        "1052": [
+          "Half-Troll",
+          "Paladin"
+        ],
+        "1053": [
+          "Dunadan",
+          "Paladin"
+        ],
+        "1054": [
+          "High-Elf",
+          "Paladin"
+        ],
+        "1060": [
+          "Half-Orc",
+          "Rogue"
+        ],
+        "1061": [
+          "Half-Troll",
+          "Rogue"
+        ],
+        "1062": [
+          "Dunadan",
+          "Rogue"
+        ],
+        "1063": [
+          "High-Elf",
+          "Rogue"
+        ],
+        "1064": [
+          "Kobold",
+          "Rogue"
+        ],
+        "1070": [
+          "Half-Troll",
+          "Ranger"
+        ],
+        "1071": [
+          "Dunadan",
+          "Ranger"
+        ],
+        "1072": [
+          "High-Elf",
+          "Ranger"
+        ],
+        "1073": [
+          "Kobold",
+          "Ranger"
+        ],
+        "1074": [
+          "Human",
+          "Ranger"
+        ],
+        "1080": [
+          "Dunadan",
+          "Blackguard"
+        ],
+        "1081": [
+          "High-Elf",
+          "Blackguard"
+        ],
+        "1082": [
+          "Kobold",
+          "Blackguard"
+        ],
+        "1083": [
+          "Human",
+          "Blackguard"
+        ],
+        "1084": [
+          "Half-Elf",
+          "Blackguard"
+        ]
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -2001,7 +2779,10 @@
     "classes-1800-small-paladins": {
       "description": "The Paladin starts of classes-1800-small (borg-zoo#544): each with its classes-1800 character, for class-specific studies.",
       "role": "development",
-      "subset": {"suite": "classes-1800-small", "class": "Paladin"},
+      "subset": {
+        "suite": "classes-1800-small",
+        "class": "Paladin"
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -2010,7 +2791,13 @@
     "classes-1800-300k-verysmall": {
       "description": "The first 45 starts of classes-1800 (5 per class) at 300,000 engine turns: a late-game look at the shipped Borg (owner, 2026-11-21).",
       "role": "development",
-      "subset": {"suite": "classes-1800", "range": [0, 45]},
+      "subset": {
+        "suite": "classes-1800",
+        "range": [
+          0,
+          45
+        ]
+      },
       "cap": 300000,
       "wall_seconds": 5400,
       "stall_seconds": 180,
@@ -2019,7 +2806,27 @@
     "deaths-bank-classes-1800": {
       "description": "Starts (Rangers left out: set aside by the owner) that killed any arm of a zoo run from 2026-11-20 (runs 44737523620 to 44841145368), from classes-1800 (small and medium), each with its own character, at 200,000 engine turns. A quick regression bank, not a sample: rescues on chosen death starts did not carry over to fresh starts in #429 and #501.",
       "role": "development",
-      "subset": {"suite": "classes-1800", "seeds": [93034700, 809881907, 912444426, 1653223723, 1777269782, 1870400446, 247227001, 247597266, 352388688, 652511567, 920137153, 979002123, 1304510506, 1584060551, 1751715076, 2093434235]},
+      "subset": {
+        "suite": "classes-1800",
+        "seeds": [
+          93034700,
+          809881907,
+          912444426,
+          1653223723,
+          1777269782,
+          1870400446,
+          247227001,
+          247597266,
+          352388688,
+          652511567,
+          920137153,
+          979002123,
+          1304510506,
+          1584060551,
+          1751715076,
+          2093434235
+        ]
+      },
       "cap": 200000,
       "wall_seconds": 1800,
       "stall_seconds": 120,
@@ -2028,7 +2835,22 @@
     "deaths-bank-classes-18": {
       "description": "Starts (Rangers left out: set aside by the owner) that killed any arm of a zoo run from 2026-11-20 (runs 44737523620 to 44841145368), from classes-18, each with its own character, at 200,000 engine turns. A quick regression bank, not a sample: rescues on chosen death starts did not carry over to fresh starts in #429 and #501.",
       "role": "development",
-      "subset": {"suite": "classes-18", "seeds": [102023799, 300036923, 766958386, 801785300, 888896726, 934061548, 1085222502, 1381972077, 1502695781, 1548306106, 1569794094]},
+      "subset": {
+        "suite": "classes-18",
+        "seeds": [
+          102023799,
+          300036923,
+          766958386,
+          801785300,
+          888896726,
+          934061548,
+          1085222502,
+          1381972077,
+          1502695781,
+          1548306106,
+          1569794094
+        ]
+      },
       "cap": 200000,
       "wall_seconds": 1800,
       "stall_seconds": 120,
@@ -2037,7 +2859,14 @@
     "deaths-bank-classes-1800-200k": {
       "description": "Starts (Rangers left out: set aside by the owner) that killed any arm of a zoo run from 2026-11-20 (runs 44737523620 to 44841145368), from classes-1800-200k, each with its own character, at 200,000 engine turns. A quick regression bank, not a sample: rescues on chosen death starts did not carry over to fresh starts in #429 and #501.",
       "role": "development",
-      "subset": {"suite": "classes-1800-200k", "seeds": [24260605, 701310502, 715959297]},
+      "subset": {
+        "suite": "classes-1800-200k",
+        "seeds": [
+          24260605,
+          701310502,
+          715959297
+        ]
+      },
       "cap": 200000,
       "wall_seconds": 1800,
       "stall_seconds": 120,
@@ -2046,9 +2875,37 @@
     "classes-1800-fresh": {
       "description": "A fresh block of 1800 starts, unread for any decision (borg-zoo#556): the classes-1800 rule (assigned births, 100,000 turns) with seeds drawn under this suite's own name, so it shares no start with classes-1800, -b or any earlier suite. The reference block for P7 and later confirmations.",
       "role": "development",
-      "seed_rule": {"generator": "sha256-v1", "count": 1800},
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 1800
+      },
       "birth": "assigned",
-      "characters": {"classes": ["Warrior", "Mage", "Druid", "Priest", "Necromancer", "Paladin", "Rogue", "Ranger", "Blackguard"], "races": ["Human", "Half-Elf", "Elf", "Hobbit", "Gnome", "Dwarf", "Half-Orc", "Half-Troll", "Dunadan", "High-Elf", "Kobold"]},
+      "characters": {
+        "classes": [
+          "Warrior",
+          "Mage",
+          "Druid",
+          "Priest",
+          "Necromancer",
+          "Paladin",
+          "Rogue",
+          "Ranger",
+          "Blackguard"
+        ],
+        "races": [
+          "Human",
+          "Half-Elf",
+          "Elf",
+          "Hobbit",
+          "Gnome",
+          "Dwarf",
+          "Half-Orc",
+          "Half-Troll",
+          "Dunadan",
+          "High-Elf",
+          "Kobold"
+        ]
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -2057,7 +2914,13 @@
     "classes-1800-fresh-pilot": {
       "description": "The first 18 starts of classes-1800-fresh (2 per class): the pilot tier of the fresh block (borg-zoo#556).",
       "role": "pilot",
-      "subset": {"suite": "classes-1800-fresh", "range": [0, 18]},
+      "subset": {
+        "suite": "classes-1800-fresh",
+        "range": [
+          0,
+          18
+        ]
+      },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
@@ -2066,7 +2929,13 @@
     "classes-18-300k": {
       "description": "The 18 starts of classes-18 (2 per class) at 300,000 engine turns: a longer-game pilot for questions about fuel, light and late purchases (borg-zoo#577).",
       "role": "pilot",
-      "subset": {"suite": "classes-18", "range": [0, 18]},
+      "subset": {
+        "suite": "classes-18",
+        "range": [
+          0,
+          18
+        ]
+      },
       "cap": 300000,
       "wall_seconds": 5400,
       "stall_seconds": 180,
@@ -2077,7 +2946,10 @@
       "role": "development",
       "subset": {
         "suite": "classes-1800",
-        "seeds": [1410846136, 1370505797]
+        "seeds": [
+          1410846136,
+          1370505797
+        ]
       },
       "cap": 100000,
       "wall_seconds": 3600,
@@ -2089,7 +2961,10 @@
       "role": "development",
       "subset": {
         "suite": "classes-1800",
-        "seeds": [1965910635, 653243095]
+        "seeds": [
+          1965910635,
+          653243095
+        ]
       },
       "cap": 100000,
       "wall_seconds": 900,
@@ -2101,7 +2976,45 @@
       "role": "development",
       "subset": {
         "suite": "classes-1800",
-        "seeds": [17626119, 38374894, 139582688, 215443413, 235160511, 282602274, 284201809, 312081895, 327746368, 375646941, 453254028, 559636045, 592754909, 681096527, 857532386, 878437252, 901451811, 947201658, 968685682, 1024822556, 1062599390, 1112911014, 1143689460, 1194051723, 1294425391, 1312323730, 1398933929, 1503262659, 1577979420, 1646882832, 1723941400, 1786941047, 1895660873, 1896645817, 1917818854, 1924781520, 2125189042]
+        "seeds": [
+          17626119,
+          38374894,
+          139582688,
+          215443413,
+          235160511,
+          282602274,
+          284201809,
+          312081895,
+          327746368,
+          375646941,
+          453254028,
+          559636045,
+          592754909,
+          681096527,
+          857532386,
+          878437252,
+          901451811,
+          947201658,
+          968685682,
+          1024822556,
+          1062599390,
+          1112911014,
+          1143689460,
+          1194051723,
+          1294425391,
+          1312323730,
+          1398933929,
+          1503262659,
+          1577979420,
+          1646882832,
+          1723941400,
+          1786941047,
+          1895660873,
+          1896645817,
+          1917818854,
+          1924781520,
+          2125189042
+        ]
       },
       "cap": 100000,
       "wall_seconds": 900,
@@ -2113,7 +3026,16 @@
       "role": "development",
       "subset": {
         "suite": "classes-1800-300k-verysmall",
-        "seeds": [234773070, 300461652, 507571350, 572215387, 1516096046, 1751715076, 2002578196, 2097768768]
+        "seeds": [
+          234773070,
+          300461652,
+          507571350,
+          572215387,
+          1516096046,
+          1751715076,
+          2002578196,
+          2097768768
+        ]
       },
       "cap": 300000,
       "wall_seconds": 5400,
@@ -2125,7 +3047,57 @@
       "role": "development",
       "subset": {
         "suite": "classes-1800",
-        "seeds": [58554637, 142490685, 218907419, 269489578, 282602274, 284201809, 312081895, 316631741, 327746368, 410104179, 428238561, 434892746, 453254028, 494378654, 508419596, 526144893, 584191223, 592754909, 621641318, 645909552, 694417276, 725072442, 752786822, 781905420, 805307467, 842068151, 848342657, 947630404, 971641096, 1024822556, 1034169524, 1043901934, 1059193438, 1106145777, 1194051723, 1324886610, 1333938907, 1398933929, 1549487069, 1554402732, 1583000499, 1821728573, 1868115537, 1875401781, 2025089708, 2063715385, 2106680369, 2125189042, 2136378178]
+        "seeds": [
+          58554637,
+          142490685,
+          218907419,
+          269489578,
+          282602274,
+          284201809,
+          312081895,
+          316631741,
+          327746368,
+          410104179,
+          428238561,
+          434892746,
+          453254028,
+          494378654,
+          508419596,
+          526144893,
+          584191223,
+          592754909,
+          621641318,
+          645909552,
+          694417276,
+          725072442,
+          752786822,
+          781905420,
+          805307467,
+          842068151,
+          848342657,
+          947630404,
+          971641096,
+          1024822556,
+          1034169524,
+          1043901934,
+          1059193438,
+          1106145777,
+          1194051723,
+          1324886610,
+          1333938907,
+          1398933929,
+          1549487069,
+          1554402732,
+          1583000499,
+          1821728573,
+          1868115537,
+          1875401781,
+          2025089708,
+          2063715385,
+          2106680369,
+          2125189042,
+          2136378178
+        ]
       },
       "cap": 25000,
       "wall_seconds": 900,
@@ -2137,7 +3109,71 @@
       "role": "development",
       "subset": {
         "suite": "classes-1800",
-        "seeds": [2613747, 60959135, 111864827, 150307609, 179371675, 199095980, 200893737, 235160511, 247227001, 289043149, 350159779, 399497898, 403291759, 462832113, 507639047, 524850074, 543459087, 559636045, 584077430, 652511567, 685052922, 809881907, 895822921, 912024202, 914815160, 925576758, 981347301, 1002239165, 1007490173, 1012848986, 1055640847, 1086352478, 1112911014, 1125731181, 1151763704, 1169034064, 1186804206, 1277144831, 1303043906, 1375157069, 1387344181, 1416094492, 1494399662, 1577979420, 1598761213, 1626238247, 1672210802, 1686079085, 1695962135, 1714445858, 1735723339, 1740071931, 1808349933, 1820359588, 1852741500, 1870400446, 1928714163, 1980969254, 1983891190, 1985974231, 2053553896, 2096758023, 2146549397]
+        "seeds": [
+          2613747,
+          60959135,
+          111864827,
+          150307609,
+          179371675,
+          199095980,
+          200893737,
+          235160511,
+          247227001,
+          289043149,
+          350159779,
+          399497898,
+          403291759,
+          462832113,
+          507639047,
+          524850074,
+          543459087,
+          559636045,
+          584077430,
+          652511567,
+          685052922,
+          809881907,
+          895822921,
+          912024202,
+          914815160,
+          925576758,
+          981347301,
+          1002239165,
+          1007490173,
+          1012848986,
+          1055640847,
+          1086352478,
+          1112911014,
+          1125731181,
+          1151763704,
+          1169034064,
+          1186804206,
+          1277144831,
+          1303043906,
+          1375157069,
+          1387344181,
+          1416094492,
+          1494399662,
+          1577979420,
+          1598761213,
+          1626238247,
+          1672210802,
+          1686079085,
+          1695962135,
+          1714445858,
+          1735723339,
+          1740071931,
+          1808349933,
+          1820359588,
+          1852741500,
+          1870400446,
+          1928714163,
+          1980969254,
+          1983891190,
+          1985974231,
+          2053553896,
+          2096758023,
+          2146549397
+        ]
       },
       "cap": 60000,
       "wall_seconds": 900,
@@ -2149,11 +3185,71 @@
       "role": "development",
       "subset": {
         "suite": "classes-1800",
-        "seeds": [142490685, 269489578, 282602274, 312081895, 327746368, 453254028, 526144893, 584191223, 592754909, 645909552, 694417276, 781905420, 848342657, 1024822556, 1194051723, 1398933929, 1868115537, 2025089708, 2125189042, 2136378178]
+        "seeds": [
+          142490685,
+          269489578,
+          282602274,
+          312081895,
+          327746368,
+          453254028,
+          526144893,
+          584191223,
+          592754909,
+          645909552,
+          694417276,
+          781905420,
+          848342657,
+          1024822556,
+          1194051723,
+          1398933929,
+          1868115537,
+          2025089708,
+          2125189042,
+          2136378178
+        ]
       },
       "cap": 100000,
       "wall_seconds": 900,
       "stall_seconds": 90,
+      "saves": false
+    },
+    "classes-9-full": {
+      "description": "Full-game pilot (borg-zoo#805): one fresh assigned birth per class (9 games), 1,000,000-turn cap - games run to death or the cap; max CL (CL20 share first), max DL, death causes.",
+      "role": "pilot",
+      "seed_rule": {
+        "generator": "sha256-v1",
+        "count": 9
+      },
+      "cap": 1000000,
+      "wall_seconds": 5400,
+      "stall_seconds": 120,
+      "birth": "assigned",
+      "characters": {
+        "classes": [
+          "Warrior",
+          "Mage",
+          "Druid",
+          "Priest",
+          "Necromancer",
+          "Paladin",
+          "Rogue",
+          "Ranger",
+          "Blackguard"
+        ],
+        "races": [
+          "Human",
+          "Half-Elf",
+          "Elf",
+          "Hobbit",
+          "Gnome",
+          "Dwarf",
+          "Half-Orc",
+          "Half-Troll",
+          "Dunadan",
+          "High-Elf",
+          "Kobold"
+        ]
+      },
       "saves": false
     }
   }
