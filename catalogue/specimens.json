@@ -3738,6 +3738,32 @@
         "eyes-x8": "e5adb0a0e197568cb08aa193df0794aa5c97df27c380ccb553f8b3ab7d450094"
       }
     },
+    "4.2.6-reborn-rust-trackp-d68c1407": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "d68c1407fe8426c983dffb3ad6985ae1d24aff62",
+      "label": "borg-reborn-rs track-p d68c1407 (the merge of PR #1205 on 2026-11-24: the loop detector's window named as loop_moves 16 and loop_grids 3, shipped values unchanged; explore_stepable_goals of #1197 included): shipped harness/borg.txt c1861ecd..., scary_monsters.txt f35bfc49..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "f35bfc49af22ee19a1ea0270d2ed471595bf3104813fc69891312d0fccece75c"
+      }
+    },
+    "4.2.6-reborn-rust-recloop-4f56f7fa": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "4f56f7faa2f91a81a7d51944c1e24784af4d694e",
+      "label": "borg-reborn-rs PR #1215 (into track-p) head 4f56f7fa on 2026-11-25 (task/T1211-recovery-mana-loop: defend_prep_mana_starved and recover_mana_rest_full_hp, both shipped 1; the DL19 recovery-loop fix of #1211): shipped harness/borg.txt c1861ecd..., scary_monsters.txt f35bfc49..., borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "f35bfc49af22ee19a1ea0270d2ed471595bf3104813fc69891312d0fccece75c"
+      }
+    },
     "4.2.6-reborn-rust-trackp-13151fb5": {
       "kind": "borg-rs",
       "impl": "rust",

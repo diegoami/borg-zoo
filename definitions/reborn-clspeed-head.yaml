@@ -1,0 +1,26 @@
+# borg-zoo#783: CL-speed pilot - scumming leaner (max HP 10, ratio 1), scum alarm off (normal world). Write the catalogue entries with: python3 -m zoo define definitions/reborn-clspeed-head.yaml
+name: reborn-clspeed-head
+issue: 783
+question: >-
+  At track-p c5501d3c, does scumming leaner (max HP 10, speed ratio 1) - or just the scum alarm off - reach CL5 by 100,000 turns faster while keeping deaths at 0?
+tier: pilot            # classes-18, normal world, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-c5501d3c-pw
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-clspeed
+arms:
+  ctl: {}
+  scumlean: {borg_param_stair_scum_max_hp: 10, borg_param_stair_scum_speed_ratio: 1}
+  scumalarm0: {borg_param_stair_scum_alarm_turns: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-24: zoo owner, "since deaths are 0 pretty much almost everywhere we need more of these that improve CL faster keeping deaths to 0" (borg-zoo#783).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-24, before any result (Rule 22, #758). Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics. SAFETY CONSTRAINT (the owner's word): deaths stay at 0, and scumming itself stays ON - the arms tune its parameters, none removes it (removing scumming outright would cost lives). An arm whose deaths rise cannot be adopted however fast it levels; the read states any death with its cause and a /death-report pack. Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm. Report per arm against ctl: the CL5 endpoint, paired CL5 gained/lost (exact McNemar), the turn of first reaching character level 5 where recorded (a direct speed read), deaths, identical plays. Descriptive (RULES 14); ladder on the owner's word.
