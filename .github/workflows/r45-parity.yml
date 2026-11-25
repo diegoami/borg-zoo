@@ -95,11 +95,16 @@ jobs:
           set -o pipefail
           if [ "${{ matrix.arm }}" != native ]; then export BORG_SHADOW="${{ matrix.arm }}"; fi
           echo "arm=${{ matrix.arm }} BORG_SHADOW=${BORG_SHADOW:-unset}"
+          # A dead cell needs the cemetery death tools beside the checkout (#902).
+          git clone --quiet https://github.com/diegoami/borg-cemetery ../borg-cemetery
+          git -C ../borg-cemetery checkout --quiet --detach "$(cat death-tools-pin.txt)"
+          export BORG_CEMETERY_DIR="$GITHUB_WORKSPACE/borg-cemetery"
           START=$(date -u +%s)
           ./harness/suite.sh "harness/suites/.${SUITE}.shard${{ matrix.shard }}" partial
           echo "shard_seconds=$(($(date -u +%s) - START))" | tee shard_seconds.txt
           test -f partial/DONE
       - name: Upload the shard's partial tree
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: parity-${{ matrix.arm }}-${{ matrix.shard }}
@@ -145,6 +150,10 @@ jobs:
           cd checker
           rustup toolchain install stable --profile minimal
           ./harness/build.sh >/dev/null 2>&1
+          # the checker tree's own death-tools pin, for any dying demo cell
+          git clone --quiet https://github.com/diegoami/borg-cemetery ../borg-cemetery
+          git -C ../borg-cemetery checkout --quiet --detach "$(cat death-tools-pin.txt)"
+          export BORG_CEMETERY_DIR="$GITHUB_WORKSPACE/borg-cemetery"
           NAME=$(grep -v '^#' harness/suites/smoke | head -1 | awk '{print $1}')
           set +e
           RUN_TIMEOUT_SECONDS=2 timeout 300 ./harness/run.sh /tmp/demo-failed-cell $(grep -v '^#' harness/suites/smoke | head -1 | cut -d' ' -f2-)
