@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-ranged-resists-773-normal-pilot",
+  "issue": 773,
+  "definition": "definitions/reborn-ranged-resists-773-normal-pilot.yaml",
+  "question": "How do the two resistance-aware ranged caution settings from Reborn #1126 change play on the main line?",
+  "description": "How do the two resistance-aware ranged caution settings from Reborn #1126 change play on the main line? Generated from definitions/reborn-ranged-resists-773-normal-pilot.yaml: 3 arms on 4.2.6-reborn-rust-main-2c11b93f-eyes, suite classes-18.",
+  "prespecified": "normal, classes-18, 100,000 exact engine turns. Pair identical births within this world. Verify one build, the resolved settings and all 54 cell receipts. Verify the upstream game data is used.\nThe control uses both shipped settings at 0. Each treatment changes one setting and shares the same control within a world. Zoo #740 used the earlier Track P implementation.\nCount exercised pairs and record routes through adjacent grids, ranged attacks, melee, retreats and stair use. Record protection at target contact, including Free Action, where observable. An aligned encounter exercising the relevant change gates any larger tier. If protection coverage is absent, use a retained case with and without the applicable protection to verify the decision.\nReport paired deaths, rescued and newly killed starts, and CL5 reached by 100,000 engine turns. Report unfinished and abnormal outcomes separately. Keep DL3 and DL5 as diagnostics, mark unobservable coverage as unknown, and treat pilot outcomes as descriptive.",
+  "specimens": [
+    "4.2.6-reborn-rust-main-2c11b93f-eyes"
+  ],
+  "profiles": [
+    "reborn-ranged-resists-773-normal-pilot-ctl",
+    "reborn-ranged-resists-773-normal-pilot-ranged",
+    "reborn-ranged-resists-773-normal-pilot-immobile2"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-main-2c11b93f-eyes",
+  "control_profile": "reborn-ranged-resists-773-normal-pilot-ctl",
+  "owner_authorization": "Owner requested adding these Zoo pilot definitions on 2026-11-24.",
+  "retain_evidence": true
+}

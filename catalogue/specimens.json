@@ -3706,6 +3706,38 @@
         "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
       }
     },
+    "4.2.6-reborn-rust-trackp-ba08a4f3-eyes": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "ba08a4f3adcc66de068b52aea59e46eb31a63264",
+      "label": "Track P 7bf58639 with the eye-world configs from Reborn #1165, including the shipped walk-away rule.",
+      "scary_lists": {
+        "scary_monsters.txt": "5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690"
+      },
+      "worlds": {
+        "eyes-x8": "e5adb0a0e197568cb08aa193df0794aa5c97df27c380ccb553f8b3ab7d450094"
+      }
+    },
+    "4.2.6-reborn-rust-main-2c11b93f-eyes": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "2c11b93f657dbf5f5b1ce2fc1b2c73d042ea407e",
+      "label": "Main at Reborn #1126 merge b5d07d64 with the eyes-x8 config and pinned world generator. The Borg code and shipped profile are identical to b5d07d64.",
+      "scary_lists": {
+        "scary_monsters.txt": "b863ac5f18fc49e9ade9ee34b11ba72d693eb7c684498ce6396bc856188bc7bf"
+      },
+      "worlds": {
+        "eyes-x8": "e5adb0a0e197568cb08aa193df0794aa5c97df27c380ccb553f8b3ab7d450094"
+      }
+    },
     "4.2.6-reborn-rust-trackp-13151fb5": {
       "kind": "borg-rs",
       "impl": "rust",
