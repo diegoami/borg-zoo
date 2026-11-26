@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-baseline-242a4724-isolate",
+  "issue": 801,
+  "definition": "definitions/reborn-baseline-242a4724-isolate.yaml",
+  "question": "Which change drives the early-game divergence? home0 turns only town_home_reserve off (the owner's question); keys0 puts all five new keys at historical values, so keys0 vs ship bounds the key-gated share and keys0 vs the 815e2bba pilot bounds the unconditional code (torch replacement, stale door melee targets).",
+  "description": "Which change drives the early-game divergence? home0 turns only town_home_reserve off (the owner's question); keys0 puts all five new keys at historical values, so keys0 vs ship bounds the key-gated share and keys0 vs the 815e2bba pilot bounds the unconditional code (torch replacement, stale door melee targets). Generated from definitions/reborn-baseline-242a4724-isolate.yaml: 3 arms on 4.2.6-reborn-rust-trackp-242a4724, suite classes-18.",
+  "prespecified": "Fixed 2026-11-25, before any result (Rule 22, #758). Isolation pilot on the current head: ship vs home0 (only town_home_reserve off) vs keys0 (all five new keys at historical values - town_home_reserve 0, town_shop_overloaded 0, junk_inferior_spares 0, junk_inferior_sandal_ac_margin 0, town_loadout_power_loss 0 - approximating the 815e2bba-era settings on the new code). classes-18, normal world, 100,000 turns, evidence not retained. Read: per arm vs ship - identical plays (the share of games each feature moves), CL5, deaths (deaths-0 holds for every arm; an arm whose deaths rise cannot be adopted), paired gained/lost, median first-L5; keys0 vs the 815e2bba pilot's retained cells (paired by seed, labelled retrospective) bounds how much play the unconditional code changes. Gate: no config_error; one binary; every cell terminal. Progress endpoint CL5 by 100,000 turns, deaths and unfinished separate. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-242a4724"
+  ],
+  "profiles": [
+    "reborn-baseline-242a4724-ship",
+    "reborn-baseline-242a4724-home0",
+    "reborn-baseline-242a4724-keys0"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-242a4724",
+  "control_profile": "reborn-baseline-242a4724-ship",
+  "owner_authorization": "2026-11-25: zoo owner, \"town_home_reserve, I am not sure, what is the effect of that? Investigate what of this affect most gameplay change\" (borg-zoo#801). RULES 23: current Track-P status.",
+  "retain_evidence": false
+}

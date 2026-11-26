@@ -1,0 +1,25 @@
+# borg-zoo#801: the owner's suspect - the #1217 class-level DL2 clevel gate (warrior 6, mage 9, druid 8, priest 10, necromancer 10, paladin 9, rogue 7, ranger 8, blackguard 7; the old gate was max-HP 30). prep_old restores the 52fff0de-era gate on the current build. Write the catalogue entries with: python3 -m zoo define definitions/reborn-baseline-242a4724-prepold.yaml
+name: reborn-baseline-242a4724-prepold
+issue: 801
+question: >-
+  Does the class-level DL2 clevel gate change early-game play and CL5? prep_old puts back the old gate (max-HP 30, no level gate - all nine class overrides 0) on the current build; paired by seed against ship.
+tier: pilot            # classes-18, paired, normal world, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-242a4724
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-baseline-242a4724
+arms:
+  ship: {}
+  prep_old: {borg_param_prepared_dl2_min_hp: 30, borg_param_prepared_dl2_min_clevel: 0, borg_param_prepared_dl2_min_clevel__warrior: 0, borg_param_prepared_dl2_min_clevel__mage: 0, borg_param_prepared_dl2_min_clevel__druid: 0, borg_param_prepared_dl2_min_clevel__priest: 0, borg_param_prepared_dl2_min_clevel__necromancer: 0, borg_param_prepared_dl2_min_clevel__paladin: 0, borg_param_prepared_dl2_min_clevel__rogue: 0, borg_param_prepared_dl2_min_clevel__ranger: 0, borg_param_prepared_dl2_min_clevel__blackguard: 0}
+control: [ship]
+owner_authorization: >-
+  2026-11-25: zoo owner, "I have a suspect, borg_param_prepared_dl2_min_clevel", "It is set at class level" (borg-zoo#801). RULES 23: current Track-P status.
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-25, before any result (Rule 22, #758). The owner's suspect, tested: the #1217 rework replaced the max-HP 30 DL2 gate with per-class character-level gates (6-10, live for all nine classes through the shipped __class overrides; the global 0 alone would disable it, which is why every override is zeroed in prep_old). prep_old restores the historical gate (max-HP 30, no level gate) on the current build; paired by seed against ship, classes-18, normal world, 100,000 turns. Read: identical plays (how many games the gate moves), CL5, deaths (deaths-0 for the arm; a rise cannot be adopted), paired gained/lost (exact McNemar), median first-L5, and per-class splits (the shipped values differ by class: casters 9-10 vs warrior 6). Gate: no config_error; one binary; every cell terminal; each arm's values in params-core.json. Descriptive (RULES 14) - a lead goes to a bigger tier on the owner's word.

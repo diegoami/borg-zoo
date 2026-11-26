@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-baseline-242a4724-sandal",
+  "issue": 801,
+  "definition": "definitions/reborn-baseline-242a4724-sandal.yaml",
+  "question": "Does the sandal junk margin move early-game play at all (ship 7 vs 4), and does a per-class split (melee 4, casters 7) differ from a flat 4? If an arm replays ship, the dial never binds at this tier and the shipped change is cosmetic.",
+  "description": "Does the sandal junk margin move early-game play at all (ship 7 vs 4), and does a per-class split (melee 4, casters 7) differ from a flat 4? If an arm replays ship, the dial never binds at this tier and the shipped change is cosmetic. Generated from definitions/reborn-baseline-242a4724-sandal.yaml: 3 arms on 4.2.6-reborn-rust-trackp-242a4724, suite classes-18.",
+  "prespecified": "Fixed 2026-11-25, before any result (Rule 22, #758). The junk-margin dial, measured before any shipped change: ship (margin 7) vs sandal4 (flat 4) vs sandal_class (melee classes 4, casting classes 7), classes-18, normal world, 100,000 turns, paired by seed, evidence not retained. The margin acts only before DL5, only on plain Leather Sandals spares seen as [1,+0] with unknown runes, and only with junk_inferior_spares on; 4 junks a spare at worn to_a >= 4 instead of >= 7. SAFETY: deaths-0 for every arm (a rise cannot be adopted however fast it levels). Gate: no config_error; one binary; every cell terminal; each arm's values in params-core.json. Read: identical plays per arm (18/18 = the dial never binds here and the shipped change is cosmetic), CL5, deaths, paired gained/lost (exact McNemar), median first-L5, per-class splits (the per-class arm's whole point). Descriptive (RULES 14); a lead goes to a bigger tier on the owner's word.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-242a4724"
+  ],
+  "profiles": [
+    "reborn-baseline-242a4724-ship",
+    "reborn-baseline-242a4724-sandal4",
+    "reborn-baseline-242a4724-sandal_class"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-242a4724",
+  "control_profile": "reborn-baseline-242a4724-ship",
+  "owner_authorization": "2026-11-25: zoo owner, \"junk_inferior_sandal_ac_margin? I would set it even to 4 or by class too\" (borg-zoo#801). RULES 23: current Track-P status.",
+  "retain_evidence": false
+}

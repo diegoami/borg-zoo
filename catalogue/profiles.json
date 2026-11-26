@@ -14291,6 +14291,132 @@
         "borg_reborn_core": "borg-rs",
         "borg_reborn_errand": "none"
       }
+    },
+    "reborn-baseline-242a4724-ship": {
+      "description": "borg-zoo#801 (reborn-baseline-242a4724.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-baseline-242a4724-home0": {
+      "description": "borg-zoo#801 (reborn-baseline-242a4724-isolate.yaml): arm home0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_home_reserve": 0
+      }
+    },
+    "reborn-baseline-242a4724-keys0": {
+      "description": "borg-zoo#801 (reborn-baseline-242a4724-isolate.yaml): arm keys0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_home_reserve": 0,
+        "borg_param_town_shop_overloaded": 0,
+        "borg_param_junk_inferior_spares": 0,
+        "borg_param_junk_inferior_sandal_ac_margin": 0,
+        "borg_param_town_loadout_power_loss": 0
+      }
+    },
+    "reborn-baseline-242a4724-prep_old": {
+      "description": "borg-zoo#801 (reborn-baseline-242a4724-prepold.yaml): arm prep_old.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_prepared_dl2_min_hp": 30,
+        "borg_param_prepared_dl2_min_clevel": 0,
+        "borg_param_prepared_dl2_min_clevel__warrior": 0,
+        "borg_param_prepared_dl2_min_clevel__mage": 0,
+        "borg_param_prepared_dl2_min_clevel__druid": 0,
+        "borg_param_prepared_dl2_min_clevel__priest": 0,
+        "borg_param_prepared_dl2_min_clevel__necromancer": 0,
+        "borg_param_prepared_dl2_min_clevel__paladin": 0,
+        "borg_param_prepared_dl2_min_clevel__rogue": 0,
+        "borg_param_prepared_dl2_min_clevel__ranger": 0,
+        "borg_param_prepared_dl2_min_clevel__blackguard": 0
+      }
+    },
+    "reborn-baseline-242a4724-sandal4": {
+      "description": "borg-zoo#801 (reborn-baseline-242a4724-sandal.yaml): arm sandal4.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_junk_inferior_sandal_ac_margin": 4
+      }
+    },
+    "reborn-baseline-242a4724-sandal_class": {
+      "description": "borg-zoo#801 (reborn-baseline-242a4724-sandal.yaml): arm sandal_class.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_junk_inferior_sandal_ac_margin__warrior": 4,
+        "borg_param_junk_inferior_sandal_ac_margin__paladin": 4,
+        "borg_param_junk_inferior_sandal_ac_margin__blackguard": 4,
+        "borg_param_junk_inferior_sandal_ac_margin__rogue": 4,
+        "borg_param_junk_inferior_sandal_ac_margin__ranger": 4,
+        "borg_param_junk_inferior_sandal_ac_margin__mage": 7,
+        "borg_param_junk_inferior_sandal_ac_margin__priest": 7,
+        "borg_param_junk_inferior_sandal_ac_margin__necromancer": 7,
+        "borg_param_junk_inferior_sandal_ac_margin__druid": 7
+      }
+    },
+    "reborn-fullgame-242a4724-ship": {
+      "description": "borg-zoo#805 (reborn-fullgame-242a4724.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-fullgame-vanilla-ship": {
+      "description": "borg-zoo#805 (reborn-fullgame-vanilla.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-fullgame-242a4724-3m-ship": {
+      "description": "borg-zoo#805 (reborn-fullgame-242a4724-3m.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-fullgame-vanilla-evidence-ship": {
+      "description": "borg-zoo#805 (reborn-fullgame-vanilla-evidence.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-baseline-a0b73ca9-ship": {
+      "description": "borg-zoo#807 (reborn-baseline-a0b73ca9.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-fullgame-a0b73ca9-ship": {
+      "description": "borg-zoo#807 (reborn-fullgame-a0b73ca9.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-home0-a0b73ca9-ship": {
+      "description": "borg-zoo#807 (reborn-home0-a0b73ca9.yaml): arm ship.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none"
+      }
+    },
+    "reborn-home0-a0b73ca9-home0": {
+      "description": "borg-zoo#807 (reborn-home0-a0b73ca9.yaml): arm home0.",
+      "settings": {
+        "borg_reborn_core": "borg-rs",
+        "borg_reborn_errand": "none",
+        "borg_param_town_home_reserve": 0
+      }
     }
   }
 }

@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-fullgame-242a4724",
+  "issue": 805,
+  "definition": "definitions/reborn-fullgame-242a4724.yaml",
+  "question": "How far does the shipped Borg get in a full game on the current track-p head 242a4724: how many reach CLvl 20 (first headline), what maximum character level and dungeon depth do the games reach, and what kills the ones that die - one full game per class, to death or the 1,000,000-turn cap?",
+  "description": "How far does the shipped Borg get in a full game on the current track-p head 242a4724: how many reach CLvl 20 (first headline), what maximum character level and dungeon depth do the games reach, and what kills the ones that die - one full game per class, to death or the 1,000,000-turn cap? Generated from definitions/reborn-fullgame-242a4724.yaml: 1 arms on 4.2.6-reborn-rust-trackp-242a4724, suite classes-9-full.",
+  "prespecified": "Fixed 2026-11-25, before any result (Rule 22 applies to the early-game program; this run establishes the full-game program per the owner's direction today). One full game per class on the current track-p head 242a4724 (shipped settings, vanilla upstream Angband 574b618c...), 1,000,000-turn cap: a game ends at death or the cap. PRIMARY: CL20 reached (count of games with max character level >= 20). REPORTED PER GAME: maximum character level (the last entry of first_turn_at_level), maximum dungeon depth, outcome (death with cause, turn and depth, or alive at the cap), town vs dungeon turns, and the CL timeline (first turn at each level). Descriptive first look (RULES 14) - no comparisons; the ladder and CL20-share tracking across heads follow on the owner's word. Gate: no config_error; one binary; every cell ends in death or turn_cap (a stall is a finding of its own and is reported with the stall ledger). Engine note: the build pins vanilla upstream 574b618c...; this run does not change engine pins.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-242a4724"
+  ],
+  "profiles": [
+    "reborn-fullgame-242a4724-ship"
+  ],
+  "suites": [
+    "classes-9-full"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-242a4724",
+  "control_profile": "reborn-fullgame-242a4724-ship",
+  "owner_authorization": "2026-11-25: zoo owner, \"We need to move the focus from CL to 100k to full games until death, or until timeout. Make a test run with a few games using the latest vanilla angband engine and see how far they get until they die: DL, but first of all CL. Or see how much of them get to CLvl 20 for a start. On a good day, the Angband Borg seems to be able to get to CLVL 50\" (borg-zoo#805).",
+  "retain_evidence": false
+}

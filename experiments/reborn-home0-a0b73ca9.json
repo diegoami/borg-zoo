@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-home0-a0b73ca9",
+  "issue": 807,
+  "definition": "definitions/reborn-home0-a0b73ca9.yaml",
+  "question": "Does turning town_home_reserve off still recover early-game CL5 on the head that rebuilt the Home/junk family (the #801 lead, re-tested)?",
+  "description": "Does turning town_home_reserve off still recover early-game CL5 on the head that rebuilt the Home/junk family (the #801 lead, re-tested)? Generated from definitions/reborn-home0-a0b73ca9.yaml: 2 arms on 4.2.6-reborn-rust-trackp-a0b73ca9, suite classes-18.",
+  "prespecified": "Fixed 2026-11-26, before any result (Rule 22, #758). The #801 lead re-tested on the new head: ship vs home0 (only town_home_reserve 0), paired by seed, classes-18. Read: identical plays, CL5, deaths (deaths-0), paired gained/lost, median first-L5. Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and median first-turn-at-level-5 as diagnostics. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-a0b73ca9"
+  ],
+  "profiles": [
+    "reborn-home0-a0b73ca9-ship",
+    "reborn-home0-a0b73ca9-home0"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-a0b73ca9",
+  "control_profile": "reborn-home0-a0b73ca9-ship",
+  "owner_authorization": "2026-11-26: zoo owner, \"ok continue all, we can start experiments with the current head of born again\" (borg-zoo#807). RULES 23: current Track-P status.",
+  "retain_evidence": false
+}
