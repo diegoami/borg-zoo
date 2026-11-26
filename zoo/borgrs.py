@@ -420,11 +420,11 @@ def build(spec, source, out):
                 'platform': f'{platform.system()} {platform.machine()}', 'complete': True}
     converter = source / 'harness/pborg-config.py'
     staged = out / 'pborg-config.py'
-    if converter.is_file():
+    if build_id.get('pborg_config') == 'yaml':
+        if not converter.is_file():
+            raise ValueError('combined Borg build is missing harness/pborg-config.py')
         shutil.copyfile(converter, staged)
         manifest['pborg_converter_sha256'] = sha256(staged)
-    elif build_id.get('pborg_config') == 'yaml':
-        raise ValueError('combined Borg build is missing harness/pborg-config.py')
     else:
         staged.unlink(missing_ok=True)
     if plans:
@@ -468,7 +468,7 @@ def stage_config(build_dir, out, text, manifest):
     """Write the settings consumed by this specimen and return its YAML hash."""
     settings_format = (manifest.get('build_id') or {}).get('pborg_config')
     digest = manifest.get('pborg_converter_sha256')
-    if digest is None and settings_format != 'yaml':
+    if settings_format != 'yaml':
         (out / 'user/borg.txt').write_text(text)
         return None
     converter = build_dir / 'pborg-config.py'
@@ -482,7 +482,7 @@ def stage_config(build_dir, out, text, manifest):
 
 
 def retain_legacy_config(out, text, yaml_sha):
-    """Keep the legacy receipt expected by evidence export after the game exits."""
+    """Preserve the text receipt after the combined game has run with YAML alone."""
     if yaml_sha is not None:
         (out / 'user/borg.txt').write_text(text)
 

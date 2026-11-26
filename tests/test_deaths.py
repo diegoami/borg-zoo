@@ -65,6 +65,7 @@ class DeathBundleTest(unittest.TestCase):
                 'source_commit': spec['ref'], 'impl': spec['impl'], 'binary_sha256': 'bin',
                 'build_id': BUILD_ID, 'plans': {'errands_plan.txt': PLAN_SHA}}
             if yaml_config:
+                # A stand-in for the pinned converter exercises the receipt round trip.
                 converter = root / 'pborg-config.py'
                 converter.write_text("import sys\nfor line in sys.stdin:\n"
                                      "    print(line.replace(' = ', ': ').rstrip())\n")
