@@ -54,6 +54,7 @@ Limits compared with the better-borg-c observer, recorded per cell:
 - every inherited BORG_* environment variable is cleared before a cell.
 """
 import hashlib
+import importlib.util
 import json
 import os
 import platform
@@ -341,7 +342,7 @@ SCARY_NONE = 'none'
 SCARY_LINE = re.compile(r'^[ \t]*borg_scary_list[ \t]*=[ \t]*(\S*)[ \t]*$', re.M)
 
 
-def scary_name(profile, borg_txt):
+def scary_name(profile, borg_txt, *, yaml_settings=None):
     """(the scary list a cell reads, where it came from): the profile's
     borg_scary_list, else the written borg.txt's own line (a specimen that
     ships the list on, borg-zoo#228); (None, None) for the compiled C list,
@@ -349,8 +350,11 @@ def scary_name(profile, borg_txt):
     name = profile['settings'].get('borg_scary_list')
     source = 'profile'
     if name is None:
-        m = SCARY_LINE.findall(borg_txt)
-        name, source = (m[-1] if m else None), 'shipped borg.txt'
+        if yaml_settings is not None:
+            name, source = yaml_settings.get('borg_scary_list'), 'shipped pborg.yaml'
+        else:
+            m = SCARY_LINE.findall(borg_txt)
+            name, source = (m[-1] if m else None), 'shipped borg.txt'
     if not name or name == SCARY_NONE:
         return None, None
     return name, source
@@ -396,10 +400,18 @@ def build(spec, source, out):
     if (out / 'game').exists():
         shutil.rmtree(out / 'game')
     shutil.copytree(game, out / 'game', symlinks=False)
-    shutil.copy(source / 'harness/borg.txt', out / 'borg.txt')
-    shipped = SCARY_LINE.findall((out / 'borg.txt').read_text())
-    if shipped and shipped[-1] not in ('', SCARY_NONE) and shipped[-1] not in (spec.get('scary_lists') or {}):
-        raise ValueError(f"harness/borg.txt at {spec['ref']} sets borg_scary_list = {shipped[-1]}, which the specimen "
+    native_yaml = (source / 'harness/pborg.yaml').is_file()
+    template = 'pborg.yaml' if native_yaml else 'borg.txt'
+    other_config = 'borg.txt' if native_yaml else 'pborg.yaml'
+    (out / other_config).unlink(missing_ok=True)
+    shutil.copy(source / 'harness' / template, out / template)
+    if native_yaml:
+        shutil.copy(source / 'harness/pborg-settings.py', out / 'pborg-settings.py')
+    text = (out / template).read_text(encoding='utf-8')
+    values = yaml_editor(out).settings(text) if native_yaml else None
+    scary, _ = scary_name({'settings': {}}, text, yaml_settings=values)
+    if scary and scary not in (spec.get('scary_lists') or {}):
+        raise ValueError(f"harness/{template} at {spec['ref']} selects scary list {scary}, which the specimen "
                          'does not pin ("scary_lists": {name: sha256}, borg-zoo#228)')
     if (out / 'plans').exists():
         shutil.rmtree(out / 'plans')
@@ -420,7 +432,10 @@ def build(spec, source, out):
                 'platform': f'{platform.system()} {platform.machine()}', 'complete': True}
     converter = source / 'harness/pborg-config.py'
     staged = out / 'pborg-config.py'
-    if build_id.get('pborg_config') == 'yaml':
+    if native_yaml:
+        manifest['pborg_template_sha256'] = sha256(out / template)
+        staged.unlink(missing_ok=True)
+    elif build_id.get('pborg_config') == 'yaml':
         if not converter.is_file():
             raise ValueError('combined Borg build is missing harness/pborg-config.py')
         shutil.copyfile(converter, staged)
@@ -452,7 +467,28 @@ def borg_txt_settings(profile):
     return {k: v for k, v in profile['settings'].items() if k not in ADAPTER_SETTINGS}
 
 
+def yaml_editor(build_dir):
+    path = Path(build_dir) / 'pborg-settings.py'
+    spec = importlib.util.spec_from_file_location('pborg_settings', path)
+    editor = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(editor)
+    return editor
+
+
+def yaml_template(build_dir):
+    path = Path(build_dir) / 'pborg.yaml'
+    return path if path.is_file() else None
+
+
 def config_text(build_dir, profile, race=0, cls=0):
+    template = yaml_template(build_dir)
+    if template:
+        overrides = {'borg_respawn_race': str(race), 'borg_respawn_class': str(cls),
+                     'borg_cheat_death': 'FALSE', 'borg_respawn_winners': 'FALSE'}
+        overrides.update((name, cat_mod.setting_value(value))
+                         for name, value in sorted(borg_txt_settings(profile).items()))
+        return yaml_editor(build_dir).edit(template.read_text(encoding='utf-8'),
+                                           overrides.items(), remove=('borg_world',))
     base = (Path(build_dir) / 'borg.txt').read_text()
     text = cat_mod._override(base, 'borg_respawn_race', str(race))
     text = cat_mod._override(text, 'borg_respawn_class', str(cls))
@@ -466,6 +502,12 @@ def config_text(build_dir, profile, race=0, cls=0):
 
 def stage_config(build_dir, out, text, manifest):
     """Write the settings consumed by this specimen and return its YAML hash."""
+    template = yaml_template(build_dir)
+    if template:
+        if sha256(template) != manifest.get('pborg_template_sha256'):
+            raise ValueError('PBorg YAML template differs from the build manifest')
+        (out / 'user/pborg.yaml').write_bytes(text.encode('utf-8'))
+        return hashlib.sha256(text.encode('utf-8')).hexdigest()
     settings_format = (manifest.get('build_id') or {}).get('pborg_config')
     digest = manifest.get('pborg_converter_sha256')
     if settings_format != 'yaml':
@@ -511,11 +553,13 @@ def copy_worlds(spec, source, out):
     return worlds, sha256(tool)
 
 
-def world_name(profile, base_text):
+def world_name(profile, base_text, *, yaml_settings=None):
     """The world a cell plays: the profile's borg_world, else the shipped
     borg.txt's line; None for upstream's data ('none' or no key)."""
     name = profile['settings'].get('borg_world')
-    if name is None:
+    if name is None and yaml_settings is not None:
+        name = yaml_settings.get('borg_world')
+    elif name is None:
         m = WORLD_LINE.findall(base_text)
         name = m[-1] if m else None
     return None if not name or name == 'none' else plan_name(name)
@@ -543,10 +587,13 @@ def make_world(spec, manifest, build_dir, out, name):
     return {'name': name, 'sha256': digest, 'data_sha256': data_sha}, root
 
 
-def check_config(text, profile):
+def check_config(text, profile, *, yaml_settings=None):
     wrong = []
     for name, value in borg_txt_settings(profile).items():
-        if f'\n{name} = {cat_mod.setting_value(value)}\n' not in '\n' + text:
+        expected = cat_mod.setting_value(value)
+        ok = (yaml_settings.get(name) == expected if yaml_settings is not None
+              else f'\n{name} = {expected}\n' in '\n' + text)
+        if not ok:
             wrong.append(name)
     return ('settings not written: ' + ', '.join(sorted(wrong))) if wrong else None
 
@@ -597,15 +644,19 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     race_i, cls_i = cat_mod.RACES.index(race), cat_mod.CLASSES.index(cls)
     text = config_text(build_dir, profile, race_i, cls_i)
     yaml_sha = stage_config(build_dir, out, text, manifest)
-    mismatch = check_config(text, profile)
+    template = yaml_template(build_dir)
+    editor = yaml_editor(build_dir) if template else None
+    values = editor.settings(text) if editor else None
+    mismatch = check_config(text, profile, yaml_settings=values)
     plan = profile['settings'].get('borg_plan')
     plan_sha = ship_plan(spec, manifest, build_dir, out, plan) if plan is not None else None
-    scary, scary_source = scary_name(profile, text)
+    scary, scary_source = scary_name(profile, text, yaml_settings=values)
     lines = scary_lines(profile)
     if lines and scary is None:
         raise ValueError('borg_scary_list_lines with no scary list (the compiled C list takes no lines)')
     scary_sha = ship_scary_list(spec, manifest, build_dir, out, scary, lines) if scary is not None else None
-    world = world_name(profile, (build_dir / 'borg.txt').read_text())
+    base = (template or build_dir / 'borg.txt').read_text(encoding='utf-8')
+    world = world_name(profile, base, yaml_settings=editor.settings(base) if editor else None)
     world_record, data_root = make_world(spec, manifest, build_dir, out, world) if world else (None, None)
     game = build_dir / 'game'
     argv = command(game / 'angband', out, cell, race_i, cls_i, suite, spec, keep=keep, data_root=data_root)
@@ -638,7 +689,8 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     except subprocess.TimeoutExpired:
         outcome, error = 'wall_timeout', f"no stop within {suite['wall_seconds']} s"
     wall = time.monotonic() - start
-    retain_legacy_config(out, text, yaml_sha)
+    if not template:
+        retain_legacy_config(out, text, yaml_sha)
     if data_root is not None:
         shutil.rmtree(data_root, ignore_errors=True)
     summary = {}
@@ -786,4 +838,6 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         state_log.unlink(missing_ok=True)
     if yaml_sha is not None:
         record['pborg_yaml_sha256'] = yaml_sha
+    if template:
+        record['config_format'] = 'pborg.yaml'
     return record
