@@ -1,0 +1,135 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-fullgame-vanilla-evidence-ship": {
+        "description": "borg-zoo#805 (reborn-fullgame-vanilla-evidence.yaml): arm ship.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "54eb19e19d2d7d3e382deb6c18f00f133be09836b8c8f2aee54e4e40b8478fd3"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-c-pristine": {
+        "carries": 0,
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "c-pristine",
+        "kind": "borg-rs",
+        "label": "Original C Borg (e473720) built by borg-reborn-rs under borgh. Its keys are a prefix of 4.2.6-rs-m0-c's on borg-rs's smoke suite, one key shorter (this specimen stops exactly at the cap; rs-m0-c's tree has no -exact-turns, so it stops one key after it) - outcomes pair with 4.2.6-rs-m0-c, but play/trace hashes do not match.",
+        "ref": "fab71554fd32e3dbcbcf3b12daac29a02806fb13",
+        "repository": "diegoami/borg-reborn-rs",
+        "source": "https://github.com/diegoami/borg-reborn-rs",
+        "tag": "m1"
+      }
+    },
+    "suites": {
+      "classes-9-full": {
+        "birth": "assigned",
+        "cap": 1000000,
+        "characters": {
+          "classes": [
+            "Warrior",
+            "Mage",
+            "Druid",
+            "Priest",
+            "Necromancer",
+            "Paladin",
+            "Rogue",
+            "Ranger",
+            "Blackguard"
+          ],
+          "races": [
+            "Human",
+            "Half-Elf",
+            "Elf",
+            "Hobbit",
+            "Gnome",
+            "Dwarf",
+            "Half-Orc",
+            "Half-Troll",
+            "Dunadan",
+            "High-Elf",
+            "Kobold"
+          ]
+        },
+        "description": "Full-game pilot (borg-zoo#805): one fresh assigned birth per class (9 games), 1,000,000-turn cap - games run to death or the cap; max CL (CL20 share first), max DL, death causes.",
+        "role": "pilot",
+        "saves": false,
+        "seed_rule": {
+          "count": 9,
+          "generator": "sha256-v1"
+        },
+        "seeds": [
+          212818316,
+          1009999184,
+          1759985081,
+          129481348,
+          2110310600,
+          388458606,
+          1935149248,
+          962733507,
+          270593607
+        ],
+        "stall_seconds": 120,
+        "wall_seconds": 5400
+      }
+    }
+  },
+  "completed": "2026-11-26 00:10 UTC",
+  "environment": {
+    "arg_orders": [],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-c-pristine",
+    "control_profile": "reborn-fullgame-vanilla-evidence-ship",
+    "definition": "definitions/reborn-fullgame-vanilla-evidence.yaml",
+    "description": "How far does the vanilla Angband Borg (the original C Borg, e473720, built pristine by borg-reborn-rs) get in the same full games our Borg ran: CL20 share, max CL, max DL, deaths - the parallel benchmark the owner asked for. Generated from definitions/reborn-fullgame-vanilla-evidence.yaml: 1 arms on 4.2.6-reborn-c-pristine, suite classes-9-full.",
+    "issue": 805,
+    "name": "reborn-fullgame-vanilla-evidence",
+    "owner_authorization": "2026-11-25: zoo owner, \"let us finish this, but I was meaning that we should do parallel runs with the Angband Vanilla Borg as well\" (borg-zoo#805). RULES 23: Track-P status and parallel benchmarks.",
+    "prespecified": "Fixed 2026-11-25, before any result (the full-game program, borg-zoo#805). The vanilla C Borg (4.2.6-reborn-c-pristine: the original C Borg logic, e473720, built by borg-reborn-rs) plays the SAME classes-9-full suite our Borg ran (one game per class, 1,000,000-turn cap): a cross-implementation parallel read, labelled as such - two Borgs, one program. Report per game: max CL (CL20 headline), max DL, outcome/death cause, town vs dungeon turns. Gate: no config_error; one binary; every cell ends in death or turn_cap (a stall is reported with the ledger). Descriptive (RULES 14).",
+    "profiles": [
+      "reborn-fullgame-vanilla-evidence-ship"
+    ],
+    "question": "How far does the vanilla Angband Borg (the original C Borg, e473720, built pristine by borg-reborn-rs) get in the same full games our Borg ran: CL20 share, max CL, max DL, deaths - the parallel benchmark the owner asked for.",
+    "retain_evidence": true,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-c-pristine"
+    ],
+    "suites": [
+      "classes-9-full"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45726144431-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45726144431",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "86f3b92500890cd2072d19e25b7c60d4600fdf2f"
+}
