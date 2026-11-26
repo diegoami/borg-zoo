@@ -1,0 +1,24 @@
+# borg-zoo#805: the full-game ladder continued - the same 9 starts at a 3,000,000-turn cap on the current head a0b73ca9. The 1M pilot's 9 games were ALL alive at the cap; the first 1M replays identically (deterministic engine) and the games continue to their real ceiling. Write the catalogue entries with: python3 -m zoo define definitions/reborn-fullgame-a0b73ca9-3m.yaml
+name: reborn-fullgame-a0b73ca9-3m
+issue: 805
+question: >-
+  Where does the climb end? The 1M pilot's nine games (all alive at the cap, two at CL20) continue to death or a 3,000,000-turn cap: the CL20 count over finished games, the maximum CL and DL reached, and what kills the ones that die.
+tier: pilot            # classes-9-full-3m: the same seeds/classes/births, 3,000,000-turn cap
+
+specimen: 4.2.6-reborn-rust-trackp-a0b73ca9
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-fullgame-a0b73ca9   # the 1M pilot's profile (RULES 16)
+arms:
+  ship: {}
+control: [ship]
+owner_authorization: >-
+  2026-11-26: zoo owner, "continue" - the full-game ladder continues on the current head (borg-zoo#805/#807).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-26, before any result (the full-game program, borg-zoo#805). The ladder of the 1M pilot on the same specimen (a0b73ca9): the same 9 starts (subset, same seeds/classes/births) at a 3,000,000-turn cap - the engine is deterministic, so the first 1,000,000 turns replay the 1M pilot exactly and the games continue. Report per game: max CL, max DL, outcome (death with cause and turn, or alive at the cap), the CL timeline; CL20 count over all games. Descriptive (RULES 14); the ladder continues on the owner's word. Gate: no config_error; one binary; every cell ends in death or turn_cap (a stall is a finding of its own).
