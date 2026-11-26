@@ -1,0 +1,75 @@
+# borg-zoo#805: replay the vanilla Borg's full-game deaths ON the runner - the
+# runner's gcc (13.3, Ubuntu 24.04) is the same compiler family that built the
+# benchmark's binary, so the recorded replays are key-exact against the zoo
+# cells (a local build on another distro plays different games, #855 family).
+# Replays the deaths-* bundles of an evidence-retained run with
+# SUPPORT_BORG_RECORDING=ON + SUPPORT_BORG_HARNESS=ON (the borgh headless
+# module is gated by the latter on this engine tree) and uploads frames.json
+# plus the raw recordings for the death report.
+name: vanilla deaths replay
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'The evidence-retained zoo run id whose deaths-* artifacts hold the bundles'
+        required: true
+        default: '45726144431'
+      pin:
+        description: 'borg-reborn-rs pin of the specimen'
+        required: true
+      frames:
+        description: 'Screens per death for the report viewer'
+        required: false
+        default: '100'
+
+concurrency:
+  group: vanilla-deaths-replay
+  cancel-in-progress: false
+
+jobs:
+  replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: diegoami/borg-reborn-rs
+          ref: ${{ inputs.pin }}
+          path: src
+      - name: Download the death bundles from the evidence run
+        uses: actions/download-artifact@v4
+        with:
+          pattern: deaths-*
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ github.token }}
+          path: W/selected
+      - name: Install the build toolchain
+        run: |
+          sudo apt-get update >/dev/null 2>&1
+          sudo apt-get install -y -qq cmake >/dev/null
+          gcc --version | head -1
+      - name: Pre-build the recorder (recording + borgh harness on)
+        working-directory: src
+        run: |
+          cmake -S angband -B build/recorder -DCMAKE_BUILD_TYPE=Release \
+            -DSUPPORT_BORG_RECORDING=ON -DSUPPORT_BORG_HARNESS=ON \
+            -DBORG_FEATURES= -DSUPPORT_X11=OFF > cmake.log 2>&1 || { tail -20 cmake.log; exit 1; }
+          make -C build/recorder -j"$(nproc)" > make.log 2>&1 || { tail -20 make.log; exit 1; }
+          test -x build/recorder/game/angband
+      - name: Replay and record every death (keys checked against the zoo cells)
+        run: |
+          python3 .claude/skills/death-report/scripts/record.py \
+            "$GITHUB_WORKSPACE/W/selected" \
+            --source "$GITHUB_WORKSPACE/src" \
+            --work "$GITHUB_WORKSPACE/W" \
+            --frames ${{ inputs.frames }}
+      - name: Upload the frames and recordings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vanilla-deaths-frames
+          path: |
+            W/frames.json
+            W/rec/
+          retention-days: 14
