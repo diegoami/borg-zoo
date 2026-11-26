@@ -83,6 +83,8 @@ def config_text(record, cell, spec, profile, race_i, cls_i, borg_txt, plan_sha, 
              f"zoo_run={provenance.get('run_id') or ''}",
              f"zoo_profile={cell['profile']}", f"zoo_specimen={cell['specimen']}",
              f"zoo_suite={cell['suite']}"]
+    if record.get('pborg_yaml_sha256'):
+        lines.append(f"pborg_yaml_sha256={record['pborg_yaml_sha256']}")
     if scary:
         # The list the cell read, from its profile or its shipped borg.txt,
         # and the hash of the file written (base plus the arm's lines,
@@ -144,7 +146,9 @@ def replay_borgrs(record, cell, build_dir, cat, out, provenance, keep=False):
     text = borgrs.config_text(build_dir, profile, race_i, cls_i)
     if hashlib.sha256(text.encode()).hexdigest() != record.get('config_sha256'):
         raise ValueError('borg.txt differs from the one the cell played')
-    (out / 'user/borg.txt').write_text(text)
+    yaml_sha = borgrs.stage_config(build_dir, out, text, manifest)
+    if yaml_sha != record.get('pborg_yaml_sha256'):
+        raise ValueError('pborg.yaml differs from the one the cell played')
     plan = profile['settings'].get('borg_plan')
     plan_sha = borgrs.ship_plan(spec, manifest, build_dir, out, plan) if plan is not None else None
     scary, _ = borgrs.scary_name(profile, text)
@@ -170,6 +174,7 @@ def replay_borgrs(record, cell, build_dir, cat, out, provenance, keep=False):
                                 timeout=suite['wall_seconds']).returncode
     except subprocess.TimeoutExpired:
         rc = 'timeout'
+    borgrs.retain_legacy_config(out, text, yaml_sha)
     if data_root is not None:
         shutil.rmtree(data_root, ignore_errors=True)
     if plan is not None and plan != 'errands_plan.txt':
