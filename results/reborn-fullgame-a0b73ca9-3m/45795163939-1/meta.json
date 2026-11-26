@@ -1,0 +1,153 @@
+{
+  "catalogue": {
+    "harness": {
+      "commit": "9ca986616cca66fe0f09de2b4cdc48591f94d33d",
+      "history": [
+        {
+          "commit": "fc9d97cb46aa0aaa27773e5c83a41ec395d515fc",
+          "note": "harness until the mode-cutoff restart (borg-zoo#54). The runner and observer are unchanged at the new pin; the bump keeps the harness commit at the specimens' tree after the 0100/0101/0101a fixes. A proposed runner change that would have recorded the applied configuration text (better-borg-c PR 435) was closed as mis-filed and is not needed: configuration_sha256 already identifies what a run applied.",
+          "until": "2026-11-10"
+        },
+        {
+          "commit": "8c23ec0d4840246bbc47324a1673fa7aa714c056",
+          "note": "live watchdog read could abort a run on a split UTF-8 character (better-borg-c#220); fixed by 56ccf741. The observer is unchanged between the two pins.",
+          "until": "2026-11-08"
+        }
+      ],
+      "note": "The better-borg-c runner and observer at this commit build and run every specimen. A specimen is the game and Borg source at its own ref; the observer instrumentation comes from the harness commit. It applies to specimens of kind \"better-borg-c\" (the default). Specimens of kind \"borg-rs\" are built and run by borg-rs's own harness at the specimen's ref (harness/build.sh and the borgh frontend). This pin is also a specimen ref (4.2.6-bbc-9ca98661): the harness bumped with the mode-cutoff restart so runner and specimens move together (borg-zoo#54).",
+      "repository": "diegoami/better-borg-c",
+      "runner": "tools/measure-native.py"
+    },
+    "profiles": {
+      "reborn-fullgame-a0b73ca9-ship": {
+        "description": "borg-zoo#807 (reborn-fullgame-a0b73ca9.yaml): arm ship.",
+        "settings": {
+          "borg_reborn_core": "borg-rs",
+          "borg_reborn_errand": "none"
+        },
+        "sha256": "210e4f8e861757056c5582bc09c25f92d44ff06dbc1b29261b2841c7365a51f9"
+      }
+    },
+    "specimens": {
+      "4.2.6-reborn-rust-trackp-a0b73ca9": {
+        "depth_stream": true,
+        "exact_turns": true,
+        "impl": "rust",
+        "kind": "borg-rs",
+        "label": "borg-reborn-rs track-p head a0b73ca9 on 2026-11-26 (the #1280 Home-wear merge, 89 commits past 242a4724: town_shop_overloaded mode 2, town_loadout_power_loss 1, three descent-gate keys shipped on, junk_discard_harmful_in_town / attack_throw_junk_potions / light_scroll_idle_spend / junk_exploration_first / junk_gear_alternatives 2 / town_gear_home_backups / item_use_idle shipped on, town_departure_free_weight__warrior 150, escape_phase_lost_poison_pending new and off, junk_inferior_sandal_ac_margin retired from the shipped file; shipped borg.txt a71fee47..., scary_monsters.txt f35bfc49...), borg-rs core.",
+        "ref": "a0b73ca9a46096c18408d67d001713c88798d9ec",
+        "repository": "diegoami/borg-reborn-rs",
+        "role": "candidate",
+        "scary_lists": {
+          "scary_monsters.txt": "f35bfc49af22ee19a1ea0270d2ed471595bf3104813fc69891312d0fccece75c"
+        }
+      }
+    },
+    "suites": {
+      "classes-9-full-3m": {
+        "assigned_characters": {
+          "1009999184": [
+            "Human",
+            "Mage"
+          ],
+          "129481348": [
+            "Human",
+            "Priest"
+          ],
+          "1759985081": [
+            "Human",
+            "Druid"
+          ],
+          "1935149248": [
+            "Human",
+            "Rogue"
+          ],
+          "2110310600": [
+            "Human",
+            "Necromancer"
+          ],
+          "212818316": [
+            "Human",
+            "Warrior"
+          ],
+          "270593607": [
+            "Human",
+            "Blackguard"
+          ],
+          "388458606": [
+            "Human",
+            "Paladin"
+          ],
+          "962733507": [
+            "Human",
+            "Ranger"
+          ]
+        },
+        "birth": "assigned",
+        "cap": 3000000,
+        "description": "The classes-9-full full-game starts (same seeds, classes and births) at a 3,000,000-turn cap: the continuation look for games that were alive at 1,000,000 (the first 1M replays identically - the engine is deterministic).",
+        "role": "pilot",
+        "saves": false,
+        "seeds": [
+          212818316,
+          1009999184,
+          1759985081,
+          129481348,
+          2110310600,
+          388458606,
+          1935149248,
+          962733507,
+          270593607
+        ],
+        "stall_seconds": 180,
+        "subset": {
+          "range": [
+            0,
+            9
+          ],
+          "suite": "classes-9-full"
+        },
+        "wall_seconds": 12600
+      }
+    }
+  },
+  "completed": "2026-11-26 10:02 UTC",
+  "environment": {
+    "arg_orders": [
+      "rtl"
+    ],
+    "compilers": [
+      "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    ],
+    "platforms": [
+      "Linux x86_64"
+    ]
+  },
+  "experiment": {
+    "control": "4.2.6-reborn-rust-trackp-a0b73ca9",
+    "control_profile": "reborn-fullgame-a0b73ca9-ship",
+    "definition": "definitions/reborn-fullgame-a0b73ca9-3m.yaml",
+    "description": "Where does the climb end? The 1M pilot's nine games (all alive at the cap, two at CL20) continue to death or a 3,000,000-turn cap: the CL20 count over finished games, the maximum CL and DL reached, and what kills the ones that die. Generated from definitions/reborn-fullgame-a0b73ca9-3m.yaml: 1 arms on 4.2.6-reborn-rust-trackp-a0b73ca9, suite classes-9-full-3m.",
+    "issue": 805,
+    "name": "reborn-fullgame-a0b73ca9-3m",
+    "owner_authorization": "2026-11-26: zoo owner, \"continue\" - the full-game ladder continues on the current head (borg-zoo#805/#807).",
+    "prespecified": "Fixed 2026-11-26, before any result (the full-game program, borg-zoo#805). The ladder of the 1M pilot on the same specimen (a0b73ca9): the same 9 starts (subset, same seeds/classes/births) at a 3,000,000-turn cap - the engine is deterministic, so the first 1,000,000 turns replay the 1M pilot exactly and the games continue. Report per game: max CL, max DL, outcome (death with cause and turn, or alive at the cap), the CL timeline; CL20 count over all games. Descriptive (RULES 14); the ladder continues on the owner's word. Gate: no config_error; one binary; every cell ends in death or turn_cap (a stall is a finding of its own).",
+    "profiles": [
+      "reborn-fullgame-a0b73ca9-ship"
+    ],
+    "question": "Where does the climb end? The 1M pilot's nine games (all alive at the cap, two at CL20) continue to death or a 3,000,000-turn cap: the CL20 count over finished games, the maximum CL and DL reached, and what kills the ones that die.",
+    "retain_evidence": false,
+    "schema": "borg-zoo/experiment@1",
+    "specimens": [
+      "4.2.6-reborn-rust-trackp-a0b73ca9"
+    ],
+    "suites": [
+      "classes-9-full-3m"
+    ]
+  },
+  "missing_cells": 0,
+  "run_id": "45795163939-1",
+  "run_url": "https://github.com/diegoami/borg-zoo/actions/runs/45795163939",
+  "schema": "borg-zoo/run@1",
+  "zoo_commit": "25d79a4defd3469e2768954aeb47918687a9dd27"
+}
