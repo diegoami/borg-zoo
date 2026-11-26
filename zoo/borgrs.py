@@ -4,7 +4,9 @@ A borg-rs specimen is a borg-rs commit built with harness/build.sh, either
 with the Rust Borg (impl "rust") or with the C Borg compiled in the same tree
 (impl "c"). Runs mirror harness/run.sh: the run's user/borg.txt is the
 checkout's harness/borg.txt with the profile's settings applied, and the
-borgh frontend writes summary.json and keys.log.
+borgh frontend writes summary.json and keys.log. New combined Borg builds
+provide a converter for staging pborg.yaml before play. The text settings
+are retained as the historical configuration receipt.
 
 Limits compared with the better-borg-c observer, recorded per cell:
 - borgh prints no effective-settings line, so the settings are checked in
@@ -58,6 +60,7 @@ import platform
 import re
 import shutil
 import subprocess
+import sys
 import time
 from pathlib import Path
 
@@ -279,7 +282,7 @@ def flag_key_outliers(records):
 def plan_name(name):
     """A borg_plan value the adapter can ship: a bare file name."""
     if (not isinstance(name, str) or not name or Path(name).name != name or name.startswith('.')
-            or name == 'borg.txt'):
+            or name in ('borg.txt', 'pborg.yaml')):
         raise ValueError(f'borg_plan must be a bare file name, not {name!r}')
     return name
 
@@ -415,6 +418,15 @@ def build(spec, source, out):
                 'compiler': subprocess.check_output(['cc', '--version'], text=True).splitlines()[0],
                 'rustc': build_id.get('rustc'),
                 'platform': f'{platform.system()} {platform.machine()}', 'complete': True}
+    converter = source / 'harness/pborg-config.py'
+    staged = out / 'pborg-config.py'
+    if build_id.get('pborg_config') == 'yaml':
+        if not converter.is_file():
+            raise ValueError('combined Borg build is missing harness/pborg-config.py')
+        shutil.copyfile(converter, staged)
+        manifest['pborg_converter_sha256'] = sha256(staged)
+    else:
+        staged.unlink(missing_ok=True)
     if plans:
         manifest['plans'] = plans
     if scary:
@@ -450,6 +462,29 @@ def config_text(build_dir, profile, race=0, cls=0):
         text = cat_mod._override(text, name, cat_mod.setting_value(value))
     # harness/run.sh (#704) removes the world key before the core reads borg.txt.
     return WORLD_LINE.sub('', text)
+
+
+def stage_config(build_dir, out, text, manifest):
+    """Write the settings consumed by this specimen and return its YAML hash."""
+    settings_format = (manifest.get('build_id') or {}).get('pborg_config')
+    digest = manifest.get('pborg_converter_sha256')
+    if settings_format != 'yaml':
+        (out / 'user/borg.txt').write_text(text)
+        return None
+    converter = build_dir / 'pborg-config.py'
+    if not digest or not converter.is_file() or sha256(converter) != digest:
+        raise ValueError('PBorg YAML converter is missing or differs from the build manifest')
+    path = out / 'user/pborg.yaml'
+    with path.open('wb') as output:
+        subprocess.run([sys.executable, str(converter), '-'], input=text.encode('utf-8'),
+                       stdout=output, check=True)
+    return sha256(path)
+
+
+def retain_legacy_config(out, text, yaml_sha):
+    """Preserve the text receipt after the combined game has run with YAML alone."""
+    if yaml_sha is not None:
+        (out / 'user/borg.txt').write_text(text)
 
 
 def copy_worlds(spec, source, out):
@@ -561,7 +596,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     race, cls = cat_mod.character(suite, cell['seed']) or ('Human', 'Warrior')
     race_i, cls_i = cat_mod.RACES.index(race), cat_mod.CLASSES.index(cls)
     text = config_text(build_dir, profile, race_i, cls_i)
-    (out / 'user/borg.txt').write_text(text)
+    yaml_sha = stage_config(build_dir, out, text, manifest)
     mismatch = check_config(text, profile)
     plan = profile['settings'].get('borg_plan')
     plan_sha = ship_plan(spec, manifest, build_dir, out, plan) if plan is not None else None
@@ -603,6 +638,7 @@ def run_cell(cell, build_dir, work, cat, keep=False):
     except subprocess.TimeoutExpired:
         outcome, error = 'wall_timeout', f"no stop within {suite['wall_seconds']} s"
     wall = time.monotonic() - start
+    retain_legacy_config(out, text, yaml_sha)
     if data_root is not None:
         shutil.rmtree(data_root, ignore_errors=True)
     summary = {}
@@ -748,4 +784,6 @@ def run_cell(cell, build_dir, work, cat, keep=False):
         keys.unlink(missing_ok=True)
     if not keep:
         state_log.unlink(missing_ok=True)
+    if yaml_sha is not None:
+        record['pborg_yaml_sha256'] = yaml_sha
     return record

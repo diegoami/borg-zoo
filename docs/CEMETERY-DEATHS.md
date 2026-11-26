@@ -42,8 +42,9 @@ cemetery's `scripts/native/export-death.py` reads:
 | `summary.json`, `keys.log`, `messages.log`, `state.log` | the replay's own output |
 | `trace-core.jsonl`, `trace-core.lines` | the last 200 core thinks (what a dossier keeps); the full line count |
 | `params-core.json` | the core's parameters |
-| `user/borg.txt`, `user/<plan>`, `user/errands_plan.txt` | what the cell read; the plan again under the name the dossier keeps |
-| `config.txt` | seed, race/class indices, cap, `borg_txt_sha256`, `zoo_*` provenance and the profile's `borg_*` settings, which the cemetery's `rerun-death.py` uses to rebuild `borg.txt` (see below) |
+| `user/borg.txt`, `user/<plan>`, `user/errands_plan.txt` | legacy settings (a receipt written after play on YAML builds) and the plans |
+| `user/pborg.yaml` | settings read by combined builds |
+| `config.txt` | seed, race/class indices, cap, `borg_txt_sha256`, `pborg_yaml_sha256` for YAML builds, `zoo_*` provenance and the profile's `borg_*` settings, which the cemetery's `rerun-death.py` uses to rebuild `borg.txt` (see below) |
 | `BUILD_ID` | the specimen build's identity (`git_rev`, `source_sha256`, ...) |
 | `zoo-death.json` | the index entry plus the full cell record |
 
