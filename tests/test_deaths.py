@@ -4,6 +4,8 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -28,17 +30,24 @@ def cell_for(cat, profile):
 
 
 class DeathBundleTest(unittest.TestCase):
-    def play(self, cat, profile, replay_keys=None, trace_lines=0, keep=False, relative=False):
+    def play(self, cat, profile, replay_keys=None, trace_lines=0, keep=False, relative=False, yaml_config=False):
         """Run a cell to a death, then bundle it; (record, entry, bundle dir files, replay env)."""
         cell = cell_for(cat, profile)
         spec = cat['specimens']['specimens'][cell['specimen']]
         race, cls = catalogue.character(cat['suites'][cell['suite']], cell['seed'])
         calls = []
 
+        execute = subprocess.run
+
         def run(argv, **kwargs):
+            if argv[0] == sys.executable:
+                return execute(argv, **kwargs)
             out = Path(argv[argv.index('-keylog') + 1]).parent
             calls.append({'argv': argv, 'env': kwargs['env']})
             replay = len(calls) > 1
+            if yaml_config:
+                self.assertFalse((out / "user/borg.txt").exists())
+                self.assertTrue((out / "user/pborg.yaml").is_file())
             (out / 'keys.log').write_text(replay_keys if replay and replay_keys is not None else '1 k 0 0\n')
             plan = out / 'user/errands_plan.txt'
             if plan.exists():
@@ -52,9 +61,16 @@ class DeathBundleTest(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            (root / 'build.json').write_text(json.dumps({
+            manifest = {
                 'source_commit': spec['ref'], 'impl': spec['impl'], 'binary_sha256': 'bin',
-                'build_id': BUILD_ID, 'plans': {'errands_plan.txt': PLAN_SHA}}))
+                'build_id': BUILD_ID, 'plans': {'errands_plan.txt': PLAN_SHA}}
+            if yaml_config:
+                converter = root / 'pborg-config.py'
+                converter.write_text("import sys\nfor line in sys.stdin:\n"
+                                     "    print(line.replace(' = ', ': ').rstrip())\n")
+                manifest['build_id'] = dict(BUILD_ID, pborg_config='yaml')
+                manifest['pborg_converter_sha256'] = borgrs.sha256(converter)
+            (root / 'build.json').write_text(json.dumps(manifest))
             (root / 'borg.txt').write_text('borg_reborn_core = reborn\nborg_cheat_death = FALSE\n')
             (root / 'plans').mkdir()
             (root / 'plans/errands_plan.txt').write_bytes(PLAN)
@@ -74,6 +90,16 @@ class DeathBundleTest(unittest.TestCase):
             files = {p.relative_to(out).as_posix(): p.read_bytes() for p in out.rglob('*') if p.is_file()} \
                 if out.exists() else {}
         return record, entry, files, calls
+
+    def test_yaml_cell_and_death_replay_record_the_same_settings(self):
+        record, entry, files, calls = self.play(fixture_catalogue(), 'reborn-m13-plan-shop',
+                                                yaml_config=True)
+        self.assertEqual(entry['status'], 'reproduced')
+        self.assertEqual(len(calls), 2)
+        yaml = files['user/pborg.yaml']
+        self.assertIn(b'borg_plan: errands_plan.txt', yaml)
+        self.assertEqual(record['pborg_yaml_sha256'], hashlib.sha256(yaml).hexdigest())
+        self.assertIn(f"pborg_yaml_sha256={record['pborg_yaml_sha256']}".encode(), files['config.txt'])
 
     def test_reproduced_death_is_a_cemetery_run_directory(self):
         record, entry, files, calls = self.play(fixture_catalogue(), 'reborn-m13-plan-shop', trace_lines=500)
