@@ -1,0 +1,27 @@
+# borg-zoo#785: bigger stair-scum speed ratios - the owner asked for bigger numbers after the ratio1/ratio4 pilot bracketed only 1..4 around the shipped 2. Write the catalogue entries with: python3 -m zoo define definitions/reborn-scum-ratio-big.yaml
+name: reborn-scum-ratio-big
+issue: 785
+question: >-
+  The stair-scum speed ratio is the safety model's monster-actions-per-Borg-action assumption (shipped 2 = the +10 DL1-2 monsters, Grip/Fang/crows; range 1-10). ratio1 under-modeled and killed two starts (Fang); ratio4 over-modeled and cost 6 CL5 (p 0.031). Do ratios 6, 8 and 10 deepen the progress loss monotonically, or does the conservative area saturate?
+tier: pilot            # classes-18, all arms, normal world, 100,000 turns; the ladder takes the survivors on the owner's word
+
+specimen: 4.2.6-reborn-rust-trackp-52fff0de
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-scumratio-big
+arms:
+  ship: {}
+  ratio6: {borg_param_stair_scum_speed_ratio: 6}
+  ratio8: {borg_param_stair_scum_speed_ratio: 8}
+  ratio10: {borg_param_stair_scum_speed_ratio: 10}
+control: [ship]
+owner_authorization: >-
+  2026-11-25: zoo owner, "no you need bigger numbers" - after the #785 read reported ratio1/ratio4 bracketing only 1..4 around the shipped 2.
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-25, before any result (Rule 22, #758). RULES 16 pilot for the new arms on the same specimen as yesterday's scum pilot (52fff0de, the #1209 build): classes-18, normal world. The ratio is the scum safety model's assumption of monster actions per player action of the fastest monster that matters (params.rs: speed_ratio => (2, "actions per player action", 1, 10)); bigger = a smaller safe area and a more timid scum, not a faster walk. SAFETY: deaths-0 strictly (an arm whose deaths rise cannot be adopted however fast it levels); the arms model more caution than ship, so the expected failure mode is progress loss, and the read watches for it (ratio4's -6 CL5 at p 0.031 is the comparison point). Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 as diagnostics; median first-turn-at-level-5 where recorded. Report per arm against ship: CL5, paired gained/lost (exact McNemar), deaths and causes, rescued/newly killed, identical plays, median first-L5. Bins per RULES 18; descriptive (RULES 14). Yesterday's ratio1/ratio4 stay on their run (45500843796); this pilot reads only 6/8/10 against a fresh ship.

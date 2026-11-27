@@ -1,0 +1,24 @@
+# borg-zoo#767: the c5501d3c baseline ladder (pilot first, evidence retained). Write the catalogue entries with: python3 -m zoo define definitions/reborn-baseline-c5501d3c.yaml
+name: reborn-baseline-c5501d3c
+issue: 767
+question: >-
+  Where does track-p at c5501d3c stand on CL5 by 100,000 turns, deaths and depth, with everything as shipped?
+tier: pilot            # classes-18, evidence retained; verysmall/small-rest/medium follow as gated tiers
+
+specimen: 4.2.6-reborn-rust-trackp-c5501d3c-pw
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-baseline-c5501d3c
+arms:
+  shipped: {}
+control: [shipped]
+owner_authorization: >-
+  2026-11-24: filed on the owner's "what to file next" (the owner wants such baselines regularly, as at #695/#645); dispatched on the owner's "dispatch all" (borg-zoo#767).
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-24, before any result (Rule 22, #758). Single shipped arm, classes-18, evidence retained (the pilot anchors death reports at the current head); the ladder - verysmall (1-45), small-rest (46-90), medium (91-360) - follows as gated tiers, big and full on the owner's word, all classes-1800 blocks, 100,000 turns, disjoint tiers. Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped. Progress endpoint (Rule 22): CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished outcomes and alive at the cutoff with CL5 reported separately; DL3/DL5, level arrival and death causes as diagnostics. Descriptive (RULES 14): this arm is the anchor every active c5501d3c study reads against.

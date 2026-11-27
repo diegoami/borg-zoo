@@ -1,0 +1,26 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-guards-inv-breeders",
+  "issue": 771,
+  "definition": "definitions/reborn-guards-inv-breeders.yaml",
+  "question": "On borg-reborn-rs track-p c5501d3c in breeders-x8, when do the #1124 retreat guards fire, what does the Borg do differently without them, and what do they cost or save by CL5 and deaths?",
+  "description": "On borg-reborn-rs track-p c5501d3c in breeders-x8, when do the #1124 retreat guards fire, what does the Borg do differently without them, and what do they cost or save by CL5 and deaths? Generated from definitions/reborn-guards-inv-breeders.yaml: 5 arms on 4.2.6-reborn-rust-trackp-c5501d3c-pw, suite classes-18.",
+  "prespecified": "Fixed 2026-11-24, before any result (Rule 22, #758). Pilot classes-18, retained evidence, breeders-x8 - the retreat-churn habitat where the earlier breeder pilots barely exercised the guards. Same arms and read as reborn-guards-inv (normal world): gate no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm; CL5 reached by 100,000 turns as the progress endpoint with deaths, unfinished and alive at the cutoff reported separately, DL3/DL5 as diagnostics; fire inventory and named cases from the retained notes; walkoff exposes the guard-vs-walk-away ordering only (NEVER as a play style). Descriptive (RULES 14). A ladder only after this read, on the owner's word.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-c5501d3c-pw"
+  ],
+  "profiles": [
+    "reborn-guardsinvb-ship",
+    "reborn-guardsinvb-guardsoff",
+    "reborn-guardsinvb-nohold",
+    "reborn-guardsinvb-noosc",
+    "reborn-guardsinvb-walkoff"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-c5501d3c-pw",
+  "control_profile": "reborn-guardsinvb-ship",
+  "owner_authorization": "2026-11-24: zoo owner, \"retreat guards off / hold / oscillation must be investigated with priority\" (borg-zoo#771); breeders-x8 is the churn habitat named in the investigation.",
+  "retain_evidence": true
+}

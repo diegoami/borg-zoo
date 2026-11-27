@@ -263,6 +263,35 @@ def echarts_scatter(points, x_label, y_label, compact=False, y_fmt='pct', x_max=
             f'}});</script>')
 
 
+def arm_intervals(cells, event, known=None):
+    """Per-arm (rate, lo, hi) Wilson intervals, sorted by rate ascending. `event`
+    says whether the cell had the outcome; `known` limits the denominator to
+    cells whose attainment is known (CL5), None for every finished run."""
+    groups = {}
+    for c in cells:
+        if known is None or known(c) is not None:
+            groups.setdefault((c['specimen'], c['profile']), []).append(c)
+    ivs = []
+    for group in groups.values():
+        n = len(group)
+        if not n:
+            continue
+        succ = sum(1 for c in group if event(c))
+        lo, hi = stats.wilson(succ, n)
+        ivs.append((succ / n, lo, hi))
+    return sorted(ivs)
+
+
+def range_cell(ivs):
+    """One run's arms as Wilson intervals, worst arm first: '3–8% / 0–2%';
+    a single interval when every arm reads the same."""
+    if not ivs:
+        return '–'
+    show = lambda iv: f'{iv[1] * 100:.0f}–{iv[2] * 100:.0f}%'
+    worst, best = show(ivs[0]), show(ivs[-1])
+    return worst if worst == best else f'{worst} / {best}'
+
+
 def newest(runs, names):
     for name in names:
         for meta, cells, _ in runs:
@@ -1086,19 +1115,32 @@ def versions_page():
     return (f'<p><a href="index.html">Borg zoo</a></p><h1>Versions</h1>{mode_cutoff_note()}{versions_table()}')
 
 
-RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.'),
-            ('Issue', 'The borg-zoo issue the experiment answers.'),
-            ('Completed', 'When the run finished (UTC).'),
-            ('Versions', 'How many Borg versions it compares.'),
-            ('Profiles', 'How many settings profiles it compares.'),
-            ('Runs', 'Games played: versions × profiles × seeds.'),
-            ('Finished', 'Games that reached an endpoint (death or the turn cap); the rest stalled, timed out '
-                         'or failed.')]
+TIMED_COLS = [('Experiment', 'The question being asked; the link opens its tables.'),
+              ('Issue', 'The borg-zoo issue the experiment answers.'),
+              ('Runs', 'Games played: versions × profiles × seeds.'),
+              ('Finished', 'Games that reached an endpoint (death or the turn cap); the rest stalled, timed out '
+                           'or failed.'),
+              ('Deaths', 'Deaths among finished games, all arms of the run together.'),
+              ('Turns', 'The median game length, in engine turns, over finished games (death or cap).'),
+              ('Median CL', 'The middle value of the highest character level each finished game reached '
+                            '(values capped at CL20; borg-zoo#817).'),
+              ('CL range', 'The range of highest recorded character levels across finished games, capped at CL20.'),
+              ('Deaths range (worst, best)', 'Wilson 95% interval of the arm with the highest death rate, then '
+                                           'the arm with the lowest; one interval when a run has a single arm.')]
+
+
+DEATH_COLS = [('Experiment', 'The run with deaths; the link opens its tables.'),
+              ('Issue', 'The borg-zoo issue the experiment answers.'),
+              ('Runs', 'Games played.'),
+              ('Deaths', 'Deaths among finished games, all arms of the run together.'),
+              ('Top killer', 'The most frequent death cause in the run, with its count.'),
+              ('Median death turn', 'The middle engine turn at which the dying games died.'),
+              ('CL range at death', 'The lowest and highest recorded character levels at the moment of death.'),
+              ('DL range at death', 'The lowest and highest recorded dungeon depths at the moment of death (0 is town).')]
 
 
 def nav(active, base=""):
-    tabs = [('index.html', 'Full runs'), ('smoke.html', 'Smoke runs'), ('scenarios/index.html', 'Scenarios'),
-            ('settings/index.html', 'Settings')]
+    tabs = [('index.html', 'Timed runs'), ('deaths/index.html', 'Death runs')]
     return ('<p class="tabs">' +
             ''.join(f'<a class="tab{" active" if href == active else ""}" href="{base}{href}">{esc(label)}</a>'
                     for href, label in tabs) + '</p>')
@@ -1161,33 +1203,38 @@ def overview_page(runs):
         f'nine classes: with it, and without it. Each tab has its own chart, its own runs and its own '
         f'class pages — read a point inside its tab, never across the two.</p>'
         f'<p>{buttons}</p>{links}</div></div>'
-        f'<p class="muted">Every experiment run is on the <a href="index.html">Full runs</a> tab.</p>'
+        f'<p class="muted">Every experiment run is on the <a href="index.html">Timed runs</a> tab.</p>'
         + add_your_borg_section() + FOOTER)
-
-
-def smoke_page(rows):
-    """Smoke checks: a specimen (a milestone or a head) builds and plays a few
-    seeds. Not experiments; kept apart so they do not crowd the comparisons."""
-    return (f'<h1>Borg zoo</h1>{nav("smoke.html")}'
-            '<h2>Smoke runs</h2>'
-            + explain('A smoke check builds a Borg version and plays a handful of seeds to see that it runs. '
-                      'It says nothing about how well the version plays, and none of it enters the comparisons. '
-                      'Newest first.', RUN_COLS)
-            + (table(RUN_COLS, rows) if rows else '<p class="muted">No smoke runs yet.</p>')
-            + FOOTER)
 
 
 def landing_page(runs, run_rows):
     """Every experiment run in one list, newest first: small tiers and pilots
-    included, each with the borg-zoo issue it answers. Smoke checks keep their
-    own tab."""
-    cards = [c for c in (card_milestones(runs), card_port(runs), card_stalls(runs)) if c]
+    included, each with the borg-zoo issue it answers. Smoke checks and
+    scenario runs are not listed, and the page ends at the table - no
+    cross-experiment summaries, caveats or footer (owner, 2026-11-24).
+    Timed runs: the length-and-level view (owner, 2026-11-26) - no CL5 columns."""
     return (
         f'<h1>Borg zoo</h1>{nav("index.html")}'
-        '<h2>Full runs</h2>'
-        + explain('Every experiment run, newest first, small tiers and pilots included. Each report shows '
-                  'the YAML definition and the build used.', RUN_COLS)
-        + (table(RUN_COLS, run_rows) if run_rows else '<p class="muted">No results yet.</p>')
-        + '<details class="background"><summary>Cross-experiment summaries and historical caveats</summary>'
-        + mode_cutoff_note() + f'<div class="cards">{"".join(cards)}</div></details>'
-        + FOOTER)
+        '<h2>Timed runs</h2>'
+        + explain('Experiment runs are listed newest first, including small tiers and pilots. Turns is the '
+                  'median game length for finished games. Median CL and CL range summarize the highest '
+                  'recorded character levels, capped at CL20 because the milestone ledger stops there. '
+                  'Each report shows the YAML definition and the build used.',
+                  TIMED_COLS)
+        + (f'<div class="runs-list">{table(TIMED_COLS, run_rows)}</div>' if run_rows
+           else '<p class="muted">No results yet.</p>'))
+
+
+def death_runs_page(death_rows):
+    """The runs with deaths, newest first: one row per run, the deaths read
+    together - killer, when they die, and how far the dying games got
+    (owner, 2026-11-26)."""
+    return (
+        f'<h1>Borg zoo</h1>{nav("deaths/index.html", base="../")}'
+        '<h2>Death runs</h2>'
+        + explain('Experiment runs with at least one death, newest first. Each row combines deaths across all '
+                  'arms. CL and DL show the recorded character level and dungeon depth at death. '
+                  'A dash indicates missing data.',
+                  DEATH_COLS)
+        + (f'<div class="runs-list">{table(DEATH_COLS, death_rows)}</div>' if death_rows
+           else '<p class="muted">No deaths recorded yet.</p>'))

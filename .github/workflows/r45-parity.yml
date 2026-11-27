@@ -1,0 +1,180 @@
+# borg-zoo#792: the Track R4.5 parity pilot - three arms (native 24be987 shadow
+# off; candidate 83e28cd shadow check and switch) run the pinned borg-reborn-rs
+# harness suite (smoke = 3 starts x 20,000 turns; full = 45 starts x 100,000),
+# sharded; a staging job merges each arm's shards into the harness/suite.sh
+# layout and gates with harness/check-r45-suite.py (pin 610aabe).
+# Dispatch is the owner's word; the smoke pilot is authorized (#792).
+name: R4.5 parity
+on:
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: 'Pinned harness suite: smoke (3 starts) or full (45 starts)'
+        required: true
+        default: 'smoke'
+      shards:
+        description: 'Shards per arm'
+        required: false
+        default: '1'
+      demo_failed_cell:
+        description: 'Also demonstrate failed-cell retention (one timed-out cell)'
+        required: false
+        default: 'true'
+
+concurrency:
+  group: r45-parity
+  cancel-in-progress: false
+
+env:
+  NATIVE_REF: 24be98732748230062882fe2b7d9601dba5e2cc0
+  CANDIDATE_REF: 83e28cd4c3fb9a3a0eb4cb75e0ff8d635f25a9d2
+  CHECKER_REF: 610aabe058f34ab155859e6f3802c8ebeb218e71
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      shards: ${{ steps.shards.outputs.list }}
+      suite: ${{ inputs.suite }}
+    steps:
+      - name: Validate the suite name and shard count
+        id: shards
+        run: |
+          case "${{ inputs.suite }}" in
+            smoke|full) ;;
+            *) echo "::error::suite must be smoke or full"; exit 1 ;;
+          esac
+          n="${{ inputs.shards }}"
+          case "$n" in ''|*[!0-9]*|0) echo "::error::shards must be a positive integer"; exit 1 ;; esac
+          [ "$n" -le 15 ] || { echo "::error::shards>15 would saturate the account's 20 concurrent jobs"; exit 1; }
+          echo "list=[$(seq -s, 0 $((n-1)))]" >> "$GITHUB_OUTPUT"
+
+  arm:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        arm: [native, check, switch]
+        shard: ${{ fromJSON(needs.plan.outputs.shards) }}
+    env:
+      SUITE: ${{ needs.plan.outputs.suite }}
+    steps:
+      - name: Checkout the arm's pinned borg-reborn-rs
+        uses: actions/checkout@v4
+        with:
+          repository: diegoami/borg-reborn-rs
+          ref: ${{ matrix.arm == 'native' && env.NATIVE_REF || env.CANDIDATE_REF }}
+          path: source
+      - name: Rust toolchain
+        run: rustup toolchain install stable --profile minimal && cargo --version && rustc --version
+      - name: Build (harness/build.sh writes BUILD_ID)
+        working-directory: source
+        run: |
+          ./harness/build.sh
+          ./harness/build/rust/game/angband --version 2>/dev/null || true
+          cat build/rust/BUILD_ID
+      - name: Slice the suite for this shard
+        working-directory: source
+        run: |
+          python3 - <<'PYEOF'
+          import os, pathlib
+          suite, shard, n = os.environ['SUITE'], int('${{ matrix.shard }}'), int('${{ inputs.shards }}')
+          rows = [l for l in pathlib.Path(f'harness/suites/{suite}').read_text().splitlines()
+                  if l.strip() and not l.lstrip().startswith('#')]
+          mine = rows[shard::n]
+          assert mine, f'shard {shard} of {n} on {len(rows)} rows is empty'
+          pathlib.Path(f'harness/suites/.{suite}.shard{shard}').write_text(
+              f'# {suite} shard {shard}/{n} (of the pinned {suite} suite)\n' + '\n'.join(mine) + '\n')
+          print(f'shard {shard}: {len(mine)} of {len(rows)} cells: {[r.split()[0] for r in mine]}')
+          PYEOF
+      - name: Run the shard (BORG_SHADOW set for the shadow arms only)
+        working-directory: source
+        run: |
+          set -o pipefail
+          if [ "${{ matrix.arm }}" != native ]; then export BORG_SHADOW="${{ matrix.arm }}"; fi
+          # record what played: the checker demands borg_core_overrides=on in
+          # every config.txt, and run.sh records it only when explicitly set
+          export BORG_CORE_OVERRIDES=on
+          echo "arm=${{ matrix.arm }} BORG_SHADOW=${BORG_SHADOW:-unset}"
+          # A dead cell needs the cemetery death tools beside the checkout (#902).
+          git clone --quiet https://github.com/diegoami/borg-cemetery ../borg-cemetery
+          git -C ../borg-cemetery checkout --quiet --detach "$(cat death-tools-pin.txt)"
+          export BORG_CEMETERY_DIR="$GITHUB_WORKSPACE/borg-cemetery"
+          START=$(date -u +%s)
+          ./harness/suite.sh "harness/suites/.${SUITE}.shard${{ matrix.shard }}" partial
+          echo "shard_seconds=$(($(date -u +%s) - START))" | tee shard_seconds.txt
+          test -f partial/DONE
+      - name: Upload the shard's partial tree
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parity-${{ matrix.arm }}-${{ matrix.shard }}
+          path: |
+            source/partial/
+            source/shard_seconds.txt
+          retention-days: 7
+
+  stage:
+    needs: [plan, arm]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      SUITE: ${{ needs.plan.outputs.suite }}
+    steps:
+      - name: Checkout the zoo (staging script) and the checker tree
+        uses: actions/checkout@v4
+        with:
+          path: zoo
+      - uses: actions/checkout@v4
+        with:
+          repository: diegoami/borg-reborn-rs
+          ref: ${{ env.CHECKER_REF }}
+          path: checker
+      - name: Download every shard
+        uses: actions/download-artifact@v4
+        with:
+          pattern: parity-*
+          path: shards
+      - name: Stage the three arms into harness/suite.sh layout
+        run: |
+          python3 zoo/zoo/r45_parity.py stage \
+            --suite "$SUITE" \
+            --shards-dir shards \
+            --out retained \
+            --checker-suite "checker/harness/suites/$SUITE" \
+            --native-ref "$NATIVE_REF" \
+            --candidate-ref "$CANDIDATE_REF"
+          find retained -maxdepth 2 -name manifest -o -maxdepth 1 -type d | sort
+      - name: Demonstrate failed-cell retention (one timed-out cell, outside the gate)
+        if: inputs.demo_failed_cell == 'true'
+        run: |
+          cd checker
+          rustup toolchain install stable --profile minimal
+          ./harness/build.sh >/dev/null 2>&1
+          # the checker tree's own death-tools pin, for any dying demo cell
+          git clone --quiet https://github.com/diegoami/borg-cemetery ../borg-cemetery
+          git -C ../borg-cemetery checkout --quiet --detach "$(cat death-tools-pin.txt)"
+          export BORG_CEMETERY_DIR="$GITHUB_WORKSPACE/borg-cemetery"
+          NAME=$(grep -v '^#' harness/suites/smoke | head -1 | awk '{print $1}')
+          set +e
+          RUN_TIMEOUT_SECONDS=2 timeout 300 ./harness/run.sh /tmp/demo-failed-cell $(grep -v '^#' harness/suites/smoke | head -1 | cut -d' ' -f2-)
+          set -e
+          mkdir -p ../retained/demo-failed-cell
+          cp -a /tmp/demo-failed-cell/. ../retained/demo-failed-cell/ 2>/dev/null || true
+          echo "demo cell contents:"; ls -la ../retained/demo-failed-cell || true
+          test -f ../retained/demo-failed-cell/keys.log && echo "partial keys.log retained"
+          test -f ../retained/demo-failed-cell/summary.json && echo "UNEXPECTED: summary present" || echo "no summary.json (replay stopped before it)"
+      - name: Gate - check-r45-suite.py on the staged arms
+        working-directory: checker
+        run: |
+          python3 harness/check-r45-suite.py --suite "$SUITE" \
+            --candidate "$CANDIDATE_REF" \
+            ../retained/native ../retained/check ../retained/switch
+      - name: Upload the staged, gated arms
+        uses: actions/upload-artifact@v4
+        with:
+          name: retained-${{ inputs.suite }}
+          path: retained/
+          retention-days: 14

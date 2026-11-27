@@ -1,0 +1,37 @@
+# borg-zoo#783: CL-speed pilot - scumming leaner (max HP 10, ratio 1), scum alarm off (patches-x8, the P8 progress world of #754). Write the catalogue entries with: python3 -m zoo define definitions/reborn-clspeed-head.yaml
+name: reborn-clspeed-p8
+issue: 783
+question: >-
+  In patches-x8 at track-p c5501d3c, does scumming leaner (max HP 10, speed ratio 1) - or just the scum alarm off - reach CL5 by 100,000 turns faster while keeping deaths at 0?
+tier: pilot            # classes-18, normal world, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-c5501d3c-pw
+  repository: diegoami/borg-reborn-rs
+  ref: c5501d3c5aeac2449fc47ed6ca6efe2fbafdd894
+  label: "borg-reborn-rs track-p at the #1149 merge c5501d3c on 2026-11-23; worlds poison-x8 (fb86c333...), breeders-x8 (9530ff13...) and patches-x8 (a6721bdd...) pinned; shipped harness/borg.txt c225c180..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+  worlds:
+    poison-x8: fb86c333c80e048da19e68e7e15efc63df49134f91124ecb5168165558e5de0d
+    breeders-x8: 9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de
+    patches-x8: a6721bdd20a440f397ab923705dc99df8826a698ad78cd1e96f95cb1f4b98aca
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_world: patches-x8
+  borg_reborn_errand: none
+
+profile_prefix: reborn-clspeedp8
+arms:
+  ctl: {}
+  scumlean: {borg_param_stair_scum_max_hp: 10, borg_param_stair_scum_speed_ratio: 1}
+  scumalarm0: {borg_param_stair_scum_alarm_turns: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-24: zoo owner, "since deaths are 0 pretty much almost everywhere we need more of these that improve CL faster keeping deaths to 0" (borg-zoo#783).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-24, before any result (Rule 22, #758). Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics. SAFETY CONSTRAINT (the owner's word): deaths stay at 0, and scumming itself stays ON - the arms tune its parameters, none removes it (removing scumming outright would cost lives). An arm whose deaths rise cannot be adopted however fast it levels; the read states any death with its cause and a /death-report pack. Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm. Report per arm against ctl: the CL5 endpoint, paired CL5 gained/lost (exact McNemar), the turn of first reaching character level 5 where recorded (a direct speed read), deaths, identical plays. Descriptive (RULES 14); ladder on the owner's word.

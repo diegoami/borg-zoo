@@ -655,9 +655,10 @@ class LandingTest(unittest.TestCase):
                 'catalogue': {'specimens': cat_mod.catalogue()['specimens']['specimens'],
                               'suites': cat_mod.catalogue()['suites']}}
         page = landing.landing_page([(meta, cells, None)], [])
-        self.assertIn("Do better-borg-c's fixes change early survival?", page)
-        self.assertIn('Not measurably', page)
+        self.assertNotIn('Cross-experiment summaries', page)  # the block is gone (owner, 2026-11-24)
+        self.assertNotIn('Do better-borg-c', page)  # no milestone cards either
         self.assertNotIn('Which settings change early survival?', page)
+        self.assertNotIn('Borg comparison charts', page)  # and no footer line
         self.assertIn('class="tab active" href="index.html"', page)
 
     def test_find_arm_prefers_more_seeds_over_newer(self):
@@ -917,7 +918,7 @@ class LandingTest(unittest.TestCase):
     def test_overview_page_has_no_milestone_cards(self):
         page = landing.overview_page([])
         self.assertNotIn('class="tab active"', page)  # the charts page is no longer a tab
-        self.assertIn('href="index.html">Full runs</a>', page)
+        self.assertIn('href="index.html">Timed runs</a>', page)
         self.assertNotIn("Do better-borg-c's fixes change early survival?", page)
         self.assertNotIn('How far has the Rust port got?', page)
         self.assertIn('Add your Borg to the zoo', page)
@@ -1539,8 +1540,8 @@ class ArmSplitTest(unittest.TestCase):
                 self.assertIn(site.RESULTS_RAW + f'/classes-rs-m11/{run}/cells.jsonl', page)
 
 
-class SmokeTabTest(unittest.TestCase):
-    def test_smoke_runs_get_their_own_tab_and_stay_out_of_the_experiments(self):
+class RunListsTest(unittest.TestCase):
+    def test_death_runs_link_to_reports_and_summarize_terminal_data(self):
         names = cat_mod.smoke_names()
         cat = cat_mod.catalogue()
         self.assertIn('rs-smoke', names)
@@ -1550,7 +1551,12 @@ class SmokeTabTest(unittest.TestCase):
                 exp = cat_mod.experiment(ROOT / path)
                 cells = [{**c, 'schema': 'borg-zoo/cell@1', 'outcome': 'turn_cap', 'final': {},
                           'first_turn_at_depth': {}, 'cap': 1, 'harness_kind': 'borg-rs'}
-                         for c in cat_mod.cells(exp)[:3]]
+                         for c in cat_mod.cells(exp)[:4]]
+                cells[0].update(outcome='death', cause='a <crow>',
+                                final={'turn': 10, 'level': 3, 'max_level': 30, 'depth': 0, 'max_depth': 8})
+                cells[1].update(outcome='death', cause='<crow>',
+                                final={'turn': 11, 'level': 5, 'max_level': 9, 'depth': 2, 'max_depth': 6})
+                cells[2].update(outcome='death', cause='poison')
                 d = Path(tmp) / 'res' / name / 'r1'
                 d.mkdir(parents=True)
                 (d / 'cells.jsonl').write_text(''.join(json.dumps(c) + '\n' for c in cells))
@@ -1562,15 +1568,24 @@ class SmokeTabTest(unittest.TestCase):
                                   'profiles': {k: cat['profiles'][k] for k in exp['profiles']},
                                   'suites': {k: cat['suites'][k] for k in exp['suites']}}}))
             from zoo import site
-            site.build_site(Path(tmp) / 'res', Path(tmp) / 'site')
-            smoke = (Path(tmp) / 'site/smoke.html').read_text()
-            detailed = (Path(tmp) / 'site/detailed.html').read_text()
-            self.assertIn('runs/rs-smoke/r1/index.html', smoke)
-            self.assertNotIn('classes-rs-m11', smoke)
+            out = Path(tmp) / 'site'
+            site.build_site(Path(tmp) / 'res', out)
+            detailed = (out / 'detailed.html').read_text()
+            deaths = (out / 'deaths/index.html').read_text()
+            self.assertFalse((out / 'smoke.html').exists())
+            self.assertFalse((out / 'settings').exists())
             self.assertNotIn('runs/rs-smoke/', detailed)
+            self.assertNotIn('runs/rs-smoke/', deaths)
             self.assertIn('runs/classes-rs-m11/r1/index.html', detailed)
-            self.assertIn('smoke.html', detailed)
-            self.assertTrue((Path(tmp) / 'site/runs/rs-smoke/r1/index.html').exists())
+            self.assertIn('<td class="">14.5</td><td class="">9–20</td>', detailed)
+            self.assertIn('href="deaths/index.html">Death runs</a>', detailed)
+            self.assertIn('href="../index.html">Timed runs</a>', deaths)
+            report_href = re.search(r'href="([^"]*runs/classes-rs-m11/[^"]+)"', deaths).group(1)
+            report = (out / 'deaths' / report_href).read_text()
+            self.assertIn('Deaths by cause', report)
+            self.assertIn('<td class="">3</td><td class="">&lt;crow&gt; ×2</td>'
+                          '<td class="">10.5</td><td class="">3–5</td><td class="">0–2</td>', deaths)
+            self.assertTrue((out / 'runs/rs-smoke/r1/index.html').exists())
 
 
 class DeathCauseTest(unittest.TestCase):

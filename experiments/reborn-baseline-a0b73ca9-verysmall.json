@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-baseline-a0b73ca9-verysmall",
+  "issue": 807,
+  "definition": "definitions/reborn-baseline-a0b73ca9-verysmall.yaml",
+  "question": "What does the shipped game play like at the current track-p head a0b73ca9 (the #1280 merge): CL5 by 100,000 turns, deaths, level arrival - the anchor? (bigger sample)",
+  "description": "What does the shipped game play like at the current track-p head a0b73ca9 (the #1280 merge): CL5 by 100,000 turns, deaths, level arrival - the anchor? (bigger sample) Generated from definitions/reborn-baseline-a0b73ca9-verysmall.yaml: 1 arms on 4.2.6-reborn-rust-trackp-a0b73ca9, suite classes-1800-verysmall.",
+  "prespecified": "Fixed 2026-11-26, before any result (Rule 22, #758). Baseline description of the shipped settings at track-p a0b73ca9, one arm (ship), tier verysmall (classes-1800 starts 1-45), disjoint from the pilot (classes-18). Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and median first-turn-at-level-5 as diagnostics. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-a0b73ca9"
+  ],
+  "profiles": [
+    "reborn-baseline-a0b73ca9-ship"
+  ],
+  "suites": [
+    "classes-1800-verysmall"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-a0b73ca9",
+  "control_profile": "reborn-baseline-a0b73ca9-ship",
+  "owner_authorization": "2026-11-26: zoo owner, \"ok continue all, we can start experiments with the current head of born again\" (borg-zoo#807). RULES 23: current Track-P status.",
+  "retain_evidence": false
+}

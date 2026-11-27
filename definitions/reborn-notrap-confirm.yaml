@@ -1,0 +1,31 @@
+# borg-zoo#766: the notrap CL5 lead from the #750 ablation confirmed on a fresh block (same build). Write the catalogue entries with: python3 -m zoo define definitions/reborn-notrap-confirm.yaml
+name: reborn-notrap-confirm
+issue: 766
+question: >-
+  On track-p 13151fb5 (the ablation's own build), do the three #1067 trap rules off gain CL5 by 100,000 turns on a fresh start block, or was the ablation's p 0.041 a small-sample lead?
+tier: pilot            # classes-18; the confirmation block (classes-1800 starts 361-720) follows on a gated tier
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-13151fb5
+  repository: diegoami/borg-reborn-rs
+  ref: 13151fb5538c7861280cf6d6559bc6a0960a12b6
+  label: "borg-reborn-rs LINE track-p, head 13151fb5 on 2026-11-23 (50 commits after 353f5c09; ships stair_scum on by class, explore_breadth_first 1, cave_light_engine_radius 1, unseen_belief 1 and the other shipped changes); shipped harness/borg.txt ee128917..., scary_monsters.txt 5a4ec4b6..., borg-rs core."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-notrapc
+arms:
+  ctl: {}
+  notrap: {borg_param_trap_recover: 0, borg_param_trap_way_back: 0, borg_param_trap_leave_level_count: 0}
+control: [ctl]
+owner_authorization: >-
+  2026-11-24: filed on the owner's "what to file next"; dispatched on the owner's "dispatch all" (borg-zoo#766).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-24, before any result (Rule 22, #758). Staying on 13151fb5 keeps the confirmation pure: the lead was measured there (24 gained against 11 lost, exact p 0.041, starts 1-360). Pilot classes-18 first; the confirmation block - classes-1800 starts 361-720, disjoint from the ablation - follows as a gated tier on the owner's word. Gate: no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm. Progress endpoint (Rule 22): CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished outcomes and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics. Report paired CL5 gained/lost over pairs known in both arms (exact McNemar), deaths and causes, rescued/newly killed, identical plays. Descriptive (RULES 14); one of the ablation's ~14 comparisons, so bin leaning-better at best until the block lands.

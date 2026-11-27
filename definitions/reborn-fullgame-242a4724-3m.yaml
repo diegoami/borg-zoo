@@ -1,0 +1,25 @@
+# borg-zoo#805: the parallel vanilla-Borg full-game run / the 3M continuation, per the owner. Write the catalogue entries with: python3 -m zoo define definitions/reborn-fullgame-242a4724-3m.yaml
+name: reborn-fullgame-242a4724-3m
+issue: 805
+question: >-
+  Finishing the full games: our Borg (track-p 242a4724) plays the same 9 starts to death or a 3,000,000-turn cap - the 8 games that were alive at 1M get room to climb, and the first 1M replays identically.
+tier: pilot
+suite: classes-9-full-3m            # classes-9-full-3m, shipped settings, full games to death or the cap
+
+specimen: 4.2.6-reborn-rust-trackp-242a4724
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-fullgame-242a4724-3m
+arms:
+  ship: {}
+control: [ship]
+owner_authorization: >-
+  2026-11-25: zoo owner, "let us finish this, but I was meaning that we should do parallel runs with the Angband Vanilla Borg as well" (borg-zoo#805). RULES 23: current Track-P status.
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-25, before any result (the full-game program, borg-zoo#805). The same 9 starts as the 1M pilot (subset, same seeds/classes/births) at a 3,000,000-turn cap: the engine is deterministic, so the first 1,000,000 turns replay the 1M pilot exactly and the games continue past it. Report per game: max CL, max DL, outcome/death cause, the CL timeline, town vs dungeon turns; compare with the 1M pilot read as the same games continued. Gate: no config_error; one binary; every cell ends in death or turn_cap (a stall is reported with the ledger). Descriptive (RULES 14).
