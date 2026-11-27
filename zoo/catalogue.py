@@ -461,6 +461,16 @@ def not_changeable(root=ROOT):
     return json.loads(path.read_text()) if path.exists() else {}
 
 
+# A suite whose cap is this many engine turns or more plays every game to
+# death (classes-9-full, classes-9-full-3m; borg-zoo#805). Its runs are death
+# runs: success is the character level at death, not CL5 by 100,000 turns.
+FULL_GAME_CAP = 1_000_000
+
+
+def is_full_game(suite):
+    return suite.get('cap', 0) >= FULL_GAME_CAP
+
+
 def smoke_names(root=ROOT):
     """Names of the smoke checks: the files in smoke/ and smoke/retired/ (checks
     of specimens that were retired; they keep their runs on the Smoke tab but

@@ -1580,12 +1580,53 @@ class RunListsTest(unittest.TestCase):
             self.assertIn('<td class="">14.5</td><td class="">9–20</td>', detailed)
             self.assertIn('href="deaths/index.html">Death runs</a>', detailed)
             self.assertIn('href="../index.html">Timed runs</a>', deaths)
-            report_href = re.search(r'href="([^"]*runs/classes-rs-m11/[^"]+)"', deaths).group(1)
-            report = (out / 'deaths' / report_href).read_text()
-            self.assertIn('Deaths by cause', report)
-            self.assertIn('<td class="">3</td><td class="">&lt;crow&gt; ×2</td>'
-                          '<td class="">10.5</td><td class="">3–5</td><td class="">0–2</td>', deaths)
+            # A 100,000-turn run with deaths stays a timed run (owner, 2026-11-27).
+            self.assertNotIn('runs/classes-rs-m11/', deaths)
+            self.assertIn('No full-game runs yet.', deaths)
             self.assertTrue((out / 'runs/rs-smoke/r1/index.html').exists())
+
+    def test_full_games_are_death_runs_read_by_level_at_death(self):
+        cat = cat_mod.catalogue()
+        self.assertTrue(cat_mod.is_full_game(cat['suites']['classes-9-full']))
+        self.assertFalse(cat_mod.is_full_game(cat['suites']['classes-1800']))
+        exp = cat_mod.experiment(ROOT / 'experiments/reborn-fullgame-a0b73ca9.json')
+        cells = [{**c, 'schema': 'borg-zoo/cell@1', 'outcome': 'turn_cap', 'cause': '(alive and well)',
+                  'final': {'turn': 1000000, 'level': 22, 'max_level': 22, 'depth': 1, 'max_depth': 13},
+                  'first_turn_at_depth': {}, 'first_turn_at_level': {'20': 5}, 'cap': 1000000,
+                  'harness_kind': 'borg-rs'} for c in cat_mod.cells(exp)[:3]]
+        cells[0].update(outcome='death', cause='a <crow>',
+                        final={'turn': 851040, 'level': 14, 'max_level': 14, 'depth': 8, 'max_depth': 9})
+        cells[1].update(final={'turn': 1000000, 'level': 10, 'max_level': 10, 'depth': 2, 'max_depth': 3})
+        with tempfile.TemporaryDirectory() as tmp:
+            d = Path(tmp) / 'res' / exp['name'] / 'r1'
+            d.mkdir(parents=True)
+            (d / 'cells.jsonl').write_text(''.join(json.dumps(c) + '\n' for c in cells))
+            (d / 'meta.json').write_text(json.dumps({
+                'run_id': 'r1', 'completed': '2026-11-27 00:00 UTC', 'experiment': exp,
+                'environment': {}, 'missing_cells': 0,
+                'catalogue': {'harness': cat['specimens']['harness'],
+                              'specimens': {k: cat['specimens']['specimens'][k] for k in exp['specimens']},
+                              'profiles': {k: cat['profiles'][k] for k in exp['profiles']},
+                              'suites': {k: cat['suites'][k] for k in exp['suites']}}}))
+            from zoo import site
+            out = Path(tmp) / 'site'
+            site.build_site(Path(tmp) / 'res', out)
+            timed = (out / 'index.html').read_text()
+            deaths = (out / 'deaths/index.html').read_text()
+            self.assertNotIn(f'runs/{exp["name"]}/', timed)
+            self.assertIn(f'runs/{exp["name"]}/r1/index.html', deaths)
+            # Games 3, deaths 1, alive 2, median CL 14 (not capped at 20), range 10-22, deepest 13.
+            self.assertIn('<td class="">3</td><td class="">1</td><td class="">2</td><td class="">14</td>'
+                          '<td class="">10–22</td><td class="">13</td><td class="">&lt;crow&gt; ×1</td>'
+                          '<td class="">851,040</td>', deaths)
+            report = (out / 'runs' / exp['name'] / 'r1/index.html').read_text()
+            self.assertIn('How far the games got', report)
+            self.assertIn('All death runs', report)
+            self.assertNotIn('CL5 by 100,000', report)
+            # Every game, highest level first: CL22 alive, CL14 died, CL10 alive.
+            rows = [report.index(f'<td class="">{o}</td><td class="">{lv}</td>')
+                    for o, lv in (('alive at cap', 22), ('died', 14), ('alive at cap', 10))]
+            self.assertEqual(rows, sorted(rows))
 
 
 class DeathCauseTest(unittest.TestCase):

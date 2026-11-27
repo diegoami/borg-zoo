@@ -225,10 +225,20 @@ borg-reborn-rs#415 (closes #368) merged as `8a0b57c8`, which vendors borg-rs `8c
 
 ## Open pull requests
 
-- [#121](https://github.com/diegoami/borg-zoo/pull/121) — repeat the Neo
-  seeded-v2 study with only the carried-book value correction.
-- [#124](https://github.com/diegoami/borg-zoo/pull/124) — plan: include
-  cemetery synthetic scenarios in Borg evaluation.
+Checked 2026-11-27. Each one waits on the owner, not on code:
+
+- [#790](https://github.com/diegoami/borg-zoo/pull/790) — CCW shopping census
+  on Track P `11214501`; preflight passed, awaiting a dispatch decision.
+- [#777](https://github.com/diegoami/borg-zoo/pull/777) — re-pin of the Cure
+  Serious Wounds pilot (#752); proposed for review before dispatch.
+- [#775](https://github.com/diegoami/borg-zoo/pull/775) — Phase Door
+  unseen-grid switch (#731); a review prompt for `3fe760df` is on the PR,
+  waiting for an owner-chosen reviewer.
+- [#768](https://github.com/diegoami/borg-zoo/pull/768) — Track P candidate
+  index; backfill pushed, awaiting the owner's review.
+- [#822](https://github.com/diegoami/borg-zoo/pull/822) — Death runs = the
+  full-game runs, read by CL at death (docs/DESIGN.md, Statistics); merge
+  once its unit check passes.
 
 ## Failed run that needs attention
 

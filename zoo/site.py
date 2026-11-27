@@ -639,8 +639,10 @@ def experiment_brief(meta, compact=False):
             f'<dt>Baseline</dt><dd>{esc(control)}</dd>'
             f'<dt>Test conditions</dt><dd>{"<br>".join(esc(x) for x in limits)}</dd>'
             f'<dt>Study type</dt><dd>{"Prespecified; the study plan below defines the endpoints." if exp.get("prespecified") else "Descriptive; no prespecified primary endpoint recorded."}</dd>'
-            '<dt>Results shown</dt><dd>CL5 by 100,000 turns; deaths before the cap; depth and level as diagnostics. '
-            'Stalls, timeouts and errors are reported separately.</dd></dl>'
+            + ('<dt>Results shown</dt><dd>Character level at death, or at the cap for games still alive; '
+               'deaths and their causes; depth as a diagnostic. ' if is_death_run(meta) else
+               '<dt>Results shown</dt><dd>CL5 by 100,000 turns; deaths before the cap; depth and level as diagnostics. ')
+            + 'Stalls, timeouts and errors are reported separately.</dd></dl>'
             '<details class="background"><summary>Builds compared</summary>'
             + table(['Specimen', 'Repository', 'Exact commit', 'Source'], build_rows)
             + '</details>'
@@ -858,7 +860,9 @@ def run_page(meta, cells):
     header_title = display['title'] if display else question_title(exp)
     sub = None if display else subject_mode(exp)
     headline, diagnostics = [], []
-    parts = [f'<p><a href="../../index.html">All experiments</a></p>',
+    death_run = is_death_run(meta)
+    parts = [('<p><a href="../../deaths/index.html">All death runs</a></p>' if death_run
+              else '<p><a href="../../index.html">All experiments</a></p>'),
              f'<h1>{esc(header_title)}</h1>',
              (f'<p class="subtitle">{esc(sub)}</p>' if sub else ''),
              header_facts(exp, meta['catalogue'])]
@@ -880,59 +884,64 @@ def run_page(meta, cells):
              'the same seeds, one game per seed. Results are descriptive unless the experiment says it is '
              'prespecified above. Ranges are Wilson 95% intervals; paired p-values are exact McNemar tests on the '
              'seeds with known outcomes for that endpoint. Deaths are measured before the run cap. '
-             'Progress is reaching <strong>character level 5 by 100,000 engine turns</strong>. '
-             'For historical prespecified studies, see the original endpoints in the study plan.</p>'
+             + ('This is a death run: every game plays to death or a full-game cap, and success is the '
+                'character level at death (or at the cap). ' if death_run else
+                'Progress is reaching <strong>character level 5 by 100,000 engine turns</strong>. ')
+             + 'For historical prespecified studies, see the original endpoints in the study plan.</p>'
              + '</details>']
     for suite, rows in analysis.items():
         s = meta['catalogue']['suites'][suite]
         suite_fold = fold(f'Suite {esc(suite)}',
                           f'<p class="muted">{esc(s["description"])} · '
                           f'{len(s["seeds"])} seeds · cap {s["cap"]:,} engine turns · birth {esc(s["birth"])}</p>')
-        headline.append(study_summary(meta, cells, suite))
-        headline.append('<h3>Outcomes per arm</h3>')
-        first = rows[0]['summary'] if rows else None
-        headline.append(explain_folded(
-            'One row per arm: a Borg version, with a settings profile when the experiment varies it. Every arm '
-            'plays the same seeds. The primary figure is CL5 \u2014 character level 5 reached by 100,000 engine '
-            'turns (Rule 22, #758); deaths and the death rate sit alongside it, and depth is a diagnostic.',
-            OUTCOME_COLS,
-            (f'{arm_label(meta, rows[0]["specimen"], rows[0]["profile"])}: {first["valid"]:,} of {first["cells"]:,} runs finished and '
-             f'{first["deaths"]:,} died ({pct(first["death_rate"])}); with this many seeds the true death rate '
-             f'is most likely {ci(first["death_ci"])}.') if first and first['valid'] else None))
-        headline.append(table(
-            OUTCOME_COLS,
-            [[arm_label(meta, r['specimen'], r['profile']), r['summary']['cells'], r['summary']['valid'],
-              r['summary']['deaths'], pct(r['summary']['cl5_rate']),
-              num(r['summary']['median_max_depth']), num(r['summary']['median_max_level']),
-              num(r['summary']['median_death_turn']),
-              pct(r['summary']['death_rate']), r['summary']['cl5_alive'],
-              esc(', '.join(f'{k} {v}' for k, v in r['summary']['counts'].items()
-                            if v and k not in stats.VALID)) or '–']
-             for r in rows]))
-        control_profile = exp.get('control_profile', exp['profiles'][0])
-        for key, title in (('vs_version', f'Paired against {esc(exp["control"])}, same profile'),
-                           ('vs_profile', f'Paired against {esc(study_presentation()["profiles"].get(control_profile, control_profile))}, same version')):
-            versus = [r for r in rows if r[key]]
-            if not versus:
-                continue
-            control = esc(exp['control']) if key == 'vs_version' else f'profile {esc(control_profile)}'
-            headline.append(f'<h3>{title}</h3>')
+        if cat_mod.is_full_game(s):
+            headline.append(death_run_section(meta, cells, suite))
+        else:
+            headline.append(study_summary(meta, cells, suite))
+            headline.append('<h3>Outcomes per arm</h3>')
+            first = rows[0]['summary'] if rows else None
             headline.append(explain_folded(
-                f'Each row compares one arm with the control ({control}) seed by seed. The primary endpoint is '
-                'CL5: gained against lost, tested by exact McNemar over the seeds with known attainment in '
-                'both arms. Deaths are read the same way: seeds where both died or both lived cannot tell the '
-                'arms apart; the comparison rests on <span class="good">Rescued</span> (only the control died) '
-                'against <span class="bad">Newly killed</span> (only this arm died).',
-                PAIRED_COLS,
-                example_for(meta, versus, key, exp['control'], control_profile)))
+                'One row per arm: a Borg version, with a settings profile when the experiment varies it. Every arm '
+                'plays the same seeds. The primary figure is CL5 \u2014 character level 5 reached by 100,000 engine '
+                'turns (Rule 22, #758); deaths and the death rate sit alongside it, and depth is a diagnostic.',
+                OUTCOME_COLS,
+                (f'{arm_label(meta, rows[0]["specimen"], rows[0]["profile"])}: {first["valid"]:,} of {first["cells"]:,} runs finished and '
+                 f'{first["deaths"]:,} died ({pct(first["death_rate"])}); with this many seeds the true death rate '
+                 f'is most likely {ci(first["death_ci"])}.') if first and first['valid'] else None))
             headline.append(table(
-                PAIRED_COLS,
-                [[arm_label(meta, r['specimen'], r['profile']),
-                  v['cl5_pairs'], v['cl5_gained'], v['cl5_lost'], pval(v['cl5_p']),
-                  v['pairs'],
-                  f'<span class="good">{v["rescued"]}</span>', f'<span class="bad">{v["newly_killed"]}</span>',
-                  v['both_died'], v['both_lived'], v['identical_traces'], pval(v['death_p'])]
-                 for r in versus for v in [r[key]]]))
+                OUTCOME_COLS,
+                [[arm_label(meta, r['specimen'], r['profile']), r['summary']['cells'], r['summary']['valid'],
+                  r['summary']['deaths'], pct(r['summary']['cl5_rate']),
+                  num(r['summary']['median_max_depth']), num(r['summary']['median_max_level']),
+                  num(r['summary']['median_death_turn']),
+                  pct(r['summary']['death_rate']), r['summary']['cl5_alive'],
+                  esc(', '.join(f'{k} {v}' for k, v in r['summary']['counts'].items()
+                                if v and k not in stats.VALID)) or '–']
+                 for r in rows]))
+            control_profile = exp.get('control_profile', exp['profiles'][0])
+            for key, title in (('vs_version', f'Paired against {esc(exp["control"])}, same profile'),
+                               ('vs_profile', f'Paired against {esc(study_presentation()["profiles"].get(control_profile, control_profile))}, same version')):
+                versus = [r for r in rows if r[key]]
+                if not versus:
+                    continue
+                control = esc(exp['control']) if key == 'vs_version' else f'profile {esc(control_profile)}'
+                headline.append(f'<h3>{title}</h3>')
+                headline.append(explain_folded(
+                    f'Each row compares one arm with the control ({control}) seed by seed. The primary endpoint is '
+                    'CL5: gained against lost, tested by exact McNemar over the seeds with known attainment in '
+                    'both arms. Deaths are read the same way: seeds where both died or both lived cannot tell the '
+                    'arms apart; the comparison rests on <span class="good">Rescued</span> (only the control died) '
+                    'against <span class="bad">Newly killed</span> (only this arm died).',
+                    PAIRED_COLS,
+                    example_for(meta, versus, key, exp['control'], control_profile)))
+                headline.append(table(
+                    PAIRED_COLS,
+                    [[arm_label(meta, r['specimen'], r['profile']),
+                      v['cl5_pairs'], v['cl5_gained'], v['cl5_lost'], pval(v['cl5_p']),
+                      v['pairs'],
+                      f'<span class="good">{v["rescued"]}</span>', f'<span class="bad">{v["newly_killed"]}</span>',
+                      v['both_died'], v['both_lived'], v['identical_traces'], pval(v['death_p'])]
+                     for r in versus for v in [r[key]]]))
         headline.append(suite_fold)  # the suite section sits below both tables (owner, 2026-11-24)
         unfinished = [c for c in cells if c['suite'] == suite and c['outcome'] not in stats.VALID]
         if unfinished:
@@ -1156,6 +1165,92 @@ def timed_level(cell):
     return min(max(levels), 20) if levels else None
 
 
+def run_suites(meta):
+    """The run's suites as recorded in its catalogue snapshot, falling back to
+    the live catalogue for snapshots that left them out."""
+    snapshot = meta.get('catalogue', {}).get('suites') or {}
+    names = meta['experiment'].get('suites', [])
+    if any(name not in snapshot for name in names):
+        live = cat_mod.catalogue()['suites']
+        return {name: snapshot.get(name) or live.get(name, {}) for name in names}
+    return {name: snapshot[name] for name in names}
+
+
+def is_death_run(meta):
+    """A death run plays every game to death or a full-game cap (owner,
+    2026-11-27): it is listed under Death runs, not Timed runs, and its report
+    reads the character level at death instead of CL5 by 100,000 turns."""
+    suites = run_suites(meta)
+    return bool(suites) and all(cat_mod.is_full_game(s) for s in suites.values())
+
+
+def end_level(cell):
+    """The character level at death, or at the cap for a game still alive."""
+    final = cell.get('final') or {}
+    return final.get('level') if final.get('level') is not None else final.get('max_level')
+
+
+def max_depth(cell):
+    final = cell.get('final') or {}
+    return final.get('max_depth') if final.get('max_depth') is not None else final.get('depth')
+
+
+DEATH_ARM_COLS = [
+    VERSION_COL,
+    ('Games', 'Seeds played: one game per seed, each to death or the full-game cap.'),
+    ('Deaths', 'Games in which the character died before the cap.'),
+    ('Alive at cap', 'Games still alive at the cap: their level is a lower bound on how far they would get.'),
+    ('Unfinished', 'Games that stalled, timed out or failed; left out of the medians.'),
+    ('Median CL at end', 'The middle character level at death, or at the cap for games still alive, over '
+                         'finished games. The success criterion of a death run.'),
+    ('CL range', 'The lowest and highest character level at death or at the cap.'),
+    ('Median max depth', 'The middle value of the deepest dungeon level reached (0 = town), over finished games.'),
+    ('Deepest', 'The deepest dungeon level any game of this arm reached.'),
+    ('Median death turn', 'The middle engine turn at which the dying games died.'),
+]
+DEATH_GAME_COLS = [
+    VERSION_COL, 'Class', 'Race', 'Seed',
+    ('Outcome', 'died, alive at cap, or the kind of stop for an unfinished game.'),
+    ('CL at end', 'Character level at death, at the cap, or where an unfinished game stopped.'),
+    ('Max depth', 'The deepest dungeon level the game reached (0 = town).'),
+    ('Turn', 'The engine turn at which the game ended.'),
+    ('Cause', 'What killed the character; a dash for games that did not die.'),
+]
+
+
+def death_run_section(meta, cells, suite):
+    """The headline of a death run: per arm, how far the games got - the
+    character level at death (or at the cap) - then every game, highest level
+    first. No CL5 tables: that endpoint belongs to the 100,000-turn runs."""
+    exp = meta['experiment']
+    arm_rows, game_rows = [], []
+    for specimen in exp['specimens']:
+        for profile in exp['profiles']:
+            mine = [c for c in cells if c['suite'] == suite and c['specimen'] == specimen and c['profile'] == profile]
+            finished = [c for c in mine if c['outcome'] in stats.VALID]
+            dying = [c for c in finished if c['outcome'] == 'death']
+            levels = [lv for c in finished if (lv := end_level(c)) is not None]
+            depths = [d for c in finished if (d := max_depth(c)) is not None]
+            label = arm_label(meta, specimen, profile)
+            arm_rows.append([label, len(mine), len(dying), len(finished) - len(dying), len(mine) - len(finished),
+                             median_cell(levels), range_cell(levels), median_cell(depths),
+                             max(depths) if depths else '–', median_cell(final_values(dying, 'turn'))])
+            for c in sorted(mine, key=lambda c: -(end_level(c) or 0)):
+                outcome = {'death': 'died', 'turn_cap': 'alive at cap'}.get(c['outcome'], c['outcome'])
+                game_rows.append([label, esc(c.get('played_class') or c.get('class') or '–'),
+                                  esc(c.get('played_race') or c.get('race') or '–'), c['seed'], esc(outcome),
+                                  num(end_level(c)), num(max_depth(c)), num((c.get('final') or {}).get('turn')),
+                                  esc(stats.cause_name(c.get('cause')) or '–') if c['outcome'] == 'death' else '–'])
+    return ('<h3>How far the games got</h3>'
+            + explain_folded('One row per arm. A death run plays every game to death or a full-game cap; the '
+                             'success criterion is the character level at death, or at the cap for a game still '
+                             'alive, where it is a lower bound.', DEATH_ARM_COLS)
+            + table(DEATH_ARM_COLS, arm_rows)
+            + '<h3>Every game</h3>'
+            + explain_folded('One row per game, highest character level first.', DEATH_GAME_COLS)
+            + table(DEATH_GAME_COLS, game_rows, left=3))
+
+
 def build_site(results, out):
     out = Path(out)
     if out.exists():
@@ -1196,17 +1291,20 @@ def build_site(results, out):
         title = esc((study_info(meta) or {}).get('title', name))
         issue_link = (f'<a href="{cat_mod.ISSUES_URL}{issue}">#{issue}</a>'
                       if (issue := cat_mod.issue_of(meta['experiment'])) else '–')
+        if is_death_run(meta):
+            # Full games: success is the level at death (owner, 2026-11-27).
+            ends = [lv for c in valid if (lv := end_level(c)) is not None]
+            depths = [d for c in valid if (d := max_depth(c)) is not None]
+            causes = Counter(stats.cause_name(c.get('cause')) or 'unknown' for c in dying)
+            killer = (lambda k: f'{esc(k[0])} ×{k[1]}')(min(causes.items(), key=lambda i: (-i[1], i[0]))) if causes else '–'
+            death_rows.append([f'<a href="../{href}">{title}</a>', issue_link, len(cells), len(dying),
+                               len(valid) - len(dying), median_cell(ends), range_cell(ends),
+                               max(depths) if depths else '–', killer, median_cell(final_values(dying, 'turn'))])
+            continue
         death_ivs = landing.arm_intervals(cells, lambda c: c['outcome'] == 'death')
         rows.append([f'<a href="{href}">{title}</a>', issue_link, len(cells), len(valid), len(dying),
                      median_cell(final_values(valid, 'turn')), median_cell(levels), range_cell(levels),
                      landing.range_cell(list(reversed(death_ivs)))])
-        if dying:
-            causes = Counter(stats.cause_name(c.get('cause')) or 'unknown' for c in dying)
-            killer, count = min(causes.items(), key=lambda item: (-item[1], item[0]))
-            death_rows.append([f'<a href="../{href}">{title}</a>', issue_link, len(cells), len(dying),
-                               f'{esc(killer)} ×{count}', median_cell(final_values(dying, 'turn')),
-                               range_cell(final_values(dying, 'level')),
-                               range_cell(final_values(dying, 'depth'))])
     shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
     (out / 'overview.html').write_text(page('Borg comparisons · borg-zoo', landing.overview_page(runs), charts=True))
     from . import scenarios

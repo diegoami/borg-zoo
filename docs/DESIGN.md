@@ -450,6 +450,18 @@ catch the regressions, the render catches everything else.
   preserves its prespecified endpoint. The regenerated tables read the
   new metric retrospectively without changing the stored cells.
 
+**Timed runs and death runs (owner, 2026-11-27).** A run whose suites all
+have a cap of 1,000,000 engine turns or more (`catalogue.FULL_GAME_CAP`; today
+`classes-9-full` and `classes-9-full-3m`, #805) is a *death run*: each game
+plays to death or the cap, and success is the **character level at death**
+(or at the cap, a lower bound), not CL5 by 100,000. Death runs are listed only
+on the Death runs tab (`deaths/index.html`) and their reports show "How far
+the games got" and "Every game" in place of the CL5 tables. Every other run is
+a *timed run* on the index, deaths or not. The level is read from
+`final.level`, so it is not capped at CL20 like the milestone ledger (#817).
+Whether 100,000-turn runs with deaths should get their own killer/death-turn
+list again (as #819 had) is open; the owner has not asked for it.
+
 **Paired against the control arm, on seeds where both finished:**
 - rescued, newly killed, both died, both lived;
 - CL5 gained and lost among starts with known attainment in both arms;

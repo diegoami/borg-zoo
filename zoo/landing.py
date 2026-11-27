@@ -1129,14 +1129,17 @@ TIMED_COLS = [('Experiment', 'The question being asked; the link opens its table
                                            'the arm with the lowest; one interval when a run has a single arm.')]
 
 
-DEATH_COLS = [('Experiment', 'The run with deaths; the link opens its tables.'),
+DEATH_COLS = [('Experiment', 'The full-game run; the link opens its report.'),
               ('Issue', 'The borg-zoo issue the experiment answers.'),
-              ('Runs', 'Games played.'),
-              ('Deaths', 'Deaths among finished games, all arms of the run together.'),
+              ('Games', 'Games played, each to death or the full-game cap.'),
+              ('Deaths', 'Games in which the character died, all arms of the run together.'),
+              ('Alive at cap', 'Finished games still alive at the cap: their level is a lower bound.'),
+              ('Median CL at end', 'The middle character level at death, or at the cap for games still alive. '
+                                   'The success criterion of a death run.'),
+              ('CL range', 'The lowest and highest character level at death or at the cap.'),
+              ('Deepest DL', 'The deepest dungeon level any game of the run reached.'),
               ('Top killer', 'The most frequent death cause in the run, with its count.'),
-              ('Median death turn', 'The middle engine turn at which the dying games died.'),
-              ('CL range at death', 'The lowest and highest recorded character levels at the moment of death.'),
-              ('DL range at death', 'The lowest and highest recorded dungeon depths at the moment of death (0 is town).')]
+              ('Median death turn', 'The middle engine turn at which the dying games died.')]
 
 
 def nav(active, base=""):
@@ -1212,11 +1215,13 @@ def landing_page(runs, run_rows):
     included, each with the borg-zoo issue it answers. Smoke checks and
     scenario runs are not listed, and the page ends at the table - no
     cross-experiment summaries, caveats or footer (owner, 2026-11-24).
-    Timed runs: the length-and-level view (owner, 2026-11-26) - no CL5 columns."""
+    Timed runs: the length-and-level view (owner, 2026-11-26) - no CL5 columns.
+    Full-game runs are listed under Death runs instead (owner, 2026-11-27)."""
     return (
         f'<h1>Borg zoo</h1>{nav("index.html")}'
         '<h2>Timed runs</h2>'
-        + explain('Experiment runs are listed newest first, including small tiers and pilots. Turns is the '
+        + explain('Experiment runs with a fixed turn cap are listed newest first, including small tiers and pilots; '
+                  'full games played to death are on the Death runs tab. Turns is the '
                   'median game length for finished games. Median CL and CL range summarize the highest '
                   'recorded character levels, capped at CL20 because the milestone ledger stops there. '
                   'Each report shows the YAML definition and the build used.',
@@ -1226,15 +1231,16 @@ def landing_page(runs, run_rows):
 
 
 def death_runs_page(death_rows):
-    """The runs with deaths, newest first: one row per run, the deaths read
-    together - killer, when they die, and how far the dying games got
-    (owner, 2026-11-26)."""
+    """The full-game runs, newest first: every game plays to death or a
+    1,000,000+ turn cap, and success is the character level at death, not CL5
+    by 100,000 turns (owner, 2026-11-27)."""
     return (
         f'<h1>Borg zoo</h1>{nav("deaths/index.html", base="../")}'
         '<h2>Death runs</h2>'
-        + explain('Experiment runs with at least one death, newest first. Each row combines deaths across all '
-                  'arms. CL and DL show the recorded character level and dungeon depth at death. '
-                  'A dash indicates missing data.',
+        + explain(f'Full-game runs, newest first: every game plays to death or a cap of '
+                  f'{cat_mod.FULL_GAME_CAP:,} engine turns or more. Success is the character level at death, or '
+                  'at the cap for a game still alive. Each row combines all arms; the report has one row per '
+                  'game. A dash indicates missing data.',
                   DEATH_COLS)
         + (f'<div class="runs-list">{table(DEATH_COLS, death_rows)}</div>' if death_rows
-           else '<p class="muted">No deaths recorded yet.</p>'))
+           else '<p class="muted">No full-game runs yet.</p>'))
