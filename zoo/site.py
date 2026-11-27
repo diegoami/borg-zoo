@@ -1,12 +1,12 @@
 """Static statistics site generated from the results tree."""
-import collections
 import gzip
 import html
 import re
 import json
 import shutil
+from collections import Counter
 from functools import lru_cache
-from statistics import mean
+from statistics import mean, median
 from pathlib import Path
 
 from . import catalogue as cat_mod
@@ -1137,6 +1137,25 @@ def run_page(meta, cells):
     return page(f'{page_title} · borg-zoo', ''.join(parts))
 
 
+def final_values(cells, field):
+    return [c['final'][field] for c in cells if c['final'].get(field) is not None]
+
+
+def median_cell(values):
+    return f'{median(values):,.1f}'.removesuffix('.0') if values else '–'
+
+
+def range_cell(values):
+    return f'{min(values)}–{max(values)}' if values else '–'
+
+
+def timed_level(cell):
+    final = cell['final']
+    levels = [int(level) for level in cell.get('first_turn_at_level') or {}]
+    levels.extend(final[field] for field in ('level', 'max_level') if final.get(field) is not None)
+    return min(max(levels), 20) if levels else None
+
+
 def build_site(results, out):
     out = Path(out)
     if out.exists():
@@ -1146,14 +1165,15 @@ def build_site(results, out):
     smoke = cat_mod.smoke_names()
     # The analysis pages see every run: a setup with nothing bigger than a
     # smoke run is still listed, marked "smoke-scale only - not plotted", and a
-    # full run always outranks a smoke one. Smoke checks are not listed on the
-    # Full runs tab at all, and there is no smoke tab (owner, 2026-11-24).
+    # full run always outranks a smoke one. Both lists show experiment runs.
     runs = every
     rows = []
     death_rows = []
     from . import landing
     for meta, cells, src in every:
-        target = out / 'runs' / meta['experiment']['name'] / meta['run_id']
+        name = meta['experiment']['name']
+        report_path = Path('runs') / name / meta['run_id'] / 'index.html'
+        target = (out / report_path).parent
         target.mkdir(parents=True, exist_ok=True)
         if not meta.get('consolidated_runs'):
             meta = {**meta, 'results_path': results_path(src)}
@@ -1167,39 +1187,26 @@ def build_site(results, out):
             (target / 'meta.json').write_text(json.dumps(meta, indent=2, sort_keys=True) + '\n')
         else:
             shutil.copy(src / 'meta.json', target / 'meta.json')
-        if meta['experiment']['name'] in smoke:
+        if name in smoke:
             continue
         valid = [c for c in cells if c['outcome'] in stats.VALID]
-        finished = len(valid)
-        deaths_total = sum(1 for c in valid if c['outcome'] == 'death')
-
-        def max_cl(c):
-            return max((int(k) for k in (c.get('first_turn_at_level') or {})), default=1)
-        turns = sorted(c['final'].get('turn') for c in valid if c['final'].get('turn') is not None)
-        median_turns = (turns[len(turns)//2 - 1] + turns[len(turns)//2]) // 2 if len(turns) >= 2 and len(turns) % 2 == 0 \
-            else (turns[len(turns)//2] if turns else None)
-        cls_ = sorted(max_cl(c) for c in valid)
-        median_cl = (cls_[len(cls_)//2 - 1] + cls_[len(cls_)//2]) // 2 if len(cls_) >= 2 and len(cls_) % 2 == 0 \
-            else (cls_[len(cls_)//2] if cls_ else None)
-        cl_range = f'{cls_[0]}–{cls_[-1]}' if cls_ else '–'
-        run_link = (f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
-                    f'{esc((study_info(meta) or {}).get("title", meta["experiment"]["name"]))}</a>')
+        dying = [c for c in valid if c['outcome'] == 'death']
+        levels = [level for c in valid if (level := timed_level(c)) is not None]
+        href = esc(report_path.as_posix())
+        title = esc((study_info(meta) or {}).get('title', name))
         issue_link = (f'<a href="{cat_mod.ISSUES_URL}{issue}">#{issue}</a>'
                       if (issue := cat_mod.issue_of(meta['experiment'])) else '–')
-        rows.append([run_link, issue_link, len(cells), finished, deaths_total,
-                     num(median_turns), num(median_cl), cl_range])
-        dying = [c for c in valid if c['outcome'] == 'death']
+        death_ivs = landing.arm_intervals(cells, lambda c: c['outcome'] == 'death')
+        rows.append([f'<a href="{href}">{title}</a>', issue_link, len(cells), len(valid), len(dying),
+                     median_cell(final_values(valid, 'turn')), median_cell(levels), range_cell(levels),
+                     landing.range_cell(list(reversed(death_ivs)))])
         if dying:
-            causes = collections.Counter(c.get('cause') or 'unknown' for c in dying)
-            top = ', '.join(f'{c} ×{n}' for c, n in causes.most_common(2))
-            dt = sorted(c['final'].get('turn') for c in dying if c['final'].get('turn') is not None)
-            med_dt = (dt[len(dt)//2 - 1] + dt[len(dt)//2]) // 2 if len(dt) >= 2 and len(dt) % 2 == 0 \
-                else (dt[len(dt)//2] if dt else None)
-            dcl = sorted(max_cl(c) for c in dying)
-            ddl = sorted((c['final'].get('max_depth') or 0) for c in dying)
-            death_rows.append([run_link, issue_link, len(cells), len(dying), f'{top}',
-                               num(med_dt), f'{dcl[0]}–{dcl[-1]}', f'{ddl[0]}–{ddl[-1]}'])
-    from . import landing
+            causes = Counter(stats.cause_name(c.get('cause')) or 'unknown' for c in dying)
+            killer, count = min(causes.items(), key=lambda item: (-item[1], item[0]))
+            death_rows.append([f'<a href="../{href}">{title}</a>', issue_link, len(cells), len(dying),
+                               f'{esc(killer)} ×{count}', median_cell(final_values(dying, 'turn')),
+                               range_cell(final_values(dying, 'level')),
+                               range_cell(final_values(dying, 'depth'))])
     shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
     (out / 'overview.html').write_text(page('Borg comparisons · borg-zoo', landing.overview_page(runs), charts=True))
     from . import scenarios

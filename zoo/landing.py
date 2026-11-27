@@ -1123,8 +1123,10 @@ TIMED_COLS = [('Experiment', 'The question being asked; the link opens its table
               ('Deaths', 'Deaths among finished games, all arms of the run together.'),
               ('Turns', 'The median game length, in engine turns, over finished games (death or cap).'),
               ('Median CL', 'The middle value of the highest character level each finished game reached '
-                            '(milestones recorded to CL20; borg-zoo#805).'),
-              ('CL range', 'The lowest and the highest character level any finished game reached.')]
+                            '(values capped at CL20; borg-zoo#817).'),
+              ('CL range', 'The range of highest recorded character levels across finished games, capped at CL20.'),
+              ('Deaths range (worst, best)', 'Wilson 95% interval of the arm with the highest death rate, then '
+                                           'the arm with the lowest; one interval when a run has a single arm.')]
 
 
 DEATH_COLS = [('Experiment', 'The run with deaths; the link opens its tables.'),
@@ -1133,8 +1135,8 @@ DEATH_COLS = [('Experiment', 'The run with deaths; the link opens its tables.'),
               ('Deaths', 'Deaths among finished games, all arms of the run together.'),
               ('Top killer', 'The most frequent death cause in the run, with its count.'),
               ('Median death turn', 'The middle engine turn at which the dying games died.'),
-              ('CL range at death', 'The lowest and the highest character level among the dying games.'),
-              ('DL range at death', 'The lowest and the highest dungeon depth among the dying games.')]
+              ('CL range at death', 'The lowest and highest recorded character levels at the moment of death.'),
+              ('DL range at death', 'The lowest and highest recorded dungeon depths at the moment of death (0 is town).')]
 
 
 def nav(active, base=""):
@@ -1201,7 +1203,7 @@ def overview_page(runs):
         f'nine classes: with it, and without it. Each tab has its own chart, its own runs and its own '
         f'class pages — read a point inside its tab, never across the two.</p>'
         f'<p>{buttons}</p>{links}</div></div>'
-        f'<p class="muted">Every experiment run is on the <a href="index.html">Full runs</a> tab.</p>'
+        f'<p class="muted">Every experiment run is on the <a href="index.html">Timed runs</a> tab.</p>'
         + add_your_borg_section() + FOOTER)
 
 
@@ -1214,10 +1216,10 @@ def landing_page(runs, run_rows):
     return (
         f'<h1>Borg zoo</h1>{nav("index.html")}'
         '<h2>Timed runs</h2>'
-        + explain('Every experiment run, newest first, small tiers and pilots included; smoke checks and '
-                  'scenario runs are not listed. Each game runs to death or the turn cap: Turns is the median '
-                  'game length, Median CL and CL range are how far the characters levelled (milestones recorded '
-                  'to CL20). Each report shows the YAML definition and the build used.',
+        + explain('Experiment runs are listed newest first, including small tiers and pilots. Turns is the '
+                  'median game length for finished games. Median CL and CL range summarize the highest '
+                  'recorded character levels, capped at CL20 because the milestone ledger stops there. '
+                  'Each report shows the YAML definition and the build used.',
                   TIMED_COLS)
         + (f'<div class="runs-list">{table(TIMED_COLS, run_rows)}</div>' if run_rows
            else '<p class="muted">No results yet.</p>'))
@@ -1230,9 +1232,9 @@ def death_runs_page(death_rows):
     return (
         f'<h1>Borg zoo</h1>{nav("deaths/index.html", base="../")}'
         '<h2>Death runs</h2>'
-        + explain('Every experiment run with at least one death, newest first: the deaths of all arms read '
-                  'together. Top killer is the most frequent death cause; the CL and DL ranges are how far the '
-                  'dying games had got. Runs without deaths are on the Timed runs tab.',
+        + explain('Experiment runs with at least one death, newest first. Each row combines deaths across all '
+                  'arms. CL and DL show the recorded character level and dungeon depth at death. '
+                  'A dash indicates missing data.',
                   DEATH_COLS)
         + (f'<div class="runs-list">{table(DEATH_COLS, death_rows)}</div>' if death_rows
            else '<p class="muted">No deaths recorded yet.</p>'))
