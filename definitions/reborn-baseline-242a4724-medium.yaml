@@ -1,0 +1,24 @@
+# borg-zoo#801: the baseline of the shipped settings at the current track-p head 242a4724. Write the catalogue entries with: python3 -m zoo define definitions/reborn-baseline-242a4724-medium.yaml
+name: reborn-baseline-242a4724-medium
+issue: 801
+question: >-
+  What does the shipped game play like at the current track-p head 242a4724 (Home reserves and the town-light loadout shipped on): CL5 by 100,000 turns, deaths, level arrival - the anchor the next studies read against?
+tier: medium            # classes-1800 starts 91-360, shipped settings, normal world, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-242a4724
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-baseline-242a4724   # the pilot profile, so RULES 16 finds it
+arms:
+  ship: {}
+control: [ship]
+owner_authorization: >-
+  2026-11-25: zoo owner, "I am taking track-p, the build scheduled compared to the current state on the branch" - the branch moved 71 commits past the morning's baseline (RULES 23 priority).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-25, before any result (Rule 22, #758). Baseline description of the shipped settings at track-p 242a4724: one arm (ship), classes-1800 starts 91-360, normal world, 100,000 turns, evidence not retained. The shipped game changed again since the morning's 815e2bba baseline (71 commits; borg.txt 1d0cb8cd...: town_home_reserve, town_shop_overloaded, junk_inferior_spares, junk_inferior_sandal_ac_margin shipped on, town_loadout_power_loss 0). This run describes the new shipped game and anchors future studies; it compares against nothing. Tier medium (RULES 14), disjoint from verysmall (1-45). Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and median first-turn-at-level-5 as diagnostics. Descriptive (RULES 14).

@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-usc",
+  "issue": 770,
+  "definition": "definitions/reborn-usc.yaml",
+  "question": "On borg-reborn-rs track-p c5501d3c, when does escape_phase_unknown_scary fire, what does the Borg do differently without it on those grids, and what does the switch cost or save by CL5 and deaths?",
+  "description": "On borg-reborn-rs track-p c5501d3c, when does escape_phase_unknown_scary fire, what does the Borg do differently without it on those grids, and what does the switch cost or save by CL5 and deaths? Generated from definitions/reborn-usc.yaml: 2 arms on 4.2.6-reborn-rust-trackp-c5501d3c-pw, suite classes-18.",
+  "prespecified": "Fixed 2026-11-24, before any result (Rule 22, #758). Pilot classes-18, retained evidence, normal world. The #731 null was one pin (6cd5c8bf), one block, pre-walk-away; this read re-asks it at the current head. Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm (the #731 experience says roughly a fifth of plays change). Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics. Report: deaths and causes; paired CL5 gained and lost over pairs known in both arms (exact McNemar); the fire inventory - the #1066 marker counts per game, the triggering monsters (race, CL, DL of the Borg), and for every pair where a death differs the first diverging key with what each arm did - reconstructed from the retained notes; named cases (/death-report) for those pairs. Descriptive (RULES 14). A second step only after this read, on the owner's word.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-c5501d3c-pw"
+  ],
+  "profiles": [
+    "reborn-usc-ship",
+    "reborn-usc-unknown0"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-c5501d3c-pw",
+  "control_profile": "reborn-usc-ship",
+  "owner_authorization": "2026-11-24: zoo owner, \"escape_phase_unknown_scary must be investigated\" (borg-zoo#770).",
+  "retain_evidence": true
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-baseline-242a4724-prepold",
+  "issue": 801,
+  "definition": "definitions/reborn-baseline-242a4724-prepold.yaml",
+  "question": "Does the class-level DL2 clevel gate change early-game play and CL5? prep_old puts back the old gate (max-HP 30, no level gate - all nine class overrides 0) on the current build; paired by seed against ship.",
+  "description": "Does the class-level DL2 clevel gate change early-game play and CL5? prep_old puts back the old gate (max-HP 30, no level gate - all nine class overrides 0) on the current build; paired by seed against ship. Generated from definitions/reborn-baseline-242a4724-prepold.yaml: 2 arms on 4.2.6-reborn-rust-trackp-242a4724, suite classes-18.",
+  "prespecified": "Fixed 2026-11-25, before any result (Rule 22, #758). The owner's suspect, tested: the #1217 rework replaced the max-HP 30 DL2 gate with per-class character-level gates (6-10, live for all nine classes through the shipped __class overrides; the global 0 alone would disable it, which is why every override is zeroed in prep_old). prep_old restores the historical gate (max-HP 30, no level gate) on the current build; paired by seed against ship, classes-18, normal world, 100,000 turns. Read: identical plays (how many games the gate moves), CL5, deaths (deaths-0 for the arm; a rise cannot be adopted), paired gained/lost (exact McNemar), median first-L5, and per-class splits (the shipped values differ by class: casters 9-10 vs warrior 6). Gate: no config_error; one binary; every cell terminal; each arm's values in params-core.json. Descriptive (RULES 14) - a lead goes to a bigger tier on the owner's word.",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-242a4724"
+  ],
+  "profiles": [
+    "reborn-baseline-242a4724-ship",
+    "reborn-baseline-242a4724-prep_old"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-242a4724",
+  "control_profile": "reborn-baseline-242a4724-ship",
+  "owner_authorization": "2026-11-25: zoo owner, \"I have a suspect, borg_param_prepared_dl2_min_clevel\", \"It is set at class level\" (borg-zoo#801). RULES 23: current Track-P status.",
+  "retain_evidence": false
+}

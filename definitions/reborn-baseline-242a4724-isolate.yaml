@@ -1,0 +1,26 @@
+# borg-zoo#801: isolate which of the 71-commit changes moves early-game play - home0 answers the owner's town_home_reserve question, keys0 puts all five new keys at their historical values (leaving only the unconditional code: torch policy, door/melee reconciliation, town-loadout module code). Write the catalogue entries with: python3 -m zoo define definitions/reborn-baseline-242a4724-isolate.yaml
+name: reborn-baseline-242a4724-isolate
+issue: 801
+question: >-
+  Which change drives the early-game divergence? home0 turns only town_home_reserve off (the owner's question); keys0 puts all five new keys at historical values, so keys0 vs ship bounds the key-gated share and keys0 vs the 815e2bba pilot bounds the unconditional code (torch replacement, stale door melee targets).
+tier: pilot            # classes-18, paired by seed against ship and readable against the 815e2bba pilot
+
+specimen: 4.2.6-reborn-rust-trackp-242a4724
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-baseline-242a4724   # the pilot profile exists; the new arms add on it
+arms:
+  ship: {}
+  home0: {borg_param_town_home_reserve: 0}
+  keys0: {borg_param_town_home_reserve: 0, borg_param_town_shop_overloaded: 0, borg_param_junk_inferior_spares: 0, borg_param_junk_inferior_sandal_ac_margin: 0, borg_param_town_loadout_power_loss: 0}
+control: [ship]
+owner_authorization: >-
+  2026-11-25: zoo owner, "town_home_reserve, I am not sure, what is the effect of that? Investigate what of this affect most gameplay change" (borg-zoo#801). RULES 23: current Track-P status.
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-25, before any result (Rule 22, #758). Isolation pilot on the current head: ship vs home0 (only town_home_reserve off) vs keys0 (all five new keys at historical values - town_home_reserve 0, town_shop_overloaded 0, junk_inferior_spares 0, junk_inferior_sandal_ac_margin 0, town_loadout_power_loss 0 - approximating the 815e2bba-era settings on the new code). classes-18, normal world, 100,000 turns, evidence not retained. Read: per arm vs ship - identical plays (the share of games each feature moves), CL5, deaths (deaths-0 holds for every arm; an arm whose deaths rise cannot be adopted), paired gained/lost, median first-L5; keys0 vs the 815e2bba pilot's retained cells (paired by seed, labelled retrospective) bounds how much play the unconditional code changes. Gate: no config_error; one binary; every cell terminal. Progress endpoint CL5 by 100,000 turns, deaths and unfinished separate. Descriptive (RULES 14).

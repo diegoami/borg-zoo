@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-fullgame-a0b73ca9",
+  "issue": 807,
+  "definition": "definitions/reborn-fullgame-a0b73ca9.yaml",
+  "question": "How far does the shipped Borg get in a full game on the current head: CL20 share, max CL, max DL, deaths - one game per class, 1,000,000-turn cap?",
+  "description": "How far does the shipped Borg get in a full game on the current head: CL20 share, max CL, max DL, deaths - one game per class, 1,000,000-turn cap? Generated from definitions/reborn-fullgame-a0b73ca9.yaml: 1 arms on 4.2.6-reborn-rust-trackp-a0b73ca9, suite classes-9-full.",
+  "prespecified": "Fixed 2026-11-26, before any result (Rule 22, #758). Full-game pilot on the current head: one game per class to death or the 1,000,000-turn cap. PRIMARY: CL20 reached; reported per game: max CL, max DL, outcome/death cause and turn, town vs dungeon turns. Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and median first-turn-at-level-5 as diagnostics. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-a0b73ca9"
+  ],
+  "profiles": [
+    "reborn-fullgame-a0b73ca9-ship"
+  ],
+  "suites": [
+    "classes-9-full"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-a0b73ca9",
+  "control_profile": "reborn-fullgame-a0b73ca9-ship",
+  "owner_authorization": "2026-11-26: zoo owner, \"ok continue all, we can start experiments with the current head of born again\" (borg-zoo#807). RULES 23: current Track-P status.",
+  "retain_evidence": false
+}

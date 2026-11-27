@@ -1,0 +1,39 @@
+# borg-zoo#771: the #1124 retreat guards investigated with priority (breeders-x8, the churn habitat). Write the catalogue entries with: python3 -m zoo define definitions/reborn-guards-inv-breeders.yaml
+name: reborn-guards-inv-breeders
+issue: 771
+question: >-
+  On borg-reborn-rs track-p c5501d3c in breeders-x8, when do the #1124 retreat guards fire, what does the Borg do differently without them, and what do they cost or save by CL5 and deaths?
+tier: pilot            # classes-18, breeders-x8, retained evidence, 100,000 turns
+
+specimen:
+  name: 4.2.6-reborn-rust-trackp-c5501d3c-pw
+  repository: diegoami/borg-reborn-rs
+  ref: c5501d3c5aeac2449fc47ed6ca6efe2fbafdd894
+  label: "borg-reborn-rs track-p at the #1149 merge c5501d3c on 2026-11-23 (#1149 PR head 8aa716cd, after merging track-p #945/#947/#1148/#1161); worlds poison-x8 (fb86c333...) and breeders-x8 (9530ff13...) pinned; shipped harness/borg.txt c225c180..., scary_monsters.txt 5a4ec4b6..., borg-rs core. track-p also ships caution_walk_away_immobile 1 (#1148) in every arm."
+  scary_lists:
+    scary_monsters.txt: 5a4ec4b6221f2487d19bd3146c9c36ed7e3a619b1bf9d14dbd9a8f14ba187690
+  worlds:
+    poison-x8: fb86c333c80e048da19e68e7e15efc63df49134f91124ecb5168165558e5de0d
+    breeders-x8: 9530ff138a4b6ca1d66b3ca351ae52f943c1951eaf76f1ead25a2b9b81b6e2de
+    patches-x8: a6721bdd20a440f397ab923705dc99df8826a698ad78cd1e96f95cb1f4b98aca
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+  borg_world: breeders-x8
+
+profile_prefix: reborn-guardsinvb
+arms:
+  ship: {}
+  guardsoff: {borg_param_caution_retreat_reentry_ticks: 0, borg_param_caution_retreat_oscillation_limit: 0}
+  nohold: {borg_param_caution_retreat_reentry_ticks: 0}
+  noosc: {borg_param_caution_retreat_oscillation_limit: 0}
+  walkoff: {borg_param_caution_walk_away_immobile: 0, borg_param_caution_retreat_reentry_ticks: 0, borg_param_caution_retreat_oscillation_limit: 0}
+control: [ship]
+owner_authorization: >-
+  2026-11-24: zoo owner, "retreat guards off / hold / oscillation must be investigated with priority" (borg-zoo#771); breeders-x8 is the churn habitat named in the investigation.
+extra:
+  retain_evidence: true
+
+prespecified: |
+  Fixed 2026-11-24, before any result (Rule 22, #758). Pilot classes-18, retained evidence, breeders-x8 - the retreat-churn habitat where the earlier breeder pilots barely exercised the guards. Same arms and read as reborn-guards-inv (normal world): gate no config_error; one binary; each arm's values in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm; CL5 reached by 100,000 turns as the progress endpoint with deaths, unfinished and alive at the cutoff reported separately, DL3/DL5 as diagnostics; fire inventory and named cases from the retained notes; walkoff exposes the guard-vs-walk-away ordering only (NEVER as a play style). Descriptive (RULES 14). A ladder only after this read, on the owner's word.
