@@ -1,0 +1,25 @@
+# borg-zoo#805: the parallel vanilla-Borg full-game run / the 3M continuation, per the owner. Write the catalogue entries with: python3 -m zoo define definitions/reborn-fullgame-vanilla.yaml
+name: reborn-fullgame-vanilla
+issue: 805
+question: >-
+  How far does the vanilla Angband Borg (the original C Borg, e473720, built pristine by borg-reborn-rs) get in the same full games our Borg ran: CL20 share, max CL, max DL, deaths - the parallel benchmark the owner asked for.
+tier: pilot
+suite: classes-9-full            # classes-9-full, shipped settings, full games to death or the cap
+
+specimen: 4.2.6-reborn-c-pristine
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-fullgame-vanilla
+arms:
+  ship: {}
+control: [ship]
+owner_authorization: >-
+  2026-11-25: zoo owner, "let us finish this, but I was meaning that we should do parallel runs with the Angband Vanilla Borg as well" (borg-zoo#805). RULES 23: Track-P status and parallel benchmarks.
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-25, before any result (the full-game program, borg-zoo#805). The vanilla C Borg (4.2.6-reborn-c-pristine: the original C Borg logic, e473720, built by borg-reborn-rs) plays the SAME classes-9-full suite our Borg ran (one game per class, 1,000,000-turn cap): a cross-implementation parallel read, labelled as such - two Borgs, one program. Report per game: max CL (CL20 headline), max DL, outcome/death cause, town vs dungeon turns. Gate: no config_error; one binary; every cell ends in death or turn_cap (a stall is reported with the ledger). Descriptive (RULES 14).

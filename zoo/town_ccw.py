@@ -1,4 +1,4 @@
-"""First-CCW opportunities from the v20 planner at the #1195 merge."""
+"""First-CCW opportunities from pinned Track P planner receipts."""
 from bisect import bisect_left, bisect_right
 from collections import Counter
 from itertools import groupby
@@ -9,13 +9,17 @@ import re
 from . import town
 from .catalogue import cell_key
 
-SOURCE = '11214501638b3d172113d41c10a304932c925f51'
+SOURCE = '137b6c44f666626d66fccd7a32259dea12ee0ee2'
+PLAN_SCHEMAS = {
+    '11214501638b3d172113d41c10a304932c925f51': 20,
+    SOURCE: 25,
+}
 SETTINGS = {
     'town_csw_reserve_percent': 100, 'town_prepared_ccw': 2, 'town_prepared_ccw_percent': 112,
     'town_prepared_neutralize': 2, 'town_prepared_neutralize_percent': 40,
     'town_prepared_dear_after_recall': 1, 'town_recall_reserve': 2, 'buy_recall_from_gold': 200,
 }
-# Engine item kinds and planner capability indices at SOURCE.
+# Engine item kinds and planner capability indices at the supported pins.
 CCW = 233
 ALCHEMIST = 4
 LIGHT, FOOD, PHASE, PHASE_RESERVE, PREP_CCW = 0, 1, 4, 61, 82
@@ -142,24 +146,25 @@ def collect(directory, source):
     directory = Path(directory)
     missing = [name for name in STREAMS if not (directory / name).is_file()]
     result = {'schema': 'borg-zoo/ccw-census@1', 'visits': [], 'missing': missing}
-    if source != SOURCE or missing:
+    plan_schema = PLAN_SCHEMAS.get(source)
+    if plan_schema is None or missing:
         return {**result, 'status': 'unavailable',
-                'error': 'unexpected source pin' if source != SOURCE else 'missing required receipts'}
+                'error': 'unexpected source pin' if plan_schema is None else 'missing required receipts'}
     try:
         settings = json.loads((directory / 'settings-resolved.json').read_text())['effective_settings']
         differences = {name: settings.get(name) for name, want in SETTINGS.items() if settings.get(name) != want}
         if differences:
             return {**result, 'status': 'unavailable', 'error': 'settings mismatch', 'differences': differences}
-        return {**result, **visit_rows(directory)}
+        return {**result, **visit_rows(directory, plan_schema)}
     except (OSError, ValueError, KeyError, IndexError, TypeError) as exc:
         # Preserve the game outcome and surface measurement failures separately.
         return {**result, 'status': 'unavailable', 'error': str(exc)}
 
 
-def visit_rows(directory):
+def visit_rows(directory, plan_schema):
     plans = json_lines(directory / 'town-plan.jsonl')
-    if any(plan['v'] != 20 or plan['mode'] != 1 for plan in plans):
-        raise ValueError('expected live v20 planner receipts')
+    if any(plan['v'] != plan_schema or plan['mode'] != 1 for plan in plans):
+        raise ValueError(f'expected live v{plan_schema} planner receipts')
     visits = [list(rows) for _, rows in groupby(plans, key=lambda row: row['visit'])]
     if [rows[0]['visit'] for rows in visits] != sorted({row['visit'] for row in plans}):
         raise ValueError('planner visits are out of order')
@@ -255,11 +260,14 @@ def summary(rows):
 
 
 def publish(target, records):
+    records = sorted(records, key=cell_key)
+    sources = {record['specimen_ref'] for record in records if record.get('specimen_ref')}
+    source = next(iter(sources or {SOURCE})) if len(sources) <= 1 else None
     rows, cells = [], []
-    for record in sorted(records, key=cell_key):
+    for record in records:
         census = record.get('ccw_census', {'status': 'unavailable', 'error': 'no census collected'})
         identity = {'cell': cell_key(record), 'seed': record['seed'], 'outcome': record['outcome'],
-                    'source': record.get('specimen_ref', SOURCE),
+                    'source': record.get('specimen_ref') or source,
                     'world': (record.get('world') or {}).get('name', 'normal'),
                     'race': record.get('played_race'), 'class': record.get('played_class')}
         rows.extend({**identity, **row} for row in census.get('visits', []))
@@ -268,7 +276,7 @@ def publish(target, records):
         for row in rows:
             stream.write(json.dumps(row, sort_keys=True) + '\n')
     (target / 'ccw-census.json').write_text(json.dumps({
-        'schema': 'borg-zoo/ccw-census-summary@1', 'source': SOURCE, 'cells': cells,
+        'schema': 'borg-zoo/ccw-census-summary@1', 'source': source, 'cells': cells,
         'all_visits': summary(rows),
         'max_dl_at_least_2': summary([row for row in rows if (row['max_depth'] or 0) >= 2]),
     }, sort_keys=True, indent=2) + '\n')

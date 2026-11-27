@@ -4,8 +4,9 @@ import html
 import re
 import json
 import shutil
+from collections import Counter
 from functools import lru_cache
-from statistics import mean
+from statistics import mean, median
 from pathlib import Path
 
 from . import catalogue as cat_mod
@@ -1136,6 +1137,25 @@ def run_page(meta, cells):
     return page(f'{page_title} · borg-zoo', ''.join(parts))
 
 
+def final_values(cells, field):
+    return [c['final'][field] for c in cells if c['final'].get(field) is not None]
+
+
+def median_cell(values):
+    return f'{median(values):,.1f}'.removesuffix('.0') if values else '–'
+
+
+def range_cell(values):
+    return f'{min(values)}–{max(values)}' if values else '–'
+
+
+def timed_level(cell):
+    final = cell['final']
+    levels = [int(level) for level in cell.get('first_turn_at_level') or {}]
+    levels.extend(final[field] for field in ('level', 'max_level') if final.get(field) is not None)
+    return min(max(levels), 20) if levels else None
+
+
 def build_site(results, out):
     out = Path(out)
     if out.exists():
@@ -1145,13 +1165,15 @@ def build_site(results, out):
     smoke = cat_mod.smoke_names()
     # The analysis pages see every run: a setup with nothing bigger than a
     # smoke run is still listed, marked "smoke-scale only - not plotted", and a
-    # full run always outranks a smoke one. Smoke checks are not listed on the
-    # Full runs tab at all, and there is no smoke tab (owner, 2026-11-24).
+    # full run always outranks a smoke one. Both lists show experiment runs.
     runs = every
     rows = []
+    death_rows = []
     from . import landing
     for meta, cells, src in every:
-        target = out / 'runs' / meta['experiment']['name'] / meta['run_id']
+        name = meta['experiment']['name']
+        report_path = Path('runs') / name / meta['run_id'] / 'index.html'
+        target = (out / report_path).parent
         target.mkdir(parents=True, exist_ok=True)
         if not meta.get('consolidated_runs'):
             meta = {**meta, 'results_path': results_path(src)}
@@ -1165,30 +1187,32 @@ def build_site(results, out):
             (target / 'meta.json').write_text(json.dumps(meta, indent=2, sort_keys=True) + '\n')
         else:
             shutil.copy(src / 'meta.json', target / 'meta.json')
-        if meta['experiment']['name'] in smoke:
+        if name in smoke:
             continue
         valid = [c for c in cells if c['outcome'] in stats.VALID]
-        finished = len(valid)
-        deaths_total = sum(1 for c in valid if c['outcome'] == 'death')
-        known = [c for c in cells if stats.cl5_reached(c) is not None]
-        cl5_pct = (f'{100 * sum(1 for c in known if stats.cl5_reached(c)) / len(known):.0f}%'
-                   if known else '–')
+        dying = [c for c in valid if c['outcome'] == 'death']
+        levels = [level for c in valid if (level := timed_level(c)) is not None]
+        href = esc(report_path.as_posix())
+        title = esc((study_info(meta) or {}).get('title', name))
+        issue_link = (f'<a href="{cat_mod.ISSUES_URL}{issue}">#{issue}</a>'
+                      if (issue := cat_mod.issue_of(meta['experiment'])) else '–')
         death_ivs = landing.arm_intervals(cells, lambda c: c['outcome'] == 'death')
-        cl5_ivs = landing.arm_intervals(cells, lambda c: stats.cl5_reached(c) is True,
-                                        known=lambda c: stats.cl5_reached(c))
-        rows.append([f'<a href="runs/{esc(meta["experiment"]["name"])}/{esc(meta["run_id"])}/index.html">'
-                     f'{esc((study_info(meta) or {}).get("title", meta["experiment"]["name"]))}</a>',
-                     (f'<a href="{cat_mod.ISSUES_URL}{issue}">#{issue}</a>' if (issue := cat_mod.issue_of(meta['experiment'])) else '–'),
-                     len(cells), finished, deaths_total, cl5_pct,
-                     landing.range_cell(list(reversed(death_ivs))),
-                     landing.range_cell(cl5_ivs)])
-    from . import landing
+        rows.append([f'<a href="{href}">{title}</a>', issue_link, len(cells), len(valid), len(dying),
+                     median_cell(final_values(valid, 'turn')), median_cell(levels), range_cell(levels),
+                     landing.range_cell(list(reversed(death_ivs)))])
+        if dying:
+            causes = Counter(stats.cause_name(c.get('cause')) or 'unknown' for c in dying)
+            killer, count = min(causes.items(), key=lambda item: (-item[1], item[0]))
+            death_rows.append([f'<a href="../{href}">{title}</a>', issue_link, len(cells), len(dying),
+                               f'{esc(killer)} ×{count}', median_cell(final_values(dying, 'turn')),
+                               range_cell(final_values(dying, 'level')),
+                               range_cell(final_values(dying, 'depth'))])
     shutil.copy(Path(__file__).parent / 'assets' / 'echarts.min.js', out / 'echarts.min.js')
     (out / 'overview.html').write_text(page('Borg comparisons · borg-zoo', landing.overview_page(runs), charts=True))
     from . import scenarios
     scenarios.build_site(results, out)
-    from . import settings_page
-    settings_page.build(runs, out, page)
+    # The Settings tab is retired (owner, 2026-11-26): the two lists are
+    # Timed runs (this index) and Death runs (deaths/index.html).
     # The /runs/ directory contains per-run report folders, not a page of its
     # own. Publish an index there so the directory URL is useful instead of
     # returning 404/503, and point it at the Detailed experiment catalogue.
@@ -1198,12 +1222,16 @@ def build_site(results, out):
         'Experiment runs · borg zoo',
         '<h1>Experiment runs</h1><p><a href="../detailed.html">Browse all experiment reports</a></p>'
         '<p class="muted">Each experiment also has its own permanent report under this directory.</p>'))
+    deaths_index = out / 'deaths'
+    deaths_index.mkdir(exist_ok=True)
+    (deaths_index / 'index.html').write_text(page(
+        'Death runs · borg zoo', landing.death_runs_page(death_rows), base='../'))
     for policy in landing.POLICIES:
         (out / f'{policy["slug"]}.html').write_text(
             page(f'{policy["title"]} · borg-zoo', landing.comparison_page(runs, policy), charts=True))
-    full = page('Full runs · borg-zoo', landing.landing_page(runs, rows))
-    (out / 'index.html').write_text(full)
-    (out / 'detailed.html').write_text(full)  # older links
+    timed = page('Timed runs · borg-zoo', landing.landing_page(runs, rows))
+    (out / 'index.html').write_text(timed)
+    (out / 'detailed.html').write_text(timed)  # older links
     (out / 'stalls.html').write_text(page('Stalls and crashes · borg-zoo', landing.stalls_page(runs)))
     (out / 'versions.html').write_text(page('Versions · borg-zoo', landing.versions_page()))
     (out / '.nojekyll').write_text('')

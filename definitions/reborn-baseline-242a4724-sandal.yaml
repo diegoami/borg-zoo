@@ -1,0 +1,26 @@
+# borg-zoo#801: the owner wants junk_inferior_sandal_ac_margin at 4, possibly per class - measured before the shipped borg.txt changes. Write the catalogue entries with: python3 -m zoo define definitions/reborn-baseline-242a4724-sandal.yaml
+name: reborn-baseline-242a4724-sandal
+issue: 801
+question: >-
+  Does the sandal junk margin move early-game play at all (ship 7 vs 4), and does a per-class split (melee 4, casters 7) differ from a flat 4? If an arm replays ship, the dial never binds at this tier and the shipped change is cosmetic.
+tier: pilot            # classes-18, paired, normal world, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-242a4724
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-baseline-242a4724
+arms:
+  ship: {}
+  sandal4: {borg_param_junk_inferior_sandal_ac_margin: 4}
+  sandal_class: {borg_param_junk_inferior_sandal_ac_margin__warrior: 4, borg_param_junk_inferior_sandal_ac_margin__paladin: 4, borg_param_junk_inferior_sandal_ac_margin__blackguard: 4, borg_param_junk_inferior_sandal_ac_margin__rogue: 4, borg_param_junk_inferior_sandal_ac_margin__ranger: 4, borg_param_junk_inferior_sandal_ac_margin__mage: 7, borg_param_junk_inferior_sandal_ac_margin__priest: 7, borg_param_junk_inferior_sandal_ac_margin__necromancer: 7, borg_param_junk_inferior_sandal_ac_margin__druid: 7}
+control: [ship]
+owner_authorization: >-
+  2026-11-25: zoo owner, "junk_inferior_sandal_ac_margin? I would set it even to 4 or by class too" (borg-zoo#801). RULES 23: current Track-P status.
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-25, before any result (Rule 22, #758). The junk-margin dial, measured before any shipped change: ship (margin 7) vs sandal4 (flat 4) vs sandal_class (melee classes 4, casting classes 7), classes-18, normal world, 100,000 turns, paired by seed, evidence not retained. The margin acts only before DL5, only on plain Leather Sandals spares seen as [1,+0] with unknown runes, and only with junk_inferior_spares on; 4 junks a spare at worn to_a >= 4 instead of >= 7. SAFETY: deaths-0 for every arm (a rise cannot be adopted however fast it levels). Gate: no config_error; one binary; every cell terminal; each arm's values in params-core.json. Read: identical plays per arm (18/18 = the dial never binds here and the shipped change is cosmetic), CL5, deaths, paired gained/lost (exact McNemar), median first-L5, per-class splits (the per-class arm's whole point). Descriptive (RULES 14); a lead goes to a bigger tier on the owner's word.

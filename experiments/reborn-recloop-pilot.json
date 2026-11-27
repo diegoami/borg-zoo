@@ -1,0 +1,24 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-recloop-pilot",
+  "issue": 786,
+  "definition": "definitions/reborn-recloop-pilot.yaml",
+  "question": "On PR #1215's head 4f56f7fa (the DL19 recovery-loop fix of #1211), what do the shipped switches change against C's play (both off): deaths, progress, stuck games, recovery deaths \u2014 and do the prep buffs still fire where a fight was real?",
+  "description": "On PR #1215's head 4f56f7fa (the DL19 recovery-loop fix of #1211), what do the shipped switches change against C's play (both off): deaths, progress, stuck games, recovery deaths \u2014 and do the prep buffs still fire where a fight was real? Generated from definitions/reborn-recloop-pilot.yaml: 2 arms on 4.2.6-reborn-rust-recloop-4f56f7fa, suite classes-18.",
+  "prespecified": "Fixed 2026-11-25 in borg-zoo#786, before any result was read. Two arms on PR #1215's head 4f56f7fa: ctl (both switches 0,\nC's play) and shipped (both 1). defend_prep_mana_starved holds the \"some danger\" prep spells (Hero, Berserk Strength, Rapid\nRegeneration) at full HP with SP at or below MAXSP/4; recover_mana_rest_full_hp lets the full-HP mana rest read the general\nrecovery gate. Pilot, then the ladder classes-1800 starts 1-360 (verysmall, small-rest, medium) on the pilot's gate; big and\nfull on the owner's word.\nGate: no config_error; one binary; each arm's two switch values in params-core.json; every cell ends in death, turn_cap or\nborg_stopped; stalls and wall timeouts apart. Primary endpoints per arm against ctl (exact McNemar): stuck games\n(borg-zoo#732's flag \u2014 the recorded loop is one) and recovery deaths (dying while SP-starved with cures uncast). The\nno-regression probe of the prep buffs: the count of Heroism/Berserk Strength/Rapid Regeneration casts per 1,000 turns, with\nthe pre/post states of a sample of casts read from the traces (HP, SP, the nearest visible monster) \u2014 the buffs are useful\nwhen a fight is real; the switch must not disarm them where it mattered. Descriptive CL/depth/deaths per arm; no improvement\nclaim without the prespecified margins (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-recloop-4f56f7fa"
+  ],
+  "profiles": [
+    "reborn-recloop-ctl",
+    "reborn-recloop-shipped"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-recloop-4f56f7fa",
+  "control_profile": "reborn-recloop-ctl",
+  "owner_authorization": "2026-11-25: zoo owner, \"yeah dispatch the zoo\" (borg-zoo#786, the request of borg-reborn-rs#1211).",
+  "retain_evidence": true
+}

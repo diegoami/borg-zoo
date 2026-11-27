@@ -144,3 +144,14 @@
     after 100,000. Regenerate historical reports from retained cells where
     possible. Label recalculated figures retrospective and preserve the
     original prespecified endpoints and stored results.
+
+23. **Track R receiving jobs and current-Track-P status runs always have
+    the highest priority** (owner, 2026-11-25, [#792](https://github.com/diegoami/borg-zoo/issues/792),
+    [#794](https://github.com/diegoami/borg-zoo/issues/794)). The Zoo's Track R
+    jobs - the R4.5 receiving/parity runs and everything they need (their
+    pilots, their staging, their gates) - and the runs that measure the
+    current Track-P status (the baselines of the current track-p head and
+    their ladders) outrank every other Zoo work at all times: they dispatch
+    first, they hold runner slots ahead of ladders and studies, and other
+    in-flight work yields to them when the account's concurrent jobs run
+    short. Their reads post as soon as they land.

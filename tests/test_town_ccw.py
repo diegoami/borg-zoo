@@ -44,7 +44,8 @@ class TownCcwCensusTest(unittest.TestCase):
                 '3 11 0 You bought a Chartreuse Potion for 200 gold.\n'
                 '4 12 0 # Buying Potions of Cure Critical Wounds {unseen}.\n')
             town.collect(directory)
-            census = town_ccw.collect(directory, town_ccw.SOURCE)
+            original_source = '11214501638b3d172113d41c10a304932c925f51'
+            census = town_ccw.collect(directory, original_source)
             self.assertEqual(census['status'], 'ok', census)
             row, = census['visits']
             self.assertEqual(row['first_recall_gated']['turn'], 10)
@@ -56,14 +57,25 @@ class TownCcwCensusTest(unittest.TestCase):
             self.assertEqual(row['departure_pack']['recall'], 2)
             self.assertEqual(row['departure_pack']['phase_door'], 6)
 
+            mismatch = town_ccw.collect(directory, town_ccw.SOURCE)
+            self.assertEqual(mismatch['error'], 'expected live v25 planner receipts')
+            latest_plans = [
+                {**plan, 'v': 25, 'wares': [ware + [0] for ware in plan['wares']]}
+                for plan in plans
+            ]
+            (directory / 'town-plan.jsonl').write_text(''.join(json.dumps(p) + '\n' for p in latest_plans))
+            self.assertEqual(town_ccw.collect(directory, town_ccw.SOURCE), census)
+
             record = {'specimen': 'build', 'seed': 12, 'profile': 'ship', 'suite': 'pilot',
-                      'outcome': 'turn_cap', 'ccw_census': census}
-            missing_record = {k: v for k, v in record.items() if k != 'ccw_census'}
+                      'outcome': 'turn_cap', 'specimen_ref': original_source, 'ccw_census': census}
+            missing_record = {k: v for k, v in record.items() if k not in ('ccw_census', 'specimen_ref')}
             missing_record.update(seed=13, outcome='harness_failure')
             town_ccw.publish(directory, [record, missing_record])
             summary = json.loads((directory / 'ccw-census.json').read_text())
             self.assertEqual(summary['max_dl_at_least_2']['gate_open'], {'visits': 1, 'starts': 1})
+            self.assertEqual(summary['source'], original_source)
             self.assertEqual(summary['cells'][1]['status'], 'unavailable')
+            self.assertEqual(summary['cells'][1]['source'], original_source)
 
             (directory / 'state.log').write_text(states.replace('d1/2 hp10/10 sp0/0 f0 au200 xp0 lv1 p321',
                                                                  'd1/2 hp10/10 sp0/0 f0 au200 xp0 lv1 p999'))

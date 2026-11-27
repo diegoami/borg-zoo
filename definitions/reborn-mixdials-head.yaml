@@ -1,0 +1,32 @@
+# borg-zoo#769: the mixed-exploration walk's own dials (the ones the #769 sweep does not cover). Write the catalogue entries with: python3 -m zoo define definitions/reborn-mixdials-head.yaml
+name: reborn-mixdials-head
+issue: 769
+question: >-
+  At track-p c5501d3c, which of the mixed-exploration walk's own parameters - sight floor, speed ratio, contact-damage estimate, max radius - change play and CL5 progress when moved?
+tier: pilot            # classes-18, one dial per arm, normal world, 100,000 turns
+
+specimen: 4.2.6-reborn-rust-trackp-c5501d3c-pw
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-mixdials
+arms:
+  ctl: {}
+  sight3: {borg_param_explore_mix_sight: 3}
+  sight8: {borg_param_explore_mix_sight: 8}
+  ratio1: {borg_param_explore_mix_speed_ratio: 1}
+  ratio4: {borg_param_explore_mix_speed_ratio: 4}
+  contact2: {borg_param_explore_mix_contact_damage: 2}
+  contact10: {borg_param_explore_mix_contact_damage: 10}
+  maxr5: {borg_param_explore_mix_max_radius: 5}
+  maxr20: {borg_param_explore_mix_max_radius: 20}
+control: [ctl]
+owner_authorization: >-
+  2026-11-24: zoo owner, "the breadth mixed strategy has a lot of parameters to tune as well, do experiments with those too" (borg-zoo#769).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-24, before any result (Rule 22, #758). One dial per arm against ctl, shipped values otherwise, classes-18, evidence not retained. Overlap note: explore_mix_radius (2, 5), explore_mix_step (1) and explore_mix_max_clevel (30) are dialled in reborn-dials-head; this experiment covers the walk's remaining four dials, two-sided. Deaths-0 constraint (owner, #783): an arm whose deaths rise cannot be adopted however fast it levels. Gate: no config_error; one binary; each arm's value in params-core.json; every cell ends in death, turn_cap or borg_stopped; identical plays per arm. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and level arrival as diagnostics; the turn of first reaching character level 5 where recorded. Report per arm against ctl: the CL5 endpoint, paired CL5 gained/lost (exact McNemar), deaths and causes, identical plays. A dial that plays ctl's keys was not exercised and gets no ladder. Descriptive (RULES 14); ladders on the owner's word.

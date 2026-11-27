@@ -1,0 +1,25 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-loopwin-pilot",
+  "issue": 784,
+  "definition": "definitions/reborn-loopwin-pilot.yaml",
+  "question": "On track-p d68c1407 (loop_moves/loop_grids named, #1205), what does the movement-loop breaker change at all (control) versus the shipped net (16 moves / 3 grids) and the wider net the four-grid DL1 cycle of #1189 would have needed (16/4): deaths, progress, stuck games, loops detected?",
+  "description": "On track-p d68c1407 (loop_moves/loop_grids named, #1205), what does the movement-loop breaker change at all (control) versus the shipped net (16 moves / 3 grids) and the wider net the four-grid DL1 cycle of #1189 would have needed (16/4): deaths, progress, stuck games, loops detected? Generated from definitions/reborn-loopwin-pilot.yaml: 3 arms on 4.2.6-reborn-rust-trackp-d68c1407, suite classes-18.",
+  "prespecified": "Fixed 2026-11-24 in borg-zoo#784, before any result was read. Three arms on track-p d68c1407: ctl (loop_breaker 0, C's play),\nnet3 (the shipped net: breaker 1, 16 moves, 3 grids) and net4 (the arm #1189's four-grid DL1 cycle would have needed:\nbreaker 1, 16 moves, 4 grids). Pilot, then the ladder classes-1800 starts 1-360 (verysmall, small-rest, medium) on the\npilot's gate; big and full on the owner's word.\nGate: no config_error; one binary; each arm's loop_breaker/loop_moves/loop_grids in params-core.json; every cell ends in\ndeath, turn_cap or borg_stopped; stalls and wall timeouts apart. Report per arm against ctl: deaths and causes (exact\nMcNemar), stuck games (borg-zoo#732's flag) as the primary endpoint \u2014 net4 must not have more stuck games than net3; loops\ndetected per game from the \"# Loop detected\" notes, with the decision pairs of the notes tabulated (each pair stays worth a\nsource fix of its own); the false-positive probe: every break whose window actually contained productive play (map learning,\ndanger, the mixed walk's branch returns, committed stair walks), read from the traces. Descriptive CL/depth/deaths per arm;\nno improvement claim without the prespecified margins (RULES 14).",
+  "pilot": true,
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-d68c1407"
+  ],
+  "profiles": [
+    "reborn-loopwin-ctl",
+    "reborn-loopwin-net3",
+    "reborn-loopwin-net4"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-d68c1407",
+  "control_profile": "reborn-loopwin-ctl",
+  "owner_authorization": "2026-11-25: zoo owner, \"yeah dispatch the zoo\" (borg-zoo#784, the request of borg-reborn-rs#1190).",
+  "retain_evidence": true
+}

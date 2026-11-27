@@ -4,11 +4,11 @@
   "issue": 744,
   "definition": "definitions/reborn-ccw-census-pilot.yaml",
   "question": "How often can the shipped Borg afford its first Cure Critical Wounds after staples, and does it leave town carrying one?",
-  "description": "How often can the shipped Borg afford its first Cure Critical Wounds after staples, and does it leave town carrying one? Generated from definitions/reborn-ccw-census-pilot.yaml: 1 arms on 4.2.6-reborn-rust-trackp-11214501, suite classes-18.",
-  "prespecified": "Normal world, one shipped arm, classes-18, exact 100,000 engine turns. Verify that CSW is 100, CCW is 2 at 112%, Neutralize Poison is 2 at 40%, and the shared gate is on with a Recall reserve of 2 and a 200-gold floor.\nCount planner visits and distinct starts from durable per-visit receipts. Separate stocked, executable, after-staples, and gate-open opportunities with no CCW held. Count confirmed purchases including unidentified CCW and verified departures carrying CCW. Retain the first opportunity at each stage, the same-visit purchase ledger, pack counts, missing streams, censored visits and a max DL >= 2 breakdown. Report CL5 by the cap and incomplete outcomes in the standard run results.\nBefore dispatch, check the retained poison-x8 Blackguard 888896726 visit. Recover both CCW after two Recall, the last observed town pack, and the descent at 48,779. The ring purchase and equip changed pack fingerprints after the last planner row, so this visit's departure pack is unverified. The normal-world census is descriptive. A verified gate-open miss goes to a named replay. Propose a paired gate-only pilot only after at least ten relevant visits across five starts, and read Recall, Phase Door and Neutralize Poison alongside CCW.",
+  "description": "How often can the shipped Borg afford its first Cure Critical Wounds after staples, and does it leave town carrying one? Generated from definitions/reborn-ccw-census-pilot.yaml: 1 arms on 4.2.6-reborn-rust-trackp-137b6c44, suite classes-18.",
+  "prespecified": "Normal world, one shipped arm, classes-18, exact 100,000 engine turns. Verify that CSW is 100, CCW is 2 at 112%, Neutralize Poison is 2 at 40%, and the shared gate is on with a Recall reserve of 2 and a 200-gold floor.\nCount planner visits and distinct starts from durable per-visit receipts. Separate stocked, executable, after-staples, and gate-open opportunities with no CCW held. Count confirmed purchases including unidentified CCW and verified departures carrying CCW. Retain the first opportunity at each stage, the same-visit purchase ledger, pack counts, missing streams, censored visits and a max DL >= 2 breakdown. Report CL5 by the cap and incomplete outcomes in the standard run results.\nFor collector regression, use the retained poison-x8 Blackguard 888896726 visit from Track P 11214501. Recover both CCW after two Recall, the last observed town pack, and the descent at 48,779. The ring purchase and equip changed pack fingerprints after the last planner row, so this visit's departure pack is unverified. The normal-world census is descriptive. A verified gate-open miss goes to a named replay. Propose a paired gate-only pilot only after at least ten relevant visits across five starts, and read Recall, Phase Door and Neutralize Poison alongside CCW.",
   "pilot": true,
   "specimens": [
-    "4.2.6-reborn-rust-trackp-11214501"
+    "4.2.6-reborn-rust-trackp-137b6c44"
   ],
   "profiles": [
     "reborn-ccw-census-ship"
@@ -16,7 +16,7 @@
   "suites": [
     "classes-18"
   ],
-  "control": "4.2.6-reborn-rust-trackp-11214501",
+  "control": "4.2.6-reborn-rust-trackp-137b6c44",
   "control_profile": "reborn-ccw-census-ship",
   "owner_authorization": "Owner requested a Zoo PR for the one-arm CCW census in borg-reborn-rs #1198.",
   "retain_evidence": true,
