@@ -3854,6 +3854,19 @@
       "scary_lists": {
         "scary_monsters.txt": "f35bfc49af22ee19a1ea0270d2ed471595bf3104813fc69891312d0fccece75c"
       }
+    },
+    "4.2.6-reborn-rust-trackp-bbe83d0b": {
+      "kind": "borg-rs",
+      "impl": "rust",
+      "exact_turns": true,
+      "depth_stream": true,
+      "role": "candidate",
+      "repository": "diegoami/borg-reborn-rs",
+      "ref": "bbe83d0b550f8265a0bad1fc5de5f325ab7b1925",
+      "label": "borg-reborn-rs track-p head bbe83d0b on 2026-11-26 (the #1292 merge, 23 commits past a0b73ca9: \"Ship both Borgs behind Ctrl-Z, with PBorg selected by default\" - the YAML migration completed: harness/borg.txt REMOVED, the shipped settings live in harness/pborg.yaml 6daa73f5..., with harness/pborg-settings.py the settings editor; scary_monsters.txt f35bfc49...), borg-rs core.",
+      "scary_lists": {
+        "scary_monsters.txt": "f35bfc49af22ee19a1ea0270d2ed471595bf3104813fc69891312d0fccece75c"
+      }
     }
   }
 }

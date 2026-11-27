@@ -1,0 +1,25 @@
+# borg-zoo#808: reborn-fullgame-bbe83d0b - the battery on track-p head bbe83d0b, the first YAML-only configuration (the #1292 merge). Write the catalogue entries with: python3 -m zoo define definitions/reborn-fullgame-bbe83d0b.yaml
+name: reborn-fullgame-bbe83d0b
+issue: 808
+question: >-
+  How far does the Borg get in a full game on the YAML-only configuration: CL20 share, max CL, max DL, deaths - one game per class, 1,000,000-turn cap?
+tier: pilot
+suite: classes-9-full
+
+specimen: 4.2.6-reborn-rust-trackp-bbe83d0b
+
+settings:
+  borg_reborn_core: borg-rs
+  borg_reborn_errand: none
+
+profile_prefix: reborn-baseline-bbe83d0b
+arms:
+  ship: {}
+control: [ship]
+owner_authorization: >-
+  2026-11-26: zoo owner - the battery re-runs on the new head (RULES 23), and this run doubles as the FIRST TEST RUN IN THE NEW YAML CONFIGURATION FORMAT (the #1292 YAML migration + zoo #813's native-yaml adapter; harness/borg.txt removed at this pin).
+extra:
+  retain_evidence: false
+
+prespecified: |
+  Fixed 2026-11-26, before any result (Rule 22, #758). The battery on the new track-p head bbe83d0b - and the first zoo runs on a YAML-only configuration: the shipped settings live in harness/pborg.yaml (6daa73f5...), the adapter (#813) applies the profile's settings to the template through the pinned pborg-settings.py, and no borg.txt exists. Full-game pilot on the current head: one game per class to death or the 1,000,000-turn cap. PRIMARY: CL20 reached; reported per game: max CL, max DL, outcome/death cause and turn, town vs dungeon turns. Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; the staged pborg.yaml hash recorded per cell (pborg_yaml_sha256) and verified at any death replay. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and median first-turn-at-level-5 as diagnostics. Descriptive (RULES 14).

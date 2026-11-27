@@ -1,0 +1,22 @@
+{
+  "schema": "borg-zoo/experiment@1",
+  "name": "reborn-baseline-bbe83d0b",
+  "issue": 808,
+  "definition": "definitions/reborn-baseline-bbe83d0b.yaml",
+  "question": "What does the shipped game play like at the new YAML-only configuration (the #1292 merge): CL5 by 100,000 turns, deaths, level arrival - the anchor, and the first native-YAML run?",
+  "description": "What does the shipped game play like at the new YAML-only configuration (the #1292 merge): CL5 by 100,000 turns, deaths, level arrival - the anchor, and the first native-YAML run? Generated from definitions/reborn-baseline-bbe83d0b.yaml: 1 arms on 4.2.6-reborn-rust-trackp-bbe83d0b, suite classes-18.",
+  "prespecified": "Fixed 2026-11-26, before any result (Rule 22, #758). The battery on the new track-p head bbe83d0b - and the first zoo runs on a YAML-only configuration: the shipped settings live in harness/pborg.yaml (6daa73f5...), the adapter (#813) applies the profile's settings to the template through the pinned pborg-settings.py, and no borg.txt exists. Baseline description of the shipped settings at track-p bbe83d0b, one arm (ship), classes-18, normal world, evidence not retained. Gate: no config_error; one binary; every cell ends in death, turn_cap or borg_stopped; the staged pborg.yaml hash recorded per cell (pborg_yaml_sha256) and verified at any death replay. Progress endpoint CL5 reached by 100,000 turns - known attainment out of all starts, deaths, unfinished and alive at the cutoff with CL5 reported separately; DL3/DL5 and median first-turn-at-level-5 as diagnostics. Descriptive (RULES 14).",
+  "specimens": [
+    "4.2.6-reborn-rust-trackp-bbe83d0b"
+  ],
+  "profiles": [
+    "reborn-baseline-bbe83d0b-ship"
+  ],
+  "suites": [
+    "classes-18"
+  ],
+  "control": "4.2.6-reborn-rust-trackp-bbe83d0b",
+  "control_profile": "reborn-baseline-bbe83d0b-ship",
+  "owner_authorization": "2026-11-26: zoo owner - the battery re-runs on the new head (RULES 23), and this run doubles as the FIRST TEST RUN IN THE NEW YAML CONFIGURATION FORMAT (the #1292 YAML migration + zoo #813's native-yaml adapter; harness/borg.txt removed at this pin).",
+  "retain_evidence": false
+}
