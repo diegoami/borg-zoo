@@ -1115,22 +1115,30 @@ def versions_page():
     return (f'<p><a href="index.html">Borg zoo</a></p><h1>Versions</h1>{mode_cutoff_note()}{versions_table()}')
 
 
-RUN_COLS = [('Experiment', 'The question being asked; the link opens its tables.'),
-            ('Issue', 'The borg-zoo issue the experiment answers.'),
-            ('Runs', 'Games played: versions × profiles × seeds.'),
-            ('Finished', 'Games that reached an endpoint (death or the turn cap); the rest stalled, timed out '
-                         'or failed.'),
-            ('Deaths', 'Deaths among finished games, all arms of the run together.'),
-            ('CL5', 'Share of runs with known attainment that reached character level 5 by 100,000 turns, '
-                    'all arms together.'),
-            ('Deaths range (worst, best)', 'Wilson 95% interval of the arm with the highest death rate, then '
-                                           'the arm with the lowest; one interval when a run has a single arm.'),
-            ('CL5 range (worst, best)', 'Wilson 95% interval of the arm with the lowest CL5 attainment, then '
-                                        'the arm with the highest.')]
+TIMED_COLS = [('Experiment', 'The question being asked; the link opens its tables.'),
+              ('Issue', 'The borg-zoo issue the experiment answers.'),
+              ('Runs', 'Games played: versions × profiles × seeds.'),
+              ('Finished', 'Games that reached an endpoint (death or the turn cap); the rest stalled, timed out '
+                           'or failed.'),
+              ('Deaths', 'Deaths among finished games, all arms of the run together.'),
+              ('Turns', 'The median game length, in engine turns, over finished games (death or cap).'),
+              ('Median CL', 'The middle value of the highest character level each finished game reached '
+                            '(milestones recorded to CL20; borg-zoo#805).'),
+              ('CL range', 'The lowest and the highest character level any finished game reached.')]
+
+
+DEATH_COLS = [('Experiment', 'The run with deaths; the link opens its tables.'),
+              ('Issue', 'The borg-zoo issue the experiment answers.'),
+              ('Runs', 'Games played.'),
+              ('Deaths', 'Deaths among finished games, all arms of the run together.'),
+              ('Top killer', 'The most frequent death cause in the run, with its count.'),
+              ('Median death turn', 'The middle engine turn at which the dying games died.'),
+              ('CL range at death', 'The lowest and the highest character level among the dying games.'),
+              ('DL range at death', 'The lowest and the highest dungeon depth among the dying games.')]
 
 
 def nav(active, base=""):
-    tabs = [('index.html', 'Full runs'), ('settings/index.html', 'Settings')]
+    tabs = [('index.html', 'Timed runs'), ('deaths/index.html', 'Death runs')]
     return ('<p class="tabs">' +
             ''.join(f'<a class="tab{" active" if href == active else ""}" href="{base}{href}">{esc(label)}</a>'
                     for href, label in tabs) + '</p>')
@@ -1201,12 +1209,30 @@ def landing_page(runs, run_rows):
     """Every experiment run in one list, newest first: small tiers and pilots
     included, each with the borg-zoo issue it answers. Smoke checks and
     scenario runs are not listed, and the page ends at the table - no
-    cross-experiment summaries, caveats or footer (owner, 2026-11-24)."""
+    cross-experiment summaries, caveats or footer (owner, 2026-11-24).
+    Timed runs: the length-and-level view (owner, 2026-11-26) - no CL5 columns."""
     return (
         f'<h1>Borg zoo</h1>{nav("index.html")}'
-        '<h2>Full runs</h2>'
+        '<h2>Timed runs</h2>'
         + explain('Every experiment run, newest first, small tiers and pilots included; smoke checks and '
-                  'scenario runs are not listed. Each report shows the YAML definition and the build used.',
-                  RUN_COLS)
-        + (f'<div class="runs-list">{table(RUN_COLS, run_rows)}</div>' if run_rows
+                  'scenario runs are not listed. Each game runs to death or the turn cap: Turns is the median '
+                  'game length, Median CL and CL range are how far the characters levelled (milestones recorded '
+                  'to CL20). Each report shows the YAML definition and the build used.',
+                  TIMED_COLS)
+        + (f'<div class="runs-list">{table(TIMED_COLS, run_rows)}</div>' if run_rows
            else '<p class="muted">No results yet.</p>'))
+
+
+def death_runs_page(death_rows):
+    """The runs with deaths, newest first: one row per run, the deaths read
+    together - killer, when they die, and how far the dying games got
+    (owner, 2026-11-26)."""
+    return (
+        f'<h1>Borg zoo</h1>{nav("deaths/index.html", base="../")}'
+        '<h2>Death runs</h2>'
+        + explain('Every experiment run with at least one death, newest first: the deaths of all arms read '
+                  'together. Top killer is the most frequent death cause; the CL and DL ranges are how far the '
+                  'dying games had got. Runs without deaths are on the Timed runs tab.',
+                  DEATH_COLS)
+        + (f'<div class="runs-list">{table(DEATH_COLS, death_rows)}</div>' if death_rows
+           else '<p class="muted">No deaths recorded yet.</p>'))
