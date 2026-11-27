@@ -1,5 +1,8 @@
 # Open work and handover state
 
+The [Track P play-style candidate index](PLAY-STYLE-CANDIDATES.md) lists
+plausible changes and neutral settings available to adopt for play style.
+
 ## Traps for a new session
 
 - Claim the study after checking issue comments, branches, PRs and active
